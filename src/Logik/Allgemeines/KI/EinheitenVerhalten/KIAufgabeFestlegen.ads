@@ -2,17 +2,18 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
-with EinheitStadtRecords;
+with EinheitenDatentypen; use EinheitenDatentypen;
+with EinheitenRecords;
 with SpielVariablen;
 with KartenRecords;
 with KartenDatentypen;
 with SonstigeVariablen;
+with StadtRecords;
 
 package KIAufgabeFestlegen is
 
    procedure KeineAufgabe
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -20,7 +21,7 @@ package KIAufgabeFestlegen is
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
 
    procedure Heilen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -28,7 +29,7 @@ package KIAufgabeFestlegen is
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
 
    procedure StadtBauenPrüfung
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -36,7 +37,7 @@ package KIAufgabeFestlegen is
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
 
    procedure StadtUmgebungVerbesserung
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -44,7 +45,7 @@ package KIAufgabeFestlegen is
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
 
    procedure StadtBewachen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -52,7 +53,7 @@ package KIAufgabeFestlegen is
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
 
    procedure StadtUmgebungZerstören
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -60,7 +61,7 @@ package KIAufgabeFestlegen is
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
 
    procedure Angreifen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -68,7 +69,7 @@ package KIAufgabeFestlegen is
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
 
    procedure Erkunden
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -76,7 +77,7 @@ package KIAufgabeFestlegen is
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
 
    procedure Fliehen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -84,7 +85,7 @@ package KIAufgabeFestlegen is
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
 
    procedure Befestigen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -92,7 +93,7 @@ package KIAufgabeFestlegen is
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
 
    procedure EinheitVerbessern
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -108,7 +109,7 @@ private
 
    Umgebung : KartenDatentypen.UmgebungsbereichDrei;
 
-   EinheitNummer : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
+   EinheitNummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
 
    KarteReichweite : KartenDatentypen.KartenfeldPositivMitNullwert;
    KarteGeprüft : KartenDatentypen.KartenfeldPositivMitNullwert;
@@ -119,8 +120,8 @@ private
    NeueStadtPosition : KartenRecords.AchsenKartenfeldPositivRecord;
 
    function EinheitVerbessernPlatz
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      EinheitNummerExtern : in EinheitStadtDatentypen.MaximaleEinheiten)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      EinheitNummerExtern : in EinheitenDatentypen.MaximaleEinheiten)
       return KartenRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>

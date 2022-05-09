@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with SonstigeVariablen;
-with EinheitStadtRecords;
+with EinheitenRecords;
 with KartenRecords;
 with KartenDatentypen;
 with SpielVariablen;
@@ -11,7 +11,7 @@ with SpielVariablen;
 package KIMindestBewertungKartenfeldErmitteln is
 
    function MindestBewertungKartenfeldStadtBauen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return KartenDatentypen.GesamtbewertungFeld
      with
        Pre =>

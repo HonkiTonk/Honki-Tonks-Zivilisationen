@@ -4,10 +4,11 @@ pragma Warnings (Off, "*array aggregate*");
 with KartenDatentypen; use KartenDatentypen;
 with RassenDatentypen;
 with KartenRecords;
-with EinheitStadtDatentypen;
+with EinheitenDatentypen;
 with KartengrundDatentypen;
 with KartenVerbesserungDatentypen;
 with ProduktionDatentypen;
+with KampfDatentypen;
 
 with Karten;
 
@@ -68,7 +69,7 @@ package KartenAllgemein is
    function GrundVerteidigung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.Kampfwerte
+      return KampfDatentypen.Kampfwerte
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -78,7 +79,7 @@ package KartenAllgemein is
    function GrundAngriff
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.Kampfwerte
+      return KampfDatentypen.Kampfwerte
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -138,7 +139,7 @@ package KartenAllgemein is
    function FlussVerteidigung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.Kampfwerte
+      return KampfDatentypen.Kampfwerte
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -148,7 +149,7 @@ package KartenAllgemein is
    function FlussAngriff
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.Kampfwerte
+      return KampfDatentypen.Kampfwerte
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -208,7 +209,7 @@ package KartenAllgemein is
    function WegVerteidigung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.Kampfwerte
+      return KampfDatentypen.Kampfwerte
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -218,7 +219,7 @@ package KartenAllgemein is
    function WegAngriff
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.Kampfwerte
+      return KampfDatentypen.Kampfwerte
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -278,7 +279,7 @@ package KartenAllgemein is
    function VerbesserungVerteidigung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.Kampfwerte
+      return KampfDatentypen.Kampfwerte
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -288,7 +289,7 @@ package KartenAllgemein is
    function VerbesserungAngriff
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.Kampfwerte
+      return KampfDatentypen.Kampfwerte
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -348,7 +349,7 @@ package KartenAllgemein is
    function RessourceVerteidigung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.Kampfwerte
+      return KampfDatentypen.Kampfwerte
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -358,7 +359,7 @@ package KartenAllgemein is
    function RessourceAngriff
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.Kampfwerte
+      return KampfDatentypen.Kampfwerte
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -377,7 +378,7 @@ package KartenAllgemein is
 
    function PassierbarGrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      PassierbarkeitExtern : in EinheitStadtDatentypen.Passierbarkeit_Enum)
+      PassierbarkeitExtern : in EinheitenDatentypen.Passierbarkeit_Enum)
       return Boolean
      with
        Pre =>
@@ -387,7 +388,7 @@ package KartenAllgemein is
 
    function PassierbarVerbesserung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      PassierbarkeitExtern : in EinheitStadtDatentypen.Passierbarkeit_Enum)
+      PassierbarkeitExtern : in EinheitenDatentypen.Passierbarkeit_Enum)
       return Boolean
      with
        Pre =>
@@ -397,7 +398,7 @@ package KartenAllgemein is
 
    function PassierbarWeg
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      PassierbarkeitExtern : in EinheitStadtDatentypen.Passierbarkeit_Enum)
+      PassierbarkeitExtern : in EinheitenDatentypen.Passierbarkeit_Enum)
       return Boolean
      with
        Pre =>

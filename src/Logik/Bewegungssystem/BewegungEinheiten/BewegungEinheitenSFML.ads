@@ -6,7 +6,7 @@ with Sf.System.Vector2;
 with KartenRecords; use KartenRecords;
 with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
-with EinheitStadtRecords;
+with EinheitenRecords;
 with SpielVariablen;
 with TastenbelegungDatentypen;
 with SonstigeVariablen;
@@ -14,7 +14,7 @@ with SonstigeVariablen;
 package BewegungEinheitenSFML is
 
    procedure BewegungEinheitenRichtung
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -50,29 +50,29 @@ private
                                         );
    
    function EinheitBefehle
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Enum)
       return Boolean;
    
    function PositionÄndern
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
       return Boolean;
    
    function BefehleMaus
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean;
    
    function MausInKarte
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean;
    
    function EinheitBewegenMaus
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean;
    
    function MausInAnzeige
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean;
 
 end BewegungEinheitenSFML;

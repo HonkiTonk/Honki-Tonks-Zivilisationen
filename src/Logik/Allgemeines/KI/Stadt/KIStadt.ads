@@ -3,66 +3,78 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with SonstigeVariablen;
-with EinheitStadtRecords;
+with EinheitenRecords;
 with KartenRecords;
-with EinheitStadtDatentypen;
+with EinheitenDatentypen;
+with StadtRecords;
+with SpielVariablen;
 
 with KIRecords;
 
 package KIStadt is
 
    procedure KIStadt
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
      with
        Pre =>
-         (StadtRasseNummerExtern.Nummer in EinheitStadtDatentypen.MaximaleStädte'Range
-          and
-            SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
+         (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+         and
+           SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
 
 private
 
-   NotfallEinheit : EinheitStadtDatentypen.EinheitenIDMitNullWert;
+   NotfallEinheit : EinheitenDatentypen.EinheitenIDMitNullWert;
 
-   FremdeEinheit : EinheitStadtRecords.RasseEinheitnummerRecord;
+   FremdeEinheit : EinheitenRecords.RasseEinheitnummerRecord;
 
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
 
    procedure NeuesBauprojekt
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       EinheitBauenExtern : in KIRecords.EinheitIDBewertungRecord;
       GebäudeBauenExtern : in KIRecords.GebäudeIDBewertungRecord;
       NotfallExtern : in Boolean)
      with
        Pre =>
-         (StadtRasseNummerExtern.Nummer in EinheitStadtDatentypen.MaximaleStädte'Range
-          and
-            SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
+         (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+         and
+           SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
 
    procedure NotfallEinheitBauen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      EinheitIDExtern : in EinheitStadtDatentypen.EinheitenID)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      EinheitIDExtern : in EinheitenDatentypen.EinheitenID)
      with
        Pre =>
-         (StadtRasseNummerExtern.Nummer in EinheitStadtDatentypen.MaximaleStädte'Range
-          and
-            SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
+         (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+         and
+           SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
 
    procedure WelcheEinheitArt
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     with
+       Pre =>
+         (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+         and
+           SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
 
 
 
    function GefahrStadt
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return Boolean
      with
        Pre =>
-         (StadtRasseNummerExtern.Nummer in EinheitStadtDatentypen.MaximaleStädte'Range
-          and
-            SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
+         (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+         and
+           SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
 
    function FeindNahe
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
-      return Boolean;
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+      return Boolean
+     with
+       Pre =>
+         (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+         and
+           SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
 
 end KIStadt;

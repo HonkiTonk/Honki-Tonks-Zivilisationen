@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with StadtDatentypen; use StadtDatentypen;
 with StadtKonstanten;
 
 with Fehler;
@@ -150,7 +150,7 @@ package body LeseKarten is
    
    
    function BestimmteStadtBelegtGrund
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin

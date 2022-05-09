@@ -2,9 +2,9 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
-with EinheitStadtRecords;
+with EinheitenRecords;
 with SpielVariablen;
-with EinheitStadtDatentypen;
+with EinheitenDatentypen;
 with TastenbelegungDatentypen;
 with KartengrundDatentypen;
 with SonstigeVariablen;
@@ -12,7 +12,7 @@ with SonstigeVariablen;
 package Aufgaben is
    
    function VerbesserungTesten
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum)
       return Boolean
      with
@@ -22,7 +22,7 @@ package Aufgaben is
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
    
    function VerbesserungAnlegen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum)
       return Boolean
      with
@@ -33,12 +33,12 @@ package Aufgaben is
    
 private
    
-   IDEinheit : EinheitStadtDatentypen.EinheitenID;
+   IDEinheit : EinheitenDatentypen.EinheitenID;
    
    Grund : KartengrundDatentypen.Kartengrund_Enum;
    
    procedure EinheitVerschanzen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -46,7 +46,7 @@ private
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
    
    procedure RundeAussetzen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -54,7 +54,7 @@ private
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
    
    procedure EinheitAuflösen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -62,7 +62,7 @@ private
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
    
    procedure EinheitVerbessern
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -70,12 +70,12 @@ private
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
    
    procedure Plünderung
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord);
    
    
    
    function VerbesserungFestgelegt
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum;
       AnlegenTestenExtern : in Boolean)
       return Boolean
@@ -86,7 +86,7 @@ private
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
    
    function EinheitHeilen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       AnlegenTestenExtern : in Boolean)
       return Boolean
      with
@@ -96,7 +96,7 @@ private
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
    
    function VerbesserungPlündern
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       AnlegenTestenExtern : in Boolean)
       return Boolean
      with
@@ -106,7 +106,7 @@ private
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
    
    function VerbesserungEinheit
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       AnlegenTestenExtern : in Boolean)
       return Boolean
      with
@@ -116,7 +116,7 @@ private
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
    
    function AllgemeinerAnfangstest
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum)
       return Boolean
      with

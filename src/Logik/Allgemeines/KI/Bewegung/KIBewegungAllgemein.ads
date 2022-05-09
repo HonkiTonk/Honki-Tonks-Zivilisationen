@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with RassenDatentypen; use RassenDatentypen;
-with EinheitStadtRecords;
+with EinheitenRecords;
 with SonstigeVariablen;
 with KartenRecords;
 
@@ -15,7 +15,7 @@ package KIBewegungAllgemein is
    
    function FeldBetreten
      (FeldKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return KIDatentypen.Bewegung_Enum
      with
        Pre =>
@@ -31,7 +31,7 @@ private
    BlockierendeStadt : RassenDatentypen.Rassen_Enum;
    
    function FeldAngreifen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      return KIDatentypen.Bewegung_Enum;
 
 end KIBewegungAllgemein;

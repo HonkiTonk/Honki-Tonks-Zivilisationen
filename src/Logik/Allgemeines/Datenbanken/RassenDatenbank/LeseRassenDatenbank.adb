@@ -9,7 +9,7 @@ package body LeseRassenDatenbank is
 
    function RassenAggressivität
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
+      return StadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
       return RassenDatenbank.RassenListe (RasseExtern).Aggressivität;
@@ -20,7 +20,7 @@ package body LeseRassenDatenbank is
    
    function RassenExpansion
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
+      return StadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
       return RassenDatenbank.RassenListe (RasseExtern).Expansion;
@@ -31,7 +31,7 @@ package body LeseRassenDatenbank is
    
    function RassenWissenschaft
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
+      return StadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
       return RassenDatenbank.RassenListe (RasseExtern).Wissenschaft;
@@ -42,7 +42,7 @@ package body LeseRassenDatenbank is
    
    function RassenProduktion
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
+      return StadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
       return RassenDatenbank.RassenListe (RasseExtern).Produktion;
@@ -53,7 +53,7 @@ package body LeseRassenDatenbank is
    
    function RassenWirtschaft
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
+      return StadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
       return RassenDatenbank.RassenListe (RasseExtern).Wirtschaft;
@@ -64,7 +64,7 @@ package body LeseRassenDatenbank is
    
    function RassenBewirtschaftung
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
+      return StadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
       return RassenDatenbank.RassenListe (RasseExtern).Bewirtschaftung;

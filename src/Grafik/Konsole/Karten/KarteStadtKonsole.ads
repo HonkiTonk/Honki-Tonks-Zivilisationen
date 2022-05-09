@@ -2,17 +2,17 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
-with EinheitStadtRecords;
 with SpielVariablen;
 with KartenRecords;
 with KartenDatentypen;
-with EinheitStadtDatentypen;
+with StadtDatentypen;
 with SonstigeVariablen;
+with StadtRecords;
 
 package KarteStadtKonsole is
 
    procedure AnzeigeStadt
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
      with
        Pre =>
          (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -35,7 +35,7 @@ private
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
       
    procedure WeitereInformationen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
      with
        Pre =>
          (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -51,7 +51,7 @@ private
          (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum);
 
    procedure AnzeigeStadtUmgebung
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       YAchseExtern : in KartenDatentypen.Stadtfeld;
       XAchseExtern : in KartenDatentypen.Stadtfeld)
      with
@@ -61,39 +61,73 @@ private
             SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum);
    
    procedure GrafischeDarstellung
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     with
+       Pre =>
+         (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+          and
+            SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum);
    
    procedure GebäudeText
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     with
+       Pre =>
+         (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+          and
+            SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum);
    
    procedure AnsichtUmgebung
      (YAchseExtern : in KartenDatentypen.Stadtfeld;
       XAchseExtern : in KartenDatentypen.Stadtfeld;
-      StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
+      StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     with
+       Pre =>
+         (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+          and
+            SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum);
    
    procedure CursorDarstellung
      (YAchseExtern : in KartenDatentypen.Stadtfeld;
       XAchseExtern : in KartenDatentypen.Stadtfeld;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre =>
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum);
    
    procedure GebäudeDarstellung
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      IDExtern : in EinheitStadtDatentypen.GebäudeID);
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      IDExtern : in StadtDatentypen.GebäudeID)
+     with
+       Pre =>
+         (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+          and
+            SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum);
    
    procedure AnzeigeUmgebungCursor
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      UmgebungExtern : in KartenDatentypen.UmgebungsbereichDrei);
+      UmgebungExtern : in KartenDatentypen.UmgebungsbereichDrei)
+     with
+       Pre =>
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum);
    
    
    
    function Darstellung
      (YAchseExtern : in KartenDatentypen.Stadtfeld;
       XAchseExtern : in KartenDatentypen.Stadtfeld;
-      StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
-      return Boolean;
+      StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+      return Boolean
+     with
+       Pre =>
+         (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+          and
+            SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum);
    
    function AufschlagGebäude
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenDatentypen.SichtweiteMitNullwert;
+      return KartenDatentypen.SichtweiteMitNullwert
+     with
+       Pre =>
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum);
 
 end KarteStadtKonsole;

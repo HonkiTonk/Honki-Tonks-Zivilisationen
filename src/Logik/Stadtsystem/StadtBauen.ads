@@ -5,17 +5,18 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with RassenDatentypen; use RassenDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
-with EinheitStadtRecords;
+with EinheitenRecords;
 with SpielVariablen;
 with KartenRecords;
-with EinheitStadtDatentypen;
+with StadtDatentypen;
 with SystemRecords;
 with SonstigeVariablen;
+with StadtRecords;
 
 package StadtBauen is
 
    function StadtBauen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
      with
        Pre =>
@@ -25,13 +26,13 @@ package StadtBauen is
 
 private
 
-   StadtNummer : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
+   StadtNummer : StadtDatentypen.MaximaleStädteMitNullWert;
    WelcherName : Positive := 1;
 
    StadtName : SystemRecords.TextEingabeRecord;
 
    function StandardStadtNamen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return Unbounded_Wide_Wide_String
      with
        Pre =>
@@ -40,7 +41,7 @@ private
             SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
 
    procedure StadtEintragen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
      with
        Pre =>
@@ -51,7 +52,7 @@ private
 
 
    function StadtBaubar
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
      with
        Pre =>
@@ -61,7 +62,7 @@ private
 
    function StadtnummerErmitteln
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
+      return StadtDatentypen.MaximaleStädteMitNullWert
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);

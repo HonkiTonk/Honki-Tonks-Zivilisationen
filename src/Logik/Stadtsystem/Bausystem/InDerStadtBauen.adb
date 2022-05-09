@@ -2,8 +2,9 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with GrafikDatentypen; use GrafikDatentypen;
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
 with StadtRecords; use StadtRecords;
+with StadtDatentypen; use StadtDatentypen;
 with StadtKonstanten;
 with TastenbelegungDatentypen;
 with OptionenVariablen;
@@ -21,14 +22,16 @@ with InteraktionAuswahl;
 package body InDerStadtBauen is
 
    procedure Bauen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       AktuellesBauprojekt := LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern);
       NeuesBauprojekt := BauobjektAuswählen (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
       if
-        NeuesBauprojekt.Nummer = 0
+        (NeuesBauprojekt.Gebäude = 0
+         and
+           NeuesBauprojekt.Einheit = 0)
         or
           NeuesBauprojekt = AktuellesBauprojekt
       then
@@ -47,7 +50,7 @@ package body InDerStadtBauen is
 
 
    function BauobjektAuswählen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return StadtRecords.BauprojektRecord
    is begin
 
@@ -67,7 +70,7 @@ package body InDerStadtBauen is
          return AuswahlBauprojektSFML;
          
       else
-         return (True, 0);
+         return (0, 0);
          -- return AuswahlBauprojektKonsole;
       end if;
       
@@ -76,14 +79,14 @@ package body InDerStadtBauen is
    
    
    procedure MöglicheGebäudeErmitteln
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       GebäudeBaubar := False;
       InteraktionAuswahl.MöglicheGebäude := (others => False);
       
       GebäudeSchleife:
-      for GebäudeSchleifenwert in EinheitStadtDatentypen.GebäudeID'Range loop
+      for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
                   
          if
            GebaeudeAllgemein.GebäudeAnforderungenErfüllt (StadtRasseNummerExtern => StadtRasseNummerExtern,
@@ -113,14 +116,14 @@ package body InDerStadtBauen is
    
    
    procedure MöglicheEinheitenErmitteln
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       EinheitenBaubar := False;
       InteraktionAuswahl.MöglicheEinheiten := (others => False);
       
       EinheitenSchleife:
-      for EinheitSchleifenwert in EinheitStadtDatentypen.EinheitenID'Range loop
+      for EinheitSchleifenwert in EinheitenDatentypen.EinheitenID'Range loop
          
          if
            EinheitenModifizieren.EinheitAnforderungenErfüllt (StadtRasseNummerExtern => StadtRasseNummerExtern,
@@ -166,7 +169,9 @@ package body InDerStadtBauen is
          is               
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if
-                 AktuelleAuswahl.Nummer = 0
+                 AktuelleAuswahl.Gebäude = 0
+                 and
+                   AktuelleAuswahl.Einheit = 0
                then
                   null;
                   
@@ -201,7 +206,7 @@ package body InDerStadtBauen is
       MausZeigerPosition := GrafikEinstellungenSFML.MausPosition;
       
       GebäudeSchleife:
-      for GebäudeSchleifenwert in EinheitStadtDatentypen.GebäudeID'Range loop
+      for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
          
          case
            InteraktionAuswahl.MöglicheGebäude (GebäudeSchleifenwert)
@@ -215,7 +220,7 @@ package body InDerStadtBauen is
                      MausZeigerPosition.x in Sf.sfInt32 (InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert).left)
                        .. Sf.sfInt32 (InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert).left + InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert).width)
                then
-                  return (True, GebäudeSchleifenwert);
+                  return (GebäudeSchleifenwert, 0);
          
                else
                   null;
@@ -230,7 +235,7 @@ package body InDerStadtBauen is
       
       
       EinheitenSchleife:
-      for EinheitenSchleifenwert in EinheitStadtDatentypen.EinheitenID'Range loop
+      for EinheitenSchleifenwert in EinheitenDatentypen.EinheitenID'Range loop
          
          case
            InteraktionAuswahl.MöglicheEinheiten (EinheitenSchleifenwert)
@@ -243,7 +248,7 @@ package body InDerStadtBauen is
                      MausZeigerPosition.x in Sf.sfInt32 (InteraktionAuswahl.PositionenEinheitenBauen (EinheitenSchleifenwert).left)
                        .. Sf.sfInt32 (InteraktionAuswahl.PositionenEinheitenBauen (EinheitenSchleifenwert).left + InteraktionAuswahl.PositionenEinheitenBauen (EinheitenSchleifenwert).width)
                then
-                  return (False, EinheitenSchleifenwert);
+                  return (0, EinheitenSchleifenwert);
          
                else
                   null;
@@ -255,7 +260,7 @@ package body InDerStadtBauen is
                
       end loop EinheitenSchleife;
       
-      return (True, 0);
+      return (0, 0);
       
    end MausAuswahl;
 

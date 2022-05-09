@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
-with EinheitStadtRecords;
+with EinheitenRecords;
 with SpielVariablen;
 with KartenRecords;
 with SonstigeVariablen;
@@ -15,7 +15,7 @@ with Karten;
 package KIAufgabenVerteilt is
 
    function AufgabenVerteilt
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       AufgabeExtern : in KIDatentypen.Einheit_Aufgabe_Enum)
       return Natural
      with

@@ -5,7 +5,8 @@ with Sf.Graphics;
 with Sf.Graphics.Text;
 
 with RassenDatentypen;
-with EinheitStadtDatentypen;
+with EinheitenDatentypen;
+with StadtDatentypen;
 with ForschungenDatentypen;
 with SystemKonstanten;
 with MenueDatentypen;
@@ -51,16 +52,16 @@ package TextaccessVariablen is
    -- Baumenü
    BaumenüÜberschriftAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
    
-   type GebäudetextAccessArray is array (EinheitStadtDatentypen.GebäudeIDMitNullwert'Range) of Sf.Graphics.sfText_Ptr;
+   type GebäudetextAccessArray is array (StadtDatentypen.GebäudeIDMitNullwert'Range) of Sf.Graphics.sfText_Ptr;
    GebäudetextAccess : constant GebäudetextAccessArray := (others => Sf.Graphics.Text.create);
 
-   type GebäudezusatztextAccessArray is array (EinheitStadtDatentypen.GebäudeID'Range) of Sf.Graphics.sfText_Ptr;
+   type GebäudezusatztextAccessArray is array (StadtDatentypen.GebäudeID'Range) of Sf.Graphics.sfText_Ptr;
    GebäudezusatztextAccess : constant GebäudezusatztextAccessArray := (others => Sf.Graphics.Text.create);
 
-   type EinheitentextAccessArray is array (EinheitStadtDatentypen.EinheitenIDMitNullWert'Range) of Sf.Graphics.sfText_Ptr;
+   type EinheitentextAccessArray is array (EinheitenDatentypen.EinheitenIDMitNullWert'Range) of Sf.Graphics.sfText_Ptr;
    EinheitentextAccess : constant EinheitentextAccessArray := (others => Sf.Graphics.Text.create);
 
-   type EinheitenzusatztextAccessArray is array (EinheitStadtDatentypen.EinheitenID'Range) of Sf.Graphics.sfText_Ptr;
+   type EinheitenzusatztextAccessArray is array (EinheitenDatentypen.EinheitenID'Range) of Sf.Graphics.sfText_Ptr;
    EinheitenzusatztextAccess : constant EinheitenzusatztextAccessArray := (others => Sf.Graphics.Text.create);
    -- Baumenü
    

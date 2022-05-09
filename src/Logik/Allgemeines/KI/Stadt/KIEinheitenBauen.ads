@@ -2,9 +2,10 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
-with EinheitStadtRecords;
 with SonstigeVariablen;
-with EinheitStadtDatentypen;
+with EinheitenDatentypen;
+with StadtRecords;
+with SpielVariablen;
 
 with KIDatentypen;
 with KIRecords;
@@ -12,115 +13,124 @@ with KIRecords;
 package KIEinheitenBauen is
 
    function EinheitenBauen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return KIRecords.EinheitIDBewertungRecord
      with
        Pre =>
-         (StadtRasseNummerExtern.Nummer in EinheitStadtDatentypen.MaximaleStädte'Range
+         (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
             SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
    
 private
       
-   AnzahlStädte : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
-   
    Gesamtwertung : KIDatentypen.BauenBewertung;
    
-   MinimaleSiedlerMenge : constant EinheitStadtDatentypen.MaximaleStädte := 2;
+   MengeVorhanden : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   MengeImBau : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    
-   MengeVorhanden : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
-   MengeImBau : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
+   MinimaleSiedlerMenge : constant EinheitenDatentypen.MaximaleEinheiten := 2;
+   AnzahlStädte : EinheitenDatentypen.MaximaleEinheiten;
    
    EinheitBewertet : KIRecords.EinheitIDBewertungRecord;
    
    procedure EinheitBewerten
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      IDExtern : in EinheitStadtDatentypen.EinheitenID)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      IDExtern : in EinheitenDatentypen.EinheitenID)
      with
        Pre =>
-         (StadtRasseNummerExtern.Nummer in EinheitStadtDatentypen.MaximaleStädte'Range
+         (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
             SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
      
      
    
    function ArbeiterBewerten
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      EinheitenIDExtern : in EinheitStadtDatentypen.EinheitenID)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      EinheitenIDExtern : in EinheitenDatentypen.EinheitenID)
       return KIDatentypen.BauenBewertung
      with
        Pre =>
-         (StadtRasseNummerExtern.Nummer in EinheitStadtDatentypen.MaximaleStädte'Range
+         (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
             SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
    
    function NahkämpferBewerten
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      EinheitenIDExtern : in EinheitStadtDatentypen.EinheitenID)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      EinheitenIDExtern : in EinheitenDatentypen.EinheitenID)
       return KIDatentypen.BauenBewertung
      with
        Pre =>
-         (StadtRasseNummerExtern.Nummer in EinheitStadtDatentypen.MaximaleStädte'Range
+         (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
             SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
    
    function FernkämpferBewerten
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      EinheitenIDExtern : in EinheitStadtDatentypen.EinheitenID)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      EinheitenIDExtern : in EinheitenDatentypen.EinheitenID)
       return KIDatentypen.BauenBewertung
      with
        Pre =>
-         (StadtRasseNummerExtern.Nummer in EinheitStadtDatentypen.MaximaleStädte'Range
+         (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
             SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
    
    function KostenBewerten
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      EinheitenIDExtern : in EinheitStadtDatentypen.EinheitenID)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      EinheitenIDExtern : in EinheitenDatentypen.EinheitenID)
       return KIDatentypen.BauenBewertung
      with
        Pre =>
-         (StadtRasseNummerExtern.Nummer in EinheitStadtDatentypen.MaximaleStädte'Range
+         (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
             SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
      
    function GeldKostenBewerten
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      EinheitenIDExtern : in EinheitStadtDatentypen.EinheitenID)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      EinheitenIDExtern : in EinheitenDatentypen.EinheitenID)
       return KIDatentypen.BauenBewertung
      with
        Pre =>
-         (StadtRasseNummerExtern.Nummer in EinheitStadtDatentypen.MaximaleStädte'Range
+         (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
             SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
    
    function NahrungKostenBewerten
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      EinheitenIDExtern : in EinheitStadtDatentypen.EinheitenID)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      EinheitenIDExtern : in EinheitenDatentypen.EinheitenID)
       return KIDatentypen.BauenBewertung
      with
        Pre =>
-         (StadtRasseNummerExtern.Nummer in EinheitStadtDatentypen.MaximaleStädte'Range
+         (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
             SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
      
    function RessourcenKostenBewerten
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      EinheitenIDExtern : in EinheitStadtDatentypen.EinheitenID)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      EinheitenIDExtern : in EinheitenDatentypen.EinheitenID)
       return KIDatentypen.BauenBewertung
      with
        Pre =>
-         (StadtRasseNummerExtern.Nummer in EinheitStadtDatentypen.MaximaleStädte'Range
+         (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
             SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
    
    function EinheitenDurchgehen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
-      return KIRecords.EinheitIDBewertungRecord;
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+      return KIRecords.EinheitIDBewertungRecord
+     with
+       Pre =>
+         (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+          and
+            SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
    
    function SpezielleEinheitBewerten
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      IDExtern : in EinheitStadtDatentypen.EinheitenID)
-      return KIDatentypen.BauenBewertung;
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      IDExtern : in EinheitenDatentypen.EinheitenID)
+      return KIDatentypen.BauenBewertung
+     with
+       Pre =>
+         (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+          and
+            SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
 
 end KIEinheitenBauen;

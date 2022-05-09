@@ -3,10 +3,10 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with KartenRecords;
-with EinheitStadtDatentypen;
 with StadtKonstanten;
 with TextKonstanten;
 with ProduktionDatentypen;
+with KampfDatentypen;
 
 package KartenKonstanten is
    
@@ -30,7 +30,7 @@ package KartenKonstanten is
       
    LeerBewertung : constant KartenDatentypen.BewertungFeld := 0;
    LeerWirtschaft : constant ProduktionDatentypen.ProduktionElement := 0;
-   LeerKampf : constant EinheitStadtDatentypen.Kampfwerte := EinheitStadtDatentypen.Kampfwerte'First;
+   LeerKampf : constant KampfDatentypen.Kampfwerte := KampfDatentypen.Kampfwerte'First;
    
    LeerHügel : constant Boolean := False;
    LeerSichtbar : constant Boolean := False;
@@ -41,7 +41,7 @@ package KartenKonstanten is
       
    LeerVerbesserungBewertung : constant KartenDatentypen.BewertungFeld := 0;
    LeerVerbesserungWirtschaft : constant ProduktionDatentypen.ProduktionElement := 0;
-   LeerVerbesserungKampf : constant EinheitStadtDatentypen.Kampfwerte := EinheitStadtDatentypen.Kampfwerte'First;
+   LeerVerbesserungKampf : constant KampfDatentypen.Kampfwerte := KampfDatentypen.Kampfwerte'First;
    
    WirtschaftNahrung : constant KartenDatentypen.Wirtschaft_Enum := KartenDatentypen.Nahrung;
    WirtschaftProduktion : constant KartenDatentypen.Wirtschaft_Enum := KartenDatentypen.Produktion;

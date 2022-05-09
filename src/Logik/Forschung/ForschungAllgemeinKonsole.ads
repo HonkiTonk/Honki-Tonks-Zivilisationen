@@ -4,6 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 package ForschungAllgemeinKonsole is
 
    function ForschungAuswahlKonsole
-     return EinheitStadtDatentypen.ForschungIDMitNullWert;
+     return EinheitenDatentypen.ForschungIDMitNullWert;
 
 end ForschungAllgemeinKonsole;

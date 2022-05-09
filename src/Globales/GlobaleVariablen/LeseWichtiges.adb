@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
 with WichtigesKonstanten;
 with SpielVariablen;
@@ -115,7 +115,7 @@ package body LeseWichtiges is
    
    function AnzahlStädte
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
+      return StadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
       return SpielVariablen.Wichtiges (RasseExtern).AnzahlStädte;
@@ -126,7 +126,7 @@ package body LeseWichtiges is
    
    function AnzahlEinheiten
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
+      return EinheitenDatentypen.MaximaleEinheitenMitNullWert
    is begin
       
       return SpielVariablen.Wichtiges (RasseExtern).AnzahlArbeiter + SpielVariablen.Wichtiges (RasseExtern).AnzahlKämpfer + SpielVariablen.Wichtiges (RasseExtern).AnzahlSonstiges;
@@ -137,7 +137,7 @@ package body LeseWichtiges is
      
    function AnzahlArbeiter
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
+      return EinheitenDatentypen.MaximaleEinheitenMitNullWert
    is begin
       
       return SpielVariablen.Wichtiges (RasseExtern).AnzahlArbeiter;
@@ -148,7 +148,7 @@ package body LeseWichtiges is
      
    function AnzahlKämpfer
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
+      return EinheitenDatentypen.MaximaleEinheitenMitNullWert
    is begin
       
       return SpielVariablen.Wichtiges (RasseExtern).AnzahlKämpfer;
@@ -159,7 +159,7 @@ package body LeseWichtiges is
      
    function AnzahlSonstiges
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
+      return EinheitenDatentypen.MaximaleEinheitenMitNullWert
    is begin
       
       return SpielVariablen.Wichtiges (RasseExtern).AnzahlSonstiges;

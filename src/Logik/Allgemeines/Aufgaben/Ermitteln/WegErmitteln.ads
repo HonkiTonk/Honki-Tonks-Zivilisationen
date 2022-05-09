@@ -2,20 +2,19 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
-with EinheitStadtRecords;
+with EinheitenRecords;
 with SonstigeVariablen;
 with KartengrundDatentypen;
 with SpielVariablen;
 with AufgabenDatentypen;
-with EinheitStadtDatentypen;
 with KartenVerbesserungDatentypen;
 with ForschungenDatentypen;
-with EinheitenRecords;
+with EinheitenDatentypen;
 
 package WegErmitteln is
 
    function WegErmitteln
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
       AnlegenTestenExtern : in Boolean)
       return Boolean
@@ -32,8 +31,8 @@ private
    WelcherWeg : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
    WelcheArbeit : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
 
-   Arbeitszeit : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
-   Grundzeit : EinheitStadtDatentypen.MaximaleStädteMitNullWert := 1;
+   Arbeitszeit : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   Grundzeit : EinheitenDatentypen.MaximaleEinheitenMitNullWert := 1;
 
    Arbeitswerte : EinheitenRecords.ArbeitRecord;
 
@@ -178,7 +177,7 @@ private
                                                                      );
 
    function OberflächeLand
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Enum)
       return EinheitenRecords.ArbeitRecord
      with
@@ -188,7 +187,7 @@ private
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
 
    function OberflächeWasser
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Wasser_Enum)
       return EinheitenRecords.ArbeitRecord
      with
@@ -198,7 +197,7 @@ private
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
 
    function UnterflächeLand
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Enum)
       return EinheitenRecords.ArbeitRecord
      with
@@ -208,7 +207,7 @@ private
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
 
    function UnterflächeWasser
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Wasser_Enum)
       return EinheitenRecords.ArbeitRecord
      with

@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
 with EinheitenKonstanten;
 
 with SchreibeEinheitenGebaut;
@@ -15,7 +15,7 @@ with Fehler;
 package body FestungErmitteln is
 
    function FestungErmitteln
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
       AnlegenTestenExtern : in Boolean)
       return Boolean

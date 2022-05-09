@@ -8,7 +8,8 @@ with Sf.Graphics.RectangleShape;
 with Sf.System.Vector2;
 with Sf.Graphics.Sprite;
 
-with EinheitStadtDatentypen;
+with StadtDatentypen;
+with EinheitenDatentypen;
 with StadtRecords;
 
 package BauAuswahlAnzeigeSFML is
@@ -24,8 +25,8 @@ private
    Multiplikator : Float;
    BreiteTextfeld : Float;
 
-   ZusatztextGebäude : EinheitStadtDatentypen.GebäudeIDMitNullwert;
-   ZusatztextEinheiten : EinheitStadtDatentypen.EinheitenIDMitNullWert;
+   ZusatztextGebäude : StadtDatentypen.GebäudeIDMitNullwert;
+   ZusatztextEinheiten : EinheitenDatentypen.EinheitenIDMitNullWert;
 
    AktuellerTextbereichEins : Unbounded_Wide_Wide_String;
    AktuellerTextbereichZwei : Unbounded_Wide_Wide_String;

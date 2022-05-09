@@ -4,7 +4,8 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with MenueDatentypen;
-with EinheitStadtDatentypen;
+with StadtDatentypen;
+with EinheitenDatentypen;
 with SystemKonstanten;
 with ForschungenDatentypen;
 
@@ -67,13 +68,13 @@ package GlobaleTexte is
    Kartenflüsse : TexteArray (1 .. NameBeschreibungMultiplikator * FlussartenMultiplikator * 16) := (others => FehlenderText);
    Kartenressourcen : TexteArray (1 .. NameBeschreibungMultiplikator * 7) := (others => FehlenderText);
    
-   Einheiten : TexteArray (1 .. RassenAnzahlBeschreibung * Positive (EinheitStadtDatentypen.EinheitenID'Last)) := (others => FehlenderText);
+   Einheiten : TexteArray (1 .. RassenAnzahlBeschreibung * Positive (EinheitenDatentypen.EinheitenID'Last)) := (others => FehlenderText);
    
    --------------------- Hier auch zweimal Enumlänge?
    Verbesserungen : TexteArray (1 .. NameBeschreibungMultiplikator * 8) := (others => FehlenderText);
    Wege : TexteArray (1 .. NameBeschreibungMultiplikator * WegartenMultiplikator * 16) := (others => FehlenderText);
    
-   Gebäude : TexteArray (1 .. RassenAnzahlBeschreibung * Positive (EinheitStadtDatentypen.GebäudeID'Last)) := (others => FehlenderText);
+   Gebäude : TexteArray (1 .. RassenAnzahlBeschreibung * Positive (StadtDatentypen.GebäudeID'Last)) := (others => FehlenderText);
    Forschungen : TexteArray (1 .. RassenAnzahlBeschreibung * Positive (ForschungenDatentypen.ForschungID'Last)) := (others => FehlenderText);
    Beschäftigungen : TexteArray (1 .. NameBeschreibungMultiplikator * 11) := (others => FehlenderText);
    StädtenamenKI : TexteArray (1 .. 3) := (others => FehlenderText);

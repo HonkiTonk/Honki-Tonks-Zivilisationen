@@ -4,17 +4,18 @@ pragma Warnings (Off, "*array aggregate*");
 with RassenDatentypen; use RassenDatentypen;
 with SonstigeVariablen;
 with KartenDatentypen;
-with EinheitStadtDatentypen;
+with EinheitenDatentypen;
 with KartengrundDatentypen;
 with ProduktionDatentypen;
+with KampfDatentypen;
 
 with DatenbankRecords;
 
-package LeseKartenDatenbank is
+package LeseKartenDatenbanken is
 
    function Passierbarkeit
      (GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
-      WelcheUmgebungExtern : in EinheitStadtDatentypen.Passierbarkeit_Vorhanden_Enum)
+      WelcheUmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Vorhanden_Enum)
       return Boolean;
    
    function BewertungGrund
@@ -72,7 +73,7 @@ package LeseKartenDatenbank is
      (GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       KampfArtExtern : in KartenDatentypen.Kampf_Enum)
-      return EinheitStadtDatentypen.KampfwerteAllgemein
+      return KampfDatentypen.KampfwerteAllgemein
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
@@ -81,7 +82,7 @@ package LeseKartenDatenbank is
      (FlussExtern : in KartengrundDatentypen.Kartenfluss_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       KampfArtExtern : in KartenDatentypen.Kampf_Enum)
-      return EinheitStadtDatentypen.KampfwerteAllgemein
+      return KampfDatentypen.KampfwerteAllgemein
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
@@ -90,7 +91,7 @@ package LeseKartenDatenbank is
      (RessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       KampfArtExtern : in KartenDatentypen.Kampf_Enum)
-      return EinheitStadtDatentypen.KampfwerteAllgemein
+      return KampfDatentypen.KampfwerteAllgemein
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
@@ -107,4 +108,4 @@ package LeseKartenDatenbank is
      (RessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Vorhanden_Enum)
       return DatenbankRecords.KartenlisteRecord;
 
-end LeseKartenDatenbank;
+end LeseKartenDatenbanken;

@@ -4,7 +4,8 @@ pragma Warnings (Off, "*array aggregate*");
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Color;
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
+with StadtDatentypen;
 with GlobaleTexte;
 with TextKonstanten;
 
@@ -172,7 +173,10 @@ package body AnzeigeEingabeSFML is
                when True =>
                   Sf.Graphics.Text.setUnicodeString (text => TextAccess,
                                                      str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugStadt))
-                                                     & To_Wide_Wide_String (Source => LeseStadtGebaut.Name (StadtRasseNummerExtern => (RasseExtern, WelcheAuswahl.MöglicheAuswahlen (0)))));
+                                                     & To_Wide_Wide_String (Source => LeseStadtGebaut.Name
+                                                                            ---------------------- Übergangslösung bis hier alles mal neu geschrieben wird. Gilt auch für die Konvertierungen weiter unten.
+                                                                            ---------------------- Siehe auch AuswahlStadtEinheit
+                                                                            (StadtRasseNummerExtern => (RasseExtern, StadtDatentypen.MaximaleStädteMitNullWert (WelcheAuswahl.MöglicheAuswahlen (0))))));
          
                when False =>
                   Sf.Graphics.Text.setUnicodeString (text => TextAccess,
@@ -181,7 +185,7 @@ package body AnzeigeEingabeSFML is
             
          else
             if
-              WelcheAuswahl.MöglicheAuswahlen (AuswahlSchleifenwert) = EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First
+              WelcheAuswahl.MöglicheAuswahlen (AuswahlSchleifenwert) = EinheitenDatentypen.MaximaleEinheitenMitNullWert'First
             then
                null;
                
@@ -191,13 +195,12 @@ package body AnzeigeEingabeSFML is
                                                     (IDExtern => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, WelcheAuswahl.MöglicheAuswahlen (AuswahlSchleifenwert)))));
             end if;
          end if;
-            
+         
          if
-           -- Hier besser MaximaleStädteMitNullWert prüfen, wenn gleich es auch mit MaximaleEinheitenMitNullWert gehen sollte.
-           WelcheAuswahl.MöglicheAuswahlen (AuswahlSchleifenwert) = EinheitStadtDatentypen.MaximaleStädteMitNullWert'First
+           WelcheAuswahl.MöglicheAuswahlen (AuswahlSchleifenwert) = EinheitenDatentypen.MaximaleEinheitenMitNullWert (StadtDatentypen.MaximaleStädteMitNullWert'First)
          then
             null;
-         
+            
          else
             if
               AktuelleAuswahl = Natural (AuswahlSchleifenwert)

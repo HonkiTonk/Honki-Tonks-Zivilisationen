@@ -1,7 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with StadtDatentypen; use StadtDatentypen;
+with KampfDatentypen; use KampfDatentypen;
 with KartenKonstanten;
 
 with LeseStadtGebaut;
@@ -13,18 +14,18 @@ with GesamtwerteFeld;
 package body KampfwerteStadtErmitteln is
 
    function AktuelleVerteidigungStadt
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
-      return EinheitStadtDatentypen.Kampfwerte
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+      return KampfDatentypen.Kampfwerte
    is begin
       
-      VerteidigungWert := EinheitStadtDatentypen.Kampfwerte (LeseVerbesserungenDatenbank.KampfVerbesserung (VerbesserungExtern => LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern),
+      VerteidigungWert := KampfDatentypen.Kampfwerte (LeseVerbesserungenDatenbank.KampfVerbesserung (VerbesserungExtern => LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                                                                                             RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                                                                             WelcherWertExtern  => KartenKonstanten.KampfVerteidigung))
         + GesamtwerteFeld.FeldVerteidigung (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                             RasseExtern       => StadtRasseNummerExtern.Rasse);
       
       GebäudeSchleife:
-      for GebäudeSchleifenwert in EinheitStadtDatentypen.GebäudeID'Range loop
+      for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
          
          if
            LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
@@ -48,18 +49,18 @@ package body KampfwerteStadtErmitteln is
    
    
    function AktuellerAngriffStadt
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
-      return EinheitStadtDatentypen.Kampfwerte
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+      return KampfDatentypen.Kampfwerte
    is begin
       
-      AngriffWert := EinheitStadtDatentypen.Kampfwerte (LeseVerbesserungenDatenbank.KampfVerbesserung (VerbesserungExtern => LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern),
+      AngriffWert := KampfDatentypen.Kampfwerte (LeseVerbesserungenDatenbank.KampfVerbesserung (VerbesserungExtern => LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                                                                                        RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                                                                        WelcherWertExtern  => KartenKonstanten.KampfAngriff))
         + GesamtwerteFeld.FeldAngriff (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                        RasseExtern       => StadtRasseNummerExtern.Rasse);
       
       GebäudeSchleife:
-      for GebäudeSchleifenwert in EinheitStadtDatentypen.GebäudeID'Range loop
+      for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
          
          if
            LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,

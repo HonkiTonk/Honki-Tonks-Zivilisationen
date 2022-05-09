@@ -1,12 +1,14 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
+with KampfDatentypen; use KampfDatentypen;
 with EinheitenKonstanten;
 with StadtKonstanten;
 with SystemDatentypen;
+with StadtDatentypen;
 
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
@@ -25,8 +27,8 @@ with EinheitenErzeugenEntfernen;
 package body KampfsystemStadt is
 
    function KampfsystemStadt
-     (AngreifendeEinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      VerteidigendeStadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (AngreifendeEinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      VerteidigendeStadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return Boolean
    is begin
       
@@ -50,8 +52,8 @@ package body KampfsystemStadt is
    
    
    function Kampf
-     (AngreifendeEinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      VerteidigendeStadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (AngreifendeEinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      VerteidigendeStadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return Boolean
    is begin
       
@@ -77,7 +79,7 @@ package body KampfsystemStadt is
          StadtWerteFestlegen.BewirtschaftbareFelderBelegen (ZuwachsOderSchwundExtern => False,
                                                             StadtRasseNummerExtern   => VerteidigendeStadtRasseNummerExtern);
          StadtMeldungenSetzen.StadtMeldungSetzenEreignis (StadtRasseNummerExtern => VerteidigendeStadtRasseNummerExtern,
-                                                          EreignisExtern         => EinheitStadtDatentypen.Einwohner_Reduktion_Enum);
+                                                          EreignisExtern         => StadtDatentypen.Einwohner_Reduktion_Enum);
          if
            LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => VerteidigendeStadtRasseNummerExtern,
                                               EinwohnerArbeiterExtern => True)
@@ -104,7 +106,7 @@ package body KampfsystemStadt is
    
    
    function Kampfverlauf
-     (AngreifendeEinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (AngreifendeEinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
       
@@ -149,8 +151,8 @@ package body KampfsystemStadt is
    
    
    procedure SchadenStadtBerechnen
-     (AngriffExtern : in EinheitStadtDatentypen.Kampfwerte;
-      VerteidigungExtern : in EinheitStadtDatentypen.Kampfwerte)
+     (AngriffExtern : in KampfDatentypen.Kampfwerte;
+      VerteidigungExtern : in KampfDatentypen.Kampfwerte)
    is begin
       
       -- Bei Extremfällen AngerichteterSchaden schon vorher einen Wert geben?

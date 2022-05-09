@@ -7,7 +7,8 @@ with Sf.Graphics; use Sf.Graphics;
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Text;
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
+with StadtDatentypen; use StadtDatentypen;
 with GlobaleTexte;
 with TextKonstanten;
 with MenueDatentypen;
@@ -79,16 +80,16 @@ package body BauAuswahlAnzeigeSFML is
       ZusatztextGebäude := 0;
       
       GebäudeSchleife:
-      for GebäudeSchleifenwert in EinheitStadtDatentypen.GebäudeID'Range loop
+      for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
          
          case
            InteraktionAuswahl.MöglicheGebäude (GebäudeSchleifenwert)
          is
             when True =>
                if
-                 AktuelleAuswahl.GebäudeEinheit = True
+                 AktuelleAuswahl.Gebäude /= 0
                  and
-                   AktuelleAuswahl.Nummer = GebäudeSchleifenwert
+                   AktuelleAuswahl.Gebäude = GebäudeSchleifenwert
                then
                   ZusatztextGebäude := GebäudeSchleifenwert;
                   Sf.Graphics.Text.setColor (text  => TextaccessVariablen.GebäudetextAccess (GebäudeSchleifenwert),
@@ -128,16 +129,16 @@ package body BauAuswahlAnzeigeSFML is
       TextPosition := Grundposition;
       
       EinheitenSchleife:
-      for EinheitenSchleifenwert in EinheitStadtDatentypen.EinheitenID'Range loop
+      for EinheitenSchleifenwert in EinheitenDatentypen.EinheitenID'Range loop
          
          case
            InteraktionAuswahl.MöglicheEinheiten (EinheitenSchleifenwert)
          is
             when True =>
                if
-                 AktuelleAuswahl.GebäudeEinheit = False
+                 AktuelleAuswahl.Einheit /= 0
                  and
-                   AktuelleAuswahl.Nummer = EinheitenSchleifenwert
+                   AktuelleAuswahl.Einheit = EinheitenSchleifenwert
                then
                   ZusatztextEinheiten := EinheitenSchleifenwert;
                   Sf.Graphics.Text.setColor (text  => TextaccessVariablen.EinheitentextAccess (EinheitenSchleifenwert),

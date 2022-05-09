@@ -3,7 +3,8 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with SonstigeVariablen;
-with EinheitStadtDatentypen;
+with EinheitenDatentypen;
+with StadtDatentypen;
 
 package NaechstesObjekt is
 
@@ -36,13 +37,15 @@ package NaechstesObjekt is
    
 private
 
-   SchleifenBegrenzung : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
+   StadtSchleifenbegrenzung : StadtDatentypen.MaximaleStädteMitNullWert;
    
-   type AktuelleEinheitArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
+   EinheitSchleifenbegrenzung : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   
+   type AktuelleEinheitArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    AktuelleEinheit : AktuelleEinheitArray := (others => 0);
    AktuelleEinheitMeldung : AktuelleEinheitArray := (others => 0);
 
-   type AktuelleStadtArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of EinheitStadtDatentypen.MaximaleStädteMitNullWert;
+   type AktuelleStadtArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of StadtDatentypen.MaximaleStädteMitNullWert;
    AktuelleStadt : AktuelleStadtArray := (others => 0);
    AktuelleStadtMeldung : AktuelleStadtArray := (others => 0);
 

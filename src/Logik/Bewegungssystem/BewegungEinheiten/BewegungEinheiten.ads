@@ -3,14 +3,15 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with KartenRecords;
-with EinheitStadtRecords;
+with EinheitenRecords;
 with SpielVariablen;
 with SonstigeVariablen;
+with StadtRecords;
 
 package BewegungEinheiten is
    
    function BewegungPrüfen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       PositionÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
       return Boolean
      with
@@ -19,8 +20,9 @@ package BewegungEinheiten is
           and
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum);
    
+   ---------------------- Kan man das vielleicht auch mit den KIBerechnungen zusammenführen?
    function NochBewegungspunkte
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
      with
        Pre =>
@@ -32,26 +34,54 @@ private
    
    FeldPassierbar : Boolean;
    BewegungDurchführen : Boolean;
+   
+   StadtAufFeld : StadtRecords.RasseStadtnummerRecord;
       
-   EinheitAufFeld : EinheitStadtRecords.RasseEinheitnummerRecord;
-   StadtAufFeld : EinheitStadtRecords.RasseEinheitnummerRecord;
+   EinheitAufFeld : EinheitenRecords.RasseEinheitnummerRecord;
 
    NeuePosition : KartenRecords.AchsenKartenfeldPositivRecord;
      
    procedure EigeneEinheitAufFeld
-     (BewegendeEinheitExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      FeldBelegendeEinheitExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
+     (BewegendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      FeldBelegendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     with
+       Pre =>
+         (BewegendeEinheitExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (BewegendeEinheitExtern.Rasse).Einheitengrenze
+          and
+            SonstigeVariablen.RassenImSpiel (BewegendeEinheitExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+          and
+            FeldBelegendeEinheitExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (FeldBelegendeEinheitExtern.Rasse).Einheitengrenze
+          and
+            SonstigeVariablen.RassenImSpiel (FeldBelegendeEinheitExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
    
    
    
    function FremderAufFeld
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      FremdeEinheitExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
-      return Boolean;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      FremdeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return Boolean
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+          and
+            SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+          and
+            FremdeEinheitExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (FremdeEinheitExtern.Rasse).Einheitengrenze
+          and
+            SonstigeVariablen.RassenImSpiel (FremdeEinheitExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
    
    function FremdeStadtAufFeld
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      FremdeStadtExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
-      return Boolean;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      FremdeStadtExtern : in StadtRecords.RasseStadtnummerRecord)
+      return Boolean
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+          and
+            SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+          and
+            FremdeStadtExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (FremdeStadtExtern.Rasse).Städtegrenze
+          and
+            SonstigeVariablen.RassenImSpiel (FremdeStadtExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
 
 end BewegungEinheiten;

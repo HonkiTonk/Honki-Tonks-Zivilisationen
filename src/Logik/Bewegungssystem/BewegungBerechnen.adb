@@ -1,9 +1,11 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with StadtDatentypen; use StadtDatentypen;
 with EinheitenKonstanten;
 with KartengrundDatentypen;
 with KartenVerbesserungDatentypen;
+with StadtKonstanten;
 
 with SchreibeEinheitenGebaut;
 with LeseKarten;
@@ -19,7 +21,7 @@ with BewegungPassierbarkeitPruefen;
 package body BewegungBerechnen is
 
    procedure BewegungEinheitenBerechnung
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
 
@@ -34,7 +36,7 @@ package body BewegungBerechnen is
       elsif
         StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
                                                     KoordinatenExtern => NeueKoordinatenExtern)
-        = EinheitenKonstanten.LeerNummer
+        = StadtKonstanten.LeerNummer
       then
          BewegungLadenEntladen.TransporterladungVerschieben (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                              NeueKoordinatenExtern    => NeueKoordinatenExtern);
@@ -103,7 +105,7 @@ package body BewegungBerechnen is
    
    procedure NachBewegung
      (NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       Sichtbarkeit.SichtbarkeitsprüfungFürEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -139,8 +141,8 @@ package body BewegungBerechnen is
    
    function AbzugDurchBewegung
      (NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
-         return EinheitStadtDatentypen.BewegungFloat
+      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+         return EinheitenDatentypen.BewegungFloat
    is begin
       
       Welchen_Bonus := StraßeUndFlussPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -180,7 +182,7 @@ package body BewegungBerechnen is
    
 
    function StraßeUndFlussPrüfen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Bewegungsbonuse_Enum
    is begin
@@ -188,12 +190,12 @@ package body BewegungBerechnen is
       if
         LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
                                                IDExtern             => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                               WelcheUmgebungExtern => EinheitStadtDatentypen.Luft_Enum)
+                                               WelcheUmgebungExtern => EinheitenDatentypen.Luft_Enum)
         = False
         and
           LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
                                                  IDExtern             => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                 WelcheUmgebungExtern => EinheitStadtDatentypen.Weltraum_Enum)
+                                                 WelcheUmgebungExtern => EinheitenDatentypen.Weltraum_Enum)
         = False
       then
          case

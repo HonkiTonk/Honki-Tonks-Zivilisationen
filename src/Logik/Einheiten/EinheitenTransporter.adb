@@ -4,12 +4,11 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
 -- with GlobaleTexte;
 with EinheitenKonstanten;
 -- with TastenbelegungDatentypen;
 -- with TextKonstanten;
-with EinheitenRecords;
 
 with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;
@@ -21,8 +20,8 @@ with LeseEinheitenGebaut;
 package body EinheitenTransporter is
 
    function EinheitTransporterAuswählen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
-      return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return EinheitenDatentypen.MaximaleEinheitenMitNullWert
    is begin
 
       ------------------------------- Mal in Logik und Grafik und Konsole und SFML aufteilen.
@@ -64,7 +63,7 @@ package body EinheitenTransporter is
    
    
    function EinheitAuswählen
-     return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
+     return EinheitenDatentypen.MaximaleEinheitenMitNullWert
    is begin
       
       AktuelleAuswahl := 1;
@@ -76,7 +75,7 @@ package body EinheitenTransporter is
 
          -- TextAnzeigeKonsole.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fragen,
          --                                                 TextZeileExtern => 27);
-         -- TextAnzeigeKonsole.AllgemeineAnzeige (AktuelleAuswahlExtern => EinheitStadtDatentypen.MinimimMaximumID (AktuelleAuswahl));
+         -- TextAnzeigeKonsole.AllgemeineAnzeige (AktuelleAuswahlExtern => EinheitenDatentypen.EinheitenIDMitNullWert (AktuelleAuswahl));
                   
        --  case
        --    Eingabe.Tastenwert
@@ -100,7 +99,7 @@ package body EinheitenTransporter is
       --         end if;
                               
       --      when TastenbelegungDatentypen.Auswählen_Enum =>
-      --         return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert (TextAnzeigeKonsole.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer);
+      --         return EinheitenDatentypen.MaximaleEinheitenMitNullWert (TextAnzeigeKonsole.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer);
 
        --     when TastenbelegungDatentypen.Menü_Zurück_Enum =>
                return 0;
@@ -116,8 +115,8 @@ package body EinheitenTransporter is
    
    
    function KannTransportiertWerden
-     (LadungExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      TransporterExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (LadungExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
       
@@ -155,7 +154,7 @@ package body EinheitenTransporter is
    
    
    function PlatzFrei
-     (TransporterExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
       

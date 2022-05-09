@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with KartenRecords;
-with EinheitStadtDatentypen;
+with EinheitenDatentypen;
 with RassenDatentypen;
 
 with Karten;
@@ -13,7 +13,7 @@ package UmgebungErreichbarTesten is
    function UmgebungErreichbarTesten
      (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitStadtDatentypen.MinimimMaximumID;
+      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
       NotwendigeFelderExtern : in Positive)
       return KartenRecords.AchsenKartenfeldPositivRecord
      with
@@ -39,7 +39,7 @@ private
    function NochErreichbar
      (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitStadtDatentypen.MinimimMaximumID)
+      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return Boolean;
 
 end UmgebungErreichbarTesten;

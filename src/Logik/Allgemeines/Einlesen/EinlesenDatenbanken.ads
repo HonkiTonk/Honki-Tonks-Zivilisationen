@@ -9,7 +9,7 @@ package EinlesenDatenbanken is
    procedure EinlesenEinheitenDatenbank;
    procedure EinlesenForschungenDatenbank;
    procedure EinlesenGebäudeDatenbank;
-   procedure EinlesenKartenDatenbank;
+   procedure EinlesenKartengrundDatenbank;
    procedure EinlesenVerbesserungenDatenbank;
    procedure EinlesenRassenDatenbank;
    

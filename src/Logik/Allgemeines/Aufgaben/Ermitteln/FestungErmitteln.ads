@@ -2,18 +2,17 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
-with EinheitStadtRecords;
+with EinheitenRecords;
 with SonstigeVariablen;
 with KartengrundDatentypen;
 with SpielVariablen;
 with AufgabenDatentypen;
-with EinheitStadtDatentypen;
-with EinheitenRecords;
+with EinheitenDatentypen;
 
 package FestungErmitteln is
 
    function FestungErmitteln
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
       AnlegenTestenExtern : in Boolean)
       return Boolean
@@ -27,8 +26,8 @@ private
 
    WelcheArbeit : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
 
-   Arbeitszeit : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
-   Grundzeit : EinheitStadtDatentypen.MaximaleStädteMitNullWert := 1;
+   Arbeitszeit : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   Grundzeit : EinheitenDatentypen.MaximaleEinheitenMitNullWert := 1;
 
    Arbeitswerte : EinheitenRecords.ArbeitRecord;
 

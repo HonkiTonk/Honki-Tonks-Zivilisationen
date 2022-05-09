@@ -2,8 +2,9 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with ForschungenDatentypen; use ForschungenDatentypen;
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
+with StadtDatentypen; use StadtDatentypen;
 with WichtigesKonstanten;
 with SpielVariablen;
 
@@ -234,9 +235,9 @@ package body SchreibeWichtiges is
             
          when False =>
             if
-              SpielVariablen.Wichtiges (RasseExtern).AnzahlStädte = EinheitStadtDatentypen.MaximaleStädteMitNullWert'First
+              SpielVariablen.Wichtiges (RasseExtern).AnzahlStädte = StadtDatentypen.MaximaleStädteMitNullWert'First
             then
-               Fehler.LogikFehler (FehlermeldungExtern => "SchreibeWichtiges.AnzahlStädte - = EinheitStadtDatentypen.MaximaleStädteMitNullWert'First");
+               Fehler.LogikFehler (FehlermeldungExtern => "SchreibeWichtiges.AnzahlStädte - = StadtDatentypen.MaximaleStädteMitNullWert'First");
                
             else
                SpielVariablen.Wichtiges (RasseExtern).AnzahlStädte := SpielVariablen.Wichtiges (RasseExtern).AnzahlStädte - 1;
@@ -268,9 +269,9 @@ package body SchreibeWichtiges is
             
          when False =>
             if
-              SpielVariablen.Wichtiges (RasseExtern).AnzahlArbeiter = EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First
+              SpielVariablen.Wichtiges (RasseExtern).AnzahlArbeiter = EinheitenDatentypen.MaximaleEinheitenMitNullWert'First
             then
-               Fehler.LogikFehler (FehlermeldungExtern => "SchreibeWichtiges.AnzahlArbeiter - = EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First");
+               Fehler.LogikFehler (FehlermeldungExtern => "SchreibeWichtiges.AnzahlArbeiter - = EinheitenDatentypen.MaximaleEinheitenMitNullWert'First");
                
             else
                SpielVariablen.Wichtiges (RasseExtern).AnzahlArbeiter := SpielVariablen.Wichtiges (RasseExtern).AnzahlArbeiter - 1;
@@ -302,9 +303,9 @@ package body SchreibeWichtiges is
             
          when False =>
             if
-              SpielVariablen.Wichtiges (RasseExtern).AnzahlKämpfer = EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First
+              SpielVariablen.Wichtiges (RasseExtern).AnzahlKämpfer = EinheitenDatentypen.MaximaleEinheitenMitNullWert'First
             then
-               Fehler.LogikFehler (FehlermeldungExtern => "SchreibeWichtiges.AnzahlKämpfer - = EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First");
+               Fehler.LogikFehler (FehlermeldungExtern => "SchreibeWichtiges.AnzahlKämpfer - = EinheitenDatentypen.MaximaleEinheitenMitNullWert'First");
                
             else
                SpielVariablen.Wichtiges (RasseExtern).AnzahlKämpfer := SpielVariablen.Wichtiges (RasseExtern).AnzahlKämpfer - 1;
@@ -336,9 +337,9 @@ package body SchreibeWichtiges is
             
          when False =>
             if
-              SpielVariablen.Wichtiges (RasseExtern).AnzahlSonstiges = EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First
+              SpielVariablen.Wichtiges (RasseExtern).AnzahlSonstiges = EinheitenDatentypen.MaximaleEinheitenMitNullWert'First
             then
-               Fehler.LogikFehler (FehlermeldungExtern => "SchreibeWichtiges.AnzahlSonstiges - = EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First");
+               Fehler.LogikFehler (FehlermeldungExtern => "SchreibeWichtiges.AnzahlSonstiges - = EinheitenDatentypen.MaximaleEinheitenMitNullWert'First");
                
             else
                SpielVariablen.Wichtiges (RasseExtern).AnzahlSonstiges := SpielVariablen.Wichtiges (RasseExtern).AnzahlSonstiges - 1;

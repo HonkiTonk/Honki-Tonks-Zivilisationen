@@ -3,8 +3,8 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
-with EinheitStadtRecords;
-with EinheitStadtDatentypen;
+with EinheitenRecords;
+with EinheitenDatentypen;
 with SpielVariablen;
 with KartenRecords;
 with SonstigeVariablen;
@@ -14,8 +14,8 @@ with Karten;
 package BewegungLadenEntladen is
 
    procedure TransporterBeladen
-     (TransporterExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      LadungExtern : in EinheitStadtDatentypen.MaximaleEinheiten)
+     (TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      LadungExtern : in EinheitenDatentypen.MaximaleEinheiten)
      with
        Pre =>
          (TransporterExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (TransporterExtern.Rasse).Einheitengrenze
@@ -23,8 +23,8 @@ package BewegungLadenEntladen is
             SonstigeVariablen.RassenImSpiel (TransporterExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
    
    procedure EinheitAusTransporterEntfernen
-     (TransporterExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      LadungExtern : in EinheitStadtDatentypen.MaximaleEinheiten)
+     (TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      LadungExtern : in EinheitenDatentypen.MaximaleEinheiten)
      with
        Pre =>
          (TransporterExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (TransporterExtern.Rasse).Einheitengrenze
@@ -32,7 +32,7 @@ package BewegungLadenEntladen is
             SonstigeVariablen.RassenImSpiel (TransporterExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
    
    procedure TransporterladungVerschieben
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
      with
        Pre =>
@@ -45,7 +45,7 @@ package BewegungLadenEntladen is
             NeueKoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
    
    procedure TransporterStadtEntladen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
      with
        Pre =>
@@ -59,17 +59,17 @@ package BewegungLadenEntladen is
    
 private
    
-   TransporterNummer : EinheitStadtDatentypen.MaximaleEinheiten;
+   TransporterNummer : EinheitenDatentypen.MaximaleEinheiten;
    
-   EinheitAusladen : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
+   EinheitAusladen : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    
-   FreierPlatzNummer : EinheitStadtDatentypen.Transportplätze;
+   FreierPlatzNummer : EinheitenDatentypen.Transportplätze;
    
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    
    function FreienPlatzErmitteln
-     (TransporterExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
-      return EinheitStadtDatentypen.Transportplätze
+     (TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return EinheitenDatentypen.Transportplätze
      with
        Pre =>
          (TransporterExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (TransporterExtern.Rasse).Einheitengrenze

@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Integer_Wide_Wide_Text_IO;
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
 with GlobaleTexte;
 with StadtKonstanten;
 with KartenDatentypen;
@@ -18,10 +18,10 @@ with GebaeudeAllgemein;
 package body GebaeudeBauenKonsole is
 
    procedure AnzeigeGebäude
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
-      Put_Line (Item => GebaeudeAllgemein.BeschreibungLang (IDExtern => EinheitStadtDatentypen.GebäudeIDMitNullwert (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer - StadtKonstanten.GebäudeAufschlag)));
+      Put_Line (Item => GebaeudeAllgemein.BeschreibungLang (IDExtern => StadtDatentypen.GebäudeIDMitNullwert (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer - StadtKonstanten.GebäudeAufschlag)));
       New_Line;
       PreisGebäude (RasseExtern => StadtRasseNummerExtern.Rasse);
       BauzeitGebäude (StadtRasseNummerExtern => StadtRasseNummerExtern);
@@ -33,7 +33,7 @@ package body GebaeudeBauenKonsole is
 
          if
            LeseGebaeudeDatenbank.PermanenterBonus (RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                                   IDExtern           => EinheitStadtDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer
+                                                   IDExtern           => StadtDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer
                                                      - StadtKonstanten.GebäudeAufschlag),
                                                    WelcherBonusExtern => PermanenterBonusSchleifenwert)
            > 0
@@ -46,7 +46,7 @@ package body GebaeudeBauenKonsole is
                                           AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                           AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
             Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Natural (LeseGebaeudeDatenbank.PermanenterBonus (RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                                                                               IDExtern           => EinheitStadtDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer
+                                                                                               IDExtern           => StadtDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer
                                                                                                  - StadtKonstanten.GebäudeAufschlag),
                                                                                                WelcherBonusExtern => PermanenterBonusSchleifenwert)),
                                      Width => 1);
@@ -86,7 +86,7 @@ package body GebaeudeBauenKonsole is
                                     AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                     AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Positive (LeseGebaeudeDatenbank.PreisRessourcen (RasseExtern => RasseExtern,
-                                                                                         IDExtern    => EinheitStadtDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer
+                                                                                         IDExtern    => StadtDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer
                                                                                            - StadtKonstanten.GebäudeAufschlag))),
                                Width => 1);
       
@@ -95,7 +95,7 @@ package body GebaeudeBauenKonsole is
    
    
    procedure BauzeitGebäude
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -113,7 +113,7 @@ package body GebaeudeBauenKonsole is
          
       else
          Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Natural (LeseGebaeudeDatenbank.PreisRessourcen (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                                           IDExtern    => EinheitStadtDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer
+                                                                                           IDExtern    => StadtDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer
                                                                                              - StadtKonstanten.GebäudeAufschlag))
                                   / LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern)),
                                   Width => 1);
@@ -134,7 +134,7 @@ package body GebaeudeBauenKonsole is
          
          if
            LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => RasseExtern,
-                                                   IDExtern           => EinheitStadtDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer
+                                                   IDExtern           => StadtDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer
                                                      - StadtKonstanten.GebäudeAufschlag),
                                                    WelcheKostenExtern => PermanenteKostenSchleifenwert)
            > 0
@@ -147,7 +147,7 @@ package body GebaeudeBauenKonsole is
                                           AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                           AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
             Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Positive (LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => RasseExtern,
-                                                                                                IDExtern           => EinheitStadtDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer
+                                                                                                IDExtern           => StadtDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer
                                                                                                   - StadtKonstanten.GebäudeAufschlag),
                                                                                                 WelcheKostenExtern => PermanenteKostenSchleifenwert)),
                                      Width => 1);

@@ -1,7 +1,9 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
+with KampfDatentypen; use KampfDatentypen;
+with StadtDatentypen; use StadtDatentypen;
 with EinheitenKonstanten;
 
 with SchreibeWichtiges;
@@ -10,8 +12,8 @@ with LeseEinheitenDatenbank;
 package body SchreibeEinheitenGebaut is
 
    procedure ID
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      IDExtern : in EinheitStadtDatentypen.EinheitenIDMitNullWert)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
    is begin
       
       SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).ID := IDExtern;
@@ -21,7 +23,7 @@ package body SchreibeEinheitenGebaut is
    
    
    procedure Koordinaten
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
@@ -32,8 +34,8 @@ package body SchreibeEinheitenGebaut is
    
    
    procedure Heimatstadt
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      HeimatstadtExtern : in EinheitStadtDatentypen.MaximaleStädteMitNullWert)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      HeimatstadtExtern : in StadtDatentypen.MaximaleStädteMitNullWert)
    is begin
       
       SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Heimatstadt := HeimatstadtExtern;
@@ -43,8 +45,8 @@ package body SchreibeEinheitenGebaut is
    
    
    procedure Lebenspunkte
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      LebenspunkteExtern : in EinheitStadtDatentypen.Lebenspunkte;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      LebenspunkteExtern : in EinheitenDatentypen.Lebenspunkte;
       RechnenSetzenExtern : in KartenDatentypen.UmgebungsbereichEins)
    is begin
       
@@ -82,9 +84,9 @@ package body SchreibeEinheitenGebaut is
                
          when -1 =>
             if
-              SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Lebenspunkte - LebenspunkteExtern < EinheitStadtDatentypen.Lebenspunkte'First
+              SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Lebenspunkte - LebenspunkteExtern < EinheitenDatentypen.Lebenspunkte'First
             then
-               SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Lebenspunkte := EinheitStadtDatentypen.Lebenspunkte'First;
+               SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Lebenspunkte := EinheitenDatentypen.Lebenspunkte'First;
                
             else
                SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Lebenspunkte
@@ -100,8 +102,8 @@ package body SchreibeEinheitenGebaut is
    
    
    procedure Bewegungspunkte
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      BewegungspunkteExtern : in EinheitStadtDatentypen.BewegungFloat;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      BewegungspunkteExtern : in EinheitenDatentypen.BewegungFloat;
       RechnenSetzenExtern : in KartenDatentypen.UmgebungsbereichEins)
    is begin
       
@@ -143,8 +145,8 @@ package body SchreibeEinheitenGebaut is
    
    
    procedure Erfahrungspunkte
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      ErfahrungspunkteExtern : in EinheitStadtDatentypen.Kampfwerte;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      ErfahrungspunkteExtern : in KampfDatentypen.Kampfwerte;
       AddierenSetzenExtern : in Boolean)
    is begin
       
@@ -177,7 +179,7 @@ package body SchreibeEinheitenGebaut is
    
    
    procedure Rang
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       if
@@ -197,7 +199,7 @@ package body SchreibeEinheitenGebaut is
    
    
    procedure Beschäftigung
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       BeschäftigungExtern : in AufgabenDatentypen.Einheiten_Aufgaben_Enum)
    is begin
       
@@ -208,7 +210,7 @@ package body SchreibeEinheitenGebaut is
    
    
    procedure BeschäftigungNachfolger
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       BeschäftigungExtern : in AufgabenDatentypen.Einheiten_Aufgaben_Enum)
    is begin
       
@@ -219,8 +221,8 @@ package body SchreibeEinheitenGebaut is
    
    
    procedure Beschäftigungszeit
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      ZeitExtern : in EinheitStadtDatentypen.MaximaleStädteMitNullWert;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      ZeitExtern : in EinheitenDatentypen.MaximaleEinheitenMitNullWert;
       RechnenSetzenExtern : in KartenDatentypen.UmgebungsbereichEins)
    is begin
       
@@ -229,9 +231,9 @@ package body SchreibeEinheitenGebaut is
       is
          when 1 =>
             if
-              SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigungszeit + ZeitExtern > EinheitStadtDatentypen.MaximaleStädteMitNullWert'Last
+              SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigungszeit + ZeitExtern > EinheitenDatentypen.MaximaleEinheiten'Last
             then
-               SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigungszeit := EinheitStadtDatentypen.MaximaleStädteMitNullWert'Last;
+               SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigungszeit := EinheitenDatentypen.MaximaleEinheiten'Last;
                
             else
                SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigungszeit :=
@@ -258,8 +260,8 @@ package body SchreibeEinheitenGebaut is
    
    
    procedure BeschäftigungszeitNachfolger
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      ZeitExtern : in EinheitStadtDatentypen.MaximaleStädteMitNullWert;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      ZeitExtern : in EinheitenDatentypen.MaximaleEinheitenMitNullWert;
       RechnenSetzenExtern : in KartenDatentypen.UmgebungsbereichEins)
    is begin
       
@@ -268,9 +270,9 @@ package body SchreibeEinheitenGebaut is
       is
          when 1 =>
             if
-              SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungszeitNachfolger + ZeitExtern > EinheitStadtDatentypen.MaximaleStädteMitNullWert'Last
+              SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungszeitNachfolger + ZeitExtern > EinheitenDatentypen.MaximaleEinheiten'Last
             then
-               SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungszeitNachfolger := EinheitStadtDatentypen.MaximaleStädteMitNullWert'Last;
+               SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungszeitNachfolger := EinheitenDatentypen.MaximaleEinheiten'Last;
                
             else
                SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungszeitNachfolger :=
@@ -298,7 +300,7 @@ package body SchreibeEinheitenGebaut is
    
    
    procedure KIZielKoordinaten
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
@@ -309,7 +311,7 @@ package body SchreibeEinheitenGebaut is
    
    
    procedure KIBeschäftigt
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       AufgabeExtern : in KIDatentypen.Einheit_Aufgabe_Enum)
    is begin
       
@@ -320,7 +322,7 @@ package body SchreibeEinheitenGebaut is
    
    
    procedure KIBewegungPlan
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       PlanplatzExtern : in KartenDatentypen.Stadtfeld)
    is begin
@@ -332,9 +334,9 @@ package body SchreibeEinheitenGebaut is
    
       
    procedure Transportiert
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      LadungExtern : in EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
-      LadungsplatzExtern : in EinheitStadtDatentypen.Transportplätze)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      LadungExtern : in EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      LadungsplatzExtern : in EinheitenDatentypen.Transportplätze)
    is begin
       
       SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Transportiert (LadungsplatzExtern) := LadungExtern;
@@ -344,8 +346,8 @@ package body SchreibeEinheitenGebaut is
    
    
    procedure WirdTransportiert
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      TransporterExtern : in EinheitStadtDatentypen.MaximaleEinheitenMitNullWert)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      TransporterExtern : in EinheitenDatentypen.MaximaleEinheitenMitNullWert)
    is begin
       
       SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).WirdTransportiert := TransporterExtern;
@@ -355,9 +357,9 @@ package body SchreibeEinheitenGebaut is
    
       
    procedure Meldungen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      MeldungExtern : in EinheitStadtDatentypen.Einheit_Meldung_Enum;
-      WelcheMeldungExtern : in EinheitStadtDatentypen.Einheit_Meldung_Art_Enum)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      MeldungExtern : in EinheitenDatentypen.Einheit_Meldung_Enum;
+      WelcheMeldungExtern : in EinheitenDatentypen.Einheit_Meldung_Art_Enum)
    is begin
       
       SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Meldungen (WelcheMeldungExtern) := MeldungExtern;
@@ -367,7 +369,7 @@ package body SchreibeEinheitenGebaut is
    
    
    procedure Nullsetzung
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       if
@@ -380,15 +382,15 @@ package body SchreibeEinheitenGebaut is
            LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                               IDExtern    => (SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).ID))
          is
-            when EinheitStadtDatentypen.Arbeiter_Enum =>
+            when EinheitenDatentypen.Arbeiter_Enum =>
                SchreibeWichtiges.AnzahlArbeiter (RasseExtern     => EinheitRasseNummerExtern.Rasse,
                                                  PlusMinusExtern => False);
             
-            when EinheitStadtDatentypen.Nahkämpfer_Enum | EinheitStadtDatentypen.Fernkämpfer_Enum | EinheitStadtDatentypen.Beides_Enum =>
+            when EinheitenDatentypen.Nahkämpfer_Enum | EinheitenDatentypen.Fernkämpfer_Enum | EinheitenDatentypen.Beides_Enum =>
                SchreibeWichtiges.AnzahlKämpfer (RasseExtern     => EinheitRasseNummerExtern.Rasse,
                                                  PlusMinusExtern => False);
             
-            when EinheitStadtDatentypen.Sonstiges_Enum =>
+            when EinheitenDatentypen.Sonstiges_Enum =>
                SchreibeWichtiges.AnzahlSonstiges (RasseExtern     => EinheitRasseNummerExtern.Rasse,
                                                   PlusMinusExtern => False);
             
@@ -404,7 +406,7 @@ package body SchreibeEinheitenGebaut is
    
    
    procedure GanzerEintrag
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       EintragExtern : in EinheitenRecords.EinheitenGebautRecord)
    is begin
       

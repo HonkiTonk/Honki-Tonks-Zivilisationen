@@ -9,7 +9,7 @@ with Auswahl;
 package body EinheitenBeschreibungen is
 
    function BeschreibungKurz
-     (IDExtern : in EinheitStadtDatentypen.EinheitenID)
+     (IDExtern : in EinheitenDatentypen.EinheitenID)
       return Wide_Wide_String
    is begin
           
@@ -24,7 +24,7 @@ package body EinheitenBeschreibungen is
    
    
    function BeschreibungLang
-     (IDExtern : in EinheitStadtDatentypen.EinheitenID)
+     (IDExtern : in EinheitenDatentypen.EinheitenID)
       return Wide_Wide_String
    is begin
       

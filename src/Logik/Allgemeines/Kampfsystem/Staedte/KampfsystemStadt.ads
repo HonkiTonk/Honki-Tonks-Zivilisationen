@@ -2,17 +2,19 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
-with EinheitStadtRecords;
+with EinheitenRecords;
 with SonstigeVariablen;
-with EinheitStadtDatentypen;
 with SpielVariablen;
 with ProduktionDatentypen;
+with KampfRecords;
+with KampfDatentypen;
+with StadtRecords;
 
 package KampfsystemStadt is
 
    function KampfsystemStadt
-     (AngreifendeEinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      VerteidigendeStadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (AngreifendeEinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      VerteidigendeStadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return Boolean
      with
        Pre =>
@@ -33,8 +35,8 @@ private
    
    Kampfglück : Float;
    
-   KampfwerteVerteidiger : EinheitStadtRecords.KampfwerteRecord;
-   KampfwerteAngreifer : EinheitStadtRecords.KampfwerteRecord;
+   KampfwerteVerteidiger : KampfRecords.KampfwerteRecord;
+   KampfwerteAngreifer : KampfRecords.KampfwerteRecord;
    
    -- Die Werte gelten immer aus Sicht des Angreifers
    ----------------------- Mal auslagern und mit KampfsystemEinheiten zusammenführen.
@@ -83,18 +85,34 @@ private
                                                             );
    
    procedure SchadenStadtBerechnen
-     (AngriffExtern : in EinheitStadtDatentypen.Kampfwerte;
-      VerteidigungExtern : in EinheitStadtDatentypen.Kampfwerte);
+     (AngriffExtern : in KampfDatentypen.Kampfwerte;
+      VerteidigungExtern : in KampfDatentypen.Kampfwerte);
    
    
    
    function Kampfverlauf
-     (AngreifendeEinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
-      return Boolean;
+     (AngreifendeEinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return Boolean
+     with
+       Pre =>
+         (SonstigeVariablen.RassenImSpiel (AngreifendeEinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+          and
+            AngreifendeEinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (AngreifendeEinheitRasseNummerExtern.Rasse).Einheitengrenze);
    
    function Kampf
-     (AngreifendeEinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      VerteidigendeStadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
-      return Boolean;
+     (AngreifendeEinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      VerteidigendeStadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+      return Boolean
+     with
+       Pre =>
+         (SonstigeVariablen.RassenImSpiel (AngreifendeEinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+          and
+            SonstigeVariablen.RassenImSpiel (VerteidigendeStadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+          and
+            AngreifendeEinheitRasseNummerExtern.Rasse /= VerteidigendeStadtRasseNummerExtern.Rasse
+          and
+            AngreifendeEinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (AngreifendeEinheitRasseNummerExtern.Rasse).Einheitengrenze
+          and
+            VerteidigendeStadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (VerteidigendeStadtRasseNummerExtern.Rasse).Städtegrenze);
 
 end KampfsystemStadt;

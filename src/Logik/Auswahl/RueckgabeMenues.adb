@@ -462,11 +462,6 @@ package body RueckgabeMenues is
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 6
       then
-         return RueckgabeDatentypen.Kartenübergang_Welche_Achse_Enum;
-                    
-      elsif
-        AktuelleAuswahlExtern = AnfangExtern + 7
-      then
          return RueckgabeDatentypen.Zufall_Enum;
                     
       else

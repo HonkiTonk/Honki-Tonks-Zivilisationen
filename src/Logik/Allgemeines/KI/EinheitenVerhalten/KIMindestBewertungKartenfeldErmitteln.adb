@@ -2,9 +2,9 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with StadtDatentypen; use StadtDatentypen;
 with KartenKonstanten;
-with EinheitenKonstanten;
+with StadtKonstanten;
 
 with KIKonstanten;
 
@@ -17,7 +17,7 @@ package body KIMindestBewertungKartenfeldErmitteln is
 
    -- Später Rassen/Technolgie/Sonstigesabhängig die Mindestbewertung ermitteln
    function MindestBewertungKartenfeldStadtBauen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return KartenDatentypen.GesamtbewertungFeld
    is begin
       
@@ -42,7 +42,7 @@ package body KIMindestBewertungKartenfeldErmitteln is
                elsif
                  StadtSuchen.KoordinatenStadtOhneSpezielleRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
                                                                        KoordinatenExtern => KartenWert).Nummer
-                 = EinheitenKonstanten.LeerNummer
+                 = StadtKonstanten.LeerNummer
                then
                   null;
                         

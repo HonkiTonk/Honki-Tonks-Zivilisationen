@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with KartenDatentypen; use KartenDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
 with StadtKonstanten;
@@ -12,7 +11,7 @@ with LeseEinheitenDatenbank;
 package body SchreibeStadtGebaut is
 
    procedure ID
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       IDExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum)
    is begin
       
@@ -23,7 +22,7 @@ package body SchreibeStadtGebaut is
    
    
    procedure Koordinaten
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
@@ -34,7 +33,7 @@ package body SchreibeStadtGebaut is
    
    
    procedure EinwohnerArbeiter
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       EinwohnerArbeiterExtern : in Boolean;
       ÄnderungExtern : in ProduktionDatentypen.ProduktionFeld)
    is begin
@@ -80,7 +79,7 @@ package body SchreibeStadtGebaut is
       
       
    procedure Nahrungsmittel
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       NahrungsmittelExtern : in ProduktionDatentypen.GesamtproduktionStadt;
       ÄndernSetzenExtern : in Boolean)
    is begin
@@ -113,7 +112,7 @@ package body SchreibeStadtGebaut is
    
    
    procedure Nahrungsproduktion
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       NahrungsproduktionExtern : in ProduktionDatentypen.GesamtproduktionStadt;
       ÄndernSetzenExtern : in Boolean)
    is begin
@@ -146,7 +145,7 @@ package body SchreibeStadtGebaut is
    
    
    procedure Ressourcen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       RessourcenExtern : in ProduktionDatentypen.KostenLager;
       ÄndernSetzenExtern : in Boolean)
    is begin
@@ -181,7 +180,7 @@ package body SchreibeStadtGebaut is
    
    
    procedure Produktionrate
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       ProduktionrateExtern : in ProduktionDatentypen.GesamtproduktionStadt;
       ÄndernSetzenExtern : in Boolean)
    is begin
@@ -216,7 +215,7 @@ package body SchreibeStadtGebaut is
    
    
    procedure Geldgewinnung
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       GeldgewinnungExtern : in ProduktionDatentypen.GesamtproduktionStadt;
       ÄndernSetzenExtern : in Boolean)
    is begin
@@ -249,7 +248,7 @@ package body SchreibeStadtGebaut is
    
    
    procedure PermanenteKostenPosten
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       WelcherPostenExtern : in ProduktionDatentypen.Permanente_Kosten_Verwendet_Enum;
       KostenExtern : in ProduktionDatentypen.GesamtePermanenteKosten;
       ÄndernSetzenExtern : in Boolean)
@@ -283,7 +282,7 @@ package body SchreibeStadtGebaut is
    
       
    procedure Forschungsrate
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       ForschungsrateExtern : in ProduktionDatentypen.GesamtproduktionStadt;
       ÄndernSetzenExtern : in Boolean)
    is begin
@@ -316,7 +315,7 @@ package body SchreibeStadtGebaut is
    
    
    procedure Bauprojekt
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       BauprojektExtern : in StadtRecords.BauprojektRecord)
    is begin
       
@@ -329,29 +328,31 @@ package body SchreibeStadtGebaut is
    
    
    procedure Bauzeit
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       if
-        SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Bauprojekt.Nummer = 0
+        (SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Bauprojekt.Gebäude = 0
+         and
+           SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Bauprojekt.Einheit = 0)
         or
           SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Produktionrate <= 0
       then
          SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Bauzeit := ProduktionDatentypen.KostenLager'Last;
          
       elsif
-        SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Bauprojekt.GebäudeEinheit = True
+        SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Bauprojekt.Gebäude /= 0
       then
          SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Bauzeit
            := (LeseGebaeudeDatenbank.PreisRessourcen (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                      IDExtern    => EinheitStadtDatentypen.GebäudeID (SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Bauprojekt.Nummer))
+                                                      IDExtern    => StadtDatentypen.GebäudeID (SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Bauprojekt.Gebäude))
                - SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Ressourcen)
              / SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Produktionrate;
                   
       else
          SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Bauzeit
            := (LeseEinheitenDatenbank.PreisRessourcen (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                       IDExtern    => EinheitStadtDatentypen.EinheitenID (SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Bauprojekt.Nummer))
+                                                       IDExtern    => EinheitenDatentypen.EinheitenID (SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Bauprojekt.Einheit))
                - SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Ressourcen)
              / SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Produktionrate;
       end if;
@@ -361,7 +362,7 @@ package body SchreibeStadtGebaut is
    
    
    procedure Korruption
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       KorruptionExtern : in ProduktionDatentypen.GesamtproduktionStadt;
       ÄndernSetzenExtern : in Boolean)
    is begin
@@ -394,7 +395,7 @@ package body SchreibeStadtGebaut is
    
    
    procedure Zufriedenheit
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       ZufriedenheitExtern : in ProduktionDatentypen.ProduktionFeld;
       ÄndernSetzenExtern : in Boolean)
    is begin
@@ -427,8 +428,8 @@ package body SchreibeStadtGebaut is
    
    
    procedure GebäudeVorhanden
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      WelchesGebäudeExtern : in EinheitStadtDatentypen.GebäudeID;
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      WelchesGebäudeExtern : in StadtDatentypen.GebäudeID;
       HinzufügenEntfernenExtern : in Boolean)
    is begin
       
@@ -439,7 +440,7 @@ package body SchreibeStadtGebaut is
    
    
    procedure Name
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       NameExtern : in Unbounded_Wide_Wide_String)
    is begin
       
@@ -450,7 +451,7 @@ package body SchreibeStadtGebaut is
    
    
    procedure UmgebungBewirtschaftung
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       YKoordinateExtern : in KartenDatentypen.UmgebungsbereichDrei;
       XKoordinateExtern : in KartenDatentypen.UmgebungsbereichDrei;
       BelegenEntfernenExtern : in Boolean)
@@ -463,7 +464,7 @@ package body SchreibeStadtGebaut is
    
    
    procedure UmgebungGröße
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       UmgebungGrößeExtern : in KartenDatentypen.UmgebungsbereichDrei;
       ÄndernSetzenExtern : in Boolean)
    is begin
@@ -496,9 +497,9 @@ package body SchreibeStadtGebaut is
    
       
    procedure Meldungen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      WelcheMeldungExtern : in EinheitStadtDatentypen.Stadt_Meldung_Art_Enum;
-      MeldungExtern : in EinheitStadtDatentypen.Stadt_Meldung_Enum)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      WelcheMeldungExtern : in StadtDatentypen.Stadt_Meldung_Art_Enum;
+      MeldungExtern : in StadtDatentypen.Stadt_Meldung_Enum)
    is begin
       
       SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Meldungen (WelcheMeldungExtern) := MeldungExtern;
@@ -508,7 +509,7 @@ package body SchreibeStadtGebaut is
       
       
    procedure KIBeschäftigung
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       BeschäftigungExtern : in KIDatentypen.Stadt_Aufgabe_Enum)
    is begin
       
@@ -519,7 +520,7 @@ package body SchreibeStadtGebaut is
    
    
    procedure Nullsetzung
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer) := StadtKonstanten.LeerStadt;
@@ -529,7 +530,7 @@ package body SchreibeStadtGebaut is
    
    
    procedure GanzerEintrag
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       EintragExtern : in StadtRecords.StadtGebautRecord)
    is begin
       

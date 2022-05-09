@@ -4,12 +4,12 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Ada.Wide_Wide_Text_IO;
 
-with EinheitStadtDatentypen;
+with EinheitenDatentypen;
 
 package UmwandlungenAdaNachEigenes is
 
    function BewegungspunkteDarstellungNormal
-     (KommazahlExtern : in EinheitStadtDatentypen.BewegungFloat)
+     (KommazahlExtern : in EinheitenDatentypen.BewegungFloat)
       return Unbounded_Wide_Wide_String;
    
    generic type GanzeZahl is range <>;
@@ -24,6 +24,6 @@ private
    
    Zahlenstring : Unbounded_Wide_Wide_String;
    
-   package AnzeigeFloatUmwandeln is new Ada.Wide_Wide_Text_IO.Float_IO (EinheitStadtDatentypen.BewegungFloat);
+   package AnzeigeFloatUmwandeln is new Ada.Wide_Wide_Text_IO.Float_IO (EinheitenDatentypen.BewegungFloat);
 
 end UmwandlungenAdaNachEigenes;

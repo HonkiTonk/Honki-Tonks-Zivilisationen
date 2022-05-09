@@ -2,16 +2,18 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
-with EinheitStadtRecords;
+with EinheitenRecords;
 with SonstigeVariablen;
-with EinheitStadtDatentypen;
 with SpielVariablen;
+with KampfRecords;
+with KampfDatentypen;
+with StadtDatentypen;
 
 package KampfsystemEinheiten is
 
    function KampfsystemNahkampf
-     (AngreiferExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      VerteidigerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (AngreiferExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      VerteidigerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
      with
        Pre =>
@@ -26,9 +28,9 @@ package KampfsystemEinheiten is
             AngreiferExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (AngreiferExtern.Rasse).Einheitengrenze);
 
    procedure KampfBerechnung
-     (VerteidigerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      AngriffExtern : in EinheitStadtDatentypen.Kampfwerte;
-      VerteidigungExtern : in EinheitStadtDatentypen.Kampfwerte)
+     (VerteidigerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      AngriffExtern : in KampfDatentypen.Kampfwerte;
+      VerteidigungExtern : in KampfDatentypen.Kampfwerte)
      with
        Pre =>
          (VerteidigerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (VerteidigerExtern.Rasse).Einheitengrenze
@@ -37,10 +39,10 @@ package KampfsystemEinheiten is
 
 private
 
-   AngerichteterSchaden : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
+   AngerichteterSchaden : StadtDatentypen.MaximaleStädteMitNullWert;
 
-   KampfwerteVerteidiger : EinheitStadtRecords.KampfwerteRecord;
-   KampfwerteAngreifer : EinheitStadtRecords.KampfwerteRecord;
+   KampfwerteVerteidiger : KampfRecords.KampfwerteRecord;
+   KampfwerteAngreifer : KampfRecords.KampfwerteRecord;
 
    Kampfglück : Float;
 
@@ -52,7 +54,7 @@ private
 
    WelcherFall : Kampf_Unterschiede_Enum;
 
-   type SchadenAngerichtetArray is array (Kampf_Unterschiede_Enum'Range, EinheitStadtDatentypen.MaximaleStädte'First .. 3) of Float;
+   type SchadenAngerichtetArray is array (Kampf_Unterschiede_Enum'Range, StadtDatentypen.MaximaleStädte'First .. 3) of Float;
    SchadenAngerichtet : constant SchadenAngerichtetArray := (
                                                              Gleich_Enum =>
                                                                (
@@ -91,8 +93,8 @@ private
                                                             );
 
    function Kampf
-     (VerteidigerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      AngreiferExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (VerteidigerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      AngreiferExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
      with
        Pre =>

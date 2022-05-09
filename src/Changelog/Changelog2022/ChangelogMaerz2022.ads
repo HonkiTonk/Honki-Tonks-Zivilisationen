@@ -100,7 +100,7 @@ package ChangelogMaerz2022 is
 
    -- Version 0.01.0150 => 0.01.0160 (16.03.2022):
    
-   -- Kartengrundenum und die Kartendatenbank in Grund, Fluss und Ressource aufgeteilt und angefangen alles entsprechend daran anzupassen.
+   -- Kartengrundenum und die KartengrundDatenbank in Grund, Fluss und Ressource aufgeteilt und angefangen alles entsprechend daran anzupassen.
    -- Contracs, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
@@ -121,7 +121,7 @@ package ChangelogMaerz2022 is
    -- Verschiedene Anpassungen an den Datentypen der Kartenfelder vorgenommen.
    -- KartenDatentypen in verschiedene Bereiche aufgeteilt.
    -- Benennung einiger Variablen geändert, für eine bessere Lesbarkeit des Codes.
-   -- Angefangen die Kartendatenbank besser zu gestalten.
+   -- Angefangen die KartengrundDatenbank besser zu gestalten.
    -- -gnatwj wieder aktiviert und pragma Warnings (Off, *array aggregate*) überall hinzugefügt um weiterhin Arrays mit () anstelle von [] befüllen zu können.
    -- Debian GNAT 12-20220222-1 auf Debian GNAT 12-20220313-1 aktualisiert.
    -- Codeformatierung an einigen Stellen überarbeitet.

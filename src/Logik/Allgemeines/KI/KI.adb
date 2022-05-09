@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+
 with EinheitenKonstanten;
 with KartenVerbesserungDatentypen;
 with SpielVariablen;
@@ -19,11 +21,17 @@ package body KI is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
+      ---------------------- Das hier mal so lassen, für weitere Tests sicherlich nützlich.
+      Put_Line ("EinheitenDurchgehen");
       EinheitenDurchgehen (RasseExtern => RasseExtern);
+      Put_Line ("StädteDurchgehen");
       StädteDurchgehen (RasseExtern => RasseExtern);
+      Put_Line ("Forschung");
       KIForschung.Forschung (RasseExtern => RasseExtern);
+      Put_Line ("Diplomatie");
       KIDiplomatie.Diplomatie (RasseExtern => RasseExtern);
-      
+      Put_Line ("Fertig");
+            
    end KI;
    
    

@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 package body ForschungAllgemeinKonsole is
    
    function ForschungAuswahlKonsole
-     return EinheitStadtDatentypen.ForschungIDMitNullWert
+     return EinheitenDatentypen.ForschungIDMitNullWert
    is begin
             
       AuswahlSchleife:
@@ -32,7 +32,7 @@ package body ForschungAllgemeinKonsole is
                end if;
                
             when TastenbelegungDatentypen.Auswählen_Enum =>
-               return EinheitStadtDatentypen.ForschungIDMitNullWert (ForschungText (AktuelleAuswahl).Nummer);
+               return EinheitenDatentypen.ForschungIDMitNullWert (ForschungText (AktuelleAuswahl).Nummer);
 
             when TastenbelegungDatentypen.Menü_Zurück_Enum =>
                return 0;

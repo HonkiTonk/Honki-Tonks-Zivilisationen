@@ -3,7 +3,8 @@ pragma Warnings (Off, "*array aggregate*");
 
 with WichtigeRecords;
 with KartenRecords;
-with EinheitStadtDatentypen;
+with StadtDatentypen;
+with EinheitenDatentypen;
 with SystemDatentypen;
 with ForschungenDatentypen;
 with ProduktionDatentypen;
@@ -29,10 +30,10 @@ package WichtigesKonstanten is
    LeerVerbleibendeForschungszeit : constant ProduktionDatentypen.KostenLager := ProduktionDatentypen.KostenLager'Last;
    LeerForschungsprojekt : constant ForschungenDatentypen.ForschungIDMitNullWert := ForschungenDatentypen.ForschungIDMitNullWert'First;
    LeerErforscht : constant Boolean := False;
-   LeerAnzahlStädte : constant EinheitStadtDatentypen.MaximaleStädteMitNullWert := EinheitStadtDatentypen.MaximaleStädteMitNullWert'First;
-   LeerAnzahlArbeiter : constant EinheitStadtDatentypen.MaximaleEinheitenMitNullWert := EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First;
-   LeerAnzahlKämpfer : constant EinheitStadtDatentypen.MaximaleEinheitenMitNullWert := EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First;
-   LeerAnzahlSonstiges : constant EinheitStadtDatentypen.MaximaleEinheitenMitNullWert := EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First;
+   LeerAnzahlStädte : constant StadtDatentypen.MaximaleStädteMitNullWert := StadtDatentypen.MaximaleStädteMitNullWert'First;
+   LeerAnzahlArbeiter : constant EinheitenDatentypen.MaximaleEinheitenMitNullWert := EinheitenDatentypen.MaximaleEinheitenMitNullWert'First;
+   LeerAnzahlKämpfer : constant EinheitenDatentypen.MaximaleEinheitenMitNullWert := EinheitenDatentypen.MaximaleEinheitenMitNullWert'First;
+   LeerAnzahlSonstiges : constant EinheitenDatentypen.MaximaleEinheitenMitNullWert := EinheitenDatentypen.MaximaleEinheitenMitNullWert'First;
    
    LeerWichtigesZeug : constant WichtigeRecords.WichtigesRecord := (
                                                                     Geldmenge                  => LeerGeldmenge,
@@ -48,8 +49,8 @@ package WichtigesKonstanten is
                                                                     AnzahlSonstiges            => LeerAnzahlSonstiges
                                                                    );
    
-   LeerStädtegrenze : constant EinheitStadtDatentypen.MaximaleStädte := EinheitStadtDatentypen.MaximaleStädte'Last;
-   LeerEinheitengrenze : constant EinheitStadtDatentypen.MaximaleEinheiten := EinheitStadtDatentypen.MaximaleEinheiten'Last;
+   LeerStädtegrenze : constant StadtDatentypen.MaximaleStädte := StadtDatentypen.MaximaleStädte'Last;
+   LeerEinheitengrenze : constant EinheitenDatentypen.MaximaleEinheiten := EinheitenDatentypen.MaximaleEinheiten'Last;
    LeerGeldgrenze : constant Integer := Integer'Last;
    LeerForschungsgrenze : constant ProduktionDatentypen.KostenLager:= ProduktionDatentypen.KostenLager'Last;
    LeerGeldgewinngrenze : constant ProduktionDatentypen.KostenLager := ProduktionDatentypen.KostenLager'Last;

@@ -1,10 +1,11 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
+with StadtDatentypen;
 
 with KIDatentypen;
 
@@ -20,7 +21,7 @@ with EinheitenErzeugenEntfernen;
 package body StadtEinheitenBauen is
 
    procedure EinheitFertiggestellt
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       EinheitNummer := 0;
@@ -63,7 +64,7 @@ package body StadtEinheitenBauen is
    
    
    procedure PlatzErmitteln
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       if
@@ -74,8 +75,8 @@ package body StadtEinheitenBauen is
       else
          KartenWert := UmgebungErreichbarTesten.UmgebungErreichbarTesten (AktuelleKoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                                                           RasseExtern               => StadtRasseNummerExtern.Rasse,
-                                                                          IDExtern                  => EinheitStadtDatentypen.EinheitenID (SpielVariablen.StadtGebaut
-                                                                            (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Bauprojekt.Nummer),
+                                                                          IDExtern                  => EinheitenDatentypen.EinheitenID (SpielVariablen.StadtGebaut
+                                                                            (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Bauprojekt.Einheit),
                                                                           NotwendigeFelderExtern    => 1);
       end if;
         
@@ -84,7 +85,7 @@ package body StadtEinheitenBauen is
       is
          when KartenKonstanten.LeerXAchse =>
             StadtMeldungenSetzen.StadtMeldungSetzenEreignis (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                             EreignisExtern         => EinheitStadtDatentypen.Einheit_Unplatzierbar_Enum);
+                                                             EreignisExtern         => StadtDatentypen.Einheit_Unplatzierbar_Enum);
             
          when others =>
             EinheitPlatzieren (StadtRasseNummerExtern => StadtRasseNummerExtern,
@@ -96,13 +97,13 @@ package body StadtEinheitenBauen is
    
    
    procedure EinheitPlatzieren
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
       EinheitenErzeugenEntfernen.EinheitErzeugen (KoordinatenExtern      => KoordinatenExtern,
                                                   EinheitNummerExtern    => EinheitNummer,
-                                                  IDExtern               =>  EinheitStadtDatentypen.EinheitenID (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Nummer),
+                                                  IDExtern               =>  EinheitenDatentypen.EinheitenID (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Einheit),
                                                   StadtRasseNummerExtern => StadtRasseNummerExtern);
       SchreibeStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                       RessourcenExtern       => StadtKonstanten.LeerStadt.Ressourcen,
@@ -115,7 +116,7 @@ package body StadtEinheitenBauen is
       is
          when RassenDatentypen.Spieler_Mensch_Enum =>
             StadtMeldungenSetzen.StadtMeldungSetzenEreignis (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                             EreignisExtern         => EinheitStadtDatentypen.Produktion_Abgeschlossen_Enum);
+                                                             EreignisExtern         => StadtDatentypen.Produktion_Abgeschlossen_Enum);
          
          when others =>
             SchreibeStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern,

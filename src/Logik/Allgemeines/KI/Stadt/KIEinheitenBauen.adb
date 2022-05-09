@@ -1,11 +1,10 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
 with WichtigesKonstanten;
 with StadtKonstanten;
-with SpielVariablen;
 
 with KIDatentypen; use KIDatentypen;
 with KIKonstanten;
@@ -22,12 +21,14 @@ with KIStadtLaufendeBauprojekte;
 package body KIEinheitenBauen is
 
    function EinheitenBauen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return KIRecords.EinheitIDBewertungRecord
    is begin
       
       EinheitBewertet := KIKonstanten.LeerEinheitIDBewertung;
-      AnzahlStädte := LeseWichtiges.AnzahlStädte (RasseExtern => StadtRasseNummerExtern.Rasse);
+      -- 3 * AnzahlStädte sollte immer größer 0 sein, da nur bei vorhandenen Städten was gebaut werden sollte.
+      ----------------------------------- AnzahlStädte mal übergeben und nicht mehr so einfach benutzen lassen.
+      AnzahlStädte := EinheitenDatentypen.MaximaleEinheiten (LeseWichtiges.AnzahlStädte (RasseExtern => StadtRasseNummerExtern.Rasse));
       
       if
         LeseWichtiges.AnzahlEinheiten (RasseExtern => StadtRasseNummerExtern.Rasse) > 3 * AnzahlStädte
@@ -45,12 +46,12 @@ package body KIEinheitenBauen is
    
    
    function EinheitenDurchgehen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return KIRecords.EinheitIDBewertungRecord
    is begin
       
       EinheitenSchleife:
-      for EinheitenSchleifenwert in EinheitStadtDatentypen.EinheitenID'Range loop
+      for EinheitenSchleifenwert in EinheitenDatentypen.EinheitenID'Range loop
          
          case
            EinheitenModifizieren.EinheitAnforderungenErfüllt (StadtRasseNummerExtern => StadtRasseNummerExtern,
@@ -73,8 +74,8 @@ package body KIEinheitenBauen is
    
    
    procedure EinheitBewerten
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      IDExtern : in EinheitStadtDatentypen.EinheitenID)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      IDExtern : in EinheitenDatentypen.EinheitenID)
    is begin
       
       Gesamtwertung := 0;
@@ -109,8 +110,8 @@ package body KIEinheitenBauen is
    
    
    function SpezielleEinheitBewerten
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      IDExtern : in EinheitStadtDatentypen.EinheitenID)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      IDExtern : in EinheitenDatentypen.EinheitenID)
       return KIDatentypen.BauenBewertung
    is begin
       
@@ -118,28 +119,28 @@ package body KIEinheitenBauen is
         LeseEinheitenDatenbank.EinheitArt (RasseExtern => StadtRasseNummerExtern.Rasse,
                                            IDExtern    => IDExtern)
       is
-         when EinheitStadtDatentypen.Arbeiter_Enum =>
+         when EinheitenDatentypen.Arbeiter_Enum =>
             return ArbeiterBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                      EinheitenIDExtern      => IDExtern);
             
-         when EinheitStadtDatentypen.Nahkämpfer_Enum =>
+         when EinheitenDatentypen.Nahkämpfer_Enum =>
             return Gesamtwertung + NahkämpferBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                         EinheitenIDExtern      => IDExtern);
             
-         when EinheitStadtDatentypen.Fernkämpfer_Enum =>
+         when EinheitenDatentypen.Fernkämpfer_Enum =>
             return Gesamtwertung + FernkämpferBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                          EinheitenIDExtern      => IDExtern);
             
-         when EinheitStadtDatentypen.Beides_Enum =>
+         when EinheitenDatentypen.Beides_Enum =>
             null;
             
-         when EinheitStadtDatentypen.Sonstiges_Enum =>
+         when EinheitenDatentypen.Sonstiges_Enum =>
             null;
             
-         when EinheitStadtDatentypen.Cheat_Enum =>
+         when EinheitenDatentypen.Cheat_Enum =>
             return KIDatentypen.BauenBewertung'First;
             
-         when EinheitStadtDatentypen.Leer_Einheitart_Enum =>
+         when EinheitenDatentypen.Leer_Einheitart_Enum =>
             null;
       end case;
       
@@ -150,14 +151,14 @@ package body KIEinheitenBauen is
    
    
    function ArbeiterBewerten
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      EinheitenIDExtern : in EinheitStadtDatentypen.EinheitenID)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      EinheitenIDExtern : in EinheitenDatentypen.EinheitenID)
       return KIDatentypen.BauenBewertung
    is begin
       
       MengeVorhanden := LeseWichtiges.AnzahlArbeiter (RasseExtern => StadtRasseNummerExtern.Rasse);
       MengeImBau := KIStadtLaufendeBauprojekte.GleicheEinheitArtBauprojekte (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                                             EinheitArtExtern       => EinheitStadtDatentypen.Nahkämpfer_Enum);
+                                                                             EinheitArtExtern       => EinheitenDatentypen.Nahkämpfer_Enum);
       
       if
         MengeVorhanden = MinimaleSiedlerMenge
@@ -183,14 +184,14 @@ package body KIEinheitenBauen is
    
    
    function NahkämpferBewerten
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      EinheitenIDExtern : in EinheitStadtDatentypen.EinheitenID)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      EinheitenIDExtern : in EinheitenDatentypen.EinheitenID)
       return KIDatentypen.BauenBewertung
    is begin
       
       MengeVorhanden := LeseWichtiges.AnzahlKämpfer (RasseExtern => StadtRasseNummerExtern.Rasse);
       MengeImBau := KIStadtLaufendeBauprojekte.GleicheEinheitArtBauprojekte (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                                             EinheitArtExtern       => EinheitStadtDatentypen.Nahkämpfer_Enum);
+                                                                             EinheitArtExtern       => EinheitenDatentypen.Nahkämpfer_Enum);
         
       case
         KIKriegErmitteln.IstImKrieg (RasseExtern => StadtRasseNummerExtern.Rasse)
@@ -253,14 +254,14 @@ package body KIEinheitenBauen is
    
    
    function FernkämpferBewerten
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      EinheitenIDExtern : in EinheitStadtDatentypen.EinheitenID)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      EinheitenIDExtern : in EinheitenDatentypen.EinheitenID)
       return KIDatentypen.BauenBewertung
    is begin
       
       MengeVorhanden := LeseWichtiges.AnzahlKämpfer (RasseExtern => StadtRasseNummerExtern.Rasse);
       MengeImBau := KIStadtLaufendeBauprojekte.GleicheEinheitArtBauprojekte (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                                             EinheitArtExtern       => EinheitStadtDatentypen.Fernkämpfer_Enum);
+                                                                             EinheitArtExtern       => EinheitenDatentypen.Fernkämpfer_Enum);
         
       case
         KIKriegErmitteln.IstImKrieg (RasseExtern => StadtRasseNummerExtern.Rasse)
@@ -311,8 +312,8 @@ package body KIEinheitenBauen is
    
    
    function KostenBewerten
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      EinheitenIDExtern : in EinheitStadtDatentypen.EinheitenID)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      EinheitenIDExtern : in EinheitenDatentypen.EinheitenID)
       return KIDatentypen.BauenBewertung
    is begin
       
@@ -326,8 +327,8 @@ package body KIEinheitenBauen is
      
      
    function GeldKostenBewerten
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      EinheitenIDExtern : in EinheitStadtDatentypen.EinheitenID)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      EinheitenIDExtern : in EinheitenDatentypen.EinheitenID)
       return KIDatentypen.BauenBewertung
    is begin
       
@@ -357,8 +358,8 @@ package body KIEinheitenBauen is
    
    
    function NahrungKostenBewerten
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      EinheitenIDExtern : in EinheitStadtDatentypen.EinheitenID)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      EinheitenIDExtern : in EinheitenDatentypen.EinheitenID)
       return KIDatentypen.BauenBewertung
    is begin
       
@@ -388,8 +389,8 @@ package body KIEinheitenBauen is
      
      
    function RessourcenKostenBewerten
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      EinheitenIDExtern : in EinheitStadtDatentypen.EinheitenID)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      EinheitenIDExtern : in EinheitenDatentypen.EinheitenID)
       return KIDatentypen.BauenBewertung
    is begin
       

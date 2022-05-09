@@ -14,7 +14,7 @@ package body KISonstigesSuchen is
 
    function EigenesFeldSuchen
      (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
@@ -43,7 +43,7 @@ package body KISonstigesSuchen is
    
    function ZielSuchen
      (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       

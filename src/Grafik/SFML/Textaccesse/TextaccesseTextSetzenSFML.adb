@@ -6,7 +6,8 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Sf.Graphics.Text;
 
 with TextaccessVariablen;
-with EinheitStadtDatentypen;
+with EinheitenDatentypen;
+with StadtDatentypen;
 with GlobaleTexte;
 with TextKonstanten;
 with ForschungKonstanten;
@@ -71,7 +72,7 @@ package body TextaccesseTextSetzenSFML is
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugGebäude)));
       
       GebäudetextSchleife:
-      for GebäudetextSchleifenwert in EinheitStadtDatentypen.GebäudeID'Range loop
+      for GebäudetextSchleifenwert in StadtDatentypen.GebäudeID'Range loop
          
          Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.GebäudetextAccess (GebäudetextSchleifenwert),
                                             str  => To_Wide_Wide_String (Source => GlobaleTexte.Gebäude (2 * Positive (GebäudetextSchleifenwert) - 1)));
@@ -85,7 +86,7 @@ package body TextaccesseTextSetzenSFML is
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugEinheiten)));
       
       EinheitentextSchleife:
-      for EinheitentextSchleifenwert in EinheitStadtDatentypen.EinheitenID'Range loop
+      for EinheitentextSchleifenwert in EinheitenDatentypen.EinheitenID'Range loop
             
          Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitentextAccess (EinheitentextSchleifenwert),
                                             str  => To_Wide_Wide_String (Source => GlobaleTexte.Einheiten (2 * Positive (EinheitentextSchleifenwert) - 1)));

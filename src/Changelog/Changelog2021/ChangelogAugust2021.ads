@@ -178,7 +178,7 @@ package ChangelogAugust2021 is
    -- Version 0.00.8310 => 0.00.8340 (14.08.2021):
    
    -- Beförderungssystem von Einheiten leicht überarbeitet.
-   -- Passierbarkeitsprüfung überarbeitet, sollte jetzt auch bei falsch gesetzten Werten in der Kartendatenbank noch korrekt funktionieren und WegVerbesserungen sollten jetzt frühzeitige Übergänge ermöglichen können.
+   -- Passierbarkeitsprüfung überarbeitet, sollte jetzt auch bei falsch gesetzten Werten in der KartengrundDatenbank noch korrekt funktionieren und WegVerbesserungen sollten jetzt frühzeitige Übergänge ermöglichen können.
    -- Weitere Kartenfelder für Unterwasser, Unterirdische und Planeteninneres hinzugefügt.
    -- Die neuen Kartenfelder in die grafische Darstellung eingebaut.
    -- Die neuen Kartenfelder in den Kartengenerator eingebaut.

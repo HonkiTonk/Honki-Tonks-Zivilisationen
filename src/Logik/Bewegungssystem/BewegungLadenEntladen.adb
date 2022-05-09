@@ -1,9 +1,8 @@
 pragma SPARK_Mode (On);
 
 pragma Warnings (Off, "*array aggregate*");
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
 with EinheitenKonstanten;
-with EinheitenRecords;
 
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
@@ -14,8 +13,8 @@ with UmgebungErreichbarTesten;
 package body BewegungLadenEntladen is
 
    procedure TransporterBeladen
-     (TransporterExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      LadungExtern : in EinheitStadtDatentypen.MaximaleEinheiten)
+     (TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      LadungExtern : in EinheitenDatentypen.MaximaleEinheiten)
    is begin
       
       FreierPlatzNummer := FreienPlatzErmitteln (TransporterExtern => TransporterExtern);
@@ -23,7 +22,7 @@ package body BewegungLadenEntladen is
       case
         FreierPlatzNummer
       is
-         when EinheitStadtDatentypen.Transportplätze'First =>
+         when EinheitenDatentypen.Transportplätze'First =>
             null;
             
          when others =>
@@ -55,8 +54,8 @@ package body BewegungLadenEntladen is
    
    -- Ist das nicht identisch mit dem Zeug in TransporterSuchen?
    function FreienPlatzErmitteln
-     (TransporterExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
-      return EinheitStadtDatentypen.Transportplätze
+     (TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return EinheitenDatentypen.Transportplätze
    is begin
       
       TransporterSchleife:
@@ -76,15 +75,15 @@ package body BewegungLadenEntladen is
          
       end loop TransporterSchleife;
       
-      return EinheitStadtDatentypen.Transportplätze'First;
+      return EinheitenDatentypen.Transportplätze'First;
       
    end FreienPlatzErmitteln;
      
       
    
    procedure EinheitAusTransporterEntfernen
-     (TransporterExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      LadungExtern : in EinheitStadtDatentypen.MaximaleEinheiten)
+     (TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      LadungExtern : in EinheitenDatentypen.MaximaleEinheiten)
    is begin
       
       TransporterLeerenSchleife:
@@ -117,7 +116,7 @@ package body BewegungLadenEntladen is
    
    
    procedure TransporterladungVerschieben
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
@@ -146,7 +145,7 @@ package body BewegungLadenEntladen is
    
    
    procedure TransporterStadtEntladen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
             

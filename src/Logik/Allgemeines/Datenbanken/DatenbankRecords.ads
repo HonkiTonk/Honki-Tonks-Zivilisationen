@@ -2,23 +2,25 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with SystemDatentypen;
-with EinheitStadtDatentypen;
+with StadtDatentypen;
+with EinheitenDatentypen;
 with KartenDatentypen;
 with KartengrundDatentypen;
 with RassenDatentypen;
 with ForschungenDatentypen;
 with ProduktionDatentypen;
 with StadtRecords;
+with KampfDatentypen;
 
 package DatenbankRecords is
 
    -- EinheitenDatenbank
-   type PassierbarkeitArray is array (EinheitStadtDatentypen.Passierbarkeit_Vorhanden_Enum'Range) of Boolean;
+   type PassierbarkeitArray is array (EinheitenDatentypen.Passierbarkeit_Vorhanden_Enum'Range) of Boolean;
 
    type EinheitenlisteRecord is record
       
       ----------------------- Solche Benennungen auch mal anpassen.
-      EinheitArt : EinheitStadtDatentypen.Einheit_Art_Enum;
+      EinheitArt : EinheitenDatentypen.Einheit_Art_Enum;
       PreisGeld : ProduktionDatentypen.KostenLager;
       PreisRessourcen : ProduktionDatentypen.KostenLager;
       PermanenteKosten : StadtRecords.PermanenteKostenArray;
@@ -26,23 +28,23 @@ package DatenbankRecords is
 
       Passierbarkeit : PassierbarkeitArray;
       
-      MaximaleLebenspunkte : EinheitStadtDatentypen.LebenspunkteVorhanden;
-      MaximaleBewegungspunkte : EinheitStadtDatentypen.VorhandeneBewegungspunkte;
-      WirdVerbessertZu : EinheitStadtDatentypen.EinheitenIDMitNullWert;
+      MaximaleLebenspunkte : EinheitenDatentypen.LebenspunkteVorhanden;
+      MaximaleBewegungspunkte : EinheitenDatentypen.VorhandeneBewegungspunkte;
+      WirdVerbessertZu : EinheitenDatentypen.EinheitenIDMitNullWert;
 
-      Beförderungsgrenze : EinheitStadtDatentypen.Kampfwerte;
-      MaximalerRang : EinheitStadtDatentypen.Kampfwerte;
-      Reichweite : EinheitStadtDatentypen.Kampfwerte;
-      Angriff : EinheitStadtDatentypen.Kampfwerte;
-      Verteidigung : EinheitStadtDatentypen.Kampfwerte;
+      Beförderungsgrenze : KampfDatentypen.Kampfwerte;
+      MaximalerRang : KampfDatentypen.Kampfwerte;
+      Reichweite : KampfDatentypen.Kampfwerte;
+      Angriff : KampfDatentypen.Kampfwerte;
+      Verteidigung : KampfDatentypen.Kampfwerte;
 
-      KannTransportieren : EinheitStadtDatentypen.Transport_Enum;
-      KannTransportiertWerden : EinheitStadtDatentypen.Transport_Enum;
-      Transportkapazität : EinheitStadtDatentypen.Transportplätze;
+      KannTransportieren : EinheitenDatentypen.Transport_Enum;
+      KannTransportiertWerden : EinheitenDatentypen.Transport_Enum;
+      Transportkapazität : EinheitenDatentypen.Transportplätze;
       
    end record;
    
-   type EinheitenlisteArray is array (EinheitStadtDatentypen.EinheitenID'Range) of EinheitenlisteRecord;
+   type EinheitenlisteArray is array (EinheitenDatentypen.EinheitenID'Range) of EinheitenlisteRecord;
    -- EinheitenDatenbank
    
    
@@ -62,7 +64,7 @@ package DatenbankRecords is
    
    -- GebäudeDatenbank
    type BonusWirtschaftArray is array (KartenDatentypen.Wirtschaft_Enum'Range) of ProduktionDatentypen.ProduktionFeld;
-   type BonusKampfArray is array (KartenDatentypen.Kampf_Enum'Range) of EinheitStadtDatentypen.Kampfwerte;
+   type BonusKampfArray is array (KartenDatentypen.Kampf_Enum'Range) of KampfDatentypen.Kampfwerte;
    
    type GebäudelisteRecord is record
       
@@ -81,20 +83,20 @@ package DatenbankRecords is
       --------------------- UndOderGrundFlussBenötigt : Boolean; -- In ein Enum einbauen?
       --------------------- Auch noch Abhängigkeit von anderen Gebäuden einbauen.
       
-      GebäudeSpezielleEigenschaft : EinheitStadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum;
+      GebäudeSpezielleEigenschaft : StadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum;
 
    end record;
    
-   type GebäudelisteArray is array (EinheitStadtDatentypen.GebäudeID'Range) of GebäudelisteRecord;
+   type GebäudelisteArray is array (StadtDatentypen.GebäudeID'Range) of GebäudelisteRecord;
    -- GebäudeDatenbank
 
 
 
    type BewertungArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of KartenDatentypen.BewertungFeld;
    type WirtschaftArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, KartenDatentypen.Wirtschaft_Enum'Range) of ProduktionDatentypen.ProduktionElement;
-   type KampfArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, KartenDatentypen.Kampf_Enum'Range) of EinheitStadtDatentypen.KampfwerteAllgemein;
+   type KampfArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, KartenDatentypen.Kampf_Enum'Range) of KampfDatentypen.KampfwerteAllgemein;
       
-   -- KartenDatenbank
+   -- KartengrundDatenbank
    type KartenlisteRecord is tagged record
             
       Bewertung : BewertungArray;
@@ -108,16 +110,16 @@ package DatenbankRecords is
       Passierbarkeit : PassierbarkeitArray;
       
    end record;
-   -- KartenDatenbank
+   -- KartengrundDatenbank
 
 
 
    -- VerbesserungenDatenbank
-   type VerbesserungenWegeListeRecord is tagged record
+   type VerbesserungenWegeListeRecord is new KartenlisteRecord with record
       
-      Bewertung : BewertungArray;
-      Wirtschaft : WirtschaftArray;
-      Kampf : KampfArray;
+     -- Bewertung : BewertungArray;
+     -- Wirtschaft : WirtschaftArray;
+     -- Kampf : KampfArray;
       
       Passierbarkeit : PassierbarkeitArray;
       
@@ -135,12 +137,12 @@ package DatenbankRecords is
    -- RassenDatenbank
    type RassenListeRecord is record
       
-      Aggressivität : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
-      Expansion : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
-      Wissenschaft : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
-      Produktion : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
-      Wirtschaft : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
-      Bewirtschaftung : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
+      Aggressivität : StadtDatentypen.MaximaleStädteMitNullWert;
+      Expansion : StadtDatentypen.MaximaleStädteMitNullWert;
+      Wissenschaft : StadtDatentypen.MaximaleStädteMitNullWert;
+      Produktion : StadtDatentypen.MaximaleStädteMitNullWert;
+      Wirtschaft : StadtDatentypen.MaximaleStädteMitNullWert;
+      Bewirtschaftung : StadtDatentypen.MaximaleStädteMitNullWert;
       
       GültigeStaatsformen : SystemDatentypen.StaatsformenArray;
       -- Besondere Eigenschaften hinzufügen, als Enum? oder was Anderes?

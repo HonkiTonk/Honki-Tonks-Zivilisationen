@@ -2,18 +2,17 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
-with EinheitStadtRecords;
+with EinheitenRecords;
 with SpielVariablen;
 with KartengrundDatentypen;
 with SonstigeVariablen;
 with AufgabenDatentypen;
-with EinheitStadtDatentypen;
-with EinheitenRecords;
+with EinheitenDatentypen;
 
 package FarmErmitteln is
    
    function FarmErmitteln
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
       AnlegenTestenExtern : in Boolean)
       return Boolean
@@ -30,13 +29,13 @@ private
 
    WelcheArbeit : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
 
-   Arbeitszeit : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
-   Grundzeit : EinheitStadtDatentypen.MaximaleStädteMitNullWert := 1;
+   Arbeitszeit : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   Grundzeit : EinheitenDatentypen.MaximaleEinheitenMitNullWert := 1;
 
    Arbeitswerte : EinheitenRecords.ArbeitRecord;
    
    function OberflächeLand
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Enum;
       AnlegenTestenExtern : in Boolean)
       return EinheitenRecords.ArbeitRecord
@@ -51,7 +50,7 @@ private
       return EinheitenRecords.ArbeitRecord;
 
    function UnterflächeWasser
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Wasser_Enum;
       AnlegenTestenExtern : in Boolean)
       return EinheitenRecords.ArbeitRecord

@@ -4,7 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 with KartenRecords; use KartenRecords;
 with EinheitenKonstanten;
 with SpielVariablen;
-with EinheitenRecords;
 
 with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;
@@ -14,7 +13,7 @@ package body TransporterSuchen is
    function KoordinatenTransporterMitRasseSuchen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
+      return EinheitenDatentypen.MaximaleEinheitenMitNullWert
    is begin
       
       EinheitSchleife:
@@ -45,9 +44,9 @@ package body TransporterSuchen is
    
    
    function EinheitAufTransporterSuchen
-     (TransporterExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      LadungExtern : in EinheitStadtDatentypen.MaximaleEinheiten)
-      return EinheitStadtDatentypen.Transportplätze
+     (TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      LadungExtern : in EinheitenDatentypen.MaximaleEinheiten)
+      return EinheitenDatentypen.Transportplätze
    is begin
 
       TransporterSchleife:
@@ -70,14 +69,14 @@ package body TransporterSuchen is
          
       end loop TransporterSchleife;
       
-      return EinheitStadtDatentypen.Transportplätze'First;
+      return EinheitenDatentypen.Transportplätze'First;
       
    end EinheitAufTransporterSuchen;
 
 
 
    function HatTransporterLadung
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
       

@@ -5,8 +5,8 @@ with KartenDatentypen; use KartenDatentypen;
 with RassenDatentypen; use RassenDatentypen;
 with SonstigeVariablen;
 with KartenRecords;
-with EinheitStadtDatentypen;
 with ProduktionDatentypen;
+with KampfDatentypen;
 
 with Karten;
 
@@ -63,7 +63,7 @@ package GesamtwerteFeld is
    function FeldVerteidigung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.Kampfwerte
+      return KampfDatentypen.Kampfwerte
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
@@ -75,7 +75,7 @@ package GesamtwerteFeld is
    function FeldAngriff
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.Kampfwerte
+      return KampfDatentypen.Kampfwerte
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum

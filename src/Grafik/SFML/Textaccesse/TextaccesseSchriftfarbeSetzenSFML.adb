@@ -4,7 +4,8 @@ pragma Warnings (Off, "*array aggregate*");
 with Sf.Graphics.Text;
 
 with TextaccessVariablen;
-with EinheitStadtDatentypen;
+with StadtDatentypen;
+with EinheitenDatentypen;
 with ForschungKonstanten;
 with ForschungenDatentypen;
 
@@ -90,7 +91,7 @@ package body TextaccesseSchriftfarbeSetzenSFML is
                                  color => GrafikEinstellungenSFML.Schriftfarben.FarbeÜberschrift);
       
       GebäudetextSchleife:
-      for GebäudetextSchleifenwert in EinheitStadtDatentypen.GebäudeID'Range loop
+      for GebäudetextSchleifenwert in StadtDatentypen.GebäudeID'Range loop
             
          Sf.Graphics.Text.setColor (text => TextaccessVariablen.GebäudetextAccess (GebäudetextSchleifenwert),
                                     color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
@@ -106,7 +107,7 @@ package body TextaccesseSchriftfarbeSetzenSFML is
                                  color => GrafikEinstellungenSFML.Schriftfarben.FarbeÜberschrift);
       
       EinheitentextSchleife:
-      for EinheitentextSchleifenwert in EinheitStadtDatentypen.EinheitenID'Range loop
+      for EinheitentextSchleifenwert in EinheitenDatentypen.EinheitenID'Range loop
             
          Sf.Graphics.Text.setColor (text => TextaccessVariablen.EinheitentextAccess (EinheitentextSchleifenwert),
                                     color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
@@ -166,7 +167,7 @@ package body TextaccesseSchriftfarbeSetzenSFML is
          case
            SchriftfarbeSchleifenwert
          is
-            when 11 .. 32 =>
+            when 10 .. 30 =>
                Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KartenformauswahlAccess (SchriftfarbeSchleifenwert),
                                           color => GrafikEinstellungenSFML.Schriftfarben.FarbeMenschText);
                

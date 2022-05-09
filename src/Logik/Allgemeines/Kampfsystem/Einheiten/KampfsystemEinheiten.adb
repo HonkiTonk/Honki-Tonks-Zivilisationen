@@ -1,8 +1,10 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
+with KampfDatentypen; use KampfDatentypen;
+with StadtDatentypen; use StadtDatentypen;
 with EinheitenKonstanten;
 
 with SchreibeEinheitenGebaut;
@@ -16,8 +18,8 @@ with EinheitenErzeugenEntfernen;
 package body KampfsystemEinheiten is
 
    function KampfsystemNahkampf
-     (AngreiferExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      VerteidigerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (AngreiferExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      VerteidigerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
 
@@ -39,8 +41,8 @@ package body KampfsystemEinheiten is
 
 
    function Kampf
-     (VerteidigerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      AngreiferExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (VerteidigerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      AngreiferExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
             
@@ -90,10 +92,10 @@ package body KampfsystemEinheiten is
 
 
    procedure KampfBerechnung
-     (VerteidigerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (VerteidigerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       -- Hier besser nicht den KampfwerteRecord verwenden, sonst komme ich noch durcheinander dass das ja zwei unterschiedliche Einheiten sind welche sich hier bekämpfen.
-      AngriffExtern : in EinheitStadtDatentypen.Kampfwerte;
-      VerteidigungExtern : in EinheitStadtDatentypen.Kampfwerte)
+      AngriffExtern : in KampfDatentypen.Kampfwerte;
+      VerteidigungExtern : in KampfDatentypen.Kampfwerte)
    is begin
       
       -- Bei Extremfällen AngerichteterSchaden schon vorher einen Wert geben?
@@ -143,7 +145,7 @@ package body KampfsystemEinheiten is
       
       -- Den Schadensdatentyp abhängig von den Lebenspunkten machen? Oder ein anderes System bauen?
       SchreibeEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => VerteidigerExtern,
-                                            LebenspunkteExtern       => EinheitStadtDatentypen.Lebenspunkte (AngerichteterSchaden),
+                                            LebenspunkteExtern       => EinheitenDatentypen.Lebenspunkte (AngerichteterSchaden),
                                             RechnenSetzenExtern      => -1);
       
    end KampfBerechnung;

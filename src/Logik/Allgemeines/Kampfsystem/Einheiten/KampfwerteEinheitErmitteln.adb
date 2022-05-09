@@ -1,7 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
+with KampfDatentypen; use KampfDatentypen;
 with StadtKonstanten;
 with AufgabenDatentypen;
 with ProduktionDatentypen;
@@ -16,9 +17,9 @@ package body KampfwerteEinheitErmitteln is
 
    -- Mit_Hügel noch berücksichtigen
    function AktuelleVerteidigungEinheit
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       AngreiferExtern : in Boolean)
-      return EinheitStadtDatentypen.Kampfwerte
+      return KampfDatentypen.Kampfwerte
    is begin
       
       VerteidigungWert := LeseEinheitenDatenbank.Verteidigung (RasseExtern => EinheitRasseNummerExtern.Rasse,
@@ -35,9 +36,9 @@ package body KampfwerteEinheitErmitteln is
       end case;
       
       if
-        VerteidigungWert + Bonus > EinheitStadtDatentypen.Kampfwerte'Last
+        VerteidigungWert + Bonus > KampfDatentypen.Kampfwerte'Last
       then
-         return EinheitStadtDatentypen.Kampfwerte'Last;
+         return KampfDatentypen.Kampfwerte'Last;
          
       else
          return VerteidigungWert + Bonus;
@@ -48,8 +49,8 @@ package body KampfwerteEinheitErmitteln is
    
    
    function VerteidigungsbonusVerteidiger
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
-      return EinheitStadtDatentypen.Kampfwerte
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return KampfDatentypen.Kampfwerte
    is begin
       
       VerteidigungWertFloat := Float (GesamtwerteFeld.FeldVerteidigung (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
@@ -79,10 +80,10 @@ package body KampfwerteEinheitErmitteln is
       if
         VerteidigungWertFloat > Float (ProduktionDatentypen.GesamtproduktionStadt'Last)
       then
-         return EinheitStadtDatentypen.Kampfwerte'Last;
+         return KampfDatentypen.Kampfwerte'Last;
                
       else
-         return EinheitStadtDatentypen.Kampfwerte (VerteidigungWertFloat);
+         return KampfDatentypen.Kampfwerte (VerteidigungWertFloat);
       end if;
       
    end VerteidigungsbonusVerteidiger;
@@ -90,7 +91,7 @@ package body KampfwerteEinheitErmitteln is
    
    
    function VerteidigungsbonusAngreifer
-     return EinheitStadtDatentypen.Kampfwerte
+     return KampfDatentypen.Kampfwerte
    is begin
       
       return 0;
@@ -100,9 +101,9 @@ package body KampfwerteEinheitErmitteln is
    
    
    function AktuellerAngriffEinheit
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       AngreiferExtern : in Boolean)
-      return EinheitStadtDatentypen.Kampfwerte
+      return KampfDatentypen.Kampfwerte
    is begin
       
       AngriffWert := LeseEinheitenDatenbank.Angriff (RasseExtern => EinheitRasseNummerExtern.Rasse,
@@ -119,9 +120,9 @@ package body KampfwerteEinheitErmitteln is
       end case;
      
       if
-        AngriffWert + Bonus > EinheitStadtDatentypen.Kampfwerte'Last
+        AngriffWert + Bonus > KampfDatentypen.Kampfwerte'Last
       then
-         return EinheitStadtDatentypen.Kampfwerte'Last;
+         return KampfDatentypen.Kampfwerte'Last;
          
       else
          return AngriffWert + Bonus;
@@ -132,8 +133,8 @@ package body KampfwerteEinheitErmitteln is
    
    
    function AngriffsbonusAngreifer
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
-      return EinheitStadtDatentypen.Kampfwerte
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return KampfDatentypen.Kampfwerte
    is begin
       
       AngriffWertFloat := Float (GesamtwerteFeld.FeldAngriff (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
@@ -145,10 +146,10 @@ package body KampfwerteEinheitErmitteln is
       if
         AngriffWertFloat > Float (ProduktionDatentypen.ProduktionFeld'Last)
       then
-         return EinheitStadtDatentypen.Kampfwerte'Last;
+         return KampfDatentypen.Kampfwerte'Last;
                
       else
-         return EinheitStadtDatentypen.Kampfwerte (AngriffWertFloat);
+         return KampfDatentypen.Kampfwerte (AngriffWertFloat);
       end if;
       
    end AngriffsbonusAngreifer;
@@ -156,7 +157,7 @@ package body KampfwerteEinheitErmitteln is
    
    
    function AngriffsbonusVerteidiger
-     return EinheitStadtDatentypen.Kampfwerte
+     return KampfDatentypen.Kampfwerte
    is begin
       
       return 0;

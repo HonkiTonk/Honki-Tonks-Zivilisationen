@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with KartenRecords; use KartenRecords;
 with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
-with EinheitStadtRecords;
+with EinheitenRecords;
 with SpielVariablen;
 with TastenbelegungDatentypen;
 with SonstigeVariablen;
@@ -12,7 +12,7 @@ with SonstigeVariablen;
 package BewegungEinheitenKonsole is
 
    procedure BewegungEinheitenRichtung
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze

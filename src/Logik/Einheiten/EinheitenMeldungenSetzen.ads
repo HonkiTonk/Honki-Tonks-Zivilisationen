@@ -3,8 +3,8 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
-with EinheitStadtRecords;
-with EinheitStadtDatentypen;
+with EinheitenRecords;
+with EinheitenDatentypen;
 with SonstigeVariablen;
 
 package EinheitenMeldungenSetzen is
@@ -12,8 +12,8 @@ package EinheitenMeldungenSetzen is
    procedure EinheitenMeldungenSetzenRundenEnde;
 
    procedure EinheitMeldungSetzenEreignis
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      EreignisExtern : in EinheitStadtDatentypen.Einheit_Meldung_Verwendet_Enum)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      EreignisExtern : in EinheitenDatentypen.Einheit_Meldung_Verwendet_Enum)
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
@@ -22,6 +22,6 @@ package EinheitenMeldungenSetzen is
 
 private
 
-   ArtDerMeldung : EinheitStadtDatentypen.Einheit_Meldung_Art_Enum;
+   ArtDerMeldung : EinheitenDatentypen.Einheit_Meldung_Art_Enum;
 
 end EinheitenMeldungenSetzen;

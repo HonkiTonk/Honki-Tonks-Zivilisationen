@@ -2,17 +2,17 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
-with EinheitStadtRecords;
+with EinheitenRecords;
 with SonstigeVariablen;
-with EinheitStadtDatentypen;
 with SpielVariablen;
+with KampfDatentypen;
 
 package KampfwerteEinheitErmitteln is
 
    function AktuelleVerteidigungEinheit
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       AngreiferExtern : in Boolean)
-      return EinheitStadtDatentypen.Kampfwerte
+      return KampfDatentypen.Kampfwerte
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
@@ -20,9 +20,9 @@ package KampfwerteEinheitErmitteln is
             EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze);
    
    function AktuellerAngriffEinheit
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       AngreiferExtern : in Boolean)
-      return EinheitStadtDatentypen.Kampfwerte
+      return KampfDatentypen.Kampfwerte
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
@@ -36,25 +36,25 @@ private
    -- Drin lassen? Anders gestalten?
    AngriffBonus : constant Float := 1.25;
    
-   VerteidigungWert : EinheitStadtDatentypen.Kampfwerte;
-   AngriffWert : EinheitStadtDatentypen.Kampfwerte;
-   Bonus : EinheitStadtDatentypen.Kampfwerte;
+   VerteidigungWert : KampfDatentypen.Kampfwerte;
+   AngriffWert : KampfDatentypen.Kampfwerte;
+   Bonus : KampfDatentypen.Kampfwerte;
    
    VerteidigungWertFloat : Float;
    AngriffWertFloat : Float;
    
    function VerteidigungsbonusVerteidiger
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
-      return EinheitStadtDatentypen.Kampfwerte;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return KampfDatentypen.Kampfwerte;
    
    function VerteidigungsbonusAngreifer
-     return EinheitStadtDatentypen.Kampfwerte;
+     return KampfDatentypen.Kampfwerte;
    
    function AngriffsbonusAngreifer
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
-      return EinheitStadtDatentypen.Kampfwerte;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return KampfDatentypen.Kampfwerte;
    
    function AngriffsbonusVerteidiger
-     return EinheitStadtDatentypen.Kampfwerte;
+     return KampfDatentypen.Kampfwerte;
 
 end KampfwerteEinheitErmitteln;

@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartengrundDatentypen; use KartengrundDatentypen;
 with KartenKonstanten;
-with EinheitStadtDatentypen;
+with EinheitenDatentypen;
 with StadtKonstanten;
 
 with SchreibeKarten;
@@ -21,7 +21,7 @@ package body Sichtbarkeit is
    
    -- Über die Sachen hier nochmal drüber gehen. Eventuell auch Sicht nach oben einbauen?
    function SichtweiteErmitteln
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return KartenDatentypen.Sichtweite
    is begin
       
@@ -30,12 +30,12 @@ package body Sichtbarkeit is
       if
         (LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
                                                 IDExtern             => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                WelcheUmgebungExtern => EinheitStadtDatentypen.Luft_Enum)
+                                                WelcheUmgebungExtern => EinheitenDatentypen.Luft_Enum)
          = True
          or
            LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
                                                   IDExtern             => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                  WelcheUmgebungExtern => EinheitStadtDatentypen.Weltraum_Enum)
+                                                  WelcheUmgebungExtern => EinheitenDatentypen.Weltraum_Enum)
          = True)
         and
           KoordinatenEinheit.EAchse >= 0
@@ -73,7 +73,7 @@ package body Sichtbarkeit is
 
 
    procedure SichtbarkeitsprüfungFürEinheit
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       SichtweiteObjekt := SichtweiteErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -90,12 +90,12 @@ package body Sichtbarkeit is
             if
               (LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
                                                       IDExtern             => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                      WelcheUmgebungExtern => EinheitStadtDatentypen.Luft_Enum)
+                                                      WelcheUmgebungExtern => EinheitenDatentypen.Luft_Enum)
                = True
                or
                  LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
                                                         IDExtern             => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                        WelcheUmgebungExtern => EinheitStadtDatentypen.Weltraum_Enum)
+                                                        WelcheUmgebungExtern => EinheitenDatentypen.Weltraum_Enum)
                = True)
               and
                 LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern).EAchse >= 0
@@ -120,7 +120,7 @@ package body Sichtbarkeit is
    
    -- Das hier Parallelisieren?
    procedure QuadrantenDurchlaufen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       YQuadrantSchleife:
@@ -181,7 +181,7 @@ package body Sichtbarkeit is
    
    
    procedure QuadrantEins
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
       SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
       SichtweiteMaximalExtern : in KartenDatentypen.Sichtweite)
@@ -308,7 +308,7 @@ package body Sichtbarkeit is
    
    
    procedure QuadrantZwei
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
       SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
       SichtweiteMaximalExtern : in KartenDatentypen.Sichtweite)
@@ -435,7 +435,7 @@ package body Sichtbarkeit is
    
    
    procedure QuadrantDrei
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
       SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
       SichtweiteMaximalExtern : in KartenDatentypen.Sichtweite)
@@ -562,7 +562,7 @@ package body Sichtbarkeit is
    
    
    procedure QuadrantVier
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
       SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
       SichtweiteMaximalExtern : in KartenDatentypen.Sichtweite)
@@ -733,7 +733,7 @@ package body Sichtbarkeit is
    
    
    procedure SichtbarkeitsprüfungOhneBlockade
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       SichtweiteExtern : in KartenDatentypen.Sichtweite)
    is begin
          
@@ -765,7 +765,7 @@ package body Sichtbarkeit is
 
 
    procedure SichtbarkeitsprüfungFürStadt
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       SichtweiteObjekt := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) + 1;
@@ -818,33 +818,33 @@ package body Sichtbarkeit is
                                      SichtbarExtern    => True);
       end case;
       
-      FremdeEinheitStadt := EinheitSuchen.KoordinatenEinheitOhneSpezielleRasseSuchen (RasseExtern       => RasseExtern,
-                                                                                      KoordinatenExtern => KoordinatenExtern);
+      FremdeEinheit := EinheitSuchen.KoordinatenEinheitOhneSpezielleRasseSuchen (RasseExtern       => RasseExtern,
+                                                                                 KoordinatenExtern => KoordinatenExtern);
       
       case
-        FremdeEinheitStadt.Rasse
+        FremdeEinheit.Rasse
       is
          when StadtKonstanten.LeerRasse =>
             null;
             
          when others =>
             KennenLernen.Erstkontakt (EigeneRasseExtern => RasseExtern,
-                                      FremdeRasseExtern => FremdeEinheitStadt.Rasse);
+                                      FremdeRasseExtern => FremdeEinheit.Rasse);
             return;
       end case;
       
-      FremdeEinheitStadt := StadtSuchen.KoordinatenStadtOhneSpezielleRasseSuchen (RasseExtern       => RasseExtern,
-                                                                                  KoordinatenExtern => KoordinatenExtern);
+      FremdeStadt := StadtSuchen.KoordinatenStadtOhneSpezielleRasseSuchen (RasseExtern       => RasseExtern,
+                                                                           KoordinatenExtern => KoordinatenExtern);
       
       case
-        FremdeEinheitStadt.Rasse
+        FremdeStadt.Rasse
       is
          when StadtKonstanten.LeerRasse =>
             null;
             
          when others =>
             KennenLernen.Erstkontakt (EigeneRasseExtern => RasseExtern,
-                                      FremdeRasseExtern => FremdeEinheitStadt.Rasse);
+                                      FremdeRasseExtern => FremdeStadt.Rasse);
       end case;
       
    end SichtbarkeitSetzen;

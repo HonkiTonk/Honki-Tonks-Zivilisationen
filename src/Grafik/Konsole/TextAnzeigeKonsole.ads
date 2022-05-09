@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with GlobaleTexte; use GlobaleTexte;
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
 
 package TextAnzeigeKonsole is
    
@@ -16,9 +16,9 @@ package TextAnzeigeKonsole is
    end record;
    
    -- Im Array immer die größte Auswahlfläche reinschreiben, damit es bei allen funktioniert.
-   type AlgemeineAnzeigeTextArray is array (EinheitStadtDatentypen.MinimimMaximumID'First + 2 .. EinheitStadtDatentypen.MinimimMaximumID'Last) of AllgemeineAnzeigeTextRecord;
+   type AlgemeineAnzeigeTextArray is array (EinheitenDatentypen.EinheitenIDMitNullWert'First + 2 .. EinheitenDatentypen.EinheitenIDMitNullWert'Last) of AllgemeineAnzeigeTextRecord;
    AllgemeineAnzeigeText : AlgemeineAnzeigeTextArray;
-   AktuelleAuswahl : EinheitStadtDatentypen.MinimimMaximumID;
+   AktuelleAuswahl : EinheitenDatentypen.EinheitenIDMitNullWert;
 
    procedure AnzeigeOhneAuswahlNeu
      (ÜberschriftDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
@@ -76,7 +76,7 @@ package TextAnzeigeKonsole is
             TextDateiExtern /= GlobaleTexte.Leer);
    
    procedure AllgemeineAnzeige
-     (AktuelleAuswahlExtern : in EinheitStadtDatentypen.MinimimMaximumID);
+     (AktuelleAuswahlExtern : in EinheitenDatentypen.EinheitenIDMitNullWert);
 
 private
       

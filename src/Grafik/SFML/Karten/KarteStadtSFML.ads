@@ -10,18 +10,20 @@ with Sf.Graphics.Sprite;
 
 with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen;
-with EinheitStadtRecords;
 with SpielVariablen;
-with EinheitStadtDatentypen;
+with StadtDatentypen;
 with KartenRecords;
 with KartengrundDatentypen;
 with KartenVerbesserungDatentypen;
 with SonstigeVariablen;
+with StadtRecords;
+
+with Karten;
 
 package KarteStadtSFML is
 
    procedure AnzeigeStadt
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
      with
        Pre =>
          (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -36,7 +38,7 @@ private
 
    Stadtumgebungsgröße : KartenDatentypen.Stadtfeld;
 
-   GebäudeID : EinheitStadtDatentypen.GebäudeID;
+   GebäudeID : StadtDatentypen.GebäudeID;
 
    YAchsenabstraktion : KartenDatentypen.Kartenfeld;
 
@@ -69,7 +71,12 @@ private
    PolygonAccess : constant Sf.Graphics.sfCircleShape_Ptr := Sf.Graphics.CircleShape.create;
 
    procedure GrafischeDarstellung
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     with
+       Pre =>
+         (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+          and
+            SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum);
 
    procedure MauszeigerAnzeigen
      (YAchseExtern : in KartenDatentypen.Stadtfeld;
@@ -81,46 +88,104 @@ private
      (YAchseExtern : in KartenDatentypen.Stadtfeld;
       XAchseExtern : in KartenDatentypen.Stadtfeld;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
-      StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
+      StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     with
+       Pre =>
+         (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+          and
+            SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum);
 
    procedure DarstellungUmgebung
      (YAchseExtern : in KartenDatentypen.Stadtfeld;
       XAchseExtern : in KartenDatentypen.Stadtfeld;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
-      StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
+      StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     with
+       Pre =>
+         (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+          and
+            SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum);
 
    procedure DarstellungUmgebungErweitert
      (KarteKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
-      StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
+      StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     with
+       Pre =>
+         (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+          and
+            SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum
+          and
+            KarteKoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+          and
+            KarteKoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
 
    procedure AnzeigeLandschaft
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      PositionExtern : in Sf.System.Vector2.sfVector2f);
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
+     with
+       Pre =>
+         (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+          and
+            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
 
    procedure KartenfeldZeichnen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      PositionExtern : in Sf.System.Vector2.sfVector2f);
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
+     with
+       Pre =>
+         (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+          and
+            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
 
    procedure FlussZeichnen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      PositionExtern : in Sf.System.Vector2.sfVector2f);
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
+     with
+       Pre =>
+         (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+          and
+            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
 
    procedure RessourceZeichnen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      PositionExtern : in Sf.System.Vector2.sfVector2f);
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
+     with
+       Pre =>
+         (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+          and
+            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
 
    procedure WegZeichnen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      PositionExtern : in Sf.System.Vector2.sfVector2f);
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
+     with
+       Pre =>
+         (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+          and
+            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
 
    procedure VerbesserungZeichnen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      PositionExtern : in Sf.System.Vector2.sfVector2f);
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
+     with
+       Pre =>
+         (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+          and
+            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
 
    procedure StadtZeichnen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
-      StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
+      StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     with
+       Pre =>
+         (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+          and
+            SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum
+          and
+            KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+          and
+            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
 
 end KarteStadtSFML;

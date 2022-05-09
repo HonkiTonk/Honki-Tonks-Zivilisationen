@@ -4,7 +4,8 @@ pragma Warnings (Off, "*array aggregate*");
 with Sf.Graphics.Text;
 
 with TextaccessVariablen;
-with EinheitStadtDatentypen;
+with EinheitenDatentypen;
+with StadtDatentypen;
 with ForschungenDatentypen;
 with ForschungKonstanten;
 
@@ -84,7 +85,7 @@ package body TextaccesseSchriftgroesseSetzenSFML is
    is begin
       
       GebäudetextSchleife:
-      for GebäudetextSchleifenwert in EinheitStadtDatentypen.GebäudeID'Range loop
+      for GebäudetextSchleifenwert in StadtDatentypen.GebäudeID'Range loop
             
          Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.GebäudetextAccess (GebäudetextSchleifenwert),
                                             size => GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
@@ -95,7 +96,7 @@ package body TextaccesseSchriftgroesseSetzenSFML is
       end loop GebäudetextSchleife;
       
       EinheitentextSchleife:
-      for EinheitentextSchleifenwert in EinheitStadtDatentypen.EinheitenID'Range loop
+      for EinheitentextSchleifenwert in EinheitenDatentypen.EinheitenID'Range loop
             
          Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.EinheitentextAccess (EinheitentextSchleifenwert),
                                             size => GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);

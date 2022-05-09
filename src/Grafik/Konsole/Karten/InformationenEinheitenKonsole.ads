@@ -4,16 +4,16 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Wide_Wide_Text_IO;
 
 with RassenDatentypen; use RassenDatentypen;
-with EinheitStadtRecords;
+with EinheitenRecords;
 with SpielVariablen;
-with EinheitStadtDatentypen;
+with EinheitenDatentypen;
 with SonstigeVariablen;
 
 package InformationenEinheitenKonsole is
 
    procedure Einheiten
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -26,57 +26,57 @@ private
    
    ErsteAnzeige : Boolean;
    
-   IDEinheit : EinheitStadtDatentypen.EinheitenID;
+   IDEinheit : EinheitenDatentypen.EinheitenID;
    
-   EinheitNummer : EinheitStadtDatentypen.MaximaleEinheiten;
+   EinheitNummer : EinheitenDatentypen.MaximaleEinheiten;
    
    PlatzhalterText : Wide_Wide_String (1 .. 1);
    
-   EinheitRasseNummer : EinheitStadtRecords.RasseEinheitnummerRecord;
+   EinheitRasseNummer : EinheitenRecords.RasseEinheitnummerRecord;
    
    function Allgemeines
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
-      return EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return EinheitenRecords.RasseEinheitnummerRecord;
    
    procedure Lebenspunkte
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord);
    
    procedure Bewegungspunkte
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord);
    
    procedure Erfahrungspunkte
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord);
    
    procedure Beschäftigung
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord);
    
    procedure Beschäftigungszeit
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord);
    
    procedure Angriff
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord);
    
    procedure Verteidigung
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord);
    
    procedure Rang
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord);
    
    procedure Heimatstadt
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord);
    
    procedure AktuelleVerteidigung
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord);
    
    procedure AktuellerAngriff
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord);
    
    procedure Ladung
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord);
    
    procedure DebugInformationen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord);
    
-   package AnzeigeBewegungFloat is new Ada.Wide_Wide_Text_IO.Float_IO (EinheitStadtDatentypen.VorhandeneBewegungspunkte);
+   package AnzeigeBewegungFloat is new Ada.Wide_Wide_Text_IO.Float_IO (EinheitenDatentypen.VorhandeneBewegungspunkte);
 
 end InformationenEinheitenKonsole;

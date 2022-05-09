@@ -1,8 +1,9 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
+with StadtDatentypen; use StadtDatentypen;
 with EinheitenKonstanten;
 with KartenRecordKonstanten;
 with SpielVariablen;
@@ -39,10 +40,10 @@ package body KIStadtSuchen is
    function StadtSuchen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       AnfangKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
+      return StadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
-      AktuelleStadt := EinheitStadtDatentypen.MaximaleStädteMitNullWert'First;
+      AktuelleStadt := StadtDatentypen.MaximaleStädteMitNullWert'First;
       
       StadtSchleife:
       for StadtSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Städtegrenze loop
@@ -53,7 +54,7 @@ package body KIStadtSuchen is
             null;
             
          elsif
-           AktuelleStadt = EinheitStadtDatentypen.MaximaleStädteMitNullWert'First
+           AktuelleStadt = StadtDatentypen.MaximaleStädteMitNullWert'First
          then
             AktuelleStadt := StadtSchleifenwert;
             Entfernung := Positive (abs (AnfangKoordinatenExtern.EAchse - SpielVariablen.StadtGebaut (RasseExtern, AktuelleStadt).KoordinatenAktuell.EAchse)

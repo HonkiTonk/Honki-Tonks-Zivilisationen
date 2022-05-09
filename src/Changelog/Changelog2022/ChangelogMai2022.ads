@@ -126,38 +126,47 @@ package ChangelogMai2022 is
    
    
 
-   -- Version 0.01.0 => 0.01.0 (13.05.2022):
+   -- Version 0.01.07 => 0.01.0 (13.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0 => 0.01.0 (12.05.2022):
+   -- Version 0.01.07 => 0.01.07 (12.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0 => 0.01.0 (11.05.2022):
+   -- Version 0.01.07 => 0.01.07 (11.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.06 => 0.01.0 (10.05.2022):
+   -- Version 0.01.0690 => 0.01.07 (10.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0660 => 0.01.06 (09.05.2022):
+   -- Version 0.01.0660 => 0.01.0690 (09.05.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Debian GNAT 12-20220428-1 auf Debian GNAT 12.1.0-1 aktusalisiert.
+   -- EinheitenDatentypen vollständig in EinheitenDatentypen, StadtDatentypen, KampfDatentypen und ProduktionDatentypen aufgeteilt.
+   -- EinheitenRecords vollständig in EinheitenRecords, KampfRecords und StadtRecords aufgeteilt.
+   -- Bausystem überarbeitet und an die neue Trennung angepasst.
+   -- Eine Menge Contracts hinzugefügt.
+   -- Fehler behoben der zu Abstürzen führte, wenn eine Achse auf einer Seite einen Übergang hatte auf der Anderen aber nicht.
+   -- Unnötige Anzeigen im Kartenformauswahlmenü entfernt.
+   -- Fehler korrigiert welcher dazu führte dass die KI kein Feld zum Bauen einer Stadt fand.
+   -- KartenDatenbank in KartengrundDatenbank, KartenflussDatenbank und KartenressourcenDatenbank aufgeteilt um weniger Zeilenlänge der einzelnen Dateien zu reduzieren.
+   -- Angefangen die KartenDatenbanken mit rassenspezifische Werte zu füllen.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 
@@ -167,8 +176,8 @@ package ChangelogMai2022 is
    -- Unnötigen Code gelöscht.
    -- Mehr Textaccesse ausgelagert.
    -- Textaccesse auf Standardwerte setzen eingebaut.
-   -- Angefangen EinheitStadtDatentypen in EinheitenDatentypen, StadtDatentypen und ProduktionDatentypen aufzuteilen.
-   -- Angefangen EinheitStadtRecords in EinheitenRecords und StadtRecords aufzuteilen.
+   -- Angefangen EinheitenDatentypen in EinheitenDatentypen, StadtDatentypen und ProduktionDatentypen aufzuteilen.
+   -- Angefangen EinheitenRecords in EinheitenRecords und StadtRecords aufzuteilen.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    
@@ -183,7 +192,7 @@ package ChangelogMai2022 is
    -- Version 0.01.0610 => 0.01.0630 (06.05.2022):
    
    -- Das Baumenü fürs Erste fertig überarbeitet.
-   -- Angefangen EinheitStadtDatentypen aufzuteilen.
+   -- Angefangen EinheitenDatentypen aufzuteilen.
    -- Angefangen die Textaccesse in eine Datei auszulagern.
    -- Kommentare und Kleinigkeiten korrigiert.
    

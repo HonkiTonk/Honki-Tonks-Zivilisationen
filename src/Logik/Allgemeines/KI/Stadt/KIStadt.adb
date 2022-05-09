@@ -1,9 +1,11 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
 with SystemDatentypen; use SystemDatentypen;
+with KampfDatentypen; use KampfDatentypen;
+with StadtDatentypen; use StadtDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
 
@@ -25,7 +27,7 @@ with KIGebaeudeBauen;
 package body KIStadt is
 
    procedure KIStadt
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       case
@@ -58,7 +60,7 @@ package body KIStadt is
    
    
    procedure NeuesBauprojekt
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       EinheitBauenExtern : in KIRecords.EinheitIDBewertungRecord;
       GebäudeBauenExtern : in KIRecords.GebäudeIDBewertungRecord;
       NotfallExtern : in Boolean)
@@ -67,7 +69,7 @@ package body KIStadt is
       if
         EinheitBauenExtern.ID = EinheitenKonstanten.LeerID
         and
-          GebäudeBauenExtern.ID = EinheitStadtDatentypen.GebäudeIDMitNullwert'First
+          GebäudeBauenExtern.ID = StadtDatentypen.GebäudeIDMitNullwert'First
       then
          null;
          
@@ -77,10 +79,10 @@ package body KIStadt is
          SchreibeStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                BeschäftigungExtern   => KIDatentypen.Gebäude_Bauen_Enum);
          SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                         BauprojektExtern       => (True, GebäudeBauenExtern.ID));
+                                         BauprojektExtern       => (GebäudeBauenExtern.ID, 0));
          
       elsif
-        GebäudeBauenExtern.ID = EinheitStadtDatentypen.GebäudeIDMitNullwert'First
+        GebäudeBauenExtern.ID = StadtDatentypen.GebäudeIDMitNullwert'First
       then
          case
            NotfallExtern
@@ -94,7 +96,7 @@ package body KIStadt is
                                                      BeschäftigungExtern   => KIDatentypen.Einheit_Bauen_Enum);
          end case;
          SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                         BauprojektExtern       => (False, EinheitBauenExtern.ID));
+                                         BauprojektExtern       => (0, EinheitBauenExtern.ID));
       
       elsif
         EinheitBauenExtern.Bewertung >= GebäudeBauenExtern.Bewertung
@@ -111,13 +113,13 @@ package body KIStadt is
                                                      BeschäftigungExtern   => KIDatentypen.Einheit_Bauen_Enum);
          end case;
          SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                         BauprojektExtern       => (False, EinheitBauenExtern.ID));
+                                         BauprojektExtern       => (0, EinheitBauenExtern.ID));
 
       else
          SchreibeStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                BeschäftigungExtern   => KIDatentypen.Gebäude_Bauen_Enum);
          SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                         BauprojektExtern       => (True, GebäudeBauenExtern.ID));
+                                         BauprojektExtern       => (GebäudeBauenExtern.ID, 0));
       end if;
       
    end NeuesBauprojekt;
@@ -125,7 +127,7 @@ package body KIStadt is
    
    
    function GefahrStadt
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return Boolean
    is begin
       
@@ -133,7 +135,7 @@ package body KIStadt is
         FeindNahe (StadtRasseNummerExtern => StadtRasseNummerExtern)
       is
          when True =>
-            NotfallEinheit := EinheitStadtDatentypen.EinheitenIDMitNullWert'First;
+            NotfallEinheit := EinheitenDatentypen.EinheitenIDMitNullWert'First;
             WelcheEinheitArt (StadtRasseNummerExtern => StadtRasseNummerExtern);
             
          when False =>
@@ -143,13 +145,13 @@ package body KIStadt is
       case
         NotfallEinheit
       is
-         when EinheitStadtDatentypen.EinheitenIDMitNullWert'First =>
+         when EinheitenDatentypen.EinheitenIDMitNullWert'First =>
             return False;
             
          when others =>
             NeuesBauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
                              EinheitBauenExtern     => (NotfallEinheit, 1),
-                             GebäudeBauenExtern     => (EinheitStadtDatentypen.GebäudeIDMitNullwert'First, 0),
+                             GebäudeBauenExtern     => (StadtDatentypen.GebäudeIDMitNullwert'First, 0),
                              NotfallExtern          => True);
             return True;
       end case;
@@ -159,7 +161,7 @@ package body KIStadt is
    
    
    function FeindNahe
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return Boolean
    is begin
       
@@ -198,7 +200,7 @@ package body KIStadt is
                        LeseEinheitenDatenbank.EinheitArt (RasseExtern => FremdeEinheit.Rasse,
                                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => FremdeEinheit))
                      is
-                        when EinheitStadtDatentypen.Leer_Einheitart_Enum | EinheitStadtDatentypen.Arbeiter_Enum =>
+                        when EinheitenDatentypen.Leer_Einheitart_Enum | EinheitenDatentypen.Arbeiter_Enum =>
                            null;
             
                         when others =>
@@ -217,20 +219,20 @@ package body KIStadt is
    
    
    procedure WelcheEinheitArt
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       EinheitenSchleife:
-      for EinheitenSchleifenwert in EinheitStadtDatentypen.EinheitenID'Range loop
+      for EinheitenSchleifenwert in EinheitenDatentypen.EinheitenID'Range loop
          
          if
            LeseEinheitenDatenbank.EinheitArt (RasseExtern => StadtRasseNummerExtern.Rasse,
                                               IDExtern    => EinheitenSchleifenwert)
-           = EinheitStadtDatentypen.Arbeiter_Enum
+           = EinheitenDatentypen.Arbeiter_Enum
            or
              LeseEinheitenDatenbank.EinheitArt (RasseExtern => StadtRasseNummerExtern.Rasse,
                                                 IDExtern    => EinheitenSchleifenwert)
-           = EinheitStadtDatentypen.Leer_Einheitart_Enum
+           = EinheitenDatentypen.Leer_Einheitart_Enum
          then
             null;
             
@@ -254,12 +256,12 @@ package body KIStadt is
    
    procedure NotfallEinheitBauen
    -- Stadt mit übergeben und später die Baukosten noch mit in die Bewertung einfließen lassen.
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      EinheitIDExtern : in EinheitStadtDatentypen.EinheitenID)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      EinheitIDExtern : in EinheitenDatentypen.EinheitenID)
    is begin
       
       if
-        NotfallEinheit = EinheitStadtDatentypen.EinheitenIDMitNullWert'First
+        NotfallEinheit = EinheitenDatentypen.EinheitenIDMitNullWert'First
       then
          NotfallEinheit := EinheitIDExtern;
          

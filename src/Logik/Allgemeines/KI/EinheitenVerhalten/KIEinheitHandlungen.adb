@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenRecords; use KartenRecords;
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
 with AufgabenDatentypen; use AufgabenDatentypen;
 with EinheitenKonstanten;
 with ZahlenDatentypen;
@@ -19,7 +19,7 @@ with KIGefahrErmitteln;
 package body KIEinheitHandlungen is
 
    procedure EinheitHandlungen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       FeindlicheEinheit := KIGefahrErmitteln.GefahrErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -40,7 +40,7 @@ package body KIEinheitHandlungen is
    
    
    procedure NormaleHandlungen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       AktivitätSchleife:
@@ -75,7 +75,7 @@ package body KIEinheitHandlungen is
    
    
    procedure BewegungAufgabenplanung
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       if
@@ -99,8 +99,8 @@ package body KIEinheitHandlungen is
    
    
    procedure GefahrenHandlungen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      FeindlicheEinheitExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      FeindlicheEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       if
@@ -144,7 +144,7 @@ package body KIEinheitHandlungen is
    
    
    function HandlungBeendet
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
       

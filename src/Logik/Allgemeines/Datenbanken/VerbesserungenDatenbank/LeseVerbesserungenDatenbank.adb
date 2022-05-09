@@ -7,7 +7,7 @@ package body LeseVerbesserungenDatenbank is
 
    function PassierbarkeitVerbesserung
      (VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum;
-      WelcheUmgebungExtern : in EinheitStadtDatentypen.Passierbarkeit_Vorhanden_Enum)
+      WelcheUmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Vorhanden_Enum)
       return Boolean
    is begin
       
@@ -19,7 +19,7 @@ package body LeseVerbesserungenDatenbank is
 
    function PassierbarkeitWeg
      (WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum;
-      WelcheUmgebungExtern : in EinheitStadtDatentypen.Passierbarkeit_Vorhanden_Enum)
+      WelcheUmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Vorhanden_Enum)
       return Boolean
    is begin
       
@@ -83,7 +83,7 @@ package body LeseVerbesserungenDatenbank is
      (VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       WelcherWertExtern : in KartenDatentypen.Kampf_Enum)
-      return EinheitStadtDatentypen.KampfwerteAllgemein
+      return KampfDatentypen.KampfwerteAllgemein
    is begin
       
       return VerbesserungenDatenbank.VerbesserungenListe (VerbesserungExtern).Kampf (RasseExtern, WelcherWertExtern);
@@ -96,7 +96,7 @@ package body LeseVerbesserungenDatenbank is
      (WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       WelcherWertExtern : in KartenDatentypen.Kampf_Enum)
-      return EinheitStadtDatentypen.KampfwerteAllgemein
+      return KampfDatentypen.KampfwerteAllgemein
    is begin
       
       return VerbesserungenDatenbank.WegeListe (WegExtern).Kampf (RasseExtern, WelcherWertExtern);

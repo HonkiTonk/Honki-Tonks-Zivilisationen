@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
-with EinheitStadtRecords;
+with EinheitenRecords;
 with SpielVariablen;
 with TastenbelegungDatentypen;
 with KartengrundDatentypen;
@@ -12,7 +12,7 @@ with SonstigeVariablen;
 package KIAufgabeUmsetzen is
 
    function WelcheVerbesserungAnlegen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
      with
        Pre =>
@@ -21,7 +21,7 @@ package KIAufgabeUmsetzen is
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
 
    function EinheitVerbessern
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
      with
        Pre =>
@@ -42,7 +42,7 @@ private
    Befehl : TastenbelegungDatentypen.Tastenbelegung_Enum;
 
    function VerbesserungGebiet
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean;
 
 end KIAufgabeUmsetzen;

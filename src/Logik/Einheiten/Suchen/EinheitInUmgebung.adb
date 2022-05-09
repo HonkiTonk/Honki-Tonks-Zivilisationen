@@ -2,13 +2,14 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
 with SystemDatentypen; use SystemDatentypen;
 with SonstigeVariablen;
 with KartenKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
 with SpielVariablen;
+with StadtDatentypen;
 
 with LeseKarten;
 with LeseEinheitenGebaut;
@@ -66,7 +67,7 @@ package body EinheitInUmgebung is
                  = True
                then
                   StadtMeldungenSetzen.StadtMeldungSetzenEreignis (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert),
-                                                                   EreignisExtern         => EinheitStadtDatentypen.Fremde_Einheit_Nahe_Stadt_Enum);
+                                                                   EreignisExtern         => StadtDatentypen.Fremde_Einheit_Nahe_Stadt_Enum);
                            
                else
                   null;
@@ -100,7 +101,7 @@ package body EinheitInUmgebung is
                  = True
                then
                   EinheitenMeldungenSetzen.EinheitMeldungSetzenEreignis (EinheitRasseNummerExtern => (RasseExtern, EinheitSchleifenwert),
-                                                                         EreignisExtern           => EinheitStadtDatentypen.Fremde_Einheit_Nahe_Enum);
+                                                                         EreignisExtern           => EinheitenDatentypen.Fremde_Einheit_Nahe_Enum);
                            
                else
                   null;

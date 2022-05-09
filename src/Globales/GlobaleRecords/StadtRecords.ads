@@ -5,7 +5,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with RassenDatentypen;
 with StadtDatentypen;
-with EinheitStadtDatentypen;
+with EinheitenDatentypen;
 with ProduktionDatentypen;
 with KartenDatentypen;
 with KartenRecords;
@@ -25,9 +25,9 @@ package StadtRecords is
    
    
    type BauprojektRecord is record
-
-      GebäudeEinheit : Boolean;
-      Nummer : EinheitStadtDatentypen.MinimimMaximumID;
+      
+      Gebäude : StadtDatentypen.GebäudeIDMitNullwert;
+      Einheit : EinheitenDatentypen.EinheitenIDMitNullWert;
 
    end record;
    
@@ -48,8 +48,8 @@ package StadtRecords is
    ------------------------ XXX
    ------------------------ Wenn ich ein Record für das Array hier anlege, dann könnten darin die bereits erzeugten Ressourcen gespeichert werden und beim Wechsel des Bauprojekts blieben die angefangenen Gebäude erhalten.
    ------------------------ Ginge auch bei Einheiten, ist da aber vielleicht nicht so sinnvoll.
-   type GebäudeVorhandenArray is array (EinheitStadtDatentypen.GebäudeID'Range) of Boolean;
-   type StadtMeldungenArray is array (EinheitStadtDatentypen.Stadt_Meldung_Art_Enum'Range) of EinheitStadtDatentypen.Stadt_Meldung_Enum;
+   type GebäudeVorhandenArray is array (StadtDatentypen.GebäudeID'Range) of Boolean;
+   type StadtMeldungenArray is array (StadtDatentypen.Stadt_Meldung_Art_Enum'Range) of StadtDatentypen.Stadt_Meldung_Enum;
    type UmgebungBewirtschaftungArray is array (KartenDatentypen.UmgebungsbereichDrei'Range, KartenDatentypen.UmgebungsbereichDrei'Range) of Boolean;
    type PermanenteKostenArray is array (ProduktionDatentypen.Permanente_Kosten_Verwendet_Enum'Range) of ProduktionDatentypen.GesamtePermanenteKosten;
 

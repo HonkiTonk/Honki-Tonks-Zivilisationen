@@ -6,16 +6,15 @@ with Sf.System.Vector2;
 with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
 with SonstigeVariablen;
-with EinheitStadtRecords;
 with KartenRecords;
 with StadtRecords;
 
 package InDerStadtBauen is
 
-   AktuelleAuswahl : StadtRecords.BauprojektRecord := (True, 0);
+   AktuelleAuswahl : StadtRecords.BauprojektRecord := (0, 0);
 
    procedure Bauen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
      with
        Pre =>
          (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -41,7 +40,7 @@ private
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
 
    procedure MöglicheGebäudeErmitteln
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
      with
        Pre =>
          (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -49,7 +48,7 @@ private
             SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum);
 
    procedure MöglicheEinheitenErmitteln
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
      with
        Pre =>
          (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -59,7 +58,7 @@ private
 
 
    function BauobjektAuswählen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return StadtRecords.BauprojektRecord
      with
        Pre =>

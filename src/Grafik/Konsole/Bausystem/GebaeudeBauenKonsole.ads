@@ -2,13 +2,13 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with SystemDatentypen; use SystemDatentypen;
-with EinheitStadtRecords;
+with EinheitenRecords;
 with GlobaleVariablen;
 
 package GebaeudeBauenKonsole is
 
    procedure AnzeigeGebäude
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -26,6 +26,6 @@ private
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
    
    procedure BauzeitGebäude
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
+     (StadtRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord);
 
 end GebaeudeBauenKonsole;

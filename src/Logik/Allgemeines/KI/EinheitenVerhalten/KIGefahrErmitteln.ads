@@ -3,15 +3,15 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with SonstigeVariablen;
-with EinheitStadtRecords;
+with EinheitenRecords;
 with KartenRecords;
 with SpielVariablen;
 
 package KIGefahrErmitteln is
 
    function GefahrErmitteln
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
-      return EinheitStadtRecords.RasseEinheitnummerRecord
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return EinheitenRecords.RasseEinheitnummerRecord
      with
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -20,13 +20,13 @@ package KIGefahrErmitteln is
 
 private
 
-   EinheitUnzugeordnet : EinheitStadtRecords.RasseEinheitnummerRecord;
+   EinheitUnzugeordnet : EinheitenRecords.RasseEinheitnummerRecord;
 
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
 
    function ReaktionErfoderlich
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      AndereEinheitExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      AndereEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
      with
        Pre =>
@@ -35,7 +35,7 @@ private
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
 
    function GefahrSuchen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
-      return EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return EinheitenRecords.RasseEinheitnummerRecord;
 
 end KIGefahrErmitteln;

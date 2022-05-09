@@ -6,9 +6,11 @@ with Ada.Directories; use Ada.Directories;
 with EinheitenDatenbank;
 with ForschungenDatenbank;
 with GebaeudeDatenbank;
-with KartenDatenbank;
+with KartengrundDatenbank;
 with VerbesserungenDatenbank;
 with RassenDatenbank;
+with KartenflussDatenbank;
+with KartenressourcenDatenbank;
 
 package body SchreibenDatenbanken is
    
@@ -18,7 +20,7 @@ package body SchreibenDatenbanken is
       SchreibenEinheitenDatenbank;
       SchreibenForschungenDatenbank;
       SchreibenGebäudeDatenbank;
-      SchreibenKartenDatenbank;
+      SchreibenKartenDatenbanken;
       SchreibenVerbesserungenDatenbank;
       SchreibenRassenDatenbank;
       
@@ -104,7 +106,7 @@ package body SchreibenDatenbanken is
    
    
    
-   procedure SchreibenKartenDatenbank
+   procedure SchreibenKartenDatenbanken
    is begin
       
       case
@@ -121,8 +123,8 @@ package body SchreibenDatenbanken is
                     Name => "Datenbanken/KartenGrundDatenbank");
       end case;
       
-      KartenDatenbank.KartengrundlisteArray'Write (Stream (File => DatenbankSpeichern),
-                                                   KartenDatenbank.Kartengrundliste);
+      KartengrundDatenbank.KartengrundlisteArray'Write (Stream (File => DatenbankSpeichern),
+                                                   KartengrundDatenbank.Kartengrundliste);
       
       Close (File => DatenbankSpeichern);
       
@@ -142,8 +144,8 @@ package body SchreibenDatenbanken is
                     Name => "Datenbanken/KartenFlussDatenbank");
       end case;
       
-      KartenDatenbank.KartenflusslisteArray'Write (Stream (File => DatenbankSpeichern),
-                                                   KartenDatenbank.Kartenflussliste);
+      KartenflussDatenbank.KartenflusslisteArray'Write (Stream (File => DatenbankSpeichern),
+                                                   KartenflussDatenbank.Kartenflussliste);
       
       Close (File => DatenbankSpeichern);
       
@@ -163,12 +165,12 @@ package body SchreibenDatenbanken is
                     Name => "Datenbanken/KartenRessourcenDatenbank");
       end case;
       
-      KartenDatenbank.KartenRessourcenListeArray'Write (Stream (File => DatenbankSpeichern),
-                                                        KartenDatenbank.KartenRessourcenListe);
+      KartenressourcenDatenbank.KartenRessourcenListeArray'Write (Stream (File => DatenbankSpeichern),
+                                                        KartenressourcenDatenbank.KartenRessourcenListe);
       
       Close (File => DatenbankSpeichern);
       
-   end SchreibenKartenDatenbank;
+   end SchreibenKartenDatenbanken;
    
    
    

@@ -6,7 +6,7 @@ with Ada.Strings.Wide_Wide_Fixed;
 package body UmwandlungenAdaNachEigenes is
    
    function BewegungspunkteDarstellungNormal
-     (KommazahlExtern : in EinheitStadtDatentypen.BewegungFloat)
+     (KommazahlExtern : in EinheitenDatentypen.BewegungFloat)
       return Unbounded_Wide_Wide_String
    is begin
             

@@ -2,17 +2,18 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
-with EinheitStadtRecords;
+with EinheitenRecords;
 with SonstigeVariablen;
-with EinheitStadtDatentypen;
+with EinheitenDatentypen;
 with SpielVariablen;
 with ForschungenDatentypen;
 with ProduktionDatentypen;
+with StadtDatentypen;
 
 package KIVorhandeneAufgaben is
 
    function SichHeilen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return ProduktionDatentypen.ProduktionSonstiges
      with
        Pre =>
@@ -21,7 +22,7 @@ package KIVorhandeneAufgaben is
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
    
    function SichVerbessern
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return ProduktionDatentypen.ProduktionSonstiges
      with
        Pre =>
@@ -30,7 +31,7 @@ package KIVorhandeneAufgaben is
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
    
    function EinheitAuflösen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return ProduktionDatentypen.ProduktionSonstiges
      with
        Pre =>
@@ -42,7 +43,7 @@ package KIVorhandeneAufgaben is
      return ProduktionDatentypen.ProduktionSonstiges;
 
    function NeueStadtBauenGehen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return ProduktionDatentypen.ProduktionSonstiges
      with
        Pre =>
@@ -51,7 +52,7 @@ package KIVorhandeneAufgaben is
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
 
    function StadtUmgebungVerbessern
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return ProduktionDatentypen.ProduktionSonstiges
      with
        Pre =>
@@ -60,7 +61,7 @@ package KIVorhandeneAufgaben is
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
 
    function StadtBewachen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return ProduktionDatentypen.ProduktionSonstiges
      with
        Pre =>
@@ -72,7 +73,7 @@ package KIVorhandeneAufgaben is
      return ProduktionDatentypen.ProduktionSonstiges;
 
    function Angreifen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return ProduktionDatentypen.ProduktionSonstiges;
 
    function Erkunden
@@ -88,11 +89,11 @@ private
    
    NotwendigeTechnologie : ForschungenDatentypen.ForschungIDMitNullWert;
    
-   EinheitID : EinheitStadtDatentypen.EinheitenID;
+   EinheitID : EinheitenDatentypen.EinheitenID;
    
-   VorhandeneStädte : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
+   VorhandeneStädte : StadtDatentypen.MaximaleStädteMitNullWert;
    
-   EinheitNummer : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
+   EinheitNummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    
    GewählteAufgabe : ProduktionDatentypen.ProduktionSonstiges;
 

@@ -4,7 +4,8 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Integer_Wide_Wide_Text_IO;
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
+with StadtDatentypen; use StadtDatentypen;
 -- with GlobaleTexte;
 with EinheitenKonstanten;
 with StadtKonstanten;
@@ -102,7 +103,7 @@ package body KarteInformationenKonsole is
    
    procedure InformationenStadt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+      StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       StadtInformationenKonsole.Stadt (RasseExtern            => RasseExtern,

@@ -2,8 +2,9 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
+with StadtDatentypen; use StadtDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
 
@@ -22,7 +23,7 @@ with Wachstum;
 package body StadtEntfernen is
 
    procedure StadtEntfernen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       BelegteStadtfelderFreigeben (StadtRasseNummerExtern => StadtRasseNummerExtern);
@@ -39,7 +40,7 @@ package body StadtEntfernen is
    
    
    procedure BelegteStadtfelderFreigeben
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       YUmgebungFreigebenSchleife:
@@ -76,7 +77,7 @@ package body StadtEntfernen is
    
    
    procedure HeimatstädteEntfernen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       EinheitenSchleife:
@@ -99,7 +100,7 @@ package body StadtEntfernen is
    
    
    procedure NeueHauptstadtSetzen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       case

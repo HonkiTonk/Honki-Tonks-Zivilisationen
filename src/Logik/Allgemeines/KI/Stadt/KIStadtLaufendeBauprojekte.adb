@@ -1,9 +1,9 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
-with SpielVariablen;
+with StadtDatentypen; use StadtDatentypen;
 
 with LeseStadtGebaut;
 with LeseEinheitenDatenbank;
@@ -11,12 +11,12 @@ with LeseEinheitenDatenbank;
 package body KIStadtLaufendeBauprojekte is
 
    function StadtLaufendeBauprojekte
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       BauprojektExtern : in StadtRecords.BauprojektRecord)
-      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
+      return StadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
-      GleichesBauprojekt := 0;
+      GleichesGebäudeBauprojekt := 0;
      
       StadtSchleife:
       for StadtNummerSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze loop
@@ -29,11 +29,11 @@ package body KIStadtLaufendeBauprojekte is
             null;
             
          elsif
-           LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).GebäudeEinheit = BauprojektExtern.GebäudeEinheit
-           and
-             LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Nummer = BauprojektExtern.Nummer
+           LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Gebäude = BauprojektExtern.Gebäude
+           or
+             LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Einheit = BauprojektExtern.Einheit
          then
-            GleichesBauprojekt := GleichesBauprojekt + 1;
+            GleichesGebäudeBauprojekt := GleichesGebäudeBauprojekt + 1;
                
          else
             null;
@@ -41,19 +41,19 @@ package body KIStadtLaufendeBauprojekte is
             
       end loop StadtSchleife;
       
-      return GleichesBauprojekt;
+      return GleichesGebäudeBauprojekt;
       
    end StadtLaufendeBauprojekte;
    
    
    
    function GleicheEinheitArtBauprojekte
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      EinheitArtExtern : in EinheitStadtDatentypen.Einheit_Art_Verwendet_Enum)
-      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      EinheitArtExtern : in EinheitenDatentypen.Einheit_Art_Verwendet_Enum)
+      return EinheitenDatentypen.MaximaleEinheitenMitNullWert
    is begin
       
-      GleichesBauprojekt := 0;
+      GleichesEinheitenBauprojekt := 0;
       
       StadtSchleife:
       for StadtNummerSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze loop
@@ -66,14 +66,14 @@ package body KIStadtLaufendeBauprojekte is
             null;
                
          elsif
-           LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).GebäudeEinheit = False
+           LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Einheit /= 0
          then
             if
               LeseEinheitenDatenbank.EinheitArt (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                 IDExtern    => EinheitenID (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Nummer))
+                                                 IDExtern    => EinheitenID (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Einheit))
               = EinheitArtExtern
             then
-               GleichesBauprojekt := GleichesBauprojekt + 1;
+               GleichesEinheitenBauprojekt := GleichesEinheitenBauprojekt + 1;
                      
             else
                null;
@@ -82,7 +82,7 @@ package body KIStadtLaufendeBauprojekte is
          
       end loop StadtSchleife;
       
-      return GleichesBauprojekt;
+      return GleichesEinheitenBauprojekt;
       
    end GleicheEinheitArtBauprojekte;
 

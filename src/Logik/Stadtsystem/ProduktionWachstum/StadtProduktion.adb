@@ -3,6 +3,8 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
+with StadtDatentypen; use StadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
 with KartenKonstanten;
 with KartenVerbesserungDatentypen;
 
@@ -16,7 +18,7 @@ with Wachstum;
 package body StadtProduktion is
    
    procedure StadtProduktion
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       case
@@ -72,7 +74,7 @@ package body StadtProduktion is
 
 
    procedure StadtProduktionBerechnung
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       StadtProduktionNullSetzen (StadtRasseNummerExtern => StadtRasseNummerExtern);
@@ -92,7 +94,7 @@ package body StadtProduktion is
    
    
    procedure KorruptionBerechnen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       null;
@@ -102,7 +104,7 @@ package body StadtProduktion is
    
    
    procedure ZufriedenheitBerechnen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       null;
@@ -112,7 +114,7 @@ package body StadtProduktion is
    
    
    procedure FelderProduktionBerechnen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
             
       NutzbarerBereich := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern);
@@ -166,7 +168,7 @@ package body StadtProduktion is
    
    
    procedure StadtProduktionNullSetzen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       SchreibeStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern   => StadtRasseNummerExtern,
@@ -193,7 +195,7 @@ package body StadtProduktion is
    
    
    procedure WeitereNahrungsproduktionÄnderungen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       SchreibeStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern   => StadtRasseNummerExtern,
@@ -228,7 +230,7 @@ package body StadtProduktion is
 
 
    procedure WeitereProduktionrateÄnderungen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       SchreibeStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern,
@@ -267,7 +269,7 @@ package body StadtProduktion is
 
 
    procedure WeitereGeldgewinnungÄnderungen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       SchreibeStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern,
@@ -275,8 +277,12 @@ package body StadtProduktion is
                                                                                                             WelcherPostenExtern    => ProduktionDatentypen.Geld_Enum),
                                          ÄndernSetzenExtern     => True);
       
+      Bauprojekt := LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      
       if
-        LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Nummer = StadtKonstanten.LeerBauprojekt.Nummer
+        Bauprojekt.Gebäude = 0
+        and
+          Bauprojekt.Einheit = 0
       then
          SchreibeStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                             GeldgewinnungExtern    => LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern) / 5,
@@ -317,7 +323,7 @@ package body StadtProduktion is
 
 
    procedure WeitereForschungsrateÄnderungen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
 
       case

@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
@@ -20,8 +20,8 @@ with DiplomatischerZustand;
 package body KIGefahrErmitteln is
    
    function GefahrErmitteln
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
-      return EinheitStadtRecords.RasseEinheitnummerRecord
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return EinheitenRecords.RasseEinheitnummerRecord
    is begin
       
       case
@@ -39,8 +39,8 @@ package body KIGefahrErmitteln is
    
    
    function GefahrSuchen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
-      return EinheitStadtRecords.RasseEinheitnummerRecord
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return EinheitenRecords.RasseEinheitnummerRecord
    is begin
       
       YAchseSchleife:
@@ -89,8 +89,8 @@ package body KIGefahrErmitteln is
    
    
    function ReaktionErfoderlich
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      AndereEinheitExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      AndereEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
       
@@ -120,7 +120,7 @@ package body KIGefahrErmitteln is
         LeseEinheitenDatenbank.EinheitArt (RasseExtern => AndereEinheitExtern.Rasse,
                                            IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => AndereEinheitExtern))
       is
-         when EinheitStadtDatentypen.Arbeiter_Enum =>
+         when EinheitenDatentypen.Arbeiter_Enum =>
             return False;
             
          when others =>

@@ -1,8 +1,9 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
+with StadtDatentypen; use StadtDatentypen;
 with StadtRecords;
 with EinheitenKonstanten;
 with StadtKonstanten;
@@ -19,7 +20,7 @@ package body NaechstesObjekt is
       BewegungspunkteExtern : in Bewegungspunkte)
    is begin
       
-      SchleifenBegrenzung := 0;
+      EinheitSchleifenbegrenzung := 0;
       
       EinheitSuchenSchleife:
       loop
@@ -51,9 +52,9 @@ package body NaechstesObjekt is
          end if;
          
          if
-           SchleifenBegrenzung < SpielVariablen.Grenzen (RasseExtern).Einheitengrenze
+           EinheitSchleifenbegrenzung < SpielVariablen.Grenzen (RasseExtern).Einheitengrenze
          then
-            SchleifenBegrenzung := SchleifenBegrenzung + 1;
+            EinheitSchleifenbegrenzung := EinheitSchleifenbegrenzung + 1;
             
          else
             return;
@@ -71,7 +72,7 @@ package body NaechstesObjekt is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
 
-      SchleifenBegrenzung := 0;
+      StadtSchleifenbegrenzung := 0;
       
       StadtSuchenSchleife:
       loop
@@ -96,9 +97,9 @@ package body NaechstesObjekt is
          end case;
          
          if
-           SchleifenBegrenzung < SpielVariablen.Grenzen (RasseExtern).Städtegrenze
+           StadtSchleifenbegrenzung < SpielVariablen.Grenzen (RasseExtern).Städtegrenze
          then
-            SchleifenBegrenzung := SchleifenBegrenzung + 1;
+            StadtSchleifenbegrenzung := StadtSchleifenbegrenzung + 1;
             
          else
             return;
@@ -116,7 +117,7 @@ package body NaechstesObjekt is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      SchleifenBegrenzung := 0;
+      StadtSchleifenbegrenzung := 0;
       
       StadtSuchenSchleife:
       loop
@@ -143,7 +144,7 @@ package body NaechstesObjekt is
                  LeseStadtGebaut.Meldungen (StadtRasseNummerExtern => (RasseExtern, AktuelleStadtMeldung (RasseExtern)),
                                             WelcheMeldungExtern    => MeldungSchleifenwert)
                is
-                  when EinheitStadtDatentypen.Leer_Stadt_Meldung_Enum =>
+                  when StadtDatentypen.Leer_Stadt_Meldung_Enum =>
                      null;
                      
                   when others =>
@@ -154,9 +155,9 @@ package body NaechstesObjekt is
          end if;
          
          if
-           SchleifenBegrenzung < SpielVariablen.Grenzen (RasseExtern).Städtegrenze
+           StadtSchleifenbegrenzung < SpielVariablen.Grenzen (RasseExtern).Städtegrenze
          then
-            SchleifenBegrenzung := SchleifenBegrenzung + 1;
+            StadtSchleifenbegrenzung := StadtSchleifenbegrenzung + 1;
             
          else
             return;
@@ -174,7 +175,7 @@ package body NaechstesObjekt is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      SchleifenBegrenzung := 0;
+      EinheitSchleifenbegrenzung := 0;
       
       EinheitSuchenSchleife:
       loop
@@ -201,7 +202,7 @@ package body NaechstesObjekt is
                  LeseEinheitenGebaut.Meldungen (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheitMeldung (RasseExtern)),
                                                 WelcheMeldungExtern      => MeldungSchleifenwert)
                is
-                  when EinheitStadtDatentypen.Leer_Einheit_Meldung_Enum =>
+                  when EinheitenDatentypen.Leer_Einheit_Meldung_Enum =>
                      null;
                      
                   when others =>
@@ -212,9 +213,9 @@ package body NaechstesObjekt is
          end if;
          
          if
-           SchleifenBegrenzung < SpielVariablen.Grenzen (RasseExtern).Einheitengrenze
+           EinheitSchleifenbegrenzung < SpielVariablen.Grenzen (RasseExtern).Einheitengrenze
          then
-            SchleifenBegrenzung := SchleifenBegrenzung + 1;
+            EinheitSchleifenbegrenzung := EinheitSchleifenbegrenzung + 1;
             
          else
             return;

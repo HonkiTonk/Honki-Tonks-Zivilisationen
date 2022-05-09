@@ -5,7 +5,8 @@ with Sf.Graphics.Rect;
 
 with MenueDatentypen;
 with SystemKonstanten;
-with EinheitStadtDatentypen;
+with EinheitenDatentypen;
+with StadtDatentypen;
 with ForschungenDatentypen;
 
 package InteraktionAuswahl is
@@ -32,13 +33,13 @@ package InteraktionAuswahl is
 
 
 
-   type PositionenGebäudeBauenArray is array (EinheitStadtDatentypen.GebäudeID'Range) of Sf.Graphics.Rect.sfFloatRect;
+   type PositionenGebäudeBauenArray is array (StadtDatentypen.GebäudeID'Range) of Sf.Graphics.Rect.sfFloatRect;
    PositionenGebäudeBauen : PositionenGebäudeBauenArray := (others => (0.00, 0.00, 0.00, 0.00));
 
    type MöglicheGebäudeArray is array (PositionenGebäudeBauenArray'Range) of Boolean;
    MöglicheGebäude : MöglicheGebäudeArray := (others => False);
 
-   type PositionenEinheitenBauenArray is array (EinheitStadtDatentypen.EinheitenID'Range) of Sf.Graphics.Rect.sfFloatRect;
+   type PositionenEinheitenBauenArray is array (EinheitenDatentypen.EinheitenID'Range) of Sf.Graphics.Rect.sfFloatRect;
    PositionenEinheitenBauen : PositionenEinheitenBauenArray := (others => (0.00, 0.00, 0.00, 0.00));
 
    type MöglicheEinheitenArray is array (PositionenEinheitenBauenArray'Range) of Boolean;

@@ -1,12 +1,12 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
 with TastenbelegungDatentypen; use TastenbelegungDatentypen;
 with AufgabenDatentypen; use AufgabenDatentypen;
+with StadtDatentypen; use StadtDatentypen;
 with EinheitenKonstanten;
 with StadtKonstanten;
-with SpielVariablen;
 with ForschungenDatentypen;
 
 with SchreibeStadtGebaut;
@@ -141,9 +141,9 @@ package body BefehleKonsole is
                                                                  KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
 
       if
-        EinheitNummer /= EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First
+        EinheitNummer /= EinheitenDatentypen.MaximaleEinheitenMitNullWert'First
         and
-          StadtNummer /= EinheitStadtDatentypen.MaximaleStädteMitNullWert'First
+          StadtNummer /= StadtDatentypen.MaximaleStädteMitNullWert'First
       then
          EinheitOderStadt (RasseExtern         => RasseExtern,
                            AuswahlExtern       => Auswahl.AuswahlJaNein (FrageZeileExtern => 15),
@@ -151,7 +151,7 @@ package body BefehleKonsole is
                            EinheitNummerExtern => EinheitNummer);
          
       elsif
-        StadtNummer /= EinheitStadtDatentypen.MaximaleStädteMitNullWert'First
+        StadtNummer /= StadtDatentypen.MaximaleStädteMitNullWert'First
       then
          EinheitOderStadt (RasseExtern         => RasseExtern,
                            AuswahlExtern       => RueckgabeDatentypen.Ja_Enum,
@@ -159,7 +159,7 @@ package body BefehleKonsole is
                            EinheitNummerExtern => EinheitNummer);
          
       elsif
-        EinheitNummer /= EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First
+        EinheitNummer /= EinheitenDatentypen.MaximaleEinheitenMitNullWert'First
       then
          AuswahlEinheitTransporter (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer));
                
@@ -172,7 +172,7 @@ package body BefehleKonsole is
    
    
    procedure AuswahlEinheitTransporter
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       Transportiert := TransporterSuchen.HatTransporterLadung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -203,7 +203,7 @@ package body BefehleKonsole is
          when others =>
             EinheitOderStadt (RasseExtern         => EinheitRasseNummerExtern.Rasse,
                               AuswahlExtern       => RueckgabeDatentypen.Nein_Enum,
-                              StadtNummerExtern   => EinheitStadtDatentypen.MaximaleStädteMitNullWert'First,
+                              StadtNummerExtern   => StadtDatentypen.MaximaleStädteMitNullWert'First,
                               EinheitNummerExtern => EinheitTransportNummer);
       end case;
       
@@ -214,8 +214,8 @@ package body BefehleKonsole is
    procedure EinheitOderStadt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       AuswahlExtern : in RueckgabeDatentypen.Rückgabe_Werte_Enum;
-      StadtNummerExtern : in EinheitStadtDatentypen.MaximaleStädteMitNullWert;
-      EinheitNummerExtern : in EinheitStadtDatentypen.MaximaleEinheitenMitNullWert)
+      StadtNummerExtern : in StadtDatentypen.MaximaleStädteMitNullWert;
+      EinheitNummerExtern : in EinheitenDatentypen.MaximaleEinheitenMitNullWert)
    is begin
       
       case
@@ -233,7 +233,7 @@ package body BefehleKonsole is
    
    
    procedure StadtBetreten
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       SpielVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenStadt.YAchse := 1;
@@ -245,7 +245,7 @@ package body BefehleKonsole is
    
    
    procedure EinheitSteuern
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       if

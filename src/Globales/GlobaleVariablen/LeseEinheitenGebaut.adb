@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
+with KampfDatentypen; use KampfDatentypen;
 with EinheitenKonstanten;
 with KartenRecordKonstanten;
 
@@ -12,8 +13,8 @@ with Karten;
 package body LeseEinheitenGebaut is
 
    function ID
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
-      return EinheitStadtDatentypen.EinheitenIDMitNullWert
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return EinheitenDatentypen.EinheitenIDMitNullWert
    is begin
       
       return SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).ID;
@@ -23,7 +24,7 @@ package body LeseEinheitenGebaut is
   
    
    function Koordinaten
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
@@ -45,8 +46,8 @@ package body LeseEinheitenGebaut is
    
    
    function Heimatstadt
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
-      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return StadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
       return SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Heimatstadt;
@@ -56,8 +57,8 @@ package body LeseEinheitenGebaut is
    
       
    function Lebenspunkte
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
-      return EinheitStadtDatentypen.Lebenspunkte
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return EinheitenDatentypen.Lebenspunkte
    is begin
       
      -- if
@@ -80,8 +81,8 @@ package body LeseEinheitenGebaut is
    
    
    function Bewegungspunkte
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
-      return EinheitStadtDatentypen.VorhandeneBewegungspunkte
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return EinheitenDatentypen.VorhandeneBewegungspunkte
    is begin
       
       if
@@ -100,8 +101,8 @@ package body LeseEinheitenGebaut is
    
    
    function Erfahrungspunkte
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
-      return EinheitStadtDatentypen.Kampfwerte
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return KampfDatentypen.Kampfwerte
    is begin
       
       if
@@ -124,8 +125,8 @@ package body LeseEinheitenGebaut is
    
    
    function Rang
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
-      return EinheitStadtDatentypen.Kampfwerte
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return KampfDatentypen.Kampfwerte
    is begin
       
       if
@@ -147,7 +148,7 @@ package body LeseEinheitenGebaut is
    
    
    function Beschäftigung
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return AufgabenDatentypen.Einheiten_Aufgaben_Enum
    is begin
 
@@ -158,7 +159,7 @@ package body LeseEinheitenGebaut is
    
    
    function BeschäftigungNachfolger
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return AufgabenDatentypen.Einheiten_Aufgaben_Enum
    is begin
       
@@ -169,8 +170,8 @@ package body LeseEinheitenGebaut is
    
       
    function Beschäftigungszeit
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
-      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return EinheitenDatentypen.MaximaleEinheitenMitNullWert
    is begin
       
       return SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigungszeit;
@@ -180,8 +181,8 @@ package body LeseEinheitenGebaut is
    
    
    function BeschäftigungszeitNachfolger
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
-      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return EinheitenDatentypen.MaximaleEinheitenMitNullWert
    is begin
       
       return SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungszeitNachfolger;
@@ -191,7 +192,7 @@ package body LeseEinheitenGebaut is
    
       
    function KIZielKoordinaten
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
@@ -213,7 +214,7 @@ package body LeseEinheitenGebaut is
    
    
    function KIBeschäftigt
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return KIDatentypen.Einheit_Aufgabe_Enum
    is begin
       
@@ -224,7 +225,7 @@ package body LeseEinheitenGebaut is
    
    
    function KIBewegungPlan
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       PlanschrittExtern : in KartenDatentypen.Stadtfeld)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
@@ -249,9 +250,9 @@ package body LeseEinheitenGebaut is
    
       
    function Transportiert
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      PlatzExtern : in EinheitStadtDatentypen.Transportplätze)
-      return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      PlatzExtern : in EinheitenDatentypen.Transportplätze)
+      return EinheitenDatentypen.MaximaleEinheitenMitNullWert
    is begin
       
       return SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Transportiert (PlatzExtern);
@@ -261,8 +262,8 @@ package body LeseEinheitenGebaut is
    
    
    function WirdTransportiert
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
-      return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return EinheitenDatentypen.MaximaleEinheitenMitNullWert
    is begin
       
       return SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).WirdTransportiert;
@@ -272,9 +273,9 @@ package body LeseEinheitenGebaut is
    
    
    function Meldungen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      WelcheMeldungExtern : in EinheitStadtDatentypen.Einheit_Meldung_Art_Enum)
-      return EinheitStadtDatentypen.Einheit_Meldung_Enum
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      WelcheMeldungExtern : in EinheitenDatentypen.Einheit_Meldung_Art_Enum)
+      return EinheitenDatentypen.Einheit_Meldung_Enum
    is begin
       
       return SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Meldungen (WelcheMeldungExtern);
@@ -284,7 +285,7 @@ package body LeseEinheitenGebaut is
    
    
    function GanzerEintrag
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return EinheitenRecords.EinheitenGebautRecord
    is begin
       

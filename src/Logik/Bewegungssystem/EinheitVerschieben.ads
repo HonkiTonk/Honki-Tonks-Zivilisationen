@@ -2,10 +2,10 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with SystemDatentypen;
-with EinheitStadtRecords;
+with EinheitenRecords;
 with KartenRecords;
 with KartenDatentypen;
-with EinheitStadtDatentypen;
+with EinheitenDatentypen;
 
 package EinheitVerschieben is
 
@@ -15,20 +15,20 @@ package EinheitVerschieben is
    
    procedure EinheitVerschieben
      (RasseLandExtern : in RueckgabeDatentypen.Rassen_Verwendet_Enum;
-      EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
+      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord);
    
 private
    
    UmgebungPrüfen : KartenDatentypen.Sichtweite;
    BereitsGeprüft : KartenDatentypen.SichtweiteMitNullwert;
    
-   EinheitNummer : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
+   EinheitNummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    KartenWertVerschieben : KartenRecords.AchsenKartenfeldPositivRecord;
    
    procedure EinheitenErmitteln
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (StadtRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       KontaktierteRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
 
 end EinheitVerschieben;

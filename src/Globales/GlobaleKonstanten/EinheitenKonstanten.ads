@@ -1,16 +1,17 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitStadtRecords;
 with KartenRecords;
 with ForschungKonstanten;
-with EinheitStadtDatentypen;
 with AufgabenDatentypen;
 with TextKonstanten;
 with RassenDatentypen;
 with ForschungenDatentypen;
 with ProduktionDatentypen;
 with EinheitenRecords;
+with KampfDatentypen;
+with StadtDatentypen;
+with EinheitenDatentypen;
 
 with DatenbankRecords;
 
@@ -19,23 +20,23 @@ with KIDatentypen;
 package EinheitenKonstanten is
    
    LeerRasse : constant RassenDatentypen.Rassen_Enum := RassenDatentypen.Keine_Rasse_Enum;
-   LeerNummer : constant EinheitStadtDatentypen.MaximaleStädteMitNullWert := EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First;
-   LeerRasseNummer : constant EinheitStadtRecords.RasseEinheitnummerRecord := (LeerRasse, LeerNummer);
+   LeerNummer : constant EinheitenDatentypen.MaximaleEinheitenMitNullWert := EinheitenDatentypen.MaximaleEinheitenMitNullWert'First;
+   LeerRasseNummer : constant EinheitenRecords.RasseEinheitnummerRecord := (LeerRasse, LeerNummer);
 
-   LeerID : constant EinheitStadtDatentypen.EinheitenIDMitNullWert := EinheitStadtDatentypen.EinheitenIDMitNullWert'First;
+   LeerID : constant EinheitenDatentypen.EinheitenIDMitNullWert := EinheitenDatentypen.EinheitenIDMitNullWert'First;
    LeerKoordinaten : constant KartenRecords.AchsenKartenfeldPositivRecord := (0, 0, 0);
-   LeerHeimatstadt : constant EinheitStadtDatentypen.MaximaleStädteMitNullWert := EinheitStadtDatentypen.MaximaleStädteMitNullWert'First;
-   LeerLebenspunkte : constant EinheitStadtDatentypen.Lebenspunkte := EinheitStadtDatentypen.Lebenspunkte'First;
-   LeerBewegungspunkte : constant EinheitStadtDatentypen.VorhandeneBewegungspunkte := EinheitStadtDatentypen.VorhandeneBewegungspunkte'First;
-   LeerErfahrungspunkte : constant EinheitStadtDatentypen.Kampfwerte := EinheitStadtDatentypen.Kampfwerte'First;
-   LeerRang : constant EinheitStadtDatentypen.Kampfwerte := EinheitStadtDatentypen.Kampfwerte'First;
+   LeerHeimatstadt : constant StadtDatentypen.MaximaleStädteMitNullWert := StadtDatentypen.MaximaleStädteMitNullWert'First;
+   LeerLebenspunkte : constant EinheitenDatentypen.Lebenspunkte := EinheitenDatentypen.Lebenspunkte'First;
+   LeerBewegungspunkte : constant EinheitenDatentypen.VorhandeneBewegungspunkte := EinheitenDatentypen.VorhandeneBewegungspunkte'First;
+   LeerErfahrungspunkte : constant KampfDatentypen.Kampfwerte := KampfDatentypen.Kampfwerte'First;
+   LeerRang : constant KampfDatentypen.Kampfwerte := KampfDatentypen.Kampfwerte'First;
    ----------------------- Beschäftigung und Tastenbelegung mal trennen?
    LeerBeschäftigung : constant AufgabenDatentypen.Einheiten_Aufgaben_Enum := AufgabenDatentypen.Leer_Aufgabe_Enum;
-   LeerBeschäftigungszeit : constant EinheitStadtDatentypen.MaximaleStädteMitNullWert := EinheitStadtDatentypen.MaximaleStädteMitNullWert'First;
+   LeerBeschäftigungszeit : constant EinheitenDatentypen.MaximaleEinheitenMitNullWert := EinheitenDatentypen.MaximaleEinheitenMitNullWert'First;
    LeerKIBeschäftigt : constant KIDatentypen.Einheit_Aufgabe_Enum := KIDatentypen.Tut_Nichts_Enum;
-   LeerTransportiert : constant EinheitStadtDatentypen.MaximaleEinheitenMitNullWert := EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First;
-   LeerWirdTransportiert : constant EinheitStadtDatentypen.MaximaleEinheitenMitNullWert := EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First;
-   LeerMeldung : constant EinheitStadtDatentypen.Einheit_Meldung_Enum := EinheitStadtDatentypen.Leer_Einheit_Meldung_Enum;
+   LeerTransportiert : constant EinheitenDatentypen.MaximaleEinheitenMitNullWert := EinheitenDatentypen.MaximaleEinheitenMitNullWert'First;
+   LeerWirdTransportiert : constant EinheitenDatentypen.MaximaleEinheitenMitNullWert := EinheitenDatentypen.MaximaleEinheitenMitNullWert'First;
+   LeerMeldung : constant EinheitenDatentypen.Einheit_Meldung_Enum := EinheitenDatentypen.Leer_Einheit_Meldung_Enum;
    
    LeerEinheit : constant EinheitenRecords.EinheitenGebautRecord := (
                                                                         ID                           => LeerID,
@@ -60,23 +61,23 @@ package EinheitenKonstanten is
    EinheitBefehlAbzug : constant Positive := 22;
       
    LeerEinheitenGrafik : constant Wide_Wide_Character := TextKonstanten.LeerZeichen;
-   LeerEinheitArt : constant EinheitStadtDatentypen.Einheit_Art_Enum := EinheitStadtDatentypen.Leer_Einheitart_Enum;
+   LeerEinheitArt : constant EinheitenDatentypen.Einheit_Art_Enum := EinheitenDatentypen.Leer_Einheitart_Enum;
    LeerPreisGeld : constant ProduktionDatentypen.KostenLager := 0;
    LeerPreisRessourcen : constant ProduktionDatentypen.KostenLager := 0;
    LeerPermanenteKosten : constant ProduktionDatentypen.GesamtePermanenteKosten := 0;
    LeerAnforderungen : constant ForschungenDatentypen.ForschungIDNichtMöglich := ForschungKonstanten.ForschungUnmöglich;
    LeerPassierbarkeit : constant Boolean := False;
-   LeerMaximaleLebenspunkte : constant EinheitStadtDatentypen.LebenspunkteVorhanden := EinheitStadtDatentypen.LebenspunkteVorhanden'First;
-   LeerMaximaleBewegungspunkte : constant EinheitStadtDatentypen.VorhandeneBewegungspunkte := 1.00;
-   LeerWirdVerbessertZu : constant EinheitStadtDatentypen.EinheitenIDMitNullWert := EinheitStadtDatentypen.EinheitenIDMitNullWert'First;
-   LeerBeförderungsgrenze : constant EinheitStadtDatentypen.Kampfwerte := EinheitStadtDatentypen.Kampfwerte'First;
-   LeerMaximalerRang : constant EinheitStadtDatentypen.Kampfwerte := EinheitStadtDatentypen.Kampfwerte'First;
-   LeerReichweite : constant EinheitStadtDatentypen.Kampfwerte := EinheitStadtDatentypen.Kampfwerte'First;
-   LeerAngriff : constant EinheitStadtDatentypen.Kampfwerte := EinheitStadtDatentypen.Kampfwerte'First;
-   LeerVerteidigung : constant EinheitStadtDatentypen.Kampfwerte := EinheitStadtDatentypen.Kampfwerte'First;
-   LeerKannTransportieren : constant EinheitStadtDatentypen.Transport_Enum := EinheitStadtDatentypen.Kein_Transport_Enum;
-   LeerKannTransportiertWerden : constant EinheitStadtDatentypen.Transport_Enum := EinheitStadtDatentypen.Kein_Transport_Enum;
-   LeerTransportkapazität : constant EinheitStadtDatentypen.Transportplätze := EinheitStadtDatentypen.Transportplätze'First;
+   LeerMaximaleLebenspunkte : constant EinheitenDatentypen.LebenspunkteVorhanden := EinheitenDatentypen.LebenspunkteVorhanden'First;
+   LeerMaximaleBewegungspunkte : constant EinheitenDatentypen.VorhandeneBewegungspunkte := 1.00;
+   LeerWirdVerbessertZu : constant EinheitenDatentypen.EinheitenIDMitNullWert := EinheitenDatentypen.EinheitenIDMitNullWert'First;
+   LeerBeförderungsgrenze : constant KampfDatentypen.Kampfwerte := KampfDatentypen.Kampfwerte'First;
+   LeerMaximalerRang : constant KampfDatentypen.Kampfwerte := KampfDatentypen.Kampfwerte'First;
+   LeerReichweite : constant KampfDatentypen.Kampfwerte := KampfDatentypen.Kampfwerte'First;
+   LeerAngriff : constant KampfDatentypen.Kampfwerte := KampfDatentypen.Kampfwerte'First;
+   LeerVerteidigung : constant KampfDatentypen.Kampfwerte := KampfDatentypen.Kampfwerte'First;
+   LeerKannTransportieren : constant EinheitenDatentypen.Transport_Enum := EinheitenDatentypen.Kein_Transport_Enum;
+   LeerKannTransportiertWerden : constant EinheitenDatentypen.Transport_Enum := EinheitenDatentypen.Kein_Transport_Enum;
+   LeerTransportkapazität : constant EinheitenDatentypen.Transportplätze := EinheitenDatentypen.Transportplätze'First;
    
    LeerEinheitListe : constant DatenbankRecords.EinheitenlisteRecord := (
                                                                          EinheitArt                 => LeerEinheitArt,
@@ -99,10 +100,10 @@ package EinheitenKonstanten is
                                                                         );
    
    LeerArbeit : constant AufgabenDatentypen.Einheiten_Aufgaben_Enum := AufgabenDatentypen.Leer_Aufgabe_Enum;
-   LeerArbeitszeit : constant EinheitStadtDatentypen.MaximaleStädteMitNullWert := EinheitStadtDatentypen.MaximaleStädteMitNullWert'First;
+   LeerArbeitszeit : constant EinheitenDatentypen.MaximaleEinheitenMitNullWert := EinheitenDatentypen.MaximaleEinheitenMitNullWert'First;
    KeineArbeit : constant EinheitenRecords.ArbeitRecord := (
-                                                              WelcheArbeit => LeerArbeit,
-                                                              Arbeitszeit  => LeerArbeitszeit
-                                                             );
+                                                            WelcheArbeit => LeerArbeit,
+                                                            Arbeitszeit  => LeerArbeitszeit
+                                                           );
 
 end EinheitenKonstanten;

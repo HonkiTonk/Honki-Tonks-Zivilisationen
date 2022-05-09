@@ -5,8 +5,8 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 
 with KartenDatentypen; use KartenDatentypen;
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with KartenRecords; use KartenRecords;
+with StadtDatentypen; use StadtDatentypen;
 -- with GlobaleTexte;
 with KartenKonstanten;
 with StadtKonstanten;
@@ -31,7 +31,7 @@ with EingeleseneGrafikenKonsole;
 package body KarteStadtKonsole is
 
    procedure AnzeigeStadt
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
@@ -62,7 +62,7 @@ package body KarteStadtKonsole is
    
    
    procedure GebäudeText
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       Aufschlag := AufschlagGebäude (RasseExtern => StadtRasseNummerExtern.Rasse);
@@ -77,10 +77,10 @@ package body KarteStadtKonsole is
             Aufschlag := Aufschlag - 1;
             if
               LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                 WelchesGebäudeExtern  => EinheitStadtDatentypen.GebäudeID (SpielVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenStadt.XAchse + Aufschlag * 12))
+                                                 WelchesGebäudeExtern  => StadtDatentypen.GebäudeID (SpielVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenStadt.XAchse + Aufschlag * 12))
               = True
             then
-               Put_Line (Item => GebaeudeAllgemein.BeschreibungKurz (IDExtern => EinheitStadtDatentypen.GebäudeID (SpielVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenStadt.XAchse + Aufschlag * 12)));
+               Put_Line (Item => GebaeudeAllgemein.BeschreibungKurz (IDExtern => StadtDatentypen.GebäudeID (SpielVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenStadt.XAchse + Aufschlag * 12)));
             
             else
                null;
@@ -120,7 +120,7 @@ package body KarteStadtKonsole is
    
    
    procedure GrafischeDarstellung
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       YAchsenabstraktion := -Stadtumgebungsgröße;
@@ -162,7 +162,7 @@ package body KarteStadtKonsole is
    function Darstellung
      (YAchseExtern : in KartenDatentypen.Stadtfeld;
       XAchseExtern : in KartenDatentypen.Stadtfeld;
-      StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+      StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return Boolean
    is begin
       
@@ -203,7 +203,7 @@ package body KarteStadtKonsole is
           XAchseExtern < 13
       then
          GebäudeDarstellung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                              IDExtern               => EinheitStadtDatentypen.GebäudeID (XAchseExtern));
+                              IDExtern               => StadtDatentypen.GebäudeID (XAchseExtern));
                
       elsif
         YAchseExtern = 2
@@ -211,7 +211,7 @@ package body KarteStadtKonsole is
           XAchseExtern < 13
       then
          GebäudeDarstellung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                              IDExtern               => EinheitStadtDatentypen.GebäudeID (XAchseExtern) + 12);
+                              IDExtern               => StadtDatentypen.GebäudeID (XAchseExtern) + 12);
                
       elsif
         YAchseExtern = 3
@@ -219,7 +219,7 @@ package body KarteStadtKonsole is
           XAchseExtern < 3
       then
          GebäudeDarstellung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                              IDExtern               => EinheitStadtDatentypen.GebäudeID (XAchseExtern) + 24);
+                              IDExtern               => StadtDatentypen.GebäudeID (XAchseExtern) + 24);
 
       else
          FarbgebungKonsole.Farben (EinheitIDExtern    => EinheitenKonstanten.LeerID,
@@ -240,8 +240,8 @@ package body KarteStadtKonsole is
    
    
    procedure GebäudeDarstellung
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      IDExtern : in StadtDatentypen.GebäudeID)
    is begin
       
       if
@@ -311,7 +311,7 @@ package body KarteStadtKonsole is
    procedure AnsichtUmgebung
      (YAchseExtern : in KartenDatentypen.Stadtfeld;
       XAchseExtern : in KartenDatentypen.Stadtfeld;
-      StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+      StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       if
@@ -387,7 +387,7 @@ package body KarteStadtKonsole is
 
 
    procedure AnzeigeStadtUmgebung
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       YAchseExtern : in KartenDatentypen.Stadtfeld;
       XAchseExtern : in KartenDatentypen.Stadtfeld)
    is begin
@@ -496,7 +496,7 @@ package body KarteStadtKonsole is
    
    
    procedure WeitereInformationen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
 
       CursorYAchseabstraktion := SpielVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenStadt.YAchse - 4;

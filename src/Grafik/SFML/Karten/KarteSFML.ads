@@ -11,9 +11,10 @@ with KartenDatentypen; use KartenDatentypen;
 with RassenDatentypen; use RassenDatentypen;
 with KartenRecords;
 with SonstigeVariablen;
-with EinheitStadtRecords;
+with EinheitenRecords;
 with KartengrundDatentypen;
 with KartenVerbesserungDatentypen;
+with StadtRecords;
 
 with Karten;
 
@@ -48,8 +49,9 @@ private
    YMultiplikator : Float;
    XMultiplikator : Float;
       
-   StadtRasseNummer : EinheitStadtRecords.RasseEinheitnummerRecord;
-   EinheitStadtRasseNummer : EinheitStadtRecords.RasseEinheitnummerRecord;
+   StadtRasseNummer : StadtRecords.RasseStadtnummerRecord;
+   
+   EinheitRasseNummer : EinheitenRecords.RasseEinheitnummerRecord;
    
    AktuelleFarbe : Sf.Graphics.Color.sfColor;
    
@@ -121,6 +123,7 @@ private
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre =>
+         -- Anders als die /= RassenDatentypen.Leer_Spieler_Enum weiter unten, funktioniert das hier mit der KI weil ja nur die Spielerrasse übergeben wird und die KI Einheit dann in der Prozedur selbst gesucht wird.
          (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum
           and
             KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -154,7 +157,7 @@ private
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
           and
             KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
           and
@@ -166,7 +169,7 @@ private
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum);
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
    
    procedure KartenfeldZeichnen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;

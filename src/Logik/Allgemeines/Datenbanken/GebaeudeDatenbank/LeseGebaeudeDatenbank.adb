@@ -7,7 +7,7 @@ package body LeseGebaeudeDatenbank is
 
    function PreisGeld
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeID)
       return ProduktionDatentypen.KostenLager
    is begin
       
@@ -19,7 +19,7 @@ package body LeseGebaeudeDatenbank is
    
    function PreisRessourcen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeID)
       return ProduktionDatentypen.KostenLager
    is begin
       
@@ -31,7 +31,7 @@ package body LeseGebaeudeDatenbank is
    
    function PermanenteKosten
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitStadtDatentypen.GebäudeID;
+      IDExtern : in StadtDatentypen.GebäudeID;
       WelcheKostenExtern : in ProduktionDatentypen.Permanente_Kosten_Verwendet_Enum)
       return ProduktionDatentypen.GesamtePermanenteKosten
    is begin
@@ -44,7 +44,7 @@ package body LeseGebaeudeDatenbank is
       
    function Anforderungen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeID)
       return ForschungenDatentypen.ForschungIDNichtMöglich
    is begin
       
@@ -56,7 +56,7 @@ package body LeseGebaeudeDatenbank is
    
    function WirtschaftBonus
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitStadtDatentypen.GebäudeID;
+      IDExtern : in StadtDatentypen.GebäudeID;
       WWirtschaftBonusExtern : in KartenDatentypen.Wirtschaft_Enum)
       return ProduktionDatentypen.ProduktionFeld
    is begin
@@ -69,9 +69,9 @@ package body LeseGebaeudeDatenbank is
    
    function KampfBonus
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitStadtDatentypen.GebäudeID;
+      IDExtern : in StadtDatentypen.GebäudeID;
       KampfBonusExtern : in KartenDatentypen.Kampf_Enum)
-      return EinheitStadtDatentypen.Kampfwerte
+      return KampfDatentypen.Kampfwerte
    is begin
       
       return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).BonusKampf (KampfBonusExtern);
@@ -82,7 +82,7 @@ package body LeseGebaeudeDatenbank is
       
    function GrundBenötigt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeID)
       return KartengrundDatentypen.Kartengrund_Enum
    is begin
       
@@ -94,7 +94,7 @@ package body LeseGebaeudeDatenbank is
 
    function FlussBenötigt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeID)
       return Boolean
    is begin
       
@@ -106,7 +106,7 @@ package body LeseGebaeudeDatenbank is
       
    function RessourceBenötigt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeID)
       return KartengrundDatentypen.Karten_Ressourcen_Enum
    is begin
       
@@ -118,8 +118,8 @@ package body LeseGebaeudeDatenbank is
    
    function GebäudeSpezielleEigenschaft
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitStadtDatentypen.GebäudeID)
-      return EinheitStadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum
+      IDExtern : in StadtDatentypen.GebäudeID)
+      return StadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum
    is begin
       
       return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).GebäudeSpezielleEigenschaft;
@@ -130,7 +130,7 @@ package body LeseGebaeudeDatenbank is
 
    function GanzerEintrag
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeID)
       return DatenbankRecords.GebäudelisteRecord
    is begin
 

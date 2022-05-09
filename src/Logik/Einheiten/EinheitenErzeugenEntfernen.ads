@@ -5,9 +5,10 @@ with KartenDatentypen; use KartenDatentypen;
 with RassenDatentypen; use RassenDatentypen;
 with SonstigeVariablen;
 with KartenRecords;
-with EinheitStadtRecords;
-with EinheitStadtDatentypen;
+with EinheitenRecords;
+with EinheitenDatentypen;
 with SpielVariablen;
+with StadtRecords;
 
 with Karten;
 
@@ -15,9 +16,9 @@ package EinheitenErzeugenEntfernen is
 
    procedure EinheitErzeugen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      EinheitNummerExtern : in EinheitStadtDatentypen.MaximaleEinheiten;
-      IDExtern : in EinheitStadtDatentypen.EinheitenID;
-      StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+      EinheitNummerExtern : in EinheitenDatentypen.MaximaleEinheiten;
+      IDExtern : in EinheitenDatentypen.EinheitenID;
+      StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
@@ -27,7 +28,7 @@ package EinheitenErzeugenEntfernen is
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
 
    procedure EinheitEntfernen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -36,12 +37,22 @@ package EinheitenErzeugenEntfernen is
 
 private
 
-   EinheitNummer : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
+   EinheitNummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
 
    procedure EinheitEntfernenLadung
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+          and
+            SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
 
    procedure Entfernen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+          and
+            SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
 
 end EinheitenErzeugenEntfernen;

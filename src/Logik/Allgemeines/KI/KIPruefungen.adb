@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
 with KartengrundDatentypen; use KartengrundDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with TastenbelegungDatentypen;
@@ -25,7 +25,7 @@ with KIAufgabenVerteilt;
 package body KIPruefungen is
    
    function StadtUmgebungPrüfen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
@@ -64,8 +64,8 @@ package body KIPruefungen is
    
    
    function StadtUmgebungUnverbessert
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      EinheitNummerExtern : in EinheitStadtDatentypen.MaximaleEinheiten)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      EinheitNummerExtern : in EinheitenDatentypen.MaximaleEinheiten)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
@@ -114,7 +114,7 @@ package body KIPruefungen is
 
    function VerbesserungDortAnlegen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
       
@@ -159,7 +159,7 @@ package body KIPruefungen is
    
    
    function VerbesserungAnlegbar
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
       
@@ -188,11 +188,11 @@ package body KIPruefungen is
    
    
    function UmgebungStadtBauenPrüfen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       MindestBewertungFeldExtern : in KartenDatentypen.GesamtbewertungFeld)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
-            
+                  
       case
         KartenfeldUmgebungPrüfen (EinheitRasseNummerExtern   => EinheitRasseNummerExtern,
                                    KoordinatenExtern          => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
@@ -216,14 +216,14 @@ package body KIPruefungen is
    
    
    function FelderDurchgehen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       MindestBewertungFeldExtern : in KartenDatentypen.GesamtbewertungFeld)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
-      
+            
       KartenfeldSuchenSchleife:
       loop
-         
+                  
          KartenWertZwei := NeuesStadtFeldSuchen (EinheitRasseNummerExtern   => EinheitRasseNummerExtern,
                                                  MindestBewertungFeldExtern => MindestBewertungFeldExtern,
                                                  YUmgebungExtern            => YAchseKoordinatePrüfen,
@@ -280,7 +280,7 @@ package body KIPruefungen is
    
    
    function NeuesStadtFeldSuchen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       MindestBewertungFeldExtern : in KartenDatentypen.GesamtbewertungFeld;
       YUmgebungExtern : in KartenDatentypen.KartenfeldPositiv;
       XUmgebungExtern : in KartenDatentypen.KartenfeldPositiv)
@@ -336,7 +336,7 @@ package body KIPruefungen is
    
    
    function KartenfeldUmgebungPrüfen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       MindestBewertungFeldExtern : in KartenDatentypen.GesamtbewertungFeld)
       return Boolean
@@ -365,7 +365,7 @@ package body KIPruefungen is
       
       elsif
         LeseKarten.Bewertung (KoordinatenExtern => KoordinatenExtern,
-                              RasseExtern    => EinheitRasseNummerExtern.Rasse)
+                              RasseExtern       => EinheitRasseNummerExtern.Rasse)
         < MindestBewertungFeldExtern
       then
          return False;

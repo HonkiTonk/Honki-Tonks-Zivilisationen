@@ -3,15 +3,15 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
-with EinheitStadtRecords;
-with EinheitStadtDatentypen;
+with EinheitenRecords;
+with EinheitenDatentypen;
 with SonstigeVariablen;
 
 package EinheitenTransporter is
 
    function EinheitTransporterAuswählen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
-      return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return EinheitenDatentypen.MaximaleEinheitenMitNullWert
      with
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -19,8 +19,8 @@ package EinheitenTransporter is
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
    
    function KannTransportiertWerden
-     (LadungExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      TransporterExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (LadungExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
      with
        Pre =>
@@ -34,16 +34,16 @@ package EinheitenTransporter is
    
 private
    
-   AktuelleAuswahl : EinheitStadtDatentypen.EinheitenIDMitNullWert;
-   Ende : EinheitStadtDatentypen.EinheitenIDMitNullWert;
-   AktuellePosition : EinheitStadtDatentypen.EinheitenIDMitNullWert;
-   Transportiert : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
+   AktuelleAuswahl : EinheitenDatentypen.EinheitenIDMitNullWert;
+   Ende : EinheitenDatentypen.EinheitenIDMitNullWert;
+   AktuellePosition : EinheitenDatentypen.EinheitenIDMitNullWert;
+   Transportiert : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    
    function EinheitAuswählen
-     return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
+     return EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    
    function PlatzFrei
-     (TransporterExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean;
 
 end EinheitenTransporter;

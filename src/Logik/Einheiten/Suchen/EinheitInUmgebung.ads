@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitStadtRecords;
+with EinheitenRecords;
 with KartenRecords;
 with KartenDatentypen;
 with RassenDatentypen;
@@ -14,7 +14,7 @@ private
       
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    
-   AndereEinheit : EinheitStadtRecords.RasseEinheitnummerRecord;
+   AndereEinheit : EinheitenRecords.RasseEinheitnummerRecord;
    
    procedure UmgebungStadt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);

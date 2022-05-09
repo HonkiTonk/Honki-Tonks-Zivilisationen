@@ -5,7 +5,7 @@ with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
 with SonstigeVariablen;
 with KartenRecords;
-with EinheitStadtDatentypen;
+with StadtDatentypen;
 
 with Karten;
 
@@ -32,14 +32,14 @@ package KIStadtSuchen is
 
 private
 
-   AktuelleStadt : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
-   GefundeneStadt : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
+   AktuelleStadt : StadtDatentypen.MaximaleStädteMitNullWert;
+   GefundeneStadt : StadtDatentypen.MaximaleStädteMitNullWert;
    Entfernung : Positive;
    EntfernungNeu : Positive;
 
    function StadtSuchen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       AnfangKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return EinheitStadtDatentypen.MaximaleStädteMitNullWert;
+      return StadtDatentypen.MaximaleStädteMitNullWert;
 
 end KIStadtSuchen;

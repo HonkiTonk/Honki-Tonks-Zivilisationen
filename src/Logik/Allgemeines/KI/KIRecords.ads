@@ -1,7 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitStadtDatentypen;
+with EinheitenDatentypen;
+with StadtDatentypen;
 
 with KIDatentypen;
 
@@ -9,7 +10,7 @@ package KIRecords is
 
    type EinheitIDBewertungRecord is record
 
-      ID : EinheitStadtDatentypen.EinheitenIDMitNullWert;
+      ID : EinheitenDatentypen.EinheitenIDMitNullWert;
       Bewertung : KIDatentypen.BauenBewertung;
 
    end record;
@@ -18,7 +19,7 @@ package KIRecords is
 
    type GebäudeIDBewertungRecord is record
 
-      ID : EinheitStadtDatentypen.GebäudeIDMitNullwert;
+      ID : StadtDatentypen.GebäudeIDMitNullwert;
       Bewertung : KIDatentypen.BauenBewertung;
 
    end record;

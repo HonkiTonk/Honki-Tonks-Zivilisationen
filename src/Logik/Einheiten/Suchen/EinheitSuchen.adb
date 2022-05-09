@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
 with KartenRecords; use KartenRecords;
 with EinheitenKonstanten;
 with SpielVariablen;
@@ -14,7 +14,7 @@ package body EinheitSuchen is
    function KoordinatenEinheitMitRasseSuchen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
+      return EinheitenDatentypen.MaximaleEinheitenMitNullWert
    is begin
       
       EinheitSchleife:
@@ -45,7 +45,7 @@ package body EinheitSuchen is
    -- Zu beachten, wenn die Einheit sich in einem Transporter befindet, dann wird immer die Nummer des Transporters zurückgegeben.
    function KoordinatenEinheitOhneRasseSuchen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return EinheitStadtRecords.RasseEinheitnummerRecord
+      return EinheitenRecords.RasseEinheitnummerRecord
    is begin
 
       RasseSchleife:
@@ -83,7 +83,7 @@ package body EinheitSuchen is
    function KoordinatenEinheitOhneSpezielleRasseSuchen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return EinheitStadtRecords.RasseEinheitnummerRecord
+      return EinheitenRecords.RasseEinheitnummerRecord
    is begin
 
       RasseSchleife:

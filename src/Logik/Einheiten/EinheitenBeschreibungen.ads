@@ -3,13 +3,13 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with EinheitStadtDatentypen;
+with EinheitenDatentypen;
 with AufgabenDatentypen;
 
 package EinheitenBeschreibungen is
    
    function BeschreibungLang
-     (IDExtern : in EinheitStadtDatentypen.EinheitenID)
+     (IDExtern : in EinheitenDatentypen.EinheitenID)
       return Wide_Wide_String;
    
    function Beschäftigung
@@ -17,7 +17,7 @@ package EinheitenBeschreibungen is
       return Wide_Wide_String;
    
    function BeschreibungKurz
-     (IDExtern : in EinheitStadtDatentypen.EinheitenID)
+     (IDExtern : in EinheitenDatentypen.EinheitenID)
       return Wide_Wide_String;
    
    function BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen

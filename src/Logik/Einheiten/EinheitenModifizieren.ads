@@ -3,24 +3,26 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
-with EinheitStadtRecords;
+with EinheitenRecords;
 with SonstigeVariablen;
-with EinheitStadtDatentypen;
+with EinheitenDatentypen;
 with AufgabenDatentypen;
 with SpielVariablen;
+with StadtDatentypen;
+with StadtRecords;
 
 package EinheitenModifizieren is
 
    procedure HeilungBewegungspunkteNeueRundeErmitteln;
    
    procedure HeimatstadtÄndern
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
    
    procedure PermanenteKostenÄndern
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       VorzeichenWechselExtern : in KartenDatentypen.UmgebungsbereichEins)
      with
        Pre =>
@@ -33,8 +35,8 @@ package EinheitenModifizieren is
    
    
    function EinheitAnforderungenErfüllt
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      IDExtern : in EinheitStadtDatentypen.EinheitenID)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      IDExtern : in EinheitenDatentypen.EinheitenID)
       return Boolean
      with
        Pre =>
@@ -44,20 +46,20 @@ package EinheitenModifizieren is
 
 private
    
-   AktuelleID : EinheitStadtDatentypen.EinheitenID;
+   AktuelleID : EinheitenDatentypen.EinheitenID;
    
    AktuelleBeschäftigung : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
    
-   Heimatstadt : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
-   StadtNummerNeu : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
+   Heimatstadt : StadtDatentypen.MaximaleStädteMitNullWert;
+   StadtNummerNeu : StadtDatentypen.MaximaleStädteMitNullWert;
    
-   Heilungsrate : constant EinheitStadtDatentypen.LebenspunkteVorhanden := 10;
-   ErhalteneErfahrungspunkte : EinheitStadtDatentypen.MaximaleStädte;
+   Heilungsrate : constant EinheitenDatentypen.LebenspunkteVorhanden := 10;
+   ErhalteneErfahrungspunkte : StadtDatentypen.MaximaleStädte;
       
-   EinheitNummer : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
+   EinheitNummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
 
    procedure HeilungBewegungspunkteNeueRundeSetzen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze

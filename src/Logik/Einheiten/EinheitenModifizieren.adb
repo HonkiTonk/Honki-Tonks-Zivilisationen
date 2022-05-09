@@ -3,11 +3,12 @@ pragma Warnings (Off, "*array aggregate*");
 
 with AufgabenDatentypen; use AufgabenDatentypen;
 with ForschungenDatentypen; use ForschungenDatentypen;
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
+with StadtDatentypen; use StadtDatentypen;
 with EinheitenKonstanten;
 with ForschungKonstanten;
-with StadtRecords;
+with StadtKonstanten;
 
 with SchreibeEinheitenGebaut;
 with SchreibeStadtGebaut;
@@ -57,7 +58,7 @@ package body EinheitenModifizieren is
 
 
    procedure HeilungBewegungspunkteNeueRundeSetzen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       AktuelleBeschäftigung := LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -93,7 +94,7 @@ package body EinheitenModifizieren is
    
    
    procedure PermanenteKostenÄndern
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       VorzeichenWechselExtern : in KartenDatentypen.UmgebungsbereichEins)
    is begin
       
@@ -102,7 +103,7 @@ package body EinheitenModifizieren is
       case
         Heimatstadt
       is
-         when EinheitStadtDatentypen.MaximaleStädteMitNullWert'First =>
+         when StadtDatentypen.MaximaleStädteMitNullWert'First =>
             return;
             
          when others =>
@@ -139,7 +140,7 @@ package body EinheitenModifizieren is
    
    
    procedure HeimatstadtÄndern
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       case
@@ -159,7 +160,7 @@ package body EinheitenModifizieren is
       if
         EinheitNummer = EinheitenKonstanten.LeerNummer
         or
-          StadtNummerNeu = EinheitenKonstanten.LeerNummer
+          StadtNummerNeu = StadtKonstanten.LeerNummer
       then
          return;
          
@@ -186,8 +187,8 @@ package body EinheitenModifizieren is
    
    
    function EinheitAnforderungenErfüllt
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      IDExtern : in EinheitStadtDatentypen.EinheitenID)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      IDExtern : in EinheitenDatentypen.EinheitenID)
       return Boolean
    is begin
       

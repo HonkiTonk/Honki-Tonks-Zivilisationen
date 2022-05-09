@@ -6,15 +6,15 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
 with SpielVariablen;
-with EinheitStadtDatentypen;
-with EinheitStadtRecords;
+with StadtDatentypen;
 with SonstigeVariablen;
+with StadtRecords;
 
 package GebaeudeAllgemein is
    
    procedure GebäudeProduktionBeenden
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      IDExtern : in StadtDatentypen.GebäudeID)
      with
        Pre =>
          (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -22,8 +22,8 @@ package GebaeudeAllgemein is
             SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
    
    procedure GebäudeEntfernen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      WelchesGebäudeExtern : in EinheitStadtDatentypen.GebäudeID)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      WelchesGebäudeExtern : in StadtDatentypen.GebäudeID)
      with
        Pre =>
          (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -33,16 +33,16 @@ package GebaeudeAllgemein is
    
 
    function BeschreibungKurz
-     (IDExtern : in EinheitStadtDatentypen.GebäudeIDMitNullwert)
+     (IDExtern : in StadtDatentypen.GebäudeIDMitNullwert)
       return Wide_Wide_String;
    
    function BeschreibungLang
-     (IDExtern : in EinheitStadtDatentypen.GebäudeIDMitNullwert)
+     (IDExtern : in StadtDatentypen.GebäudeIDMitNullwert)
       return Wide_Wide_String;
    
    function GebäudeAnforderungenErfüllt
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      IDExtern : in StadtDatentypen.GebäudeID)
       return Boolean
      with
        Pre =>
@@ -57,8 +57,8 @@ private
    BeschreibungText : Unbounded_Wide_Wide_String;
    
    procedure PermanenteKostenDurchGebäudeÄndern
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      IDExtern : in EinheitStadtDatentypen.GebäudeID;
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      IDExtern : in StadtDatentypen.GebäudeID;
       VorzeichenWechselExtern : in KartenDatentypen.UmgebungsbereichEins)
      with
        Pre =>

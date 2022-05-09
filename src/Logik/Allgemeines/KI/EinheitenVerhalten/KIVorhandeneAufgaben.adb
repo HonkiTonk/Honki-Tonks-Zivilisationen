@@ -1,9 +1,10 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
 with SystemDatentypen; use SystemDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
+with StadtDatentypen; use StadtDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
@@ -27,7 +28,7 @@ with KIPruefungen;
 package body KIVorhandeneAufgaben is
 
    function SichHeilen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return ProduktionDatentypen.ProduktionSonstiges
    is begin
       
@@ -70,7 +71,7 @@ package body KIVorhandeneAufgaben is
    
    
    function SichVerbessern
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return ProduktionDatentypen.ProduktionSonstiges
    is begin
       
@@ -104,14 +105,14 @@ package body KIVorhandeneAufgaben is
 
 
    function NeueStadtBauenGehen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return ProduktionDatentypen.ProduktionSonstiges
    is begin
       
       VorhandeneStädte := LeseWichtiges.AnzahlStädte (RasseExtern => EinheitRasseNummerExtern.Rasse);
       
       if
-        VorhandeneStädte = EinheitenKonstanten.LeerNummer
+        VorhandeneStädte = StadtKonstanten.LeerNummer
       then
          SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                  AufgabeExtern            => KIDatentypen.Stadt_Bauen_Enum);
@@ -146,7 +147,7 @@ package body KIVorhandeneAufgaben is
 
 
    function StadtUmgebungVerbessern
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return ProduktionDatentypen.ProduktionSonstiges
    is begin
       
@@ -165,7 +166,7 @@ package body KIVorhandeneAufgaben is
    
    
    function StadtBewachen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return ProduktionDatentypen.ProduktionSonstiges
    is begin
       
@@ -218,7 +219,7 @@ package body KIVorhandeneAufgaben is
    
    
    function Angreifen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return ProduktionDatentypen.ProduktionSonstiges
    is begin
       
@@ -262,12 +263,12 @@ package body KIVorhandeneAufgaben is
    
    
    function EinheitAuflösen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return ProduktionDatentypen.ProduktionSonstiges
    is begin
       
       if
-        18 + LeseWichtiges.AnzahlStädte (RasseExtern => EinheitRasseNummerExtern.Rasse)
+        EinheitenDatentypen.MaximaleEinheiten (18 + LeseWichtiges.AnzahlStädte (RasseExtern => EinheitRasseNummerExtern.Rasse))
         < LeseWichtiges.AnzahlEinheiten (RasseExtern => EinheitRasseNummerExtern.Rasse)
       then
          return 3;

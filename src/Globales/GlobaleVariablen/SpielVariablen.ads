@@ -8,7 +8,8 @@ with RassenDatentypen;
 with SpielDatentypen;
 with KartenRecords;
 with WichtigeRecords;
-with EinheitStadtDatentypen;
+with StadtDatentypen;
+with EinheitenDatentypen;
 with WichtigesKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
@@ -30,10 +31,10 @@ package SpielVariablen is
    type GrenzenArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of WichtigeRecords.GrenzenRecord;
    Grenzen : GrenzenArray := (others => WichtigesKonstanten.LeerGrenzen);
 
-   type EinheitenGebautArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, EinheitStadtDatentypen.MaximaleEinheiten'Range) of EinheitenRecords.EinheitenGebautRecord;
+   type EinheitenGebautArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, EinheitenDatentypen.MaximaleEinheiten'Range) of EinheitenRecords.EinheitenGebautRecord;
    EinheitenGebaut : EinheitenGebautArray := (others => (others => EinheitenKonstanten.LeerEinheit));
       
-   type StadtGebautArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, EinheitStadtDatentypen.MaximaleStädte'Range) of StadtRecords.StadtGebautRecord;
+   type StadtGebautArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, StadtDatentypen.MaximaleStädte'Range) of StadtRecords.StadtGebautRecord;
    StadtGebaut : StadtGebautArray := (others => (others => StadtKonstanten.LeerStadt));
       
    type WichtigesArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of WichtigeRecords.WichtigesRecord;

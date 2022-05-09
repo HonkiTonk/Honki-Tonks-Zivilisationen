@@ -2,13 +2,11 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with ForschungenDatentypen; use ForschungenDatentypen;
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
 with GlobaleTexte;
 with StadtKonstanten;
 with ForschungKonstanten;
 with TextKonstanten;
-with StadtRecords;
 
 with SchreibeWichtiges;
 with SchreibeStadtGebaut;
@@ -23,14 +21,14 @@ package body GebaeudeAllgemein is
 
    -------------- Um die Aufrufe der ganzen Beschreibungen mal ein wenig zu reduzieren die Nullprüfung vor den Aufruf verlegen (überall?).
    function BeschreibungKurz
-     (IDExtern : in EinheitStadtDatentypen.GebäudeIDMitNullwert)
+     (IDExtern : in StadtDatentypen.GebäudeIDMitNullwert)
      return Wide_Wide_String
    is begin
       
       case
         IDExtern
       is
-         when EinheitStadtDatentypen.GebäudeIDMitNullwert'First =>
+         when StadtDatentypen.GebäudeIDMitNullwert'First =>
             BeschreibungText := TextKonstanten.LeerUnboundedString;
             
          when others =>
@@ -46,14 +44,14 @@ package body GebaeudeAllgemein is
    
    
    function BeschreibungLang
-     (IDExtern : in EinheitStadtDatentypen.GebäudeIDMitNullwert)
+     (IDExtern : in StadtDatentypen.GebäudeIDMitNullwert)
       return Wide_Wide_String
    is begin
       
       case
         IDExtern
       is
-         when EinheitStadtDatentypen.GebäudeIDMitNullwert'First =>
+         when StadtDatentypen.GebäudeIDMitNullwert'First =>
             BeschreibungText := TextKonstanten.LeerUnboundedString;
             
          when others =>
@@ -69,8 +67,8 @@ package body GebaeudeAllgemein is
    
 
    procedure GebäudeProduktionBeenden
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      IDExtern : in StadtDatentypen.GebäudeID)
    is begin
       
       SchreibeStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern,
@@ -91,8 +89,8 @@ package body GebaeudeAllgemein is
    
    
    procedure GebäudeEntfernen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      WelchesGebäudeExtern : in EinheitStadtDatentypen.GebäudeID)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      WelchesGebäudeExtern : in StadtDatentypen.GebäudeID)
    is begin
       
       SchreibeWichtiges.Geldmenge (RasseExtern         => StadtRasseNummerExtern.Rasse,
@@ -112,8 +110,8 @@ package body GebaeudeAllgemein is
    
 
    procedure PermanenteKostenDurchGebäudeÄndern
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      IDExtern : in EinheitStadtDatentypen.GebäudeID;
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      IDExtern : in StadtDatentypen.GebäudeID;
       -- Der Vorzeichenwechsel wird benötigt um auch bei Entfernung von Gebäuden die permanenten Kosten korrekt zu ändern
       VorzeichenWechselExtern : in KartenDatentypen.UmgebungsbereichEins)
    is begin
@@ -139,8 +137,8 @@ package body GebaeudeAllgemein is
    
    -- Hier vielleicht noch Prüfungen einbauen um zu testen ob das Gebäude für diese Rasse überhaupt existiert?
    function GebäudeAnforderungenErfüllt
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      IDExtern : in StadtDatentypen.GebäudeID)
       return Boolean
    is begin
       

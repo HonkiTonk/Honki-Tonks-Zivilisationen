@@ -5,10 +5,11 @@ with Sf.Graphics.RenderWindow;
 with Sf.Graphics;
 with Sf.Graphics.Text;
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
+with StadtDatentypen; use StadtDatentypen;
 with GlobaleTexte;
-with StadtKonstanten;
+-- with StadtKonstanten;
 with KartenVerbesserungDatentypen;
 with TextKonstanten;
 with TextaccessVariablen;
@@ -25,7 +26,7 @@ package body StadtInformationenSFML is
 
    function Stadt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+      StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       AnzeigeAnfangenExtern : in Sf.System.Vector2.sfVector2f)
       return Sf.System.Vector2.sfVector2f
    is begin
@@ -79,7 +80,7 @@ package body StadtInformationenSFML is
 
    procedure StadtartName
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+      StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       -- Diese Anzeige komplett in die Kartenanzeige verschieben? 
@@ -122,7 +123,7 @@ package body StadtInformationenSFML is
    
    
    function StadtName
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return Wide_Wide_String
    is begin
       
@@ -133,7 +134,7 @@ package body StadtInformationenSFML is
    
    
    procedure Einwohner
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       WertOhneTrennzeichen := ZahlAlsStringProduktionFeld (ZahlExtern => LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
@@ -151,7 +152,7 @@ package body StadtInformationenSFML is
    
    
    procedure AktuelleNahrungsmittel
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       WertOhneTrennzeichen := ZahlAlsStringGesamtproduktionStadt (ZahlExtern => LeseStadtGebaut.Nahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern));
@@ -168,7 +169,7 @@ package body StadtInformationenSFML is
    
    
    procedure AktuelleNahrungsproduktion
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       WertOhneTrennzeichen := ZahlAlsStringGesamtproduktionStadt (ZahlExtern => LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern));
@@ -185,7 +186,7 @@ package body StadtInformationenSFML is
    
    
    procedure AktuelleProduktionrate
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       WertOhneTrennzeichen := ZahlAlsStringGesamtproduktionStadt (ZahlExtern => LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern));
@@ -202,7 +203,7 @@ package body StadtInformationenSFML is
    
    
    procedure AktuelleGeldgewinnung
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       WertOhneTrennzeichen := ZahlAlsStringGesamtproduktionStadt (ZahlExtern => LeseStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern));
@@ -219,7 +220,7 @@ package body StadtInformationenSFML is
    
    
    procedure AktuelleForschungsrate
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       WertOhneTrennzeichen := ZahlAlsStringGesamtproduktionStadt (ZahlExtern => LeseStadtGebaut.Forschungsrate (StadtRasseNummerExtern => StadtRasseNummerExtern));
@@ -236,7 +237,7 @@ package body StadtInformationenSFML is
    
    
    procedure AktuelleVerteidigung
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       WertOhneTrennzeichen := ZahlAlsStringKampfwerte (ZahlExtern => KampfwerteStadtErmitteln.AktuelleVerteidigungStadt (StadtRasseNummerExtern => StadtRasseNummerExtern));
@@ -253,7 +254,7 @@ package body StadtInformationenSFML is
    
    
    procedure AktuellerAngriff
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       WertOhneTrennzeichen := ZahlAlsStringKampfwerte (ZahlExtern => KampfwerteStadtErmitteln.AktuellerAngriffStadt (StadtRasseNummerExtern => StadtRasseNummerExtern));
@@ -270,7 +271,7 @@ package body StadtInformationenSFML is
    
    
    procedure Korruption
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       WertOhneTrennzeichen := ZahlAlsStringGesamtproduktionStadt (ZahlExtern => LeseStadtGebaut.Korruption (StadtRasseNummerExtern => StadtRasseNummerExtern));
@@ -287,7 +288,7 @@ package body StadtInformationenSFML is
    
    
    procedure EinwohnerOhneArbeit
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       WertOhneTrennzeichen := ZahlAlsStringProduktionFeld (ZahlExtern => LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
@@ -307,21 +308,25 @@ package body StadtInformationenSFML is
    
    
    procedure AktuellesBauprojekt
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
+      Bauprojekt := LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      
       if
-        LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Nummer = StadtKonstanten.LeerBauprojekt.Nummer
+        Bauprojekt.Gebäude = 0
+        and
+          Bauprojekt.Einheit = 0
       then
          Text := GlobaleTexte.Zeug (28);
             
       elsif
-        LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).GebäudeEinheit = True
+        Bauprojekt.Gebäude /= 0
       then
-         Text := GlobaleTexte.Gebäude (2 * Natural (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Nummer) - 1);
+         Text := GlobaleTexte.Gebäude (2 * Natural (Bauprojekt.Gebäude) - 1);
 
       else
-         Text := GlobaleTexte.Einheiten (2 * Natural (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Nummer) - 1);
+         Text := GlobaleTexte.Einheiten (2 * Natural (Bauprojekt.Einheit) - 1);
       end if;
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.StadtInformationenAccess (12),

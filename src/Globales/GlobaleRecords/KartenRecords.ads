@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitStadtDatentypen;
+with StadtDatentypen;
 with KartenDatentypen;
 with KartengrundDatentypen;
 with KartenVerbesserungDatentypen;
@@ -75,7 +75,7 @@ package KartenRecords is
    type BelegterGrundRecord is record
       
       RasseBelegt : RassenDatentypen.Rassen_Enum;
-      StadtBelegt : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
+      StadtBelegt : StadtDatentypen.MaximaleStädteMitNullWert;
       
    end record;
    

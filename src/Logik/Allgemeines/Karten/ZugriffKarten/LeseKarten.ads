@@ -4,11 +4,11 @@ pragma Warnings (Off, "*array aggregate*");
 with RassenDatentypen; use RassenDatentypen;
 with SonstigeVariablen;
 with KartenRecords;
-with EinheitStadtRecords;
 with KartenDatentypen;
 with KartengrundDatentypen;
 with KartenVerbesserungDatentypen;
 with SpielVariablen;
+with StadtRecords;
 
 with Karten;
 
@@ -112,7 +112,7 @@ package LeseKarten is
             KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
    
    function BestimmteStadtBelegtGrund
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
      with

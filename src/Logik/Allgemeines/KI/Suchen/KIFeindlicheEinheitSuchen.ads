@@ -3,15 +3,15 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with SonstigeVariablen;
-with EinheitStadtRecords;
+with EinheitenRecords;
 with KartenRecords;
-with EinheitStadtDatentypen;
+with EinheitenDatentypen;
 with SpielVariablen;
 
 package KIFeindlicheEinheitSuchen is
 
    function FeindlicheEinheitInUmgebungSuchen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       FeindExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KartenRecords.AchsenKartenfeldPositivRecord
      with
@@ -24,7 +24,7 @@ package KIFeindlicheEinheitSuchen is
    
 private
    
-   FeindlicheEinheit : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
+   FeindlicheEinheit : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
 

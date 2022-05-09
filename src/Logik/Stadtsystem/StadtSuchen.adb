@@ -3,8 +3,8 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with KartenRecords; use KartenRecords;
+with StadtDatentypen; use StadtDatentypen;
 with StadtKonstanten;
 with SpielVariablen;
 
@@ -17,7 +17,7 @@ package body StadtSuchen is
    function KoordinatenStadtMitRasseSuchen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
+      return StadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
       StadtSchleife:
@@ -42,7 +42,7 @@ package body StadtSuchen is
 
    function KoordinatenStadtOhneRasseSuchen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return EinheitStadtRecords.RasseEinheitnummerRecord
+      return StadtRecords.RasseStadtnummerRecord
    is begin
 
       RasseSchleife:
@@ -79,7 +79,7 @@ package body StadtSuchen is
    function KoordinatenStadtOhneSpezielleRasseSuchen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return EinheitStadtRecords.RasseEinheitnummerRecord
+      return StadtRecords.RasseStadtnummerRecord
    is begin
 
       RasseSchleife:
@@ -116,7 +116,7 @@ package body StadtSuchen is
 
    
    function StadtNachNamenSuchen
-     return EinheitStadtRecords.RasseEinheitnummerRecord
+     return StadtRecords.RasseStadtnummerRecord
    is begin
       
       StadtName := Eingabe.StadtName;

@@ -1,13 +1,11 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
+with StadtDatentypen; use StadtDatentypen;
 with WichtigesKonstanten;
-with EinheitenKonstanten;
 with StadtKonstanten;
 with KartenKonstanten;
-with StadtRecords;
 
 with KIDatentypen; use KIDatentypen;
 with KIKonstanten;
@@ -21,7 +19,7 @@ with GebaeudeAllgemein;
 package body KIGebaeudeBauen is
 
    function GebäudeBauen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return KIRecords.GebäudeIDBewertungRecord
    is begin
       
@@ -51,11 +49,11 @@ package body KIGebaeudeBauen is
    
    
    procedure GebäudeBewerten
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      IDExtern : in StadtDatentypen.GebäudeID)
    is begin
       
-      Gesamtwertung := KIDatentypen.BauenBewertung (EinheitStadtDatentypen.GebäudeID'Last - IDExtern);
+      Gesamtwertung := KIDatentypen.BauenBewertung (StadtDatentypen.GebäudeID'Last - IDExtern);
       
       Gesamtwertung := Gesamtwertung + NahrungsproduktionBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                                    IDExtern               => IDExtern);
@@ -73,7 +71,7 @@ package body KIGebaeudeBauen is
                                                        IDExtern               => IDExtern);
       
       if
-        GebäudeBewertet.ID = EinheitenKonstanten.LeerID
+        GebäudeBewertet.ID = StadtKonstanten.LeerGebäudeID
         or
           GebäudeBewertet.Bewertung < Gesamtwertung
       then
@@ -88,8 +86,8 @@ package body KIGebaeudeBauen is
    
    
    function NahrungsproduktionBewerten
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      IDExtern : in StadtDatentypen.GebäudeID)
       return KIDatentypen.BauenBewertung
    is begin
       
@@ -147,8 +145,8 @@ package body KIGebaeudeBauen is
    
    
    function GeldproduktionBewerten
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      IDExtern : in StadtDatentypen.GebäudeID)
       return KIDatentypen.BauenBewertung
    is begin
       
@@ -206,8 +204,8 @@ package body KIGebaeudeBauen is
    
      
    function WissensgewinnBewerten
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      IDExtern : in StadtDatentypen.GebäudeID)
       return KIDatentypen.BauenBewertung
    is begin
       
@@ -232,8 +230,8 @@ package body KIGebaeudeBauen is
      
           
    function RessourcenproduktionBewerten
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      IDExtern : in StadtDatentypen.GebäudeID)
       return KIDatentypen.BauenBewertung
    is begin
       
@@ -291,8 +289,8 @@ package body KIGebaeudeBauen is
    
      
    function VerteidigungBewerten
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      IDExtern : in StadtDatentypen.GebäudeID)
       return KIDatentypen.BauenBewertung
    is begin
       
@@ -305,8 +303,8 @@ package body KIGebaeudeBauen is
    
      
    function AngriffBewerten
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      IDExtern : in StadtDatentypen.GebäudeID)
       return KIDatentypen.BauenBewertung
    is begin
       
@@ -319,8 +317,8 @@ package body KIGebaeudeBauen is
    
      
    function KostenBewerten
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      IDExtern : in StadtDatentypen.GebäudeID)
       return KIDatentypen.BauenBewertung
    is begin
       

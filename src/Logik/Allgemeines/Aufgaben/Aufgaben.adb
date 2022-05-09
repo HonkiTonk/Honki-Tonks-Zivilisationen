@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
 with TastenbelegungDatentypen; use TastenbelegungDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
@@ -33,7 +33,7 @@ with AufgabenAllgemein;
 package body Aufgaben is
    
    function VerbesserungTesten
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum)
       return Boolean
    is begin
@@ -56,7 +56,7 @@ package body Aufgaben is
    
    
    function VerbesserungAnlegen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum)
       return Boolean
    is begin
@@ -100,7 +100,7 @@ package body Aufgaben is
    
    
    function AllgemeinerAnfangstest
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum)
       return Boolean
    is begin
@@ -131,7 +131,7 @@ package body Aufgaben is
         and
           LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                              IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
-            /= EinheitStadtDatentypen.Arbeiter_Enum
+            /= EinheitenDatentypen.Arbeiter_Enum
       then
          return False;
          
@@ -140,7 +140,7 @@ package body Aufgaben is
         and
           LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                              IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
-            = EinheitStadtDatentypen.Arbeiter_Enum
+            = EinheitenDatentypen.Arbeiter_Enum
       then
          return False;
          
@@ -155,7 +155,7 @@ package body Aufgaben is
 
 
    function VerbesserungFestgelegt
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum;
       AnlegenTestenExtern : in Boolean)
       return Boolean
@@ -235,7 +235,7 @@ package body Aufgaben is
    
    
    function EinheitHeilen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       AnlegenTestenExtern : in Boolean)
       return Boolean
    is begin
@@ -273,7 +273,7 @@ package body Aufgaben is
    
    
    procedure EinheitVerschanzen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -284,7 +284,7 @@ package body Aufgaben is
    
    
    procedure RundeAussetzen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -296,7 +296,7 @@ package body Aufgaben is
    
    
    procedure EinheitAuflösen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       if
@@ -318,7 +318,7 @@ package body Aufgaben is
    
    
    function VerbesserungPlündern
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       AnlegenTestenExtern : in Boolean)
       return Boolean
    is begin
@@ -362,7 +362,7 @@ package body Aufgaben is
    
    
    procedure Plünderung
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       case
@@ -398,7 +398,7 @@ package body Aufgaben is
    
    
    function VerbesserungEinheit
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       AnlegenTestenExtern : in Boolean)
       return Boolean
    is begin
@@ -408,7 +408,7 @@ package body Aufgaben is
       if
         LeseEinheitenDatenbank.WirdVerbessertZu (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                  IDExtern    => IDEinheit)
-        = EinheitStadtDatentypen.EinheitenIDMitNullWert'First
+        = EinheitenDatentypen.EinheitenIDMitNullWert'First
         or
           LeseKarten.BelegterGrund (RasseExtern       => EinheitRasseNummerExtern.Rasse,
                                     KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
@@ -446,7 +446,7 @@ package body Aufgaben is
    
    
    procedure EinheitVerbessern
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,

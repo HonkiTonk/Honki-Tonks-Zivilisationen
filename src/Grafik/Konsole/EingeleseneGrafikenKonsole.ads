@@ -10,8 +10,10 @@ with WichtigesKonstanten;
 with RassenDatentypen;
 
 with DatenbankRecords;
-with KartenDatenbank;
+with KartengrundDatenbank;
 with VerbesserungenDatenbank;
+with KartenflussDatenbank;
+with KartenressourcenDatenbank;
 
 package EingeleseneGrafikenKonsole is
    
@@ -253,7 +255,7 @@ package EingeleseneGrafikenKonsole is
    
    
    
-   type KartenfelderGrafikArray is array (KartenDatenbank.KartengrundlisteArray'Range) of Wide_Wide_Character;
+   type KartenfelderGrafikArray is array (KartengrundDatenbank.KartengrundlisteArray'Range) of Wide_Wide_Character;
    KartenfelderGrafik : KartenfelderGrafikArray := (
                                                     -- Normal
                                                     KartengrundDatentypen.Eis_Enum       => KartenKonstanten.LeerKartenGrafik,
@@ -275,14 +277,14 @@ package EingeleseneGrafikenKonsole is
                                                     
       
                                                     -- Unterwasser/Unterirdisch
-                                                    KartengrundDatentypen.Untereis_Enum            => KartenKonstanten.LeerKartenGrafik,
-                                                    KartengrundDatentypen.Erde_Enum                       => KartenKonstanten.LeerKartenGrafik,
-                                                    KartengrundDatentypen.Erdgestein_Enum                 => KartenKonstanten.LeerKartenGrafik,
-                                                    KartengrundDatentypen.Sand_Enum                       => KartenKonstanten.LeerKartenGrafik,
-                                                    KartengrundDatentypen.Meeresgrund_Enum         => KartenKonstanten.LeerKartenGrafik,
+                                                    KartengrundDatentypen.Untereis_Enum    => KartenKonstanten.LeerKartenGrafik,
+                                                    KartengrundDatentypen.Erde_Enum        => KartenKonstanten.LeerKartenGrafik,
+                                                    KartengrundDatentypen.Erdgestein_Enum  => KartenKonstanten.LeerKartenGrafik,
+                                                    KartengrundDatentypen.Sand_Enum        => KartenKonstanten.LeerKartenGrafik,
+                                                    KartengrundDatentypen.Meeresgrund_Enum => KartenKonstanten.LeerKartenGrafik,
                                                     KartengrundDatentypen.Küstengrund_Enum => KartenKonstanten.LeerKartenGrafik,
-                                                    KartengrundDatentypen.Korallen_Enum                   => KartenKonstanten.LeerKartenGrafik,
-                                                    KartengrundDatentypen.Unterwald_Enum           => KartenKonstanten.LeerKartenGrafik,
+                                                    KartengrundDatentypen.Korallen_Enum    => KartenKonstanten.LeerKartenGrafik,
+                                                    KartengrundDatentypen.Unterwald_Enum   => KartenKonstanten.LeerKartenGrafik,
                                                     -- Unterwasser/Unterirdisch
       
       
@@ -309,7 +311,7 @@ package EingeleseneGrafikenKonsole is
    
    
    
-   type KartenflussGrafikArray is array (KartenDatenbank.KartenflusslisteArray'Range) of Wide_Wide_Character;
+   type KartenflussGrafikArray is array (KartenflussDatenbank.KartenflusslisteArray'Range) of Wide_Wide_Character;
    KartenflussGrafik : KartenflussGrafikArray := (
                                                   -- Normal
                                                   KartengrundDatentypen.Flusskreuzung_Vier_Enum        => '╋',
@@ -375,7 +377,7 @@ package EingeleseneGrafikenKonsole is
    
    
 
-   type KartenressourcenGrafikArray is array (KartenDatenbank.KartenRessourcenListeArray'Range) of Wide_Wide_Character;
+   type KartenressourcenGrafikArray is array (KartenressourcenDatenbank.KartenRessourcenListeArray'Range) of Wide_Wide_Character;
    KartenressourcenGrafik : KartenressourcenGrafikArray := (
                                                             KartengrundDatentypen.Kohle_Enum              => '♦',
                                                             KartengrundDatentypen.Eisen_Enum              => '♦',

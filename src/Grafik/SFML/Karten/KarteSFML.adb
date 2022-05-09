@@ -8,9 +8,10 @@ with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Text;
 
 with KartenRecords; use KartenRecords;
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
 with KartengrundDatentypen; use KartengrundDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
+with StadtDatentypen; use StadtDatentypen;
 with EinheitenKonstanten;
 with KartenKonstanten;
 with StadtKonstanten;
@@ -328,16 +329,16 @@ package body KarteSFML is
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
-      EinheitStadtRasseNummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
+      StadtRasseNummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
          
       case
-        EinheitStadtRasseNummer.Nummer
+        StadtRasseNummer.Nummer
       is
-         when EinheitenKonstanten.LeerNummer =>
+         when StadtKonstanten.LeerNummer =>
             return;
          
          when others =>
-            Stadtart := LeseStadtGebaut.ID (StadtRasseNummerExtern => EinheitStadtRasseNummer);
+            Stadtart := LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummer);
       end case;
       
       ------------------- Eventuell kann man diese Sachen doch auslagern, wenn man die Skalierung mit übergibt, dann müsste man aber die Texture vorher festlegen. Und was ist dann mit den untexturierten Felder?
@@ -357,14 +358,14 @@ package body KarteSFML is
                ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00,
                                                     PositionExtern      => PositionExtern,
                                                     AnzahlEckenExtern   => 5,
-                                                    FarbeExtern         => GrafikEinstellungenSFML.RassenFarbenRahmen (EinheitStadtRasseNummer.Rasse),
+                                                    FarbeExtern         => GrafikEinstellungenSFML.RassenFarbenRahmen (StadtRasseNummer.Rasse),
                                                     PolygonAccessExtern => PolygonAccess);
                
             when KartenVerbesserungDatentypen.Eigene_Stadt_Enum =>
                ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 3.00,
                                                     PositionExtern      => PositionExtern,
                                                     AnzahlEckenExtern   => 6,
-                                                    FarbeExtern         => GrafikEinstellungenSFML.RassenFarbenRahmen (EinheitStadtRasseNummer.Rasse),
+                                                    FarbeExtern         => GrafikEinstellungenSFML.RassenFarbenRahmen (StadtRasseNummer.Rasse),
                                                     PolygonAccessExtern => PolygonAccess);
                
             when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum =>
@@ -382,37 +383,37 @@ package body KarteSFML is
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
-      EinheitStadtRasseNummer := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
+      EinheitRasseNummer := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
          
       if
-        EinheitStadtRasseNummer.Nummer = EinheitenKonstanten.LeerNummer
+        EinheitRasseNummer.Nummer = EinheitenKonstanten.LeerNummer
       then
          null;
          
       elsif
-        EingeleseneTexturenSFML.EinheitenAccess (RasseExtern, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitStadtRasseNummer)) /= null
+        EingeleseneTexturenSFML.EinheitenAccess (RasseExtern, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummer)) /= null
       then
          KarteGrafikenZeichnenSFML.SpriteZeichnen (SpriteAccesExtern => SpriteAccess,
                                                    PositionExtern    => PositionExtern,
                                                    SkalierungExtern  => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenWeltkarte
                                                      (SpriteAccessExtern  => SpriteAccess,
-                                                      TextureAccessExtern => EingeleseneTexturenSFML.EinheitenAccess (RasseExtern, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitStadtRasseNummer))));
+                                                      TextureAccessExtern => EingeleseneTexturenSFML.EinheitenAccess (RasseExtern, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummer))));
          
          
       elsif
-        LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitStadtRasseNummer) /= EinheitenKonstanten.LeerWirdTransportiert
+        LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummer) /= EinheitenKonstanten.LeerWirdTransportiert
       then
          ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.80,
                                               PositionExtern      => PositionExtern,
                                               AnzahlEckenExtern   => 4,
-                                              FarbeExtern         => GrafikEinstellungenSFML.RassenFarbenRahmen (EinheitStadtRasseNummer.Rasse),
+                                              FarbeExtern         => GrafikEinstellungenSFML.RassenFarbenRahmen (EinheitRasseNummer.Rasse),
                                               PolygonAccessExtern => PolygonAccess);
             
       else
          ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.80,
                                               PositionExtern      => PositionExtern,
                                               AnzahlEckenExtern   => 4,
-                                              FarbeExtern         => GrafikEinstellungenSFML.RassenFarbenRahmen (EinheitStadtRasseNummer.Rasse),
+                                              FarbeExtern         => GrafikEinstellungenSFML.RassenFarbenRahmen (EinheitRasseNummer.Rasse),
                                               PolygonAccessExtern => PolygonAccess);
       end if;
       

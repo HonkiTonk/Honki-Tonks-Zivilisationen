@@ -11,11 +11,12 @@ with Sf.Graphics.View;
 
 with RassenDatentypen; use RassenDatentypen;
 with SonstigeVariablen;
-with EinheitStadtRecords;
+with EinheitenRecords;
 with KartenDatentypen;
 with KartenRecords;
 with KartenRecordKonstanten;
 with ProduktionDatentypen;
+with StadtRecords;
 
 with UmwandlungenAdaNachEigenes;
 
@@ -33,8 +34,9 @@ private
    SchriftfarbeFestgelegt : Boolean := False;
    SchriftgrößeFestgelegt : Boolean := False;
 
-   StadtRasseNummer : EinheitStadtRecords.RasseEinheitnummerRecord;
-   EinheitRasseNummer : EinheitStadtRecords.RasseEinheitnummerRecord;
+   StadtRasseNummer : StadtRecords.RasseStadtnummerRecord;
+
+   EinheitRasseNummer : EinheitenRecords.RasseEinheitnummerRecord;
 
    Zeilenabstand : Float;
 

@@ -2,10 +2,12 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen;
-with EinheitStadtDatentypen;
+with StadtDatentypen;
+with EinheitenDatentypen;
 with KartenRecords;
 with AufgabenDatentypen;
 with KartenDatentypen;
+with KampfDatentypen;
 
 with KIDatentypen;
 
@@ -14,41 +16,41 @@ package EinheitenRecords is
    type RasseEinheitnummerRecord is record
       
       Rasse : RassenDatentypen.Rassen_Enum;
-      Nummer : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
+      Nummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
       
    end record;
    
    
    
    type KIBewegungPlanArray is array (KartenDatentypen.Stadtfeld'Range) of KartenRecords.AchsenKartenfeldPositivRecord;
-   type TransporterArray is array (EinheitStadtDatentypen.TransportplätzeVorhanden'Range) of EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
-   type EinheitMeldungenArray is array (EinheitStadtDatentypen.Einheit_Meldung_Art_Enum'Range) of EinheitStadtDatentypen.Einheit_Meldung_Enum;
+   type TransporterArray is array (EinheitenDatentypen.TransportplätzeVorhanden'Range) of EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   type EinheitMeldungenArray is array (EinheitenDatentypen.Einheit_Meldung_Art_Enum'Range) of EinheitenDatentypen.Einheit_Meldung_Enum;
 
    type EinheitenGebautRecord is record
       
-      ID : EinheitStadtDatentypen.EinheitenIDMitNullWert;
+      ID : EinheitenDatentypen.EinheitenIDMitNullWert;
       KoordinatenAktuell : KartenRecords.AchsenKartenfeldPositivRecord;
-      Heimatstadt : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
+      Heimatstadt : StadtDatentypen.MaximaleStädteMitNullWert;
       
-      Lebenspunkte : EinheitStadtDatentypen.Lebenspunkte;
-      Bewegungspunkte : EinheitStadtDatentypen.VorhandeneBewegungspunkte;
-      Erfahrungspunkte : EinheitStadtDatentypen.Kampfwerte;
-      Rang : EinheitStadtDatentypen.Kampfwerte;
+      Lebenspunkte : EinheitenDatentypen.Lebenspunkte;
+      Bewegungspunkte : EinheitenDatentypen.VorhandeneBewegungspunkte;
+      Erfahrungspunkte : KampfDatentypen.Kampfwerte;
+      Rang : KampfDatentypen.Kampfwerte;
       
       ---------------------------- Beschäftigung und Zeit zusammenführen.
       Beschäftigung : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
       BeschäftigungNachfolger : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
       
-      -- Besseren Datentypen für die Beschäftigungszeit einbauen? Z. B. für Arbeiten die niemals fertig werden?
-      Beschäftigungszeit : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
-      BeschäftigungszeitNachfolger : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
+      ---------------------------- Besseren Datentypen für die Beschäftigungszeit einbauen? Z. B. für Arbeiten die niemals fertig werden?
+      Beschäftigungszeit : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      BeschäftigungszeitNachfolger : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
       
       KIZielKoordinaten : KartenRecords.AchsenKartenfeldPositivRecord;
       KIBeschäftigt : KIDatentypen.Einheit_Aufgabe_Enum;
       KIBewegungPlan : KIBewegungPlanArray;
       
       Transportiert : TransporterArray;
-      WirdTransportiert : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
+      WirdTransportiert : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
       
       Meldungen : EinheitMeldungenArray;
       
@@ -59,7 +61,7 @@ package EinheitenRecords is
    type ArbeitRecord is record
       
       WelcheArbeit : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
-      Arbeitszeit : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
+      Arbeitszeit : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
       
    end record;
 

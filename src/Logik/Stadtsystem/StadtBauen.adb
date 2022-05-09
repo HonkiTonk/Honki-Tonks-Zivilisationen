@@ -1,7 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
+with StadtDatentypen; use StadtDatentypen;
 with GlobaleTexte;
 
 with SchreibeStadtGebaut;
@@ -21,7 +22,7 @@ with Fehler;
 package body StadtBauen is
 
    function StadtBauen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
         
@@ -40,7 +41,7 @@ package body StadtBauen is
       case
         StadtNummer
       is
-         when EinheitStadtDatentypen.MaximaleStädteMitNullWert'First =>
+         when StadtDatentypen.MaximaleStädteMitNullWert'First =>
             return False;
             
          when others =>
@@ -84,7 +85,7 @@ package body StadtBauen is
    
    
    function StadtBaubar
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
       
@@ -92,7 +93,7 @@ package body StadtBauen is
         LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                            IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       is
-         when EinheitStadtDatentypen.Arbeiter_Enum =>
+         when EinheitenDatentypen.Arbeiter_Enum =>
             null;
          
          when others =>
@@ -121,7 +122,7 @@ package body StadtBauen is
    
    function StadtnummerErmitteln
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
+      return StadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
       StadtSchleife:
@@ -155,14 +156,14 @@ package body StadtBauen is
          
       end loop StadtSchleife;
       
-      return EinheitStadtDatentypen.MaximaleStädteMitNullWert'First;
+      return StadtDatentypen.MaximaleStädteMitNullWert'First;
       
    end StadtnummerErmitteln;
    
    
    
    procedure StadtEintragen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
@@ -220,7 +221,7 @@ package body StadtBauen is
    
    
    function StandardStadtNamen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return Unbounded_Wide_Wide_String
    is begin
       

@@ -1,10 +1,10 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
 with RassenDatentypen; use RassenDatentypen;
-with EinheitStadtRecords;
+with EinheitenRecords;
 with SonstigeVariablen;
 with KartenRecords;
 with SpielVariablen;
@@ -14,7 +14,7 @@ with Karten;
 package BewegungBerechnen is
 
    procedure BewegungEinheitenBerechnung
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
      with
        Pre =>
@@ -28,19 +28,19 @@ package BewegungBerechnen is
    
 private
       
-   KleinerAbzug : constant EinheitStadtDatentypen.VorhandeneBewegungspunkte := 1.00;
-   MittlererAbzug : constant EinheitStadtDatentypen.VorhandeneBewegungspunkte := 2.00;
-   GroßerAbzug : constant EinheitStadtDatentypen.VorhandeneBewegungspunkte := 3.00;
-   KeinAbzug : constant EinheitStadtDatentypen.VorhandeneBewegungspunkte := 0.00;
-   EinheitUnbewegbar : constant EinheitStadtDatentypen.BewegungFloat := -1.00;
+   KleinerAbzug : constant EinheitenDatentypen.VorhandeneBewegungspunkte := 1.00;
+   MittlererAbzug : constant EinheitenDatentypen.VorhandeneBewegungspunkte := 2.00;
+   GroßerAbzug : constant EinheitenDatentypen.VorhandeneBewegungspunkte := 3.00;
+   KeinAbzug : constant EinheitenDatentypen.VorhandeneBewegungspunkte := 0.00;
+   EinheitUnbewegbar : constant EinheitenDatentypen.BewegungFloat := -1.00;
    
-   BewegungspunkteAbzug : EinheitStadtDatentypen.BewegungFloat;
+   BewegungspunkteAbzug : EinheitenDatentypen.BewegungFloat;
       
    type Bewegungsbonuse_Enum is (Leer_Enum, Straße_Fluss_Enum, Schiene_Enum);
    
    Welchen_Bonus : Bewegungsbonuse_Enum;
    
-   type BewegungsmodifikatorArray is array (Bewegungsbonuse_Enum'Range) of EinheitStadtDatentypen.VorhandeneBewegungspunkte;
+   type BewegungsmodifikatorArray is array (Bewegungsbonuse_Enum'Range) of EinheitenDatentypen.VorhandeneBewegungspunkte;
    Bewegungsmodifikator : constant BewegungsmodifikatorArray := (
                                                                  Leer_Enum         => 0.00,
                                                                  Straße_Fluss_Enum => 0.50,
@@ -49,7 +49,7 @@ private
    
    procedure NachBewegung
      (NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -64,8 +64,8 @@ private
    
    function AbzugDurchBewegung
      (NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
-      return EinheitStadtDatentypen.BewegungFloat
+      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return EinheitenDatentypen.BewegungFloat
      with
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -77,7 +77,7 @@ private
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
    
    function StraßeUndFlussPrüfen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Bewegungsbonuse_Enum
      with

@@ -111,7 +111,7 @@ package body TextAnzeigeKonsole is
    
    
    procedure AllgemeineAnzeige
-     (AktuelleAuswahlExtern : in EinheitStadtDatentypen.MinimimMaximumID)
+     (AktuelleAuswahlExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
    is begin
       
       LängsterText := 1;

@@ -4,10 +4,9 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with SystemDatentypen;
-with EinheitStadtRecords;
 with KartenRecords;
 with ForschungKonstanten;
-with EinheitStadtDatentypen;
+with StadtDatentypen;
 with KartenDatentypen;
 with KartengrundDatentypen;
 with KartenVerbesserungDatentypen;
@@ -16,6 +15,7 @@ with RassenDatentypen;
 with ForschungenDatentypen;
 with ProduktionDatentypen;
 with StadtRecords;
+with KampfDatentypen;
 
 with DatenbankRecords;
 
@@ -24,8 +24,8 @@ with KIDatentypen;
 package StadtKonstanten is
    
    LeerRasse : constant RassenDatentypen.Rassen_Enum := RassenDatentypen.Keine_Rasse_Enum;
-   LeerNummer : constant EinheitStadtDatentypen.MaximaleStädteMitNullWert := EinheitStadtDatentypen.MaximaleStädteMitNullWert'First;
-   LeerRasseNummer : constant EinheitStadtRecords.RasseEinheitnummerRecord := (LeerRasse, LeerNummer);
+   LeerNummer : constant StadtDatentypen.MaximaleStädteMitNullWert := StadtDatentypen.MaximaleStädteMitNullWert'First;
+   LeerRasseNummer : constant StadtRecords.RasseStadtnummerRecord := (LeerRasse, LeerNummer);
    
    LeerID : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum := KartenVerbesserungDatentypen.Leer_Verbesserung_Enum;
    LeerKoordinaten : constant KartenRecords.AchsenKartenfeldPositivRecord := (0, 0, 0);
@@ -39,7 +39,7 @@ package StadtKonstanten is
    LeerGeldgewinnung : constant ProduktionDatentypen.GesamtproduktionStadt := 0;
    LeerPermanenteKosten : constant ProduktionDatentypen.GesamtePermanenteKosten := 0;
    LeerForschungsrate : constant ProduktionDatentypen.GesamtproduktionStadt := 0;
-   LeerBauprojekt : constant StadtRecords.BauprojektRecord := (True, 0);
+   LeerBauprojekt : constant StadtRecords.BauprojektRecord := (0, 0);
    LeerBauzeit : constant ProduktionDatentypen.KostenLager := 0;
    LeerKorruption : constant ProduktionDatentypen.GesamtproduktionStadt := 0;
    LeerZufriedenheit : constant ProduktionDatentypen.ProduktionFeld := 0;
@@ -47,7 +47,7 @@ package StadtKonstanten is
    LeerName : constant Unbounded_Wide_Wide_String := TextKonstanten.LeerUnboundedString;
    LeerUmgebungBewitschaftet : constant Boolean := False;
    LeerUmgebungGröße : constant KartenDatentypen.UmgebungsbereichDrei := 0;
-   LeerMeldung : constant EinheitStadtDatentypen.Stadt_Meldung_Enum := EinheitStadtDatentypen.Leer_Stadt_Meldung_Enum;
+   LeerMeldung : constant StadtDatentypen.Stadt_Meldung_Enum := StadtDatentypen.Leer_Stadt_Meldung_Enum;
    LeerKIBeschäftigung : constant KIDatentypen.Stadt_Aufgabe_Enum := KIDatentypen.Keine_Aufgabe_Enum;
    
    LeerStadt : constant StadtRecords.StadtGebautRecord := (
@@ -75,16 +75,17 @@ package StadtKonstanten is
 
    MaximaleBauzeit : constant ProduktionDatentypen.KostenLager := ProduktionDatentypen.KostenLager'Last;
    
+   LeerGebäudeID : constant StadtDatentypen.GebäudeIDMitNullwert := 0;
    LeerGebäudeGrafik : constant Wide_Wide_Character := TextKonstanten.LeerZeichen;
    LeerPreisGeld : constant ProduktionDatentypen.KostenLager := 0;
    LeerPreisRessourcen : constant ProduktionDatentypen.KostenLager := 0;
    LeerAnforderungen : constant ForschungenDatentypen.ForschungIDNichtMöglich := ForschungKonstanten.ForschungUnmöglich;
    LeerBonusWirtschaft : constant ProduktionDatentypen.ProduktionFeld := 0;
-   LeerBonusKampf : constant EinheitStadtDatentypen.Kampfwerte := EinheitStadtDatentypen.Kampfwerte'First;
+   LeerBonusKampf : constant KampfDatentypen.Kampfwerte := KampfDatentypen.Kampfwerte'First;
    LeerGrundBenötigt : constant KartengrundDatentypen.Kartengrund_Enum := KartengrundDatentypen.Leer_Grund_Enum;
    LeerFlussBenötigt : constant Boolean := False;
    LeerRessourceBenötigt : constant KartengrundDatentypen.Karten_Ressourcen_Enum := KartengrundDatentypen.Leer_Ressource_Enum;
-   LeerSpezielleEigenschaft : constant EinheitStadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum := EinheitStadtDatentypen.Leer_Gebäude_Spezielle_Egienschaft_Enum;
+   LeerSpezielleEigenschaft : constant StadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum := StadtDatentypen.Leer_Gebäude_Spezielle_Egienschaft_Enum;
    
    LeerGebäudeListe : constant DatenbankRecords.GebäudelisteRecord := (
                                                                          PreisGeld                   => LeerPreisGeld,

@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
 with TastenbelegungDatentypen;
 with EinheitenKonstanten;
@@ -22,13 +22,13 @@ with KIAufgabeUmsetzen;
 package body KIAufgabenPlanung is
    
    procedure AufgabeErmitteln
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       -- Muss für die Schleife weiter unten auf den ersten Wert gesetzt werden.
       GewählteAufgabe := KIDatentypen.Einheit_Aufgabe_Enum'First;
       Wichtigkeit := (others => ProduktionDatentypen.ProduktionSonstiges'First);
-            
+                  
       Wichtigkeit (KIDatentypen.Tut_Nichts_Enum) := KIVorhandeneAufgaben.NichtsTun;
       Wichtigkeit (KIDatentypen.Einheit_Auflösen_Enum) := KIVorhandeneAufgaben.EinheitAuflösen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       Wichtigkeit (KIDatentypen.Einheit_Heilen_Enum) := KIVorhandeneAufgaben.SichHeilen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -48,36 +48,36 @@ package body KIAufgabenPlanung is
    
    
    procedure EinheitSpezifischeAufgabenErmitteln
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       case
         LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                            IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       is
-         when EinheitStadtDatentypen.Arbeiter_Enum =>
+         when EinheitenDatentypen.Arbeiter_Enum =>
             Wichtigkeit (KIDatentypen.Stadt_Bauen_Enum) := KIVorhandeneAufgaben.NeueStadtBauenGehen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             Wichtigkeit (KIDatentypen.Verbesserung_Anlegen_Enum) := KIVorhandeneAufgaben.StadtUmgebungVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-         when EinheitStadtDatentypen.Nahkämpfer_Enum =>
+         when EinheitenDatentypen.Nahkämpfer_Enum =>
             Wichtigkeit (KIDatentypen.Stadt_Bewachen_Enum) := KIVorhandeneAufgaben.StadtBewachen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             Wichtigkeit (KIDatentypen.Verbesserung_Zerstören_Enum) := KIVorhandeneAufgaben.StadtUmgebungZerstören;
             Wichtigkeit (KIDatentypen.Angreifen_Enum) := KIVorhandeneAufgaben.Angreifen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             Wichtigkeit (KIDatentypen.Erkunden_Enum) := KIVorhandeneAufgaben.Erkunden;
             
-         when EinheitStadtDatentypen.Fernkämpfer_Enum =>
+         when EinheitenDatentypen.Fernkämpfer_Enum =>
             null;
             
-         when EinheitStadtDatentypen.Beides_Enum =>
+         when EinheitenDatentypen.Beides_Enum =>
             null;
             
-         when EinheitStadtDatentypen.Sonstiges_Enum =>
+         when EinheitenDatentypen.Sonstiges_Enum =>
             null;
             
-         when EinheitStadtDatentypen.Cheat_Enum =>
+         when EinheitenDatentypen.Cheat_Enum =>
             Fehler.LogikFehler (FehlermeldungExtern => "KIAufgabenPlanung.EinheitSpezifischeAufgabenErmitteln - KI hat Cheateinheit ausgewählt.");
             
-         when EinheitStadtDatentypen.Leer_Einheitart_Enum =>
+         when EinheitenDatentypen.Leer_Einheitart_Enum =>
             Fehler.LogikFehler (FehlermeldungExtern => "KIAufgabenPlanung.EinheitSpezifischeAufgabenErmitteln - KI hat keine Einheit ausgewählt.");
       end case;
       
@@ -121,7 +121,7 @@ package body KIAufgabenPlanung is
    
    procedure AufgabeFestlegen
      (GewählteAufgabeExtern : in KIDatentypen.Einheit_Aufgabe_Enum;
-      EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       case
@@ -170,7 +170,7 @@ package body KIAufgabenPlanung is
    
    
    procedure AufgabeUmsetzen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       AufgabeDurchführen := True;

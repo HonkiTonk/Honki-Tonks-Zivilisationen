@@ -34,7 +34,7 @@ with KISonstigesSuchen;
 package body KIAufgabeFestlegen is
    
    procedure KeineAufgabe
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       -- Hier eventuell die Bewegungspukte auf 0 setzen?
@@ -48,7 +48,7 @@ package body KIAufgabeFestlegen is
    
 
    procedure Heilen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -59,7 +59,7 @@ package body KIAufgabeFestlegen is
    
    
    procedure StadtBauenPrüfung
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       NeueStadtPosition := KIPruefungen.UmgebungStadtBauenPrüfen (EinheitRasseNummerExtern   => EinheitRasseNummerExtern,
@@ -88,7 +88,7 @@ package body KIAufgabeFestlegen is
       
    
    procedure StadtUmgebungVerbesserung
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -101,7 +101,7 @@ package body KIAufgabeFestlegen is
    
    
    procedure StadtBewachen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       EinheitNummer := 1;
@@ -141,7 +141,7 @@ package body KIAufgabeFestlegen is
    
    
    procedure StadtUmgebungZerstören
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       null;
@@ -151,7 +151,7 @@ package body KIAufgabeFestlegen is
    
    
    procedure Angreifen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       WenAngreifen := ZielErmitteln (RasseExtern => EinheitRasseNummerExtern.Rasse);
@@ -242,7 +242,7 @@ package body KIAufgabeFestlegen is
    
    
    procedure Erkunden
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
             
       KarteReichweite := 1;
@@ -316,7 +316,7 @@ package body KIAufgabeFestlegen is
    
    
    procedure Fliehen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -327,7 +327,7 @@ package body KIAufgabeFestlegen is
    
    
    procedure Befestigen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -338,7 +338,7 @@ package body KIAufgabeFestlegen is
    
    
    procedure EinheitVerbessern
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       PlatzGefunden := KISonstigesSuchen.EigenesFeldSuchen (AktuelleKoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
@@ -400,8 +400,8 @@ package body KIAufgabeFestlegen is
    
    
    function EinheitVerbessernPlatz
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      EinheitNummerExtern : in EinheitStadtDatentypen.MaximaleEinheiten)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      EinheitNummerExtern : in EinheitenDatentypen.MaximaleEinheiten)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       

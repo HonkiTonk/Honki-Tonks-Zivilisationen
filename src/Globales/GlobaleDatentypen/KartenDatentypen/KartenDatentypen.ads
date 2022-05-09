@@ -117,12 +117,14 @@ package KartenDatentypen is
    
    
    
-   type GesamtbewertungFeld is range -100 .. 100;
+   -------------------- Auch mal bessere Bereiche ermitteln/einbauen.
+   type GesamtbewertungFeld is range -1_000 .. 1_000;
    subtype BewertungFeld is GesamtbewertungFeld range -10 .. 10;
 
    type Wirtschaft_Enum is (
                             Nahrung, Produktion, Geld, Forschung
                            );
+   
    type Kampf_Enum is (
                        Verteidigung, Angriff
                       );

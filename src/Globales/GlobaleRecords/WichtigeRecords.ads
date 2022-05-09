@@ -1,7 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitStadtDatentypen;
+with StadtDatentypen;
+with EinheitenDatentypen;
 with SystemDatentypen;
 with ForschungenDatentypen;
 with ProduktionDatentypen;
@@ -30,10 +31,10 @@ package WichtigeRecords is
       -- Wenn ich ein Record für diese Variable hier anlege, dann könnten man die bereits investierte Forschung behalten. XXX
       Erforscht : ForschungenDatentypen.ErforschtArray;
       
-      AnzahlStädte : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
-      AnzahlArbeiter : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
-      AnzahlKämpfer : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
-      AnzahlSonstiges : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
+      AnzahlStädte : StadtDatentypen.MaximaleStädteMitNullWert;
+      AnzahlArbeiter : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      AnzahlKämpfer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      AnzahlSonstiges : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
       
       -- Einbau sinnvoll?
       -- GesamterAngriff : ProduktionDatentypen.KostenLager;
@@ -55,8 +56,8 @@ package WichtigeRecords is
    
    type GrenzenRecord is record
       
-      Städtegrenze : EinheitStadtDatentypen.MaximaleStädte;
-      Einheitengrenze : EinheitStadtDatentypen.MaximaleEinheiten;
+      Städtegrenze : StadtDatentypen.MaximaleStädte;
+      Einheitengrenze : EinheitenDatentypen.MaximaleEinheiten;
       Geldgrenze : Integer;
       Forschungsgrenze : ProduktionDatentypen.KostenLager;
       Geldgewinngrenze : ProduktionDatentypen.KostenLager;

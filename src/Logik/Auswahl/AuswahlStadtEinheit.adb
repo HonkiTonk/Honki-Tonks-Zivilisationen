@@ -3,7 +3,8 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
+with StadtDatentypen; use StadtDatentypen;
 with GlobaleTexte;
 with TextKonstanten;
 with TastenbelegungDatentypen;
@@ -22,8 +23,8 @@ package body AuswahlStadtEinheit is
    function AuswahlStadtEinheit
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       -- Wenn die StadtNummerExtern = 0 ist, dann wird von einem beladenen Transporter ausgegangen.
-      StadtNummerExtern : in EinheitStadtDatentypen.MaximaleStädteMitNullWert;
-      EinheitNummerExtern : in EinheitStadtDatentypen.MaximaleEinheitenMitNullWert)
+      StadtNummerExtern : in StadtDatentypen.MaximaleStädteMitNullWert;
+      EinheitNummerExtern : in EinheitenDatentypen.MaximaleEinheitenMitNullWert)
       return Integer
    is begin
       
@@ -56,10 +57,11 @@ package body AuswahlStadtEinheit is
       WelcheAuswahl.MöglicheAuswahlen := (others => 0);
       
       if
-        StadtNummerExtern /= EinheitStadtDatentypen.MaximaleStädteMitNullWert'First
+        StadtNummerExtern /= StadtDatentypen.MaximaleStädteMitNullWert'First
       then
          WelcheAuswahl.StadtEinheit := True;
-         WelcheAuswahl.MöglicheAuswahlen (0) := StadtNummerExtern;
+         ---------------------- Übergangslösung bis hier alles mal neu geschrieben wird. Gilt auch für die Konvertierungen weiter unten.
+         WelcheAuswahl.MöglicheAuswahlen (0) := EinheitenDatentypen.MaximaleEinheitenMitNullWert (StadtNummerExtern);
          WelcheAuswahl.MöglicheAuswahlen (1) := EinheitNummerExtern;
 
       else
@@ -135,7 +137,8 @@ package body AuswahlStadtEinheit is
                when True =>
                   Sf.Graphics.Text.setUnicodeString (text => TextAccess,
                                                      str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugStadt))
-                                                     & To_Wide_Wide_String (Source => LeseStadtGebaut.Name (StadtRasseNummerExtern => (RasseExtern, WelcheAuswahl.MöglicheAuswahlen (0)))));
+                                                     & To_Wide_Wide_String (Source => LeseStadtGebaut.Name 
+                                                                            (StadtRasseNummerExtern => (RasseExtern, StadtDatentypen.MaximaleStädteMitNullWert (WelcheAuswahl.MöglicheAuswahlen (0))))));
          
                when False =>
                   Sf.Graphics.Text.setUnicodeString (text => TextAccess,
@@ -144,7 +147,7 @@ package body AuswahlStadtEinheit is
             
          else
             if
-              WelcheAuswahl.MöglicheAuswahlen (AuswahlSchleifenwert) = EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First
+              WelcheAuswahl.MöglicheAuswahlen (AuswahlSchleifenwert) = EinheitenDatentypen.MaximaleEinheitenMitNullWert'First
             then
                null;
                
@@ -156,8 +159,7 @@ package body AuswahlStadtEinheit is
          end if;
             
          if
-           -- Hier besser MaximaleStädteMitNullWert prüfen, wenn gleich es auch mit MaximaleEinheitenMitNullWert gehen sollte.
-           WelcheAuswahl.MöglicheAuswahlen (AuswahlSchleifenwert) = EinheitStadtDatentypen.MaximaleStädteMitNullWert'First
+           WelcheAuswahl.MöglicheAuswahlen (AuswahlSchleifenwert) = EinheitenDatentypen.MaximaleEinheitenMitNullWert (StadtDatentypen.MaximaleStädteMitNullWert'First)
          then
             null;
             

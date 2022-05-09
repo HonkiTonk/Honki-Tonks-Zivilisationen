@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitStadtDatentypen;
+with EinheitenDatentypen;
 with KartenVerbesserungDatentypen;
 with KartenRecordKonstanten;
 
@@ -60,9 +60,9 @@ private
                                                                        -- Gebilde
                                                                        KartenVerbesserungDatentypen.Farm_Enum =>
                                                                          (
-                                                                          Passierbarkeit     => (EinheitStadtDatentypen.Boden_Enum    => True,
-                                                                                                 EinheitStadtDatentypen.Luft_Enum     => True,
-                                                                                                 EinheitStadtDatentypen.Weltraum_Enum => True, 
+                                                                          Passierbarkeit     => (EinheitenDatentypen.Boden_Enum    => True,
+                                                                                                 EinheitenDatentypen.Luft_Enum     => True,
+                                                                                                 EinheitenDatentypen.Weltraum_Enum => True, 
                                                                                                  others                               => False),
                                                                           Bewertung          => (others => 1),
                                                                           Wirtschaft         => (others => (others => 1)),
@@ -71,9 +71,9 @@ private
                                                   
                                                                        KartenVerbesserungDatentypen.Mine_Enum =>
                                                                          (
-                                                                          Passierbarkeit     => (EinheitStadtDatentypen.Boden_Enum    => True,
-                                                                                                 EinheitStadtDatentypen.Luft_Enum     => True,
-                                                                                                 EinheitStadtDatentypen.Weltraum_Enum => True,
+                                                                          Passierbarkeit     => (EinheitenDatentypen.Boden_Enum    => True,
+                                                                                                 EinheitenDatentypen.Luft_Enum     => True,
+                                                                                                 EinheitenDatentypen.Weltraum_Enum => True,
                                                                                                  others                               => False),
                                                                           Bewertung          => (others => 1),
                                                                           Wirtschaft         => (others => (others => 1)),
@@ -82,9 +82,9 @@ private
                                                   
                                                                        KartenVerbesserungDatentypen.Festung_Enum =>
                                                                          (
-                                                                          Passierbarkeit     => (EinheitStadtDatentypen.Boden_Enum    => True,
-                                                                                                 EinheitStadtDatentypen.Luft_Enum     => True,
-                                                                                                 EinheitStadtDatentypen.Weltraum_Enum => True,
+                                                                          Passierbarkeit     => (EinheitenDatentypen.Boden_Enum    => True,
+                                                                                                 EinheitenDatentypen.Luft_Enum     => True,
+                                                                                                 EinheitenDatentypen.Weltraum_Enum => True,
                                                                                                  others                               => False),
                                                                           Bewertung          => (others => 1),
                                                                           Wirtschaft         => (others => (others => 1)),
@@ -93,8 +93,8 @@ private
                                                   
                                                                        KartenVerbesserungDatentypen.Sperre_Enum =>
                                                                          (
-                                                                          Passierbarkeit     => (EinheitStadtDatentypen.Luft_Enum     => True,
-                                                                                                 EinheitStadtDatentypen.Weltraum_Enum => True,
+                                                                          Passierbarkeit     => (EinheitenDatentypen.Luft_Enum     => True,
+                                                                                                 EinheitenDatentypen.Weltraum_Enum => True,
                                                                                                  others                               => False),
                                                                           Bewertung          => (others => 1),
                                                                           Wirtschaft         => (others => (others => 1)),
@@ -109,9 +109,9 @@ private
                                                    -- Straßen
                                                    KartenVerbesserungDatentypen.Straßenkreuzung_Vier_Enum =>
                                                      (
-                                                      Passierbarkeit     => (EinheitStadtDatentypen.Boden_Enum    => True,
-                                                                             EinheitStadtDatentypen.Luft_Enum     => True,
-                                                                             EinheitStadtDatentypen.Weltraum_Enum => True,
+                                                      Passierbarkeit     => (EinheitenDatentypen.Boden_Enum    => True,
+                                                                             EinheitenDatentypen.Luft_Enum     => True,
+                                                                             EinheitenDatentypen.Weltraum_Enum => True,
                                                                              others                               => False),
                                                       Bewertung          => (others => 1),
                                                       Wirtschaft         => (others => (others => 1)),
@@ -120,9 +120,9 @@ private
                                                   
                                                    KartenVerbesserungDatentypen.Straße_Waagrecht_Enum =>
                                                      (
-                                                      Passierbarkeit     => (EinheitStadtDatentypen.Boden_Enum    => True,
-                                                                             EinheitStadtDatentypen.Luft_Enum     => True,
-                                                                             EinheitStadtDatentypen.Weltraum_Enum => True, 
+                                                      Passierbarkeit     => (EinheitenDatentypen.Boden_Enum    => True,
+                                                                             EinheitenDatentypen.Luft_Enum     => True,
+                                                                             EinheitenDatentypen.Weltraum_Enum => True, 
                                                                              others                               => False),
                                                       Bewertung          => (others => 1),
                                                       Wirtschaft         => (others => (others => 1)),
@@ -131,9 +131,9 @@ private
                                                   
                                                    KartenVerbesserungDatentypen.Straße_Senkrecht_Enum =>
                                                      (
-                                                      Passierbarkeit     => (EinheitStadtDatentypen.Boden_Enum    => True,
-                                                                             EinheitStadtDatentypen.Luft_Enum     => True,
-                                                                             EinheitStadtDatentypen.Weltraum_Enum => True,
+                                                      Passierbarkeit     => (EinheitenDatentypen.Boden_Enum    => True,
+                                                                             EinheitenDatentypen.Luft_Enum     => True,
+                                                                             EinheitenDatentypen.Weltraum_Enum => True,
                                                                              others                               => False),
                                                       Bewertung          => (others => 1),
                                                       Wirtschaft         => (others => (others => 1)),
@@ -142,9 +142,9 @@ private
                                                   
                                                    KartenVerbesserungDatentypen.Straßenkurve_Unten_Rechts_Enum =>
                                                      (
-                                                      Passierbarkeit     => (EinheitStadtDatentypen.Boden_Enum    => True,
-                                                                             EinheitStadtDatentypen.Luft_Enum     => True,
-                                                                             EinheitStadtDatentypen.Weltraum_Enum => True, 
+                                                      Passierbarkeit     => (EinheitenDatentypen.Boden_Enum    => True,
+                                                                             EinheitenDatentypen.Luft_Enum     => True,
+                                                                             EinheitenDatentypen.Weltraum_Enum => True, 
                                                                              others                               => False),
                                                       Bewertung          => (others => 1),
                                                       Wirtschaft         => (others => (others => 1)),
@@ -153,9 +153,9 @@ private
                                                   
                                                    KartenVerbesserungDatentypen.Straßenkurve_Unten_Links_Enum =>
                                                      (
-                                                      Passierbarkeit     => (EinheitStadtDatentypen.Boden_Enum    => True,
-                                                                             EinheitStadtDatentypen.Luft_Enum     => True,
-                                                                             EinheitStadtDatentypen.Weltraum_Enum => True,
+                                                      Passierbarkeit     => (EinheitenDatentypen.Boden_Enum    => True,
+                                                                             EinheitenDatentypen.Luft_Enum     => True,
+                                                                             EinheitenDatentypen.Weltraum_Enum => True,
                                                                              others                               => False),
                                                       Bewertung          => (others => 1),
                                                       Wirtschaft         => (others => (others => 1)),
@@ -164,9 +164,9 @@ private
                                                   
                                                    KartenVerbesserungDatentypen.Straßenkurve_Oben_Rechts_Enum =>
                                                      (
-                                                      Passierbarkeit     => (EinheitStadtDatentypen.Boden_Enum    => True,
-                                                                             EinheitStadtDatentypen.Luft_Enum     => True,
-                                                                             EinheitStadtDatentypen.Weltraum_Enum => True,
+                                                      Passierbarkeit     => (EinheitenDatentypen.Boden_Enum    => True,
+                                                                             EinheitenDatentypen.Luft_Enum     => True,
+                                                                             EinheitenDatentypen.Weltraum_Enum => True,
                                                                              others                               => False),
                                                       Bewertung          => (others => 1),
                                                       Wirtschaft         => (others => (others => 1)),
@@ -175,9 +175,9 @@ private
                                                   
                                                    KartenVerbesserungDatentypen.Straßenkurve_Oben_Links_Enum =>
                                                      (
-                                                      Passierbarkeit     => (EinheitStadtDatentypen.Boden_Enum    => True,
-                                                                             EinheitStadtDatentypen.Luft_Enum     => True,
-                                                                             EinheitStadtDatentypen.Weltraum_Enum => True,
+                                                      Passierbarkeit     => (EinheitenDatentypen.Boden_Enum    => True,
+                                                                             EinheitenDatentypen.Luft_Enum     => True,
+                                                                             EinheitenDatentypen.Weltraum_Enum => True,
                                                                              others                               => False),
                                                       Bewertung          => (others => 1),
                                                       Wirtschaft         => (others => (others => 1)),
@@ -186,9 +186,9 @@ private
                                                   
                                                    KartenVerbesserungDatentypen.Straßenkreuzung_Drei_Oben_Enum =>
                                                      (
-                                                      Passierbarkeit     => (EinheitStadtDatentypen.Boden_Enum    => True,
-                                                                             EinheitStadtDatentypen.Luft_Enum     => True,
-                                                                             EinheitStadtDatentypen.Weltraum_Enum => True,
+                                                      Passierbarkeit     => (EinheitenDatentypen.Boden_Enum    => True,
+                                                                             EinheitenDatentypen.Luft_Enum     => True,
+                                                                             EinheitenDatentypen.Weltraum_Enum => True,
                                                                              others                               => False),
                                                       Bewertung          => (others => 1),
                                                       Wirtschaft         => (others => (others => 1)),
@@ -197,9 +197,9 @@ private
                                                   
                                                    KartenVerbesserungDatentypen.Straßenkreuzung_Drei_Unten_Enum =>
                                                      (
-                                                      Passierbarkeit     => (EinheitStadtDatentypen.Boden_Enum    => True,
-                                                                             EinheitStadtDatentypen.Luft_Enum     => True,
-                                                                             EinheitStadtDatentypen.Weltraum_Enum => True,
+                                                      Passierbarkeit     => (EinheitenDatentypen.Boden_Enum    => True,
+                                                                             EinheitenDatentypen.Luft_Enum     => True,
+                                                                             EinheitenDatentypen.Weltraum_Enum => True,
                                                                              others                               => False),
                                                       Bewertung          => (others => 1),
                                                       Wirtschaft         => (others => (others => 1)),
@@ -208,9 +208,9 @@ private
                                                   
                                                    KartenVerbesserungDatentypen.Straßenkreuzung_Drei_Rechts_Enum =>
                                                      (
-                                                      Passierbarkeit     => (EinheitStadtDatentypen.Boden_Enum    => True,
-                                                                             EinheitStadtDatentypen.Luft_Enum     => True,
-                                                                             EinheitStadtDatentypen.Weltraum_Enum => True,
+                                                      Passierbarkeit     => (EinheitenDatentypen.Boden_Enum    => True,
+                                                                             EinheitenDatentypen.Luft_Enum     => True,
+                                                                             EinheitenDatentypen.Weltraum_Enum => True,
                                                                              others                               => False),
                                                       Bewertung          => (others => 1),
                                                       Wirtschaft         => (others => (others => 1)),
@@ -219,9 +219,9 @@ private
                                                   
                                                    KartenVerbesserungDatentypen.Straßenkreuzung_Drei_Links_Enum =>
                                                      (
-                                                      Passierbarkeit     => (EinheitStadtDatentypen.Boden_Enum    => True,
-                                                                             EinheitStadtDatentypen.Luft_Enum     => True,
-                                                                             EinheitStadtDatentypen.Weltraum_Enum => True,
+                                                      Passierbarkeit     => (EinheitenDatentypen.Boden_Enum    => True,
+                                                                             EinheitenDatentypen.Luft_Enum     => True,
+                                                                             EinheitenDatentypen.Weltraum_Enum => True,
                                                                              others                               => False),
                                                       Bewertung          => (others => 1),
                                                       Wirtschaft         => (others => (others => 1)),
@@ -230,9 +230,9 @@ private
                                                   
                                                    KartenVerbesserungDatentypen.Straßenendstück_Links_Enum =>
                                                      (
-                                                      Passierbarkeit     => (EinheitStadtDatentypen.Boden_Enum    => True,
-                                                                             EinheitStadtDatentypen.Luft_Enum     => True,
-                                                                             EinheitStadtDatentypen.Weltraum_Enum => True,
+                                                      Passierbarkeit     => (EinheitenDatentypen.Boden_Enum    => True,
+                                                                             EinheitenDatentypen.Luft_Enum     => True,
+                                                                             EinheitenDatentypen.Weltraum_Enum => True,
                                                                              others                               => False),
                                                       Bewertung          => (others => 1),
                                                       Wirtschaft         => (others => (others => 1)),
@@ -241,9 +241,9 @@ private
                                                   
                                                    KartenVerbesserungDatentypen.Straßenendstück_Rechts_Enum =>
                                                      (
-                                                      Passierbarkeit     => (EinheitStadtDatentypen.Boden_Enum    => True,
-                                                                             EinheitStadtDatentypen.Luft_Enum     => True,
-                                                                             EinheitStadtDatentypen.Weltraum_Enum => True,
+                                                      Passierbarkeit     => (EinheitenDatentypen.Boden_Enum    => True,
+                                                                             EinheitenDatentypen.Luft_Enum     => True,
+                                                                             EinheitenDatentypen.Weltraum_Enum => True,
                                                                              others                               => False),
                                                       Bewertung          => (others => 1),
                                                       Wirtschaft         => (others => (others => 1)),
@@ -252,9 +252,9 @@ private
                                                   
                                                    KartenVerbesserungDatentypen.Straßenendstück_Unten_Enum =>
                                                      (
-                                                      Passierbarkeit     => (EinheitStadtDatentypen.Boden_Enum    => True,
-                                                                             EinheitStadtDatentypen.Luft_Enum     => True,
-                                                                             EinheitStadtDatentypen.Weltraum_Enum => True,
+                                                      Passierbarkeit     => (EinheitenDatentypen.Boden_Enum    => True,
+                                                                             EinheitenDatentypen.Luft_Enum     => True,
+                                                                             EinheitenDatentypen.Weltraum_Enum => True,
                                                                              others                               => False),
                                                       Bewertung          => (others => 1),
                                                       Wirtschaft         => (others => (others => 1)),
@@ -263,9 +263,9 @@ private
                                                   
                                                    KartenVerbesserungDatentypen.Straßenendstück_Oben_Enum =>
                                                      (
-                                                      Passierbarkeit     => (EinheitStadtDatentypen.Boden_Enum    => True,
-                                                                             EinheitStadtDatentypen.Luft_Enum     => True,
-                                                                             EinheitStadtDatentypen.Weltraum_Enum => True,
+                                                      Passierbarkeit     => (EinheitenDatentypen.Boden_Enum    => True,
+                                                                             EinheitenDatentypen.Luft_Enum     => True,
+                                                                             EinheitenDatentypen.Weltraum_Enum => True,
                                                                              others                               => False),
                                                       Bewertung          => (others => 1),
                                                       Wirtschaft         => (others => (others => 1)),
@@ -275,9 +275,9 @@ private
                                                    KartenVerbesserungDatentypen.Straße_Einzeln_Enum =>
                                                      (
                                                       Passierbarkeit     => (
-                                                                             EinheitStadtDatentypen.Boden_Enum    => True,
-                                                                             EinheitStadtDatentypen.Luft_Enum     => True,
-                                                                             EinheitStadtDatentypen.Weltraum_Enum => True,
+                                                                             EinheitenDatentypen.Boden_Enum    => True,
+                                                                             EinheitenDatentypen.Luft_Enum     => True,
+                                                                             EinheitenDatentypen.Weltraum_Enum => True,
                                                                              others                               => False
                                                                             ),
                                                       Bewertung          => (others => 1),

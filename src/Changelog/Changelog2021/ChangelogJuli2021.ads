@@ -51,7 +51,7 @@ package ChangelogJuli2021 is
    
    -- Unnötigen Code in den Stadtsystemen gelöscht und diverse Proceduren zusammengefasst.
    -- Die Prüfungen für verschiedene Stadtwerteänderungen in eine eigene Datei/eigene Proceduren ausgelagert.
-   -- Verschiedene Abfragen für Werte aus der Kartendatenbank oder für Kartenfelder zentralisiert.
+   -- Verschiedene Abfragen für Werte aus der KartengrundDatenbank oder für Kartenfelder zentralisiert.
    -- Den Rassen verschiedenen Lebewesen zugewiesen.
    -- Array für die Werte von DurchStadtBelegterGrund in zwei Funktionen umgewandelt.
    -- Angefangen die einzelnen Rassenbestandteile der Forschung/Einheiten/Gebaeude/RassenDatenbanken in einzelne Dateien auszulagern.

@@ -5,10 +5,10 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Ada.Integer_Wide_Wide_Text_IO;
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
+with StadtDatentypen; use StadtDatentypen;
 -- with GlobaleTexte;
-with StadtKonstanten;
 with KartenVerbesserungDatentypen;
 
 with LeseStadtGebaut;
@@ -23,7 +23,7 @@ package body StadtInformationenKonsole is
    
    procedure Stadt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+      StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       -- Allgemeine Stadtinformationen, nur sichtbar wenn das Kartenfeld aufgedeckt ist und sich dort eine Stadt befindet.
@@ -68,7 +68,7 @@ package body StadtInformationenKonsole is
 
    procedure StadtArtBesitzer
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+      StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       case
@@ -112,7 +112,7 @@ package body StadtInformationenKonsole is
    
    
    procedure StadtName
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       Put (Item => To_Wide_Wide_String (Source => LeseStadtGebaut.Name (StadtRasseNummerExtern => StadtRasseNummerExtern)));
@@ -122,17 +122,17 @@ package body StadtInformationenKonsole is
    
    
    procedure Einwohner
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
       --                                          TextDateiExtern        => GlobaleTexte.Zeug,
       --                                          ÜberschriftZeileExtern => 0,
-       --                                         ErsteZeileExtern       => 5,
+      --                                         ErsteZeileExtern       => 5,
       --                                          LetzteZeileExtern      => 5,
       --                                          AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-       --                                         AbstandMitteExtern     => GlobaleTexte.Leer,
-       --                                         AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
+      --                                         AbstandMitteExtern     => GlobaleTexte.Leer,
+      --                                         AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer (LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                                                                               EinwohnerArbeiterExtern => True)),
                                          Width => 1);
@@ -142,17 +142,17 @@ package body StadtInformationenKonsole is
    
    
    procedure AktuelleNahrungsmittel
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
-     -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-     --                                           TextDateiExtern        => GlobaleTexte.Zeug,
-     --                                           ÜberschriftZeileExtern => 0,
-     --                                           ErsteZeileExtern       => 6,
-     --                                           LetzteZeileExtern      => 6,
-     --                                           AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-     --                                           AbstandMitteExtern     => GlobaleTexte.Leer,
-     --                                           AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
+      -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+      --                                           TextDateiExtern        => GlobaleTexte.Zeug,
+      --                                           ÜberschriftZeileExtern => 0,
+      --                                           ErsteZeileExtern       => 6,
+      --                                           LetzteZeileExtern      => 6,
+      --                                           AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
+      --                                           AbstandMitteExtern     => GlobaleTexte.Leer,
+      --                                           AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer (LeseStadtGebaut.Nahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern)),
                                          Width => 1);
       
@@ -161,17 +161,17 @@ package body StadtInformationenKonsole is
    
    
    procedure AktuelleNahrungsproduktion
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
-    --  TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-     --                                           TextDateiExtern        => GlobaleTexte.Zeug,
-     --                                           ÜberschriftZeileExtern => 0,
-    --                                            ErsteZeileExtern       => 7,
-    --                                            LetzteZeileExtern      => 7,
-    --                                            AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-    --                                            AbstandMitteExtern     => GlobaleTexte.Leer,
-    --                                            AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
+      --  TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+      --                                           TextDateiExtern        => GlobaleTexte.Zeug,
+      --                                           ÜberschriftZeileExtern => 0,
+      --                                            ErsteZeileExtern       => 7,
+      --                                            LetzteZeileExtern      => 7,
+      --                                            AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
+      --                                            AbstandMitteExtern     => GlobaleTexte.Leer,
+      --                                            AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer (LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern)),
                                          Width => 1);
       
@@ -180,15 +180,15 @@ package body StadtInformationenKonsole is
    
    
    procedure AktuelleProduktionrate
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
-     -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-     --                                           TextDateiExtern        => GlobaleTexte.Zeug,
-     --                                           ÜberschriftZeileExtern => 0,
-     --                                           ErsteZeileExtern       => 8,
-     --                                           LetzteZeileExtern      => 8,
-     --                                           AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
+      -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+      --                                           TextDateiExtern        => GlobaleTexte.Zeug,
+      --                                           ÜberschriftZeileExtern => 0,
+      --                                           ErsteZeileExtern       => 8,
+      --                                           LetzteZeileExtern      => 8,
+      --                                           AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
       --                                          AbstandMitteExtern     => GlobaleTexte.Leer,
       --                                          AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer (LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern)),
@@ -199,13 +199,13 @@ package body StadtInformationenKonsole is
    
    
    procedure AktuelleGeldgewinnung
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
-    --  TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-     --                                           TextDateiExtern        => GlobaleTexte.Zeug,
-     --                                           ÜberschriftZeileExtern => 0,
-     --                                           ErsteZeileExtern       => 9,
+      --  TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+      --                                           TextDateiExtern        => GlobaleTexte.Zeug,
+      --                                           ÜberschriftZeileExtern => 0,
+      --                                           ErsteZeileExtern       => 9,
       --                                          LetzteZeileExtern      => 9,
       --                                          AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
       --                                          AbstandMitteExtern     => GlobaleTexte.Leer,
@@ -218,12 +218,12 @@ package body StadtInformationenKonsole is
    
    
    procedure AktuelleForschungsrate
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
-     -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-     --                                           TextDateiExtern        => GlobaleTexte.Zeug,
-     --                                           ÜberschriftZeileExtern => 0,
+      -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+      --                                           TextDateiExtern        => GlobaleTexte.Zeug,
+      --                                           ÜberschriftZeileExtern => 0,
       --                                          ErsteZeileExtern       => 10,
       --                                          LetzteZeileExtern      => 10,
       --                                          AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
@@ -237,14 +237,14 @@ package body StadtInformationenKonsole is
    
    
    procedure AktuelleVerteidigung
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
-     -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-     --                                           TextDateiExtern        => GlobaleTexte.Zeug,
-     --                                          ÜberschriftZeileExtern => 0,
-     --                                           ErsteZeileExtern       => 25,
-     --                                           LetzteZeileExtern      => 25,
+      -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+      --                                           TextDateiExtern        => GlobaleTexte.Zeug,
+      --                                          ÜberschriftZeileExtern => 0,
+      --                                           ErsteZeileExtern       => 25,
+      --                                           LetzteZeileExtern      => 25,
       --                                          AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
       --                                          AbstandMitteExtern     => GlobaleTexte.Leer,
       --                                          AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
@@ -256,14 +256,14 @@ package body StadtInformationenKonsole is
    
    
    procedure AktuellerAngriff
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
-    --  TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-     --                                           TextDateiExtern        => GlobaleTexte.Zeug,
-     --                                           ÜberschriftZeileExtern => 0,
-     --                                           ErsteZeileExtern       => 62,
-     --                                           LetzteZeileExtern      => 62,
+      --  TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+      --                                           TextDateiExtern        => GlobaleTexte.Zeug,
+      --                                           ÜberschriftZeileExtern => 0,
+      --                                           ErsteZeileExtern       => 62,
+      --                                           LetzteZeileExtern      => 62,
       --                                          AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
       --                                          AbstandMitteExtern     => GlobaleTexte.Leer,
       --                                          AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
@@ -275,17 +275,17 @@ package body StadtInformationenKonsole is
    
    
    procedure Korruption
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
-    --  TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-    --                                            TextDateiExtern        => GlobaleTexte.Zeug,
-     --                                           ÜberschriftZeileExtern => 0,
-     --                                           ErsteZeileExtern       => 11,
+      --  TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+      --                                            TextDateiExtern        => GlobaleTexte.Zeug,
+      --                                           ÜberschriftZeileExtern => 0,
+      --                                           ErsteZeileExtern       => 11,
       --                                          LetzteZeileExtern      => 11,
       --                                          AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-       --                                         AbstandMitteExtern     => GlobaleTexte.Leer,
-       --                                         AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
+      --                                         AbstandMitteExtern     => GlobaleTexte.Leer,
+      --                                         AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer (LeseStadtGebaut.Korruption (StadtRasseNummerExtern => StadtRasseNummerExtern)),
                                          Width => 1);
       
@@ -294,15 +294,15 @@ package body StadtInformationenKonsole is
    
    
    procedure EinwohnerOhneArbeit
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
-     -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-     --                                           TextDateiExtern        => GlobaleTexte.Zeug,
-     --                                           ÜberschriftZeileExtern => 0,
+      -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+      --                                           TextDateiExtern        => GlobaleTexte.Zeug,
+      --                                           ÜberschriftZeileExtern => 0,
       --                                          ErsteZeileExtern       => 41,
       --                                          LetzteZeileExtern      => 41,
-     --                                           AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
+      --                                           AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
       --                                          AbstandMitteExtern     => GlobaleTexte.Leer,
       --                                          AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer (LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
@@ -315,60 +315,65 @@ package body StadtInformationenKonsole is
    
    
    procedure AktuellesBauprojekt
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
-     -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-     --                                           TextDateiExtern        => GlobaleTexte.Zeug,
-     --                                           ÜberschriftZeileExtern => 0,
-     --                                           ErsteZeileExtern       => 12,
-     --                                           LetzteZeileExtern      => 12,
+      -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+      --                                           TextDateiExtern        => GlobaleTexte.Zeug,
+      --                                           ÜberschriftZeileExtern => 0,
+      --                                           ErsteZeileExtern       => 12,
+      --                                           LetzteZeileExtern      => 12,
       --                                          AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
       --                                          AbstandMitteExtern     => GlobaleTexte.Leer,
       --                                          AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
+     
+      Bauprojekt := LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      
       if
-        LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Nummer = StadtKonstanten.LeerBauprojekt.Nummer
+        Bauprojekt.Gebäude = 0
+        and
+          Bauprojekt.Einheit = 0
       then
-       --  TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-        --                                           TextDateiExtern        => GlobaleTexte.Zeug,
-        --                                           ÜberschriftZeileExtern => 0,
-        --                                           ErsteZeileExtern       => 28,
-        --                                           LetzteZeileExtern      => 28,
-        --                                           AbstandAnfangExtern    => GlobaleTexte.Leer,
-        --                                           AbstandMitteExtern     => GlobaleTexte.Leer,
-       --                                           AbstandEndeExtern      => GlobaleTexte.Leer);
-       null;
+         --  TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+         --                                           TextDateiExtern        => GlobaleTexte.Zeug,
+         --                                           ÜberschriftZeileExtern => 0,
+         --                                           ErsteZeileExtern       => 28,
+         --                                           LetzteZeileExtern      => 28,
+         --                                           AbstandAnfangExtern    => GlobaleTexte.Leer,
+         --                                           AbstandMitteExtern     => GlobaleTexte.Leer,
+         --                                           AbstandEndeExtern      => GlobaleTexte.Leer);
+         null;
             
       elsif
-        LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).GebäudeEinheit = True
+        Bauprojekt.Gebäude /= 0
       then
-       --  TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-        --                                           TextDateiExtern        => GlobaleTexte.Beschreibungen_Gebäude_Kurz,
-        --                                           ÜberschriftZeileExtern => 0,
-        --                                           ErsteZeileExtern       => Positive (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Nummer),
-        --                                           LetzteZeileExtern      => Positive (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Nummer),
-        --                                           AbstandAnfangExtern    => GlobaleTexte.Leer,
-        --                                           AbstandMitteExtern     => GlobaleTexte.Leer,
+         --  TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+         --                                           TextDateiExtern        => GlobaleTexte.Beschreibungen_Gebäude_Kurz,
+         --                                           ÜberschriftZeileExtern => 0,
+         --                                           ErsteZeileExtern       => Positive (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Nummer),
+         --                                           LetzteZeileExtern      => Positive (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Nummer),
+         --                                           AbstandAnfangExtern    => GlobaleTexte.Leer,
+         --                                           AbstandMitteExtern     => GlobaleTexte.Leer,
          --                                          AbstandEndeExtern      => GlobaleTexte.Leer);
          null;
 
       else
-        -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-        --                                           TextDateiExtern        => GlobaleTexte.Beschreibungen_Einheiten_Kurz,
-        --                                           ÜberschriftZeileExtern => 0,
-        --                                           ErsteZeileExtern       => Positive (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Nummer),
-        --                                           LetzteZeileExtern      => Positive (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Nummer),
-        --                                           AbstandAnfangExtern    => GlobaleTexte.Leer,
-        --                                           AbstandMitteExtern     => GlobaleTexte.Leer,
-        --                                           AbstandEndeExtern      => GlobaleTexte.Leer);
+         -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+         --                                           TextDateiExtern        => GlobaleTexte.Beschreibungen_Einheiten_Kurz,
+         --                                           ÜberschriftZeileExtern => 0,
+         --                                           ErsteZeileExtern       => Positive (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Nummer),
+         --                                           LetzteZeileExtern      => Positive (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Nummer),
+         --                                           AbstandAnfangExtern    => GlobaleTexte.Leer,
+         --                                           AbstandMitteExtern     => GlobaleTexte.Leer,
+         --                                           AbstandEndeExtern      => GlobaleTexte.Leer);
          null;
       end if;
                                               
-    --  TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-     --                                           TextDateiExtern        => GlobaleTexte.Zeug,
-     --                                           ÜberschriftZeileExtern => 0,
-     --                                           ErsteZeileExtern       => 13,
-     --                                           LetzteZeileExtern      => 13,
+      --  TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+      --                                           TextDateiExtern        => GlobaleTexte.Zeug,
+      --                                           ÜberschriftZeileExtern => 0,
+      --                                           ErsteZeileExtern       => 13,
+      --                                           LetzteZeileExtern      => 13,
       --                                          AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
       --                                          AbstandMitteExtern     => GlobaleTexte.Leer,
       --                                          AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
@@ -387,12 +392,12 @@ package body StadtInformationenKonsole is
       
       New_Line;
          
-     -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-     --                                           TextDateiExtern        => GlobaleTexte.Zeug,
-     --                                           ÜberschriftZeileExtern => 0,
-     --                                           ErsteZeileExtern       => 20,
-     --                                           LetzteZeileExtern      => 20,
-     --                                           AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
+      -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+      --                                           TextDateiExtern        => GlobaleTexte.Zeug,
+      --                                           ÜberschriftZeileExtern => 0,
+      --                                           ErsteZeileExtern       => 20,
+      --                                           LetzteZeileExtern      => 20,
+      --                                           AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
       --                                          AbstandMitteExtern     => GlobaleTexte.Leer,
       --                                          AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer (GesamtwerteFeld.FeldNahrung (KoordinatenExtern => KoordinatenExtern,
@@ -408,14 +413,14 @@ package body StadtInformationenKonsole is
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
                      
-     -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+      -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
       --                                          TextDateiExtern        => GlobaleTexte.Zeug,
-     --                                           ÜberschriftZeileExtern => 0,
+      --                                           ÜberschriftZeileExtern => 0,
       --                                          ErsteZeileExtern       => 21,
       --                                          LetzteZeileExtern      => 21,
-       --                                         AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-       --                                         AbstandMitteExtern     => GlobaleTexte.Leer,
-        --                                        AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
+      --                                         AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
+      --                                         AbstandMitteExtern     => GlobaleTexte.Leer,
+      --                                        AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer (GesamtwerteFeld.FeldProduktion (KoordinatenExtern => KoordinatenExtern,
                                                                                            RasseExtern       => RasseExtern)),
                                          Width => 1);
@@ -430,14 +435,14 @@ package body StadtInformationenKonsole is
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
        
-     -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+      -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
       --                                          TextDateiExtern        => GlobaleTexte.Zeug,
       --                                          ÜberschriftZeileExtern => 0,
       --                                          ErsteZeileExtern       => 22,
-       --                                         LetzteZeileExtern      => 22,
-       --                                         AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-       --                                         AbstandMitteExtern     => GlobaleTexte.Leer,
-       --                                         AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
+      --                                         LetzteZeileExtern      => 22,
+      --                                         AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
+      --                                         AbstandMitteExtern     => GlobaleTexte.Leer,
+      --                                         AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer (GesamtwerteFeld.FeldGeld (KoordinatenExtern => KoordinatenExtern,
                                                                                      RasseExtern       => RasseExtern)),
                                          Width => 1);
@@ -451,12 +456,12 @@ package body StadtInformationenKonsole is
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
                
-     -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-     --                                           TextDateiExtern        => GlobaleTexte.Zeug,
-     --                                           ÜberschriftZeileExtern => 0,
-     --                                           ErsteZeileExtern       => 23,
-     --                                           LetzteZeileExtern      => 23,
-     --                                           AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
+      -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+      --                                           TextDateiExtern        => GlobaleTexte.Zeug,
+      --                                           ÜberschriftZeileExtern => 0,
+      --                                           ErsteZeileExtern       => 23,
+      --                                           LetzteZeileExtern      => 23,
+      --                                           AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
       --                                          AbstandMitteExtern     => GlobaleTexte.Leer,
       --                                          AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer (GesamtwerteFeld.FeldWissen (KoordinatenExtern => KoordinatenExtern,
@@ -469,19 +474,19 @@ package body StadtInformationenKonsole is
    
    
    procedure StadtfeldBewirtschaftet
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       CursorYAchseabstraktionExtern : in KartenDatentypen.Kartenfeld;
       CursorXAchseabstraktionExtern : in KartenDatentypen.Kartenfeld)
    is begin
       
-     -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-     --                                           TextDateiExtern        => GlobaleTexte.Zeug,
-     --                                           ÜberschriftZeileExtern => 0,
+      -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+      --                                           TextDateiExtern        => GlobaleTexte.Zeug,
+      --                                           ÜberschriftZeileExtern => 0,
       --                                          ErsteZeileExtern       => 42,
       --                                          LetzteZeileExtern      => 42,
       --                                          AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
       --                                          AbstandMitteExtern     => GlobaleTexte.Leer,
-       --                                         AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
+      --                                         AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       
       case
         LeseStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
@@ -489,13 +494,13 @@ package body StadtInformationenKonsole is
                                                  XKoordinateExtern      => CursorXAchseabstraktionExtern)
       is
          when True =>
-        --    TextAnzeigeKonsole.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Menü_Auswahl,
-        --                                                    TextZeileExtern => 7);
+            --    TextAnzeigeKonsole.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Menü_Auswahl,
+            --                                                    TextZeileExtern => 7);
             null;
                
          when False =>
-         --   TextAnzeigeKonsole.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Menü_Auswahl,
-         --                                                    TextZeileExtern => 8);
+            --   TextAnzeigeKonsole.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Menü_Auswahl,
+            --                                                    TextZeileExtern => 8);
             null;
       end case;
       

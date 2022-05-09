@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
-with EinheitStadtDatentypen;
+with StadtDatentypen;
 
 with LeseStadtGebaut;
 
@@ -12,7 +12,7 @@ with GebaeudeAllgemein;
 package body GebaeudeVerkaufen is
 
    procedure GebäudeVerkaufen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       if
@@ -45,14 +45,14 @@ package body GebaeudeVerkaufen is
             Aufschlag := Aufschlag - 1;
             if
               LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                 WelchesGebäudeExtern  => EinheitStadtDatentypen.GebäudeID ((SpielVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenStadt.XAchse) + Aufschlag * 12))
+                                                 WelchesGebäudeExtern  => StadtDatentypen.GebäudeID ((SpielVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenStadt.XAchse) + Aufschlag * 12))
                 = False
             then
                null;
                         
             else
                GebaeudeAllgemein.GebäudeEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                    WelchesGebäudeExtern   => EinheitStadtDatentypen.GebäudeID ((SpielVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenStadt.XAchse) + Aufschlag * 12));
+                                                    WelchesGebäudeExtern   => StadtDatentypen.GebäudeID ((SpielVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenStadt.XAchse) + Aufschlag * 12));
                StadtProduktion.StadtProduktion (StadtRasseNummerExtern => StadtRasseNummerExtern);
             end if;
       end case;

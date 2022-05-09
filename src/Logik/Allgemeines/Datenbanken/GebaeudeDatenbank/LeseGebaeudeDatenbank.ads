@@ -4,10 +4,11 @@ pragma Warnings (Off, "*array aggregate*");
 with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen;
 with SonstigeVariablen;
-with EinheitStadtDatentypen;
+with StadtDatentypen;
 with KartengrundDatentypen;
 with ForschungenDatentypen;
 with ProduktionDatentypen;
+with KampfDatentypen;
 
 with DatenbankRecords;
 
@@ -15,7 +16,7 @@ package LeseGebaeudeDatenbank is
 
    function PreisGeld
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeID)
       return ProduktionDatentypen.KostenLager
      with
        Pre =>
@@ -23,7 +24,7 @@ package LeseGebaeudeDatenbank is
    
    function PreisRessourcen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeID)
       return ProduktionDatentypen.KostenLager
      with
        Pre =>
@@ -31,7 +32,7 @@ package LeseGebaeudeDatenbank is
    
    function PermanenteKosten
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitStadtDatentypen.GebäudeID;
+      IDExtern : in StadtDatentypen.GebäudeID;
       WelcheKostenExtern : in ProduktionDatentypen.Permanente_Kosten_Verwendet_Enum)
       return ProduktionDatentypen.GesamtePermanenteKosten
      with
@@ -40,7 +41,7 @@ package LeseGebaeudeDatenbank is
       
    function Anforderungen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeID)
       return ForschungenDatentypen.ForschungIDNichtMöglich
      with
        Pre =>
@@ -48,7 +49,7 @@ package LeseGebaeudeDatenbank is
    
    function WirtschaftBonus
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitStadtDatentypen.GebäudeID;
+      IDExtern : in StadtDatentypen.GebäudeID;
       WWirtschaftBonusExtern : in KartenDatentypen.Wirtschaft_Enum)
       return ProduktionDatentypen.ProduktionFeld
      with
@@ -57,16 +58,16 @@ package LeseGebaeudeDatenbank is
          
    function KampfBonus
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitStadtDatentypen.GebäudeID;
+      IDExtern : in StadtDatentypen.GebäudeID;
       KampfBonusExtern : in KartenDatentypen.Kampf_Enum)
-      return EinheitStadtDatentypen.Kampfwerte
+      return KampfDatentypen.Kampfwerte
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
       
    function GrundBenötigt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeID)
       return KartengrundDatentypen.Kartengrund_Enum
      with
        Pre =>
@@ -74,7 +75,7 @@ package LeseGebaeudeDatenbank is
       
    function FlussBenötigt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeID)
       return Boolean
      with
        Pre =>
@@ -82,7 +83,7 @@ package LeseGebaeudeDatenbank is
       
    function RessourceBenötigt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeID)
       return KartengrundDatentypen.Karten_Ressourcen_Enum
      with
        Pre =>
@@ -90,15 +91,15 @@ package LeseGebaeudeDatenbank is
    
    function GebäudeSpezielleEigenschaft
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitStadtDatentypen.GebäudeID)
-      return EinheitStadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum
+      IDExtern : in StadtDatentypen.GebäudeID)
+      return StadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
    
    function GanzerEintrag
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeID)
       return DatenbankRecords.GebäudelisteRecord
      with
        Pre =>

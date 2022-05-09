@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with EinheitenDatenbankEditor;
 with ForschungenDatenbankEditor;
 with GebaeudeDatenbankEditor;
-with KartenDatenbankEditor;
+with KartenDatenbankenEditor;
 with VerbesserungenDatenbankEditor;
 with MenueDatentypen;
 
@@ -26,7 +26,7 @@ package body DatenbankenEditoren is
            AuswahlWert
          is
             when RueckgabeDatentypen.Kartenfeld_Editor_Enum =>
-               KartenDatenbankEditor.KartenDatenbankEditor;
+               KartenDatenbankenEditor.KartenDatenbankenEditor;
                
             when RueckgabeDatentypen.Einheiten_Editor_Enum =>
                EinheitenDatenbankEditor.EinheitenDatenbankEditor;

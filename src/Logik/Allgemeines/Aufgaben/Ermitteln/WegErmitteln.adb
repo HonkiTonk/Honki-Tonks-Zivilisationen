@@ -3,9 +3,9 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with KartengrundDatentypen; use KartengrundDatentypen;
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with AufgabenDatentypen; use AufgabenDatentypen;
 with ForschungenDatentypen; use ForschungenDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
 with EinheitenKonstanten;
 
 with SchreibeEinheitenGebaut;
@@ -18,7 +18,7 @@ with Fehler;
 package body WegErmitteln is
    
    function WegErmitteln
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
       AnlegenTestenExtern : in Boolean)
       return Boolean
@@ -81,7 +81,7 @@ package body WegErmitteln is
    
    
    function OberflächeLand
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Enum)
       return EinheitenRecords.ArbeitRecord
    is begin
@@ -130,7 +130,7 @@ package body WegErmitteln is
    
      
    function OberflächeWasser
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Wasser_Enum)
       return EinheitenRecords.ArbeitRecord
    is begin
@@ -175,7 +175,7 @@ package body WegErmitteln is
      
      
    function UnterflächeLand
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Enum)
       return EinheitenRecords.ArbeitRecord
    is begin
@@ -223,7 +223,7 @@ package body WegErmitteln is
      
      
    function UnterflächeWasser
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Wasser_Enum)
       return EinheitenRecords.ArbeitRecord
    is begin

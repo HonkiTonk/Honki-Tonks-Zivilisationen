@@ -5,17 +5,18 @@ with KartenDatentypen; use KartenDatentypen;
 with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
 with KartenRecords;
-with EinheitStadtRecords;
-with EinheitStadtDatentypen;
-with SonstigeVariablen;
 with EinheitenRecords;
+with EinheitenDatentypen;
+with StadtDatentypen;
+with SonstigeVariablen;
+with StadtRecords;
 
 with Karten;
 
 package BewegungPassierbarkeitPruefen is
    
    function PassierbarkeitPrüfenNummer
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
      with
@@ -30,7 +31,7 @@ package BewegungPassierbarkeitPruefen is
    
    function PassierbarkeitPrüfenID
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitStadtDatentypen.EinheitenID;
+      IDExtern : in EinheitenDatentypen.EinheitenID;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
      with
@@ -42,7 +43,7 @@ package BewegungPassierbarkeitPruefen is
             SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
 
    function InStadtEntladbar
-     (TransporterExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
      with
@@ -56,8 +57,8 @@ package BewegungPassierbarkeitPruefen is
             SonstigeVariablen.RassenImSpiel (TransporterExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
       
    function RichtigeUmgebungVorhanden
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      EinheitenIDExtern : in EinheitStadtDatentypen.EinheitenID)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      EinheitenIDExtern : in EinheitenDatentypen.EinheitenID)
       return Boolean
      with
        Pre =>
@@ -69,11 +70,11 @@ private
    
    Passierbar : Boolean;
    
-   IDEinheit : EinheitStadtDatentypen.EinheitenIDMitNullWert;
+   IDEinheit : EinheitenDatentypen.EinheitenIDMitNullWert;
    
-   StadtNummer : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
-   TransporterNummer : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
-   Transportplatz : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
+   StadtNummer : StadtDatentypen.MaximaleStädteMitNullWert;
+   TransporterNummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   Transportplatz : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
 
    BenötigteFelder : Positive;
    
@@ -83,8 +84,8 @@ private
    
    function PassierbarTesten
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      UmgebungExtern : in EinheitStadtDatentypen.Passierbarkeit_Vorhanden_Enum;
-      IDExtern : in EinheitStadtDatentypen.EinheitenID;
+      UmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Vorhanden_Enum;
+      IDExtern : in EinheitenDatentypen.EinheitenID;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
      with
@@ -97,7 +98,7 @@ private
    
    function IstNichtPassierbar
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      UmgebungExtern : in EinheitStadtDatentypen.Passierbarkeit_Vorhanden_Enum;
+      UmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Vorhanden_Enum;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
      with
@@ -109,7 +110,7 @@ private
             SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
      
    function IstPassierbar
-     (UmgebungExtern : in EinheitStadtDatentypen.Passierbarkeit_Vorhanden_Enum;
+     (UmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Vorhanden_Enum;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
      with

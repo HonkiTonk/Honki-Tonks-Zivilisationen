@@ -3,11 +3,13 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
 with KartengrundDatentypen; use KartengrundDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
+with StadtDatentypen; use StadtDatentypen;
 with EinheitenKonstanten;
 with TextKonstanten;
+with StadtKonstanten;
 with SpielVariablen;
 
 with LeseKarten;
@@ -150,18 +152,18 @@ package body GrafischeAnzeigeKonsole is
       return Boolean
    is begin
       
-      EinheitStadtRasseNummer := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
+      EinheitRasseNummer := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
          
       if
-        EinheitStadtRasseNummer.Nummer = EinheitenKonstanten.LeerNummer
+        EinheitRasseNummer.Nummer = EinheitenKonstanten.LeerNummer
       then
          return False;
             
       elsif
-        LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitStadtRasseNummer) /= EinheitenKonstanten.LeerWirdTransportiert
+        LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummer) /= EinheitenKonstanten.LeerWirdTransportiert
       then
-         FarbgebungKonsole.Farben (EinheitIDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitStadtRasseNummer.Rasse,
-                                                                                                              LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitStadtRasseNummer))),
+         FarbgebungKonsole.Farben (EinheitIDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummer.Rasse,
+                                                                                                              LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummer))),
                                    VerbesserungExtern => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum,
                                    WegExtern          => KartenVerbesserungDatentypen.Leer_Weg_Enum,
                                    GrundExtern        => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
@@ -169,10 +171,10 @@ package body GrafischeAnzeigeKonsole is
                                    RessourceExtern    => KartengrundDatentypen.Leer_Ressource_Enum,
                                    CursorExtern       => False,
                                    EigeneRasseExtern  => RasseExtern,
-                                   RasseExtern        => EinheitStadtRasseNummer.Rasse);
+                                   RasseExtern        => EinheitRasseNummer.Rasse);
          
       else
-         FarbgebungKonsole.Farben (EinheitIDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitStadtRasseNummer),
+         FarbgebungKonsole.Farben (EinheitIDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummer),
                                    VerbesserungExtern => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum,
                                    WegExtern          => KartenVerbesserungDatentypen.Leer_Weg_Enum,
                                    GrundExtern        => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
@@ -180,7 +182,7 @@ package body GrafischeAnzeigeKonsole is
                                    RessourceExtern    => KartengrundDatentypen.Leer_Ressource_Enum,
                                    CursorExtern       => False,
                                    EigeneRasseExtern  => RasseExtern,
-                                   RasseExtern        => EinheitStadtRasseNummer.Rasse);
+                                   RasseExtern        => EinheitRasseNummer.Rasse);
       end if;
       
       return True;
@@ -195,23 +197,23 @@ package body GrafischeAnzeigeKonsole is
       return Boolean
    is begin
       
-      EinheitStadtRasseNummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
+      StadtRasseNummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
          
       if
-        EinheitStadtRasseNummer.Nummer = EinheitenKonstanten.LeerNummer
+        StadtRasseNummer.Nummer = StadtKonstanten.LeerNummer
       then
          return False;
             
       else
          FarbgebungKonsole.Farben (EinheitIDExtern    => EinheitenKonstanten.LeerID,
-                                   VerbesserungExtern => LeseStadtGebaut.ID (StadtRasseNummerExtern => EinheitStadtRasseNummer),
+                                   VerbesserungExtern => LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummer),
                                    WegExtern          => KartenVerbesserungDatentypen.Leer_Weg_Enum,
                                    GrundExtern        => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
                                    FlussExtern        => KartengrundDatentypen.Leer_Fluss_Enum,
                                    RessourceExtern    => KartengrundDatentypen.Leer_Ressource_Enum,
                                    CursorExtern       => False,
                                    EigeneRasseExtern  => RasseExtern,
-                                   RasseExtern        => EinheitStadtRasseNummer.Rasse);
+                                   RasseExtern        => StadtRasseNummer.Rasse);
          return True;
       end if;
       

@@ -21,7 +21,7 @@ with BewegungCursor;
 package body BewegungEinheitenSFML is
 
    procedure BewegungEinheitenRichtung
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       Änderung := KeineÄnderung;
@@ -47,7 +47,7 @@ package body BewegungEinheitenSFML is
    
    
    function EinheitBefehle
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Enum)
       return Boolean
    is begin
@@ -95,7 +95,7 @@ package body BewegungEinheitenSFML is
    
    
    function PositionÄndern
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
       return Boolean
    is begin
@@ -118,7 +118,7 @@ package body BewegungEinheitenSFML is
    
    
    function BefehleMaus
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
       
@@ -154,7 +154,7 @@ package body BewegungEinheitenSFML is
    
    
    function MausInKarte
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
             
@@ -197,7 +197,7 @@ package body BewegungEinheitenSFML is
    
    
    function EinheitBewegenMaus
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
       
@@ -240,7 +240,7 @@ package body BewegungEinheitenSFML is
    
    
    function MausInAnzeige
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
       

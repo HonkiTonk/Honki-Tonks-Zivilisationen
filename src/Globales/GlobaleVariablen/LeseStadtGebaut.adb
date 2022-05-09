@@ -10,7 +10,7 @@ with Karten;
 package body LeseStadtGebaut is
 
    function ID
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return KartenVerbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum
    is begin
       
@@ -21,7 +21,7 @@ package body LeseStadtGebaut is
    
    
    function Koordinaten
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
@@ -43,7 +43,7 @@ package body LeseStadtGebaut is
    
    
    function EinwohnerArbeiter
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       EinwohnerArbeiterExtern : in Boolean)
       return ProduktionDatentypen.ProduktionFeld
    is begin
@@ -81,7 +81,7 @@ package body LeseStadtGebaut is
    
       
    function Nahrungsmittel
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return ProduktionDatentypen.GesamtproduktionStadt
    is begin
       
@@ -101,7 +101,7 @@ package body LeseStadtGebaut is
    
    
    function Nahrungsproduktion
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return ProduktionDatentypen.GesamtproduktionStadt
    is begin
       
@@ -112,7 +112,7 @@ package body LeseStadtGebaut is
    
    
    function Ressourcen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return ProduktionDatentypen.KostenLager
    is begin
       
@@ -123,7 +123,7 @@ package body LeseStadtGebaut is
    
    
    function Produktionrate
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return ProduktionDatentypen.GesamtproduktionStadt
    is begin
       
@@ -134,7 +134,7 @@ package body LeseStadtGebaut is
    
    
    function Geldgewinnung
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return ProduktionDatentypen.GesamtproduktionStadt
    is begin
       
@@ -145,7 +145,7 @@ package body LeseStadtGebaut is
    
    
    function PermanenteKostenPosten
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       WelcherPostenExtern : in ProduktionDatentypen.Permanente_Kosten_Verwendet_Enum)
       return ProduktionDatentypen.GesamtePermanenteKosten
    is begin
@@ -157,7 +157,7 @@ package body LeseStadtGebaut is
    
       
    function Forschungsrate
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return ProduktionDatentypen.GesamtproduktionStadt
    is begin
       
@@ -177,7 +177,7 @@ package body LeseStadtGebaut is
    
    
    function Bauprojekt
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return StadtRecords.BauprojektRecord
    is begin
       
@@ -188,7 +188,7 @@ package body LeseStadtGebaut is
    
    
    function Bauzeit
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return ProduktionDatentypen.KostenLager
    is begin
       
@@ -199,7 +199,7 @@ package body LeseStadtGebaut is
    
    
    function Korruption
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return ProduktionDatentypen.GesamtproduktionStadt
    is begin
       
@@ -210,7 +210,7 @@ package body LeseStadtGebaut is
    
    
    function Zufriedenheit
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return ProduktionDatentypen.ProduktionFeld
    is begin
       
@@ -221,8 +221,8 @@ package body LeseStadtGebaut is
    
    
    function GebäudeVorhanden
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      WelchesGebäudeExtern : in EinheitStadtDatentypen.GebäudeID)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      WelchesGebäudeExtern : in StadtDatentypen.GebäudeID)
       return Boolean
    is begin
       
@@ -233,7 +233,7 @@ package body LeseStadtGebaut is
    
    
    function Name
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return Unbounded_Wide_Wide_String
    is begin
       
@@ -244,7 +244,7 @@ package body LeseStadtGebaut is
    
    
    function UmgebungBewirtschaftung
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       YKoordinateExtern : in KartenDatentypen.UmgebungsbereichDrei;
       XKoordinateExtern : in KartenDatentypen.UmgebungsbereichDrei)
       return Boolean
@@ -257,7 +257,7 @@ package body LeseStadtGebaut is
    
    
    function UmgebungGröße
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return KartenDatentypen.UmgebungsbereichDrei
    is begin
       
@@ -277,9 +277,9 @@ package body LeseStadtGebaut is
    
       
    function Meldungen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      WelcheMeldungExtern : in EinheitStadtDatentypen.Stadt_Meldung_Art_Enum)
-      return EinheitStadtDatentypen.Stadt_Meldung_Enum
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      WelcheMeldungExtern : in StadtDatentypen.Stadt_Meldung_Art_Enum)
+      return StadtDatentypen.Stadt_Meldung_Enum
    is begin
       
       return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Meldungen (WelcheMeldungExtern);
@@ -289,7 +289,7 @@ package body LeseStadtGebaut is
       
       
    function KIBeschäftigung
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return KIDatentypen.Stadt_Aufgabe_Enum
    is begin
       
@@ -300,7 +300,7 @@ package body LeseStadtGebaut is
    
    
    function GanzerEintrag
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return StadtRecords.StadtGebautRecord
    is begin
       

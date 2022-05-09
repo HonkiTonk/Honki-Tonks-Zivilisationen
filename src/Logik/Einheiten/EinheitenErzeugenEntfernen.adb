@@ -1,9 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
 with EinheitenKonstanten;
-with EinheitenRecords;
 
 with SchreibeEinheitenGebaut;
 with SchreibeWichtiges;
@@ -18,9 +17,9 @@ package body EinheitenErzeugenEntfernen is
 
    procedure EinheitErzeugen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      EinheitNummerExtern : in EinheitStadtDatentypen.MaximaleEinheiten;
-      IDExtern : in EinheitStadtDatentypen.EinheitenID;
-      StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+      EinheitNummerExtern : in EinheitenDatentypen.MaximaleEinheiten;
+      IDExtern : in EinheitenDatentypen.EinheitenID;
+      StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       SchreibeEinheitenGebaut.Nullsetzung (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern));
@@ -48,15 +47,15 @@ package body EinheitenErzeugenEntfernen is
         LeseEinheitenDatenbank.EinheitArt (RasseExtern => StadtRasseNummerExtern.Rasse,
                                            IDExtern    => IDExtern)
       is
-         when EinheitStadtDatentypen.Arbeiter_Enum =>
+         when EinheitenDatentypen.Arbeiter_Enum =>
             SchreibeWichtiges.AnzahlArbeiter (RasseExtern     => StadtRasseNummerExtern.Rasse,
                                               PlusMinusExtern => True);
             
-         when EinheitStadtDatentypen.Nahkämpfer_Enum | EinheitStadtDatentypen.Fernkämpfer_Enum | EinheitStadtDatentypen.Beides_Enum =>
+         when EinheitenDatentypen.Nahkämpfer_Enum | EinheitenDatentypen.Fernkämpfer_Enum | EinheitenDatentypen.Beides_Enum =>
             SchreibeWichtiges.AnzahlKämpfer (RasseExtern     => StadtRasseNummerExtern.Rasse,
                                               PlusMinusExtern => True);
             
-         when EinheitStadtDatentypen.Sonstiges_Enum =>
+         when EinheitenDatentypen.Sonstiges_Enum =>
             SchreibeWichtiges.AnzahlSonstiges (RasseExtern     => StadtRasseNummerExtern.Rasse,
                                                PlusMinusExtern => True);
             
@@ -74,7 +73,7 @@ package body EinheitenErzeugenEntfernen is
 
 
    procedure EinheitEntfernen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       EinheitEntfernenLadung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -88,7 +87,7 @@ package body EinheitenErzeugenEntfernen is
    
    
    procedure EinheitEntfernenLadung
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       TransporterSchleife:
@@ -114,7 +113,7 @@ package body EinheitenErzeugenEntfernen is
    
    
    procedure Entfernen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       EinheitenModifizieren.PermanenteKostenÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,

@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
 with EinheitenKonstanten;
 
 with KIDatentypen;
@@ -56,7 +56,7 @@ package body VerbesserungFertiggestellt is
 
 
    procedure VerbesserungFertiggestelltPrüfen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       case
@@ -77,7 +77,7 @@ package body VerbesserungFertiggestellt is
         LeseEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerEinheit.Beschäftigungszeit
       then
          EinheitenMeldungenSetzen.EinheitMeldungSetzenEreignis (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                EreignisExtern           => EinheitStadtDatentypen.Aufgabe_Abgeschlossen_Enum);
+                                                                EreignisExtern           => EinheitenDatentypen.Aufgabe_Abgeschlossen_Enum);
          VerbesserungAngelegt (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          AufgabeNachfolgerVerschieben (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
@@ -90,7 +90,7 @@ package body VerbesserungFertiggestellt is
    
    
    procedure AufgabeNachfolgerVerschieben
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       case
@@ -119,7 +119,7 @@ package body VerbesserungFertiggestellt is
 
 
    procedure VerbesserungAngelegt
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       WelcheAufgabe := LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);

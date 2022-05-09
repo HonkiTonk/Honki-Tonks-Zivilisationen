@@ -6,9 +6,11 @@ with Ada.Directories; use Ada.Directories;
 with EinheitenDatenbank;
 with ForschungenDatenbank;
 with GebaeudeDatenbank;
-with KartenDatenbank;
+with KartengrundDatenbank;
 with VerbesserungenDatenbank;
 with RassenDatenbank;
+with KartenflussDatenbank;
+with KartenressourcenDatenbank;
 
 package body EinlesenDatenbanken is
    
@@ -18,7 +20,7 @@ package body EinlesenDatenbanken is
       EinlesenEinheitenDatenbank;
       EinlesenForschungenDatenbank;
       EinlesenGebäudeDatenbank;
-      EinlesenKartenDatenbank;
+      EinlesenKartengrundDatenbank;
       EinlesenVerbesserungenDatenbank;
       EinlesenRassenDatenbank;
       
@@ -101,7 +103,7 @@ package body EinlesenDatenbanken is
    
    
    
-   procedure EinlesenKartenDatenbank
+   procedure EinlesenKartengrundDatenbank
    is begin
       
       case
@@ -113,12 +115,12 @@ package body EinlesenDatenbanken is
                   Name => "Datenbanken/KartenGrundDatenbank");
 
          when False =>
-            KartenDatenbank.StandardKartengrundDatenbankLaden;
+            KartengrundDatenbank.StandardKartengrundDatenbankLaden;
             return;
       end case;
       
-      KartenDatenbank.KartengrundlisteArray'Read (Stream (File => DatenbankEinlesen),
-                                                  KartenDatenbank.Kartengrundliste);
+      KartengrundDatenbank.KartengrundlisteArray'Read (Stream (File => DatenbankEinlesen),
+                                                  KartengrundDatenbank.Kartengrundliste);
       
       Close (File => DatenbankEinlesen);
       
@@ -133,12 +135,12 @@ package body EinlesenDatenbanken is
                   Name => "Datenbanken/KartenFlussDatenbank");
 
          when False =>
-            KartenDatenbank.StandardKartenflussDatenbankLaden;
+            KartenflussDatenbank.StandardKartenflussDatenbankLaden;
             return;
       end case;
       
-      KartenDatenbank.KartenflusslisteArray'Read (Stream (File => DatenbankEinlesen),
-                                                  KartenDatenbank.Kartenflussliste);
+      KartenflussDatenbank.KartenflusslisteArray'Read (Stream (File => DatenbankEinlesen),
+                                                  KartenflussDatenbank.Kartenflussliste);
       
       Close (File => DatenbankEinlesen);
       
@@ -153,16 +155,16 @@ package body EinlesenDatenbanken is
                   Name => "Datenbanken/KartenRessourcenDatenbank");
 
          when False =>
-            KartenDatenbank.StandardKartenRessourcenDatenbankLaden;
+            KartenressourcenDatenbank.StandardKartenRessourcenDatenbankLaden;
             return;
       end case;
       
-      KartenDatenbank.KartenRessourcenListeArray'Read (Stream (File => DatenbankEinlesen),
-                                                       KartenDatenbank.KartenRessourcenListe);
+      KartenressourcenDatenbank.KartenRessourcenListeArray'Read (Stream (File => DatenbankEinlesen),
+                                                       KartenressourcenDatenbank.KartenRessourcenListe);
       
       Close (File => DatenbankEinlesen);
       
-   end EinlesenKartenDatenbank;
+   end EinlesenKartengrundDatenbank;
    
    
    

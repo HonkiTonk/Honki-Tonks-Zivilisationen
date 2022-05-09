@@ -16,7 +16,7 @@ with InteraktionGrafiktask;
 package body InDerStadt is
 
    procedure InDerStadt
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       AktuelleStadtNummerGrafik := StadtRasseNummerExtern.Nummer;
@@ -86,7 +86,7 @@ package body InDerStadt is
    
    
    function WasIstAusgewählt
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return Boolean
    is begin
       

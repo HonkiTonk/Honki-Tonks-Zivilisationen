@@ -1,13 +1,15 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+-- with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+
 with KartenDatentypen; use KartenDatentypen;
-with KartenKonstanten;
-with SpielVariablen;
+-- with KartenKonstanten;
+-- with SpielVariablen;
 
 with Sichtweiten;
 with GrafikEinstellungenSFML;
-with Kartenkoordinatenberechnungssystem;
+-- with Kartenkoordinatenberechnungssystem;
 
 package body BerechnungenKarteSFML is
    
@@ -37,72 +39,84 @@ package body BerechnungenKarteSFML is
    
    
    
-   ----------------------- An das neue Kartenberechnungssystem anpassen.
+   --------------------- Mal eine bessere Lösung finden.
+   --------------------- Die Jetzige zeigt den schwarzen Rahmen an.
+   --------------------- Die Ausgeklammerte crasht aber wenn es nur einen Übergang in der jeweiligen Achse gibt.
    function SichtbereichKarteBerechnen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KartenDatentypen.SichtbereichAnfangEndeArray
    is begin
+      
+      case
+        RasseExtern
+      is
+         when RassenDatentypen.Menschen_Enum =>
+            null;
+            
+         when others =>
+            null;
+      end case;
       
       YSichtAnfang := -Sichtweiten.SichtweiteLesen (YAchseXAchseExtern => True);
       YSichtEnde := Sichtweiten.SichtweiteLesen (YAchseXAchseExtern => True);
       XSichtAnfang := -Sichtweiten.SichtweiteLesen (YAchseXAchseExtern => False);
       XSichtEnde := Sichtweiten.SichtweiteLesen (YAchseXAchseExtern => False);
       
-      YBereichSchleife:
-      for YBereichSchleifenwert in YSichtAnfang .. YSichtEnde loop
+      -- YBereichSchleife:
+      -- for YBereichSchleifenwert in YSichtAnfang .. YSichtEnde loop
          
-         KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
-                                                                                              ÄnderungExtern    => (0, YBereichSchleifenwert, 1),
-                                                                                              LogikGrafikExtern => False);
+      --   KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
+       --                                                                                       ÄnderungExtern    => (0, YBereichSchleifenwert, 1),
+       --                                                                                       LogikGrafikExtern => False);
          
-         case
-           KartenWert.YAchse
-         is
-            when KartenKonstanten.LeerYAchse =>
-               if
-                 YBereichSchleifenwert <= 0
-               then
-                  YSichtAnfang := YSichtAnfang + 1;
-                  YSichtEnde := YSichtEnde + 1;
+      --   case
+      --     KartenWert.YAchse
+      --   is
+      --   when KartenKonstanten.LeerYAchse =>
+      --      if
+      --        YBereichSchleifenwert <= 0
+      --      then
+      --         YSichtAnfang := YSichtAnfang + 1;
+      --         YSichtEnde := YSichtEnde + 1;
                   
-               else
-                  YSichtAnfang := YSichtAnfang - 1;
-                  YSichtEnde := YSichtEnde - 1;
-               end if;
+      --      else
+       --        YSichtAnfang := YSichtAnfang - 1;
+       --        YSichtEnde := YSichtEnde - 1;
+      --      end if;
                   
-            when others =>
-               null;
-         end case;
+      --   when others =>
+      --      null;
+      --   end case;
          
-      end loop YBereichSchleife;
+    --  end loop YBereichSchleife;
       
-      XBereichSchleife:
-      for XBereichSchleifenwert in XSichtAnfang .. XSichtEnde loop
+     -- XBereichSchleife:
+     -- for XBereichSchleifenwert in XSichtAnfang .. XSichtEnde loop
          
-         KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
-                                                                                              ÄnderungExtern    => (0, 1, XBereichSchleifenwert),
-                                                                                              LogikGrafikExtern => False);
+     --    KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
+      --                                                                                        ÄnderungExtern    => (0, 1, XBereichSchleifenwert),
+      --                                                                                        LogikGrafikExtern => False);
          
-         case
-           KartenWert.XAchse
-         is
-            when KartenKonstanten.LeerXAchse =>
-               if
-                 XBereichSchleifenwert <= 0
-               then
-                  XSichtAnfang := XSichtAnfang + 1;
-                  XSichtEnde := XSichtEnde + 1;
+       --  case
+       --    KartenWert.XAchse
+      --   is
+       --  when KartenKonstanten.LeerXAchse =>
+       --     if
+       --      XBereichSchleifenwert <= 0
+        --    then
+        --       XSichtAnfang := XSichtAnfang + 1;
+        --       XSichtEnde := XSichtEnde + 1;
                   
-               else
-                  XSichtAnfang := XSichtAnfang - 1;
-                  XSichtEnde := XSichtEnde - 1;
-               end if;
+         --   else
+        --       XSichtAnfang := XSichtAnfang - 1;
+        --       XSichtEnde := XSichtEnde - 1;
+         --   end if;
                   
-            when others =>
-               null;
-         end case;
+       --  when others =>
+       --     null;
+       --  end case;
          
-      end loop XBereichSchleife;
+     -- end loop XBereichSchleife;
       
       return (YSichtAnfang, YSichtEnde, XSichtAnfang, XSichtEnde);
       

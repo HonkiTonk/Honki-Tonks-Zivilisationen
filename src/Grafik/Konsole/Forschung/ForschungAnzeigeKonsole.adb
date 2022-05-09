@@ -22,7 +22,7 @@ package body ForschungAnzeigeKonsole is
       null;
       
       -- Ermöglicht (RasseExtern           => RasseExtern,
-      --             ForschungNummerExtern => EinheitStadtDatentypen.ForschungID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer));
+      --             ForschungNummerExtern => EinheitenDatentypen.ForschungID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer));
       
    end ForschungAnzeige;
    

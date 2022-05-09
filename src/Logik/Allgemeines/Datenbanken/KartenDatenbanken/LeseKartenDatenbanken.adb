@@ -1,17 +1,19 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with KartenDatenbank;
+with KartengrundDatenbank;
+with KartenflussDatenbank;
+with KartenressourcenDatenbank;
 
-package body LeseKartenDatenbank is
+package body LeseKartenDatenbanken is
 
    function Passierbarkeit
      (GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
-      WelcheUmgebungExtern : in EinheitStadtDatentypen.Passierbarkeit_Vorhanden_Enum)
+      WelcheUmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Vorhanden_Enum)
       return Boolean
    is begin
       
-      return KartenDatenbank.Kartengrundliste (GrundExtern).Passierbarkeit (WelcheUmgebungExtern);
+      return KartengrundDatenbank.Kartengrundliste (GrundExtern).Passierbarkeit (WelcheUmgebungExtern);
       
    end Passierbarkeit;
    
@@ -23,7 +25,7 @@ package body LeseKartenDatenbank is
       return KartenDatentypen.BewertungFeld
    is begin
       
-      return KartenDatenbank.Kartengrundliste (GrundExtern).Bewertung (RasseExtern);
+      return KartengrundDatenbank.Kartengrundliste (GrundExtern).Bewertung (RasseExtern);
       
    end BewertungGrund;
    
@@ -35,7 +37,7 @@ package body LeseKartenDatenbank is
       return KartenDatentypen.BewertungFeld
    is begin
       
-      return KartenDatenbank.Kartenflussliste (FlussExtern).Bewertung (RasseExtern);
+      return KartenflussDatenbank.Kartenflussliste (FlussExtern).Bewertung (RasseExtern);
       
    end BewertungFluss;
    
@@ -47,7 +49,7 @@ package body LeseKartenDatenbank is
       return KartenDatentypen.BewertungFeld
    is begin
       
-      return KartenDatenbank.KartenRessourcenListe (RessourceExtern).Bewertung (RasseExtern);
+      return KartenressourcenDatenbank.KartenRessourcenListe (RessourceExtern).Bewertung (RasseExtern);
       
    end BewertungRessource;
    
@@ -60,7 +62,7 @@ package body LeseKartenDatenbank is
       return ProduktionDatentypen.ProduktionElement
    is begin
       
-      return KartenDatenbank.Kartengrundliste (GrundExtern).Wirtschaft (RasseExtern, WirtschaftArtExtern);
+      return KartengrundDatenbank.Kartengrundliste (GrundExtern).Wirtschaft (RasseExtern, WirtschaftArtExtern);
       
    end WirtschaftGrund;
    
@@ -73,7 +75,7 @@ package body LeseKartenDatenbank is
       return ProduktionDatentypen.ProduktionElement
    is begin
       
-      return KartenDatenbank.Kartenflussliste (FlussExtern).Wirtschaft (RasseExtern, WirtschaftArtExtern);
+      return KartenflussDatenbank.Kartenflussliste (FlussExtern).Wirtschaft (RasseExtern, WirtschaftArtExtern);
       
    end WirtschaftFluss;
    
@@ -86,7 +88,7 @@ package body LeseKartenDatenbank is
       return ProduktionDatentypen.ProduktionElement
    is begin
       
-      return KartenDatenbank.KartenRessourcenListe (RessourceExtern).Wirtschaft (RasseExtern, WirtschaftArtExtern);
+      return KartenressourcenDatenbank.KartenRessourcenListe (RessourceExtern).Wirtschaft (RasseExtern, WirtschaftArtExtern);
       
    end WirtschaftRessourcen;
    
@@ -96,10 +98,10 @@ package body LeseKartenDatenbank is
      (GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       KampfArtExtern : in KartenDatentypen.Kampf_Enum)
-      return EinheitStadtDatentypen.KampfwerteAllgemein
+      return KampfDatentypen.KampfwerteAllgemein
    is begin
       
-      return KartenDatenbank.Kartengrundliste (GrundExtern).Kampf (RasseExtern, KampfArtExtern);
+      return KartengrundDatenbank.Kartengrundliste (GrundExtern).Kampf (RasseExtern, KampfArtExtern);
       
    end KampfGrund;
    
@@ -109,10 +111,10 @@ package body LeseKartenDatenbank is
      (FlussExtern : in KartengrundDatentypen.Kartenfluss_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       KampfArtExtern : in KartenDatentypen.Kampf_Enum)
-      return EinheitStadtDatentypen.KampfwerteAllgemein
+      return KampfDatentypen.KampfwerteAllgemein
    is begin
       
-      return KartenDatenbank.Kartenflussliste (FlussExtern).Kampf (RasseExtern, KampfArtExtern);
+      return KartenflussDatenbank.Kartenflussliste (FlussExtern).Kampf (RasseExtern, KampfArtExtern);
       
    end KampfFluss;
    
@@ -122,10 +124,10 @@ package body LeseKartenDatenbank is
      (RessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       KampfArtExtern : in KartenDatentypen.Kampf_Enum)
-      return EinheitStadtDatentypen.KampfwerteAllgemein
+      return KampfDatentypen.KampfwerteAllgemein
    is begin
       
-      return KartenDatenbank.KartenRessourcenListe (RessourceExtern).Kampf (RasseExtern, KampfArtExtern);
+      return KartenressourcenDatenbank.KartenRessourcenListe (RessourceExtern).Kampf (RasseExtern, KampfArtExtern);
       
    end KampfRessource;
    
@@ -136,7 +138,7 @@ package body LeseKartenDatenbank is
       return DatenbankRecords.KartengrundlisteRecord
    is begin
       
-      return KartenDatenbank.Kartengrundliste (GrundExtern);
+      return KartengrundDatenbank.Kartengrundliste (GrundExtern);
       
    end GanzerEintragGrund;
    
@@ -147,7 +149,7 @@ package body LeseKartenDatenbank is
       return DatenbankRecords.KartenlisteRecord
    is begin
       
-      return KartenDatenbank.Kartenflussliste (FlussExtern);
+      return KartenflussDatenbank.Kartenflussliste (FlussExtern);
       
    end GanzerEintragFluss;
    
@@ -158,8 +160,8 @@ package body LeseKartenDatenbank is
       return DatenbankRecords.KartenlisteRecord
    is begin
       
-      return KartenDatenbank.KartenRessourcenListe (RessourceExtern);
+      return KartenressourcenDatenbank.KartenRessourcenListe (RessourceExtern);
       
    end GanzerEintragRessource;
 
-end LeseKartenDatenbank;
+end LeseKartenDatenbanken;

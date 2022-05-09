@@ -1,11 +1,10 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
 with KartenRecords; use KartenRecords;
 with KartenKonstanten;
 with EinheitenKonstanten;
-with EinheitenRecords;
 
 with KIDatentypen; use KIDatentypen;
 with KIKonstanten;
@@ -22,7 +21,7 @@ with KIBewegungAllgemein;
 package body KIBewegungBerechnen is
    
    function BewegungPlanen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
                
@@ -52,7 +51,7 @@ package body KIBewegungBerechnen is
    
    
    function PlanenRekursiv
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       AktuellePlanpositionExtern : in KartenDatentypen.Stadtfeld)
       return Boolean
@@ -88,7 +87,7 @@ package body KIBewegungBerechnen is
    
    
    procedure FelderBewerten
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
@@ -154,7 +153,7 @@ package body KIBewegungBerechnen is
    
    
    function PlanschrittFestlegen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       DurchlaufExtern : in Positive;
       AktuellePlanpositionExtern : in KartenDatentypen.Stadtfeld)
       return Boolean
@@ -196,7 +195,7 @@ package body KIBewegungBerechnen is
    
    
    function BewertungFeldposition
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       EÄnderungExtern : in KartenDatentypen.UmgebungsbereichEins;
       YÄnderungExtern : in KartenDatentypen.UmgebungsbereichEins;
@@ -278,7 +277,7 @@ package body KIBewegungBerechnen is
    
    
    function BerechnungBewertungPosition
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return KIDatentypen.BewegungBewertung
@@ -349,7 +348,7 @@ package body KIBewegungBerechnen is
    
    
    function FeldBereitsBetreten
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin
@@ -377,7 +376,7 @@ package body KIBewegungBerechnen is
    
    
    procedure VorhandenenPlanVereinfachen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       ErsterZugSchleife:
@@ -419,7 +418,7 @@ package body KIBewegungBerechnen is
    
    
    procedure VorhandenenPlanVereinfachenPrüfen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       ErsterZugExtern : in KartenDatentypen.Stadtfeld;
       ÜberNächsterZugExtern : in KartenDatentypen.Stadtfeld)
    is begin
@@ -473,7 +472,7 @@ package body KIBewegungBerechnen is
    
    
    function TransporterNutzen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin

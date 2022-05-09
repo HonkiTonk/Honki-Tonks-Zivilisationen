@@ -2,35 +2,38 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
-with EinheitStadtRecords;
 with SonstigeVariablen;
-with EinheitStadtDatentypen;
+with EinheitenDatentypen;
 with StadtRecords;
+with StadtDatentypen;
+with SpielVariablen;
 
 package KIStadtLaufendeBauprojekte is
 
    function StadtLaufendeBauprojekte
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       BauprojektExtern : in StadtRecords.BauprojektRecord)
-      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
+      return StadtDatentypen.MaximaleStädteMitNullWert
      with
        Pre =>
-         (StadtRasseNummerExtern.Nummer in EinheitStadtDatentypen.MaximaleStädte'Range
+         (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
             SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
    
    function GleicheEinheitArtBauprojekte
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      EinheitArtExtern : in EinheitStadtDatentypen.Einheit_Art_Verwendet_Enum)
-      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      EinheitArtExtern : in EinheitenDatentypen.Einheit_Art_Verwendet_Enum)
+      return EinheitenDatentypen.MaximaleEinheitenMitNullWert
      with
        Pre =>
-         (StadtRasseNummerExtern.Nummer in EinheitStadtDatentypen.MaximaleStädte'Range
+         (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
             SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
    
 private
    
-   GleichesBauprojekt : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
+   GleichesGebäudeBauprojekt : StadtDatentypen.MaximaleStädteMitNullWert;
+   
+   GleichesEinheitenBauprojekt : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
 
 end KIStadtLaufendeBauprojekte;

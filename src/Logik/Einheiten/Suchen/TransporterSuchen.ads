@@ -2,11 +2,11 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
 with KartenRecords;
 with SonstigeVariablen;
-with EinheitStadtRecords;
+with EinheitenRecords;
 
 with Karten;
 
@@ -15,7 +15,7 @@ package TransporterSuchen is
    function KoordinatenTransporterMitRasseSuchen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
+      return EinheitenDatentypen.MaximaleEinheitenMitNullWert
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -25,9 +25,9 @@ package TransporterSuchen is
             SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
    
    function EinheitAufTransporterSuchen
-     (TransporterExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      LadungExtern : in EinheitStadtDatentypen.MaximaleEinheiten)
-      return EinheitStadtDatentypen.Transportplätze
+     (TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      LadungExtern : in EinheitenDatentypen.MaximaleEinheiten)
+      return EinheitenDatentypen.Transportplätze
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (TransporterExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
@@ -35,7 +35,7 @@ package TransporterSuchen is
             TransporterExtern.Nummer > 0);
 
    function HatTransporterLadung
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
      with
        Pre =>

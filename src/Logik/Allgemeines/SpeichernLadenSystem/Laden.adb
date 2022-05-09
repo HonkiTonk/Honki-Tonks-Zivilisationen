@@ -219,7 +219,7 @@ package body Laden is
                
             when others =>
                StadtSchleife:
-               for StadtNummerSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (RasseStadtSchleifenwert).Städtegrenze loop
+               for StadtNummerSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (RasseStadtSchleifenwert).Städtegrenze loop
                   
                   StadtRecords.StadtGebautRecord'Read (Stream (File => DateiLadenNeu),
                                                               SpielVariablen.StadtGebaut (RasseStadtSchleifenwert, StadtNummerSchleifenwert));

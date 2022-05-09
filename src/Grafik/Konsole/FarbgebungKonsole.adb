@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 
 with EingeleseneGrafikenKonsole;
@@ -12,7 +12,7 @@ with EingeleseneGrafikenKonsole;
 package body FarbgebungKonsole is
 
    procedure Farben
-     (EinheitIDExtern : in EinheitStadtDatentypen.EinheitenIDMitNullWert;
+     (EinheitIDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
       VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
       WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Enum;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Enum;
@@ -144,7 +144,7 @@ package body FarbgebungKonsole is
    
    
    procedure FarbenCursorEinheitVerbesserung
-     (EinheitIDExtern : in EinheitStadtDatentypen.EinheitenIDMitNullWert;
+     (EinheitIDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
       VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
       WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Enum;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Enum;
@@ -161,7 +161,7 @@ package body FarbgebungKonsole is
          Put (Item => CSI & "5m" & EingeleseneGrafikenKonsole.CursorGrafik (EigeneRasseExtern) & CSI & "0m");
          
       elsif
-        EinheitIDExtern > EinheitStadtDatentypen.EinheitenIDMitNullWert'First
+        EinheitIDExtern > EinheitenDatentypen.EinheitenIDMitNullWert'First
       then
          Put (Item => EingeleseneGrafikenKonsole.EinheitenGrafik (EigeneRasseExtern, EinheitIDExtern) & CSI & "0m");
         

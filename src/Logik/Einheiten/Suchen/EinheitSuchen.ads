@@ -5,8 +5,8 @@ with KartenDatentypen; use KartenDatentypen;
 with RassenDatentypen; use RassenDatentypen;
 with SonstigeVariablen;
 with KartenRecords;
-with EinheitStadtRecords;
-with EinheitStadtDatentypen;
+with EinheitenRecords;
+with EinheitenDatentypen;
 
 with Karten;
 
@@ -15,7 +15,7 @@ package EinheitSuchen is
    function KoordinatenEinheitMitRasseSuchen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
+      return EinheitenDatentypen.MaximaleEinheitenMitNullWert
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -26,7 +26,7 @@ package EinheitSuchen is
 
    function KoordinatenEinheitOhneRasseSuchen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return EinheitStadtRecords.RasseEinheitnummerRecord
+      return EinheitenRecords.RasseEinheitnummerRecord
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -36,7 +36,7 @@ package EinheitSuchen is
    function KoordinatenEinheitOhneSpezielleRasseSuchen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return EinheitStadtRecords.RasseEinheitnummerRecord
+      return EinheitenRecords.RasseEinheitnummerRecord
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -47,6 +47,6 @@ package EinheitSuchen is
    
 private
    
-   EinheitNummer : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
+   EinheitNummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    
 end EinheitSuchen;

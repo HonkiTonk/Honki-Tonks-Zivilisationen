@@ -1,10 +1,12 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
+with StadtDatentypen; use StadtDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
+with StadtKonstanten;
 
 with LeseKarten;
 with LeseEinheitenGebaut;
@@ -21,7 +23,7 @@ with Fehler;
 package body BewegungPassierbarkeitPruefen is
    
    function PassierbarkeitPrüfenNummer
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin
@@ -31,7 +33,7 @@ package body BewegungPassierbarkeitPruefen is
       case
         IDEinheit
       is
-         when EinheitStadtDatentypen.EinheitenIDMitNullWert'First =>
+         when EinheitenDatentypen.EinheitenIDMitNullWert'First =>
             Fehler.LogikFehler (FehlermeldungExtern => "BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer - Einheit ist vorhanden hat aber keine ID.");
             return False;
             
@@ -48,13 +50,13 @@ package body BewegungPassierbarkeitPruefen is
    -- Die Passierbarkeit für Ressourcen ist unwichtig, da sie sowieso nie geprüft werden muss.
    function PassierbarkeitPrüfenID
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitStadtDatentypen.EinheitenID;
+      IDExtern : in EinheitenDatentypen.EinheitenID;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin
             
       PassierbarkeitSchleife:
-      for PassierbarkeitSchleifenwert in EinheitStadtDatentypen.Passierbarkeit_Vorhanden_Enum'Range loop
+      for PassierbarkeitSchleifenwert in EinheitenDatentypen.Passierbarkeit_Vorhanden_Enum'Range loop
          
          case
            PassierbarTesten (RasseExtern           => RasseExtern,
@@ -92,7 +94,7 @@ package body BewegungPassierbarkeitPruefen is
    
    function IstNichtPassierbar
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      UmgebungExtern : in EinheitStadtDatentypen.Passierbarkeit_Vorhanden_Enum;
+      UmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Vorhanden_Enum;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin
@@ -101,7 +103,7 @@ package body BewegungPassierbarkeitPruefen is
       if
         StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
                                                     KoordinatenExtern => NeueKoordinatenExtern)
-        = EinheitenKonstanten.LeerNummer
+        = StadtKonstanten.LeerNummer
       then
          null;
                   
@@ -125,7 +127,7 @@ package body BewegungPassierbarkeitPruefen is
    
    
    function IstPassierbar
-     (UmgebungExtern : in EinheitStadtDatentypen.Passierbarkeit_Vorhanden_Enum;
+     (UmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Vorhanden_Enum;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin
@@ -179,8 +181,8 @@ package body BewegungPassierbarkeitPruefen is
    
    function PassierbarTesten
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      UmgebungExtern : in EinheitStadtDatentypen.Passierbarkeit_Vorhanden_Enum;
-      IDExtern : in EinheitStadtDatentypen.EinheitenID;
+      UmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Vorhanden_Enum;
+      IDExtern : in EinheitenDatentypen.EinheitenID;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin
@@ -188,47 +190,47 @@ package body BewegungPassierbarkeitPruefen is
       if
         NeueKoordinatenExtern.EAchse = -2
         and
-          UmgebungExtern /= EinheitStadtDatentypen.Planeteninneres_Enum
+          UmgebungExtern /= EinheitenDatentypen.Planeteninneres_Enum
           and
-            UmgebungExtern /= EinheitStadtDatentypen.Lava_Enum
+            UmgebungExtern /= EinheitenDatentypen.Lava_Enum
       then
          null;
                   
       elsif
         NeueKoordinatenExtern.EAchse = -1
         and
-          UmgebungExtern /= EinheitStadtDatentypen.Unterwasser_Enum
+          UmgebungExtern /= EinheitenDatentypen.Unterwasser_Enum
           and
-            UmgebungExtern /= EinheitStadtDatentypen.Unterküstenwasser_Enum
+            UmgebungExtern /= EinheitenDatentypen.Unterküstenwasser_Enum
             and
-              UmgebungExtern /= EinheitStadtDatentypen.Unterirdisch_Enum
+              UmgebungExtern /= EinheitenDatentypen.Unterirdisch_Enum
       then
          null;
                   
       elsif
         NeueKoordinatenExtern.EAchse = 0
         and
-          UmgebungExtern /= EinheitStadtDatentypen.Wasser_Enum
+          UmgebungExtern /= EinheitenDatentypen.Wasser_Enum
           and
-            UmgebungExtern /= EinheitStadtDatentypen.Küstenwasser_Enum
+            UmgebungExtern /= EinheitenDatentypen.Küstenwasser_Enum
             and
-              UmgebungExtern /= EinheitStadtDatentypen.Boden_Enum
+              UmgebungExtern /= EinheitenDatentypen.Boden_Enum
               and
-                UmgebungExtern not in EinheitStadtDatentypen.Passierbarkeit_Fliegen_Enum'Range
+                UmgebungExtern not in EinheitenDatentypen.Passierbarkeit_Fliegen_Enum'Range
       then
          null;
                   
       elsif
         NeueKoordinatenExtern.EAchse = 1
         and
-          UmgebungExtern not in EinheitStadtDatentypen.Passierbarkeit_Fliegen_Enum'Range
+          UmgebungExtern not in EinheitenDatentypen.Passierbarkeit_Fliegen_Enum'Range
       then
          null;
          
       elsif
         NeueKoordinatenExtern.EAchse = 2
         and
-          UmgebungExtern /= EinheitStadtDatentypen.Weltraum_Enum
+          UmgebungExtern /= EinheitenDatentypen.Weltraum_Enum
       then
          null;
             
@@ -251,7 +253,7 @@ package body BewegungPassierbarkeitPruefen is
 
 
    function InStadtEntladbar
-     (TransporterExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+     (TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin
@@ -296,8 +298,8 @@ package body BewegungPassierbarkeitPruefen is
    
    
    function RichtigeUmgebungVorhanden
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
-      EinheitenIDExtern : in EinheitStadtDatentypen.EinheitenID)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      EinheitenIDExtern : in EinheitenDatentypen.EinheitenID)
       return Boolean
    is begin
       

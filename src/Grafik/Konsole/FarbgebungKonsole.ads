@@ -5,13 +5,13 @@ with KartengrundDatentypen; use KartengrundDatentypen;
 with RassenDatentypen; use RassenDatentypen;
 with KartenVerbesserungDatentypen;
 with SonstigeVariablen;
-with EinheitStadtDatentypen;
+with EinheitenDatentypen;
 with EinheitenKonstanten;
 
 package FarbgebungKonsole is
 
    procedure Farben
-     (EinheitIDExtern : in EinheitStadtDatentypen.EinheitenIDMitNullWert;
+     (EinheitIDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
       VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
       WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Enum;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Enum;
@@ -56,7 +56,7 @@ private
                                  );
    
    procedure FarbenCursorEinheitVerbesserung
-     (EinheitIDExtern : in EinheitStadtDatentypen.EinheitenIDMitNullWert;
+     (EinheitIDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
       VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
       WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Enum;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Enum;

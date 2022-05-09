@@ -9,8 +9,9 @@ with Sf.Graphics.RectangleShape;
 with Sf.System.Vector2;
 
 with RassenDatentypen; use RassenDatentypen;
-with EinheitStadtRecords;
+with EinheitenRecords;
 with SonstigeVariablen;
+with StadtRecords;
 
 with AuswahlStadtEinheit;
 with UmwandlungenAdaNachEigenes;
@@ -42,8 +43,9 @@ private
    
    WelcheAuswahl : AuswahlStadtEinheit.AuswahlRecord;
    
-   StadtRasseNummer : EinheitStadtRecords.RasseEinheitnummerRecord;
-   EinheitRasseNummer : EinheitStadtRecords.RasseEinheitnummerRecord;
+   StadtRasseNummer : StadtRecords.RasseStadtnummerRecord;
+   
+   EinheitRasseNummer : EinheitenRecords.RasseEinheitnummerRecord;
    
    TextPosition : Sf.System.Vector2.sfVector2f;
    

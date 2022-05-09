@@ -13,7 +13,7 @@ with Fehler;
 package body StadtUmgebungsbereichFestlegen is
 
    procedure StadtUmgebungsbereichFestlegen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       case
@@ -32,7 +32,7 @@ package body StadtUmgebungsbereichFestlegen is
    
    
    procedure StadtUmgebungErmitteln
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       if

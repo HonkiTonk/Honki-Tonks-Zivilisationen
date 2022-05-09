@@ -5,9 +5,9 @@ with KartenDatentypen; use KartenDatentypen;
 with RassenDatentypen; use RassenDatentypen;
 with SonstigeVariablen;
 with KartenRecords;
-with EinheitStadtRecords;
-with EinheitStadtDatentypen;
+with StadtDatentypen;
 with SystemRecords;
+with StadtRecords;
 
 with Karten;
 
@@ -16,7 +16,7 @@ package StadtSuchen is
    function KoordinatenStadtMitRasseSuchen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
+      return StadtDatentypen.MaximaleStädteMitNullWert
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -27,7 +27,7 @@ package StadtSuchen is
    
    function KoordinatenStadtOhneRasseSuchen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return EinheitStadtRecords.RasseEinheitnummerRecord
+      return StadtRecords.RasseStadtnummerRecord
      with
        Pre  =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -37,7 +37,7 @@ package StadtSuchen is
    function KoordinatenStadtOhneSpezielleRasseSuchen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return EinheitStadtRecords.RasseEinheitnummerRecord
+      return StadtRecords.RasseStadtnummerRecord
      with
        Pre  =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -47,11 +47,11 @@ package StadtSuchen is
             SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
    
    function StadtNachNamenSuchen
-     return EinheitStadtRecords.RasseEinheitnummerRecord;
+     return StadtRecords.RasseStadtnummerRecord;
 
 private
    
-   StadtNummer : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
+   StadtNummer : StadtDatentypen.MaximaleStädteMitNullWert;
    
    StadtName : SystemRecords.TextEingabeRecord;
 

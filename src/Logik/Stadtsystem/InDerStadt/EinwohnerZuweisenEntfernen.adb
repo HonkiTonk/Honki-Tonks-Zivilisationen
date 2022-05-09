@@ -15,7 +15,7 @@ with Kartenkoordinatenberechnungssystem;
 package body EinwohnerZuweisenEntfernen is
 
    procedure EinwohnerZuweisenEntfernen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       if
@@ -54,7 +54,7 @@ package body EinwohnerZuweisenEntfernen is
 
 
    procedure EinwohnerBelegungÄndern
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       case
@@ -74,7 +74,7 @@ package body EinwohnerZuweisenEntfernen is
    
    
    procedure EinwohnerEntfernen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       SchreibeStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
@@ -90,7 +90,7 @@ package body EinwohnerZuweisenEntfernen is
    
    
    procedure EinwohnerZuweisen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),

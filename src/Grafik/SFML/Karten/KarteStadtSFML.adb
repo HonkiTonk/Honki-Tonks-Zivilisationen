@@ -5,10 +5,10 @@ with Sf.Graphics; use Sf.Graphics;
 with Sf.Graphics.RenderWindow;
 
 with KartenDatentypen; use KartenDatentypen;
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with KartenRecords; use KartenRecords;
 with KartengrundDatentypen; use KartengrundDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
+with StadtDatentypen; use StadtDatentypen;
 with KartenKonstanten;
 
 with LeseKarten;
@@ -17,7 +17,6 @@ with LeseStadtGebaut;
 with FarbgebungSFML;
 with BerechnungenKarteSFML;
 with ObjekteZeichnenSFML;
-with Karten;
 with Kartenkoordinatenberechnungssystem;
 with StadtInformationenSFML;
 with GrafikEinstellungenSFML;
@@ -29,7 +28,7 @@ with KarteGrafikenZeichnenSFML;
 package body KarteStadtSFML is
 
    procedure AnzeigeStadt
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       Stadtumgebungsgröße := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern);
@@ -113,7 +112,7 @@ package body KarteStadtSFML is
    
    
    procedure GrafischeDarstellung
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       Kartenfeld := LeseKarten.Grund (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern));
@@ -173,7 +172,7 @@ package body KarteStadtSFML is
      (YAchseExtern : in KartenDatentypen.Stadtfeld;
       XAchseExtern : in KartenDatentypen.Stadtfeld;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
-      StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+      StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       if
@@ -243,7 +242,7 @@ package body KarteStadtSFML is
    procedure DarstellungUmgebungErweitert
      (KarteKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
-      StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+      StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       case
@@ -482,7 +481,7 @@ package body KarteStadtSFML is
    procedure StadtZeichnen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
-      StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+      StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       if
@@ -534,7 +533,7 @@ package body KarteStadtSFML is
      (YAchseExtern : in KartenDatentypen.Stadtfeld;
       XAchseExtern : in KartenDatentypen.Stadtfeld;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
-      StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+      StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
             
       if
@@ -542,21 +541,21 @@ package body KarteStadtSFML is
         and
           XAchseExtern <= 12
       then
-         GebäudeID := EinheitStadtDatentypen.GebäudeID (XAchseExtern);
+         GebäudeID := StadtDatentypen.GebäudeID (XAchseExtern);
                
       elsif
         YAchseExtern = 2
         and
           XAchseExtern <= 12
       then
-         GebäudeID := EinheitStadtDatentypen.GebäudeID (XAchseExtern) + 12;
+         GebäudeID := StadtDatentypen.GebäudeID (XAchseExtern) + 12;
                
       elsif
         YAchseExtern = 3
         and
           XAchseExtern < 3
       then
-         GebäudeID := EinheitStadtDatentypen.GebäudeID (XAchseExtern) + 24;
+         GebäudeID := StadtDatentypen.GebäudeID (XAchseExtern) + 24;
 
       else
          return;
