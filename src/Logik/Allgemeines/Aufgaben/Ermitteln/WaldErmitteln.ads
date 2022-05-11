@@ -8,6 +8,7 @@ with KartengrundDatentypen;
 with SonstigeVariablen;
 with AufgabenDatentypen;
 with EinheitenDatentypen;
+with KartenVerbesserungDatentypen;
 
 package WaldErmitteln is
 
@@ -24,8 +25,10 @@ package WaldErmitteln is
 
 private
 
-   ------------------------- Diesen Bool mal in ein konstantes Array umschreiben, so dass man das überall verwenden kann und man zur Prüfung nur noch reinspringen muss.
+   ------------------------- Diesen Bool mal in ein konstantes Array umschreiben, so dass man das überall verwenden kann und man zur Prüfung nur noch reinspringen muss. Geht das überahupt und ist das sinnvoll?
    VorarbeitNötig : Boolean;
+
+   VorhandeneVerbesserung : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
 
    WelcheArbeit : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
 

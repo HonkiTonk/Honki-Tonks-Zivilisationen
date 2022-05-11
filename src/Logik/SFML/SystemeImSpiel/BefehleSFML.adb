@@ -5,6 +5,7 @@ with EinheitenDatentypen; use EinheitenDatentypen;
 with TastenbelegungDatentypen; use TastenbelegungDatentypen;
 with AufgabenDatentypen; use AufgabenDatentypen;
 with StadtDatentypen; use StadtDatentypen;
+with RueckgabeDatentypen; use RueckgabeDatentypen;
 with EinheitenKonstanten;
 with StadtKonstanten;
 
@@ -24,11 +25,11 @@ with Eingabe;
 with ForschungAllgemein;
 with StadtEntfernen;
 with TransporterSuchen;
-with EinheitenBeschreibungen;
 with EinheitenModifizieren;
 with AufgabenAllgemein;
 with BewegungEinheitenSFML;
 with AuswahlStadtEinheit;
+with Auswahl;
 
 package body BefehleSFML is
    
@@ -36,7 +37,7 @@ package body BefehleSFML is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
-      
+                               
       Befehl := Eingabe.Tastenwert;
 
       case
@@ -260,10 +261,12 @@ package body BefehleSFML is
       if
         LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= EinheitenKonstanten.LeerBeschäftigung
         and then
-          EinheitenBeschreibungen.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (7) = True
+      -------------------- Hier korrekte Nummer einfügen.
+        Auswahl.AuswahlJaNein (FrageZeileExtern => 1) = RueckgabeDatentypen.Ja_Enum
+      -- EinheitenBeschreibungen.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (7) = True
       then
          AufgabenAllgemein.Nullsetzung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-                  
+         
       elsif
         LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerEinheit.Bewegungspunkte
       then

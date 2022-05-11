@@ -6,10 +6,9 @@ with EinheitenDatentypen; use EinheitenDatentypen;
 with EinheitenKonstanten;
 
 with SchreibeEinheitenGebaut;
--- with LeseKarten;
--- with LeseEinheitenGebaut;
+with LeseKarten;
+with LeseEinheitenGebaut;
 
--- with EinheitenBeschreibungen;
 with RodenErmitteln;
 with Fehler;
 
@@ -21,14 +20,16 @@ package body FarmErmitteln is
       AnlegenTestenExtern : in Boolean)
       return Boolean
    is begin
+      
+      VorhandeneVerbesserung := LeseKarten.Verbesserung (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
 
       -- if
-      --   LeseKarten.Verbesserung (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = KartenVerbesserungDatentypen.Farm_Enum
+      --   VorhandeneVerbesserung = KartenVerbesserungDatentypen.Farm_Enum
       -- then
       --     return False;
 
       --  elsif
-      --    LeseKarten.Grund (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = KartengrundDatentypen.Eis_Enum
+      --    VorhandeneVerbesserung = KartengrundDatentypen.Eis_Enum
       --  then
       --    return False;
 

@@ -2,15 +2,17 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with EinheitenDatentypen; use EinheitenDatentypen;
+with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
+with RueckgabeDatentypen; use RueckgabeDatentypen;
 with EinheitenKonstanten;
 
 with SchreibeEinheitenGebaut;
--- with LeseKarten;
--- with LeseEinheitenGebaut;
+with LeseKarten;
+with LeseEinheitenGebaut;
 
 with RodenErmitteln;
--- with EinheitenBeschreibungen;
 with Fehler;
+with Auswahl;
 
 package body WaldErmitteln is
 
@@ -22,33 +24,39 @@ package body WaldErmitteln is
    is begin
       
       ------------------------------ JaNein Abfrage endlich mal in einer SFML Version einbauen!
-      -- if
-      --  LeseKarten.Verbesserung (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = KartenVerbesserungDatentypen.Farm_Enum
-      --  or
-      --    LeseKarten.Verbesserung (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = KartenVerbesserungDatentypen.Mine_Enum
-      -- then
-      --   if
-      --     SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum
-      --     and then
-      --       EinheitenBeschreibungen.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahlExtern => 8) = True
-      --   then
-      --      null;
+      VorhandeneVerbesserung := LeseKarten.Verbesserung (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      
+      if
+        VorhandeneVerbesserung = KartenVerbesserungDatentypen.Farm_Enum
+        or
+          VorhandeneVerbesserung = KartenVerbesserungDatentypen.Mine_Enum
+      then
+         if
+           SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum
+           and then
+         -------------------- Hier korrekte Nummer einfügen.
+           Auswahl.AuswahlJaNein (FrageZeileExtern => 1) = RueckgabeDatentypen.Ja_Enum
+         -- EinheitenBeschreibungen.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahlExtern => 8) = True
+         then
+            null;
             
-      --    elsif
-      --     SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum
-      --      and then
-      --        EinheitenBeschreibungen.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahlExtern => 8) = False
-      --    then
-      --      return False;
+         elsif
+           SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum
+           and then
+         -------------------- Hier korrekte Nummer einfügen.
+           Auswahl.AuswahlJaNein (FrageZeileExtern => 1) = RueckgabeDatentypen.Ja_Enum
+         -- EinheitenBeschreibungen.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahlExtern => 8) = False
+         then
+            return False;
             
-      --    else
-      --      null;
-      --   end if;
+         else
+            null;
+         end if;
 
-      --  else
-      --    null;
-      --  end if;
-    
+      else
+         null;
+      end if;
+      
       VorarbeitNötig := False;
     
       case

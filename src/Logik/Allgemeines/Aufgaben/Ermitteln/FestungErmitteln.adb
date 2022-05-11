@@ -5,11 +5,9 @@ with EinheitenDatentypen; use EinheitenDatentypen;
 with EinheitenKonstanten;
 
 with SchreibeEinheitenGebaut;
--- with LeseKarten;
--- with LeseEinheitenGebaut;
+with LeseKarten;
+with LeseEinheitenGebaut;
 
--- with EinheitenBeschreibungen;
--- with AufgabenAllgemein;
 with Fehler;
 
 package body FestungErmitteln is
@@ -20,14 +18,16 @@ package body FestungErmitteln is
       AnlegenTestenExtern : in Boolean)
       return Boolean
    is begin
+      
+      VorhandeneVerbesserung := LeseKarten.Verbesserung (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
             
       -- if
-      --   LeseKarten.Verbesserung (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = KartenVerbesserungDatentypen.Festung_Enum
+      --   VorhandeneVerbesserung = KartenVerbesserungDatentypen.Festung_Enum
       -- then
       --     return False;
 
       --  elsif
-      --    LeseKarten.Verbesserung (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
+      --    VorhandeneVerbesserung
       --  in
       --    KartenVerbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum'Range
       --    and

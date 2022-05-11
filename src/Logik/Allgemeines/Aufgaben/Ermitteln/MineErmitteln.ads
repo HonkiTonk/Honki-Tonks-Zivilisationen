@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
+with KartenVerbesserungDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 with KartengrundDatentypen;
@@ -26,6 +27,8 @@ private
 
    ------------------------- Diesen Bool mal in ein konstantes Array umschreiben, so dass man das überall verwenden kann und man zur Prüfung nur noch reinspringen muss.
    VorarbeitNötig : Boolean;
+
+   VorhandeneVerbesserung : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
 
    WelcheArbeit : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
 

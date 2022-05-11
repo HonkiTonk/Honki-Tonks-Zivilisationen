@@ -20,10 +20,6 @@ package EinheitenBeschreibungen is
      (IDExtern : in EinheitenDatentypen.EinheitenID)
       return Wide_Wide_String;
    
-   function BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen
-     (WelcheAuswahlExtern : in Natural)
-      return Boolean;
-   
 private
    
    Textnummer : Positive;

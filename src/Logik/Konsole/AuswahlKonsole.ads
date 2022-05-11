@@ -3,10 +3,10 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RueckgabeDatentypen;
 
-package Auswahl is
+package AuswahlKonsole is
 
-   function AuswahlJaNein
+   function AuswahlJaNeinKonsole
      (FrageZeileExtern : in Positive)
       return RueckgabeDatentypen.Ja_Nein_Enum;
-   
-end Auswahl;
+
+end AuswahlKonsole;

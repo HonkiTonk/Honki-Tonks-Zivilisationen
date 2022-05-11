@@ -140,16 +140,16 @@ package ChangelogMai2022 is
    
    
 
-   -- Version 0.01.0710 => 0.01.07 (11.05.2022):
+   -- Version 0.01.0710 => 0.01.0720 (11.05.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Angefangen die Abfrage zum Abbrechen der aktuellen Aufgabe wieder einzubauen.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 
    -- Version 0.01.0690 => 0.01.0710 (10.05.2022):
    
-   -- Kartenfelder für den Kern hinzugefügt und in den Kartengenerator integriert..
+   -- Kartenfelder für den Kern hinzugefügt und in den Kartengenerator integriert.
    -- Den Standardteil der KartengrundDatenbank in verschiedene Bereiche aufgeteilt.
    -- Das Setzen der Datenbanken auf ihre Standardwerte parallelisiert.
    -- Eine Menge Contracts hinzugefügt.

@@ -1,34 +1,29 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
--- with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
--- with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
--- with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+with OptionenVariablen;
+with GrafikDatentypen;
 
--- with TastenbelegungDatentypen;
-
--- with TextAnzeigeKonsole;
--- with Eingabe;
+with AuswahlKonsole;
+with AuswahlSFML;
 
 package body Auswahl is
    
    function AuswahlJaNein
      (FrageZeileExtern : in Positive)
-      return RueckgabeDatentypen.Rückgabe_Werte_Enum
+      return RueckgabeDatentypen.Ja_Nein_Enum
    is begin
       
       case
-        FrageZeileExtern
+        OptionenVariablen.NutzerEinstellungen.Anzeigeart
       is
-         when 1 =>
-            null;
+         when GrafikDatentypen.Grafik_SFML_Enum =>
+            return AuswahlSFML.AuswahlJaNeinSFML (FrageZeileExtern => FrageZeileExtern);
             
-         when others =>
-            null;
+         when GrafikDatentypen.Grafik_Konsole_Enum =>
+            return AuswahlKonsole.AuswahlJaNeinKonsole (FrageZeileExtern => FrageZeileExtern);
       end case;
       
-      return RueckgabeDatentypen.Ja_Enum;
-      
    end AuswahlJaNein;
-
+   
 end Auswahl;

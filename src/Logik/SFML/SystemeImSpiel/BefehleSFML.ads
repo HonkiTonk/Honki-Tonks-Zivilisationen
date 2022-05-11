@@ -6,7 +6,6 @@ with EinheitenRecords;
 with EinheitenDatentypen;
 with StadtDatentypen;
 with SystemRecords;
-with KartenDatentypen;
 with TastenbelegungDatentypen;
 with RueckgabeDatentypen;
 with SpielVariablen;
@@ -27,9 +26,7 @@ private
    Transportiert : Boolean;
    AufgabeDurchführen : Boolean;
    StadtErfolgreichGebaut : Boolean;
-   
-   Auswahl : KartenDatentypen.UmgebungsbereichEins;
-   
+      
    Befehl : TastenbelegungDatentypen.Tastenbelegung_Enum;
 
    EinheitNummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;

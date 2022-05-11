@@ -5,6 +5,7 @@ with EinheitenDatentypen; use EinheitenDatentypen;
 with TastenbelegungDatentypen; use TastenbelegungDatentypen;
 with AufgabenDatentypen; use AufgabenDatentypen;
 with StadtDatentypen; use StadtDatentypen;
+with RueckgabeDatentypen; use RueckgabeDatentypen;
 with EinheitenKonstanten;
 with StadtKonstanten;
 with ForschungenDatentypen;
@@ -29,7 +30,6 @@ with ForschungAllgemein;
 with StadtEntfernen;
 with EinheitenTransporter;
 with TransporterSuchen;
-with EinheitenBeschreibungen;
 with EinheitenModifizieren;
 with AufgabenAllgemein;
 with ForschungAnzeigeKonsole;
@@ -251,7 +251,9 @@ package body BefehleKonsole is
       if
         LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= EinheitenKonstanten.LeerBeschäftigung
         and then
-          EinheitenBeschreibungen.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (7) = True
+      -------------------- Hier korrekte Nummer einfügen.
+        Auswahl.AuswahlJaNein (FrageZeileExtern => 1) = RueckgabeDatentypen.Ja_Enum
+      -- EinheitenBeschreibungen.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (7) = True
       then
          AufgabenAllgemein.Nullsetzung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
                   

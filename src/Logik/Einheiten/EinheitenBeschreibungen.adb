@@ -2,9 +2,6 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with GlobaleTexte;
-with RueckgabeDatentypen;
-
-with Auswahl;
 
 package body EinheitenBeschreibungen is
 
@@ -48,24 +45,5 @@ package body EinheitenBeschreibungen is
       return To_Wide_Wide_String (Source => BeschäftigungText);
       
    end Beschäftigung;
-   
-      
-
-   function BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen
-     (WelcheAuswahlExtern : in Natural)
-      return Boolean
-   is begin
-         
-      case
-        Auswahl.AuswahlJaNein (FrageZeileExtern => WelcheAuswahlExtern)
-      is
-         when RueckgabeDatentypen.Ja_Enum =>
-            return True;
-            
-         when others =>
-            return False;
-      end case;
-      
-   end BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen;
 
 end EinheitenBeschreibungen;

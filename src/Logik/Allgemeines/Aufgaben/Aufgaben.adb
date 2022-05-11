@@ -7,6 +7,7 @@ with TastenbelegungDatentypen; use TastenbelegungDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with AufgabenDatentypen; use AufgabenDatentypen;
 with ForschungenDatentypen; use ForschungenDatentypen;
+with RueckgabeDatentypen; use RueckgabeDatentypen;
 with EinheitenKonstanten;
 with ForschungKonstanten;
 
@@ -18,7 +19,6 @@ with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
 with LeseWichtiges;
 
-with EinheitenBeschreibungen;
 with EinheitenErzeugenEntfernen;
 with EinheitenModifizieren;
 with WegErmitteln;
@@ -28,6 +28,7 @@ with FarmErmitteln;
 with FestungErmitteln;
 with WaldErmitteln;
 with AufgabenAllgemein;
+with Auswahl;
 
 ------------------------ Das hier auch mal besser aufteilen.
 package body Aufgaben is
@@ -83,14 +84,16 @@ package body Aufgaben is
          
       else
          case
-           EinheitenBeschreibungen.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahlExtern => 7)
+           -------------------- Hier korrekte Nummer einfügen.
+           Auswahl.AuswahlJaNein (FrageZeileExtern => 1)
+           -- EinheitenBeschreibungen.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahlExtern => 7)
          is
-            when True =>
+            when RueckgabeDatentypen.Ja_Enum =>
                return VerbesserungFestgelegt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                               BefehlExtern             => BefehlExtern,
                                               AnlegenTestenExtern      => True);
                      
-            when False =>
+            when RueckgabeDatentypen.Nein_Enum =>
                return False;
          end case;
       end if;
@@ -305,7 +308,9 @@ package body Aufgaben is
          EinheitenErzeugenEntfernen.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
       elsif
-        EinheitenBeschreibungen.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahlExtern => 9) = True
+        -------------------- Hier korrekte Nummer einfügen.
+        Auswahl.AuswahlJaNein (FrageZeileExtern => 1) = RueckgabeDatentypen.Ja_Enum
+      -- EinheitenBeschreibungen.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahlExtern => 9) = True
       then
          EinheitenErzeugenEntfernen.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
@@ -345,7 +350,9 @@ package body Aufgaben is
          null;
          
       elsif
-        EinheitenBeschreibungen.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahlExtern => 12) = True
+        -------------------- Hier korrekte Nummer einfügen.
+        Auswahl.AuswahlJaNein (FrageZeileExtern => 1) = RueckgabeDatentypen.Ja_Enum
+      -- EinheitenBeschreibungen.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahlExtern => 12) = True
       then
          null;
                      

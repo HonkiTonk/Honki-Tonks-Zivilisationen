@@ -5,10 +5,9 @@ with EinheitenDatentypen; use EinheitenDatentypen;
 with EinheitenKonstanten;
 
 with SchreibeEinheitenGebaut;
--- with LeseKarten;
--- with LeseEinheitenGebaut;
+with LeseKarten;
+with LeseEinheitenGebaut;
 
--- with EinheitenBeschreibungen;
 with RodenErmitteln;
 with Fehler;
 
@@ -21,13 +20,15 @@ package body MineErmitteln is
       return Boolean
    is begin
       
+      VorhandeneVerbesserung := LeseKarten.Verbesserung (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      
     --  if
-    --    LeseKarten.Verbesserung (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = KartenVerbesserungDatentypen.Mine_Enum
+    --    VorhandeneVerbesserung = KartenVerbesserungDatentypen.Mine_Enum
      -- then
     --     return False;
 
     --  elsif
-    --    LeseKarten.Verbesserung (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
+    --    VorhandeneVerbesserung
    --   in
     --    KartenVerbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum'Range
     --    and
