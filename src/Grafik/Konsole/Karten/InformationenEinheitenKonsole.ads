@@ -36,46 +36,121 @@ private
    
    function Allgemeines
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return EinheitenRecords.RasseEinheitnummerRecord;
+      return EinheitenRecords.RasseEinheitnummerRecord
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+          and
+            SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum),
+           
+         Post =>
+           (Allgemeines'Result.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+            and
+              SonstigeVariablen.RassenImSpiel (Allgemeines'Result.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
    
    procedure Lebenspunkte
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord);
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+          and
+            SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
    
    procedure Bewegungspunkte
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord);
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+          and
+            SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
    
    procedure Erfahrungspunkte
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord);
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+          and
+            SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
    
    procedure Beschäftigung
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord);
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+          and
+            SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
    
    procedure Beschäftigungszeit
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord);
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+          and
+            SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
    
    procedure Angriff
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord);
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+          and
+            SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
    
    procedure Verteidigung
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord);
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+          and
+            SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
    
    procedure Rang
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord);
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+          and
+            SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
    
    procedure Heimatstadt
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord);
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+          and
+            SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
    
    procedure AktuelleVerteidigung
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord);
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+          and
+            SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
    
    procedure AktuellerAngriff
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord);
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+          and
+            SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
    
    procedure Ladung
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord);
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+          and
+            SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
    
    procedure DebugInformationen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord);
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+          and
+            SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
    
    package AnzeigeBewegungFloat is new Ada.Wide_Wide_Text_IO.Float_IO (EinheitenDatentypen.VorhandeneBewegungspunkte);
 

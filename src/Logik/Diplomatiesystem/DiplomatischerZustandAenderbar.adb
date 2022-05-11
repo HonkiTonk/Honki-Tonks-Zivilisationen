@@ -3,11 +3,9 @@ pragma Warnings (Off, "*array aggregate*");
 
 with SystemDatentypen; use SystemDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
--- with GlobaleTexte;
 with WichtigesKonstanten;
 with SpielVariablen;
 
--- with TextAnzeigeKonsole;
 with DiplomatischerZustand;
 
 package body DiplomatischerZustandAenderbar is

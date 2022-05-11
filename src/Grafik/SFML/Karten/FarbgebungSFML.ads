@@ -43,6 +43,10 @@ private
                                            KartengrundDatentypen.Unterwald_Enum                                                       => (127, 255, 212, 255),
                                            KartengrundDatentypen.Korallen_Enum                                                        => (255, 114, 86, 255),
                                            KartengrundDatentypen.Hügel_Mit_Enum                                                       => (0, 0, 0, 0),
+                                           KartengrundDatentypen.Magnesiowüstit_Enum                                                  => (0, 0, 0, 0),
+                                           KartengrundDatentypen.Perowskit_Enum                                                       => (0, 0, 0, 0),
+                                           KartengrundDatentypen.Majorit_Enum                                                         => (0, 0, 0, 0),
+                                           KartengrundDatentypen.Ringwoodit_Enum                                                      => (0, 0, 0, 0),
                                            KartengrundDatentypen.Vernichtet_Enum                                                      => (0, 0, 0, 0)
                                           );
    

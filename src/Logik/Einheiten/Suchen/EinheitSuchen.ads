@@ -3,10 +3,11 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with RassenDatentypen; use RassenDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
 with SonstigeVariablen;
 with KartenRecords;
 with EinheitenRecords;
-with EinheitenDatentypen;
+with SpielVariablen;
 
 with Karten;
 
@@ -22,7 +23,10 @@ package EinheitSuchen is
           and
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse
           and
-            SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
+            SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum),
+                      
+         Post =>
+           (KoordinatenEinheitMitRasseSuchen'Result <= SpielVariablen.Grenzen (RasseExtern).Einheitengrenze);
 
    function KoordinatenEinheitOhneRasseSuchen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)

@@ -140,17 +140,23 @@ package ChangelogMai2022 is
    
    
 
-   -- Version 0.01.07 => 0.01.07 (11.05.2022):
+   -- Version 0.01.0710 => 0.01.07 (11.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0690 => 0.01.07 (10.05.2022):
+   -- Version 0.01.0690 => 0.01.0710 (10.05.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Kartenfelder für den Kern hinzugefügt und in den Kartengenerator integriert..
+   -- Den Standardteil der KartengrundDatenbank in verschiedene Bereiche aufgeteilt.
+   -- Das Setzen der Datenbanken auf ihre Standardwerte parallelisiert.
+   -- Eine Menge Contracts hinzugefügt.
+   -- Unnötigen Code gelöscht.
+   -- Die Kartengeneratowahrscheinlichkeiten von Float auf WahrscheinlichkeitKartengenerator umgeschrieben.
+   -- Debugmenü überarbeitet.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

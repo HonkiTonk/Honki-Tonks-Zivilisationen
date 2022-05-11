@@ -14,16 +14,6 @@ package body KartengeneratorKueste is
    procedure GenerierungKüstenSeeGewässer
    is begin
       
-      case
-        Karten.Kartenparameter.Kartenart
-      is
-         when KartenDatentypen.Kartenart_Chaotisch_Enum'Range | KartenDatentypen.Kartenart_Sonstiges_Enum'Range =>
-            return;
-            
-         when KartenDatentypen.Kartenart_Normal_Enum'Range =>
-            null;
-      end case;
-      
       YAchseSchleife:
       for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse loop
          XAchseSchleife:

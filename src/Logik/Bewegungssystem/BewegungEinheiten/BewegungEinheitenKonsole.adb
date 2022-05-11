@@ -1,14 +1,11 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
--- with GlobaleTexte;
-
 with Karte;
 with Eingabe;
 with EinheitenModifizieren;
 with StadtBauen;
 with Aufgaben;
--- with TextAnzeigeKonsole;
 with BewegungEinheiten;
 
 package body BewegungEinheitenKonsole is

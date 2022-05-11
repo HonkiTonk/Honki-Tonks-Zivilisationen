@@ -3,8 +3,8 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with EinheitenDatentypen; use EinheitenDatentypen;
+with KartenDatentypen; use KartenDatentypen;
 with StadtDatentypen;
-with KartenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 with KartenRecords;
@@ -13,6 +13,8 @@ with SonstigeVariablen;
 with KampfDatentypen;
 
 with KIDatentypen;
+
+with Karten;
 
 package LeseEinheitenGebaut is
 
@@ -32,7 +34,12 @@ package LeseEinheitenGebaut is
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
+            SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum),
+   
+         Post =>
+           (Koordinaten'Result.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+            and
+              Koordinaten'Result.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
    
    function Heimatstadt
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

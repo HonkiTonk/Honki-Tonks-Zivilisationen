@@ -3,11 +3,12 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with RassenDatentypen; use RassenDatentypen;
+with StadtDatentypen; use StadtDatentypen;
 with SonstigeVariablen;
 with KartenRecords;
-with StadtDatentypen;
 with SystemRecords;
 with StadtRecords;
+with SpielVariablen;
 
 with Karten;
 
@@ -23,7 +24,10 @@ package StadtSuchen is
           and
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse
           and
-            SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
+            SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum),
+                      
+         Post =>
+           (KoordinatenStadtMitRasseSuchen'Result <= SpielVariablen.Grenzen (RasseExtern).Städtegrenze);
    
    function KoordinatenStadtOhneRasseSuchen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
@@ -47,7 +51,12 @@ package StadtSuchen is
             SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
    
    function StadtNachNamenSuchen
-     return StadtRecords.RasseStadtnummerRecord;
+     return StadtRecords.RasseStadtnummerRecord
+     with
+       Post =>
+         (StadtNachNamenSuchen'Result.Nummer <= SpielVariablen.Grenzen (StadtNachNamenSuchen'Result.Rasse).Städtegrenze
+          and
+            SonstigeVariablen.RassenImSpiel (StadtNachNamenSuchen'Result.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
 
 private
    

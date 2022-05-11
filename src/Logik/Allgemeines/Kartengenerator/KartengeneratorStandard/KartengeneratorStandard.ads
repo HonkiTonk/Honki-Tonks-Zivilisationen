@@ -12,21 +12,21 @@ package KartengeneratorStandard is
 
 private
    
-   BeliebigerLandwert : Float;
+   BeliebigerLandwert : KartenDatentypen.WahrscheinlichkeitKartengenerator;
    
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    
    type WahrscheinlichkeitenRecord is record
       
-      Anfangswert : Float;
-      Endwert : Float;
+      Anfangswert : KartenDatentypen.WahrscheinlichkeitKartengenerator;
+      Endwert : KartenDatentypen.WahrscheinlichkeitKartengenerator;
       
    end record;
    
    ---------------------------- Später Nutzereinstellbar machen.
-   WahrscheinlichkeitLandmasse : constant WahrscheinlichkeitenRecord := (0.25, 0.80);
-   WahrscheinlichkeitLandInLandmasse : constant WahrscheinlichkeitenRecord := (0.00, 0.85);
-   WahrscheinlichkeitWasser : constant WahrscheinlichkeitenRecord := (0.00, 0.95);
+   WahrscheinlichkeitLandmasse : constant WahrscheinlichkeitenRecord := (25, 80);
+   WahrscheinlichkeitLandInLandmasse : constant WahrscheinlichkeitenRecord := (0, 85);
+   WahrscheinlichkeitWasser : constant WahrscheinlichkeitenRecord := (0, 95);
 
    procedure LandVorhanden
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;

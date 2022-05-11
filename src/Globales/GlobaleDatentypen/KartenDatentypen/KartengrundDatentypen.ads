@@ -25,8 +25,8 @@ package KartengrundDatentypen is
                              Erde_Enum, Erdgestein_Enum, Sand_Enum, Gestein_Enum,
                               
                              -- Planeteninneres
-                             ------------------------ Das hier auch erweitern wie die oberen Teile?
                              Lava_Enum, Planetenkern_Enum,
+                             Ringwoodit_Enum, Majorit_Enum, Perowskit_Enum, Magnesiowüstit_Enum,
                               
                              -- Sonstiges
                              Vernichtet_Enum
@@ -55,9 +55,9 @@ package KartengrundDatentypen is
    subtype Kartengrund_Unterfläche_Land_Enum is Kartengrund_Unterfläche_Enum range Erde_Enum .. Gestein_Enum;
    
    -- Planeteinneres
-   subtype Kartengrund_Kernfläche_Enum is Kartengrund_Vorhanden_Enum range Lava_Enum .. Planetenkern_Enum;
+   subtype Kartengrund_Kernfläche_Enum is Kartengrund_Vorhanden_Enum range Lava_Enum .. Magnesiowüstit_Enum;
    subtype Kartengrund_Kernfläche_Flüssig_Enum is Kartengrund_Kernfläche_Enum range Lava_Enum .. Planetenkern_Enum;
-   -- subtype Kartengrund_Kernfläche_Fest_Enum is Kartengrund_Kernfläche_Enum range  .. ;
+   subtype Kartengrund_Kernfläche_Fest_Enum is Kartengrund_Kernfläche_Enum range Ringwoodit_Enum .. Magnesiowüstit_Enum;
    
    -- Sonstiges
    subtype Kartengrund_Sonstiges_Enum is Kartengrund_Vorhanden_Enum range Vernichtet_Enum .. Vernichtet_Enum;

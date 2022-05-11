@@ -7,6 +7,7 @@ with SonstigeVariablen;
 with RassenDatentypen;
 with SystemDatentypen;
 with MenueDatentypen;
+with GrafikDatentypen;
 
 with ImSpiel;
 with Kartengenerator;
@@ -17,12 +18,15 @@ with SpieleinstellungenSonstiges;
 with Warnung;
 with Ladezeiten;
 with AuswahlMenues;
+with InteraktionGrafiktask;
 
 package body Spieleinstellungen is
 
    function Spieleinstellungen
      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
+      
+      SonstigeVariablen.RassenImSpiel := (others => RassenDatentypen.Leer_Spieler_Enum);
       
       SpielGespieltSchleife:
       loop
@@ -77,6 +81,7 @@ package body Spieleinstellungen is
          end loop SpielEinstellungenSchleife;
          
          Rückgabewert := AutomatischeEinstellungen;
+         
          case
            Rückgabewert
          is
@@ -95,6 +100,8 @@ package body Spieleinstellungen is
    function AutomatischeEinstellungen
      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
+      
+      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Generierungszeit_Enum);
       
       Kartengenerator.Kartengenerator;
       

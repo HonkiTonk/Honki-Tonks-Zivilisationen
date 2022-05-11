@@ -13,6 +13,8 @@ with SystemRecords;
 with SonstigeVariablen;
 with StadtRecords;
 
+with Karten;
+
 package StadtBauen is
 
    function StadtBauen
@@ -47,7 +49,11 @@ private
        Pre =>
          (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
-            SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
+            SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+          and
+            KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+          and
+            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
 
 
 
@@ -65,7 +71,10 @@ private
       return StadtDatentypen.MaximaleStädteMitNullWert
      with
        Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum),
+
+         Post =>
+           (StadtnummerErmitteln'Result in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Städtegrenze);
 
    function HauptstadtPrüfen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
@@ -73,6 +82,7 @@ private
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum),
+
          Post =>
            (HauptstadtPrüfen'Result /= KartenVerbesserungDatentypen.Leer_Verbesserung_Enum);
 

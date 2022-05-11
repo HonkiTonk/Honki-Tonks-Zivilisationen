@@ -1,14 +1,11 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with KartenDatentypen; use KartenDatentypen;
 with KampfDatentypen; use KampfDatentypen;
 with EinheitenKonstanten;
 with KartenRecordKonstanten;
 
 with LeseEinheitenDatenbank;
-
-with Karten;
 
 package body LeseEinheitenGebaut is
 

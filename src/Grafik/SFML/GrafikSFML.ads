@@ -4,7 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 with MenueDatentypen;
 with RassenDatentypen;
 with StadtDatentypen;
-with EinheitenDatentypen;
 
 package GrafikSFML is
 
@@ -17,9 +16,6 @@ private
    AktuelleRasse : RassenDatentypen.Rassen_Enum;
 
    AktuelleStadtNummer : StadtDatentypen.MaximaleStädteMitNullWert;
-
-   -- Wird die irgendwann einmal benötigt?
-   AktuelleEinheitNummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
 
    procedure AnzeigeEingaben;
    procedure AnzeigeEditoren;

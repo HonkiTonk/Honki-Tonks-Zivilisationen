@@ -44,7 +44,12 @@ private
             EinheitRasseNummerExtern.Rasse /= FeindlicheEinheitExtern.Rasse);
 
    procedure BewegungAufgabenplanung
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord);
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+          and
+            SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
 
 
 

@@ -1,9 +1,11 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with KartenDatentypen; use KartenDatentypen;
 with KartenRecords;
-with KartenDatentypen;
 with KartengrundDatentypen;
+
+with Karten;
 
 package KartengeneratorBerechnungenAllgemein is
    
@@ -14,7 +16,12 @@ package KartengeneratorBerechnungenAllgemein is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
       EbeneExtern : in KartenDatentypen.EbeneVorhanden)
-      return AnzahlGleicherFelder;
+      return AnzahlGleicherFelder
+     with
+       Pre =>
+         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+          and
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
    
 private
    

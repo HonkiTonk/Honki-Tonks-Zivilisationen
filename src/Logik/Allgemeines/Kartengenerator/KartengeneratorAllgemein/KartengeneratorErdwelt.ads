@@ -10,7 +10,12 @@ package KartengeneratorErdwelt is
 
    procedure KartengeneratorErdwelt
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv);
+      XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
+     with
+       Pre =>
+         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+          and
+            XAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
    
 private
       
@@ -19,12 +24,12 @@ private
    
    WelcherGrund : KartengrundDatentypen.Kartengrund_Enum;
    
-   type KartengrundWahrscheinlichkeitArray is array (KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum'Range) of Float;
+   type KartengrundWahrscheinlichkeitArray is array (KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum'Range) of KartenDatentypen.WahrscheinlichkeitKartengenerator;
    KartengrundWahrscheinlichkeit : KartengrundWahrscheinlichkeitArray := (
-                                                                          KartengrundDatentypen.Erde_Enum       => 0.30,
-                                                                          KartengrundDatentypen.Erdgestein_Enum => 0.30,
-                                                                          KartengrundDatentypen.Sand_Enum       => 0.30,
-                                                                          KartengrundDatentypen.Gestein_Enum    => 0.30
+                                                                          KartengrundDatentypen.Erde_Enum       => 30,
+                                                                          KartengrundDatentypen.Erdgestein_Enum => 30,
+                                                                          KartengrundDatentypen.Sand_Enum       => 30,
+                                                                          KartengrundDatentypen.Gestein_Enum    => 30
                                                                          );
    GezogeneZahlen : KartengrundWahrscheinlichkeitArray;
    

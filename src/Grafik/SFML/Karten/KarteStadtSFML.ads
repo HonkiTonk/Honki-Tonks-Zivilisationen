@@ -82,7 +82,10 @@ private
      (YAchseExtern : in KartenDatentypen.Stadtfeld;
       XAchseExtern : in KartenDatentypen.Stadtfeld;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre =>
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum);
 
    procedure DarstellungGebäude
      (YAchseExtern : in KartenDatentypen.Stadtfeld;

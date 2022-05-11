@@ -15,7 +15,7 @@ package body KartengeneratorErdwelt is
       ZufallszahlenSchleife:
       for ZufallszahlSchleifenwert in KartengrundWahrscheinlichkeitArray'Range loop
          
-         GezogeneZahlen (ZufallszahlSchleifenwert) := ZufallsgeneratorenKarten.ZufälligerWert;
+         GezogeneZahlen (ZufallszahlSchleifenwert) := ZufallsgeneratorenKarten.KartengeneratorZufallswerte;
          
       end loop ZufallszahlenSchleife;
       

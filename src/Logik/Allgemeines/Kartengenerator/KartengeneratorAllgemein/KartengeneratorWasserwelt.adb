@@ -12,19 +12,10 @@ package body KartengeneratorWasserwelt is
       XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
    is begin
       
-      if
-        YAchseExtern = XAchseExtern
-      then
-         null;
-         
-      else
-         null;
-      end if;
-      
       ZufallszahlenSchleife:
       for ZufallszahlSchleifenwert in KartengrundWahrscheinlichkeitArray'Range loop
          
-         GezogeneZahlen (ZufallszahlSchleifenwert) := ZufallsgeneratorenKarten.ZufälligerWert;
+         GezogeneZahlen (ZufallszahlSchleifenwert) := ZufallsgeneratorenKarten.KartengeneratorZufallswerte;
          
       end loop ZufallszahlenSchleife;
       

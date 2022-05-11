@@ -6,12 +6,10 @@ with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 
 with ForschungenDatentypen; use ForschungenDatentypen;
 with ForschungKonstanten;
--- with GlobaleTexte;
 with TastenbelegungDatentypen;
 
 with LeseForschungenDatenbank;
 
--- with TextAnzeigeKonsole;
 with Eingabe;
 
 package body ForschungAnzeigeKonsole is

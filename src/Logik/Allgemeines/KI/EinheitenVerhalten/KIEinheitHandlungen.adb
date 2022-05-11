@@ -46,11 +46,25 @@ package body KIEinheitHandlungen is
       AktivitätSchleife:
       for Schleifenwert in ZahlenDatentypen.NotAusKlein'Range loop
          
-         exit AktivitätSchleife when HandlungBeendet (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True;
+         case
+           HandlungBeendet (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+         is
+            when True =>
+               exit AktivitätSchleife;
+               
+            when False =>
+               BewegungAufgabenplanung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         end case;
          
-         BewegungAufgabenplanung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-         
-         exit AktivitätSchleife when HandlungBeendet (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True;
+         case
+           HandlungBeendet (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+         is
+            when True =>
+               exit AktivitätSchleife;
+               
+            when False =>
+               null;
+         end case;
          
          if
            LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= KIKonstanten.LeerKoordinate
@@ -115,11 +129,25 @@ package body KIEinheitHandlungen is
       AktivitätSchleife:
       for Schleifenwert in ZahlenDatentypen.NotAusKlein'Range loop
          
-         exit AktivitätSchleife when HandlungBeendet (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True;
+         case
+           HandlungBeendet (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+         is
+            when True =>
+               exit AktivitätSchleife;
+               
+            when False =>
+               BewegungAufgabenplanung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         end case;
          
-         BewegungAufgabenplanung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-         
-         exit AktivitätSchleife when HandlungBeendet (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True;
+         case
+           HandlungBeendet (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+         is
+            when True =>
+               exit AktivitätSchleife;
+               
+            when False =>
+               null;
+         end case;
          
          if
            LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= KIKonstanten.LeerKoordinate
@@ -151,7 +179,7 @@ package body KIEinheitHandlungen is
       if
         LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerEinheit.ID
         or
-          LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) <= EinheitenKonstanten.LeerEinheit.Bewegungspunkte
+          LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) <= EinheitenKonstanten.LeerBewegungspunkte
       then
          return True;
          

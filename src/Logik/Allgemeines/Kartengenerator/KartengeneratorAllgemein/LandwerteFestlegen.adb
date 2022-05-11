@@ -10,7 +10,7 @@ package body LandwerteFestlegen is
       case
         Karten.Kartenparameter.Kartenart
       is
-         when KartenDatentypen.Kartenart_Sonstiges_Enum'Range | KartenDatentypen.Kartenart_Chaotisch_Enum'Range =>
+         when KartenDatentypen.Kartenart_Sonstiges_Enum'Range =>
             null;
             
          when others =>

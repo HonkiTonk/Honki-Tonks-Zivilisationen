@@ -7,7 +7,6 @@ with KartengrundDatentypen;
 with LeseKarten;
 with SchreibeKarten;
 
-with Karten;
 with KartengeneratorVariablen;
 with KartengeneratorErdwelt;
 with KartengeneratorWasserwelt;
@@ -17,16 +16,6 @@ package body KartengeneratorUnterwasserUnterirdisch is
 
    procedure GenerierungLandschaft
    is begin
-      
-      case
-        Karten.Kartenparameter.Kartenart
-      is
-         when KartenDatentypen.Kartenart_Chaotisch_Enum'Range =>
-            return;
-            
-         when KartenDatentypen.Kartenart_Normal_Enum'Range | KartenDatentypen.Kartenart_Sonstiges_Enum'Range =>
-            null;
-      end case;
                
       YAchseSchleife:
       for YAchseSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.YAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse loop

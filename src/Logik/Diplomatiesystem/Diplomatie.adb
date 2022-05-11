@@ -1,11 +1,9 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
--- with GlobaleTexte;
 with SystemDatentypen; use SystemDatentypen;
 with SpielVariablen;
 
--- with Auswahl;
 with DiplomatischerZustandAenderbar;
 
 package body Diplomatie is

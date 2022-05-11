@@ -53,16 +53,12 @@ package KartenDatentypen is
                            Kartenart_Inseln_Enum, Kartenart_Kontinente_Enum, Kartenart_Pangäa_Enum,
                            
                            -- Sonstiges
-                           Kartenart_Nur_Land_Enum,
-                           
-                           -- Chaos
-                           Kartenart_Chaos_Enum, Kartenart_Totales_Chaos_Enum
+                           Kartenart_Nur_Land_Enum
                           );
    pragma Ordered (Kartenart_Enum);
    
    subtype Kartenart_Normal_Enum is Kartenart_Enum range Kartenart_Inseln_Enum .. Kartenart_Pangäa_Enum;
    subtype Kartenart_Sonstiges_Enum is Kartenart_Enum range Kartenart_Nur_Land_Enum .. Kartenart_Nur_Land_Enum;
-   subtype Kartenart_Chaotisch_Enum is Kartenart_Enum range Kartenart_Chaos_Enum .. Kartenart_Totales_Chaos_Enum;
    
    -------------------------- Später umschreiben auf 
    -- type Kartenform_Enum is (
@@ -128,5 +124,9 @@ package KartenDatentypen is
    type Kampf_Enum is (
                        Verteidigung, Angriff
                       );
+   
+   
+   
+   type WahrscheinlichkeitKartengenerator is range 0 .. 100;
 
 end KartenDatentypen;

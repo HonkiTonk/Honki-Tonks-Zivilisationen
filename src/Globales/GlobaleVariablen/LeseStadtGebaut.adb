@@ -1,11 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with KartenDatentypen; use KartenDatentypen;
 with StadtKonstanten;
 with KartenRecordKonstanten;
-
-with Karten;
 
 package body LeseStadtGebaut is
 

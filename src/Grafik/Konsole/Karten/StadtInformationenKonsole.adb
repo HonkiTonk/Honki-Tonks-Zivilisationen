@@ -8,12 +8,10 @@ with Ada.Integer_Wide_Wide_Text_IO;
 with EinheitenDatentypen; use EinheitenDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
 with StadtDatentypen; use StadtDatentypen;
--- with GlobaleTexte;
 with KartenVerbesserungDatentypen;
 
 with LeseStadtGebaut;
 
--- with TextAnzeigeKonsole;
 with GesamtwerteFeld;
 with KampfwerteStadtErmitteln;
 with DebugPlatzhalter;

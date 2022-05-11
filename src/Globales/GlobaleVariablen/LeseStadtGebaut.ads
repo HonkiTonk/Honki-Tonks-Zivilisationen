@@ -7,14 +7,16 @@ with StadtDatentypen; use StadtDatentypen;
 with RassenDatentypen; use RassenDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
 with EinheitenDatentypen; use EinheitenDatentypen;
+with KartenDatentypen; use KartenDatentypen;
 with SpielVariablen;
 with KartenRecords;
-with KartenDatentypen;
 with KartenVerbesserungDatentypen;
 with SonstigeVariablen;
 with StadtRecords;
 
 with KIDatentypen;
+
+with Karten;
 
 package LeseStadtGebaut is
 
@@ -34,7 +36,12 @@ package LeseStadtGebaut is
        Pre =>
          (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
-            SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
+            SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum),
+   
+         Post =>
+           (Koordinaten'Result.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+            and
+              Koordinaten'Result.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
    
    function EinwohnerArbeiter
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;

@@ -285,14 +285,18 @@ package EingeleseneGrafikenKonsole is
                                                     KartengrundDatentypen.Küstengrund_Enum => KartenKonstanten.LeerKartenGrafik,
                                                     KartengrundDatentypen.Korallen_Enum    => KartenKonstanten.LeerKartenGrafik,
                                                     KartengrundDatentypen.Unterwald_Enum   => KartenKonstanten.LeerKartenGrafik,
+                                                    KartengrundDatentypen.Gestein_Enum     => KartenKonstanten.LeerKartenGrafik,
                                                     -- Unterwasser/Unterirdisch
       
       
                    
                                                     -- Planeteninneres
-                                                    KartengrundDatentypen.Lava_Enum         => KartenKonstanten.LeerKartenGrafik,
-                                                    KartengrundDatentypen.Gestein_Enum      => KartenKonstanten.LeerKartenGrafik,
-                                                    KartengrundDatentypen.Planetenkern_Enum => KartenKonstanten.LeerKartenGrafik,
+                                                    KartengrundDatentypen.Lava_Enum           => KartenKonstanten.LeerKartenGrafik,
+                                                    KartengrundDatentypen.Planetenkern_Enum   => KartenKonstanten.LeerKartenGrafik,
+                                                    KartengrundDatentypen.Magnesiowüstit_Enum => KartenKonstanten.LeerKartenGrafik,
+                                                    KartengrundDatentypen.Perowskit_Enum      => KartenKonstanten.LeerKartenGrafik,
+                                                    KartengrundDatentypen.Majorit_Enum        => KartenKonstanten.LeerKartenGrafik,
+                                                    KartengrundDatentypen.Ringwoodit_Enum     => KartenKonstanten.LeerKartenGrafik,
                                                     -- Planeteninneres
       
       

@@ -2,9 +2,10 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
+with RassenDatentypen; use RassenDatentypen;
 with KartenRecords;
 with EinheitenDatentypen;
-with RassenDatentypen;
+with SonstigeVariablen;
 
 with Karten;
 
@@ -20,7 +21,10 @@ package UmgebungErreichbarTesten is
        Pre =>
          (AktuelleKoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
           and
-            AktuelleKoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse),
+            AktuelleKoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse
+          and
+            SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum),
+           
          Post =>
            (UmgebungErreichbarTesten'Result.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
             and
@@ -40,6 +44,13 @@ private
      (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
-      return Boolean;
+      return Boolean
+     with
+       Pre =>
+         (AktuelleKoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+          and
+            AktuelleKoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse
+          and
+            SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
 
 end UmgebungErreichbarTesten;

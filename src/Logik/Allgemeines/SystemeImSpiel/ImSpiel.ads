@@ -32,7 +32,10 @@ private
 
    function RasseDurchgehen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return RueckgabeDatentypen.Rückgabe_Werte_Enum;
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum
+     with
+       Pre =>
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
 
    function MenschlicherSpieler
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
@@ -43,15 +46,24 @@ private
 
    function MenschAmZug
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return RueckgabeDatentypen.Rückgabe_Werte_Enum;
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum
+     with
+       Pre =>
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum);
 
    function Spielmenü
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return RueckgabeDatentypen.Rückgabe_Werte_Enum;
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum
+     with
+       Pre =>
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum);
 
    function NochSpielerVorhanden
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return Boolean;
+      return Boolean
+     with
+       Pre =>
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
 
    function Befehle
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

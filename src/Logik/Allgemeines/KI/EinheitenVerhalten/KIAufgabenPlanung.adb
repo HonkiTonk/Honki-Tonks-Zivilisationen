@@ -160,8 +160,7 @@ package body KIAufgabenPlanung is
          when KIDatentypen.Erkunden_Enum =>
             KIAufgabeFestlegen.Erkunden (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-            -- Nichts tun und alles was noch nicht programmiert ist.
-         when others =>
+         when KIDatentypen.Tut_Nichts_Enum | KIDatentypen.Verteidigen_Enum | KIDatentypen.Auf_Transporter_Warten_Enum =>
             KIAufgabeFestlegen.KeineAufgabe (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       end case;
       
@@ -215,8 +214,7 @@ package body KIAufgabenPlanung is
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     AufgabeExtern            => KIDatentypen.Tut_Nichts_Enum);
             
-            -- Nichts tun und alles was noch nicht programmiert ist.
-         when others =>
+         when KIDatentypen.Tut_Nichts_Enum | KIDatentypen.Auf_Transporter_Warten_Enum | KIDatentypen.Einheit_Auflösen_Enum =>
             null;
       end case;
       

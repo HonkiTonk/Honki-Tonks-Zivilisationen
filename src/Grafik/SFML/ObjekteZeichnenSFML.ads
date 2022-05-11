@@ -32,6 +32,8 @@ package ObjekteZeichnenSFML is
           and
             RadiusExtern /= 0.00);
 
+   
+   ----------------------- Hier eventuell noch einen Contract für AnzahlEckenExtern einbauen.
    procedure PolygonZeichnen
      (RadiusExtern : in Float;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
@@ -43,6 +45,5 @@ package ObjekteZeichnenSFML is
          (PolygonAccessExtern /= null
           and
             RadiusExtern /= 0.00);
-   -- Hier eventuell noch eine Prüfung für AnzahlEckenExtern einbauen.
 
 end ObjekteZeichnenSFML;

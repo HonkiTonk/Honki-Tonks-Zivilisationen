@@ -22,13 +22,13 @@ private
    ZusatzberechnungenRessource : KartengrundDatentypen.Karten_Ressourcen_Enum;
    WelcheRessource : KartengrundDatentypen.Karten_Ressourcen_Enum;
 
-   type KartenressourceWahrscheinlichkeitArray is array (KartengrundDatentypen.Karten_Ressourcen_Land'Range) of Float;
+   type KartenressourceWahrscheinlichkeitArray is array (KartengrundDatentypen.Karten_Ressourcen_Land'Range) of KartenDatentypen.WahrscheinlichkeitKartengenerator;
    KartenressourceWahrscheinlichkeit : KartenressourceWahrscheinlichkeitArray := (
-                                                                                  KartengrundDatentypen.Kohle_Enum              => 0.02,
-                                                                                  KartengrundDatentypen.Eisen_Enum              => 0.02,
-                                                                                  KartengrundDatentypen.Öl_Enum                 => 0.02,
-                                                                                  KartengrundDatentypen.Hochwertiger_Boden_Enum => 0.02,
-                                                                                  KartengrundDatentypen.Gold_Enum               => 0.02
+                                                                                  KartengrundDatentypen.Kohle_Enum              => 2,
+                                                                                  KartengrundDatentypen.Eisen_Enum              => 2,
+                                                                                  KartengrundDatentypen.Öl_Enum                 => 2,
+                                                                                  KartengrundDatentypen.Hochwertiger_Boden_Enum => 2,
+                                                                                  KartengrundDatentypen.Gold_Enum               => 2
                                                                                  );
    GezogeneZahlen : KartenressourceWahrscheinlichkeitArray;
 

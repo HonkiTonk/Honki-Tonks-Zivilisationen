@@ -1,13 +1,9 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
--- with Ada.Calendar; use Ada.Calendar;
-
 with TextKonstanten;
 with OptionenVariablen;
--- with SystemDatentypen;
 
--- with Ladezeiten;
 with EinlesenSprache;
 with EinlesenText;
 with EinlesenTastatur;
@@ -21,11 +17,7 @@ with EinlesenSounds;
 
 package body Einlesen is
 
-   -- Ladezeiten später ändern und wieder einbauen, vor allem so dass die Nutzerauswahlzeit nicht berücksichtigt wird.
-   -- Ladezeiten.EinzelneZeiten (Ladezeiten.Startzeit, SystemDatentypen.Anfangswert_Enum) := Clock;
-   -- Ladezeiten.EinzelneZeiten (Ladezeiten.Startzeit, SystemDatentypen.Endwert_Enum) := Clock;
-   -- Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => Ladezeiten.Startzeit);
-      
+   ---------------------- Die Ladezeiten beim Starten einfach weglassen?
    procedure EinlesenOhneAnzeige
    is begin
       

@@ -8,7 +8,6 @@ with Ada.Strings.Wide_Wide_Fixed;
 with GlobaleTexte;
 with GrafikDatentypen;
 
--- with TextAnzeigeKonsole;
 with Fehler;
 with InteraktionGrafiktask;
 

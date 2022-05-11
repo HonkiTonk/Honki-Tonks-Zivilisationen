@@ -6,6 +6,7 @@ with RassenDatentypen; use RassenDatentypen;
 with EinheitenRecords;
 with SonstigeVariablen;
 with KartenRecords;
+with SpielVariablen;
 
 with KIDatentypen;
 
@@ -32,6 +33,11 @@ private
    
    function FeldAngreifen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-     return KIDatentypen.Bewegung_Enum;
+      return KIDatentypen.Bewegung_Enum
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+          and
+            SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
 
 end KIBewegungAllgemein;

@@ -13,17 +13,18 @@ package KartengeneratorFluss is
 private
    
    ------------------------ Später vom Nutzer einstellbar machen.
+   ------------------------ Oder rauswerfen?
    FlussumgebungBonus : Float := 1.25;
    
    ------------------- Später vom Nutzer änderbar machen.
-   type WahrscheinlichkeitFlussArray is array (KartenDatentypen.EbeneVorhanden'First .. 0) of Float;
+   type WahrscheinlichkeitFlussArray is array (KartenDatentypen.EbeneVorhanden'First .. 0) of KartenDatentypen.WahrscheinlichkeitKartengenerator;
    WahrscheinlichkeitFluss : constant WahrscheinlichkeitFlussArray := (
-                                                                       -2 => 0.30,
-                                                                       -1 => 0.30,
-                                                                       0  => 0.30
+                                                                       -2 => 30,
+                                                                       -1 => 30,
+                                                                       0  => 30
                                                                       );
          
-   type BeliebigerFlusswertArray is array (WahrscheinlichkeitFlussArray'Range) of Float;
+   type BeliebigerFlusswertArray is array (WahrscheinlichkeitFlussArray'Range) of KartenDatentypen.WahrscheinlichkeitKartengenerator;
    BeliebigerFlusswert : BeliebigerFlusswertArray;
 
    type KartenWertArray is array (WahrscheinlichkeitFlussArray'Range) of KartenRecords.AchsenKartenfeldPositivRecord;

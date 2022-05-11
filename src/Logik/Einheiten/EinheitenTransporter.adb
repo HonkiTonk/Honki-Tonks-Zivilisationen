@@ -5,18 +5,12 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 
 with EinheitenDatentypen; use EinheitenDatentypen;
--- with GlobaleTexte;
 with EinheitenKonstanten;
--- with TastenbelegungDatentypen;
--- with TextKonstanten;
 
 with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;
 
--- with TextAnzeigeKonsole;
--- with Eingabe;
-
--- Wird für die Konsole benötigt, muss aber noch in Logik und Grafik aufgeteilt werden.
+-------------------------- Wird für die Konsole benötigt, muss aber noch in Logik und Grafik aufgeteilt werden.
 package body EinheitenTransporter is
 
    function EinheitTransporterAuswählen

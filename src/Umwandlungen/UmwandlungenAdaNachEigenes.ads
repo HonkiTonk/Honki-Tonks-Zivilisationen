@@ -10,13 +10,19 @@ package UmwandlungenAdaNachEigenes is
 
    function BewegungspunkteDarstellungNormal
      (KommazahlExtern : in EinheitenDatentypen.BewegungFloat)
-      return Unbounded_Wide_Wide_String;
+      return Unbounded_Wide_Wide_String
+     with
+       Post =>
+         (To_Wide_Wide_String (Source => BewegungspunkteDarstellungNormal'Result)'Length > 0);
    
    generic type GanzeZahl is range <>;
    
    function ZahlAlsStringLeerzeichenEntfernen
      (ZahlExtern : in GanzeZahl)
-      return Unbounded_Wide_Wide_String;
+      return Unbounded_Wide_Wide_String
+     with
+       Post =>
+         (To_Wide_Wide_String (Source => ZahlAlsStringLeerzeichenEntfernen'Result)'Length > 0);
    
 private
    

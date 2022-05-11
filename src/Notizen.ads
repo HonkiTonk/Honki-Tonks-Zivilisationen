@@ -57,15 +57,3 @@ RassenDatentypen.Menschen_Enum         => ,
                                 RassenDatentypen.Tesorahn_Enum         => ,
                                   RassenDatentypen.Talbidahr_Enum        =>
 
-
-Nahrung => ,
-  Produktion => ,
-  Geld => ,
-  Forschung =>
-
-
-Verteidigung => ,
-  Angriff =>
-
-
-

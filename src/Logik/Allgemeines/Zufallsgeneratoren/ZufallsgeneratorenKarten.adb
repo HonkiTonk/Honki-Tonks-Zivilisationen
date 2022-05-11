@@ -3,13 +3,13 @@ pragma Warnings (Off, "*array aggregate*");
 
 package body ZufallsgeneratorenKarten is
    
-   function ZufälligerWert
-     return Float
+   function KartengeneratorZufallswerte
+     return KartenDatentypen.WahrscheinlichkeitKartengenerator
    is begin
-
-      Ada.Numerics.Float_Random.Reset (ZufälligerFloatWert);
-      return Ada.Numerics.Float_Random.Random (ZufälligerFloatWert);
       
-   end ZufälligerWert;
+      ZufälligeZahl.Reset (zufälligeZahlGewählt);
+      return ZufälligeZahl.Random (zufälligeZahlGewählt);
+      
+   end KartengeneratorZufallswerte;
 
 end ZufallsgeneratorenKarten;

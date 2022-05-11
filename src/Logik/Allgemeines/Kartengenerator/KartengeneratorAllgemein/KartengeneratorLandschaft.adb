@@ -16,16 +16,6 @@ package body KartengeneratorLandschaft is
 
    procedure GenerierungLandschaft
    is begin
-      
-      case
-        Karten.Kartenparameter.Kartenart
-      is
-         when KartenDatentypen.Kartenart_Chaotisch_Enum'Range =>
-            return;
-            
-         when others =>
-            null;
-      end case;
                   
       YAchseSchleife:
       for YAchseSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.YAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse loop
@@ -58,7 +48,7 @@ package body KartengeneratorLandschaft is
       ZufallszahlenSchleife:
       for ZufallszahlSchleifenwert in KartengrundWahrscheinlichkeitArray'Range loop
          
-         GezogeneZahlen (ZufallszahlSchleifenwert) := ZufallsgeneratorenKarten.ZufälligerWert;
+         GezogeneZahlen (ZufallszahlSchleifenwert) := ZufallsgeneratorenKarten.KartengeneratorZufallswerte;
          
       end loop ZufallszahlenSchleife;
       
@@ -450,7 +440,7 @@ package body KartengeneratorLandschaft is
                                                                              EbeneExtern       => 0);
       
       if
-        ZufallsgeneratorenKarten.ZufälligerWert <= ZusatzHügel (AnzahlGleicherGrund)
+        ZufallsgeneratorenKarten.KartengeneratorZufallswerte <= ZusatzHügel (AnzahlGleicherGrund)
       then
          SchreibeKarten.Hügel (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
                                 HügelExtern       => True);

@@ -74,7 +74,12 @@ package KIVorhandeneAufgaben is
 
    function Angreifen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return ProduktionDatentypen.ProduktionSonstiges;
+      return ProduktionDatentypen.ProduktionSonstiges
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+          and
+            SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
 
    function Erkunden
      return ProduktionDatentypen.ProduktionSonstiges;

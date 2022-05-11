@@ -15,6 +15,9 @@ package KIForschung is
 private
       
    procedure NeuesForschungsprojekt
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre =>
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_KI_Enum);
 
 end KIForschung;

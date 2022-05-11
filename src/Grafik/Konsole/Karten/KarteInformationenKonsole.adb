@@ -6,13 +6,11 @@ with Ada.Integer_Wide_Wide_Text_IO;
 
 with EinheitenDatentypen; use EinheitenDatentypen;
 with StadtDatentypen; use StadtDatentypen;
--- with GlobaleTexte;
 with EinheitenKonstanten;
 with StadtKonstanten;
 
 with LeseKarten;
 
--- with TextAnzeigeKonsole;
 with DebugPlatzhalter;
 with EinheitSuchen;
 with StadtSuchen;

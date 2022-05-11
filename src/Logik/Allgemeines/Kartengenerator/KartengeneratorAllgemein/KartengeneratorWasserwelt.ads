@@ -10,7 +10,12 @@ package KartengeneratorWasserwelt is
 
    procedure KartengeneratorWasserwelt
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv);
+      XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
+     with
+       Pre =>
+         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+          and
+            XAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
    
 private
       
@@ -19,11 +24,11 @@ private
    
    WelcherGrund : KartengrundDatentypen.Kartengrund_Enum;
    
-   type KartengrundWahrscheinlichkeitArray is array (KartengrundDatentypen.Kartengrund_Unterfläche_Wasser_Variabel_Enum'Range) of Float;
+   type KartengrundWahrscheinlichkeitArray is array (KartengrundDatentypen.Kartengrund_Unterfläche_Wasser_Variabel_Enum'Range) of KartenDatentypen.WahrscheinlichkeitKartengenerator;
    KartengrundWahrscheinlichkeit : KartengrundWahrscheinlichkeitArray := (
-                                                                          KartengrundDatentypen.Meeresgrund_Enum => 0.30,
-                                                                          KartengrundDatentypen.Korallen_Enum    => 0.30,
-                                                                          KartengrundDatentypen.Unterwald_Enum   => 0.30
+                                                                          KartengrundDatentypen.Meeresgrund_Enum => 30,
+                                                                          KartengrundDatentypen.Korallen_Enum    => 30,
+                                                                          KartengrundDatentypen.Unterwald_Enum   => 30
                                                                          );
    GezogeneZahlen : KartengrundWahrscheinlichkeitArray;
    

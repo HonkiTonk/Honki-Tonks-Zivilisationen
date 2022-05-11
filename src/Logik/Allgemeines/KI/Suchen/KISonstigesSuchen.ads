@@ -37,6 +37,15 @@ private
    function ZielSuchen
      (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return KartenRecords.AchsenKartenfeldPositivRecord;
+      return KartenRecords.AchsenKartenfeldPositivRecord
+     with
+       Pre =>
+         (SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum
+          and
+            EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+          and
+            AktuelleKoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+          and
+            AktuelleKoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
 
 end KISonstigesSuchen;

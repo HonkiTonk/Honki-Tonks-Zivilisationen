@@ -16,15 +16,7 @@ package body KartengeneratorFluss is
    procedure AufteilungFlussgenerierung
    is begin
       
-      case
-        Karten.Kartenparameter.Kartenart
-      is
-         when KartenDatentypen.Kartenart_Chaotisch_Enum'Range =>
-            return;
-            
-         when KartenDatentypen.Kartenart_Normal_Enum'Range | KartenDatentypen.Kartenart_Sonstiges_Enum'Range =>
-            GenerierungFlüsse;
-      end case;
+      GenerierungFlüsse;
       
    end AufteilungFlussgenerierung;
    
@@ -97,7 +89,7 @@ package body KartengeneratorFluss is
       return Boolean
    is begin
          
-      BeliebigerFlusswert (KoordinatenExtern.EAchse) := ZufallsgeneratorenKarten.ZufälligerWert;
+      BeliebigerFlusswert (KoordinatenExtern.EAchse) := ZufallsgeneratorenKarten.KartengeneratorZufallswerte;
                   
       if
         BeliebigerFlusswert (KoordinatenExtern.EAchse) <= WahrscheinlichkeitFluss (KoordinatenExtern.EAchse)
@@ -105,7 +97,7 @@ package body KartengeneratorFluss is
          return True;
          
       elsif
-        BeliebigerFlusswert (KoordinatenExtern.EAchse) * FlussumgebungBonus > WahrscheinlichkeitFluss (KoordinatenExtern.EAchse)
+        Float (BeliebigerFlusswert (KoordinatenExtern.EAchse)) * FlussumgebungBonus > Float (WahrscheinlichkeitFluss (KoordinatenExtern.EAchse))
       then
          return False;
          

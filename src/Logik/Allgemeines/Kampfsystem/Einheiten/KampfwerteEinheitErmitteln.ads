@@ -45,14 +45,24 @@ private
    
    function VerteidigungsbonusVerteidiger
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return KampfDatentypen.Kampfwerte;
+      return KampfDatentypen.Kampfwerte
+     with
+       Pre =>
+         (SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+          and
+            EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze);
    
    function VerteidigungsbonusAngreifer
      return KampfDatentypen.Kampfwerte;
    
    function AngriffsbonusAngreifer
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return KampfDatentypen.Kampfwerte;
+      return KampfDatentypen.Kampfwerte
+     with
+       Pre =>
+         (SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+          and
+            EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze);
    
    function AngriffsbonusVerteidiger
      return KampfDatentypen.Kampfwerte;

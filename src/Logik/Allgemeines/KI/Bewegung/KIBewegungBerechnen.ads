@@ -84,7 +84,16 @@ private
    
    procedure FelderBewerten
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord);
+      AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+          and
+            SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum
+          and
+            AktuelleKoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+          and
+            AktuelleKoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
    
    procedure BewertungSortieren;
    
@@ -158,12 +167,26 @@ private
    function TransporterNutzen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return Boolean;
+      return Boolean
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+          and
+            KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+          and
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse
+          and
+            SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
    
    function PlanschrittFestlegen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       DurchlaufExtern : in Positive;
       AktuellePlanpositionExtern : in KartenDatentypen.Stadtfeld)
-      return Boolean;
+      return Boolean
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+          and
+            SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
 
 end KIBewegungBerechnen;

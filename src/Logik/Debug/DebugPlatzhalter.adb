@@ -6,10 +6,8 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Sf.Window.Keyboard;
 
 with KartenDatentypen; use KartenDatentypen;
-with SystemDatentypen;
 
 with SchreibeWichtiges;
-with SchreibeKarten;
 with LeseKarten;
 with LeseEinheitenGebaut;
 with LeseStadtGebaut;
@@ -38,13 +36,6 @@ package body DebugPlatzhalter is
             -- Volle Informationen (unabhängig von der Rasse)
             when Sf.Window.Keyboard.sfKeyI =>
                Informationen;
-
-               -- Sichtbarkeit der ganzen Karte
-            when Sf.Window.Keyboard.sfKeyS =>
-               Sichtbarkeit (RasseExtern => RasseExtern);
-               
-            when Sf.Window.Keyboard.sfKeyK =>
-               Krieg;
                
             when Sf.Window.Keyboard.sfKeyG =>
                DebugSieg := not DebugSieg;
@@ -73,48 +64,6 @@ package body DebugPlatzhalter is
       FeindlicheInformationenSehen := not FeindlicheInformationenSehen;
    
    end Informationen;
-
-
-
-   procedure Sichtbarkeit
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-   is begin
-      
-      EbeneSchleife:
-      for EAchseSchleifenwert in Karten.WeltkarteArray'Range (1) loop
-         YAchseSchleife:
-         for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse loop
-            XAchseSchleife:
-            for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse loop
-            
-               SchreibeKarten.Sichtbar (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
-                                        RasseExtern       => RasseExtern,
-                                        SichtbarExtern    => True);
-               
-            end loop XAchseSchleife;
-         end loop YAchseSchleife;
-      end loop EbeneSchleife;
-      
-      Krieg;
-      
-   end Sichtbarkeit;
-   
-   
-   
-   procedure Krieg
-   is begin
-      
-      RassenErsteSchleife:
-      for RasseEinsSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
-         RassenZweiteSchleife:
-         for RasseZweiSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
-            
-            SpielVariablen.Diplomatie (RasseEinsSchleifenwert, RasseZweiSchleifenwert).AktuellerZustand := SystemDatentypen.Neutral_Enum;
-            
-         end loop RassenZweiteSchleife;
-      end loop RassenErsteSchleife;
-      
-   end Krieg;
    
    
    

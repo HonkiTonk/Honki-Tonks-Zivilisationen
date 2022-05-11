@@ -8,14 +8,12 @@ with Sf.Window.Keyboard; use Sf.Window.Keyboard;
 
 with TastenbelegungDatentypen; use TastenbelegungDatentypen;
 with GrafikDatentypen;
--- with GlobaleTexte;
 with SonstigeVariablen;
 with OptionenVariablen;
 with MenueDatentypen;
 
 with Eingabe;
 with AuswahlMenues;
--- with TextAnzeigeKonsole;
 with SchreibenTastatur;
 with EingabeSystemeSFML;
 with EingabeKonsole;

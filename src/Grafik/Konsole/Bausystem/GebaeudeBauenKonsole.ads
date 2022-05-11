@@ -20,12 +20,23 @@ private
    PermanenteGebäudeWerte : Boolean;
    
    procedure PermanenteKostenGebäude
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre =>
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum);
 
    procedure PreisGebäude
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre =>
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum);
    
    procedure BauzeitGebäude
-     (StadtRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord);
+     (StadtRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     with
+       Pre =>
+         (StadtRasseNummerExtern.Platznummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+          and
+            SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum);
 
 end GebaeudeBauenKonsole;

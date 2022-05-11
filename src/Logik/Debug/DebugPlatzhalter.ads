@@ -45,13 +45,5 @@ private
    ErsteAnzeige : Boolean;
 
    procedure Informationen;
-   
-   procedure Sichtbarkeit
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-     with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum);
-   
-   procedure Krieg;
 
 end DebugPlatzhalter;

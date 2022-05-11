@@ -22,10 +22,10 @@ private
    ZusatzberechnungenRessource : KartengrundDatentypen.Karten_Ressourcen_Enum;
    WelcheRessource : KartengrundDatentypen.Karten_Ressourcen_Enum;
 
-   type KartenressourceWahrscheinlichkeitArray is array (KartengrundDatentypen.Karten_Ressourcen_Wasser'Range) of Float;
+   type KartenressourceWahrscheinlichkeitArray is array (KartengrundDatentypen.Karten_Ressourcen_Wasser'Range) of KartenDatentypen.WahrscheinlichkeitKartengenerator;
    KartenressourceWahrscheinlichkeit : KartenressourceWahrscheinlichkeitArray := (
-                                                                                  KartengrundDatentypen.Fisch_Enum => 0.02,
-                                                                                  KartengrundDatentypen.Wal_Enum   => 0.02
+                                                                                  KartengrundDatentypen.Fisch_Enum => 2,
+                                                                                  KartengrundDatentypen.Wal_Enum   => 2
                                                                                  );
    GezogeneZahlen : KartenressourceWahrscheinlichkeitArray;
 

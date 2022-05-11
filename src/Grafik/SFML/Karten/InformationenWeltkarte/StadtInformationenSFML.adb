@@ -9,7 +9,6 @@ with EinheitenDatentypen; use EinheitenDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
 with StadtDatentypen; use StadtDatentypen;
 with GlobaleTexte;
--- with StadtKonstanten;
 with KartenVerbesserungDatentypen;
 with TextKonstanten;
 with TextaccessVariablen;

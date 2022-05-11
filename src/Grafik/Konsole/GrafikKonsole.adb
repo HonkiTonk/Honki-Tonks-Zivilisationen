@@ -11,7 +11,6 @@ with Fehler;
 with Karte;
 with ForschungAnzeigeKonsole;
 with InteraktionGrafiktask;
--- with AuswahlSpracheAnzeige;
 
 package body GrafikKonsole is
 
@@ -43,6 +42,9 @@ package body GrafikKonsole is
                               
             when GrafikDatentypen.Grafik_Pause_Enum =>
                delay ZeitKonstanten.WartezeitGrafik;
+               
+            when GrafikDatentypen.Grafik_Generierungszeit_Enum =>
+               null;
                
             when GrafikDatentypen.Grafik_Laden_Enum =>
                null;

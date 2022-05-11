@@ -18,14 +18,24 @@ private
    RückgabeDebugmenü : RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
    procedure KarteAufdecken
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre =>
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum);
 
    procedure VolleInformation;
+   procedure AlleNeutral;
 
    procedure AlleTechnologien
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre =>
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum);
 
    procedure MaximalesGeld
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre =>
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum);
 
 end DebugmenueSFML;

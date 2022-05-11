@@ -23,33 +23,33 @@ private
    
    WelcherGrund : KartengrundDatentypen.Kartengrund_Enum;
    
-   type KartengrundWahrscheinlichkeitArray is array (KartengrundDatentypen.Kartengrund_Oberfläche_Land_Enum'Range) of Float;
+   type KartengrundWahrscheinlichkeitArray is array (KartengrundDatentypen.Kartengrund_Oberfläche_Land_Enum'Range) of KartenDatentypen.WahrscheinlichkeitKartengenerator;
    KartengrundWahrscheinlichkeit : KartengrundWahrscheinlichkeitArray := (
-                                                                          KartengrundDatentypen.Tundra_Enum    => 0.30,
-                                                                          KartengrundDatentypen.Wüste_Enum     => 0.30,
-                                                                          KartengrundDatentypen.Hügel_Enum     => 0.25,
-                                                                          KartengrundDatentypen.Gebirge_Enum   => 0.25,
-                                                                          KartengrundDatentypen.Wald_Enum      => 0.40,
-                                                                          KartengrundDatentypen.Dschungel_Enum => 0.30,
-                                                                          KartengrundDatentypen.Sumpf_Enum     => 0.30,
-                                                                          KartengrundDatentypen.Flachland_Enum => 0.50
+                                                                          KartengrundDatentypen.Tundra_Enum    => 30,
+                                                                          KartengrundDatentypen.Wüste_Enum     => 30,
+                                                                          KartengrundDatentypen.Hügel_Enum     => 25,
+                                                                          KartengrundDatentypen.Gebirge_Enum   => 25,
+                                                                          KartengrundDatentypen.Wald_Enum      => 40,
+                                                                          KartengrundDatentypen.Dschungel_Enum => 30,
+                                                                          KartengrundDatentypen.Sumpf_Enum     => 30,
+                                                                          KartengrundDatentypen.Flachland_Enum => 50
                                                                          );
    GezogeneZahlen : KartengrundWahrscheinlichkeitArray;
    
    type WelcheMöglichkeitenArray is array (KartengrundWahrscheinlichkeitArray'Range) of Boolean;
    WelcheMöglichkeiten : WelcheMöglichkeitenArray;
    
-   type ZusatzHügelArray is array (KartengeneratorBerechnungenAllgemein.AnzahlGleicherFelder'Range) of Float;
+   type ZusatzHügelArray is array (KartengeneratorBerechnungenAllgemein.AnzahlGleicherFelder'Range) of KartenDatentypen.WahrscheinlichkeitKartengenerator;
    ZusatzHügel : constant ZusatzHügelArray := (
-                                                 0 => 0.10,
-                                                 1 => 0.15,
-                                                 2 => 0.15,
-                                                 3 => 0.15,
-                                                 4 => 0.20,
-                                                 5 => 0.20,
-                                                 6 => 0.25,
-                                                 7 => 0.30,
-                                                 8 => 0.40
+                                                 0 => 10,
+                                                 1 => 15,
+                                                 2 => 15,
+                                                 3 => 15,
+                                                 4 => 20,
+                                                 5 => 20,
+                                                 6 => 25,
+                                                 7 => 30,
+                                                 8 => 40
                                                 );
    
    procedure GrundBestimmen
@@ -168,6 +168,11 @@ private
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Land_Enum)
-      return KartengrundDatentypen.Kartengrund_Oberfläche_Land_Enum;
+      return KartengrundDatentypen.Kartengrund_Oberfläche_Land_Enum
+     with
+       Pre =>
+         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+          and
+            XAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
 
 end KartengeneratorLandschaft;

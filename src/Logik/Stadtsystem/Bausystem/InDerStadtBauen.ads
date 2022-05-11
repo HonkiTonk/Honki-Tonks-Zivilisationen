@@ -4,6 +4,8 @@ pragma Warnings (Off, "*array aggregate*");
 with Sf.System.Vector2;
 
 with RassenDatentypen; use RassenDatentypen;
+with StadtDatentypen; use StadtDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
 with SpielVariablen;
 with SonstigeVariablen;
 with KartenRecords;
@@ -67,9 +69,19 @@ private
             SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum);
 
    function MausAuswahl
-     return StadtRecords.BauprojektRecord;
+     return StadtRecords.BauprojektRecord
+     with
+       Post =>
+         ((if MausAuswahl'Result.Gebäude /= 0 then MausAuswahl'Result.Einheit = 0)
+          and
+            (if MausAuswahl'Result.Einheit /= 0 then MausAuswahl'Result.Gebäude = 0));
 
    function AuswahlBauprojektSFML
-     return StadtRecords.BauprojektRecord;
+     return StadtRecords.BauprojektRecord
+     with
+       Post =>
+         ((if AuswahlBauprojektSFML'Result.Gebäude /= 0 then AuswahlBauprojektSFML'Result.Einheit = 0)
+          and
+            (if AuswahlBauprojektSFML'Result.Einheit /= 0 then AuswahlBauprojektSFML'Result.Gebäude = 0));
 
 end InDerStadtBauen;

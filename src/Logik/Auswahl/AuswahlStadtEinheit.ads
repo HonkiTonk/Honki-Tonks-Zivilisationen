@@ -5,10 +5,12 @@ with Sf.System.Vector2;
 with Sf.Graphics;
 with Sf.Graphics.Text;
 
-with RassenDatentypen;
+with RassenDatentypen; use RassenDatentypen;
 with StadtDatentypen;
 with EinheitenDatentypen;
 with EinheitenRecords;
+with SpielVariablen;
+with SonstigeVariablen;
 
 package AuswahlStadtEinheit is
       
@@ -30,7 +32,14 @@ package AuswahlStadtEinheit is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       StadtNummerExtern : in StadtDatentypen.MaximaleStädteMitNullWert;
       EinheitNummerExtern : in EinheitenDatentypen.MaximaleEinheitenMitNullWert)
-      return Integer;
+      return Integer
+     with
+       Pre =>
+         (StadtNummerExtern in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Städtegrenze
+          and
+            EinheitNummerExtern in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Einheitengrenze
+          and
+            SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
    
 private
 
@@ -46,6 +55,9 @@ private
    TextAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
    
    procedure MausAuswahl
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre =>
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
 
 end AuswahlStadtEinheit;

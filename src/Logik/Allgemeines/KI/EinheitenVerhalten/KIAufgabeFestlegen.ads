@@ -133,6 +133,9 @@ private
 
    function ZielErmitteln
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return RassenDatentypen.Rassen_Enum;
+      return RassenDatentypen.Rassen_Enum
+     with
+       Pre =>
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_KI_Enum);
 
 end KIAufgabeFestlegen;

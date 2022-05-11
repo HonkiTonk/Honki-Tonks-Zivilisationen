@@ -1,9 +1,11 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with KartenDatentypen; use KartenDatentypen;
+with KartengrundDatentypen;
+
 with LeseKarten;
 
-with Karten;
 with KartengeneratorVariablen;
 with KartengeneratorRessourcenOberflaecheLand;
 with KartengeneratorRessourcenOberflaecheWasser;
@@ -15,15 +17,7 @@ package body KartengeneratorRessourcen is
    procedure AufteilungRessourcengenerierung
    is begin
       
-      case
-        Karten.Kartenparameter.Kartenart
-      is
-         when KartenDatentypen.Kartenart_Chaotisch_Enum'Range =>
-            return;
-            
-         when KartenDatentypen.Kartenart_Normal_Enum'Range | KartenDatentypen.Kartenart_Sonstiges_Enum'Range =>
-            GenerierungRessourcen;
-      end case;
+      GenerierungRessourcen;
             
    end AufteilungRessourcengenerierung;
    
@@ -48,6 +42,7 @@ package body KartengeneratorRessourcen is
       task body RessourcenKern
       is begin
          
+         -- RessourcenGenerierung (EbeneExtern => -2);
          null;
          
       end RessourcenKern;

@@ -2,9 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with GrafikDatentypen; use GrafikDatentypen;
-with EinheitenDatentypen; use EinheitenDatentypen;
 with StadtRecords; use StadtRecords;
-with StadtDatentypen; use StadtDatentypen;
 with StadtKonstanten;
 with TastenbelegungDatentypen;
 with OptionenVariablen;

@@ -42,9 +42,7 @@ private
                                                                              RueckgabeDatentypen.Kartenart_Inseln_Enum        => KartenDatentypen.Kartenart_Inseln_Enum,
                                                                              RueckgabeDatentypen.Kartenart_Kontinente_Enum    => KartenDatentypen.Kartenart_Kontinente_Enum,
                                                                              RueckgabeDatentypen.Kartenart_Pangäa_Enum        => KartenDatentypen.Kartenart_Pangäa_Enum,
-                                                                             RueckgabeDatentypen.Kartenart_Nur_Land_Enum      => KartenDatentypen.Kartenart_Nur_Land_Enum,
-                                                                             RueckgabeDatentypen.Kartenart_Chaos_Enum         => KartenDatentypen.Kartenart_Chaos_Enum,
-                                                                             RueckgabeDatentypen.Kartenart_Totales_Chaos_Enum => KartenDatentypen.Kartenart_Totales_Chaos_Enum
+                                                                             RueckgabeDatentypen.Kartenart_Nur_Land_Enum      => KartenDatentypen.Kartenart_Nur_Land_Enum
                                                                             );
    
    type KartentemperaturRückgabeZuKartenArray is array (RueckgabeDatentypen.Kartentemperatur_Enum'Range) of KartenDatentypen.Kartentemperatur_Enum;

@@ -6,7 +6,6 @@ with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with StadtDatentypen; use StadtDatentypen;
 with EinheitenKonstanten;
 with KartenRecordKonstanten;
-with SpielVariablen;
 
 with LeseStadtGebaut;
 

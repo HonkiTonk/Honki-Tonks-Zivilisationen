@@ -66,6 +66,11 @@ private
    -- Generatoren für Positionsbestimmung bei Spielstart, in Abhängigkeit der Kartengröße, da gibt es doch bestimmt eine bessere Lösung für
       
    function StartPunkteYXFestlegen
-     return KartenRecords.YXAchsenKartenfeldPositivRecord;
+     return KartenRecords.YXAchsenKartenfeldPositivRecord
+     with
+       Post =>
+         (StartPunkteYXFestlegen'Result.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+          and
+            StartPunkteYXFestlegen'Result.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
 
 end ZufallsgeneratorenStartkoordinaten;

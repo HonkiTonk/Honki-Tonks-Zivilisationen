@@ -6,6 +6,7 @@ with KartenKonstanten;
 with EinheitenKonstanten;
 with MenueDatentypen;
 with SpielVariablen;
+with SonstigeVariablen;
 
 with LeseEinheitenGebaut;
 
@@ -22,8 +23,6 @@ package body SpieleinstellungenRasseSpieler is
    
    procedure RassenWählen
    is begin
-      
-      SonstigeVariablen.RassenImSpiel := (others => RassenDatentypen.Leer_Spieler_Enum);
 
       RasseSchleife:
       loop

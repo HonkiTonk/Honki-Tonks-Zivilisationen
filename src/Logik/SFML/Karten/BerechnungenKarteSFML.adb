@@ -1,15 +1,10 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
--- with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
-
 with KartenDatentypen; use KartenDatentypen;
--- with KartenKonstanten;
--- with SpielVariablen;
 
 with Sichtweiten;
 with GrafikEinstellungenSFML;
--- with Kartenkoordinatenberechnungssystem;
 
 package body BerechnungenKarteSFML is
    

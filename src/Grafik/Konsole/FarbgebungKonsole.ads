@@ -40,7 +40,7 @@ private
                                   KartengrundDatentypen.Gebirge_Enum                                                         => "48;2;120;120;120m",
                                   KartengrundDatentypen.Wald_Enum                                                            => "48;2;030;130;030m",
                                   KartengrundDatentypen.Dschungel_Enum                                                       => "48;2;000;070;000m",
-                                  KartengrundDatentypen.Küstengewässer_Enum | KartengrundDatentypen.Küstengrund_Enum => "48;2;135;206;250m",
+                                  KartengrundDatentypen.Küstengewässer_Enum | KartengrundDatentypen.Küstengrund_Enum         => "48;2;135;206;250m",
                                   KartengrundDatentypen.Sumpf_Enum                                                           => "48;2;000;040;000m",
                                   KartengrundDatentypen.Erde_Enum                                                            => "48;2;139;069;019m",
                                   KartengrundDatentypen.Erdgestein_Enum                                                      => "48;2;120;120;120m",
@@ -52,6 +52,10 @@ private
                                   KartengrundDatentypen.Unterwald_Enum                                                       => "48;2;127;255;212m",
                                   KartengrundDatentypen.Korallen_Enum                                                        => "48;2;255;114;086m",
                                   KartengrundDatentypen.Hügel_Mit_Enum                                                       => "48;2;000;000;000m",
+                                  KartengrundDatentypen.Magnesiowüstit_Enum                                                  => "48;2;000;000;000m",
+                                  KartengrundDatentypen.Perowskit_Enum                                                       => "48;2;000;000;000m",
+                                  KartengrundDatentypen.Majorit_Enum                                                         => "48;2;000;000;000m",
+                                  KartengrundDatentypen.Ringwoodit_Enum                                                      => "48;2;000;000;000m",
                                   KartengrundDatentypen.Vernichtet_Enum                                                      => "48;2;000;000;000m"
                                  );
    
@@ -64,7 +68,12 @@ private
       RessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Enum;
       CursorExtern : in Boolean;
       EigeneRasseExtern : in RassenDatentypen.Rassen_Enum;
-      RasseExtern : in RassenDatentypen.Rassen_Enum);
+      RasseExtern : in RassenDatentypen.Rassen_Enum)
+     with
+       Pre =>
+         ((if EigeneRasseExtern /= EinheitenKonstanten.LeerRasse then SonstigeVariablen.RassenImSpiel (EigeneRasseExtern) = RassenDatentypen.Spieler_Mensch_Enum)
+          and
+            (if RasseExtern /= EinheitenKonstanten.LeerRasse then SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum));
    
    procedure FarbenFluss
      (GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;

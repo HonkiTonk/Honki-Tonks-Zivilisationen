@@ -44,6 +44,11 @@ private
    
    function PlatzFrei
      (TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return Boolean;
+      return Boolean
+     with
+       Pre =>
+         (TransporterExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (TransporterExtern.Rasse).Einheitengrenze
+          and
+            SonstigeVariablen.RassenImSpiel (TransporterExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
 
 end EinheitenTransporter;

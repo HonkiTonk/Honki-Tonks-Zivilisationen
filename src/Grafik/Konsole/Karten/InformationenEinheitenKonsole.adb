@@ -5,14 +5,12 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Integer_Wide_Wide_Text_IO;
 
 with EinheitenDatentypen; use EinheitenDatentypen;
--- with GlobaleTexte;
 with EinheitenKonstanten;
 with StadtKonstanten;
 
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
 
--- with TextAnzeigeKonsole;
 with EinheitenBeschreibungen;
 with StadtInformationenKonsole;
 with KampfwerteEinheitErmitteln;

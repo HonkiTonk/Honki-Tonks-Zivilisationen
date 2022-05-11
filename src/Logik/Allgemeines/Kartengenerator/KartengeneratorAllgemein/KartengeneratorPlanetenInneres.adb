@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
-with KartengrundDatentypen;
 
 with SchreibeKarten;
 
@@ -11,6 +10,7 @@ with ZufallsgeneratorenKarten;
 
 package body KartengeneratorPlaneteninneres is
 
+   ------------------------ Später eine bessere Generierung einbauen, wie bei der Oberfläche.
    procedure Planeteninneres
    is begin
       
@@ -31,16 +31,38 @@ package body KartengeneratorPlaneteninneres is
             then
                SchreibeKarten.Grund (KoordinatenExtern => (-2, YAchseSchleifenwert, XAchseSchleifenwert),
                                      GrundExtern       => KartengrundDatentypen.Planetenkern_Enum);
+               
+            -- else
+               -- Aufruf
+            -- end if;
             
             elsif
-              ZufallsgeneratorenKarten.ZufälligerWert > 0.65
+              ZufallsgeneratorenKarten.KartengeneratorZufallswerte < KartengrundWahrscheinlichkeit (KartengrundDatentypen.Ringwoodit_Enum)
             then
                SchreibeKarten.Grund (KoordinatenExtern => (-2, YAchseSchleifenwert, XAchseSchleifenwert),
-                                     GrundExtern       => KartengrundDatentypen.Lava_Enum);
+                                     GrundExtern       => KartengrundDatentypen.Ringwoodit_Enum);
+               
+            elsif
+              ZufallsgeneratorenKarten.KartengeneratorZufallswerte < KartengrundWahrscheinlichkeit (KartengrundDatentypen.Majorit_Enum)
+            then
+               SchreibeKarten.Grund (KoordinatenExtern => (-2, YAchseSchleifenwert, XAchseSchleifenwert),
+                                     GrundExtern       => KartengrundDatentypen.Majorit_Enum);
+               
+            elsif
+              ZufallsgeneratorenKarten.KartengeneratorZufallswerte < KartengrundWahrscheinlichkeit (KartengrundDatentypen.Perowskit_Enum)
+            then
+               SchreibeKarten.Grund (KoordinatenExtern => (-2, YAchseSchleifenwert, XAchseSchleifenwert),
+                                     GrundExtern       => KartengrundDatentypen.Perowskit_Enum);
+               
+            elsif
+              ZufallsgeneratorenKarten.KartengeneratorZufallswerte < KartengrundWahrscheinlichkeit (KartengrundDatentypen.Magnesiowüstit_Enum)
+            then
+               SchreibeKarten.Grund (KoordinatenExtern => (-2, YAchseSchleifenwert, XAchseSchleifenwert),
+                                     GrundExtern       => KartengrundDatentypen.Magnesiowüstit_Enum);
                
             else
                SchreibeKarten.Grund (KoordinatenExtern => (-2, YAchseSchleifenwert, XAchseSchleifenwert),
-                                     GrundExtern       => KartengrundDatentypen.Gestein_Enum);
+                                     GrundExtern       => KartengrundDatentypen.Lava_Enum);
             end if;
                
          end loop XAchseSchleife;

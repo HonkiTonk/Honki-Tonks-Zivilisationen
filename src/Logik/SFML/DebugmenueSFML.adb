@@ -69,6 +69,15 @@ package body DebugmenueSFML is
          end loop YAchseSchleife;
       end loop EbeneSchleife;
       
+      AlleNeutral;
+      
+   end KarteAufdecken;
+   
+   
+   
+   procedure AlleNeutral
+   is begin
+      
       RassenErsteSchleife:
       for RasseEinsSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          RassenZweiteSchleife:
@@ -79,7 +88,7 @@ package body DebugmenueSFML is
          end loop RassenZweiteSchleife;
       end loop RassenErsteSchleife;
       
-   end KarteAufdecken;
+   end AlleNeutral;
    
    
    

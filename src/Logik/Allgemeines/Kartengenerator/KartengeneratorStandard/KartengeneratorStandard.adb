@@ -40,7 +40,7 @@ package body KartengeneratorStandard is
         LeseKarten.Grund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern))
       is
          when KartengrundDatentypen.Leer_Grund_Enum =>
-            BeliebigerLandwert := ZufallsgeneratorenKarten.ZufälligerWert;
+            BeliebigerLandwert := ZufallsgeneratorenKarten.KartengeneratorZufallswerte;
             
             if
               BeliebigerLandwert < WahrscheinlichkeitLandmasse.Anfangswert
@@ -165,7 +165,7 @@ package body KartengeneratorStandard is
       MasseAbstandExtern : in Boolean)
    is begin
       
-      BeliebigerLandwert := ZufallsgeneratorenKarten.ZufälligerWert;
+      BeliebigerLandwert := ZufallsgeneratorenKarten.KartengeneratorZufallswerte;
       
       case
         MasseAbstandExtern

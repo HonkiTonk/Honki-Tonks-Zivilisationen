@@ -2,11 +2,12 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
+with StadtDatentypen; use StadtDatentypen;
 with SonstigeVariablen;
-with EinheitenDatentypen;
-with StadtDatentypen;
 with ForschungenDatentypen;
 with ProduktionDatentypen;
+with SpielVariablen;
 
 package LeseWichtiges is
 
@@ -65,34 +66,49 @@ package LeseWichtiges is
       return StadtDatentypen.MaximaleStädteMitNullWert
      with
        Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum),
+   
+         Post =>
+           (AnzahlStädte'Result <= SpielVariablen.Grenzen (RasseExtern).Städtegrenze);
    
    function AnzahlEinheiten
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitenDatentypen.MaximaleEinheitenMitNullWert
      with
        Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
-     
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum),
+   
+         Post =>
+           (AnzahlEinheiten'Result <= SpielVariablen.Grenzen (RasseExtern).Einheitengrenze);
+   
    function AnzahlArbeiter
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitenDatentypen.MaximaleEinheitenMitNullWert
      with
        Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum),
+   
+         Post =>
+           (AnzahlArbeiter'Result <= SpielVariablen.Grenzen (RasseExtern).Einheitengrenze);
      
    function AnzahlKämpfer
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitenDatentypen.MaximaleEinheitenMitNullWert
      with
        Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum),
+   
+         Post =>
+           (AnzahlKämpfer'Result <= SpielVariablen.Grenzen (RasseExtern).Einheitengrenze);
      
    function AnzahlSonstiges
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitenDatentypen.MaximaleEinheitenMitNullWert
      with
        Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum),
+   
+         Post =>
+           (AnzahlSonstiges'Result <= SpielVariablen.Grenzen (RasseExtern).Einheitengrenze);
 
 end LeseWichtiges;

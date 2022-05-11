@@ -147,6 +147,9 @@ package body GrafikSFML is
          when GrafikDatentypen.Grafik_Pause_Enum =>
             delay ZeitKonstanten.WartezeitGrafik;
             
+         when GrafikDatentypen.Grafik_Generierungszeit_Enum =>
+            null;
+            
          when GrafikDatentypen.Grafik_Laden_Enum =>
             null;
          

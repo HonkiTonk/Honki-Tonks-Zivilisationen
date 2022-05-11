@@ -32,13 +32,18 @@ private
    function DiplomatischenStatusÄndern
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       KontaktierteRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return RueckgabeDatentypen.Rückgabe_Werte_Enum;
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum
+     with
+       Pre =>
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum
+         and
+            SonstigeVariablen.RassenImSpiel (KontaktierteRasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
 
    function AndereRassenVorhanden
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Boolean
      with
        Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum);
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
 
 end Diplomatie;

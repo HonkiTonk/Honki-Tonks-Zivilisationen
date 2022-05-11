@@ -4,9 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with KartenRecords; use KartenRecords;
-with StadtDatentypen; use StadtDatentypen;
 with StadtKonstanten;
-with SpielVariablen;
 
 with LeseStadtGebaut;
   

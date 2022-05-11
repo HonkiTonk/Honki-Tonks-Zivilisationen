@@ -20,7 +20,10 @@ package AuswahlSprache is
    AktuelleSprachen : AktuelleSprachenArray;
 
    function AuswahlSprache
-     return Unbounded_Wide_Wide_String;
+     return Unbounded_Wide_Wide_String
+     with
+       Post =>
+         (To_Wide_Wide_String (Source => AuswahlSprache'Result)'Length > 0);
    
 private
 
@@ -48,9 +51,15 @@ private
    
    
    function AuswahlSpracheSFML
-     return Unbounded_Wide_Wide_String;
+     return Unbounded_Wide_Wide_String
+     with
+       Post =>
+         (To_Wide_Wide_String (Source => AuswahlSpracheSFML'Result)'Length > 0);
          
    function AuswahlSpracheKonsole
-     return Unbounded_Wide_Wide_String;
+     return Unbounded_Wide_Wide_String
+     with
+       Post =>
+         (To_Wide_Wide_String (Source => AuswahlSpracheKonsole'Result)'Length > 0);
 
 end AuswahlSprache;

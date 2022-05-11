@@ -5,11 +5,9 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Integer_Wide_Wide_Text_IO;
 
 with SpielVariablen;
--- with GlobaleTexte;
 
 with LeseWichtiges;
 
--- with TextAnzeigeKonsole;
 with ForschungAllgemein;
 
 package body InformationenWichtigesKonsole is

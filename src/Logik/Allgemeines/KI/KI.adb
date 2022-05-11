@@ -22,6 +22,8 @@ package body KI is
    is begin
       
       ---------------------- Das hier mal so lassen, für weitere Tests sicherlich nützlich.
+      ---------------------- Mehr NotAus in die Loops der KI einbauen, sonst frisst die sich beispielsweise bei der Suche nach einem geeigneten Platz.
+      ---------------------- Zusätzlich mal was einbauen dass die Anforderungen schrittweise reduziert.
       Put_Line ("EinheitenDurchgehen");
       EinheitenDurchgehen (RasseExtern => RasseExtern);
       Put_Line ("StädteDurchgehen");

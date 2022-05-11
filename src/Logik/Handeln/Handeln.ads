@@ -23,41 +23,86 @@ private
    
    procedure KontakteVerkaufen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      KontaktierteRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
+      KontaktierteRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre =>
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer
+          and
+            SonstigeVariablen.RassenImSpiel (KontaktierteRasseExtern) /= SystemDatentypen.Leer);
    
    procedure KontakteKaufen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      KontaktierteRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
+      KontaktierteRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre =>
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer
+          and
+            SonstigeVariablen.RassenImSpiel (KontaktierteRasseExtern) /= SystemDatentypen.Leer);
    
    procedure KontakteTauschen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      KontaktierteRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
+      KontaktierteRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre =>
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer
+          and
+            SonstigeVariablen.RassenImSpiel (KontaktierteRasseExtern) /= SystemDatentypen.Leer);
    
    procedure GeldVerschenken
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      KontaktierteRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
+      KontaktierteRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre =>
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer
+          and
+            SonstigeVariablen.RassenImSpiel (KontaktierteRasseExtern) /= SystemDatentypen.Leer);
    
    procedure GeldVerlangen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      KontaktierteRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
+      KontaktierteRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre =>
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer
+          and
+            SonstigeVariablen.RassenImSpiel (KontaktierteRasseExtern) /= SystemDatentypen.Leer);
    
    procedure SichtbarkeitTauschen
      (RasseEinsExtern : in RueckgabeDatentypen.Rassen_Verwendet_Enum;
-      RasseZweiExtern : in RueckgabeDatentypen.Rassen_Verwendet_Enum);
+      RasseZweiExtern : in RueckgabeDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre =>
+         (SonstigeVariablen.RassenImSpiel (RasseEinsExtern) /= SystemDatentypen.Leer
+          and
+            SonstigeVariablen.RassenImSpiel (RasseZweiExtern) /= SystemDatentypen.Leer);
    
    procedure SichtbarkeitKaufen
      (RasseEinsExtern : in RueckgabeDatentypen.Rassen_Verwendet_Enum;
-      RasseZweiExtern : in RueckgabeDatentypen.Rassen_Verwendet_Enum);
+      RasseZweiExtern : in RueckgabeDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre =>
+         (SonstigeVariablen.RassenImSpiel (RasseEinsExtern) /= SystemDatentypen.Leer
+          and
+            SonstigeVariablen.RassenImSpiel (RasseZweiExtern) /= SystemDatentypen.Leer);
    
    procedure SichtbarkeitVerkaufen
      (RasseEinsExtern : in RueckgabeDatentypen.Rassen_Verwendet_Enum;
-      RasseZweiExtern : in RueckgabeDatentypen.Rassen_Verwendet_Enum);
+      RasseZweiExtern : in RueckgabeDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre =>
+         (SonstigeVariablen.RassenImSpiel (RasseEinsExtern) /= SystemDatentypen.Leer
+          and
+            SonstigeVariablen.RassenImSpiel (RasseZweiExtern) /= SystemDatentypen.Leer);
    
    
    
    function Handeln
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       KontaktierteRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return Integer;
+      return Integer
+     with
+       Pre =>
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer
+          and
+            SonstigeVariablen.RassenImSpiel (KontaktierteRasseExtern) /= SystemDatentypen.Leer);
 
 end Handeln;

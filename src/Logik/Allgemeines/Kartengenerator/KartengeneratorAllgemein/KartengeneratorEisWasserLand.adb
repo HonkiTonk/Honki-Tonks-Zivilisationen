@@ -10,10 +10,7 @@ with KartengeneratorPlaneteninneres;
 with Karten;
 with KartengeneratorPolregion;
 with KartengeneratorStandard;
-with Fehler;
 with KartengeneratorNurLand;
-with KartengeneratorTotalesChaos;
-with KartengeneratorChaos;
 with LandwerteFestlegen;
 with PolbereicheBerechnen;
 
@@ -22,19 +19,8 @@ package body KartengeneratorEisWasserLand is
    procedure AufteilungEisWasserLand
    is begin
       
-      case
-        Karten.Kartenparameter.Kartenart
-      is
-         when KartenDatentypen.Kartenart_Normal_Enum'Range | KartenDatentypen.Kartenart_Sonstiges_Enum'Range =>
-            AllgemeineWerteFestlegen;
-            KartengeneratorStandardSonstiges;
-            
-         when KartenDatentypen.Kartenart_Chaos_Enum =>
-            KartengeneratorChaos.Chaos;
-            
-         when KartenDatentypen.Kartenart_Totales_Chaos_Enum =>
-            KartengeneratorTotalesChaos.TotalesChaos;
-      end case;
+      AllgemeineWerteFestlegen;
+      KartengeneratorStandardSonstiges;
       
    end AufteilungEisWasserLand;
    
@@ -114,9 +100,6 @@ package body KartengeneratorEisWasserLand is
             
          when KartenDatentypen.Kartenart_Normal_Enum'Range =>
             KartengeneratorStandard.OberflächeGenerieren;
-            
-         when KartenDatentypen.Kartenart_Chaotisch_Enum'Range =>
-            Fehler.LogikFehler (FehlermeldungExtern => "KartenGeneratorStandard.StandardKarte - Kartenart ist chaotisch.");
       end case;
       
    end KartengeneratorStandardSonstiges;

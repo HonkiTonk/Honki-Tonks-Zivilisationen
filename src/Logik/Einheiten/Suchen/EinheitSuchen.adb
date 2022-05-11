@@ -1,10 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitenDatentypen; use EinheitenDatentypen;
 with KartenRecords; use KartenRecords;
 with EinheitenKonstanten;
-with SpielVariablen;
 
 with LeseEinheitenGebaut;
 

@@ -4,7 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 with KartenDatentypen; use KartenDatentypen;
 with RassenDatentypen; use RassenDatentypen;
 with RueckgabeDatentypen;
-with SonstigeVariablen;
 with KartenRecords;
 with ZahlenDatentypen;
 
@@ -60,16 +59,18 @@ private
    
    procedure FelderBestimmen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre =>
+         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+          and
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
    
    procedure BelegungÄndern
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
 
    procedure StartpunktFestlegen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-     with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
    
    
 
@@ -82,8 +83,6 @@ private
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse
-          and
-            SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
 
 end SpieleinstellungenRasseSpieler;
