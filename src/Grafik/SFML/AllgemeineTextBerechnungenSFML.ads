@@ -18,6 +18,9 @@ package AllgemeineTextBerechnungenSFML is
      (TextAccessExtern : in Sf.Graphics.sfText_Ptr)
       return Float;
    
+   function HalbeBildschirmhöhe
+     return Float;
+   
 private
    
    Position : Float;

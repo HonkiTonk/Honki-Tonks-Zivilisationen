@@ -30,6 +30,7 @@ package body TextaccesseTextSetzenSFML is
       KarteWichtiges;
       KarteAllgemeines;
       Karte;
+      AnzeigeEingabe;
       
    end TextSetzen;
    
@@ -187,5 +188,20 @@ package body TextaccesseTextSetzenSFML is
       null;
       
    end Karte;
+   
+   
+   
+   procedure AnzeigeEingabe
+   is begin
+      
+      AnzeigeEingabeSchleife:
+      for AnzeigeEingabeSchleifenwert in TextaccessVariablen.JaNeinAccessArray'First + 1 .. TextaccessVariablen.JaNeinAccessArray'Last loop
+         
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.JaNeinAccess (AnzeigeEingabeSchleifenwert),
+                                            str  => To_Wide_Wide_String (Source => GlobaleTexte.JaNein (AnzeigeEingabeSchleifenwert - 1)));
+         
+      end loop AnzeigeEingabeSchleife;
+         
+   end AnzeigeEingabe;
 
 end TextaccesseTextSetzenSFML;

@@ -28,6 +28,7 @@ package body TextaccesseSchriftfarbeSetzenSFML is
       KarteWichtiges;
       KarteAllgemeines;
       Karte;
+      AnzeigeEingabe;
       
    end SchriftfarbeSetzen;
    
@@ -252,5 +253,22 @@ package body TextaccesseSchriftfarbeSetzenSFML is
                                  color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
       
    end Karte;
+   
+   
+   
+   procedure AnzeigeEingabe
+   is begin
+      
+      ----------------------- Die Frage in rot?
+      
+      AnzeigeEingabeSchleife:
+      for AnzeigeEingabeSchleifenwert in TextaccessVariablen.JaNeinAccessArray'Range loop
+         
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.JaNeinAccess (AnzeigeEingabeSchleifenwert),
+                                    color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
+         
+      end loop AnzeigeEingabeSchleife;
+         
+   end AnzeigeEingabe;
 
 end TextaccesseSchriftfarbeSetzenSFML;

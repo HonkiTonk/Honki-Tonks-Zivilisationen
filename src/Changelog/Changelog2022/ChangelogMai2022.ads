@@ -126,17 +126,17 @@ package ChangelogMai2022 is
    
    
 
-   -- Version 0.01.07 => 0.01.0 (13.05.2022):
+   -- Version 0.01.0730 => 0.01.0 (13.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.07 => 0.01.07 (12.05.2022):
+   -- Version 0.01.0720 => 0.01.0730 (12.05.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- SFML Version der Ja/Nein Abfrage eingebaut.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 

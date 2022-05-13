@@ -16,6 +16,10 @@ with EingabeSystemeSFML;
 with EinheitenBeschreibungen;
 with LeseEinheitenGebaut;
 with LeseStadtGebaut;
+with TextaccessVariablen;
+with AllgemeineTextBerechnungenSFML;
+with InteraktionGrafiktask;
+with InteraktionAuswahl;
 
 package body AnzeigeEingabeSFML is
 
@@ -212,6 +216,7 @@ package body AnzeigeEingabeSFML is
                Sf.Graphics.Text.setColor (text  => TextAccess,
                                           color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
             end if;
+            
             Sf.Graphics.Text.setPosition (text     => TextAccess,
                                           position => (TextPosition.x - Sf.Graphics.Text.getLocalBounds (text => TextAccess).width / 2.00, TextPosition.y));
             Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
@@ -222,5 +227,56 @@ package body AnzeigeEingabeSFML is
       end loop AuswahlSchleife;
             
    end AnzeigeEinheitenStadt;
+   
+   
+   
+   procedure AnzeigeJaNein
+   is begin
+      
+      WelcheFrage := InteraktionGrafiktask.JaNeinFrage;
+      
+      case
+        WelcheFrage
+      is
+         when 0 =>
+            return;
+            
+         when others =>
+            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.JaNeinAccess (1),
+                                               str  => To_Wide_Wide_String (Source => GlobaleTexte.Frage (WelcheFrage)));
+            Zeilenabstand := Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard) * 0.15;
+      end case;
+      
+      TextPosition := (AllgemeineTextBerechnungenSFML.TextMittelPositionErmitteln (TextAccessExtern => TextaccessVariablen.JaNeinAccess (1)), AllgemeineTextBerechnungenSFML.HalbeBildschirmhöhe);
+      
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.JaNeinAccess (1),
+                                    position => TextPosition);
+      
+      TextPosition.y := TextPosition.y + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.JaNeinAccess (1)).height + 3.00 * Zeilenabstand;
+      TextPosition.x := AllgemeineTextBerechnungenSFML.TextMittelPositionErmitteln (TextAccessExtern => TextaccessVariablen.JaNeinAccess (2));
+      
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.JaNeinAccess (2),
+                                    position => TextPosition);
+      
+      InteraktionAuswahl.PositionenJaNein (1) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.JaNeinAccess (2));
+      
+      TextPosition.y := TextPosition.y + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.JaNeinAccess (2)).height + 3.00 * Zeilenabstand;
+      TextPosition.x := AllgemeineTextBerechnungenSFML.TextMittelPositionErmitteln (TextAccessExtern => TextaccessVariablen.JaNeinAccess (3));
+      
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.JaNeinAccess (3),
+                                    position => TextPosition);
+      
+      InteraktionAuswahl.PositionenJaNein (2) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.JaNeinAccess (3));
+      
+      ------------------------ Das ganze Draw Zeug mal auslagern.
+        TextAnzeigenSchleife:
+      for TextAnzeigenSchleifenwert in TextaccessVariablen.JaNeinAccessArray'Range loop
+         
+         Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                            text         => TextaccessVariablen.JaNeinAccess (TextAnzeigenSchleifenwert));
+         
+      end loop TextAnzeigenSchleife;
+      
+   end AnzeigeJaNein;
 
 end AnzeigeEingabeSFML;

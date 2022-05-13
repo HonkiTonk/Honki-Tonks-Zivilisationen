@@ -19,5 +19,6 @@ private
    procedure KarteWichtiges;
    procedure KarteAllgemeines;
    procedure Karte;
+   procedure AnzeigeEingabe;
 
 end TextaccesseSchriftartSetzenSFML;

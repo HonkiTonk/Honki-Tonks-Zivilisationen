@@ -256,6 +256,9 @@ package body GrafikSFML is
             else
                AnzeigeEingabeSFML.AnzeigeEinheitenStadt (RasseExtern => AktuelleRasse);
             end if;
+            
+         when SystemDatentypen.Ja_Nein_Enum =>
+            AnzeigeEingabeSFML.AnzeigeJaNein;
                
          when SystemDatentypen.Keine_Eingabe_Enum =>
             null;

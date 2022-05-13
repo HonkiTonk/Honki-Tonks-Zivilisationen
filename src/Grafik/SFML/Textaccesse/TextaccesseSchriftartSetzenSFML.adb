@@ -25,6 +25,7 @@ package body TextaccesseSchriftartSetzenSFML is
       KarteWichtiges;
       KarteAllgemeines;
       Karte;
+      AnzeigeEingabe;
       
    end SchriftartSetzen;
    
@@ -237,5 +238,20 @@ package body TextaccesseSchriftartSetzenSFML is
                                 font => GrafikEinstellungenSFML.SchriftartAccess);
       
    end Karte;
+   
+   
+   
+   procedure AnzeigeEingabe
+   is begin
+      
+      AnzeigeEingabeSchleife:
+      for AnzeigeEingabeSchleifenwert in TextaccessVariablen.JaNeinAccessArray'Range loop
+         
+         Sf.Graphics.Text.setFont (text => TextaccessVariablen.JaNeinAccess (AnzeigeEingabeSchleifenwert),
+                                   font => GrafikEinstellungenSFML.SchriftartAccess);
+         
+      end loop AnzeigeEingabeSchleife;
+         
+   end AnzeigeEingabe;
 
 end TextaccesseSchriftartSetzenSFML;

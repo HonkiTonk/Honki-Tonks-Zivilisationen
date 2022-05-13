@@ -5,6 +5,7 @@ with EinheitenDatentypen; use EinheitenDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with RueckgabeDatentypen; use RueckgabeDatentypen;
 with EinheitenKonstanten;
+with TextKonstanten;
 
 with SchreibeEinheitenGebaut;
 with LeseKarten;
@@ -27,38 +28,30 @@ package body WaldErmitteln is
       VorhandeneVerbesserung := LeseKarten.Verbesserung (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       
       if
-        VorhandeneVerbesserung = KartenVerbesserungDatentypen.Farm_Enum
-        or
-          VorhandeneVerbesserung = KartenVerbesserungDatentypen.Mine_Enum
+        (VorhandeneVerbesserung = KartenVerbesserungDatentypen.Farm_Enum
+         or
+           VorhandeneVerbesserung = KartenVerbesserungDatentypen.Mine_Enum)
+        and
+          SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum
       then
-         if
-           SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum
-           and then
-         -------------------- Hier korrekte Nummer einfügen.
-           Auswahl.AuswahlJaNein (FrageZeileExtern => 1) = RueckgabeDatentypen.Ja_Enum
-         -- EinheitenBeschreibungen.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahlExtern => 8) = True
-         then
-            null;
+         VerbesserungErsetzten := Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageLandverbesserungErsetzen); 
+         
+         case
+           VerbesserungErsetzten
+         is
+            when RueckgabeDatentypen.Ja_Enum =>
+               null;
             
-         elsif
-           SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum
-           and then
-         -------------------- Hier korrekte Nummer einfügen.
-           Auswahl.AuswahlJaNein (FrageZeileExtern => 1) = RueckgabeDatentypen.Ja_Enum
-         -- EinheitenBeschreibungen.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahlExtern => 8) = False
-         then
-            return False;
-            
-         else
-            null;
-         end if;
+            when RueckgabeDatentypen.Nein_Enum =>
+               return False;
+         end case;
 
       else
          null;
       end if;
       
       VorarbeitNötig := False;
-    
+      
       case
         GrundExtern
       is
@@ -136,8 +129,8 @@ package body WaldErmitteln is
          when KartengrundDatentypen.Dschungel_Enum | KartengrundDatentypen.Sumpf_Enum =>
             if
               RodenErmitteln.RodenErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                   GrundExtern              => GrundExtern,
-                                                   AnlegenTestenExtern      => AnlegenTestenExtern)
+                                             GrundExtern              => GrundExtern,
+                                             AnlegenTestenExtern      => AnlegenTestenExtern)
               = True
             then
                Arbeitszeit := Grundzeit + 2;
@@ -173,8 +166,8 @@ package body WaldErmitteln is
          when KartengrundDatentypen.Korallen_Enum =>
             if
               RodenErmitteln.RodenErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                   GrundExtern              => GrundExtern,
-                                                   AnlegenTestenExtern      => AnlegenTestenExtern)
+                                             GrundExtern              => GrundExtern,
+                                             AnlegenTestenExtern      => AnlegenTestenExtern)
               = True
             then
                Arbeitszeit := Grundzeit + 2;

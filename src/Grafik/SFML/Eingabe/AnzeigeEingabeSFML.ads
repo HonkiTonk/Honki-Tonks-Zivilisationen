@@ -20,6 +20,7 @@ package AnzeigeEingabeSFML is
 
    procedure AnzeigeGanzeZahl;
    procedure AnzeigeText;
+   procedure AnzeigeJaNein;
    
    procedure AnzeigeEinheitenStadt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
@@ -32,7 +33,7 @@ private
    SchriftartFestgelegt : Boolean := False;
    WelchesVorzeichen : Boolean;
    
-   WelcheFrage : Positive;
+   WelcheFrage : Natural;
    
    AktuelleAuswahl : Integer;
    

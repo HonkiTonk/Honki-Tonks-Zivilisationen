@@ -47,4 +47,9 @@ package InteraktionAuswahl is
 
    PositionenBauenFestgelegt : Boolean := False;
 
+
+
+   type PositionenJaNeinArray is array (1 .. 2) of Sf.Graphics.Rect.sfFloatRect;
+   PositionenJaNein : PositionenJaNeinArray := (others => (0.00, 0.00, 0.00, 0.00));
+
 end InteraktionAuswahl;

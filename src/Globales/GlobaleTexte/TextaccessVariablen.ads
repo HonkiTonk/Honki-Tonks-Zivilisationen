@@ -128,8 +128,9 @@ package TextaccessVariablen is
    
    
    
-   -- 
-   
-   -- 
+   -- AnzeigeEingabeSFML
+   type JaNeinAccessArray is array (1 .. 3) of Sf.Graphics.sfText_Ptr;
+   JaNeinAccess : constant JaNeinAccessArray := (others => Sf.Graphics.Text.create);
+   -- AnzeigeEingabeSFML
 
 end TextaccessVariablen;

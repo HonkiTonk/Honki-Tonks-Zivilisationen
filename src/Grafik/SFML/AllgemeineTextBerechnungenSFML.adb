@@ -70,5 +70,16 @@ package body AllgemeineTextBerechnungenSFML is
       return Sf.Graphics.Text.getLocalBounds (text => TextAccessExtern).width / 2.00;
       
    end TextHalbeBreiteErmitteln;
+   
+   
+   
+   ---------------------- In was Anderes auslagern.
+   function HalbeBildschirmhöhe
+     return Float
+   is begin
+      
+      return Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y) / 2.00;
+      
+   end HalbeBildschirmhöhe;
 
 end AllgemeineTextBerechnungenSFML;

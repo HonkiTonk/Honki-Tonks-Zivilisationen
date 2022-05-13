@@ -12,7 +12,7 @@ package SystemDatentypen is
    type Welche_Eingabe_Enum is (
                                 Keine_Eingabe_Enum,
                                 
-                                Zahlen_Eingabe_Enum, Text_Eingabe_Enum, Einheit_Auswahl_Enum
+                                Zahlen_Eingabe_Enum, Text_Eingabe_Enum, Einheit_Auswahl_Enum, Ja_Nein_Enum
                                );
    
    --------------------- Hier den Schwierigkeitsgrad_Enum einbauen.

@@ -28,6 +28,7 @@ package body TextaccesseSchriftgroesseSetzenSFML is
       KarteWichtiges;
       KarteAllgemeines;
       Karte;
+      AnzeigeEingabe;
       
    end SchriftgrößeSetzen;
    
@@ -237,5 +238,22 @@ package body TextaccesseSchriftgroesseSetzenSFML is
                                          size => GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
       
    end Karte;
+   
+   
+   
+   procedure AnzeigeEingabe
+   is begin
+      
+      ----------------------- Frage größer machen?
+      
+      AnzeigeEingabeSchleife:
+      for AnzeigeEingabeSchleifenwert in TextaccessVariablen.JaNeinAccessArray'Range loop
+         
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.JaNeinAccess (AnzeigeEingabeSchleifenwert),
+                                            size => GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
+         
+      end loop AnzeigeEingabeSchleife;
+         
+   end AnzeigeEingabe;
 
 end TextaccesseSchriftgroesseSetzenSFML;
