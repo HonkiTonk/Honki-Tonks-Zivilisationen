@@ -2,7 +2,10 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with EinheitenDatentypen; use EinheitenDatentypen;
+with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
+with RueckgabeDatentypen;
 with EinheitenKonstanten;
+with TextKonstanten;
 
 with SchreibeEinheitenGebaut;
 with LeseKarten;
@@ -10,6 +13,7 @@ with LeseEinheitenGebaut;
 
 with RodenErmitteln;
 with Fehler;
+with Auswahl;
 
 package body MineErmitteln is
 
@@ -22,31 +26,29 @@ package body MineErmitteln is
       
       VorhandeneVerbesserung := LeseKarten.Verbesserung (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       
-    --  if
-    --    VorhandeneVerbesserung = KartenVerbesserungDatentypen.Mine_Enum
-     -- then
-    --     return False;
+      if
+        VorhandeneVerbesserung = KartenVerbesserungDatentypen.Mine_Enum
+      then
+         return False;
 
-    --  elsif
-    --    VorhandeneVerbesserung
-   --   in
-    --    KartenVerbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum'Range
-    --    and
-    --      SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum
-   --   then
-    --     case
-   --        EinheitenBeschreibungen.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahlExtern => 8)
-   --      is
-   --         when True =>
-    --           null;
+      elsif
+        VorhandeneVerbesserung in KartenVerbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum'Range
+        and
+          SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum
+      then
+         case
+           Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageLandverbesserungErsetzen)
+         is
+            when RueckgabeDatentypen.Ja_Enum =>
+               null;
                      
-   --         when False =>
-   --            return False;
-   --      end case;
+            when RueckgabeDatentypen.Nein_Enum =>
+               return False;
+         end case;
 
-    --  else
-    --     null;
-    --   end if;
+      else
+         null;
+      end if;
     
       VorarbeitNötig := False;
     

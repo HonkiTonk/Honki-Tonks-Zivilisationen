@@ -23,7 +23,7 @@ with InteraktionAuswahl;
 
 package body AnzeigeEingabeSFML is
 
-   ------------------- Komplett überarbeiten, dann Access auslagern.
+   ------------------- Überarbeiten und dabei die Accesse auslagern.
    procedure AnzeigeGanzeZahl
    is begin
       
@@ -180,8 +180,8 @@ package body AnzeigeEingabeSFML is
                                                      & To_Wide_Wide_String (Source => LeseStadtGebaut.Name
                                                                             ---------------------- Übergangslösung bis hier alles mal neu geschrieben wird. Gilt auch für die Konvertierungen weiter unten.
                                                                             ---------------------- Siehe auch AuswahlStadtEinheit
-                                                                            (StadtRasseNummerExtern => (RasseExtern, StadtDatentypen.MaximaleStädteMitNullWert (WelcheAuswahl.MöglicheAuswahlen (0))))));
-         
+                                                                              (StadtRasseNummerExtern => (RasseExtern, StadtDatentypen.MaximaleStädteMitNullWert (WelcheAuswahl.MöglicheAuswahlen (0))))));
+                  
                when False =>
                   Sf.Graphics.Text.setUnicodeString (text => TextAccess,
                                                      str  => EinheitenBeschreibungen.BeschreibungKurz (IDExtern => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, WelcheAuswahl.MöglicheAuswahlen (0)))));
@@ -269,7 +269,7 @@ package body AnzeigeEingabeSFML is
       InteraktionAuswahl.PositionenJaNein (2) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.JaNeinAccess (3));
       
       ------------------------ Das ganze Draw Zeug mal auslagern.
-        TextAnzeigenSchleife:
+      TextAnzeigenSchleife:
       for TextAnzeigenSchleifenwert in TextaccessVariablen.JaNeinAccessArray'Range loop
          
          Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,

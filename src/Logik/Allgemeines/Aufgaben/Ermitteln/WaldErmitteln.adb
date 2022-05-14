@@ -24,9 +24,9 @@ package body WaldErmitteln is
       return Boolean
    is begin
       
-      ------------------------------ JaNein Abfrage endlich mal in einer SFML Version einbauen!
       VorhandeneVerbesserung := LeseKarten.Verbesserung (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       
+      ----------------------- Mehr Prüfungen einbauen, beispielweise keinen Wald auf Eis erlauben. Gilt für alle Aufgaben.
       if
         (VorhandeneVerbesserung = KartenVerbesserungDatentypen.Farm_Enum
          or
@@ -34,10 +34,8 @@ package body WaldErmitteln is
         and
           SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum
       then
-         VerbesserungErsetzten := Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageLandverbesserungErsetzen); 
-         
          case
-           VerbesserungErsetzten
+           Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageLandverbesserungErsetzen)
          is
             when RueckgabeDatentypen.Ja_Enum =>
                null;

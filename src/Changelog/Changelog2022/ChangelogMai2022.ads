@@ -98,38 +98,37 @@ package ChangelogMai2022 is
    
    
 
-   -- Version 0.01.0 => 0.01.0 (17.05.2022):
+   -- Version 0.01.07 => 0.01.0 (17.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0 => 0.01.0 (16.05.2022):
+   -- Version 0.01.07 => 0.01.07 (16.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0 => 0.01.0 (15.05.2022):
+   -- Version 0.01.0735 => 0.01.07 (15.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0 => 0.01.0 (14.05.2022):
+   -- Version 0.01.0730 => 0.01.0735 (14.05.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Es wird jetzt wieder gefragt ob eine vorhandene Verbesserung ersetzt werden soll, bevor eine Aufgabe durchgeführt wird.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0730 => 0.01.0 (13.05.2022):
+   -- Version 0.01.0730 => 0.01.0730 (13.05.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 

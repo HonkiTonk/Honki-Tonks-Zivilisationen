@@ -29,7 +29,6 @@ package body AuswahlSFML is
          case
            Eingabe.Tastenwert
          is
-            ------------------- Hier noch eine Abbruchtaste einbauen?
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if
                  AktuelleAuswahl = SystemKonstanten.LeerAuswahl

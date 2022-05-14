@@ -3,7 +3,10 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartengrundDatentypen; use KartengrundDatentypen;
 with EinheitenDatentypen; use EinheitenDatentypen;
+with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with EinheitenKonstanten;
+with RueckgabeDatentypen;
+with TextKonstanten;
 
 with SchreibeEinheitenGebaut;
 with LeseKarten;
@@ -11,6 +14,7 @@ with LeseEinheitenGebaut;
 
 with RodenErmitteln;
 with Fehler;
+with Auswahl;
 
 package body FarmErmitteln is
 
@@ -22,37 +26,33 @@ package body FarmErmitteln is
    is begin
       
       VorhandeneVerbesserung := LeseKarten.Verbesserung (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      VorhandenerGrund := LeseKarten.Grund (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
 
-      -- if
-      --   VorhandeneVerbesserung = KartenVerbesserungDatentypen.Farm_Enum
-      -- then
-      --     return False;
+      if
+        VorhandeneVerbesserung = KartenVerbesserungDatentypen.Farm_Enum
+        or
+          VorhandenerGrund = KartengrundDatentypen.Eis_Enum
+      then
+         return False;
 
-      --  elsif
-      --    VorhandeneVerbesserung = KartengrundDatentypen.Eis_Enum
-      --  then
-      --    return False;
-
-      --  elsif
-      --    LeseKarten.Verbesserung (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
-      --  in
-      --    KartenVerbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum'Range
-      --    and
-      --      SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum
-      --  then
-      --     case
-      --       EinheitenBeschreibungen.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahlExtern => 8)
-      --     is
-      --        when True =>
-      --           null;
+      elsif
+        VorhandeneVerbesserung in KartenVerbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum'Range
+        and
+          SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum
+      then
+         case
+           Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageLandverbesserungErsetzen)
+         is
+            when RueckgabeDatentypen.Ja_Enum =>
+               null;
                
-      --         when False =>
-      --           return False;
-      --     end case;
+            when RueckgabeDatentypen.Nein_Enum =>
+               return False;
+         end case;
 
-      --  else
-      --     null;
-      --   end if;
+      else
+         null;
+      end if;
     
       VorarbeitNötig := False;
     

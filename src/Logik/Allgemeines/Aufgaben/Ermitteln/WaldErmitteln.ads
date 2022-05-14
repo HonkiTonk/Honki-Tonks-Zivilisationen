@@ -9,7 +9,6 @@ with SonstigeVariablen;
 with AufgabenDatentypen;
 with EinheitenDatentypen;
 with KartenVerbesserungDatentypen;
-with RueckgabeDatentypen;
 
 package WaldErmitteln is
 
@@ -32,8 +31,6 @@ private
    VorhandeneVerbesserung : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
 
    WelcheArbeit : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
-
-   VerbesserungErsetzten : RueckgabeDatentypen.Ja_Nein_Enum;
 
    Arbeitszeit : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    Grundzeit : EinheitenDatentypen.MaximaleEinheitenMitNullWert := 1;
