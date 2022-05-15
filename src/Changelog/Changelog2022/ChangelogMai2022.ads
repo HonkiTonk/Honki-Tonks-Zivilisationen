@@ -105,17 +105,20 @@ package ChangelogMai2022 is
    
    
 
-   -- Version 0.01.07 => 0.01.07 (16.05.2022):
+   -- Version 0.01.0750 => 0.01.07 (16.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0735 => 0.01.07 (15.05.2022):
+   -- Version 0.01.0735 => 0.01.0750 (15.05.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Eingabesystem für Zahlen und Text verbessert.
+   -- Eingabesystem zum Auswählen von Stadt/Einheit die sich auf dem Selben Feld befindet verbessert.
+   -- Fehler behoben der es verhinderte das Transporter beladen werden können.
+   -- Debugmenü aufgeteilt und erweitert.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

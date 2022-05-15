@@ -49,6 +49,9 @@ package InteraktionAuswahl is
 
 
 
+   type PositionenEinheitStadtArray is array (EinheitenDatentypen.Transportplätze'Range) of Sf.Graphics.Rect.sfFloatRect;
+   PositionenEinheitStadt : PositionenEinheitStadtArray := (others => (0.00, 0.00, 0.00, 0.00));
+
    type PositionenJaNeinArray is array (1 .. 2) of Sf.Graphics.Rect.sfFloatRect;
    PositionenJaNein : PositionenJaNeinArray := (others => (0.00, 0.00, 0.00, 0.00));
 

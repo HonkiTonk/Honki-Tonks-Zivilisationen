@@ -129,6 +129,12 @@ package TextaccessVariablen is
    
    
    -- AnzeigeEingabeSFML
+   type AnzeigeZahlTexteingabeAccessArray is array (1 .. 2) of Sf.Graphics.sfText_Ptr;
+   AnzeigeZahlTexteingabeAccess : AnzeigeZahlTexteingabeAccessArray := (others => Sf.Graphics.Text.create);
+   
+   type AnzeigeEinheitStadtAccessArray is array (InteraktionAuswahl.PositionenEinheitStadtArray'Range) of Sf.Graphics.sfText_Ptr;
+   AnzeigeEinheitStadtAccess : AnzeigeEinheitStadtAccessArray := (others => Sf.Graphics.Text.create);
+   
    type JaNeinAccessArray is array (1 .. 3) of Sf.Graphics.sfText_Ptr;
    JaNeinAccess : constant JaNeinAccessArray := (others => Sf.Graphics.Text.create);
    -- AnzeigeEingabeSFML

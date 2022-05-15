@@ -19,6 +19,8 @@ private
    procedure KarteWichtiges;
    procedure KarteAllgemeines;
    procedure Karte;
+   procedure Zahleneingabe;
+   procedure EinheitStadtAuswahl;
    procedure AnzeigeEingabe;
 
 end TextaccesseSchriftgroesseSetzenSFML;

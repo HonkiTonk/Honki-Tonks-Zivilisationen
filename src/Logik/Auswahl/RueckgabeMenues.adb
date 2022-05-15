@@ -901,6 +901,16 @@ package body RueckgabeMenues is
         AktuelleAuswahlExtern = AnfangExtern + 3
       then
          return RueckgabeDatentypen.Lamustra_Enum;
+                    
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 4
+      then
+         return RueckgabeDatentypen.Manuky_Enum;
+                    
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 5
+      then
+         return RueckgabeDatentypen.Suroka_Enum;
          
       else
          return Fertig (EndeExtern            => EndeExtern,

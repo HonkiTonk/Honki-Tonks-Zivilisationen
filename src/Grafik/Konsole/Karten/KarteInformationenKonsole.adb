@@ -11,7 +11,6 @@ with StadtKonstanten;
 
 with LeseKarten;
 
-with DebugPlatzhalter;
 with EinheitSuchen;
 with StadtSuchen;
 with StadtInformationenKonsole;
@@ -20,6 +19,7 @@ with KartenAllgemein;
 with GesamtwerteFeld;
 with InformationenWichtigesKonsole;
 with InformationenEinheitenKonsole;
+with DebugmenueKonsole;
      
 package body KarteInformationenKonsole is
 
@@ -107,15 +107,14 @@ package body KarteInformationenKonsole is
       StadtInformationenKonsole.Stadt (RasseExtern            => RasseExtern,
                                        StadtRasseNummerExtern => StadtRasseNummerExtern);
 
-      -- Debuginformationen.
       case
-        DebugPlatzhalter.FeindlicheInformationenSehen
+        SonstigeVariablen.Debug.VolleInformation
       is
          when False =>
             null;
                                  
          when True =>
-            DebugPlatzhalter.KarteStadtInfos (StadtRasseNummerExtern => StadtRasseNummerExtern);
+           DebugmenueKonsole.KarteStadtInfos (StadtRasseNummerExtern => StadtRasseNummerExtern);
       end case;
       
    end InformationenStadt;
@@ -369,13 +368,13 @@ package body KarteInformationenKonsole is
    is begin
       
       case
-        DebugPlatzhalter.FeindlicheInformationenSehen
+        SonstigeVariablen.Debug.VolleInformation
       is
          when False =>
             null;
             
          when True =>
-            DebugPlatzhalter.KarteInfosFeld (RasseExtern => RasseExtern);
+          DebugmenueKonsole.KarteInfosFeld (RasseExtern => RasseExtern);
       end case;
       
    end DebugInformationen;

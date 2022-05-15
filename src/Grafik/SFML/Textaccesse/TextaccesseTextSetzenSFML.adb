@@ -30,6 +30,8 @@ package body TextaccesseTextSetzenSFML is
       KarteWichtiges;
       KarteAllgemeines;
       Karte;
+      Zahleneingabe;
+      EinheitStadtAuswahl;
       AnzeigeEingabe;
       
    end TextSetzen;
@@ -189,6 +191,23 @@ package body TextaccesseTextSetzenSFML is
       
    end Karte;
    
+   
+   
+   procedure Zahleneingabe
+   is begin
+      
+      null;
+      
+   end Zahleneingabe;
+   
+   
+   
+   procedure EinheitStadtAuswahl
+   is begin
+      
+      null;
+      
+   end EinheitStadtAuswahl;
    
    
    procedure AnzeigeEingabe

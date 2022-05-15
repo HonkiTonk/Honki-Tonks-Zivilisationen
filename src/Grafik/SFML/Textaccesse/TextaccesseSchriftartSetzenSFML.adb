@@ -25,6 +25,8 @@ package body TextaccesseSchriftartSetzenSFML is
       KarteWichtiges;
       KarteAllgemeines;
       Karte;
+      Zahleneingabe;
+      EinheitStadtAuswahl;
       AnzeigeEingabe;
       
    end SchriftartSetzen;
@@ -238,6 +240,36 @@ package body TextaccesseSchriftartSetzenSFML is
                                 font => GrafikEinstellungenSFML.SchriftartAccess);
       
    end Karte;
+   
+   
+   
+   procedure Zahleneingabe
+   is begin
+      
+      ZahleneingabeSchleife:
+      for ZahleneingabeSchleifenwert in TextaccessVariablen.AnzeigeZahlTexteingabeAccessArray'Range loop
+         
+         Sf.Graphics.Text.setFont (text => TextaccessVariablen.AnzeigeZahlTexteingabeAccess (ZahleneingabeSchleifenwert),
+                                   font => GrafikEinstellungenSFML.SchriftartAccess);
+         
+      end loop ZahleneingabeSchleife;
+      
+   end Zahleneingabe;
+   
+   
+   
+   procedure EinheitStadtAuswahl
+   is begin
+      
+      EinheitStadtSchleife:
+      for EinheitStadtSchleifenwert in TextaccessVariablen.AnzeigeEinheitStadtAccessArray'Range loop
+      
+         Sf.Graphics.Text.setFont (text => TextaccessVariablen.AnzeigeEinheitStadtAccess (EinheitStadtSchleifenwert),
+                                   font => GrafikEinstellungenSFML.SchriftartAccess);
+         
+      end loop EinheitStadtSchleife;
+      
+   end EinheitStadtAuswahl;
    
    
    

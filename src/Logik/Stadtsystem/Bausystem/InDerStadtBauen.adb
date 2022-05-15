@@ -210,7 +210,6 @@ package body InDerStadtBauen is
            InteraktionAuswahl.MöglicheGebäude (GebäudeSchleifenwert)
          is
             when True =>
-         
                if
                  MausZeigerPosition.y in Sf.sfInt32 (InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert).top)
                    .. Sf.sfInt32 (InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert).top + InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert).height)

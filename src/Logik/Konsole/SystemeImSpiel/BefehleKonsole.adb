@@ -21,14 +21,14 @@ with Auswahl;
 with NaechstesObjekt;
 with Aufgaben;
 with Diplomatie;
-with DebugPlatzhalter;
+with DebugmenueKonsole;
 with StadtBauen;
 with EinheitSuchen;
 with StadtSuchen;
 with Eingabe;
 with ForschungAllgemein;
 with StadtEntfernen;
-with EinheitenTransporter;
+with EinheitenTransporterAuswahlKonsole;
 with TransporterSuchen;
 with EinheitenModifizieren;
 with AufgabenAllgemein;
@@ -119,7 +119,7 @@ package body BefehleKonsole is
             return RueckgabeDatentypen.Runde_Beenden_Enum;
             
          when TastenbelegungDatentypen.Debugmenü_Enum =>
-            DebugPlatzhalter.Menü (RasseExtern => RasseExtern);
+            DebugmenueKonsole.Menü (RasseExtern => RasseExtern);
          
          when TastenbelegungDatentypen.Leer_Tastenbelegung_Enum =>
             null;
@@ -187,11 +187,11 @@ package body BefehleKonsole is
       elsif
         LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= EinheitenKonstanten.LeerWirdTransportiert
       then
-         EinheitTransportNummer:= EinheitenTransporter.EinheitTransporterAuswählen (EinheitRasseNummerExtern =>
-                                                                                       (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern)));
+         EinheitTransportNummer := EinheitenTransporterAuswahlKonsole.EinheitTransporterAuswählen
+             (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern)));
 
       else
-         EinheitTransportNummer := EinheitenTransporter.EinheitTransporterAuswählen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         EinheitTransportNummer := EinheitenTransporterAuswahlKonsole.EinheitTransporterAuswählen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       end if;
       
       case

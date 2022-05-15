@@ -2,10 +2,9 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with MenueDatentypen;
-with SpielVariablen;
-with SystemDatentypen;
 
 with SchreibeKarten;
+with SchreibeWichtiges;
 
 with AuswahlMenues;
 with Fehler;
@@ -29,13 +28,21 @@ package body DebugmenueSFML is
                KarteAufdecken (RasseExtern => RasseExtern);
                
             when RueckgabeDatentypen.Kasrodiah_Enum =>
-               VolleInformation;
+               SpielVariablen.Wichtiges (RasseExtern).Erforscht := (others => True);
                
             when RueckgabeDatentypen.Lasupin_Enum =>
-               AlleTechnologien (RasseExtern => RasseExtern);
+               SchreibeWichtiges.Geldmenge (RasseExtern         => RasseExtern,
+                                            GeldZugewinnExtern  => Integer'Last,
+                                            RechnenSetzenExtern => False);
                
             when RueckgabeDatentypen.Lamustra_Enum =>
-               MaximalesGeld (RasseExtern => RasseExtern);
+               SonstigeVariablen.Debug.Allgemeines := not SonstigeVariablen.Debug.Allgemeines;
+               
+            when RueckgabeDatentypen.Manuky_Enum =>
+               SonstigeVariablen.Debug.VolleInformation := not SonstigeVariablen.Debug.VolleInformation;
+               
+            when RueckgabeDatentypen.Suroka_Enum =>
+               SonstigeVariablen.Debug.Sieg := not SonstigeVariablen.Debug.Sieg;
                
             when RueckgabeDatentypen.Fertig_Enum =>
                return;
@@ -69,13 +76,14 @@ package body DebugmenueSFML is
          end loop YAchseSchleife;
       end loop EbeneSchleife;
       
-      AlleNeutral;
+      DiplomatischenStatusÄndern (NeuerStatusExtern => SystemDatentypen.Neutral_Enum);
       
    end KarteAufdecken;
    
    
    
-   procedure AlleNeutral
+   procedure DiplomatischenStatusÄndern
+     (NeuerStatusExtern : in SystemDatentypen.Status_Untereinander_Enum)
    is begin
       
       RassenErsteSchleife:
@@ -83,40 +91,21 @@ package body DebugmenueSFML is
          RassenZweiteSchleife:
          for RasseZweiSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
             
-            SpielVariablen.Diplomatie (RasseEinsSchleifenwert, RasseZweiSchleifenwert).AktuellerZustand := SystemDatentypen.Neutral_Enum;
+            SpielVariablen.Diplomatie (RasseEinsSchleifenwert, RasseZweiSchleifenwert).AktuellerZustand := NeuerStatusExtern;
             
          end loop RassenZweiteSchleife;
       end loop RassenErsteSchleife;
       
-   end AlleNeutral;
+   end DiplomatischenStatusÄndern;
+      
    
    
-   
-   procedure VolleInformation
+   procedure KarteInfosEinheiten
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       null;
       
-   end VolleInformation;
-   
-   
-   
-   procedure AlleTechnologien
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-   is begin
-      
-      SpielVariablen.Wichtiges (RasseExtern).Erforscht := (others => True);
-      
-   end AlleTechnologien;
-   
-   
-   
-   procedure MaximalesGeld
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-   is begin
-      
-      null;
-      
-   end MaximalesGeld;
+   end KarteInfosEinheiten;
 
 end DebugmenueSFML;

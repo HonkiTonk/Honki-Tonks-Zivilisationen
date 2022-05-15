@@ -112,7 +112,7 @@ package body KarteInformationenSFML is
    is begin
       
       case
-        SonstigeVariablen.Debug
+        SonstigeVariablen.Debug.Allgemeines
       is
          when False =>
             null;

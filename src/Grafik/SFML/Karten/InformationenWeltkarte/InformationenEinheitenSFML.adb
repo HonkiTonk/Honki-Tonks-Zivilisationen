@@ -17,9 +17,9 @@ with LeseEinheitenDatenbank;
 
 with EinheitenBeschreibungen;
 with KampfwerteEinheitErmitteln;
-with DebugPlatzhalter;
 with GrafikEinstellungenSFML;
 with StadtInformationenSFML;
+with DebugmenueSFML;
 
 package body InformationenEinheitenSFML is
 
@@ -40,7 +40,7 @@ package body InformationenEinheitenSFML is
       if
         RasseExtern = EinheitRasseNummerExtern.Rasse
         or
-          DebugPlatzhalter.FeindlicheInformationenSehen
+          SonstigeVariablen.Debug.VolleInformation
       then
          Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummer);
          Erfahrungspunkte (EinheitRasseNummerExtern => EinheitRasseNummer);
@@ -398,13 +398,13 @@ package body InformationenEinheitenSFML is
    is begin
       
       case
-        DebugPlatzhalter.FeindlicheInformationenSehen
+        SonstigeVariablen.Debug.VolleInformation
       is
          when False =>
             null;
             
          when True =>
-            DebugPlatzhalter.KarteInfosEinheiten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);                     
+           DebugmenueSFML.KarteInfosEinheiten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);                     
       end case;
       
    end DebugInformationen;

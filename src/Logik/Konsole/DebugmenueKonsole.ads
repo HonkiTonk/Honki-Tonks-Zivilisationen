@@ -7,8 +7,8 @@ with EinheitenRecords;
 with SpielVariablen;
 with StadtRecords;
 
-package DebugPlatzhalter is
-   
+package DebugmenueKonsole is
+
    DebugSieg : Boolean := False;
    FeindlicheInformationenSehen : Boolean := False;
    
@@ -46,4 +46,4 @@ private
 
    procedure Informationen;
 
-end DebugPlatzhalter;
+end DebugmenueKonsole;

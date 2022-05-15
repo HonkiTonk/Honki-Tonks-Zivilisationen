@@ -3,6 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen;
 with EinheitenKonstanten;
+with SystemRecords;
 
 package SonstigeVariablen is
 
@@ -10,7 +11,7 @@ package SonstigeVariablen is
    UmbelegungNummer : Positive;
    -- Schlechte Lösung für die Umbelegung der Steuerung, später was besseres bauen.
 
-   Debug : Boolean := True;
+   Debug : SystemRecords.DebugRecord := (others => False);
    
    Gewonnen : Boolean := False;
    WeiterSpielen : Boolean := False;

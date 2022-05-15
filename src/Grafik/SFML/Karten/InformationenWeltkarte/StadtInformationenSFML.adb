@@ -17,7 +17,6 @@ with LeseStadtGebaut;
 
 with GesamtwerteFeld;
 with KampfwerteStadtErmitteln;
-with DebugPlatzhalter;
 with GrafikEinstellungenSFML;
 with Fehler;
 
@@ -42,7 +41,7 @@ package body StadtInformationenSFML is
       if
         StadtRasseNummerExtern.Rasse = RasseExtern
         or
-          DebugPlatzhalter.FeindlicheInformationenSehen
+          SonstigeVariablen.Debug.VolleInformation
       then
          AktuelleNahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern);
          AktuelleNahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern);

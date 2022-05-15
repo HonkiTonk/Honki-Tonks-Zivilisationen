@@ -28,6 +28,8 @@ package body TextaccesseSchriftfarbeSetzenSFML is
       KarteWichtiges;
       KarteAllgemeines;
       Karte;
+      Zahleneingabe;
+      EinheitStadtAuswahl;
       AnzeigeEingabe;
       
    end SchriftfarbeSetzen;
@@ -256,13 +258,42 @@ package body TextaccesseSchriftfarbeSetzenSFML is
    
    
    
+   procedure Zahleneingabe
+   is begin
+      
+      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.AnzeigeZahlTexteingabeAccess (TextaccessVariablen.AnzeigeZahlTexteingabeAccessArray'First),
+                                 color => GrafikEinstellungenSFML.Schriftfarben.FarbeÜberschrift);
+      
+      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.AnzeigeZahlTexteingabeAccess (TextaccessVariablen.AnzeigeZahlTexteingabeAccessArray'Last),
+                                 color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
+      
+   end Zahleneingabe;
+   
+   
+   
+   procedure EinheitStadtAuswahl
+   is begin
+      
+      EinheitStadtSchleife:
+      for EinheitStadtSchleifenwert in TextaccessVariablen.AnzeigeEinheitStadtAccessArray'Range loop
+      
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.AnzeigeEinheitStadtAccess (EinheitStadtSchleifenwert),
+                                    color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
+         
+      end loop EinheitStadtSchleife;
+      
+   end EinheitStadtAuswahl;
+   
+   
+   
    procedure AnzeigeEingabe
    is begin
       
-      ----------------------- Die Frage in rot?
+      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.JaNeinAccess (TextaccessVariablen.JaNeinAccessArray'First),
+                                 color => GrafikEinstellungenSFML.Schriftfarben.FarbeÜberschrift);
       
       AnzeigeEingabeSchleife:
-      for AnzeigeEingabeSchleifenwert in TextaccessVariablen.JaNeinAccessArray'Range loop
+      for AnzeigeEingabeSchleifenwert in TextaccessVariablen.JaNeinAccessArray'First + 1 .. TextaccessVariablen.JaNeinAccessArray'Last loop
          
          Sf.Graphics.Text.setColor (text  => TextaccessVariablen.JaNeinAccess (AnzeigeEingabeSchleifenwert),
                                     color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);

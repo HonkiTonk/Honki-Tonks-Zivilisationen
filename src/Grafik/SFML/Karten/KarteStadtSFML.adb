@@ -60,7 +60,7 @@ package body KarteStadtSFML is
                                  StadtRasseNummerExtern => StadtRasseNummerExtern);
             
             case
-              SonstigeVariablen.Debug
+              SonstigeVariablen.Debug.Allgemeines
             is
                when True =>
                   MauszeigerAnzeigen (YAchseExtern   => YAchseSchleifenwert,

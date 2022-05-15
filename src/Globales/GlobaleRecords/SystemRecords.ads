@@ -78,5 +78,15 @@ package SystemRecords is
       EingegebenerText : Unbounded_Wide_Wide_String;
       
    end record;
+   
+   
+   
+   type DebugRecord is record
+      
+      Allgemeines : Boolean;
+      VolleInformation : Boolean;
+      Sieg : Boolean;
+      
+   end record;
       
 end SystemRecords;

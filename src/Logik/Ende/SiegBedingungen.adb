@@ -7,7 +7,6 @@ with SonstigeVariablen;
 
 with LeseWichtiges;
 
-with DebugPlatzhalter;
 with Enden;
 
 package body SiegBedingungen is
@@ -140,7 +139,7 @@ package body SiegBedingungen is
    is begin
       
       case
-        DebugPlatzhalter.DebugSieg
+        SonstigeVariablen.Debug.Sieg
       is
          when False =>
             return False;

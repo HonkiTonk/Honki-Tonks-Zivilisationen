@@ -14,7 +14,6 @@ with LeseStadtGebaut;
 
 with GesamtwerteFeld;
 with KampfwerteStadtErmitteln;
-with DebugPlatzhalter;
 with Fehler;
 
 package body StadtInformationenKonsole is
@@ -34,7 +33,7 @@ package body StadtInformationenKonsole is
       if
         StadtRasseNummerExtern.Rasse = RasseExtern
         or
-          DebugPlatzhalter.FeindlicheInformationenSehen
+          SonstigeVariablen.Debug.VolleInformation
       then
          AktuelleNahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern);
          AktuelleNahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern);

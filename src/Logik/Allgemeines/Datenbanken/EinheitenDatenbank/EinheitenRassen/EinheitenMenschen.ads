@@ -98,9 +98,9 @@ package EinheitenMenschen is
                                                                                  Reichweite              => 2,
                                                                                  Angriff                 => 3,
                                                                                  Verteidigung            => 1,
-                                                                                 KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                                 KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                                 Transportkapazität      => 0
+                                                                                 KannTransportieren      => EinheitenDatentypen.Klein_Transport_Enum,
+                                                                                 KannTransportiertWerden => EinheitenDatentypen.Kein_Transport_Enum,
+                                                                                 Transportkapazität      => 1
                                                                                 ),
                                                
                                                                                 -- Bronzekämpfer
@@ -237,9 +237,9 @@ package EinheitenMenschen is
                                                                                  Reichweite              => 2,
                                                                                  Angriff                 => 3,
                                                                                  Verteidigung            => 1,
-                                                                                 KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                                 KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                                 Transportkapazität      => 0
+                                                                                 KannTransportieren      => EinheitenDatentypen.Klein_Transport_Enum,
+                                                                                 KannTransportiertWerden => EinheitenDatentypen.Kein_Transport_Enum,
+                                                                                 Transportkapazität      => 2
                                                                                 ),
                                                
                                                                                 -- Großes Segelschiff
@@ -261,9 +261,9 @@ package EinheitenMenschen is
                                                                                  Reichweite              => 2,
                                                                                  Angriff                 => 3,
                                                                                  Verteidigung            => 1,
-                                                                                 KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                                 KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                                 Transportkapazität      => 0
+                                                                                 KannTransportieren      => EinheitenDatentypen.Klein_Transport_Enum,
+                                                                                 KannTransportiertWerden => EinheitenDatentypen.Kein_Transport_Enum,
+                                                                                 Transportkapazität      => 4
                                                                                 ),
                                                
                                                                                 -- Gewehrkämpfer
@@ -331,8 +331,8 @@ package EinheitenMenschen is
                                                                                  Reichweite              => 2,
                                                                                  Angriff                 => 3,
                                                                                  Verteidigung            => 1,
-                                                                                 KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                                 KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
+                                                                                 KannTransportieren      => EinheitenDatentypen.Klein_Transport_Enum,
+                                                                                 KannTransportiertWerden => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                  Transportkapazität      => 0
                                                                                 ),
                                                
@@ -355,8 +355,8 @@ package EinheitenMenschen is
                                                                                  Reichweite              => 2,
                                                                                  Angriff                 => 3,
                                                                                  Verteidigung            => 1,
-                                                                                 KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                                 KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
+                                                                                 KannTransportieren      => EinheitenDatentypen.Klein_Transport_Enum,
+                                                                                 KannTransportiertWerden => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                  Transportkapazität      => 0
                                                                                 ),
                                                
@@ -381,8 +381,8 @@ package EinheitenMenschen is
                                                                                  Reichweite              => 2,
                                                                                  Angriff                 => 3,
                                                                                  Verteidigung            => 1,
-                                                                                 KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                                 KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
+                                                                                 KannTransportieren      => EinheitenDatentypen.Klein_Transport_Enum,
+                                                                                 KannTransportiertWerden => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                  Transportkapazität      => 0
                                                                                 ),
                                                
@@ -1009,8 +1009,8 @@ package EinheitenMenschen is
                                                                                  Reichweite              => 2,
                                                                                  Angriff                 => 3,
                                                                                  Verteidigung            => 1,
-                                                                                 KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                                 KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
+                                                                                 KannTransportieren      => EinheitenDatentypen.Klein_Transport_Enum,
+                                                                                 KannTransportiertWerden => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                  Transportkapazität      => 0
                                                                                 ),
                                                
@@ -1039,8 +1039,8 @@ package EinheitenMenschen is
                                                                                  Reichweite              => 2,
                                                                                  Angriff                 => 3,
                                                                                  Verteidigung            => 1,
-                                                                                 KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                                 KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
+                                                                                 KannTransportieren      => EinheitenDatentypen.Klein_Transport_Enum,
+                                                                                 KannTransportiertWerden => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                  Transportkapazität      => 0
                                                                                 ),
                                                

@@ -17,9 +17,9 @@ with Karten;
 with ForschungAllgemein;
 with EingabeSystemeSFML;
 
-package body DebugPlatzhalter is
+package body DebugmenueKonsole is
 
-   -- Die Umwandlung von Wide_Wide_Image im Debugmenü einfach ignorieren, weil die Anzeige hier sowieso nicht wichtig ist?
+   ----------------------- Überarbeiten/Wieder für Konsole zurückbauen.
    procedure Menü
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
@@ -193,4 +193,4 @@ package body DebugPlatzhalter is
       
    end KarteStadtInfos;
 
-end DebugPlatzhalter;
+end DebugmenueKonsole;

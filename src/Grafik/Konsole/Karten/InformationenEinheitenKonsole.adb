@@ -14,7 +14,7 @@ with LeseEinheitenDatenbank;
 with EinheitenBeschreibungen;
 with StadtInformationenKonsole;
 with KampfwerteEinheitErmitteln;
-with DebugPlatzhalter;
+with DebugmenueKonsole;
 
 package body InformationenEinheitenKonsole is
 
@@ -29,8 +29,8 @@ package body InformationenEinheitenKonsole is
       
       if
         RasseExtern = EinheitRasseNummerExtern.Rasse
-        or
-          DebugPlatzhalter.FeindlicheInformationenSehen
+       -- or
+       --   DebugPlatzhalter.FeindlicheInformationenSehen
       then
          Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummer);
          Erfahrungspunkte (EinheitRasseNummerExtern => EinheitRasseNummer);
@@ -415,13 +415,13 @@ package body InformationenEinheitenKonsole is
    is begin
       
       case
-        DebugPlatzhalter.FeindlicheInformationenSehen
+        SonstigeVariablen.Debug.VolleInformation
       is
          when False =>
             null;
             
          when True =>
-            DebugPlatzhalter.KarteInfosEinheiten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);                     
+            DebugmenueKonsole.KarteInfosEinheiten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);                     
       end case;
       
    end DebugInformationen;

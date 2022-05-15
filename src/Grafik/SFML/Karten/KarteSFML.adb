@@ -132,7 +132,7 @@ package body KarteSFML is
                            PositionExtern    => PositionExtern);
             
       case
-        SonstigeVariablen.Debug
+        SonstigeVariablen.Debug.Allgemeines
       is
          when True =>
             AnzeigeCursor (KoordinatenExtern => KoordinatenExtern,
