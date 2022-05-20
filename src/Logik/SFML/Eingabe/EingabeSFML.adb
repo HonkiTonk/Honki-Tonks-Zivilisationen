@@ -10,17 +10,18 @@ with Sf;
 
 with GlobaleTexte;
 with TextKonstanten;
+with SystemDatentypen;
 
 with EingabeSystemeSFML;
 with Fehler;
-with InteraktionGrafiktask;
+with InteraktionEingabe;
 
 package body EingabeSFML is
    
    -- Wide_Wide_Image kann hier so bleiben weil es nicht für die Anzeige verwendet wird.
    function GanzeZahl
-     (ZahlenMinimumExtern : in SystemDatentypen.Grenzen;
-      ZahlenMaximumExtern : in SystemDatentypen.Grenzen;
+     (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
+      ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger;
       WelcheFrageExtern : in Positive)
       return SystemRecords.ZahlenEingabeRecord
    is begin
@@ -44,7 +45,7 @@ package body EingabeSFML is
          VorzeichenAnpassen (ZahlenMinimumExtern => ZahlenMinimumExtern,
                              ZahlenMaximumExtern => ZahlenMaximumExtern,
                              PlusMinusExtern     => True);
-         InteraktionGrafiktask.EingabeÄndern (EingabeExtern => SystemDatentypen.Zahlen_Eingabe_Enum);
+         InteraktionEingabe.Eingabe := SystemDatentypen.Zahlen_Eingabe_Enum;
       end if;
                   
       case
@@ -58,7 +59,7 @@ package body EingabeSFML is
             EingegebeneZahl.EingabeAbbruch := False;
       end case;
       
-      InteraktionGrafiktask.EingabeÄndern (EingabeExtern => SystemDatentypen.Keine_Eingabe_Enum);
+      InteraktionEingabe.Eingabe := SystemDatentypen.Keine_Eingabe_Enum;
       
       if
         WelchesVorzeichen
@@ -76,8 +77,8 @@ package body EingabeSFML is
    
    
    function ZahlSchleife
-     (ZahlenMinimumExtern : in SystemDatentypen.Grenzen;
-      ZahlenMaximumExtern : in SystemDatentypen.Grenzen)
+     (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
+      ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger)
       return Boolean
    is begin
             
@@ -136,8 +137,8 @@ package body EingabeSFML is
    
    
    procedure VorzeichenAnpassen
-     (ZahlenMinimumExtern : in SystemDatentypen.Grenzen;
-      ZahlenMaximumExtern : in SystemDatentypen.Grenzen;
+     (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
+      ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger;
       PlusMinusExtern : in Boolean)
    is begin
             
@@ -215,7 +216,7 @@ package body EingabeSFML is
       if
         ZahlenString (1) /= '0'
       then
-         ZahlenString := Ada.Strings.Wide_Wide_Fixed.Trim (Source => SystemDatentypen.Grenzen'Last'Wide_Wide_Image,
+         ZahlenString := Ada.Strings.Wide_Wide_Fixed.Trim (Source => ZahlenDatentypen.EigenerInteger'Last'Wide_Wide_Image,
                                                            Side   => Ada.Strings.Left);
            
       else
@@ -243,8 +244,8 @@ package body EingabeSFML is
    
    
    function MinimumMaximumSetzen
-     (ZahlenMinimumExtern : in SystemDatentypen.Grenzen;
-      ZahlenMaximumExtern : in SystemDatentypen.Grenzen)
+     (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
+      ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger)
       return Boolean
    is begin
       
@@ -314,17 +315,17 @@ package body EingabeSFML is
       
       EingabeSystemeSFML.EingegebenerText := TextKonstanten.LeerUnboundedString;
       
-      InteraktionGrafiktask.EingabeÄndern (EingabeExtern => SystemDatentypen.Text_Eingabe_Enum);
+      InteraktionEingabe.Eingabe := SystemDatentypen.Text_Eingabe_Enum;
       
-      InteraktionGrafiktask.TextEingabe := True;
+      InteraktionEingabe.TextEingabe := True;
         
-      while InteraktionGrafiktask.TextEingabe loop
+      while InteraktionEingabe.TextEingabe loop
          
          delay 0.0002;
          
       end loop;
       
-      InteraktionGrafiktask.EingabeÄndern (EingabeExtern => SystemDatentypen.Keine_Eingabe_Enum);
+      InteraktionEingabe.Eingabe := SystemDatentypen.Keine_Eingabe_Enum;
       
       return (EingabeSystemeSFML.ErfolgreichAbbruch, EingabeSystemeSFML.EingegebenerText);
       
@@ -365,9 +366,9 @@ package body EingabeSFML is
    procedure EingabeAbwarten
    is begin
       
-      InteraktionGrafiktask.TastenEingabe := True;
+      InteraktionEingabe.TastenEingabe := True;
         
-      while InteraktionGrafiktask.TastenEingabe loop
+      while InteraktionEingabe.TastenEingabe loop
          
          delay 0.0002;
          

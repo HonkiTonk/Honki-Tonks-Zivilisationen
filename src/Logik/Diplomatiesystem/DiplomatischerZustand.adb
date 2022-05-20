@@ -5,6 +5,7 @@ with RueckgabeDatentypen; use RueckgabeDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
 with WichtigesKonstanten;
 with SpielVariablen;
+with ZahlenDatentypen;
 
 with Auswahl;
 
@@ -150,7 +151,7 @@ package body DiplomatischerZustand is
       case
         SpielVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern).ZeitSeitLetzterÄnderung
       is
-         when Natural'Last =>
+         when ZahlenDatentypen.EigenesNatural'Last =>
             null;
                      
          when others =>

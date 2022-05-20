@@ -8,7 +8,7 @@ with SystemDatentypen;
 with LeseEinheitenGebaut;
 
 with GrafikEinstellungenSFML;
-with InteraktionGrafiktask;
+with InteraktionEingabe;
 with Eingabe;
 with InteraktionAuswahl;
 
@@ -47,7 +47,7 @@ package body AuswahlStadtEinheit is
       AktuelleAuswahl := 0;
       
       InteraktionAuswahl.PositionenEinheitStadt := (others => (0.00, 0.00, 0.00, 0.00));
-      InteraktionGrafiktask.EingabeÄndern (EingabeExtern => SystemDatentypen.Einheit_Auswahl_Enum);
+      InteraktionEingabe.Eingabe := SystemDatentypen.Einheit_Auswahl_Enum;
       
       AuswahlSchleife:
       loop
@@ -77,7 +77,7 @@ package body AuswahlStadtEinheit is
          
       end loop AuswahlSchleife;
       
-      InteraktionGrafiktask.EingabeÄndern (EingabeExtern => SystemDatentypen.Keine_Eingabe_Enum);
+      InteraktionEingabe.Eingabe := SystemDatentypen.Keine_Eingabe_Enum;
       
       return AktuelleAuswahl;
       

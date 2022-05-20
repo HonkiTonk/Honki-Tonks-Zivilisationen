@@ -6,6 +6,7 @@ with EinheitenDatentypen;
 with SystemDatentypen;
 with ForschungenDatentypen;
 with ProduktionDatentypen;
+with ZahlenDatentypen;
 
 package WichtigeRecords is
    
@@ -20,7 +21,7 @@ package WichtigeRecords is
 
    type WichtigesRecord is record
       
-      Geldmenge : Integer;
+      Geldmenge : ZahlenDatentypen.EigenerInteger;
       GeldZugewinnProRunde : ProduktionDatentypen.KostenLager;
 
       GesamteForschungsrate : ProduktionDatentypen.KostenLager;
@@ -48,7 +49,7 @@ package WichtigeRecords is
       
       AktuellerZustand : SystemDatentypen.Status_Untereinander_Enum;
       AktuelleSympathieBewertung : ProduktionDatentypen.ProduktionFeld;
-      ZeitSeitLetzterÄnderung : Natural;
+      ZeitSeitLetzterÄnderung : ZahlenDatentypen.EigenesNatural;
       
    end record;
    
@@ -58,11 +59,11 @@ package WichtigeRecords is
       
       Städtegrenze : StadtDatentypen.MaximaleStädte;
       Einheitengrenze : EinheitenDatentypen.MaximaleEinheiten;
-      Geldgrenze : Integer;
+      Geldgrenze : ZahlenDatentypen.EigenerInteger;
       Forschungsgrenze : ProduktionDatentypen.KostenLager;
       Geldgewinngrenze : ProduktionDatentypen.KostenLager;
       ForschungGewinngrenze : ProduktionDatentypen.KostenLager;
-      RassenRundengrenze : Natural;
+      RassenRundengrenze : ZahlenDatentypen.EigenesNatural;
       
    end record;
 

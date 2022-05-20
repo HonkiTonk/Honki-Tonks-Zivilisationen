@@ -2,14 +2,15 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
+with EinheitenRecords;
 with SonstigeVariablen;
 
 package Karte is
 
    procedure AnzeigeKarte
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (RasseEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum);
+         (SonstigeVariablen.RassenImSpiel (RasseEinheitExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum);
 
 end Karte;

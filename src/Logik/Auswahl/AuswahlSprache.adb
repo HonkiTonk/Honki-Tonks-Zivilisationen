@@ -127,11 +127,11 @@ package body AuswahlSprache is
    function AuswahlSpracheKonsole
      return Unbounded_Wide_Wide_String
    is begin
+                  
+      InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Sprache_Enum;
       
       AuswahlKonsoleSchleife:
       loop
-                  
-         InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Sprache_Enum);
          
          case
            Eingabe.Tastenwert
@@ -204,7 +204,7 @@ package body AuswahlSprache is
             null;
       end case;
       
-      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Sprache_Enum);
+      InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Sprache_Enum;
       
       AuswahlSchleife:
       loop

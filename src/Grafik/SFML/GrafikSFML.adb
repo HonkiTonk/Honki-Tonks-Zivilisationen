@@ -23,9 +23,11 @@ with ForschungAnzeigeSFML;
 with AnzeigeSprachauswahlSFML;
 with AnzeigeEingabeSFML;
 with BauAuswahlAnzeigeSFML;
-with InteraktionLogiktask;
+with InteraktionStart;
 with EingabeSystemeSFML;
 with TextaccesseAllesSetzenSFML;
+with InteraktionTextanzeige;
+with InteraktionEingabe;
 
 package body GrafikSFML is
    
@@ -38,68 +40,17 @@ package body GrafikSFML is
       GrafikSchleife:
       loop
          
-         case
-           InteraktionGrafiktask.AccesseSetzen
-         is
-            when True =>
-               TextaccesseAllesSetzenSFML.AllesAufStandard;
-               InteraktionGrafiktask.AccesseSetzen := False;
-               
-            when False =>
-               null;
-         end case;
-         
-         case
-           InteraktionGrafiktask.FensterVerändert
-         is
-            when InteraktionGrafiktask.Fenster_Wurde_Verändert_Enum'Range =>
-               GrafikAllgemeinSFML.FensterAnpassen;
-               Sichtweiten.SichtweiteBewegungsfeldFestlegen;
-               InteraktionGrafiktask.FensterVerändert := InteraktionGrafiktask.Keine_Änderung_Enum;
-               
-            when InteraktionGrafiktask.Fenster_Unverändert_Enum'Range =>
-               null;
-         end case;
-         
-         case
-           InteraktionGrafiktask.FensterVerändert
-         is
-            when InteraktionGrafiktask.Bildrate_Ändern_Enum =>
-               GrafikAllgemeinSFML.BildrateÄndern;
-               InteraktionGrafiktask.FensterVerändert := InteraktionGrafiktask.Keine_Änderung_Enum;
-               
-            when others =>
-               null;
-         end case;
+         GrafikanpassungenVorFensterleerung;
          
          GrafikStartEndeSFML.FensterLeeren;
          
-         case
-           InteraktionGrafiktask.TastenEingabe
-         is
-            when True =>
-               EingabeSystemeSFML.TastenEingabe;
-               InteraktionGrafiktask.TastenEingabe := False;
-               
-            when False =>
-               null;
-         end case;
+         Eingaben;
          
          case
            InteraktionGrafiktask.FensterGeschlossen
          is
             when True =>
                exit GrafikSchleife;
-               
-            when False =>
-               null;
-         end case;
-         
-         case
-           InteraktionGrafiktask.TextEingabe
-         is
-            when True =>
-               EingabeSystemeSFML.TextEingeben;
                
             when False =>
                null;
@@ -123,26 +74,95 @@ package body GrafikSFML is
    
    
    
+   procedure GrafikanpassungenVorFensterleerung
+   is begin
+      
+      case
+        InteraktionTextanzeige.AccesseSetzen
+      is
+         when True =>
+            TextaccesseAllesSetzenSFML.AllesAufStandard;
+            InteraktionTextanzeige.AccesseSetzen := False;
+               
+         when False =>
+            null;
+      end case;
+         
+      case
+        InteraktionGrafiktask.FensterVerändert
+      is
+         when InteraktionGrafiktask.Fenster_Wurde_Verändert_Enum'Range =>
+            GrafikAllgemeinSFML.FensterAnpassen;
+            Sichtweiten.SichtweiteBewegungsfeldFestlegen;
+            InteraktionGrafiktask.FensterVerändert := InteraktionGrafiktask.Keine_Änderung_Enum;
+               
+         when InteraktionGrafiktask.Fenster_Unverändert_Enum'Range =>
+            null;
+      end case;
+         
+      case
+        InteraktionGrafiktask.FensterVerändert
+      is
+         when InteraktionGrafiktask.Bildrate_Ändern_Enum =>
+            GrafikAllgemeinSFML.BildrateÄndern;
+            InteraktionGrafiktask.FensterVerändert := InteraktionGrafiktask.Keine_Änderung_Enum;
+               
+         when others =>
+            null;
+      end case;
+      
+   end GrafikanpassungenVorFensterleerung;
+   
+   
+   
+   procedure Eingaben
+   is begin
+      
+      case
+        InteraktionEingabe.TextEingabe
+      is
+         when True =>
+            EingabeSystemeSFML.TextEingeben;
+               
+         when False =>
+            null;
+      end case;
+         
+      case
+        InteraktionEingabe.TastenEingabe
+      is
+         when True =>
+            EingabeSystemeSFML.TastenEingabe;
+            InteraktionEingabe.TastenEingabe := False;
+               
+         when False =>
+            null;
+      end case;
+      
+   end Eingaben;
+   
+   
+   
    function AnzeigeAuswahl
      return Boolean
    is begin
             
       case
-        InteraktionGrafiktask.AktuelleDarstellungAbrufen
+        InteraktionGrafiktask.AktuelleDarstellung
       is
          when GrafikDatentypen.Grafik_Konsole_Enum =>
             Fehler.GrafikFehler (FehlermeldungExtern => "GrafikSFML.AnzeigeAuswahl - Konsole wird bei SFML aufgerufen.");
             
          when GrafikDatentypen.Grafik_SFML_Enum =>
-            InteraktionLogiktask.FensterErzeugtÄndern;
-            InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Pause_Enum);
+            InteraktionStart.FensterErzeugt := True;
+            InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
             
          when GrafikDatentypen.Grafik_Sprache_Enum =>
             AnzeigeSprachauswahlSFML.AnzeigeSprache;
                
          when GrafikDatentypen.Grafik_Intro_Enum =>
             GrafikIntroSFML.Intro;
-            InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Pause_Enum);
+            InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
                               
          when GrafikDatentypen.Grafik_Pause_Enum =>
             delay ZeitKonstanten.WartezeitGrafik;
@@ -169,34 +189,33 @@ package body GrafikSFML is
             AnzeigeEditoren;
                
          when GrafikDatentypen.Grafik_Weltkarte_Enum =>
-            AktuelleRasse := InteraktionLogiktask.AktuelleRasseAbrufen;
+            AktuelleRasseEinheit := InteraktionGrafiktask.AktuelleRasseEinheit;
             
             if
-              AktuelleRasse = RassenDatentypen.Keine_Rasse_Enum
+              AktuelleRasseEinheit.Rasse = RassenDatentypen.Keine_Rasse_Enum
             then
                delay ZeitKonstanten.WartezeitGrafik;
                      
             else
-               Karte.AnzeigeKarte (RasseExtern => AktuelleRasse);
+               Karte.AnzeigeKarte (RasseEinheitExtern => AktuelleRasseEinheit);
             end if;
                
          when GrafikDatentypen.Grafik_Stadtkarte_Enum =>
-            AktuelleRasse := InteraktionLogiktask.AktuelleRasseAbrufen;
-            AktuelleStadtNummer := InDerStadt.AktuelleStadtNummerGrafik; 
+            AktuelleRasseStadt := (InteraktionGrafiktask.AktuelleRasseEinheit.Rasse, InDerStadt.AktuelleStadtNummerGrafik);
             
             if
-              AktuelleRasse = RassenDatentypen.Keine_Rasse_Enum
+              AktuelleRasseStadt.Rasse = RassenDatentypen.Keine_Rasse_Enum
               or
-                AktuelleStadtNummer = StadtKonstanten.LeerNummer
+                AktuelleRasseStadt.Nummer = StadtKonstanten.LeerNummer
             then
                delay ZeitKonstanten.WartezeitGrafik;
                   
             else
-               KarteStadt.AnzeigeStadt (StadtRasseNummerExtern => (AktuelleRasse, AktuelleStadtNummer));
+               KarteStadt.AnzeigeStadt (StadtRasseNummerExtern => AktuelleRasseStadt);
             end if;
                
          when GrafikDatentypen.Grafik_Forschung_Enum =>
-            AktuelleRasse := InteraktionLogiktask.AktuelleRasseAbrufen;
+            AktuelleRasse := InteraktionGrafiktask.AktuelleRasseEinheit.Rasse;
             
             if
               AktuelleRasse = RassenDatentypen.Keine_Rasse_Enum
@@ -209,7 +228,7 @@ package body GrafikSFML is
             end if;
             
          when GrafikDatentypen.Grafik_Bauen_Enum =>
-            AktuelleRasse := InteraktionLogiktask.AktuelleRasseAbrufen;
+            AktuelleRasse := InteraktionGrafiktask.AktuelleRasseEinheit.Rasse;
             
             if
               AktuelleRasse = RassenDatentypen.Keine_Rasse_Enum
@@ -237,7 +256,7 @@ package body GrafikSFML is
    is begin
       
       case
-        InteraktionGrafiktask.EingabeAbrufen
+        InteraktionEingabe.Eingabe
       is
          when SystemDatentypen.Text_Eingabe_Enum =>
             AnzeigeEingabeSFML.AnzeigeText;
@@ -246,7 +265,7 @@ package body GrafikSFML is
             AnzeigeEingabeSFML.AnzeigeGanzeZahl;
             
          when SystemDatentypen.Einheit_Auswahl_Enum =>
-            AktuelleRasse := InteraktionLogiktask.AktuelleRasseAbrufen;
+            AktuelleRasse := InteraktionGrafiktask.AktuelleRasseEinheit.Rasse;
             
             if
               AktuelleRasse = RassenDatentypen.Keine_Rasse_Enum

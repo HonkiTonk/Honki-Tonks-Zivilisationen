@@ -7,9 +7,10 @@ with ZeitKonstanten;
 with SchreibenVerzeichnisse;
 with EinlesenEinstellungen;
 with Einlesen;
-with InteraktionLogiktask;
 with Hauptmenue;
 with InteraktionGrafiktask;
+with InteraktionStart;
+with InteraktionTextanzeige;
 
 package body StartLogik is
 
@@ -21,23 +22,23 @@ package body StartLogik is
       
       Einlesen.EinlesenOhneAnzeige;
       
-      InteraktionGrafiktask.ErzeugeFensterÄndern;
+      InteraktionStart.ErzeugeFenster := True;
       
       FensterVorhandenSchleife:
-      while InteraktionLogiktask.FensterErzeugtAbrufen = False loop
+      while InteraktionStart.FensterErzeugt = False loop
          
          delay ZeitKonstanten.WartezeitLogik;
          
       end loop FensterVorhandenSchleife;
       
       Einlesen.EinlesenMitAnzeige;
-      InteraktionGrafiktask.AccesseSetzen := True;
+      InteraktionTextanzeige.AccesseSetzen := True;
       
-      InteraktionLogiktask.EinlesenAbgeschlossen := True;
-      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Intro_Enum);
+      InteraktionStart.EinlesenAbgeschlossen := True;
+      InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Intro_Enum;
       
       IntroSchleife:
-      while InteraktionGrafiktask.AktuelleDarstellungAbrufen = GrafikDatentypen.Grafik_Intro_Enum loop
+      while InteraktionGrafiktask.AktuelleDarstellung = GrafikDatentypen.Grafik_Intro_Enum loop
          
          delay ZeitKonstanten.WartezeitLogik;
          

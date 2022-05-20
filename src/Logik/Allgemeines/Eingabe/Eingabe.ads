@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemDatentypen;
+with ZahlenDatentypen;
 with SystemRecords;
 with TastenbelegungDatentypen;
 
@@ -14,8 +14,8 @@ package Eingabe is
 
    function GanzeZahl
      (ZeileExtern : in Positive;
-      ZahlenMinimumExtern : in SystemDatentypen.Grenzen;
-      ZahlenMaximumExtern : in SystemDatentypen.Grenzen)
+      ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
+      ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger)
       return SystemRecords.ZahlenEingabeRecord;
 
    function StadtName

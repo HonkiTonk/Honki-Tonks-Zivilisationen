@@ -16,7 +16,7 @@ package body SchreibeWichtiges is
 
    procedure Geldmenge
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      GeldZugewinnExtern : in Integer;
+      GeldZugewinnExtern : in ZahlenDatentypen.EigenerInteger;
       RechnenSetzenExtern : in Boolean)
    is begin
          
@@ -24,18 +24,17 @@ package body SchreibeWichtiges is
         RechnenSetzenExtern
       is
          when True =>
-            -------------------------- Die ganzen Prüfungen mal anpassen. Oder gleich eigene Datentypen dazu erstellen?
             if
-              SpielVariablen.Wichtiges (RasseExtern).Geldmenge + GeldZugewinnExtern > Integer'Last
+              SpielVariablen.Wichtiges (RasseExtern).Geldmenge + GeldZugewinnExtern > ZahlenDatentypen.EigenerInteger'Last
               or else
                 SpielVariablen.Wichtiges (RasseExtern).Geldmenge + GeldZugewinnExtern > SpielVariablen.Grenzen (RasseExtern).Geldgrenze
             then
                SpielVariablen.Wichtiges (RasseExtern).Geldmenge := SpielVariablen.Grenzen (RasseExtern).Geldgrenze;
             
             elsif
-              SpielVariablen.Wichtiges (RasseExtern).Geldmenge + GeldZugewinnExtern < Integer'First
+              SpielVariablen.Wichtiges (RasseExtern).Geldmenge + GeldZugewinnExtern < ZahlenDatentypen.EigenerInteger'First
             then
-               SpielVariablen.Wichtiges (RasseExtern).Geldmenge := Integer'First;
+               SpielVariablen.Wichtiges (RasseExtern).Geldmenge := ZahlenDatentypen.EigenerInteger'First;
             
             else
                SpielVariablen.Wichtiges (RasseExtern).Geldmenge := SpielVariablen.Wichtiges (RasseExtern).Geldmenge + GeldZugewinnExtern;

@@ -11,6 +11,7 @@ with TextKonstanten;
 
 with GrafikEinstellungenSFML;
 with InteraktionGrafiktask;
+with InteraktionEingabe;
 
 package body EingabeSystemeSFML is
 
@@ -90,14 +91,14 @@ package body EingabeSystemeSFML is
                  TextEingegeben.key.code = Sf.Window.Keyboard.sfKeyEnter
                then
                   ErfolgreichAbbruch := True;
-                  InteraktionGrafiktask.TextEingabe := False;
+                  InteraktionEingabe.TextEingabe := False;
                      
                elsif
                  TextEingegeben.key.code = Sf.Window.Keyboard.sfKeyEscape
                then
                   ErfolgreichAbbruch := False;
                   EingegebenerText := TextKonstanten.LeerUnboundedString;
-                  InteraktionGrafiktask.TextEingabe := False;
+                  InteraktionEingabe.TextEingabe := False;
                   
                else
                   null;

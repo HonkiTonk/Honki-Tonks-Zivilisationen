@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 
-with SystemDatentypen;
+with ZahlenDatentypen;
 with KartenDatentypen;
 with SystemRecords;
 with TastenbelegungDatentypen;
@@ -27,8 +27,8 @@ package EingabeKonsole is
 
 
    function GanzeZahl
-     (ZahlenMinimumExtern : in SystemDatentypen.Grenzen;
-      ZahlenMaximumExtern : in SystemDatentypen.Grenzen;
+     (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
+      ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger;
       WelcheFrageExtern : in Positive)
       return SystemRecords.ZahlenEingabeRecord;
 
@@ -169,8 +169,8 @@ private
                                                             );
 
    procedure VorzeichenAnpassen
-     (ZahlenMinimumExtern : in SystemDatentypen.Grenzen;
-      ZahlenMaximumExtern : in SystemDatentypen.Grenzen;
+     (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
+      ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger;
       PlusMinusExtern : in Boolean);
 
    procedure ZahlHinzufügen
@@ -181,8 +181,8 @@ private
 
 
    function MinimumMaximumSetzen
-     (ZahlenMinimumExtern : in SystemDatentypen.Grenzen;
-      ZahlenMaximumExtern : in SystemDatentypen.Grenzen)
+     (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
+      ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger)
       return Boolean;
 
    function GanzeZahlPrüfung
@@ -190,8 +190,8 @@ private
       return Zahl_Prüfung_Enum;
 
    function ZahlSchleife
-     (ZahlenMinimumExtern : in SystemDatentypen.Grenzen;
-      ZahlenMaximumExtern : in SystemDatentypen.Grenzen)
+     (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
+      ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger)
       return Boolean;
 
 end EingabeKonsole;

@@ -12,21 +12,21 @@ with CursorAltPlatzieren;
 package body Karte is
 
    procedure AnzeigeKarte
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (RasseEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       -- CursorAltPlatzieren braucht aktuelle Cursor Koordinaten. Kann man aber bestimmt trotzdem optimieren.
-      CursorPlatzierenSFML.CursorPlatzierenKarteSFML (RasseExtern => RasseExtern);
-      CursorAltPlatzieren.CursorAltPlatzieren (RasseExtern => RasseExtern);
+      CursorPlatzierenSFML.CursorPlatzierenKarteSFML (RasseExtern => RasseEinheitExtern.Rasse);
+      CursorAltPlatzieren.CursorAltPlatzieren (RasseExtern => RasseEinheitExtern.Rasse);
       
       case
         OptionenVariablen.NutzerEinstellungen.Anzeigeart
       is
          when GrafikDatentypen.Grafik_Konsole_Enum =>
-            KarteKonsole.AnzeigeKarteKonsole (RasseExtern => RasseExtern);
+            KarteKonsole.AnzeigeKarteKonsole (RasseExtern => RasseEinheitExtern.Rasse);
             
          when GrafikDatentypen.Grafik_SFML_Enum =>
-            KarteSFML.KarteAnzeigen (RasseExtern => RasseExtern);
+            KarteSFML.KarteAnzeigen (RasseEinheitExtern => RasseEinheitExtern);
       end case;
 
    end AnzeigeKarte;

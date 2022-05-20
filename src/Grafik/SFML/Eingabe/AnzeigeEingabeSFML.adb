@@ -19,8 +19,8 @@ with LeseEinheitenGebaut;
 with LeseStadtGebaut;
 with TextaccessVariablen;
 with AllgemeineTextBerechnungenSFML;
-with InteraktionGrafiktask;
 with InteraktionAuswahl;
+with InteraktionEingabe;
 
 package body AnzeigeEingabeSFML is
 
@@ -200,7 +200,7 @@ package body AnzeigeEingabeSFML is
    procedure AnzeigeJaNein
    is begin
       
-      WelcheFrage := InteraktionGrafiktask.JaNeinFrage;
+      WelcheFrage := InteraktionEingabe.JaNeinFrage;
       
       case
         WelcheFrage

@@ -6,6 +6,7 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Sf.Window.Keyboard;
 
 with KartenDatentypen; use KartenDatentypen;
+with ZahlenDatentypen;
 
 with SchreibeWichtiges;
 with LeseKarten;
@@ -42,7 +43,7 @@ package body DebugmenueKonsole is
                
             when Sf.Window.Keyboard.sfKeyM =>
                SchreibeWichtiges.Geldmenge (RasseExtern         => RasseExtern,
-                                            GeldZugewinnExtern  => Integer'Last,
+                                            GeldZugewinnExtern  => ZahlenDatentypen.EigenerInteger'Last,
                                             RechnenSetzenExtern => False);
                
             when others =>

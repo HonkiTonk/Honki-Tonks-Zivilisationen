@@ -70,45 +70,45 @@ package ChangelogMai2022 is
    
    
 
-   -- Version 0.01.0 => 0.01.0 (21.05.2022):
+   -- Version 0.01.0770 => 0.01.0 (21.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0 => 0.01.0 (20.05.2022):
+   -- Version 0.01.0750 => 0.01.0770 (20.05.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.01.0 => 0.01.0 (19.05.2022):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Angefangen eine Integer, Positive und Natural Datentypen einzubauen.
+   -- Fehler korrigiert der zu Abstürzen führte, wenn man maximales Geld hat und noch mehr bekommt.
+   -- Angefangen die Interaktionen zwischen den Tasks besser aufzuteilen.
+   -- Ausgewählte Einheit blinkt jetzt.
+   -- Angefangen KarteSFML übersichtlicher zu gestalten.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 
-   -- Version 0.01.0 => 0.01.0 (18.05.2022):
+   -- Version 0.01.0750 => 0.01.0750 (19.05.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.01.07 => 0.01.0 (17.05.2022):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.01.0750 => 0.01.07 (16.05.2022):
+   -- Version 0.01.0750 => 0.01.0750 (18.05.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.01.0750 => 0.01.0750 (17.05.2022):
+   
+   -- null.
+   
+   
+
+   -- Version 0.01.0750 => 0.01.0750 (16.05.2022):
+   
+   -- null.
    
    
 

@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with MenueDatentypen;
+with ZahlenDatentypen;
 
 with SchreibeKarten;
 with SchreibeWichtiges;
@@ -32,7 +33,7 @@ package body DebugmenueSFML is
                
             when RueckgabeDatentypen.Lasupin_Enum =>
                SchreibeWichtiges.Geldmenge (RasseExtern         => RasseExtern,
-                                            GeldZugewinnExtern  => Integer'Last,
+                                            GeldZugewinnExtern  => ZahlenDatentypen.EigenerInteger'Last,
                                             RechnenSetzenExtern => False);
                
             when RueckgabeDatentypen.Lamustra_Enum =>

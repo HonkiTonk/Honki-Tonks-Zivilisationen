@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Karte;
+-- with Karte;
 with Eingabe;
 with EinheitenModifizieren;
 with StadtBauen;
@@ -14,7 +14,7 @@ package body BewegungEinheitenKonsole is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
-      Karte.AnzeigeKarte (RasseExtern => EinheitRasseNummerExtern.Rasse);
+      -- Karte.AnzeigeKarte (RasseExtern => EinheitRasseNummerExtern.Rasse);
 
       BewegenSchleife:
       loop
@@ -78,7 +78,7 @@ package body BewegungEinheitenKonsole is
          end case;
 
          -- Diesen Wert hier immer wieder auf Karte anzeigen setzen und nicht mehr die Karte direkt aufrufen.
-         Karte.AnzeigeKarte (RasseExtern => EinheitRasseNummerExtern.Rasse);
+         -- Karte.AnzeigeKarte (RasseExtern => EinheitRasseNummerExtern.Rasse);
          
       end loop BewegenSchleife;
       

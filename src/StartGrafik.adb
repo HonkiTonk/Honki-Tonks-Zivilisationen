@@ -8,6 +8,7 @@ with InteraktionGrafiktask;
 with GrafikKonsole;
 with GrafikSFML;
 with Fehler;
+with InteraktionStart;
 
 package body StartGrafik is
 
@@ -15,14 +16,14 @@ package body StartGrafik is
    is begin
       
       GrafikStartenSchleife:
-      while InteraktionGrafiktask.ErzeugeFensterAbrufen = False loop
+      while InteraktionStart.ErzeugeFenster = False loop
 
          delay ZeitKonstanten.WartezeitGrafik;
          
       end loop GrafikStartenSchleife;
             
       case
-        InteraktionGrafiktask.AktuelleDarstellungAbrufen
+        InteraktionGrafiktask.AktuelleDarstellung
       is
          when GrafikDatentypen.Grafik_Konsole_Enum =>
             GrafikKonsole.GrafikKonsole;

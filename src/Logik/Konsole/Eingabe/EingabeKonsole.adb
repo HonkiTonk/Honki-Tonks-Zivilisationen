@@ -7,16 +7,18 @@ with Ada.Strings.Wide_Wide_Fixed;
 
 with GlobaleTexte;
 with GrafikDatentypen;
+with SystemDatentypen;
 
 with Fehler;
 with InteraktionGrafiktask;
+with InteraktionEingabe;
 
 package body EingabeKonsole is
    
    -- Wide_Wide_Image kann hier so bleiben, außer bei der Konsolenanzeige selbst.
    function GanzeZahl
-     (ZahlenMinimumExtern : in SystemDatentypen.Grenzen;
-      ZahlenMaximumExtern : in SystemDatentypen.Grenzen;
+     (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
+      ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger;
       WelcheFrageExtern : in Positive)
       return SystemRecords.ZahlenEingabeRecord
    is begin
@@ -41,18 +43,18 @@ package body EingabeKonsole is
          VorzeichenAnpassen (ZahlenMinimumExtern => ZahlenMinimumExtern,
                              ZahlenMaximumExtern => ZahlenMaximumExtern,
                              PlusMinusExtern     => True);
-         InteraktionGrafiktask.EingabeÄndern (EingabeExtern => SystemDatentypen.Zahlen_Eingabe_Enum);
+         InteraktionEingabe.Eingabe := SystemDatentypen.Zahlen_Eingabe_Enum;
       end if;
       
       case
-        InteraktionGrafiktask.AktuelleDarstellungAbrufen
+        InteraktionGrafiktask.AktuelleDarstellung
       is
          -- Brauche ich den Stadtteil wirklich? Eventuell um in der Stadt bestimmte Dinge festzulegen.
          when GrafikDatentypen.Grafik_Weltkarte_Enum | GrafikDatentypen.Grafik_Stadtkarte_Enum =>
             null;
             
          when others =>
-            InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Menüs_Enum);
+            InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Menüs_Enum;
       end case;
                   
       case
@@ -76,11 +78,11 @@ package body EingabeKonsole is
       end if;
       
       case
-        InteraktionGrafiktask.AktuelleDarstellungAbrufen
+        InteraktionGrafiktask.AktuelleDarstellung
       is
          when GrafikDatentypen.Grafik_Menüs_Enum =>
-            InteraktionGrafiktask.EingabeÄndern (EingabeExtern => SystemDatentypen.Keine_Eingabe_Enum);
-            InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Pause_Enum);
+            InteraktionEingabe.Eingabe := SystemDatentypen.Keine_Eingabe_Enum;
+            InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
             
          when others =>
             null;
@@ -93,8 +95,8 @@ package body EingabeKonsole is
 
 
    function ZahlSchleife
-     (ZahlenMinimumExtern : in SystemDatentypen.Grenzen;
-      ZahlenMaximumExtern : in SystemDatentypen.Grenzen)
+     (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
+      ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger)
       return Boolean
    is begin
       
@@ -150,8 +152,8 @@ package body EingabeKonsole is
    
    
    procedure VorzeichenAnpassen
-     (ZahlenMinimumExtern : in SystemDatentypen.Grenzen;
-      ZahlenMaximumExtern : in SystemDatentypen.Grenzen;
+     (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
+      ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger;
       PlusMinusExtern : in Boolean)
    is begin
             
@@ -194,7 +196,7 @@ package body EingabeKonsole is
       if
         ZahlenString (1) /= '0'
       then
-         ZahlenString := Ada.Strings.Wide_Wide_Fixed.Trim (Source => SystemDatentypen.Grenzen'Last'Wide_Wide_Image,
+         ZahlenString := Ada.Strings.Wide_Wide_Fixed.Trim (Source => ZahlenDatentypen.EigenerInteger'Last'Wide_Wide_Image,
                                                            Side   => Ada.Strings.Left);
            
       else
@@ -255,8 +257,8 @@ package body EingabeKonsole is
    
    
    function MinimumMaximumSetzen
-     (ZahlenMinimumExtern : in SystemDatentypen.Grenzen;
-      ZahlenMaximumExtern : in SystemDatentypen.Grenzen)
+     (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
+      ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger)
       return Boolean
    is begin
       

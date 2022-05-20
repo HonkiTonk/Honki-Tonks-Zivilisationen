@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with TextKonstanten;
-with SystemDatentypen;
+with ZahlenDatentypen;
 with MenueDatentypen;
 
 with InteraktionGrafiktask; use InteraktionGrafiktask;
@@ -60,7 +60,7 @@ package body OptionenGrafik is
       
       EingabeAuflösung := Eingabe.GanzeZahl (ZeileExtern         => TextKonstanten.FrageAuflösungsbreite,
                                               ZahlenMinimumExtern => 320,
-                                              ZahlenMaximumExtern => SystemDatentypen.Grenzen'Last);
+                                              ZahlenMaximumExtern => ZahlenDatentypen.EigenerInteger'Last);
       
       if
         EingabeAuflösung.EingabeAbbruch
@@ -73,7 +73,7 @@ package body OptionenGrafik is
       
       EingabeAuflösung := Eingabe.GanzeZahl (ZeileExtern         => TextKonstanten.FrageAuflösungshöhe,
                                               ZahlenMinimumExtern => 240,
-                                              ZahlenMaximumExtern => SystemDatentypen.Grenzen'Last);
+                                              ZahlenMaximumExtern => ZahlenDatentypen.EigenerInteger'Last);
       
       if
         EingabeAuflösung.EingabeAbbruch
@@ -106,7 +106,7 @@ package body OptionenGrafik is
       
       EingabeBildrate := Eingabe.GanzeZahl (ZeileExtern         => TextKonstanten.FrageBildrate,
                                             ZahlenMinimumExtern => 0,
-                                            ZahlenMaximumExtern => SystemDatentypen.Grenzen'Last);
+                                            ZahlenMaximumExtern => ZahlenDatentypen.EigenerInteger'Last);
       
       if
         EingabeBildrate.EingabeAbbruch

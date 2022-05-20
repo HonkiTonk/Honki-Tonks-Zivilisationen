@@ -20,7 +20,7 @@ package body SoundSFML is
       loop
          
          case
-           InteraktionSoundtask.AktuellenSoundAbfragen
+           InteraktionSoundtask.AktuellerSound
          is
             when TonDatentypen.Sound_Konsole_Enum =>
                Fehler.SoundFehler (FehlermeldungExtern => "SoundSFML.SoundSFML - Konsole wird bei SFML aufgerufen.");

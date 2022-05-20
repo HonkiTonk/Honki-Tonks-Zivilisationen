@@ -21,8 +21,6 @@ package SystemDatentypen is
     
    
    -- Sonstiges
-   subtype Grenzen is Integer range -1_000_000_000 .. 1_000_000_000;
-
    type Staatsform_Enum is (
                             Anarchie_Enum,
                             Demokratie_Enum

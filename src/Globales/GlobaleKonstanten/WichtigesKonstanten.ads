@@ -8,6 +8,7 @@ with EinheitenDatentypen;
 with SystemDatentypen;
 with ForschungenDatentypen;
 with ProduktionDatentypen;
+with ZahlenDatentypen;
 
 with DatenbankRecords;
 
@@ -23,7 +24,7 @@ package WichtigesKonstanten is
                                                         KoordinatenStadt   => LeerKoordinatenStadt
                                                        );
    
-   LeerGeldmenge : constant Integer := 100;
+   LeerGeldmenge : constant ZahlenDatentypen.EigenesNatural := ZahlenDatentypen.EigenesNatural'First;
    LeerGeldZugewinnProRunde : constant ProduktionDatentypen.KostenLager := 0;
    LeerGesamteForschungsrate : constant ProduktionDatentypen.KostenLager := 0;
    LeerForschungsmenge : constant ProduktionDatentypen.KostenLager := 0;
@@ -51,11 +52,11 @@ package WichtigesKonstanten is
    
    LeerStädtegrenze : constant StadtDatentypen.MaximaleStädte := StadtDatentypen.MaximaleStädte'Last;
    LeerEinheitengrenze : constant EinheitenDatentypen.MaximaleEinheiten := EinheitenDatentypen.MaximaleEinheiten'Last;
-   LeerGeldgrenze : constant Integer := Integer'Last;
+   LeerGeldgrenze : constant ZahlenDatentypen.EigenerInteger := ZahlenDatentypen.EigenerInteger'Last;
    LeerForschungsgrenze : constant ProduktionDatentypen.KostenLager:= ProduktionDatentypen.KostenLager'Last;
    LeerGeldgewinngrenze : constant ProduktionDatentypen.KostenLager := ProduktionDatentypen.KostenLager'Last;
    LeerForschungGewinngrenze : constant ProduktionDatentypen.KostenLager := ProduktionDatentypen.KostenLager'Last;
-   LeerRassenRundengrenze : constant Natural := Natural'First;
+   LeerRassenRundengrenze : constant ZahlenDatentypen.EigenesNatural := ZahlenDatentypen.EigenesNatural'First;
 
    LeerGrenzen : constant WichtigeRecords.GrenzenRecord := (
                                                             Städtegrenze          => LeerStädtegrenze,
@@ -69,7 +70,7 @@ package WichtigesKonstanten is
    
    LeerAktuellerZustand : constant SystemDatentypen.Status_Untereinander_Enum := SystemDatentypen.Unbekannt_Enum;
    LeerAktuelleSympathieBewertung : constant ProduktionDatentypen.ProduktionFeld := 0;
-   LeerZeitSeitLetzterÄnderung : constant Natural := Natural'First;
+   LeerZeitSeitLetzterÄnderung : constant ZahlenDatentypen.EigenesNatural := ZahlenDatentypen.EigenesNatural'First;
 
    LeerDiplomatie : constant WichtigeRecords.DiplomatieRecord := (
                                                                   AktuellerZustand           => LeerAktuellerZustand,

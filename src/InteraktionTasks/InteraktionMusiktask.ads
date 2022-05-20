@@ -7,6 +7,4 @@ package InteraktionMusiktask is
 
    AktuelleMusik : TonDatentypen.Musik_Aktuelle_Auswahl_Enum := TonDatentypen.Musik_SFML_Enum;
    
-   procedure Leer;
-   
 end InteraktionMusiktask;

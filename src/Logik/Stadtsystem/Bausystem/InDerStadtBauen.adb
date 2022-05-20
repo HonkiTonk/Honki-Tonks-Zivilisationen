@@ -155,7 +155,7 @@ package body InDerStadtBauen is
    is begin
       
       InteraktionAuswahl.PositionenBauenFestgelegt := False;
-      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Bauen_Enum);
+      InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Bauen_Enum;
       
       AuswahlSchleife:
       loop
@@ -188,7 +188,7 @@ package body InDerStadtBauen is
          
       end loop AuswahlSchleife;
       
-      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Pause_Enum);
+      InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
       
       return GewähltesBauprojekt;
       

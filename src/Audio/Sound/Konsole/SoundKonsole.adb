@@ -16,7 +16,7 @@ package body SoundKonsole is
       loop
          
          case
-           InteraktionSoundtask.AktuellenSoundAbfragen
+           InteraktionSoundtask.AktuellerSound
          is
             when TonDatentypen.Sound_Konsole_Enum =>
                delay ZeitKonstanten.WartezeitSound;

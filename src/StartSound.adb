@@ -7,10 +7,10 @@ with OptionenVariablen;
 with GrafikDatentypen;
 
 with SoundSFML;
-with InteraktionLogiktask;
 with SoundKonsole;
 with Fehler;
 with InteraktionSoundtask;
+with InteraktionStart;
 
 package body StartSound is
 
@@ -28,14 +28,14 @@ package body StartSound is
       end case;
       
       EinlesenAbwartenSchleife:
-      while InteraktionLogiktask.EinlesenAbgeschlossen = False loop
+      while InteraktionStart.EinlesenAbgeschlossen = False loop
          
          delay ZeitKonstanten.WartezeitSound;
          
       end loop EinlesenAbwartenSchleife;
       
       case
-        InteraktionSoundtask.AktuellenSoundAbfragen
+        InteraktionSoundtask.AktuellerSound
       is
          when TonDatentypen.Sound_SFML_Enum =>
             SoundSFML.SoundSFML;

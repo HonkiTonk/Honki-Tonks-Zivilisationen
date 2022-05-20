@@ -18,7 +18,6 @@ with Laden;
 with RasseEntfernen;
 with ZwischenDenRunden;
 with AuswahlMenues;
-with InteraktionLogiktask;
 with Fehler;
 with InteraktionGrafiktask;
 with BefehleKonsole;
@@ -195,12 +194,12 @@ package body ImSpiel is
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
-      InteraktionLogiktask.AktuelleRasseÄndern (RasseExtern => RasseExtern);
+      InteraktionGrafiktask.AktuelleRasseEinheit.Rasse := RasseExtern;
       
       SpielerSchleife:
       loop
          
-         InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Weltkarte_Enum);
+         InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Weltkarte_Enum;
          
          case
            SonstigeVariablen.RassenImSpiel (RasseExtern)
@@ -253,8 +252,8 @@ package body ImSpiel is
                      
       end loop SpielerSchleife;
       
-      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Pause_Enum);
-      InteraktionLogiktask.AktuelleRasseÄndern (RasseExtern => RassenDatentypen.Keine_Rasse_Enum);
+      InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
+      InteraktionGrafiktask.AktuelleRasseEinheit.Rasse := RassenDatentypen.Keine_Rasse_Enum;
       
       return RückgabeMenschAmZug;
       

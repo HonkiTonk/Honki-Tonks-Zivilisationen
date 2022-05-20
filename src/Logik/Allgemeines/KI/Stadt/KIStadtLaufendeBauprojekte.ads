@@ -25,7 +25,7 @@ package KIStadtLaufendeBauprojekte is
             (if BauprojektExtern.Einheit /= 0 then BauprojektExtern.Gebäude = 0)),
    
          Post =>
-           (StadtLaufendeBauprojekte'Result in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze);
+           (StadtLaufendeBauprojekte'Result <= SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze);
    
    function GleicheEinheitArtBauprojekte
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
@@ -38,7 +38,7 @@ package KIStadtLaufendeBauprojekte is
             SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum),
    
          Post =>
-           (GleicheEinheitArtBauprojekte'Result in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Einheitengrenze);
+           (GleicheEinheitArtBauprojekte'Result <= SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Einheitengrenze);
    
 private
    

@@ -144,11 +144,17 @@ begin
 
       if
         UnerwarteterFehler
-        or
-          InteraktionGrafiktask.FensterGeschlossen
       then
          Abort_Task (T => TaskID (Task_Logik_Enum));
          Abort_Task (T => TaskID (Task_Grafik_Enum));
+         Abort_Task (T => TaskID (Task_Musik_Enum));
+         Abort_Task (T => TaskID (Task_Sound_Enum));
+         exit SpielLäuftSchleife;
+
+      elsif
+        InteraktionGrafiktask.FensterGeschlossen
+      then
+         Abort_Task (T => TaskID (Task_Logik_Enum));
          Abort_Task (T => TaskID (Task_Musik_Enum));
          Abort_Task (T => TaskID (Task_Sound_Enum));
          exit SpielLäuftSchleife;

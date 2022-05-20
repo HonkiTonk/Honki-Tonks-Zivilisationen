@@ -101,7 +101,7 @@ package body Spieleinstellungen is
      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
-      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Generierungszeit_Enum);
+      InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Generierungszeit_Enum;
       
       Kartengenerator.Kartengenerator;
       

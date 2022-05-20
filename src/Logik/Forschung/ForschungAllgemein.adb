@@ -17,7 +17,6 @@ with LeseWichtiges;
 with Eingabe;
 with StadtWerteFestlegen;
 with StadtUmgebungsbereichFestlegen;
-with InteraktionLogiktask;
 with InteraktionGrafiktask;
 with GrafikEinstellungenSFML;
 with InteraktionAuswahl;
@@ -127,7 +126,7 @@ package body ForschungAllgemein is
      return ForschungenDatentypen.ForschungIDMitNullWert
    is begin
       
-      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Forschung_Enum);
+      InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Forschung_Enum;
       
       AuswahlSchleife:
       loop
@@ -158,7 +157,7 @@ package body ForschungAllgemein is
          
       end loop AuswahlSchleife;
       
-      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Pause_Enum);
+      InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
       
       return GewählteForschung;
       
@@ -259,10 +258,10 @@ package body ForschungAllgemein is
             null;
          end if;
          
-         InteraktionLogiktask.AktuelleRasseÄndern (RasseExtern => RasseExtern);
+         InteraktionGrafiktask.AktuelleRasseEinheit.Rasse := RasseExtern;
          SchreibeWichtiges.Forschungsprojekt (RasseExtern       => RasseExtern,
                                               ForschungIDExtern => AuswahlForschung (RasseExtern => RasseExtern));
-         InteraktionLogiktask.AktuelleRasseÄndern (RasseExtern => RassenDatentypen.Keine_Rasse_Enum);
+         InteraktionGrafiktask.AktuelleRasseEinheit.Rasse := RassenDatentypen.Keine_Rasse_Enum;
             
       else
          SchreibeWichtiges.VerbleibendeForschungszeit (RasseExtern => RasseExtern);

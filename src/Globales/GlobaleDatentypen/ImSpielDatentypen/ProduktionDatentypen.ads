@@ -8,7 +8,7 @@ package ProduktionDatentypen is
    subtype GesamtePermanenteKosten is KostenLager range -500 .. 5_000;
    subtype GesamtproduktionStadt is GesamtePermanenteKosten range -500 .. 500;
    subtype ProduktionFeld is GesamtproduktionStadt range -100 .. 100;
-   subtype ProduktionElement is ProduktionFeld range -10 .. 10;
+   subtype ProduktionElement is ProduktionFeld range 0 .. 10;
 
    type ProduktionSonstiges is new ProduktionFeld range -1 .. 100;
 

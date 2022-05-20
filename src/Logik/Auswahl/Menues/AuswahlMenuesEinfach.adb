@@ -21,7 +21,7 @@ package body AuswahlMenuesEinfach is
    is begin
       
       InteraktionGrafiktask.AktuellesMenü := WelchesMenüExtern;
-      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Menüs_Enum);
+      InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Menüs_Enum;
                  
       Ende := SystemKonstanten.EndeMenü (WelchesMenüExtern) - SystemKonstanten.EndeAbzugLogik (WelchesMenüExtern);
       
@@ -35,7 +35,7 @@ package body AuswahlMenuesEinfach is
                                                         WelchesMenüExtern     => WelchesMenüExtern);
       
       InteraktionGrafiktask.AktuellesMenü := MenueDatentypen.Leer_Menü_Enum;
-      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Pause_Enum);
+      InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
       
       return RückgabeWert;
       

@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with Ada.Calendar; use Ada.Calendar;
+
 with Sf.System.Vector2;
 with Sf.Graphics.Color;
 with Sf.Graphics.RectangleShape;
@@ -21,12 +23,14 @@ with Karten;
 package KarteSFML is
    
    procedure KarteAnzeigen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (RasseEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum);
+         (SonstigeVariablen.RassenImSpiel (RasseEinheitExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum);
    
 private
+   
+   AusgewählteEinheitAnzeigen : Boolean := True;
    
    AktuelleRasse : RassenDatentypen.Rassen_Enum;
    
@@ -48,7 +52,13 @@ private
    DickeRahmen : constant Float := 5.00;
    YMultiplikator : Float;
    XMultiplikator : Float;
-      
+   
+   ------------------- Intervall durch Nutzer einstellen lassen?
+   BlinkIntervall : constant Day_Duration := 0.50;
+   
+   ZeitEins : Time := Clock;
+   ZeitZwei : Time := Clock;
+         
    StadtRasseNummer : StadtRecords.RasseStadtnummerRecord;
    
    EinheitRasseNummer : EinheitenRecords.RasseEinheitnummerRecord;
@@ -60,8 +70,8 @@ private
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    KartenWertRahmen : KartenRecords.AchsenKartenfeldPositivRecord;
    KartenWertStadtname : KartenRecords.AchsenKartenfeldPositivRecord;
-   
-   
+   CursorKoordinatenAlt : KartenRecords.AchsenKartenfeldPositivRecord;
+      
    SpriteAccess : constant Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;
 
    RechteckAccess : constant Sf.Graphics.sfRectangleShape_Ptr := Sf.Graphics.RectangleShape.create;
@@ -82,18 +92,18 @@ private
                                         );
    
    procedure Sichtbarkeit
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (RasseEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum);
+         (SonstigeVariablen.RassenImSpiel (RasseEinheitExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum);
    
    procedure IstSichtbar
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      RasseEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum
+         (SonstigeVariablen.RassenImSpiel (RasseEinheitExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum
           and
             KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
           and
@@ -119,16 +129,16 @@ private
 
    procedure AnzeigeEinheit
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      RasseEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre =>
-         -- Anders als die /= RassenDatentypen.Leer_Spieler_Enum weiter unten, funktioniert das hier mit der KI weil ja nur die Spielerrasse übergeben wird und die KI Einheit dann in der Prozedur selbst gesucht wird.
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum
-          and
-            KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
-          and
-            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+   -- Anders als die /= RassenDatentypen.Leer_Spieler_Enum weiter unten, funktioniert das hier mit der KI weil ja nur die Spielerrasse übergeben wird und die KI Einheit dann in der Prozedur selbst gesucht wird.
+     (SonstigeVariablen.RassenImSpiel (RasseEinheitExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum
+      and
+        KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+      and
+        KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
 
    procedure AnzeigeCursor
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
@@ -215,5 +225,12 @@ private
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
           and
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+   
+   
+   
+   function SpriteGezeichnet
+     (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
+      return Boolean;
 
 end KarteSFML;

@@ -13,7 +13,7 @@ with AuswahlSprache;
 with Eingabe;
 with AuswahlMenues;
 with Fehler;
-with InteraktionGrafiktask;
+with InteraktionTextanzeige;
 
 package body OptionenSonstiges is
 
@@ -123,7 +123,7 @@ package body OptionenSonstiges is
             else
                OptionenVariablen.NutzerEinstellungen.Sprache := GewählteSprache;
                EinlesenText.EinlesenDateien;
-               InteraktionGrafiktask.AccesseSetzen := True;
+               InteraktionTextanzeige.AccesseSetzen := True;
             end if;
             
          when False =>

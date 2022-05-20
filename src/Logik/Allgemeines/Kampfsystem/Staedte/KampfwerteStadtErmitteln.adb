@@ -1,8 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with StadtDatentypen; use StadtDatentypen;
 with KampfDatentypen; use KampfDatentypen;
+with StadtDatentypen;
 with KartenKonstanten;
 
 with LeseStadtGebaut;

@@ -102,9 +102,9 @@ package body Hauptmenue is
          
       end loop HauptmenüSchleife;
       
-      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Ende_Enum);
+      InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Ende_Enum;
       InteraktionMusiktask.AktuelleMusik := TonDatentypen.Musik_Ende_Enum;
-      InteraktionSoundtask.AktuellenSoundÄndern (SoundExtern => TonDatentypen.Sound_Ende_Enum);
+      InteraktionSoundtask.AktuellerSound := TonDatentypen.Sound_Ende_Enum;
       
    end Hauptmenü;
 

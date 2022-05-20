@@ -8,6 +8,7 @@ with StadtDatentypen; use StadtDatentypen;
 with RueckgabeDatentypen; use RueckgabeDatentypen;
 with EinheitenKonstanten;
 with StadtKonstanten;
+with TextKonstanten;
 
 with SchreibeStadtGebaut;
 with LeseEinheitenGebaut;
@@ -30,6 +31,7 @@ with AufgabenAllgemein;
 with BewegungEinheitenSFML;
 with AuswahlStadtEinheit;
 with Auswahl;
+with InteraktionGrafiktask;
 
 package body BefehleSFML is
    
@@ -258,14 +260,15 @@ package body BefehleSFML is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
+      InteraktionGrafiktask.AktuelleRasseEinheit.Nummer := EinheitRasseNummerExtern.Nummer;
+      
       if
         LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= EinheitenKonstanten.LeerBeschäftigung
         and then
-      -------------------- Hier korrekte Nummer einfügen.
-        Auswahl.AuswahlJaNein (FrageZeileExtern => 1) = RueckgabeDatentypen.Ja_Enum
-      -- EinheitenBeschreibungen.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (7) = True
+          Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageBeschäftigungAbbrechen) = RueckgabeDatentypen.Ja_Enum
       then
          AufgabenAllgemein.Nullsetzung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         BewegungEinheitenSFML.BewegungEinheitenRichtung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
       elsif
         LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerEinheit.Bewegungspunkte
@@ -275,6 +278,8 @@ package body BefehleSFML is
       else
          BewegungEinheitenSFML.BewegungEinheitenRichtung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       end if;
+      
+      InteraktionGrafiktask.AktuelleRasseEinheit.Nummer := EinheitenKonstanten.LeerNummer;
       
    end EinheitSteuern;
    
@@ -386,15 +391,15 @@ package body BefehleSFML is
             null;
       end case;
          
-      -- case
-      --    Auswahl.AuswahlJaNein (FrageZeileExtern => 30)
-      --  is
-      --     when RueckgabeDatentypen.Ja_Enum =>
-      StadtEntfernen.StadtEntfernen (StadtRasseNummerExtern => (RasseExtern, StadtNummer));
+      case
+        Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageStadtAbreißen)
+      is
+         when RueckgabeDatentypen.Ja_Enum =>
+            StadtEntfernen.StadtEntfernen (StadtRasseNummerExtern => (RasseExtern, StadtNummer));
             
-      --   when others =>
-      --      null;
-      --  end case;
+         when others =>
+            null;
+      end case;
       
    end StadtAbreißen;
 

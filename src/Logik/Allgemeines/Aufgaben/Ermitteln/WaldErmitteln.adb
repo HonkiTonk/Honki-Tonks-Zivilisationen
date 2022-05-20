@@ -27,6 +27,7 @@ package body WaldErmitteln is
       VorhandeneVerbesserung := LeseKarten.Verbesserung (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       
       ----------------------- Mehr Prüfungen einbauen, beispielweise keinen Wald auf Eis erlauben. Gilt für alle Aufgaben.
+      ----------------------- Hügel_Mit Boolean ersetzen durch irgendwas mit LetzterGrund, dann sollten auch Wälder auf Gebirge und ähnliches gehen.
       if
         (VorhandeneVerbesserung = KartenVerbesserungDatentypen.Farm_Enum
          or

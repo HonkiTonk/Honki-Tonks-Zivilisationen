@@ -4,6 +4,8 @@ pragma Warnings (Off, "*array aggregate*");
 with MenueDatentypen;
 with RassenDatentypen;
 with StadtDatentypen;
+with EinheitenRecords;
+with StadtRecords;
 
 package GrafikSFML is
 
@@ -17,8 +19,14 @@ private
 
    AktuelleStadtNummer : StadtDatentypen.MaximaleStädteMitNullWert;
 
+   AktuelleRasseStadt : StadtRecords.RasseStadtnummerRecord;
+
+   AktuelleRasseEinheit : EinheitenRecords.RasseEinheitnummerRecord;
+
    procedure AnzeigeEingaben;
    procedure AnzeigeEditoren;
+   procedure GrafikanpassungenVorFensterleerung;
+   procedure Eingaben;
 
 
 

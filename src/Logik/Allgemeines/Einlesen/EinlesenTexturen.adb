@@ -156,6 +156,8 @@ package body EinlesenTexturen is
         Exists (Name => "Grafik/Kartenfluss/0")
       is
          when False =>
+            --------------------- Überall einbauen.
+            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenKartenflüsse - Ordner Kartenfluss nicht vorhanden.");
             return;
             
          when True =>

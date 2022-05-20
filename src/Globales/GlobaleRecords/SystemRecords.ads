@@ -10,6 +10,7 @@ with Sf.Window.Window;
 with Sf.Graphics.Color;
 
 with GrafikDatentypen;
+with ZahlenDatentypen;
 
 package SystemRecords is
 
@@ -17,8 +18,8 @@ package SystemRecords is
       
       Sprache : Unbounded_Wide_Wide_String;
       
-      AnzahlAutosave : Natural;
-      RundenBisAutosave : Positive;
+      AnzahlAutosave : ZahlenDatentypen.EigenesNatural;
+      RundenBisAutosave : ZahlenDatentypen.EigenesPositive;
       
       Anzeigeart : GrafikDatentypen.Anzeige_Art_Enum;
       
@@ -66,7 +67,7 @@ package SystemRecords is
    type ZahlenEingabeRecord is record
       
       EingabeAbbruch : Boolean;
-      EingegebeneZahl : Integer;
+      EingegebeneZahl : ZahlenDatentypen.EigenerInteger;
       
    end record;
    

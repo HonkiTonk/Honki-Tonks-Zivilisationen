@@ -31,7 +31,7 @@ private
                                            KartengrundDatentypen.Gebirge_Enum                                                         => (120, 120, 120, 255),
                                            KartengrundDatentypen.Wald_Enum                                                            => (30, 130, 30, 255),
                                            KartengrundDatentypen.Dschungel_Enum                                                       => (0, 70, 0, 255),
-                                           KartengrundDatentypen.Küstengewässer_Enum | KartengrundDatentypen.Küstengrund_Enum => (135, 206, 250, 255),
+                                           KartengrundDatentypen.Küstengewässer_Enum | KartengrundDatentypen.Küstengrund_Enum         => (135, 206, 250, 255),
                                            KartengrundDatentypen.Sumpf_Enum                                                           => (0, 40, 0, 255),
                                            KartengrundDatentypen.Erde_Enum                                                            => (139, 69, 19, 255),
                                            KartengrundDatentypen.Erdgestein_Enum                                                      => (120, 120, 120, 255),
@@ -42,18 +42,18 @@ private
                                            KartengrundDatentypen.Planetenkern_Enum                                                    => (205, 0, 0, 255),
                                            KartengrundDatentypen.Unterwald_Enum                                                       => (127, 255, 212, 255),
                                            KartengrundDatentypen.Korallen_Enum                                                        => (255, 114, 86, 255),
-                                           KartengrundDatentypen.Hügel_Mit_Enum                                                       => (0, 0, 0, 0),
-                                           KartengrundDatentypen.Magnesiowüstit_Enum                                                  => (0, 0, 0, 0),
-                                           KartengrundDatentypen.Perowskit_Enum                                                       => (0, 0, 0, 0),
-                                           KartengrundDatentypen.Majorit_Enum                                                         => (0, 0, 0, 0),
-                                           KartengrundDatentypen.Ringwoodit_Enum                                                      => (0, 0, 0, 0),
-                                           KartengrundDatentypen.Vernichtet_Enum                                                      => (0, 0, 0, 0)
+                                           KartengrundDatentypen.Hügel_Mit_Enum                                                       => (0, 0, 0, 255),
+                                           KartengrundDatentypen.Magnesiowüstit_Enum                                                  => (0, 0, 0, 255),
+                                           KartengrundDatentypen.Perowskit_Enum                                                       => (0, 0, 0, 255),
+                                           KartengrundDatentypen.Majorit_Enum                                                         => (0, 0, 0, 255),
+                                           KartengrundDatentypen.Ringwoodit_Enum                                                      => (0, 0, 0, 255),
+                                           KartengrundDatentypen.Vernichtet_Enum                                                      => (0, 0, 0, 255)
                                           );
    
    type FlussfarbeArray is array (KartengrundDatentypen.Kartenfluss_Vorhanden_Enum'Range) of Sf.Graphics.Color.sfColor;
    Flussfarbe : constant FlussfarbeArray := (
-                                             KartengrundDatentypen.Kartenfluss_Oberfläche_Enum'Range | KartengrundDatentypen.Kartenfluss_Unterfläche_Enum'Range => (0, 0, 205, 0),
-                                             KartengrundDatentypen.Kartenfluss_Kern_Enum'Range                                                                      => (230, 50, 50, 0)
+                                             KartengrundDatentypen.Kartenfluss_Oberfläche_Enum'Range | KartengrundDatentypen.Kartenfluss_Unterfläche_Enum'Range => (0, 0, 205, 255),
+                                             KartengrundDatentypen.Kartenfluss_Kern_Enum'Range                                                                  => (230, 50, 50, 255)
                                             );
 
 end FarbgebungSFML;

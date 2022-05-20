@@ -6,11 +6,11 @@ with ZeitKonstanten;
 with GrafikDatentypen;
 with OptionenVariablen;
 
-with InteraktionLogiktask;
 with InteraktionMusiktask;
 with MusikSFML;
 with MusikKonsole;
 with Fehler;
+with InteraktionStart;
 
 package body StartMusik is
 
@@ -28,7 +28,7 @@ package body StartMusik is
       end case;
       
       EinlesenAbwartenSchleife:
-      while InteraktionLogiktask.EinlesenAbgeschlossen = False loop
+      while InteraktionStart.EinlesenAbgeschlossen = False loop
          
          delay ZeitKonstanten.WartezeitMusik;
          

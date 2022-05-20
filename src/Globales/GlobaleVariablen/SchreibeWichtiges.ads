@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
+with ZahlenDatentypen;
 with SonstigeVariablen;
 with ForschungenDatentypen;
 with ProduktionDatentypen;
@@ -10,7 +11,7 @@ package SchreibeWichtiges is
 
    procedure Geldmenge
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      GeldZugewinnExtern : in Integer;
+      GeldZugewinnExtern : in ZahlenDatentypen.EigenerInteger;
       RechnenSetzenExtern : in Boolean)
      with
        Pre =>
