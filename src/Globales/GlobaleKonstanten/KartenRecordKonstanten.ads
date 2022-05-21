@@ -36,7 +36,8 @@ package KartenRecordKonstanten is
                                                                               );
 
    LeerWeltkarte : constant KartenRecords.KartenRecord := (
-                                                           Grund                   => KartengrundDatentypen.Leer_Grund_Enum,
+                                                           AktuellerGrund          => KartengrundDatentypen.Leer_Grund_Enum,
+                                                           BasisGrund              => KartengrundDatentypen.Leer_Grund_Enum,
                                                            Hügel                   => KartenKonstanten.LeerHügel,
                                                            Sichtbar                => (others => KartenKonstanten.LeerSichtbar),
                                                            Fluss                   => KartengrundDatentypen.Leer_Fluss_Enum,

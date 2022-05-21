@@ -149,7 +149,7 @@ package body BewegungBerechnen is
                                                NeueKoordinatenExtern    => NeueKoordinatenExtern);
 
       case
-        LeseKarten.Grund (KoordinatenExtern => NeueKoordinatenExtern)
+        LeseKarten.AktuellerGrund (KoordinatenExtern => NeueKoordinatenExtern)
       is
          when KartengrundDatentypen.Eis_Enum | KartengrundDatentypen.Gebirge_Enum | KartengrundDatentypen.Dschungel_Enum | KartengrundDatentypen.Sumpf_Enum =>
             if

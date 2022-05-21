@@ -63,17 +63,21 @@ package ChangelogMai2022 is
    
    
 
-   -- Version 0.01.0 => 0.01.0 (22.05.2022):
+   -- Version 0.01.0780 => 0.01.0 (22.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0770 => 0.01.0 (21.05.2022):
+   -- Version 0.01.0770 => 0.01.0780 (21.05.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Zusätzliche Warnungen eingebaut.
+   -- KarteSFML übersichtlicher gestaltet und das Blinken einer Einheit findet jetzt auch dann statt wenn keine texturen geladen werden konnten.
+   -- Stadtname wird jetzt vollständig angezeigt.
+   -- Angefangen ein besseres Grundspeichersystem zu bauen, damit auch Wald auf Gebirgen und Ähnliches möglich wird.
+   -- Datentypen angepasst und den Arbeitsspeicherverbrauch um rund 90 MB reduziert.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/hinzugefügt.
    
    
 

@@ -12,7 +12,7 @@ with StartMusik;
 with StartSound;
 
 with InteraktionGrafiktask;
--- with ;
+-- with KartenRecords;
 
 procedure Start
 is
@@ -112,8 +112,6 @@ is
 
 begin
 
-   -- Ada.Text_IO.Put_Line (Item => Integer ('Size / System.Storage_Unit / 1024 / 1024)'Image);
-
    TaskIDsBelegenLassenSchleife:
    loop
 
@@ -205,6 +203,12 @@ begin
       else
          delay 0.20;
       end if;
+
+      -- Ada.Text_IO.New_Line;
+      -- Ada.Text_IO.Put_Line (Item => "Bits:" & Integer (KartenRecords.FelderwertungArray'Size)'Image);
+      -- Ada.Text_IO.Put_Line (Item => "Bytes:" & Integer (KartenRecords.FelderwertungArray'Size / System.Storage_Unit)'Image);
+      -- Ada.Text_IO.Put_Line (Item => "Kilobytes:" & Integer (KartenRecords.FelderwertungArray'Size / System.Storage_Unit / 1024)'Image);
+      -- Ada.Text_IO.Put_Line (Item => "Megabytes:" & Integer (KartenRecords.FelderwertungArray'Size / System.Storage_Unit / 1024 / 1024)'Image);
 
    end loop SpielLäuftSchleife;
 

@@ -27,7 +27,7 @@ package body KarteAllgemeinesSFML is
       
       AktuelleKoordinaten := SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell;
       
-      KartenGrund := LeseKarten.Grund (KoordinatenExtern => AktuelleKoordinaten);
+      KartenGrund := LeseKarten.AktuellerGrund (KoordinatenExtern => AktuelleKoordinaten);
                              
       case
         LeseKarten.Hügel (KoordinatenExtern => AktuelleKoordinaten)

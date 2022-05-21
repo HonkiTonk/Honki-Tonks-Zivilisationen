@@ -34,6 +34,7 @@ package body EinlesenTexturen is
         Exists (Name => "Grafik/Hintergrund/0")
       is
          when False =>
+            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenMenüHintergrund - 0-Datei Hintergrund nicht vorhanden.");
             return;
             
          when True =>
@@ -52,7 +53,7 @@ package body EinlesenTexturen is
                                                     AktuelleZeileExtern => AktuelleZeile)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenHintergrund - Nicht genug Zeilen in der 0-Datei.");
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenMenüHintergrund - Nicht genug Zeilen in der 0-Datei.");
                Close (File => DateiTextEinlesen);
                MenüHintergrundEinlesen (DateipfadeEinlesenSchleifenwert) := TextKonstanten.LeerUnboundedString;
                return;
@@ -78,7 +79,7 @@ package body EinlesenTexturen is
                  := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => MenüHintergrundEinlesen (TexturenZuweisenSchleifenwert))));
                   
             when False =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenHintergrund - " & To_Wide_Wide_String (Source => MenüHintergrundEinlesen (TexturenZuweisenSchleifenwert)) & " fehlt.");
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenMenüHintergrund - " & To_Wide_Wide_String (Source => MenüHintergrundEinlesen (TexturenZuweisenSchleifenwert)) & " fehlt.");
                EingeleseneTexturenSFML.MenüHintergrundAccess (TexturenZuweisenSchleifenwert) := null;
          end case;
          
@@ -95,6 +96,7 @@ package body EinlesenTexturen is
         Exists (Name => "Grafik/Kartenfelder/0")
       is
          when False =>
+            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenKartenfelder - 0-Datei Kartenfelder nicht vorhanden.");
             return;
             
          when True =>
@@ -156,8 +158,7 @@ package body EinlesenTexturen is
         Exists (Name => "Grafik/Kartenfluss/0")
       is
          when False =>
-            --------------------- Überall einbauen.
-            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenKartenflüsse - Ordner Kartenfluss nicht vorhanden.");
+            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenKartenflüsse - 0-Datei Kartenfluss nicht vorhanden.");
             return;
             
          when True =>
@@ -219,6 +220,7 @@ package body EinlesenTexturen is
         Exists (Name => "Grafik/Kartenressourcen/0")
       is
          when False =>
+            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenKartenressourcen - 0-Datei Kartenressourcen nicht vorhanden.");
             return;
             
          when True =>
@@ -280,6 +282,7 @@ package body EinlesenTexturen is
         Exists (Name => "Grafik/Verbesserungen/0")
       is
          when False =>
+            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenVerbesserungen - 0-Datei Verbesserungen nicht vorhanden.");
             return;
             
          when True =>
@@ -341,6 +344,7 @@ package body EinlesenTexturen is
         Exists (Name => "Grafik/Wege/0")
       is
          when False =>
+            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenWege - 0-Datei Wege nicht vorhanden.");
             return;
             
          when True =>
@@ -402,6 +406,7 @@ package body EinlesenTexturen is
         Exists (Name => "Grafik/Einheiten/0")
       is
          when False =>
+            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenEinheiten - 0-Datei Einheiten nicht vorhanden.");
             return;
             
          when True =>
@@ -469,6 +474,7 @@ package body EinlesenTexturen is
         Exists (Name => "Grafik/Bauwerke/0")
       is
          when False =>
+            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenGebäude - 0-Datei Bauwerke nicht vorhanden.");
             return;
             
          when True =>

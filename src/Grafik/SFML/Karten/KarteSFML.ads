@@ -11,6 +11,7 @@ with Sf.Graphics.Sprite;
 
 with KartenDatentypen; use KartenDatentypen;
 with RassenDatentypen; use RassenDatentypen;
+with EinheitenDatentypen;
 with KartenRecords;
 with SonstigeVariablen;
 with EinheitenRecords;
@@ -48,6 +49,8 @@ private
    Stadtart : KartenVerbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
    Wegfeld : KartenVerbesserungDatentypen.Karten_Weg_Enum;
    Verbesserungsfeld : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
+   
+   EinheitID : EinheitenDatentypen.EinheitenID;
    
    DickeRahmen : constant Float := 5.00;
    YMultiplikator : Float;
@@ -218,6 +221,15 @@ private
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
    
    procedure VerbesserungZeichnen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
+     with
+       Pre =>
+         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+          and
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+   
+   procedure StadtnameAnzeigen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with

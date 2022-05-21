@@ -115,7 +115,7 @@ package body KarteStadtSFML is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
-      Kartenfeld := LeseKarten.Grund (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern));
+      Kartenfeld := LeseKarten.AktuellerGrund (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern));
       
       if
         EingeleseneTexturenSFML.KartenfelderAccess (Kartenfeld) /= null
@@ -330,7 +330,7 @@ package body KarteStadtSFML is
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
-      Kartenfeld := LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern);
+      Kartenfeld := LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern);
       
       if
         EingeleseneTexturenSFML.KartenfelderAccess (Kartenfeld) /= null

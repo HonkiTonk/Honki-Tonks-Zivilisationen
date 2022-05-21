@@ -12,7 +12,18 @@ with Karten;
 
 package SchreibeKarten is
 
-   procedure Grund
+   procedure AktuellerGrund
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      GrundExtern : in KartengrundDatentypen.Kartengrund_Enum)
+     with
+       Pre =>
+         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+          and
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse
+          and
+            GrundExtern /= KartengrundDatentypen.Leer_Grund_Enum);
+   
+   procedure BasisGrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Enum)
      with

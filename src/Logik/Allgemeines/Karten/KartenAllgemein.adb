@@ -65,7 +65,7 @@ package body KartenAllgemein is
         LeseKarten.Hügel (KoordinatenExtern => KoordinatenExtern)
       is
          when True =>
-            return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
+            return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
                                                         RasseExtern         => RasseExtern,
                                                         WirtschaftArtExtern => KartenKonstanten.WirtschaftNahrung)
               + LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => KartengrundDatentypen.Hügel_Mit_Enum,
@@ -74,7 +74,7 @@ package body KartenAllgemein is
               / 2;
             
          when False =>
-            return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
+            return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
                                                         RasseExtern         => RasseExtern,
                                                         WirtschaftArtExtern => KartenKonstanten.WirtschaftNahrung);
       end case;
@@ -93,7 +93,7 @@ package body KartenAllgemein is
         LeseKarten.Hügel (KoordinatenExtern => KoordinatenExtern)
       is
          when True =>
-            return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
+            return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
                                                         RasseExtern         => RasseExtern,
                                                         WirtschaftArtExtern => KartenKonstanten.WirtschaftProduktion)
               + LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => KartengrundDatentypen.Hügel_Mit_Enum,
@@ -102,7 +102,7 @@ package body KartenAllgemein is
               / 2;
             
          when False =>
-            return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
+            return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
                                                         RasseExtern         => RasseExtern,
                                                         WirtschaftArtExtern => KartenKonstanten.WirtschaftProduktion);
       end case;
@@ -121,7 +121,7 @@ package body KartenAllgemein is
         LeseKarten.Hügel (KoordinatenExtern => KoordinatenExtern)
       is
          when True =>
-            return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
+            return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
                                                         RasseExtern         => RasseExtern,
                                                         WirtschaftArtExtern => KartenKonstanten.WirtschaftGeld)
               + LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => KartengrundDatentypen.Hügel_Mit_Enum,
@@ -130,7 +130,7 @@ package body KartenAllgemein is
               / 2;
             
          when False =>
-            return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
+            return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
                                                         RasseExtern         => RasseExtern,
                                                         WirtschaftArtExtern => KartenKonstanten.WirtschaftGeld);
       end case;
@@ -149,7 +149,7 @@ package body KartenAllgemein is
         LeseKarten.Hügel (KoordinatenExtern => KoordinatenExtern)
       is
          when True =>
-            return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
+            return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
                                                         RasseExtern         => RasseExtern,
                                                         WirtschaftArtExtern => KartenKonstanten.WirtschaftForschung)
               + LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => KartengrundDatentypen.Hügel_Mit_Enum,
@@ -158,7 +158,7 @@ package body KartenAllgemein is
               / 2;
             
          when False =>
-            return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
+            return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
                                                         RasseExtern         => RasseExtern,
                                                         WirtschaftArtExtern => KartenKonstanten.WirtschaftForschung);
       end case;
@@ -177,7 +177,7 @@ package body KartenAllgemein is
         LeseKarten.Hügel (KoordinatenExtern => KoordinatenExtern)
       is
          when True =>
-            return LeseKartenDatenbanken.KampfGrund (GrundExtern    => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
+            return LeseKartenDatenbanken.KampfGrund (GrundExtern    => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
                                                    RasseExtern    => RasseExtern,
                                                    KampfArtExtern => KartenKonstanten.KampfVerteidigung)
               + LeseKartenDatenbanken.KampfGrund (GrundExtern    => KartengrundDatentypen.Hügel_Mit_Enum,
@@ -186,7 +186,7 @@ package body KartenAllgemein is
               / 2;
          
          when False =>
-            return LeseKartenDatenbanken.KampfGrund (GrundExtern    => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
+            return LeseKartenDatenbanken.KampfGrund (GrundExtern    => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
                                                    RasseExtern    => RasseExtern,
                                                    KampfArtExtern => KartenKonstanten.KampfVerteidigung);
       end case;
@@ -205,7 +205,7 @@ package body KartenAllgemein is
         LeseKarten.Hügel (KoordinatenExtern => KoordinatenExtern)
       is
          when True =>
-            return LeseKartenDatenbanken.KampfGrund (GrundExtern    => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
+            return LeseKartenDatenbanken.KampfGrund (GrundExtern    => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
                                                    RasseExtern    => RasseExtern,
                                                    KampfArtExtern => KartenKonstanten.KampfAngriff)
               + LeseKartenDatenbanken.KampfGrund (GrundExtern    => KartengrundDatentypen.Hügel_Mit_Enum,
@@ -214,7 +214,7 @@ package body KartenAllgemein is
               / 2;
          
          when False =>
-            return LeseKartenDatenbanken.KampfGrund (GrundExtern    => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
+            return LeseKartenDatenbanken.KampfGrund (GrundExtern    => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
                                                    RasseExtern    => RasseExtern,
                                                    KampfArtExtern => KartenKonstanten.KampfAngriff);
       end case;
@@ -229,7 +229,7 @@ package body KartenAllgemein is
       return KartenDatentypen.BewertungFeld
    is begin
       
-      return LeseKartenDatenbanken.BewertungGrund (GrundExtern => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
+      return LeseKartenDatenbanken.BewertungGrund (GrundExtern => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
                                                  RasseExtern => RasseExtern);
       
    end GrundBewertung;
@@ -911,7 +911,7 @@ package body KartenAllgemein is
       return Boolean
    is begin
       
-      return LeseKartenDatenbanken.Passierbarkeit (GrundExtern          => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
+      return LeseKartenDatenbanken.Passierbarkeit (GrundExtern          => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
                                                  WelcheUmgebungExtern => PassierbarkeitExtern);
       
    end PassierbarGrund;

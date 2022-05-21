@@ -26,7 +26,7 @@ package body FarmErmitteln is
    is begin
       
       VorhandeneVerbesserung := LeseKarten.Verbesserung (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
-      VorhandenerGrund := LeseKarten.Grund (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      VorhandenerGrund := LeseKarten.AktuellerGrund (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
 
       if
         VorhandeneVerbesserung = KartenVerbesserungDatentypen.Farm_Enum

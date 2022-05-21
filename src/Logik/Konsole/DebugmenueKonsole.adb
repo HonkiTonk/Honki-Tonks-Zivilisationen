@@ -139,7 +139,7 @@ package body DebugmenueKonsole is
       
       -- Die Stadtbelegung eventuell in die Konsolenanzeige verschieben? Die Belegung wird ja auch in der SFML angezeigt.
       
-      Put (Item => "Aktuelle GrundID: " & LeseKarten.Grund (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell)'Wide_Wide_Image);
+      Put (Item => "Aktuelle GrundID: " & LeseKarten.AktuellerGrund (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell)'Wide_Wide_Image);
       Put_Line (Item => "    Aktuelle Stadtbelegung:" & Karten.Weltkarte (SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.EAchse, SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.YAchse,
                 SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.XAchse).DurchStadtBelegterGrund.RasseBelegt'Wide_Wide_Image & ", "
                 & Karten.Weltkarte (SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.EAchse, SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.YAchse,

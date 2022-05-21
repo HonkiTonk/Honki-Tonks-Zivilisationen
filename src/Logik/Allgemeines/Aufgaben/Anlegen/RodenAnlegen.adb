@@ -26,7 +26,7 @@ package body RodenAnlegen is
             
          when KartenKonstanten.UnterflächeKonstante =>
             if
-              LeseKarten.Grund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, Koordinaten.YAchse, Koordinaten.XAchse)) = Wasser_Enum
+              LeseKarten.AktuellerGrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, Koordinaten.YAchse, Koordinaten.XAchse)) = Wasser_Enum
             then
                NeuerGrund := KartengrundDatentypen.Meeresgrund_Enum;
                
@@ -38,7 +38,7 @@ package body RodenAnlegen is
             Fehler.LogikFehler (FehlermeldungExtern => "RodenAnlegen.RodenAnlegen - Falsche Ebene.");
       end case;
       
-      SchreibeKarten.Grund (KoordinatenExtern => Koordinaten,
+      SchreibeKarten.AktuellerGrund (KoordinatenExtern => Koordinaten,
                             GrundExtern       => NeuerGrund);
       
    end RodenAnlegen;

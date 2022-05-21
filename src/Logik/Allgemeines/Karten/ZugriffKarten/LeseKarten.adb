@@ -9,14 +9,25 @@ with Fehler;
 
 package body LeseKarten is
    
-   function Grund
+   function AktuellerGrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return KartengrundDatentypen.Kartengrund_Enum
    is begin
       
-      return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund;
+      return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).AktuellerGrund;
       
-   end Grund;
+   end AktuellerGrund;
+   
+   
+   
+   function BasisGrund
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      return KartengrundDatentypen.Kartengrund_Enum
+   is begin
+      
+      return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).BasisGrund;
+      
+   end BasisGrund;
    
    
    

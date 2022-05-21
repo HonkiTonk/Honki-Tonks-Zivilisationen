@@ -211,7 +211,7 @@ package body KarteInformationenKonsole is
       end case;
       
       -- Grund sollte niemals leer sein, da man in der Konsole das Spielfeld nicht verlassen kann mit dem Zeiger.
-      Put (Item => KartenAllgemein.BeschreibungGrund (KartenGrundExtern => LeseKarten.Grund (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell)));
+      Put (Item => KartenAllgemein.BeschreibungGrund (KartenGrundExtern => LeseKarten.AktuellerGrund (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell)));
       
    end Hügel;
    

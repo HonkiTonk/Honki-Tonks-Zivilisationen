@@ -35,7 +35,7 @@ package body KartengeneratorBerechnungenAllgemein is
                null;
                   
             elsif
-              LeseKarten.Grund (KoordinatenExtern => KartenWert) = GrundExtern
+              LeseKarten.AktuellerGrund (KoordinatenExtern => KartenWert) = GrundExtern
             then
                AnzahlGleicherGrundBestimmen := AnzahlGleicherGrundBestimmen + 1;
                   

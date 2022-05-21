@@ -65,7 +65,7 @@ package body KartengeneratorRessourcen is
          for XAchseSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.XAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.XAchse loop
                
             case
-              LeseKarten.Grund (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert))
+              LeseKarten.AktuellerGrund (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert))
             is
                when KartengrundDatentypen.Kartengrund_Oberfläche_Wasser_Enum'Range =>
                   KartengeneratorRessourcenOberflaecheWasser.KartengeneratorRessourcenOberflächeWasser (YAchseExtern => YAchseSchleifenwert,

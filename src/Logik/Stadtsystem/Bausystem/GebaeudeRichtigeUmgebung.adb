@@ -74,7 +74,7 @@ package body GebaeudeRichtigeUmgebung is
             elsif
               --------------------- An neues Mehrfachumgebung möglich anpassen.
               -- Noch um Umgebungsverbesserung erweitern?
-              LeseKarten.Grund (KoordinatenExtern => KartenWert) = LeseGebaeudeDatenbank.GrundBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
+              LeseKarten.AktuellerGrund (KoordinatenExtern => KartenWert) = LeseGebaeudeDatenbank.GrundBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
                                                                                                          IDExtern    => GebäudeIDExtern)
               or
                 LeseGebaeudeDatenbank.FlussBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,

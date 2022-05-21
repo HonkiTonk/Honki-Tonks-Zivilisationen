@@ -57,7 +57,7 @@ package body KIAufgabeUmsetzen is
       
       EinheitKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
-      Grund := LeseKarten.Grund (KoordinatenExtern => EinheitKoordinaten);
+      Grund := LeseKarten.AktuellerGrund (KoordinatenExtern => EinheitKoordinaten);
       Ressourcen := LeseKarten.Ressource (KoordinatenExtern => EinheitKoordinaten);
          
       if

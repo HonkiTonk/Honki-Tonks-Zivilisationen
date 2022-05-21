@@ -29,7 +29,7 @@ package body KartengeneratorPlaneteninneres is
               and
                 XAchseSchleifenwert in XKernanfang .. XKernende
             then
-               SchreibeKarten.Grund (KoordinatenExtern => (-2, YAchseSchleifenwert, XAchseSchleifenwert),
+               SchreibeKarten.AktuellerGrund (KoordinatenExtern => (-2, YAchseSchleifenwert, XAchseSchleifenwert),
                                      GrundExtern       => KartengrundDatentypen.Planetenkern_Enum);
                
             -- else
@@ -39,29 +39,29 @@ package body KartengeneratorPlaneteninneres is
             elsif
               ZufallsgeneratorenKarten.KartengeneratorZufallswerte < KartengrundWahrscheinlichkeit (KartengrundDatentypen.Ringwoodit_Enum)
             then
-               SchreibeKarten.Grund (KoordinatenExtern => (-2, YAchseSchleifenwert, XAchseSchleifenwert),
+               SchreibeKarten.AktuellerGrund (KoordinatenExtern => (-2, YAchseSchleifenwert, XAchseSchleifenwert),
                                      GrundExtern       => KartengrundDatentypen.Ringwoodit_Enum);
                
             elsif
               ZufallsgeneratorenKarten.KartengeneratorZufallswerte < KartengrundWahrscheinlichkeit (KartengrundDatentypen.Majorit_Enum)
             then
-               SchreibeKarten.Grund (KoordinatenExtern => (-2, YAchseSchleifenwert, XAchseSchleifenwert),
+               SchreibeKarten.AktuellerGrund (KoordinatenExtern => (-2, YAchseSchleifenwert, XAchseSchleifenwert),
                                      GrundExtern       => KartengrundDatentypen.Majorit_Enum);
                
             elsif
               ZufallsgeneratorenKarten.KartengeneratorZufallswerte < KartengrundWahrscheinlichkeit (KartengrundDatentypen.Perowskit_Enum)
             then
-               SchreibeKarten.Grund (KoordinatenExtern => (-2, YAchseSchleifenwert, XAchseSchleifenwert),
+               SchreibeKarten.AktuellerGrund (KoordinatenExtern => (-2, YAchseSchleifenwert, XAchseSchleifenwert),
                                      GrundExtern       => KartengrundDatentypen.Perowskit_Enum);
                
             elsif
               ZufallsgeneratorenKarten.KartengeneratorZufallswerte < KartengrundWahrscheinlichkeit (KartengrundDatentypen.Magnesiowüstit_Enum)
             then
-               SchreibeKarten.Grund (KoordinatenExtern => (-2, YAchseSchleifenwert, XAchseSchleifenwert),
+               SchreibeKarten.AktuellerGrund (KoordinatenExtern => (-2, YAchseSchleifenwert, XAchseSchleifenwert),
                                      GrundExtern       => KartengrundDatentypen.Magnesiowüstit_Enum);
                
             else
-               SchreibeKarten.Grund (KoordinatenExtern => (-2, YAchseSchleifenwert, XAchseSchleifenwert),
+               SchreibeKarten.AktuellerGrund (KoordinatenExtern => (-2, YAchseSchleifenwert, XAchseSchleifenwert),
                                      GrundExtern       => KartengrundDatentypen.Lava_Enum);
             end if;
                

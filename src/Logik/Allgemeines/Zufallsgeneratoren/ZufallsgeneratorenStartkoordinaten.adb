@@ -36,7 +36,7 @@ package body ZufallsgeneratorenStartkoordinaten is
                                                                   NeueKoordinatenExtern => (EAchse, YXAchsen.YAchse, YXAchsen.XAchse))
              = True
            and
-             LeseKarten.Grund (KoordinatenExtern => (EAchse, YXAchsen.YAchse, YXAchsen.XAchse)) /= KartengrundDatentypen.Eis_Enum
+             LeseKarten.AktuellerGrund (KoordinatenExtern => (EAchse, YXAchsen.YAchse, YXAchsen.XAchse)) /= KartengrundDatentypen.Eis_Enum
          then
             return (EAchse, YXAchsen.YAchse, YXAchsen.XAchse);
                

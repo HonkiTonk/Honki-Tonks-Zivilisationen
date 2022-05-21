@@ -5,8 +5,8 @@ with LeseKarten;
 
 package body SchreibeKarten is
 
-   ----------------------- Eventuell mehr Prüfungen hier einbauen? Z. B. ob das Unterwasserzeug auch Unterwasser platziert wird? Dabei Chaos berücksichtigen.
-   procedure Grund
+   ----------------------- Eventuell mehr Prüfungen hier einbauen? Z. B. ob das Unterwasserzeug auch Unterwasser platziert wird?
+   procedure AktuellerGrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Enum)
    is begin
@@ -23,9 +23,20 @@ package body SchreibeKarten is
          null;
       end if;
       
-      Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund := GrundExtern;
+      Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).AktuellerGrund := GrundExtern;
       
-   end Grund;
+   end AktuellerGrund;
+   
+   
+   
+   procedure BasisGrund
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      GrundExtern : in KartengrundDatentypen.Kartengrund_Enum)
+   is begin
+            
+      Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).BasisGrund := GrundExtern;
+      
+   end BasisGrund;
    
    
    

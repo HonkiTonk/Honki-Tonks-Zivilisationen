@@ -23,7 +23,7 @@ package body KartengeneratorLandschaft is
          for XAchseSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.XAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.XAchse loop
             
             case
-              LeseKarten.Grund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert))
+              LeseKarten.AktuellerGrund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert))
             is
                when KartengrundDatentypen.Flachland_Enum =>
                   GrundBestimmen (YAchseExtern => YAchseSchleifenwert,
@@ -100,7 +100,7 @@ package body KartengeneratorLandschaft is
                                                XAchseExtern => XAchseExtern,
                                                GrundExtern  => WelcherGrund);
       
-      SchreibeKarten.Grund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
+      SchreibeKarten.AktuellerGrund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
                             GrundExtern       => WelcherGrund);
       
       case
@@ -237,7 +237,7 @@ package body KartengeneratorLandschaft is
                null;
                
             elsif
-              LeseKarten.Grund (KoordinatenExtern => KartenWert) = KartengrundDatentypen.Wüste_Enum
+              LeseKarten.AktuellerGrund (KoordinatenExtern => KartenWert) = KartengrundDatentypen.Wüste_Enum
             then
                return KartengrundDatentypen.Wüste_Enum;
                   
@@ -276,9 +276,9 @@ package body KartengeneratorLandschaft is
                null;
                
             elsif
-              LeseKarten.Grund (KoordinatenExtern => KartenWert) = KartengrundDatentypen.Eis_Enum
+              LeseKarten.AktuellerGrund (KoordinatenExtern => KartenWert) = KartengrundDatentypen.Eis_Enum
               or
-                LeseKarten.Grund (KoordinatenExtern => KartenWert) = KartengrundDatentypen.Tundra_Enum
+                LeseKarten.AktuellerGrund (KoordinatenExtern => KartenWert) = KartengrundDatentypen.Tundra_Enum
             then
                return KartengrundDatentypen.Tundra_Enum;
                   

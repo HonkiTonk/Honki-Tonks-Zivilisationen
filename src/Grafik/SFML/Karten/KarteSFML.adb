@@ -34,6 +34,7 @@ with EingeleseneTexturenSFML;
 with TexturenSetzenSkalierenSFML;
 with KarteGrafikenZeichnenSFML;
 with FarbgebungSFML;
+with AllgemeineTextBerechnungenSFML;
 
 package body KarteSFML is
    
@@ -102,6 +103,51 @@ package body KarteSFML is
          YMultiplikator := YMultiplikator + 1.00;
          
       end loop YAchseSchleife;
+      
+      YMultiplikator := 0.00;
+            
+      YAchseStadtnameSchleife:
+      for YAchseStadtnameSchleifenwert in SichtbereichAnfangEnde (1) .. SichtbereichAnfangEnde (2) loop
+         
+         XMultiplikator := 0.00;
+         
+         XAchseStadtnameSchleife:
+         for XAchseStadtnameSchleifenwert in SichtbereichAnfangEnde (3) .. SichtbereichAnfangEnde (4) loop
+            
+            KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => CursorKoordinatenAlt,
+                                                                                                 ÄnderungExtern    => (0, YAchseStadtnameSchleifenwert, XAchseStadtnameSchleifenwert),
+                                                                                                 LogikGrafikExtern => False);
+            
+            -- Die Position durchzureichen bedeutet auch gleichzeitig den aktuellen Multiplikator mit durchzureichen!
+            Position.x := XMultiplikator * BerechnungenKarteSFML.KartenfelderAbmessung.x;
+            Position.y := YMultiplikator * BerechnungenKarteSFML.KartenfelderAbmessung.y;
+            
+            if
+              KartenWert.XAchse = KartenKonstanten.LeerXAchse
+            then
+               null;
+               
+            elsif
+              LeseKarten.Sichtbar (KoordinatenExtern => KartenWert,
+                                   RasseExtern       => RasseEinheitExtern.Rasse)
+              = True
+            then
+               StadtnameAnzeigen (KoordinatenExtern => KartenWert,
+                                  PositionExtern    => Position);
+               
+            else
+               -- Ist das Zeichnen von schwarzen Felder notwendig? Immerhin wird ja vorher das Fenster immer geleert und auf Schwarz gesetzt.
+               -- Schwarze Felder zu zeichnen könnte fehlerhafte Größenverhältnisse überdecken, lieber lassen.
+               null;
+            end if;
+            
+            XMultiplikator := XMultiplikator + 1.00;
+                          
+         end loop XAchseStadtnameSchleife;
+         
+         YMultiplikator := YMultiplikator + 1.00;
+         
+      end loop YAchseStadtnameSchleife;
       
    end Sichtbarkeit;
    
@@ -178,7 +224,7 @@ package body KarteSFML is
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
-      Kartengrund := LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern);
+      Kartengrund := LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern);
       
       -------------------------- Kan man das auch noch an anderen Stellen verwenden? Wahrscheinlich ja.
       case
@@ -406,19 +452,23 @@ package body KarteSFML is
       
       elsif
         LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummer) /= EinheitenKonstanten.LeerWirdTransportiert
+        and
+          (EinheitRasseNummer.Rasse /= RasseEinheitExtern.Rasse
+           or
+             EinheitRasseNummer.Nummer /= RasseEinheitExtern.Nummer)
       then
          EinheitRasseNummer.Nummer := LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummer);
          
       else
          null;
       end if;
-         
+      
+      EinheitID := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummer);
+      
       if
-        EingeleseneTexturenSFML.EinheitenAccess (RasseEinheitExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummer)) /= null
+        EinheitRasseNummer.Rasse = RasseEinheitExtern.Rasse
         and
-          EinheitRasseNummer.Rasse = RasseEinheitExtern.Rasse
-          and
-            EinheitRasseNummer.Nummer = RasseEinheitExtern.Nummer
+          EinheitRasseNummer.Nummer = RasseEinheitExtern.Nummer
       then
          if
            ZeitZwei - ZeitEins > BlinkIntervall
@@ -435,32 +485,40 @@ package body KarteSFML is
            AusgewählteEinheitAnzeigen
          is
             when True =>
-               KarteGrafikenZeichnenSFML.SpriteZeichnen (SpriteAccesExtern => SpriteAccess,
-                                                         PositionExtern    => PositionExtern,
-                                                         SkalierungExtern  => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenWeltkarte
-                                                           (SpriteAccessExtern  => SpriteAccess,
-                                                            TextureAccessExtern => EingeleseneTexturenSFML.EinheitenAccess (RasseEinheitExtern.Rasse,
-                                                              LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummer))));
+               if
+                 SpriteGezeichnet (TexturAccessExtern => EingeleseneTexturenSFML.EinheitenAccess (RasseEinheitExtern.Rasse, EinheitID),
+                                   PositionExtern     => PositionExtern)
+                 = True
+               then
+                  null;
+                  
+               else
+                  ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.80,
+                                                       PositionExtern      => PositionExtern,
+                                                       AnzahlEckenExtern   => 4,
+                                                       FarbeExtern         => GrafikEinstellungenSFML.RassenFarbenRahmen (EinheitRasseNummer.Rasse),
+                                                       PolygonAccessExtern => PolygonAccess);
+               end if;
                
             when False =>
-               null;
+               return;
          end case;
          
-      elsif
-        EingeleseneTexturenSFML.EinheitenAccess (RasseEinheitExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummer)) /= null
-      then
-         KarteGrafikenZeichnenSFML.SpriteZeichnen (SpriteAccesExtern => SpriteAccess,
-                                                   PositionExtern    => PositionExtern,
-                                                   SkalierungExtern  => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenWeltkarte
-                                                     (SpriteAccessExtern  => SpriteAccess,
-                                                      TextureAccessExtern => EingeleseneTexturenSFML.EinheitenAccess (RasseEinheitExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummer))));
-                         
       else
-         ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.80,
-                                              PositionExtern      => PositionExtern,
-                                              AnzahlEckenExtern   => 4,
-                                              FarbeExtern         => GrafikEinstellungenSFML.RassenFarbenRahmen (EinheitRasseNummer.Rasse),
-                                              PolygonAccessExtern => PolygonAccess);
+         if
+           SpriteGezeichnet (TexturAccessExtern => EingeleseneTexturenSFML.EinheitenAccess (RasseEinheitExtern.Rasse, EinheitID),
+                             PositionExtern     => PositionExtern)
+           = True
+         then
+            null;
+            
+         else
+            ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.80,
+                                                 PositionExtern      => PositionExtern,
+                                                 AnzahlEckenExtern   => 4,
+                                                 FarbeExtern         => GrafikEinstellungenSFML.RassenFarbenRahmen (EinheitRasseNummer.Rasse),
+                                                 PolygonAccessExtern => PolygonAccess);
+         end if;
       end if;
       
    end AnzeigeEinheit;
@@ -556,40 +614,6 @@ package body KarteSFML is
             
       end loop UmgebungSchleife;
       
-      KartenWertStadtname := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                    ÄnderungExtern    => (0, -1, 0),
-                                                                                                    LogikGrafikExtern => False);
-      
-      case
-        KartenWertStadtname.XAchse
-      is
-         when KartenKonstanten.LeerXAchse =>
-            return;
-            
-         when others =>
-            StadtRasseNummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => KartenWertStadtname);
-            
-            if
-              StadtRasseNummer.Nummer = StadtKonstanten.LeerNummer
-            then
-               return;
-               
-            else
-               null;
-            end if;
-      end case;
-      
-      -- Möglicherweise die Schriftfarbe durch die Rahmenfarbe ersetzen? Die Belegungsfarbe ist auf jeden Fall ungeeignet.
-      -- Text wird von den anderen Feldern immer wieder überschrieben. Eventuell ein zweites Mal über die ganzen Felder gehen?
-      -- Wenn ich das ganze als View anlege, die Städtenamen da rein schreibe und den dann am Schluss anzeige, müsste das nicht gehen?
-      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAccess,
-                                         str  => To_Wide_Wide_String (Source => LeseStadtGebaut.Name (StadtRasseNummerExtern => StadtRasseNummer)));
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteAccess,
-                                    position => PositionExtern);
-      
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                         text         => TextaccessVariablen.KarteAccess);
-      
    end RahmenBesetztesFeld;
 
 
@@ -635,6 +659,47 @@ package body KarteSFML is
                                                    object       => RechteckRahmenAccess);
       
    end RahmenZeichnen;
+   
+   
+   
+   procedure StadtnameAnzeigen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
+   is begin
+      
+      KartenWertStadtname := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+                                                                                                    ÄnderungExtern    => (0, -1, 0),
+                                                                                                    LogikGrafikExtern => False);
+      
+      case
+        KartenWertStadtname.XAchse
+      is
+         when KartenKonstanten.LeerXAchse =>
+            return;
+            
+         when others =>
+            StadtRasseNummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => KartenWertStadtname);
+            
+            if
+              StadtRasseNummer.Nummer = StadtKonstanten.LeerNummer
+            then
+               return;
+               
+            else
+               null;
+            end if;
+      end case;
+      
+      -- Wenn ich das ganze als View anlege, die Städtenamen da rein schreibe und den dann am Schluss anzeige, müsste das nicht gehen?
+      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAccess,
+                                         str  => To_Wide_Wide_String (Source => LeseStadtGebaut.Name (StadtRasseNummerExtern => StadtRasseNummer)));
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteAccess,
+                                    position => (PositionExtern.x - AllgemeineTextBerechnungenSFML.TextHalbeBreiteErmitteln (TextAccessExtern => TextaccessVariablen.KarteAccess), PositionExtern.y));
+      
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                         text         => TextaccessVariablen.KarteAccess);
+      
+   end StadtnameAnzeigen;
    
    
    

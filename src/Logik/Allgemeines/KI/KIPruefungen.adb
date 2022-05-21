@@ -371,7 +371,7 @@ package body KIPruefungen is
          return False;
          
       elsif
-        LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern) = KartengrundDatentypen.Eis_Enum
+        LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern) = KartengrundDatentypen.Eis_Enum
       then
          return False;
          

@@ -67,7 +67,7 @@ package body KartengeneratorWasserwelt is
                                                XAchseExtern => XAchseExtern,
                                                GrundExtern  => WelcherGrund);
       
-      SchreibeKarten.Grund (KoordinatenExtern => (-1, YAchseExtern, XAchseExtern),
+      SchreibeKarten.AktuellerGrund (KoordinatenExtern => (-1, YAchseExtern, XAchseExtern),
                             GrundExtern       => WelcherGrund);
       
    end KartengeneratorWasserwelt;

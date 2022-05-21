@@ -24,7 +24,7 @@ package body WaldAnlegen is
       is
          when KartenKonstanten.OberflächeKonstante =>
             if
-              LeseKarten.Grund (KoordinatenExtern => Koordinaten) = KartengrundDatentypen.Hügel_Enum
+              LeseKarten.AktuellerGrund (KoordinatenExtern => Koordinaten) = KartengrundDatentypen.Hügel_Enum
             then
                SchreibeKarten.Hügel (KoordinatenExtern => Koordinaten,
                                       HügelExtern       => True);
@@ -43,7 +43,7 @@ package body WaldAnlegen is
       end case;
             
       -- Nicht in den Überprüfung oben mit rein schieben, da der Wald immer erzeugt werden muss, unabhängig ob da ein Hügel ist.
-      SchreibeKarten.Grund (KoordinatenExtern => Koordinaten,
+      SchreibeKarten.AktuellerGrund (KoordinatenExtern => Koordinaten,
                             GrundExtern       => NeuerGrund);
       
       case

@@ -37,7 +37,7 @@ package body KartengeneratorStandard is
    is begin
       
       case
-        LeseKarten.Grund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern))
+        LeseKarten.AktuellerGrund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern))
       is
          when KartengrundDatentypen.Leer_Grund_Enum =>
             BeliebigerLandwert := ZufallsgeneratorenKarten.KartengeneratorZufallswerte;
@@ -45,13 +45,13 @@ package body KartengeneratorStandard is
             if
               BeliebigerLandwert < WahrscheinlichkeitLandmasse.Anfangswert
             then
-               SchreibeKarten.Grund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
+               SchreibeKarten.AktuellerGrund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
                                      GrundExtern       => KartengrundDatentypen.Wasser_Enum);
          
             elsif
               BeliebigerLandwert > WahrscheinlichkeitLandmasse.Endwert
             then
-               SchreibeKarten.Grund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
+               SchreibeKarten.AktuellerGrund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
                                      GrundExtern       => KartengrundDatentypen.Flachland_Enum);
                
             else
@@ -174,11 +174,11 @@ package body KartengeneratorStandard is
             if
               BeliebigerLandwert in WahrscheinlichkeitLandInLandmasse.Anfangswert .. WahrscheinlichkeitLandInLandmasse.Endwert
             then
-               SchreibeKarten.Grund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
+               SchreibeKarten.AktuellerGrund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
                                      GrundExtern       => KartengrundDatentypen.Flachland_Enum);
                
             else
-               SchreibeKarten.Grund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
+               SchreibeKarten.AktuellerGrund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
                                      GrundExtern       => KartengrundDatentypen.Wasser_Enum);
             end if;
             
@@ -186,11 +186,11 @@ package body KartengeneratorStandard is
             if
               BeliebigerLandwert in WahrscheinlichkeitWasser.Anfangswert .. WahrscheinlichkeitWasser.Endwert
             then
-               SchreibeKarten.Grund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
+               SchreibeKarten.AktuellerGrund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
                                      GrundExtern       => KartengrundDatentypen.Wasser_Enum);
                
             else
-               SchreibeKarten.Grund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
+               SchreibeKarten.AktuellerGrund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
                                      GrundExtern       => KartengrundDatentypen.Flachland_Enum);
             end if;
       end case;

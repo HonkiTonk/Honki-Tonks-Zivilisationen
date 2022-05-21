@@ -43,7 +43,7 @@ package body Sichtbarkeit is
          return 3;
          
       else
-         AktuellerGrund := LeseKarten.Grund (KoordinatenExtern => KoordinatenEinheit);
+         AktuellerGrund := LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenEinheit);
       end if;
       
       if
@@ -706,19 +706,19 @@ package body Sichtbarkeit is
          null;
          
       elsif
-        LeseKarten.Grund (KoordinatenExtern => KartenBlockadeWert) = KartengrundDatentypen.Gebirge_Enum
+        LeseKarten.AktuellerGrund (KoordinatenExtern => KartenBlockadeWert) = KartengrundDatentypen.Gebirge_Enum
         or
-          LeseKarten.Grund (KoordinatenExtern => KartenBlockadeWert) = KartengrundDatentypen.Hügel_Enum
+          LeseKarten.AktuellerGrund (KoordinatenExtern => KartenBlockadeWert) = KartengrundDatentypen.Hügel_Enum
         or
           LeseKarten.Hügel (KoordinatenExtern => KartenBlockadeWert) = True
         or
           (SichtweiteExtern /= 3
            and
-             (LeseKarten.Grund (KoordinatenExtern => KartenBlockadeWert) = KartengrundDatentypen.Dschungel_Enum
+             (LeseKarten.AktuellerGrund (KoordinatenExtern => KartenBlockadeWert) = KartengrundDatentypen.Dschungel_Enum
               or
-                LeseKarten.Grund (KoordinatenExtern => KartenBlockadeWert) = KartengrundDatentypen.Sumpf_Enum
+                LeseKarten.AktuellerGrund (KoordinatenExtern => KartenBlockadeWert) = KartengrundDatentypen.Sumpf_Enum
               or
-                LeseKarten.Grund (KoordinatenExtern => KartenBlockadeWert) = KartengrundDatentypen.Wald_Enum))
+                LeseKarten.AktuellerGrund (KoordinatenExtern => KartenBlockadeWert) = KartengrundDatentypen.Wald_Enum))
       then
          return False;
          

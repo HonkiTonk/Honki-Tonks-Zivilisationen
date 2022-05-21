@@ -18,7 +18,7 @@ package body KartengeneratorNurLand is
          XAchseSchleife:
          for XAchseSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.XAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.XAchse loop
             
-            SchreibeKarten.Grund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+            SchreibeKarten.AktuellerGrund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert),
                                   GrundExtern       => KartengrundDatentypen.Flachland_Enum);
             
          end loop XAchseSchleife;
