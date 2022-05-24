@@ -34,7 +34,9 @@ private
    AufgabeDurchführen : Boolean;
    NullWert : Boolean;
 
-   Grund : KartengrundDatentypen.Kartengrund_Enum;
+   AktuellerGrund : KartengrundDatentypen.Kartengrund_Enum;
+   BasisGrund : KartengrundDatentypen.Kartengrund_Enum;
+
    Ressourcen : KartengrundDatentypen.Karten_Ressourcen_Enum;
 
    EinheitKoordinaten : KartenRecords.AchsenKartenfeldPositivRecord;

@@ -29,6 +29,21 @@ package body KartenAllgemein is
    
    
    
+   ---------------------------- Hügel, das hier anpassen und mit dem oben koppeln. Außerdem alle Sachen weiter unten noch korrekt anpassen.
+   function BeschreibungBasisgrund
+     (KartenGrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
+      return Wide_Wide_String
+   is begin
+      
+      -- Die Zwischenrechnungen mal drin lassen, für den Fall dass ich die Beschreibungen rassenspezifisch machen will. Könnte dann eine komplexere Rechnung werden.
+      GrundAktuell := 2 * KartengrundDatentypen.Kartengrund_Enum'Pos (KartenGrundExtern) - 1;
+   
+      return To_Wide_Wide_String (Source => GlobaleTexte.Kartenfelder (GrundAktuell));
+      
+   end BeschreibungBasisgrund;
+   
+   
+   
    function BeschreibungFluss
      (KartenFlussExtern : in KartengrundDatentypen.Kartenfluss_Vorhanden_Enum)
       return Wide_Wide_String
@@ -61,22 +76,24 @@ package body KartenAllgemein is
       return ProduktionDatentypen.ProduktionElement
    is begin
       
+      BasisGrund := LeseKarten.BasisGrund (KoordinatenExtern => KoordinatenExtern);
+      
       case
-        LeseKarten.Hügel (KoordinatenExtern => KoordinatenExtern)
+        BasisGrund
       is
-         when True =>
+         when KartengrundDatentypen.Hügel_Enum | KartengrundDatentypen.Gebirge_Enum =>
             return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
-                                                        RasseExtern         => RasseExtern,
-                                                        WirtschaftArtExtern => KartenKonstanten.WirtschaftNahrung)
-              + LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => KartengrundDatentypen.Hügel_Mit_Enum,
-                                                     RasseExtern         => RasseExtern,
-                                                     WirtschaftArtExtern => KartenKonstanten.WirtschaftNahrung)
-              / 2;
+                                                          RasseExtern         => RasseExtern,
+                                                          WirtschaftArtExtern => KartenKonstanten.WirtschaftNahrung);
+             -- + LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => KartengrundDatentypen.Hügel_Mit_Enum,
+             --                                          RasseExtern         => RasseExtern,
+             --                                          WirtschaftArtExtern => KartenKonstanten.WirtschaftNahrung)
+             -- / 2;
             
-         when False =>
+         when others =>
             return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
-                                                        RasseExtern         => RasseExtern,
-                                                        WirtschaftArtExtern => KartenKonstanten.WirtschaftNahrung);
+                                                          RasseExtern         => RasseExtern,
+                                                          WirtschaftArtExtern => KartenKonstanten.WirtschaftNahrung);
       end case;
             
    end GrundNahrung;
@@ -89,22 +106,24 @@ package body KartenAllgemein is
       return ProduktionDatentypen.ProduktionElement
    is begin
       
+      BasisGrund := LeseKarten.BasisGrund (KoordinatenExtern => KoordinatenExtern);
+      
       case
-        LeseKarten.Hügel (KoordinatenExtern => KoordinatenExtern)
+        BasisGrund
       is
-         when True =>
+         when KartengrundDatentypen.Hügel_Enum | KartengrundDatentypen.Gebirge_Enum =>
             return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
-                                                        RasseExtern         => RasseExtern,
-                                                        WirtschaftArtExtern => KartenKonstanten.WirtschaftProduktion)
-              + LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => KartengrundDatentypen.Hügel_Mit_Enum,
-                                                     RasseExtern         => RasseExtern,
-                                                     WirtschaftArtExtern => KartenKonstanten.WirtschaftProduktion)
-              / 2;
+                                                          RasseExtern         => RasseExtern,
+                                                          WirtschaftArtExtern => KartenKonstanten.WirtschaftProduktion);
+             -- + LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => KartengrundDatentypen.Hügel_Mit_Enum,
+             --                                          RasseExtern         => RasseExtern,
+             --                                          WirtschaftArtExtern => KartenKonstanten.WirtschaftProduktion)
+             -- / 2;
             
-         when False =>
+         when others =>
             return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
-                                                        RasseExtern         => RasseExtern,
-                                                        WirtschaftArtExtern => KartenKonstanten.WirtschaftProduktion);
+                                                          RasseExtern         => RasseExtern,
+                                                          WirtschaftArtExtern => KartenKonstanten.WirtschaftProduktion);
       end case;
       
    end GrundProduktion;
@@ -117,22 +136,24 @@ package body KartenAllgemein is
       return ProduktionDatentypen.ProduktionElement
    is begin
       
+      BasisGrund := LeseKarten.BasisGrund (KoordinatenExtern => KoordinatenExtern);
+      
       case
-        LeseKarten.Hügel (KoordinatenExtern => KoordinatenExtern)
+        BasisGrund
       is
-         when True =>
+         when KartengrundDatentypen.Hügel_Enum | KartengrundDatentypen.Gebirge_Enum =>
             return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
-                                                        RasseExtern         => RasseExtern,
-                                                        WirtschaftArtExtern => KartenKonstanten.WirtschaftGeld)
-              + LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => KartengrundDatentypen.Hügel_Mit_Enum,
-                                                     RasseExtern         => RasseExtern,
-                                                     WirtschaftArtExtern => KartenKonstanten.WirtschaftGeld)
-              / 2;
+                                                          RasseExtern         => RasseExtern,
+                                                          WirtschaftArtExtern => KartenKonstanten.WirtschaftGeld);
+             -- + LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => KartengrundDatentypen.Hügel_Mit_Enum,
+             --                                          RasseExtern         => RasseExtern,
+             --                                          WirtschaftArtExtern => KartenKonstanten.WirtschaftGeld)
+             -- / 2;
             
-         when False =>
+         when others =>
             return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
-                                                        RasseExtern         => RasseExtern,
-                                                        WirtschaftArtExtern => KartenKonstanten.WirtschaftGeld);
+                                                          RasseExtern         => RasseExtern,
+                                                          WirtschaftArtExtern => KartenKonstanten.WirtschaftGeld);
       end case;
       
    end GrundGeld;
@@ -145,22 +166,24 @@ package body KartenAllgemein is
       return ProduktionDatentypen.ProduktionElement
    is begin
       
+      BasisGrund := LeseKarten.BasisGrund (KoordinatenExtern => KoordinatenExtern);
+      
       case
-        LeseKarten.Hügel (KoordinatenExtern => KoordinatenExtern)
+        BasisGrund
       is
-         when True =>
+         when KartengrundDatentypen.Hügel_Enum | KartengrundDatentypen.Gebirge_Enum =>
             return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
-                                                        RasseExtern         => RasseExtern,
-                                                        WirtschaftArtExtern => KartenKonstanten.WirtschaftForschung)
-              + LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => KartengrundDatentypen.Hügel_Mit_Enum,
-                                                     RasseExtern         => RasseExtern,
-                                                     WirtschaftArtExtern => KartenKonstanten.WirtschaftForschung)
-              / 2;
+                                                          RasseExtern         => RasseExtern,
+                                                          WirtschaftArtExtern => KartenKonstanten.WirtschaftForschung);
+             -- + LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => KartengrundDatentypen.Hügel_Mit_Enum,
+             --                                          RasseExtern         => RasseExtern,
+             --                                          WirtschaftArtExtern => KartenKonstanten.WirtschaftForschung)
+             -- / 2;
             
-         when False =>
+         when others =>
             return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
-                                                        RasseExtern         => RasseExtern,
-                                                        WirtschaftArtExtern => KartenKonstanten.WirtschaftForschung);
+                                                          RasseExtern         => RasseExtern,
+                                                          WirtschaftArtExtern => KartenKonstanten.WirtschaftForschung);
       end case;
       
    end GrundWissen;
@@ -173,22 +196,24 @@ package body KartenAllgemein is
       return KampfDatentypen.Kampfwerte
    is begin
       
+      BasisGrund := LeseKarten.BasisGrund (KoordinatenExtern => KoordinatenExtern);
+      
       case
-        LeseKarten.Hügel (KoordinatenExtern => KoordinatenExtern)
+        BasisGrund
       is
-         when True =>
+         when KartengrundDatentypen.Hügel_Enum | KartengrundDatentypen.Gebirge_Enum =>
             return LeseKartenDatenbanken.KampfGrund (GrundExtern    => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
-                                                   RasseExtern    => RasseExtern,
-                                                   KampfArtExtern => KartenKonstanten.KampfVerteidigung)
-              + LeseKartenDatenbanken.KampfGrund (GrundExtern    => KartengrundDatentypen.Hügel_Mit_Enum,
-                                                RasseExtern    => RasseExtern,
-                                                KampfArtExtern => KartenKonstanten.KampfVerteidigung)
-              / 2;
+                                                     RasseExtern    => RasseExtern,
+                                                     KampfArtExtern => KartenKonstanten.KampfVerteidigung);
+             -- + LeseKartenDatenbanken.KampfGrund (GrundExtern    => KartengrundDatentypen.Hügel_Mit_Enum,
+             --                                     RasseExtern    => RasseExtern,
+             --                                     KampfArtExtern => KartenKonstanten.KampfVerteidigung)
+             -- / 2;
          
-         when False =>
+         when others =>
             return LeseKartenDatenbanken.KampfGrund (GrundExtern    => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
-                                                   RasseExtern    => RasseExtern,
-                                                   KampfArtExtern => KartenKonstanten.KampfVerteidigung);
+                                                     RasseExtern    => RasseExtern,
+                                                     KampfArtExtern => KartenKonstanten.KampfVerteidigung);
       end case;
       
    end GrundVerteidigung;
@@ -201,22 +226,24 @@ package body KartenAllgemein is
       return KampfDatentypen.Kampfwerte
    is begin
       
+      BasisGrund := LeseKarten.BasisGrund (KoordinatenExtern => KoordinatenExtern);
+      
       case
-        LeseKarten.Hügel (KoordinatenExtern => KoordinatenExtern)
+        BasisGrund
       is
-         when True =>
+         when KartengrundDatentypen.Hügel_Enum | KartengrundDatentypen.Gebirge_Enum =>
             return LeseKartenDatenbanken.KampfGrund (GrundExtern    => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
-                                                   RasseExtern    => RasseExtern,
-                                                   KampfArtExtern => KartenKonstanten.KampfAngriff)
-              + LeseKartenDatenbanken.KampfGrund (GrundExtern    => KartengrundDatentypen.Hügel_Mit_Enum,
-                                                RasseExtern    => RasseExtern,
-                                                KampfArtExtern => KartenKonstanten.KampfAngriff)
-              / 2;
+                                                     RasseExtern    => RasseExtern,
+                                                     KampfArtExtern => KartenKonstanten.KampfAngriff);
+             -- + LeseKartenDatenbanken.KampfGrund (GrundExtern    => KartengrundDatentypen.Hügel_Mit_Enum,
+             --                                     RasseExtern    => RasseExtern,
+             --                                     KampfArtExtern => KartenKonstanten.KampfAngriff)
+             -- / 2;
          
-         when False =>
+         when others =>
             return LeseKartenDatenbanken.KampfGrund (GrundExtern    => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
-                                                   RasseExtern    => RasseExtern,
-                                                   KampfArtExtern => KartenKonstanten.KampfAngriff);
+                                                     RasseExtern    => RasseExtern,
+                                                     KampfArtExtern => KartenKonstanten.KampfAngriff);
       end case;
       
    end GrundAngriff;
@@ -230,7 +257,7 @@ package body KartenAllgemein is
    is begin
       
       return LeseKartenDatenbanken.BewertungGrund (GrundExtern => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
-                                                 RasseExtern => RasseExtern);
+                                                   RasseExtern => RasseExtern);
       
    end GrundBewertung;
    
@@ -252,8 +279,8 @@ package body KartenAllgemein is
             
          when others =>
             return LeseKartenDatenbanken.WirtschaftFluss (FlussExtern         => KartenFluss,
-                                                        RasseExtern         => RasseExtern,
-                                                        WirtschaftArtExtern => KartenKonstanten.WirtschaftNahrung);
+                                                          RasseExtern         => RasseExtern,
+                                                          WirtschaftArtExtern => KartenKonstanten.WirtschaftNahrung);
       end case;
       
    end FlussNahrung;
@@ -276,8 +303,8 @@ package body KartenAllgemein is
             
          when others =>
             return LeseKartenDatenbanken.WirtschaftFluss (FlussExtern         => KartenFluss,
-                                                        RasseExtern         => RasseExtern,
-                                                        WirtschaftArtExtern => KartenKonstanten.WirtschaftProduktion);
+                                                          RasseExtern         => RasseExtern,
+                                                          WirtschaftArtExtern => KartenKonstanten.WirtschaftProduktion);
       end case;
       
    end FlussProduktion;
@@ -300,8 +327,8 @@ package body KartenAllgemein is
             
          when others =>
             return LeseKartenDatenbanken.WirtschaftFluss (FlussExtern         => KartenFluss,
-                                                        RasseExtern         => RasseExtern,
-                                                        WirtschaftArtExtern => KartenKonstanten.WirtschaftGeld);
+                                                          RasseExtern         => RasseExtern,
+                                                          WirtschaftArtExtern => KartenKonstanten.WirtschaftGeld);
       end case;
       
    end FlussGeld;
@@ -324,8 +351,8 @@ package body KartenAllgemein is
             
          when others =>
             return LeseKartenDatenbanken.WirtschaftFluss (FlussExtern         => KartenFluss,
-                                                        RasseExtern         => RasseExtern,
-                                                        WirtschaftArtExtern => KartenKonstanten.WirtschaftForschung);
+                                                          RasseExtern         => RasseExtern,
+                                                          WirtschaftArtExtern => KartenKonstanten.WirtschaftForschung);
       end case;
       
    end FlussWissen;
@@ -348,8 +375,8 @@ package body KartenAllgemein is
             
          when others =>
             return LeseKartenDatenbanken.KampfFluss (FlussExtern    => KartenFluss,
-                                                   RasseExtern    => RasseExtern,
-                                                   KampfArtExtern => KartenKonstanten.KampfVerteidigung);
+                                                     RasseExtern    => RasseExtern,
+                                                     KampfArtExtern => KartenKonstanten.KampfVerteidigung);
       end case;
       
    end FlussVerteidigung;
@@ -372,8 +399,8 @@ package body KartenAllgemein is
             
          when others =>
             return LeseKartenDatenbanken.KampfFluss (FlussExtern    => KartenFluss,
-                                                   RasseExtern    => RasseExtern,
-                                                   KampfArtExtern => KartenKonstanten.KampfAngriff);
+                                                     RasseExtern    => RasseExtern,
+                                                     KampfArtExtern => KartenKonstanten.KampfAngriff);
       end case;
       
    end FlussAngriff;
@@ -396,7 +423,7 @@ package body KartenAllgemein is
             
          when others =>
             return LeseKartenDatenbanken.BewertungFluss (FlussExtern => KartenFluss,
-                                                       RasseExtern => RasseExtern);
+                                                         RasseExtern => RasseExtern);
       end case;
       
    end FlussBewertung;
@@ -754,8 +781,8 @@ package body KartenAllgemein is
             
          when others =>
             return LeseKartenDatenbanken.WirtschaftRessourcen (RessourceExtern         => KartenRessource,
-                                                             RasseExtern         => RasseExtern,
-                                                             WirtschaftArtExtern => KartenKonstanten.WirtschaftNahrung);
+                                                               RasseExtern         => RasseExtern,
+                                                               WirtschaftArtExtern => KartenKonstanten.WirtschaftNahrung);
       end case;
       
    end RessourceNahrung;
@@ -778,8 +805,8 @@ package body KartenAllgemein is
             
          when others =>
             return LeseKartenDatenbanken.WirtschaftRessourcen (RessourceExtern         => KartenRessource,
-                                                             RasseExtern         => RasseExtern,
-                                                             WirtschaftArtExtern => KartenKonstanten.WirtschaftProduktion);
+                                                               RasseExtern         => RasseExtern,
+                                                               WirtschaftArtExtern => KartenKonstanten.WirtschaftProduktion);
       end case;
       
    end RessourceProduktion;
@@ -802,8 +829,8 @@ package body KartenAllgemein is
             
          when others =>
             return LeseKartenDatenbanken.WirtschaftRessourcen (RessourceExtern         => KartenRessource,
-                                                             RasseExtern         => RasseExtern,
-                                                             WirtschaftArtExtern => KartenKonstanten.WirtschaftGeld);
+                                                               RasseExtern         => RasseExtern,
+                                                               WirtschaftArtExtern => KartenKonstanten.WirtschaftGeld);
       end case;
       
    end RessourceGeld;
@@ -826,8 +853,8 @@ package body KartenAllgemein is
             
          when others =>
             return LeseKartenDatenbanken.WirtschaftRessourcen (RessourceExtern         => KartenRessource,
-                                                             RasseExtern         => RasseExtern,
-                                                             WirtschaftArtExtern => KartenKonstanten.WirtschaftForschung);
+                                                               RasseExtern         => RasseExtern,
+                                                               WirtschaftArtExtern => KartenKonstanten.WirtschaftForschung);
       end case;
       
    end RessourceWissen;
@@ -850,8 +877,8 @@ package body KartenAllgemein is
             
          when others =>
             return LeseKartenDatenbanken.KampfRessource (RessourceExtern    => KartenRessource,
-                                                       RasseExtern    => RasseExtern,
-                                                       KampfArtExtern => KartenKonstanten.KampfVerteidigung);
+                                                         RasseExtern    => RasseExtern,
+                                                         KampfArtExtern => KartenKonstanten.KampfVerteidigung);
       end case;
       
    end RessourceVerteidigung;
@@ -874,8 +901,8 @@ package body KartenAllgemein is
             
          when others =>
             return LeseKartenDatenbanken.KampfRessource (RessourceExtern    => KartenRessource,
-                                                       RasseExtern    => RasseExtern,
-                                                       KampfArtExtern => KartenKonstanten.KampfAngriff);
+                                                         RasseExtern    => RasseExtern,
+                                                         KampfArtExtern => KartenKonstanten.KampfAngriff);
       end case;
       
    end RessourceAngriff;
@@ -898,7 +925,7 @@ package body KartenAllgemein is
             
          when others =>
             return LeseKartenDatenbanken.BewertungRessource (RessourceExtern => KartenRessource,
-                                                           RasseExtern => RasseExtern);
+                                                             RasseExtern => RasseExtern);
       end case;
       
    end RessourceBewertung;
@@ -912,7 +939,7 @@ package body KartenAllgemein is
    is begin
       
       return LeseKartenDatenbanken.Passierbarkeit (GrundExtern          => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
-                                                 WelcheUmgebungExtern => PassierbarkeitExtern);
+                                                   WelcheUmgebungExtern => PassierbarkeitExtern);
       
    end PassierbarGrund;
    

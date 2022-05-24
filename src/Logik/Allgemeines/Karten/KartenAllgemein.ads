@@ -18,6 +18,10 @@ package KartenAllgemein is
      (KartenGrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
       return Wide_Wide_String;
 
+   function BeschreibungBasisgrund
+     (KartenGrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
+      return Wide_Wide_String;
+
    function BeschreibungFluss
      (KartenFlussExtern : in KartengrundDatentypen.Kartenfluss_Vorhanden_Enum)
       return Wide_Wide_String;
@@ -412,6 +416,8 @@ private
    KartenRessource : KartengrundDatentypen.Karten_Ressourcen_Enum;
    KartenWeg : KartenVerbesserungDatentypen.Karten_Weg_Enum;
    KartenVerbesserung : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
+
+   BasisGrund : KartengrundDatentypen.Kartengrund_Enum;
 
    GrundAktuell : Positive;
    FlussAktuell : Positive;

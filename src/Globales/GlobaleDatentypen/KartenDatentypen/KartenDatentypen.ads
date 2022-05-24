@@ -26,6 +26,7 @@ package KartenDatentypen is
    subtype UmgebungsbereichZweiXAchse is UmgebungsbereichDreiXAchse range UmgebungsbereichDreiXAchse (UmgebungsbereichZwei'First) .. UmgebungsbereichDreiXAchse (UmgebungsbereichZwei'Last);
    subtype UmgebungsbereichEinsXAchse is UmgebungsbereichZweiXAchse range UmgebungsbereichZweiXAchse (UmgebungsbereichEins'First) .. UmgebungsbereichZweiXAchse (UmgebungsbereichEins'Last);
    
+   --------------------- Auch mal unabhängig von Kartenfeld machen und entsprechend eigene Umgebungsbereiche anlegen.
    -- Rückgabewert, Planeteninneres, Unterirdisch/Unterwasser, Oberfläche, Himmel, Weltraum/Orbit
    subtype Ebene is UmgebungsbereichDrei range -3 .. 2;
    subtype EbeneVorhanden is Ebene range -2 .. 2;
@@ -128,5 +129,6 @@ package KartenDatentypen is
    
    
    type WahrscheinlichkeitKartengenerator is range 0 .. 100;
+   subtype WahrscheinlichkeitKartengeneratorVorhanden is WahrscheinlichkeitKartengenerator range 1 .. WahrscheinlichkeitKartengenerator'Last;
 
 end KartenDatentypen;

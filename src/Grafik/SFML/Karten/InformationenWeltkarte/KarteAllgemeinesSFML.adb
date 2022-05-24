@@ -28,18 +28,20 @@ package body KarteAllgemeinesSFML is
       AktuelleKoordinaten := SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell;
       
       KartenGrund := LeseKarten.AktuellerGrund (KoordinatenExtern => AktuelleKoordinaten);
-                             
+      BasisGrund := LeseKarten.BasisGrund (KoordinatenExtern => AktuelleKoordinaten);
+      
+      --------------------------- Hügel
       case
-        LeseKarten.Hügel (KoordinatenExtern => AktuelleKoordinaten)
+        BasisGrund
       is
-         when True =>
+         when KartengrundDatentypen.Hügel_Enum | KartengrundDatentypen.Gebirge_Enum =>
             TextAnzeigen (1) := True;
               
             if
               AktuelleKoordinaten /= LetzteKoordinaten
             then
-               Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (1),
-                                                  str  => KartenAllgemein.BeschreibungGrund (KartenGrundExtern => KartengrundDatentypen.Hügel_Mit_Enum));
+               -- Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (1),
+               --                                   str  => KartenAllgemein.BeschreibungGrund (KartenGrundExtern => KartengrundDatentypen.Hügel_Mit_Enum));
       
                Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteAllgemeinesAccess (1),
                                              position => Textposition);
@@ -50,7 +52,7 @@ package body KarteAllgemeinesSFML is
                null;
             end if;
          
-         when False =>
+         when others =>
             TextAnzeigen (1) := False;
       end case;
       

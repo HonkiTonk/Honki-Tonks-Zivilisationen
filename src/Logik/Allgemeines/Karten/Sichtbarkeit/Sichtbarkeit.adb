@@ -19,7 +19,8 @@ with KennenLernen;
 
 package body Sichtbarkeit is
    
-   -- Über die Sachen hier nochmal drüber gehen. Eventuell auch Sicht nach oben einbauen?
+   ------------------------- Über die Sachen hier nochmal drüber gehen. Eventuell auch Sicht nach oben einbauen?
+   ------------------------- Hügel
    function SichtweiteErmitteln
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return KartenDatentypen.Sichtweite
@@ -44,6 +45,7 @@ package body Sichtbarkeit is
          
       else
          AktuellerGrund := LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenEinheit);
+         BasisGrund := LeseKarten.BasisGrund (KoordinatenExtern => KoordinatenEinheit);
       end if;
       
       if
@@ -51,7 +53,9 @@ package body Sichtbarkeit is
         or
           AktuellerGrund = KartengrundDatentypen.Hügel_Enum
           or
-            LeseKarten.Hügel (KoordinatenExtern => KoordinatenEinheit) = True
+            BasisGrund = KartengrundDatentypen.Gebirge_Enum
+            or
+              BasisGrund = KartengrundDatentypen.Hügel_Enum
       then
          return 3;
 
@@ -703,31 +707,37 @@ package body Sichtbarkeit is
       if
         KartenBlockadeWert.XAchse = KartenKonstanten.LeerXAchse
       then
-         null;
+         return True;
          
-      elsif
-        LeseKarten.AktuellerGrund (KoordinatenExtern => KartenBlockadeWert) = KartengrundDatentypen.Gebirge_Enum
+      else
+         AktuellerGrund := LeseKarten.AktuellerGrund (KoordinatenExtern => KartenBlockadeWert);
+         BasisGrund := LeseKarten.AktuellerGrund (KoordinatenExtern => KartenBlockadeWert);
+      end if;
+         
+      ------------------------- Hügel
+      if
+        AktuellerGrund = KartengrundDatentypen.Gebirge_Enum
         or
-          LeseKarten.AktuellerGrund (KoordinatenExtern => KartenBlockadeWert) = KartengrundDatentypen.Hügel_Enum
-        or
-          LeseKarten.Hügel (KoordinatenExtern => KartenBlockadeWert) = True
-        or
-          (SichtweiteExtern /= 3
-           and
-             (LeseKarten.AktuellerGrund (KoordinatenExtern => KartenBlockadeWert) = KartengrundDatentypen.Dschungel_Enum
+          AktuellerGrund = KartengrundDatentypen.Hügel_Enum
+          or
+            BasisGrund = KartengrundDatentypen.Gebirge_Enum
+            or
+              BasisGrund = KartengrundDatentypen.Hügel_Enum
               or
-                LeseKarten.AktuellerGrund (KoordinatenExtern => KartenBlockadeWert) = KartengrundDatentypen.Sumpf_Enum
-              or
-                LeseKarten.AktuellerGrund (KoordinatenExtern => KartenBlockadeWert) = KartengrundDatentypen.Wald_Enum))
+                (SichtweiteExtern /= 3
+                 and
+                   (AktuellerGrund = KartengrundDatentypen.Dschungel_Enum
+                    or
+                      AktuellerGrund = KartengrundDatentypen.Sumpf_Enum
+                    or
+                      AktuellerGrund = KartengrundDatentypen.Wald_Enum))
       then
          return False;
          
       else
-         null;
+         return True;
       end if;
-      
-      return True;
-      
+            
    end SichtbarkeitBlockadeTesten;
    
    

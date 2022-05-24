@@ -442,8 +442,10 @@ package body KartengeneratorLandschaft is
       if
         ZufallsgeneratorenKarten.KartengeneratorZufallswerte <= ZusatzHügel (AnzahlGleicherGrund)
       then
-         SchreibeKarten.Hügel (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
-                                HügelExtern       => True);
+         null;
+         ------------------------------ Hügel
+         -- SchreibeKarten.Hügel (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
+         --                      HügelExtern       => True);
          
       else
          null;

@@ -64,7 +64,7 @@ package GlobaleTexte is
    -- Text im Spiel.
    Rassen : TexteArray (1 .. RassenAnzahlBeschreibung) := (others => FehlenderText);
    
-   Kartenfelder : TexteArray (1 .. NameBeschreibungMultiplikator * 30) := (others => FehlenderText);
+   Kartenfelder : TexteArray (1 .. NameBeschreibungMultiplikator * 29) := (others => FehlenderText);
    Kartenflüsse : TexteArray (1 .. NameBeschreibungMultiplikator * FlussartenMultiplikator * 16) := (others => FehlenderText);
    Kartenressourcen : TexteArray (1 .. NameBeschreibungMultiplikator * 7) := (others => FehlenderText);
    

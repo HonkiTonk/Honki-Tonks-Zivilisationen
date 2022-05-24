@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with LeseKarten;
+-- with LeseKarten;
 
 package body SchreibeKarten is
 
@@ -11,13 +11,15 @@ package body SchreibeKarten is
       GrundExtern : in KartengrundDatentypen.Kartengrund_Enum)
    is begin
       
+      ----------------------- Hügel
       if
         GrundExtern = KartengrundDatentypen.Hügel_Enum
-        and
-          LeseKarten.Hügel (KoordinatenExtern => KoordinatenExtern) = True
+       -- and
+       --   LeseKarten.Hügel (KoordinatenExtern => KoordinatenExtern) = True
       then
-         Hügel (KoordinatenExtern => KoordinatenExtern,
-                 HügelExtern       => False);
+        -- Hügel (KoordinatenExtern => KoordinatenExtern,
+        --         HügelExtern       => False);
+        null;
             
       else
          null;
@@ -37,17 +39,6 @@ package body SchreibeKarten is
       Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).BasisGrund := GrundExtern;
       
    end BasisGrund;
-   
-   
-   
-   procedure Hügel
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      HügelExtern : in Boolean)
-   is begin
-      
-      Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Hügel := HügelExtern;
-      
-   end Hügel;
    
    
    

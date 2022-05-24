@@ -31,17 +31,6 @@ package body LeseKarten is
    
    
    
-   function Hügel
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return Boolean
-   is begin
-      
-      return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Hügel;
-      
-   end Hügel;
-   
-   
-   
    function Sichtbar
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

@@ -514,10 +514,14 @@ package body KarteStadtKonsole is
             null;
       end case;
       
+      --------------------------- Hügel
       case
-        LeseKarten.Hügel (KoordinatenExtern => KartenWert)
+        LeseKarten.BasisGrund (KoordinatenExtern => KartenWert)
       is
-         when True =>
+         when KartengrundDatentypen.Leer_Grund_Enum =>
+            null;
+         
+         when others =>
             -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
             --                                           TextDateiExtern        => GlobaleTexte.Beschreibungen_Kartenfelder_Kurz,
             --                                           ÜberschriftZeileExtern => 0,
@@ -526,9 +530,6 @@ package body KarteStadtKonsole is
             --                                           AbstandAnfangExtern    => GlobaleTexte.Leer,
             --                                           AbstandMitteExtern     => GlobaleTexte.Leer,
             --                                           AbstandEndeExtern      => GlobaleTexte.Leer);
-            null;
-         
-         when False =>
             null;
       end case;
       

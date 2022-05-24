@@ -4,7 +4,8 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Task_Identification; use Ada.Task_Identification;
 with Ada.Exceptions; use Ada.Exceptions;
 with Ada.Text_IO;
--- with System;
+
+with Systemchecks;
 
 with StartLogik;
 with StartGrafik;
@@ -12,7 +13,6 @@ with StartMusik;
 with StartSound;
 
 with InteraktionGrafiktask;
--- with KartenRecords;
 
 procedure Start
 is
@@ -201,14 +201,9 @@ begin
          UnerwarteterFehler := True;
 
       else
+         Systemchecks.Größenprüfung;
          delay 0.20;
       end if;
-
-      -- Ada.Text_IO.New_Line;
-      -- Ada.Text_IO.Put_Line (Item => "Bits:" & Integer (KartenRecords.FelderwertungArray'Size)'Image);
-      -- Ada.Text_IO.Put_Line (Item => "Bytes:" & Integer (KartenRecords.FelderwertungArray'Size / System.Storage_Unit)'Image);
-      -- Ada.Text_IO.Put_Line (Item => "Kilobytes:" & Integer (KartenRecords.FelderwertungArray'Size / System.Storage_Unit / 1024)'Image);
-      -- Ada.Text_IO.Put_Line (Item => "Megabytes:" & Integer (KartenRecords.FelderwertungArray'Size / System.Storage_Unit / 1024 / 1024)'Image);
 
    end loop SpielLäuftSchleife;
 

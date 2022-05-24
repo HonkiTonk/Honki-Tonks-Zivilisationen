@@ -83,7 +83,6 @@ package KartenRecords is
 
       AktuellerGrund : KartengrundDatentypen.Kartengrund_Enum;
       BasisGrund : KartengrundDatentypen.Kartengrund_Enum;
-      Hügel : Boolean;
       Sichtbar : SichtbarkeitArray;
       
       Fluss : KartengrundDatentypen.Kartenfluss_Enum;

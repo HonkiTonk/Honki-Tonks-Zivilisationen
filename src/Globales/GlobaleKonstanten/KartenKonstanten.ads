@@ -32,7 +32,6 @@ package KartenKonstanten is
    LeerWirtschaft : constant ProduktionDatentypen.ProduktionElement := 0;
    LeerKampf : constant KampfDatentypen.Kampfwerte := KampfDatentypen.Kampfwerte'First;
    
-   LeerHügel : constant Boolean := False;
    LeerSichtbar : constant Boolean := False;
    LeerDurchStadtBelegterGrund : constant KartenRecords.BelegterGrundRecord := (StadtKonstanten.LeerRasse, StadtKonstanten.LeerNummer);
    LeerFelderwertung : constant KartenDatentypen.GesamtbewertungFeld := 0;

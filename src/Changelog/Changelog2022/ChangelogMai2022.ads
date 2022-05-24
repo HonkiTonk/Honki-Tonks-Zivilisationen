@@ -42,31 +42,32 @@ package ChangelogMai2022 is
    
    
 
-   -- Version 0.01.0 => 0.01.0 (25.05.2022):
+   -- Version 0.01.0790 => 0.01.0 (25.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0 => 0.01.0 (24.05.2022):
+   -- Version 0.01.0780 => 0.01.0790 (24.05.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.01.0 => 0.01.0 (23.05.2022):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Größenprüfungen nach Systemchecks ausgelagert.
+   -- BasisGrund eingebaut um komplexere Grundmodifikationen zu erlauben, z. B. Wald auf Gebirgen.
+   -- Angefangen Hügel_Mit durch Basisgrund zu ersetzen.
+   -- Dateibenennungen angepasst damit sie keine Probleme unter Windows erzeugen.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0780 => 0.01.0 (22.05.2022):
+   -- Version 0.01.0780 => 0.01.0780 (23.05.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.01.0780 => 0.01.0780 (22.05.2022):
+   
+   -- null.
    
    
 

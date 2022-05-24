@@ -192,21 +192,22 @@ package body KarteInformationenKonsole is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
+      --------------------------- Hügel
       case
-        LeseKarten.Hügel (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell)
+        LeseKarten.BasisGrund (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell)
       is
-         when True =>
-         --   TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-          --                                            TextDateiExtern        => GlobaleTexte.Beschreibungen_Kartenfelder_Kurz,
-          --                                            ÜberschriftZeileExtern => 0,
-          --                                            ErsteZeileExtern       => KartengrundDatentypen.Kartengrund_Enum'Pos (KartengrundDatentypen.Hügel_Mit_Enum),
-          --                                            LetzteZeileExtern      => KartengrundDatentypen.Kartengrund_Enum'Pos (KartengrundDatentypen.Hügel_Mit_Enum),
-          --                                            AbstandAnfangExtern    => GlobaleTexte.Leer,
-           --                                           AbstandMitteExtern     => GlobaleTexte.Leer,
-           --                                           AbstandEndeExtern      => GlobaleTexte.Leer);
+         when KartengrundDatentypen.Leer_Grund_Enum =>
             null;
          
-         when False =>
+         when others =>
+            --   TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+            --                                            TextDateiExtern        => GlobaleTexte.Beschreibungen_Kartenfelder_Kurz,
+            --                                            ÜberschriftZeileExtern => 0,
+            --                                            ErsteZeileExtern       => KartengrundDatentypen.Kartengrund_Enum'Pos (KartengrundDatentypen.Hügel_Mit_Enum),
+            --                                            LetzteZeileExtern      => KartengrundDatentypen.Kartengrund_Enum'Pos (KartengrundDatentypen.Hügel_Mit_Enum),
+            --                                            AbstandAnfangExtern    => GlobaleTexte.Leer,
+            --                                           AbstandMitteExtern     => GlobaleTexte.Leer,
+            --                                           AbstandEndeExtern      => GlobaleTexte.Leer);
             null;
       end case;
       

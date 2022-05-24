@@ -57,13 +57,15 @@ package body KIAufgabeUmsetzen is
       
       EinheitKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
-      Grund := LeseKarten.AktuellerGrund (KoordinatenExtern => EinheitKoordinaten);
+      AktuellerGrund := LeseKarten.AktuellerGrund (KoordinatenExtern => EinheitKoordinaten);
       Ressourcen := LeseKarten.Ressource (KoordinatenExtern => EinheitKoordinaten);
+      BasisGrund := LeseKarten.BasisGrund (KoordinatenExtern => EinheitKoordinaten);
          
+      ------------------------- Hügel
       if
-        (Grund = KartengrundDatentypen.Hügel_Enum
+        (AktuellerGrund = KartengrundDatentypen.Hügel_Enum
          or
-           Grund = KartengrundDatentypen.Gebirge_Enum
+           AktuellerGrund = KartengrundDatentypen.Gebirge_Enum
          or
            Ressourcen = KartengrundDatentypen.Kohle_Enum
          or
@@ -71,7 +73,9 @@ package body KIAufgabeUmsetzen is
          or
            Ressourcen = KartengrundDatentypen.Gold_Enum
          or
-           LeseKarten.Hügel (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = True)
+           BasisGrund = KartengrundDatentypen.Hügel_Enum
+         or
+           BasisGrund = KartengrundDatentypen.Gebirge_Enum)
         and
           Aufgaben.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                        BefehlExtern             => TastenbelegungDatentypen.Mine_Bauen_Enum)
@@ -80,7 +84,7 @@ package body KIAufgabeUmsetzen is
          Befehl := TastenbelegungDatentypen.Mine_Bauen_Enum;
          
       elsif
-        Grund = KartengrundDatentypen.Eis_Enum
+        AktuellerGrund = KartengrundDatentypen.Eis_Enum
         and
           Aufgaben.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                        BefehlExtern             => TastenbelegungDatentypen.Festung_Bauen_Enum)

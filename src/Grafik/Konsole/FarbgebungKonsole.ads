@@ -51,7 +51,6 @@ private
                                   KartengrundDatentypen.Planetenkern_Enum                                                    => "48;2;205;000;000m",
                                   KartengrundDatentypen.Unterwald_Enum                                                       => "48;2;127;255;212m",
                                   KartengrundDatentypen.Korallen_Enum                                                        => "48;2;255;114;086m",
-                                  KartengrundDatentypen.Hügel_Mit_Enum                                                       => "48;2;000;000;000m",
                                   KartengrundDatentypen.Magnesiowüstit_Enum                                                  => "48;2;000;000;000m",
                                   KartengrundDatentypen.Perowskit_Enum                                                       => "48;2;000;000;000m",
                                   KartengrundDatentypen.Majorit_Enum                                                         => "48;2;000;000;000m",
@@ -84,9 +83,6 @@ private
       RessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Vorhanden_Enum);
    
    procedure FarbenFeld
-     (GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
-     with
-       Pre =>
-         (GrundExtern /= KartengrundDatentypen.Hügel_Mit_Enum);
+     (GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum);
 
 end FarbgebungKonsole;

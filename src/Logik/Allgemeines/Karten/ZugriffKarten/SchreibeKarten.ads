@@ -34,15 +34,6 @@ package SchreibeKarten is
           and
             GrundExtern /= KartengrundDatentypen.Leer_Grund_Enum);
    
-   procedure Hügel
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      HügelExtern : in Boolean)
-     with
-       Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
-          and
-            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
-   
    procedure Sichtbar
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;

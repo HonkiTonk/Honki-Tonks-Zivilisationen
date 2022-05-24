@@ -22,7 +22,9 @@ package body RodenAnlegen is
         Koordinaten.EAchse
       is
          when KartenKonstanten.OberflächeKonstante =>
-            NeuerGrund := HügelSetzen (LeseKarten.Hügel (KoordinatenExtern => Koordinaten));
+            ----------------------- Hügel
+            -- NeuerGrund := HügelSetzen (LeseKarten.Hügel (KoordinatenExtern => Koordinaten));
+            null;
             
          when KartenKonstanten.UnterflächeKonstante =>
             if

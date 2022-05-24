@@ -26,8 +26,10 @@ package body WaldAnlegen is
             if
               LeseKarten.AktuellerGrund (KoordinatenExtern => Koordinaten) = KartengrundDatentypen.Hügel_Enum
             then
-               SchreibeKarten.Hügel (KoordinatenExtern => Koordinaten,
-                                      HügelExtern       => True);
+               --------------------------- Hügel
+               -- SchreibeKarten.Hügel (KoordinatenExtern => Koordinaten,
+               --                       HügelExtern       => True);
+               null;
             
             else
                null;

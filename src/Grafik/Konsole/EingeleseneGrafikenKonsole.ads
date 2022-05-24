@@ -271,7 +271,6 @@ package EingeleseneGrafikenKonsole is
                                                     KartengrundDatentypen.Dschungel_Enum      => KartenKonstanten.LeerKartenGrafik,
                                                     KartengrundDatentypen.Küstengewässer_Enum => KartenKonstanten.LeerKartenGrafik,
                                                     KartengrundDatentypen.Sumpf_Enum          => KartenKonstanten.LeerKartenGrafik,
-                                                    KartengrundDatentypen.Hügel_Mit_Enum      => KartenKonstanten.LeerKartenGrafik,
                                                     -- Normal
       
                                                     
