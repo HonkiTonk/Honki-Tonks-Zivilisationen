@@ -28,7 +28,7 @@ package KartenDatentypen is
    
    --------------------- Auch mal unabhängig von Kartenfeld machen und entsprechend eigene Umgebungsbereiche anlegen.
    -- Rückgabewert, Planeteninneres, Unterirdisch/Unterwasser, Oberfläche, Himmel, Weltraum/Orbit
-   subtype Ebene is UmgebungsbereichDrei range -3 .. 2;
+   subtype Ebene is UmgebungsbereichDrei range -3 .. 3;
    subtype EbeneVorhanden is Ebene range -2 .. 2;
    
    type SichtbereichAnfangEndeArray is array (1 .. 4) of Kartenfeld;

@@ -21,31 +21,29 @@ package ChangelogMai2022 is
    
    
 
-   -- Version 0.01.0 => 0.01.0 (28.05.2022):
+   -- Version 0.01.0800 => 0.01.0 (28.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0 => 0.01.0 (27.05.2022):
+   -- Version 0.01.0790 => 0.01.0800 (27.05.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.01.0 => 0.01.0 (26.05.2022):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Angefangen die Textanzeigen für die Zusatzinformationen über die Rassen zu überarbeiten.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0790 => 0.01.0 (25.05.2022):
+   -- Version 0.01.0790 => 0.01.0790 (26.05.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null
+   
+   
+
+   -- Version 0.01.0790 => 0.01.0790 (25.05.2022):
+   
+   -- null.
    
    
 

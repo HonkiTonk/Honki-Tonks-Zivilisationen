@@ -29,40 +29,94 @@ package body AnzeigeZusatztextRassenmenueSFML is
       
       Textbearbeitung (AktuelleRasseExtern => RasseAnzeigen);
       
-      AktuellerTextbereichEins := TextKonstanten.LeerUnboundedString;
-      AktuellerTextbereichZwei := TextKonstanten.LeerUnboundedString;
-      BreiteTextfeld := Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) * VerhältnisTextfeld.x;
-      
-      Multiplikator := 1.00;
-                    
-      TextbereichSchleife:
-      for TextbereichSchleifenwert in 1 .. To_Wide_Wide_String (Source => RassenTexte (RasseAnzeigen))'Last loop
-         
-         AktuellerTextbereichEins := AktuellerTextbereichEins & To_Wide_Wide_String (Source => RassenTexte (RasseAnzeigen)) (TextbereichSchleifenwert);
-         AktuellerTextbereichZwei := AktuellerTextbereichZwei & To_Wide_Wide_String (Source => RassenTexte (RasseAnzeigen)) (TextbereichSchleifenwert);
-            
-         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ZusatztextRassenAccess (RasseAnzeigen),
-                                            str  => To_Wide_Wide_String (Source => AktuellerTextbereichEins));
-         
-         if
-           Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.ZusatztextRassenAccess (RasseAnzeigen)).width >= Multiplikator * BreiteTextfeld
-         then
-            AktuellerTextbereichZwei := AktuellerTextbereichZwei & Ada.Characters.Wide_Wide_Latin_1.LF;
-            Multiplikator := Multiplikator + 1.00;
-            
-         else
-            null;
-         end if;
-            
-      end loop TextbereichSchleife;
-      
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ZusatztextRassenAccess (RasseAnzeigen),
-                                         str  => To_Wide_Wide_String (Source => AktuellerTextbereichZwei));
-         
+                                         str  => ZeilenumbruchEinbauen (RasseExtern => RasseAnzeigen));
+      
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                          text         => TextaccessVariablen.ZusatztextRassenAccess (RasseAnzeigen));
       
    end AnzeigeZusatztextRassenmenü;
+   
+   
+   
+   function ZeilenumbruchEinbauen
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      return Wide_Wide_String
+   is begin
+      
+      AktuellerTextbereichEins := TextKonstanten.LeerUnboundedString;
+      AktuellerTextbereichZwei := TextKonstanten.LeerUnboundedString;
+      BreiteTextfeld := Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) * VerhältnisTextfeld.x;
+         
+      SchleifenAnfang := 1;
+      SchleifenEnde := To_Wide_Wide_String (Source => RassenTexte (RasseExtern))'Last;
+      Multiplikator := 1.00;
+      Zwischenwert := -1;
+      
+      TestSchleife:
+      loop
+         -------------------- Hier eventuell gleich mehrere Zeichen einlesen um Zeit zu sparen?
+         TextbereichSchleife:
+         for TextbereichSchleifenwert in SchleifenAnfang .. SchleifenEnde loop
+         
+            AktuellerTextbereichEins := AktuellerTextbereichEins & To_Wide_Wide_String (Source => RassenTexte (RasseExtern)) (TextbereichSchleifenwert);
+            
+            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ZusatztextRassenAccess (RasseExtern),
+                                               str  => To_Wide_Wide_String (Source => AktuellerTextbereichEins));
+            
+            if
+              To_Wide_Wide_String (Source => RassenTexte (RasseExtern)) (TextbereichSchleifenwert) = Ada.Characters.Wide_Wide_Latin_1.Space
+            then
+               Zwischenwert := TextbereichSchleifenwert;
+               
+            else
+               null;
+            end if;
+            
+            if
+              Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.ZusatztextRassenAccess (RasseExtern)).width >= Multiplikator * BreiteTextfeld
+            then
+               case
+                 Zwischenwert
+               is
+                  when -1 =>
+                     AktuellerTextbereichZwei := AktuellerTextbereichEins & Ada.Characters.Wide_Wide_Latin_1.LF;
+                     
+                  when others =>
+                     AktuellerTextbereichZwei
+                       := AktuellerTextbereichZwei & To_Unbounded_Wide_Wide_String (Source => To_Wide_Wide_String (Source => RassenTexte (RasseExtern)) (SchleifenAnfang .. Zwischenwert - 1))
+                       & Ada.Characters.Wide_Wide_Latin_1.LF;
+               end case;
+               
+               Multiplikator := Multiplikator + 1.00;
+               SchleifenAnfang := Zwischenwert + 1;
+               
+            elsif
+              TextbereichSchleifenwert = SchleifenEnde
+            then
+               AktuellerTextbereichZwei := AktuellerTextbereichZwei & AktuellerTextbereichEins;
+               exit TestSchleife;
+            
+            else
+               null;
+            end if;
+            
+         end loop TextbereichSchleife;
+         
+         if
+           Zwischenwert > SchleifenEnde
+         then
+            exit TestSchleife;
+         
+         else
+            AktuellerTextbereichEins := TextKonstanten.LeerUnboundedString;
+         end if;
+            
+      end loop TestSchleife;
+      
+      return To_Wide_Wide_String (Source => AktuellerTextbereichZwei);
+      
+   end ZeilenumbruchEinbauen;
    
    
    

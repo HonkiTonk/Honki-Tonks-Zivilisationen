@@ -25,6 +25,11 @@ private
 
    LetzteRasse : RassenDatentypen.Rassen_Enum := RassenDatentypen.Keine_Rasse_Enum;
 
+   SchleifenAnfang : Positive;
+   SchleifenEnde : Positive;
+
+   Zwischenwert : Integer;
+
    Multiplikator : Float;
    BreiteTextfeld : Float;
 
@@ -52,5 +57,12 @@ private
 
    function TextFestlegen
      return Boolean;
+
+   function ZeilenumbruchEinbauen
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      return Wide_Wide_String
+     with
+       Post =>
+         (ZeilenumbruchEinbauen'Result'Length > 0);
 
 end AnzeigeZusatztextRassenmenueSFML;
