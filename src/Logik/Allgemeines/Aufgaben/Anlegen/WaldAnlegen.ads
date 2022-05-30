@@ -22,6 +22,6 @@ private
 
    NeuerGrund : KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
 
-   Koordinaten : KartenRecords.AchsenKartenfeldPositivRecord;
+   Koordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
 
 end WaldAnlegen;

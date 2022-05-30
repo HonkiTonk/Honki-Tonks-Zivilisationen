@@ -27,7 +27,7 @@ private
    type BeliebigerFlusswertArray is array (WahrscheinlichkeitFlussArray'Range) of KartenDatentypen.WahrscheinlichkeitKartengenerator;
    BeliebigerFlusswert : BeliebigerFlusswertArray;
 
-   type KartenWertArray is array (WahrscheinlichkeitFlussArray'Range) of KartenRecords.AchsenKartenfeldPositivRecord;
+   type KartenWertArray is array (WahrscheinlichkeitFlussArray'Range) of KartenRecords.AchsenKartenfeldNaturalRecord;
    KartenWert : KartenWertArray;
    
    procedure GenerierungFlüsse;
@@ -38,7 +38,7 @@ private
       
       
    function FlussumgebungTesten
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
      with
        Pre =>

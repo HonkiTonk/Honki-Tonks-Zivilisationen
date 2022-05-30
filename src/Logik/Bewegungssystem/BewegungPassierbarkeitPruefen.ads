@@ -17,7 +17,7 @@ package BewegungPassierbarkeitPruefen is
    
    function PassierbarkeitPrüfenNummer
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
      with
        Pre =>
@@ -32,7 +32,7 @@ package BewegungPassierbarkeitPruefen is
    function PassierbarkeitPrüfenID
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenID;
-      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
      with
        Pre =>
@@ -44,7 +44,7 @@ package BewegungPassierbarkeitPruefen is
 
    function InStadtEntladbar
      (TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
      with
        Pre =>
@@ -78,7 +78,7 @@ private
 
    BenötigteFelder : Positive;
    
-   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    TransportplatzEntladen : EinheitenRecords.TransporterArray;
    
@@ -86,7 +86,7 @@ private
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       UmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Vorhanden_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenID;
-      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
      with
        Pre =>
@@ -99,7 +99,7 @@ private
    function IstNichtPassierbar
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       UmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Vorhanden_Enum;
-      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
      with
        Pre =>
@@ -111,7 +111,7 @@ private
      
    function IstPassierbar
      (UmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Vorhanden_Enum;
-      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
      with
        Pre =>

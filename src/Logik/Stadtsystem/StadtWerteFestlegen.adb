@@ -256,7 +256,7 @@ package body StadtWerteFestlegen is
    
    function FeldBewerten
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       BelegenOderEntfernen : in Boolean)
       return ProduktionDatentypen.GesamtproduktionStadt
    is begin
@@ -280,7 +280,7 @@ package body StadtWerteFestlegen is
    
    function NahrungBewertung
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       BelegenOderEntfernen : in Boolean)
       return ProduktionDatentypen.GesamtproduktionStadt
    is begin
@@ -321,7 +321,7 @@ package body StadtWerteFestlegen is
    
    function ProduktionBewertung
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       BelegenOderEntfernen : in Boolean)
       return ProduktionDatentypen.GesamtproduktionStadt
    is begin
@@ -362,7 +362,7 @@ package body StadtWerteFestlegen is
 
    function GeldBewertung
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       BelegenOderEntfernen : in Boolean)
       return ProduktionDatentypen.GesamtproduktionStadt
    is begin
@@ -403,7 +403,7 @@ package body StadtWerteFestlegen is
    
    function WissenBewertung
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       BelegenOderEntfernen : in Boolean)
       return ProduktionDatentypen.GesamtproduktionStadt
    is begin

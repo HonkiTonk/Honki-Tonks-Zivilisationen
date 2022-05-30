@@ -16,7 +16,7 @@ package StadtSuchen is
    
    function KoordinatenStadtMitRasseSuchen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return StadtDatentypen.MaximaleStädteMitNullWert
      with
        Pre =>
@@ -30,7 +30,7 @@ package StadtSuchen is
            (KoordinatenStadtMitRasseSuchen'Result <= SpielVariablen.Grenzen (RasseExtern).Städtegrenze);
    
    function KoordinatenStadtOhneRasseSuchen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return StadtRecords.RasseStadtnummerRecord
      with
        Pre  =>
@@ -40,7 +40,7 @@ package StadtSuchen is
 
    function KoordinatenStadtOhneSpezielleRasseSuchen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return StadtRecords.RasseStadtnummerRecord
      with
        Pre  =>

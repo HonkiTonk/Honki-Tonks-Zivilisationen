@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with KartenDatentypen; use KartenDatentypen;
 
 with FelderwerteFestlegen;
-with KartengeneratorVariablen;
+with Karten;
 
 package body KartenfelderBewerten is
 
@@ -20,9 +20,9 @@ package body KartenfelderBewerten is
       is begin
          
          YAchseUnterwasserSchleife:
-         for YAchseUnterwasserSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.YAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse loop
+         for YAchseUnterwasserSchleifenwert in KartenDatentypen.KartenfeldPositiv'First .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse loop
             XAchseUnterwasserSchleife:
-            for XAchseUnterwasserSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.XAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.XAchse loop
+            for XAchseUnterwasserSchleifenwert in KartenDatentypen.KartenfeldPositiv'First .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse loop
                
                FelderwerteFestlegen.KartenfelderBewertenKleineSchleife (RasseExtern       => RasseExtern,
                                                                         KoordinatenExtern => (-1, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert));
@@ -38,9 +38,9 @@ package body KartenfelderBewerten is
       is begin
          
          YAchseInneresSchleife:
-         for YAchseInneresSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.YAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse loop
+         for YAchseInneresSchleifenwert in KartenDatentypen.KartenfeldPositiv'First .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse loop
             XAchseInneresSchleife:
-            for XAchseInneresSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.XAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.XAchse loop
+            for XAchseInneresSchleifenwert in KartenDatentypen.KartenfeldPositiv'First .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse loop
                
                FelderwerteFestlegen.KartenfelderBewertenKleineSchleife (RasseExtern       => RasseExtern,
                                                                         KoordinatenExtern => (-2, YAchseInneresSchleifenwert, XAchseInneresSchleifenwert));
@@ -53,9 +53,9 @@ package body KartenfelderBewerten is
    begin
       
       YAchseSchleife:
-      for YAchseSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.YAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse loop
+      for YAchseSchleifenwert in KartenDatentypen.KartenfeldPositiv'First .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse loop
          XAchseSchleife:
-         for XAchseSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.XAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.XAchse loop
+         for XAchseSchleifenwert in KartenDatentypen.KartenfeldPositiv'First .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse loop
             
             FelderwerteFestlegen.KartenfelderBewertenKleineSchleife (RasseExtern       => RasseExtern,
                                                                      KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert));

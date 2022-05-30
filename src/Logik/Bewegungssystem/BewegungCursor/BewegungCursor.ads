@@ -28,8 +28,8 @@ private
 
    KoordinatenPunkt : SystemRecords.ZahlenEingabeRecord;
 
-   Position : KartenRecords.AchsenKartenfeldPositivRecord;
-   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
+   Position : KartenRecords.AchsenKartenfeldNaturalRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    Änderung : KartenRecords.AchsenKartenfeldRecord;
    

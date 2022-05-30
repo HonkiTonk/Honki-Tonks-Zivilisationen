@@ -19,7 +19,7 @@ package body LeseStadtGebaut is
    
    function Koordinaten
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return KartenRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
       
       if

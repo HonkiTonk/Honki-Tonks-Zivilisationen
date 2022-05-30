@@ -37,6 +37,7 @@ package SystemKonstanten is
                                            MenueDatentypen.Rassen_Menü_Enum             => 21,
 
                                            -- Komplexe Auswahl.
+                                           MenueDatentypen.Kartenpole_Menü_Enum         => 8,
                                            MenueDatentypen.Kartenform_Menü_Enum         => 13,
 
                                            -- Unsortiert.
@@ -68,6 +69,7 @@ package SystemKonstanten is
                                                  MenueDatentypen.Rassen_Menü_Enum             => 0,
 
                                                  -- Komplexe Auswahl.
+                                                 MenueDatentypen.Kartenpole_Menü_Enum         => 0,
                                                  MenueDatentypen.Kartenform_Menü_Enum         => 0,
 
                                                  -- Unsortiert.
@@ -98,6 +100,7 @@ package SystemKonstanten is
                                                 MenueDatentypen.Rassen_Menü_Enum             => 1,
 
                                                 -- Komplexe Auswahl.
+                                                MenueDatentypen.Kartenpole_Menü_Enum         => 1,
                                                 MenueDatentypen.Kartenform_Menü_Enum         => 5,
 
                                                 -- Unsortiert.

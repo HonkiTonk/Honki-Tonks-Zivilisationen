@@ -11,16 +11,16 @@ with DatenbankRecords;
 
 package KartenRecordKonstanten is
 
-   LeerKartenKoordinaten : constant KartenRecords.AchsenKartenfeldPositivRecord := (
+   LeerKartenKoordinaten : constant KartenRecords.AchsenKartenfeldNaturalRecord := (
                                                                                     EAchse => KartenKonstanten.LeerEAchse,
                                                                                     YAchse => KartenKonstanten.LeerYAchse,
                                                                                     XAchse => KartenKonstanten.LeerXAchse
                                                                                    );
    
-   LeerKartenYXKoordinate : constant KartenRecords.YXAchsenKartenfeldMitNullwertRecord := (
-                                                                                           YAchse => KartenKonstanten.LeerYAchse,
-                                                                                           XAchse => KartenKonstanten.LeerXAchse
-                                                                                          );
+   LeerKartenYXKoordinate : constant KartenRecords.YXAchsenKartenfeldNaturalRecord := (
+                                                                                       YAchse => KartenKonstanten.LeerYAchse,
+                                                                                       XAchse => KartenKonstanten.LeerXAchse
+                                                                                      );
    
    LeerKartenListe : constant DatenbankRecords.KartenlisteRecord := (
                                                                      Bewertung      => (others => KartenKonstanten.LeerBewertung),
@@ -38,7 +38,7 @@ package KartenRecordKonstanten is
    LeerWeltkarte : constant KartenRecords.KartenRecord := (
                                                            AktuellerGrund          => KartengrundDatentypen.Leer_Grund_Enum,
                                                            -------------------------------- Hügel wird aktuell noch nicht richtig belegt, später im Kartengenerator einbauen und hier wieder auf Leer setzen.
-                                                           BasisGrund              => KartengrundDatentypen.Flachland_Enum,
+                                                           BasisGrund              => KartengrundDatentypen.Leer_Grund_Enum,
                                                            Sichtbar                => (others => KartenKonstanten.LeerSichtbar),
                                                            Fluss                   => KartengrundDatentypen.Leer_Fluss_Enum,
                                                            Ressource               => KartengrundDatentypen.Leer_Ressource_Enum,
@@ -59,10 +59,10 @@ package KartenRecordKonstanten is
                                                                    );
    
    KartenpoleStandard : constant KartenRecords.KartenpoleRecord := (
-                                                                    YAchseNorden => KartenDatentypen.Kartenpol_Vorhanden_Enum,
-                                                                    YAchseSüden  => KartenDatentypen.Kartenpol_Vorhanden_Enum,
-                                                                    XAchseWesten => KartenDatentypen.Kartenpol_Nicht_Vorhanden_Enum,
-                                                                    XAchseOsten  => KartenDatentypen.Kartenpol_Nicht_Vorhanden_Enum
+                                                                    Nordpol => KartenDatentypen.Kartenpol_Vorhanden_Enum,
+                                                                    Südpol  => KartenDatentypen.Kartenpol_Vorhanden_Enum,
+                                                                    Westpol => KartenDatentypen.Kartenpol_Nicht_Vorhanden_Enum,
+                                                                    Ostpol  => KartenDatentypen.Kartenpol_Nicht_Vorhanden_Enum
                                                                    );
 
    LeerVerbesserungListe : constant DatenbankRecords.VerbesserungenWegeListeRecord := (
@@ -83,179 +83,27 @@ package KartenRecordKonstanten is
 
                                                                               -- Arm, Wenig, Mittel, Viel, Überfluss
                                                                               Kartenressourcen => KartenDatentypen.Kartenressourcen_Mittel_Enum,
-
+                                                                              
                                                                               Kartenpole       => KartenpoleStandard,
 
                                                                               -- EAchsenübergang, YAchsenübergang, XAchsenübergang
                                                                               Kartenform       => KartenformStandard
                                                                              );
    
-   ---------------------------- Das hier sollte woanders hin, oder? Auch vom Nutzer konfigurierbar machen? Positionsabhängige Dicke ermöglichen?
+   ---------------------------- Das hier sollte woanders hin, oder?
    ---------------------------- Polgrund auch definierbar machen, so dass die Pole nicht nur aus Eis bestehen?
-   ---------------------------- Bei der Nutzereinstellung darauf achten dass die maximale Größe pro Polregion auf die halbe Kartengröße beschränkt ist.
-   type EisgebietArray is array (KartenDatentypen.Kartengröße_Verwendet_Enum'Range, KartenDatentypen.Himmelsrichtungen_Enum'Range) of KartenDatentypen.KartenfeldPositivMitNullwert;
-   Eisrand : constant EisgebietArray := (
-                                         KartenDatentypen.Kartengröße_20_20_Enum =>
-                                           (
-                                            KartenDatentypen.Norden_Enum => 1,
-                                            KartenDatentypen.Süden_Enum  => 1,
-                                            KartenDatentypen.Westen_Enum => 1,
-                                            KartenDatentypen.Osten_Enum  => 1
-                                           ),
-                                             
-                                         KartenDatentypen.Kartengröße_40_40_Enum =>
-                                           (
-                                            KartenDatentypen.Norden_Enum => 1,
-                                            KartenDatentypen.Süden_Enum  => 1,
-                                            KartenDatentypen.Westen_Enum => 1,
-                                            KartenDatentypen.Osten_Enum  => 1
-                                           ),
-                                           
-                                         KartenDatentypen.Kartengröße_80_80_Enum =>
-                                           (
-                                            KartenDatentypen.Norden_Enum => 2,
-                                            KartenDatentypen.Süden_Enum  => 2,
-                                            KartenDatentypen.Westen_Enum => 2,
-                                            KartenDatentypen.Osten_Enum  => 2
-                                           ),
-                                           
-                                         KartenDatentypen.Kartengröße_120_80_Enum =>
-                                           (
-                                            KartenDatentypen.Norden_Enum => 3,
-                                            KartenDatentypen.Süden_Enum  => 3,
-                                            KartenDatentypen.Westen_Enum => 3,
-                                            KartenDatentypen.Osten_Enum  => 3
-                                           ),
-                                           
-                                         KartenDatentypen.Kartengröße_120_160_Enum =>
-                                           (
-                                            KartenDatentypen.Norden_Enum => 3,
-                                            KartenDatentypen.Süden_Enum  => 3,
-                                            KartenDatentypen.Westen_Enum => 3,
-                                            KartenDatentypen.Osten_Enum  => 3
-                                           ),
-                                           
-                                         KartenDatentypen.Kartengröße_160_160_Enum =>
-                                           (
-                                            KartenDatentypen.Norden_Enum => 4,
-                                            KartenDatentypen.Süden_Enum  => 4,
-                                            KartenDatentypen.Westen_Enum => 4,
-                                            KartenDatentypen.Osten_Enum  => 4
-                                           ),
-                                           
-                                         KartenDatentypen.Kartengröße_240_240_Enum =>
-                                           (
-                                            KartenDatentypen.Norden_Enum => 6,
-                                            KartenDatentypen.Süden_Enum  => 6,
-                                            KartenDatentypen.Westen_Enum => 6,
-                                            KartenDatentypen.Osten_Enum  => 6
-                                           ),
-                                           
-                                         KartenDatentypen.Kartengröße_320_320_Enum =>
-                                           (
-                                            KartenDatentypen.Norden_Enum => 8,
-                                            KartenDatentypen.Süden_Enum  => 8,
-                                            KartenDatentypen.Westen_Enum => 8,
-                                            KartenDatentypen.Osten_Enum  => 8
-                                           ),
-                                           
-                                         KartenDatentypen.Kartengröße_1000_1000_Enum =>
-                                           (
-                                            KartenDatentypen.Norden_Enum => 24,
-                                            KartenDatentypen.Süden_Enum  => 24,
-                                            KartenDatentypen.Westen_Enum => 24,
-                                            KartenDatentypen.Osten_Enum  => 24
-                                           ),
-                                           
-                                         KartenDatentypen.Kartengröße_Nutzer_Enum =>
-                                           (
-                                            KartenDatentypen.Norden_Enum => 1,
-                                            KartenDatentypen.Süden_Enum  => 1,
-                                            KartenDatentypen.Westen_Enum => 1,
-                                            KartenDatentypen.Osten_Enum  => 1
-                                           )
-                                        );
+   Eisrand : constant KartenDatentypen.PolregionenArray := (
+                                                            KartenDatentypen.Norden_Enum => 1,
+                                                            KartenDatentypen.Süden_Enum  => 1,
+                                                            KartenDatentypen.Westen_Enum => 0,
+                                                            KartenDatentypen.Osten_Enum  => 0
+                                                           );
 
-   Eisschild : constant EisgebietArray := (
-                                           KartenDatentypen.Kartengröße_20_20_Enum =>
-                                             (
-                                              KartenDatentypen.Norden_Enum => 3,
-                                              KartenDatentypen.Süden_Enum  => 3,
-                                              KartenDatentypen.Westen_Enum => 3,
-                                              KartenDatentypen.Osten_Enum  => 3
-                                             ),
-                                               
-                                           KartenDatentypen.Kartengröße_40_40_Enum =>
-                                             (
-                                              KartenDatentypen.Norden_Enum => 3,
-                                              KartenDatentypen.Süden_Enum  => 3,
-                                              KartenDatentypen.Westen_Enum => 3,
-                                              KartenDatentypen.Osten_Enum  => 3
-                                             ),
-                                               
-                                           KartenDatentypen.Kartengröße_80_80_Enum =>
-                                             (
-                                              KartenDatentypen.Norden_Enum => 6,
-                                              KartenDatentypen.Süden_Enum  => 6,
-                                              KartenDatentypen.Westen_Enum => 6,
-                                              KartenDatentypen.Osten_Enum  => 6
-                                             ),
-                                               
-                                           KartenDatentypen.Kartengröße_120_80_Enum =>
-                                             (
-                                              KartenDatentypen.Norden_Enum => 9,
-                                              KartenDatentypen.Süden_Enum  => 9,
-                                              KartenDatentypen.Westen_Enum => 9,
-                                              KartenDatentypen.Osten_Enum  => 9
-                                             ),
-                                               
-                                           KartenDatentypen.Kartengröße_120_160_Enum =>
-                                             (
-                                              KartenDatentypen.Norden_Enum => 9,
-                                              KartenDatentypen.Süden_Enum  => 9,
-                                              KartenDatentypen.Westen_Enum => 9,
-                                              KartenDatentypen.Osten_Enum  => 9
-                                             ),
-                                               
-                                           KartenDatentypen.Kartengröße_160_160_Enum =>
-                                             (
-                                              KartenDatentypen.Norden_Enum => 12,
-                                              KartenDatentypen.Süden_Enum  => 12,
-                                              KartenDatentypen.Westen_Enum => 12,
-                                              KartenDatentypen.Osten_Enum  => 12
-                                             ),
-                                               
-                                           KartenDatentypen.Kartengröße_240_240_Enum =>
-                                             (
-                                              KartenDatentypen.Norden_Enum => 18,
-                                              KartenDatentypen.Süden_Enum  => 18,
-                                              KartenDatentypen.Westen_Enum => 18,
-                                              KartenDatentypen.Osten_Enum  => 18
-                                             ),
-                                               
-                                           KartenDatentypen.Kartengröße_320_320_Enum =>
-                                             (
-                                              KartenDatentypen.Norden_Enum => 24,
-                                              KartenDatentypen.Süden_Enum  => 24,
-                                              KartenDatentypen.Westen_Enum => 24,
-                                              KartenDatentypen.Osten_Enum  => 24
-                                             ),
-                                           
-                                           KartenDatentypen.Kartengröße_1000_1000_Enum =>
-                                             (
-                                              KartenDatentypen.Norden_Enum => 72,
-                                              KartenDatentypen.Süden_Enum  => 72,
-                                              KartenDatentypen.Westen_Enum => 72,
-                                              KartenDatentypen.Osten_Enum  => 72
-                                             ),
-                                               
-                                           KartenDatentypen.Kartengröße_Nutzer_Enum =>
-                                             (
-                                              KartenDatentypen.Norden_Enum => 1,
-                                              KartenDatentypen.Süden_Enum  => 1,
-                                              KartenDatentypen.Westen_Enum => 1,
-                                              KartenDatentypen.Osten_Enum  => 1
-                                             )
-                                          );
+   Eisschild : constant KartenDatentypen.PolregionenArray := (
+                                                              KartenDatentypen.Norden_Enum => 3,
+                                                              KartenDatentypen.Süden_Enum  => 3,
+                                                              KartenDatentypen.Westen_Enum => 0,
+                                                              KartenDatentypen.Osten_Enum  => 0
+                                                             );
 
 end KartenRecordKonstanten;

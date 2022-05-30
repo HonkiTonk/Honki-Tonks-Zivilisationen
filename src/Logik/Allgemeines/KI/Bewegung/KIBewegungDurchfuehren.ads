@@ -24,7 +24,7 @@ private
    
    FremdeEinheit : EinheitenRecords.RasseEinheitnummerRecord;
    
-   NeuePosition : KartenRecords.AchsenKartenfeldPositivRecord;
+   NeuePosition : KartenRecords.AchsenKartenfeldNaturalRecord;
 
    procedure BewegungDurchführen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

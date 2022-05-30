@@ -12,7 +12,7 @@ with Kartenkoordinatenberechnungssystem;
 package body Wegeplatzierungssystem is
 
    procedure WegBerechnen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       WegartExtern : in AufgabenDatentypen.Einheitenbefehle_Wege_Enum)
    is begin
       
@@ -73,7 +73,7 @@ package body Wegeplatzierungssystem is
    
    
    procedure BerechnungLinks
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
       
       WelcherWeg := LeseKarten.Weg (KoordinatenExtern => KoordinatenExtern);
@@ -96,7 +96,7 @@ package body Wegeplatzierungssystem is
    
    
    procedure BerechnungRechts
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
       
       WelcherWeg := LeseKarten.Weg (KoordinatenExtern => KoordinatenExtern);
@@ -119,7 +119,7 @@ package body Wegeplatzierungssystem is
    
                                 
    procedure BerechnungOben
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
       
       WelcherWeg := LeseKarten.Weg (KoordinatenExtern => KoordinatenExtern);
@@ -142,7 +142,7 @@ package body Wegeplatzierungssystem is
    
    
    procedure BerechnungUnten
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
       
       WelcherWeg := LeseKarten.Weg (KoordinatenExtern => KoordinatenExtern);
@@ -165,7 +165,7 @@ package body Wegeplatzierungssystem is
    
    
    procedure WegPlatzieren
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       WegartExtern : in AufgabenDatentypen.Einheitenbefehle_Wege_Enum)
    is begin
       

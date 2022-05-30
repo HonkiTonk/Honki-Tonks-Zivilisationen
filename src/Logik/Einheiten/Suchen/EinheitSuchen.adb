@@ -11,7 +11,7 @@ package body EinheitSuchen is
    -- Zu beachten, wenn die Einheit sich in einem Transporter befindet, dann wird immer die Nummer des Transporters zurückgegeben.
    function KoordinatenEinheitMitRasseSuchen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return EinheitenDatentypen.MaximaleEinheitenMitNullWert
    is begin
       
@@ -42,7 +42,7 @@ package body EinheitSuchen is
 
    -- Zu beachten, wenn die Einheit sich in einem Transporter befindet, dann wird immer die Nummer des Transporters zurückgegeben.
    function KoordinatenEinheitOhneRasseSuchen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return EinheitenRecords.RasseEinheitnummerRecord
    is begin
 
@@ -80,7 +80,7 @@ package body EinheitSuchen is
    -- Zu beachten, wenn die Einheit sich in einem Transporter befindet, dann wird immer die Nummer des Transporters zurückgegeben.
    function KoordinatenEinheitOhneSpezielleRasseSuchen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return EinheitenRecords.RasseEinheitnummerRecord
    is begin
 

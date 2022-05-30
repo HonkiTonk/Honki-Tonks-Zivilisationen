@@ -30,7 +30,6 @@ private
 
    Zwischenwert : Integer;
 
-   Multiplikator : Float;
    BreiteTextfeld : Float;
 
    AktuellerTextbereichEins : Unbounded_Wide_Wide_String;
@@ -59,10 +58,14 @@ private
      return Boolean;
 
    function ZeilenumbruchEinbauen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      TextExtern : in Wide_Wide_String)
       return Wide_Wide_String
      with
-       Post =>
-         (ZeilenumbruchEinbauen'Result'Length > 0);
+       Pre =>
+         (TextExtern'Length > 0),
+
+         Post =>
+           (ZeilenumbruchEinbauen'Result'Length > 0);
 
 end AnzeigeZusatztextRassenmenueSFML;

@@ -15,7 +15,7 @@ package BewegungBerechnen is
 
    procedure BewegungEinheitenBerechnung
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -48,7 +48,7 @@ private
                                                                 );
    
    procedure NachBewegung
-     (NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre =>
@@ -63,7 +63,7 @@ private
    
    
    function AbzugDurchBewegung
-     (NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return EinheitenDatentypen.BewegungFloat
      with
@@ -78,7 +78,7 @@ private
    
    function StraßeUndFlussPrüfen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Bewegungsbonuse_Enum
      with
        Pre =>

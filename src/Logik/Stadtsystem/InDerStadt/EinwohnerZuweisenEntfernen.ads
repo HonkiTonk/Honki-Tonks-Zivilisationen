@@ -24,7 +24,7 @@ private
    RelativeCursorPositionY : KartenDatentypen.Kartenfeld;
    RelativeCursorPositionX : KartenDatentypen.Kartenfeld;
    
-   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    procedure EinwohnerBelegungÄndern
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)

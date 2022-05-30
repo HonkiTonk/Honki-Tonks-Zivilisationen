@@ -15,11 +15,11 @@ with EinheitSuchen;
 package body UmgebungErreichbarTesten is
    
    function UmgebungErreichbarTesten
-     (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
       NotwendigeFelderExtern : in Positive)
-      return KartenRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
       
       GefundeneFelder := 1;
@@ -114,7 +114,7 @@ package body UmgebungErreichbarTesten is
    
    
    function NochErreichbar
-     (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return Boolean

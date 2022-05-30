@@ -186,8 +186,8 @@ package body Sichtbarkeit is
    
    procedure QuadrantEins
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
-      SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
+      SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteNatural;
+      SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteNatural;
       SichtweiteMaximalExtern : in KartenDatentypen.Sichtweite)
    is begin
               
@@ -313,8 +313,8 @@ package body Sichtbarkeit is
    
    procedure QuadrantZwei
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
-      SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
+      SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteNatural;
+      SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteNatural;
       SichtweiteMaximalExtern : in KartenDatentypen.Sichtweite)
    is begin
                     
@@ -440,8 +440,8 @@ package body Sichtbarkeit is
    
    procedure QuadrantDrei
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
-      SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
+      SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteNatural;
+      SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteNatural;
       SichtweiteMaximalExtern : in KartenDatentypen.Sichtweite)
    is begin
                     
@@ -567,8 +567,8 @@ package body Sichtbarkeit is
    
    procedure QuadrantVier
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
-      SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
+      SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteNatural;
+      SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteNatural;
       SichtweiteMaximalExtern : in KartenDatentypen.Sichtweite)
    is begin
                     
@@ -693,7 +693,7 @@ package body Sichtbarkeit is
    
    
    function SichtbarkeitBlockadeTesten
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       YÄnderungExtern : in KartenDatentypen.UmgebungsbereichZwei;
       XÄnderungExtern : in KartenDatentypen.UmgebungsbereichZwei;
       SichtweiteExtern : in KartenDatentypen.UmgebungsbereichDrei)
@@ -809,7 +809,7 @@ package body Sichtbarkeit is
    
    procedure SichtbarkeitSetzen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
       
       -- Die Kontaktsichtbarkeitsprüfung aus BewegungBerechnen kann hier nicht reingebaut werden, da dann jedes neu sichtbare Feld geprüft wird ob die anderen Rassen das sehen

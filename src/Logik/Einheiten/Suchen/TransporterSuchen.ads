@@ -14,7 +14,7 @@ package TransporterSuchen is
 
    function KoordinatenTransporterMitRasseSuchen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return EinheitenDatentypen.MaximaleEinheitenMitNullWert
      with
        Pre =>

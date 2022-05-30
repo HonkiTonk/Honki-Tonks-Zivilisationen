@@ -29,7 +29,7 @@ package LeseEinheitenGebaut is
 
    function Koordinaten
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return KartenRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -124,7 +124,7 @@ package LeseEinheitenGebaut is
       
    function KIZielKoordinaten
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return KartenRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -143,7 +143,7 @@ package LeseEinheitenGebaut is
    function KIBewegungPlan
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       PlanschrittExtern : in KartenDatentypen.Stadtfeld)
-      return KartenRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze

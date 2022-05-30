@@ -15,7 +15,7 @@ package EinheitSuchen is
 
    function KoordinatenEinheitMitRasseSuchen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return EinheitenDatentypen.MaximaleEinheitenMitNullWert
      with
        Pre =>
@@ -29,7 +29,7 @@ package EinheitSuchen is
            (KoordinatenEinheitMitRasseSuchen'Result <= SpielVariablen.Grenzen (RasseExtern).Einheitengrenze);
 
    function KoordinatenEinheitOhneRasseSuchen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return EinheitenRecords.RasseEinheitnummerRecord
      with
        Pre =>
@@ -39,7 +39,7 @@ package EinheitSuchen is
 
    function KoordinatenEinheitOhneSpezielleRasseSuchen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return EinheitenRecords.RasseEinheitnummerRecord
      with
        Pre =>

@@ -14,7 +14,7 @@ package body StadtSuchen is
 
    function KoordinatenStadtMitRasseSuchen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return StadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
@@ -39,7 +39,7 @@ package body StadtSuchen is
 
 
    function KoordinatenStadtOhneRasseSuchen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return StadtRecords.RasseStadtnummerRecord
    is begin
 
@@ -76,7 +76,7 @@ package body StadtSuchen is
    
    function KoordinatenStadtOhneSpezielleRasseSuchen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return StadtRecords.RasseStadtnummerRecord
    is begin
 

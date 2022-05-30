@@ -38,7 +38,7 @@ private
    XSichtAnfang : KartenDatentypen.Kartenfeld;
    XSichtEnde : KartenDatentypen.KartenfeldPositiv;
    
-   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    AusschnittKarte : constant Float := 0.80;
    AusschnittStadtKarte : constant Float := 0.80;

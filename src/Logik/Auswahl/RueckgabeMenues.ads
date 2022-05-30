@@ -38,6 +38,12 @@ private
       EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum;
+   
+   function KartenpoleAuswählen
+     (AnfangExtern : in Positive;
+      EndeExtern : in Positive;
+      AktuelleAuswahlExtern : in Positive)
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
    function KartengrößeAuswählen
      (AnfangExtern : in Positive;

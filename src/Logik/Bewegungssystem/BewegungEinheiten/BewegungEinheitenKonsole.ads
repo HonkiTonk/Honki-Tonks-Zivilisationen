@@ -30,7 +30,7 @@ private
    Änderung : KartenRecords.AchsenKartenfeldRecord;
    KeineÄnderung : constant KartenRecords.AchsenKartenfeldRecord := (0, 0, 0);
 
-   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    type RichtungArray is array (TastenbelegungDatentypen.Tastenbelegung_Bewegung_Enum'Range) of KartenRecords.AchsenKartenfeldRecord;
    Richtung : constant RichtungArray := (

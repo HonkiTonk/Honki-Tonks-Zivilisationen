@@ -5,25 +5,10 @@ pragma Warnings (Off, "*array aggregate*");
 
 package body SchreibeKarten is
 
-   ----------------------- Eventuell mehr Prüfungen hier einbauen? Z. B. ob das Unterwasserzeug auch Unterwasser platziert wird?
    procedure AktuellerGrund
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Enum)
    is begin
-      
-      ----------------------- Hügel
-      if
-        GrundExtern = KartengrundDatentypen.Hügel_Enum
-       -- and
-       --   LeseKarten.Hügel (KoordinatenExtern => KoordinatenExtern) = True
-      then
-        -- Hügel (KoordinatenExtern => KoordinatenExtern,
-        --         HügelExtern       => False);
-        null;
-            
-      else
-         null;
-      end if;
       
       Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).AktuellerGrund := GrundExtern;
       
@@ -32,7 +17,7 @@ package body SchreibeKarten is
    
    
    procedure BasisGrund
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Enum)
    is begin
             
@@ -42,8 +27,20 @@ package body SchreibeKarten is
    
    
    
+   procedure ZweimalGrund
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      GrundExtern : in KartengrundDatentypen.Kartengrund_Enum)
+   is begin
+      
+      Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).AktuellerGrund := GrundExtern;
+      Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).BasisGrund := GrundExtern;
+      
+   end ZweimalGrund;
+   
+   
+   
    procedure Sichtbar
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       SichtbarExtern : in Boolean)
    is begin
@@ -55,7 +52,7 @@ package body SchreibeKarten is
    
    
    procedure Fluss
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       FlussExtern : in KartengrundDatentypen.Kartenfluss_Enum)
    is begin
       
@@ -66,7 +63,7 @@ package body SchreibeKarten is
    
    
    procedure Weg
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Enum)
    is begin
       
@@ -77,7 +74,7 @@ package body SchreibeKarten is
    
    
    procedure Verbesserung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Enum)
    is begin
       
@@ -88,7 +85,7 @@ package body SchreibeKarten is
    
    
    procedure Ressource
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Enum)
    is begin
       
@@ -99,7 +96,7 @@ package body SchreibeKarten is
    
    
    procedure BelegterGrund
-     (KoordinatenExtern : KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : KartenRecords.AchsenKartenfeldNaturalRecord;
       BelegterGrundExtern : in KartenRecords.BelegterGrundRecord)
    is begin
       
@@ -110,7 +107,7 @@ package body SchreibeKarten is
    
    
    procedure Bewertung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       BewertungExtern : in KartenDatentypen.GesamtbewertungFeld)
    is begin

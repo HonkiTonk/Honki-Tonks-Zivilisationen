@@ -24,7 +24,7 @@ private
     
    EinheitNummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
       
-   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    procedure PlatzErmitteln
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
@@ -36,7 +36,7 @@ private
    
    procedure EinheitPlatzieren
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
      with
        Pre =>
          (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze

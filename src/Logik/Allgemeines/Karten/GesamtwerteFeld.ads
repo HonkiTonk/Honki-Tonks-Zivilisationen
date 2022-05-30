@@ -13,7 +13,7 @@ with Karten;
 package GesamtwerteFeld is
 
    function FeldNahrung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return ProduktionDatentypen.ProduktionFeld
      with
@@ -25,7 +25,7 @@ package GesamtwerteFeld is
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
    
    function FeldProduktion
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return ProduktionDatentypen.ProduktionFeld
      with
@@ -37,7 +37,7 @@ package GesamtwerteFeld is
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
      
    function FeldGeld
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return ProduktionDatentypen.ProduktionFeld
      with
@@ -49,7 +49,7 @@ package GesamtwerteFeld is
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
      
    function FeldWissen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return ProduktionDatentypen.ProduktionFeld
      with
@@ -61,7 +61,7 @@ package GesamtwerteFeld is
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
    
    function FeldVerteidigung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KampfDatentypen.Kampfwerte
      with
@@ -73,7 +73,7 @@ package GesamtwerteFeld is
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
    
    function FeldAngriff
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KampfDatentypen.Kampfwerte
      with

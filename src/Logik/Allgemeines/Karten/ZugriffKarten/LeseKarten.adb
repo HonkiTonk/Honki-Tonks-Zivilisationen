@@ -10,7 +10,7 @@ with Fehler;
 package body LeseKarten is
    
    function AktuellerGrund
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return KartengrundDatentypen.Kartengrund_Enum
    is begin
       
@@ -21,7 +21,7 @@ package body LeseKarten is
    
    
    function BasisGrund
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return KartengrundDatentypen.Kartengrund_Enum
    is begin
       
@@ -32,7 +32,7 @@ package body LeseKarten is
    
    
    function Sichtbar
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Boolean
    is begin
@@ -44,7 +44,7 @@ package body LeseKarten is
    
    
    function Fluss
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return KartengrundDatentypen.Kartenfluss_Enum
    is begin
       
@@ -55,7 +55,7 @@ package body LeseKarten is
    
    
    function Weg
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return KartenVerbesserungDatentypen.Karten_Weg_Enum
    is begin
       
@@ -66,7 +66,7 @@ package body LeseKarten is
    
    
    function Verbesserung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return KartenVerbesserungDatentypen.Karten_Verbesserung_Enum
    is begin
       
@@ -77,7 +77,7 @@ package body LeseKarten is
    
    
    function Ressource
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return KartengrundDatentypen.Karten_Ressourcen_Enum
    is begin
       
@@ -88,7 +88,7 @@ package body LeseKarten is
    
    
    function Bewertung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KartenDatentypen.GesamtbewertungFeld
    is begin
@@ -101,7 +101,7 @@ package body LeseKarten is
    
    function BelegterGrund
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is begin
       
@@ -121,7 +121,7 @@ package body LeseKarten is
       
    
    function BelegterGrundLeer
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is begin
       
@@ -151,7 +151,7 @@ package body LeseKarten is
    
    function BestimmteStadtBelegtGrund
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is begin
      
@@ -171,7 +171,7 @@ package body LeseKarten is
    
    
    function RasseBelegtGrund
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return RassenDatentypen.Rassen_Enum
    is begin
       

@@ -13,7 +13,7 @@ package body KartenkoordinateYAchseBerechnen is
       ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld;
       ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden;
       LogikGrafikExtern : in Boolean)
-      return KartenDatentypen.KartenfeldPositivMitNullwert
+      return KartenDatentypen.KartenfeldNatural
    is begin
       
       WelcheVerschiebungYAchse (LogikGrafikExtern, ArrayPositionExtern) := KartenDatentypen.Karte_Y_Kein_Übergang_Enum;
@@ -47,7 +47,7 @@ package body KartenkoordinateYAchseBerechnen is
       ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld;
       ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden;
       LogikGrafikExtern : in Boolean)
-      return KartenDatentypen.KartenfeldPositivMitNullwert
+      return KartenDatentypen.KartenfeldNatural
    is begin
       
       case
@@ -116,7 +116,7 @@ package body KartenkoordinateYAchseBerechnen is
       ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld;
       ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden;
       LogikGrafikExtern : in Boolean)
-      return KartenDatentypen.KartenfeldPositivMitNullwert
+      return KartenDatentypen.KartenfeldNatural
    is begin
       
       case

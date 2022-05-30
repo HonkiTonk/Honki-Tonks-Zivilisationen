@@ -23,6 +23,6 @@ private
    
    MindestBewertungKartenfeld : KartenDatentypen.GesamtbewertungFeld;
    
-   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
 
 end KIMindestBewertungKartenfeldErmitteln;

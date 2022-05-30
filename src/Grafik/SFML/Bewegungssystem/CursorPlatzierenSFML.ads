@@ -29,7 +29,7 @@ private
    YMultiplikator : Float;
    XMultiplikator : Float;
    
-   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    MausPosition : Sf.System.Vector2.sfVector2i;
 

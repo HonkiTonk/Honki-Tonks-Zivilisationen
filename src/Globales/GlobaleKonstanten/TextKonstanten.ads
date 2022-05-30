@@ -116,5 +116,6 @@ package TextKonstanten is
    FrageAuflösungshöhe : constant Positive := 33;
    FrageBildrate : constant Positive := 34;
    FrageStadtname : constant Positive := 35;
+   FrageEisschicht : constant Positive := 36;
 
 end TextKonstanten;

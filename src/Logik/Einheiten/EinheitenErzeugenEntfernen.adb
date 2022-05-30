@@ -16,7 +16,7 @@ with EinheitenModifizieren;
 package body EinheitenErzeugenEntfernen is
 
    procedure EinheitErzeugen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitNummerExtern : in EinheitenDatentypen.MaximaleEinheiten;
       IDExtern : in EinheitenDatentypen.EinheitenID;
       StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)

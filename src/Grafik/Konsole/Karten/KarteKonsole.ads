@@ -16,7 +16,7 @@ package KarteKonsole is
    
 private
 
-   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    procedure NeueZeileKartenform
      (XAchseExtern : in KartenDatentypen.Kartenfeld);

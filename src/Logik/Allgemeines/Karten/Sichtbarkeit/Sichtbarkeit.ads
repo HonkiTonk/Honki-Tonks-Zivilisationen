@@ -32,7 +32,7 @@ package Sichtbarkeit is
 
    procedure SichtbarkeitSetzen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
      with
        Pre =>
          (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -57,10 +57,10 @@ private
 
    FremdeEinheit : EinheitenRecords.RasseEinheitnummerRecord;
 
-   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
-   KartenQuadrantWert : KartenRecords.AchsenKartenfeldPositivRecord;
-   KartenBlockadeWert : KartenRecords.AchsenKartenfeldPositivRecord;
-   KoordinatenEinheit : KartenRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   KartenQuadrantWert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   KartenBlockadeWert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   KoordinatenEinheit : KartenRecords.AchsenKartenfeldNaturalRecord;
 
    procedure SichtbarkeitsprüfungOhneBlockade
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
@@ -81,8 +81,8 @@ private
 
    procedure QuadrantEins
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
-      SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
+      SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteNatural;
+      SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteNatural;
       SichtweiteMaximalExtern : in KartenDatentypen.Sichtweite)
      with
        Pre =>
@@ -92,8 +92,8 @@ private
 
    procedure QuadrantZwei
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
-      SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
+      SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteNatural;
+      SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteNatural;
       SichtweiteMaximalExtern : in KartenDatentypen.Sichtweite)
      with
        Pre =>
@@ -103,8 +103,8 @@ private
 
    procedure QuadrantDrei
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
-      SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
+      SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteNatural;
+      SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteNatural;
       SichtweiteMaximalExtern : in KartenDatentypen.Sichtweite)
      with
        Pre =>
@@ -114,8 +114,8 @@ private
 
    procedure QuadrantVier
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
-      SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
+      SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteNatural;
+      SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteNatural;
       SichtweiteMaximalExtern : in KartenDatentypen.Sichtweite)
      with
        Pre =>
@@ -135,7 +135,7 @@ private
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
 
    function SichtbarkeitBlockadeTesten
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       YÄnderungExtern : in KartenDatentypen.UmgebungsbereichZwei;
       XÄnderungExtern : in KartenDatentypen.UmgebungsbereichZwei;
       SichtweiteExtern : in KartenDatentypen.UmgebungsbereichDrei)

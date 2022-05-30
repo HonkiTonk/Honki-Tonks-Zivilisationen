@@ -39,43 +39,46 @@ package body Spieleinstellungen is
             case
               Auswahl
             is
-            when RueckgabeDatentypen.Auswahl_Kartengröße_Enum =>
-               SpieleinstellungenKarten.KartengrößeWählen;
+               when RueckgabeDatentypen.Auswahl_Kartenpole_Enum =>
+                  SpieleinstellungenKarten.KartenpoleWählen;
+                    
+               when RueckgabeDatentypen.Auswahl_Kartengröße_Enum =>
+                  SpieleinstellungenKarten.KartengrößeWählen;
 
-            when RueckgabeDatentypen.Auswahl_Kartenart_Enum =>
-               SpieleinstellungenKarten.KartenartWählen;
+               when RueckgabeDatentypen.Auswahl_Kartenart_Enum =>
+                  SpieleinstellungenKarten.KartenartWählen;
                
-            when RueckgabeDatentypen.Auswahl_Kartenform_Enum =>
-               SpieleinstellungenKarten.KartenformWählen;
+               when RueckgabeDatentypen.Auswahl_Kartenform_Enum =>
+                  SpieleinstellungenKarten.KartenformWählen;
 
-            when RueckgabeDatentypen.Auswahl_Kartentemperatur_Enum =>
-               SpieleinstellungenKarten.KartentemperaturWählen;
+               when RueckgabeDatentypen.Auswahl_Kartentemperatur_Enum =>
+                  SpieleinstellungenKarten.KartentemperaturWählen;
                
-            when RueckgabeDatentypen.Auswahl_Kartenressourcen_Enum =>
-               SpieleinstellungenKarten.KartenressourcenWählen;
+               when RueckgabeDatentypen.Auswahl_Kartenressourcen_Enum =>
+                  SpieleinstellungenKarten.KartenressourcenWählen;
 
-            when RueckgabeDatentypen.Auswahl_Rassen_Enum =>
-               SpieleinstellungenRasseSpieler.RassenWählen;
+               when RueckgabeDatentypen.Auswahl_Rassen_Enum =>
+                  SpieleinstellungenRasseSpieler.RassenWählen;
 
-            when RueckgabeDatentypen.Auswahl_Schwierigkeitsgrad_Enum =>
-               SpieleinstellungenSonstiges.SchwierigkeitsgradFestlegen;
+               when RueckgabeDatentypen.Auswahl_Schwierigkeitsgrad_Enum =>
+                  SpieleinstellungenSonstiges.SchwierigkeitsgradFestlegen;
                
-            when RueckgabeDatentypen.Fertig_Enum =>
-               -- Oder eine Rasse zufällig belegen lassen?
-               if
-                 SpieleinstellungenRasseSpieler.EineRasseBelegt = True
-               then
-                  exit SpielEinstellungenSchleife;
+               when RueckgabeDatentypen.Fertig_Enum =>
+                  -- Oder eine Rasse zufällig belegen lassen?
+                  if
+                    SpieleinstellungenRasseSpieler.EineRasseBelegt = True
+                  then
+                     exit SpielEinstellungenSchleife;
                   
-               else
+                  else
+                     null;
+                  end if;
+
+               when RueckgabeDatentypen.Hauptmenü_Beenden_Enum'Range =>
+                  return Auswahl;
+
+               when others =>
                   null;
-               end if;
-
-            when RueckgabeDatentypen.Hauptmenü_Beenden_Enum'Range =>
-               return Auswahl;
-
-            when others =>
-               null;
             end case;
 
          end loop SpielEinstellungenSchleife;

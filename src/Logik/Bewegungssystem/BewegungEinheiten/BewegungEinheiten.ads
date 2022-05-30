@@ -39,7 +39,7 @@ private
       
    EinheitAufFeld : EinheitenRecords.RasseEinheitnummerRecord;
 
-   NeuePosition : KartenRecords.AchsenKartenfeldPositivRecord;
+   NeuePosition : KartenRecords.AchsenKartenfeldNaturalRecord;
      
    procedure EigeneEinheitAufFeld
      (BewegendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord;

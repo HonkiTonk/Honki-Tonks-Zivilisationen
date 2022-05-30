@@ -9,8 +9,8 @@ package KartengeneratorPolregion is
 
 private
 
-   SüdpolSchleifenkorrektur : KartenDatentypen.KartenfeldPositivMitNullwert;
-   OstpolSchleifenkorrektur : KartenDatentypen.KartenfeldPositivMitNullwert;
+   SüdpolSchleifenkorrektur : KartenDatentypen.KartenfeldNatural;
+   OstpolSchleifenkorrektur : KartenDatentypen.KartenfeldNatural;
 
    procedure PolregionNorden;
    procedure PolregionSüden;

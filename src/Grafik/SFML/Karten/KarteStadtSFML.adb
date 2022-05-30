@@ -240,7 +240,7 @@ package body KarteStadtSFML is
    
    
    procedure DarstellungUmgebungErweitert
-     (KarteKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KarteKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
@@ -302,7 +302,7 @@ package body KarteStadtSFML is
    
    
    procedure AnzeigeLandschaft
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
@@ -326,7 +326,7 @@ package body KarteStadtSFML is
    
    
    procedure KartenfeldZeichnen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
@@ -352,7 +352,7 @@ package body KarteStadtSFML is
    
    
    procedure FlussZeichnen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
@@ -383,7 +383,7 @@ package body KarteStadtSFML is
    
       
    procedure RessourceZeichnen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
@@ -416,7 +416,7 @@ package body KarteStadtSFML is
    
       
    procedure WegZeichnen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
@@ -447,7 +447,7 @@ package body KarteStadtSFML is
    
    
    procedure VerbesserungZeichnen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
@@ -479,7 +479,7 @@ package body KarteStadtSFML is
    
    
    procedure StadtZeichnen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin

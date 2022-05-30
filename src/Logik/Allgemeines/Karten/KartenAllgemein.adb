@@ -71,7 +71,7 @@ package body KartenAllgemein is
    
    
    function GrundNahrung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return ProduktionDatentypen.ProduktionElement
    is begin
@@ -101,7 +101,7 @@ package body KartenAllgemein is
    
    
    function GrundProduktion
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return ProduktionDatentypen.ProduktionElement
    is begin
@@ -131,7 +131,7 @@ package body KartenAllgemein is
    
    
    function GrundGeld
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return ProduktionDatentypen.ProduktionElement
    is begin
@@ -161,7 +161,7 @@ package body KartenAllgemein is
    
    
    function GrundWissen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return ProduktionDatentypen.ProduktionElement
    is begin
@@ -191,7 +191,7 @@ package body KartenAllgemein is
    
    
    function GrundVerteidigung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KampfDatentypen.Kampfwerte
    is begin
@@ -221,7 +221,7 @@ package body KartenAllgemein is
    
 
    function GrundAngriff
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KampfDatentypen.Kampfwerte
    is begin
@@ -251,7 +251,7 @@ package body KartenAllgemein is
    
    
    function GrundBewertung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KartenDatentypen.BewertungFeld
    is begin
@@ -264,7 +264,7 @@ package body KartenAllgemein is
    
    
    function FlussNahrung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return ProduktionDatentypen.ProduktionElement
    is begin
@@ -288,7 +288,7 @@ package body KartenAllgemein is
    
    
    function FlussProduktion
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return ProduktionDatentypen.ProduktionElement
    is begin
@@ -312,7 +312,7 @@ package body KartenAllgemein is
    
    
    function FlussGeld
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return ProduktionDatentypen.ProduktionElement
    is begin
@@ -336,7 +336,7 @@ package body KartenAllgemein is
    
    
    function FlussWissen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return ProduktionDatentypen.ProduktionElement
    is begin
@@ -360,7 +360,7 @@ package body KartenAllgemein is
    
    
    function FlussVerteidigung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KampfDatentypen.Kampfwerte
    is begin
@@ -384,7 +384,7 @@ package body KartenAllgemein is
    
 
    function FlussAngriff
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KampfDatentypen.Kampfwerte
    is begin
@@ -408,7 +408,7 @@ package body KartenAllgemein is
    
    
    function FlussBewertung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KartenDatentypen.BewertungFeld
    is begin
@@ -431,7 +431,7 @@ package body KartenAllgemein is
    
    
    function WegNahrung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return ProduktionDatentypen.ProduktionFeld
    is begin
@@ -455,7 +455,7 @@ package body KartenAllgemein is
    
    
    function WegProduktion
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return ProduktionDatentypen.ProduktionFeld
    is begin
@@ -479,7 +479,7 @@ package body KartenAllgemein is
    
    
    function WegGeld
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return ProduktionDatentypen.ProduktionFeld
    is begin
@@ -503,7 +503,7 @@ package body KartenAllgemein is
    
    
    function WegWissen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return ProduktionDatentypen.ProduktionFeld
    is begin
@@ -527,7 +527,7 @@ package body KartenAllgemein is
    
    
    function WegVerteidigung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KampfDatentypen.Kampfwerte
    is begin
@@ -551,7 +551,7 @@ package body KartenAllgemein is
    
    
    function WegAngriff
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KampfDatentypen.Kampfwerte
    is begin
@@ -575,7 +575,7 @@ package body KartenAllgemein is
    
    
    function WegBewertung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KartenDatentypen.BewertungFeld
    is begin
@@ -598,7 +598,7 @@ package body KartenAllgemein is
    
    
    function VerbesserungNahrung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return ProduktionDatentypen.ProduktionFeld
    is begin
@@ -622,7 +622,7 @@ package body KartenAllgemein is
    
    
    function VerbesserungProduktion
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return ProduktionDatentypen.ProduktionFeld
    is begin
@@ -646,7 +646,7 @@ package body KartenAllgemein is
    
    
    function VerbesserungGeld
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return ProduktionDatentypen.ProduktionFeld
    is begin
@@ -670,7 +670,7 @@ package body KartenAllgemein is
    
    
    function VerbesserungWissen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return ProduktionDatentypen.ProduktionFeld
    is begin
@@ -694,7 +694,7 @@ package body KartenAllgemein is
    
    
    function VerbesserungVerteidigung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KampfDatentypen.Kampfwerte
    is begin
@@ -718,7 +718,7 @@ package body KartenAllgemein is
    
    
    function VerbesserungAngriff
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KampfDatentypen.Kampfwerte
    is begin
@@ -742,7 +742,7 @@ package body KartenAllgemein is
    
    
    function VerbesserungBewertung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KartenDatentypen.BewertungFeld
    is begin
@@ -765,7 +765,7 @@ package body KartenAllgemein is
    
    
    function RessourceNahrung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return ProduktionDatentypen.ProduktionElement
    is begin
@@ -790,7 +790,7 @@ package body KartenAllgemein is
    
    
    function RessourceProduktion
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return ProduktionDatentypen.ProduktionElement
    is begin
@@ -814,7 +814,7 @@ package body KartenAllgemein is
    
    
    function RessourceGeld
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return ProduktionDatentypen.ProduktionElement
    is begin
@@ -838,7 +838,7 @@ package body KartenAllgemein is
    
    
    function RessourceWissen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return ProduktionDatentypen.ProduktionElement
    is begin
@@ -862,7 +862,7 @@ package body KartenAllgemein is
    
    
    function RessourceVerteidigung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KampfDatentypen.Kampfwerte
    is begin
@@ -886,7 +886,7 @@ package body KartenAllgemein is
    
    
    function RessourceAngriff
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KampfDatentypen.Kampfwerte
    is begin
@@ -910,7 +910,7 @@ package body KartenAllgemein is
    
    
    function RessourceBewertung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KartenDatentypen.BewertungFeld
    is begin
@@ -933,7 +933,7 @@ package body KartenAllgemein is
    
    
    function PassierbarGrund
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PassierbarkeitExtern : in EinheitenDatentypen.Passierbarkeit_Enum)
       return Boolean
    is begin
@@ -946,7 +946,7 @@ package body KartenAllgemein is
    
    
    function PassierbarVerbesserung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PassierbarkeitExtern : in EinheitenDatentypen.Passierbarkeit_Enum)
       return Boolean
    is begin
@@ -969,7 +969,7 @@ package body KartenAllgemein is
    
    
    function PassierbarWeg
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PassierbarkeitExtern : in EinheitenDatentypen.Passierbarkeit_Enum)
       return Boolean
    is begin

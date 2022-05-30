@@ -19,6 +19,6 @@ package GebaeudeVerkaufen is
 
 private
 
-   Aufschlag : KartenDatentypen.KartenfeldPositivMitNullwert;
+   Aufschlag : KartenDatentypen.KartenfeldNatural;
 
 end GebaeudeVerkaufen;

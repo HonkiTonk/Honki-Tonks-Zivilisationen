@@ -38,6 +38,9 @@ package body AuswahlMenuesZusatztextSFML is
             
          when MenueDatentypen.Kartenform_Menü_Enum =>
             AnzeigeZusatztextKartenformSFML.AnzeigeZusatztextKartenform;
+            
+         when MenueDatentypen.Kartenpole_Menü_Enum =>
+            null;
       end case;
       
    end MenüsZusatztextAufteilung;

@@ -13,7 +13,7 @@ package KIFeindlicheEinheitSuchen is
    function FeindlicheEinheitInUmgebungSuchen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       FeindExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (FeindExtern) /= RassenDatentypen.Leer_Spieler_Enum
@@ -26,6 +26,6 @@ private
    
    FeindlicheEinheit : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    
-   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
 
 end KIFeindlicheEinheitSuchen;

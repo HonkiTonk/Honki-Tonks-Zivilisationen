@@ -23,14 +23,14 @@ private
    
    StartpositionGefunden : Boolean;
    
-   FreieFelder : KartenDatentypen.SichtweiteMitNullwert;
+   FreieFelder : KartenDatentypen.SichtweiteNatural;
    
    RassenAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
    SpielerartAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
    SpieleranzahlAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
    
-   GezogeneWerte : KartenRecords.AchsenKartenfeldPositivRecord;
-   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
+   GezogeneWerte : KartenRecords.AchsenKartenfeldNaturalRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
       
    type RückgabeZuRasseArray is array (RueckgabeDatentypen.Rassen_Verwendet_Enum'Range) of RassenDatentypen.Rassen_Verwendet_Enum;
    RückgabeZuRasse : constant RückgabeZuRasseArray := (
@@ -54,11 +54,11 @@ private
                                                          RueckgabeDatentypen.Ekropa_Enum           => RassenDatentypen.Ekropa_Enum
                                                         );
    
-   type KoordinatenArray is array (1 .. 2) of KartenRecords.AchsenKartenfeldPositivRecord;
+   type KoordinatenArray is array (1 .. 2) of KartenRecords.AchsenKartenfeldNaturalRecord;
    StartKoordinaten : KoordinatenArray;
    
    procedure FelderBestimmen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
@@ -75,7 +75,7 @@ private
    
 
    function UmgebungPrüfen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       NotAusExtern : in ZahlenDatentypen.NotAus)
       return Boolean

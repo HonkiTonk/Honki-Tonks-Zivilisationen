@@ -16,7 +16,7 @@ package KIPruefungen is
    
    function StadtUmgebungPrüfen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return KartenRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -31,7 +31,7 @@ package KIPruefungen is
    function UmgebungStadtBauenPrüfen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       MindestBewertungFeldExtern : in KartenDatentypen.GesamtbewertungFeld)
-      return KartenRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -51,21 +51,21 @@ private
    AbstandKleiner : KartenDatentypen.KartenfeldPositiv;
    YAchseKoordinatePrüfen : KartenDatentypen.KartenfeldPositiv;
    XAchseKoordinatePrüfen : KartenDatentypen.KartenfeldPositiv;
-   YAchseKoordinatenSchonGeprüft : KartenDatentypen.KartenfeldPositivMitNullwert;
-   XAchseKoordinatenSchonGeprüft : KartenDatentypen.KartenfeldPositivMitNullwert;
+   YAchseKoordinatenSchonGeprüft : KartenDatentypen.KartenfeldNatural;
+   XAchseKoordinatenSchonGeprüft : KartenDatentypen.KartenfeldNatural;
    
-   VerbesserungAnlegen : KartenRecords.AchsenKartenfeldPositivRecord;
+   VerbesserungAnlegen : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    EinheitAufFeld : EinheitenRecords.RasseEinheitnummerRecord;
    
-   StadtVerbesserungUmgebungKoordinaten : KartenRecords.AchsenKartenfeldPositivRecord;
-   StadtBauenUmgebungKoordinaten : KartenRecords.AchsenKartenfeldPositivRecord;
-   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
-   KartenWertZwei : KartenRecords.AchsenKartenfeldPositivRecord;
+   StadtVerbesserungUmgebungKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   StadtBauenUmgebungKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   KartenWertZwei : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    function KartenfeldUmgebungPrüfen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       MindestBewertungFeldExtern : in KartenDatentypen.GesamtbewertungFeld)
       return Boolean
      with
@@ -81,7 +81,7 @@ private
    function StadtUmgebungUnverbessert
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       EinheitNummerExtern : in EinheitenDatentypen.MaximaleEinheiten)
-      return KartenRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum
@@ -94,7 +94,7 @@ private
               StadtUmgebungUnverbessert'Result.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
    
    function VerbesserungDortAnlegen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
      with
@@ -117,7 +117,7 @@ private
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
    
    function FeldBelegt
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
      with
        Pre =>
@@ -130,7 +130,7 @@ private
       MindestBewertungFeldExtern : in KartenDatentypen.GesamtbewertungFeld;
       YUmgebungExtern : in KartenDatentypen.KartenfeldPositiv;
       XUmgebungExtern : in KartenDatentypen.KartenfeldPositiv)
-      return KartenRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -145,7 +145,7 @@ private
    function FelderDurchgehen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       MindestBewertungFeldExtern : in KartenDatentypen.GesamtbewertungFeld)
-      return KartenRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze

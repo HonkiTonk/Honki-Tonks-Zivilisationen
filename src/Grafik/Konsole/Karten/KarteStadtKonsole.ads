@@ -26,13 +26,13 @@ private
    Stadtumgebungsgröße : KartenDatentypen.Stadtfeld;
 
    YAchsenabstraktion : KartenDatentypen.Kartenfeld;
-   Aufschlag : KartenDatentypen.SichtweiteMitNullwert;
+   Aufschlag : KartenDatentypen.SichtweiteNatural;
    CursorKonstant : constant KartenDatentypen.Sichtweite := 3;
    Cursor : KartenDatentypen.Kartenfeld;
    CursorYAchseabstraktion : KartenDatentypen.Kartenfeld;
    CursorXAchseabstraktion : KartenDatentypen.Kartenfeld;
 
-   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
       
    procedure WeitereInformationen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
@@ -125,7 +125,7 @@ private
    
    function AufschlagGebäude
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenDatentypen.SichtweiteMitNullwert
+      return KartenDatentypen.SichtweiteNatural
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum);

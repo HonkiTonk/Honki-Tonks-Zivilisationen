@@ -14,8 +14,8 @@ package KIStadtSuchen is
 
    function NähesteFeindlicheStadtSuchen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      AnfangKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return KartenRecords.AchsenKartenfeldPositivRecord
+      AnfangKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
@@ -31,7 +31,7 @@ package KIStadtSuchen is
 
    function UnbewachteStadtSuchen
      (FeindlicheRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (FeindlicheRasseExtern) = RassenDatentypen.Spieler_KI_Enum),
@@ -50,7 +50,7 @@ private
 
    function StadtSuchen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      AnfangKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      AnfangKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return StadtDatentypen.MaximaleStädteMitNullWert
      with
        Pre =>

@@ -14,7 +14,7 @@ package KartengeneratorLandschaft is
 
 private
    
-   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
       
    AnzahlGleicherGrund : KartengeneratorBerechnungenAllgemein.AnzahlGleicherFelder;
    

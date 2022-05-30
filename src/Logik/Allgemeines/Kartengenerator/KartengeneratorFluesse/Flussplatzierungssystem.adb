@@ -11,7 +11,7 @@ with Kartenkoordinatenberechnungssystem;
 package body Flussplatzierungssystem is
 
    procedure FlussBerechnung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
       
       YAchseSchleife:
@@ -70,7 +70,7 @@ package body Flussplatzierungssystem is
    
    
    procedure BerechnungLinks
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
       
       WelcherFluss (KoordinatenExtern.EAchse) := LeseKarten.Fluss (KoordinatenExtern => KoordinatenExtern);
@@ -94,7 +94,7 @@ package body Flussplatzierungssystem is
    
    
    procedure BerechnungRechts
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
       
       WelcherFluss (KoordinatenExtern.EAchse) := LeseKarten.Fluss (KoordinatenExtern => KoordinatenExtern);
@@ -118,7 +118,7 @@ package body Flussplatzierungssystem is
    
    
    procedure BerechnungOben
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
       
       WelcherFluss (KoordinatenExtern.EAchse) := LeseKarten.Fluss (KoordinatenExtern => KoordinatenExtern);
@@ -142,7 +142,7 @@ package body Flussplatzierungssystem is
    
    
    procedure BerechnungUnten
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
       
       WelcherFluss (KoordinatenExtern.EAchse) := LeseKarten.Fluss (KoordinatenExtern => KoordinatenExtern);
@@ -166,7 +166,7 @@ package body Flussplatzierungssystem is
    
    
    procedure FlussPlatzieren
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
       
       SchreibeKarten.Fluss (KoordinatenExtern => KoordinatenExtern,

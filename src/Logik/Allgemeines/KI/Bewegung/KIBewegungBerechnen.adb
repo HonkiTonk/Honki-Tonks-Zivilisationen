@@ -52,7 +52,7 @@ package body KIBewegungBerechnen is
    
    function PlanenRekursiv
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       AktuellePlanpositionExtern : in KartenDatentypen.Stadtfeld)
       return Boolean
    is begin
@@ -88,13 +88,13 @@ package body KIBewegungBerechnen is
    
    procedure FelderBewerten
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
       
       BewertungPosition := BewertungArray'First;
       
       EAchseÄnderungSchleife:
-      for EAchseÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+      for EAchseÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEinsEAchse'Range loop
          YAchseÄnderungSchleife:
          for YAchseÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
             XAchseÄnderungSchleife:
@@ -196,8 +196,8 @@ package body KIBewegungBerechnen is
    
    function BewertungFeldposition
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      EÄnderungExtern : in KartenDatentypen.UmgebungsbereichEins;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      EÄnderungExtern : in KartenDatentypen.UmgebungsbereichEinsEAchse;
       YÄnderungExtern : in KartenDatentypen.UmgebungsbereichEins;
       XÄnderungExtern : in KartenDatentypen.UmgebungsbereichEins)
       return KIDatentypen.BewegungBewertung
@@ -278,8 +278,8 @@ package body KIBewegungBerechnen is
    
    function BerechnungBewertungPosition
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return KIDatentypen.BewegungBewertung
    is begin
       
@@ -349,7 +349,7 @@ package body KIBewegungBerechnen is
    
    function FeldBereitsBetreten
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is begin
       
@@ -424,7 +424,7 @@ package body KIBewegungBerechnen is
    is begin
       
       EAchseSchleife:
-      for EÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+      for EÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEinsEAchse'Range loop
          YAchseSchleife:
          for YÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
             XAchseSchleife:
@@ -473,7 +473,7 @@ package body KIBewegungBerechnen is
    
    function TransporterNutzen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is begin
       

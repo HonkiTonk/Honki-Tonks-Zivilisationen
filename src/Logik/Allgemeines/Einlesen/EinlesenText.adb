@@ -233,6 +233,9 @@ package body EinlesenText is
                
             when 41 =>
                Einstellungen;
+               
+            when 42 =>
+               Kartenpole;
          end case;
             
          Close (File => DateiTextEinlesen);
@@ -1142,5 +1145,27 @@ package body EinlesenText is
       end loop EinstellungenSchleife;
       
    end Einstellungen;
+   
+   
+   
+   procedure Kartenpole
+   is begin
+      
+      KartenpoleSchleife:
+      for WelcheZeileSchleifenwert in GlobaleTexte.Kartenpole'Range loop
+         
+         case
+           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+         is
+            when True =>
+               Put_Line ("EinlesenText.Kartenpole -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
+               
+            when False =>
+               GlobaleTexte.Kartenpole (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         end case;
+         
+      end loop KartenpoleSchleife;
+      
+   end Kartenpole;
 
 end EinlesenText;

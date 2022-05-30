@@ -50,7 +50,7 @@ private
    WissenGesamt : ProduktionDatentypen.ProduktionFeld;
    
    NutzbarerBereich : KartenDatentypen.Kartenfeld;
-   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    type UmgebungRecord is record
       
@@ -128,7 +128,7 @@ private
    
    function FeldBewerten
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       BelegenOderEntfernen : in Boolean)
       return ProduktionDatentypen.GesamtproduktionStadt
      with
@@ -139,7 +139,7 @@ private
    
    function WissenBewertung
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       BelegenOderEntfernen : in Boolean)
       return ProduktionDatentypen.GesamtproduktionStadt
      with
@@ -150,7 +150,7 @@ private
    
    function GeldBewertung
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       BelegenOderEntfernen : in Boolean)
       return ProduktionDatentypen.GesamtproduktionStadt
      with
@@ -161,7 +161,7 @@ private
    
    function ProduktionBewertung
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       BelegenOderEntfernen : in Boolean)
       return ProduktionDatentypen.GesamtproduktionStadt
      with
@@ -172,7 +172,7 @@ private
    
    function NahrungBewertung
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       BelegenOderEntfernen : in Boolean)
       return ProduktionDatentypen.GesamtproduktionStadt
      with

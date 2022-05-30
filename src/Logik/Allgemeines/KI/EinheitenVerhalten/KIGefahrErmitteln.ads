@@ -22,7 +22,7 @@ private
 
    EinheitUnzugeordnet : EinheitenRecords.RasseEinheitnummerRecord;
 
-   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
 
    function ReaktionErfoderlich
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

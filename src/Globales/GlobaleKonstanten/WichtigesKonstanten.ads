@@ -15,7 +15,7 @@ with DatenbankRecords;
 package WichtigesKonstanten is
    
    LeerCursorGrafik : constant Wide_Wide_Character := '©';
-   LeerKoordinaten : constant KartenRecords.AchsenKartenfeldPositivRecord := (0, 0, 0);
+   LeerKoordinaten : constant KartenRecords.AchsenKartenfeldNaturalRecord := (0, 0, 0);
    LeerKoordinatenStadt : constant KartenRecords.AchsenStadtfeldRecord := (1, 1);
    
    LeerCursor : constant KartenRecords.CursorRecord := (

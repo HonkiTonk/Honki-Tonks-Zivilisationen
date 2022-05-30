@@ -15,7 +15,7 @@ package EinheitInUmgebung is
    
 private
       
-   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    AndereEinheit : EinheitenRecords.RasseEinheitnummerRecord;
    
@@ -34,7 +34,7 @@ private
    
    
    function EinheitFinden
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       UmgebungExtern : in KartenDatentypen.Sichtweite;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Boolean

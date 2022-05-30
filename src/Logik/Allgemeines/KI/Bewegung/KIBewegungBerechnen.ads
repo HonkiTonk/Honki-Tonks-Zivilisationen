@@ -33,27 +33,27 @@ private
    
    YAchseKoordinatePrüfen : KartenDatentypen.KartenfeldPositiv;
    XAchseKoordinatePrüfen : KartenDatentypen.KartenfeldPositiv;
-   YAchseKoordinatenSchonGeprüft : KartenDatentypen.KartenfeldPositivMitNullwert;
-   XAchseKoordinatenSchonGeprüft : KartenDatentypen.KartenfeldPositivMitNullwert;
-   NurWasser : KartenDatentypen.KartenfeldPositivMitNullwert;
+   YAchseKoordinatenSchonGeprüft : KartenDatentypen.KartenfeldNatural;
+   XAchseKoordinatenSchonGeprüft : KartenDatentypen.KartenfeldNatural;
+   NurWasser : KartenDatentypen.KartenfeldNatural;
    
-   ZielKoordinaten : KartenRecords.AchsenKartenfeldPositivRecord;
+   ZielKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    
-   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
-   KartenWertVereinfachung : KartenRecords.AchsenKartenfeldPositivRecord;
-   KartenWertTransporter : KartenRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   KartenWertVereinfachung : KartenRecords.AchsenKartenfeldNaturalRecord;
+   KartenWertTransporter : KartenRecords.AchsenKartenfeldNaturalRecord;
    
-   PositionAlt : KartenRecords.AchsenKartenfeldPositivRecord;
-   PositionNeu : KartenRecords.AchsenKartenfeldPositivRecord;
+   PositionAlt : KartenRecords.AchsenKartenfeldNaturalRecord;
+   PositionNeu : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    EÄnderung : KIDatentypen.BewegungBewertung;
    YÄnderung : KIDatentypen.BewegungBewertung;
    XÄnderung : KIDatentypen.BewegungBewertung;
    
-   type FeldBewertungArray is array (KartenDatentypen.UmgebungsbereichEins'Range, KartenDatentypen.UmgebungsbereichEins'Range, KartenDatentypen.UmgebungsbereichEins'Range) of KIDatentypen.BewegungBewertung;
+   type FeldBewertungArray is array (KartenDatentypen.UmgebungsbereichEinsEAchse'Range, KartenDatentypen.UmgebungsbereichEins'Range, KartenDatentypen.UmgebungsbereichEins'Range) of KIDatentypen.BewegungBewertung;
    FeldBewertung : FeldBewertungArray;
    
-   type BewertungRecord is new KartenRecords.AchsenKartenfeldPositivRecord with record
+   type BewertungRecord is new KartenRecords.AchsenKartenfeldNaturalRecord with record
       
       Bewertung : KIDatentypen.BewegungBewertung;
       
@@ -84,7 +84,7 @@ private
    
    procedure FelderBewerten
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -101,7 +101,7 @@ private
    
    function PlanenRekursiv
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       AktuellePlanpositionExtern : in KartenDatentypen.Stadtfeld)
       return Boolean
      with
@@ -116,8 +116,8 @@ private
    
    function BewertungFeldposition
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      EÄnderungExtern : in KartenDatentypen.UmgebungsbereichEins;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      EÄnderungExtern : in KartenDatentypen.UmgebungsbereichEinsEAchse;
       YÄnderungExtern : in KartenDatentypen.UmgebungsbereichEins;
       XÄnderungExtern : in KartenDatentypen.UmgebungsbereichEins)
       return KIDatentypen.BewegungBewertung
@@ -133,8 +133,8 @@ private
    
    function BerechnungBewertungPosition
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return KIDatentypen.BewegungBewertung
      with
        Pre =>
@@ -152,7 +152,7 @@ private
    
    function FeldBereitsBetreten
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
      with
        Pre =>
@@ -166,7 +166,7 @@ private
    
    function TransporterNutzen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
      with
        Pre =>

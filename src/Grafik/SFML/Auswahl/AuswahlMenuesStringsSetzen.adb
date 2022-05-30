@@ -23,6 +23,9 @@ package body AuswahlMenuesStringsSetzen is
          when MenueDatentypen.Optionen_Menü_Enum =>
             AktuellerText := GlobaleTexte.Optionsmenü (WelcheZeileExtern);
             
+         when MenueDatentypen.Kartenpole_Menü_Enum =>
+            AktuellerText := GlobaleTexte.Kartenpole (WelcheZeileExtern);
+            
          when MenueDatentypen.Kartengröße_Menü_Enum =>
             AktuellerText := GlobaleTexte.Kartengröße (WelcheZeileExtern);
             

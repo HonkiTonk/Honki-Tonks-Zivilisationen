@@ -13,9 +13,9 @@ with Karten;
 package KISonstigesSuchen is
 
    function EigenesFeldSuchen
-     (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return KartenRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum
@@ -29,15 +29,15 @@ package KISonstigesSuchen is
 private
    
    Bereich : KartenDatentypen.Sichtweite;
-   BereichGeprüft : KartenDatentypen.SichtweiteMitNullwert;
+   BereichGeprüft : KartenDatentypen.SichtweiteNatural;
    
-   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
-   Ziel : KartenRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Ziel : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    function ZielSuchen
-     (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return KartenRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum

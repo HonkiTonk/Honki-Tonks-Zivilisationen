@@ -30,7 +30,8 @@ package body AnzeigeZusatztextRassenmenueSFML is
       Textbearbeitung (AktuelleRasseExtern => RasseAnzeigen);
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ZusatztextRassenAccess (RasseAnzeigen),
-                                         str  => ZeilenumbruchEinbauen (RasseExtern => RasseAnzeigen));
+                                         str  => ZeilenumbruchEinbauen (RasseExtern => RasseAnzeigen,
+                                                                        TextExtern  => To_Wide_Wide_String (Source => RassenTexte (RasseAnzeigen))));
       
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                          text         => TextaccessVariablen.ZusatztextRassenAccess (RasseAnzeigen));
@@ -39,33 +40,39 @@ package body AnzeigeZusatztextRassenmenueSFML is
    
    
    
+   -------------------------- Noch weiter verallgemeiner und dann überall benutzen.
    function ZeilenumbruchEinbauen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      TextExtern : in Wide_Wide_String)
       return Wide_Wide_String
    is begin
       
-      AktuellerTextbereichEins := TextKonstanten.LeerUnboundedString;
       AktuellerTextbereichZwei := TextKonstanten.LeerUnboundedString;
+      
+      -- Das muss für eine Verallgemeinerung vermutlich mit übergeben werden.
       BreiteTextfeld := Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) * VerhältnisTextfeld.x;
          
       SchleifenAnfang := 1;
-      SchleifenEnde := To_Wide_Wide_String (Source => RassenTexte (RasseExtern))'Last;
-      Multiplikator := 1.00;
-      Zwischenwert := -1;
+      SchleifenEnde := TextExtern'Last;
       
-      TestSchleife:
+      ZeilenumbruchSchleife:
       loop
-         -------------------- Hier eventuell gleich mehrere Zeichen einlesen um Zeit zu sparen?
+         
+         AktuellerTextbereichEins := TextKonstanten.LeerUnboundedString;
+         Zwischenwert := -1;
+         
          TextbereichSchleife:
          for TextbereichSchleifenwert in SchleifenAnfang .. SchleifenEnde loop
          
-            AktuellerTextbereichEins := AktuellerTextbereichEins & To_Wide_Wide_String (Source => RassenTexte (RasseExtern)) (TextbereichSchleifenwert);
+            --------------------------- Wieso funktioniert das?
+            AktuellerTextbereichEins := AktuellerTextbereichEins & TextExtern (TextbereichSchleifenwert);
             
+            -- Das muss für die Verallgemeinerung auf einen einfachen Textaccess zugreifen.
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ZusatztextRassenAccess (RasseExtern),
                                                str  => To_Wide_Wide_String (Source => AktuellerTextbereichEins));
             
             if
-              To_Wide_Wide_String (Source => RassenTexte (RasseExtern)) (TextbereichSchleifenwert) = Ada.Characters.Wide_Wide_Latin_1.Space
+              TextExtern (TextbereichSchleifenwert) = Ada.Characters.Wide_Wide_Latin_1.Space
             then
                Zwischenwert := TextbereichSchleifenwert;
                
@@ -74,45 +81,34 @@ package body AnzeigeZusatztextRassenmenueSFML is
             end if;
             
             if
-              Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.ZusatztextRassenAccess (RasseExtern)).width >= Multiplikator * BreiteTextfeld
+              Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.ZusatztextRassenAccess (RasseExtern)).width >= BreiteTextfeld
             then
                case
                  Zwischenwert
                is
                   when -1 =>
-                     AktuellerTextbereichZwei := AktuellerTextbereichEins & Ada.Characters.Wide_Wide_Latin_1.LF;
+                     AktuellerTextbereichZwei := AktuellerTextbereichZwei & AktuellerTextbereichEins & Ada.Characters.Wide_Wide_Latin_1.LF;
+                     SchleifenAnfang := TextbereichSchleifenwert + 1;
                      
                   when others =>
-                     AktuellerTextbereichZwei
-                       := AktuellerTextbereichZwei & To_Unbounded_Wide_Wide_String (Source => To_Wide_Wide_String (Source => RassenTexte (RasseExtern)) (SchleifenAnfang .. Zwischenwert - 1))
-                       & Ada.Characters.Wide_Wide_Latin_1.LF;
+                     AktuellerTextbereichZwei := AktuellerTextbereichZwei & TextExtern (SchleifenAnfang .. Zwischenwert - 1) & Ada.Characters.Wide_Wide_Latin_1.LF;
+                     SchleifenAnfang := Zwischenwert + 1;
                end case;
                
-               Multiplikator := Multiplikator + 1.00;
-               SchleifenAnfang := Zwischenwert + 1;
+               exit TextbereichSchleife;
                
             elsif
-              TextbereichSchleifenwert = SchleifenEnde
+              TextbereichSchleifenwert >= SchleifenEnde
             then
                AktuellerTextbereichZwei := AktuellerTextbereichZwei & AktuellerTextbereichEins;
-               exit TestSchleife;
+               exit ZeilenumbruchSchleife;
             
             else
                null;
             end if;
             
          end loop TextbereichSchleife;
-         
-         if
-           Zwischenwert > SchleifenEnde
-         then
-            exit TestSchleife;
-         
-         else
-            AktuellerTextbereichEins := TextKonstanten.LeerUnboundedString;
-         end if;
-            
-      end loop TestSchleife;
+      end loop ZeilenumbruchSchleife;
       
       return To_Wide_Wide_String (Source => AktuellerTextbereichZwei);
       

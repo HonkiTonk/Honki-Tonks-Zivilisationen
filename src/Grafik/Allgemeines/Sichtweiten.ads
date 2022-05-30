@@ -23,7 +23,7 @@ private
    SichtweiteFestlegen : Positive;
    BewegungsfeldFestlegen : Positive;
    
-   type SichtweitenArray is array (1 .. 3) of KartenRecords.AchsenKartenfeldPositivRecord;
+   type SichtweitenArray is array (1 .. 3) of KartenRecords.AchsenKartenfeldNaturalRecord;
    SichtweitenStandard : constant SichtweitenArray := (1 => (0, 6, 6),
                                                        2 => (0, 10, 10),
                                                        3 => (0, 15, 15));

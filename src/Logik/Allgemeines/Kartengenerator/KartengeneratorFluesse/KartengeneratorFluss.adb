@@ -85,7 +85,7 @@ package body KartengeneratorFluss is
    
    
    function FlussumgebungTesten
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is begin
          

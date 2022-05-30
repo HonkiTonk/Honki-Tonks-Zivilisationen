@@ -7,6 +7,7 @@ with SystemRecords;
 
 package SpieleinstellungenKarten is
    
+   procedure KartenpoleWählen;
    procedure KartengrößeWählen;
    procedure KartenartWählen;
    procedure KartenformWählen;
@@ -15,11 +16,15 @@ package SpieleinstellungenKarten is
    
 private
    
+   KartenpoleAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
    KartengrößeAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
    KartenartAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
    KartenformAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
    KartentemperaturAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
    KartenressourcenAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
+   
+   EingegebeneEisdicke : KartenDatentypen.KartenfeldNatural;
+   MaximaleEisdicke : KartenDatentypen.KartenfeldPositiv;
    
    BenutzerdefinierteGröße : SystemRecords.ZahlenEingabeRecord;
    
@@ -68,5 +73,11 @@ private
    
    procedure KartenformZuweisen
      (WelcheAchseExtern : in RueckgabeDatentypen.Kartenform_Enum);
+   
+   
+   
+   function Polgrößen
+     (YAchseXAchseExtern : in Boolean)
+      return KartenDatentypen.KartenfeldNatural;
 
 end SpieleinstellungenKarten;

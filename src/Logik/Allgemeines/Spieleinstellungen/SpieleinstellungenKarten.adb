@@ -3,6 +3,8 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with MenueDatentypen;
+with KartenRecordKonstanten;
+with TextKonstanten;
 
 with Karten;
 with Eingabe;
@@ -11,6 +13,152 @@ with AuswahlMenues;
 with Fehler;
 
 package body SpieleinstellungenKarten is
+   
+   procedure KartenpoleWählen
+   is begin
+      
+      KartenpoleSchleife:
+      loop
+         
+         KartenpoleAuswahl := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Kartenpole_Menü_Enum);
+         
+         case
+           KartenpoleAuswahl
+         is
+            when RueckgabeDatentypen.Nordpol_Enum =>
+               if
+                 Karten.Kartenparameter.Kartenpole.Nordpol = KartenDatentypen.Kartenpol_Vorhanden_Enum
+               then
+                  Karten.Kartenparameter.Kartenpole.Nordpol := KartenDatentypen.Kartenpol_Nicht_Vorhanden_Enum;
+                  
+               else
+                  EingegebeneEisdicke := Polgrößen (YAchseXAchseExtern => True);
+                  
+                  case
+                    EingegebeneEisdicke
+                  is
+                     when 0 =>
+                        Karten.Kartenparameter.Kartenpole.Nordpol := KartenDatentypen.Kartenpol_Nicht_Vorhanden_Enum;
+                        
+                     when others =>
+                        Karten.Kartenparameter.Kartenpole.Nordpol := KartenDatentypen.Kartenpol_Vorhanden_Enum;
+                        Karten.Polgrößen (KartenDatentypen.Norden_Enum) := EingegebeneEisdicke;
+                  end case;
+               end if;
+               
+            when RueckgabeDatentypen.Südpol_Enum =>
+               if
+                 Karten.Kartenparameter.Kartenpole.Südpol = KartenDatentypen.Kartenpol_Vorhanden_Enum
+               then
+                  Karten.Kartenparameter.Kartenpole.Südpol := KartenDatentypen.Kartenpol_Nicht_Vorhanden_Enum;
+                  
+               else
+                  EingegebeneEisdicke := Polgrößen (YAchseXAchseExtern => True);
+                  
+                  case
+                    EingegebeneEisdicke
+                  is
+                     when 0 =>
+                        Karten.Kartenparameter.Kartenpole.Südpol := KartenDatentypen.Kartenpol_Nicht_Vorhanden_Enum;
+                        
+                     when others =>
+                        Karten.Kartenparameter.Kartenpole.Südpol := KartenDatentypen.Kartenpol_Vorhanden_Enum;
+                        Karten.Polgrößen (KartenDatentypen.Süden_Enum) := EingegebeneEisdicke;
+                  end case;
+               end if;
+               
+            when RueckgabeDatentypen.Westpol_Enum =>
+               if
+                 Karten.Kartenparameter.Kartenpole.Westpol = KartenDatentypen.Kartenpol_Vorhanden_Enum
+               then
+                  Karten.Kartenparameter.Kartenpole.Westpol := KartenDatentypen.Kartenpol_Nicht_Vorhanden_Enum;
+                  
+               else
+                  EingegebeneEisdicke := Polgrößen (YAchseXAchseExtern => False);
+                  
+                  case
+                    EingegebeneEisdicke
+                  is
+                     when 0 =>
+                        Karten.Kartenparameter.Kartenpole.Westpol := KartenDatentypen.Kartenpol_Nicht_Vorhanden_Enum;
+                        
+                     when others =>
+                        Karten.Kartenparameter.Kartenpole.Westpol := KartenDatentypen.Kartenpol_Vorhanden_Enum;
+                        Karten.Polgrößen (KartenDatentypen.Westen_Enum) := EingegebeneEisdicke;
+                  end case;
+               end if;
+               
+            when RueckgabeDatentypen.Ostpol_Enum =>
+               if
+                 Karten.Kartenparameter.Kartenpole.Ostpol = KartenDatentypen.Kartenpol_Vorhanden_Enum
+               then
+                  Karten.Kartenparameter.Kartenpole.Ostpol := KartenDatentypen.Kartenpol_Nicht_Vorhanden_Enum;
+                  
+               else
+                  EingegebeneEisdicke := Polgrößen (YAchseXAchseExtern => False);
+                  
+                  case
+                    EingegebeneEisdicke
+                  is
+                     when 0 =>
+                        Karten.Kartenparameter.Kartenpole.Ostpol := KartenDatentypen.Kartenpol_Nicht_Vorhanden_Enum;
+                        
+                     when others =>
+                        Karten.Kartenparameter.Kartenpole.Ostpol := KartenDatentypen.Kartenpol_Vorhanden_Enum;
+                        Karten.Polgrößen (KartenDatentypen.Osten_Enum) := EingegebeneEisdicke;
+                  end case;
+               end if;
+               
+            when RueckgabeDatentypen.Standard_Enum =>
+               Karten.Kartenparameter.Kartenpole := KartenRecordKonstanten.KartenpoleStandard;
+               Karten.Polgrößen := KartenRecordKonstanten.Eisrand;
+               Karten.Eisschild := KartenRecordKonstanten.Eisschild;
+               
+            when RueckgabeDatentypen.Fertig_Enum =>
+               return;
+               
+            when others =>
+               Fehler.LogikFehler (FehlermeldungExtern => "SpielEinstellungenKarten.KartenpoleWählen - Ungültige Menüauswahl.");
+         end case;
+         
+      end loop KartenpoleSchleife;
+      
+   end KartenpoleWählen;
+   
+   
+   
+   function Polgrößen
+     (YAchseXAchseExtern : in Boolean)
+      return KartenDatentypen.KartenfeldNatural
+   is begin
+      
+      case
+        YAchseXAchseExtern
+      is
+         when True =>
+            MaximaleEisdicke := Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse / 2;
+
+         when False =>
+            MaximaleEisdicke := Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse / 2;
+      end case;
+
+      BenutzerdefinierteGröße := Eingabe.GanzeZahl (ZeileExtern         => TextKonstanten.FrageEisschicht,
+                                                      ZahlenMinimumExtern => 0,
+                                                      ZahlenMaximumExtern => Positive (MaximaleEisdicke));
+      if
+        BenutzerdefinierteGröße.EingabeAbbruch = False
+        or
+          BenutzerdefinierteGröße.EingegebeneZahl = 0
+      then
+         return 0;
+            
+      else
+         return KartenDatentypen.KartenfeldNatural (BenutzerdefinierteGröße.EingegebeneZahl);
+      end if;
+      
+   end Polgrößen;
+   
+   
 
    ----------------------- Bei Zufall auch zurück?
    procedure KartengrößeWählen
@@ -52,9 +200,7 @@ package body SpieleinstellungenKarten is
    procedure GrößeSelbstBestimmen
      (KartengrößeExtern : in KartenDatentypen.Kartengröße_Enum)
    is begin
-      
-      -- In eine Schleife umbauen?
-      
+            
       BenutzerdefinierteGröße := Eingabe.GanzeZahl (ZeileExtern         => 15,
                                                       ZahlenMinimumExtern => 20,
                                                       ZahlenMaximumExtern => 1_000);

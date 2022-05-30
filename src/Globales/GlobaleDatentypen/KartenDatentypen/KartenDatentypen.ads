@@ -3,33 +3,34 @@ pragma Warnings (Off, "*array aggregate*");
 
 package KartenDatentypen is
 
-   -- Das hier dann in KartenfeldYAchse umbenennen?
    type Kartenfeld is range -1_000 .. 1_000;
-   subtype KartenfeldPositivMitNullwert is Kartenfeld range 0 .. Kartenfeld'Last;
-   subtype KartenfeldPositiv is KartenfeldPositivMitNullwert range 1 .. KartenfeldPositivMitNullwert'Last;
+   subtype KartenfeldNatural is Kartenfeld range 0 .. Kartenfeld'Last;
+   subtype KartenfeldPositiv is KartenfeldNatural range 1 .. KartenfeldNatural'Last;
    subtype Stadtfeld is KartenfeldPositiv range KartenfeldPositiv'First .. 20;
-   subtype SichtweiteMitNullwert is KartenfeldPositivMitNullwert range KartenfeldPositivMitNullwert'First .. 10;
-   subtype Sichtweite is SichtweiteMitNullwert range 1 .. SichtweiteMitNullwert'Last;
+   subtype SichtweiteNatural is KartenfeldNatural range KartenfeldNatural'First .. 10;
+   subtype Sichtweite is SichtweiteNatural range 1 .. SichtweiteNatural'Last;
    subtype UmgebungsbereichDrei is Kartenfeld range -3 .. 3;
    subtype UmgebungsbereichZwei is UmgebungsbereichDrei range -2 .. 2;
    subtype UmgebungsbereichEins is UmgebungsbereichZwei range -1 .. 1;
    
-   ------------------ Eventuell mal zwei Kartenfeldertypen anlegen mit den gleichen Eigenschaften und eines für die YAchse und das Andere für die XAchse verwenden?
-   -- Könnte Verwechslungen zwischen den beiden Achsen verringern/vermeiden und wenn es zu einer Gleichbenennung kommen würde, dann sollte es immer noch funktionieren weil die Datentypen ja unterschiedlich sind.
-   type KartenfeldXAchse is new Kartenfeld;
-   subtype KartenfeldPositivMitNullwertXAchse is KartenfeldXAchse range KartenfeldXAchse (KartenfeldPositivMitNullwert'First) .. KartenfeldXAchse (KartenfeldPositivMitNullwert'Last);
-   subtype KartenfeldPositivXAchse is KartenfeldPositivMitNullwertXAchse range KartenfeldPositivMitNullwertXAchse (KartenfeldPositiv'First) .. KartenfeldPositivMitNullwertXAchse (KartenfeldPositiv'Last);
-   subtype StadtfeldXAchse is KartenfeldPositivXAchse range KartenfeldPositivXAchse (Stadtfeld'First) .. KartenfeldPositivXAchse (Stadtfeld'Last);
-   subtype SichtweiteMitNullwertXAchse is KartenfeldPositivMitNullwertXAchse range KartenfeldPositivMitNullwertXAchse (SichtweiteMitNullwert'First) .. KartenfeldPositivMitNullwertXAchse (SichtweiteMitNullwert'Last);
-   subtype SichtweiteXAchse is SichtweiteMitNullwertXAchse range SichtweiteMitNullwertXAchse (Sichtweite'First) .. SichtweiteMitNullwertXAchse (Sichtweite'Last);
-   subtype UmgebungsbereichDreiXAchse is KartenfeldXAchse range KartenfeldXAchse (UmgebungsbereichDrei'First) .. KartenfeldXAchse (UmgebungsbereichDrei'Last);
-   subtype UmgebungsbereichZweiXAchse is UmgebungsbereichDreiXAchse range UmgebungsbereichDreiXAchse (UmgebungsbereichZwei'First) .. UmgebungsbereichDreiXAchse (UmgebungsbereichZwei'Last);
-   subtype UmgebungsbereichEinsXAchse is UmgebungsbereichZweiXAchse range UmgebungsbereichZweiXAchse (UmgebungsbereichEins'First) .. UmgebungsbereichZweiXAchse (UmgebungsbereichEins'Last);
+   --------------------------- Kann man das überhaupt sinnvoll einbauen? Müsste eventuell alle Funktionen/Prozeduren/Variablen/Records entsprechend anpassen, damit es immer eine Y- und XVariante gibt.
+   --------------------------- Alternative könnte man auch einen übergeordneten Typ erstellen und dann die beiden Achsen darauf basierend aufteilen, dann könnte man für allgemeine Sachen den Übertyp benutzen.
+   -- type KartenfeldXAchse is new Kartenfeld;
+   -- subtype KartenfeldMitNullXAchse is KartenfeldXAchse range KartenfeldXAchse (KartenfeldNatural'First) .. KartenfeldXAchse (KartenfeldNatural'Last);
+   -- subtype KartenfeldPositivXAchse is KartenfeldMitNullXAchse range KartenfeldMitNullXAchse (KartenfeldPositiv'First) .. KartenfeldMitNullXAchse (KartenfeldPositiv'Last);
+   -- subtype StadtfeldXAchse is KartenfeldPositivXAchse range KartenfeldPositivXAchse (Stadtfeld'First) .. KartenfeldPositivXAchse (Stadtfeld'Last);
+   -- subtype SichtweiteMitNullXAchse is KartenfeldMitNullXAchse range KartenfeldMitNullXAchse (SichtweiteNatural'First) .. KartenfeldMitNullXAchse (SichtweiteNatural'Last);
+   -- subtype SichtweiteXAchse is SichtweiteMitNullXAchse range SichtweiteMitNullXAchse (Sichtweite'First) .. SichtweiteMitNullXAchse (Sichtweite'Last);
+   -- subtype UmgebungsbereichDreiXAchse is KartenfeldXAchse range KartenfeldXAchse (UmgebungsbereichDrei'First) .. KartenfeldXAchse (UmgebungsbereichDrei'Last);
+   -- subtype UmgebungsbereichZweiXAchse is UmgebungsbereichDreiXAchse range UmgebungsbereichDreiXAchse (UmgebungsbereichZwei'First) .. UmgebungsbereichDreiXAchse (UmgebungsbereichZwei'Last);
+   -- subtype UmgebungsbereichEinsXAchse is UmgebungsbereichZweiXAchse range UmgebungsbereichZweiXAchse (UmgebungsbereichEins'First) .. UmgebungsbereichZweiXAchse (UmgebungsbereichEins'Last);
    
-   --------------------- Auch mal unabhängig von Kartenfeld machen und entsprechend eigene Umgebungsbereiche anlegen.
-   -- Rückgabewert, Planeteninneres, Unterirdisch/Unterwasser, Oberfläche, Himmel, Weltraum/Orbit
-   subtype Ebene is UmgebungsbereichDrei range -3 .. 3;
+   -- Rückgabewert, Planeteninneres, Unterirdisch/Unterwasser, Oberfläche, Himmel, Weltraum/Orbit, Rückgabewert
+   type Ebene is new UmgebungsbereichDrei range -3 .. 3;
    subtype EbeneVorhanden is Ebene range -2 .. 2;
+   subtype UmgebungsbereichDreiEAchse is Ebene;
+   subtype UmgebungsbereichZweiEAchse is EbeneVorhanden;
+   subtype UmgebungsbereichEinsEAchse is UmgebungsbereichZweiEAchse range UmgebungsbereichZweiEAchse (UmgebungsbereichEins'First) .. UmgebungsbereichZweiEAchse (UmgebungsbereichEins'Last);
    
    type SichtbereichAnfangEndeArray is array (1 .. 4) of Kartenfeld;
    
@@ -104,11 +105,12 @@ package KartenDatentypen is
                                    Norden_Enum, Süden_Enum, Westen_Enum, Osten_Enum
                                   );
    
+   type PolregionenArray is array (Himmelsrichtungen_Enum'Range) of KartenfeldNatural;
    
    
-   -- Neue Kartenpole immer vor Karten_Pole_Beide einfügen um Anpassungen in KartenDatentypen zu vermeiden.
+   
    type Kartenpole_Enum is (
-                            Kartenpol_Vorhanden_Enum, Kartenpol_Nicht_Vorhanden_Enum
+                            Kartenpol_Nicht_Vorhanden_Enum, Kartenpol_Vorhanden_Enum
                            );
    pragma Ordered (Kartenpole_Enum);
    

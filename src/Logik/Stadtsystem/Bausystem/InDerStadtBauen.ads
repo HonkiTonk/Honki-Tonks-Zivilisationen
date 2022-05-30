@@ -39,7 +39,7 @@ private
 
    MausZeigerPosition : Sf.System.Vector2.sfVector2i;
 
-   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
 
    procedure MöglicheGebäudeErmitteln
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)

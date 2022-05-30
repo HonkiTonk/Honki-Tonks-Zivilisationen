@@ -13,7 +13,7 @@ with Karten;
 package SchreibeKarten is
 
    procedure AktuellerGrund
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Enum)
      with
        Pre =>
@@ -24,7 +24,18 @@ package SchreibeKarten is
             GrundExtern /= KartengrundDatentypen.Leer_Grund_Enum);
    
    procedure BasisGrund
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      GrundExtern : in KartengrundDatentypen.Kartengrund_Enum)
+     with
+       Pre =>
+         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+          and
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse
+          and
+            GrundExtern /= KartengrundDatentypen.Leer_Grund_Enum);
+   
+   procedure ZweimalGrund
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Enum)
      with
        Pre =>
@@ -35,7 +46,7 @@ package SchreibeKarten is
             GrundExtern /= KartengrundDatentypen.Leer_Grund_Enum);
    
    procedure Sichtbar
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       SichtbarExtern : in Boolean)
      with
@@ -47,7 +58,7 @@ package SchreibeKarten is
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
 
    procedure Fluss
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       FlussExtern : in KartengrundDatentypen.Kartenfluss_Enum)
      with
        Pre =>
@@ -56,7 +67,7 @@ package SchreibeKarten is
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
 
    procedure Weg
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Enum)
      with
        Pre =>
@@ -65,7 +76,7 @@ package SchreibeKarten is
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
 
    procedure Verbesserung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Enum)
      with
        Pre =>
@@ -74,7 +85,7 @@ package SchreibeKarten is
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
 
    procedure Ressource
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Enum)
      with
        Pre =>
@@ -83,7 +94,7 @@ package SchreibeKarten is
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
 
    procedure BelegterGrund
-     (KoordinatenExtern : KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : KartenRecords.AchsenKartenfeldNaturalRecord;
       BelegterGrundExtern : in KartenRecords.BelegterGrundRecord)
      with
        Pre =>
@@ -92,7 +103,7 @@ package SchreibeKarten is
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
 
    procedure Bewertung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       BewertungExtern : in KartenDatentypen.GesamtbewertungFeld)
      with

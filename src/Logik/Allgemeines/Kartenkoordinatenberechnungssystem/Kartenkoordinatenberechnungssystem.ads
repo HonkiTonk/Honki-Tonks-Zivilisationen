@@ -10,10 +10,10 @@ with Karten;
 package Kartenkoordinatenberechnungssystem is
 
    function Kartenkoordinatenberechnungssystem
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
       LogikGrafikExtern : in Boolean)
-      return KartenRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -51,7 +51,7 @@ package Kartenkoordinatenberechnungssystem is
    
 private
    
-   type NeueKoordinateArray is array (Boolean'Range, KartenDatentypen.EbeneVorhanden'Range) of KartenRecords.AchsenKartenfeldPositivRecord;
+   type NeueKoordinateArray is array (Boolean'Range, KartenDatentypen.EbeneVorhanden'Range) of KartenRecords.AchsenKartenfeldNaturalRecord;
    NeueKoordinate : NeueKoordinateArray;
    
 end Kartenkoordinatenberechnungssystem;

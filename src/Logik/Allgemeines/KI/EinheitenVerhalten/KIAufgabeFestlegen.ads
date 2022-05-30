@@ -111,18 +111,18 @@ private
 
    EinheitNummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
 
-   KarteReichweite : KartenDatentypen.KartenfeldPositivMitNullwert;
-   KarteGeprüft : KartenDatentypen.KartenfeldPositivMitNullwert;
+   KarteReichweite : KartenDatentypen.KartenfeldNatural;
+   KarteGeprüft : KartenDatentypen.KartenfeldNatural;
 
-   KoordinatenFeind : KartenRecords.AchsenKartenfeldPositivRecord;
-   PlatzGefunden : KartenRecords.AchsenKartenfeldPositivRecord;
-   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
-   NeueStadtPosition : KartenRecords.AchsenKartenfeldPositivRecord;
+   KoordinatenFeind : KartenRecords.AchsenKartenfeldNaturalRecord;
+   PlatzGefunden : KartenRecords.AchsenKartenfeldNaturalRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   NeueStadtPosition : KartenRecords.AchsenKartenfeldNaturalRecord;
 
    function EinheitVerbessernPlatz
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       EinheitNummerExtern : in EinheitenDatentypen.MaximaleEinheiten)
-      return KartenRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre =>
          (EinheitNummerExtern <= SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Einheitengrenze

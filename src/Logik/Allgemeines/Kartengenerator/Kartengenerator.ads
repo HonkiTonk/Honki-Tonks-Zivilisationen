@@ -7,7 +7,7 @@ package Kartengenerator is
 
 private
 
-   procedure EisWasserLandGenerieren;
+   procedure AllgemeinesGenerieren;
    procedure KüstenwasserGenerieren;
    procedure LandschaftGenerieren;
    procedure UnterwasserUnterirdischGenerieren;

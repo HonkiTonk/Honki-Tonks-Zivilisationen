@@ -350,7 +350,7 @@ package body StadtInformationenSFML is
    
    
    procedure EinzelnesFeldNahrungsgewinnung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
@@ -369,7 +369,7 @@ package body StadtInformationenSFML is
    
    
    procedure EinzelnesFeldRessourcengewinnung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
@@ -388,7 +388,7 @@ package body StadtInformationenSFML is
    
    
    procedure EinzelnesFeldGeldgewinnung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
@@ -407,7 +407,7 @@ package body StadtInformationenSFML is
    
    
    procedure EinzelnesFeldWissensgewinnung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       

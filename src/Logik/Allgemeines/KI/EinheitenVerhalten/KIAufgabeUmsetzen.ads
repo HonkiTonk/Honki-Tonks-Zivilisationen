@@ -39,7 +39,7 @@ private
 
    Ressourcen : KartengrundDatentypen.Karten_Ressourcen_Enum;
 
-   EinheitKoordinaten : KartenRecords.AchsenKartenfeldPositivRecord;
+   EinheitKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
 
    Befehl : TastenbelegungDatentypen.Tastenbelegung_Enum;
 

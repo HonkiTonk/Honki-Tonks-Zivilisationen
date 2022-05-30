@@ -11,52 +11,23 @@ with Karten;
 with KartengeneratorPolregion;
 with KartengeneratorStandard;
 with KartengeneratorNurLand;
-with LandwerteFestlegen;
 with PolbereicheBerechnen;
 
-package body KartengeneratorEisWasserLand is
+package body KartengeneratorAllgemeines is
    
-   procedure AufteilungEisWasserLand
+   procedure GenerierungAllgemeines
    is begin
-      
-      AllgemeineWerteFestlegen;
-      KartengeneratorStandardSonstiges;
-      
-   end AufteilungEisWasserLand;
-   
-   
-   
-   procedure AllgemeineWerteFestlegen
-   is
-      
-      task GrößeAbstand;
-      task Pole;
-      
-      task body GrößeAbstand
-      is begin
-         
-         LandwerteFestlegen.GrößeFestlegen;
-         
-      end GrößeAbstand;
-      
-      
-      
-      task body Pole
-      is begin
-         
-         PolbereicheBerechnen.PolbereicheBerechnen;
-         
-      end Pole;
-      
-   begin
       
       Karten.Weltkarte := (others => (others => (others => KartenRecordKonstanten.LeerWeltkarte)));
       
-   end AllgemeineWerteFestlegen;
+      PolbereicheBerechnen.PolbereicheBerechnen;
+      GenerierungGrundlagen;
+      
+   end GenerierungAllgemeines;
       
    
   
-   procedure KartengeneratorStandardSonstiges
+   procedure GenerierungGrundlagen
    is
    
       task Himmel;
@@ -102,6 +73,6 @@ package body KartengeneratorEisWasserLand is
             KartengeneratorStandard.OberflächeGenerieren;
       end case;
       
-   end KartengeneratorStandardSonstiges;
+   end GenerierungGrundlagen;
 
-end KartengeneratorEisWasserLand;
+end KartengeneratorAllgemeines;

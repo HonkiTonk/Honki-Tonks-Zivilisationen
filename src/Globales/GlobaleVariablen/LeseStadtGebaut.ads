@@ -31,7 +31,7 @@ package LeseStadtGebaut is
    
    function Koordinaten
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return KartenRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre =>
          (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze

@@ -11,7 +11,7 @@ with KIRecords;
 package KIKonstanten is
 
    -- Nullwert für Koordinaten
-   LeerKoordinate : constant KartenRecords.AchsenKartenfeldPositivRecord := (0, 0, 0);
+   LeerKoordinate : constant KartenRecords.AchsenKartenfeldNaturalRecord := (0, 0, 0);
    -- Nullwert für Koordinaten
 
    LeerEinheitIDBewertung : constant KIRecords.EinheitIDBewertungRecord := (0, 0);

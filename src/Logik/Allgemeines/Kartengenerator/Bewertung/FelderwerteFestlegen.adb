@@ -18,7 +18,7 @@ package body FelderwerteFestlegen is
    
    -- Bei Bewertung auch die EAchse berücksichtigen? Mal drüber nachdenken ob das sinnvoll ist.
    procedure EinzelnesKartenfeldBewerten
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
             
       YAchseÄnderungSchleife:
@@ -52,7 +52,7 @@ package body FelderwerteFestlegen is
 
 
    procedure KartenfelderBewertenKleineSchleife
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Enum)
    is begin
       
@@ -106,8 +106,8 @@ package body FelderwerteFestlegen is
    
    
    procedure BewertungSelbst
-     (KoordinatenFeldExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      KoordinatenUmgebungExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenFeldExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      KoordinatenUmgebungExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Enum;
       TeilerExtern : in KartenDatentypen.UmgebungsbereichDrei)
    is begin

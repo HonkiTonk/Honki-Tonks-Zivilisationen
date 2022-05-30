@@ -32,12 +32,12 @@ package EinheitVerschieben is
 private
    
    UmgebungPrüfen : KartenDatentypen.Sichtweite;
-   BereitsGeprüft : KartenDatentypen.SichtweiteMitNullwert;
+   BereitsGeprüft : KartenDatentypen.SichtweiteNatural;
    
    EinheitNummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    
-   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
-   KartenWertVerschieben : KartenRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   KartenWertVerschieben : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    procedure EinheitenErmitteln
      (StadtRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

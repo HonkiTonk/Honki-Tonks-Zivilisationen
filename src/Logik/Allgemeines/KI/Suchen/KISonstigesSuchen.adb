@@ -13,9 +13,9 @@ with BewegungPassierbarkeitPruefen;
 package body KISonstigesSuchen is
 
    function EigenesFeldSuchen
-     (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return KartenRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
       
       Bereich := 1;
@@ -42,9 +42,9 @@ package body KISonstigesSuchen is
    
    
    function ZielSuchen
-     (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return KartenRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
       
       YAchseSchleife:

@@ -10,7 +10,7 @@ package SiegBedingungen is
 
 private
 
-   VorhandeneRassen : KartenDatentypen.SichtweiteMitNullwert;
+   VorhandeneRassen : KartenDatentypen.SichtweiteNatural;
 
    function SiegBedingungEins
      return Boolean;

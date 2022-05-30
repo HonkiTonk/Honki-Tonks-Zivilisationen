@@ -5,18 +5,7 @@ with KartenRecords;
 
 package KartengeneratorVariablen is
 
-   ------------------------- Die Schleifenbereiche müssen auf jeden Fall mit gespeichert werden, sonst funktioniert nach dem Neustart des Spiels und Laden eines Spielstandes die Bewertung nicht mehr.
-   ------------------------- SPEICHERN/LADEN
-   ------------------------- Wahrscheinlich klüger das ganze noch einmal zu überdenken.
-   SchleifenanfangOhnePolbereich : KartenRecords.YXAchsenKartenfeldPositivRecord;
-   SchleifenendeOhnePolbereich : KartenRecords.YXAchsenKartenfeldPositivRecord;
-
-   Polbereiche : KartenRecords.KartenpoleKorrekturRecord;
-
-   -- type GeneratorKarteArray is array (Karten.Weltkarte'Range (2), Karten.Weltkarte'Range (3)) of KartengrundDatentypen.Kartengrund_Enum;
-   -- GeneratorKarte : GeneratorKarteArray;
-
-   -- type GeneratorGrundArray is array (Karten.Weltkarte'Range (2), Karten.Weltkarte'Range (3)) of Boolean;
-   -- GeneratorGrund : GeneratorGrundArray;
+   SchleifenanfangOhnePolbereich : KartenRecords.YXAchsenKartenfeldNaturalRecord;
+   SchleifenendeOhnePolbereich : KartenRecords.YXAchsenKartenfeldNaturalRecord;
 
 end KartengeneratorVariablen;

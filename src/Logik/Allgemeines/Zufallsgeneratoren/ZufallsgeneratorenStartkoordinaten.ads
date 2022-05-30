@@ -14,7 +14,7 @@ package ZufallsgeneratorenStartkoordinaten is
      
    function Startkoordinaten
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum),
@@ -36,7 +36,7 @@ private
    YXAchsen : KartenRecords.YXAchsenKartenfeldPositivRecord;
    
    -- Generatoren für Positionsbestimmung bei Spielstart, in Abhängigkeit der Kartengröße, da gibt es doch bestimmt eine bessere Lösung für
-   ZufallsPunktKarte : KartenRecords.AchsenKartenfeldPositivRecord;
+   ZufallsPunktKarte : KartenRecords.AchsenKartenfeldNaturalRecord;
 
    subtype Kartenwert20 is KartenDatentypen.KartenfeldPositiv range KartenDatentypen.KartenfeldPositiv'First .. 20;
    subtype Kartenwert40 is KartenDatentypen.KartenfeldPositiv range KartenDatentypen.KartenfeldPositiv'First .. 40;

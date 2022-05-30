@@ -34,7 +34,7 @@ private
    
    Bauprojekt : StadtRecords.BauprojektRecord;
 
-   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    procedure StadtProduktionAlle;
    

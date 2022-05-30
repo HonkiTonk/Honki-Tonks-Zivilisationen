@@ -18,10 +18,10 @@ package KartenRecords is
    
    
    
-   type YXAchsenKartenfeldMitNullwertRecord is record
+   type YXAchsenKartenfeldNaturalRecord is record
             
-      YAchse : KartenDatentypen.KartenfeldPositivMitNullwert;
-      XAchse : KartenDatentypen.KartenfeldPositivMitNullwert;
+      YAchse : KartenDatentypen.KartenfeldNatural;
+      XAchse : KartenDatentypen.KartenfeldNatural;
             
    end record;
    
@@ -44,24 +44,32 @@ package KartenRecords is
    end record;
    
    
-   
-   --------------------- Auch mal eine Version ohne Nullwert anlegen.
-   --------------------- Mal auf Nullwert umbenennen?
-   type AchsenKartenfeldPositivRecord is tagged record
-      
-      EAchse : KartenDatentypen.Ebene;
-      YAchse : KartenDatentypen.KartenfeldPositivMitNullwert;
-      XAchse : KartenDatentypen.KartenfeldPositivMitNullwert;
-      
-   end record;
-   
-   
 
    type AchsenKartenfeldRecord is record
       
       EAchse : KartenDatentypen.Ebene;
       YAchse : KartenDatentypen.Kartenfeld;
       XAchse : KartenDatentypen.Kartenfeld;
+      
+   end record;
+   
+   
+   
+   type AchsenKartenfeldNaturalRecord is tagged record
+      
+      EAchse : KartenDatentypen.Ebene;
+      YAchse : KartenDatentypen.KartenfeldNatural;
+      XAchse : KartenDatentypen.KartenfeldNatural;
+      
+   end record;
+   
+   
+   
+   type AchsenKartenfeldVorhandenRecord is record
+      
+      EAchse : KartenDatentypen.EbeneVorhanden;
+      YAchse : KartenDatentypen.KartenfeldPositiv;
+      XAchse : KartenDatentypen.KartenfeldPositiv;
       
    end record;
    
@@ -100,8 +108,8 @@ package KartenRecords is
    
    type CursorRecord is record
       
-      KoordinatenAktuell : AchsenKartenfeldPositivRecord;
-      KoordinatenAlt : AchsenKartenfeldPositivRecord;
+      KoordinatenAktuell : AchsenKartenfeldNaturalRecord;
+      KoordinatenAlt : AchsenKartenfeldNaturalRecord;
       KoordinatenStadt : AchsenStadtfeldRecord;
       
    end record;
@@ -125,10 +133,10 @@ package KartenRecords is
    
    type KartenpoleRecord is record
       
-      YAchseNorden : KartenDatentypen.Kartenpole_Enum;
-      YAchseSüden : KartenDatentypen.Kartenpole_Enum;
-      XAchseWesten : KartenDatentypen.Kartenpole_Enum;
-      XAchseOsten : KartenDatentypen.Kartenpole_Enum;
+      Nordpol : KartenDatentypen.Kartenpole_Enum;
+      Südpol : KartenDatentypen.Kartenpole_Enum;
+      Westpol : KartenDatentypen.Kartenpole_Enum;
+      Ostpol : KartenDatentypen.Kartenpole_Enum;
       
    end record;
    
@@ -136,10 +144,10 @@ package KartenRecords is
    
    type KartenpoleKorrekturRecord is record 
       
-      Norden : KartenDatentypen.KartenfeldPositivMitNullwert;
-      Süden : KartenDatentypen.KartenfeldPositivMitNullwert;
-      Westen : KartenDatentypen.KartenfeldPositivMitNullwert;
-      Osten : KartenDatentypen.KartenfeldPositivMitNullwert;
+      Norden : KartenDatentypen.KartenfeldNatural;
+      Süden : KartenDatentypen.KartenfeldNatural;
+      Westen : KartenDatentypen.KartenfeldNatural;
+      Osten : KartenDatentypen.KartenfeldNatural;
       
    end record;
    

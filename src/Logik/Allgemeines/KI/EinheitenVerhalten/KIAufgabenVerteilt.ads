@@ -27,7 +27,7 @@ package KIAufgabenVerteilt is
    function EinheitAufgabeZiel
      (AufgabeExtern : in KIDatentypen.Einheit_Aufgabe_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      ZielKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      ZielKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
      with
        Pre =>
@@ -39,7 +39,7 @@ package KIAufgabenVerteilt is
    
    function EinheitZiel
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      ZielKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      ZielKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
      with
        Pre =>

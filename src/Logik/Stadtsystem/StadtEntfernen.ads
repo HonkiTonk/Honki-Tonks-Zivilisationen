@@ -19,7 +19,7 @@ package StadtEntfernen is
    
 private
    
-   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    procedure BelegteStadtfelderFreigeben
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)

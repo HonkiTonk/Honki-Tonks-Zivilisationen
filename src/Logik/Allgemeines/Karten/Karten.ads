@@ -30,26 +30,23 @@ package Karten is
                                             KartenDatentypen.Kartengröße_Nutzer_Enum    => (KartenDatentypen.KartenfeldPositiv'First, KartenDatentypen.KartenfeldPositiv'First)
                                            );
 
-   -- Alle Größen- und Abstandsangaben sind Radien.
-   ------------------------ Später über einen Editor oder direkt im Kartengenerator änderbar machen? Möglicherweise die aktuelle Kartenart durch vorgegebene Werte und Nutzereingaben ersetzen?
-   type LandflächenArray is array (KartenDatentypen.Kartenart_Enum'Range) of KartenRecords.YXAchsenKartenfeldPositivRecord;
-   GrößeLandfläche : LandflächenArray := (
-                                              KartenDatentypen.Kartenart_Inseln_Enum     => (3, 3),
-                                              KartenDatentypen.Kartenart_Kontinente_Enum => (7, 7),
-                                              KartenDatentypen.Kartenart_Pangäa_Enum     => (1, 1),
-                                              others                                     => (1, 1)
-                                             );
-   AbstandLandflächen : LandflächenArray := (
-                                               KartenDatentypen.Kartenart_Inseln_Enum     => (15, 15),
-                                               KartenDatentypen.Kartenart_Kontinente_Enum => (22, 22),
-                                               KartenDatentypen.Kartenart_Pangäa_Enum     => (1, 1),
-                                               others                                     => (1, 1)
-                                              );
-
+   -------------------------------- In zwei Teile aufteilen, einen der gespeichert werden muss und einer der nach der Kartengenerierung egal ist.
    Kartenparameter : KartenRecords.KartenparameterRecord := KartenRecordKonstanten.KartenparameterStandard;
 
-   ---------------------- Später mehrere Kartenarten mischbar machen, das aber vielleicht nicht über einen Bool.
-   ---------------------- Eventuell mehrere Kartenarten aktivierbar machen wie bei der Kartenform? Eventuell ein kompakteres System bauen.
-   ---------------------- Vielleicht verschiedene Werte einstellbar machen und dann daraus zufällig einen ziehen?
+   Polgrößen : KartenDatentypen.PolregionenArray := KartenRecordKonstanten.Eisrand;
+   Eisschild : KartenDatentypen.PolregionenArray := KartenRecordKonstanten.Eisschild;
+
+   -- False ist Minimum, True ist Maximum.
+   -- Alle Angaben sind Radien.
+   type AngabenArray is array (Boolean'Range) of KartenRecords.YXAchsenKartenfeldPositivRecord;
+   Landgrößen : AngabenArray := (
+                                   False => (3, 6),
+                                   True  => (3, 6)
+                                  );
+
+   Abstände : AngabenArray := (
+                                False => (3, 6),
+                                True  => (3, 6)
+                               );
 
 end Karten;

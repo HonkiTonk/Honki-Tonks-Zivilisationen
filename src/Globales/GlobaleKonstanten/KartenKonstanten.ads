@@ -11,12 +11,12 @@ with KampfDatentypen;
 package KartenKonstanten is
    
    LeerEAchse : constant KartenDatentypen.Ebene := KartenDatentypen.Ebene'First;
-   LeerYAchse : constant KartenDatentypen.KartenfeldPositivMitNullwert := KartenDatentypen.KartenfeldPositivMitNullwert'First;
-   LeerXAchse : constant KartenDatentypen.KartenfeldPositivMitNullwert := KartenDatentypen.KartenfeldPositivMitNullwert'First;
+   LeerYAchse : constant KartenDatentypen.KartenfeldNatural := KartenDatentypen.KartenfeldNatural'First;
+   LeerXAchse : constant KartenDatentypen.KartenfeldNatural := KartenDatentypen.KartenfeldNatural'First;
    
    LeerEAchseÄnderung : constant KartenDatentypen.EbeneVorhanden := 0;
-   LeerYAchseÄnderung : constant KartenDatentypen.KartenfeldPositivMitNullwert := LeerYAchse;
-   LeerXAchseÄnderung : constant KartenDatentypen.KartenfeldPositivMitNullwert := LeerXAchse;
+   LeerYAchseÄnderung : constant KartenDatentypen.KartenfeldNatural := LeerYAchse;
+   LeerXAchseÄnderung : constant KartenDatentypen.KartenfeldNatural := LeerXAchse;
    
    -------------------------- Das hier später mal überall einbauen.
    PlaneteninneresKonstante : constant KartenDatentypen.EbeneVorhanden := -2;

@@ -68,7 +68,7 @@ package body KarteStadtKonsole is
       case
         Aufschlag
       is
-         when KartenDatentypen.SichtweiteMitNullwert'First =>
+         when KartenDatentypen.SichtweiteNatural'First =>
             null;
             
          when others =>
@@ -93,7 +93,7 @@ package body KarteStadtKonsole is
    
    function AufschlagGebäude
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenDatentypen.SichtweiteMitNullwert
+      return KartenDatentypen.SichtweiteNatural
    is begin
       
       if
@@ -110,7 +110,7 @@ package body KarteStadtKonsole is
          return SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenStadt.YAchse;
          
       else
-         return KartenDatentypen.SichtweiteMitNullwert'First;
+         return KartenDatentypen.SichtweiteNatural'First;
       end if;
       
    end AufschlagGebäude;

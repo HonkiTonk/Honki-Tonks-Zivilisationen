@@ -13,14 +13,14 @@ with KartengeneratorFluss;
 with KartengeneratorRessourcen;
 with KartengeneratorUnterwasserUnterirdisch;
 with LadezeitenDatentypen;
-with KartengeneratorEisWasserLand;
+with KartengeneratorAllgemeines;
 
 package body Kartengenerator is
 
    procedure Kartengenerator
    is begin
       
-      EisWasserLandGenerieren;
+      AllgemeinesGenerieren;
       KüstenwasserGenerieren;
       LandschaftGenerieren;
       UnterwasserUnterirdischGenerieren;
@@ -37,16 +37,16 @@ package body Kartengenerator is
    
    
    
-   procedure EisWasserLandGenerieren
+   procedure AllgemeinesGenerieren
    is begin
       
       LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Normal_Himmel_Weltraum_Planeteninneres_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
       
-      KartengeneratorEisWasserLand.AufteilungEisWasserLand;
+      KartengeneratorAllgemeines.GenerierungAllgemeines;
             
       LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Normal_Himmel_Weltraum_Planeteninneres_Enum, SystemDatentypen.Endwert_Enum) := Clock;
       
-   end EisWasserLandGenerieren;
+   end AllgemeinesGenerieren;
    
    
    

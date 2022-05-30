@@ -37,7 +37,7 @@ package body KartengeneratorKueste is
    
    
    procedure GewässerFestlegen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
       
       YAchseSchleife:
@@ -59,8 +59,8 @@ package body KartengeneratorKueste is
               or
                 LeseKarten.AktuellerGrund (KoordinatenExtern => KartenWert) = KartengrundDatentypen.Eis_Enum
             then
-               SchreibeKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern,
-                                     GrundExtern       => KartengrundDatentypen.Küstengewässer_Enum);
+               SchreibeKarten.ZweimalGrund (KoordinatenExtern => KoordinatenExtern,
+                                            GrundExtern       => KartengrundDatentypen.Küstengewässer_Enum);
                return;
                
             else

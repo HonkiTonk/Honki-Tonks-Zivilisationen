@@ -24,7 +24,7 @@ package EinheitenKonstanten is
    LeerRasseNummer : constant EinheitenRecords.RasseEinheitnummerRecord := (LeerRasse, LeerNummer);
 
    LeerID : constant EinheitenDatentypen.EinheitenIDMitNullWert := EinheitenDatentypen.EinheitenIDMitNullWert'First;
-   LeerKoordinaten : constant KartenRecords.AchsenKartenfeldPositivRecord := (0, 0, 0);
+   LeerKoordinaten : constant KartenRecords.AchsenKartenfeldNaturalRecord := (0, 0, 0);
    LeerHeimatstadt : constant StadtDatentypen.MaximaleStädteMitNullWert := StadtDatentypen.MaximaleStädteMitNullWert'First;
    LeerLebenspunkte : constant EinheitenDatentypen.Lebenspunkte := EinheitenDatentypen.Lebenspunkte'First;
    LeerBewegungspunkte : constant EinheitenDatentypen.VorhandeneBewegungspunkte := EinheitenDatentypen.VorhandeneBewegungspunkte'First;

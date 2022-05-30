@@ -11,7 +11,7 @@ with Karten;
 package VerbesserungAnlegen is
 
    procedure VerbesserungAnlegen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       VerbesserungExtern : in AufgabenDatentypen.Einheitenbefehle_Gebilde_Enum)
      with
        Pre =>

@@ -15,7 +15,7 @@ package CursorAltPlatzieren is
    
 private
    
-   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
 
    procedure AlteEAchseFestlegen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

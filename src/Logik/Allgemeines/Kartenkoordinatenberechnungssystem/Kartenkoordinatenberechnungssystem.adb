@@ -12,10 +12,10 @@ with KartenkoordinateXAchseBerechnen;
 package body Kartenkoordinatenberechnungssystem is
 
    function Kartenkoordinatenberechnungssystem
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
       LogikGrafikExtern : in Boolean)
-      return KartenRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
       
       ------------------------ Wenn man das in einen Grafik- und einen Logikteil aufteilt, könnte man dann Zufallsübergänge berechnen?

@@ -33,6 +33,11 @@ package body RueckgabeMenues is
                                  EndeExtern            => EndeExtern,
                                  AktuelleAuswahlExtern => AktuelleAuswahlExtern);
             
+         when MenueDatentypen.Kartenpole_Menü_Enum =>
+            return KartenpoleAuswählen (AnfangExtern          => AnfangExtern,
+                                         EndeExtern            => EndeExtern,
+                                         AktuelleAuswahlExtern => AktuelleAuswahlExtern);
+            
          when MenueDatentypen.Kartengröße_Menü_Enum =>
             return KartengrößeAuswählen (AnfangExtern          => AnfangExtern,
                                             EndeExtern            => EndeExtern,
@@ -238,40 +243,45 @@ package body RueckgabeMenues is
       if
         AktuelleAuswahlExtern = AnfangExtern
       then
-         return RueckgabeDatentypen.Auswahl_Kartengröße_Enum;
-                    
+         return RueckgabeDatentypen.Auswahl_Kartenpole_Enum;
+      
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 1
       then
-         return RueckgabeDatentypen.Auswahl_Kartenart_Enum;
+         return RueckgabeDatentypen.Auswahl_Kartengröße_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 2
       then
-         return RueckgabeDatentypen.Auswahl_Kartenform_Enum;
+         return RueckgabeDatentypen.Auswahl_Kartenart_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 3
       then
-         return RueckgabeDatentypen.Auswahl_Kartentemperatur_Enum;
-         
+         return RueckgabeDatentypen.Auswahl_Kartenform_Enum;
+                    
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 4
       then
-         return RueckgabeDatentypen.Auswahl_Kartenressourcen_Enum;
+         return RueckgabeDatentypen.Auswahl_Kartentemperatur_Enum;
          
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 5
       then
-         return RueckgabeDatentypen.Auswahl_Rassen_Enum;
+         return RueckgabeDatentypen.Auswahl_Kartenressourcen_Enum;
          
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 6
       then
-         return RueckgabeDatentypen.Auswahl_Schwierigkeitsgrad_Enum;
+         return RueckgabeDatentypen.Auswahl_Rassen_Enum;
          
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 7
+      then
+         return RueckgabeDatentypen.Auswahl_Schwierigkeitsgrad_Enum;
+         
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 8
       then
          return RueckgabeDatentypen.Fertig_Enum;
                     
@@ -292,6 +302,52 @@ package body RueckgabeMenues is
       end if;
       
    end SpieleinstellungenMenü;
+   
+   
+   
+   function KartenpoleAuswählen
+     (AnfangExtern : in Positive;
+      EndeExtern : in Positive;
+      AktuelleAuswahlExtern : in Positive)
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum
+   is begin
+      
+      if
+        AktuelleAuswahlExtern = AnfangExtern
+      then
+         return RueckgabeDatentypen.Nordpol_Enum;
+         
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 1
+      then
+         return RueckgabeDatentypen.Südpol_Enum;
+         
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 2
+      then
+         return RueckgabeDatentypen.Westpol_Enum;
+         
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 3
+      then
+         return RueckgabeDatentypen.Ostpol_Enum;
+         
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 4
+      then
+         return RueckgabeDatentypen.Standard_Enum;
+                    
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 5
+      then
+         return RueckgabeDatentypen.Kartengröße_Zufall_Enum;
+                    
+      else
+         return Fertig (EndeExtern            => EndeExtern,
+                        AktuelleAuswahlExtern => AktuelleAuswahlExtern);
+      end if;
+      
+   end KartenpoleAuswählen;
    
    
       

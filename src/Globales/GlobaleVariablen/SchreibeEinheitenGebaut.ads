@@ -29,7 +29,7 @@ package SchreibeEinheitenGebaut is
    
    procedure Koordinaten
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -127,7 +127,7 @@ package SchreibeEinheitenGebaut is
    
    procedure KIZielKoordinaten
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -149,7 +149,7 @@ package SchreibeEinheitenGebaut is
    
    procedure KIBewegungPlan
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PlanplatzExtern : in KartenDatentypen.Stadtfeld)
      with
        Pre =>

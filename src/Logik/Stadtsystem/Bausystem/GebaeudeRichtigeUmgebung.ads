@@ -22,7 +22,7 @@ package GebaeudeRichtigeUmgebung is
    
 private
    
-   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    function UmgebungPrüfen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;

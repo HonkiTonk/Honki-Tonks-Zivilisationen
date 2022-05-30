@@ -11,7 +11,7 @@ with Kartenkoordinatenberechnungssystem;
 package body KartengeneratorBerechnungenAllgemein is
 
    function GleicherGrundAnzahlBestimmen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
       EbeneExtern : in KartenDatentypen.EbeneVorhanden)
       return AnzahlGleicherFelder

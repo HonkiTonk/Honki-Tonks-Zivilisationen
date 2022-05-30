@@ -17,8 +17,8 @@ package body KartengeneratorWeltraum is
          XAchseSchleife:
          for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse loop
 
-            SchreibeKarten.AktuellerGrund (KoordinatenExtern => (2, YAchseSchleifenwert, XAchseSchleifenwert),
-                                  GrundExtern       => KartengrundDatentypen.Weltraum_Enum);
+            SchreibeKarten.ZweimalGrund (KoordinatenExtern => (2, YAchseSchleifenwert, XAchseSchleifenwert),
+                                         GrundExtern       => KartengrundDatentypen.Weltraum_Enum);
                
          end loop XAchseSchleife;
       end loop YAchseSchleife;

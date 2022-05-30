@@ -100,9 +100,21 @@ package body KartengeneratorLandschaft is
                                                XAchseExtern => XAchseExtern,
                                                GrundExtern  => WelcherGrund);
       
-      SchreibeKarten.AktuellerGrund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
-                            GrundExtern       => WelcherGrund);
-      
+      case
+        WelcherGrund
+      is
+         when KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum'Range =>
+            SchreibeKarten.ZweimalGrund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
+                                         GrundExtern       => WelcherGrund);
+            
+         when KartengrundDatentypen.Kartengrund_Oberfläche_Zusatz_Enum'Range =>
+            SchreibeKarten.AktuellerGrund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
+                                           GrundExtern       => WelcherGrund);
+            
+         when others =>
+            null;
+      end case;
+            
       case
         WelcherGrund
       is

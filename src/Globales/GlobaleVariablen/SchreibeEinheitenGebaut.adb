@@ -24,7 +24,7 @@ package body SchreibeEinheitenGebaut is
    
    procedure Koordinaten
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
       
       SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KoordinatenAktuell := KoordinatenExtern;
@@ -301,7 +301,7 @@ package body SchreibeEinheitenGebaut is
    
    procedure KIZielKoordinaten
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
       
       SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIZielKoordinaten := KoordinatenExtern;
@@ -323,7 +323,7 @@ package body SchreibeEinheitenGebaut is
    
    procedure KIBewegungPlan
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PlanplatzExtern : in KartenDatentypen.Stadtfeld)
    is begin
       

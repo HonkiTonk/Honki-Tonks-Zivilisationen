@@ -9,9 +9,9 @@ package PolbereicheBerechnen is
    
 private
    
-   PolbereichNorden : KartenDatentypen.KartenfeldPositivMitNullwert;
-   PolbereichSüden : KartenDatentypen.KartenfeldPositivMitNullwert;
-   PolbereichWesten : KartenDatentypen.KartenfeldPositivMitNullwert;
-   PolbereichOsten : KartenDatentypen.KartenfeldPositivMitNullwert;
+   PolbereichNorden : KartenDatentypen.KartenfeldNatural;
+   PolbereichSüden : KartenDatentypen.KartenfeldNatural;
+   PolbereichWesten : KartenDatentypen.KartenfeldNatural;
+   PolbereichOsten : KartenDatentypen.KartenfeldNatural;
 
 end PolbereicheBerechnen;

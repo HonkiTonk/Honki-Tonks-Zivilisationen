@@ -48,6 +48,7 @@ package GlobaleTexte is
    Ressourcenmenge : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Kartenressourcen_Menü_Enum)) := (others => FehlenderText);
                                 
    -- Komplexe Auswahl.
+   Kartenpole : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Kartenpole_Menü_Enum)) := (others => FehlenderText);
    Kartenform : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Kartenform_Menü_Enum)) := (others => FehlenderText);
    
    
@@ -88,7 +89,7 @@ package GlobaleTexte is
    Angebot : TexteArray (1 .. 2) := (others => FehlenderText);
    Fehlermeldung : TexteArray (1 .. 20) := (others => FehlenderText);
    Ladezeit : TexteArray (1 .. 32) := (others => FehlenderText);
-   Frage : TexteArray (1 .. 35) := (others => FehlenderText);
+   Frage : TexteArray (1 .. 36) := (others => FehlenderText);
    Zeug : TexteArray (1 .. 69) := (others => FehlenderText);
    
 end GlobaleTexte;

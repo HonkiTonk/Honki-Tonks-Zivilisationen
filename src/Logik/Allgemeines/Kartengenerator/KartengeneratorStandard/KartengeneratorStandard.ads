@@ -14,7 +14,7 @@ private
    
    BeliebigerLandwert : KartenDatentypen.WahrscheinlichkeitKartengenerator;
    
-   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    type WahrscheinlichkeitenRecord is record
       

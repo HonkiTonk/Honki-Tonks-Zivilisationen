@@ -202,7 +202,7 @@ package body BewegungEinheitenSFML is
    is begin
       
       EÄnderungSchleife:
-      for EÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+      for EÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEinsEAchse'Range loop
          YÄnderungSchleife:
          for YÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
             XÄnderungSchleife:

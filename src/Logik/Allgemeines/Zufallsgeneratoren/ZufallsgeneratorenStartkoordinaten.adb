@@ -11,7 +11,7 @@ package body ZufallsgeneratorenStartkoordinaten is
 
    function Startkoordinaten
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
       
       case

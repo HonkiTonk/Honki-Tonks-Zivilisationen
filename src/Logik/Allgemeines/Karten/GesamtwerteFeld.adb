@@ -9,7 +9,7 @@ with KartenAllgemein;
 package body GesamtwerteFeld is
 
    function FeldNahrung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return ProduktionDatentypen.ProduktionFeld
    is begin
@@ -62,7 +62,7 @@ package body GesamtwerteFeld is
      
    
    function FeldProduktion
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return ProduktionDatentypen.ProduktionFeld
    is begin
@@ -115,7 +115,7 @@ package body GesamtwerteFeld is
      
      
    function FeldGeld
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return ProduktionDatentypen.ProduktionFeld
    is begin
@@ -168,7 +168,7 @@ package body GesamtwerteFeld is
      
      
    function FeldWissen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return ProduktionDatentypen.ProduktionFeld
    is begin
@@ -221,7 +221,7 @@ package body GesamtwerteFeld is
      
      
    function FeldVerteidigung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KampfDatentypen.Kampfwerte
    is begin
@@ -274,7 +274,7 @@ package body GesamtwerteFeld is
      
      
    function FeldAngriff
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KampfDatentypen.Kampfwerte
    is begin

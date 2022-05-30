@@ -12,11 +12,11 @@ with Karten;
 package UmgebungErreichbarTesten is
    
    function UmgebungErreichbarTesten
-     (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
       NotwendigeFelderExtern : in Positive)
-      return KartenRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre =>
          (AktuelleKoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -37,11 +37,11 @@ private
    
    GefundeneFelder : Positive;
    
-   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
-   KartenWertZwei : KartenRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   KartenWertZwei : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    function NochErreichbar
-     (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return Boolean

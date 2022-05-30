@@ -17,7 +17,7 @@ with StadtSuchen;
 package body KIBewegungAllgemein is
 
    function FeldBetreten
-     (FeldKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (FeldKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return KIDatentypen.Bewegung_Enum
    is begin

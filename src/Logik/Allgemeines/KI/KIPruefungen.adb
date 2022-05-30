@@ -26,7 +26,7 @@ package body KIPruefungen is
    
    function StadtUmgebungPrüfen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return KartenRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
       
       VerbesserungAnlegen := KIKonstanten.LeerKoordinate;
@@ -66,7 +66,7 @@ package body KIPruefungen is
    function StadtUmgebungUnverbessert
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       EinheitNummerExtern : in EinheitenDatentypen.MaximaleEinheiten)
-      return KartenRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
       
       YAchseSchleife:
@@ -113,7 +113,7 @@ package body KIPruefungen is
    
 
    function VerbesserungDortAnlegen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
@@ -190,7 +190,7 @@ package body KIPruefungen is
    function UmgebungStadtBauenPrüfen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       MindestBewertungFeldExtern : in KartenDatentypen.GesamtbewertungFeld)
-      return KartenRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
                   
       case
@@ -218,7 +218,7 @@ package body KIPruefungen is
    function FelderDurchgehen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       MindestBewertungFeldExtern : in KartenDatentypen.GesamtbewertungFeld)
-      return KartenRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
             
       KartenfeldSuchenSchleife:
@@ -284,7 +284,7 @@ package body KIPruefungen is
       MindestBewertungFeldExtern : in KartenDatentypen.GesamtbewertungFeld;
       YUmgebungExtern : in KartenDatentypen.KartenfeldPositiv;
       XUmgebungExtern : in KartenDatentypen.KartenfeldPositiv)
-      return KartenRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
       
       YAchseKartenfeldSuchenSchleife:
@@ -337,7 +337,7 @@ package body KIPruefungen is
    
    function KartenfeldUmgebungPrüfen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       MindestBewertungFeldExtern : in KartenDatentypen.GesamtbewertungFeld)
       return Boolean
    is begin
@@ -384,7 +384,7 @@ package body KIPruefungen is
    
    
    function FeldBelegt
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is begin
       

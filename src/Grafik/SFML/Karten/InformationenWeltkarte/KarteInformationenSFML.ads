@@ -44,8 +44,8 @@ private
    YAchsenWert : Unbounded_Wide_Wide_String;
    XAchsenWert : Unbounded_Wide_Wide_String;
 
-   LetzteKoordinaten : KartenRecords.AchsenKartenfeldPositivRecord := KartenRecordKonstanten.LeerKartenKoordinaten;
-   AktuelleKoordinaten : KartenRecords.AchsenKartenfeldPositivRecord;
+   LetzteKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord := KartenRecordKonstanten.LeerKartenKoordinaten;
+   AktuelleKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
 
    StartpunktText : constant Sf.System.Vector2.sfVector2f := (5.00, 5.00);
 
@@ -81,6 +81,6 @@ private
 
    function ZahlAlsStringEbeneVorhanden is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => KartenDatentypen.EbeneVorhanden);
 
-   function ZahlAlsStringKartenfeldPositivMitNullwert is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => KartenDatentypen.KartenfeldPositivMitNullwert);
+   function ZahlAlsStringKartenfeldPositivMitNullwert is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => KartenDatentypen.KartenfeldNatural);
 
 end KarteInformationenSFML;

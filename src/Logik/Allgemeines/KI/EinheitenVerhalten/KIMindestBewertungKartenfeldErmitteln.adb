@@ -24,7 +24,7 @@ package body KIMindestBewertungKartenfeldErmitteln is
       MindestBewertungKartenfeld := KIKonstanten.KartenfeldBewertungStadtBauenMinimum (EinheitRasseNummerExtern.Rasse);
       
       EAchseSchleife:
-      for EAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+      for EAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEinsEAchse'Range loop
          YAchseSchleife:
          for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
             XAchseSchleife:

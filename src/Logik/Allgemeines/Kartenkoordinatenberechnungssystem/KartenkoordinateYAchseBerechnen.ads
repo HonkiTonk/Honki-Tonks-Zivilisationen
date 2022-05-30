@@ -15,7 +15,7 @@ package KartenkoordinateYAchseBerechnen is
       ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld;
       ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden;
       LogikGrafikExtern : in Boolean)
-      return KartenDatentypen.KartenfeldPositivMitNullwert
+      return KartenDatentypen.KartenfeldNatural
      with
        Pre =>
          (YAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse),
@@ -46,7 +46,7 @@ private
       ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld;
       ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden;
       LogikGrafikExtern : in Boolean)
-      return KartenDatentypen.KartenfeldPositivMitNullwert
+      return KartenDatentypen.KartenfeldNatural
      with
        Pre =>
          (YAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse),
@@ -83,7 +83,7 @@ private
       ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld;
       ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden;
       LogikGrafikExtern : in Boolean)
-      return KartenDatentypen.KartenfeldPositivMitNullwert
+      return KartenDatentypen.KartenfeldNatural
      with
        Pre =>
          (YAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse),

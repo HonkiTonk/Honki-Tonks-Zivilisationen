@@ -10,7 +10,7 @@ with Karten;
 package FelderwerteFestlegen is
    
    procedure EinzelnesKartenfeldBewerten
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -18,7 +18,7 @@ package FelderwerteFestlegen is
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
    
    procedure KartenfelderBewertenKleineSchleife
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Enum)
      with
        Pre =>
@@ -28,13 +28,13 @@ package FelderwerteFestlegen is
    
 private
       
-   type KartenwertArray is array (KartenDatentypen.EbeneVorhanden'Range) of KartenRecords.AchsenKartenfeldPositivRecord;
+   type KartenwertArray is array (KartenDatentypen.EbeneVorhanden'Range) of KartenRecords.AchsenKartenfeldNaturalRecord;
    KartenWertEins : KartenwertArray;
    KartenWertZwei : KartenwertArray;
    
    procedure BewertungSelbst
-     (KoordinatenFeldExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      KoordinatenUmgebungExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenFeldExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      KoordinatenUmgebungExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Enum;
       TeilerExtern : in KartenDatentypen.UmgebungsbereichDrei)
      with

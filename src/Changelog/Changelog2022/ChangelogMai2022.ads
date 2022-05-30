@@ -1,30 +1,32 @@
 package ChangelogMai2022 is
 
-   -- Version 0.01.0 => 0.01.0 (31.05.2022):
+   -- Version 0.01.0820 => 0.01.08 (31.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0 => 0.01.0 (30.05.2022):
+   -- Version 0.01.0800 => 0.01.0820 (30.05.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.01.0 => 0.01.0 (29.05.2022):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Besseres Textanzeigensystem für Rassenzusatztext gebaut und angefangen eine allgemeinere Version für alle Zusatztexte zu konstruieren.
+   -- EAchse in eigenen Datentyp umgewandelt.
+   -- Interne Benennungen verbessert.
+   -- Angefangen nutzerdefinierbare Polregionen einzubauen.
+   -- Angefangen den Kartengenerator zu überarbeiten.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 
-   -- Version 0.01.0800 => 0.01.0 (28.05.2022):
+   -- Version 0.01.0800 => 0.01.0800 (29.05.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.01.0800 => 0.01.0800 (28.05.2022):
+   
+   -- null.
    
    
 

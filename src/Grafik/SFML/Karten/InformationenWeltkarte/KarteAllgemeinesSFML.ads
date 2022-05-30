@@ -44,8 +44,8 @@ private
    
    Zeilenabstand : Float;
 
-   LetzteKoordinaten : KartenRecords.AchsenKartenfeldPositivRecord := KartenRecordKonstanten.LeerKartenKoordinaten;
-   AktuelleKoordinaten : KartenRecords.AchsenKartenfeldPositivRecord;
+   LetzteKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord := KartenRecordKonstanten.LeerKartenKoordinaten;
+   AktuelleKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    Textposition : Sf.System.Vector2.sfVector2f;
    
