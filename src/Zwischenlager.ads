@@ -1,4 +1,17 @@
-
+-- Später wieder für Standardwerte für die Kartenartwerte einbauen. Ist schon wieder eiongebaut, aber für Notfälle noch hier.
+type LandflächenArray is array (KartenDatentypen.Kartenart_Enum'Range) of KartenRecords.YXAchsenKartenfeldPositivRecord;
+   GrößeLandfläche : LandflächenArray := (
+                                              KartenDatentypen.Kartenart_Inseln_Enum     => (3, 3),
+                                              KartenDatentypen.Kartenart_Kontinente_Enum => (7, 7),
+                                              KartenDatentypen.Kartenart_Pangäa_Enum     => (1, 1),
+                                              others                                     => (1, 1)
+                                             );
+   AbstandLandflächen : LandflächenArray := (
+                                               KartenDatentypen.Kartenart_Inseln_Enum     => (15, 15),
+                                               KartenDatentypen.Kartenart_Kontinente_Enum => (22, 22),
+                                               KartenDatentypen.Kartenart_Pangäa_Enum     => (1, 1),
+                                               others                                     => (1, 1)
+                                              );
 
 
 

@@ -331,16 +331,16 @@ package body RueckgabeMenues is
         AktuelleAuswahlExtern = AnfangExtern + 3
       then
          return RueckgabeDatentypen.Ostpol_Enum;
-         
+                    
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 4
       then
-         return RueckgabeDatentypen.Standard_Enum;
-                    
+         return RueckgabeDatentypen.Kartenpole_Zufall_Enum;
+         
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 5
       then
-         return RueckgabeDatentypen.Kartengröße_Zufall_Enum;
+         return RueckgabeDatentypen.Standard_Enum;
                     
       else
          return Fertig (EndeExtern            => EndeExtern,
@@ -457,7 +457,22 @@ package body RueckgabeMenues is
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 4
       then
+         return RueckgabeDatentypen.Nutzerdefiniert_Enum;
+                    
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 5
+      then
          return RueckgabeDatentypen.Zufall_Enum;
+                    
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 6
+      then
+         return RueckgabeDatentypen.Kartenart_Zufall_Enum;
+                    
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 7
+      then
+         return RueckgabeDatentypen.Standard_Enum;
                     
       else
          return Fertig (EndeExtern            => EndeExtern,

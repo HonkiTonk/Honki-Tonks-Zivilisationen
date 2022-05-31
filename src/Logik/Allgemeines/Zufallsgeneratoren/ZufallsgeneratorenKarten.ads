@@ -1,7 +1,6 @@
 pragma SPARK_Mode (Off);
 pragma Warnings (Off, "*array aggregate*");
 
-with Ada.Numerics.Float_Random;
 with Ada.Numerics.Discrete_Random;
 
 with KartenDatentypen;
@@ -11,12 +10,24 @@ package ZufallsgeneratorenKarten is
    function KartengeneratorZufallswerte
      return KartenDatentypen.WahrscheinlichkeitKartengenerator;
 
+   function KartengeneratorLandgrößen
+     (YAchseXAchseExtern : in Boolean)
+      return KartenDatentypen.KartenfeldPositiv;
+
+   function KartengeneratorAbstände
+     (YAchseXAchseExtern : in Boolean)
+     return KartenDatentypen.KartenfeldPositiv;
+
 private
 
-   ZufälligerKommawert : Ada.Numerics.Float_Random.Generator;
+   MinimalerWert : KartenDatentypen.KartenfeldPositiv;
+   MaximalerWert : KartenDatentypen.KartenfeldPositiv;
+   GezogenerWert : KartenDatentypen.KartenfeldPositiv;
 
    package ZufälligeZahl is new Ada.Numerics.Discrete_Random (KartenDatentypen.WahrscheinlichkeitKartengenerator);
+   package ZufälligeLandgrößenAbstände is new Ada.Numerics.Discrete_Random (KartenDatentypen.KartenfeldPositiv);
 
-   zufälligeZahlGewählt : ZufälligeZahl.Generator;
+   ZufälligeZahlGewählt : ZufälligeZahl.Generator;
+   ZufälligeLandgrößeAbstandGewählt : ZufälligeLandgrößenAbstände.Generator;
 
 end ZufallsgeneratorenKarten;

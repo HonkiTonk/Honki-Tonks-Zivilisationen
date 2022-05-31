@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+
 with KartenDatentypen; use KartenDatentypen;
 with MenueDatentypen;
 with KartenRecordKonstanten;
@@ -30,6 +32,7 @@ package body SpieleinstellungenKarten is
                  Karten.Kartenparameter.Kartenpole.Nordpol = KartenDatentypen.Kartenpol_Vorhanden_Enum
                then
                   Karten.Kartenparameter.Kartenpole.Nordpol := KartenDatentypen.Kartenpol_Nicht_Vorhanden_Enum;
+                  Karten.Polgrößen (KartenDatentypen.Norden_Enum) := 0;
                   
                else
                   EingegebeneEisdicke := Polgrößen (YAchseXAchseExtern => True);
@@ -42,8 +45,9 @@ package body SpieleinstellungenKarten is
                         
                      when others =>
                         Karten.Kartenparameter.Kartenpole.Nordpol := KartenDatentypen.Kartenpol_Vorhanden_Enum;
-                        Karten.Polgrößen (KartenDatentypen.Norden_Enum) := EingegebeneEisdicke;
                   end case;
+                  
+                  Karten.Polgrößen (KartenDatentypen.Norden_Enum) := EingegebeneEisdicke;
                end if;
                
             when RueckgabeDatentypen.Südpol_Enum =>
@@ -51,6 +55,7 @@ package body SpieleinstellungenKarten is
                  Karten.Kartenparameter.Kartenpole.Südpol = KartenDatentypen.Kartenpol_Vorhanden_Enum
                then
                   Karten.Kartenparameter.Kartenpole.Südpol := KartenDatentypen.Kartenpol_Nicht_Vorhanden_Enum;
+                  Karten.Polgrößen (KartenDatentypen.Süden_Enum) := 0;
                   
                else
                   EingegebeneEisdicke := Polgrößen (YAchseXAchseExtern => True);
@@ -63,8 +68,9 @@ package body SpieleinstellungenKarten is
                         
                      when others =>
                         Karten.Kartenparameter.Kartenpole.Südpol := KartenDatentypen.Kartenpol_Vorhanden_Enum;
-                        Karten.Polgrößen (KartenDatentypen.Süden_Enum) := EingegebeneEisdicke;
                   end case;
+                  
+                  Karten.Polgrößen (KartenDatentypen.Süden_Enum) := EingegebeneEisdicke;
                end if;
                
             when RueckgabeDatentypen.Westpol_Enum =>
@@ -72,6 +78,7 @@ package body SpieleinstellungenKarten is
                  Karten.Kartenparameter.Kartenpole.Westpol = KartenDatentypen.Kartenpol_Vorhanden_Enum
                then
                   Karten.Kartenparameter.Kartenpole.Westpol := KartenDatentypen.Kartenpol_Nicht_Vorhanden_Enum;
+                  Karten.Polgrößen (KartenDatentypen.Westen_Enum) := 0;
                   
                else
                   EingegebeneEisdicke := Polgrößen (YAchseXAchseExtern => False);
@@ -84,8 +91,9 @@ package body SpieleinstellungenKarten is
                         
                      when others =>
                         Karten.Kartenparameter.Kartenpole.Westpol := KartenDatentypen.Kartenpol_Vorhanden_Enum;
-                        Karten.Polgrößen (KartenDatentypen.Westen_Enum) := EingegebeneEisdicke;
                   end case;
+                  
+                  Karten.Polgrößen (KartenDatentypen.Westen_Enum) := EingegebeneEisdicke;
                end if;
                
             when RueckgabeDatentypen.Ostpol_Enum =>
@@ -93,6 +101,7 @@ package body SpieleinstellungenKarten is
                  Karten.Kartenparameter.Kartenpole.Ostpol = KartenDatentypen.Kartenpol_Vorhanden_Enum
                then
                   Karten.Kartenparameter.Kartenpole.Ostpol := KartenDatentypen.Kartenpol_Nicht_Vorhanden_Enum;
+                  Karten.Polgrößen (KartenDatentypen.Osten_Enum) := 0;
                   
                else
                   EingegebeneEisdicke := Polgrößen (YAchseXAchseExtern => False);
@@ -105,9 +114,13 @@ package body SpieleinstellungenKarten is
                         
                      when others =>
                         Karten.Kartenparameter.Kartenpole.Ostpol := KartenDatentypen.Kartenpol_Vorhanden_Enum;
-                        Karten.Polgrößen (KartenDatentypen.Osten_Enum) := EingegebeneEisdicke;
                   end case;
+                  
+                  Karten.Polgrößen (KartenDatentypen.Osten_Enum) := EingegebeneEisdicke;
                end if;
+               
+            when RueckgabeDatentypen.Kartenpole_Zufall_Enum =>
+               ZufallsgeneratorenSpieleinstellungen.ZufälligePole;
                
             when RueckgabeDatentypen.Standard_Enum =>
                Karten.Kartenparameter.Kartenpole := KartenRecordKonstanten.KartenpoleStandard;
@@ -118,6 +131,7 @@ package body SpieleinstellungenKarten is
                return;
                
             when others =>
+               Put_Line (KartenpoleAuswahl'Wide_Wide_Image);
                Fehler.LogikFehler (FehlermeldungExtern => "SpielEinstellungenKarten.KartenpoleWählen - Ungültige Menüauswahl.");
          end case;
          
@@ -151,7 +165,7 @@ package body SpieleinstellungenKarten is
           BenutzerdefinierteGröße.EingegebeneZahl = 0
       then
          return 0;
-            
+         
       else
          return KartenDatentypen.KartenfeldNatural (BenutzerdefinierteGröße.EingegebeneZahl);
       end if;
@@ -234,7 +248,8 @@ package body SpieleinstellungenKarten is
 
 
 
-   -- Inseln, Kontinente, Pangäa, Nur Land, Chaos
+   -- Inseln, Kontinente, Pangäa, Nur Land
+   ------------------------------------ Theoretisch müsste die Unterteilung in die verschiedenen Kartenarten in KartenDatentypen entfernt werden können und nur die in RueckgabeDatentypen sind noch wichtig.
    procedure KartenartWählen
    is begin
             
@@ -249,8 +264,18 @@ package body SpieleinstellungenKarten is
             when RueckgabeDatentypen.Kartenart_Enum'Range =>
                Karten.Kartenparameter.Kartenart := KartenartRückgabeZuKarten (KartenartAuswahl);
                
+            when RueckgabeDatentypen.Nutzerdefiniert_Enum =>
+               Karten.Kartenparameter.Kartenart := KartenDatentypen.Kartenart_Nutzerdefiniert_Enum;
+               KartenartNutzerdefinition;
+               
             when RueckgabeDatentypen.Zufall_Enum =>
                Karten.Kartenparameter.Kartenart := ZufallsgeneratorenSpieleinstellungen.ZufälligeKartenart;
+               
+            when RueckgabeDatentypen.Kartenart_Zufall_Enum =>
+               Karten.Kartenparameter.Kartenart := KartenDatentypen.Kartenart_Nutzerdefiniert_Enum;
+               
+            when RueckgabeDatentypen.Standard_Enum =>
+               KartenartStandard;
                
             when RueckgabeDatentypen.Fertig_Enum =>
                return;
@@ -262,6 +287,89 @@ package body SpieleinstellungenKarten is
       end loop KartenartSchleife;
       
    end KartenartWählen;
+   
+   
+   
+   ----------------------------------- Könnte bei Änderung der Kartengröße zu Problemen führen.
+   procedure KartenartNutzerdefinition
+   is begin
+      
+      BenutzerdefinierteKartenart := Eingabe.GanzeZahl (ZeileExtern         => TextKonstanten.FrageMinimaleLandhöhe,
+                                                        ZahlenMinimumExtern => 1,
+                                                        ZahlenMaximumExtern => Positive (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse / 2));
+      
+      case
+        BenutzerdefinierteKartenart.EingabeAbbruch
+      is
+         when False =>
+            KartenartStandard;
+            return;
+            
+         when True =>
+            Karten.Landgrößen.MinimaleYAchse := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteKartenart.EingegebeneZahl);
+            ZwischenwertKartenart := BenutzerdefinierteKartenart.EingegebeneZahl;
+      end case;
+            
+      BenutzerdefinierteKartenart := Eingabe.GanzeZahl (ZeileExtern         => TextKonstanten.FrageMaximaleLandhöhe,
+                                                        ZahlenMinimumExtern => ZwischenwertKartenart,
+                                                        ZahlenMaximumExtern => Positive (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse / 2));
+      
+      case
+        BenutzerdefinierteKartenart.EingabeAbbruch
+      is
+         when False =>
+            KartenartStandard;
+            return;
+            
+         when True =>
+            Karten.Landgrößen.MaximaleYAchse := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteKartenart.EingegebeneZahl);
+      end case;
+      
+      
+      
+      BenutzerdefinierteKartenart := Eingabe.GanzeZahl (ZeileExtern         => TextKonstanten.FrageMinimaleLandbreite,
+                                                        ZahlenMinimumExtern => 1,
+                                                        ZahlenMaximumExtern => Positive (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse / 2));
+      
+      case
+        BenutzerdefinierteKartenart.EingabeAbbruch
+      is
+         when False =>
+            KartenartStandard;
+            return;
+            
+         when True =>
+            Karten.Landgrößen.MinimaleXAchse := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteKartenart.EingegebeneZahl);
+            ZwischenwertKartenart := BenutzerdefinierteKartenart.EingegebeneZahl;
+      end case;
+            
+      BenutzerdefinierteKartenart := Eingabe.GanzeZahl (ZeileExtern         => TextKonstanten.FrageMaximaleLandbreite ,
+                                                        ZahlenMinimumExtern => ZwischenwertKartenart,
+                                                        ZahlenMaximumExtern => Positive (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse / 2));
+      
+      case
+        BenutzerdefinierteKartenart.EingabeAbbruch
+      is
+         when False =>
+            KartenartStandard;
+            return;
+            
+         when True =>
+            Karten.Landgrößen.MaximaleXAchse := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteKartenart.EingegebeneZahl);
+      end case;
+      
+   end KartenartNutzerdefinition;
+
+
+
+   procedure KartenartStandard
+   is begin
+
+      Karten.Kartenparameter.Kartenart := KartenRecordKonstanten.KartenparameterStandard.Kartenart;
+      Karten.Landgrößen := KartenRecordKonstanten.Inselgröße;
+      Karten.Abstände := KartenRecordKonstanten.Inselabstand;
+
+   end KartenartStandard;
    
    
    
@@ -278,9 +386,6 @@ package body SpieleinstellungenKarten is
          is
             when RueckgabeDatentypen.Kartenform_Enum'Range =>
                KartenformZuweisen (WelcheAchseExtern => KartenformAuswahl);
-               
-            when RueckgabeDatentypen.Kartenübergang_Welche_Achse_Enum =>
-               Karten.Kartenparameter.Kartenform.YZuerstBerechnenXZuerstBerechnen := not Karten.Kartenparameter.Kartenform.YZuerstBerechnenXZuerstBerechnen;
                
             when RueckgabeDatentypen.Zufall_Enum =>
                ZufallsgeneratorenSpieleinstellungen.ZufälligeKartenform;

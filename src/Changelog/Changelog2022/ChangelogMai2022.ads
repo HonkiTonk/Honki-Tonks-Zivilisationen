@@ -1,9 +1,15 @@
 package ChangelogMai2022 is
 
-   -- Version 0.01.0820 => 0.01.08 (31.05.2022):
+   -- Version 0.01.0820 => 0.01.0900 (31.05.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Benutzerdefinierbare Polregionen vollständig eingebaut.
+   -- Minimale und maximale Landmassenhöhe/breite kann sich jetzt unterscheiden.
+   -- Minimale und maximale Landmassenhöhe/breite ist jetzt vom Nutzer einstellbar.
+   -- Weiter am neuen Grundsystem gebaut.
+   -- Angefangen eine Möglichkeit einzubauen den Basisgrund und den AktuellenGrund gleichzeitig anzuzeigen.
+   -- KartengeneratorLandschaft an das neue Grundsystem angepasst.
+   -- Unnötigen Code gelöscht.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

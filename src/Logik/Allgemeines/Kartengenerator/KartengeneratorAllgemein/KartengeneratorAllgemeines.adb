@@ -69,7 +69,7 @@ package body KartengeneratorAllgemeines is
          when KartenDatentypen.Kartenart_Nur_Land_Enum =>
             KartengeneratorNurLand.NurLandGenerieren;
             
-         when KartenDatentypen.Kartenart_Normal_Enum'Range =>
+         when KartenDatentypen.Kartenart_Normal_Enum'Range | KartenDatentypen.Kartenart_Nutzerdefiniert_Enum =>
             KartengeneratorStandard.OberflächeGenerieren;
       end case;
       

@@ -203,7 +203,7 @@ package ChangelogJuni2022 is
    
    
 
-   -- Version 0.0. => 0.0. (01.06.2022):
+   -- Version 0.01.0900 => 0.01. (01.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.

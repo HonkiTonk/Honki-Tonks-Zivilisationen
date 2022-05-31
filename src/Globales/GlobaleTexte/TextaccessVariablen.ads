@@ -116,7 +116,7 @@ package TextaccessVariablen is
    
    
    -- KarteAllgemeines
-   type KarteAllgemeinesAccessArray is array (1 .. 6) of Sf.Graphics.sfText_Ptr;
+   type KarteAllgemeinesAccessArray is array (1 .. 5) of Sf.Graphics.sfText_Ptr;
    KarteAllgemeinesAccess : constant KarteAllgemeinesAccessArray := (others => Sf.Graphics.Text.create);
    -- KarteAllgemeines
    

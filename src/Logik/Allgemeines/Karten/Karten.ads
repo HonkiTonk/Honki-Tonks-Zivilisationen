@@ -36,17 +36,9 @@ package Karten is
    Polgrößen : KartenDatentypen.PolregionenArray := KartenRecordKonstanten.Eisrand;
    Eisschild : KartenDatentypen.PolregionenArray := KartenRecordKonstanten.Eisschild;
 
-   -- False ist Minimum, True ist Maximum.
    -- Alle Angaben sind Radien.
-   type AngabenArray is array (Boolean'Range) of KartenRecords.YXAchsenKartenfeldPositivRecord;
-   Landgrößen : AngabenArray := (
-                                   False => (3, 6),
-                                   True  => (3, 6)
-                                  );
+   Landgrößen : KartenRecords.LandgrößenRecord := KartenRecordKonstanten.Inselgröße;
 
-   Abstände : AngabenArray := (
-                                False => (3, 6),
-                                True  => (3, 6)
-                               );
+   Abstände : KartenRecords.LandabständeRecord := KartenRecordKonstanten.Inselabstand;
 
 end Karten;

@@ -26,7 +26,10 @@ private
    EingegebeneEisdicke : KartenDatentypen.KartenfeldNatural;
    MaximaleEisdicke : KartenDatentypen.KartenfeldPositiv;
    
+   ZwischenwertKartenart : Positive;
+   
    BenutzerdefinierteGröße : SystemRecords.ZahlenEingabeRecord;
+   BenutzerdefinierteKartenart : SystemRecords.ZahlenEingabeRecord;
    
    type KartengrößeRückgabeZuKartenArray is array (RueckgabeDatentypen.Kartengröße_Verwendet_Enum'Range) of KartenDatentypen.Kartengröße_Verwendet_Enum;
    KartengrößeRückgabeZuKarten : constant KartengrößeRückgabeZuKartenArray := (
@@ -74,8 +77,12 @@ private
    procedure KartenformZuweisen
      (WelcheAchseExtern : in RueckgabeDatentypen.Kartenform_Enum);
    
+   procedure KartenartStandard;
+   procedure KartenartNutzerdefinition;
    
+      
    
+   ------------------------------ Post kleiner als Kartengröße?
    function Polgrößen
      (YAchseXAchseExtern : in Boolean)
       return KartenDatentypen.KartenfeldNatural;

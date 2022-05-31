@@ -117,5 +117,13 @@ package TextKonstanten is
    FrageBildrate : constant Positive := 34;
    FrageStadtname : constant Positive := 35;
    FrageEisschicht : constant Positive := 36;
+   FrageMinimaleLandhöhe : constant Positive := 37;
+   FrageMaximaleLandhöhe : constant Positive := 38;
+   FrageMinimaleLandbreite : constant Positive := 39;
+   FrageMaximaleLandbreite : constant Positive := 40;
+   FrageMinimalerHöhenabstand : constant Positive := 41;
+   FrageMaximalerHöhenabstand : constant Positive := 42;
+   FrageMinimaleBreitenabstand : constant Positive := 43;
+   FrageMaximalerBreitenabstand : constant Positive := 44;
 
 end TextKonstanten;

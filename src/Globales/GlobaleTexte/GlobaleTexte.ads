@@ -89,7 +89,7 @@ package GlobaleTexte is
    Angebot : TexteArray (1 .. 2) := (others => FehlenderText);
    Fehlermeldung : TexteArray (1 .. 20) := (others => FehlenderText);
    Ladezeit : TexteArray (1 .. 32) := (others => FehlenderText);
-   Frage : TexteArray (1 .. 36) := (others => FehlenderText);
+   Frage : TexteArray (1 .. 44) := (others => FehlenderText);
    Zeug : TexteArray (1 .. 69) := (others => FehlenderText);
    
 end GlobaleTexte;

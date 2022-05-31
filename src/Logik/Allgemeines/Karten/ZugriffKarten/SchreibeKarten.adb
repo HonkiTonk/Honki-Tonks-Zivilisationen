@@ -1,13 +1,13 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
--- with LeseKarten;
+with Fehler;
 
 package body SchreibeKarten is
 
    procedure AktuellerGrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Enum)
+      GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
    is begin
       
       Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).AktuellerGrund := GrundExtern;
@@ -18,10 +18,18 @@ package body SchreibeKarten is
    
    procedure BasisGrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Enum)
+      GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
    is begin
+      
+      case
+        GrundExtern
+      is
+         when KartengrundDatentypen.Kartengrund_Oberfläche_Zusatz_Enum'Range =>
+            Fehler.LogikFehler (FehlermeldungExtern => "SchreibeKarten.BasisGrund - Zusatzgrund wird auf Basisgrund geschrieben.");
             
-      Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).BasisGrund := GrundExtern;
+         when others =>
+            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).BasisGrund := GrundExtern;
+      end case;
       
    end BasisGrund;
    
@@ -29,7 +37,7 @@ package body SchreibeKarten is
    
    procedure ZweimalGrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Enum)
+      GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
    is begin
       
       Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).AktuellerGrund := GrundExtern;

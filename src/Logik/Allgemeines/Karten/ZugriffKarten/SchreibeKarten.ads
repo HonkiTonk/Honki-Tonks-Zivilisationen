@@ -14,36 +14,30 @@ package SchreibeKarten is
 
    procedure AktuellerGrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Enum)
+      GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse
-          and
-            GrundExtern /= KartengrundDatentypen.Leer_Grund_Enum);
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
    
    procedure BasisGrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Enum)
+      GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse
-          and
-            GrundExtern /= KartengrundDatentypen.Leer_Grund_Enum);
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
    
    procedure ZweimalGrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Enum)
+      GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse
-          and
-            GrundExtern /= KartengrundDatentypen.Leer_Grund_Enum);
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
    
    procedure Sichtbar
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;

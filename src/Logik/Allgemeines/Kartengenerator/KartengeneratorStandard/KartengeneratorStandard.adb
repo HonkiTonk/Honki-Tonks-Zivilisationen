@@ -37,7 +37,7 @@ package body KartengeneratorStandard is
    is begin
       
       case
-        LeseKarten.AktuellerGrund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern))
+        LeseKarten.BasisGrund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern))
       is
          when KartengrundDatentypen.Leer_Grund_Enum =>
             BeliebigerLandwert := ZufallsgeneratorenKarten.KartengeneratorZufallswerte;
@@ -74,11 +74,28 @@ package body KartengeneratorStandard is
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
    is begin
+
+      LandmassenSchleife:
+      for LandmassenSchleifenwert in LandmassenArray'Range loop
+         
+         case
+           LandmassenSchleifenwert
+         is
+            when 1 .. 2 =>
+               LandHöheBreite := True;
+
+            when others =>
+               LandHöheBreite := False;
+         end case;
+
+         Landmassen (LandmassenSchleifenwert) := ZufallsgeneratorenKarten.KartengeneratorLandgrößen (YAchseXAchseExtern => LandHöheBreite);
+
+      end loop LandmassenSchleife;
       
       YAchseLandErzeugenSchleife:
-      for YÄnderungSchleifenwert in -Karten.Landgrößen (False).YAchse .. Karten.Landgrößen (False).YAchse loop
+      for YÄnderungSchleifenwert in -Landmassen (1) .. Landmassen (2) loop
          XAchseLandErzeugenSchleife:
-         for XÄnderungSchleifenwert in -Karten.Landgrößen (False).XAchse .. Karten.Landgrößen (False).XAchse loop
+         for XÄnderungSchleifenwert in -Landmassen (3) .. Landmassen (4) loop
             
             KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
                                                                                                  ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
@@ -114,17 +131,34 @@ package body KartengeneratorStandard is
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
    is begin
+
+      LandabstandSchleife:
+      for LandabstandSchleifenwert in LandmassenArray'Range loop
+         
+         case
+           LandabstandSchleifenwert
+         is
+            when 1 .. 2 =>
+               LandHöheBreite := True;
+
+            when others =>
+               LandHöheBreite := False;
+         end case;
+
+         Landabstand (LandabstandSchleifenwert) := ZufallsgeneratorenKarten.KartengeneratorAbstände (YAchseXAchseExtern => LandHöheBreite);
+
+      end loop LandabstandSchleife;
       
       YAchseAbstandFlächenSchleife:
-      for YÄnderungSchleifenwert in -Karten.Abstände (False).YAchse .. Karten.Abstände (False).YAchse loop
+      for YÄnderungSchleifenwert in -Landabstand (1) .. Landabstand (2) loop
          XAchseAbstandFlächenSchleife:
-         for XÄnderungSchleifenwert in -Karten.Abstände (False).XAchse .. Karten.Abstände (False).XAchse loop
+         for XÄnderungSchleifenwert in -Landabstand (3) .. Landabstand (4) loop
             
             ----------------------- Später die Abstandsschleifen anpassen damit diese Prüfung raus kann und nur noch der tatsächliche Abstand geloopt wird und nicht auch die Landmasse.
             if
-              YÄnderungSchleifenwert in -Karten.Landgrößen (False).YAchse .. Karten.Landgrößen (False).YAchse
+              YÄnderungSchleifenwert in -Landmassen (1) .. Landmassen (2)
               and
-                XÄnderungSchleifenwert in -Karten.Landgrößen (False).XAchse .. Karten.Landgrößen (False).XAchse
+                XÄnderungSchleifenwert in -Landmassen (3) .. Landmassen (4)
             then
                null;
                

@@ -12,6 +12,12 @@ package KartengeneratorStandard is
 
 private
    
+   LandHöheBreite : Boolean;
+   
+   type LandmassenArray is array (1 .. 4) of KartenDatentypen.KartenfeldPositiv;
+   Landmassen : LandmassenArray;
+   Landabstand : LandmassenArray;
+   
    BeliebigerLandwert : KartenDatentypen.WahrscheinlichkeitKartengenerator;
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
@@ -25,7 +31,7 @@ private
    
    ---------------------------- Später Nutzereinstellbar machen.
    WahrscheinlichkeitLandmasse : constant WahrscheinlichkeitenRecord := (25, 80);
-   WahrscheinlichkeitLandInLandmasse : constant WahrscheinlichkeitenRecord := (0, 85);
+   WahrscheinlichkeitLandInLandmasse : constant WahrscheinlichkeitenRecord := (0, 90);
    WahrscheinlichkeitWasser : constant WahrscheinlichkeitenRecord := (0, 95);
 
    procedure LandVorhanden

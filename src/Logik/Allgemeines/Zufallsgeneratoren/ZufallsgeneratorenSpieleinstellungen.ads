@@ -11,6 +11,7 @@ package ZufallsgeneratorenSpieleinstellungen is
      
    procedure ZufälligeRassen;
    procedure ZufälligeKartenform;
+   procedure ZufälligePole;
    
    
 

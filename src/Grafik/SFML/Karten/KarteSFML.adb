@@ -224,11 +224,34 @@ package body KarteSFML is
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
-      Kartengrund := LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern);
+      ------------------------------------ Noch die Grafiken anpassen damit diese Anzeige hier auch Sinn ergibt.
+      AktuellerKartengrund := LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern);
+      BasisKartengrund := LeseKarten.BasisGrund (KoordinatenExtern => KoordinatenExtern);
       
-      -------------------------- Kan man das auch noch an anderen Stellen verwenden? Wahrscheinlich ja.
+      if
+        AktuellerKartengrund = BasisKartengrund
+      then
+         null;
+         
+      else
+         case
+           SpriteGezeichnet (TexturAccessExtern => EingeleseneTexturenSFML.KartenfelderAccess (BasisKartengrund),
+                             PositionExtern     => PositionExtern)
+         is
+            when True =>
+               null;
+            
+            when False =>
+               ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => BerechnungenKarteSFML.KartenfelderAbmessung,
+                                                     PositionExtern       => PositionExtern,
+                                                     FarbeExtern          => FarbgebungSFML.FarbeKartenfeldErmitteln (GrundExtern => BasisKartengrund),
+                                                     RechteckAccessExtern => RechteckAccess);
+         end case;
+      end if;
+      
+      -------------------------- Kan man das auch noch an anderen Stellen (Dateien) verwenden? Wahrscheinlich ja.
       case
-        SpriteGezeichnet (TexturAccessExtern => EingeleseneTexturenSFML.KartenfelderAccess (Kartengrund),
+        SpriteGezeichnet (TexturAccessExtern => EingeleseneTexturenSFML.KartenfelderAccess (AktuellerKartengrund),
                           PositionExtern     => PositionExtern)
       is
          when True =>
@@ -237,7 +260,7 @@ package body KarteSFML is
          when False =>
             ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => BerechnungenKarteSFML.KartenfelderAbmessung,
                                                   PositionExtern       => PositionExtern,
-                                                  FarbeExtern          => FarbgebungSFML.FarbeKartenfeldErmitteln (GrundExtern => Kartengrund),
+                                                  FarbeExtern          => FarbgebungSFML.FarbeKartenfeldErmitteln (GrundExtern => AktuellerKartengrund),
                                                   RechteckAccessExtern => RechteckAccess);
       end case;
       

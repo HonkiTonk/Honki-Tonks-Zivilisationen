@@ -188,5 +188,14 @@ package body ZufallsgeneratorenSpieleinstellungen is
       return ZufälligenSchwierigkeitsgradWählen.Random (ZufälligerSchwierigkeitsgradGewählt);
       
    end ZufälligerSchwiewrigkeitsgrad;
+   
+   
+   
+   procedure ZufälligePole
+   is begin
+      
+      null;
+      
+   end ZufälligePole;
 
 end ZufallsgeneratorenSpieleinstellungen;

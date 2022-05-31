@@ -16,8 +16,8 @@ package KartengrundDatentypen is
                              -- Oberfläche
                              Eis_Enum,
                              Wasser_Enum, Küstengewässer_Enum,
-                             Flachland_Enum, Wüste_Enum, Hügel_Enum, Gebirge_Enum,
-                             Tundra_Enum, Wald_Enum, Dschungel_Enum, Sumpf_Enum,
+                             Flachland_Enum, Wüste_Enum, Hügel_Enum, Gebirge_Enum, Tundra_Enum,
+                             Wald_Enum, Dschungel_Enum, Sumpf_Enum,
                              
                              -- Unterfläche
                              Untereis_Enum,
@@ -44,11 +44,14 @@ package KartengrundDatentypen is
    
    -- Oberfläche
    subtype Kartengrund_Oberfläche_Enum is Kartengrund_Vorhanden_Enum range Eis_Enum .. Sumpf_Enum;
+   
    subtype Kartengrund_Oberfläche_Eiswasser_Enum is Kartengrund_Oberfläche_Enum range Eis_Enum .. Küstengewässer_Enum;
    subtype Kartengrund_Oberfläche_Wasser_Enum is Kartengrund_Oberfläche_Eiswasser_Enum range Wasser_Enum .. Küstengewässer_Enum;
+   
    subtype Kartengrund_Oberfläche_Land_Enum is Kartengrund_Oberfläche_Enum range Flachland_Enum .. Sumpf_Enum;
-   subtype Kartengrund_Oberfläche_Basis_Enum is Kartengrund_Oberfläche_Land_Enum range Flachland_Enum .. Gebirge_Enum;
-   subtype Kartengrund_Oberfläche_Zusatz_Enum is Kartengrund_Oberfläche_Land_Enum range Tundra_Enum .. Sumpf_Enum;
+   
+   subtype Kartengrund_Oberfläche_Basis_Enum is Kartengrund_Oberfläche_Land_Enum range Flachland_Enum .. Tundra_Enum;
+   subtype Kartengrund_Oberfläche_Zusatz_Enum is Kartengrund_Oberfläche_Land_Enum range Wald_Enum .. Sumpf_Enum;
    
    -- Unterfläche
    subtype Kartengrund_Unterfläche_Enum is Kartengrund_Vorhanden_Enum range Untereis_Enum .. Gestein_Enum;

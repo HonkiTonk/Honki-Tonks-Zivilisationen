@@ -55,7 +55,10 @@ package KartenDatentypen is
                            Kartenart_Inseln_Enum, Kartenart_Kontinente_Enum, Kartenart_Pangäa_Enum,
                            
                            -- Sonstiges
-                           Kartenart_Nur_Land_Enum
+                           Kartenart_Nur_Land_Enum,
+                           
+                           -- Nutzerdefiniert
+                           Kartenart_Nutzerdefiniert_Enum
                           );
    pragma Ordered (Kartenart_Enum);
    

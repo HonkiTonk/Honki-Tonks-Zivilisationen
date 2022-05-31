@@ -125,8 +125,6 @@ package KartenRecords is
       XAchseWesten : KartenDatentypen.Kartenform_X_Einstellbar_Enum;
       XAchseOsten : KartenDatentypen.Kartenform_X_Einstellbar_Enum;
       
-      YZuerstBerechnenXZuerstBerechnen : Boolean;
-      
    end record;
    
    
@@ -142,12 +140,25 @@ package KartenRecords is
    
    
    
-   type KartenpoleKorrekturRecord is record 
+   type LandgrößenRecord is record
       
-      Norden : KartenDatentypen.KartenfeldNatural;
-      Süden : KartenDatentypen.KartenfeldNatural;
-      Westen : KartenDatentypen.KartenfeldNatural;
-      Osten : KartenDatentypen.KartenfeldNatural;
+      MinimaleYAchse : KartenDatentypen.KartenfeldPositiv;
+      MaximaleYAchse : KartenDatentypen.KartenfeldPositiv;
+      
+      MinimaleXAchse : KartenDatentypen.KartenfeldPositiv;
+      MaximaleXAchse : KartenDatentypen.KartenfeldPositiv;
+      
+   end record;
+   
+   
+   
+   type LandabständeRecord is record
+      
+      MinimaleYAchse : KartenDatentypen.KartenfeldNatural;
+      MaximaleYAchse : KartenDatentypen.KartenfeldNatural;
+      
+      MinimaleXAchse : KartenDatentypen.KartenfeldNatural;
+      MaximaleXAchse : KartenDatentypen.KartenfeldNatural;
       
    end record;
    
