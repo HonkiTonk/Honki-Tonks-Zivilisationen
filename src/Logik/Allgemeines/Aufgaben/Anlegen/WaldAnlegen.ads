@@ -1,27 +1,24 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with RassenDatentypen; use RassenDatentypen;
-with SpielVariablen;
-with EinheitenRecords;
-with SonstigeVariablen;
+with KartenDatentypen; use KartenDatentypen;
 with KartengrundDatentypen;
 with KartenRecords;
+
+with Karten;
 
 package WaldAnlegen is
 
    procedure WaldAnlegen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
      with
        Pre =>
-         (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
           and
-            SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
 
 private
 
    NeuerGrund : KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
-
-   Koordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
 
 end WaldAnlegen;

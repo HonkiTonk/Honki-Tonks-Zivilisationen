@@ -8,158 +8,149 @@ with ZufallsgeneratorenKarten;
 package body KartengeneratorErdwelt is
 
    procedure KartengeneratorErdwelt
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
    is begin
       
-      ZufallszahlenSchleife:
-      for ZufallszahlSchleifenwert in KartengrundWahrscheinlichkeitArray'Range loop
-         
-         GezogeneZahlen (ZufallszahlSchleifenwert) := ZufallsgeneratorenKarten.KartengeneratorZufallswerte;
-         
-      end loop ZufallszahlenSchleife;
+      BasisgrundBestimmen (KoordinatenExtern => KoordinatenExtern);
       
-      WelcherGrund := KartengrundDatentypen.Leer_Grund_Enum;
-      WelcheMöglichkeiten := (others => False);
-      
-      AuswahlSchleife:
-      for AuswahlSchleifenwert in KartengrundWahrscheinlichkeitArray'Range loop
-         
-         if
-           GezogeneZahlen (AuswahlSchleifenwert) < KartengrundWahrscheinlichkeit (AuswahlSchleifenwert)
-         then
-            WelcheMöglichkeiten (AuswahlSchleifenwert) := True;
-            
-         else
-            null;
-         end if;
-         
-      end loop AuswahlSchleife;
-      
-      ------------------- Braucht noch ein wenig Feinabstimmung.
-      ErsteSchleife:
-      for ErsterSchleifenwert in KartengrundWahrscheinlichkeitArray'Range loop
-         ZweiteSchleife:
-         for ZweiterSchleifenwert in KartengrundWahrscheinlichkeitArray'Range loop
-            
-            if
-              WelcheMöglichkeiten (ErsterSchleifenwert) = False
-              or
-                WelcheMöglichkeiten (ZweiterSchleifenwert) = False
-            then
-               null;
-               
-            elsif
-              GezogeneZahlen (ErsterSchleifenwert) >= GezogeneZahlen (ZweiterSchleifenwert)
-            then
-               WelcherGrund := ErsterSchleifenwert;
-               
-            else
-               WelcherGrund := ZweiterSchleifenwert;
-            end if;
-            
-         end loop ZweiteSchleife;
-      end loop ErsteSchleife;
-      
-      WelcherGrund := GrundErneutBestimmen (GrundExtern => WelcherGrund);
-      
-      WelcherGrund := GrundZusatzberechnungen (YAchseExtern => YAchseExtern,
-                                               XAchseExtern => XAchseExtern,
-                                               GrundExtern  => WelcherGrund);
-      
-      SchreibeKarten.AktuellerGrund (KoordinatenExtern => (-1, YAchseExtern, XAchseExtern),
-                            GrundExtern       => WelcherGrund);
+      ZusatzgrundBestimmen (KoordinatenExtern => KoordinatenExtern);
       
    end KartengeneratorErdwelt;
    
    
    
-   function GrundErneutBestimmen
-     (GrundExtern : in KartengrundDatentypen.Kartengrund_Enum)
-      return KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum
+   procedure BasisgrundBestimmen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
    is begin
       
-      case
-        GrundExtern
-      is
-         when KartengrundDatentypen.Leer_Grund_Enum =>
-            null;
-            
-         when others =>
-            return GrundExtern;
-      end case;
+      WelcherGrund := KartengrundDatentypen.Leer_Grund_Enum;
       
-      ------------------- Braucht noch ein wenig Feinabstimmung.
-      ErsteSchleife:
-      for ErsterSchleifenwert in KartengrundWahrscheinlichkeitArray'Range loop
-         ZweiteSchleife:
-         for ZweiterSchleifenwert in KartengrundWahrscheinlichkeitArray'Range loop
+      ZufallszahlenSchleife:
+      for ZufallszahlSchleifenwert in BasisWahrscheinlichkeitenArray'Range loop
+         
+         BasisZahlen (ZufallszahlSchleifenwert) := ZufallsgeneratorenKarten.KartengeneratorZufallswerte;
+         
+         if
+           BasisZahlen (ZufallszahlSchleifenwert) < BasisWahrscheinlichkeiten (ZufallszahlSchleifenwert)
+         then
+            BasisMöglichkeiten (ZufallszahlSchleifenwert) := True;
+            
+         else
+            BasisMöglichkeiten (ZufallszahlSchleifenwert) := False;
+         end if;
+         
+      end loop ZufallszahlenSchleife;
+      
+      DurchlaufSchleife:
+      for DurchlaufSchleifenwert in Boolean'Range loop
+         WahrscheinlichkeitSchleife:
+         for WahrscheinlichkeitSchleifenwert in BasisWahrscheinlichkeitenArray'Range loop
             
             if
-              GezogeneZahlen (ErsterSchleifenwert) >= GezogeneZahlen (ZweiterSchleifenwert)
+              DurchlaufSchleifenwert = False
+              and
+                BasisMöglichkeiten (WahrscheinlichkeitSchleifenwert) = False
             then
-               NeuerGrund := ErsterSchleifenwert;
-               
+               null;
+                  
             else
-               NeuerGrund := ZweiterSchleifenwert;
+               case
+                 WelcherGrund
+               is
+                  when KartengrundDatentypen.Leer_Grund_Enum =>
+                     WelcherGrund := WahrscheinlichkeitSchleifenwert;
+                        
+                  when others =>
+                     if
+                       BasisZahlen (WahrscheinlichkeitSchleifenwert) > BasisZahlen (WelcherGrund)
+                     then
+                        WelcherGrund := WahrscheinlichkeitSchleifenwert;
+                        
+                     elsif
+                       BasisZahlen (WahrscheinlichkeitSchleifenwert) = BasisZahlen (WelcherGrund)
+                       and
+                         ZufallsgeneratorenKarten.KartengeneratorBoolean = True
+                     then
+                        WelcherGrund := WahrscheinlichkeitSchleifenwert;
+                           
+                     else
+                        null;
+                     end if;
+               end case;
             end if;
+               
+         end loop WahrscheinlichkeitSchleife;
+      
+         case
+           WelcherGrund
+         is
+            when KartengrundDatentypen.Leer_Grund_Enum =>
+               null;
             
-         end loop ZweiteSchleife;
-      end loop ErsteSchleife;
+            when others =>
+               exit DurchlaufSchleife;
+         end case;
+         
+      end loop DurchlaufSchleife;
       
-      return NeuerGrund;
+      WelcherGrund := BasisExtraberechnungen (KoordinatenExtern => KoordinatenExtern,
+                                              GrundExtern       => WelcherGrund);
       
-   end GrundErneutBestimmen;
+      SchreibeKarten.ZweimalGrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
+                                   GrundExtern       => WelcherGrund);
+      
+   end BasisgrundBestimmen;
    
    
    
-   function GrundZusatzberechnungen
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+   procedure ZusatzgrundBestimmen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
+   is begin
+      
+      null;
+      
+   end ZusatzgrundBestimmen;
+   
+   
+   
+   function BasisExtraberechnungen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum)
       return KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum
    is begin
       
-      -------------------------- Bei allen Berechnungen das Eis berücksichtigen?
       case
         GrundExtern
       is
          when KartengrundDatentypen.Erde_Enum =>
-            ZusatzberechnungenGrund := ZusatzberechnungErde (YAchseExtern => YAchseExtern,
-                                                             XAchseExtern => XAchseExtern,
-                                                             GrundExtern  => GrundExtern);
+            return ZusatzberechnungErde (KoordinatenExtern => KoordinatenExtern,
+                                         GrundExtern       => GrundExtern);
             
          when KartengrundDatentypen.Erdgestein_Enum =>
-            ZusatzberechnungenGrund := ZusatzberechnungErdgestein (YAchseExtern => YAchseExtern,
-                                                                   XAchseExtern => XAchseExtern,
-                                                                   GrundExtern  => GrundExtern);
+            return ZusatzberechnungErdgestein (KoordinatenExtern => KoordinatenExtern,
+                                               GrundExtern       => GrundExtern);
             
          when KartengrundDatentypen.Sand_Enum =>
-            ZusatzberechnungenGrund := ZusatzberechnungSand (YAchseExtern => YAchseExtern,
-                                                             XAchseExtern => XAchseExtern,
-                                                             GrundExtern  => GrundExtern);
+            return ZusatzberechnungSand (KoordinatenExtern => KoordinatenExtern,
+                                         GrundExtern       => GrundExtern);
             
          when KartengrundDatentypen.Gestein_Enum =>
-            ZusatzberechnungenGrund := ZusatzberechnungGestein (YAchseExtern => YAchseExtern,
-                                                                XAchseExtern => XAchseExtern,
-                                                                GrundExtern  => GrundExtern);
+            return ZusatzberechnungGestein (KoordinatenExtern => KoordinatenExtern,
+                                            GrundExtern       => GrundExtern);
       end case;
       
-      return ZusatzberechnungenGrund;
-      
-   end GrundZusatzberechnungen;
+   end BasisExtraberechnungen;
    
    
    
    function ZusatzberechnungErde
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum)
       return KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum
    is begin
       
       if
-        YAchseExtern = XAchseExtern
+        KoordinatenExtern.YAchse = KoordinatenExtern.XAchse
       then
          null;
          
@@ -174,14 +165,13 @@ package body KartengeneratorErdwelt is
    
    
    function ZusatzberechnungErdgestein
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum)
       return KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum
    is begin
       
       if
-        YAchseExtern = XAchseExtern
+        KoordinatenExtern.YAchse = KoordinatenExtern.XAchse
       then
          null;
          
@@ -196,14 +186,13 @@ package body KartengeneratorErdwelt is
    
    
    function ZusatzberechnungSand
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum)
       return KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum
    is begin
       
       if
-        YAchseExtern = XAchseExtern
+        KoordinatenExtern.YAchse = KoordinatenExtern.XAchse
       then
          null;
          
@@ -218,14 +207,13 @@ package body KartengeneratorErdwelt is
    
    
    function ZusatzberechnungGestein
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum)
       return KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum
    is begin
       
       if
-        YAchseExtern = XAchseExtern
+        KoordinatenExtern.YAchse = KoordinatenExtern.XAchse
       then
          null;
          

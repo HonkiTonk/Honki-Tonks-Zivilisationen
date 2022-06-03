@@ -10,7 +10,6 @@ with ZufallsgeneratorenKarten;
 
 package body KartengeneratorPlaneteninneres is
 
-   ------------------------ Später eine bessere Generierung einbauen, wie bei der Oberfläche.
    procedure Planeteninneres
    is begin
       
@@ -23,7 +22,7 @@ package body KartengeneratorPlaneteninneres is
       for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse loop
          XAchseSchleife:
          for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse loop
-               
+            
             if
               YAchseSchleifenwert in YKernanfang .. YKernende
               and

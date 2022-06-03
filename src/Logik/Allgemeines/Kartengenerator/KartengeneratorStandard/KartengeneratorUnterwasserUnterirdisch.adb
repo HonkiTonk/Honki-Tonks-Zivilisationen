@@ -23,19 +23,17 @@ package body KartengeneratorUnterwasserUnterirdisch is
          for XAchseSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.XAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.XAchse loop
             
             case
-              LeseKarten.AktuellerGrund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert))
+              LeseKarten.BasisGrund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert))
             is
                when KartengrundDatentypen.Küstengewässer_Enum =>
                   SchreibeKarten.ZweimalGrund (KoordinatenExtern => (-1, YAchseSchleifenwert, XAchseSchleifenwert),
                                                GrundExtern       => KartengrundDatentypen.Küstengrund_Enum);
                   
                when KartengrundDatentypen.Wasser_Enum =>
-                  KartengeneratorWasserwelt.KartengeneratorWasserwelt (YAchseExtern => YAchseSchleifenwert,
-                                                                       XAchseExtern => XAchseSchleifenwert);
+                  KartengeneratorWasserwelt.KartengeneratorWasserwelt (KoordinatenExtern => (-1, YAchseSchleifenwert, XAchseSchleifenwert));
                   
-               when KartengrundDatentypen.Kartengrund_Oberfläche_Land_Enum'Range =>               
-                  KartengeneratorErdwelt.KartengeneratorErdwelt (YAchseExtern => YAchseSchleifenwert,
-                                                                 XAchseExtern => XAchseSchleifenwert);
+               when KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum'Range =>
+                  KartengeneratorErdwelt.KartengeneratorErdwelt (KoordinatenExtern => (-1, YAchseSchleifenwert, XAchseSchleifenwert));
                   
                when others =>
                   Fehler.LogikFehler (FehlermeldungExtern => "KartengeneratorUnterwasserUnterirdisch.GenerierungLandschaft - Weder Wasser noch Erde.");

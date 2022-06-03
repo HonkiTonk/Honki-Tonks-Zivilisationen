@@ -123,23 +123,24 @@ package body VerbesserungFertiggestellt is
    is begin
       
       WelcheAufgabe := LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      Koordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       case
         WelcheAufgabe
       is
          when AufgabenDatentypen.Einheitenbefehle_Wege_Enum'Range =>
-            Wegeplatzierungssystem.WegBerechnen (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+            Wegeplatzierungssystem.WegBerechnen (KoordinatenExtern => Koordinaten,
                                                  WegartExtern      => WelcheAufgabe);
               
          when AufgabenDatentypen.Einheitenbefehle_Gebilde_Enum'Range =>
-            VerbesserungAnlegen.VerbesserungAnlegen (KoordinatenExtern  => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+            VerbesserungAnlegen.VerbesserungAnlegen (KoordinatenExtern  => Koordinaten,
                                                      VerbesserungExtern => WelcheAufgabe);
               
          when AufgabenDatentypen.Wald_Aufforsten_Enum =>
-            WaldAnlegen.WaldAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            WaldAnlegen.WaldAnlegen (KoordinatenExtern => Koordinaten);
               
          when AufgabenDatentypen.Roden_Trockenlegen_Enum =>
-            RodenAnlegen.RodenAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            RodenAnlegen.RodenAnlegen (KoordinatenExtern => Koordinaten);
       end case;
 
       FelderwerteFestlegen.EinzelnesKartenfeldBewerten (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));

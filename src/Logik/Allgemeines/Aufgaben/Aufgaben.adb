@@ -172,33 +172,33 @@ package body Aufgaben is
       is
          when TastenbelegungDatentypen.Straße_Bauen_Enum =>
             return WegErmitteln.WegErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    GrundExtern              => Grund,
-                                                    AnlegenTestenExtern      => AnlegenTestenExtern);
+                                              GrundExtern              => Grund,
+                                              AnlegenTestenExtern      => AnlegenTestenExtern);
          
          when TastenbelegungDatentypen.Mine_Bauen_Enum =>
             return MineErmitteln.MineErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                      GrundExtern              => Grund,
-                                                      AnlegenTestenExtern      => AnlegenTestenExtern);
+                                                GrundExtern              => Grund,
+                                                AnlegenTestenExtern      => AnlegenTestenExtern);
          
          when TastenbelegungDatentypen.Farm_Bauen_Enum =>
             return FarmErmitteln.FarmErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                      GrundExtern              => Grund,
-                                                      AnlegenTestenExtern      => AnlegenTestenExtern);
+                                                GrundExtern              => Grund,
+                                                AnlegenTestenExtern      => AnlegenTestenExtern);
             
          when TastenbelegungDatentypen.Festung_Bauen_Enum =>
             return FestungErmitteln.FestungErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                            GrundExtern              => Grund,
-                                                            AnlegenTestenExtern      => AnlegenTestenExtern);
+                                                      GrundExtern              => Grund,
+                                                      AnlegenTestenExtern      => AnlegenTestenExtern);
             
          when TastenbelegungDatentypen.Wald_Aufforsten_Enum =>
             return WaldErmitteln.WaldErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                      GrundExtern              => Grund,
-                                                      AnlegenTestenExtern      => AnlegenTestenExtern);
+                                                GrundExtern              => Grund,
+                                                AnlegenTestenExtern      => AnlegenTestenExtern);
          
          when TastenbelegungDatentypen.Roden_Trockenlegen_Enum =>
             return RodenErmitteln.RodenErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                        GrundExtern              => Grund,
-                                                        AnlegenTestenExtern      => AnlegenTestenExtern);
+                                                  GrundExtern              => Grund,
+                                                  AnlegenTestenExtern      => AnlegenTestenExtern);
          
          when TastenbelegungDatentypen.Heilen_Enum =>
             return EinheitHeilen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,

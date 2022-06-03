@@ -13,15 +13,6 @@ with KartengeneratorRessourcenUnterflaecheLand;
 with KartengeneratorRessourcenUnterflaecheWasser;
 
 package body KartengeneratorRessourcen is
-   
-   procedure AufteilungRessourcengenerierung
-   is begin
-      
-      GenerierungRessourcen;
-            
-   end AufteilungRessourcengenerierung;
-   
-   
 
    procedure GenerierungRessourcen
    is
@@ -68,20 +59,16 @@ package body KartengeneratorRessourcen is
               LeseKarten.AktuellerGrund (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert))
             is
                when KartengrundDatentypen.Kartengrund_Oberfläche_Wasser_Enum'Range =>
-                  KartengeneratorRessourcenOberflaecheWasser.KartengeneratorRessourcenOberflächeWasser (YAchseExtern => YAchseSchleifenwert,
-                                                                                                         XAchseExtern => XAchseSchleifenwert);
+                  KartengeneratorRessourcenOberflaecheWasser.KartengeneratorRessourcenOberflächeWasser (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert));
                   
                when KartengrundDatentypen.Kartengrund_Oberfläche_Land_Enum'Range =>
-                  KartengeneratorRessourcenOberflaecheLand.KartengeneratorRessourcenOberflächeLand (YAchseExtern => YAchseSchleifenwert,
-                                                                                                     XAchseExtern => XAchseSchleifenwert);
+                  KartengeneratorRessourcenOberflaecheLand.KartengeneratorRessourcenOberflächeLand (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert));
                   
                when KartengrundDatentypen.Kartengrund_Unterfläche_Wasser_Enum'Range =>
-                  KartengeneratorRessourcenUnterflaecheWasser.KartengeneratorRessourcenUnterflächeWasser (YAchseExtern => YAchseSchleifenwert,
-                                                                                                           XAchseExtern => XAchseSchleifenwert);
+                  KartengeneratorRessourcenUnterflaecheWasser.KartengeneratorRessourcenUnterflächeWasser (KoordinatenExtern => (-1, YAchseSchleifenwert, XAchseSchleifenwert));
                   
                when KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum'Range =>
-                  KartengeneratorRessourcenUnterflaecheLand.KartengeneratorRessourcenUnterflächeLand (YAchseExtern => YAchseSchleifenwert,
-                                                                                                       XAchseExtern => XAchseSchleifenwert);
+                  KartengeneratorRessourcenUnterflaecheLand.KartengeneratorRessourcenUnterflächeLand (KoordinatenExtern => (-1, YAchseSchleifenwert, XAchseSchleifenwert));
                   
                when others =>
                   null;

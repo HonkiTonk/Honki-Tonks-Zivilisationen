@@ -3,98 +3,104 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with KartengrundDatentypen;
+with KartenRecords;
 
 with Karten;
 
 package KartengeneratorErdwelt is
 
    procedure KartengeneratorErdwelt
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
      with
        Pre =>
-         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
           and
-            XAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
    
 private
       
-   NeuerGrund : KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum;
-   ZusatzberechnungenGrund : KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum;
+   NeuerGrund : KartengrundDatentypen.Kartengrund_Enum;
    
    WelcherGrund : KartengrundDatentypen.Kartengrund_Enum;
    
-   type KartengrundWahrscheinlichkeitArray is array (KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum'Range) of KartenDatentypen.WahrscheinlichkeitKartengenerator;
-   KartengrundWahrscheinlichkeit : KartengrundWahrscheinlichkeitArray := (
+   type BasisWahrscheinlichkeitenArray is array (KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum'Range) of KartenDatentypen.WahrscheinlichkeitKartengenerator;
+   BasisWahrscheinlichkeiten : BasisWahrscheinlichkeitenArray := (
                                                                           KartengrundDatentypen.Erde_Enum       => 30,
                                                                           KartengrundDatentypen.Erdgestein_Enum => 30,
                                                                           KartengrundDatentypen.Sand_Enum       => 30,
                                                                           KartengrundDatentypen.Gestein_Enum    => 30
                                                                          );
-   GezogeneZahlen : KartengrundWahrscheinlichkeitArray;
+   BasisZahlen : BasisWahrscheinlichkeitenArray;
    
-   type WelcheMöglichkeitenArray is array (KartengrundWahrscheinlichkeitArray'Range) of Boolean;
-   WelcheMöglichkeiten : WelcheMöglichkeitenArray;
+   type BasisMöglichkeitenArray is array (BasisWahrscheinlichkeitenArray'Range) of Boolean;
+   BasisMöglichkeiten : BasisMöglichkeitenArray;
+   
+   procedure BasisgrundBestimmen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
+     with
+       Pre =>
+         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+          and
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+   
+   procedure ZusatzgrundBestimmen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
+     with
+       Pre =>
+         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+          and
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
    
    
    
-   function GrundErneutBestimmen
-     (GrundExtern : in KartengrundDatentypen.Kartengrund_Enum)
-      return KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum;
-   
-   function GrundZusatzberechnungen
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+   function BasisExtraberechnungen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum)
       return KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum
      with
        Pre =>
-         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
           and
-            XAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
    
    function ZusatzberechnungErde
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum)
       return KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum
      with
        Pre =>
-         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
           and
-            XAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
    
    function ZusatzberechnungErdgestein
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum)
       return KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum
      with
        Pre =>
-         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
           and
-            XAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
    
    function ZusatzberechnungSand
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum)
       return KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum
      with
        Pre =>
-         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
           and
-            XAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
    
    function ZusatzberechnungGestein
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum)
       return KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum
      with
        Pre =>
-         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
           and
-            XAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
 
 end KartengeneratorErdwelt;

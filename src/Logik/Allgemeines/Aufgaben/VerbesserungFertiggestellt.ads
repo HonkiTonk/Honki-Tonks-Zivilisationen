@@ -7,6 +7,7 @@ with SpielVariablen;
 with SonstigeVariablen;
 with AufgabenDatentypen;
 with KartenVerbesserungDatentypen;
+with KartenRecords;
 
 package VerbesserungFertiggestellt is
 
@@ -15,6 +16,8 @@ package VerbesserungFertiggestellt is
 private
    
    WelcheAufgabe : AufgabenDatentypen.Einheitenbefehle_Verbesserungen_Enum;
+   
+   Koordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    type VerbesserungArray is array (AufgabenDatentypen.Einheitenbefehle_Gebilde_Enum'Range) of KartenVerbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum;
    Verbesserung : constant VerbesserungArray := (

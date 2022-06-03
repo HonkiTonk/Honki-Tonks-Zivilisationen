@@ -16,7 +16,7 @@ with KartenAllgemein;
 
 package body FelderwerteFestlegen is
    
-   -- Bei Bewertung auch die EAchse berücksichtigen? Mal drüber nachdenken ob das sinnvoll ist.
+   ------------------------------------- Bei Bewertung auch die EAchse berücksichtigen? Mal drüber nachdenken ob das sinnvoll ist.
    procedure EinzelnesKartenfeldBewerten
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
@@ -37,9 +37,7 @@ package body FelderwerteFestlegen is
                   null;
                      
                when others =>                  
-                  Karten.Weltkarte (KartenWertEins (KoordinatenExtern.EAchse).EAchse,
-                                    KartenWertEins (KoordinatenExtern.EAchse).YAchse,
-                                    KartenWertEins (KoordinatenExtern.EAchse).XAchse).Felderwertung := (others => 0);
+                  Karten.Weltkarte (KartenWertEins (KoordinatenExtern.EAchse).EAchse, KartenWertEins (KoordinatenExtern.EAchse).YAchse, KartenWertEins (KoordinatenExtern.EAchse).XAchse).Felderwertung := (others => 0);
                   KartenfelderBewertenKleineSchleife (KoordinatenExtern => KartenWertEins (KoordinatenExtern.EAchse),
                                                       RasseExtern       => EinheitenKonstanten.LeerRasse);
             end case;
@@ -149,7 +147,7 @@ package body FelderwerteFestlegen is
                                             / KartenDatentypen.BewertungFeld (TeilerExtern)
                                            );
             end case;
-
+            
             case
               LeseKarten.Weg (KoordinatenExtern => KoordinatenUmgebungExtern)
             is

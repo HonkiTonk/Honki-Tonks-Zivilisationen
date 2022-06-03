@@ -19,7 +19,17 @@ package body ZufallsgeneratorenKarten is
    
    
    
-   ----------------------------- zusatzprüfung ob der Minimal- und Maximalewert gleich sind kann eventuell Rechenzeit sparen.
+   function KartengeneratorBoolean
+     return Boolean
+   is begin
+      
+      ZufälligerBoolean.Reset (ZufälligerBooleanGewählt);
+      return ZufälligerBoolean.Random (ZufälligerBooleanGewählt);
+      
+   end KartengeneratorBoolean;
+   
+   
+   
    function KartengeneratorLandgrößen
      (YAchseXAchseExtern : in Boolean)
       return KartenDatentypen.KartenfeldPositiv

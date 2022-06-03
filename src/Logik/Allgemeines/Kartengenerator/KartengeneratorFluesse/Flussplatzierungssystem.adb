@@ -23,42 +23,45 @@ package body Flussplatzierungssystem is
                                                                                                                             ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
                                                                                                                             LogikGrafikExtern => True);
 
-            if
-              KartenWert (KoordinatenExtern.EAchse).XAchse = KartenKonstanten.LeerXAchse
-            then
-               null;
+            case
+              KartenWert (KoordinatenExtern.EAchse).XAchse
+            is
+               when KartenKonstanten.LeerXAchse =>
+                  null;
+                  
+               when others =>
+                  if
+                    YÄnderungSchleifenwert = 0
+                    and
+                      XÄnderungSchleifenwert = -1
+                  then
+                     BerechnungLinks (KoordinatenExtern => KartenWert (KoordinatenExtern.EAchse));
                
-            elsif
-              YÄnderungSchleifenwert = 0
-              and
-                XÄnderungSchleifenwert = -1
-            then
-               BerechnungLinks (KoordinatenExtern => KartenWert (KoordinatenExtern.EAchse));
+                  elsif
+                    YÄnderungSchleifenwert = 0
+                    and
+                      XÄnderungSchleifenwert = 1
+                  then
+                     BerechnungRechts (KoordinatenExtern => KartenWert (KoordinatenExtern.EAchse));
                
-            elsif
-              YÄnderungSchleifenwert = 0
-              and
-                XÄnderungSchleifenwert = 1
-            then
-               BerechnungRechts (KoordinatenExtern => KartenWert (KoordinatenExtern.EAchse));
+                  elsif
+                    YÄnderungSchleifenwert = -1
+                    and
+                      XÄnderungSchleifenwert = 0
+                  then
+                     BerechnungOben (KoordinatenExtern => KartenWert (KoordinatenExtern.EAchse));
                
-            elsif
-              YÄnderungSchleifenwert = -1
-              and
-                XÄnderungSchleifenwert = 0
-            then
-               BerechnungOben (KoordinatenExtern => KartenWert (KoordinatenExtern.EAchse));
+                  elsif
+                    YÄnderungSchleifenwert = 1
+                    and
+                      XÄnderungSchleifenwert = 0
+                  then
+                     BerechnungUnten (KoordinatenExtern => KartenWert (KoordinatenExtern.EAchse));
                
-            elsif
-              YÄnderungSchleifenwert = 1
-              and
-                XÄnderungSchleifenwert = 0
-            then
-               BerechnungUnten (KoordinatenExtern => KartenWert (KoordinatenExtern.EAchse));
-               
-            else
-               null;
-            end if;
+                  else
+                     null;
+                  end if;
+            end case;
             
          end loop XAchseSchleife;
       end loop YAchseSchleife;

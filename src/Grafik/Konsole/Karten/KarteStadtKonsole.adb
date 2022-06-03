@@ -534,7 +534,7 @@ package body KarteStadtKonsole is
       end case;
       
       -- Hier sollte eine Überprüfung ob der Grund nicht Leer ist nicht nötig sein, da weiter oben bereits geprüft wir ob das eine gültige Koordinate ist.
-      Put (Item => KartenAllgemein.BeschreibungGrund (KartenGrundExtern => LeseKarten.AktuellerGrund (KoordinatenExtern => KartenWert)));
+      Put (Item => KartenAllgemein.BeschreibungZusatzgrund (KartenGrundExtern => LeseKarten.AktuellerGrund (KoordinatenExtern => KartenWert)));
       
       StadtInformationenKonsole.EinzelnesFeldNahrungsgewinnung (KoordinatenExtern => KartenWert,
                                                                 RasseExtern       => StadtRasseNummerExtern.Rasse);

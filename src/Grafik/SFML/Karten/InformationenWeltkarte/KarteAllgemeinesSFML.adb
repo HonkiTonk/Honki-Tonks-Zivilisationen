@@ -40,7 +40,7 @@ package body KarteAllgemeinesSFML is
            AktuelleKoordinaten /= LetzteKoordinaten
          then
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (1),
-                                               str  => KartenAllgemein.BeschreibungGrund (KartenGrundExtern => KartenGrund));
+                                               str  => KartenAllgemein.BeschreibungBasisgrund (KartenGrundExtern => KartenGrund));
             
             Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteAllgemeinesAccess (1),
                                           position => Textposition);
@@ -54,7 +54,7 @@ package body KarteAllgemeinesSFML is
            AktuelleKoordinaten /= LetzteKoordinaten
          then
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (1),
-                                               str  => KartenAllgemein.BeschreibungGrund (KartenGrundExtern => BasisGrund) & " - " & KartenAllgemein.BeschreibungGrund (KartenGrundExtern => KartenGrund));
+                                               str  => KartenAllgemein.BeschreibungBasisgrund (KartenGrundExtern => BasisGrund) & " - " & KartenAllgemein.BeschreibungZusatzgrund (KartenGrundExtern => KartenGrund));
       
             Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteAllgemeinesAccess (1),
                                           position => Textposition);

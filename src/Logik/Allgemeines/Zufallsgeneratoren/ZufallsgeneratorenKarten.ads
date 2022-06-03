@@ -10,6 +10,9 @@ package ZufallsgeneratorenKarten is
    function KartengeneratorZufallswerte
      return KartenDatentypen.WahrscheinlichkeitKartengenerator;
 
+   function KartengeneratorBoolean
+     return Boolean;
+
    function KartengeneratorLandgrößen
      (YAchseXAchseExtern : in Boolean)
       return KartenDatentypen.KartenfeldPositiv;
@@ -25,9 +28,11 @@ private
    GezogenerWert : KartenDatentypen.KartenfeldPositiv;
 
    package ZufälligeZahl is new Ada.Numerics.Discrete_Random (KartenDatentypen.WahrscheinlichkeitKartengenerator);
+   package ZufälligerBoolean is new Ada.Numerics.Discrete_Random (Boolean);
    package ZufälligeLandgrößenAbstände is new Ada.Numerics.Discrete_Random (KartenDatentypen.KartenfeldPositiv);
 
    ZufälligeZahlGewählt : ZufälligeZahl.Generator;
+   ZufälligerBooleanGewählt : ZufälligerBoolean.Generator;
    ZufälligeLandgrößeAbstandGewählt : ZufälligeLandgrößenAbstände.Generator;
 
 end ZufallsgeneratorenKarten;

@@ -26,8 +26,7 @@ package body WaldErmitteln is
       
       VorhandeneVerbesserung := LeseKarten.Verbesserung (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       
-      ----------------------- Mehr Prüfungen einbauen, beispielweise keinen Wald auf Eis erlauben. Gilt für alle Aufgaben.
-      ----------------------- Hügel_Mit Boolean ersetzen durch irgendwas mit LetzterGrund, dann sollten auch Wälder auf Gebirge und ähnliches gehen.
+      ------------------------------------ Mehr Prüfungen einbauen, beispielweise keinen Wald auf Eis erlauben. Gilt für alle Aufgaben.
       if
         (VorhandeneVerbesserung = KartenVerbesserungDatentypen.Farm_Enum
          or
@@ -122,7 +121,7 @@ package body WaldErmitteln is
       case
         GrundExtern
       is
-         when KartengrundDatentypen.Flachland_Enum | KartengrundDatentypen.Hügel_Enum =>
+         when KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum'Range =>
             Arbeitszeit := Grundzeit + 2;
 
          when KartengrundDatentypen.Dschungel_Enum | KartengrundDatentypen.Sumpf_Enum =>

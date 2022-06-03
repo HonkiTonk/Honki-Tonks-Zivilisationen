@@ -4,118 +4,123 @@ pragma Warnings (Off, "*array aggregate*");
 with SchreibeKarten;
 
 with ZufallsgeneratorenKarten;
-with Warnung;
 
 package body KartengeneratorRessourcenUnterflaecheWasser is
 
    procedure KartengeneratorRessourcenUnterflächeWasser
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
    is begin
+      
+      WelcheRessource := KartengrundDatentypen.Leer_Ressource_Enum;
       
       ZufallszahlenSchleife:
       for ZufallszahlSchleifenwert in KartenressourceWahrscheinlichkeitArray'Range loop
          
          GezogeneZahlen (ZufallszahlSchleifenwert) := ZufallsgeneratorenKarten.KartengeneratorZufallswerte;
          
-      end loop ZufallszahlenSchleife;
-      
-      WelcheRessource := KartengrundDatentypen.Leer_Ressource_Enum;
-      WelcheMöglichkeiten := (others => False);
-      
-      AuswahlSchleife:
-      for AuswahlSchleifenwert in KartenressourceWahrscheinlichkeitArray'Range loop
-         
          if
-           GezogeneZahlen (AuswahlSchleifenwert) < KartenressourceWahrscheinlichkeit (AuswahlSchleifenwert)
+           GezogeneZahlen (ZufallszahlSchleifenwert) < KartenressourceWahrscheinlichkeit (ZufallszahlSchleifenwert)
          then
-            WelcheMöglichkeiten (AuswahlSchleifenwert) := True;
+            WelcheMöglichkeiten (ZufallszahlSchleifenwert) := True;
             
          else
-            null;
+            WelcheMöglichkeiten (ZufallszahlSchleifenwert) := False;
          end if;
          
-      end loop AuswahlSchleife;
+      end loop ZufallszahlenSchleife;
       
-      ------------------- Braucht noch ein wenig Feinabstimmung.
-      ErsteSchleife:
-      for ErsterSchleifenwert in KartenressourceWahrscheinlichkeitArray'Range loop
-         ZweiteSchleife:
-         for ZweiterSchleifenwert in KartenressourceWahrscheinlichkeitArray'Range loop
-            
-            if
-              WelcheMöglichkeiten (ErsterSchleifenwert) = False
-              or
-                WelcheMöglichkeiten (ZweiterSchleifenwert) = False
-            then
-               null;
-               
-            elsif
-              GezogeneZahlen (ErsterSchleifenwert) >= GezogeneZahlen (ZweiterSchleifenwert)
-            then
-               WelcheRessource := ErsterSchleifenwert;
-               
-            else
-               WelcheRessource := ZweiterSchleifenwert;
-            end if;
-            
-         end loop ZweiteSchleife;
-      end loop ErsteSchleife;
-            
-      WelcheRessource := RessourceZusatzberechnungen (YAchseExtern    => YAchseExtern,
-                                                      XAchseExtern    => XAchseExtern,
-                                                      RessourceExtern => WelcheRessource);
+      WahrscheinlichkeitSchleife:
+      for WahrscheinlichkeitSchleifenwert in KartenressourceWahrscheinlichkeitArray'Range loop
+         
+         if
+           WelcheMöglichkeiten (WahrscheinlichkeitSchleifenwert) = False
+         then
+            null;
+         
+         else
+            case
+              WelcheRessource
+            is
+               when KartengrundDatentypen.Leer_Ressource_Enum =>
+                  WelcheRessource := WahrscheinlichkeitSchleifenwert; 
+                        
+               when others =>
+                  if
+                    GezogeneZahlen (WahrscheinlichkeitSchleifenwert) > GezogeneZahlen (WelcheRessource)
+                  then
+                     WelcheRessource := WahrscheinlichkeitSchleifenwert;
+                        
+                  elsif
+                    GezogeneZahlen (WahrscheinlichkeitSchleifenwert) = GezogeneZahlen (WelcheRessource)
+                    and
+                      ZufallsgeneratorenKarten.KartengeneratorBoolean = True
+                  then
+                     WelcheRessource := WahrscheinlichkeitSchleifenwert;
+                           
+                  else
+                     null;
+                  end if;
+            end case;
+         end if;
+         
+      end loop WahrscheinlichkeitSchleife;
       
-      SchreibeKarten.Ressource (KoordinatenExtern => (-1, YAchseExtern, XAchseExtern),
-                                RessourceExtern   => WelcheRessource);
+      case
+        WelcheRessource
+      is
+         when KartengrundDatentypen.Leer_Ressource_Enum =>
+            return;
+              
+         when others =>
+            WelcheRessource := RessourceZusatzberechnungen (KoordinatenExtern => KoordinatenExtern,
+                                                            RessourceExtern   => WelcheRessource);
+      end case;
+      
+      case
+        WelcheRessource
+      is
+         when KartengrundDatentypen.Kartenressourcen_Unterfläche_Wasser_Enum'Range =>
+            SchreibeKarten.Ressource (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
+                                      RessourceExtern   => WelcheRessource);
+            
+         when others =>
+            null;
+      end case;
       
    end KartengeneratorRessourcenUnterflächeWasser;
    
    
    
    function RessourceZusatzberechnungen
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      RessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Enum)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+      RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Unterfläche_Wasser_Enum)
       return KartengrundDatentypen.Karten_Ressourcen_Enum
    is begin
       
       case
         RessourceExtern
       is
-         when KartengrundDatentypen.Leer_Ressource_Enum =>
-            ZusatzberechnungenRessource := RessourceExtern;
-            
          when KartengrundDatentypen.Fisch_Enum =>
-            ZusatzberechnungenRessource := ZusatzberechnungFisch (YAchseExtern    => YAchseExtern,
-                                                                  XAchseExtern    => XAchseExtern,
-                                                                  RessourceExtern => RessourceExtern);
+            return ZusatzberechnungFisch (KoordinatenExtern => KoordinatenExtern,
+                                          RessourceExtern   => RessourceExtern);
             
          when KartengrundDatentypen.Wal_Enum =>
-            ZusatzberechnungenRessource := ZusatzberechnungWal (YAchseExtern    => YAchseExtern,
-                                                                XAchseExtern    => XAchseExtern,
-                                                                RessourceExtern => RessourceExtern);
-            
-         when others =>
-            Warnung.LogikWarnung (WarnmeldungExtern => "KartengeneratorRessourcenUnterflaecheWasser.RessourceZusatzberechnungen - Ressourcenart passt nicht zum Grund.");
-            ZusatzberechnungenRessource := KartengrundDatentypen.Leer_Ressource_Enum;
+            return ZusatzberechnungWal (KoordinatenExtern => KoordinatenExtern,
+                                        RessourceExtern   => RessourceExtern);
       end case;
-      
-      return ZusatzberechnungenRessource;
       
    end RessourceZusatzberechnungen;
    
    
    
    function ZusatzberechnungFisch
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      RessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Wasser)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+      RessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Enum)
       return KartengrundDatentypen.Karten_Ressourcen_Enum
    is begin
       
       if
-        YAchseExtern = XAchseExtern
+        KoordinatenExtern.YAchse = KoordinatenExtern.XAchse
       then
          null;
          
@@ -130,14 +135,13 @@ package body KartengeneratorRessourcenUnterflaecheWasser is
    
    
    function ZusatzberechnungWal
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      RessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Wasser)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+      RessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Enum)
       return KartengrundDatentypen.Karten_Ressourcen_Enum
    is begin
       
       if
-        YAchseExtern = XAchseExtern
+        KoordinatenExtern.YAchse = KoordinatenExtern.XAchse
       then
          null;
          

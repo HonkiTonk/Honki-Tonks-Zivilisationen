@@ -107,7 +107,7 @@ package body Kartengenerator is
       
       LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Ressourcen_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
       
-      KartengeneratorRessourcen.AufteilungRessourcengenerierung;
+      KartengeneratorRessourcen.GenerierungRessourcen;
       
       LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Ressourcen_Enum, SystemDatentypen.Endwert_Enum) := Clock;
       

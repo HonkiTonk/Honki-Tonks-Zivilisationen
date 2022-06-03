@@ -5,6 +5,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with ProduktionDatentypen; use ProduktionDatentypen;
 with KampfDatentypen; use KampfDatentypen;
+with KartengrundDatentypen; use KartengrundDatentypen;
 with GlobaleTexte;
 with KartenKonstanten;
 
@@ -13,26 +14,10 @@ with LeseKartenDatenbanken;
 with LeseVerbesserungenDatenbank;
 
 package body KartenAllgemein is
-
-   ------------------------ Später die Beschreibungen noch um RasseExtern erweitern damit jede Rasse ihren eigenen Text haben kann?
-   function BeschreibungGrund
-     (KartenGrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
-      return Wide_Wide_String
-   is begin
-      
-      -- Die Zwischenrechnungen mal drin lassen, für den Fall dass ich die Beschreibungen rassenspezifisch machen will. Könnte dann eine komplexere Rechnung werden.
-      GrundAktuell := 2 * KartengrundDatentypen.Kartengrund_Enum'Pos (KartenGrundExtern) - 1;
    
-      return To_Wide_Wide_String (Source => GlobaleTexte.Kartenfelder (GrundAktuell));
-      
-   end BeschreibungGrund;
-   
-   
-   
-   ---------------------------- Hügel, das hier anpassen und mit dem oben koppeln. Außerdem alle Sachen weiter unten noch korrekt anpassen.
    function BeschreibungBasisgrund
      (KartenGrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
-      return Wide_Wide_String
+   return Wide_Wide_String
    is begin
       
       -- Die Zwischenrechnungen mal drin lassen, für den Fall dass ich die Beschreibungen rassenspezifisch machen will. Könnte dann eine komplexere Rechnung werden.
@@ -41,6 +26,21 @@ package body KartenAllgemein is
       return To_Wide_Wide_String (Source => GlobaleTexte.Kartenfelder (GrundAktuell));
       
    end BeschreibungBasisgrund;
+   
+
+
+   ------------------------ Später die Beschreibungen noch um RasseExtern erweitern damit jede Rasse ihren eigenen Text haben kann?
+   function BeschreibungZusatzgrund
+     (KartenGrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
+      return Wide_Wide_String
+   is begin
+      
+      -- Die Zwischenrechnungen mal drin lassen, für den Fall dass ich die Beschreibungen rassenspezifisch machen will. Könnte dann eine komplexere Rechnung werden.
+      ZusatzAktuell := 2 * KartengrundDatentypen.Kartengrund_Enum'Pos (KartenGrundExtern) - 1;
+   
+      return To_Wide_Wide_String (Source => GlobaleTexte.Kartenfelder (ZusatzAktuell));
+      
+   end BeschreibungZusatzgrund;
    
    
    
@@ -76,25 +76,26 @@ package body KartenAllgemein is
       return ProduktionDatentypen.ProduktionElement
    is begin
       
-      BasisGrund := LeseKarten.BasisGrund (KoordinatenExtern => KoordinatenExtern);
+      Basisgrund := LeseKarten.BasisGrund (KoordinatenExtern => KoordinatenExtern);
+      Zusatzgrund := LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern);
       
-      case
-        BasisGrund
-      is
-         when KartengrundDatentypen.Hügel_Enum | KartengrundDatentypen.Gebirge_Enum =>
-            return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
-                                                          RasseExtern         => RasseExtern,
-                                                          WirtschaftArtExtern => KartenKonstanten.WirtschaftNahrung);
-             -- + LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => KartengrundDatentypen.Hügel_Mit_Enum,
-             --                                          RasseExtern         => RasseExtern,
-             --                                          WirtschaftArtExtern => KartenKonstanten.WirtschaftNahrung)
-             -- / 2;
-            
-         when others =>
-            return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
-                                                          RasseExtern         => RasseExtern,
-                                                          WirtschaftArtExtern => KartenKonstanten.WirtschaftNahrung);
-      end case;
+      if
+        Basisgrund = Zusatzgrund
+      then
+         return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => Basisgrund,
+                                                       RasseExtern         => RasseExtern,
+                                                       WirtschaftArtExtern => KartenKonstanten.WirtschaftNahrung);
+         
+      else
+         return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => Basisgrund,
+                                                       RasseExtern         => RasseExtern,
+                                                       WirtschaftArtExtern => KartenKonstanten.WirtschaftNahrung)
+           / 2
+           + LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => Zusatzgrund,
+                                                    RasseExtern         => RasseExtern,
+                                                    WirtschaftArtExtern => KartenKonstanten.WirtschaftNahrung)
+           / 2;
+      end if;
             
    end GrundNahrung;
    
@@ -106,10 +107,11 @@ package body KartenAllgemein is
       return ProduktionDatentypen.ProduktionElement
    is begin
       
-      BasisGrund := LeseKarten.BasisGrund (KoordinatenExtern => KoordinatenExtern);
+      Basisgrund := LeseKarten.BasisGrund (KoordinatenExtern => KoordinatenExtern);
+      Zusatzgrund := LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern);
       
       case
-        BasisGrund
+        Basisgrund
       is
          when KartengrundDatentypen.Hügel_Enum | KartengrundDatentypen.Gebirge_Enum =>
             return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
@@ -136,10 +138,11 @@ package body KartenAllgemein is
       return ProduktionDatentypen.ProduktionElement
    is begin
       
-      BasisGrund := LeseKarten.BasisGrund (KoordinatenExtern => KoordinatenExtern);
+      Basisgrund := LeseKarten.BasisGrund (KoordinatenExtern => KoordinatenExtern);
+      Zusatzgrund := LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern);
       
       case
-        BasisGrund
+        Basisgrund
       is
          when KartengrundDatentypen.Hügel_Enum | KartengrundDatentypen.Gebirge_Enum =>
             return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
@@ -166,10 +169,11 @@ package body KartenAllgemein is
       return ProduktionDatentypen.ProduktionElement
    is begin
       
-      BasisGrund := LeseKarten.BasisGrund (KoordinatenExtern => KoordinatenExtern);
+      Basisgrund := LeseKarten.BasisGrund (KoordinatenExtern => KoordinatenExtern);
+      Zusatzgrund := LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern);
       
       case
-        BasisGrund
+        Basisgrund
       is
          when KartengrundDatentypen.Hügel_Enum | KartengrundDatentypen.Gebirge_Enum =>
             return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
@@ -196,10 +200,11 @@ package body KartenAllgemein is
       return KampfDatentypen.Kampfwerte
    is begin
       
-      BasisGrund := LeseKarten.BasisGrund (KoordinatenExtern => KoordinatenExtern);
+      Basisgrund := LeseKarten.BasisGrund (KoordinatenExtern => KoordinatenExtern);
+      Zusatzgrund := LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern);
       
       case
-        BasisGrund
+        Basisgrund
       is
          when KartengrundDatentypen.Hügel_Enum | KartengrundDatentypen.Gebirge_Enum =>
             return LeseKartenDatenbanken.KampfGrund (GrundExtern    => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
@@ -226,10 +231,11 @@ package body KartenAllgemein is
       return KampfDatentypen.Kampfwerte
    is begin
       
-      BasisGrund := LeseKarten.BasisGrund (KoordinatenExtern => KoordinatenExtern);
+      Basisgrund := LeseKarten.BasisGrund (KoordinatenExtern => KoordinatenExtern);
+      Zusatzgrund := LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern);
       
       case
-        BasisGrund
+        Basisgrund
       is
          when KartengrundDatentypen.Hügel_Enum | KartengrundDatentypen.Gebirge_Enum =>
             return LeseKartenDatenbanken.KampfGrund (GrundExtern    => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
@@ -937,6 +943,8 @@ package body KartenAllgemein is
       PassierbarkeitExtern : in EinheitenDatentypen.Passierbarkeit_Enum)
       return Boolean
    is begin
+      
+      ---------------------------- Was mach ich denn dann hier?
       
       return LeseKartenDatenbanken.Passierbarkeit (GrundExtern          => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
                                                    WelcheUmgebungExtern => PassierbarkeitExtern);

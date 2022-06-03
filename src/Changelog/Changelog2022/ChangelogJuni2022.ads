@@ -1,211 +1,212 @@
 package ChangelogJuni2022 is
    
-   -- Version 0.0. => 0.0. (30.06.2022):
+   -- Version 0.01. => 0.01. (30.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (29.06.2022):
+   -- Version 0.01. => 0.01. (29.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (28.06.2022):
+   -- Version 0.01. => 0.01. (28.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (27.06.2022):
+   -- Version 0.01. => 0.01. (27.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (26.06.2022):
+   -- Version 0.01. => 0.01. (26.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (25.06.2022):
+   -- Version 0.01. => 0.01. (25.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (24.06.2022):
+   -- Version 0.01. => 0.01. (24.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (23.06.2022):
+   -- Version 0.01. => 0.01. (23.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (22.06.2022):
+   -- Version 0.01. => 0.01. (22.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (21.06.2022):
+   -- Version 0.01. => 0.01. (21.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (20.06.2022):
+   -- Version 0.01. => 0.01. (20.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (19.06.2022):
+   -- Version 0.01. => 0.01. (19.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (18.06.2022):
+   -- Version 0.01. => 0.01. (18.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (17.06.2022):
+   -- Version 0.01. => 0.01. (17.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (16.06.2022):
+   -- Version 0.01. => 0.01. (16.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (15.06.2022):
+   -- Version 0.01. => 0.01. (15.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (14.06.2022):
+   -- Version 0.01. => 0.01. (14.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (13.06.2022):
+   -- Version 0.01. => 0.01. (13.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (12.06.2022):
+   -- Version 0.01. => 0.01. (12.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (11.06.2022):
+   -- Version 0.01. => 0.01. (11.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (10.06.2022):
+   -- Version 0.01. => 0.01. (10.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (09.06.2022):
+   -- Version 0.01. => 0.01. (09.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (08.06.2022):
+   -- Version 0.01. => 0.01. (08.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (07.06.2022):
+   -- Version 0.01. => 0.01. (07.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (06.06.2022):
+   -- Version 0.01. => 0.01. (06.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (05.06.2022):
+   -- Version 0.01. => 0.01. (05.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (04.06.2022):
+   -- Version 0.01. => 0.01. (04.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (03.06.2022):
+   -- Version 0.00.0910 => 0.01.0960 (03.06.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.0. => 0.0. (02.06.2022):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- KartengeneratorUnterwasserUnterirdisch überarbeitet.
+   -- KartengeneratorRessourcen überarbeitet.
+   -- Zufallsgenerator für Booleans eingebaut.
+   -- Roden/Trockenlegen/Aufforsten an das neue Grundsystem angepasst.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 
-   -- Version 0.01.0900 => 0.01. (01.06.2022):
+   -- Version 0.01.0900 => 0.01.0910 (02.06.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Diverse Programmversionen aktualisiert und Kleinigkeiten angepasst.
+   
+   
+
+   -- Version 0.01.0900 => 0.01.0900 (01.06.2022):
+   
+   -- null.
 
 end ChangelogJuni2022;

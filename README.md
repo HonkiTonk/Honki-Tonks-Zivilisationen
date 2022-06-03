@@ -1,9 +1,9 @@
-# Civ-Klon - Version: 0.01.0900
-Der Sourcecode meines civilizationartigen Rundenstrategiespiels, geschrieben in Ada.
-Benötigt die ASFML und wird nur unter Linux intensiv getestet. Es sollte aber auch unter anderen Betriebssystemen problemlos kompilieren und funktionieren.
+# Civ-Klon - Version: 0.01.0960
+4X-Rundenstrategiespiels im Stil von Civilization 1.
+Geschrieben in Ada mit der Standardbibliothek und ASFML. Wird nur unter Linux intensiv getestet, sollte aber auch unter anderen Betriebssystemen problemlos funktionieren.
 
-The source code of my civilization-style turn-based strategy game, written in Ada.
-Requires the ASFML and it is only tested intensively under Linux. But it should compilate and work without any problems under other operating systems.
+4X turn-based strategy game in the style of Civilization 1.
+Written in Ada using the Standard Library and ASFML. Only tested intensively under Linux, but should also work without problems under other operating systems.
 
 Mich unterstützen/Support me:
 

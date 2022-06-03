@@ -14,7 +14,7 @@ with Karten;
 
 package KartenAllgemein is
 
-   function BeschreibungGrund
+   function BeschreibungZusatzgrund
      (KartenGrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
       return Wide_Wide_String;
 
@@ -417,9 +417,11 @@ private
    KartenWeg : KartenVerbesserungDatentypen.Karten_Weg_Enum;
    KartenVerbesserung : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
 
-   BasisGrund : KartengrundDatentypen.Kartengrund_Enum;
+   Basisgrund : KartengrundDatentypen.Kartengrund_Enum;
+   Zusatzgrund : KartengrundDatentypen.Kartengrund_Enum;
 
    GrundAktuell : Positive;
+   ZusatzAktuell : Positive;
    FlussAktuell : Positive;
    RessourceAktuell : Positive;
 

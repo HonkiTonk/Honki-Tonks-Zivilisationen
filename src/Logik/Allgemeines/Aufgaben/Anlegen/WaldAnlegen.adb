@@ -3,56 +3,39 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartengrundDatentypen; use KartengrundDatentypen;
 with KartenVerbesserungDatentypen;
-with KartenKonstanten;
 
 with SchreibeKarten;
 with LeseKarten;
-with LeseEinheitenGebaut;
 
 with Fehler;
 
 package body WaldAnlegen is
 
    procedure WaldAnlegen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
       
-      Koordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      
       case
-        Koordinaten.EAchse
+        KoordinatenExtern.EAchse
       is
-         when KartenKonstanten.OberflächeKonstante =>
-            if
-              LeseKarten.AktuellerGrund (KoordinatenExtern => Koordinaten) = KartengrundDatentypen.Hügel_Enum
-            then
-               --------------------------- Hügel
-               -- SchreibeKarten.Hügel (KoordinatenExtern => Koordinaten,
-               --                       HügelExtern       => True);
-               null;
-            
-            else
-               null;
-            end if;
-
+         when 0 =>
             NeuerGrund := KartengrundDatentypen.Wald_Enum;
             
-         when KartenKonstanten.UnterflächeKonstante =>
+         when -1 =>
             NeuerGrund := KartengrundDatentypen.Unterwald_Enum;
             
          when others =>
             Fehler.LogikFehler (FehlermeldungExtern => "WaldAnlegen.WaldAnlegen - Falsche Ebene.");
       end case;
-            
-      -- Nicht in den Überprüfung oben mit rein schieben, da der Wald immer erzeugt werden muss, unabhängig ob da ein Hügel ist.
-      SchreibeKarten.AktuellerGrund (KoordinatenExtern => Koordinaten,
-                            GrundExtern       => NeuerGrund);
+      
+      SchreibeKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern,
+                                     GrundExtern       => NeuerGrund);
       
       case
-        LeseKarten.Verbesserung (KoordinatenExtern => Koordinaten)
+        LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern)
       is
          when KartenVerbesserungDatentypen.Karten_Verbesserung_Gebilde_Friedlich_Enum'Range =>
-            SchreibeKarten.Verbesserung (KoordinatenExtern     => Koordinaten,
+            SchreibeKarten.Verbesserung (KoordinatenExtern     => KoordinatenExtern,
                                          VerbesserungExtern    => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum);
             
          when others =>

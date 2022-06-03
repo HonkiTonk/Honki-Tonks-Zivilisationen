@@ -22,7 +22,9 @@ package KartengrundDatentypen is
                              -- Unterfläche
                              Untereis_Enum,
                              Küstengrund_Enum,
-                             Meeresgrund_Enum, Korallen_Enum, Unterwald_Enum,
+                             Meeresgrund_Enum,
+                             Korallen_Enum, Unterwald_Enum,
+                             
                              Erde_Enum, Erdgestein_Enum, Sand_Enum, Gestein_Enum,
                               
                              -- Planeteninneres
@@ -55,15 +57,25 @@ package KartengrundDatentypen is
    
    -- Unterfläche
    subtype Kartengrund_Unterfläche_Enum is Kartengrund_Vorhanden_Enum range Untereis_Enum .. Gestein_Enum;
+   
    subtype Kartengrund_Unterfläche_Eiswasser_Enum is Kartengrund_Unterfläche_Enum range Untereis_Enum .. Unterwald_Enum;
    subtype Kartengrund_Unterfläche_Wasser_Enum is Kartengrund_Unterfläche_Eiswasser_Enum range Küstengrund_Enum .. Unterwald_Enum;
-   subtype Kartengrund_Unterfläche_Wasser_Variabel_Enum is Kartengrund_Unterfläche_Wasser_Enum range Meeresgrund_Enum .. Unterwald_Enum;
+   
+   subtype Kartengrund_Unterfläche_Wasserbasis_Enum is Kartengrund_Unterfläche_Wasser_Enum range Meeresgrund_Enum .. Meeresgrund_Enum;
+   subtype Kartengrund_Unterfläche_Wasserzusatz_Enum is Kartengrund_Unterfläche_Wasser_Enum range Korallen_Enum .. Unterwald_Enum;
+   
    subtype Kartengrund_Unterfläche_Land_Enum is Kartengrund_Unterfläche_Enum range Erde_Enum .. Gestein_Enum;
+   subtype Kartengrund_Unterfläche_Landbasis_Enum is Kartengrund_Unterfläche_Land_Enum range Erde_Enum .. Gestein_Enum;
+   -- subtype Kartengrund_Unterfläche_Landzusatz_Enum is Kartengrund_Unterfläche_Enum range  .. ;
    
    -- Planeteinneres
    subtype Kartengrund_Kernfläche_Enum is Kartengrund_Vorhanden_Enum range Lava_Enum .. Magnesiowüstit_Enum;
    subtype Kartengrund_Kernfläche_Flüssig_Enum is Kartengrund_Kernfläche_Enum range Lava_Enum .. Planetenkern_Enum;
+   
    subtype Kartengrund_Kernfläche_Fest_Enum is Kartengrund_Kernfläche_Enum range Ringwoodit_Enum .. Magnesiowüstit_Enum;
+   
+   subtype Kartengrund_Kernfläche_Basis_Enum is Kartengrund_Kernfläche_Fest_Enum range Ringwoodit_Enum .. Magnesiowüstit_Enum;
+   -- subtype Kartengrund_Kernfläche_Zusatz_Enum is Kartengrund_Kernfläche_Fest_Enum range  .. ;
    
    -- Sonstiges
    subtype Kartengrund_Sonstiges_Enum is Kartengrund_Vorhanden_Enum range Vernichtet_Enum .. Vernichtet_Enum;
@@ -87,10 +99,13 @@ package KartengrundDatentypen is
    
    subtype Karten_Ressourcen_Vorhanden_Enum is Karten_Ressourcen_Enum range Fisch_Enum .. Karten_Ressourcen_Enum'Last;
    
-   subtype Karten_Ressourcen_Wasser is Karten_Ressourcen_Vorhanden_Enum range Fisch_Enum .. Wal_Enum;
-   subtype Karten_Ressourcen_Land is Karten_Ressourcen_Vorhanden_Enum range Kohle_Enum .. Gold_Enum;
-   -- subtype Karten_Ressourcen_Kern is Karten_Ressourcen_Vorhanden_Enum range  .. ;
-   -- subtype Karten_Ressourcen_Lava is Karten_Ressourcen_Vorhanden_Enum range  .. ;
+   subtype Kartenressourcen_Oberfläche_Enum is Karten_Ressourcen_Vorhanden_Enum range Fisch_Enum .. Gold_Enum;
+   subtype Kartenressourcen_Oberfläche_Wasser_Enum is Kartenressourcen_Oberfläche_Enum range Fisch_Enum .. Wal_Enum;
+   subtype Kartenressourcen_Oberfläche_Land_Enum is Kartenressourcen_Oberfläche_Enum range Kohle_Enum .. Gold_Enum;
+   
+   subtype Kartenressourcen_Unterfläche_Enum is Karten_Ressourcen_Vorhanden_Enum range Fisch_Enum .. Gold_Enum;
+   subtype Kartenressourcen_Unterfläche_Wasser_Enum is Kartenressourcen_Unterfläche_Enum range Fisch_Enum .. Wal_Enum;
+   subtype Kartenressourcen_Unterfläche_Land_Enum is Kartenressourcen_Unterfläche_Enum range Kohle_Enum .. Gold_Enum;
    
    
    

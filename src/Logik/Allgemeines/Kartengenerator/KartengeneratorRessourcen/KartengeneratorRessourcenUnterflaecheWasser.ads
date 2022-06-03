@@ -3,26 +3,25 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with KartengrundDatentypen;
+with KartenRecords;
 
 with Karten;
 
 package KartengeneratorRessourcenUnterflaecheWasser is
 
    procedure KartengeneratorRessourcenUnterflächeWasser
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
      with
        Pre =>
-         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
           and
-            XAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
 
 private
 
-   ZusatzberechnungenRessource : KartengrundDatentypen.Karten_Ressourcen_Enum;
    WelcheRessource : KartengrundDatentypen.Karten_Ressourcen_Enum;
 
-   type KartenressourceWahrscheinlichkeitArray is array (KartengrundDatentypen.Karten_Ressourcen_Wasser'Range) of KartenDatentypen.WahrscheinlichkeitKartengenerator;
+   type KartenressourceWahrscheinlichkeitArray is array (KartengrundDatentypen.Kartenressourcen_Unterfläche_Wasser_Enum'Range) of KartenDatentypen.WahrscheinlichkeitKartengenerator;
    KartenressourceWahrscheinlichkeit : KartenressourceWahrscheinlichkeitArray := (
                                                                                   KartengrundDatentypen.Fisch_Enum => 2,
                                                                                   KartengrundDatentypen.Wal_Enum   => 2
@@ -35,36 +34,33 @@ private
 
 
    function RessourceZusatzberechnungen
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+      RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Unterfläche_Wasser_Enum)
+      return KartengrundDatentypen.Karten_Ressourcen_Enum
+     with
+       Pre =>
+         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+          and
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+
+   function ZusatzberechnungFisch
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       RessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Enum)
       return KartengrundDatentypen.Karten_Ressourcen_Enum
      with
        Pre =>
-         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
           and
-            XAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
-
-   function ZusatzberechnungFisch
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      RessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Wasser)
-      return KartengrundDatentypen.Karten_Ressourcen_Enum
-     with
-       Pre =>
-         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
-          and
-            XAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
 
    function ZusatzberechnungWal
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      RessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Wasser)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+      RessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Enum)
       return KartengrundDatentypen.Karten_Ressourcen_Enum
      with
        Pre =>
-         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
           and
-            XAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
 
 end KartengeneratorRessourcenUnterflaecheWasser;

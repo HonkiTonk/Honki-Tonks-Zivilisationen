@@ -3,26 +3,25 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with KartengrundDatentypen;
+with KartenRecords;
 
 with Karten;
 
 package KartengeneratorRessourcenOberflaecheLand is
 
    procedure KartengeneratorRessourcenOberflächeLand
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
      with
        Pre =>
-         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
           and
-            XAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
 
 private
 
-   ZusatzberechnungenRessource : KartengrundDatentypen.Karten_Ressourcen_Enum;
    WelcheRessource : KartengrundDatentypen.Karten_Ressourcen_Enum;
 
-   type KartenressourceWahrscheinlichkeitArray is array (KartengrundDatentypen.Karten_Ressourcen_Land'Range) of KartenDatentypen.WahrscheinlichkeitKartengenerator;
+   type KartenressourceWahrscheinlichkeitArray is array (KartengrundDatentypen.Kartenressourcen_Oberfläche_Land_Enum'Range) of KartenDatentypen.WahrscheinlichkeitKartengenerator;
    KartenressourceWahrscheinlichkeit : KartenressourceWahrscheinlichkeitArray := (
                                                                                   KartengrundDatentypen.Kohle_Enum              => 2,
                                                                                   KartengrundDatentypen.Eisen_Enum              => 2,
@@ -38,69 +37,63 @@ private
 
 
    function RessourceZusatzberechnungen
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      RessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Enum)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+      RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Oberfläche_Land_Enum)
       return KartengrundDatentypen.Karten_Ressourcen_Enum
      with
        Pre =>
-         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
           and
-            XAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
 
    function ZusatzberechnungKohle
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      RessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Land)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+      RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Oberfläche_Land_Enum)
       return KartengrundDatentypen.Karten_Ressourcen_Enum
      with
        Pre =>
-         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
           and
-            XAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
 
    function ZusatzberechnungEisen
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      RessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Land)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+      RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Oberfläche_Land_Enum)
       return KartengrundDatentypen.Karten_Ressourcen_Enum
      with
        Pre =>
-         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
           and
-            XAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
 
    function ZusatzberechnungÖl
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      RessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Land)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+      RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Oberfläche_Land_Enum)
       return KartengrundDatentypen.Karten_Ressourcen_Enum
      with
        Pre =>
-         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
           and
-            XAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
 
    function ZusatzberechnungHochwertigerBoden
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      RessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Land)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+      RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Oberfläche_Land_Enum)
       return KartengrundDatentypen.Karten_Ressourcen_Enum
      with
        Pre =>
-         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
           and
-            XAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
 
    function ZusatzberechnungGold
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      RessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Land)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+      RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Oberfläche_Land_Enum)
       return KartengrundDatentypen.Karten_Ressourcen_Enum
      with
        Pre =>
-         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
           and
-            XAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
 
 end KartengeneratorRessourcenOberflaecheLand;
