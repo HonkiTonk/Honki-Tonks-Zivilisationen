@@ -107,7 +107,7 @@ package body LeseGebaeudeDatenbank is
    function RessourceBenötigt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in StadtDatentypen.GebäudeID)
-      return KartengrundDatentypen.Karten_Ressourcen_Enum
+      return KartengrundDatentypen.Kartenressourcen_Enum
    is begin
       
       return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).RessourceBenötigt;

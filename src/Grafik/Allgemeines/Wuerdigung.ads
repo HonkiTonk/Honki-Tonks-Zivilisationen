@@ -7,7 +7,7 @@ package Wuerdigung is
 
 private
 
-   procedure WürdigungKonsole;
+   procedure WürdigungTerminal;
    procedure WürdigungSFML;
 
 end Wuerdigung;

@@ -15,11 +15,11 @@ type LandflächenArray is array (KartenDatentypen.Kartenart_Enum'Range) of Karte
 
 
 
-procedure AnzeigeSpracheKonsole;
+procedure AnzeigeSpracheTerminal;
 -- (AktuelleAuswahlExtern : in Positive;
 --  LetzteZeileExtern : in Positive);
 
-procedure AnzeigeSpracheKonsole
+procedure AnzeigeSpracheTerminal
 is begin
 
    Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
@@ -100,4 +100,4 @@ is begin
 
    --  end loop AnzeigeSchleife;
 
-end AnzeigeSpracheKonsole;
+end AnzeigeSpracheTerminal;

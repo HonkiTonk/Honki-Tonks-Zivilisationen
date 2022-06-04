@@ -26,8 +26,8 @@ package body AuswahlSprache is
       case
         OptionenVariablen.NutzerEinstellungen.Anzeigeart
       is
-         when GrafikDatentypen.Grafik_Konsole_Enum =>
-            return AuswahlSpracheKonsole;
+         when GrafikDatentypen.Grafik_Terminal_Enum =>
+            return AuswahlSpracheTerminal;
             
          when GrafikDatentypen.Grafik_SFML_Enum =>
             return AuswahlSpracheSFML;
@@ -124,13 +124,13 @@ package body AuswahlSprache is
    
    
    
-   function AuswahlSpracheKonsole
+   function AuswahlSpracheTerminal
      return Unbounded_Wide_Wide_String
    is begin
                   
       InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Sprache_Enum;
       
-      AuswahlKonsoleSchleife:
+      AuswahlTerminalSchleife:
       loop
          
          case
@@ -170,9 +170,9 @@ package body AuswahlSprache is
                null;
          end case;
                
-      end loop AuswahlKonsoleSchleife;
+      end loop AuswahlTerminalSchleife;
       
-   end AuswahlSpracheKonsole;
+   end AuswahlSpracheTerminal;
    
    
    

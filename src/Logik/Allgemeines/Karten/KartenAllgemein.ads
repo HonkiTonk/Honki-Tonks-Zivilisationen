@@ -27,7 +27,7 @@ package KartenAllgemein is
       return Wide_Wide_String;
 
    function BeschreibungRessource
-     (KartenRessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Vorhanden_Enum)
+     (KartenRessourceExtern : in KartengrundDatentypen.Kartenressourcen_Vorhanden_Enum)
       return Wide_Wide_String;
 
    function GrundNahrung
@@ -413,7 +413,7 @@ package KartenAllgemein is
 private
 
    KartenFluss : KartengrundDatentypen.Kartenfluss_Enum;
-   KartenRessource : KartengrundDatentypen.Karten_Ressourcen_Enum;
+   KartenRessource : KartengrundDatentypen.Kartenressourcen_Enum;
    KartenWeg : KartenVerbesserungDatentypen.Karten_Weg_Enum;
    KartenVerbesserung : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
 

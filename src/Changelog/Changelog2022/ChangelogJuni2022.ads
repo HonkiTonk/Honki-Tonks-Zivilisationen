@@ -175,17 +175,17 @@ package ChangelogJuni2022 is
    
    
 
-   -- Version 0.01. => 0.01. (05.06.2022):
+   -- Version 0.01.0980 => 0.01 (05.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01. => 0.01. (04.06.2022):
+   -- Version 0.01.0960 => 0.01.0980 (04.06.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Konsole überall in Terminal umbenannt.
+   -- Interne Benennung überarbeitet.
    
    
 

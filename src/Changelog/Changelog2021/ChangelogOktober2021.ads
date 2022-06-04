@@ -35,7 +35,7 @@ package ChangelogOktober2021 is
    
    -- Version 0.00.9140 => 0.00.9150 (26.10.2021):
    
-   -- Die Eingabe und damit verbundene Tastenbelegung vollständig zwischen Konsole und SFML aufgeteilt/angepasst.
+   -- Die Eingabe und damit verbundene Tastenbelegung vollständig zwischen Terminal und SFML aufgeteilt/angepasst.
    -- Angefangen die Anzeige der Karte zu überarbeiten.
    -- Kleinigkeiten korrigiert/angepasst.
    
@@ -45,7 +45,7 @@ package ChangelogOktober2021 is
    
    -- Auswahl durch Mausbewegung verbessert.
    -- Angefangen die Texteingabe durch die SFML einzubauen.
-   -- Weiter an der Aufteilung zwischen SFML und Konsole gearbeitet.
+   -- Weiter an der Aufteilung zwischen SFML und Terminal gearbeitet.
    -- Scheiße gebaut und den Großteil der heutigen Arbeit überschrieben.
    -- Kleinigkeiten korrigiert/überarbeitet.
    
@@ -130,7 +130,7 @@ package ChangelogOktober2021 is
    
    -- Version 0.00.9010 => 0.00.9020 (14.10.2021):
    
-   -- Angefangen seperate Dateien/Funktionen/Prozeduren für die Anzeige über die Konsole und die Anzeige über die ASFML/SFML zu erstellen.
+   -- Angefangen seperate Dateien/Funktionen/Prozeduren für die Anzeige über die Terminal und die Anzeige über die ASFML/SFML zu erstellen.
    -- Fehler behoben der in der SFML Menüanzeige zu Fehldarstellungen führte.
    -- Kommentare, Contracts und Kleinigkeiten korrigiert/überarbeitet.
    
@@ -152,8 +152,8 @@ package ChangelogOktober2021 is
    -- Version 0.00.8980 => 0.00.9000 (11.10.2021):
    
    -- Einfache Kartenfelderanzeige über die SFML eingebaut.
-   -- Alle Kartenfelder werden, wie in der Konsolenversion, korrekt angezeigt und an die aktuelle Auflösung und Fenstergröße angepasst.
-   -- Alle Ressourcen, Flüsse, Straßen, verbesserungen, Städte, Einheiten und der Cursor werden, wie in der Konsolenversion, korrekt angezeigt und an die aktuelle Auflösung und Fenstergröße angepasst.
+   -- Alle Kartenfelder werden, wie in der Terminalnversion, korrekt angezeigt und an die aktuelle Auflösung und Fenstergröße angepasst.
+   -- Alle Ressourcen, Flüsse, Straßen, verbesserungen, Städte, Einheiten und der Cursor werden, wie in der Terminalnversion, korrekt angezeigt und an die aktuelle Auflösung und Fenstergröße angepasst.
    -- Angefangen die Maus benutzbar zu machen.
    -- Kleinigkeiten korrigiert/überarbeitet/angepasst.
    

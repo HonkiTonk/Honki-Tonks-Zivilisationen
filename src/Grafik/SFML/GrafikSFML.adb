@@ -150,8 +150,8 @@ package body GrafikSFML is
       case
         InteraktionGrafiktask.AktuelleDarstellung
       is
-         when GrafikDatentypen.Grafik_Konsole_Enum =>
-            Fehler.GrafikFehler (FehlermeldungExtern => "GrafikSFML.AnzeigeAuswahl - Konsole wird bei SFML aufgerufen.");
+         when GrafikDatentypen.Grafik_Terminal_Enum =>
+            Fehler.GrafikFehler (FehlermeldungExtern => "GrafikSFML.AnzeigeAuswahl - Terminal wird bei SFML aufgerufen.");
             
          when GrafikDatentypen.Grafik_SFML_Enum =>
             InteraktionStart.FensterErzeugt := True;

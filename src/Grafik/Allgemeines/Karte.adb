@@ -5,7 +5,7 @@ with GrafikDatentypen;
 with OptionenVariablen;
 
 with KarteSFML;
-with KarteKonsole;
+with KarteTerminal;
 with CursorPlatzierenSFML;
 with CursorAltPlatzieren;
 
@@ -22,8 +22,8 @@ package body Karte is
       case
         OptionenVariablen.NutzerEinstellungen.Anzeigeart
       is
-         when GrafikDatentypen.Grafik_Konsole_Enum =>
-            KarteKonsole.AnzeigeKarteKonsole (RasseExtern => RasseEinheitExtern.Rasse);
+         when GrafikDatentypen.Grafik_Terminal_Enum =>
+            KarteTerminal.AnzeigeKarteTerminal (RasseExtern => RasseEinheitExtern.Rasse);
             
          when GrafikDatentypen.Grafik_SFML_Enum =>
             KarteSFML.KarteAnzeigen (RasseEinheitExtern => RasseEinheitExtern);

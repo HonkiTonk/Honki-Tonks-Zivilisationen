@@ -78,7 +78,7 @@ package body LeseKarten is
    
    function Ressource
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return KartengrundDatentypen.Karten_Ressourcen_Enum
+      return KartengrundDatentypen.Kartenressourcen_Enum
    is begin
       
       return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource;

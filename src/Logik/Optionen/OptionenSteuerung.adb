@@ -16,7 +16,7 @@ with Eingabe;
 with AuswahlMenues;
 with SchreibenTastatur;
 with EingabeSystemeSFML;
-with EingabeKonsole;
+with EingabeTerminal;
 with EingabeSFML;
 with Fehler;
 
@@ -63,8 +63,8 @@ package body OptionenSteuerung is
       case
         OptionenVariablen.NutzerEinstellungen.Anzeigeart
       is
-         when GrafikDatentypen.Grafik_Konsole_Enum =>
-            AlteTasteEntfernenKonsole;
+         when GrafikDatentypen.Grafik_Terminal_Enum =>
+            AlteTasteEntfernenTerminal;
             
          when GrafikDatentypen.Grafik_SFML_Enum =>
             AlteTasteEntfernenSFML;
@@ -74,10 +74,10 @@ package body OptionenSteuerung is
    
    
    
-   procedure AlteTasteEntfernenKonsole
+   procedure AlteTasteEntfernenTerminal
    is begin
       
-      -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+      -- TextAnzeigeTerminal.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
       --                                          TextDateiExtern        => GlobaleTexte.Zeug,
       --                                          ÜberschriftZeileExtern => 0,
       --                                          ErsteZeileExtern       => 46,
@@ -88,9 +88,9 @@ package body OptionenSteuerung is
                
       NeueAuswahl := TastenbelegungDatentypen.Tastenbelegung_Enum'Val (1);
                
-      Put_Line (Item => EingabeKonsole.Tastenbelegung (1, NeueAuswahl) & "    " & EingabeKonsole.Tastenbelegung (2, NeueAuswahl));
+      Put_Line (Item => EingabeTerminal.Tastenbelegung (1, NeueAuswahl) & "    " & EingabeTerminal.Tastenbelegung (2, NeueAuswahl));
                
-      -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+      -- TextAnzeigeTerminal.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
       --                                          TextDateiExtern        => GlobaleTexte.Fragen,
       --                                          ÜberschriftZeileExtern => 0,
       --                                          ErsteZeileExtern       => 29,
@@ -99,19 +99,19 @@ package body OptionenSteuerung is
       --                                          AbstandMitteExtern     => GlobaleTexte.Leer,
       --                                          AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
       
-      NeueTasteKonsole := EingabeKonsole.TastenEingabe;
+      NeueTasteTerminal := EingabeTerminal.TastenEingabe;
       
       BelegungFeldSchleife:
-      for BelegungFeldSchleifenwert in EingabeKonsole.TastenbelegungArray'Range (1) loop
+      for BelegungFeldSchleifenwert in EingabeTerminal.TastenbelegungArray'Range (1) loop
          BelegungPositionSchleife:
-         for BelegungPositionSchleifenwert in EingabeKonsole.TastenbelegungArray'Range (2) loop
+         for BelegungPositionSchleifenwert in EingabeTerminal.TastenbelegungArray'Range (2) loop
             
             if
-              EingabeKonsole.Tastenbelegung (BelegungFeldSchleifenwert, BelegungPositionSchleifenwert) = NeueTasteKonsole
+              EingabeTerminal.Tastenbelegung (BelegungFeldSchleifenwert, BelegungPositionSchleifenwert) = NeueTasteTerminal
               and
                 BelegungPositionSchleifenwert /= NeueAuswahl
             then
-               EingabeKonsole.Tastenbelegung (BelegungFeldSchleifenwert, BelegungPositionSchleifenwert) := NUL;
+               EingabeTerminal.Tastenbelegung (BelegungFeldSchleifenwert, BelegungPositionSchleifenwert) := NUL;
                exit BelegungFeldSchleife;
                
             else
@@ -121,7 +121,7 @@ package body OptionenSteuerung is
          end loop BelegungPositionSchleife;
       end loop BelegungFeldSchleife;
       
-   end AlteTasteEntfernenKonsole;
+   end AlteTasteEntfernenTerminal;
    
    
    
@@ -185,8 +185,8 @@ package body OptionenSteuerung is
       case
         OptionenVariablen.NutzerEinstellungen.Anzeigeart
       is
-         when GrafikDatentypen.Grafik_Konsole_Enum =>
-            AlteTasteEntfernenKonsole;
+         when GrafikDatentypen.Grafik_Terminal_Enum =>
+            AlteTasteEntfernenTerminal;
             
          when GrafikDatentypen.Grafik_SFML_Enum =>
             NeueTasteFestlegenSFML;
@@ -196,34 +196,34 @@ package body OptionenSteuerung is
    
    
    
-   procedure NeueTasteFestlegenKonsole
+   procedure NeueTasteFestlegenTerminal
    is begin
       
       NeueAuswahl := TastenbelegungDatentypen.Tastenbelegung_Enum'Val (1);
          
       if
-        EingabeKonsole.Tastenbelegung (1, NeueAuswahl) = NeueTasteKonsole
+        EingabeTerminal.Tastenbelegung (1, NeueAuswahl) = NeueTasteTerminal
         or
-          EingabeKonsole.Tastenbelegung (2, NeueAuswahl) = NeueTasteKonsole
+          EingabeTerminal.Tastenbelegung (2, NeueAuswahl) = NeueTasteTerminal
       then
          null;
             
       elsif
-        EingabeKonsole.Tastenbelegung (1, NeueAuswahl) = NUL
+        EingabeTerminal.Tastenbelegung (1, NeueAuswahl) = NUL
       then
-         EingabeKonsole.Tastenbelegung (1, NeueAuswahl) := NeueTasteKonsole;
+         EingabeTerminal.Tastenbelegung (1, NeueAuswahl) := NeueTasteTerminal;
             
       elsif
-        EingabeKonsole.Tastenbelegung (2, NeueAuswahl) = NUL
+        EingabeTerminal.Tastenbelegung (2, NeueAuswahl) = NUL
       then
-         EingabeKonsole.Tastenbelegung (2, NeueAuswahl) := NeueTasteKonsole;
+         EingabeTerminal.Tastenbelegung (2, NeueAuswahl) := NeueTasteTerminal;
             
       else
-         EingabeKonsole.Tastenbelegung (2, NeueAuswahl) := EingabeKonsole.Tastenbelegung (1, NeueAuswahl);
-         EingabeKonsole.Tastenbelegung (1, NeueAuswahl) := NeueTasteKonsole;
+         EingabeTerminal.Tastenbelegung (2, NeueAuswahl) := EingabeTerminal.Tastenbelegung (1, NeueAuswahl);
+         EingabeTerminal.Tastenbelegung (1, NeueAuswahl) := NeueTasteTerminal;
       end if;
       
-   end NeueTasteFestlegenKonsole;
+   end NeueTasteFestlegenTerminal;
    
    
    

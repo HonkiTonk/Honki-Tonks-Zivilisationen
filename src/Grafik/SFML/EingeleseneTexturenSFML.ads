@@ -27,7 +27,7 @@ package EingeleseneTexturenSFML is
    type KartenflussAccessArray is array (KartenflussDatenbank.KartenflusslisteArray'Range) of Sf.Graphics.sfTexture_Ptr;
    KartenflussAccess : KartenflussAccessArray := (others => null);
 
-   type KartenressourcenAccessArray is array (KartenressourcenDatenbank.KartenRessourcenListeArray'Range) of Sf.Graphics.sfTexture_Ptr;
+   type KartenressourcenAccessArray is array (KartenressourcenDatenbank.KartenressourcenListeArray'Range) of Sf.Graphics.sfTexture_Ptr;
    KartenressourceAccess : KartenressourcenAccessArray := (others => null);
 
    type VerbesserungenAccessArray is array (KartenVerbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum'Range) of Sf.Graphics.sfTexture_Ptr;

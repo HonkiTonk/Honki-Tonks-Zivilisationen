@@ -215,7 +215,7 @@ package ChangelogDezember2021 is
    -- Version 0.00.9540 => 0.00.9560 (02.12.2021):
    
    -- Tasteneingabe durch die SFML verbessert.
-   -- Die Möglichkeit SFML und Konsolengrafik gleichzeitig zu haben fürs Erste entfernt.
+   -- Die Möglichkeit SFML und Terminalngrafik gleichzeitig zu haben fürs Erste entfernt.
    -- Auswahl der Sprachen funktioniert jetzt wieder korrekt.
    -- Es ist jetzt möglich die Sprachauswahl abzubrechen.
    -- Anzeige der Sprachauswahl in den Grafiktask verschoben.
@@ -235,7 +235,7 @@ package ChangelogDezember2021 is
    
    -- Prüfung eingebaut die verhindert das Erklärtext angezeigt wird wenn keiner vorhanden ist.
    -- Prüfung eingebaut die verhindert das nicht vorhandene Technologien erforscht werden können.
-   -- Konsolenanzeige der Forschung aus der ForschungAllgemein ausgelagert um es später über den Grafiktask aufzurufen.
+   -- Terminalnanzeige der Forschung aus der ForschungAllgemein ausgelagert um es später über den Grafiktask aufzurufen.
    -- Code zusammengefasst/vereinfacht.
    -- Kleinigkeiten korrigiert/überarbeitet.
 

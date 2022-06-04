@@ -5,7 +5,7 @@ with GrafikDatentypen;
 with ZeitKonstanten;
 
 with InteraktionGrafiktask;
-with GrafikKonsole;
+with GrafikTerminal;
 with GrafikSFML;
 with Fehler;
 with InteraktionStart;
@@ -25,8 +25,8 @@ package body StartGrafik is
       case
         InteraktionGrafiktask.AktuelleDarstellung
       is
-         when GrafikDatentypen.Grafik_Konsole_Enum =>
-            GrafikKonsole.GrafikKonsole;
+         when GrafikDatentypen.Grafik_Terminal_Enum =>
+            GrafikTerminal.GrafikTerminal;
             
          when GrafikDatentypen.Grafik_SFML_Enum =>
             GrafikSFML.GrafikSFML;

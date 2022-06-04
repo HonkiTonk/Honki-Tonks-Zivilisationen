@@ -69,7 +69,7 @@ package body InDerStadtBauen is
          
       else
          return (0, 0);
-         -- return AuswahlBauprojektKonsole;
+         -- return AuswahlBauprojektTerminal;
       end if;
       
    end BauobjektAuswählen;

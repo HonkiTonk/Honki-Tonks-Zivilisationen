@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with GrafikDatentypen;
 with OptionenVariablen;
 
-with EingabeKonsole;
+with EingabeTerminal;
 with EingabeSFML;
 with Fehler;
 
@@ -17,12 +17,12 @@ package body Eingabe is
       return SystemRecords.ZahlenEingabeRecord
    is begin
       
-      -- TextDateiExtern später auch in Konsole entfernen. Und alle Fragen nach Fragen verschieben, sonst funktioniert das hier nicht so richtig. Ist auch sinnvollder aufgeteilt dann.
+      -- TextDateiExtern später auch in Terminal entfernen. Und alle Fragen nach Fragen verschieben, sonst funktioniert das hier nicht so richtig. Ist auch sinnvollder aufgeteilt dann.
       case
         OptionenVariablen.NutzerEinstellungen.Anzeigeart
       is
-         when GrafikDatentypen.Grafik_Konsole_Enum =>
-            return EingabeKonsole.GanzeZahl (ZahlenMinimumExtern => ZahlenMinimumExtern,
+         when GrafikDatentypen.Grafik_Terminal_Enum =>
+            return EingabeTerminal.GanzeZahl (ZahlenMinimumExtern => ZahlenMinimumExtern,
                                              ZahlenMaximumExtern => ZahlenMaximumExtern,
                                              WelcheFrageExtern   => ZeileExtern);
             
@@ -43,8 +43,8 @@ package body Eingabe is
       case
         OptionenVariablen.NutzerEinstellungen.Anzeigeart
       is
-         when GrafikDatentypen.Grafik_Konsole_Enum =>
-            return EingabeKonsole.StadtName;
+         when GrafikDatentypen.Grafik_Terminal_Enum =>
+            return EingabeTerminal.StadtName;
             
          when GrafikDatentypen.Grafik_SFML_Enum =>
             return EingabeSFML.StadtName;
@@ -61,8 +61,8 @@ package body Eingabe is
       case
         OptionenVariablen.NutzerEinstellungen.Anzeigeart
       is
-         when GrafikDatentypen.Grafik_Konsole_Enum =>
-            return EingabeKonsole.SpielstandName;
+         when GrafikDatentypen.Grafik_Terminal_Enum =>
+            return EingabeTerminal.SpielstandName;
             
          when GrafikDatentypen.Grafik_SFML_Enum =>
             return EingabeSFML.SpielstandName;
@@ -78,11 +78,11 @@ package body Eingabe is
       case
         OptionenVariablen.NutzerEinstellungen.Anzeigeart
       is
-         when GrafikDatentypen.Grafik_Konsole_Enum =>
-            EingabeKonsole.WartenEingabe;
+         when GrafikDatentypen.Grafik_Terminal_Enum =>
+            EingabeTerminal.WartenEingabe;
             
          when GrafikDatentypen.Grafik_SFML_Enum =>
-            Fehler.LogikFehler (FehlermeldungExtern => "Eingabe.WartenEingabe - Nur bei Konsole so nötig.");
+            Fehler.LogikFehler (FehlermeldungExtern => "Eingabe.WartenEingabe - Nur bei Terminal so nötig.");
       end case;
       
    end WartenEingabe;
@@ -96,8 +96,8 @@ package body Eingabe is
       case
         OptionenVariablen.NutzerEinstellungen.Anzeigeart
       is
-         when GrafikDatentypen.Grafik_Konsole_Enum =>
-            return EingabeKonsole.Tastenwert;
+         when GrafikDatentypen.Grafik_Terminal_Enum =>
+            return EingabeTerminal.Tastenwert;
             
          when GrafikDatentypen.Grafik_SFML_Enum =>
             return EingabeSFML.Tastenwert;
@@ -113,8 +113,8 @@ package body Eingabe is
       case
         OptionenVariablen.NutzerEinstellungen.Anzeigeart
       is
-         when GrafikDatentypen.Grafik_Konsole_Enum =>
-            EingabeKonsole.StandardTastenbelegungLaden;
+         when GrafikDatentypen.Grafik_Terminal_Enum =>
+            EingabeTerminal.StandardTastenbelegungLaden;
             
          when GrafikDatentypen.Grafik_SFML_Enum =>
             EingabeSFML.StandardTastenbelegungLaden;

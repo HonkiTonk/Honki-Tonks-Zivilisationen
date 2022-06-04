@@ -94,7 +94,7 @@ package KartenRecords is
       Sichtbar : SichtbarkeitArray;
       
       Fluss : KartengrundDatentypen.Kartenfluss_Enum;
-      Ressource : KartengrundDatentypen.Karten_Ressourcen_Enum;
+      Ressource : KartengrundDatentypen.Kartenressourcen_Enum;
       
       Weg : KartenVerbesserungDatentypen.Karten_Weg_Enum;
       Verbesserung : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;

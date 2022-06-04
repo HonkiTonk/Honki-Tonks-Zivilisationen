@@ -6,7 +6,7 @@ with Ada.Directories; use Ada.Directories;
 with OptionenVariablen;
 with GrafikDatentypen;
 
-with EingabeKonsole;
+with EingabeTerminal;
 with EingabeSFML;
 with Eingabe;
 
@@ -18,8 +18,8 @@ package body EinlesenTastatur is
       case
         OptionenVariablen.NutzerEinstellungen.Anzeigeart
       is
-         when GrafikDatentypen.Grafik_Konsole_Enum =>
-            BelegungKonsole;
+         when GrafikDatentypen.Grafik_Terminal_Enum =>
+            BelegungTerminal;
             
          when GrafikDatentypen.Grafik_SFML_Enum =>
             BelegungSFML;
@@ -29,28 +29,28 @@ package body EinlesenTastatur is
    
    
    
-   procedure BelegungKonsole
+   procedure BelegungTerminal
    is begin
       
       case
-        Exists (Name => "Einstellungen/TastenbelegungKonsole")
+        Exists (Name => "Einstellungen/TastenbelegungTerminal")
       is
          when True =>
             Open (File => TastenbelegungLaden,
                   Mode => In_File,
-                  Name => "Einstellungen/TastenbelegungKonsole");
+                  Name => "Einstellungen/TastenbelegungTerminal");
 
          when False =>
             Eingabe.StandardTastenbelegungLaden;
             return;
       end case;
       
-      EingabeKonsole.TastenbelegungArray'Read (Stream (File => TastenbelegungLaden),
-                                               EingabeKonsole.Tastenbelegung);
+      EingabeTerminal.TastenbelegungArray'Read (Stream (File => TastenbelegungLaden),
+                                               EingabeTerminal.Tastenbelegung);
       
       Close (File => TastenbelegungLaden);
       
-   end BelegungKonsole;
+   end BelegungTerminal;
    
    
    

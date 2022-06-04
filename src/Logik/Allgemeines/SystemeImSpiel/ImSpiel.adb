@@ -20,7 +20,7 @@ with ZwischenDenRunden;
 with AuswahlMenues;
 with Fehler;
 with InteraktionGrafiktask;
-with BefehleKonsole;
+with BefehleTerminal;
 with BefehleSFML;
 
 with KI;
@@ -348,8 +348,8 @@ package body ImSpiel is
       case
         OptionenVariablen.NutzerEinstellungen.Anzeigeart
       is
-         when GrafikDatentypen.Grafik_Konsole_Enum =>
-            return BefehleKonsole.Befehle (RasseExtern => RasseExtern);
+         when GrafikDatentypen.Grafik_Terminal_Enum =>
+            return BefehleTerminal.Befehle (RasseExtern => RasseExtern);
             
          when GrafikDatentypen.Grafik_SFML_Enum =>
             return BefehleSFML.Befehle (RasseExtern => RasseExtern);

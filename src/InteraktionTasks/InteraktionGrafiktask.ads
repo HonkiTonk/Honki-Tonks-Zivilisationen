@@ -9,11 +9,11 @@ with EinheitenKonstanten;
 package InteraktionGrafiktask is
    
    FensterGeschlossen : Boolean := False;
-      
+   
    AktuelleRasseEinheit : EinheitenRecords.RasseEinheitnummerRecord := EinheitenKonstanten.LeerRasseNummer;
-      
+   
    AktuellesMenü : MenueDatentypen.Welches_Menü_Enum := MenueDatentypen.Leer_Menü_Enum;
-      
+   
    type Fenster_Ändern_Enum is (
                                  Keine_Änderung_Enum,
                                  

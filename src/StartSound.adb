@@ -7,7 +7,7 @@ with OptionenVariablen;
 with GrafikDatentypen;
 
 with SoundSFML;
-with SoundKonsole;
+with SoundTerminal;
 with Fehler;
 with InteraktionSoundtask;
 with InteraktionStart;
@@ -20,7 +20,7 @@ package body StartSound is
       case
         OptionenVariablen.NutzerEinstellungen.Anzeigeart
       is
-         when GrafikDatentypen.Grafik_Konsole_Enum =>
+         when GrafikDatentypen.Grafik_Terminal_Enum =>
             return;
             
          when others =>
@@ -40,8 +40,8 @@ package body StartSound is
          when TonDatentypen.Sound_SFML_Enum =>
             SoundSFML.SoundSFML;
             
-         when TonDatentypen.Sound_Konsole_Enum =>
-            SoundKonsole.SoundKonsole;
+         when TonDatentypen.Sound_Terminal_Enum =>
+            SoundTerminal.SoundTerminal;
             
          when others =>
             Fehler.SoundFehler (FehlermeldungExtern => "StartSound.StartSound - Ungültige Soundwiedergabeart.");

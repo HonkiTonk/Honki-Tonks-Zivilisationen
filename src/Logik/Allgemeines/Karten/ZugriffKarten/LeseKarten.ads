@@ -73,7 +73,7 @@ package LeseKarten is
 
    function Ressource
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return KartengrundDatentypen.Karten_Ressourcen_Enum
+      return KartengrundDatentypen.Kartenressourcen_Enum
      with
        Pre =>
          (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse

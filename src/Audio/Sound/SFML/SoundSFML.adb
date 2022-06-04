@@ -22,8 +22,8 @@ package body SoundSFML is
          case
            InteraktionSoundtask.AktuellerSound
          is
-            when TonDatentypen.Sound_Konsole_Enum =>
-               Fehler.SoundFehler (FehlermeldungExtern => "SoundSFML.SoundSFML - Konsole wird bei SFML aufgerufen.");
+            when TonDatentypen.Sound_Terminal_Enum =>
+               Fehler.SoundFehler (FehlermeldungExtern => "SoundSFML.SoundSFML - Terminal wird bei SFML aufgerufen.");
                
             when TonDatentypen.Sound_SFML_Enum =>
                delay ZeitKonstanten.WartezeitSound;

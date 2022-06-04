@@ -84,7 +84,7 @@ package LeseGebaeudeDatenbank is
    function RessourceBenötigt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in StadtDatentypen.GebäudeID)
-      return KartengrundDatentypen.Karten_Ressourcen_Enum
+      return KartengrundDatentypen.Kartenressourcen_Enum
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);

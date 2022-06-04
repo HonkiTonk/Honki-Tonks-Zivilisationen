@@ -169,14 +169,14 @@ package ChangelogApril2022 is
    -- Codeformatierung überarbeitet.
    -- Wenn die Texteingabe abgebrochen wird, dann wird der Text jetzt auf LeerUnboundedString um nicht unnötig viel zurück zu übergeben.
    -- Prüfung eingebaut um zu verhindern dass der Name eines Spielstandes länger als 256 Zeichen ist und damit zu lang für aktuelle Dateisysteme ist.
-   -- Angefangen die Logik genau wie die Grafik in Allgemeines, Konsole und SFML aufzuteilen.
+   -- Angefangen die Logik genau wie die Grafik in Allgemeines, Terminal und SFML aufzuteilen.
    -- Kommentare und Kleinigkeiten korrigiert/angepasst/entfernt.
    
    
 
    -- Version 0.01.0260 => 0.01.0270 (12.04.2022):
    
-   -- Inzwischen größtenteils funktionslose Konsolencode ausgeklammert und veralteten Code gelöscht.
+   -- Inzwischen größtenteils funktionslose Terminalncode ausgeklammert und veralteten Code gelöscht.
    -- Weiter an den neuen Menüsystem gebaut.
    -- Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    

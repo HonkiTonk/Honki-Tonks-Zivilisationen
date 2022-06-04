@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with GrafikDatentypen;
 with OptionenVariablen;
 
-with LadezeitenKonsole;
+with LadezeitenTerminal;
 with LadezeitenSFML;
 
 package body Ladezeiten is
@@ -16,8 +16,8 @@ package body Ladezeiten is
       case
         OptionenVariablen.NutzerEinstellungen.Anzeigeart
       is
-         when GrafikDatentypen.Grafik_Konsole_Enum =>
-            LadezeitenKonsole.LadezeitenSpielweltErstellen (WelcheZeitExtern => WelcheZeitExtern);
+         when GrafikDatentypen.Grafik_Terminal_Enum =>
+            LadezeitenTerminal.LadezeitenSpielweltErstellen (WelcheZeitExtern => WelcheZeitExtern);
             
          when GrafikDatentypen.Grafik_SFML_Enum =>
             LadezeitenSFML.LadezeitenSpielweltErstellen (WelcheZeitExtern => WelcheZeitExtern);
@@ -34,8 +34,8 @@ package body Ladezeiten is
       case
         OptionenVariablen.NutzerEinstellungen.Anzeigeart
       is
-         when GrafikDatentypen.Grafik_Konsole_Enum =>
-            LadezeitenKonsole.AnzeigeEinzelneZeit (WelcheZeitExtern => WelcheZeitExtern);
+         when GrafikDatentypen.Grafik_Terminal_Enum =>
+            LadezeitenTerminal.AnzeigeEinzelneZeit (WelcheZeitExtern => WelcheZeitExtern);
             
          when GrafikDatentypen.Grafik_SFML_Enum =>
             LadezeitenSFML.AnzeigeEinzelneZeit (WelcheZeitExtern => WelcheZeitExtern);
@@ -52,8 +52,8 @@ package body Ladezeiten is
       case
         OptionenVariablen.NutzerEinstellungen.Anzeigeart
       is
-         when GrafikDatentypen.Grafik_Konsole_Enum =>
-            LadezeitenKonsole.AnzeigeEinzelneZeitOhneWarten (WelcheZeitExtern => WelcheZeitExtern);
+         when GrafikDatentypen.Grafik_Terminal_Enum =>
+            LadezeitenTerminal.AnzeigeEinzelneZeitOhneWarten (WelcheZeitExtern => WelcheZeitExtern);
             
          when GrafikDatentypen.Grafik_SFML_Enum =>
             LadezeitenSFML.AnzeigeEinzelneZeitOhneWarten (WelcheZeitExtern => WelcheZeitExtern);
@@ -70,8 +70,8 @@ package body Ladezeiten is
       case
         OptionenVariablen.NutzerEinstellungen.Anzeigeart
       is
-         when GrafikDatentypen.Grafik_Konsole_Enum =>
-            LadezeitenKonsole.AnzeigeKIZeit (WelcheZeitExtern => WelcheZeitExtern);
+         when GrafikDatentypen.Grafik_Terminal_Enum =>
+            LadezeitenTerminal.AnzeigeKIZeit (WelcheZeitExtern => WelcheZeitExtern);
             
          when GrafikDatentypen.Grafik_SFML_Enum =>
             LadezeitenSFML.AnzeigeKIZeit (WelcheZeitExtern => WelcheZeitExtern);

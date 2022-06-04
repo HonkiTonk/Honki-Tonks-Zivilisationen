@@ -22,8 +22,8 @@ package body GrafikStartEndeSFML is
       case
         OptionenVariablen.NutzerEinstellungen.Anzeigeart
       is
-         when GrafikDatentypen.Grafik_Konsole_Enum =>
-            Fehler.GrafikFehler (FehlermeldungExtern => "GrafikStartEndeSFML.FensterErzeugen - Es soll ein Konsolenfenster erzeugt werden.");
+         when GrafikDatentypen.Grafik_Terminal_Enum =>
+            Fehler.GrafikFehler (FehlermeldungExtern => "GrafikStartEndeSFML.FensterErzeugen - Es soll ein Terminalnfenster erzeugt werden.");
             
          when GrafikDatentypen.Grafik_SFML_Enum =>
             FensterErzeugenErweitert;

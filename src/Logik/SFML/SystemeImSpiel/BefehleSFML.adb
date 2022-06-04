@@ -63,7 +63,7 @@ package body BefehleSFML is
             ForschungAllgemein.Forschung (RasseExtern => RasseExtern);
             
          when TastenbelegungDatentypen.Tech_Baum_Enum =>
-            -- Kann in der SMFL Version ignoriert werden oder das auch in der Konsolenversion ändern und den Befehl komplett wegwerfen?
+            -- Kann in der SMFL Version ignoriert werden oder das auch in der Terminalnversion ändern und den Befehl komplett wegwerfen?
             -- ForschungAllgemein.ForschungsBaum (RasseExtern => RasseExtern);
             null;
             

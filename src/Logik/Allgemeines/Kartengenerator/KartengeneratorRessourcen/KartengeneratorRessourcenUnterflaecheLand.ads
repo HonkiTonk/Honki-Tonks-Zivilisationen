@@ -19,7 +19,7 @@ package KartengeneratorRessourcenUnterflaecheLand is
 
 private
 
-   WelcheRessource : KartengrundDatentypen.Karten_Ressourcen_Enum;
+   WelcheRessource : KartengrundDatentypen.Kartenressourcen_Enum;
 
    type KartenressourceWahrscheinlichkeitArray is array (KartengrundDatentypen.Kartenressourcen_Unterfläche_Land_Enum'Range) of KartenDatentypen.WahrscheinlichkeitKartengenerator;
    KartenressourceWahrscheinlichkeit : KartenressourceWahrscheinlichkeitArray := (
@@ -39,7 +39,7 @@ private
    function RessourceZusatzberechnungen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Unterfläche_Land_Enum)
-      return KartengrundDatentypen.Karten_Ressourcen_Enum
+      return KartengrundDatentypen.Kartenressourcen_Enum
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -49,7 +49,7 @@ private
    function ZusatzberechnungKohle
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Unterfläche_Land_Enum)
-      return KartengrundDatentypen.Karten_Ressourcen_Enum
+      return KartengrundDatentypen.Kartenressourcen_Enum
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -59,7 +59,7 @@ private
    function ZusatzberechnungEisen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Unterfläche_Land_Enum)
-      return KartengrundDatentypen.Karten_Ressourcen_Enum
+      return KartengrundDatentypen.Kartenressourcen_Enum
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -69,7 +69,7 @@ private
    function ZusatzberechnungÖl
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Unterfläche_Land_Enum)
-      return KartengrundDatentypen.Karten_Ressourcen_Enum
+      return KartengrundDatentypen.Kartenressourcen_Enum
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -79,7 +79,7 @@ private
    function ZusatzberechnungHochwertigerBoden
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Unterfläche_Land_Enum)
-      return KartengrundDatentypen.Karten_Ressourcen_Enum
+      return KartengrundDatentypen.Kartenressourcen_Enum
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -89,7 +89,7 @@ private
    function ZusatzberechnungGold
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Unterfläche_Land_Enum)
-      return KartengrundDatentypen.Karten_Ressourcen_Enum
+      return KartengrundDatentypen.Kartenressourcen_Enum
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse

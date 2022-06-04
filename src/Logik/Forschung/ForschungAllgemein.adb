@@ -110,9 +110,9 @@ package body ForschungAllgemein is
       case
         OptionenVariablen.NutzerEinstellungen.Anzeigeart
       is
-         when GrafikDatentypen.Grafik_Konsole_Enum =>
+         when GrafikDatentypen.Grafik_Terminal_Enum =>
             return 0;
-            -- return ForschungAuswahlKonsole;
+            -- return ForschungAuswahlTerminal;
             
          when GrafikDatentypen.Grafik_SFML_Enum =>
             return ForschungAuswahlSFML;

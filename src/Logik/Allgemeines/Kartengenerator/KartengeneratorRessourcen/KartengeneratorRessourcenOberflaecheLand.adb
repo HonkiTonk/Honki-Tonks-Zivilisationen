@@ -94,7 +94,7 @@ package body KartengeneratorRessourcenOberflaecheLand is
    function RessourceZusatzberechnungen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Oberfläche_Land_Enum)
-      return KartengrundDatentypen.Karten_Ressourcen_Enum
+      return KartengrundDatentypen.Kartenressourcen_Enum
    is begin
       
       case
@@ -128,7 +128,7 @@ package body KartengeneratorRessourcenOberflaecheLand is
    function ZusatzberechnungKohle
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Oberfläche_Land_Enum)
-      return KartengrundDatentypen.Karten_Ressourcen_Enum
+      return KartengrundDatentypen.Kartenressourcen_Enum
    is begin
       
       if
@@ -149,7 +149,7 @@ package body KartengeneratorRessourcenOberflaecheLand is
    function ZusatzberechnungEisen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Oberfläche_Land_Enum)
-      return KartengrundDatentypen.Karten_Ressourcen_Enum
+      return KartengrundDatentypen.Kartenressourcen_Enum
    is begin
       
       if
@@ -170,7 +170,7 @@ package body KartengeneratorRessourcenOberflaecheLand is
    function ZusatzberechnungÖl
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Oberfläche_Land_Enum)
-      return KartengrundDatentypen.Karten_Ressourcen_Enum
+      return KartengrundDatentypen.Kartenressourcen_Enum
    is begin
       
       if
@@ -191,7 +191,7 @@ package body KartengeneratorRessourcenOberflaecheLand is
    function ZusatzberechnungHochwertigerBoden
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Oberfläche_Land_Enum)
-      return KartengrundDatentypen.Karten_Ressourcen_Enum
+      return KartengrundDatentypen.Kartenressourcen_Enum
    is begin
       
       if
@@ -212,7 +212,7 @@ package body KartengeneratorRessourcenOberflaecheLand is
    function ZusatzberechnungGold
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Oberfläche_Land_Enum)
-      return KartengrundDatentypen.Karten_Ressourcen_Enum
+      return KartengrundDatentypen.Kartenressourcen_Enum
    is begin
       
       if

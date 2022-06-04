@@ -94,7 +94,7 @@ package body KartengeneratorRessourcenOberflaecheWasser is
    function RessourceZusatzberechnungen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Oberfläche_Wasser_Enum)
-      return KartengrundDatentypen.Karten_Ressourcen_Enum
+      return KartengrundDatentypen.Kartenressourcen_Enum
    is begin
       
       case
@@ -116,7 +116,7 @@ package body KartengeneratorRessourcenOberflaecheWasser is
    function ZusatzberechnungFisch
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Oberfläche_Wasser_Enum)
-      return KartengrundDatentypen.Karten_Ressourcen_Enum
+      return KartengrundDatentypen.Kartenressourcen_Enum
    is begin
       
       if
@@ -137,7 +137,7 @@ package body KartengeneratorRessourcenOberflaecheWasser is
    function ZusatzberechnungWal
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Oberfläche_Wasser_Enum)
-      return KartengrundDatentypen.Karten_Ressourcen_Enum
+      return KartengrundDatentypen.Kartenressourcen_Enum
    is begin
       
       if

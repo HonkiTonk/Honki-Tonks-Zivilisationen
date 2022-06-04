@@ -6,7 +6,7 @@ with Ada.Directories; use Ada.Directories;
 with OptionenVariablen;
 with GrafikDatentypen;
 
-with EingabeKonsole;
+with EingabeTerminal;
 with EingabeSFML;
 
 package body SchreibenTastatur is
@@ -17,8 +17,8 @@ package body SchreibenTastatur is
       case
         OptionenVariablen.NutzerEinstellungen.Anzeigeart
       is
-         when GrafikDatentypen.Grafik_Konsole_Enum =>
-            BelegungKonsole;
+         when GrafikDatentypen.Grafik_Terminal_Enum =>
+            BelegungTerminal;
             
          when GrafikDatentypen.Grafik_SFML_Enum =>
             BelegungSFML;
@@ -28,29 +28,29 @@ package body SchreibenTastatur is
    
    
    
-   procedure BelegungKonsole
+   procedure BelegungTerminal
    is begin
             
       case
-        Exists (Name => "Einstellungen/TastenbelegungKonsole")
+        Exists (Name => "Einstellungen/TastenbelegungTerminal")
       is
          when True =>
             Open (File => TastenbelegungSpeichern,
                   Mode => Out_File,
-                  Name => "Einstellungen/TastenbelegungKonsole");
+                  Name => "Einstellungen/TastenbelegungTerminal");
             
          when False =>
             Create (File => TastenbelegungSpeichern,
                     Mode => Out_File,
-                    Name => "Einstellungen/TastenbelegungKonsole");
+                    Name => "Einstellungen/TastenbelegungTerminal");
       end case;
       
-      EingabeKonsole.TastenbelegungArray'Write (Stream (File => TastenbelegungSpeichern),
-                                                EingabeKonsole.Tastenbelegung);
+      EingabeTerminal.TastenbelegungArray'Write (Stream (File => TastenbelegungSpeichern),
+                                                EingabeTerminal.Tastenbelegung);
       
       Close (File => TastenbelegungSpeichern);
       
-   end BelegungKonsole;
+   end BelegungTerminal;
    
    
    

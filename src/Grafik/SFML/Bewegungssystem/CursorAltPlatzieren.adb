@@ -22,9 +22,9 @@ package body CursorAltPlatzieren is
       case
         OptionenVariablen.NutzerEinstellungen.Anzeigeart
       is
-         when GrafikDatentypen.Grafik_Konsole_Enum =>
-            AlteYAchseFestlegenKonsole (RasseExtern => RasseExtern);
-            AlteXAchseFestlegenKonsole (RasseExtern => RasseExtern);
+         when GrafikDatentypen.Grafik_Terminal_Enum =>
+            AlteYAchseFestlegenTerminal (RasseExtern => RasseExtern);
+            AlteXAchseFestlegenTerminal (RasseExtern => RasseExtern);
             
          when GrafikDatentypen.Grafik_SFML_Enum =>
             AlteYAchseFestlegenSFML (RasseExtern => RasseExtern);
@@ -52,7 +52,7 @@ package body CursorAltPlatzieren is
    
    
    
-   procedure AlteYAchseFestlegenKonsole
+   procedure AlteYAchseFestlegenTerminal
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
@@ -99,11 +99,11 @@ package body CursorAltPlatzieren is
          end if;
       end if;
       
-   end AlteYAchseFestlegenKonsole;
+   end AlteYAchseFestlegenTerminal;
    
    
    
-   procedure AlteXAchseFestlegenKonsole
+   procedure AlteXAchseFestlegenTerminal
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
@@ -150,7 +150,7 @@ package body CursorAltPlatzieren is
          end if;
       end if;
       
-   end AlteXAchseFestlegenKonsole;
+   end AlteXAchseFestlegenTerminal;
    
    
    

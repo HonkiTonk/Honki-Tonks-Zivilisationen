@@ -28,7 +28,7 @@ package GlobaleTexte is
    type TexteArray is array (Positive range <>) of Unbounded_Wide_Wide_String;
    
    -- Einfache Auswahl, keine Überschrift und kein Zusatztext.
-   -- + 1 beim Hauptmenü, da dort noch auf Wiedersehen eingebaut ist wegen der Konsole.
+   -- + 1 beim Hauptmenü, da dort noch auf Wiedersehen eingebaut ist wegen der Terminal.
    Hauptmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Haupt_Menü_Enum)) := (others => FehlenderText);
    Spielmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Spiel_Menü_Enum)) := (others => FehlenderText);
                                

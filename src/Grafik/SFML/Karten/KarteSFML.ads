@@ -45,7 +45,7 @@ private
    AktuellerKartengrund : KartengrundDatentypen.Kartengrund_Enum;
    BasisKartengrund : KartengrundDatentypen.Kartengrund_Enum;
    KartenfeldFluss : KartengrundDatentypen.Kartenfluss_Enum;
-   KartenfeldRessource : KartengrundDatentypen.Karten_Ressourcen_Enum;
+   KartenfeldRessource : KartengrundDatentypen.Kartenressourcen_Enum;
    
    Stadtart : KartenVerbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
    Wegfeld : KartenVerbesserungDatentypen.Karten_Weg_Enum;

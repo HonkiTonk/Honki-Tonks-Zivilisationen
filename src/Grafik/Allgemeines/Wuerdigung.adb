@@ -13,8 +13,8 @@ package body Wuerdigung is
       case
         OptionenVariablen.NutzerEinstellungen.Anzeigeart
       is
-         when GrafikDatentypen.Grafik_Konsole_Enum =>
-            WürdigungKonsole;
+         when GrafikDatentypen.Grafik_Terminal_Enum =>
+            WürdigungTerminal;
             
          when GrafikDatentypen.Grafik_SFML_Enum =>
             WürdigungSFML;
@@ -24,12 +24,12 @@ package body Wuerdigung is
    
    
    
-   procedure WürdigungKonsole
+   procedure WürdigungTerminal
    is begin
       
       -- Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
 
-      -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+      -- TextAnzeigeTerminal.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
       --                                          TextDateiExtern        => GlobaleTexte.Würdigungen,
       --                                          ÜberschriftZeileExtern => 0,
       --                                          ErsteZeileExtern       => 1,
@@ -43,7 +43,7 @@ package body Wuerdigung is
       
       null;
       
-   end WürdigungKonsole;
+   end WürdigungTerminal;
    
    
    

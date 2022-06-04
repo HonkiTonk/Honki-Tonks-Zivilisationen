@@ -79,7 +79,7 @@ package ChangelogNovember2021 is
    
    -- Version 0.00.9420 => 0.00.9440 (23.11.2021):
    
-   -- Angefangen die Konsolenanzeige auch in den Grafiktask zu verschieben.
+   -- Angefangen die Terminalnanzeige auch in den Grafiktask zu verschieben.
    -- Unnötigen Code entfernt/ausgeklammert.
    -- SFML Anzeige der Weltkarte überarbeitet.
    -- Nach dem Fehler gesucht der das Spiel auf der Weltkarte einfrieren lässt.
@@ -144,7 +144,7 @@ package ChangelogNovember2021 is
    
    -- Version 0.00.9320 => 0.00.9350 (16.11.2021):
    
-   -- Anzeige der Karte in der Konsole vorübergehend entfernt, da es Abstürze verursacht.
+   -- Anzeige der Karte in der Terminal vorübergehend entfernt, da es Abstürze verursacht.
    -- Doppelten Code zusammengeführt.
    -- Unnötigen Code gelöscht.
    -- Mausbewegungen am Kartenrand führt jetzt zum korrekten Scrollen und nicht mehr zum Verschieben des ganzen Bildes.
@@ -157,7 +157,7 @@ package ChangelogNovember2021 is
    -- Es ist jetzt mit der SFML Version möglich die Steuerungsbelegung zu ändern.
    -- Wenn man über das Spielmenü auf die Optionen zugreift landet man jetzt bei der Verwengung von Zurück wieder im Spielmenü und nicht mehr direkt im Spiel.
    -- Angefangen eine SFML Version für die Anzeige der Stadt zu bauen.
-   -- Angefangen BewegungEinheit in eine Konsolen- und eine SFML-Version aufzuteilen.
+   -- Angefangen BewegungEinheit in eine Terminaln- und eine SFML-Version aufzuteilen.
    -- Angefangen eine Funktion einzubauen, durch die man die Einheitenbefehle auch mit der Maus eingeben kann.
    -- Es ist jetzt möglich die Einheiten durch Benutzung der Maus zu verschieben.
    -- Leichte Anpassungen an der aktuellen Flussanzeige.
@@ -177,9 +177,9 @@ package ChangelogNovember2021 is
    -- Angefangen die SFML Kartenanzeige zu überarbeiten.
    -- Kartenfelder sollten jetzt immer die gleiche Größe haben und sich nicht mehr auf Basis der Zeigerposition verändern.
    -- Die Bestimmung der Zeigerposition an die neue Kartenfeldergrößenermittlung angepasst.
-   -- Wenn als Anzeigeart Beides ausgewählt ist, dann wird jetzt auch die Karte in der Konsole angezeigt.
+   -- Wenn als Anzeigeart Beides ausgewählt ist, dann wird jetzt auch die Karte in der Terminal angezeigt.
    -- Angefangen die SFML Version der Stadtkartenanzeige zu programmieren.
-   -- Angefangen die Cursorbewegung in eine Konsolen- und eine SFML-Version aufzuteilen.
+   -- Angefangen die Cursorbewegung in eine Terminaln- und eine SFML-Version aufzuteilen.
    -- Angefangen das Scrollen mit dem Mauscursor so umzubauen, dass am Rand gescrollt und nicht komplett neu die Mausposition festgelegt wird.
    -- Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    

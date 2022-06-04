@@ -80,7 +80,7 @@ package SchreibeKarten is
 
    procedure Ressource
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Enum)
+      RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Enum)
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse

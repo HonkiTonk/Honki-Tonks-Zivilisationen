@@ -37,7 +37,7 @@ private
    
    KartenFluss : KartengrundDatentypen.Kartenfluss_Enum;
    
-   KartenRessource : KartengrundDatentypen.Karten_Ressourcen_Enum;
+   KartenRessource : KartengrundDatentypen.Kartenressourcen_Enum;
 
    KartenVerbesserung : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
    KartenWeg : KartenVerbesserungDatentypen.Karten_Weg_Enum;

@@ -84,7 +84,7 @@ package StadtKonstanten is
    LeerBonusKampf : constant KampfDatentypen.Kampfwerte := KampfDatentypen.Kampfwerte'First;
    LeerGrundBenötigt : constant KartengrundDatentypen.Kartengrund_Enum := KartengrundDatentypen.Leer_Grund_Enum;
    LeerFlussBenötigt : constant Boolean := False;
-   LeerRessourceBenötigt : constant KartengrundDatentypen.Karten_Ressourcen_Enum := KartengrundDatentypen.Leer_Ressource_Enum;
+   LeerRessourceBenötigt : constant KartengrundDatentypen.Kartenressourcen_Enum := KartengrundDatentypen.Leer_Ressource_Enum;
    LeerSpezielleEigenschaft : constant StadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum := StadtDatentypen.Leer_Gebäude_Spezielle_Egienschaft_Enum;
    
    LeerGebäudeListe : constant DatenbankRecords.GebäudelisteRecord := (

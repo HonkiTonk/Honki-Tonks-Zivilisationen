@@ -155,12 +155,12 @@ package body EinlesenDatenbanken is
                   Name => "Datenbanken/KartenRessourcenDatenbank");
 
          when False =>
-            KartenressourcenDatenbank.StandardKartenRessourcenDatenbankLaden;
+            KartenressourcenDatenbank.StandardKartenressourcenDatenbankLaden;
             return;
       end case;
       
-      KartenressourcenDatenbank.KartenRessourcenListeArray'Read (Stream (File => DatenbankEinlesen),
-                                                       KartenressourcenDatenbank.KartenRessourcenListe);
+      KartenressourcenDatenbank.KartenressourcenListeArray'Read (Stream (File => DatenbankEinlesen),
+                                                       KartenressourcenDatenbank.KartenressourcenListe);
       
       Close (File => DatenbankEinlesen);
       

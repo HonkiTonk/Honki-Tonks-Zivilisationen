@@ -19,7 +19,7 @@ package KartengeneratorRessourcenOberflaecheWasser is
 
 private
 
-   WelcheRessource : KartengrundDatentypen.Karten_Ressourcen_Enum;
+   WelcheRessource : KartengrundDatentypen.Kartenressourcen_Enum;
 
    type KartenressourceWahrscheinlichkeitArray is array (KartengrundDatentypen.Kartenressourcen_Oberfläche_Wasser_Enum'Range) of KartenDatentypen.WahrscheinlichkeitKartengenerator;
    KartenressourceWahrscheinlichkeit : KartenressourceWahrscheinlichkeitArray := (
@@ -36,7 +36,7 @@ private
    function RessourceZusatzberechnungen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Oberfläche_Wasser_Enum)
-      return KartengrundDatentypen.Karten_Ressourcen_Enum
+      return KartengrundDatentypen.Kartenressourcen_Enum
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -46,7 +46,7 @@ private
    function ZusatzberechnungFisch
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Oberfläche_Wasser_Enum)
-      return KartengrundDatentypen.Karten_Ressourcen_Enum
+      return KartengrundDatentypen.Kartenressourcen_Enum
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -56,7 +56,7 @@ private
    function ZusatzberechnungWal
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Oberfläche_Wasser_Enum)
-      return KartengrundDatentypen.Karten_Ressourcen_Enum
+      return KartengrundDatentypen.Kartenressourcen_Enum
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse

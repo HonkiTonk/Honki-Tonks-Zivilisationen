@@ -75,7 +75,7 @@ package ChangelogJanuar2022 is
    -- Zusätzliche Fehlermeldungen/Programmstopps eingebaut.
    -- Die Wegfindung der KI auf drei Achsen erweitert.
    -- Unnötigen Code gelöscht.
-   -- Diverse Dateien umbenannt um die Übersichtlichkeit der Trennung zwischen Konsolen- und SFML-Grafik zu verbessern.
+   -- Diverse Dateien umbenannt um die Übersichtlichkeit der Trennung zwischen Terminaln- und SFML-Grafik zu verbessern.
    -- Erneut an der Steuerung herumgebastelt.
    -- Anzeigefehler in den Menüs korrigiert.
    -- Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
@@ -234,7 +234,7 @@ package ChangelogJanuar2022 is
    -- Version 0.00.9690 => 0.00.9700 (03.01.2022):
    
    -- Die Nutzungung von Wide_Wide_Image überall wo es sinnvoll war vollständig durch eigene Lösung ersetzt.
-   -- Angefangen die Anzeige der Ladezeiten in eine Konsolen- und eine SFML-Version zu unterteilen.
+   -- Angefangen die Anzeige der Ladezeiten in eine Terminaln- und eine SFML-Version zu unterteilen.
    -- Lizenz für den SourceCode hinzugefügt.
    -- Die Taskverwaltung von Start überarbeitet.
    -- Kommentare und Kleinigkeiten korrigiert/angepasst.

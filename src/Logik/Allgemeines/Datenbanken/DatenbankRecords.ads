@@ -79,7 +79,7 @@ package DatenbankRecords is
       
       GrundBenötigt : KartengrundDatentypen.Kartengrund_Enum;
       FlussBenötigt : Boolean;
-      RessourceBenötigt : KartengrundDatentypen.Karten_Ressourcen_Enum;
+      RessourceBenötigt : KartengrundDatentypen.Kartenressourcen_Enum;
       --------------------- UndOderGrundFlussBenötigt : Boolean; -- In ein Enum einbauen?
       --------------------- Auch noch Abhängigkeit von anderen Gebäuden einbauen.
       

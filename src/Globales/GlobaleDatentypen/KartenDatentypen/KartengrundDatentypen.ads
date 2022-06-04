@@ -83,7 +83,7 @@ package KartengrundDatentypen is
    
    
    ---------------------- Ressourcen für den Kern hinzufügen.
-   type Karten_Ressourcen_Enum is (
+   type Kartenressourcen_Enum is (
                                    Leer_Ressource_Enum,
                                    
                                    -- Wasserressourcen
@@ -95,15 +95,15 @@ package KartengrundDatentypen is
                                    -- Kernressourcen
                                    
                                   );
-   pragma Ordered (Karten_Ressourcen_Enum);
+   pragma Ordered (Kartenressourcen_Enum);
    
-   subtype Karten_Ressourcen_Vorhanden_Enum is Karten_Ressourcen_Enum range Fisch_Enum .. Karten_Ressourcen_Enum'Last;
+   subtype Kartenressourcen_Vorhanden_Enum is Kartenressourcen_Enum range Fisch_Enum .. Kartenressourcen_Enum'Last;
    
-   subtype Kartenressourcen_Oberfläche_Enum is Karten_Ressourcen_Vorhanden_Enum range Fisch_Enum .. Gold_Enum;
+   subtype Kartenressourcen_Oberfläche_Enum is Kartenressourcen_Vorhanden_Enum range Fisch_Enum .. Gold_Enum;
    subtype Kartenressourcen_Oberfläche_Wasser_Enum is Kartenressourcen_Oberfläche_Enum range Fisch_Enum .. Wal_Enum;
    subtype Kartenressourcen_Oberfläche_Land_Enum is Kartenressourcen_Oberfläche_Enum range Kohle_Enum .. Gold_Enum;
    
-   subtype Kartenressourcen_Unterfläche_Enum is Karten_Ressourcen_Vorhanden_Enum range Fisch_Enum .. Gold_Enum;
+   subtype Kartenressourcen_Unterfläche_Enum is Kartenressourcen_Vorhanden_Enum range Fisch_Enum .. Gold_Enum;
    subtype Kartenressourcen_Unterfläche_Wasser_Enum is Kartenressourcen_Unterfläche_Enum range Fisch_Enum .. Wal_Enum;
    subtype Kartenressourcen_Unterfläche_Land_Enum is Kartenressourcen_Unterfläche_Enum range Kohle_Enum .. Gold_Enum;
    

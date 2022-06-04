@@ -23,13 +23,13 @@ private
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum);
 
-   procedure AlteYAchseFestlegenKonsole
+   procedure AlteYAchseFestlegenTerminal
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum);
 
-   procedure AlteXAchseFestlegenKonsole
+   procedure AlteXAchseFestlegenTerminal
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>

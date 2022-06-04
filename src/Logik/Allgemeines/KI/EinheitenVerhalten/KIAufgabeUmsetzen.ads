@@ -37,7 +37,7 @@ private
    AktuellerGrund : KartengrundDatentypen.Kartengrund_Enum;
    BasisGrund : KartengrundDatentypen.Kartengrund_Enum;
 
-   Ressourcen : KartengrundDatentypen.Karten_Ressourcen_Enum;
+   Ressourcen : KartengrundDatentypen.Kartenressourcen_Enum;
 
    EinheitKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
 

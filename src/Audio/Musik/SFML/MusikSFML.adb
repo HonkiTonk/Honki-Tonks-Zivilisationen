@@ -24,8 +24,8 @@ package body MusikSFML is
          case
            InteraktionMusiktask.AktuelleMusik
          is
-            when TonDatentypen.Musik_Konsole_Enum =>
-               Fehler.MusikFehler (FehlermeldungExtern => "MusikSFML.MusikSFML - Konsole wird bei SFML aufgerufen.");
+            when TonDatentypen.Musik_Terminal_Enum =>
+               Fehler.MusikFehler (FehlermeldungExtern => "MusikSFML.MusikSFML - Terminal wird bei SFML aufgerufen.");
                
             when TonDatentypen.Musik_Intro_Enum =>
                MusikIntroSFML.Intro;

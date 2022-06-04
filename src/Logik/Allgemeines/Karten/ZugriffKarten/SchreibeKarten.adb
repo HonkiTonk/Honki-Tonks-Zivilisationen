@@ -94,7 +94,7 @@ package body SchreibeKarten is
    
    procedure Ressource
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Enum)
+      RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Enum)
    is begin
       
       Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource := RessourceExtern;

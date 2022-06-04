@@ -13,7 +13,7 @@ package OptionenSteuerung is
 
 private
 
-   NeueTasteKonsole : Wide_Wide_Character;
+   NeueTasteTerminal : Wide_Wide_Character;
 
    NeueAuswahl : TastenbelegungDatentypen.Tastenbelegung_Enum;
 
@@ -23,9 +23,9 @@ private
 
    procedure AlteTasteEntfernen;
    procedure NeueTasteFestlegen;
-   procedure AlteTasteEntfernenKonsole;
+   procedure AlteTasteEntfernenTerminal;
    procedure AlteTasteEntfernenSFML;
-   procedure NeueTasteFestlegenKonsole;
+   procedure NeueTasteFestlegenTerminal;
    procedure NeueTasteFestlegenSFML;
 
 end OptionenSteuerung;

@@ -11,7 +11,7 @@ private
    
    TastenbelegungLaden : File_Type;
    
-   procedure BelegungKonsole;
+   procedure BelegungTerminal;
    procedure BelegungSFML;
 
 end EinlesenTastatur;

@@ -210,7 +210,7 @@ package ChangelogMaerz2022 is
    
    -- Fehler in der Anzeige der belegten Kartenfelder und des Rahmens korrigiert.
    -- Einlesen der Einheiten- und Gebäudetexturen so erweitert dass jetzt jede Einheit/Gebäude jeder Rasse eine eigenen Textur haben kann.
-   -- Die Konsolengrafiken aus den Einheiten-, Gebäude-, Karten- und Verbesserungendatenbanken entfernt und in einen eigenen Bereich ausgelagert.
+   -- Die Terminalngrafiken aus den Einheiten-, Gebäude-, Karten- und Verbesserungendatenbanken entfernt und in einen eigenen Bereich ausgelagert.
    -- Angefangen das Kartenformsystem neu zu schreiben.
    -- Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    

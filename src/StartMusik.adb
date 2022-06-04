@@ -8,7 +8,7 @@ with OptionenVariablen;
 
 with InteraktionMusiktask;
 with MusikSFML;
-with MusikKonsole;
+with MusikTerminal;
 with Fehler;
 with InteraktionStart;
 
@@ -20,7 +20,7 @@ package body StartMusik is
       case
         OptionenVariablen.NutzerEinstellungen.Anzeigeart
       is
-         when GrafikDatentypen.Grafik_Konsole_Enum =>
+         when GrafikDatentypen.Grafik_Terminal_Enum =>
             return;
             
          when others =>
@@ -40,8 +40,8 @@ package body StartMusik is
          when TonDatentypen.Musik_SFML_Enum =>
             MusikSFML.MusikSFML;
             
-         when TonDatentypen.Musik_Konsole_Enum =>
-            MusikKonsole.MusikKonsole;
+         when TonDatentypen.Musik_Terminal_Enum =>
+            MusikTerminal.MusikTerminal;
             
          when others =>
             Fehler.MusikFehler (FehlermeldungExtern => "StartMusik.StartMusik - Ungültige Musikwiedergabeart.");

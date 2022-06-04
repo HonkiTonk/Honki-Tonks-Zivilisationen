@@ -30,7 +30,7 @@ package body MusikStartEndeSFML is
    procedure MusikStoppen
    is begin
       
-      -- Prüfung ist notwendig, da sonst eine Warnmeldung in der Konsole auftaucht dass ein NULL Musik Objekt verwendet wird.
+      -- Prüfung ist notwendig, da sonst eine Warnmeldung in der Terminal auftaucht dass ein NULL Musik Objekt verwendet wird.
       if
         EingeleseneMusik.Musik (RassenDatentypen.Keine_Rasse_Enum, 1) = null
       then

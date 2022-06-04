@@ -56,10 +56,10 @@ private
        Post =>
          (To_Wide_Wide_String (Source => AuswahlSpracheSFML'Result)'Length > 0);
          
-   function AuswahlSpracheKonsole
+   function AuswahlSpracheTerminal
      return Unbounded_Wide_Wide_String
      with
        Post =>
-         (To_Wide_Wide_String (Source => AuswahlSpracheKonsole'Result)'Length > 0);
+         (To_Wide_Wide_String (Source => AuswahlSpracheTerminal'Result)'Length > 0);
 
 end AuswahlSprache;

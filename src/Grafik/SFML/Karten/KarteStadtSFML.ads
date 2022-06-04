@@ -43,7 +43,7 @@ private
    YAchsenabstraktion : KartenDatentypen.Kartenfeld;
 
    Kartenfeld : KartengrundDatentypen.Kartengrund_Enum;
-   KartenfeldRessource : KartengrundDatentypen.Karten_Ressourcen_Enum;
+   KartenfeldRessource : KartengrundDatentypen.Kartenressourcen_Enum;
    KartenfeldFluss : KartengrundDatentypen.Kartenfluss_Enum;
 
    Stadtfeld : KartenVerbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum;

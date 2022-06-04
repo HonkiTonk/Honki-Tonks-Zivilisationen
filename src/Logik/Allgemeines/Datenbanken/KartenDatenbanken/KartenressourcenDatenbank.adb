@@ -3,11 +3,11 @@ pragma Warnings (Off, "*array aggregate*");
 
 package body KartenressourcenDatenbank is
 
-   procedure StandardKartenRessourcenDatenbankLaden
+   procedure StandardKartenressourcenDatenbankLaden
    is begin
       
-      KartenRessourcenListe := KartenRessourcenListeStandard;
+      KartenressourcenListe := KartenressourcenListeStandard;
       
-   end StandardKartenRessourcenDatenbankLaden;
+   end StandardKartenressourcenDatenbankLaden;
 
 end KartenressourcenDatenbank;

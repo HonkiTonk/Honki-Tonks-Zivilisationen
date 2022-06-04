@@ -44,12 +44,12 @@ package body LeseKartenDatenbanken is
    
    
    function BewertungRessource
-     (RessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Vorhanden_Enum;
+     (RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KartenDatentypen.BewertungFeld
    is begin
       
-      return KartenressourcenDatenbank.KartenRessourcenListe (RessourceExtern).Bewertung (RasseExtern);
+      return KartenressourcenDatenbank.KartenressourcenListe (RessourceExtern).Bewertung (RasseExtern);
       
    end BewertungRessource;
    
@@ -82,13 +82,13 @@ package body LeseKartenDatenbanken is
    
    
    function WirtschaftRessourcen
-     (RessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Vorhanden_Enum;
+     (RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       WirtschaftArtExtern : in KartenDatentypen.Wirtschaft_Enum)
       return ProduktionDatentypen.ProduktionElement
    is begin
       
-      return KartenressourcenDatenbank.KartenRessourcenListe (RessourceExtern).Wirtschaft (RasseExtern, WirtschaftArtExtern);
+      return KartenressourcenDatenbank.KartenressourcenListe (RessourceExtern).Wirtschaft (RasseExtern, WirtschaftArtExtern);
       
    end WirtschaftRessourcen;
    
@@ -121,13 +121,13 @@ package body LeseKartenDatenbanken is
    
    
    function KampfRessource
-     (RessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Vorhanden_Enum;
+     (RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       KampfArtExtern : in KartenDatentypen.Kampf_Enum)
       return KampfDatentypen.KampfwerteAllgemein
    is begin
       
-      return KartenressourcenDatenbank.KartenRessourcenListe (RessourceExtern).Kampf (RasseExtern, KampfArtExtern);
+      return KartenressourcenDatenbank.KartenressourcenListe (RessourceExtern).Kampf (RasseExtern, KampfArtExtern);
       
    end KampfRessource;
    
@@ -156,11 +156,11 @@ package body LeseKartenDatenbanken is
    
    
    function GanzerEintragRessource
-     (RessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Vorhanden_Enum)
+     (RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Vorhanden_Enum)
       return DatenbankRecords.KartenlisteRecord
    is begin
       
-      return KartenressourcenDatenbank.KartenRessourcenListe (RessourceExtern);
+      return KartenressourcenDatenbank.KartenressourcenListe (RessourceExtern);
       
    end GanzerEintragRessource;
 

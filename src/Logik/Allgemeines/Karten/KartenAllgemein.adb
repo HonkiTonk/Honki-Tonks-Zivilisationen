@@ -58,11 +58,11 @@ package body KartenAllgemein is
    
    
    function BeschreibungRessource
-     (KartenRessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Vorhanden_Enum)
+     (KartenRessourceExtern : in KartengrundDatentypen.Kartenressourcen_Vorhanden_Enum)
       return Wide_Wide_String
    is begin
       
-      RessourceAktuell := 2 * KartengrundDatentypen.Karten_Ressourcen_Enum'Pos (KartenRessourceExtern) - 1;
+      RessourceAktuell := 2 * KartengrundDatentypen.Kartenressourcen_Enum'Pos (KartenRessourceExtern) - 1;
    
       return To_Wide_Wide_String (Source => GlobaleTexte.Kartenressourcen (RessourceAktuell));
       

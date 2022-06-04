@@ -35,7 +35,7 @@ package LeseKartenDatenbanken is
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
    
    function BewertungRessource
-     (RessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Vorhanden_Enum;
+     (RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KartenDatentypen.BewertungFeld
      with
@@ -61,7 +61,7 @@ package LeseKartenDatenbanken is
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
    
    function WirtschaftRessourcen
-     (RessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Vorhanden_Enum;
+     (RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       WirtschaftArtExtern : in KartenDatentypen.Wirtschaft_Enum)
       return ProduktionDatentypen.ProduktionElement
@@ -88,7 +88,7 @@ package LeseKartenDatenbanken is
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
    
    function KampfRessource
-     (RessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Vorhanden_Enum;
+     (RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       KampfArtExtern : in KartenDatentypen.Kampf_Enum)
       return KampfDatentypen.KampfwerteAllgemein
@@ -105,7 +105,7 @@ package LeseKartenDatenbanken is
       return DatenbankRecords.KartenlisteRecord;
          
    function GanzerEintragRessource
-     (RessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Vorhanden_Enum)
+     (RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Vorhanden_Enum)
       return DatenbankRecords.KartenlisteRecord;
 
 end LeseKartenDatenbanken;
