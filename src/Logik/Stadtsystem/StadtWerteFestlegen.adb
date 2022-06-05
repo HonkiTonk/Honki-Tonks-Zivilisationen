@@ -202,7 +202,7 @@ package body StadtWerteFestlegen is
    is begin
       
       NutzbarerBereich := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern);
-      Umgebung := (others => (others => (False, ProduktionDatentypen.GesamtproduktionStadt'First)));
+      Umgebung := (others => (others => (False, ProduktionDatentypen.Stadtproduktion'First)));
 
       YAchseSchleife:
       for YAchseSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
@@ -258,7 +258,7 @@ package body StadtWerteFestlegen is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       BelegenOderEntfernen : in Boolean)
-      return ProduktionDatentypen.GesamtproduktionStadt
+      return ProduktionDatentypen.Stadtproduktion
    is begin
       
       return NahrungBewertung (StadtRasseNummerExtern => StadtRasseNummerExtern,
@@ -282,7 +282,7 @@ package body StadtWerteFestlegen is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       BelegenOderEntfernen : in Boolean)
-      return ProduktionDatentypen.GesamtproduktionStadt
+      return ProduktionDatentypen.Stadtproduktion
    is begin
       
       NahrungGesamt := GesamtwerteFeld.FeldNahrung (KoordinatenExtern => KoordinatenExtern,
@@ -323,7 +323,7 @@ package body StadtWerteFestlegen is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       BelegenOderEntfernen : in Boolean)
-      return ProduktionDatentypen.GesamtproduktionStadt
+      return ProduktionDatentypen.Stadtproduktion
    is begin
       
       RessourcenGesamt := GesamtwerteFeld.FeldProduktion (KoordinatenExtern => KoordinatenExtern,
@@ -364,7 +364,7 @@ package body StadtWerteFestlegen is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       BelegenOderEntfernen : in Boolean)
-      return ProduktionDatentypen.GesamtproduktionStadt
+      return ProduktionDatentypen.Stadtproduktion
    is begin
       
       GeldGesamt := GesamtwerteFeld.FeldGeld (KoordinatenExtern => KoordinatenExtern,
@@ -405,7 +405,7 @@ package body StadtWerteFestlegen is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       BelegenOderEntfernen : in Boolean)
-      return ProduktionDatentypen.GesamtproduktionStadt
+      return ProduktionDatentypen.Stadtproduktion
    is begin
 
       WissenGesamt := GesamtwerteFeld.FeldWissen (KoordinatenExtern => KoordinatenExtern,
@@ -513,7 +513,7 @@ package body StadtWerteFestlegen is
    procedure ArbeiterBelegenEntfernen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       BelegenEntfernenExtern : in Boolean;
-      ÄnderungExtern : in ProduktionDatentypen.ProduktionFeld)
+      ÄnderungExtern : in ProduktionDatentypen.Feldproduktion)
    is begin
       
       case

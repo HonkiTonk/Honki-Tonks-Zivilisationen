@@ -32,6 +32,12 @@ private
    KartenWertEins : KartenwertArray;
    KartenWertZwei : KartenwertArray;
    
+   type TeilerArray is array (KartenDatentypen.EbeneVorhanden'Range) of KartenDatentypen.UmgebungsbereichDrei;
+   Teiler : TeilerArray;
+   
+   type BewertungArray is array (KartenDatentypen.EbeneVorhanden'Range) of KartenDatentypen.GesamteFeldbewertung;
+   Bewertung : BewertungArray;
+   
    procedure BewertungSelbst
      (KoordinatenFeldExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       KoordinatenUmgebungExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;

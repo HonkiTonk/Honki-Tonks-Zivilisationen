@@ -168,17 +168,21 @@ package ChangelogJuni2022 is
    
    
 
-   -- Version 0.01. => 0.01. (06.06.2022):
+   -- Version 0.01.10 => 0.01. (06.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0980 => 0.01 (05.06.2022):
+   -- Version 0.01.0980 => 0.01.1035 (05.06.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Unnötigen Code gelöscht.
+   -- KartenAllgemein an das neue Grundsystem angepasst.
+   -- Felderbewertung überarbeitet.
+   -- Datentypengrößen- und aufteilung überarbeitet.
+   -- Angefangen die Produktionsdatentypen zu überarbeiten.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

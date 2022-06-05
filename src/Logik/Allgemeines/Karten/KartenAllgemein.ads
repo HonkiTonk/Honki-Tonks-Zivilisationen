@@ -33,7 +33,7 @@ package KartenAllgemein is
    function GrundNahrung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionElement
+      return ProduktionDatentypen.Einzelproduktion
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -43,7 +43,7 @@ package KartenAllgemein is
    function GrundProduktion
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionElement
+      return ProduktionDatentypen.Einzelproduktion
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -53,7 +53,7 @@ package KartenAllgemein is
    function GrundGeld
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionElement
+      return ProduktionDatentypen.Einzelproduktion
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -63,7 +63,7 @@ package KartenAllgemein is
    function GrundWissen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionElement
+      return ProduktionDatentypen.Einzelproduktion
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -93,7 +93,7 @@ package KartenAllgemein is
    function GrundBewertung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenDatentypen.BewertungFeld
+      return KartenDatentypen.Einzelbewertung
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -103,7 +103,7 @@ package KartenAllgemein is
    function FlussNahrung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionElement
+      return ProduktionDatentypen.Einzelproduktion
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -113,7 +113,7 @@ package KartenAllgemein is
    function FlussProduktion
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionElement
+      return ProduktionDatentypen.Einzelproduktion
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -123,7 +123,7 @@ package KartenAllgemein is
    function FlussGeld
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionElement
+      return ProduktionDatentypen.Einzelproduktion
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -133,7 +133,7 @@ package KartenAllgemein is
    function FlussWissen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionElement
+      return ProduktionDatentypen.Einzelproduktion
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -163,7 +163,7 @@ package KartenAllgemein is
    function FlussBewertung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenDatentypen.BewertungFeld
+      return KartenDatentypen.Einzelbewertung
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -173,7 +173,7 @@ package KartenAllgemein is
    function WegNahrung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionFeld
+      return ProduktionDatentypen.Feldproduktion
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -183,7 +183,7 @@ package KartenAllgemein is
    function WegProduktion
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionFeld
+      return ProduktionDatentypen.Feldproduktion
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -193,7 +193,7 @@ package KartenAllgemein is
    function WegGeld
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionFeld
+      return ProduktionDatentypen.Feldproduktion
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -203,7 +203,7 @@ package KartenAllgemein is
    function WegWissen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionFeld
+      return ProduktionDatentypen.Feldproduktion
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -233,7 +233,7 @@ package KartenAllgemein is
    function WegBewertung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenDatentypen.BewertungFeld
+      return KartenDatentypen.Einzelbewertung
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -243,7 +243,7 @@ package KartenAllgemein is
    function VerbesserungNahrung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionFeld
+      return ProduktionDatentypen.Feldproduktion
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -253,7 +253,7 @@ package KartenAllgemein is
    function VerbesserungProduktion
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionFeld
+      return ProduktionDatentypen.Feldproduktion
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -263,7 +263,7 @@ package KartenAllgemein is
    function VerbesserungGeld
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionFeld
+      return ProduktionDatentypen.Feldproduktion
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -273,7 +273,7 @@ package KartenAllgemein is
    function VerbesserungWissen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionFeld
+      return ProduktionDatentypen.Feldproduktion
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -303,7 +303,7 @@ package KartenAllgemein is
    function VerbesserungBewertung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenDatentypen.BewertungFeld
+      return KartenDatentypen.Einzelbewertung
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -313,7 +313,7 @@ package KartenAllgemein is
    function RessourceNahrung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionElement
+      return ProduktionDatentypen.Einzelproduktion
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -323,7 +323,7 @@ package KartenAllgemein is
    function RessourceProduktion
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionElement
+      return ProduktionDatentypen.Einzelproduktion
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -333,7 +333,7 @@ package KartenAllgemein is
    function RessourceGeld
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionElement
+      return ProduktionDatentypen.Einzelproduktion
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -343,7 +343,7 @@ package KartenAllgemein is
    function RessourceWissen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionElement
+      return ProduktionDatentypen.Einzelproduktion
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -373,7 +373,7 @@ package KartenAllgemein is
    function RessourceBewertung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenDatentypen.BewertungFeld
+      return KartenDatentypen.Einzelbewertung
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse

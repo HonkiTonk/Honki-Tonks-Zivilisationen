@@ -45,7 +45,7 @@ package SchreibeStadtGebaut is
    procedure EinwohnerArbeiter
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       EinwohnerArbeiterExtern : in Boolean;
-      ÄnderungExtern : in ProduktionDatentypen.ProduktionFeld)
+      ÄnderungExtern : in ProduktionDatentypen.Feldproduktion)
      with
        Pre =>
          (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -54,7 +54,7 @@ package SchreibeStadtGebaut is
       
    procedure Nahrungsmittel
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
-      NahrungsmittelExtern : in ProduktionDatentypen.GesamtproduktionStadt;
+      NahrungsmittelExtern : in ProduktionDatentypen.Stadtproduktion;
       ÄndernSetzenExtern : in Boolean)
      with
        Pre =>
@@ -64,7 +64,7 @@ package SchreibeStadtGebaut is
    
    procedure Nahrungsproduktion
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
-      NahrungsproduktionExtern : in ProduktionDatentypen.GesamtproduktionStadt;
+      NahrungsproduktionExtern : in ProduktionDatentypen.Stadtproduktion;
       ÄndernSetzenExtern : in Boolean)
      with
        Pre =>
@@ -84,7 +84,7 @@ package SchreibeStadtGebaut is
    
    procedure Produktionrate
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
-      ProduktionrateExtern : in ProduktionDatentypen.GesamtproduktionStadt;
+      ProduktionrateExtern : in ProduktionDatentypen.Stadtproduktion;
       ÄndernSetzenExtern : in Boolean)
      with
        Pre =>
@@ -94,7 +94,7 @@ package SchreibeStadtGebaut is
    
    procedure Geldgewinnung
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
-      GeldgewinnungExtern : in ProduktionDatentypen.GesamtproduktionStadt;
+      GeldgewinnungExtern : in ProduktionDatentypen.Stadtproduktion;
       ÄndernSetzenExtern : in Boolean)
      with
        Pre =>
@@ -115,7 +115,7 @@ package SchreibeStadtGebaut is
       
    procedure Forschungsrate
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
-      ForschungsrateExtern : in ProduktionDatentypen.GesamtproduktionStadt;
+      ForschungsrateExtern : in ProduktionDatentypen.Stadtproduktion;
       ÄndernSetzenExtern : in Boolean)
      with
        Pre =>
@@ -146,7 +146,7 @@ package SchreibeStadtGebaut is
    
    procedure Korruption
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
-      KorruptionExtern : in ProduktionDatentypen.GesamtproduktionStadt;
+      KorruptionExtern : in ProduktionDatentypen.Stadtproduktion;
       ÄndernSetzenExtern : in Boolean)
      with
        Pre =>
@@ -156,7 +156,7 @@ package SchreibeStadtGebaut is
    
    procedure Zufriedenheit
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
-      ZufriedenheitExtern : in ProduktionDatentypen.ProduktionFeld;
+      ZufriedenheitExtern : in ProduktionDatentypen.Feldproduktion;
       ÄndernSetzenExtern : in Boolean)
      with
        Pre =>

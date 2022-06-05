@@ -10,8 +10,6 @@ with ForschungenDatentypen;
 with ProduktionDatentypen;
 with KampfDatentypen;
 
-with DatenbankRecords;
-
 package LeseGebaeudeDatenbank is
 
    function PreisGeld
@@ -51,7 +49,7 @@ package LeseGebaeudeDatenbank is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in StadtDatentypen.GebäudeID;
       WWirtschaftBonusExtern : in KartenDatentypen.Wirtschaft_Enum)
-      return ProduktionDatentypen.ProduktionFeld
+      return ProduktionDatentypen.Feldproduktion
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
@@ -93,14 +91,6 @@ package LeseGebaeudeDatenbank is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in StadtDatentypen.GebäudeID)
       return StadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum
-     with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
-   
-   function GanzerEintrag
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in StadtDatentypen.GebäudeID)
-      return DatenbankRecords.GebäudelisteRecord
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);

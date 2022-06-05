@@ -83,7 +83,7 @@ package LeseKarten is
    function Bewertung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenDatentypen.GesamtbewertungFeld
+      return KartenDatentypen.GesamteFeldbewertung
      with
        Pre =>
          (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse

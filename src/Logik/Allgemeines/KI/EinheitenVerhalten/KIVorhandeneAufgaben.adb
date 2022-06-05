@@ -10,8 +10,6 @@ with EinheitenKonstanten;
 with StadtKonstanten;
 with KartenVerbesserungDatentypen;
 
-with KIDatentypen;
-
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
@@ -29,7 +27,7 @@ package body KIVorhandeneAufgaben is
 
    function SichHeilen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return ProduktionDatentypen.ProduktionSonstiges
+      return KIDatentypen.AufgabenWichtigkeit
    is begin
       
       EinheitID := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -72,7 +70,7 @@ package body KIVorhandeneAufgaben is
    
    function SichVerbessern
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return ProduktionDatentypen.ProduktionSonstiges
+      return KIDatentypen.AufgabenWichtigkeit
    is begin
       
       ----------------------- Das hier ging möglicherweise beim auseinander Bauen von den ganzen IDs kaputt.
@@ -106,7 +104,7 @@ package body KIVorhandeneAufgaben is
 
    function NeueStadtBauenGehen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return ProduktionDatentypen.ProduktionSonstiges
+      return KIDatentypen.AufgabenWichtigkeit
    is begin
       
       VorhandeneStädte := LeseWichtiges.AnzahlStädte (RasseExtern => EinheitRasseNummerExtern.Rasse);
@@ -148,7 +146,7 @@ package body KIVorhandeneAufgaben is
 
    function StadtUmgebungVerbessern
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return ProduktionDatentypen.ProduktionSonstiges
+      return KIDatentypen.AufgabenWichtigkeit
    is begin
       
       case
@@ -167,7 +165,7 @@ package body KIVorhandeneAufgaben is
    
    function StadtBewachen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return ProduktionDatentypen.ProduktionSonstiges
+      return KIDatentypen.AufgabenWichtigkeit
    is begin
       
       EinheitNummer := 1;
@@ -209,7 +207,7 @@ package body KIVorhandeneAufgaben is
    
    
    function StadtUmgebungZerstören
-     return ProduktionDatentypen.ProduktionSonstiges
+     return KIDatentypen.AufgabenWichtigkeit
    is begin
       
       return 0;
@@ -220,7 +218,7 @@ package body KIVorhandeneAufgaben is
    
    function Angreifen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return ProduktionDatentypen.ProduktionSonstiges
+      return KIDatentypen.AufgabenWichtigkeit
    is begin
       
       RassenSchleife:
@@ -253,7 +251,7 @@ package body KIVorhandeneAufgaben is
    
    
    function Erkunden
-     return ProduktionDatentypen.ProduktionSonstiges
+     return KIDatentypen.AufgabenWichtigkeit
    is begin
       
       return 2;
@@ -264,7 +262,7 @@ package body KIVorhandeneAufgaben is
    
    function EinheitAuflösen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return ProduktionDatentypen.ProduktionSonstiges
+      return KIDatentypen.AufgabenWichtigkeit
    is begin
       
       if
@@ -311,7 +309,7 @@ package body KIVorhandeneAufgaben is
                                     
    
    function Fliehen
-     return ProduktionDatentypen.ProduktionSonstiges
+     return KIDatentypen.AufgabenWichtigkeit
    is begin
       
       return 0;
@@ -321,7 +319,7 @@ package body KIVorhandeneAufgaben is
    
    
    function SichBefestigen
-     return ProduktionDatentypen.ProduktionSonstiges
+     return KIDatentypen.AufgabenWichtigkeit
    is begin
       
       return 0;
@@ -331,7 +329,7 @@ package body KIVorhandeneAufgaben is
    
 
    function NichtsTun
-     return ProduktionDatentypen.ProduktionSonstiges
+     return KIDatentypen.AufgabenWichtigkeit
    is begin
       
       return 1;

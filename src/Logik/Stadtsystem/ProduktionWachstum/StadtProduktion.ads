@@ -23,14 +23,14 @@ package StadtProduktion is
 
 private
 
-   VorhandeneEinwohner : ProduktionDatentypen.ProduktionFeld;
+   VorhandeneEinwohner : ProduktionDatentypen.Feldproduktion;
    
    NutzbarerBereich : KartenDatentypen.Kartenfeld;
 
-   NahrungsverbrauchEinwohnerMultiplikator : ProduktionDatentypen.GesamtproduktionStadt;
-   RessourcenverbrauchKorruptionMultiplikator : ProduktionDatentypen.GesamtproduktionStadt;
-   GeldverbrauchKorruptionMultiplikator : ProduktionDatentypen.GesamtproduktionStadt;
-   ForschungsverbrauchKorruptionMultiplikator : ProduktionDatentypen.GesamtproduktionStadt;
+   NahrungsverbrauchEinwohnerMultiplikator : ProduktionDatentypen.Stadtproduktion;
+   RessourcenverbrauchKorruptionMultiplikator : ProduktionDatentypen.Stadtproduktion;
+   GeldverbrauchKorruptionMultiplikator : ProduktionDatentypen.Stadtproduktion;
+   ForschungsverbrauchKorruptionMultiplikator : ProduktionDatentypen.Stadtproduktion;
    
    Bauprojekt : StadtRecords.BauprojektRecord;
 

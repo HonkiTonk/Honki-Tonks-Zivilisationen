@@ -69,7 +69,7 @@ package WichtigesKonstanten is
                                                            );
    
    LeerAktuellerZustand : constant SystemDatentypen.Status_Untereinander_Enum := SystemDatentypen.Unbekannt_Enum;
-   LeerAktuelleSympathieBewertung : constant ProduktionDatentypen.ProduktionFeld := 0;
+   LeerAktuelleSympathieBewertung : constant ProduktionDatentypen.Feldproduktion := 0;
    LeerZeitSeitLetzterÄnderung : constant ZahlenDatentypen.EigenesNatural := ZahlenDatentypen.EigenesNatural'First;
 
    LeerDiplomatie : constant WichtigeRecords.DiplomatieRecord := (

@@ -11,7 +11,7 @@ package body GesamtwerteFeld is
    function FeldNahrung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionFeld
+      return ProduktionDatentypen.Feldproduktion
    is begin
       
       if
@@ -25,9 +25,9 @@ package body GesamtwerteFeld is
                                                RasseExtern       => RasseExtern)
         + KartenAllgemein.FlussNahrung (KoordinatenExtern => KoordinatenExtern,
                                         RasseExtern       => RasseExtern)
-        > ProduktionDatentypen.ProduktionFeld'Last
+        > ProduktionDatentypen.Feldproduktion'Last
       then
-         return ProduktionDatentypen.ProduktionFeld'Last;
+         return ProduktionDatentypen.Feldproduktion'Last;
          
       elsif
         KartenAllgemein.GrundNahrung (KoordinatenExtern => KoordinatenExtern,
@@ -40,9 +40,9 @@ package body GesamtwerteFeld is
                                                RasseExtern       => RasseExtern)
         + KartenAllgemein.FlussNahrung (KoordinatenExtern => KoordinatenExtern,
                                         RasseExtern       => RasseExtern)
-        < ProduktionDatentypen.ProduktionFeld'First
+        < ProduktionDatentypen.Feldproduktion'First
       then
-         return ProduktionDatentypen.ProduktionFeld'First;
+         return ProduktionDatentypen.Feldproduktion'First;
          
       else
          return KartenAllgemein.GrundNahrung (KoordinatenExtern => KoordinatenExtern,
@@ -64,7 +64,7 @@ package body GesamtwerteFeld is
    function FeldProduktion
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionFeld
+      return ProduktionDatentypen.Feldproduktion
    is begin
       
       if
@@ -78,9 +78,9 @@ package body GesamtwerteFeld is
                                                   RasseExtern       => RasseExtern)
         + KartenAllgemein.FlussProduktion (KoordinatenExtern => KoordinatenExtern,
                                            RasseExtern       => RasseExtern)
-        > ProduktionDatentypen.ProduktionFeld'Last
+        > ProduktionDatentypen.Feldproduktion'Last
       then
-         return ProduktionDatentypen.ProduktionFeld'Last;
+         return ProduktionDatentypen.Feldproduktion'Last;
          
       elsif
         KartenAllgemein.GrundProduktion (KoordinatenExtern => KoordinatenExtern,
@@ -93,9 +93,9 @@ package body GesamtwerteFeld is
                                                   RasseExtern       => RasseExtern)
         + KartenAllgemein.FlussProduktion (KoordinatenExtern => KoordinatenExtern,
                                            RasseExtern       => RasseExtern)
-        < ProduktionDatentypen.ProduktionFeld'First
+        < ProduktionDatentypen.Feldproduktion'First
       then
-         return ProduktionDatentypen.ProduktionFeld'First;
+         return ProduktionDatentypen.Feldproduktion'First;
          
       else
          return KartenAllgemein.GrundProduktion (KoordinatenExtern => KoordinatenExtern,
@@ -117,7 +117,7 @@ package body GesamtwerteFeld is
    function FeldGeld
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionFeld
+      return ProduktionDatentypen.Feldproduktion
    is begin
       
       if
@@ -131,9 +131,9 @@ package body GesamtwerteFeld is
                                             RasseExtern       => RasseExtern)
         + KartenAllgemein.FlussGeld (KoordinatenExtern => KoordinatenExtern,
                                      RasseExtern       => RasseExtern)
-        > ProduktionDatentypen.ProduktionFeld'Last
+        > ProduktionDatentypen.Feldproduktion'Last
       then
-         return ProduktionDatentypen.ProduktionFeld'Last;
+         return ProduktionDatentypen.Feldproduktion'Last;
          
       elsif
         KartenAllgemein.GrundGeld (KoordinatenExtern => KoordinatenExtern,
@@ -146,9 +146,9 @@ package body GesamtwerteFeld is
                                             RasseExtern       => RasseExtern)
         + KartenAllgemein.FlussGeld (KoordinatenExtern => KoordinatenExtern,
                                      RasseExtern       => RasseExtern)
-        < ProduktionDatentypen.ProduktionFeld'First
+        < ProduktionDatentypen.Feldproduktion'First
       then
-         return ProduktionDatentypen.ProduktionFeld'First;
+         return ProduktionDatentypen.Feldproduktion'First;
          
       else
          return KartenAllgemein.GrundGeld (KoordinatenExtern => KoordinatenExtern,
@@ -170,7 +170,7 @@ package body GesamtwerteFeld is
    function FeldWissen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionFeld
+      return ProduktionDatentypen.Feldproduktion
    is begin
       
       if
@@ -184,9 +184,9 @@ package body GesamtwerteFeld is
                                               RasseExtern       => RasseExtern)
         + KartenAllgemein.FlussWissen (KoordinatenExtern => KoordinatenExtern,
                                        RasseExtern       => RasseExtern)
-        > ProduktionDatentypen.ProduktionFeld'Last
+        > ProduktionDatentypen.Feldproduktion'Last
       then
-         return ProduktionDatentypen.ProduktionFeld'Last;
+         return ProduktionDatentypen.Feldproduktion'Last;
          
       elsif
         KartenAllgemein.GrundWissen (KoordinatenExtern => KoordinatenExtern,
@@ -199,9 +199,9 @@ package body GesamtwerteFeld is
                                               RasseExtern       => RasseExtern)
         + KartenAllgemein.FlussWissen (KoordinatenExtern => KoordinatenExtern,
                                        RasseExtern       => RasseExtern)
-        < ProduktionDatentypen.ProduktionFeld'First
+        < ProduktionDatentypen.Feldproduktion'First
       then
-         return ProduktionDatentypen.ProduktionFeld'First;
+         return ProduktionDatentypen.Feldproduktion'First;
          
       else
          return KartenAllgemein.GrundWissen (KoordinatenExtern => KoordinatenExtern,

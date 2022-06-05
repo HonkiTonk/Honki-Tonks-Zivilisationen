@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with EinheitenDatentypen; use EinheitenDatentypen;
-with ProduktionDatentypen; use ProduktionDatentypen;
 with TastenbelegungDatentypen;
 with EinheitenKonstanten;
 
@@ -14,6 +13,8 @@ with StadtBauen;
 with Aufgaben;
 with EinheitenErzeugenEntfernen;
 with Fehler;
+
+with KIDatentypen; use KIDatentypen;
 
 with KIVorhandeneAufgaben;
 with KIAufgabeFestlegen;
@@ -27,7 +28,7 @@ package body KIAufgabenPlanung is
       
       -- Muss für die Schleife weiter unten auf den ersten Wert gesetzt werden.
       GewählteAufgabe := KIDatentypen.Einheit_Aufgabe_Enum'First;
-      Wichtigkeit := (others => ProduktionDatentypen.ProduktionSonstiges'First);
+      Wichtigkeit := (others => KIDatentypen.AufgabenWichtigkeit'First);
                   
       Wichtigkeit (KIDatentypen.Tut_Nichts_Enum) := KIVorhandeneAufgaben.NichtsTun;
       Wichtigkeit (KIDatentypen.Einheit_Auflösen_Enum) := KIVorhandeneAufgaben.EinheitAuflösen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);

@@ -42,7 +42,7 @@ package body LeseStadtGebaut is
    function EinwohnerArbeiter
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       EinwohnerArbeiterExtern : in Boolean)
-      return ProduktionDatentypen.ProduktionFeld
+      return ProduktionDatentypen.Feldproduktion
    is begin
       
       case
@@ -79,7 +79,7 @@ package body LeseStadtGebaut is
       
    function Nahrungsmittel
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return ProduktionDatentypen.GesamtproduktionStadt
+      return ProduktionDatentypen.Stadtproduktion
    is begin
       
       if
@@ -99,7 +99,7 @@ package body LeseStadtGebaut is
    
    function Nahrungsproduktion
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return ProduktionDatentypen.GesamtproduktionStadt
+      return ProduktionDatentypen.Stadtproduktion
    is begin
       
       return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Nahrungsproduktion;
@@ -121,7 +121,7 @@ package body LeseStadtGebaut is
    
    function Produktionrate
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return ProduktionDatentypen.GesamtproduktionStadt
+      return ProduktionDatentypen.Stadtproduktion
    is begin
       
       return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Produktionrate;
@@ -132,7 +132,7 @@ package body LeseStadtGebaut is
    
    function Geldgewinnung
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return ProduktionDatentypen.GesamtproduktionStadt
+      return ProduktionDatentypen.Stadtproduktion
    is begin
       
       return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Geldgewinnung;
@@ -155,7 +155,7 @@ package body LeseStadtGebaut is
       
    function Forschungsrate
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return ProduktionDatentypen.GesamtproduktionStadt
+      return ProduktionDatentypen.Stadtproduktion
    is begin
       
       if
@@ -197,7 +197,7 @@ package body LeseStadtGebaut is
    
    function Korruption
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return ProduktionDatentypen.GesamtproduktionStadt
+      return ProduktionDatentypen.Stadtproduktion
    is begin
       
       return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Korruption;
@@ -208,7 +208,7 @@ package body LeseStadtGebaut is
    
    function Zufriedenheit
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return ProduktionDatentypen.ProduktionFeld
+      return ProduktionDatentypen.Feldproduktion
    is begin
       
       return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Zufriedenheit;

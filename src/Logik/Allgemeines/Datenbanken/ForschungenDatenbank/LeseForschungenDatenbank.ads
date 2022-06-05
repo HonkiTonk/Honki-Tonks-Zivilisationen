@@ -6,8 +6,6 @@ with SonstigeVariablen;
 with ForschungenDatentypen;
 with ProduktionDatentypen;
 
-with DatenbankRecords;
-
 package LeseForschungenDatenbank is
 
    function PreisForschung
@@ -23,14 +21,6 @@ package LeseForschungenDatenbank is
       IDExtern : in ForschungenDatentypen.ForschungID;
       WelcheAnforderungExtern : in Positive)
       return ForschungenDatentypen.ForschungIDNichtMöglich
-     with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
-   
-   function GanzerEintrag
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in ForschungenDatentypen.ForschungID)
-      return DatenbankRecords.ForschungslisteRecord
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);

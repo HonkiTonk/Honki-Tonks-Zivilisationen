@@ -78,7 +78,7 @@ package body KampfwerteEinheitErmitteln is
       end case;
               
       if
-        VerteidigungWertFloat > Float (ProduktionDatentypen.GesamtproduktionStadt'Last)
+        VerteidigungWertFloat > Float (ProduktionDatentypen.Stadtproduktion'Last)
       then
          return KampfDatentypen.Kampfwerte'Last;
                
@@ -144,7 +144,7 @@ package body KampfwerteEinheitErmitteln is
       AngriffWertFloat := AngriffWertFloat * AngriffBonus;
             
       if
-        AngriffWertFloat > Float (ProduktionDatentypen.ProduktionFeld'Last)
+        AngriffWertFloat > Float (ProduktionDatentypen.Feldproduktion'Last)
       then
          return KampfDatentypen.Kampfwerte'Last;
                

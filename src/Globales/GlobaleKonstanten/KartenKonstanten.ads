@@ -28,18 +28,18 @@ package KartenKonstanten is
    LeerKartenGrafik : constant Wide_Wide_Character := TextKonstanten.LeerZeichen;
    LeerPassierbarkeit : constant Boolean := False;
       
-   LeerBewertung : constant KartenDatentypen.BewertungFeld := 0;
-   LeerWirtschaft : constant ProduktionDatentypen.ProduktionElement := 0;
+   LeerBewertung : constant KartenDatentypen.Einzelbewertung := 0;
+   LeerWirtschaft : constant ProduktionDatentypen.Einzelproduktion := 0;
    LeerKampf : constant KampfDatentypen.Kampfwerte := KampfDatentypen.Kampfwerte'First;
    
    LeerSichtbar : constant Boolean := False;
    LeerDurchStadtBelegterGrund : constant KartenRecords.BelegterGrundRecord := (StadtKonstanten.LeerRasse, StadtKonstanten.LeerNummer);
-   LeerFelderwertung : constant KartenDatentypen.GesamtbewertungFeld := 0;
+   LeerFelderwertung : constant KartenDatentypen.GesamteFeldbewertung := 0;
    
    LeerVerbesserungGrafik : constant Wide_Wide_Character := TextKonstanten.LeerZeichen;
       
-   LeerVerbesserungBewertung : constant KartenDatentypen.BewertungFeld := 0;
-   LeerVerbesserungWirtschaft : constant ProduktionDatentypen.ProduktionElement := 0;
+   LeerVerbesserungBewertung : constant KartenDatentypen.Einzelbewertung := 0;
+   LeerVerbesserungWirtschaft : constant ProduktionDatentypen.Einzelproduktion := 0;
    LeerVerbesserungKampf : constant KampfDatentypen.Kampfwerte := KampfDatentypen.Kampfwerte'First;
    
    WirtschaftNahrung : constant KartenDatentypen.Wirtschaft_Enum := KartenDatentypen.Nahrung;

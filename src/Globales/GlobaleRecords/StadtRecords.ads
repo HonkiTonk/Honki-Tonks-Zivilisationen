@@ -43,7 +43,7 @@ package StadtRecords is
 
 
 
-   type EinwohnerArbeiterArray is array (1 .. 2) of ProduktionDatentypen.ProduktionFeld;
+   type EinwohnerArbeiterArray is array (1 .. 2) of ProduktionDatentypen.Feldproduktion;
    
    ------------------------ XXX
    ------------------------ Wenn ich ein Record für das Array hier anlege, dann könnten darin die bereits erzeugten Ressourcen gespeichert werden und beim Wechsel des Bauprojekts blieben die angefangenen Gebäude erhalten.
@@ -59,19 +59,19 @@ package StadtRecords is
       KoordinatenAktuell : KartenRecords.AchsenKartenfeldNaturalRecord;
       EinwohnerArbeiter : EinwohnerArbeiterArray;
       
-      Nahrungsmittel : ProduktionDatentypen.GesamtproduktionStadt;
-      Nahrungsproduktion : ProduktionDatentypen.GesamtproduktionStadt;
+      Nahrungsmittel : ProduktionDatentypen.Stadtproduktion;
+      Nahrungsproduktion : ProduktionDatentypen.Stadtproduktion;
       Ressourcen : ProduktionDatentypen.KostenLager;
-      Produktionrate : ProduktionDatentypen.GesamtproduktionStadt;
-      Geldgewinnung : ProduktionDatentypen.GesamtproduktionStadt;
+      Produktionrate : ProduktionDatentypen.Stadtproduktion;
+      Geldgewinnung : ProduktionDatentypen.Stadtproduktion;
       PermanenteKostenPosten : PermanenteKostenArray;
       
-      Forschungsrate : ProduktionDatentypen.GesamtproduktionStadt;
+      Forschungsrate : ProduktionDatentypen.Stadtproduktion;
       Bauprojekt : BauprojektRecord;
       Bauzeit : ProduktionDatentypen.KostenLager;
 
-      Korruption : ProduktionDatentypen.GesamtproduktionStadt;
-      Zufriedenheit : ProduktionDatentypen.ProduktionFeld;
+      Korruption : ProduktionDatentypen.Stadtproduktion;
+      Zufriedenheit : ProduktionDatentypen.Feldproduktion;
       GebäudeVorhanden : GebäudeVorhandenArray;
       Name : Unbounded_Wide_Wide_String;
 

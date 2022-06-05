@@ -16,7 +16,6 @@ with KartenAllgemein;
 
 package body FelderwerteFestlegen is
    
-   ------------------------------------- Bei Bewertung auch die EAchse berücksichtigen? Mal drüber nachdenken ob das sinnvoll ist.
    procedure EinzelnesKartenfeldBewerten
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
@@ -36,8 +35,7 @@ package body FelderwerteFestlegen is
                when KartenKonstanten.LeerXAchse =>
                   null;
                      
-               when others =>                  
-                  Karten.Weltkarte (KartenWertEins (KoordinatenExtern.EAchse).EAchse, KartenWertEins (KoordinatenExtern.EAchse).YAchse, KartenWertEins (KoordinatenExtern.EAchse).XAchse).Felderwertung := (others => 0);
+               when others =>
                   KartenfelderBewertenKleineSchleife (KoordinatenExtern => KartenWertEins (KoordinatenExtern.EAchse),
                                                       RasseExtern       => EinheitenKonstanten.LeerRasse);
             end case;
@@ -53,6 +51,16 @@ package body FelderwerteFestlegen is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Enum)
    is begin
+      
+      case
+        RasseExtern
+      is
+         when RassenDatentypen.Keine_Rasse_Enum =>
+            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Felderwertung := (others => KartenKonstanten.LeerBewertung);
+            
+         when others =>
+            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Felderwertung (RasseExtern) := KartenKonstanten.LeerBewertung;
+      end case;
       
       BewertungYÄnderungSchleife:
       for BewertungYÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
@@ -75,25 +83,21 @@ package body FelderwerteFestlegen is
                     and
                       BewertungXÄnderungSchleifenwert = 0
                   then
-                     BewertungSelbst (KoordinatenFeldExtern     => KoordinatenExtern,
-                                      KoordinatenUmgebungExtern => KartenWertZwei (KoordinatenExtern.EAchse),
-                                      RasseExtern               => RasseExtern,
-                                      TeilerExtern              => 1);
+                     Teiler (KoordinatenExtern.EAchse) := 1;
 
                   elsif
                   abs (BewertungYÄnderungSchleifenwert) > abs (BewertungXÄnderungSchleifenwert)
                   then
-                     BewertungSelbst (KoordinatenFeldExtern     => KoordinatenExtern,
-                                      KoordinatenUmgebungExtern => KartenWertZwei (KoordinatenExtern.EAchse),
-                                      RasseExtern               => RasseExtern,
-                                      TeilerExtern              => abs (BewertungYÄnderungSchleifenwert));
+                     Teiler (KoordinatenExtern.EAchse) := abs (BewertungYÄnderungSchleifenwert);
                         
                   else
-                     BewertungSelbst (KoordinatenFeldExtern     => KoordinatenExtern,
-                                      KoordinatenUmgebungExtern => KartenWertZwei (KoordinatenExtern.EAchse),
-                                      RasseExtern               => RasseExtern,
-                                      TeilerExtern              => abs (BewertungXÄnderungSchleifenwert));
+                     Teiler (KoordinatenExtern.EAchse) := abs (BewertungXÄnderungSchleifenwert);
                   end if;
+                  
+                  BewertungSelbst (KoordinatenFeldExtern     => KoordinatenExtern,
+                                   KoordinatenUmgebungExtern => KartenWertZwei (KoordinatenExtern.EAchse),
+                                   RasseExtern               => RasseExtern,
+                                   TeilerExtern              => Teiler (KoordinatenExtern.EAchse));
             end case;
                                  
          end loop BewertungXÄnderungSchleife;
@@ -120,15 +124,11 @@ package body FelderwerteFestlegen is
               or
                 RasseExtern = RasseSchleifenwert)
          then
-            SchreibeKarten.Bewertung (KoordinatenExtern  => KoordinatenFeldExtern,
-                                      RasseExtern        => RasseSchleifenwert,
-                                      BewertungExtern    =>
-                                        LeseKarten.Bewertung (KoordinatenExtern => KoordinatenFeldExtern,
-                                                              RasseExtern       => RasseSchleifenwert)
-                                      + KartenAllgemein.GrundBewertung (KoordinatenExtern => KoordinatenUmgebungExtern,
-                                                                        RasseExtern       => RasseSchleifenwert)
-                                      / KartenDatentypen.BewertungFeld (TeilerExtern)
-                                     );
+            Bewertung (KoordinatenFeldExtern.EAchse) := LeseKarten.Bewertung (KoordinatenExtern => KoordinatenFeldExtern,
+                                                                              RasseExtern       => RasseSchleifenwert)
+              + KartenAllgemein.GrundBewertung (KoordinatenExtern => KoordinatenUmgebungExtern,
+                                                RasseExtern       => RasseSchleifenwert)
+              / KartenDatentypen.Einzelbewertung (TeilerExtern);
 
             case
               LeseKarten.Fluss (KoordinatenExtern => KoordinatenUmgebungExtern)
@@ -137,15 +137,9 @@ package body FelderwerteFestlegen is
                   null;
             
                when others =>
-                  SchreibeKarten.Bewertung (KoordinatenExtern  => KoordinatenFeldExtern,
-                                            RasseExtern        => RasseSchleifenwert,
-                                            BewertungExtern    =>
-                                               LeseKarten.Bewertung (KoordinatenExtern => KoordinatenFeldExtern,
-                                                                     RasseExtern       => RasseSchleifenwert)
-                                            + KartenAllgemein.FlussBewertung (KoordinatenExtern => KoordinatenUmgebungExtern,
-                                                                              RasseExtern       => RasseSchleifenwert)
-                                            / KartenDatentypen.BewertungFeld (TeilerExtern)
-                                           );
+                  Bewertung (KoordinatenFeldExtern.EAchse) := Bewertung (KoordinatenFeldExtern.EAchse) + KartenAllgemein.FlussBewertung (KoordinatenExtern => KoordinatenUmgebungExtern,
+                                                                                                                                         RasseExtern       => RasseSchleifenwert)
+                    / KartenDatentypen.Einzelbewertung (TeilerExtern);
             end case;
             
             case
@@ -155,15 +149,9 @@ package body FelderwerteFestlegen is
                   null;
             
                when others =>
-                  SchreibeKarten.Bewertung (KoordinatenExtern  => KoordinatenFeldExtern,
-                                            RasseExtern        => RasseSchleifenwert,
-                                            BewertungExtern    =>
-                                               LeseKarten.Bewertung (KoordinatenExtern => KoordinatenFeldExtern,
-                                                                     RasseExtern       => RasseSchleifenwert)
-                                            + KartenAllgemein.WegBewertung (KoordinatenExtern => KoordinatenUmgebungExtern,
-                                                                            RasseExtern       => RasseSchleifenwert)
-                                            / KartenDatentypen.BewertungFeld (TeilerExtern)
-                                           );
+                  Bewertung (KoordinatenFeldExtern.EAchse) := Bewertung (KoordinatenFeldExtern.EAchse) + KartenAllgemein.WegBewertung (KoordinatenExtern => KoordinatenUmgebungExtern,
+                                                                                                                                       RasseExtern       => RasseSchleifenwert)
+                    / KartenDatentypen.Einzelbewertung (TeilerExtern);
             end case;
 
             case
@@ -173,15 +161,9 @@ package body FelderwerteFestlegen is
                   null;
             
                when others =>
-                  SchreibeKarten.Bewertung (KoordinatenExtern  => KoordinatenFeldExtern,
-                                            RasseExtern        => RasseSchleifenwert,
-                                            BewertungExtern    =>
-                                               LeseKarten.Bewertung (KoordinatenExtern => KoordinatenFeldExtern,
-                                                                     RasseExtern       => RasseSchleifenwert)
-                                            + KartenAllgemein.VerbesserungBewertung (KoordinatenExtern => KoordinatenUmgebungExtern,
-                                                                                     RasseExtern       => RasseSchleifenwert)
-                                            / KartenDatentypen.BewertungFeld (TeilerExtern)
-                                           );
+                  Bewertung (KoordinatenFeldExtern.EAchse) := Bewertung (KoordinatenFeldExtern.EAchse) + KartenAllgemein.VerbesserungBewertung (KoordinatenExtern => KoordinatenUmgebungExtern,
+                                                                                                                                                RasseExtern       => RasseSchleifenwert)
+                    / KartenDatentypen.Einzelbewertung (TeilerExtern);
             end case;
       
             case
@@ -191,16 +173,14 @@ package body FelderwerteFestlegen is
                   null;
             
                when others =>
-                  SchreibeKarten.Bewertung (KoordinatenExtern  => KoordinatenFeldExtern,
-                                            RasseExtern        => RasseSchleifenwert,
-                                            BewertungExtern    =>
-                                               LeseKarten.Bewertung (KoordinatenExtern => KoordinatenFeldExtern,
-                                                                     RasseExtern       => RasseSchleifenwert)
-                                            + KartenAllgemein.RessourceBewertung (KoordinatenExtern => KoordinatenUmgebungExtern,
-                                                                                  RasseExtern       => RasseSchleifenwert)
-                                            / KartenDatentypen.BewertungFeld (TeilerExtern)
-                                           );
+                  Bewertung (KoordinatenFeldExtern.EAchse) := Bewertung (KoordinatenFeldExtern.EAchse) + KartenAllgemein.RessourceBewertung (KoordinatenExtern => KoordinatenUmgebungExtern,
+                                                                                                                                             RasseExtern       => RasseSchleifenwert)
+                    / KartenDatentypen.Einzelbewertung (TeilerExtern);
             end case;
+            
+            SchreibeKarten.Bewertung (KoordinatenExtern  => KoordinatenFeldExtern,
+                                      RasseExtern        => RasseSchleifenwert,
+                                      BewertungExtern    => Bewertung (KoordinatenFeldExtern.EAchse));
             
          else
             null;

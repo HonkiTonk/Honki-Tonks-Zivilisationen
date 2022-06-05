@@ -5,7 +5,6 @@ with RassenDatentypen; use RassenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 with SonstigeVariablen;
-with ProduktionDatentypen;
 
 with KIDatentypen;
 
@@ -32,8 +31,8 @@ private
    AufgabeDurchführen : Boolean;
       
    GewählteAufgabe : KIDatentypen.Einheit_Aufgabe_Enum;
-   
-   type WichtigkeitArray is array (KIDatentypen.Einheit_Aufgabe_Enum'Range) of ProduktionDatentypen.ProduktionSonstiges;
+      
+   type WichtigkeitArray is array (KIDatentypen.Einheit_Aufgabe_Enum'Range) of KIDatentypen.AufgabenWichtigkeit;
    Wichtigkeit : WichtigkeitArray;
    
    procedure AufgabeFestlegen

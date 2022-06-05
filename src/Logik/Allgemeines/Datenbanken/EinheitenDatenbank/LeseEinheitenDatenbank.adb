@@ -239,17 +239,5 @@ package body LeseEinheitenDatenbank is
       end if;
       
    end Transportkapazität;
-   
-   
-   
-   function GanzerEintrag
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenID)
-      return DatenbankRecords.EinheitenlisteRecord
-   is begin
-      
-      return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern);
-      
-   end GanzerEintrag;
 
 end LeseEinheitenDatenbank;

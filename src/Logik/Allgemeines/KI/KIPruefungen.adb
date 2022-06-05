@@ -189,7 +189,7 @@ package body KIPruefungen is
    
    function UmgebungStadtBauenPrüfen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      MindestBewertungFeldExtern : in KartenDatentypen.GesamtbewertungFeld)
+      MindestBewertungFeldExtern : in KartenDatentypen.GesamteFeldbewertung)
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
                   
@@ -217,7 +217,7 @@ package body KIPruefungen is
    
    function FelderDurchgehen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      MindestBewertungFeldExtern : in KartenDatentypen.GesamtbewertungFeld)
+      MindestBewertungFeldExtern : in KartenDatentypen.GesamteFeldbewertung)
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
             
@@ -281,7 +281,7 @@ package body KIPruefungen is
    
    function NeuesStadtFeldSuchen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      MindestBewertungFeldExtern : in KartenDatentypen.GesamtbewertungFeld;
+      MindestBewertungFeldExtern : in KartenDatentypen.GesamteFeldbewertung;
       YUmgebungExtern : in KartenDatentypen.KartenfeldPositiv;
       XUmgebungExtern : in KartenDatentypen.KartenfeldPositiv)
       return KartenRecords.AchsenKartenfeldNaturalRecord
@@ -338,7 +338,7 @@ package body KIPruefungen is
    function KartenfeldUmgebungPrüfen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      MindestBewertungFeldExtern : in KartenDatentypen.GesamtbewertungFeld)
+      MindestBewertungFeldExtern : in KartenDatentypen.GesamteFeldbewertung)
       return Boolean
    is begin
       

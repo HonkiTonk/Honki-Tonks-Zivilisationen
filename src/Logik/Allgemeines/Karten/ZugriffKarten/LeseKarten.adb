@@ -90,7 +90,7 @@ package body LeseKarten is
    function Bewertung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenDatentypen.GesamtbewertungFeld
+      return KartenDatentypen.GesamteFeldbewertung
    is begin
       
       return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Felderwertung (RasseExtern);

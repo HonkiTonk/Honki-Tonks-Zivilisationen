@@ -17,7 +17,7 @@ package body KartenAllgemein is
    
    function BeschreibungBasisgrund
      (KartenGrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
-   return Wide_Wide_String
+      return Wide_Wide_String
    is begin
       
       -- Die Zwischenrechnungen mal drin lassen, für den Fall dass ich die Beschreibungen rassenspezifisch machen will. Könnte dann eine komplexere Rechnung werden.
@@ -70,10 +70,11 @@ package body KartenAllgemein is
    
    
    
+   ---------------------------------- Später mal ein besseres Berechnungssystem einbauen.
    function GrundNahrung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionElement
+      return ProduktionDatentypen.Einzelproduktion
    is begin
       
       Basisgrund := LeseKarten.BasisGrund (KoordinatenExtern => KoordinatenExtern);
@@ -87,14 +88,9 @@ package body KartenAllgemein is
                                                        WirtschaftArtExtern => KartenKonstanten.WirtschaftNahrung);
          
       else
-         return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => Basisgrund,
+         return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => Zusatzgrund,
                                                        RasseExtern         => RasseExtern,
-                                                       WirtschaftArtExtern => KartenKonstanten.WirtschaftNahrung)
-           / 2
-           + LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => Zusatzgrund,
-                                                    RasseExtern         => RasseExtern,
-                                                    WirtschaftArtExtern => KartenKonstanten.WirtschaftNahrung)
-           / 2;
+                                                       WirtschaftArtExtern => KartenKonstanten.WirtschaftNahrung);
       end if;
             
    end GrundNahrung;
@@ -104,29 +100,24 @@ package body KartenAllgemein is
    function GrundProduktion
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionElement
+      return ProduktionDatentypen.Einzelproduktion
    is begin
       
       Basisgrund := LeseKarten.BasisGrund (KoordinatenExtern => KoordinatenExtern);
       Zusatzgrund := LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern);
       
-      case
-        Basisgrund
-      is
-         when KartengrundDatentypen.Hügel_Enum | KartengrundDatentypen.Gebirge_Enum =>
-            return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
-                                                          RasseExtern         => RasseExtern,
-                                                          WirtschaftArtExtern => KartenKonstanten.WirtschaftProduktion);
-             -- + LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => KartengrundDatentypen.Hügel_Mit_Enum,
-             --                                          RasseExtern         => RasseExtern,
-             --                                          WirtschaftArtExtern => KartenKonstanten.WirtschaftProduktion)
-             -- / 2;
-            
-         when others =>
-            return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
-                                                          RasseExtern         => RasseExtern,
-                                                          WirtschaftArtExtern => KartenKonstanten.WirtschaftProduktion);
-      end case;
+      if
+        Basisgrund = Zusatzgrund
+      then
+         return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => Basisgrund,
+                                                       RasseExtern         => RasseExtern,
+                                                       WirtschaftArtExtern => KartenKonstanten.WirtschaftProduktion);
+         
+      else
+         return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => Zusatzgrund,
+                                                       RasseExtern         => RasseExtern,
+                                                       WirtschaftArtExtern => KartenKonstanten.WirtschaftProduktion);
+      end if;
       
    end GrundProduktion;
    
@@ -135,29 +126,24 @@ package body KartenAllgemein is
    function GrundGeld
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionElement
+      return ProduktionDatentypen.Einzelproduktion
    is begin
       
       Basisgrund := LeseKarten.BasisGrund (KoordinatenExtern => KoordinatenExtern);
       Zusatzgrund := LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern);
       
-      case
-        Basisgrund
-      is
-         when KartengrundDatentypen.Hügel_Enum | KartengrundDatentypen.Gebirge_Enum =>
-            return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
-                                                          RasseExtern         => RasseExtern,
-                                                          WirtschaftArtExtern => KartenKonstanten.WirtschaftGeld);
-             -- + LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => KartengrundDatentypen.Hügel_Mit_Enum,
-             --                                          RasseExtern         => RasseExtern,
-             --                                          WirtschaftArtExtern => KartenKonstanten.WirtschaftGeld)
-             -- / 2;
-            
-         when others =>
-            return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
-                                                          RasseExtern         => RasseExtern,
-                                                          WirtschaftArtExtern => KartenKonstanten.WirtschaftGeld);
-      end case;
+      if
+        Basisgrund = Zusatzgrund
+      then
+         return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => Basisgrund,
+                                                       RasseExtern         => RasseExtern,
+                                                       WirtschaftArtExtern => KartenKonstanten.WirtschaftGeld);
+         
+      else
+         return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => Zusatzgrund,
+                                                       RasseExtern         => RasseExtern,
+                                                       WirtschaftArtExtern => KartenKonstanten.WirtschaftGeld);
+      end if;
       
    end GrundGeld;
    
@@ -166,29 +152,24 @@ package body KartenAllgemein is
    function GrundWissen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionElement
+      return ProduktionDatentypen.Einzelproduktion
    is begin
       
       Basisgrund := LeseKarten.BasisGrund (KoordinatenExtern => KoordinatenExtern);
       Zusatzgrund := LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern);
       
-      case
-        Basisgrund
-      is
-         when KartengrundDatentypen.Hügel_Enum | KartengrundDatentypen.Gebirge_Enum =>
-            return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
-                                                          RasseExtern         => RasseExtern,
-                                                          WirtschaftArtExtern => KartenKonstanten.WirtschaftForschung);
-             -- + LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => KartengrundDatentypen.Hügel_Mit_Enum,
-             --                                          RasseExtern         => RasseExtern,
-             --                                          WirtschaftArtExtern => KartenKonstanten.WirtschaftForschung)
-             -- / 2;
-            
-         when others =>
-            return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
-                                                          RasseExtern         => RasseExtern,
-                                                          WirtschaftArtExtern => KartenKonstanten.WirtschaftForschung);
-      end case;
+      if
+        Basisgrund = Zusatzgrund
+      then
+         return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => Basisgrund,
+                                                       RasseExtern         => RasseExtern,
+                                                       WirtschaftArtExtern => KartenKonstanten.WirtschaftForschung);
+         
+      else
+         return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => Zusatzgrund,
+                                                       RasseExtern         => RasseExtern,
+                                                       WirtschaftArtExtern => KartenKonstanten.WirtschaftForschung);
+      end if;
       
    end GrundWissen;
    
@@ -203,23 +184,18 @@ package body KartenAllgemein is
       Basisgrund := LeseKarten.BasisGrund (KoordinatenExtern => KoordinatenExtern);
       Zusatzgrund := LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern);
       
-      case
-        Basisgrund
-      is
-         when KartengrundDatentypen.Hügel_Enum | KartengrundDatentypen.Gebirge_Enum =>
-            return LeseKartenDatenbanken.KampfGrund (GrundExtern    => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
-                                                     RasseExtern    => RasseExtern,
-                                                     KampfArtExtern => KartenKonstanten.KampfVerteidigung);
-             -- + LeseKartenDatenbanken.KampfGrund (GrundExtern    => KartengrundDatentypen.Hügel_Mit_Enum,
-             --                                     RasseExtern    => RasseExtern,
-             --                                     KampfArtExtern => KartenKonstanten.KampfVerteidigung)
-             -- / 2;
+      if
+        Basisgrund = Zusatzgrund
+      then
+         return LeseKartenDatenbanken.KampfGrund (GrundExtern         => Basisgrund,
+                                                  RasseExtern         => RasseExtern,
+                                                  KampfArtExtern => KartenKonstanten.KampfVerteidigung);
          
-         when others =>
-            return LeseKartenDatenbanken.KampfGrund (GrundExtern    => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
-                                                     RasseExtern    => RasseExtern,
-                                                     KampfArtExtern => KartenKonstanten.KampfVerteidigung);
-      end case;
+      else
+         return LeseKartenDatenbanken.KampfGrund (GrundExtern         => Zusatzgrund,
+                                                  RasseExtern         => RasseExtern,
+                                                  KampfArtExtern => KartenKonstanten.KampfVerteidigung);
+      end if;
       
    end GrundVerteidigung;
    
@@ -234,23 +210,18 @@ package body KartenAllgemein is
       Basisgrund := LeseKarten.BasisGrund (KoordinatenExtern => KoordinatenExtern);
       Zusatzgrund := LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern);
       
-      case
-        Basisgrund
-      is
-         when KartengrundDatentypen.Hügel_Enum | KartengrundDatentypen.Gebirge_Enum =>
-            return LeseKartenDatenbanken.KampfGrund (GrundExtern    => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
-                                                     RasseExtern    => RasseExtern,
-                                                     KampfArtExtern => KartenKonstanten.KampfAngriff);
-             -- + LeseKartenDatenbanken.KampfGrund (GrundExtern    => KartengrundDatentypen.Hügel_Mit_Enum,
-             --                                     RasseExtern    => RasseExtern,
-             --                                     KampfArtExtern => KartenKonstanten.KampfAngriff)
-             -- / 2;
+      if
+        Basisgrund = Zusatzgrund
+      then
+         return LeseKartenDatenbanken.KampfGrund (GrundExtern         => Basisgrund,
+                                                  RasseExtern         => RasseExtern,
+                                                  KampfArtExtern => KartenKonstanten.KampfAngriff);
          
-         when others =>
-            return LeseKartenDatenbanken.KampfGrund (GrundExtern    => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
-                                                     RasseExtern    => RasseExtern,
-                                                     KampfArtExtern => KartenKonstanten.KampfAngriff);
-      end case;
+      else
+         return LeseKartenDatenbanken.KampfGrund (GrundExtern         => Zusatzgrund,
+                                                  RasseExtern         => RasseExtern,
+                                                  KampfArtExtern => KartenKonstanten.KampfAngriff);
+      end if;
       
    end GrundAngriff;
    
@@ -259,11 +230,22 @@ package body KartenAllgemein is
    function GrundBewertung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenDatentypen.BewertungFeld
+      return KartenDatentypen.Einzelbewertung
    is begin
       
-      return LeseKartenDatenbanken.BewertungGrund (GrundExtern => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
-                                                   RasseExtern => RasseExtern);
+      Basisgrund := LeseKarten.BasisGrund (KoordinatenExtern => KoordinatenExtern);
+      Zusatzgrund := LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern);
+      
+      if
+        Basisgrund = Zusatzgrund
+      then
+         return LeseKartenDatenbanken.BewertungGrund (GrundExtern => Basisgrund,
+                                                      RasseExtern => RasseExtern);
+         
+      else
+         return LeseKartenDatenbanken.BewertungGrund (GrundExtern => Zusatzgrund,
+                                                      RasseExtern => RasseExtern);
+      end if;
       
    end GrundBewertung;
    
@@ -272,7 +254,7 @@ package body KartenAllgemein is
    function FlussNahrung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionElement
+      return ProduktionDatentypen.Einzelproduktion
    is begin
       
       KartenFluss := LeseKarten.Fluss (KoordinatenExtern => KoordinatenExtern);
@@ -296,7 +278,7 @@ package body KartenAllgemein is
    function FlussProduktion
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionElement
+      return ProduktionDatentypen.Einzelproduktion
    is begin
       
       KartenFluss := LeseKarten.Fluss (KoordinatenExtern => KoordinatenExtern);
@@ -320,7 +302,7 @@ package body KartenAllgemein is
    function FlussGeld
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionElement
+      return ProduktionDatentypen.Einzelproduktion
    is begin
       
       KartenFluss := LeseKarten.Fluss (KoordinatenExtern => KoordinatenExtern);
@@ -344,7 +326,7 @@ package body KartenAllgemein is
    function FlussWissen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionElement
+      return ProduktionDatentypen.Einzelproduktion
    is begin
       
       KartenFluss := LeseKarten.Fluss (KoordinatenExtern => KoordinatenExtern);
@@ -416,7 +398,7 @@ package body KartenAllgemein is
    function FlussBewertung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenDatentypen.BewertungFeld
+      return KartenDatentypen.Einzelbewertung
    is begin
       
       KartenFluss := LeseKarten.Fluss (KoordinatenExtern => KoordinatenExtern);
@@ -439,7 +421,7 @@ package body KartenAllgemein is
    function WegNahrung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionFeld
+      return ProduktionDatentypen.Feldproduktion
    is begin
       
       KartenWeg := LeseKarten.Weg (KoordinatenExtern => KoordinatenExtern);
@@ -463,7 +445,7 @@ package body KartenAllgemein is
    function WegProduktion
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionFeld
+      return ProduktionDatentypen.Feldproduktion
    is begin
       
       KartenWeg := LeseKarten.Weg (KoordinatenExtern => KoordinatenExtern);
@@ -487,7 +469,7 @@ package body KartenAllgemein is
    function WegGeld
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionFeld
+      return ProduktionDatentypen.Feldproduktion
    is begin
       
       KartenWeg := LeseKarten.Weg (KoordinatenExtern => KoordinatenExtern);
@@ -511,7 +493,7 @@ package body KartenAllgemein is
    function WegWissen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionFeld
+      return ProduktionDatentypen.Feldproduktion
    is begin
       
       KartenWeg := LeseKarten.Weg (KoordinatenExtern => KoordinatenExtern);
@@ -583,7 +565,7 @@ package body KartenAllgemein is
    function WegBewertung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenDatentypen.BewertungFeld
+      return KartenDatentypen.Einzelbewertung
    is begin
       
       KartenWeg := LeseKarten.Weg (KoordinatenExtern => KoordinatenExtern);
@@ -606,7 +588,7 @@ package body KartenAllgemein is
    function VerbesserungNahrung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionFeld
+      return ProduktionDatentypen.Feldproduktion
    is begin
       
       KartenVerbesserung := LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern);
@@ -630,7 +612,7 @@ package body KartenAllgemein is
    function VerbesserungProduktion
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionFeld
+      return ProduktionDatentypen.Feldproduktion
    is begin
       
       KartenVerbesserung := LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern);
@@ -654,7 +636,7 @@ package body KartenAllgemein is
    function VerbesserungGeld
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionFeld
+      return ProduktionDatentypen.Feldproduktion
    is begin
       
       KartenVerbesserung := LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern);
@@ -678,7 +660,7 @@ package body KartenAllgemein is
    function VerbesserungWissen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionFeld
+      return ProduktionDatentypen.Feldproduktion
    is begin
       
       KartenVerbesserung := LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern);
@@ -750,7 +732,7 @@ package body KartenAllgemein is
    function VerbesserungBewertung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenDatentypen.BewertungFeld
+      return KartenDatentypen.Einzelbewertung
    is begin
       
       KartenVerbesserung := LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern);
@@ -773,7 +755,7 @@ package body KartenAllgemein is
    function RessourceNahrung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionElement
+      return ProduktionDatentypen.Einzelproduktion
    is begin
       
       -----------------------
@@ -798,7 +780,7 @@ package body KartenAllgemein is
    function RessourceProduktion
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionElement
+      return ProduktionDatentypen.Einzelproduktion
    is begin
       
       KartenRessource := LeseKarten.Ressource (KoordinatenExtern => KoordinatenExtern);
@@ -822,7 +804,7 @@ package body KartenAllgemein is
    function RessourceGeld
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionElement
+      return ProduktionDatentypen.Einzelproduktion
    is begin
       
       KartenRessource := LeseKarten.Ressource (KoordinatenExtern => KoordinatenExtern);
@@ -846,7 +828,7 @@ package body KartenAllgemein is
    function RessourceWissen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionElement
+      return ProduktionDatentypen.Einzelproduktion
    is begin
       
       KartenRessource := LeseKarten.Ressource (KoordinatenExtern => KoordinatenExtern);
@@ -918,7 +900,7 @@ package body KartenAllgemein is
    function RessourceBewertung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenDatentypen.BewertungFeld
+      return KartenDatentypen.Einzelbewertung
    is begin
       
       KartenRessource := LeseKarten.Ressource (KoordinatenExtern => KoordinatenExtern);

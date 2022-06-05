@@ -18,7 +18,7 @@ package body KIMindestBewertungKartenfeldErmitteln is
    -- Später Rassen/Technolgie/Sonstigesabhängig die Mindestbewertung ermitteln
    function MindestBewertungKartenfeldStadtBauen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return KartenDatentypen.GesamtbewertungFeld
+      return KartenDatentypen.GesamteFeldbewertung
    is begin
       
       MindestBewertungKartenfeld := KIKonstanten.KartenfeldBewertungStadtBauenMinimum (EinheitRasseNummerExtern.Rasse);

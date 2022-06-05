@@ -28,16 +28,4 @@ package body LeseForschungenDatenbank is
 
    end AnforderungForschung;
 
-
-
-   function GanzerEintrag
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in ForschungenDatentypen.ForschungID)
-      return DatenbankRecords.ForschungslisteRecord
-   is begin
-
-      return ForschungenDatenbank.Forschungsliste (RasseExtern, IDExtern);
-
-   end GanzerEintrag;
-
 end LeseForschungenDatenbank;

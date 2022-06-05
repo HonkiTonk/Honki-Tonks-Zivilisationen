@@ -63,7 +63,7 @@ package DatenbankRecords is
 
    
    -- GebäudeDatenbank
-   type BonusWirtschaftArray is array (KartenDatentypen.Wirtschaft_Enum'Range) of ProduktionDatentypen.ProduktionFeld;
+   type BonusWirtschaftArray is array (KartenDatentypen.Wirtschaft_Enum'Range) of ProduktionDatentypen.Feldproduktion;
    type BonusKampfArray is array (KartenDatentypen.Kampf_Enum'Range) of KampfDatentypen.Kampfwerte;
    
    type GebäudelisteRecord is record
@@ -92,8 +92,8 @@ package DatenbankRecords is
 
 
 
-   type BewertungArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of KartenDatentypen.BewertungFeld;
-   type WirtschaftArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, KartenDatentypen.Wirtschaft_Enum'Range) of ProduktionDatentypen.ProduktionElement;
+   type BewertungArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of KartenDatentypen.Einzelbewertung;
+   type WirtschaftArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, KartenDatentypen.Wirtschaft_Enum'Range) of ProduktionDatentypen.Einzelproduktion;
    type KampfArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, KartenDatentypen.Kampf_Enum'Range) of KampfDatentypen.KampfwerteAllgemein;
       
    -- KartengrundDatenbank

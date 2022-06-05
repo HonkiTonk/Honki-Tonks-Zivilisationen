@@ -12,7 +12,7 @@ package KIMindestBewertungKartenfeldErmitteln is
 
    function MindestBewertungKartenfeldStadtBauen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return KartenDatentypen.GesamtbewertungFeld
+      return KartenDatentypen.GesamteFeldbewertung
      with
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -21,7 +21,7 @@ package KIMindestBewertungKartenfeldErmitteln is
    
 private
    
-   MindestBewertungKartenfeld : KartenDatentypen.GesamtbewertungFeld;
+   MindestBewertungKartenfeld : KartenDatentypen.GesamteFeldbewertung;
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
 

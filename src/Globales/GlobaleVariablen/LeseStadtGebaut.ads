@@ -46,7 +46,7 @@ package LeseStadtGebaut is
    function EinwohnerArbeiter
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       EinwohnerArbeiterExtern : in Boolean)
-      return ProduktionDatentypen.ProduktionFeld
+      return ProduktionDatentypen.Feldproduktion
      with
        Pre =>
          (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -57,7 +57,7 @@ package LeseStadtGebaut is
       
    function Nahrungsmittel
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return ProduktionDatentypen.GesamtproduktionStadt
+      return ProduktionDatentypen.Stadtproduktion
      with
        Pre =>
          (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -66,7 +66,7 @@ package LeseStadtGebaut is
    
    function Nahrungsproduktion
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return ProduktionDatentypen.GesamtproduktionStadt
+      return ProduktionDatentypen.Stadtproduktion
      with
        Pre =>
          (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -84,7 +84,7 @@ package LeseStadtGebaut is
    
    function Produktionrate
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return ProduktionDatentypen.GesamtproduktionStadt
+      return ProduktionDatentypen.Stadtproduktion
      with
        Pre =>
          (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -93,7 +93,7 @@ package LeseStadtGebaut is
    
    function Geldgewinnung
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return ProduktionDatentypen.GesamtproduktionStadt
+      return ProduktionDatentypen.Stadtproduktion
      with
        Pre =>
          (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -112,7 +112,7 @@ package LeseStadtGebaut is
       
    function Forschungsrate
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return ProduktionDatentypen.GesamtproduktionStadt
+      return ProduktionDatentypen.Stadtproduktion
      with
        Pre =>
          (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -144,7 +144,7 @@ package LeseStadtGebaut is
 
    function Korruption
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return ProduktionDatentypen.GesamtproduktionStadt
+      return ProduktionDatentypen.Stadtproduktion
      with
        Pre =>
          (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -153,7 +153,7 @@ package LeseStadtGebaut is
    
    function Zufriedenheit
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return ProduktionDatentypen.ProduktionFeld
+      return ProduktionDatentypen.Feldproduktion
      with
        Pre =>
          (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze

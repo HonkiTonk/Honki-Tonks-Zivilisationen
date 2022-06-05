@@ -19,7 +19,7 @@ package KartengrundSonstiges is
                                                                               Passierbarkeit => (EinheitenDatentypen.Luft_Enum     => True,
                                                                                                  EinheitenDatentypen.Weltraum_Enum => True,
                                                                                                  others                            => False),
-                                                                              Bewertung      => (others => KartenDatentypen.BewertungFeld'First),
+                                                                              Bewertung      => (others => KartenDatentypen.Einzelbewertung'First),
 
                                                                                 -- Nahrung, Produktion, Geld, Forschung
                                                                               Wirtschaft =>

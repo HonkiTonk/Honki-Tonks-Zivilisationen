@@ -22,7 +22,7 @@ package body LeseKartenDatenbanken is
    function BewertungGrund
      (GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenDatentypen.BewertungFeld
+      return KartenDatentypen.Einzelbewertung
    is begin
       
       return KartengrundDatenbank.Kartengrundliste (GrundExtern).Bewertung (RasseExtern);
@@ -34,7 +34,7 @@ package body LeseKartenDatenbanken is
    function BewertungFluss
      (FlussExtern : in KartengrundDatentypen.Kartenfluss_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenDatentypen.BewertungFeld
+      return KartenDatentypen.Einzelbewertung
    is begin
       
       return KartenflussDatenbank.Kartenflussliste (FlussExtern).Bewertung (RasseExtern);
@@ -46,7 +46,7 @@ package body LeseKartenDatenbanken is
    function BewertungRessource
      (RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenDatentypen.BewertungFeld
+      return KartenDatentypen.Einzelbewertung
    is begin
       
       return KartenressourcenDatenbank.KartenressourcenListe (RessourceExtern).Bewertung (RasseExtern);
@@ -59,7 +59,7 @@ package body LeseKartenDatenbanken is
      (GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       WirtschaftArtExtern : in KartenDatentypen.Wirtschaft_Enum)
-      return ProduktionDatentypen.ProduktionElement
+      return ProduktionDatentypen.Einzelproduktion
    is begin
       
       return KartengrundDatenbank.Kartengrundliste (GrundExtern).Wirtschaft (RasseExtern, WirtschaftArtExtern);
@@ -72,7 +72,7 @@ package body LeseKartenDatenbanken is
      (FlussExtern : in KartengrundDatentypen.Kartenfluss_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       WirtschaftArtExtern : in KartenDatentypen.Wirtschaft_Enum)
-      return ProduktionDatentypen.ProduktionElement
+      return ProduktionDatentypen.Einzelproduktion
    is begin
       
       return KartenflussDatenbank.Kartenflussliste (FlussExtern).Wirtschaft (RasseExtern, WirtschaftArtExtern);
@@ -85,7 +85,7 @@ package body LeseKartenDatenbanken is
      (RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       WirtschaftArtExtern : in KartenDatentypen.Wirtschaft_Enum)
-      return ProduktionDatentypen.ProduktionElement
+      return ProduktionDatentypen.Einzelproduktion
    is begin
       
       return KartenressourcenDatenbank.KartenressourcenListe (RessourceExtern).Wirtschaft (RasseExtern, WirtschaftArtExtern);
@@ -130,38 +130,5 @@ package body LeseKartenDatenbanken is
       return KartenressourcenDatenbank.KartenressourcenListe (RessourceExtern).Kampf (RasseExtern, KampfArtExtern);
       
    end KampfRessource;
-   
-   
-   
-   function GanzerEintragGrund
-     (GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
-      return DatenbankRecords.KartengrundlisteRecord
-   is begin
-      
-      return KartengrundDatenbank.Kartengrundliste (GrundExtern);
-      
-   end GanzerEintragGrund;
-   
-   
-   
-   function GanzerEintragFluss
-     (FlussExtern : in KartengrundDatentypen.Kartenfluss_Vorhanden_Enum)
-      return DatenbankRecords.KartenlisteRecord
-   is begin
-      
-      return KartenflussDatenbank.Kartenflussliste (FlussExtern);
-      
-   end GanzerEintragFluss;
-   
-   
-   
-   function GanzerEintragRessource
-     (RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Vorhanden_Enum)
-      return DatenbankRecords.KartenlisteRecord
-   is begin
-      
-      return KartenressourcenDatenbank.KartenressourcenListe (RessourceExtern);
-      
-   end GanzerEintragRessource;
 
 end LeseKartenDatenbanken;

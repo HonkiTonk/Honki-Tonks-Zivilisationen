@@ -8,10 +8,10 @@ with ProduktionDatentypen;
 
 package DiplomatischerZustand is
 
-   type SympathieGrenzenArray is array (SystemDatentypen.Status_Untereinander_Bekannt_Enum'Range) of ProduktionDatentypen.ProduktionFeld;
+   type SympathieGrenzenArray is array (SystemDatentypen.Status_Untereinander_Bekannt_Enum'Range) of ProduktionDatentypen.Feldproduktion;
    SympathieGrenzen : constant SympathieGrenzenArray := (
                                                          SystemDatentypen.Neutral_Enum           => 50,
-                                                         SystemDatentypen.Nichtangriffspakt_Enum => ProduktionDatentypen.ProduktionFeld'Last,
+                                                         SystemDatentypen.Nichtangriffspakt_Enum => ProduktionDatentypen.Feldproduktion'Last,
                                                          SystemDatentypen.Krieg_Enum             => 0
                                                         );
 
@@ -30,7 +30,7 @@ package DiplomatischerZustand is
    procedure SympathieÄndern
      (EigeneRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       FremdeRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      ÄnderungExtern : in ProduktionDatentypen.ProduktionFeld)
+      ÄnderungExtern : in ProduktionDatentypen.Feldproduktion)
      with
        Pre =>
          (EigeneRasseExtern /= FremdeRasseExtern
@@ -91,7 +91,7 @@ package DiplomatischerZustand is
    function AktuelleSympathie
      (EigeneRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       FremdeRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionFeld
+      return ProduktionDatentypen.Feldproduktion
      with
        Pre =>
          (EigeneRasseExtern /= FremdeRasseExtern

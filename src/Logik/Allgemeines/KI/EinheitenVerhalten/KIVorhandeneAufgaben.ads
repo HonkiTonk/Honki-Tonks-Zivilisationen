@@ -7,14 +7,15 @@ with SonstigeVariablen;
 with EinheitenDatentypen;
 with SpielVariablen;
 with ForschungenDatentypen;
-with ProduktionDatentypen;
 with StadtDatentypen;
+
+with KIDatentypen;
 
 package KIVorhandeneAufgaben is
 
    function SichHeilen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return ProduktionDatentypen.ProduktionSonstiges
+      return KIDatentypen.AufgabenWichtigkeit
      with
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -23,7 +24,7 @@ package KIVorhandeneAufgaben is
    
    function SichVerbessern
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return ProduktionDatentypen.ProduktionSonstiges
+      return KIDatentypen.AufgabenWichtigkeit
      with
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -32,7 +33,7 @@ package KIVorhandeneAufgaben is
    
    function EinheitAuflösen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return ProduktionDatentypen.ProduktionSonstiges
+      return KIDatentypen.AufgabenWichtigkeit
      with
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -40,11 +41,11 @@ package KIVorhandeneAufgaben is
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
    
    function Fliehen
-     return ProduktionDatentypen.ProduktionSonstiges;
+     return KIDatentypen.AufgabenWichtigkeit;
 
    function NeueStadtBauenGehen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return ProduktionDatentypen.ProduktionSonstiges
+      return KIDatentypen.AufgabenWichtigkeit
      with
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -53,7 +54,7 @@ package KIVorhandeneAufgaben is
 
    function StadtUmgebungVerbessern
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return ProduktionDatentypen.ProduktionSonstiges
+      return KIDatentypen.AufgabenWichtigkeit
      with
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -62,7 +63,7 @@ package KIVorhandeneAufgaben is
 
    function StadtBewachen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return ProduktionDatentypen.ProduktionSonstiges
+      return KIDatentypen.AufgabenWichtigkeit
      with
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -70,11 +71,11 @@ package KIVorhandeneAufgaben is
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
 
    function StadtUmgebungZerstören
-     return ProduktionDatentypen.ProduktionSonstiges;
+     return KIDatentypen.AufgabenWichtigkeit;
 
    function Angreifen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return ProduktionDatentypen.ProduktionSonstiges
+      return KIDatentypen.AufgabenWichtigkeit
      with
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -82,13 +83,13 @@ package KIVorhandeneAufgaben is
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
 
    function Erkunden
-     return ProduktionDatentypen.ProduktionSonstiges;
+     return KIDatentypen.AufgabenWichtigkeit;
    
    function SichBefestigen
-     return ProduktionDatentypen.ProduktionSonstiges;
+     return KIDatentypen.AufgabenWichtigkeit;
    
    function NichtsTun
-     return ProduktionDatentypen.ProduktionSonstiges;
+     return KIDatentypen.AufgabenWichtigkeit;
    
 private
    
@@ -100,6 +101,6 @@ private
    
    EinheitNummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    
-   GewählteAufgabe : ProduktionDatentypen.ProduktionSonstiges;
+   GewählteAufgabe : KIDatentypen.AufgabenWichtigkeit;
 
 end KIVorhandeneAufgaben;

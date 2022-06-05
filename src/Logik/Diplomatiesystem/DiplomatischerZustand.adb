@@ -69,7 +69,7 @@ package body DiplomatischerZustand is
    function AktuelleSympathie
      (EigeneRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       FremdeRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.ProduktionFeld
+      return ProduktionDatentypen.Feldproduktion
    is begin
       
       return SpielVariablen.Diplomatie (EigeneRasseExtern, FremdeRasseExtern).AktuelleSympathieBewertung;
@@ -81,7 +81,7 @@ package body DiplomatischerZustand is
    procedure SympathieÄndern
      (EigeneRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       FremdeRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      ÄnderungExtern : in ProduktionDatentypen.ProduktionFeld)
+      ÄnderungExtern : in ProduktionDatentypen.Feldproduktion)
    is begin
       
       if
@@ -92,9 +92,9 @@ package body DiplomatischerZustand is
                                                                                                                                                          FremdeRasseExtern => FremdeRasseExtern));
            
       elsif
-        SpielVariablen.Diplomatie (EigeneRasseExtern, FremdeRasseExtern).AktuelleSympathieBewertung + ÄnderungExtern < ProduktionDatentypen.ProduktionFeld'First
+        SpielVariablen.Diplomatie (EigeneRasseExtern, FremdeRasseExtern).AktuelleSympathieBewertung + ÄnderungExtern < ProduktionDatentypen.Feldproduktion'First
       then
-         SpielVariablen.Diplomatie (EigeneRasseExtern, FremdeRasseExtern).AktuelleSympathieBewertung := ProduktionDatentypen.ProduktionFeld'First;
+         SpielVariablen.Diplomatie (EigeneRasseExtern, FremdeRasseExtern).AktuelleSympathieBewertung := ProduktionDatentypen.Feldproduktion'First;
                                                                                                                             
       else
          SpielVariablen.Diplomatie (EigeneRasseExtern, FremdeRasseExtern).AktuelleSympathieBewertung := SpielVariablen.Diplomatie (EigeneRasseExtern, FremdeRasseExtern).AktuelleSympathieBewertung + ÄnderungExtern;

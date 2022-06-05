@@ -8,8 +8,6 @@ with ForschungenDatentypen;
 with ProduktionDatentypen;
 with KampfDatentypen;
 
-with DatenbankRecords;
-
 package LeseEinheitenDatenbank is
 
    function EinheitArt
@@ -146,14 +144,6 @@ package LeseEinheitenDatenbank is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenID)
       return EinheitenDatentypen.Transportplätze
-     with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
-   
-   function GanzerEintrag
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenID)
-      return DatenbankRecords.EinheitenlisteRecord
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);

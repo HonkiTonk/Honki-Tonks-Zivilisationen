@@ -27,8 +27,8 @@ private
    
    AktuellerStatus : SystemDatentypen.Status_Untereinander_Bekannt_Enum;
    
-   SympathieZweiZuEins : ProduktionDatentypen.ProduktionFeld;
-   SympathieÄnderung : ProduktionDatentypen.ProduktionFeld;
+   SympathieZweiZuEins : ProduktionDatentypen.Feldproduktion;
+   SympathieÄnderung : ProduktionDatentypen.Feldproduktion;
    
    ZeitSeitÄnderung : Natural;
    

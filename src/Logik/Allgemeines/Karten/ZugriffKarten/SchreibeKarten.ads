@@ -99,7 +99,7 @@ package SchreibeKarten is
    procedure Bewertung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      BewertungExtern : in KartenDatentypen.GesamtbewertungFeld)
+      BewertungExtern : in KartenDatentypen.GesamteFeldbewertung)
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum

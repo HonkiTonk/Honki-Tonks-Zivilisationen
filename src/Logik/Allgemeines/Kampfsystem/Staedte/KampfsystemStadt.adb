@@ -201,7 +201,7 @@ package body KampfsystemStadt is
       end loop AngerichteterSchadenSchleife;
       
       if
-        GesundheitStadt - AngerichteterSchaden < ProduktionDatentypen.ProduktionFeld'First
+        GesundheitStadt - AngerichteterSchaden < ProduktionDatentypen.Feldproduktion'First
       then
          GesundheitStadt := 0;
          

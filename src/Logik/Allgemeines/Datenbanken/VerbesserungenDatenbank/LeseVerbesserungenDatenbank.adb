@@ -32,7 +32,7 @@ package body LeseVerbesserungenDatenbank is
    function BewertungVerbesserung
      (VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenDatentypen.BewertungFeld
+      return KartenDatentypen.Einzelbewertung
    is begin
       
       return VerbesserungenDatenbank.VerbesserungenListe (VerbesserungExtern).Bewertung (RasseExtern);
@@ -44,7 +44,7 @@ package body LeseVerbesserungenDatenbank is
    function BewertungWeg
      (WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenDatentypen.BewertungFeld
+      return KartenDatentypen.Einzelbewertung
    is begin
       
       return VerbesserungenDatenbank.WegeListe (WegExtern).Bewertung (RasseExtern);
@@ -57,7 +57,7 @@ package body LeseVerbesserungenDatenbank is
      (VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       WelcherWertExtern : in KartenDatentypen.Wirtschaft_Enum)
-      return ProduktionDatentypen.ProduktionElement
+      return ProduktionDatentypen.Einzelproduktion
    is begin
       
       return VerbesserungenDatenbank.VerbesserungenListe (VerbesserungExtern).Wirtschaft (RasseExtern, WelcherWertExtern);
@@ -70,7 +70,7 @@ package body LeseVerbesserungenDatenbank is
      (WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       WelcherWertExtern : in KartenDatentypen.Wirtschaft_Enum)
-      return ProduktionDatentypen.ProduktionElement
+      return ProduktionDatentypen.Einzelproduktion
    is begin
       
       return VerbesserungenDatenbank.WegeListe (WegExtern).Wirtschaft (RasseExtern, WelcherWertExtern);
@@ -102,27 +102,5 @@ package body LeseVerbesserungenDatenbank is
       return VerbesserungenDatenbank.WegeListe (WegExtern).Kampf (RasseExtern, WelcherWertExtern);
       
    end KampfWeg;
-   
-   
-   
-   function GanzerEintragVerbesserung
-     (VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum)
-      return DatenbankRecords.VerbesserungenWegeListeRecord
-   is begin
-      
-      return VerbesserungenDatenbank.VerbesserungenListe (VerbesserungExtern);
-      
-   end GanzerEintragVerbesserung;
-   
-   
-   
-   function GanzerEintragWeg
-     (WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum)
-      return DatenbankRecords.VerbesserungenWegeListeRecord
-   is begin
-      
-      return VerbesserungenDatenbank.WegeListe (WegExtern);
-      
-   end GanzerEintragWeg;
 
 end LeseVerbesserungenDatenbank;

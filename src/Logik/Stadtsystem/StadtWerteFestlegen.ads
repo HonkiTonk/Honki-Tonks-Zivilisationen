@@ -44,10 +44,10 @@ private
    GrößeAlt : KartenDatentypen.UmgebungsbereichDrei;
    GrößeNeu : KartenDatentypen.UmgebungsbereichDrei;
    
-   NahrungGesamt : ProduktionDatentypen.ProduktionFeld;
-   RessourcenGesamt : ProduktionDatentypen.ProduktionFeld;
-   GeldGesamt : ProduktionDatentypen.ProduktionFeld;
-   WissenGesamt : ProduktionDatentypen.ProduktionFeld;
+   NahrungGesamt : ProduktionDatentypen.Feldproduktion;
+   RessourcenGesamt : ProduktionDatentypen.Feldproduktion;
+   GeldGesamt : ProduktionDatentypen.Feldproduktion;
+   WissenGesamt : ProduktionDatentypen.Feldproduktion;
    
    NutzbarerBereich : KartenDatentypen.Kartenfeld;
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
@@ -56,7 +56,7 @@ private
       
       Belegt : Boolean;
       
-      Gesamtbewertung : ProduktionDatentypen.GesamtproduktionStadt;
+      Gesamtbewertung : ProduktionDatentypen.Stadtproduktion;
       
    end record;
    
@@ -65,7 +65,7 @@ private
    
    type WelchesFeldRecord is record
       
-      HöchsterWert : ProduktionDatentypen.GesamtproduktionStadt;
+      HöchsterWert : ProduktionDatentypen.Stadtproduktion;
       YKoordinate : KartenDatentypen.UmgebungsbereichDrei;
       XKoordinate : KartenDatentypen.UmgebungsbereichDrei;
       
@@ -100,7 +100,7 @@ private
    procedure ArbeiterBelegenEntfernen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       BelegenEntfernenExtern : in Boolean;
-      ÄnderungExtern : in ProduktionDatentypen.ProduktionFeld)
+      ÄnderungExtern : in ProduktionDatentypen.Feldproduktion)
      with
        Pre =>
          (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -130,7 +130,7 @@ private
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       BelegenOderEntfernen : in Boolean)
-      return ProduktionDatentypen.GesamtproduktionStadt
+      return ProduktionDatentypen.Stadtproduktion
      with
        Pre =>
          (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -141,7 +141,7 @@ private
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       BelegenOderEntfernen : in Boolean)
-      return ProduktionDatentypen.GesamtproduktionStadt
+      return ProduktionDatentypen.Stadtproduktion
      with
        Pre =>
          (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -152,7 +152,7 @@ private
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       BelegenOderEntfernen : in Boolean)
-      return ProduktionDatentypen.GesamtproduktionStadt
+      return ProduktionDatentypen.Stadtproduktion
      with
        Pre =>
          (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -163,7 +163,7 @@ private
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       BelegenOderEntfernen : in Boolean)
-      return ProduktionDatentypen.GesamtproduktionStadt
+      return ProduktionDatentypen.Stadtproduktion
      with
        Pre =>
          (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -174,7 +174,7 @@ private
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       BelegenOderEntfernen : in Boolean)
-      return ProduktionDatentypen.GesamtproduktionStadt
+      return ProduktionDatentypen.Stadtproduktion
      with
        Pre =>
          (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze

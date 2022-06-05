@@ -58,7 +58,7 @@ package body LeseGebaeudeDatenbank is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in StadtDatentypen.GebäudeID;
       WWirtschaftBonusExtern : in KartenDatentypen.Wirtschaft_Enum)
-      return ProduktionDatentypen.ProduktionFeld
+      return ProduktionDatentypen.Feldproduktion
    is begin
       
       return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).BonusWirtschaft (WWirtschaftBonusExtern);
@@ -125,17 +125,5 @@ package body LeseGebaeudeDatenbank is
       return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).GebäudeSpezielleEigenschaft;
       
    end GebäudeSpezielleEigenschaft;
-
-
-
-   function GanzerEintrag
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in StadtDatentypen.GebäudeID)
-      return DatenbankRecords.GebäudelisteRecord
-   is begin
-
-      return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern);
-
-   end GanzerEintrag;
 
 end LeseGebaeudeDatenbank;

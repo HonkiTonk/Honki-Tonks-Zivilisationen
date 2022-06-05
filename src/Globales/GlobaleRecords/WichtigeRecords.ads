@@ -48,7 +48,7 @@ package WichtigeRecords is
    type DiplomatieRecord is record
       
       AktuellerZustand : SystemDatentypen.Status_Untereinander_Enum;
-      AktuelleSympathieBewertung : ProduktionDatentypen.ProduktionFeld;
+      AktuelleSympathieBewertung : ProduktionDatentypen.Feldproduktion;
       ZeitSeitLetzterÄnderung : ZahlenDatentypen.EigenesNatural;
       
    end record;

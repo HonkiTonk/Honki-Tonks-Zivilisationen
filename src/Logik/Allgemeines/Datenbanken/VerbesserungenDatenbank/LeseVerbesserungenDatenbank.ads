@@ -9,8 +9,6 @@ with KartenVerbesserungDatentypen;
 with ProduktionDatentypen;
 with KampfDatentypen;
 
-with DatenbankRecords;
-
 package LeseVerbesserungenDatenbank is
 
    function PassierbarkeitVerbesserung
@@ -26,7 +24,7 @@ package LeseVerbesserungenDatenbank is
    function BewertungVerbesserung
      (VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenDatentypen.BewertungFeld
+      return KartenDatentypen.Einzelbewertung
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
@@ -34,7 +32,7 @@ package LeseVerbesserungenDatenbank is
    function BewertungWeg
      (WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenDatentypen.BewertungFeld
+      return KartenDatentypen.Einzelbewertung
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
@@ -43,7 +41,7 @@ package LeseVerbesserungenDatenbank is
      (VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       WelcherWertExtern : in KartenDatentypen.Wirtschaft_Enum)
-      return ProduktionDatentypen.ProduktionElement
+      return ProduktionDatentypen.Einzelproduktion
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
@@ -52,7 +50,7 @@ package LeseVerbesserungenDatenbank is
      (WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       WelcherWertExtern : in KartenDatentypen.Wirtschaft_Enum)
-      return ProduktionDatentypen.ProduktionElement
+      return ProduktionDatentypen.Einzelproduktion
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
@@ -74,13 +72,5 @@ package LeseVerbesserungenDatenbank is
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
-   
-   function GanzerEintragVerbesserung
-     (VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum)
-      return DatenbankRecords.VerbesserungenWegeListeRecord;
-   
-   function GanzerEintragWeg
-     (WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum)
-      return DatenbankRecords.VerbesserungenWegeListeRecord;
 
 end LeseVerbesserungenDatenbank;

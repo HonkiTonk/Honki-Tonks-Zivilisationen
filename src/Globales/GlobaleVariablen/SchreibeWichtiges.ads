@@ -19,7 +19,7 @@ package SchreibeWichtiges is
    
    procedure GeldZugewinnProRunde
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      GeldZugewinnExtern : in ProduktionDatentypen.GesamtproduktionStadt;
+      GeldZugewinnExtern : in ProduktionDatentypen.Stadtproduktion;
       RechnenSetzenExtern : in Boolean)
      with
        Pre =>
@@ -27,7 +27,7 @@ package SchreibeWichtiges is
    
    procedure GesamteForschungsrate
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      ForschungsrateZugewinnExtern : in ProduktionDatentypen.GesamtproduktionStadt;
+      ForschungsrateZugewinnExtern : in ProduktionDatentypen.Stadtproduktion;
       RechnenSetzenExtern : in Boolean)
      with
        Pre =>

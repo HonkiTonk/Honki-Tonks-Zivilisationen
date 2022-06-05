@@ -24,9 +24,9 @@ package KIKriegErmitteln is
 private
 
    RasseGewählt : RassenDatentypen.Rassen_Enum;
-   Bewertung : ProduktionDatentypen.ProduktionFeld;
+   Bewertung : ProduktionDatentypen.Feldproduktion;
 
-   type BewertungenArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of ProduktionDatentypen.ProduktionFeld;
+   type BewertungenArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of ProduktionDatentypen.Feldproduktion;
    Bewertungen : BewertungenArray;
 
    NotwendigeBewertung : constant BewertungenArray := (

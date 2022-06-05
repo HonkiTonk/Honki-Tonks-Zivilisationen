@@ -17,7 +17,7 @@ package KIKonstanten is
    LeerEinheitIDBewertung : constant KIRecords.EinheitIDBewertungRecord := (0, 0);
    LeerGebäudeIDBewertung : constant KIRecords.GebäudeIDBewertungRecord := (0, 0);
 
-   type KartenfeldBewertungStadtBauenMinimumArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of KartenDatentypen.GesamtbewertungFeld;
+   type KartenfeldBewertungStadtBauenMinimumArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of KartenDatentypen.GesamteFeldbewertung;
    KartenfeldBewertungStadtBauenMinimum : constant KartenfeldBewertungStadtBauenMinimumArray := (
                                                                                                  RassenDatentypen.Menschen_Enum         => 10,
                                                                                                  RassenDatentypen.Kasrodiah_Enum        => 10,
