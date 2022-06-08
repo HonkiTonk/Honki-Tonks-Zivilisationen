@@ -13,7 +13,7 @@ package WichtigeRecords is
    type ForschungRecord is record -- XXX
       
       TechnologieErforscht : ForschungenDatentypen.ErforschtArray;
-      InvestierteForschung : ProduktionDatentypen.KostenLager;
+      InvestierteForschung : ProduktionDatentypen.Produktion;
       
    end record;
    
@@ -22,11 +22,11 @@ package WichtigeRecords is
    type WichtigesRecord is record
       
       Geldmenge : ZahlenDatentypen.EigenerInteger;
-      GeldZugewinnProRunde : ProduktionDatentypen.KostenLager;
+      GeldZugewinnProRunde : ProduktionDatentypen.Produktion;
 
-      GesamteForschungsrate : ProduktionDatentypen.KostenLager;
-      Forschungsmenge : ProduktionDatentypen.KostenLager;
-      VerbleibendeForschungszeit : ProduktionDatentypen.KostenLager;
+      GesamteForschungsrate : ProduktionDatentypen.Produktion;
+      Forschungsmenge : ProduktionDatentypen.Produktion;
+      VerbleibendeForschungszeit : ProduktionDatentypen.Produktion;
       Forschungsprojekt : ForschungenDatentypen.ForschungIDMitNullWert;
       
       -- Wenn ich ein Record für diese Variable hier anlege, dann könnten man die bereits investierte Forschung behalten. XXX
@@ -38,8 +38,8 @@ package WichtigeRecords is
       AnzahlSonstiges : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
       
       -- Einbau sinnvoll?
-      -- GesamterAngriff : ProduktionDatentypen.KostenLager;
-      -- GesamteVerteidigung : ProduktionDatentypen.KostenLager;
+      -- GesamterAngriff : ProduktionDatentypen.Produktion;
+      -- GesamteVerteidigung : ProduktionDatentypen.Produktion;
       
    end record;
    
@@ -60,9 +60,9 @@ package WichtigeRecords is
       Städtegrenze : StadtDatentypen.MaximaleStädte;
       Einheitengrenze : EinheitenDatentypen.MaximaleEinheiten;
       Geldgrenze : ZahlenDatentypen.EigenerInteger;
-      Forschungsgrenze : ProduktionDatentypen.KostenLager;
-      Geldgewinngrenze : ProduktionDatentypen.KostenLager;
-      ForschungGewinngrenze : ProduktionDatentypen.KostenLager;
+      Forschungsgrenze : ProduktionDatentypen.Produktion;
+      Geldgewinngrenze : ProduktionDatentypen.Produktion;
+      ForschungGewinngrenze : ProduktionDatentypen.Produktion;
       RassenRundengrenze : ZahlenDatentypen.EigenesNatural;
       
    end record;

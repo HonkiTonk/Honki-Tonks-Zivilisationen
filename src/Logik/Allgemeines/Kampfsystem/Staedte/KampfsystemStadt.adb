@@ -3,7 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 with EinheitenDatentypen; use EinheitenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
-with ProduktionDatentypen; use ProduktionDatentypen;
 with KampfDatentypen; use KampfDatentypen;
 with EinheitenKonstanten;
 with StadtKonstanten;
@@ -69,8 +68,9 @@ package body KampfsystemStadt is
       
       if
         LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => VerteidigendeStadtRasseNummerExtern,
-                                           EinwohnerArbeiterExtern => True) - 1
-        <= StadtKonstanten.LeerStadt.EinwohnerArbeiter (1)
+                                           EinwohnerArbeiterExtern => True)
+        - 1
+        <= StadtKonstanten.LeerEinwohner
       then
          StadtEntfernen.StadtEntfernen (StadtRasseNummerExtern => VerteidigendeStadtRasseNummerExtern);
          return True;
@@ -113,11 +113,12 @@ package body KampfsystemStadt is
       KampfSchleife:
       loop
          
-         SchadenStadtBerechnen (AngriffExtern      => KampfwerteAngreifer.Angriff,
-                                VerteidigungExtern => KampfwerteVerteidiger.Verteidigung);
+         GesundheitStadt := SchadenStadtBerechnen (AngriffExtern         => KampfwerteAngreifer.Angriff,
+                                                   VerteidigungExtern    => KampfwerteVerteidiger.Verteidigung,
+                                                   StadtgesundheitExtern => GesundheitStadt);
 
          if
-           GesundheitStadt <= 0
+           GesundheitStadt = 0
          then
             SchreibeEinheitenGebaut.Erfahrungspunkte (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern,
                                                       ErfahrungspunkteExtern   => LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => AngreifendeEinheitRasseNummerExtern.Rasse,
@@ -150,9 +151,11 @@ package body KampfsystemStadt is
    
    
    
-   procedure SchadenStadtBerechnen
+   function SchadenStadtBerechnen
      (AngriffExtern : in KampfDatentypen.Kampfwerte;
-      VerteidigungExtern : in KampfDatentypen.Kampfwerte)
+      VerteidigungExtern : in KampfDatentypen.Kampfwerte;
+      StadtgesundheitExtern : in ProduktionDatentypen.Feldproduktion)
+      return ProduktionDatentypen.Feldproduktion
    is begin
       
       -- Bei Extremfällen AngerichteterSchaden schon vorher einen Wert geben?
@@ -201,12 +204,12 @@ package body KampfsystemStadt is
       end loop AngerichteterSchadenSchleife;
       
       if
-        GesundheitStadt - AngerichteterSchaden < ProduktionDatentypen.Feldproduktion'First
+        StadtgesundheitExtern - AngerichteterSchaden < ProduktionDatentypen.Feldproduktion'First
       then
-         GesundheitStadt := 0;
+         return 0;
          
       else
-         GesundheitStadt := GesundheitStadt - AngerichteterSchaden;
+         return StadtgesundheitExtern - AngerichteterSchaden;
       end if;
       
    end SchadenStadtBerechnen;

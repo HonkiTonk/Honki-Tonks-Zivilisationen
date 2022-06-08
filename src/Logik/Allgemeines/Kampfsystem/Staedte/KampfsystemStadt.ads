@@ -2,10 +2,10 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
+with ProduktionDatentypen; use ProduktionDatentypen;
 with EinheitenRecords;
 with SonstigeVariablen;
 with SpielVariablen;
-with ProduktionDatentypen;
 with KampfRecords;
 with KampfDatentypen;
 with StadtRecords;
@@ -84,11 +84,16 @@ private
                                                                )
                                                             );
    
-   procedure SchadenStadtBerechnen
+   
+   
+   function SchadenStadtBerechnen
      (AngriffExtern : in KampfDatentypen.Kampfwerte;
-      VerteidigungExtern : in KampfDatentypen.Kampfwerte);
-   
-   
+      VerteidigungExtern : in KampfDatentypen.Kampfwerte;
+      StadtgesundheitExtern : in ProduktionDatentypen.Feldproduktion)
+      return ProduktionDatentypen.Feldproduktion
+     with
+       Pre =>
+         (StadtgesundheitExtern > 0);
    
    function Kampfverlauf
      (AngreifendeEinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

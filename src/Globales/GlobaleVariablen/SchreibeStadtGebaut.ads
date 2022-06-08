@@ -45,7 +45,7 @@ package SchreibeStadtGebaut is
    procedure EinwohnerArbeiter
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       EinwohnerArbeiterExtern : in Boolean;
-      ÄnderungExtern : in ProduktionDatentypen.Feldproduktion)
+      ÄnderungExtern : in ProduktionDatentypen.Zwischenlösung)
      with
        Pre =>
          (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -74,7 +74,7 @@ package SchreibeStadtGebaut is
    
    procedure Ressourcen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
-      RessourcenExtern : in ProduktionDatentypen.KostenLager;
+      RessourcenExtern : in ProduktionDatentypen.Produktion;
       ÄndernSetzenExtern : in Boolean)
      with
        Pre =>
@@ -105,7 +105,7 @@ package SchreibeStadtGebaut is
    procedure PermanenteKostenPosten
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       WelcherPostenExtern : in ProduktionDatentypen.Permanente_Kosten_Verwendet_Enum;
-      KostenExtern : in ProduktionDatentypen.GesamtePermanenteKosten;
+      KostenExtern : in ProduktionDatentypen.Stadtproduktion;
       ÄndernSetzenExtern : in Boolean)
      with
        Pre =>

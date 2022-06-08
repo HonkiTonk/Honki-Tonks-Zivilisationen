@@ -36,20 +36,20 @@ package KarteWichtigesSFML is
    
 private
    
-   AktuellerGeldgewinn : ProduktionDatentypen.KostenLager;
-   LetzterGeldgewinn : ProduktionDatentypen.KostenLager := -1;
+   AktuellerGeldgewinn : ProduktionDatentypen.Produktion;
+   LetzterGeldgewinn : ProduktionDatentypen.Produktion := -1;
 
    AktuellesForschungsprojekt : ForschungenDatentypen.ForschungIDMitNullWert;
    LetztesForschungsprojekt : ForschungenDatentypen.ForschungIDNichtMöglich := -1;
 
-   AktuelleForschungszeit : ProduktionDatentypen.KostenLager;
-   LetzteForschungszeit : ProduktionDatentypen.KostenLager := -1;
+   AktuelleForschungszeit : ProduktionDatentypen.Produktion;
+   LetzteForschungszeit : ProduktionDatentypen.Produktion := -1;
 
-   AktuelleForschungsmenge : ProduktionDatentypen.KostenLager;
-   LetzteForschungsmenge : ProduktionDatentypen.KostenLager := -1;
+   AktuelleForschungsmenge : ProduktionDatentypen.Produktion;
+   LetzteForschungsmenge : ProduktionDatentypen.Produktion := -1;
 
-   AktuelleForschungsrate : ProduktionDatentypen.KostenLager;
-   LetzteForschungsrate : ProduktionDatentypen.KostenLager := -1;
+   AktuelleForschungsrate : ProduktionDatentypen.Produktion;
+   LetzteForschungsrate : ProduktionDatentypen.Produktion := -1;
 
    AktuelleRunde : Positive;
    LetzteRunde : Natural := 1;
@@ -70,7 +70,7 @@ private
 
    function ZahlAlsStringInteger is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => Integer);
 
-   function ZahlAlsStringKostenLager is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => ProduktionDatentypen.KostenLager);
+   function ZahlAlsStringKostenLager is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => ProduktionDatentypen.Produktion);
 
    function ZahlAlsStringEbeneVorhanden is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => KartenDatentypen.EbeneVorhanden);
 

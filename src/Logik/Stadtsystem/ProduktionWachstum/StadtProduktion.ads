@@ -23,7 +23,7 @@ package StadtProduktion is
 
 private
 
-   VorhandeneEinwohner : ProduktionDatentypen.Feldproduktion;
+   VorhandeneEinwohner : ProduktionDatentypen.Einwohner;
    
    NutzbarerBereich : KartenDatentypen.Kartenfeld;
 

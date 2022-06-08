@@ -513,7 +513,7 @@ package body StadtWerteFestlegen is
    procedure ArbeiterBelegenEntfernen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       BelegenEntfernenExtern : in Boolean;
-      ÄnderungExtern : in ProduktionDatentypen.Feldproduktion)
+      ÄnderungExtern : in ProduktionDatentypen.Zwischenlösung)
    is begin
       
       case

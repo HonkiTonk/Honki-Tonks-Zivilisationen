@@ -21,7 +21,7 @@ package LeseEinheitenDatenbank is
    function PreisGeld
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenID)
-      return ProduktionDatentypen.KostenLager
+      return ProduktionDatentypen.Produktion
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
@@ -29,7 +29,7 @@ package LeseEinheitenDatenbank is
    function PreisRessourcen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenID)
-      return ProduktionDatentypen.KostenLager
+      return ProduktionDatentypen.Produktion
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
@@ -38,7 +38,7 @@ package LeseEinheitenDatenbank is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenID;
       WelcheKostenExtern : in ProduktionDatentypen.Permanente_Kosten_Verwendet_Enum)
-      return ProduktionDatentypen.GesamtePermanenteKosten
+      return ProduktionDatentypen.Stadtproduktion
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);

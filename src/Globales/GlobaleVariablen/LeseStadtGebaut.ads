@@ -46,13 +46,14 @@ package LeseStadtGebaut is
    function EinwohnerArbeiter
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       EinwohnerArbeiterExtern : in Boolean)
-      return ProduktionDatentypen.Feldproduktion
+      return ProduktionDatentypen.Einwohner
      with
        Pre =>
          (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
             SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum),
          Post =>
+           ---------------------------- Sollte das nicht immer > 0 sein?
            (EinwohnerArbeiter'Result >= 0);
       
    function Nahrungsmittel
@@ -75,7 +76,7 @@ package LeseStadtGebaut is
    
    function Ressourcen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return ProduktionDatentypen.KostenLager
+      return ProduktionDatentypen.Produktion
      with
        Pre =>
          (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -103,7 +104,7 @@ package LeseStadtGebaut is
    function PermanenteKostenPosten
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       WelcherPostenExtern : in ProduktionDatentypen.Permanente_Kosten_Verwendet_Enum)
-      return ProduktionDatentypen.GesamtePermanenteKosten
+      return ProduktionDatentypen.Stadtproduktion
      with
        Pre =>
          (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -135,7 +136,7 @@ package LeseStadtGebaut is
    
    function Bauzeit
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return ProduktionDatentypen.KostenLager
+      return ProduktionDatentypen.Produktion
      with
        Pre =>
          (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze

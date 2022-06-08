@@ -147,31 +147,30 @@ package ChangelogJuni2022 is
    
    
 
-   -- Version 0.01. => 0.01. (09.06.2022):
+   -- Version 0.01.10 => 0.01. (09.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01. => 0.01. (08.06.2022):
+   -- Version 0.01.1035 => 0.01.1060 (08.06.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.01. => 0.01. (07.06.2022):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Unnötigen Code gelöscht.
+   -- Weiter an der Anpassung/Aufteilung der ProduktionDatentypen gearbeitet.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 
-   -- Version 0.01.10 => 0.01. (06.06.2022):
+   -- Version 0.01.1035 => 0.01.1035 (07.06.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.01.1035 => 0.01.1035 (06.06.2022):
+   
+   -- null.
    
    
 

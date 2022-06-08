@@ -71,7 +71,7 @@ package body Wachstum is
 
       if
         LeseStadtGebaut.Nahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern)
-        > ProduktionDatentypen.KostenLager (10 + LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+        > ProduktionDatentypen.Produktion (10 + LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                                                                       EinwohnerArbeiterExtern => True)
                                               * 5)
       then

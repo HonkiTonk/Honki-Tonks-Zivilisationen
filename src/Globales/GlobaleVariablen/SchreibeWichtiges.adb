@@ -64,9 +64,9 @@ package body SchreibeWichtiges is
                SpielVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde := SpielVariablen.Grenzen (RasseExtern).Geldgewinngrenze;
                
             elsif
-              SpielVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde + GeldZugewinnExtern < ProduktionDatentypen.KostenLager'First
+              SpielVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde + GeldZugewinnExtern < ProduktionDatentypen.Produktion'First
             then
-               SpielVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde := ProduktionDatentypen.KostenLager'First;
+               SpielVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde := ProduktionDatentypen.Produktion'First;
                
             else
                SpielVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde := SpielVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde + GeldZugewinnExtern;
@@ -123,7 +123,7 @@ package body SchreibeWichtiges is
    
    procedure Forschungsmenge
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      ForschungZugewinnExtern : in ProduktionDatentypen.KostenLager;
+      ForschungZugewinnExtern : in ProduktionDatentypen.Produktion;
       RechnenSetzenExtern : in Boolean)
    is begin
       
@@ -171,7 +171,7 @@ package body SchreibeWichtiges is
         or
           SpielVariablen.Wichtiges (RasseExtern).GesamteForschungsrate = 0
       then
-         SpielVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit := ProduktionDatentypen.KostenLager'Last;
+         SpielVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit := ProduktionDatentypen.Produktion'Last;
          
       else
          SpielVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit

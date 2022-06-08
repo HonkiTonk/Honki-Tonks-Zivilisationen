@@ -32,10 +32,12 @@ package body SchreibeStadtGebaut is
    
    
    
+   -------------------------------- Hier alles an die neuen Datentypen anpassen und generell mal überarbeiten.
    procedure EinwohnerArbeiter
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       EinwohnerArbeiterExtern : in Boolean;
-      ÄnderungExtern : in ProduktionDatentypen.Feldproduktion)
+      ----------------------------------- Zwischenlösung durch Boolean ersetzen?
+      ÄnderungExtern : in ProduktionDatentypen.Zwischenlösung)
    is begin
       
       case
@@ -47,10 +49,10 @@ package body SchreibeStadtGebaut is
             then
                SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).EinwohnerArbeiter (1) := ProduktionDatentypen.Feldproduktion'Last;
                
-            elsif
-              SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).EinwohnerArbeiter (1) + ÄnderungExtern < 0
-            then
-               SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).EinwohnerArbeiter (1) := 0;
+           -- elsif
+           --   SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).EinwohnerArbeiter (1) + ÄnderungExtern < 0
+           -- then
+           --    SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).EinwohnerArbeiter (1) := 0;
             
             else
                SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).EinwohnerArbeiter (1)
@@ -63,10 +65,10 @@ package body SchreibeStadtGebaut is
             then
                SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).EinwohnerArbeiter (2) := ProduktionDatentypen.Feldproduktion'Last;
                
-            elsif
-              SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).EinwohnerArbeiter (2) + ÄnderungExtern < 0
-            then
-               SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).EinwohnerArbeiter (2) := 0;
+           -- elsif
+           --   SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).EinwohnerArbeiter (2) + ÄnderungExtern < 0
+           -- then
+           --    SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).EinwohnerArbeiter (2) := 0;
             
             else
                SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).EinwohnerArbeiter (2)
@@ -146,7 +148,7 @@ package body SchreibeStadtGebaut is
    
    procedure Ressourcen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
-      RessourcenExtern : in ProduktionDatentypen.KostenLager;
+      RessourcenExtern : in ProduktionDatentypen.Produktion;
       ÄndernSetzenExtern : in Boolean)
    is begin
       
@@ -155,14 +157,14 @@ package body SchreibeStadtGebaut is
       is
          when True =>
             if
-              SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Ressourcen + RessourcenExtern > ProduktionDatentypen.KostenLager'Last
+              SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Ressourcen + RessourcenExtern > ProduktionDatentypen.Produktion'Last
             then
-               SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Ressourcen := ProduktionDatentypen.KostenLager'Last;
+               SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Ressourcen := ProduktionDatentypen.Produktion'Last;
                
             elsif
-              SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Ressourcen + RessourcenExtern < ProduktionDatentypen.KostenLager'First
+              SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Ressourcen + RessourcenExtern < ProduktionDatentypen.Produktion'First
             then
-               SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Ressourcen := ProduktionDatentypen.KostenLager'First;
+               SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Ressourcen := ProduktionDatentypen.Produktion'First;
                
             else
                SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Ressourcen
@@ -250,7 +252,7 @@ package body SchreibeStadtGebaut is
    procedure PermanenteKostenPosten
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       WelcherPostenExtern : in ProduktionDatentypen.Permanente_Kosten_Verwendet_Enum;
-      KostenExtern : in ProduktionDatentypen.GesamtePermanenteKosten;
+      KostenExtern : in ProduktionDatentypen.Stadtproduktion;
       ÄndernSetzenExtern : in Boolean)
    is begin
       
@@ -338,7 +340,7 @@ package body SchreibeStadtGebaut is
         or
           SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Produktionrate <= 0
       then
-         SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Bauzeit := ProduktionDatentypen.KostenLager'Last;
+         SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Bauzeit := ProduktionDatentypen.Produktion'Last;
          
       elsif
         SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Bauprojekt.Gebäude /= 0
@@ -409,10 +411,11 @@ package body SchreibeStadtGebaut is
             then
                SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Zufriedenheit := ProduktionDatentypen.Feldproduktion'Last;
                
-            elsif
-              SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Zufriedenheit + ZufriedenheitExtern < ProduktionDatentypen.Feldproduktion'First
-            then
-               SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Zufriedenheit := ProduktionDatentypen.Feldproduktion'First;
+               ------------------------------------ Vorübergehende ausgeklammer wegen den Anpassungen in ProduktionDatentypen.
+            -- elsif
+            --  SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Zufriedenheit + ZufriedenheitExtern < ProduktionDatentypen.Feldproduktion'First
+            -- then
+            --   SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Zufriedenheit := ProduktionDatentypen.Feldproduktion'First;
                
             else
                SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Zufriedenheit

@@ -37,13 +37,13 @@ package StadtRecords is
    type GebäudeRecord is record
       
       Vorhanden : Boolean;
-      InvestierteRessourcen : ProduktionDatentypen.KostenLager;
+      InvestierteRessourcen : ProduktionDatentypen.Produktion;
       
    end record;
 
 
 
-   type EinwohnerArbeiterArray is array (1 .. 2) of ProduktionDatentypen.Feldproduktion;
+   type EinwohnerArbeiterArray is array (1 .. 2) of ProduktionDatentypen.Einwohner;
    
    ------------------------ XXX
    ------------------------ Wenn ich ein Record für das Array hier anlege, dann könnten darin die bereits erzeugten Ressourcen gespeichert werden und beim Wechsel des Bauprojekts blieben die angefangenen Gebäude erhalten.
@@ -51,7 +51,7 @@ package StadtRecords is
    type GebäudeVorhandenArray is array (StadtDatentypen.GebäudeID'Range) of Boolean;
    type StadtMeldungenArray is array (StadtDatentypen.Stadt_Meldung_Art_Enum'Range) of StadtDatentypen.Stadt_Meldung_Enum;
    type UmgebungBewirtschaftungArray is array (KartenDatentypen.UmgebungsbereichDrei'Range, KartenDatentypen.UmgebungsbereichDrei'Range) of Boolean;
-   type PermanenteKostenArray is array (ProduktionDatentypen.Permanente_Kosten_Verwendet_Enum'Range) of ProduktionDatentypen.GesamtePermanenteKosten;
+   type PermanenteKostenArray is array (ProduktionDatentypen.Permanente_Kosten_Verwendet_Enum'Range) of ProduktionDatentypen.Stadtproduktion;
 
    type StadtGebautRecord is record
       
@@ -61,14 +61,14 @@ package StadtRecords is
       
       Nahrungsmittel : ProduktionDatentypen.Stadtproduktion;
       Nahrungsproduktion : ProduktionDatentypen.Stadtproduktion;
-      Ressourcen : ProduktionDatentypen.KostenLager;
+      Ressourcen : ProduktionDatentypen.Produktion;
       Produktionrate : ProduktionDatentypen.Stadtproduktion;
       Geldgewinnung : ProduktionDatentypen.Stadtproduktion;
       PermanenteKostenPosten : PermanenteKostenArray;
       
       Forschungsrate : ProduktionDatentypen.Stadtproduktion;
       Bauprojekt : BauprojektRecord;
-      Bauzeit : ProduktionDatentypen.KostenLager;
+      Bauzeit : ProduktionDatentypen.Produktion;
 
       Korruption : ProduktionDatentypen.Stadtproduktion;
       Zufriedenheit : ProduktionDatentypen.Feldproduktion;

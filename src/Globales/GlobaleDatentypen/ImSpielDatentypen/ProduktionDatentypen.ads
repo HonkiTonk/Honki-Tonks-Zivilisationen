@@ -3,14 +3,11 @@ pragma Warnings (Off, "*array aggregate*");
 
 package ProduktionDatentypen is
 
-   ---------------------- Das hier mal an die neuen Produktionsidee anpassen.
-   type KostenLager is range -10_000 .. 10_000;
-   subtype GesamtePermanenteKosten is KostenLager range -500 .. 5_000;
-   subtype Stadtproduktion is GesamtePermanenteKosten range -500 .. 500;
-   
-   subtype Feldproduktion is Stadtproduktion range -100 .. 100; -- Sollte zwischen 0 und 50 liegen.
-   
+   type Produktion is range -10_000 .. 10_000;
+   subtype Stadtproduktion is Produktion range -5000 .. 5000;
+   subtype Feldproduktion is Stadtproduktion range 0 .. 50;
    subtype Einzelproduktion is Feldproduktion range 0 .. 10;
+   subtype Zwischenlösung is Stadtproduktion range -1 .. 1;
 
    -------------------------- Das hier wird für Einheiten und Gebäude benutzt.
    type Permanente_Kosten_Enum is (
@@ -20,5 +17,15 @@ package ProduktionDatentypen is
                                   );
    
    subtype Permanente_Kosten_Verwendet_Enum is Permanente_Kosten_Enum range Nahrung_Enum .. Permanente_Kosten_Enum'Last;
+   
+   ------------------------------ Es werden benötigt:
+   ------------------------------ Datentypen für diplomatischen Zustand, später in passendere Datei verschieben:
+   
+   
+   ------------------------------ Datentypen für Zufriedenheit:
+   
+   
+   ------------------------------ Datentypen für Einwohner:
+   type Einwohner is range 0 .. 100;
 
 end ProduktionDatentypen;

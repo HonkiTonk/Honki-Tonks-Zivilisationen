@@ -62,9 +62,9 @@ package EinheitenKonstanten is
       
    LeerEinheitenGrafik : constant Wide_Wide_Character := TextKonstanten.LeerZeichen;
    LeerEinheitArt : constant EinheitenDatentypen.Einheit_Art_Enum := EinheitenDatentypen.Leer_Einheitart_Enum;
-   LeerPreisGeld : constant ProduktionDatentypen.KostenLager := 0;
-   LeerPreisRessourcen : constant ProduktionDatentypen.KostenLager := 0;
-   LeerPermanenteKosten : constant ProduktionDatentypen.GesamtePermanenteKosten := 0;
+   LeerPreisGeld : constant ProduktionDatentypen.Produktion := 0;
+   LeerPreisRessourcen : constant ProduktionDatentypen.Produktion := 0;
+   LeerPermanenteKosten : constant ProduktionDatentypen.Stadtproduktion := 0;
    LeerAnforderungen : constant ForschungenDatentypen.ForschungIDNichtMöglich := ForschungKonstanten.ForschungUnmöglich;
    LeerPassierbarkeit : constant Boolean := False;
    LeerMaximaleLebenspunkte : constant EinheitenDatentypen.LebenspunkteVorhanden := EinheitenDatentypen.LebenspunkteVorhanden'First;

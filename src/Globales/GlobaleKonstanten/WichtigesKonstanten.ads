@@ -25,10 +25,10 @@ package WichtigesKonstanten is
                                                        );
    
    LeerGeldmenge : constant ZahlenDatentypen.EigenesNatural := ZahlenDatentypen.EigenesNatural'First;
-   LeerGeldZugewinnProRunde : constant ProduktionDatentypen.KostenLager := 0;
-   LeerGesamteForschungsrate : constant ProduktionDatentypen.KostenLager := 0;
-   LeerForschungsmenge : constant ProduktionDatentypen.KostenLager := 0;
-   LeerVerbleibendeForschungszeit : constant ProduktionDatentypen.KostenLager := ProduktionDatentypen.KostenLager'Last;
+   LeerGeldZugewinnProRunde : constant ProduktionDatentypen.Produktion := 0;
+   LeerGesamteForschungsrate : constant ProduktionDatentypen.Produktion := 0;
+   LeerForschungsmenge : constant ProduktionDatentypen.Produktion := 0;
+   LeerVerbleibendeForschungszeit : constant ProduktionDatentypen.Produktion := ProduktionDatentypen.Produktion'Last;
    LeerForschungsprojekt : constant ForschungenDatentypen.ForschungIDMitNullWert := ForschungenDatentypen.ForschungIDMitNullWert'First;
    LeerErforscht : constant Boolean := False;
    LeerAnzahlStädte : constant StadtDatentypen.MaximaleStädteMitNullWert := StadtDatentypen.MaximaleStädteMitNullWert'First;
@@ -53,9 +53,9 @@ package WichtigesKonstanten is
    LeerStädtegrenze : constant StadtDatentypen.MaximaleStädte := StadtDatentypen.MaximaleStädte'Last;
    LeerEinheitengrenze : constant EinheitenDatentypen.MaximaleEinheiten := EinheitenDatentypen.MaximaleEinheiten'Last;
    LeerGeldgrenze : constant ZahlenDatentypen.EigenerInteger := ZahlenDatentypen.EigenerInteger'Last;
-   LeerForschungsgrenze : constant ProduktionDatentypen.KostenLager:= ProduktionDatentypen.KostenLager'Last;
-   LeerGeldgewinngrenze : constant ProduktionDatentypen.KostenLager := ProduktionDatentypen.KostenLager'Last;
-   LeerForschungGewinngrenze : constant ProduktionDatentypen.KostenLager := ProduktionDatentypen.KostenLager'Last;
+   LeerForschungsgrenze : constant ProduktionDatentypen.Produktion:= ProduktionDatentypen.Produktion'Last;
+   LeerGeldgewinngrenze : constant ProduktionDatentypen.Produktion := ProduktionDatentypen.Produktion'Last;
+   LeerForschungGewinngrenze : constant ProduktionDatentypen.Produktion := ProduktionDatentypen.Produktion'Last;
    LeerRassenRundengrenze : constant ZahlenDatentypen.EigenesNatural := ZahlenDatentypen.EigenesNatural'First;
 
    LeerGrenzen : constant WichtigeRecords.GrenzenRecord := (

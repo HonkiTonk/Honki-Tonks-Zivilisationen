@@ -25,7 +25,7 @@ package body LeseEinheitenDatenbank is
    function PreisGeld
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenID)
-      return ProduktionDatentypen.KostenLager
+      return ProduktionDatentypen.Produktion
    is begin
       
       return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).PreisGeld;
@@ -37,7 +37,7 @@ package body LeseEinheitenDatenbank is
    function PreisRessourcen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenID)
-      return ProduktionDatentypen.KostenLager
+      return ProduktionDatentypen.Produktion
    is begin
       
       return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).PreisRessourcen;
@@ -50,7 +50,7 @@ package body LeseEinheitenDatenbank is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenID;
       WelcheKostenExtern : in ProduktionDatentypen.Permanente_Kosten_Verwendet_Enum)
-      return ProduktionDatentypen.GesamtePermanenteKosten
+      return ProduktionDatentypen.Stadtproduktion
    is begin
       
       if

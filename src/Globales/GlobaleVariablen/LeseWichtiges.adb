@@ -19,7 +19,7 @@ package body LeseWichtiges is
 
    function GeldZugewinnProRunde
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.KostenLager
+      return ProduktionDatentypen.Produktion
    is begin
 
       return SpielVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde;
@@ -30,7 +30,7 @@ package body LeseWichtiges is
 
    function GesamteForschungsrate
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.KostenLager
+      return ProduktionDatentypen.Produktion
    is begin
 
       if
@@ -50,7 +50,7 @@ package body LeseWichtiges is
    
    function Forschungsmenge
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.KostenLager
+      return ProduktionDatentypen.Produktion
    is begin
 
       if
@@ -70,7 +70,7 @@ package body LeseWichtiges is
    
    function VerbleibendeForschungszeit
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.KostenLager
+      return ProduktionDatentypen.Produktion
    is begin
 
       if

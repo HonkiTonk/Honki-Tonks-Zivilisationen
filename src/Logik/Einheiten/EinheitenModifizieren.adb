@@ -125,9 +125,9 @@ package body EinheitenModifizieren is
             SchreibeStadtGebaut.PermanenteKostenPosten (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, Heimatstadt),
                                                         WelcherPostenExtern    => PermanenteKostenSchleifenwert,
                                                         KostenExtern           =>
-                                                          GesamtePermanenteKosten (VorzeichenWechselExtern) * LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => EinheitRasseNummerExtern.Rasse,
-                                                                                                                                                       IDExtern           => AktuelleID,
-                                                                                                                                                       WelcheKostenExtern => PermanenteKostenSchleifenwert),
+                                                          ProduktionDatentypen.Stadtproduktion (VorzeichenWechselExtern) * LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => EinheitRasseNummerExtern.Rasse,
+                                                                                                                                                                    IDExtern           => AktuelleID,
+                                                                                                                                                                    WelcheKostenExtern => PermanenteKostenSchleifenwert),
                                                         ÄndernSetzenExtern     => True);
          end if;
          

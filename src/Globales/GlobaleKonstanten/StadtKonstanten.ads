@@ -29,18 +29,18 @@ package StadtKonstanten is
    
    LeerID : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum := KartenVerbesserungDatentypen.Leer_Verbesserung_Enum;
    LeerKoordinaten : constant KartenRecords.AchsenKartenfeldNaturalRecord := (0, 0, 0);
-   LeerEinwohner : constant ProduktionDatentypen.Feldproduktion := 0;
-   LeerArbeiter : constant ProduktionDatentypen.Feldproduktion := 0;
+   LeerEinwohner : constant ProduktionDatentypen.Einwohner := 0;
+   LeerArbeiter : constant ProduktionDatentypen.Einwohner := 0;
    LeerEinwohnerArbeiter : constant StadtRecords.EinwohnerArbeiterArray := (LeerEinwohner, LeerArbeiter);
    LeerNahrungsmittel : constant ProduktionDatentypen.Stadtproduktion := 0;
    LeerNahrungsproduktion : constant ProduktionDatentypen.Stadtproduktion := 0;
-   LeerRessourcen : constant ProduktionDatentypen.KostenLager := 0;
+   LeerRessourcen : constant ProduktionDatentypen.Produktion := 0;
    LeerProduktionrate : constant ProduktionDatentypen.Stadtproduktion := 0;
    LeerGeldgewinnung : constant ProduktionDatentypen.Stadtproduktion := 0;
-   LeerPermanenteKosten : constant ProduktionDatentypen.GesamtePermanenteKosten := 0;
+   LeerPermanenteKosten : constant ProduktionDatentypen.Stadtproduktion := 0;
    LeerForschungsrate : constant ProduktionDatentypen.Stadtproduktion := 0;
    LeerBauprojekt : constant StadtRecords.BauprojektRecord := (0, 0);
-   LeerBauzeit : constant ProduktionDatentypen.KostenLager := 0;
+   LeerBauzeit : constant ProduktionDatentypen.Produktion := 0;
    LeerKorruption : constant ProduktionDatentypen.Stadtproduktion := 0;
    LeerZufriedenheit : constant ProduktionDatentypen.Feldproduktion := 0;
    LeerGebäude : constant Boolean := False;
@@ -73,12 +73,12 @@ package StadtKonstanten is
                                                                   KIBeschäftigung         => LeerKIBeschäftigung
                                                                  );
 
-   MaximaleBauzeit : constant ProduktionDatentypen.KostenLager := ProduktionDatentypen.KostenLager'Last;
+   MaximaleBauzeit : constant ProduktionDatentypen.Produktion := ProduktionDatentypen.Produktion'Last;
    
    LeerGebäudeID : constant StadtDatentypen.GebäudeIDMitNullwert := 0;
    LeerGebäudeGrafik : constant Wide_Wide_Character := TextKonstanten.LeerZeichen;
-   LeerPreisGeld : constant ProduktionDatentypen.KostenLager := 0;
-   LeerPreisRessourcen : constant ProduktionDatentypen.KostenLager := 0;
+   LeerPreisGeld : constant ProduktionDatentypen.Produktion := 0;
+   LeerPreisRessourcen : constant ProduktionDatentypen.Produktion := 0;
    LeerAnforderungen : constant ForschungenDatentypen.ForschungIDNichtMöglich := ForschungKonstanten.ForschungUnmöglich;
    LeerBonusWirtschaft : constant ProduktionDatentypen.Feldproduktion := 0;
    LeerBonusKampf : constant KampfDatentypen.Kampfwerte := KampfDatentypen.Kampfwerte'First;

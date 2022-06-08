@@ -108,7 +108,7 @@ package body GebaeudeBauenTerminal is
       if
         LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern) <= 0
       then
-         Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Positive (ProduktionDatentypen.KostenLager'Last),
+         Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Positive (ProduktionDatentypen.Produktion'Last),
                                   Width => 1);
          
       else

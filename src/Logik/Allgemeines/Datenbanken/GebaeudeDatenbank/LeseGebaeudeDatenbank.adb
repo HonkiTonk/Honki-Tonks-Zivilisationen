@@ -8,7 +8,7 @@ package body LeseGebaeudeDatenbank is
    function PreisGeld
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in StadtDatentypen.GebäudeID)
-      return ProduktionDatentypen.KostenLager
+      return ProduktionDatentypen.Produktion
    is begin
       
       return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).PreisGeld;
@@ -20,7 +20,7 @@ package body LeseGebaeudeDatenbank is
    function PreisRessourcen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in StadtDatentypen.GebäudeID)
-      return ProduktionDatentypen.KostenLager
+      return ProduktionDatentypen.Produktion
    is begin
       
       return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).PreisRessourcen;
@@ -33,7 +33,7 @@ package body LeseGebaeudeDatenbank is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in StadtDatentypen.GebäudeID;
       WelcheKostenExtern : in ProduktionDatentypen.Permanente_Kosten_Verwendet_Enum)
-      return ProduktionDatentypen.GesamtePermanenteKosten
+      return ProduktionDatentypen.Stadtproduktion
    is begin
       
       return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).PermanenteKosten (WelcheKostenExtern);

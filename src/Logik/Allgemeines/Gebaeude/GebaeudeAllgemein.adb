@@ -121,7 +121,7 @@ package body GebaeudeAllgemein is
          
          SchreibeStadtGebaut.PermanenteKostenPosten (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                      WelcherPostenExtern    => PermanenteKostenSchleifenwert,
-                                                     KostenExtern           => ProduktionDatentypen.GesamtePermanenteKosten (VorzeichenWechselExtern)
+                                                     KostenExtern           => ProduktionDatentypen.Stadtproduktion (VorzeichenWechselExtern)
                                                      * LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                                                                IDExtern           => IDExtern,
                                                                                                WelcheKostenExtern => PermanenteKostenSchleifenwert),

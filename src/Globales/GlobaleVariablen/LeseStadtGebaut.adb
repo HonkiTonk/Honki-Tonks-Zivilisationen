@@ -42,7 +42,7 @@ package body LeseStadtGebaut is
    function EinwohnerArbeiter
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       EinwohnerArbeiterExtern : in Boolean)
-      return ProduktionDatentypen.Feldproduktion
+      return ProduktionDatentypen.Einwohner
    is begin
       
       case
@@ -110,7 +110,7 @@ package body LeseStadtGebaut is
    
    function Ressourcen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return ProduktionDatentypen.KostenLager
+      return ProduktionDatentypen.Produktion
    is begin
       
       return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Ressourcen;
@@ -144,7 +144,7 @@ package body LeseStadtGebaut is
    function PermanenteKostenPosten
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       WelcherPostenExtern : in ProduktionDatentypen.Permanente_Kosten_Verwendet_Enum)
-      return ProduktionDatentypen.GesamtePermanenteKosten
+      return ProduktionDatentypen.Stadtproduktion
    is begin
       
       return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).PermanenteKostenPosten (WelcherPostenExtern);
@@ -186,7 +186,7 @@ package body LeseStadtGebaut is
    
    function Bauzeit
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return ProduktionDatentypen.KostenLager
+      return ProduktionDatentypen.Produktion
    is begin
       
       return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Bauzeit;

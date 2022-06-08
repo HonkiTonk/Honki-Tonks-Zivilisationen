@@ -21,8 +21,8 @@ package DatenbankRecords is
       
       ----------------------- Solche Benennungen auch mal anpassen.
       EinheitArt : EinheitenDatentypen.Einheit_Art_Enum;
-      PreisGeld : ProduktionDatentypen.KostenLager;
-      PreisRessourcen : ProduktionDatentypen.KostenLager;
+      PreisGeld : ProduktionDatentypen.Produktion;
+      PreisRessourcen : ProduktionDatentypen.Produktion;
       PermanenteKosten : StadtRecords.PermanenteKostenArray;
       Anforderungen : ForschungenDatentypen.ForschungIDNichtMöglich;
 
@@ -52,7 +52,7 @@ package DatenbankRecords is
    -- ForschungenDatenbank
    type ForschungslisteRecord is record
 
-      PreisForschung : ProduktionDatentypen.KostenLager;
+      PreisForschung : ProduktionDatentypen.Produktion;
       AnforderungForschung : ForschungenDatentypen.AnforderungForschungArray;
 
    end record;
@@ -68,8 +68,8 @@ package DatenbankRecords is
    
    type GebäudelisteRecord is record
       
-      PreisGeld : ProduktionDatentypen.KostenLager;
-      PreisRessourcen : ProduktionDatentypen.KostenLager;
+      PreisGeld : ProduktionDatentypen.Produktion;
+      PreisRessourcen : ProduktionDatentypen.Produktion;
       PermanenteKosten : StadtRecords.PermanenteKostenArray;
       
       Anforderungen : ForschungenDatentypen.ForschungIDNichtMöglich;

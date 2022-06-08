@@ -35,7 +35,7 @@ package SchreibeWichtiges is
    
    procedure Forschungsmenge
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      ForschungZugewinnExtern : in ProduktionDatentypen.KostenLager;
+      ForschungZugewinnExtern : in ProduktionDatentypen.Produktion;
       RechnenSetzenExtern : in Boolean)
      with
        Pre =>
