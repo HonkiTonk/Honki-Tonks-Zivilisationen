@@ -100,7 +100,7 @@ package StadtKonstanten is
                                                                          GebäudeSpezielleEigenschaft => LeerSpezielleEigenschaft
                                                                         );
    
-   type StadtUmgebungWachstumArray is array (SystemDatentypen.Anfang_Ende_Enum'Range, RassenDatentypen.Rassen_Verwendet_Enum'Range) of ProduktionDatentypen.Feldproduktion;
+   type StadtUmgebungWachstumArray is array (SystemDatentypen.Anfang_Ende_Enum'Range, RassenDatentypen.Rassen_Verwendet_Enum'Range) of ProduktionDatentypen.Einwohner;
    StadtUmgebungWachstum : constant StadtUmgebungWachstumArray := (
                                                                    SystemDatentypen.Anfangswert_Enum =>
                                                                      (

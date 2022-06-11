@@ -27,5 +27,7 @@ package ProduktionDatentypen is
    
    ------------------------------ Datentypen für Einwohner:
    type Einwohner is range 0 .. 100;
+   
+   ------------------------------ Die noch für den Kampf verwendeten Datentypen entsprechend später einbauen und die aktuell verwendeten ProduktionDatentypenverwendung entfernen.
 
 end ProduktionDatentypen;

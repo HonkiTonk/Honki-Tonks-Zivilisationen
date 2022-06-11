@@ -6,6 +6,7 @@ with Ada.Directories; use Ada.Directories;
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with OptionenVariablen;
+with RassenDatentypen;
 with TextKonstanten;
 
 with Warnung;
@@ -733,20 +734,27 @@ package body EinlesenText is
    procedure StädtenamenKI
    is begin
       
-      StädtenamenKISchleife:
-      for WelcheZeileSchleifenwert in GlobaleTexte.StädtenamenKI'Range loop
+      AktuelleZeile := 1;
+      
+      RassenSchleife:
+      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
+         StädtenamenKISchleife:
+         for WelcheZeileSchleifenwert in GlobaleTexte.StädtenamenKI'Range (2) loop
          
-         case
-           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
-         is
-            when True =>
-               Put_Line ("EinlesenText.StädtenamenKI -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
+            case
+              VorzeitigesZeilenende (AktuelleZeileExtern => AktuelleZeile)
+            is
+               when True =>
+                  Put_Line ("EinlesenText.StädtenamenKI -" & AktuelleZeile'Wide_Wide_Image);
                
-            when False =>
-               GlobaleTexte.StädtenamenKI (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
-         end case;
+               when False =>
+                  GlobaleTexte.StädtenamenKI (RasseSchleifenwert, WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+            end case;
+            
+            AktuelleZeile := AktuelleZeile + 1;
          
-      end loop StädtenamenKISchleife;
+         end loop StädtenamenKISchleife;
+      end loop RassenSchleife;
       
    end StädtenamenKI;
    

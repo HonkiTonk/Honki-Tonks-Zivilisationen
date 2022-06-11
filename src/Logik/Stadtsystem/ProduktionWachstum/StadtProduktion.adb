@@ -222,8 +222,8 @@ package body StadtProduktion is
       end case;
       
       SchreibeStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern   => StadtRasseNummerExtern,
-                                              NahrungsproduktionExtern => VorhandeneEinwohner * NahrungsverbrauchEinwohnerMultiplikator,
-                                              ÄndernSetzenExtern      => True);
+                                              NahrungsproduktionExtern => ProduktionDatentypen.Stadtproduktion (VorhandeneEinwohner) * NahrungsverbrauchEinwohnerMultiplikator,
+                                              ÄndernSetzenExtern       => True);
       
    end WeitereNahrungsproduktionÄnderungen;
 
@@ -236,7 +236,7 @@ package body StadtProduktion is
       SchreibeStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                           ProduktionrateExtern   => -LeseStadtGebaut.PermanenteKostenPosten (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                                                                              WelcherPostenExtern    => ProduktionDatentypen.Ressourcen_Enum),
-                                          ÄndernSetzenExtern    => True);
+                                          ÄndernSetzenExtern     => True);
             
       case
         -- Diesen Wert an der Bevölkerung und nicht an der Korruption messen?
@@ -260,8 +260,9 @@ package body StadtProduktion is
       end case;
       
       SchreibeStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                          ProduktionrateExtern   => LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
-                                                                                                       EinwohnerArbeiterExtern => True) * RessourcenverbrauchKorruptionMultiplikator,
+                                          ProduktionrateExtern   => ProduktionDatentypen.Stadtproduktion (LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+                                                                                                                                             EinwohnerArbeiterExtern => True))
+                                          * RessourcenverbrauchKorruptionMultiplikator,
                                           ÄndernSetzenExtern     => True);
       
    end WeitereProduktionrateÄnderungen;
@@ -314,8 +315,9 @@ package body StadtProduktion is
       end case;
       
       SchreibeStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                         GeldgewinnungExtern    => LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
-                                                                                                      EinwohnerArbeiterExtern => True) * GeldverbrauchKorruptionMultiplikator,
+                                         GeldgewinnungExtern    => ProduktionDatentypen.Stadtproduktion (LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+                                                                                                                                            EinwohnerArbeiterExtern => True))
+                                         * GeldverbrauchKorruptionMultiplikator,
                                          ÄndernSetzenExtern     => True);
       
    end WeitereGeldgewinnungÄnderungen;
@@ -348,8 +350,9 @@ package body StadtProduktion is
       end case;
       
       SchreibeStadtGebaut.Forschungsrate (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                          ForschungsrateExtern   => LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
-                                                                                                       EinwohnerArbeiterExtern => True) * ForschungsverbrauchKorruptionMultiplikator,
+                                          ForschungsrateExtern   => ProduktionDatentypen.Stadtproduktion (LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+                                                                                                                                             EinwohnerArbeiterExtern => True))
+                                          * ForschungsverbrauchKorruptionMultiplikator,
                                           ÄndernSetzenExtern     => True);
       
    end WeitereForschungsrateÄnderungen;

@@ -83,7 +83,7 @@ package body StadtWerteFestlegen is
                   when True =>
                      SchreibeStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                                             EinwohnerArbeiterExtern => False,
-                                                            ÄnderungExtern          => -1);
+                                                            WachsenSchrumpfenExtern => False);
                      SchreibeStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                                   YKoordinateExtern      => YÄnderungSchleifenwert,
                                                                   XKoordinateExtern      => XÄnderungSchleifenwert,
@@ -160,7 +160,7 @@ package body StadtWerteFestlegen is
          when False =>
             SchreibeStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                                    EinwohnerArbeiterExtern => True,
-                                                   ÄnderungExtern         => -1);
+                                                   WachsenSchrumpfenExtern => False);
             
             if
               LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
@@ -468,9 +468,9 @@ package body StadtWerteFestlegen is
          end loop XAchseSchleife;
       end loop YAchseSchleife;
       
-      ArbeiterBelegenEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                BelegenEntfernenExtern => True,
-                                ÄnderungExtern         => 1);
+      ArbeiterBelegenEntfernen (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+                                BelegenEntfernenExtern  => True,
+                                WachsenSchrumpfenExtern => True);
       
    end ArbeiterBelegen;
    
@@ -502,9 +502,9 @@ package body StadtWerteFestlegen is
          end loop XAchseSchleife;
       end loop YAchseSchleife;
                   
-      ArbeiterBelegenEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                BelegenEntfernenExtern => False,
-                                ÄnderungExtern         => -1);
+      ArbeiterBelegenEntfernen (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+                                BelegenEntfernenExtern  => False,
+                                WachsenSchrumpfenExtern => False);
       
    end ArbeiterEntfernen;
    
@@ -513,7 +513,7 @@ package body StadtWerteFestlegen is
    procedure ArbeiterBelegenEntfernen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       BelegenEntfernenExtern : in Boolean;
-      ÄnderungExtern : in ProduktionDatentypen.Zwischenlösung)
+      WachsenSchrumpfenExtern : in Boolean)
    is begin
       
       case
@@ -529,7 +529,7 @@ package body StadtWerteFestlegen is
                                                          BelegenEntfernenExtern => BelegenEntfernenExtern);
             SchreibeStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                                    EinwohnerArbeiterExtern => False,
-                                                   ÄnderungExtern          => ÄnderungExtern);
+                                                   WachsenSchrumpfenExtern => WachsenSchrumpfenExtern);
       end case;
       
    end ArbeiterBelegenEntfernen;

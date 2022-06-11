@@ -40,8 +40,8 @@ package body KampfsystemStadt is
                                                                                          AngreiferExtern          => True);
       
       -- Arbeiter nur halb anrechnen?
-      GesundheitStadt := LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => VerteidigendeStadtRasseNummerExtern,
-                                                            EinwohnerArbeiterExtern => True);
+      GesundheitStadt := ProduktionDatentypen.Stadtproduktion (LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => VerteidigendeStadtRasseNummerExtern,
+                                                                                                  EinwohnerArbeiterExtern => True));
       
       return Kampf (AngreifendeEinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern,
                     VerteidigendeStadtRasseNummerExtern => VerteidigendeStadtRasseNummerExtern);

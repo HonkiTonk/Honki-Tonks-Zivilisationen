@@ -135,8 +135,8 @@ package body StadtInformationenSFML is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
-      WertOhneTrennzeichen := ZahlAlsStringProduktionFeld (ZahlExtern => LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
-                                                                                                            EinwohnerArbeiterExtern => True));
+      WertOhneTrennzeichen := ZahlAlsStringEinwohner (ZahlExtern => LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+                                                                                                       EinwohnerArbeiterExtern => True));
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.StadtInformationenAccess (2),
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugEinwohner)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
@@ -289,10 +289,10 @@ package body StadtInformationenSFML is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
-      WertOhneTrennzeichen := ZahlAlsStringProduktionFeld (ZahlExtern => LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
-                                                                                                            EinwohnerArbeiterExtern => True)
-                                                           - LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
-                                                                                                EinwohnerArbeiterExtern => False));
+      WertOhneTrennzeichen := ZahlAlsStringEinwohner (ZahlExtern => LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+                                                                                                       EinwohnerArbeiterExtern => True)
+                                                      - LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+                                                                                           EinwohnerArbeiterExtern => False));
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.StadtInformationenAccess (11),
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugVerfügbareArbeiter)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));

@@ -12,6 +12,7 @@ with StadtDatentypen;
 with SystemRecords;
 with SonstigeVariablen;
 with StadtRecords;
+with ZahlenDatentypen;
 
 with Karten;
 
@@ -29,18 +30,11 @@ package StadtBauen is
 private
 
    StadtNummer : StadtDatentypen.MaximaleStädteMitNullWert;
-   WelcherName : Positive := 1;
 
    StadtName : SystemRecords.TextEingabeRecord;
 
-   function StandardStadtNamen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return Unbounded_Wide_Wide_String
-     with
-       Pre =>
-         (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
-          and
-            SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
+   type StadtnameVordefiniertArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of ZahlenDatentypen.EigenesPositive;
+   StadtnameVordefiniert : StadtnameVordefiniertArray := (others => ZahlenDatentypen.EigenesPositive'First);
 
    procedure StadtEintragen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
@@ -56,6 +50,13 @@ private
             KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
 
 
+
+   function StandardStadtNamen
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      return Unbounded_Wide_Wide_String
+     with
+       Pre =>
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
 
    function StadtBaubar
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

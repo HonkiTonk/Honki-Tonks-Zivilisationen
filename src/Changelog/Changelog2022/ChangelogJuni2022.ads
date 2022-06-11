@@ -126,31 +126,31 @@ package ChangelogJuni2022 is
    
    
 
-   -- Version 0.01. => 0.01. (12.06.2022):
+   -- Version 0.01.1095 => 0.01. (12.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01. => 0.01. (11.06.2022):
+   -- Version 0.01.1060 => 0.01.1095 (11.06.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.01. => 0.01. (10.06.2022):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Angefangen einige rudimentäre Teile für den Schwierigkeitsgrad einzubauen.
+   -- Weiter an der Anpassung/Aufteilung der ProduktionDatentypen gearbeitet.
+   -- KIRassen können jetzt unterschiedliche Standardstadtnamen haben.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 
-   -- Version 0.01.10 => 0.01. (09.06.2022):
+   -- Version 0.01.1060 => 0.01.1060 (10.06.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.01.1060 => 0.01.1060 (09.06.2022):
+   
+   -- null.
    
    
 

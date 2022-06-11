@@ -53,7 +53,7 @@ package body StadtBauen is
         SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse)
       is
          when RassenDatentypen.Spieler_KI_Enum =>
-            StadtName.EingegebenerText := StandardStadtNamen (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer));
+            StadtName.EingegebenerText := StandardStadtNamen (RasseExtern => EinheitRasseNummerExtern.Rasse);
                   
          when RassenDatentypen.Spieler_Mensch_Enum =>
             StadtName := Eingabe.StadtName;
@@ -177,10 +177,10 @@ package body StadtBauen is
                                            ÄndernSetzenExtern     => False);
       SchreibeStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                              EinwohnerArbeiterExtern => True,
-                                             ÄnderungExtern         => 1);
+                                             WachsenSchrumpfenExtern => True);
       SchreibeStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                              EinwohnerArbeiterExtern => False,
-                                             ÄnderungExtern         => 1);
+                                             WachsenSchrumpfenExtern => True);
       SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).UmgebungBewirtschaftung := (0 => (0 => True, others => False), others => (others => False));
       SchreibeWichtiges.AnzahlStädte (RasseExtern     => StadtRasseNummerExtern.Rasse,
                                        PlusMinusExtern => True);
@@ -221,32 +221,23 @@ package body StadtBauen is
    
    
    function StandardStadtNamen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Unbounded_Wide_Wide_String
    is begin
       
-      -- Standardnamen der KI einfach auf Basis der Stadtnummer festlegen?
-      
-      if
-        StadtRasseNummerExtern.Rasse = RassenDatentypen.Menschen_Enum
-      then
-         null;
-         
-      else
-         null;
-      end if;
+      StadtName.EingegebenerText := GlobaleTexte.StädtenamenKI (RasseExtern, StadtnameVordefiniert (RasseExtern));
       
       case
-        WelcherName
+        StadtnameVordefiniert (RasseExtern)
       is
-         when 3 =>
-            WelcherName := 1;
+         when GlobaleTexte.StädtenamenKI'Last (2) =>
+            StadtnameVordefiniert (RasseExtern) := ZahlenDatentypen.EigenesPositive'First;
             
          when others =>
-            WelcherName := WelcherName + 1;
+            StadtnameVordefiniert (RasseExtern) := StadtnameVordefiniert (RasseExtern) + 1;
       end case;
       
-      return GlobaleTexte.StädtenamenKI (WelcherName);
+      return StadtName.EingegebenerText;
       
    end StandardStadtNamen;
 

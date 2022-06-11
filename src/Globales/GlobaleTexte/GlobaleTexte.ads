@@ -8,6 +8,8 @@ with StadtDatentypen;
 with EinheitenDatentypen;
 with SystemKonstanten;
 with ForschungenDatentypen;
+with RassenDatentypen;
+with ZahlenDatentypen;
 
 package GlobaleTexte is
    
@@ -78,7 +80,6 @@ package GlobaleTexte is
    Gebäude : TexteArray (1 .. RassenAnzahlBeschreibung * Positive (StadtDatentypen.GebäudeID'Last)) := (others => FehlenderText);
    Forschungen : TexteArray (1 .. RassenAnzahlBeschreibung * Positive (ForschungenDatentypen.ForschungID'Last)) := (others => FehlenderText);
    Beschäftigungen : TexteArray (1 .. NameBeschreibungMultiplikator * 11) := (others => FehlenderText);
-   StädtenamenKI : TexteArray (1 .. 3) := (others => FehlenderText);
    AllgemeineInformationen : TexteArray (1 .. 16) := (others => FehlenderText);
    Würdigung : TexteArray (1 .. 1) := (others => FehlenderText);
    Diplomatiemenü : TexteArray (1 .. 7) := (others => FehlenderText);
@@ -91,5 +92,8 @@ package GlobaleTexte is
    Ladezeit : TexteArray (1 .. 32) := (others => FehlenderText);
    Frage : TexteArray (1 .. 44) := (others => FehlenderText);
    Zeug : TexteArray (1 .. 69) := (others => FehlenderText);
+   
+   type ZweidimensionaleTexteArray is array (RassenDatentypen.Rassen_Verwendet_Enum range <>, ZahlenDatentypen.EigenesPositive range <>) of Unbounded_Wide_Wide_String;
+   StädtenamenKI : ZweidimensionaleTexteArray (RassenDatentypen.Rassen_Verwendet_Enum'Range, 1 .. 3) := (others => (others => FehlenderText));
    
 end GlobaleTexte;

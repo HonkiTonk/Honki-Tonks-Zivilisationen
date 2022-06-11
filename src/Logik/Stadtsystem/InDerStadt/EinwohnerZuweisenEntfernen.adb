@@ -42,7 +42,9 @@ package body EinwohnerZuweisenEntfernen is
             null;
                   
          else
-            EinwohnerBelegungÄndern (StadtRasseNummerExtern => StadtRasseNummerExtern);
+            EinwohnerBelegungÄndern (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                      YAchseExtern           => RelativeCursorPositionY,
+                                      XAchseExtern           => RelativeCursorPositionX);
          end if;
 
       else
@@ -54,19 +56,25 @@ package body EinwohnerZuweisenEntfernen is
 
 
    procedure EinwohnerBelegungÄndern
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      YAchseExtern : in KartenDatentypen.Kartenfeld;
+      XAchseExtern : in KartenDatentypen.Kartenfeld)
    is begin
       
       case
         LeseStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                 YKoordinateExtern      => RelativeCursorPositionY,
-                                                 XKoordinateExtern      => RelativeCursorPositionX)
+                                                 YKoordinateExtern      => YAchseExtern,
+                                                 XKoordinateExtern      => XAchseExtern)
       is
          when True =>
-            EinwohnerEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+            EinwohnerEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                YAchseExtern           => YAchseExtern,
+                                XAchseExtern           => XAchseExtern);
                         
          when False =>
-            EinwohnerZuweisen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+            EinwohnerZuweisen (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                               YAchseExtern           => YAchseExtern,
+                               XAchseExtern           => XAchseExtern);
       end case;
       
    end EinwohnerBelegungÄndern;
@@ -74,56 +82,63 @@ package body EinwohnerZuweisenEntfernen is
    
    
    procedure EinwohnerEntfernen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      YAchseExtern : in KartenDatentypen.Kartenfeld;
+      XAchseExtern : in KartenDatentypen.Kartenfeld)
    is begin
       
       SchreibeStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                   YKoordinateExtern      => RelativeCursorPositionY,
-                                                   XKoordinateExtern      => RelativeCursorPositionX,
+                                                   YKoordinateExtern      => YAchseExtern,
+                                                   XKoordinateExtern      => XAchseExtern,
                                                    BelegenEntfernenExtern => False);
       SchreibeStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                              EinwohnerArbeiterExtern => False,
-                                             ÄnderungExtern         => -1);
+                                             WachsenSchrumpfenExtern => False);
       
    end EinwohnerEntfernen;
    
    
    
    procedure EinwohnerZuweisen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      YAchseExtern : in KartenDatentypen.Kartenfeld;
+      XAchseExtern : in KartenDatentypen.Kartenfeld)
    is begin
       
       KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                                           ÄnderungExtern    => (0, RelativeCursorPositionY, RelativeCursorPositionX),
+                                                                                           ÄnderungExtern    => (0, YAchseExtern, XAchseExtern),
                                                                                            LogikGrafikExtern => True);
          
-      if
-        KartenWert.XAchse = KartenKonstanten.LeerXAchse
-      then
-         null;
-               
-      elsif
-        LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
-                                           EinwohnerArbeiterExtern => False)
-        <
-        LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
-                                           EinwohnerArbeiterExtern => True)
-        and
-          LeseKarten.BestimmteStadtBelegtGrund (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                KoordinatenExtern      => KartenWert)
-        = True
-      then
-         SchreibeStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                      YKoordinateExtern      => RelativeCursorPositionY,
-                                                      XKoordinateExtern      => RelativeCursorPositionX,
-                                                      BelegenEntfernenExtern => True);
-         SchreibeStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
-                                                EinwohnerArbeiterExtern => False,
-                                                ÄnderungExtern         => 1);
+      case
+        KartenWert.XAchse
+      is
+         when KartenKonstanten.LeerXAchse =>
+            null;
             
-      else
-         null;
-      end if;
+         when others =>
+            if
+              LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+                                                 EinwohnerArbeiterExtern => False)
+              <
+              LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+                                                 EinwohnerArbeiterExtern => True)
+              and
+                LeseKarten.BestimmteStadtBelegtGrund (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                      KoordinatenExtern      => KartenWert)
+              = True
+            then
+               SchreibeStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                            YKoordinateExtern      => YAchseExtern,
+                                                            XKoordinateExtern      => XAchseExtern,
+                                                            BelegenEntfernenExtern => True);
+               SchreibeStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+                                                      EinwohnerArbeiterExtern => False,
+                                                      WachsenSchrumpfenExtern => True);
+            
+            else
+               null;
+            end if;
+      end case;
       
    end EinwohnerZuweisen;
 

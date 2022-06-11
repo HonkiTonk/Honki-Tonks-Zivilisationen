@@ -75,7 +75,7 @@ package body Wachstum is
                                                                                       EinwohnerArbeiterExtern => True)
                                               * 5)
       then
-         NeuerEinwohner (StadtRasseNummerExtern => StadtRasseNummerExtern);
+         WachstumSchrumpfung := NeuerEinwohner (StadtRasseNummerExtern => StadtRasseNummerExtern);
 
       elsif
         LeseStadtGebaut.Nahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern) < StadtKonstanten.LeerStadt.Nahrungsmittel
@@ -108,8 +108,9 @@ package body Wachstum is
    
    
    
-   procedure NeuerEinwohner
+   function NeuerEinwohner
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+      return Boolean
    is begin
       
       SchreibeStadtGebaut.Nahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern,
@@ -117,10 +118,11 @@ package body Wachstum is
                                           ÄndernSetzenExtern     => False);
       SchreibeStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                              EinwohnerArbeiterExtern => True,
-                                             ÄnderungExtern          => 1);
+                                             WachsenSchrumpfenExtern => True);
       StadtWerteFestlegen.BewirtschaftbareFelderBelegen (ZuwachsOderSchwundExtern => True,
                                                          StadtRasseNummerExtern   => StadtRasseNummerExtern);
-      WachstumSchrumpfung := True;
+      
+      return True;
       
    end NeuerEinwohner;
    

@@ -27,7 +27,9 @@ private
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    procedure EinwohnerBelegungÄndern
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      YAchseExtern : in KartenDatentypen.Kartenfeld;
+      XAchseExtern : in KartenDatentypen.Kartenfeld)
      with
        Pre =>
          (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -35,7 +37,9 @@ private
             SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum);
    
    procedure EinwohnerEntfernen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      YAchseExtern : in KartenDatentypen.Kartenfeld;
+      XAchseExtern : in KartenDatentypen.Kartenfeld)
      with
        Pre =>
          (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -43,7 +47,9 @@ private
             SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum);
    
    procedure EinwohnerZuweisen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      YAchseExtern : in KartenDatentypen.Kartenfeld;
+      XAchseExtern : in KartenDatentypen.Kartenfeld)
      with
        Pre =>
          (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze

@@ -45,7 +45,7 @@ package SchreibeStadtGebaut is
    procedure EinwohnerArbeiter
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       EinwohnerArbeiterExtern : in Boolean;
-      ÄnderungExtern : in ProduktionDatentypen.Zwischenlösung)
+      WachsenSchrumpfenExtern : in Boolean)
      with
        Pre =>
          (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -242,6 +242,7 @@ package SchreibeStadtGebaut is
    
 private
    
-   
+   AktuelleEinwohner : ProduktionDatentypen.Einwohner;
+   AktuelleArbeiter : ProduktionDatentypen.Einwohner;
 
 end SchreibeStadtGebaut;

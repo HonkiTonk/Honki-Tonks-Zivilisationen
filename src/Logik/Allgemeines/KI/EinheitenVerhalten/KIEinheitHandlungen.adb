@@ -5,7 +5,6 @@ with KartenRecords; use KartenRecords;
 with EinheitenDatentypen; use EinheitenDatentypen;
 with AufgabenDatentypen; use AufgabenDatentypen;
 with EinheitenKonstanten;
-with ZahlenDatentypen;
 
 with KIDatentypen; use KIDatentypen;
 with KIKonstanten;
@@ -44,7 +43,7 @@ package body KIEinheitHandlungen is
    is begin
       
       AktivitätSchleife:
-      for Schleifenwert in ZahlenDatentypen.NotAusKlein'Range loop
+      for AktivitätSchleifenwert in KIDatentypen.KINotAus'First .. KIKonstanten.Schwierigkeitsgrad (SpielVariablen.Schwierigkeitsgrad) loop
          
          case
            HandlungBeendet (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
@@ -79,7 +78,7 @@ package body KIEinheitHandlungen is
             KIAufgabenPlanung.AufgabeUmsetzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
          else
-            return;
+            exit AktivitätSchleife;
          end if;
          
       end loop AktivitätSchleife;
@@ -127,7 +126,7 @@ package body KIEinheitHandlungen is
       end if;
       
       AktivitätSchleife:
-      for Schleifenwert in ZahlenDatentypen.NotAusKlein'Range loop
+      for AktivitätSchleifenwert in KIDatentypen.KINotAus'First .. KIKonstanten.Schwierigkeitsgrad (SpielVariablen.Schwierigkeitsgrad) loop
          
          case
            HandlungBeendet (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
@@ -162,7 +161,7 @@ package body KIEinheitHandlungen is
             KIAufgabenPlanung.AufgabeUmsetzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
          else
-            return;
+            exit AktivitätSchleife;
          end if;
          
       end loop AktivitätSchleife;

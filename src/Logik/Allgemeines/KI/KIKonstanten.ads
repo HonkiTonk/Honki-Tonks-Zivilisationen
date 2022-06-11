@@ -4,15 +4,14 @@ pragma Warnings (Off, "*array aggregate*");
 with KartenRecords;
 with RassenDatentypen;
 with KartenDatentypen;
+with SpielDatentypen;
 
 with KIDatentypen;
 with KIRecords;
 
 package KIKonstanten is
 
-   -- Nullwert für Koordinaten
    LeerKoordinate : constant KartenRecords.AchsenKartenfeldNaturalRecord := (0, 0, 0);
-   -- Nullwert für Koordinaten
 
    LeerEinheitIDBewertung : constant KIRecords.EinheitIDBewertungRecord := (0, 0);
    LeerGebäudeIDBewertung : constant KIRecords.GebäudeIDBewertungRecord := (0, 0);
@@ -45,5 +44,12 @@ package KIKonstanten is
    BewegungAngriff : constant KIDatentypen.Bewegung_Enum := KIDatentypen.Belegt_Angriff_Enum;
    BewegungNormal : constant KIDatentypen.Bewegung_Enum := KIDatentypen.Unbelegt_Enum;
    KeineBewegung : constant KIDatentypen.Bewegung_Enum := KIDatentypen.Belegt_Kein_Angriff_Enum;
+
+   type SchwierigkeitsgradArray is array (SpielDatentypen.Schwierigkeitsgrad_Enum'Range) of KIDatentypen.KINotAus;
+   Schwierigkeitsgrad : constant SchwierigkeitsgradArray := (
+                                                             SpielDatentypen.Schwierigkeitsgrad_Leicht_Enum => 10,
+                                                             SpielDatentypen.Schwierigkeitsgrad_Mittel_Enum => 33,
+                                                             SpielDatentypen.Schwierigkeitsgrad_Schwer_Enum => KIDatentypen.KINotAus'Last
+                                                            );
 
 end KIKonstanten;

@@ -36,44 +36,67 @@ package body SchreibeStadtGebaut is
    procedure EinwohnerArbeiter
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       EinwohnerArbeiterExtern : in Boolean;
-      ----------------------------------- Zwischenlösung durch Boolean ersetzen?
-      ÄnderungExtern : in ProduktionDatentypen.Zwischenlösung)
+      WachsenSchrumpfenExtern : in Boolean)
    is begin
       
       case
         EinwohnerArbeiterExtern
       is
          when True =>
+            AktuelleEinwohner := SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).EinwohnerArbeiter (1);
+            
             if
-              SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).EinwohnerArbeiter (1) + ÄnderungExtern > ProduktionDatentypen.Feldproduktion'Last
+              WachsenSchrumpfenExtern
+              and
+                AktuelleEinwohner + 1 > ProduktionDatentypen.Einwohner'Last
             then
-               SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).EinwohnerArbeiter (1) := ProduktionDatentypen.Feldproduktion'Last;
+               AktuelleEinwohner := ProduktionDatentypen.Einwohner'Last;
                
-           -- elsif
-           --   SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).EinwohnerArbeiter (1) + ÄnderungExtern < 0
-           -- then
-           --    SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).EinwohnerArbeiter (1) := 0;
+            elsif
+              WachsenSchrumpfenExtern
+            then
+               AktuelleEinwohner := AktuelleEinwohner + 1;
+               
+            elsif
+              WachsenSchrumpfenExtern = False
+              and
+                AktuelleEinwohner - 1 < ProduktionDatentypen.Einwohner'First
+            then
+               AktuelleEinwohner := ProduktionDatentypen.Einwohner'First;
             
             else
-               SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).EinwohnerArbeiter (1)
-                 := SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).EinwohnerArbeiter (1) + ÄnderungExtern;
+               AktuelleEinwohner := AktuelleEinwohner - 1;
             end if;
+            
+            SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).EinwohnerArbeiter (1) := AktuelleEinwohner;
             
          when False =>
+            AktuelleArbeiter := SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).EinwohnerArbeiter (2);
+            
             if
-              SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).EinwohnerArbeiter (2) + ÄnderungExtern > ProduktionDatentypen.Feldproduktion'Last
+              WachsenSchrumpfenExtern
+              and
+                AktuelleArbeiter + 1 > ProduktionDatentypen.Einwohner'Last
             then
-               SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).EinwohnerArbeiter (2) := ProduktionDatentypen.Feldproduktion'Last;
+               AktuelleArbeiter := ProduktionDatentypen.Einwohner'Last;
                
-           -- elsif
-           --   SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).EinwohnerArbeiter (2) + ÄnderungExtern < 0
-           -- then
-           --    SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).EinwohnerArbeiter (2) := 0;
+            elsif
+              WachsenSchrumpfenExtern
+            then
+               AktuelleArbeiter := AktuelleArbeiter + 1;
+               
+            elsif
+              WachsenSchrumpfenExtern = False
+              and
+                AktuelleArbeiter - 1 < ProduktionDatentypen.Einwohner'First
+            then
+               AktuelleArbeiter := ProduktionDatentypen.Einwohner'First;
             
             else
-               SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).EinwohnerArbeiter (2)
-                 := SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).EinwohnerArbeiter (2) + ÄnderungExtern;
+               AktuelleArbeiter := AktuelleArbeiter - 1;
             end if;
+            
+            SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).EinwohnerArbeiter (2) := AktuelleArbeiter;
       end case;
       
    end EinwohnerArbeiter;
