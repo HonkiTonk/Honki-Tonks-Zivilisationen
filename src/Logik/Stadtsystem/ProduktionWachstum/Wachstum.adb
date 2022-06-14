@@ -68,20 +68,19 @@ package body Wachstum is
       SchreibeStadtGebaut.Nahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                           NahrungsmittelExtern   => LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                           ÄndernSetzenExtern     => True);
+      
+      VorhandeneNahrung := LeseStadtGebaut.Nahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern);
 
       if
-        LeseStadtGebaut.Nahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern)
-        > ProduktionDatentypen.Produktion (10 + LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
-                                                                                      EinwohnerArbeiterExtern => True)
-                                              * 5)
+        VorhandeneNahrung > BenötigteNahrung (StadtRasseNummerExtern => StadtRasseNummerExtern)
       then
          WachstumSchrumpfung := NeuerEinwohner (StadtRasseNummerExtern => StadtRasseNummerExtern);
 
       elsif
-        LeseStadtGebaut.Nahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern) < StadtKonstanten.LeerStadt.Nahrungsmittel
+        VorhandeneNahrung < StadtKonstanten.LeerNahrungsmittel
       then
          SchreibeStadtGebaut.Nahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                             NahrungsmittelExtern   => StadtKonstanten.LeerStadt.Nahrungsmittel,
+                                             NahrungsmittelExtern   => StadtKonstanten.LeerNahrungsmittel,
                                              ÄndernSetzenExtern     => False);
          
          case
@@ -102,9 +101,23 @@ package body Wachstum is
          return;
       end if;
 
-      EinwohnerÄnderung (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      EinwohnerÄnderung (StadtRasseNummerExtern    => StadtRasseNummerExtern,
+                          WachstumSchrumpfungExtern => WachstumSchrumpfung);
       
    end WachstumEinwohner;
+   
+   
+   
+   function BenötigteNahrung
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+      return ProduktionDatentypen.Stadtproduktion
+   is begin
+      
+      return GrundwertEinwohnerwachstum (StadtRasseNummerExtern.Rasse)
+        + MultiplikatorEinwohnerwachstum (StadtRasseNummerExtern.Rasse) * ProduktionDatentypen.Produktion (LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+                                                                                                                                              EinwohnerArbeiterExtern => True));
+      
+   end BenötigteNahrung;
    
    
    
@@ -129,23 +142,24 @@ package body Wachstum is
    
    
    procedure EinwohnerÄnderung
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      WachstumSchrumpfungExtern : in Boolean)
    is begin
       
+      VorhandeneEinwohner := LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+                                                                EinwohnerArbeiterExtern => True);
+      
       case
-        WachstumSchrumpfung
+        WachstumSchrumpfungExtern
       is
          when True =>
             StadtMeldungenSetzen.StadtMeldungSetzenEreignis (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                              EreignisExtern         => StadtDatentypen.Einwohner_Wachstum_Enum);
+            
             if
-              LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
-                                                 EinwohnerArbeiterExtern => True)
-              = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Anfangswert_Enum, StadtRasseNummerExtern.Rasse)
+              VorhandeneEinwohner = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Anfangswert_Enum, StadtRasseNummerExtern.Rasse)
               or
-                LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
-                                                   EinwohnerArbeiterExtern => True)
-              = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Endwert_Enum, StadtRasseNummerExtern.Rasse)
+                VorhandeneEinwohner = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Endwert_Enum, StadtRasseNummerExtern.Rasse)
             then
                StadtWerteFestlegen.StadtUmgebungGrößeFestlegen (StadtRasseNummerExtern => StadtRasseNummerExtern);
                Sichtbarkeit.SichtbarkeitsprüfungFürStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
@@ -157,14 +171,11 @@ package body Wachstum is
          when False =>
             StadtMeldungenSetzen.StadtMeldungSetzenEreignis (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                              EreignisExtern         => StadtDatentypen.Einwohner_Reduktion_Enum);
+            
             if
-              LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
-                                                 EinwohnerArbeiterExtern => True)
-              = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Anfangswert_Enum, StadtRasseNummerExtern.Rasse) - 1
+              VorhandeneEinwohner = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Anfangswert_Enum, StadtRasseNummerExtern.Rasse) - 1
               or
-                LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
-                                                   EinwohnerArbeiterExtern => True)
-              = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Endwert_Enum, StadtRasseNummerExtern.Rasse) - 1
+                VorhandeneEinwohner = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Endwert_Enum, StadtRasseNummerExtern.Rasse) - 1
             then
                StadtWerteFestlegen.StadtUmgebungGrößeFestlegen (StadtRasseNummerExtern => StadtRasseNummerExtern);
             
@@ -193,7 +204,7 @@ package body Wachstum is
           Bauprojekt.Einheit = 0
       then
          SchreibeStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                         RessourcenExtern       => StadtKonstanten.LeerStadt.Ressourcen,
+                                         RessourcenExtern       => StadtKonstanten.LeerRessourcen,
                                          ÄndernSetzenExtern     => False);
          
       elsif
@@ -202,7 +213,7 @@ package body Wachstum is
          if
            LeseStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern)
            >= LeseGebaeudeDatenbank.PreisRessourcen (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                     IDExtern    => StadtDatentypen.GebäudeID (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Gebäude))
+                                                     IDExtern    => StadtDatentypen.GebäudeID (Bauprojekt.Gebäude))
          then
             StadtGebaeudeBauen.GebäudeFertiggestellt (StadtRasseNummerExtern => StadtRasseNummerExtern);
             
@@ -214,7 +225,7 @@ package body Wachstum is
          if
            LeseStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern)
            >= LeseEinheitenDatenbank.PreisRessourcen (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                      IDExtern    => EinheitenDatentypen.EinheitenID (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Einheit))
+                                                      IDExtern    => EinheitenDatentypen.EinheitenID (Bauprojekt.Einheit))
          then
             StadtEinheitenBauen.EinheitFertiggestellt (StadtRasseNummerExtern => StadtRasseNummerExtern);
 
@@ -262,11 +273,20 @@ package body Wachstum is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      SchreibeWichtiges.GeldZugewinnProRunde (RasseExtern         => RasseExtern,
-                                              GeldZugewinnExtern  => WichtigesKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde,
-                                              RechnenSetzenExtern => False);
+      case
+        RasseExtern
+      is
+         when RassenDatentypen.Ekropa_Enum =>
+            null;
+            
+         when others =>
+            SchreibeWichtiges.GeldZugewinnProRunde (RasseExtern         => RasseExtern,
+                                                    GeldZugewinnExtern  => WichtigesKonstanten.LeerGeldZugewinnProRunde,
+                                                    RechnenSetzenExtern => False);
+      end case;
+      
       SchreibeWichtiges.GesamteForschungsrate (RasseExtern                  => RasseExtern,
-                                               ForschungsrateZugewinnExtern => WichtigesKonstanten.LeerWichtigesZeug.GesamteForschungsrate,
+                                               ForschungsrateZugewinnExtern => WichtigesKonstanten.LeerGesamteForschungsrate,
                                                RechnenSetzenExtern          => False);
       
       StadtSchleife:
@@ -279,9 +299,17 @@ package body Wachstum is
                null;
                
             when others =>
-               SchreibeWichtiges.GeldZugewinnProRunde (RasseExtern         => RasseExtern,
-                                                       GeldZugewinnExtern  => LeseStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert)),
-                                                       RechnenSetzenExtern => True);
+               if
+                 RasseExtern = RassenDatentypen.Ekropa_Enum
+               then
+                  null;
+                  
+               else
+                  SchreibeWichtiges.GeldZugewinnProRunde (RasseExtern         => RasseExtern,
+                                                          GeldZugewinnExtern  => LeseStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert)),
+                                                          RechnenSetzenExtern => True);
+               end if;
+               
                SchreibeWichtiges.GesamteForschungsrate (RasseExtern                  => RasseExtern,
                                                         ForschungsrateZugewinnExtern => LeseStadtGebaut.Forschungsrate (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert)),
                                                         RechnenSetzenExtern          => True);

@@ -14,9 +14,8 @@ package body GesamtwerteFeld is
       return ProduktionDatentypen.Feldproduktion
    is begin
       
-      if
-        KartenAllgemein.GrundNahrung (KoordinatenExtern => KoordinatenExtern,
-                                      RasseExtern       => RasseExtern)
+      return KartenAllgemein.GrundNahrung (KoordinatenExtern => KoordinatenExtern,
+                                           RasseExtern       => RasseExtern)
         + KartenAllgemein.RessourceNahrung (KoordinatenExtern => KoordinatenExtern,
                                             RasseExtern       => RasseExtern)
         + KartenAllgemein.WegNahrung (KoordinatenExtern => KoordinatenExtern,
@@ -24,23 +23,7 @@ package body GesamtwerteFeld is
         + KartenAllgemein.VerbesserungNahrung (KoordinatenExtern => KoordinatenExtern,
                                                RasseExtern       => RasseExtern)
         + KartenAllgemein.FlussNahrung (KoordinatenExtern => KoordinatenExtern,
-                                        RasseExtern       => RasseExtern)
-        > ProduktionDatentypen.Feldproduktion'Last
-      then
-         return ProduktionDatentypen.Feldproduktion'Last;
-         
-      else
-         return KartenAllgemein.GrundNahrung (KoordinatenExtern => KoordinatenExtern,
-                                              RasseExtern       => RasseExtern)
-           + KartenAllgemein.RessourceNahrung (KoordinatenExtern => KoordinatenExtern,
-                                               RasseExtern       => RasseExtern)
-           + KartenAllgemein.WegNahrung (KoordinatenExtern => KoordinatenExtern,
-                                         RasseExtern       => RasseExtern)
-           + KartenAllgemein.VerbesserungNahrung (KoordinatenExtern => KoordinatenExtern,
-                                                  RasseExtern       => RasseExtern)
-           + KartenAllgemein.FlussNahrung (KoordinatenExtern => KoordinatenExtern,
-                                           RasseExtern       => RasseExtern);
-      end if;
+                                        RasseExtern       => RasseExtern);
       
    end FeldNahrung;
      
@@ -52,9 +35,8 @@ package body GesamtwerteFeld is
       return ProduktionDatentypen.Feldproduktion
    is begin
       
-      if
-        KartenAllgemein.GrundProduktion (KoordinatenExtern => KoordinatenExtern,
-                                         RasseExtern       => RasseExtern)
+      return KartenAllgemein.GrundProduktion (KoordinatenExtern => KoordinatenExtern,
+                                              RasseExtern       => RasseExtern)
         + KartenAllgemein.RessourceProduktion (KoordinatenExtern => KoordinatenExtern,
                                                RasseExtern       => RasseExtern)
         + KartenAllgemein.WegProduktion (KoordinatenExtern => KoordinatenExtern,
@@ -62,23 +44,7 @@ package body GesamtwerteFeld is
         + KartenAllgemein.VerbesserungProduktion (KoordinatenExtern => KoordinatenExtern,
                                                   RasseExtern       => RasseExtern)
         + KartenAllgemein.FlussProduktion (KoordinatenExtern => KoordinatenExtern,
-                                           RasseExtern       => RasseExtern)
-        > ProduktionDatentypen.Feldproduktion'Last
-      then
-         return ProduktionDatentypen.Feldproduktion'Last;
-         
-      else
-         return KartenAllgemein.GrundProduktion (KoordinatenExtern => KoordinatenExtern,
-                                                 RasseExtern       => RasseExtern)
-           + KartenAllgemein.RessourceProduktion (KoordinatenExtern => KoordinatenExtern,
-                                                  RasseExtern       => RasseExtern)
-           + KartenAllgemein.WegProduktion (KoordinatenExtern => KoordinatenExtern,
-                                            RasseExtern       => RasseExtern)
-           + KartenAllgemein.VerbesserungProduktion (KoordinatenExtern => KoordinatenExtern,
-                                                     RasseExtern       => RasseExtern)
-           + KartenAllgemein.FlussProduktion (KoordinatenExtern => KoordinatenExtern,
-                                              RasseExtern       => RasseExtern);
-      end if;
+                                           RasseExtern       => RasseExtern);
       
    end FeldProduktion;
      
@@ -90,9 +56,8 @@ package body GesamtwerteFeld is
       return ProduktionDatentypen.Feldproduktion
    is begin
       
-      if
-        KartenAllgemein.GrundGeld (KoordinatenExtern => KoordinatenExtern,
-                                   RasseExtern       => RasseExtern)
+      return KartenAllgemein.GrundGeld (KoordinatenExtern => KoordinatenExtern,
+                                        RasseExtern       => RasseExtern)
         + KartenAllgemein.RessourceGeld (KoordinatenExtern => KoordinatenExtern,
                                          RasseExtern       => RasseExtern)
         + KartenAllgemein.WegGeld (KoordinatenExtern => KoordinatenExtern,
@@ -100,23 +65,7 @@ package body GesamtwerteFeld is
         + KartenAllgemein.VerbesserungGeld (KoordinatenExtern => KoordinatenExtern,
                                             RasseExtern       => RasseExtern)
         + KartenAllgemein.FlussGeld (KoordinatenExtern => KoordinatenExtern,
-                                     RasseExtern       => RasseExtern)
-        > ProduktionDatentypen.Feldproduktion'Last
-      then
-         return ProduktionDatentypen.Feldproduktion'Last;
-         
-      else
-         return KartenAllgemein.GrundGeld (KoordinatenExtern => KoordinatenExtern,
-                                           RasseExtern       => RasseExtern)
-           + KartenAllgemein.RessourceGeld (KoordinatenExtern => KoordinatenExtern,
-                                            RasseExtern       => RasseExtern)
-           + KartenAllgemein.WegGeld (KoordinatenExtern => KoordinatenExtern,
-                                      RasseExtern       => RasseExtern)
-           + KartenAllgemein.VerbesserungGeld (KoordinatenExtern => KoordinatenExtern,
-                                               RasseExtern       => RasseExtern)
-           + KartenAllgemein.FlussGeld (KoordinatenExtern => KoordinatenExtern,
-                                        RasseExtern       => RasseExtern);
-      end if;
+                                     RasseExtern       => RasseExtern);
       
    end FeldGeld;
      
@@ -128,9 +77,8 @@ package body GesamtwerteFeld is
       return ProduktionDatentypen.Feldproduktion
    is begin
       
-      if
-        KartenAllgemein.GrundWissen (KoordinatenExtern => KoordinatenExtern,
-                                     RasseExtern       => RasseExtern)
+      return KartenAllgemein.GrundWissen (KoordinatenExtern => KoordinatenExtern,
+                                          RasseExtern       => RasseExtern)
         + KartenAllgemein.RessourceWissen (KoordinatenExtern => KoordinatenExtern,
                                            RasseExtern       => RasseExtern)
         + KartenAllgemein.WegWissen (KoordinatenExtern => KoordinatenExtern,
@@ -138,29 +86,14 @@ package body GesamtwerteFeld is
         + KartenAllgemein.VerbesserungWissen (KoordinatenExtern => KoordinatenExtern,
                                               RasseExtern       => RasseExtern)
         + KartenAllgemein.FlussWissen (KoordinatenExtern => KoordinatenExtern,
-                                       RasseExtern       => RasseExtern)
-        > ProduktionDatentypen.Feldproduktion'Last
-      then
-         return ProduktionDatentypen.Feldproduktion'Last;
-         
-      else
-         return KartenAllgemein.GrundWissen (KoordinatenExtern => KoordinatenExtern,
-                                             RasseExtern       => RasseExtern)
-           + KartenAllgemein.RessourceWissen (KoordinatenExtern => KoordinatenExtern,
-                                              RasseExtern       => RasseExtern)
-           + KartenAllgemein.WegWissen (KoordinatenExtern => KoordinatenExtern,
-                                        RasseExtern       => RasseExtern)
-           + KartenAllgemein.VerbesserungWissen (KoordinatenExtern => KoordinatenExtern,
-                                                 RasseExtern       => RasseExtern)
-           + KartenAllgemein.FlussWissen (KoordinatenExtern => KoordinatenExtern,
-                                          RasseExtern       => RasseExtern);
-      end if;
+                                       RasseExtern       => RasseExtern);
       
    end FeldWissen;
      
      
      
    --------------------------- Kampfwerte auch anpassen damit die elsif Abfrage entfernt werden kann wie bei den Produktionen oben?
+   --------------------------- Dann könnten aber keine negativen Werte übergeben werden, die bei Angriffen/Verteidigungen aber Sinn ergeben würden, anders als bei den Produktionen.
    function FeldVerteidigung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

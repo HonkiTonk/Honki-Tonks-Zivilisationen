@@ -1,8 +1,13 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+with Ada.Calendar; use Ada.Calendar;
+
 with MenueDatentypen;
 with ZahlenDatentypen;
+with GlobaleTexte;
 
 with SchreibeKarten;
 with SchreibeWichtiges;
@@ -10,6 +15,7 @@ with SchreibeWichtiges;
 with AuswahlMenues;
 with Fehler;
 with Karten;
+with Ladezeiten;
 
 package body DebugmenueSFML is
 
@@ -44,6 +50,9 @@ package body DebugmenueSFML is
                
             when RueckgabeDatentypen.Suroka_Enum =>
                SonstigeVariablen.Debug.Sieg := not SonstigeVariablen.Debug.Sieg;
+               
+            when RueckgabeDatentypen.Pryolon_Enum =>
+               LadezeitenAnzegien;
                
             when RueckgabeDatentypen.Fertig_Enum =>
                return;
@@ -108,5 +117,43 @@ package body DebugmenueSFML is
       null;
       
    end KarteInfosEinheiten;
+   
+   
+   
+   procedure LadezeitenAnzegien
+   is begin
+      
+      Gesamtzeit := 0.00;
+      WelcherText := 2;
+      
+      LadezeitenSpielweltSchleife:
+      for LadezeitenSpielweltSchleifenwert in Ladezeiten.SpielweltErstellenArray'Range (1) loop
+         
+         Put (To_Wide_Wide_String (Source => GlobaleTexte.Ladezeit (WelcherText)) & ": ");
+         
+         Zwischenzeit
+           := Float (Ladezeiten.SpielweltErstellen (LadezeitenSpielweltSchleifenwert, SystemDatentypen.Endwert_Enum) - Ladezeiten.SpielweltErstellen (LadezeitenSpielweltSchleifenwert, SystemDatentypen.Anfangswert_Enum));
+         
+         AnzeigeFloat.Put (Item => Zwischenzeit,
+                           Fore => 1,
+                           Aft  => 6,
+                           Exp  => 0);
+         New_Line;
+         
+         Gesamtzeit := Gesamtzeit + Zwischenzeit;
+         WelcherText := WelcherText + 1;
+         
+      end loop LadezeitenSpielweltSchleife;
+      
+      Put ("Gesamtzeit: ");
+      AnzeigeFloat.Put (Item => Gesamtzeit,
+                        Fore => 1,
+                        Aft  => 6,
+                        Exp  => 0);
+      
+      New_Line;
+      New_Line;
+      
+   end LadezeitenAnzegien;
 
 end DebugmenueSFML;

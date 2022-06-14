@@ -2,10 +2,10 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
-with Ada.Calendar; use Ada.Calendar;
+-- with Ada.Calendar; use Ada.Calendar;
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with SystemDatentypen; use SystemDatentypen;
+-- with SystemDatentypen; use SystemDatentypen;
 with RueckgabeDatentypen; use RueckgabeDatentypen;
 with RassenDatentypen;
 with SpielVariablen;
@@ -22,9 +22,9 @@ with EinheitenRecords;
 
 with Karten;
 with Auswahl;
-with Ladezeiten;
+-- with Ladezeiten;
 with SpeichernLadenAllgemein;
-with LadezeitenDatentypen;
+-- with LadezeitenDatentypen;
 
 package body Speichern is
 
@@ -46,7 +46,7 @@ package body Speichern is
             null;
       end case;
 
-      LadezeitenDatentypen.EinzelneZeiten (LadezeitenDatentypen.Speicherzeit_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
+      -- LadezeitenDatentypen.EinzelneZeiten (LadezeitenDatentypen.Speicherzeit_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
       
       Create (File => DateiSpeichernNeu,
               Mode => Out_File,
@@ -63,17 +63,17 @@ package body Speichern is
       
       Close (File => DateiSpeichernNeu);
          
-      LadezeitenDatentypen.EinzelneZeiten (LadezeitenDatentypen.Speicherzeit_Enum, SystemDatentypen.Endwert_Enum) := Clock;
+      -- LadezeitenDatentypen.EinzelneZeiten (LadezeitenDatentypen.Speicherzeit_Enum, SystemDatentypen.Endwert_Enum) := Clock;
       
-      case
-        AutospeichernExtern
-      is
-         when True =>
-            Ladezeiten.AnzeigeEinzelneZeitOhneWarten (WelcheZeitExtern => LadezeitenDatentypen.Speicherzeit_Enum);
+      -- case
+      --  AutospeichernExtern
+     -- is
+      --   when True =>
+       --     Ladezeiten.AnzeigeEinzelneZeitOhneWarten (WelcheZeitExtern => LadezeitenDatentypen.Speicherzeit_Enum);
             
-         when False =>
-            Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => LadezeitenDatentypen.Speicherzeit_Enum);
-      end case;
+      --   when False =>
+      --      Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => LadezeitenDatentypen.Speicherzeit_Enum);
+     -- end case;
    
    end SpeichernNeu;
    

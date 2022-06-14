@@ -2,10 +2,10 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
-with Ada.Calendar; use Ada.Calendar;
+-- with Ada.Calendar; use Ada.Calendar;
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with SystemDatentypen;
+-- with SystemDatentypen;
 with GlobaleVariablen;
 with KartenRecords;
 with StadtRecords;
@@ -19,8 +19,8 @@ with SonstigeVariablen;
 with EinheitenRecords;
 
 with Karten;
-with Ladezeiten;
-with LadezeitenDatentypen;
+-- with Ladezeiten;
+-- with LadezeitenDatentypen;
 with Auswahl;
 with SpeichernLadenAllgemein;
 
@@ -44,7 +44,7 @@ package body Laden is
             return False;
       end case;
       
-      LadezeitenDatentypen.EinzelneZeiten (LadezeitenDatentypen.Ladezeit_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
+      -- LadezeitenDatentypen.EinzelneZeiten (LadezeitenDatentypen.Ladezeit_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
 
       Open (File => DateiLadenNeu,
             Mode => In_File,
@@ -85,8 +85,8 @@ package body Laden is
 
       Close (File => DateiLadenNeu);
 
-      LadezeitenDatentypen.EinzelneZeiten (LadezeitenDatentypen.Ladezeit_Enum, SystemDatentypen.Endwert_Enum) := Clock;
-      Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => LadezeitenDatentypen.Ladezeit_Enum);
+      -- LadezeitenDatentypen.EinzelneZeiten (LadezeitenDatentypen.Ladezeit_Enum, SystemDatentypen.Endwert_Enum) := Clock;
+      -- Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => LadezeitenDatentypen.Ladezeit_Enum);
 
       return True;
       

@@ -85,8 +85,18 @@ package body StadtProduktion is
       
       WeitereNahrungsproduktionÄnderungen (StadtRasseNummerExtern => StadtRasseNummerExtern);
       WeitereProduktionrateÄnderungen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      
       -- Geldgewinnung muss immer nach der Produktionsrate ausgeführt werden, da bei keinem Bauprojekt sonst die Ressourcenumwandlung nach Geld nicht korrekt ist.
-      WeitereGeldgewinnungÄnderungen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      case
+        StadtRasseNummerExtern.Rasse
+      is
+         when RassenDatentypen.Ekropa_Enum =>
+            null;
+            
+         when others =>
+            WeitereGeldgewinnungÄnderungen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      end case;
+      
       WeitereForschungsrateÄnderungen (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
    end StadtProduktionBerechnung;
@@ -150,10 +160,20 @@ package body StadtProduktion is
                                                    ProduktionrateExtern   => GesamtwerteFeld.FeldProduktion (KoordinatenExtern => KartenWert,
                                                                                                              RasseExtern       => StadtRasseNummerExtern.Rasse),
                                                    ÄndernSetzenExtern     => True);
-               SchreibeStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                  GeldgewinnungExtern    => GesamtwerteFeld.FeldGeld (KoordinatenExtern => KartenWert,
-                                                                                                      RasseExtern       => StadtRasseNummerExtern.Rasse),
-                                                  ÄndernSetzenExtern     => True);
+               
+               case
+                 StadtRasseNummerExtern.Rasse
+               is
+                  when RassenDatentypen.Ekropa_Enum =>
+                     null;
+                     
+                  when others =>
+                     SchreibeStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                        GeldgewinnungExtern    => GesamtwerteFeld.FeldGeld (KoordinatenExtern => KartenWert,
+                                                                                                            RasseExtern       => StadtRasseNummerExtern.Rasse),
+                                                        ÄndernSetzenExtern     => True);
+               end case;
+               
                SchreibeStadtGebaut.Forschungsrate (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                    ForschungsrateExtern   => GesamtwerteFeld.FeldWissen (KoordinatenExtern => KartenWert,
                                                                                                          RasseExtern       => StadtRasseNummerExtern.Rasse),
@@ -177,9 +197,19 @@ package body StadtProduktion is
       SchreibeStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                           ProduktionrateExtern   => StadtKonstanten.LeerProduktionrate,
                                           ÄndernSetzenExtern     => False);
-      SchreibeStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                         GeldgewinnungExtern    => StadtKonstanten.LeerGeldgewinnung,
-                                         ÄndernSetzenExtern     => False);
+      
+      case
+        StadtRasseNummerExtern.Rasse
+      is
+         when RassenDatentypen.Ekropa_Enum =>
+            null;
+            
+            when others =>
+            SchreibeStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                               GeldgewinnungExtern    => StadtKonstanten.LeerGeldgewinnung,
+                                               ÄndernSetzenExtern     => False);
+      end case;
+      
       SchreibeStadtGebaut.Forschungsrate (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                           ForschungsrateExtern   => StadtKonstanten.LeerForschungsrate,
                                           ÄndernSetzenExtern     => False);

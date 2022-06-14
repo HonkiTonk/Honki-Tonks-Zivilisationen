@@ -31,6 +31,7 @@ package body TextaccesseSchriftgroesseSetzenSFML is
       Zahleneingabe;
       EinheitStadtAuswahl;
       AnzeigeEingabe;
+      LadezeitenSpielwelt;
       
    end SchriftgrößeSetzen;
    
@@ -286,5 +287,24 @@ package body TextaccesseSchriftgroesseSetzenSFML is
       end loop AnzeigeEingabeSchleife;
          
    end AnzeigeEingabe;
+   
+   
+   
+   procedure LadezeitenSpielwelt
+   is begin
+      
+      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.LadezeitenAccess (TextaccessVariablen.LadezeitenAccessArray'First),
+                                         size => GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeÜberschrift);
+      
+      LadezeitenSpielweltSchleife:
+      for LadezeitenSpielweltSchleifenwert in TextaccessVariablen.LadezeitenAccessArray'First + 1 .. TextaccessVariablen.LadezeitenAccessArray'Last loop
+         
+         
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.LadezeitenAccess (LadezeitenSpielweltSchleifenwert),
+                                            size => GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
+         
+      end loop LadezeitenSpielweltSchleife;
+      
+   end LadezeitenSpielwelt;
 
 end TextaccesseSchriftgroesseSetzenSFML;

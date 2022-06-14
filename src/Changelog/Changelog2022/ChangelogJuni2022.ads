@@ -105,31 +105,34 @@ package ChangelogJuni2022 is
    
    
 
-   -- Version 0.01. => 0.01. (15.06.2022):
+   -- Version 0.01.1165 => 0.01. (15.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01. => 0.01. (14.06.2022):
+   -- Version 0.01.1095 => 0.01.1165 (14.06.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.01. => 0.01. (13.06.2022):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Übersichtlichkeit des Codes an einigen Stellen verbessert.
+   -- Angefangen die Berechnungen für einzelne Rassen individueller zu gestalten.
+   -- KartengeneratorPlanetenInneres um Basisgrundberechnungen erweitert.
+   -- Die Menüs werden jetzt auch dann angezeigt, wenn man eine Zahl eingibt.
+   -- SFML Version der Spielweltgenerierungszeitanzeige eingebaut.
+   -- Debugmenü kann jetzt auch die Ladzeiten anzeigen.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    
 
-   -- Version 0.01.1095 => 0.01. (12.06.2022):
+   -- Version 0.01.1095 => 0.01.1095 (13.06.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.01.1095 => 0.01.1095 (12.06.2022):
+   
+   -- null.
    
    
 

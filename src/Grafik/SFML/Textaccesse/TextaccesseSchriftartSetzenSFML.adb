@@ -28,6 +28,7 @@ package body TextaccesseSchriftartSetzenSFML is
       Zahleneingabe;
       EinheitStadtAuswahl;
       AnzeigeEingabe;
+      LadezeitenSpielwelt;
       
    end SchriftartSetzen;
    
@@ -285,5 +286,20 @@ package body TextaccesseSchriftartSetzenSFML is
       end loop AnzeigeEingabeSchleife;
          
    end AnzeigeEingabe;
+   
+   
+   
+   procedure LadezeitenSpielwelt
+   is begin
+      
+      LadezeitenSpielweltSchleife:
+      for LadezeitenSpielweltSchleifenwert in TextaccessVariablen.LadezeitenAccessArray'Range loop
+         
+         Sf.Graphics.Text.setFont (text => TextaccessVariablen.LadezeitenAccess (LadezeitenSpielweltSchleifenwert),
+                                   font => GrafikEinstellungenSFML.SchriftartAccess);
+         
+      end loop LadezeitenSpielweltSchleife;
+      
+   end LadezeitenSpielwelt;
 
 end TextaccesseSchriftartSetzenSFML;

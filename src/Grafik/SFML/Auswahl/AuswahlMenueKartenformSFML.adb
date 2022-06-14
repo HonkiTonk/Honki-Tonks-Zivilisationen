@@ -15,7 +15,7 @@ with AuswahlMenuesStringsSetzen;
 with Karten;
 with Fehler;
 with AuswahlMenuesEinfach;
-with MenueHintergrundSFML;
+with HintergrundSFML;
 with AuswahlMenuesZusatztextSFML;
 
 package body AuswahlMenueKartenformSFML is
@@ -24,7 +24,7 @@ package body AuswahlMenueKartenformSFML is
    procedure AuswahlMenüKartenform
    is begin
               
-      MenueHintergrundSFML.MenüHintergrund (WelchesMenüExtern  => MenueDatentypen.Kartenform_Menü_Enum,
+      HintergrundSFML.MenüHintergrund (WelchesMenüExtern  => MenueDatentypen.Kartenform_Menü_Enum,
                                             SpriteAccessExtern => SpriteAccess);
       
       AktuelleAuswahlRückgabewert := Textbearbeitung;

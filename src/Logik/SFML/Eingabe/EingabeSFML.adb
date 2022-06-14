@@ -45,6 +45,7 @@ package body EingabeSFML is
          VorzeichenAnpassen (ZahlenMinimumExtern => ZahlenMinimumExtern,
                              ZahlenMaximumExtern => ZahlenMaximumExtern,
                              PlusMinusExtern     => True);
+         
          InteraktionEingabe.Eingabe := SystemDatentypen.Zahlen_Eingabe_Enum;
       end if;
                   

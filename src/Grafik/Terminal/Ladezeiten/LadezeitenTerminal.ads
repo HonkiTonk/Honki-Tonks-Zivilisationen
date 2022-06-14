@@ -9,8 +9,8 @@ with LadezeitenDatentypen;
 
 package LadezeitenTerminal is
 
-   procedure LadezeitenSpielweltErstellen
-     (WelcheZeitExtern : in LadezeitenDatentypen.Spielwelt_Erstellen_Zeit_Verwendet_Enum);
+   procedure LadezeitenSpielweltErstellen;
+     -- (WelcheZeitExtern : in LadezeitenDatentypen.Spielwelt_Erstellen_Zeit_Verwendet_Enum);
    
    procedure AnzeigeEinzelneZeit
      (WelcheZeitExtern : in LadezeitenDatentypen.Einzelne_Zeiten_Enum);

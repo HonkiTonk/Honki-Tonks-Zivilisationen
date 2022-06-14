@@ -22,5 +22,6 @@ private
    procedure Zahleneingabe;
    procedure EinheitStadtAuswahl;
    procedure AnzeigeEingabe;
+   procedure LadezeitenSpielwelt;
 
 end TextaccesseTextSetzenSFML;

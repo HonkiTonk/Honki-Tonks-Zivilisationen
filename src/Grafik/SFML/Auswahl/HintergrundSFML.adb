@@ -2,14 +2,36 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with Sf.Graphics; use Sf.Graphics;
-with Sf.Graphics.Sprite;
 with Sf.Graphics.RenderWindow;
 
 with EingeleseneTexturenSFML;
 with TexturenSetzenSkalierenSFML;
 with GrafikEinstellungenSFML;
 
-package body MenueHintergrundSFML is
+package body HintergrundSFML is
+   
+   procedure StandardHintergrund
+     (StandardHintergrundExtern : in GrafikDatentypen.Standard_Texturen_Enum)
+   is begin
+      
+      --------------------------------- EingeleseneTexturenSFML. ... später auch mal in eine lokale Variable auslagern.
+      if
+        EingeleseneTexturenSFML.StandardHintergrundAccess (StandardHintergrundExtern) /= null
+      then
+         Sf.Graphics.Sprite.setPosition (sprite   => StandardspriteAccess,
+                                         position => Nullposition);
+         Sf.Graphics.Sprite.scale (sprite  => StandardspriteAccess,
+                                   factors => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenGesamtesBild (SpriteAccessExtern  => StandardspriteAccess,
+                                                                                                               TextureAccessExtern => EingeleseneTexturenSFML.StandardHintergrundAccess (StandardHintergrundExtern)));
+         
+         Sf.Graphics.RenderWindow.drawSprite (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                              object       => StandardspriteAccess);
+         
+      else
+         null;
+      end if;
+      
+   end StandardHintergrund;
    
    ------------------------- Ein SpriteAccess für jedes Menübild?
    procedure MenüHintergrund
@@ -21,7 +43,7 @@ package body MenueHintergrundSFML is
         EingeleseneTexturenSFML.MenüHintergrundAccess (WelchesMenüExtern) /= null
       then
          Sf.Graphics.Sprite.setPosition (sprite   => SpriteAccessExtern,
-                                         position => (0.00, 0.00));
+                                         position => Nullposition);
          Sf.Graphics.Sprite.scale (sprite  => SpriteAccessExtern,
                                    factors => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenGesamtesBild (SpriteAccessExtern  => SpriteAccessExtern,
                                                                                                                TextureAccessExtern => EingeleseneTexturenSFML.MenüHintergrundAccess (WelchesMenüExtern)));
@@ -36,4 +58,4 @@ package body MenueHintergrundSFML is
       
    end MenüHintergrund;
 
-end MenueHintergrundSFML;
+end HintergrundSFML;

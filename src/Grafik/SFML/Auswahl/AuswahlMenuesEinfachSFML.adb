@@ -21,7 +21,7 @@ with AuswahlMenuesStringsSetzen;
 with AuswahlMenuesEinfach;
 with AuswahlMenuesZusatztextSFML;
 with Karten;
-with MenueHintergrundSFML;
+with HintergrundSFML;
 with InteraktionAuswahl;
 
 package body AuswahlMenuesEinfachSFML is
@@ -30,7 +30,7 @@ package body AuswahlMenuesEinfachSFML is
      (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum)
    is begin
       
-      MenueHintergrundSFML.MenüHintergrund (WelchesMenüExtern  => WelchesMenüExtern,
+      HintergrundSFML.MenüHintergrund (WelchesMenüExtern  => WelchesMenüExtern,
                                              SpriteAccessExtern => SpriteAccess);
       
       Textbereich := Überschrift + SystemKonstanten.EndeMenü (WelchesMenüExtern) - SystemKonstanten.EndeAbzugGrafik (WelchesMenüExtern) + Versionsnummer;
@@ -372,7 +372,7 @@ package body AuswahlMenuesEinfachSFML is
       is
          when MenueDatentypen.Menü_Ohne_Überschrift_Enum'Range =>
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift),
-                                               str  => SonstigesKonstanten.Spielename);
+                                               str  => SonstigesKonstanten.Spielname);
             
          when MenueDatentypen.Menü_Mit_Überschrift_Enum'Range | MenueDatentypen.Menü_Zusatztext_Einfach_Enum'Range =>
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift),

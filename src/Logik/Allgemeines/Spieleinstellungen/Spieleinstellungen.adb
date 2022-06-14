@@ -8,10 +8,10 @@ with RassenDatentypen;
 with SystemDatentypen;
 with MenueDatentypen;
 with GrafikDatentypen;
+with LadezeitenDatentypen;
 
 with ImSpiel;
 with Kartengenerator;
-with LadezeitenDatentypen;
 with SpieleinstellungenKarten;
 with SpieleinstellungenRasseSpieler;
 with SpieleinstellungenSonstiges;
@@ -108,7 +108,8 @@ package body Spieleinstellungen is
       
       Kartengenerator.Kartengenerator;
       
-      LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Spieler_Platzieren_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
+      Ladezeiten.SpielweltErstellen (LadezeitenDatentypen.Platziere_Rassen_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
+      
       SpieleinstellungenRasseSpieler.StartwerteErmitteln;
       RassenVorhanden := False;
       
@@ -139,10 +140,7 @@ package body Spieleinstellungen is
             return RueckgabeDatentypen.Spielmenü_Enum;
       end case;
          
-      LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Spieler_Platzieren_Enum, SystemDatentypen.Endwert_Enum) := Clock;
-      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => LadezeitenDatentypen.Spieler_Platzieren_Enum);
-
-      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => LadezeitenDatentypen.Gesamtzeit_Enum);
+      Ladezeiten.SpielweltErstellen (LadezeitenDatentypen.Platziere_Rassen_Enum, SystemDatentypen.Endwert_Enum) := Clock;
       
       return ImSpiel.ImSpiel;
       

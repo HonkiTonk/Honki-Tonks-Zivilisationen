@@ -1,24 +1,21 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with KartenDatentypen;
-with KartenRecordKonstanten;
-
 with KartengeneratorHimmel;
 with KartengeneratorWeltraum;
 with KartengeneratorPlaneteninneres;
-with Karten;
 with KartengeneratorPolregion;
 with KartengeneratorStandard;
-with KartengeneratorNurLand;
 with PolbereicheBerechnen;
+
+with SchreibeKarten;
 
 package body KartengeneratorAllgemeines is
    
    procedure GenerierungAllgemeines
    is begin
       
-      Karten.Weltkarte := (others => (others => (others => KartenRecordKonstanten.LeerWeltkarte)));
+      SchreibeKarten.KarteNullsetzen;
       
       PolbereicheBerechnen.PolbereicheBerechnen;
       GenerierungGrundlagen;
@@ -62,16 +59,7 @@ package body KartengeneratorAllgemeines is
    begin
       
       KartengeneratorPolregion.PolregionGenerieren;
-      
-      case
-        Karten.Kartenparameter.Kartenart
-      is
-         when KartenDatentypen.Kartenart_Nur_Land_Enum =>
-            KartengeneratorNurLand.NurLandGenerieren;
-            
-         when KartenDatentypen.Kartenart_Normal_Enum'Range | KartenDatentypen.Kartenart_Nutzerdefiniert_Enum =>
-            KartengeneratorStandard.OberflächeGenerieren;
-      end case;
+      KartengeneratorStandard.OberflächeGenerieren;
       
    end GenerierungGrundlagen;
 

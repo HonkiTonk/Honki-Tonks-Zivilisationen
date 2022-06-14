@@ -5,6 +5,8 @@ with Ada.Calendar; use Ada.Calendar;
 
 with SystemDatentypen;
 with EinheitenKonstanten;
+with GrafikDatentypen;
+with LadezeitenDatentypen;
 
 with KartenfelderBewerten;
 with KartengeneratorKueste;
@@ -12,13 +14,17 @@ with KartengeneratorLandschaft;
 with KartengeneratorFluss;
 with KartengeneratorRessourcen;
 with KartengeneratorUnterwasserUnterirdisch;
-with LadezeitenDatentypen;
 with KartengeneratorAllgemeines;
+with InteraktionGrafiktask;
+with Ladezeiten;
 
 package body Kartengenerator is
 
    procedure Kartengenerator
    is begin
+      
+      Ladezeiten.Nullsetzen;
+      InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Generierungszeit_Enum;
       
       AllgemeinesGenerieren;
       KüstenwasserGenerieren;
@@ -26,12 +32,7 @@ package body Kartengenerator is
       UnterwasserUnterirdischGenerieren;
       FlüsseGenerieren;
       RessourcenGenerieren;
-
-      LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Kartenfelder_Bewerten_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
-      
-      KartenfelderBewerten.KartenfelderBewerten (RasseExtern => EinheitenKonstanten.LeerRasse);
-      
-      LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Kartenfelder_Bewerten_Enum, SystemDatentypen.Endwert_Enum) := Clock;
+      BewerteKartenfelder;
       
    end Kartengenerator;
    
@@ -40,11 +41,11 @@ package body Kartengenerator is
    procedure AllgemeinesGenerieren
    is begin
       
-      LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Normal_Himmel_Weltraum_Planeteninneres_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
+      Ladezeiten.SpielweltErstellen (LadezeitenDatentypen.Generiere_Allgemeines_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
       
       KartengeneratorAllgemeines.GenerierungAllgemeines;
             
-      LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Normal_Himmel_Weltraum_Planeteninneres_Enum, SystemDatentypen.Endwert_Enum) := Clock;
+      Ladezeiten.SpielweltErstellen (LadezeitenDatentypen.Generiere_Allgemeines_Enum, SystemDatentypen.Endwert_Enum) := Clock;
       
    end AllgemeinesGenerieren;
    
@@ -53,11 +54,11 @@ package body Kartengenerator is
    procedure KüstenwasserGenerieren
    is begin
       
-      LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Küstengewässer_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
+      Ladezeiten.SpielweltErstellen (LadezeitenDatentypen.Generiere_Küstenwasser_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
       
       KartengeneratorKueste.GenerierungKüstenSeeGewässer;
       
-      LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Küstengewässer_Enum, SystemDatentypen.Endwert_Enum) := Clock;
+      Ladezeiten.SpielweltErstellen (LadezeitenDatentypen.Generiere_Küstenwasser_Enum, SystemDatentypen.Endwert_Enum) := Clock;
       
    end KüstenwasserGenerieren;
    
@@ -66,11 +67,11 @@ package body Kartengenerator is
    procedure LandschaftGenerieren
    is begin
       
-      LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Landschaft_Ebene_Oberfläche_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
+      Ladezeiten.SpielweltErstellen (LadezeitenDatentypen.Generiere_Landschaft_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
       
       KartengeneratorLandschaft.GenerierungLandschaft;
       
-      LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Landschaft_Ebene_Oberfläche_Enum, SystemDatentypen.Endwert_Enum) := Clock;
+      Ladezeiten.SpielweltErstellen (LadezeitenDatentypen.Generiere_Landschaft_Enum, SystemDatentypen.Endwert_Enum) := Clock;
       
    end LandschaftGenerieren;
    
@@ -79,11 +80,11 @@ package body Kartengenerator is
    procedure UnterwasserUnterirdischGenerieren
    is begin
       
-      LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Unterwasser_Unterirdisch_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
+      Ladezeiten.SpielweltErstellen (LadezeitenDatentypen.Generiere_Unterfläche_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
       
       KartengeneratorUnterwasserUnterirdisch.GenerierungLandschaft;
       
-      LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Unterwasser_Unterirdisch_Enum, SystemDatentypen.Endwert_Enum) := Clock;
+      Ladezeiten.SpielweltErstellen (LadezeitenDatentypen.Generiere_Unterfläche_Enum, SystemDatentypen.Endwert_Enum) := Clock;
       
    end UnterwasserUnterirdischGenerieren;
    
@@ -92,11 +93,11 @@ package body Kartengenerator is
    procedure FlüsseGenerieren
    is begin
       
-      LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Flüsse_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
+      Ladezeiten.SpielweltErstellen (LadezeitenDatentypen.Generiere_Flüsse_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
       
       KartengeneratorFluss.AufteilungFlussgenerierung;
       
-      LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Flüsse_Enum, SystemDatentypen.Endwert_Enum) := Clock;
+      Ladezeiten.SpielweltErstellen (LadezeitenDatentypen.Generiere_Flüsse_Enum, SystemDatentypen.Endwert_Enum) := Clock;
       
    end FlüsseGenerieren;
    
@@ -105,12 +106,25 @@ package body Kartengenerator is
    procedure RessourcenGenerieren
    is begin
       
-      LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Ressourcen_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
+      Ladezeiten.SpielweltErstellen (LadezeitenDatentypen.Generiere_Ressourcen_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
       
       KartengeneratorRessourcen.GenerierungRessourcen;
       
-      LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Ressourcen_Enum, SystemDatentypen.Endwert_Enum) := Clock;
+      Ladezeiten.SpielweltErstellen (LadezeitenDatentypen.Generiere_Ressourcen_Enum, SystemDatentypen.Endwert_Enum) := Clock;
       
    end RessourcenGenerieren;
+   
+   
+   
+   procedure BewerteKartenfelder
+   is begin
+
+      Ladezeiten.SpielweltErstellen (LadezeitenDatentypen.Bewerte_Kartenfelder_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
+      
+      KartenfelderBewerten.KartenfelderBewerten (RasseExtern => EinheitenKonstanten.LeerRasse);
+      
+      Ladezeiten.SpielweltErstellen (LadezeitenDatentypen.Bewerte_Kartenfelder_Enum, SystemDatentypen.Endwert_Enum) := Clock;
+      
+   end BewerteKartenfelder;
 
 end Kartengenerator;

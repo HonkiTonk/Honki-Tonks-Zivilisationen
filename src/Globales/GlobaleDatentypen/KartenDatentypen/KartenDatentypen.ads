@@ -48,14 +48,9 @@ package KartenDatentypen is
                                 
    
    
-   -- Neue Kartenarten immer vor Chaos einfügen um Anpassungen in KartenDatentypen zu vermeiden.
-   -------------------- Hier mal über sinnvolle subtype nachdenken.
    type Kartenart_Enum is (
                            -- Normal
                            Kartenart_Inseln_Enum, Kartenart_Kontinente_Enum, Kartenart_Pangäa_Enum,
-                           
-                           -- Sonstiges
-                           Kartenart_Nur_Land_Enum,
                            
                            -- Nutzerdefiniert
                            Kartenart_Nutzerdefiniert_Enum
@@ -63,7 +58,6 @@ package KartenDatentypen is
    pragma Ordered (Kartenart_Enum);
    
    subtype Kartenart_Normal_Enum is Kartenart_Enum range Kartenart_Inseln_Enum .. Kartenart_Pangäa_Enum;
-   subtype Kartenart_Sonstiges_Enum is Kartenart_Enum range Kartenart_Nur_Land_Enum .. Kartenart_Nur_Land_Enum;
    
    -------------------------- Später umschreiben auf 
    -- type Kartenform_Enum is (

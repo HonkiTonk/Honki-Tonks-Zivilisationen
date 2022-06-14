@@ -452,25 +452,20 @@ package body RueckgabeMenues is
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 3
       then
-         return RueckgabeDatentypen.Kartenart_Nur_Land_Enum;
+         return RueckgabeDatentypen.Nutzerdefiniert_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 4
       then
-         return RueckgabeDatentypen.Nutzerdefiniert_Enum;
+         return RueckgabeDatentypen.Zufall_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 5
       then
-         return RueckgabeDatentypen.Zufall_Enum;
-                    
-      elsif
-        AktuelleAuswahlExtern = AnfangExtern + 6
-      then
          return RueckgabeDatentypen.Kartenart_Zufall_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 7
+        AktuelleAuswahlExtern = AnfangExtern + 6
       then
          return RueckgabeDatentypen.Standard_Enum;
                     
@@ -982,6 +977,11 @@ package body RueckgabeMenues is
         AktuelleAuswahlExtern = AnfangExtern + 5
       then
          return RueckgabeDatentypen.Suroka_Enum;
+         
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 6
+      then
+         return RueckgabeDatentypen.Pryolon_Enum;
          
       else
          return Fertig (EndeExtern            => EndeExtern,

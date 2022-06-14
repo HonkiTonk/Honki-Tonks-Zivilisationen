@@ -1,32 +1,9 @@
-Total time game world generation:
-Generation level 0, 1 and 2 and landscape level -2:
-Distinguish between sea and coastal waters:
-Generate landscape level 0:
-Generate landscape level -1:
-Generate rivers:
-Generate resources:
-Rate map tiles:
-Place players:
-Duration of the game start:
-Calculation time after the end of the round without KI:
-Time to save:
-Time to load:
-KI 1 - Humans:
-KI 2 - Kasrodiah:
-KI 3 - Lasupine:
-KI 4 - Lamustra:
-KI 5 - Manuky:
-KI 6 - Suroka:
-KI 7 - Pryolon:
-KI 8 - Talbidahr:
-KI 9 - Moru Phisihl:
-KI 10 - Larinos Lotaris:
-KI 11 - Carupex:
-KI 12 - Alary:
-KI 13 - Tesorahn:
-KI 14 - Natries Zermanis:
-KI 15 - Tridatus:
-KI 16 - Senelari:
-KI 17 - Aspari 2:
-KI 18 - Ekropa:
-Total time AI:
+Spielwelt wird generiert
+Generiere Allgemeines
+Generiere Küstenwasser
+Generiere Landschaft
+Generiere Unterfläche
+Generiere Flüsse
+Generiere Ressourcen
+Bewerte Kartenfelder
+Platziere Rassen

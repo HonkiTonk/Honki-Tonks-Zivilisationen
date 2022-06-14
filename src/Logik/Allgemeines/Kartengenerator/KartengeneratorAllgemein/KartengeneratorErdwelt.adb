@@ -96,7 +96,7 @@ package body KartengeneratorErdwelt is
       WelcherGrund := BasisExtraberechnungen (KoordinatenExtern => KoordinatenExtern,
                                               GrundExtern       => WelcherGrund);
       
-      SchreibeKarten.ZweimalGrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
+      SchreibeKarten.GleicherGrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
                                    GrundExtern       => WelcherGrund);
       
    end BasisgrundBestimmen;

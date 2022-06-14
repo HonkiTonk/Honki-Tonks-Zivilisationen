@@ -28,6 +28,7 @@ with EingabeSystemeSFML;
 with TextaccesseAllesSetzenSFML;
 with InteraktionTextanzeige;
 with InteraktionEingabe;
+with LadezeitenSFML;
 
 package body GrafikSFML is
    
@@ -168,7 +169,7 @@ package body GrafikSFML is
             delay ZeitKonstanten.WartezeitGrafik;
             
          when GrafikDatentypen.Grafik_Generierungszeit_Enum =>
-            null;
+            LadezeitenSFML.SpielweltErstellen;
             
          when GrafikDatentypen.Grafik_Laden_Enum =>
             null;

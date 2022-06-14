@@ -59,7 +59,7 @@ package body KartengeneratorKueste is
               or
                 LeseKarten.AktuellerGrund (KoordinatenExtern => KartenWert) = KartengrundDatentypen.Eis_Enum
             then
-               SchreibeKarten.ZweimalGrund (KoordinatenExtern => KoordinatenExtern,
+               SchreibeKarten.GleicherGrund (KoordinatenExtern => KoordinatenExtern,
                                             GrundExtern       => KartengrundDatentypen.Küstengewässer_Enum);
                return;
                

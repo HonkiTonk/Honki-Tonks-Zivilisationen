@@ -32,7 +32,7 @@ package RueckgabeDatentypen is
                                 
                                  -- Neue Kartenarten immer vor Chaos einfügen um Anpassungen in KartenDatentypen zu vermeiden.
                                  Kartenart_Zufall_Enum,
-                                 Kartenart_Inseln_Enum, Kartenart_Kontinente_Enum, Kartenart_Pangäa_Enum, Kartenart_Nur_Land_Enum,
+                                 Kartenart_Inseln_Enum, Kartenart_Kontinente_Enum, Kartenart_Pangäa_Enum,
                                  
                                  -- Immer eventuelle Anpassungen in den KartenDatentypen berücksichtigen.
                                  Kartenübergang_E_Achse_Oben_Enum, Kartenübergang_E_Achse_Unten_Enum,
@@ -57,7 +57,7 @@ package RueckgabeDatentypen is
    
    subtype Kartengröße_Verwendet_Enum is Rückgabe_Werte_Enum range Kartengröße_20_20_Enum .. Kartengröße_Nutzer_Enum;
    subtype Kartengröße_Standard_Enum is Kartengröße_Verwendet_Enum range Kartengröße_20_20_Enum .. Kartengröße_1000_1000_Enum;
-   subtype Kartenart_Enum is Rückgabe_Werte_Enum range Kartenart_Inseln_Enum .. Kartenart_Nur_Land_Enum;
+   subtype Kartenart_Enum is Rückgabe_Werte_Enum range Kartenart_Inseln_Enum .. Kartenart_Pangäa_Enum;
    subtype Kartentemperatur_Enum is Rückgabe_Werte_Enum range Kartentemperatur_Kalt_Enum .. Kartentemperatur_Wüste_Enum;
    subtype Kartenressourcen_Enum is Rückgabe_Werte_Enum range Kartenressourcen_Arm_Enum .. Kartenressourcen_Überfluss_Enum;
    subtype Kartenpole_Enum is Rückgabe_Werte_Enum range Nordpol_Enum .. Kartenpole_Zufall_Enum;

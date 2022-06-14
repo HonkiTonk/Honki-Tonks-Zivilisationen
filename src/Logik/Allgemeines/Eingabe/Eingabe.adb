@@ -17,7 +17,6 @@ package body Eingabe is
       return SystemRecords.ZahlenEingabeRecord
    is begin
       
-      -- TextDateiExtern später auch in Terminal entfernen. Und alle Fragen nach Fragen verschieben, sonst funktioniert das hier nicht so richtig. Ist auch sinnvollder aufgeteilt dann.
       case
         OptionenVariablen.NutzerEinstellungen.Anzeigeart
       is

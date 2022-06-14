@@ -33,6 +33,7 @@ package body TextaccesseTextSetzenSFML is
       Zahleneingabe;
       EinheitStadtAuswahl;
       AnzeigeEingabe;
+      LadezeitenSpielwelt;
       
    end TextSetzen;
    
@@ -222,5 +223,20 @@ package body TextaccesseTextSetzenSFML is
       end loop AnzeigeEingabeSchleife;
          
    end AnzeigeEingabe;
+   
+   
+   
+   procedure LadezeitenSpielwelt
+   is begin
+      
+      LadezeitenSpielweltSchleife:
+      for LadezeitenSpielweltSchleifenwert in TextaccessVariablen.LadezeitenAccessArray'Range loop
+         
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.LadezeitenAccess (LadezeitenSpielweltSchleifenwert),
+                                            str  => To_Wide_Wide_String (Source => GlobaleTexte.Ladezeit (LadezeitenSpielweltSchleifenwert)));
+         
+      end loop LadezeitenSpielweltSchleife;
+      
+   end LadezeitenSpielwelt;
 
 end TextaccesseTextSetzenSFML;

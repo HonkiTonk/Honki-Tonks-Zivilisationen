@@ -21,6 +21,9 @@ private
 
    DateiTextEinlesen : File_Type;
 
+   type StandardHintergrundEinlesenArray is array (EingeleseneTexturenSFML.StandardHintergrundAccessArray'Range) of Unbounded_Wide_Wide_String;
+   StandardHintergrundEinlesen : StandardHintergrundEinlesenArray := (others => TextKonstanten.LeerUnboundedString);
+
    type MenüHintergrundEinlesenArray is array (EingeleseneTexturenSFML.MenüHintergrundAccessArray'Range) of Unbounded_Wide_Wide_String;
    MenüHintergrundEinlesen : MenüHintergrundEinlesenArray := (others => TextKonstanten.LeerUnboundedString);
 
@@ -45,6 +48,7 @@ private
    type GebäudeEinlesenArray is array (EingeleseneTexturenSFML.GebäudeAccessArray'Range (1), EingeleseneTexturenSFML.GebäudeAccessArray'Range (2)) of Unbounded_Wide_Wide_String;
    GebäudeEinlesen : GebäudeEinlesenArray := (others => (others => TextKonstanten.LeerUnboundedString));
 
+   procedure EinlesenStandardHintergrund;
    procedure EinlesenMenüHintergrund;
    procedure EinlesenKartenfelder;
    procedure EinlesenKartenflüsse;

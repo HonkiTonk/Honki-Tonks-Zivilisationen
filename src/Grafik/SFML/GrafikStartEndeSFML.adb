@@ -54,7 +54,7 @@ package body GrafikStartEndeSFML is
             GrafikEinstellungenSFML.FensterAccess := Sf.Graphics.RenderWindow.createUnicode (mode  => (GrafikEinstellungenSFML.FensterEinstellungen.FensterBreite,
                                                                                                        GrafikEinstellungenSFML.FensterEinstellungen.FensterHöhe,
                                                                                                        GrafikEinstellungenSFML.FensterEinstellungen.Farbtiefe),
-                                                                                             title => SonstigesKonstanten.Spielename,
+                                                                                             title => SonstigesKonstanten.Spielname,
                                                                                              style => GrafikEinstellungenSFML.FensterEinstellungen.FensterVollbild);
       
             GrafikEinstellungenSFML.AktuelleFensterAuflösung.x := GrafikEinstellungenSFML.FensterEinstellungen.FensterBreite;
@@ -66,7 +66,7 @@ package body GrafikStartEndeSFML is
             GrafikEinstellungenSFML.FensterAccess := Sf.Graphics.RenderWindow.createUnicode (mode  => (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x,
                                                                                                        GrafikEinstellungenSFML.AktuelleFensterAuflösung.y,
                                                                                                        GrafikEinstellungenSFML.FensterEinstellungen.Farbtiefe),
-                                                                                             title => SonstigesKonstanten.Spielename,
+                                                                                             title => SonstigesKonstanten.Spielname,
                                                                                              style => GrafikEinstellungenSFML.FensterEinstellungen.FensterVollbild);
             
          when others =>

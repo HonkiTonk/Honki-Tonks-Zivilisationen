@@ -1,27 +1,22 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with RassenDatentypen;
+with Ada.Calendar; use Ada.Calendar;
 
 with LadezeitenDatentypen;
+with SystemDatentypen;
 
 package Ladezeiten is
-
-   procedure LadezeitenSpielweltErstellen
-     (WelcheZeitExtern : in LadezeitenDatentypen.Spielwelt_Erstellen_Zeit_Verwendet_Enum);
    
-   procedure AnzeigeEinzelneZeit
-     (WelcheZeitExtern : in LadezeitenDatentypen.Einzelne_Zeiten_Enum);
+   type SpielweltErstellenArray is array (LadezeitenDatentypen.Spielwelt_Erstellen_Enum'Range, SystemDatentypen.Anfang_Ende_Enum'Range) of Time;
+   SpielweltErstellen : SpielweltErstellenArray;
    
-   procedure AnzeigeKIZeit
-     (WelcheZeitExtern : in RassenDatentypen.Rassen_Enum);
+   type FortschrittSpielweltArray is array (SpielweltErstellenArray'Range (1)) of LadezeitenDatentypen.Ladefortschritt;
+   FortschrittSpielwelt : FortschrittSpielweltArray;
+
+   procedure Nullsetzen;
    
-   procedure AnzeigeEinzelneZeitOhneWarten
-     (WelcheZeitExtern : in LadezeitenDatentypen.Einzelne_Zeiten_Enum);
-
-private
-
-   GesamtzeitSpielweltErstellen : Float;
-   GesamtzeitKI : Float;
+   procedure FortschrittSpielweltSchreiben
+     (WelcheBerechnungenExtern : in LadezeitenDatentypen.Spielwelt_Erstellen_Enum);
 
 end Ladezeiten;

@@ -31,6 +31,7 @@ package body TextaccesseSchriftfarbeSetzenSFML is
       Zahleneingabe;
       EinheitStadtAuswahl;
       AnzeigeEingabe;
+      LadezeitenSpielwelt;
       
    end SchriftfarbeSetzen;
    
@@ -301,5 +302,23 @@ package body TextaccesseSchriftfarbeSetzenSFML is
       end loop AnzeigeEingabeSchleife;
          
    end AnzeigeEingabe;
+   
+   
+   
+   procedure LadezeitenSpielwelt
+   is begin
+      
+      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.LadezeitenAccess (TextaccessVariablen.LadezeitenAccessArray'First),
+                                 color => GrafikEinstellungenSFML.Schriftfarben.FarbeÜberschrift);
+      
+      LadezeitenSpielweltSchleife:
+      for LadezeitenSpielweltSchleifenwert in TextaccessVariablen.LadezeitenAccessArray'Range loop
+         
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.LadezeitenAccess (LadezeitenSpielweltSchleifenwert),
+                                    color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
+         
+      end loop LadezeitenSpielweltSchleife;
+      
+   end LadezeitenSpielwelt;
 
 end TextaccesseSchriftfarbeSetzenSFML;

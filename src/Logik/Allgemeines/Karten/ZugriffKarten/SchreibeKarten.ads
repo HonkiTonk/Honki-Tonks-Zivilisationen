@@ -30,9 +30,19 @@ package SchreibeKarten is
           and
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
    
-   procedure ZweimalGrund
+   procedure GleicherGrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
+     with
+       Pre =>
+         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+          and
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+   
+   procedure UnterschiedlicherGrund
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      BasisgrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
+      AktuellerGrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -107,5 +117,7 @@ package SchreibeKarten is
             KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
           and
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+   
+   procedure KarteNullsetzen;
 
 end SchreibeKarten;

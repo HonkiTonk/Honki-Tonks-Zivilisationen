@@ -23,8 +23,8 @@ package body KartengeneratorWasserwelt is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
    is begin
       
-      SchreibeKarten.ZweimalGrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
-                                   GrundExtern       => KartengrundDatentypen.Meeresgrund_Enum);
+      SchreibeKarten.GleicherGrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
+                                    GrundExtern       => KartengrundDatentypen.Meeresgrund_Enum);
       
    end BasisgrundBestimmen;
    

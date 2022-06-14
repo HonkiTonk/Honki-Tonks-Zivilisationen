@@ -421,7 +421,7 @@ package body KartenAllgemein is
    function WegNahrung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.Feldproduktion
+      return ProduktionDatentypen.Einzelproduktion
    is begin
       
       KartenWeg := LeseKarten.Weg (KoordinatenExtern => KoordinatenExtern);
@@ -445,7 +445,7 @@ package body KartenAllgemein is
    function WegProduktion
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.Feldproduktion
+      return ProduktionDatentypen.Einzelproduktion
    is begin
       
       KartenWeg := LeseKarten.Weg (KoordinatenExtern => KoordinatenExtern);
@@ -469,7 +469,7 @@ package body KartenAllgemein is
    function WegGeld
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.Feldproduktion
+      return ProduktionDatentypen.Einzelproduktion
    is begin
       
       KartenWeg := LeseKarten.Weg (KoordinatenExtern => KoordinatenExtern);
@@ -493,7 +493,7 @@ package body KartenAllgemein is
    function WegWissen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.Feldproduktion
+      return ProduktionDatentypen.Einzelproduktion
    is begin
       
       KartenWeg := LeseKarten.Weg (KoordinatenExtern => KoordinatenExtern);
@@ -588,7 +588,7 @@ package body KartenAllgemein is
    function VerbesserungNahrung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.Feldproduktion
+      return ProduktionDatentypen.Einzelproduktion
    is begin
       
       KartenVerbesserung := LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern);
@@ -612,7 +612,7 @@ package body KartenAllgemein is
    function VerbesserungProduktion
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.Feldproduktion
+      return ProduktionDatentypen.Einzelproduktion
    is begin
       
       KartenVerbesserung := LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern);
@@ -636,7 +636,7 @@ package body KartenAllgemein is
    function VerbesserungGeld
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.Feldproduktion
+      return ProduktionDatentypen.Einzelproduktion
    is begin
       
       KartenVerbesserung := LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern);
@@ -660,7 +660,7 @@ package body KartenAllgemein is
    function VerbesserungWissen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.Feldproduktion
+      return ProduktionDatentypen.Einzelproduktion
    is begin
       
       KartenVerbesserung := LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern);
@@ -927,6 +927,8 @@ package body KartenAllgemein is
    is begin
       
       ---------------------------- Was mach ich denn dann hier?
+      ---------------------------- Den aktuellen Grund zurückgeben und entsprechend auf dessen Basis zusätzliche Passierbarkeitseinschränkungen einbauen?
+      ---------------------------- Ist das im aktuellen System überhaupt möglich? Müsste da dann noch eine Unterscheidung zwischen Einheitentypen geben, z. B. Panzer, Infanterie, usw..
       
       return LeseKartenDatenbanken.Passierbarkeit (GrundExtern          => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
                                                    WelcheUmgebungExtern => PassierbarkeitExtern);

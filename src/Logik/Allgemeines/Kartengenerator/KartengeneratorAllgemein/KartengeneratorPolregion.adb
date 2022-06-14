@@ -79,10 +79,10 @@ package body KartengeneratorPolregion is
          XAchseSchleife:
          for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse loop
             
-            SchreibeKarten.ZweimalGrund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+            SchreibeKarten.GleicherGrund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert),
                                          GrundExtern       => KartengrundDatentypen.Eis_Enum);
             
-            SchreibeKarten.ZweimalGrund (KoordinatenExtern => (-1, YAchseSchleifenwert, XAchseSchleifenwert),
+            SchreibeKarten.GleicherGrund (KoordinatenExtern => (-1, YAchseSchleifenwert, XAchseSchleifenwert),
                                          GrundExtern       => KartengrundDatentypen.Untereis_Enum);
             
          end loop XAchseSchleife;
@@ -111,10 +111,10 @@ package body KartengeneratorPolregion is
          XAchseSchleife:
          for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse loop
             
-            SchreibeKarten.ZweimalGrund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+            SchreibeKarten.GleicherGrund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert),
                                          GrundExtern       => KartengrundDatentypen.Eis_Enum);
             
-            SchreibeKarten.ZweimalGrund (KoordinatenExtern => (-1, YAchseSchleifenwert, XAchseSchleifenwert),
+            SchreibeKarten.GleicherGrund (KoordinatenExtern => (-1, YAchseSchleifenwert, XAchseSchleifenwert),
                                          GrundExtern       => KartengrundDatentypen.Untereis_Enum);
             
          end loop XAchseSchleife;
@@ -142,10 +142,10 @@ package body KartengeneratorPolregion is
          XAchseSchleife:
          for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Polgrößen (KartenDatentypen.Westen_Enum) loop
             
-            SchreibeKarten.ZweimalGrund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+            SchreibeKarten.GleicherGrund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert),
                                          GrundExtern       => KartengrundDatentypen.Eis_Enum);
             
-            SchreibeKarten.ZweimalGrund (KoordinatenExtern => (-1, YAchseSchleifenwert, XAchseSchleifenwert),
+            SchreibeKarten.GleicherGrund (KoordinatenExtern => (-1, YAchseSchleifenwert, XAchseSchleifenwert),
                                          GrundExtern       => KartengrundDatentypen.Untereis_Enum);
             
          end loop XAchseSchleife;
@@ -175,10 +175,10 @@ package body KartengeneratorPolregion is
          for XAchseSchleifenwert in Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse - Karten.Polgrößen (KartenDatentypen.Osten_Enum) + 1
            .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse loop
             
-            SchreibeKarten.ZweimalGrund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+            SchreibeKarten.GleicherGrund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert),
                                          GrundExtern       => KartengrundDatentypen.Eis_Enum);
             
-            SchreibeKarten.ZweimalGrund (KoordinatenExtern => (-1, YAchseSchleifenwert, XAchseSchleifenwert),
+            SchreibeKarten.GleicherGrund (KoordinatenExtern => (-1, YAchseSchleifenwert, XAchseSchleifenwert),
                                          GrundExtern       => KartengrundDatentypen.Untereis_Enum);
             
          end loop XAchseSchleife;

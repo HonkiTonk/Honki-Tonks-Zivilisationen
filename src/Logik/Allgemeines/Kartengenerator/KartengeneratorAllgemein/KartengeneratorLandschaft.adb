@@ -16,33 +16,33 @@ package body KartengeneratorLandschaft is
    procedure GenerierungLandschaft
    is begin
       
-      BasisYAchseSchleife:
-      for BasisYAchseSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.YAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse loop
-         BasisXAchseSchleife:
-         for BasisXAchseSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.XAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.XAchse loop
+      YAchseSchleife:
+      for YAchseSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.YAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse loop
+         XAchseSchleife:
+         for XAchseSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.XAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.XAchse loop
             
             case
-              LeseKarten.AktuellerGrund (KoordinatenExtern => (0, BasisYAchseSchleifenwert, BasisXAchseSchleifenwert))
+              LeseKarten.AktuellerGrund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert))
             is
                when KartengrundDatentypen.Flachland_Enum =>
-                  BasisgrundBestimmen (KoordinatenExtern => (0, BasisYAchseSchleifenwert, BasisXAchseSchleifenwert));
+                  BasisgrundBestimmen (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert));
 
                when others =>
                   null;
             end case;
             
             case
-              LeseKarten.AktuellerGrund (KoordinatenExtern => (0, BasisYAchseSchleifenwert, BasisXAchseSchleifenwert))
+              LeseKarten.AktuellerGrund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert))
             is
                when KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum =>
-                  ZusatzgrundBestimmen (KoordinatenExtern => (0, BasisYAchseSchleifenwert, BasisXAchseSchleifenwert));
+                  ZusatzgrundBestimmen (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert));
 
                when others =>
                   null;
             end case;
             
-         end loop BasisXAchseSchleife;
-      end loop BasisYAchseSchleife;
+         end loop XAchseSchleife;
+      end loop YAchseSchleife;
       
    end GenerierungLandschaft;
    
@@ -125,7 +125,7 @@ package body KartengeneratorLandschaft is
       WelcherGrund := BasisExtraberechnungen (KoordinatenExtern => KoordinatenExtern,
                                               GrundExtern       => WelcherGrund);
       
-      SchreibeKarten.ZweimalGrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
+      SchreibeKarten.GleicherGrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
                                    GrundExtern       => WelcherGrund);
       
    end BasisgrundBestimmen;

@@ -13,7 +13,8 @@ package body EinlesenTexturen is
    
    procedure EinlesenTexturen
    is begin
-            
+      
+      EinlesenStandardHintergrund;
       EinlesenMenüHintergrund;
       EinlesenKartenfelder;
       EinlesenKartenflüsse;
@@ -24,6 +25,68 @@ package body EinlesenTexturen is
       EinlesenGebäude;
       
    end EinlesenTexturen;
+   
+   
+   
+   procedure EinlesenStandardHintergrund
+   is begin
+      
+      case
+        Exists (Name => "Grafik/Standard/0")
+      is
+         when False =>
+            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenStandardHintergrund - 0-Datei Standard nicht vorhanden.");
+            return;
+            
+         when True =>
+            AktuelleZeile := 1;
+            
+            Open (File => DateiTextEinlesen,
+                  Mode => In_File,
+                  Name => "Grafik/Standard/0");
+      end case;
+      
+      DateipfadeEinlesenSchleife:
+      for DateipfadeEinlesenSchleifenwert in StandardHintergrundEinlesenArray'Range loop
+         
+         case
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                    AktuelleZeileExtern => AktuelleZeile)
+         is
+            when True =>
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenStandardHintergrund - Nicht genug Zeilen in der 0-Datei.");
+               Close (File => DateiTextEinlesen);
+               StandardHintergrundEinlesen (DateipfadeEinlesenSchleifenwert) := TextKonstanten.LeerUnboundedString;
+               return;
+               
+            when False =>
+               StandardHintergrundEinlesen (DateipfadeEinlesenSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         end case;
+         
+         AktuelleZeile := AktuelleZeile + 1;
+         
+      end loop DateipfadeEinlesenSchleife;
+      
+      Close (File => DateiTextEinlesen);
+      
+      TexturenZuweisenSchleife:
+      for TexturenZuweisenSchleifenwert in StandardHintergrundEinlesenArray'Range loop
+         
+         case
+           Exists (Name => Encode (Item => To_Wide_Wide_String (Source => StandardHintergrundEinlesen (TexturenZuweisenSchleifenwert))))
+         is
+            when True =>
+               EingeleseneTexturenSFML.StandardHintergrundAccess (TexturenZuweisenSchleifenwert)
+                 := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => StandardHintergrundEinlesen (TexturenZuweisenSchleifenwert))));
+                  
+            when False =>
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenStandardHintergrund - " & To_Wide_Wide_String (Source => StandardHintergrundEinlesen (TexturenZuweisenSchleifenwert)) & " fehlt.");
+               EingeleseneTexturenSFML.StandardHintergrundAccess (TexturenZuweisenSchleifenwert) := null;
+         end case;
+         
+      end loop TexturenZuweisenSchleife;
+      
+   end EinlesenStandardHintergrund;
    
    
    

@@ -10,7 +10,7 @@ with SystemDatentypen;
 package body LadezeitenTerminal is
 
    procedure LadezeitenSpielweltErstellen
-     (WelcheZeitExtern : in LadezeitenDatentypen.Spielwelt_Erstellen_Zeit_Verwendet_Enum)
+     -- (WelcheZeitExtern : in LadezeitenDatentypen.Spielwelt_Erstellen_Zeit_Verwendet_Enum)
    is begin
 
       GesamtzeitSpielweltErstellen := 0.00;

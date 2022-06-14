@@ -26,7 +26,7 @@ package body KartengeneratorUnterwasserUnterirdisch is
               LeseKarten.BasisGrund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert))
             is
                when KartengrundDatentypen.Küstengewässer_Enum =>
-                  SchreibeKarten.ZweimalGrund (KoordinatenExtern => (-1, YAchseSchleifenwert, XAchseSchleifenwert),
+                  SchreibeKarten.GleicherGrund (KoordinatenExtern => (-1, YAchseSchleifenwert, XAchseSchleifenwert),
                                                GrundExtern       => KartengrundDatentypen.Küstengrund_Enum);
                   
                when KartengrundDatentypen.Wasser_Enum =>

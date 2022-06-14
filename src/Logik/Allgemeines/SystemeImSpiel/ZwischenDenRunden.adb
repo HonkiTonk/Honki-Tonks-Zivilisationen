@@ -21,7 +21,7 @@ with StadtMeldungenSetzen;
 with EinheitenMeldungenSetzen;
 with EinheitInUmgebung;
 with EinheitenModifizieren;
-with Ladezeiten;
+-- with Ladezeiten;
 with Speichern;
 with VerbesserungFertiggestellt;
 with LadezeitenDatentypen;
@@ -46,7 +46,7 @@ package body ZwischenDenRunden is
       -- InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => RueckgabeDatentypen.Grafik_Enum_Laden);
       -- Das Umschalten der Darstellung der Ladezeiten in die Prozeduren der jeweiligen Ladezeiten einbauen?
       
-      LadezeitenDatentypen.EinzelneZeiten (LadezeitenDatentypen.Zwischen_Runden_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
+      -- LadezeitenDatentypen.EinzelneZeiten (LadezeitenDatentypen.Zwischen_Runden_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
       
       case
         NachSiegWeiterspielen
@@ -149,7 +149,7 @@ package body ZwischenDenRunden is
            SonstigeVariablen.RassenImSpiel (RasseSchleifenwert) = RassenDatentypen.Spieler_KI_Enum
          then
             KIVorhanden := True;
-            Ladezeiten.AnzeigeKIZeit (WelcheZeitExtern => RasseSchleifenwert);
+            -- Ladezeiten.AnzeigeKIZeit (WelcheZeitExtern => RasseSchleifenwert);
             
          else
             LadezeitenDatentypen.KIZeiten (RasseSchleifenwert, SystemDatentypen.Anfangswert_Enum) := Clock;
@@ -232,14 +232,15 @@ package body ZwischenDenRunden is
         KIVorhanden
       is
          when True =>
-            Ladezeiten.AnzeigeKIZeit (WelcheZeitExtern => StadtKonstanten.LeerRasse);
+            -- Ladezeiten.AnzeigeKIZeit (WelcheZeitExtern => StadtKonstanten.LeerRasse);
+            null;
             
          when False =>
             null;
       end case;
       
-      LadezeitenDatentypen.EinzelneZeiten (LadezeitenDatentypen.Zwischen_Runden_Enum, SystemDatentypen.Endwert_Enum) := Clock;
-      Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => LadezeitenDatentypen.Zwischen_Runden_Enum);
+      -- LadezeitenDatentypen.EinzelneZeiten (LadezeitenDatentypen.Zwischen_Runden_Enum, SystemDatentypen.Endwert_Enum) := Clock;
+      -- Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => LadezeitenDatentypen.Zwischen_Runden_Enum);
       
    end GesamteZeitenAnzeigen;
 

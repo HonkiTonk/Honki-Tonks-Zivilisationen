@@ -13,5 +13,6 @@ private
    procedure UnterwasserUnterirdischGenerieren;
    procedure FlüsseGenerieren;
    procedure RessourcenGenerieren;
+   procedure BewerteKartenfelder;
 
 end Kartengenerator;
