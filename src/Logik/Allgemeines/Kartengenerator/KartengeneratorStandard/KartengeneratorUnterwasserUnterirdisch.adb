@@ -3,6 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with KartengrundDatentypen;
+with LadezeitenDatentypen;
 
 with LeseKarten;
 with SchreibeKarten;
@@ -11,11 +12,14 @@ with KartengeneratorVariablen;
 with KartengeneratorErdwelt;
 with KartengeneratorWasserwelt;
 with Fehler;
+with Ladezeiten;
 
 package body KartengeneratorUnterwasserUnterirdisch is
 
    procedure GenerierungLandschaft
    is begin
+      
+      Multiplikator := 1;
                
       YAchseSchleife:
       for YAchseSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.YAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse loop
@@ -40,6 +44,17 @@ package body KartengeneratorUnterwasserUnterirdisch is
             end case;
                               
          end loop XAchseSchleife;
+            
+         if
+           ZahlenDatentypen.EigenesPositive (YAchseSchleifenwert) >= Multiplikator * ZahlenDatentypen.EigenesPositive (KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse) / 100
+         then
+            Ladezeiten.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Unterfläche_Enum);
+            Multiplikator := Multiplikator + 1;
+               
+         else
+            null;
+         end if;
+         
       end loop YAchseSchleife;
       
    end GenerierungLandschaft;

@@ -2,17 +2,21 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartengrundDatentypen; use KartengrundDatentypen;
+with LadezeitenDatentypen;
 with KartenKonstanten;
 
 with SchreibeKarten;
 with LeseKarten;
 
 with Kartenkoordinatenberechnungssystem;
+with Ladezeiten;
 
 package body KartengeneratorKueste is
 
    procedure GenerierungKüstenSeeGewässer
    is begin
+      
+      Multiplikator := 1;
       
       YAchseSchleife:
       for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse loop
@@ -30,6 +34,17 @@ package body KartengeneratorKueste is
             end case;
             
          end loop XAchseSchleife;
+            
+         if
+           ZahlenDatentypen.EigenesPositive (YAchseSchleifenwert) >= Multiplikator * ZahlenDatentypen.EigenesPositive (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse) / 100
+         then
+            Ladezeiten.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Küstenwasser_Enum);
+            Multiplikator := Multiplikator + 1;
+               
+         else
+            null;
+         end if;
+         
       end loop YAchseSchleife;
       
    end GenerierungKüstenSeeGewässer;

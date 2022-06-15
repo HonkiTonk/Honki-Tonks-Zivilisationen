@@ -3,6 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with KartenRecords;
+with ZahlenDatentypen;
 
 with Karten;
 
@@ -16,8 +17,11 @@ private
    ------------------------ Oder rauswerfen?
    FlussumgebungBonus : Float := 1.25;
    
+   type MultiplikatorArray is array (KartenDatentypen.EbenePlanet'Range) of ZahlenDatentypen.EigenesPositive;
+   Multiplikator : MultiplikatorArray;
+   
    ------------------- Später vom Nutzer änderbar machen.
-   type WahrscheinlichkeitFlussArray is array (KartenDatentypen.EbeneVorhanden'First .. 0) of KartenDatentypen.WahrscheinlichkeitKartengenerator;
+   type WahrscheinlichkeitFlussArray is array (KartenDatentypen.EbenePlanet'Range) of KartenDatentypen.WahrscheinlichkeitKartengenerator;
    WahrscheinlichkeitFluss : constant WahrscheinlichkeitFlussArray := (
                                                                        -2 => 30,
                                                                        -1 => 30,
@@ -33,7 +37,7 @@ private
    procedure GenerierungFlüsse;
    
    procedure FlussGenerierung
-     (EbeneExtern : in KartenDatentypen.EbeneVorhanden);
+     (EbeneExtern : in KartenDatentypen.EbenePlanet);
    
       
       

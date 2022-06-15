@@ -3,6 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartengrundDatentypen; use KartengrundDatentypen;
 with KartenKonstanten;
+with LadezeitenDatentypen;
 
 with SchreibeKarten;
 with LeseKarten;
@@ -10,11 +11,14 @@ with LeseKarten;
 with ZufallsgeneratorenKarten;
 with Kartenkoordinatenberechnungssystem;
 with KartengeneratorVariablen;
+with Ladezeiten;
 
 package body KartengeneratorStandard is
    
    procedure OberflächeGenerieren
    is begin
+      
+      Multiplikator := 1;
             
       YAchseSchleife:
       for YAchseSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.YAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse loop
@@ -25,6 +29,17 @@ package body KartengeneratorStandard is
                            XAchseExtern => XAchseSchleifenwert);
             
          end loop XAchseSchleife;
+            
+         if
+           ZahlenDatentypen.EigenesPositive (YAchseSchleifenwert) >= Multiplikator * ZahlenDatentypen.EigenesPositive (KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse) / 25
+         then
+            Ladezeiten.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Allgemeines_Enum);
+            Multiplikator := Multiplikator + 1;
+               
+         else
+            null;
+         end if;
+         
       end loop YAchseSchleife;
       
    end OberflächeGenerieren;

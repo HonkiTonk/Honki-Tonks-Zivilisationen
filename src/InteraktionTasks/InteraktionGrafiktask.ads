@@ -5,14 +5,17 @@ with GrafikDatentypen;
 with MenueDatentypen;
 with EinheitenRecords;
 with EinheitenKonstanten;
+with RassenDatentypen;
 
 package InteraktionGrafiktask is
    
    FensterGeschlossen : Boolean := False;
    
-   AktuelleRasseEinheit : EinheitenRecords.RasseEinheitnummerRecord := EinheitenKonstanten.LeerRasseNummer;
+   KIRechnet : RassenDatentypen.Rassen_Enum := RassenDatentypen.Keine_Rasse_Enum;
    
    AktuellesMenü : MenueDatentypen.Welches_Menü_Enum := MenueDatentypen.Leer_Menü_Enum;
+   
+   AktuelleRasseEinheit : EinheitenRecords.RasseEinheitnummerRecord := EinheitenKonstanten.LeerRasseNummer;
    
    type Fenster_Ändern_Enum is (
                                  Keine_Änderung_Enum,

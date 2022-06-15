@@ -12,7 +12,7 @@ with SpielVariablen;
 with MenueDatentypen;
 
 with Optionen;
-with LadezeitenDatentypen;
+with Ladezeiten;
 with Speichern;
 with Laden;
 with RasseEntfernen;
@@ -36,6 +36,9 @@ package body ImSpiel is
       
       SpielSchleife:
       loop
+         
+         Ladezeiten.KINullsetzen;
+         
          RassenSchleife:
          for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
             
@@ -145,10 +148,15 @@ package body ImSpiel is
    procedure KISpieler
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
-            
-      LadezeitenDatentypen.KIZeiten (RasseExtern, SystemDatentypen.Anfangswert_Enum) := Clock;
+      
+      InteraktionGrafiktask.KIRechnet := RasseExtern;
+      InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_KI_Rechenzeit_Enum;
+      Ladezeiten.KIZeiten (RasseExtern, SystemDatentypen.Anfangswert_Enum) := Clock;
+      
       KI.KI (RasseExtern => RasseExtern);
-      LadezeitenDatentypen.KIZeiten (RasseExtern, SystemDatentypen.Endwert_Enum) := Clock;
+      
+      Ladezeiten.KIZeiten (RasseExtern, SystemDatentypen.Endwert_Enum) := Clock;
+      InteraktionGrafiktask.KIRechnet := RassenDatentypen.Keine_Rasse_Enum;
       
    end KISpieler;
    

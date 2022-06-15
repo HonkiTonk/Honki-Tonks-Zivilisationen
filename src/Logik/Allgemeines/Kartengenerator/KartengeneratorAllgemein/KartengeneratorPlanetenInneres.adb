@@ -1,14 +1,19 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with LadezeitenDatentypen;
+
 with SchreibeKarten;
 
 with ZufallsgeneratorenKarten;
+with Ladezeiten;
 
 package body KartengeneratorPlaneteninneres is
 
    procedure Planeteninneres
    is begin
+      
+      Multiplikator := 1;
       
       YKernanfang := Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse / 2 - Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse / 10;
       XKernanfang := Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse / 2 - Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse / 10;
@@ -33,6 +38,17 @@ package body KartengeneratorPlaneteninneres is
             end if;
                
          end loop XAchseSchleife;
+            
+         if
+           ZahlenDatentypen.EigenesPositive (YAchseSchleifenwert) >= Multiplikator * ZahlenDatentypen.EigenesPositive (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse) / 25
+         then
+            Ladezeiten.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Allgemeines_Enum);
+            Multiplikator := Multiplikator + 1;
+               
+         else
+            null;
+         end if;
+         
       end loop YAchseSchleife;
                
    end Planeteninneres;
@@ -101,6 +117,8 @@ package body KartengeneratorPlaneteninneres is
         WelcherGrund
       is
          when KartengrundDatentypen.Leer_Grund_Enum =>
+            SchreibeKarten.GleicherGrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
+                                          GrundExtern       => KartengrundDatentypen.Lava_Enum);
             return;
             
          when others =>
@@ -111,12 +129,13 @@ package body KartengeneratorPlaneteninneres is
       case
         WelcherGrund
       is
-         when KartengrundDatentypen.Kartengrund_Unterfläche_Wasserzusatz_Enum'Range =>
-            SchreibeKarten.AktuellerGrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
-                                           GrundExtern       => WelcherGrund);
+         when KartengrundDatentypen.Kartengrund_Kernfläche_Basis_Enum'Range =>
+            SchreibeKarten.GleicherGrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
+                                          GrundExtern       => WelcherGrund);
             
          when others =>
-            null;
+            SchreibeKarten.GleicherGrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
+                                          GrundExtern       => KartengrundDatentypen.Lava_Enum);
       end case;
       
    end BasisgrundBestimmen;

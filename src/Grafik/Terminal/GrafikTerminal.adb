@@ -46,6 +46,9 @@ package body GrafikTerminal is
             when GrafikDatentypen.Grafik_Generierungszeit_Enum =>
                null;
                
+            when GrafikDatentypen.Grafik_KI_Rechenzeit_Enum =>
+               null;
+               
             when GrafikDatentypen.Grafik_Laden_Enum =>
                null;
          

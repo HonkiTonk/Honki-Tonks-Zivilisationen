@@ -3,6 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with KartengrundDatentypen;
+with ZahlenDatentypen;
 with KartenRecords;
 
 with Karten;
@@ -17,6 +18,8 @@ private
    
    WelcherGrund : KartengrundDatentypen.Kartengrund_Enum;
    BasisGrund : KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum;
+
+   Multiplikator : ZahlenDatentypen.EigenesPositive;
    
    BasisWahrscheinlichkeitAktuell : KartengrundDatentypen.Kartengrund_Oberfläche_Enum;
    

@@ -123,6 +123,7 @@ package body DebugmenueSFML is
    procedure LadezeitenAnzegien
    is begin
       
+      Put_Line ("Generierungszeit der Spielwelt:");
       Gesamtzeit := 0.00;
       WelcherText := 2;
       
@@ -154,6 +155,44 @@ package body DebugmenueSFML is
       New_Line;
       New_Line;
       
+      Put_Line ("Rechenzeit der KI:");
+      Gesamtzeit := 0.00;
+      
+      KIZeitenSchleife:
+      for KIZeitenSchleifenwert in Ladezeiten.KIZeitenArray'Range (1) loop
+         
+         
+         case
+           SonstigeVariablen.RassenImSpiel (KIZeitenSchleifenwert)
+         is
+            when RassenDatentypen.Spieler_KI_Enum =>
+               Put (KIZeitenSchleifenwert'Wide_Wide_Image & ": ");
+         
+               Zwischenzeit := Float (Ladezeiten.KIZeiten (KIZeitenSchleifenwert, SystemDatentypen.Endwert_Enum) - Ladezeiten.KIZeiten (KIZeitenSchleifenwert, SystemDatentypen.Anfangswert_Enum));
+         
+               AnzeigeFloat.Put (Item => Zwischenzeit,
+                                 Fore => 1,
+                                 Aft  => 6,
+                                 Exp  => 0);
+               New_Line;
+         
+               Gesamtzeit := Gesamtzeit + Zwischenzeit;
+               
+            when others =>
+               null;
+         end case;
+         
+      end loop KIZeitenSchleife;
+      
+      Put ("Gesamtzeit: ");
+      AnzeigeFloat.Put (Item => Gesamtzeit,
+                        Fore => 1,
+                        Aft  => 6,
+                        Exp  => 0);
+      
+      New_Line;
+      New_Line;
+           
    end LadezeitenAnzegien;
 
 end DebugmenueSFML;

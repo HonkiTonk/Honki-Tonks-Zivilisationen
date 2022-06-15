@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartengrundDatentypen; use KartengrundDatentypen;
+with LadezeitenDatentypen;
 with KartenKonstanten;
 
 with SchreibeKarten;
@@ -10,11 +11,14 @@ with LeseKarten;
 with ZufallsgeneratorenKarten;
 with Kartenkoordinatenberechnungssystem;
 with KartengeneratorVariablen;
+with Ladezeiten;
 
 package body KartengeneratorLandschaft is
 
    procedure GenerierungLandschaft
    is begin
+      
+      Multiplikator := 1;
       
       YAchseSchleife:
       for YAchseSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.YAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse loop
@@ -42,6 +46,16 @@ package body KartengeneratorLandschaft is
             end case;
             
          end loop XAchseSchleife;
+            
+         if
+           ZahlenDatentypen.EigenesPositive (YAchseSchleifenwert) >= Multiplikator * ZahlenDatentypen.EigenesPositive (KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse) / 100
+         then
+            Ladezeiten.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Landschaft_Enum);
+            Multiplikator := Multiplikator + 1;
+               
+         else
+            null;
+         end if;
       end loop YAchseSchleife;
       
    end GenerierungLandschaft;

@@ -14,7 +14,6 @@ private
    procedure EinzelneKIZeitenAnzeigen;
    procedure DiplomatieÄnderung;
    procedure GeldForschungMengeSetzen;
-   procedure GesamteZeitenAnzeigen;
 
 
 

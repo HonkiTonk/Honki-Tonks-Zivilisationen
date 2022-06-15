@@ -3,6 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartengrundDatentypen; use KartengrundDatentypen;
 with KartenKonstanten;
+with LadezeitenDatentypen;
 
 with LeseKarten;
 
@@ -10,13 +11,16 @@ with Kartenkoordinatenberechnungssystem;
 with ZufallsgeneratorenKarten;
 with KartengeneratorVariablen;
 with Flussplatzierungssystem;
+with Ladezeiten;
 
 package body KartengeneratorFluss is
    
    procedure AufteilungFlussgenerierung
    is begin
       
+      Multiplikator := (others => 1);
       GenerierungFlüsse;
+      Ladezeiten.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Flüsse_Enum);
       
    end AufteilungFlussgenerierung;
    
@@ -51,7 +55,7 @@ package body KartengeneratorFluss is
    
    
    procedure FlussGenerierung
-     (EbeneExtern : in KartenDatentypen.EbeneVorhanden)
+     (EbeneExtern : in KartenDatentypen.EbenePlanet)
    is begin
       
       YAchseSchleife:
@@ -78,6 +82,17 @@ package body KartengeneratorFluss is
             end case;
          
          end loop XAchseSchleife;
+            
+         if
+           ZahlenDatentypen.EigenesPositive (YAchseSchleifenwert) >= Multiplikator (EbeneExtern) * ZahlenDatentypen.EigenesPositive (KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse) / 33
+         then
+            Ladezeiten.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Flüsse_Enum);
+            Multiplikator (EbeneExtern) := Multiplikator (EbeneExtern) + 1;
+               
+         else
+            null;
+         end if;
+         
       end loop YAchseSchleife;
       
    end FlussGenerierung;

@@ -21,7 +21,7 @@ package body KartengeneratorAllgemeines is
       GenerierungGrundlagen;
       
    end GenerierungAllgemeines;
-      
+   
    
   
    procedure GenerierungGrundlagen

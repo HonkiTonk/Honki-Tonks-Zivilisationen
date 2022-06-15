@@ -23,6 +23,7 @@ private
    
    StartpositionGefunden : Boolean;
    
+   FelderGefunden : KartenDatentypen.SichtweiteNatural;
    FreieFelder : KartenDatentypen.SichtweiteNatural;
    
    RassenAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
@@ -57,15 +58,6 @@ private
    type KoordinatenArray is array (1 .. 2) of KartenRecords.AchsenKartenfeldNaturalRecord;
    StartKoordinaten : KoordinatenArray;
    
-   procedure FelderBestimmen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-     with
-       Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
-          and
-            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
-   
    procedure BelegungÄndern
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
 
@@ -79,6 +71,16 @@ private
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       NotAusExtern : in ZahlenDatentypen.NotAus)
       return Boolean
+     with
+       Pre =>
+         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+          and
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+   
+   function FelderBestimmen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      return KartenDatentypen.SichtweiteNatural
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse

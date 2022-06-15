@@ -144,6 +144,9 @@ package TextaccessVariablen is
    -- Ladezeiten
    type LadezeitenAccessArray is array (1 .. 9) of Sf.Graphics.sfText_Ptr;
    LadezeitenAccess : constant LadezeitenAccessArray := (others => Sf.Graphics.Text.create);
+   
+   type KIZeitenAccessArray is array (1 .. 2) of Sf.Graphics.sfText_Ptr;
+   KIZeitenAccess : constant KIZeitenAccessArray := (others => Sf.Graphics.Text.create);
    -- Ladezeiten
 
 end TextaccessVariablen;

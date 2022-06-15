@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with KartenDatentypen; use KartenDatentypen;
 with KartengrundDatentypen;
 with KartenRecords;
+with ZahlenDatentypen;
 
 with Karten;
 
@@ -17,6 +18,8 @@ private
    XKernanfang : KartenDatentypen.KartenfeldPositiv;
    YKernende : KartenDatentypen.KartenfeldPositiv;
    XKernende : KartenDatentypen.KartenfeldPositiv;
+
+   Multiplikator : ZahlenDatentypen.EigenesPositive;
 
    WelcherGrund : KartengrundDatentypen.Kartengrund_Enum;
 

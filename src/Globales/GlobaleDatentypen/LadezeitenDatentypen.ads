@@ -1,11 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Ada.Calendar; use Ada.Calendar;
-
-with SystemDatentypen;
-with RassenDatentypen;
-
 package LadezeitenDatentypen is
    
    type Ladefortschritt is range 0 .. 100;
@@ -15,7 +10,8 @@ package LadezeitenDatentypen is
                                      Bewerte_Kartenfelder_Enum, Platziere_Rassen_Enum
                                     );
    
-   type KIZeitenArray is array (RassenDatentypen.Rassen_Enum, SystemDatentypen.Anfang_Ende_Enum'Range) of Time;
-   KIZeiten : KIZeitenArray;
+   type Speichern_Laden_Enum is (
+                                 Test_Enum
+                                );
 
 end LadezeitenDatentypen;

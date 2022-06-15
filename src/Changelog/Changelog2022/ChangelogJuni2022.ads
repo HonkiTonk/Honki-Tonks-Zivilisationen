@@ -105,10 +105,14 @@ package ChangelogJuni2022 is
    
    
 
-   -- Version 0.01.1165 => 0.01. (15.06.2022):
+   -- Version 0.01.1165 => 0.01.1225 (15.06.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehler in der Berechnung des Grunds für die Kernfläche korrigiert.
+   -- Berechnungsfortschritt für die Spielweltgenerierung eingebaut.
+   -- Debugmenü kann jetzt auch die KI Rechenzeiten anzeigen.
+   -- Allgemeines für den Rassennamen und die Rassenbeschreibung angelegt.
+   -- Berechnungsfortschritt für die KI Züge eingebaut.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    
 
@@ -119,7 +123,7 @@ package ChangelogJuni2022 is
    -- KartengeneratorPlanetenInneres um Basisgrundberechnungen erweitert.
    -- Die Menüs werden jetzt auch dann angezeigt, wenn man eine Zahl eingibt.
    -- SFML Version der Spielweltgenerierungszeitanzeige eingebaut.
-   -- Debugmenü kann jetzt auch die Ladzeiten anzeigen.
+   -- Debugmenü kann jetzt auch die Spielweltgenerierungszeiten anzeigen.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    

@@ -3,6 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with KartenRecords;
+with ZahlenDatentypen;
 
 with Karten;
 
@@ -11,6 +12,8 @@ package KartengeneratorKueste is
    procedure GenerierungKüstenSeeGewässer;
 
 private
+   
+   Multiplikator : ZahlenDatentypen.EigenesPositive;
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    

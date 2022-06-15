@@ -31,5 +31,8 @@ private
    Zahlenstring : Unbounded_Wide_Wide_String;
    
    package AnzeigeFloatUmwandeln is new Ada.Wide_Wide_Text_IO.Float_IO (EinheitenDatentypen.BewegungFloat);
+   
+   -- Merkhilfe
+   -- function ZahlAlsStringMaximaleEinheitenMitNullWert is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => EinheitenDatentypen.MaximaleEinheitenMitNullWert);
 
 end UmwandlungenAdaNachEigenes;

@@ -171,6 +171,9 @@ package body GrafikSFML is
          when GrafikDatentypen.Grafik_Generierungszeit_Enum =>
             LadezeitenSFML.SpielweltErstellen;
             
+         when GrafikDatentypen.Grafik_KI_Rechenzeit_Enum =>
+            LadezeitenSFML.KIRechnet;
+            
          when GrafikDatentypen.Grafik_Laden_Enum =>
             null;
          

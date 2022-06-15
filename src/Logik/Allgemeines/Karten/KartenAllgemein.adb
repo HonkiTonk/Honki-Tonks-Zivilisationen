@@ -21,7 +21,9 @@ package body KartenAllgemein is
    is begin
       
       -- Die Zwischenrechnungen mal drin lassen, für den Fall dass ich die Beschreibungen rassenspezifisch machen will. Könnte dann eine komplexere Rechnung werden.
-      GrundAktuell := 2 * KartengrundDatentypen.Kartengrund_Enum'Pos (KartenGrundExtern) - 1;
+      
+      --------------------------------- Mal überall drüber schauen ob die 'Pos Angaben bei den Beschreibungen angepasst werden können.
+      GrundAktuell := 2 * KartengrundDatentypen.Kartengrund_Vorhanden_Enum'Pos (KartenGrundExtern) - 1;
    
       return To_Wide_Wide_String (Source => GlobaleTexte.Kartenfelder (GrundAktuell));
       
@@ -36,7 +38,7 @@ package body KartenAllgemein is
    is begin
       
       -- Die Zwischenrechnungen mal drin lassen, für den Fall dass ich die Beschreibungen rassenspezifisch machen will. Könnte dann eine komplexere Rechnung werden.
-      ZusatzAktuell := 2 * KartengrundDatentypen.Kartengrund_Enum'Pos (KartenGrundExtern) - 1;
+      ZusatzAktuell := 2 * KartengrundDatentypen.Kartengrund_Vorhanden_Enum'Pos (KartenGrundExtern) - 1;
    
       return To_Wide_Wide_String (Source => GlobaleTexte.Kartenfelder (ZusatzAktuell));
       
@@ -49,7 +51,7 @@ package body KartenAllgemein is
       return Wide_Wide_String
    is begin
             
-      FlussAktuell := 2 * KartengrundDatentypen.Kartenfluss_Enum'Pos (KartenFlussExtern) - 1;
+      FlussAktuell := 2 * KartengrundDatentypen.Kartenfluss_Vorhanden_Enum'Pos (KartenFlussExtern) - 1;
       
       return To_Wide_Wide_String (Source => GlobaleTexte.Kartenflüsse (FlussAktuell));
       
@@ -62,7 +64,7 @@ package body KartenAllgemein is
       return Wide_Wide_String
    is begin
       
-      RessourceAktuell := 2 * KartengrundDatentypen.Kartenressourcen_Enum'Pos (KartenRessourceExtern) - 1;
+      RessourceAktuell := 2 * KartengrundDatentypen.Kartenressourcen_Vorhanden_Enum'Pos (KartenRessourceExtern) - 1;
    
       return To_Wide_Wide_String (Source => GlobaleTexte.Kartenressourcen (RessourceAktuell));
       

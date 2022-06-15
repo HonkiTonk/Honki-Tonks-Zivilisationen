@@ -21,10 +21,9 @@ with StadtMeldungenSetzen;
 with EinheitenMeldungenSetzen;
 with EinheitInUmgebung;
 with EinheitenModifizieren;
--- with Ladezeiten;
+with Ladezeiten;
 with Speichern;
 with VerbesserungFertiggestellt;
-with LadezeitenDatentypen;
 -- with InteraktionTasks;
 
 package body ZwischenDenRunden is
@@ -75,8 +74,6 @@ package body ZwischenDenRunden is
 
       -- Autospeichern muss immer nach allen Änderungen kommen, sonst werden nicht alle Änderungen gespeichert.
       Speichern.AutoSpeichern;
-            
-      GesamteZeitenAnzeigen;
       
       -- InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => RueckgabeDatentypen.Grafik_Enum_Pause);
       
@@ -152,8 +149,8 @@ package body ZwischenDenRunden is
             -- Ladezeiten.AnzeigeKIZeit (WelcheZeitExtern => RasseSchleifenwert);
             
          else
-            LadezeitenDatentypen.KIZeiten (RasseSchleifenwert, SystemDatentypen.Anfangswert_Enum) := Clock;
-            LadezeitenDatentypen.KIZeiten (RasseSchleifenwert, SystemDatentypen.Endwert_Enum) := LadezeitenDatentypen.KIZeiten (RasseSchleifenwert, SystemDatentypen.Anfangswert_Enum);
+            Ladezeiten.KIZeiten (RasseSchleifenwert, SystemDatentypen.Anfangswert_Enum) := Clock;
+            Ladezeiten.KIZeiten (RasseSchleifenwert, SystemDatentypen.Endwert_Enum) := Ladezeiten.KIZeiten (RasseSchleifenwert, SystemDatentypen.Anfangswert_Enum);
          end if;
          
       end loop RassenSchleife;
@@ -222,26 +219,5 @@ package body ZwischenDenRunden is
       end loop RassenSchleife;
       
    end GeldForschungMengeSetzen;
-   
-   
-   
-   procedure GesamteZeitenAnzeigen
-   is begin
-      
-      case
-        KIVorhanden
-      is
-         when True =>
-            -- Ladezeiten.AnzeigeKIZeit (WelcheZeitExtern => StadtKonstanten.LeerRasse);
-            null;
-            
-         when False =>
-            null;
-      end case;
-      
-      -- LadezeitenDatentypen.EinzelneZeiten (LadezeitenDatentypen.Zwischen_Runden_Enum, SystemDatentypen.Endwert_Enum) := Clock;
-      -- Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => LadezeitenDatentypen.Zwischen_Runden_Enum);
-      
-   end GesamteZeitenAnzeigen;
 
 end ZwischenDenRunden;

@@ -1,14 +1,14 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
-
 with EinheitenKonstanten;
 with KartenVerbesserungDatentypen;
 with SpielVariablen;
 
 with LeseEinheitenGebaut;
 with LeseStadtGebaut;
+
+with Ladezeiten;
 
 with KIStadt;
 with KIForschung;
@@ -23,17 +23,19 @@ package body KI is
       
       ---------------------- Mehr NotAus in die Loops der KI einbauen, sonst frisst die sich beispielsweise bei der Suche nach einem geeigneten Platz.
       ---------------------- Zusätzlich mal was einbauen dass die Anforderungen schrittweise reduziert.
-      -- Das hier mal so lassen, für weitere Tests sicherlich nützlich.
-      Put_Line ("EinheitenDurchgehen");
+      ---------------------- Scheint Probleme zu haben weitere Städte zu bauen.
       EinheitenDurchgehen (RasseExtern => RasseExtern);
-      Put_Line ("StädteDurchgehen");
+      Ladezeiten.FortschrittKISchreiben (RasseExtern => RasseExtern);
+      
       StädteDurchgehen (RasseExtern => RasseExtern);
-      Put_Line ("Forschung");
+      Ladezeiten.FortschrittKISchreiben (RasseExtern => RasseExtern);
+      
       KIForschung.Forschung (RasseExtern => RasseExtern);
-      Put_Line ("Diplomatie");
+      Ladezeiten.FortschrittKISchreiben (RasseExtern => RasseExtern);
+      
       KIDiplomatie.Diplomatie (RasseExtern => RasseExtern);
-      Put_Line ("Fertig");
-            
+      Ladezeiten.FortschrittKISchreiben (RasseExtern => RasseExtern);
+                  
    end KI;
    
    

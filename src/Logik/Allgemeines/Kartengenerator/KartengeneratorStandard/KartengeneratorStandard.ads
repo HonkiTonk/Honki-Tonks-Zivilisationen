@@ -3,6 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with KartenRecords;
+with ZahlenDatentypen;
 
 with Karten;
 
@@ -19,6 +20,8 @@ private
    Landabstand : LandmassenArray;
    
    BeliebigerLandwert : KartenDatentypen.WahrscheinlichkeitKartengenerator;
+   
+   Multiplikator : ZahlenDatentypen.EigenesPositive;
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    
