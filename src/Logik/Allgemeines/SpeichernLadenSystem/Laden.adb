@@ -2,27 +2,29 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
--- with Ada.Calendar; use Ada.Calendar;
+with Ada.Calendar; use Ada.Calendar;
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
--- with SystemDatentypen;
+with RueckgabeDatentypen;
+with SystemDatentypen;
 with GlobaleVariablen;
 with KartenRecords;
 with StadtRecords;
 with WichtigeRecords;
 with KartenDatentypen;
-with SonstigesKonstanten;
 with RassenDatentypen;
 with SpielDatentypen;
 with SpielVariablen;
 with SonstigeVariablen;
 with EinheitenRecords;
+with TextKonstanten;
+with GrafikDatentypen;
 
 with Karten;
--- with Ladezeiten;
--- with LadezeitenDatentypen;
+with Ladezeiten;
 with Auswahl;
 with SpeichernLadenAllgemein;
+with InteraktionGrafiktask;
 
 package body Laden is
    
@@ -37,15 +39,13 @@ package body Laden is
       case
         NameSpielstand.ErfolgreichAbbruch
       is
-         when True =>
-            null;
-            
          when False =>
             return False;
+            
+         when True =>
+            null;
       end case;
       
-      -- LadezeitenDatentypen.EinzelneZeiten (LadezeitenDatentypen.Ladezeit_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
-
       Open (File => DateiLadenNeu,
             Mode => In_File,
             Name => "Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => NameSpielstand.EingegebenerText)));
@@ -55,38 +55,58 @@ package body Laden is
                              VersionsnummerPrüfung);
       -- Versionsnummer laden
 
+      -- Prüfung auf gleiche Versionsnummer
       if
         VersionsnummerPrüfung = SonstigesKonstanten.Versionsnummer
       then
          null;
          
-      else -- Falsche Versionsnummer
+      else
          case
-           Auswahl.AuswahlJaNein (FrageZeileExtern => 24)
+           Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageLadeFalscheVersion)
          is
-            -- when RueckgabeDatentypen.Ja_Enum =>
-            --    null;
-                     
+            when RueckgabeDatentypen.Ja_Enum =>
+               null;
+               
             when others =>
-               -- Hier noch eine Fehlermeldung einbauen
                Close (File => DateiLadenNeu);
                return False;
          end case;
       end if;
       
+      Ladezeiten.SpeichernLadenNullsetzen;
+      Ladezeiten.SpeichernLaden (SystemDatentypen.Anfangswert_Enum) := Clock;
+      InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Speichern_Laden_Enum;
+      
       SonstigesLaden;
+      Ladezeiten.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
+      
       KarteLaden;
+      Ladezeiten.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
+      
       RassenGrenzenLaden;
+      Ladezeiten.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
+      
       EinheitenLaden;
+      Ladezeiten.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
+      
       StädteLaden;
+      Ladezeiten.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
+      
       WichtigesLaden;
+      Ladezeiten.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
+      
       DiplomatieLaden;
+      Ladezeiten.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
+      
       CursorLaden;
-
+      Ladezeiten.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
+      
       Close (File => DateiLadenNeu);
-
-      -- LadezeitenDatentypen.EinzelneZeiten (LadezeitenDatentypen.Ladezeit_Enum, SystemDatentypen.Endwert_Enum) := Clock;
-      -- Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => LadezeitenDatentypen.Ladezeit_Enum);
+      
+      Ladezeiten.SpeichernLadenMaximum;
+      InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
+      Ladezeiten.SpeichernLaden (SystemDatentypen.Endwert_Enum) := Clock;
 
       return True;
       

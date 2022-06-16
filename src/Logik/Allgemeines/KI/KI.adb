@@ -21,9 +21,6 @@ package body KI is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      ---------------------- Mehr NotAus in die Loops der KI einbauen, sonst frisst die sich beispielsweise bei der Suche nach einem geeigneten Platz.
-      ---------------------- Zusätzlich mal was einbauen dass die Anforderungen schrittweise reduziert.
-      ---------------------- Scheint Probleme zu haben weitere Städte zu bauen.
       EinheitenDurchgehen (RasseExtern => RasseExtern);
       Ladezeiten.FortschrittKISchreiben (RasseExtern => RasseExtern);
       

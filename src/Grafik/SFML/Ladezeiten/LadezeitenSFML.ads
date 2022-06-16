@@ -12,7 +12,8 @@ package LadezeitenSFML is
 
    procedure SpielweltErstellen;
    procedure KIRechnet;
-   procedure ZwischenDenRunden;
+   procedure Rundenende;
+   procedure SpeichernLaden;
 
 private
    
@@ -23,6 +24,10 @@ private
    WelcheRasse : RassenDatentypen.Rassen_Enum;
          
    AktuelleTextposition : Sf.System.Vector2.sfVector2f;
+   
+   procedure StandardsFestlegen;
+   
+   
    
    function ZahlAlsStringLadefortschritt is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => LadezeitenDatentypen.Ladefortschritt);
 

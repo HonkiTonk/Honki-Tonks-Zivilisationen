@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 
 with SystemRecords;
+with SonstigesKonstanten;
 
 package Laden is
 
@@ -12,7 +13,7 @@ package Laden is
 
 private
 
-   VersionsnummerPrüfung : Wide_Wide_String (1 .. 9);
+   VersionsnummerPrüfung : Wide_Wide_String (SonstigesKonstanten.Versionsnummer'Range);
 
    DateiLadenNeu : File_Type;
 

@@ -312,6 +312,22 @@ package body TextaccesseSchriftgroesseSetzenSFML is
       Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.KIZeitenAccess (TextaccessVariablen.KIZeitenAccessArray'Last),
                                          size => GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
       
+      
+      
+      Sf.Graphics.Text.setCharacterSize (text  => TextaccessVariablen.RundenendeAccess (TextaccessVariablen.RundenendeAccessArray'First),
+                                         size => GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeÜberschrift);
+         
+      Sf.Graphics.Text.setCharacterSize (text  => TextaccessVariablen.RundenendeAccess (TextaccessVariablen.RundenendeAccessArray'Last),
+                                         size => GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
+      
+      
+      
+      Sf.Graphics.Text.setCharacterSize (text  => TextaccessVariablen.SpeichernLadenAccess (TextaccessVariablen.SpeichernLadenAccessArray'First),
+                                         size => GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeÜberschrift);
+         
+      Sf.Graphics.Text.setCharacterSize (text  => TextaccessVariablen.SpeichernLadenAccess (TextaccessVariablen.SpeichernLadenAccessArray'Last),
+                                         size => GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
+      
    end Ladezeiten;
 
 end TextaccesseSchriftgroesseSetzenSFML;

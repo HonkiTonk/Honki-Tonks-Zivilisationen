@@ -14,6 +14,8 @@ package Speichern is
 
 private
 
+   SpielstandVorhanden : Boolean;
+
    AutospeichernWert : Positive := 1;
 
    DateiSpeichernNeu : File_Type;
@@ -28,9 +30,11 @@ private
    procedure WichtigesSpeichern;
    procedure DiplomatieSpeichern;
    procedure CursorSpeichern;
-   procedure NameAutoSpeichern;
 
 
+
+   function NameAutoSpeichern
+     return SystemRecords.TextEingabeRecord;
 
    function SpielstandNameFestlegen
      (AutospeichernExtern : in Boolean)

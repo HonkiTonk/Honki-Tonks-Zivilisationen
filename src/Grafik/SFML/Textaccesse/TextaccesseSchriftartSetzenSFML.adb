@@ -310,6 +310,26 @@ package body TextaccesseSchriftartSetzenSFML is
          
       end loop KIZeitenSchleife;
       
+      
+      
+      RundenendeSchleife:
+      for RundenendeSchleifenwert in TextaccessVariablen.RundenendeAccessArray'Range loop
+         
+         Sf.Graphics.Text.setFont (text => TextaccessVariablen.RundenendeAccess (RundenendeSchleifenwert),
+                                   font => GrafikEinstellungenSFML.SchriftartAccess);
+         
+      end loop RundenendeSchleife;
+      
+      
+      
+      SpeichernLadenSchleife:
+      for SpeichernLadenSchleifenwert in TextaccessVariablen.SpeichernLadenAccessArray'Range loop
+         
+         Sf.Graphics.Text.setFont (text => TextaccessVariablen.SpeichernLadenAccess (SpeichernLadenSchleifenwert),
+                                   font => GrafikEinstellungenSFML.SchriftartAccess);
+         
+      end loop SpeichernLadenSchleife;
+      
    end Ladezeiten;
 
 end TextaccesseSchriftartSetzenSFML;

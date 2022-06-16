@@ -327,6 +327,22 @@ package body TextaccesseSchriftfarbeSetzenSFML is
       Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KIZeitenAccess (TextaccessVariablen.KIZeitenAccessArray'Last),
                                  color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
       
+      
+      
+      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.RundenendeAccess (TextaccessVariablen.RundenendeAccessArray'First),
+                                 color => GrafikEinstellungenSFML.Schriftfarben.FarbeÜberschrift);
+         
+      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.RundenendeAccess (TextaccessVariablen.RundenendeAccessArray'Last),
+                                 color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
+      
+      
+      
+      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SpeichernLadenAccess (TextaccessVariablen.SpeichernLadenAccessArray'First),
+                                 color => GrafikEinstellungenSFML.Schriftfarben.FarbeÜberschrift);
+         
+      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SpeichernLadenAccess (TextaccessVariablen.SpeichernLadenAccessArray'Last),
+                                 color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
+      
    end Ladezeiten;
 
 end TextaccesseSchriftfarbeSetzenSFML;

@@ -44,16 +44,14 @@ package body KIStadt is
         LeseStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern)
       is
          when KIDatentypen.Keine_Aufgabe_Enum =>
-            null;
+            NeuesBauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                             EinheitBauenExtern     => KIEinheitenBauen.EinheitenBauen (StadtRasseNummerExtern => StadtRasseNummerExtern),
+                             GebäudeBauenExtern     => KIGebaeudeBauen.GebäudeBauen (StadtRasseNummerExtern => StadtRasseNummerExtern),
+                             NotfallExtern          => False);
             
          when others =>
             return;
       end case;
-      
-      NeuesBauprojekt  (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                        EinheitBauenExtern     => KIEinheitenBauen.EinheitenBauen (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                        GebäudeBauenExtern     => KIGebaeudeBauen.GebäudeBauen (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                        NotfallExtern          => False);
       
    end KIStadt;
    
@@ -183,6 +181,7 @@ package body KIStadt is
                when others =>
                   FremdeEinheit := EinheitSuchen.KoordinatenEinheitOhneSpezielleRasseSuchen (RasseExtern       => StadtRasseNummerExtern.Rasse,
                                                                                              KoordinatenExtern => KartenWert);
+                  
                   if
                     FremdeEinheit.Nummer = EinheitenKonstanten.LeerNummer
                   then
@@ -254,8 +253,8 @@ package body KIStadt is
    
    
    
+   ---------------------------------------- Die Baukosten noch mit in die Bewertung einfließen lassen.
    procedure NotfallEinheitBauen
-   -- Stadt mit übergeben und später die Baukosten noch mit in die Bewertung einfließen lassen.
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       EinheitIDExtern : in EinheitenDatentypen.EinheitenID)
    is begin

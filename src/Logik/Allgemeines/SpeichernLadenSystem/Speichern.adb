@@ -2,10 +2,10 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
--- with Ada.Calendar; use Ada.Calendar;
+with Ada.Calendar; use Ada.Calendar;
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
--- with SystemDatentypen; use SystemDatentypen;
+with SystemDatentypen; use SystemDatentypen;
 with RueckgabeDatentypen; use RueckgabeDatentypen;
 with RassenDatentypen;
 with SpielVariablen;
@@ -19,17 +19,18 @@ with SpielDatentypen;
 with OptionenVariablen;
 with SonstigeVariablen;
 with EinheitenRecords;
+with GrafikDatentypen;
 
 with Karten;
-with Auswahl;
--- with Ladezeiten;
+with Ladezeiten;
 with SpeichernLadenAllgemein;
--- with LadezeitenDatentypen;
+with InteraktionGrafiktask;
+with Auswahl;
 
+------------------------ Beim Neubauen auch alles neuen Nutzereinstellmöglichkeiten mit speichern und eventuelle berechneten Werte die jetzt notwendig sind mitnehmen.
+------------------------ Da wird einiges noch mit reinmüssen.
 package body Speichern is
 
-   ------------------------ Beim Neubauen auch alles neuen Nutzereinstellmöglichkeiten mit speichern und eventuelle berechneten Werte die jetzt notwendig sind mitnehmen.
-   
    procedure SpeichernNeu
      (AutospeichernExtern : in Boolean)
    is begin
@@ -46,34 +47,61 @@ package body Speichern is
             null;
       end case;
 
-      -- LadezeitenDatentypen.EinzelneZeiten (LadezeitenDatentypen.Speicherzeit_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
+      case
+        AutospeichernExtern
+      is
+         when True =>
+            null;
+            
+         when False =>
+            Ladezeiten.SpeichernLadenNullsetzen;
+            Ladezeiten.SpeichernLaden (SystemDatentypen.Anfangswert_Enum) := Clock;
+            InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Speichern_Laden_Enum;
+      end case;
       
+      ------------------------------ Technisch gesehen müsste ich immer prüfen ob es Autospeichern ist oder nicht, denn sonst berechnet er immer den Fortschritt.
+      ------------------------------ Sollte aber keine nennenswerte Auswirkung auf die Performance haben.
       Create (File => DateiSpeichernNeu,
               Mode => Out_File,
               Name => "Spielstand/" & Encode (Item => (To_Wide_Wide_String (Source => NameSpielstand.EingegebenerText))));
       
       SonstigesSpeichern;
+      Ladezeiten.SpeichernLadenSchreiben (SpeichernLadenExtern => True);
+      
       KarteSpeichern;
+      Ladezeiten.SpeichernLadenSchreiben (SpeichernLadenExtern => True);
+      
       RassenGrenzenSpeichern;
+      Ladezeiten.SpeichernLadenSchreiben (SpeichernLadenExtern => True);
+      
       EinheitenSpeichern;
+      Ladezeiten.SpeichernLadenSchreiben (SpeichernLadenExtern => True);
+      
       StädteSpeichern;
+      Ladezeiten.SpeichernLadenSchreiben (SpeichernLadenExtern => True);
+      
       WichtigesSpeichern;
+      Ladezeiten.SpeichernLadenSchreiben (SpeichernLadenExtern => True);
+      
       DiplomatieSpeichern;
+      Ladezeiten.SpeichernLadenSchreiben (SpeichernLadenExtern => True);
+      
       CursorSpeichern;
-      
-      Close (File => DateiSpeichernNeu);
-         
-      -- LadezeitenDatentypen.EinzelneZeiten (LadezeitenDatentypen.Speicherzeit_Enum, SystemDatentypen.Endwert_Enum) := Clock;
-      
-      -- case
-      --  AutospeichernExtern
-     -- is
-      --   when True =>
-       --     Ladezeiten.AnzeigeEinzelneZeitOhneWarten (WelcheZeitExtern => LadezeitenDatentypen.Speicherzeit_Enum);
+      Ladezeiten.SpeichernLadenSchreiben (SpeichernLadenExtern => True);
             
-      --   when False =>
-      --      Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => LadezeitenDatentypen.Speicherzeit_Enum);
-     -- end case;
+      Close (File => DateiSpeichernNeu);
+
+      case
+        AutospeichernExtern
+      is
+         when True =>
+            null;
+            
+         when False =>
+            Ladezeiten.SpeichernLadenMaximum;
+            InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
+            Ladezeiten.SpeichernLaden (SystemDatentypen.Endwert_Enum) := Clock;
+      end case;
    
    end SpeichernNeu;
    
@@ -113,7 +141,7 @@ package body Speichern is
    procedure KarteSpeichern
    is begin
       
-      --  KartenDatentypen.Kartenform_Verwendet_Enum'Write (Stream (File => DateiSpeichernNeu),
+      -- KartenDatentypen.Kartenform_Verwendet_Enum'Write (Stream (File => DateiSpeichernNeu),
       --                                                  Karten.Kartenform);
       KartenDatentypen.Kartengröße_Enum'Write (Stream (File => DateiSpeichernNeu),
                                                  Karten.Kartenparameter.Kartengröße);
@@ -315,8 +343,7 @@ package body Speichern is
             return NameNutzer;
 
          when True =>
-            NameAutoSpeichern;
-            return NameSpielstand;
+            return NameAutoSpeichern;
       end case;
       
    end SpielstandNameFestlegen;
@@ -330,44 +357,53 @@ package body Speichern is
       if
         To_Wide_Wide_String (Source => SpielVariablen.IronmanName) /= TextKonstanten.LeerString
       then
-         null;
-         -- SpeichernLadenAllgemein.SpielstandName.EingegebenerText := SpielVariablen.IronmanName;
+         NameSpielstand := (True, SpielVariablen.IronmanName);
                
       else
-         -- Anzeige der vorhandenen Spielstände einbauen
-         --  case
-         --    SpeichernLadenAllgemein.SpielstandNameErmitteln
-         --  is
-         --     when True =>
-         if
-           Auswahl.AuswahlJaNein (FrageZeileExtern => 18) = RueckgabeDatentypen.Ja_Enum
-         then
-            null;
-                     
-         else
-            null;
-            --      return False;
-         end if;
+         ------------------------------ Anzeige der vorhandenen Spielstände einbauen
+         NameSpielstand := SpeichernLadenAllgemein.SpielstandNameErmitteln;
+         
+         case
+           NameSpielstand.ErfolgreichAbbruch
+         is
+            when True =>
+               SpielstandVorhanden := SpeichernLadenAllgemein.SpielstandVorhanden (SpielstandnameExtern => NameSpielstand.EingegebenerText);
+                 
+               if
+                 SpielstandVorhanden = False
+               then
+                  null;
+                  
+               elsif
+                 SpielstandVorhanden
+                 and then
+                   Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageSpielstandÜberschreiben) = RueckgabeDatentypen.Ja_Enum
+               then
+                  null;
+            
+               else
+                  NameSpielstand.ErfolgreichAbbruch := False;
+               end if;
 
-         --   when False =>
-         --       null;
-         --  end case;
+            when False =>
+               null;
+         end case;
       end if;
       
-      return SpeichernLadenAllgemein.SpielstandNameErmitteln;
+      return NameSpielstand;
       
    end NameNutzer;
    
    
    
-   procedure NameAutoSpeichern
+   function NameAutoSpeichern
+     return SystemRecords.TextEingabeRecord
    is begin
       
       if
         To_Wide_Wide_String (Source => SpielVariablen.IronmanName) /= TextKonstanten.LeerString
       then
-         null;
-         -- SpeichernLadenAllgemein.SpielstandName.EingegebenerText := SpielVariablen.IronmanName;
+         NameSpielstand := (True, SpielVariablen.IronmanName);
                
       else
          NameSpielstand := (True, To_Unbounded_Wide_Wide_String (Source => "Auto" & AutospeichernWert'Wide_Wide_Image));
@@ -386,6 +422,8 @@ package body Speichern is
             AutospeichernWert := 1;
          end if;
       end if;
+      
+      return NameSpielstand;
       
    end NameAutoSpeichern;
    

@@ -174,8 +174,11 @@ package body GrafikSFML is
          when GrafikDatentypen.Grafik_KI_Rechenzeit_Enum =>
             LadezeitenSFML.KIRechnet;
             
-         when GrafikDatentypen.Grafik_Laden_Enum =>
-            null;
+         when GrafikDatentypen.Grafik_Rundenende_Enum =>
+            LadezeitenSFML.Rundenende;
+            
+         when GrafikDatentypen.Grafik_Speichern_Laden_Enum =>
+            LadezeitenSFML.SpeichernLaden;
          
          when GrafikDatentypen.Grafik_Menüs_Enum =>
             AktuellesMenü := InteraktionGrafiktask.AktuellesMenü;

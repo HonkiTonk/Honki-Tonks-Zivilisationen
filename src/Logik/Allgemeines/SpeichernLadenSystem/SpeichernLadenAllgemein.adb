@@ -1,8 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
-
 with Eingabe;
 
 package body SpeichernLadenAllgemein is
@@ -25,5 +23,25 @@ package body SpeichernLadenAllgemein is
       return SpielstandName;
       
    end SpielstandNameErmitteln;
+   
+   
+   
+   function SpielstandVorhanden
+     (SpielstandnameExtern : in Unbounded_Wide_Wide_String)
+      return Boolean
+   is begin
+      
+      if
+        To_Wide_Wide_String (Source => SpielstandnameExtern) = " "
+      then
+         null;
+         
+      else
+         null;
+      end if;
+      
+      return False;
+      
+   end SpielstandVorhanden;
 
 end SpeichernLadenAllgemein;

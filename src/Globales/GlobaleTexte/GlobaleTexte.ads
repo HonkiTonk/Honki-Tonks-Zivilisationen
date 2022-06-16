@@ -89,7 +89,7 @@ package GlobaleTexte is
    DiplomatieStatus : TexteArray (1 .. 4) := (others => FehlenderText);
    Angebot : TexteArray (1 .. 2) := (others => FehlenderText);
    Fehlermeldung : TexteArray (1 .. 20) := (others => FehlenderText);
-   Ladezeit : TexteArray (1 .. 10) := (others => FehlenderText);
+   Ladezeit : TexteArray (1 .. 12) := (others => FehlenderText);
    Frage : TexteArray (1 .. 44) := (others => FehlenderText);
    Zeug : TexteArray (1 .. 69) := (others => FehlenderText);
    

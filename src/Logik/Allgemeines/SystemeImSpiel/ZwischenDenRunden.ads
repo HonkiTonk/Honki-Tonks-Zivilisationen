@@ -8,10 +8,7 @@ package ZwischenDenRunden is
 
 private
 
-   KIVorhanden : Boolean;
-
    procedure RundenAnzahlSetzen;
-   procedure EinzelneKIZeitenAnzeigen;
    procedure DiplomatieÄnderung;
    procedure GeldForschungMengeSetzen;
 

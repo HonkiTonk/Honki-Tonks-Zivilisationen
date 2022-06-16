@@ -91,17 +91,22 @@ package ChangelogJuni2022 is
    
    
 
-   -- Version 0.01. => 0.01. (17.06.2022):
+   -- Version 0.01.1295 => 0.01. (17.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01. => 0.01. (16.06.2022):
+   -- Version 0.01.1225 => 0.01.1295 (16.06.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Debugmenü kann jetzt auch die Rechenzeit bei Rundenende anzeigen.
+   -- Berechnungsfortschrittanzeige für die Berechnungen nach Rundenende eingebaut.
+   -- Angefangen das Speichern/Ladensystem zu überarbeiten.
+   -- Berechnungsfortschrittanzeige für das Speichern/Ladesystem gebaut.
+   -- Debugmenü kann jetzt auch die Rechenzeit des Speichern/Ladesystems anzeigen.
+   -- Einfache Texturen für alle Kartenfelder im Kern erstellt.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    
 
@@ -111,7 +116,7 @@ package ChangelogJuni2022 is
    -- Berechnungsfortschritt für die Spielweltgenerierung eingebaut.
    -- Debugmenü kann jetzt auch die KI Rechenzeiten anzeigen.
    -- Allgemeines für den Rassennamen und die Rassenbeschreibung angelegt.
-   -- Berechnungsfortschritt für die KI Züge eingebaut.
+   -- Berechnungsfortschrittanzeige für die KI Züge eingebaut.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    

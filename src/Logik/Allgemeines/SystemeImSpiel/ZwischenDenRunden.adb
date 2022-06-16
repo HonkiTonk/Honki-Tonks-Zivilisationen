@@ -5,9 +5,12 @@ with Ada.Calendar; use Ada.Calendar;
 
 with RassenDatentypen; use RassenDatentypen;
 with SystemDatentypen; use SystemDatentypen;
+with RueckgabeDatentypen; use RueckgabeDatentypen;
 with SonstigeVariablen;
 with StadtKonstanten;
 with SpielVariablen;
+with TextKonstanten;
+with GrafikDatentypen;
 
 with SchreibeWichtiges;
 with LeseWichtiges;
@@ -24,7 +27,8 @@ with EinheitenModifizieren;
 with Ladezeiten;
 with Speichern;
 with VerbesserungFertiggestellt;
--- with InteraktionTasks;
+with InteraktionGrafiktask;
+with Auswahl;
 
 package body ZwischenDenRunden is
 
@@ -42,41 +46,60 @@ package body ZwischenDenRunden is
             return False;
       end case;
       
-      -- InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => RueckgabeDatentypen.Grafik_Enum_Laden);
-      -- Das Umschalten der Darstellung der Ladezeiten in die Prozeduren der jeweiligen Ladezeiten einbauen?
-      
-      -- LadezeitenDatentypen.EinzelneZeiten (LadezeitenDatentypen.Zwischen_Runden_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
-      
       case
         NachSiegWeiterspielen
       is
          when True =>
-            null;
+            Ladezeiten.RundenendeNullsetzen;
+            Ladezeiten.RundenendeZeit (SystemDatentypen.Anfangswert_Enum) := Clock;
+            InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Rundenende_Enum;
             
          when False =>
             return True;
       end case;
       
+      ---------------------------------- Später in verschiedene Teilbereiche aufteilen und nicht nur einen einzelnen Berechnungsfortschritt anzeigen?
       StadtMeldungenSetzen.StadtMeldungenSetzenRundenEnde;
+      Ladezeiten.RundenendeSchreiben;
+      
       EinheitenMeldungenSetzen.EinheitenMeldungenSetzenRundenEnde;
+      Ladezeiten.RundenendeSchreiben;
+      
       EinheitInUmgebung.EinheitInUmgebung;
-      
+      Ladezeiten.RundenendeSchreiben;
+            
       EinheitenModifizieren.HeilungBewegungspunkteNeueRundeErmitteln;
-      VerbesserungFertiggestellt.VerbesserungFertiggestellt;
-      Wachstum.StadtWachstum;
-      StadtProduktion.StadtProduktion (StadtRasseNummerExtern => StadtKonstanten.LeerRasseNummer);
-      GeldForschungMengeSetzen;
-      ForschungAllgemein.ForschungFortschritt;
+      Ladezeiten.RundenendeSchreiben;
       
+      VerbesserungFertiggestellt.VerbesserungFertiggestellt;
+      Ladezeiten.RundenendeSchreiben;
+      
+      Wachstum.StadtWachstum;
+      Ladezeiten.RundenendeSchreiben;
+      
+      StadtProduktion.StadtProduktion (StadtRasseNummerExtern => StadtKonstanten.LeerRasseNummer);
+      Ladezeiten.RundenendeSchreiben;
+      
+      GeldForschungMengeSetzen;
+      Ladezeiten.RundenendeSchreiben;
+      
+      ForschungAllgemein.ForschungFortschritt;
+      Ladezeiten.RundenendeSchreiben;
+            
       RundenAnzahlSetzen;
-      EinzelneKIZeitenAnzeigen;
+      Ladezeiten.RundenendeSchreiben;
+      
       DiplomatieÄnderung;
-
+      Ladezeiten.RundenendeSchreiben;
+      
       -- Autospeichern muss immer nach allen Änderungen kommen, sonst werden nicht alle Änderungen gespeichert.
       Speichern.AutoSpeichern;
+      Ladezeiten.RundenendeMaximum;
       
-      -- InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => RueckgabeDatentypen.Grafik_Enum_Pause);
+      InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
+      Ladezeiten.RundenendeZeit (SystemDatentypen.Endwert_Enum) := Clock;
       
+      --------------------- Wäre True statt False und oben umgekehrt nicht besser?
       return False;
       
    end BerechnungenNachZugendeAllerSpieler;
@@ -87,7 +110,6 @@ package body ZwischenDenRunden is
      return Boolean
    is begin
       
-      -- Muss an das neue System angepasst werden.
       case
         SonstigeVariablen.WeiterSpielen
       is
@@ -97,20 +119,19 @@ package body ZwischenDenRunden is
             then
                null;
             
-               -- elsif
-               --   Auswahl.AuswahlJaNein (FrageZeileExtern => 34) = RueckgabeDatentypen.Ja_Enum
-               --  then
-               --    SonstigeVariablen.WeiterSpielen := True;
+            elsif
+              Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageGewonnenWeiterspielen) = RueckgabeDatentypen.Ja_Enum
+            then
+               SonstigeVariablen.WeiterSpielen := True;
                                  
             else
-               return True;
+               return False;
             end if;
          
          when True =>
             null;
       end case;
       
-      SonstigeVariablen.WeiterSpielen := True;
       return True;
       
    end NachSiegWeiterspielen;
@@ -131,31 +152,6 @@ package body ZwischenDenRunden is
       end case;
       
    end RundenAnzahlSetzen;
-   
-   
-   
-   procedure EinzelneKIZeitenAnzeigen
-   is begin
-      
-      KIVorhanden := False;
-      
-      RassenSchleife:
-      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
-         
-         if
-           SonstigeVariablen.RassenImSpiel (RasseSchleifenwert) = RassenDatentypen.Spieler_KI_Enum
-         then
-            KIVorhanden := True;
-            -- Ladezeiten.AnzeigeKIZeit (WelcheZeitExtern => RasseSchleifenwert);
-            
-         else
-            Ladezeiten.KIZeiten (RasseSchleifenwert, SystemDatentypen.Anfangswert_Enum) := Clock;
-            Ladezeiten.KIZeiten (RasseSchleifenwert, SystemDatentypen.Endwert_Enum) := Ladezeiten.KIZeiten (RasseSchleifenwert, SystemDatentypen.Anfangswert_Enum);
-         end if;
-         
-      end loop RassenSchleife;
-      
-   end EinzelneKIZeitenAnzeigen;
    
    
    
@@ -207,9 +203,16 @@ package body ZwischenDenRunden is
                null;
             
             when others =>
-               SchreibeWichtiges.Geldmenge (RasseExtern         => RasseSchleifenwert,
-                                            GeldZugewinnExtern  => Integer (LeseWichtiges.GeldZugewinnProRunde (RasseExtern => RasseSchleifenwert)),
-                                            RechnenSetzenExtern => True);
+               if
+                 RasseSchleifenwert = RassenDatentypen.Ekropa_Enum
+               then
+                  null;
+                  
+               else
+                  SchreibeWichtiges.Geldmenge (RasseExtern         => RasseSchleifenwert,
+                                               GeldZugewinnExtern  => Integer (LeseWichtiges.GeldZugewinnProRunde (RasseExtern => RasseSchleifenwert)),
+                                               RechnenSetzenExtern => True);
+               end if;
                
                SchreibeWichtiges.Forschungsmenge (RasseExtern             => RasseSchleifenwert,
                                                   ForschungZugewinnExtern => LeseWichtiges.GesamteForschungsrate (RasseExtern => RasseSchleifenwert),

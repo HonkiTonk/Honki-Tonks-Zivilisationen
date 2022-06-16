@@ -3,6 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 package LadezeitenDatentypen is
    
+   -- Statt Integer 0 .. 100, eine Float von 0.00 bis 1.00 oder 0.00 bis 100.00?
    type Ladefortschritt is range 0 .. 100;
 
    type Spielwelt_Erstellen_Enum is (
@@ -11,7 +12,7 @@ package LadezeitenDatentypen is
                                     );
    
    type Speichern_Laden_Enum is (
-                                 Test_Enum
+                                 Speichern_Enum, Laden_Enum
                                 );
 
 end LadezeitenDatentypen;

@@ -147,6 +147,12 @@ package TextaccessVariablen is
    
    type KIZeitenAccessArray is array (1 .. 2) of Sf.Graphics.sfText_Ptr;
    KIZeitenAccess : constant KIZeitenAccessArray := (others => Sf.Graphics.Text.create);
+   
+   type RundenendeAccessArray is array (1 .. 2) of Sf.Graphics.sfText_Ptr;
+   RundenendeAccess : constant RundenendeAccessArray := (others => Sf.Graphics.Text.create);
+   
+   type SpeichernLadenAccessArray is array (1 .. 2) of Sf.Graphics.sfText_Ptr;
+   SpeichernLadenAccess : constant SpeichernLadenAccessArray := (others => Sf.Graphics.Text.create);
    -- Ladezeiten
 
 end TextaccessVariablen;

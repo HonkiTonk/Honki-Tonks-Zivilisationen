@@ -22,10 +22,9 @@ package body LadezeitenSFML is
    procedure SpielweltErstellen
    is begin
       
-      HintergrundSFML.StandardHintergrund (StandardHintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum);
+      StandardsFestlegen;
+      
       WelcheZeit := 1;
-      ZeilenAbstand := 0.50 * Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
-      AktuelleTextposition.y := 20.00;
       AktuelleTextposition.x := AllgemeineTextBerechnungenSFML.TextMittelPositionErmitteln (TextAccessExtern => TextaccessVariablen.LadezeitenAccess (WelcheZeit));
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
@@ -84,12 +83,9 @@ package body LadezeitenSFML is
             return;
             
          when others =>
-            null;
+            StandardsFestlegen;
       end case;
             
-      HintergrundSFML.StandardHintergrund (StandardHintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum);
-      ZeilenAbstand := 0.50 * Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
-      AktuelleTextposition.y := 20.00;
       AktuelleTextposition.x := AllgemeineTextBerechnungenSFML.TextMittelPositionErmitteln (TextAccessExtern => TextaccessVariablen.KIZeitenAccess (TextaccessVariablen.KIZeitenAccess'First));
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KIZeitenAccess (TextaccessVariablen.KIZeitenAccess'First),
@@ -118,11 +114,77 @@ package body LadezeitenSFML is
    
    
    
-   procedure ZwischenDenRunden
+   procedure Rundenende
    is begin
       
-      null;
+      StandardsFestlegen;
+            
+      AktuelleTextposition.x := AllgemeineTextBerechnungenSFML.TextMittelPositionErmitteln (TextAccessExtern => TextaccessVariablen.RundenendeAccess (TextaccessVariablen.RundenendeAccess'First));
       
-   end ZwischenDenRunden;
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.RundenendeAccess (TextaccessVariablen.RundenendeAccess'First),
+                                    position => (AktuelleTextposition));
+      
+      AktuelleTextposition.y := AktuelleTextposition.y + 3.00 * Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.RundenendeAccess (TextaccessVariablen.RundenendeAccess'First)).height + ZeilenAbstand;
+      
+      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.RundenendeAccess (TextaccessVariablen.RundenendeAccess'Last),
+                                         str  => To_Wide_Wide_String (Source => ZahlAlsStringLadefortschritt (ZahlExtern => Ladezeiten.FortschrittRundenende)) & "/" & "100");
+                                                 
+      AktuelleTextposition.x := AllgemeineTextBerechnungenSFML.TextMittelPositionErmitteln (TextAccessExtern => TextaccessVariablen.RundenendeAccess (TextaccessVariablen.RundenendeAccess'Last));
+            
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.RundenendeAccess (TextaccessVariablen.RundenendeAccess'Last),
+                                    position => AktuelleTextposition);
+      
+      TextanzeigeSchleife:
+      for TextanzeigeSchleifenwert in TextaccessVariablen.RundenendeAccessArray'Range loop
+         
+         Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                            text         => TextaccessVariablen.RundenendeAccess (TextanzeigeSchleifenwert));
+         
+      end loop TextanzeigeSchleife;
+      
+   end Rundenende;
+   
+   
+   
+   procedure SpeichernLaden
+   is begin
+      
+      StandardsFestlegen;
+            
+      AktuelleTextposition.x := AllgemeineTextBerechnungenSFML.TextMittelPositionErmitteln (TextAccessExtern => TextaccessVariablen.SpeichernLadenAccess (TextaccessVariablen.SpeichernLadenAccess'First));
+      
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.SpeichernLadenAccess (TextaccessVariablen.SpeichernLadenAccess'First),
+                                    position => (AktuelleTextposition));
+      
+      AktuelleTextposition.y := AktuelleTextposition.y + 3.00 * Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.SpeichernLadenAccess (TextaccessVariablen.SpeichernLadenAccess'First)).height + ZeilenAbstand;
+      
+      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.SpeichernLadenAccess (TextaccessVariablen.SpeichernLadenAccess'Last),
+                                         str  => To_Wide_Wide_String (Source => ZahlAlsStringLadefortschritt (ZahlExtern => Ladezeiten.FortschrittSpeichernLaden)) & "/" & "100");
+                                                 
+      AktuelleTextposition.x := AllgemeineTextBerechnungenSFML.TextMittelPositionErmitteln (TextAccessExtern => TextaccessVariablen.SpeichernLadenAccess (TextaccessVariablen.SpeichernLadenAccess'Last));
+            
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.SpeichernLadenAccess (TextaccessVariablen.SpeichernLadenAccess'Last),
+                                    position => AktuelleTextposition);
+      
+      TextanzeigeSchleife:
+      for TextanzeigeSchleifenwert in TextaccessVariablen.RundenendeAccessArray'Range loop
+         
+         Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                            text         => TextaccessVariablen.SpeichernLadenAccess (TextanzeigeSchleifenwert));
+         
+      end loop TextanzeigeSchleife;
+      
+   end SpeichernLaden;
+   
+   
+   
+   procedure StandardsFestlegen
+   is begin
+      
+      HintergrundSFML.StandardHintergrund (StandardHintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum);
+      ZeilenAbstand := 0.50 * Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
+      AktuelleTextposition.y := 20.00;
+      
+   end StandardsFestlegen;
 
 end LadezeitenSFML;

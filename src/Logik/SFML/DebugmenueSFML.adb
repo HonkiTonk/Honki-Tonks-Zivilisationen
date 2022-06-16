@@ -192,6 +192,24 @@ package body DebugmenueSFML is
       
       New_Line;
       New_Line;
+      
+      Put ("Rundenende: ");
+      AnzeigeFloat.Put (Item => Float (Ladezeiten.RundenendeZeit (SystemDatentypen.Endwert_Enum) - Ladezeiten.RundenendeZeit (SystemDatentypen.Anfangswert_Enum)),
+                        Fore => 1,
+                        Aft  => 6,
+                        Exp  => 0);
+      
+      New_Line;
+      New_Line;
+      
+      Put ("Speichern/Laden: ");
+      AnzeigeFloat.Put (Item => Float (Ladezeiten.SpeichernLaden (SystemDatentypen.Endwert_Enum) - Ladezeiten.SpeichernLaden (SystemDatentypen.Anfangswert_Enum)),
+                        Fore => 1,
+                        Aft  => 6,
+                        Exp  => 0);
+      
+      New_Line;
+      New_Line;
            
    end LadezeitenAnzegien;
 
