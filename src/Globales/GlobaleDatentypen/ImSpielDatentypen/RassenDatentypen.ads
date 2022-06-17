@@ -11,6 +11,7 @@ package RassenDatentypen is
                         
                         Tesorahn_Enum, Talbidahr_Enum
                        );
+   pragma Ordered (Rassen_Enum);
    
    subtype Rassen_Verwendet_Enum is Rassen_Enum range Menschen_Enum .. Talbidahr_Enum;
    subtype Rassen_Überirdisch_Enum is Rassen_Verwendet_Enum range  Menschen_Enum.. Ekropa_Enum;

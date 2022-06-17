@@ -13,18 +13,18 @@ package FelderwerteFestlegen is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
      with
        Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+         (KoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+            KoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
    
    procedure KartenfelderBewertenKleineSchleife
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Enum)
      with
        Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+         (KoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+            KoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
    
 private
       
@@ -45,9 +45,9 @@ private
       TeilerExtern : in KartenDatentypen.UmgebungsbereichDrei)
      with
        Pre =>
-         (KoordinatenFeldExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+         (KoordinatenFeldExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
           and
-            KoordinatenFeldExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse
+            KoordinatenFeldExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse
           and
             TeilerExtern > 0);
 

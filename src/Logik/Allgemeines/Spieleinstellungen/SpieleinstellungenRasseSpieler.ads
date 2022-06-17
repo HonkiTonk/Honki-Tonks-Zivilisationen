@@ -13,6 +13,7 @@ package SpieleinstellungenRasseSpieler is
    
    procedure StartwerteErmitteln;
    procedure RassenWählen;
+   procedure RasseAutomatischBelegen;
    
    
    
@@ -73,9 +74,9 @@ private
       return Boolean
      with
        Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+         (KoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+            KoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
    
    function FelderBestimmen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
@@ -83,8 +84,8 @@ private
       return KartenDatentypen.SichtweiteNatural
      with
        Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+         (KoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+            KoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
 
 end SpieleinstellungenRasseSpieler;

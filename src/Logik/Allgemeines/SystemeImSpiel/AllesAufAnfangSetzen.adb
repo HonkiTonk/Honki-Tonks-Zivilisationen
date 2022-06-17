@@ -8,6 +8,9 @@ with EinheitenKonstanten;
 with StadtKonstanten;
 with RassenDatentypen;
 with SpielVariablen;
+with KartenRecordKonstanten;
+
+with Karten;
 
 package body AllesAufAnfangSetzen is
 
@@ -27,7 +30,15 @@ package body AllesAufAnfangSetzen is
       SonstigeVariablen.Gewonnen := False;
       SonstigeVariablen.WeiterSpielen := False;
       SonstigeVariablen.Debug := (others => False);
-            
+      
+      Karten.Kartenparameter := KartenRecordKonstanten.KartenparameterStandard;
+      Karten.Weltkarte := (others => (others => (others => KartenRecordKonstanten.LeerWeltkarte)));
+      Karten.Stadtkarte := (others => (others => (0)));
+      Karten.Polgrößen := KartenRecordKonstanten.Eisrand;
+      Karten.Eisschild := KartenRecordKonstanten.Eisschild;
+      Karten.Landgrößen := KartenRecordKonstanten.Inselgröße;
+      Karten.Abstände := KartenRecordKonstanten.Inselabstand;
+      
    end AllesAufAnfangSetzen;
 
 end AllesAufAnfangSetzen;

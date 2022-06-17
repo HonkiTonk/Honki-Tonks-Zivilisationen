@@ -8,7 +8,7 @@ package ZwischenDenRunden is
 
 private
 
-   procedure RundenAnzahlSetzen;
+   procedure RundenanzahlSetzen;
    procedure DiplomatieÄnderung;
    procedure GeldForschungMengeSetzen;
 

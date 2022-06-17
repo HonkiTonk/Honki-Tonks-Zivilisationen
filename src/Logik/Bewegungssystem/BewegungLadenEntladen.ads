@@ -40,9 +40,9 @@ package BewegungLadenEntladen is
           and
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
           and
-            NeueKoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+            NeueKoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
           and
-            NeueKoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+            NeueKoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
    
    procedure TransporterStadtEntladen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
@@ -53,9 +53,9 @@ package BewegungLadenEntladen is
           and
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
           and
-            NeueKoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+            NeueKoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
           and
-            NeueKoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+            NeueKoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
    
 private
    

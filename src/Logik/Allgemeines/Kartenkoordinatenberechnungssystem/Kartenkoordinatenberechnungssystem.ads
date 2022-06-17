@@ -16,9 +16,9 @@ package Kartenkoordinatenberechnungssystem is
       return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+         (KoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse),
+            KoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse),
            
          Post =>
            ((if
@@ -45,9 +45,9 @@ package Kartenkoordinatenberechnungssystem is
                     Kartenkoordinatenberechnungssystem'Result.XAchse = KartenKonstanten.LeerXAchse)
               )
             and
-              Kartenkoordinatenberechnungssystem'Result.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+              Kartenkoordinatenberechnungssystem'Result.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
             and
-              Kartenkoordinatenberechnungssystem'Result.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+              Kartenkoordinatenberechnungssystem'Result.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
    
 private
    

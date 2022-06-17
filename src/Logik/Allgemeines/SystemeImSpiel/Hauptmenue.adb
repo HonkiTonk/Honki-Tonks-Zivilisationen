@@ -31,7 +31,26 @@ package body Hauptmenue is
            AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Haupt_Menü_Enum)
          is
             when RueckgabeDatentypen.Start_Weiter_Enum =>
-               RückgabeKampagne := Spieleinstellungen.Spieleinstellungen;
+               RückgabeKampagne := Spieleinstellungen.Spieleinstellungen (SchnellstartExtern => False);
+
+               if
+                 RückgabeKampagne = RueckgabeDatentypen.Hauptmenü_Enum
+                 or
+                   RückgabeKampagne = RueckgabeDatentypen.Zurück_Enum
+               then
+                  AllesAufAnfangSetzen.AllesAufAnfangSetzen;
+
+               elsif
+                 RückgabeKampagne = RueckgabeDatentypen.Spiel_Beenden_Enum
+               then
+                  exit HauptmenüSchleife;
+
+               else
+                  null;
+               end if;
+               
+            when RueckgabeDatentypen.Schnellstart_Enum =>
+               RückgabeKampagne := Spieleinstellungen.Spieleinstellungen (SchnellstartExtern => True);
 
                if
                  RückgabeKampagne = RueckgabeDatentypen.Hauptmenü_Enum
@@ -51,7 +70,7 @@ package body Hauptmenue is
                
             when RueckgabeDatentypen.Laden_Enum =>
                if
-                 Laden.LadenNeu = True
+                 Laden.Laden = True
                then
                   case
                     ImSpiel.ImSpiel

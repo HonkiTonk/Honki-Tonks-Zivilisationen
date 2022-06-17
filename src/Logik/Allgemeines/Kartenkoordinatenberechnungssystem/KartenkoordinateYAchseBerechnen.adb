@@ -27,7 +27,7 @@ package body KartenkoordinateYAchseBerechnen is
                                  LogikGrafikExtern    => LogikGrafikExtern);
         
       elsif
-        YAchseExtern + ÄnderungYAchseExtern > Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+        YAchseExtern + ÄnderungYAchseExtern > Karten.Kartenparameter.Kartengröße.YAchse
       then
          return ÜbergangSüden (YAchseExtern         => YAchseExtern,
                                  ÄnderungYAchseExtern => ÄnderungYAchseExtern,
@@ -83,12 +83,12 @@ package body KartenkoordinateYAchseBerechnen is
       return KartenDatentypen.KartenfeldPositiv
    is begin
       
-      ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) := Integer (YAchseExtern + ÄnderungYAchseExtern + Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse);
+      ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) := Integer (YAchseExtern + ÄnderungYAchseExtern + Karten.Kartenparameter.Kartengröße.YAchse);
          
       YAchseKleinerSchleife:
       while ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) < Positive (Karten.WeltkarteArray'First (2)) loop
             
-         ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) := ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) + Positive (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse);
+         ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) := ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) + Positive (Karten.Kartenparameter.Kartengröße.YAchse);
 
       end loop YAchseKleinerSchleife;
          
@@ -152,12 +152,12 @@ package body KartenkoordinateYAchseBerechnen is
       return KartenDatentypen.KartenfeldPositiv
    is begin
       
-      ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) := Positive (YAchseExtern + ÄnderungYAchseExtern - Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse);
+      ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) := Positive (YAchseExtern + ÄnderungYAchseExtern - Karten.Kartenparameter.Kartengröße.YAchse);
          
       YAchseGrößerSchleife:
-      while ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) > Positive (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse) loop
+      while ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) > Positive (Karten.Kartenparameter.Kartengröße.YAchse) loop
             
-         ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) := ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) - Positive (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse);
+         ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) := ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) - Positive (Karten.Kartenparameter.Kartengröße.YAchse);
             
       end loop YAchseGrößerSchleife;
          
@@ -186,12 +186,12 @@ package body KartenkoordinateYAchseBerechnen is
    is begin
       
       if
-        YAchseExtern + KartenfeldPositiv (HalberWert * Float (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse)) > Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+        YAchseExtern + KartenfeldPositiv (HalberWert * Float (Karten.Kartenparameter.Kartengröße.YAchse)) > Karten.Kartenparameter.Kartengröße.YAchse
       then
-         return YAchseExtern - KartenfeldPositiv (HalberWert * Float (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse));
+         return YAchseExtern - KartenfeldPositiv (HalberWert * Float (Karten.Kartenparameter.Kartengröße.YAchse));
 
       else
-         return YAchseExtern + KartenfeldPositiv (HalberWert * Float (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse));
+         return YAchseExtern + KartenfeldPositiv (HalberWert * Float (Karten.Kartenparameter.Kartengröße.YAchse));
       end if;
       
    end YAchseVerschieben;

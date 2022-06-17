@@ -8,7 +8,7 @@ package RueckgabeDatentypen is
                                  -- Allgemeines
                                  Start_Weiter_Enum, Zurück_Enum, Hauptmenü_Enum, Spiel_Beenden_Enum, Ja_Enum, Nein_Enum, Speichern_Enum, Laden_Enum, Optionen_Enum, Wiederherstellen_Enum, Standard_Enum,
                                  Würdigungen_Enum, Runde_Beenden_Enum, Sieg_Enum, Vernichtung_Enum, Zufall_Enum, Eingabe_Enum, Grafik_Enum, Sound_Enum, Steuerung_Enum, Sonstiges_Enum, Fertig_Enum, Schleife_Verlassen_Enum,
-                                 Anzahl_Speicherstände_Enum, Runden_Bis_Autospeichern_Enum, Sprache_Enum, Spielmenü_Enum, Nutzerdefiniert_Enum,
+                                 Anzahl_Speicherstände_Enum, Runden_Bis_Autospeichern_Enum, Sprache_Enum, Spielmenü_Enum, Nutzerdefiniert_Enum, Schnellstart_Enum,
                                  
                                  -- Grafikmenü
                                  Auflösung_Ändern_Enum, Vollbild_Fenster_Enum, Bildrate_Ändern_Enum, Schriftgröße_Enum,
@@ -55,8 +55,9 @@ package RueckgabeDatentypen is
                                  Tesorahn_Enum, Talbidahr_Enum
                                 );
    
-   subtype Kartengröße_Verwendet_Enum is Rückgabe_Werte_Enum range Kartengröße_20_20_Enum .. Kartengröße_Nutzer_Enum;
-   subtype Kartengröße_Standard_Enum is Kartengröße_Verwendet_Enum range Kartengröße_20_20_Enum .. Kartengröße_1000_1000_Enum;
+   pragma Ordered (Rückgabe_Werte_Enum);
+   
+   subtype Kartengrößen_Standard_Enum is Rückgabe_Werte_Enum range Kartengröße_20_20_Enum .. Kartengröße_1000_1000_Enum;
    subtype Kartenart_Enum is Rückgabe_Werte_Enum range Kartenart_Inseln_Enum .. Kartenart_Pangäa_Enum;
    subtype Kartentemperatur_Enum is Rückgabe_Werte_Enum range Kartentemperatur_Kalt_Enum .. Kartentemperatur_Wüste_Enum;
    subtype Kartenressourcen_Enum is Rückgabe_Werte_Enum range Kartenressourcen_Arm_Enum .. Kartenressourcen_Überfluss_Enum;

@@ -54,78 +54,39 @@ package body ZufallsgeneratorenStartkoordinaten is
      return KartenRecords.YXAchsenKartenfeldPositivRecord
    is begin
       
-      case
-        Karten.Kartenparameter.Kartengröße
-      is
-         when KartenDatentypen.Kartengröße_20_20_Enum =>
-            WerteWählen20.Reset (PositionGewählt20);
-            YAchse := WerteWählen20.Random (PositionGewählt20);
-            XAchse := WerteWählen20.Random (PositionGewählt20);
-
-         when KartenDatentypen.Kartengröße_40_40_Enum =>
-            WerteWählen40.Reset (PositionGewählt40);
-            YAchse := WerteWählen40.Random (PositionGewählt40);
-            XAchse := WerteWählen40.Random (PositionGewählt40);
+      WerteWählen1000.Reset (PositionGewählt1000);
+      
+      YAchseSchleife:
+      loop
+         
+         YAchse := WerteWählen1000.Random (PositionGewählt1000);
+         
+         if
+           YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+         then
+            exit YAchseSchleife;
             
-         when KartenDatentypen.Kartengröße_80_80_Enum =>
-            WerteWählen80.Reset (PositionGewählt80);
-            YAchse := WerteWählen80.Random (PositionGewählt80);
-            XAchse := WerteWählen80.Random (PositionGewählt80);
+         else
+            null;
+         end if;
+         
+      end loop YAchseSchleife;
+      
+      XAchseSchleife:
+      loop
+         
+         XAchse := WerteWählen1000.Random (PositionGewählt1000);
+         
+         if
+           XAchse <= Karten.Kartenparameter.Kartengröße.XAchse
+         then
+            exit XAchseSchleife;
             
-         when KartenDatentypen.Kartengröße_120_80_Enum =>
-            WerteWählen80.Reset (PositionGewählt80);
-            WerteWählen120.Reset (PositionGewählt120);
-            YAchse := WerteWählen120.Random (PositionGewählt120);
-            XAchse := WerteWählen80.Random (PositionGewählt80);
-            
-         when KartenDatentypen.Kartengröße_120_160_Enum =>
-            WerteWählen120.Reset (PositionGewählt120);
-            WerteWählen160.Reset (PositionGewählt160);
-            YAchse := WerteWählen120.Random (PositionGewählt120);
-            XAchse := WerteWählen160.Random (PositionGewählt160);
-            
-         when KartenDatentypen.Kartengröße_160_160_Enum =>
-            WerteWählen160.Reset (PositionGewählt160);
-            YAchse := WerteWählen160.Random (PositionGewählt160);
-            XAchse := WerteWählen160.Random (PositionGewählt160);
-            
-         when KartenDatentypen.Kartengröße_240_240_Enum =>
-            WerteWählen240.Reset (PositionGewählt240);
-            YAchse := WerteWählen240.Random (PositionGewählt240);
-            XAchse := WerteWählen240.Random (PositionGewählt240);
-            
-         when KartenDatentypen.Kartengröße_320_320_Enum =>
-            WerteWählen320.Reset (PositionGewählt320);
-            YAchse := WerteWählen320.Random (PositionGewählt320);
-            XAchse := WerteWählen320.Random (PositionGewählt320);
-            
-         when KartenDatentypen.Kartengröße_1000_1000_Enum =>
-            WerteWählen1000.Reset (PositionGewählt1000);
-            YAchse := WerteWählen1000.Random (PositionGewählt1000);
-            XAchse := WerteWählen1000.Random (PositionGewählt1000);
-
-         when others =>
-            WerteWählen1000.Reset (PositionGewählt1000);
-            
-            BenutzerdefinierteAuswahlSchleife:
-            loop
-               
-               YAchse := WerteWählen1000.Random (PositionGewählt1000);
-               XAchse := WerteWählen1000.Random (PositionGewählt1000);
-
-               if
-                 YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
-                 and
-                   XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse
-               then
-                  exit BenutzerdefinierteAuswahlSchleife;
-
-               else
-                  null;
-               end if;
-               
-            end loop BenutzerdefinierteAuswahlSchleife;
-      end case;
+         else
+            null;
+         end if;
+         
+      end loop XAchseSchleife;
       
       return (YAchse, XAchse);
       

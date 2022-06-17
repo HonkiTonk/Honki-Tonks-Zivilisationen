@@ -15,7 +15,7 @@ package SystemKonstanten is
    -- Wenn möglich für Sonderfälle rückwärts zählen, wie z. B. beim Rückgabesystem oder beim Zusatztext für das Kartengrößenmenü.
    EndeMenü : constant EndeMenüArray := (
                                            -- Einfache Auswahl, keine Überschrift und kein Zusatztext.
-                                           MenueDatentypen.Haupt_Menü_Enum              => 7,
+                                           MenueDatentypen.Haupt_Menü_Enum              => 8,
                                            MenueDatentypen.Spiel_Menü_Enum              => 6,
 
                                            -- Einfache Auswahl und kein Zusatztext.

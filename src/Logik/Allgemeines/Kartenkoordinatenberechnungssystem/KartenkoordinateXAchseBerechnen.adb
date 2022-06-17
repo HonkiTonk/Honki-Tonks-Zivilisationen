@@ -27,7 +27,7 @@ package body KartenkoordinateXAchseBerechnen is
                                  LogikGrafikExtern    => LogikGrafikExtern);
         
       elsif
-        XAchseExtern + ÄnderungXAchseExtern > Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse
+        XAchseExtern + ÄnderungXAchseExtern > Karten.Kartenparameter.Kartengröße.XAchse
       then
          return ÜbergangOsten (XAchseExtern         => XAchseExtern,
                                 ÄnderungXAchseExtern => ÄnderungXAchseExtern,
@@ -83,12 +83,12 @@ package body KartenkoordinateXAchseBerechnen is
       return KartenDatentypen.KartenfeldPositiv
    is begin
       
-      ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) := Integer (XAchseExtern + ÄnderungXAchseExtern + Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+      ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) := Integer (XAchseExtern + ÄnderungXAchseExtern + Karten.Kartenparameter.Kartengröße.XAchse);
          
       XAchseKleinerSchleife:
       while ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) < Positive (Karten.WeltkarteArray'First (3)) loop
             
-         ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) := ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) + Positive (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+         ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) := ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) + Positive (Karten.Kartenparameter.Kartengröße.XAchse);
 
       end loop XAchseKleinerSchleife;
          
@@ -152,12 +152,12 @@ package body KartenkoordinateXAchseBerechnen is
       return KartenDatentypen.KartenfeldPositiv
    is begin
       
-      ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) := Positive (XAchseExtern + ÄnderungXAchseExtern - Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+      ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) := Positive (XAchseExtern + ÄnderungXAchseExtern - Karten.Kartenparameter.Kartengröße.XAchse);
          
       XAchseGrößerSchleife:
-      while ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) > Positive (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse) loop
+      while ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) > Positive (Karten.Kartenparameter.Kartengröße.XAchse) loop
             
-         ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) := ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) - Positive (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+         ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) := ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) - Positive (Karten.Kartenparameter.Kartengröße.XAchse);
             
       end loop XAchseGrößerSchleife;
          
@@ -186,12 +186,12 @@ package body KartenkoordinateXAchseBerechnen is
    is begin
       
       if
-        XAchseExtern + KartenfeldPositiv (HalberWert * Float (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse)) > Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse
+        XAchseExtern + KartenfeldPositiv (HalberWert * Float (Karten.Kartenparameter.Kartengröße.XAchse)) > Karten.Kartenparameter.Kartengröße.XAchse
       then
-         return XAchseExtern - KartenfeldPositiv (HalberWert * Float (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse));
+         return XAchseExtern - KartenfeldPositiv (HalberWert * Float (Karten.Kartenparameter.Kartengröße.XAchse));
 
       else
-         return XAchseExtern + KartenfeldPositiv (HalberWert * Float (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse));
+         return XAchseExtern + KartenfeldPositiv (HalberWert * Float (Karten.Kartenparameter.Kartengröße.XAchse));
       end if;
       
    end XAchseVerschieben;

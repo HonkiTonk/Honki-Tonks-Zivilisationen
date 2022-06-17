@@ -20,9 +20,9 @@ package StadtSuchen is
       return StadtDatentypen.MaximaleStädteMitNullWert
      with
        Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+         (KoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse
+            KoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse
           and
             SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum),
                       
@@ -34,9 +34,9 @@ package StadtSuchen is
       return StadtRecords.RasseStadtnummerRecord
      with
        Pre  =>
-         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+         (KoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+            KoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
 
    function KoordinatenStadtOhneSpezielleRasseSuchen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
@@ -44,9 +44,9 @@ package StadtSuchen is
       return StadtRecords.RasseStadtnummerRecord
      with
        Pre  =>
-         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+         (KoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse
+            KoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse
           and
             SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
    

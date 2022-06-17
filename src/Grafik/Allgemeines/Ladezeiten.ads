@@ -3,10 +3,9 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Calendar; use Ada.Calendar;
 
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with LadezeitenDatentypen;
 with SystemDatentypen;
-with SonstigeVariablen;
 
 ------------------------------ Gehört das nicht eher nach Logik?
 package Ladezeiten is
@@ -21,7 +20,7 @@ package Ladezeiten is
    type KIZeitenArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, SystemDatentypen.Anfang_Ende_Enum'Range) of Time;
    KIZeiten : KIZeitenArray;
    
-   type FortschrittKIArray is array (KIZeitenArray'Range (1)) of LadezeitenDatentypen.Ladefortschritt;
+   type FortschrittKIArray is array (LadezeitenDatentypen.KI_Rechnet_Enum'Range) of LadezeitenDatentypen.Ladefortschritt;
    FortschrittKI : FortschrittKIArray;
    
    type RundenendeZeitArray is array (SystemDatentypen.Anfang_Ende_Enum'Range) of Time;
@@ -48,16 +47,10 @@ package Ladezeiten is
      (WelcheBerechnungenExtern : in LadezeitenDatentypen.Spielwelt_Erstellen_Enum);
    
    procedure FortschrittKISchreiben
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-     with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
+     (WelcheBerechnungenExtern : in LadezeitenDatentypen.KI_Rechnet_Enum);
    
    procedure FortschrittKIMaximum
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-     with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
+     (WelcheBerechnungenExtern : in LadezeitenDatentypen.KI_Rechnet_Enum);
    
    procedure SpeichernLadenSchreiben
      (SpeichernLadenExtern : in Boolean);
@@ -67,10 +60,10 @@ private
    type FortschrittSchritteArray is array (1 .. 5) of LadezeitenDatentypen.Ladefortschritt;
    FortschrittSchritte : constant FortschrittSchritteArray := (
                                                                1 => 1,
-                                                               2 => 25,
+                                                               2 => 1,
                                                                3 => 8,
-                                                               4 => 12,
-                                                               5 => 12
+                                                               4 => 33,
+                                                               5 => 33
                                                               );
 
 end Ladezeiten;

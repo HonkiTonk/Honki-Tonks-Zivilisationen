@@ -7,6 +7,7 @@ with StadtKonstanten;
 with TextKonstanten;
 with ProduktionDatentypen;
 with KampfDatentypen;
+with RueckgabeDatentypen;
 
 package KartenKonstanten is
    
@@ -48,5 +49,18 @@ package KartenKonstanten is
    WirtschaftForschung : constant KartenDatentypen.Wirtschaft_Enum := KartenDatentypen.Forschung;
    KampfVerteidigung : constant KartenDatentypen.Kampf_Enum := KartenDatentypen.Verteidigung;
    KampfAngriff : constant KartenDatentypen.Kampf_Enum := KartenDatentypen.Angriff;
+   
+   type StandardKartengrößenArray is array (RueckgabeDatentypen.Kartengrößen_Standard_Enum'Range) of KartenRecords.YXAchsenKartenfeldPositivRecord;
+   StandardKartengrößen : constant StandardKartengrößenArray := (
+                                                                     RueckgabeDatentypen.Kartengröße_20_20_Enum     => (20, 20),
+                                                                     RueckgabeDatentypen.Kartengröße_40_40_Enum     => (40, 40),
+                                                                     RueckgabeDatentypen.Kartengröße_80_80_Enum     => (80, 80),
+                                                                     RueckgabeDatentypen.Kartengröße_120_80_Enum    => (120, 80),
+                                                                     RueckgabeDatentypen.Kartengröße_120_160_Enum   => (120, 160),
+                                                                     RueckgabeDatentypen.Kartengröße_160_160_Enum   => (160, 160),
+                                                                     RueckgabeDatentypen.Kartengröße_240_240_Enum   => (240, 240),
+                                                                     RueckgabeDatentypen.Kartengröße_320_320_Enum   => (320, 320),
+                                                                     RueckgabeDatentypen.Kartengröße_1000_1000_Enum => (KartenDatentypen.KartenfeldPositiv'Last, KartenDatentypen.KartenfeldPositiv'Last)
+                                                                    );
    
 end KartenKonstanten;

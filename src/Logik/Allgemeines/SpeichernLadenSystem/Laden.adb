@@ -11,11 +11,8 @@ with GlobaleVariablen;
 with KartenRecords;
 with StadtRecords;
 with WichtigeRecords;
-with KartenDatentypen;
-with RassenDatentypen;
 with SpielDatentypen;
 with SpielVariablen;
-with SonstigeVariablen;
 with EinheitenRecords;
 with TextKonstanten;
 with GrafikDatentypen;
@@ -28,9 +25,7 @@ with InteraktionGrafiktask;
 
 package body Laden is
    
-   ------------------------ Beim Neubauen auch alle neuen Nutzereinstellmöglichkeiten mit laden und eventuelle berechneten Werte die jetzt notwendig sind mitnehmen.
-
-   function LadenNeu
+   function Laden
      return Boolean
    is begin
       
@@ -46,16 +41,13 @@ package body Laden is
             null;
       end case;
       
-      Open (File => DateiLadenNeu,
+      Open (File => DateiLaden,
             Mode => In_File,
             Name => "Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => NameSpielstand.EingegebenerText)));
 
-      -- Versionsnummer laden
-      Wide_Wide_String'Read (Stream (File => DateiLadenNeu),
+      Wide_Wide_String'Read (Stream (File => DateiLaden),
                              VersionsnummerPrüfung);
-      -- Versionsnummer laden
 
-      -- Prüfung auf gleiche Versionsnummer
       if
         VersionsnummerPrüfung = SonstigesKonstanten.Versionsnummer
       then
@@ -69,7 +61,7 @@ package body Laden is
                null;
                
             when others =>
-               Close (File => DateiLadenNeu);
+               Close (File => DateiLaden);
                return False;
          end case;
       end if;
@@ -78,31 +70,16 @@ package body Laden is
       Ladezeiten.SpeichernLaden (SystemDatentypen.Anfangswert_Enum) := Clock;
       InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Speichern_Laden_Enum;
       
-      SonstigesLaden;
+      Allgemeines;
       Ladezeiten.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
       
       KarteLaden;
       Ladezeiten.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
       
-      RassenGrenzenLaden;
+      RassenwerteLaden;
       Ladezeiten.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
       
-      EinheitenLaden;
-      Ladezeiten.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
-      
-      StädteLaden;
-      Ladezeiten.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
-      
-      WichtigesLaden;
-      Ladezeiten.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
-      
-      DiplomatieLaden;
-      Ladezeiten.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
-      
-      CursorLaden;
-      Ladezeiten.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
-      
-      Close (File => DateiLadenNeu);
+      Close (File => DateiLaden);
       
       Ladezeiten.SpeichernLadenMaximum;
       InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
@@ -110,227 +87,132 @@ package body Laden is
 
       return True;
       
-   end LadenNeu;
+   end Laden;
    
    
    
-   procedure SonstigesLaden
+   procedure Allgemeines
    is begin
       
-      Unbounded_Wide_Wide_String'Read (Stream (File => DateiLadenNeu),
+      Unbounded_Wide_Wide_String'Read (Stream (File => DateiLaden),
                                        SpielVariablen.IronmanName);
 
-      Positive'Read (Stream (File => DateiLadenNeu),
+      Positive'Read (Stream (File => DateiLaden),
                      SpielVariablen.RundenAnzahl);
       
-      Natural'Read (Stream (File => DateiLadenNeu),
+      Natural'Read (Stream (File => DateiLaden),
                     SpielVariablen.Rundengrenze);
       
-      RassenDatentypen.Rassen_Enum'Read (Stream (File => DateiLadenNeu),
+      RassenDatentypen.RassenImSpielArray'Read (Stream (File => DateiLaden),
+                                                 SonstigeVariablen.RassenImSpiel);
+      
+      RassenDatentypen.Rassen_Enum'Read (Stream (File => DateiLaden),
                                          SonstigeVariablen.RasseAmZugNachLaden);
       
-      SpielDatentypen.Schwierigkeitsgrad_Enum'Read (Stream (File => DateiLadenNeu),
+      SpielDatentypen.Schwierigkeitsgrad_Enum'Read (Stream (File => DateiLaden),
                                                     SpielVariablen.Schwierigkeitsgrad);
       
-      Boolean'Read (Stream (File => DateiLadenNeu),
+      Boolean'Read (Stream (File => DateiLaden),
                     SonstigeVariablen.Gewonnen);
       
-      Boolean'Read (Stream (File => DateiLadenNeu),
+      Boolean'Read (Stream (File => DateiLaden),
                     SonstigeVariablen.WeiterSpielen);
       
-   end SonstigesLaden;
+   end Allgemeines;
    
    
    
    procedure KarteLaden
    is begin
       
-      -- KartenDatentypen.Kartenform_Verwendet_Enum'Read (Stream (File => DateiLadenNeu),
-      --                                                 Karten.Kartenform);
-      KartenDatentypen.Kartengröße_Enum'Read (Stream (File => DateiLadenNeu),
-                                                Karten.Kartenparameter.Kartengröße);
-      
-      case
-        Karten.Kartenparameter.Kartengröße
-      is
-         when KartenDatentypen.Kartengröße_Nutzer_Enum =>
-            KartenRecords.YXAchsenKartenfeldPositivRecord'Read (Stream (File => DateiLadenNeu),
-                                                                Karten.Kartengrößen (KartenDatentypen.Kartengröße_Nutzer_Enum));
-            
-         when others =>
-            null;
-      end case;
+      KartenRecords.KartenparameterRecord'Read (Stream (File => DateiLaden),
+                                                Karten.Kartenparameter);
 
-      EAchseBisBodenSchleife:
+      EAchseSchleife:
       for EAchseSchleifenwert in Karten.WeltkarteArray'Range (1) loop
-         YAchseBisBodenSchleife:
-         for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse loop
-            XAchseBisBodenSchleife:
-            for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse loop
+         YAchseSchleife:
+         for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartenparameter.Kartengröße.YAchse loop
+            XAchseSchleife:
+            for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartenparameter.Kartengröße.XAchse loop
 
-               KartenRecords.KartenRecord'Read (Stream (File => DateiLadenNeu),
+               KartenRecords.KartenRecord'Read (Stream (File => DateiLaden),
                                                 Karten.Weltkarte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
                
-            end loop XAchseBisBodenSchleife;
-         end loop YAchseBisBodenSchleife;
-      end loop EAchseBisBodenSchleife;
+            end loop XAchseSchleife;
+         end loop YAchseSchleife;
+      end loop EAchseSchleife;
       
    end KarteLaden;
    
    
    
-   procedure RassenGrenzenLaden
+   procedure RassenwerteLaden
    is begin
       
-      RassenDatentypen.RassenImSpielArray'Read (Stream (File => DateiLadenNeu),
-                                                SonstigeVariablen.RassenImSpiel);
-      
-      GrenzenRassenSchleife:
-      for GrenzenRassenSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
+      RassenSchleife:
+      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
-         WichtigeRecords.GrenzenRecord'Read (Stream (File => DateiLadenNeu),
-                                             SpielVariablen.Grenzen (GrenzenRassenSchleifenwert));
-         
-      end loop GrenzenRassenSchleife;
-      
-   end RassenGrenzenLaden;
-   
-   
-   
-   procedure EinheitenLaden
-   is begin
-      
-      EinheitenRassenSchleife:
-      for RasseEinheitenSchleifenwert in SpielVariablen.EinheitenGebautArray'Range (1) loop
-
          case
-           SonstigeVariablen.RassenImSpiel (RasseEinheitenSchleifenwert)
+           SonstigeVariablen.RassenImSpiel (RasseSchleifenwert)
          is
             when RassenDatentypen.Leer_Spieler_Enum =>
                null;
                
             when others =>
-               EinheitenSchleife:
-               for EinheitNummerSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (RasseEinheitenSchleifenwert).Einheitengrenze loop
-            
-                  EinheitenRecords.EinheitenGebautRecord'Read (Stream (File => DateiLadenNeu),
-                                                                  SpielVariablen.EinheitenGebaut (RasseEinheitenSchleifenwert, EinheitNummerSchleifenwert));
-            
-               end loop EinheitenSchleife;
+               Rassenwerte (RasseExtern => RasseSchleifenwert);
          end case;
          
-      end loop EinheitenRassenSchleife;
+      end loop RassenSchleife;
       
-   end EinheitenLaden;
+   end RassenwerteLaden;
    
    
    
-   procedure StädteLaden
+   procedure Rassenwerte
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      StadtRassenSchleife:
-      for RasseStadtSchleifenwert in SpielVariablen.StadtGebautArray'Range (1) loop
-
-         case
-           SonstigeVariablen.RassenImSpiel (RasseStadtSchleifenwert)
-         is
-            when RassenDatentypen.Leer_Spieler_Enum =>
-               null;
-               
-            when others =>
-               StadtSchleife:
-               for StadtNummerSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (RasseStadtSchleifenwert).Städtegrenze loop
+      WichtigeRecords.GrenzenRecord'Read (Stream (File => DateiLaden),
+                                          SpielVariablen.Grenzen (RasseExtern));
+      
+      EinheitenSchleife:
+      for EinheitSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Einheitengrenze loop
+            
+         EinheitenRecords.EinheitenGebautRecord'Read (Stream (File => DateiLaden),
+                                                      SpielVariablen.EinheitenGebaut (RasseExtern, EinheitSchleifenwert));
+            
+      end loop EinheitenSchleife;
+      
+      StadtSchleife:
+      for StadtSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Städtegrenze loop
                   
-                  StadtRecords.StadtGebautRecord'Read (Stream (File => DateiLadenNeu),
-                                                              SpielVariablen.StadtGebaut (RasseStadtSchleifenwert, StadtNummerSchleifenwert));
+         StadtRecords.StadtGebautRecord'Read (Stream (File => DateiLaden),
+                                              SpielVariablen.StadtGebaut (RasseExtern, StadtSchleifenwert));
             
-               end loop StadtSchleife;
-         end case;
-         
-      end loop StadtRassenSchleife;
+      end loop StadtSchleife;
       
-   end StädteLaden;
-   
-   
-   
-   procedure WichtigesLaden
-   is begin
+      WichtigeRecords.WichtigesRecord'Read (Stream (File => DateiLaden),
+                                            SpielVariablen.Wichtiges (RasseExtern));
       
-      WichtigesSchleife:
-      for RasseWichtigesSchleifenwert in SpielVariablen.WichtigesArray'Range loop
-         
+      DiplomatieSchleife:
+      for RasseDiplomatieSchleifenwert in SpielVariablen.DiplomatieArray'Range (2) loop
+
          case
-           SonstigeVariablen.RassenImSpiel (RasseWichtigesSchleifenwert)
+           SonstigeVariablen.RassenImSpiel (RasseDiplomatieSchleifenwert)
          is
             when RassenDatentypen.Leer_Spieler_Enum =>
                null;
-               
-            when others =>
-               WichtigeRecords.WichtigesRecord'Read (Stream (File => DateiLadenNeu),
-                                                     SpielVariablen.Wichtiges (RasseWichtigesSchleifenwert));
-         end case;
-         
-      end loop WichtigesSchleife;
-      
-   end WichtigesLaden;
-   
-   
-   
-   procedure DiplomatieLaden
-   is begin
-      
-      DiplomatieSchleifeAußen:
-      for RasseDiplomatieEinsSchleifenwert in SpielVariablen.DiplomatieArray'Range (1) loop
-         
-         case
-           SonstigeVariablen.RassenImSpiel (RasseDiplomatieEinsSchleifenwert)
-         is
-            when RassenDatentypen.Leer_Spieler_Enum =>
-               null;
-
-            when others =>
-               DiplomatieSchleifeInnen:
-               for RasseDiplomatieZweiSchleifenwert in SpielVariablen.DiplomatieArray'Range (2) loop
-
-                  case
-                    SonstigeVariablen.RassenImSpiel (RasseDiplomatieZweiSchleifenwert)
-                  is
-                     when RassenDatentypen.Leer_Spieler_Enum =>
-                        null;
                      
-                     when others =>
-                        WichtigeRecords.DiplomatieRecord'Read (Stream (File => DateiLadenNeu),
-                                                               SpielVariablen.Diplomatie (RasseDiplomatieEinsSchleifenwert, RasseDiplomatieZweiSchleifenwert));
-                  end case;
-
-               end loop DiplomatieSchleifeInnen;
-         end case;
-               
-      end loop DiplomatieSchleifeAußen;
-      
-   end DiplomatieLaden;
-   
-   
-   
-   procedure CursorLaden
-   is begin
-      
-      CursorSchleife:
-      for RasseCursorSchleifenwert in SpielVariablen.CursorImSpielArray'Range loop
-         
-         case
-           SonstigeVariablen.RassenImSpiel (RasseCursorSchleifenwert)
-         is
-            when RassenDatentypen.Leer_Spieler_Enum =>
-               null;
-               
             when others =>
-               KartenRecords.CursorRecord'Read (Stream (File => DateiLadenNeu),
-                                                SpielVariablen.CursorImSpiel (RasseCursorSchleifenwert));
+               WichtigeRecords.DiplomatieRecord'Read (Stream (File => DateiLaden),
+                                                      SpielVariablen.Diplomatie (RasseExtern, RasseDiplomatieSchleifenwert));
          end case;
-         
-      end loop CursorSchleife;
+
+      end loop DiplomatieSchleife;
       
-   end CursorLaden;
+      KartenRecords.CursorRecord'Read (Stream (File => DateiLaden),
+                                       SpielVariablen.CursorImSpiel (RasseExtern));
+      
+   end Rassenwerte;
 
 end Laden;

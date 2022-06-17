@@ -3,6 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with ZahlenDatentypen; use ZahlenDatentypen;
 with LadezeitenDatentypen; use LadezeitenDatentypen;
+with KartengrundDatentypen; use KartengrundDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
 with MenueDatentypen;
@@ -10,6 +11,7 @@ with SpielVariablen;
 with SonstigeVariablen;
 
 with LeseEinheitenGebaut;
+with LeseKarten;
 
 with ZufallsgeneratorenSpieleinstellungen;
 with ZufallsgeneratorenStartkoordinaten;
@@ -38,7 +40,7 @@ package body SpieleinstellungenRasseSpieler is
                BelegungÄndern (RasseExtern => RückgabeZuRasse (RassenAuswahl));
 
             when RueckgabeDatentypen.Zufall_Enum =>
-               ZufallsgeneratorenSpieleinstellungen.ZufälligeRassen;
+               ZufallsgeneratorenSpieleinstellungen.ZufälligeRassenbelegung;
                
             when RueckgabeDatentypen.Fertig_Enum =>
                if
@@ -103,6 +105,15 @@ package body SpieleinstellungenRasseSpieler is
       return False;
       
    end EineRasseBelegt;
+   
+   
+   
+   procedure RasseAutomatischBelegen
+   is begin
+      
+      SonstigeVariablen.RassenImSpiel (ZufallsgeneratorenSpieleinstellungen.ZufälligeRasse) := RassenDatentypen.Spieler_Mensch_Enum;
+      
+   end RasseAutomatischBelegen;
 
 
 
@@ -175,6 +186,16 @@ package body SpieleinstellungenRasseSpieler is
    is begin
       
       case
+        LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern)
+      is
+         when KartengrundDatentypen.Eis_Enum | KartengrundDatentypen.Untereis_Enum =>
+            return False;
+            
+         when others =>
+            null;
+      end case;
+      
+      case
         EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern).Nummer
       is
          when EinheitenKonstanten.LeerNummer =>
@@ -196,6 +217,14 @@ package body SpieleinstellungenRasseSpieler is
         NotAusExtern > ZahlenDatentypen.NotAus'Last - 10
         and
           FelderGefunden >= 2
+      then
+         StartpunktFestlegen (RasseExtern => RasseExtern);
+         return True;
+         
+      elsif
+        NotAusExtern = ZahlenDatentypen.NotAus'Last
+        and
+          FelderGefunden >= 1
       then
          StartpunktFestlegen (RasseExtern => RasseExtern);
          return True;
@@ -237,7 +266,14 @@ package body SpieleinstellungenRasseSpieler is
                 XÄnderungSchleifenwert = 0
             then
                null;
-                     
+               
+            elsif
+              LeseKarten.AktuellerGrund (KoordinatenExtern => KartenWert) = KartengrundDatentypen.Eis_Enum
+              or
+                LeseKarten.AktuellerGrund (KoordinatenExtern => KartenWert) = KartengrundDatentypen.Untereis_Enum
+            then
+               null;
+                                    
             elsif
               BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern           => RasseExtern,
                                                                      IDExtern              => 2,
@@ -245,7 +281,7 @@ package body SpieleinstellungenRasseSpieler is
               = False
             then
                null;
-                     
+               
             elsif
               StartpositionGefunden = False
             then
@@ -288,7 +324,6 @@ package body SpieleinstellungenRasseSpieler is
                                                   IDExtern               => 2,
                                                   StadtRasseNummerExtern => (RasseExtern, 0));
       
-      ------------------------- Das hier auch noch nach Grafik verschieben?
       SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (RasseExtern, 1));
       SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt := SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell;
       

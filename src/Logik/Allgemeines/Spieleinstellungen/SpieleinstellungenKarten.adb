@@ -7,6 +7,7 @@ with KartenDatentypen; use KartenDatentypen;
 with MenueDatentypen;
 with KartenRecordKonstanten;
 with TextKonstanten;
+with KartenKonstanten;
 
 with Karten;
 with Eingabe;
@@ -150,10 +151,10 @@ package body SpieleinstellungenKarten is
         YAchseXAchseExtern
       is
          when True =>
-            MaximaleEisdicke := Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse / 2;
+            MaximaleEisdicke := Karten.Kartenparameter.Kartengröße.YAchse / 2;
 
          when False =>
-            MaximaleEisdicke := Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse / 2;
+            MaximaleEisdicke := Karten.Kartenparameter.Kartengröße.XAchse / 2;
       end case;
 
       BenutzerdefinierteGröße := Eingabe.GanzeZahl (ZeileExtern         => TextKonstanten.FrageEisschicht,
@@ -186,14 +187,14 @@ package body SpieleinstellungenKarten is
          case
            KartengrößeAuswahl
          is
-            when RueckgabeDatentypen.Kartengröße_Standard_Enum'Range =>
-               Karten.Kartenparameter.Kartengröße := KartengrößeRückgabeZuKarten (KartengrößeAuswahl);
+            when RueckgabeDatentypen.Kartengrößen_Standard_Enum'Range =>
+               Karten.Kartenparameter.Kartengröße := KartenKonstanten.StandardKartengrößen (KartengrößeAuswahl);
 
             when RueckgabeDatentypen.Kartengröße_Nutzer_Enum =>
-               GrößeSelbstBestimmen (KartengrößeExtern => KartengrößeRückgabeZuKarten (KartengrößeAuswahl));
+               Karten.Kartenparameter.Kartengröße := GrößeSelbstBestimmen;
                
             when RueckgabeDatentypen.Zufall_Enum =>
-               Karten.Kartenparameter.Kartengröße := ZufallsgeneratorenSpieleinstellungen.ZufälligeVordefinierteKartengröße;
+               Karten.Kartenparameter.Kartengröße := KartenKonstanten.StandardKartengrößen (ZufallsgeneratorenSpieleinstellungen.ZufälligeVordefinierteKartengröße);
                
             when RueckgabeDatentypen.Kartengröße_Zufall_Enum =>
                Karten.Kartenparameter.Kartengröße := ZufallsgeneratorenSpieleinstellungen.ZufälligeKartengröße;
@@ -211,8 +212,8 @@ package body SpieleinstellungenKarten is
    
    
    
-   procedure GrößeSelbstBestimmen
-     (KartengrößeExtern : in KartenDatentypen.Kartengröße_Enum)
+   function GrößeSelbstBestimmen
+     return KartenRecords.YXAchsenKartenfeldPositivRecord
    is begin
             
       BenutzerdefinierteGröße := Eingabe.GanzeZahl (ZeileExtern         => 15,
@@ -222,13 +223,14 @@ package body SpieleinstellungenKarten is
         BenutzerdefinierteGröße.EingabeAbbruch
       is
          when False =>
-            return;
+            return (Karten.Kartenparameter.Kartengröße.YAchse, Karten.Kartenparameter.Kartengröße.XAchse);
             
          when True =>
             null;
       end case;
       
-      Karten.Kartengrößen (KartengrößeExtern).YAchse := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße.EingegebeneZahl);
+      YAchse := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße.EingegebeneZahl);
+      
       BenutzerdefinierteGröße := Eingabe.GanzeZahl (ZeileExtern         => 21,
                                                       ZahlenMinimumExtern => 20,
                                                       ZahlenMaximumExtern => 1_000);
@@ -237,12 +239,13 @@ package body SpieleinstellungenKarten is
         BenutzerdefinierteGröße.EingabeAbbruch
       is
          when False =>
-            null;
+            return (Karten.Kartenparameter.Kartengröße.YAchse, Karten.Kartenparameter.Kartengröße.XAchse);
             
          when True =>
-            Karten.Kartengrößen (KartengrößeExtern).XAchse := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße.EingegebeneZahl);
-            Karten.Kartenparameter.Kartengröße := KartengrößeExtern;
+            XAchse := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße.EingegebeneZahl);
       end case;
+      
+      return (YAchse, XAchse);
       
    end GrößeSelbstBestimmen;
 
@@ -296,7 +299,7 @@ package body SpieleinstellungenKarten is
       
       BenutzerdefinierteKartenart := Eingabe.GanzeZahl (ZeileExtern         => TextKonstanten.FrageMinimaleLandhöhe,
                                                         ZahlenMinimumExtern => 1,
-                                                        ZahlenMaximumExtern => Positive (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse / 2));
+                                                        ZahlenMaximumExtern => Positive (Karten.Kartenparameter.Kartengröße.YAchse / 2));
       
       case
         BenutzerdefinierteKartenart.EingabeAbbruch
@@ -312,7 +315,7 @@ package body SpieleinstellungenKarten is
             
       BenutzerdefinierteKartenart := Eingabe.GanzeZahl (ZeileExtern         => TextKonstanten.FrageMaximaleLandhöhe,
                                                         ZahlenMinimumExtern => ZwischenwertKartenart,
-                                                        ZahlenMaximumExtern => Positive (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse / 2));
+                                                        ZahlenMaximumExtern => Positive (Karten.Kartenparameter.Kartengröße.YAchse / 2));
       
       case
         BenutzerdefinierteKartenart.EingabeAbbruch
@@ -329,7 +332,7 @@ package body SpieleinstellungenKarten is
       
       BenutzerdefinierteKartenart := Eingabe.GanzeZahl (ZeileExtern         => TextKonstanten.FrageMinimaleLandbreite,
                                                         ZahlenMinimumExtern => 1,
-                                                        ZahlenMaximumExtern => Positive (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse / 2));
+                                                        ZahlenMaximumExtern => Positive (Karten.Kartenparameter.Kartengröße.XAchse / 2));
       
       case
         BenutzerdefinierteKartenart.EingabeAbbruch
@@ -345,7 +348,7 @@ package body SpieleinstellungenKarten is
             
       BenutzerdefinierteKartenart := Eingabe.GanzeZahl (ZeileExtern         => TextKonstanten.FrageMaximaleLandbreite ,
                                                         ZahlenMinimumExtern => ZwischenwertKartenart,
-                                                        ZahlenMaximumExtern => Positive (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse / 2));
+                                                        ZahlenMaximumExtern => Positive (Karten.Kartenparameter.Kartengröße.XAchse / 2));
       
       case
         BenutzerdefinierteKartenart.EingabeAbbruch

@@ -86,7 +86,7 @@ package body ZwischenDenRunden is
       ForschungAllgemein.ForschungFortschritt;
       Ladezeiten.RundenendeSchreiben;
             
-      RundenAnzahlSetzen;
+      RundenanzahlSetzen;
       Ladezeiten.RundenendeSchreiben;
       
       DiplomatieÄnderung;
@@ -138,7 +138,7 @@ package body ZwischenDenRunden is
    
    
    
-   procedure RundenAnzahlSetzen
+   procedure RundenanzahlSetzen
    is begin
       
       case
@@ -151,7 +151,7 @@ package body ZwischenDenRunden is
             SpielVariablen.RundenAnzahl := SpielVariablen.RundenAnzahl + 1;
       end case;
       
-   end RundenAnzahlSetzen;
+   end RundenanzahlSetzen;
    
    
    

@@ -20,9 +20,9 @@ package BewegungBerechnen is
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            NeueKoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+            NeueKoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
           and
-            NeueKoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse
+            NeueKoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse
           and
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
    
@@ -54,9 +54,9 @@ private
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            NeueKoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+            NeueKoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
           and
-            NeueKoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse
+            NeueKoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse
           and
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
    
@@ -70,9 +70,9 @@ private
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            NeueKoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+            NeueKoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
           and
-            NeueKoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse
+            NeueKoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse
           and
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
    
@@ -84,9 +84,9 @@ private
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            NeueKoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+            NeueKoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
           and
-            NeueKoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse
+            NeueKoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse
           and
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
 

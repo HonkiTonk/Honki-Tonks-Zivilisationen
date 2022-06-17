@@ -34,18 +34,6 @@ package KartenDatentypen is
    subtype UmgebungsbereichEinsEAchse is UmgebungsbereichZweiEAchse range UmgebungsbereichZweiEAchse (UmgebungsbereichEins'First) .. UmgebungsbereichZweiEAchse (UmgebungsbereichEins'Last);
    
    type SichtbereichAnfangEndeArray is array (1 .. 4) of Kartenfeld;
-   
-   
-   
-   -- Neue Kartengrößen immer zwischen 20 und 1.000 einfügen um Anpassungen in KartenDatentypen zu vermeiden, außer die minimale oder maximale Kartengröße soll verändert werden.
-   type Kartengröße_Enum is (
-                               Kartengröße_20_20_Enum, Kartengröße_40_40_Enum, Kartengröße_80_80_Enum, Kartengröße_120_80_Enum, Kartengröße_120_160_Enum, Kartengröße_160_160_Enum, Kartengröße_240_240_Enum,
-                               Kartengröße_320_320_Enum, Kartengröße_1000_1000_Enum, Kartengröße_Nutzer_Enum, Kartengröße_Zufall_Enum
-                              );
-   pragma Ordered (Kartengröße_Enum);
-   
-   subtype Kartengröße_Verwendet_Enum is Kartengröße_Enum range Kartengröße_20_20_Enum .. Kartengröße_Nutzer_Enum;
-   subtype Kartengröße_Standard_Enum is Kartengröße_Verwendet_Enum range Kartengröße_20_20_Enum .. Kartengröße_1000_1000_Enum;
                                 
    
    
@@ -60,14 +48,7 @@ package KartenDatentypen is
    
    subtype Kartenart_Normal_Enum is Kartenart_Enum range Kartenart_Inseln_Enum .. Kartenart_Pangäa_Enum;
    
-   -------------------------- Später umschreiben auf 
-   -- type Kartenform_Enum is (
-   --                         Kartenform_Kein_Übergang_Enum, Kartenform_Übergang_Enum, Kartenform_Rückwärts_Verschobener_Übergang_Enum, Kartenform_Verschobener_Übergang_Enum
-   --                        ); 
-   -- pragma Ordered (Kartenform_Enum);
    
-   -- subtype Kartenform_Ebene_Enum is Kartenform_Enum range Kartenform_Kein_Übergang_Enum .. Kartenform_Übergang_Enum;
-   -- Geht aktuell nicht weil dann größere Anpassungen im Kartenformmenü notwendig sind.
    
    type Kartenform_Enum is (
                             Karte_E_Kein_Übergang_Enum, Karte_E_Übergang_Enum,
@@ -79,11 +60,20 @@ package KartenDatentypen is
    subtype Kartenform_E_Einstellbar_Enum is Kartenform_Enum range Karte_E_Kein_Übergang_Enum .. Karte_E_Übergang_Enum;
    subtype Kartenform_Y_Einstellbar_Enum is Kartenform_Enum range Karte_Y_Kein_Übergang_Enum .. Karte_Y_Verschobener_Übergang_Enum;
    subtype Kartenform_X_Einstellbar_Enum is Kartenform_Enum range Karte_X_Kein_Übergang_Enum .. Karte_X_Verschobener_Übergang_Enum;
-                     
+   
+   -------------------------- Später umschreiben? auf
+   -- type Kartenform_Enum is (
+   --                         Kartenform_Kein_Übergang_Enum, Kartenform_Übergang_Enum, Kartenform_Rückwärts_Verschobener_Übergang_Enum, Kartenform_Verschobener_Übergang_Enum
+   --                        ); 
+   -- pragma Ordered (Kartenform_Enum);
+   
+   -- subtype Kartenform_Ebene_Enum is Kartenform_Enum range Kartenform_Kein_Übergang_Enum .. Kartenform_Übergang_Enum;
+   -- Geht aktuell nicht weil dann größere Anpassungen im Kartenformmenü notwendig sind.
+   
    
    
    -- Neue Kartentemperaturen immer vor Wüste einfügen um Anpassungen in KartenDatentypen zu vermeiden.
-   ------------------- Statt eines Enums einen Prozentwert von 0 bis 100 einbauen?
+   -------------------------------- Statt eines Enums einen Zahlenwert von 0 bis 100 einbauen?
    type Kartentemperatur_Enum is (
                                   Kartentemperatur_Kalt_Enum, Kartentemperatur_Gemäßigt_Enum, Kartentemperatur_Heiß_Enum, Kartentemperatur_Eiszeit_Enum, Kartentemperatur_Wüste_Enum
                                  );
@@ -114,7 +104,7 @@ package KartenDatentypen is
    
    
    
-   -------------------- Auch mal bessere Bereiche ermitteln/einbauen.
+   -------------------------------- Auch mal bessere Bereiche ermitteln/einbauen.
    type GesamteFeldbewertung is range 0 .. 1_250;
    subtype Einzelbewertung is GesamteFeldbewertung range 0 .. 10;
 

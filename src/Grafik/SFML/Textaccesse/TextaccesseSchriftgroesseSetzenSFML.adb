@@ -308,10 +308,15 @@ package body TextaccesseSchriftgroesseSetzenSFML is
       
       Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.KIZeitenAccess (TextaccessVariablen.KIZeitenAccessArray'First),
                                          size => GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeÜberschrift);
-         
-      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.KIZeitenAccess (TextaccessVariablen.KIZeitenAccessArray'Last),
-                                         size => GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
       
+      KIZeitenSchleife:
+      for KIZeitenSchleifenwert in TextaccessVariablen.KIZeitenAccessArray'First + 1 .. TextaccessVariablen.KIZeitenAccessArray'Last loop
+         
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.KIZeitenAccess (KIZeitenSchleifenwert),
+                                            size => GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
+         
+      end loop KIZeitenSchleife;
+               
       
       
       Sf.Graphics.Text.setCharacterSize (text  => TextaccessVariablen.RundenendeAccess (TextaccessVariablen.RundenendeAccessArray'First),

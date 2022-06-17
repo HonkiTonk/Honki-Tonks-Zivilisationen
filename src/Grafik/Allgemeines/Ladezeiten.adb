@@ -75,16 +75,16 @@ package body Ladezeiten is
    
    
    procedure FortschrittKISchreiben
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (WelcheBerechnungenExtern : in LadezeitenDatentypen.KI_Rechnet_Enum)
    is begin
       
       if
-        FortschrittKI (RasseExtern) + FortschrittSchritte (2) > LadezeitenDatentypen.Ladefortschritt'Last
+        FortschrittKI (WelcheBerechnungenExtern) + FortschrittSchritte (2) > LadezeitenDatentypen.Ladefortschritt'Last
       then
-         Warnung.LogikWarnung (WarnmeldungExtern => "Ladezeiten.FortschrittKISchreiben - " & RasseExtern'Wide_Wide_Image & " ist über 100.");
+         Warnung.LogikWarnung (WarnmeldungExtern => "Ladezeiten.FortschrittKISchreiben - " & WelcheBerechnungenExtern'Wide_Wide_Image & " ist über 100.");
          
       else
-         FortschrittKI (RasseExtern) := FortschrittKI (RasseExtern) + FortschrittSchritte (2);
+         FortschrittKI (WelcheBerechnungenExtern) := FortschrittKI (WelcheBerechnungenExtern) + FortschrittSchritte (2);
       end if;
       
    end FortschrittKISchreiben;
@@ -92,15 +92,16 @@ package body Ladezeiten is
    
    
    procedure FortschrittKIMaximum
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (WelcheBerechnungenExtern : in LadezeitenDatentypen.KI_Rechnet_Enum)
    is begin
       
-      FortschrittKI (RasseExtern) := LadezeitenDatentypen.Ladefortschritt'Last;
+      FortschrittKI (WelcheBerechnungenExtern) := LadezeitenDatentypen.Ladefortschritt'Last;
       
    end FortschrittKIMaximum;
    
    
    
+   ---------------------------------------- Die folgenden Ladezeitanzeigen noch erweitern.
    procedure RundenendeSchreiben
    is begin
       

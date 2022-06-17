@@ -42,27 +42,27 @@ private
       XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
      with
        Pre =>
-         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+         (YAchseExtern <= Karten.Kartenparameter.Kartengröße.YAchse
           and
-            XAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+            XAchseExtern <= Karten.Kartenparameter.Kartengröße.XAchse);
    
    procedure LandmasseGenerieren
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
      with
        Pre =>
-         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+         (YAchseExtern <= Karten.Kartenparameter.Kartengröße.YAchse
           and
-            XAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+            XAchseExtern <= Karten.Kartenparameter.Kartengröße.XAchse);
    
    procedure AbstandGenerieren
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
      with
        Pre =>
-         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+         (YAchseExtern <= Karten.Kartenparameter.Kartengröße.YAchse
           and
-            XAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+            XAchseExtern <= Karten.Kartenparameter.Kartengröße.XAchse);
 
    procedure GrundSchreiben
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
@@ -70,8 +70,8 @@ private
       MasseAbstandExtern : in Boolean)
      with
        Pre =>
-         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+         (YAchseExtern <= Karten.Kartenparameter.Kartengröße.YAchse
           and
-            XAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+            XAchseExtern <= Karten.Kartenparameter.Kartengröße.XAchse);
 
 end KartengeneratorStandard;

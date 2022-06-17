@@ -323,9 +323,14 @@ package body TextaccesseSchriftfarbeSetzenSFML is
       
       Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KIZeitenAccess (TextaccessVariablen.KIZeitenAccessArray'First),
                                  color => GrafikEinstellungenSFML.Schriftfarben.FarbeÜberschrift);
+      
+      KIZeitenSchleife:
+      for KIZeitenSchleifenwert in TextaccessVariablen.KIZeitenAccessArray'First + 1 .. TextaccessVariablen.KIZeitenAccessArray'Last loop
          
-      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KIZeitenAccess (TextaccessVariablen.KIZeitenAccessArray'Last),
-                                 color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KIZeitenAccess (KIZeitenSchleifenwert),
+                                    color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
+         
+      end loop KIZeitenSchleife;
       
       
       

@@ -6,7 +6,8 @@ with RueckgabeDatentypen;
 package Spieleinstellungen is
 
    function Spieleinstellungen
-     return RueckgabeDatentypen.Rückgabe_Werte_Enum;
+     (SchnellstartExtern : in Boolean)
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
 private
 
@@ -16,6 +17,6 @@ private
    Rückgabewert : RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
    function AutomatischeEinstellungen
-     return RueckgabeDatentypen.Rückgabe_Werte_Enum;
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
 end Spieleinstellungen;

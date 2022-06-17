@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with RueckgabeDatentypen;
 with KartenDatentypen;
 with SystemRecords;
+with KartenRecords;
 
 package SpieleinstellungenKarten is
    
@@ -25,25 +26,13 @@ private
    
    EingegebeneEisdicke : KartenDatentypen.KartenfeldNatural;
    MaximaleEisdicke : KartenDatentypen.KartenfeldPositiv;
+   YAchse : KartenDatentypen.KartenfeldPositiv;
+   XAchse : KartenDatentypen.KartenfeldPositiv;
    
    ZwischenwertKartenart : Positive;
    
    BenutzerdefinierteGröße : SystemRecords.ZahlenEingabeRecord;
    BenutzerdefinierteKartenart : SystemRecords.ZahlenEingabeRecord;
-   
-   type KartengrößeRückgabeZuKartenArray is array (RueckgabeDatentypen.Kartengröße_Verwendet_Enum'Range) of KartenDatentypen.Kartengröße_Verwendet_Enum;
-   KartengrößeRückgabeZuKarten : constant KartengrößeRückgabeZuKartenArray := (
-                                                                                     RueckgabeDatentypen.Kartengröße_20_20_Enum     => KartenDatentypen.Kartengröße_20_20_Enum,
-                                                                                     RueckgabeDatentypen.Kartengröße_40_40_Enum     => KartenDatentypen.Kartengröße_40_40_Enum,
-                                                                                     RueckgabeDatentypen.Kartengröße_80_80_Enum     => KartenDatentypen.Kartengröße_80_80_Enum,
-                                                                                     RueckgabeDatentypen.Kartengröße_120_80_Enum    => KartenDatentypen.Kartengröße_120_80_Enum,
-                                                                                     RueckgabeDatentypen.Kartengröße_120_160_Enum   => KartenDatentypen.Kartengröße_120_160_Enum,
-                                                                                     RueckgabeDatentypen.Kartengröße_160_160_Enum   => KartenDatentypen.Kartengröße_160_160_Enum,
-                                                                                     RueckgabeDatentypen.Kartengröße_240_240_Enum   => KartenDatentypen.Kartengröße_240_240_Enum,
-                                                                                     RueckgabeDatentypen.Kartengröße_320_320_Enum   => KartenDatentypen.Kartengröße_320_320_Enum,
-                                                                                     RueckgabeDatentypen.Kartengröße_1000_1000_Enum => KartenDatentypen.Kartengröße_1000_1000_Enum,
-                                                                                     RueckgabeDatentypen.Kartengröße_Nutzer_Enum    => KartenDatentypen.Kartengröße_Nutzer_Enum
-                                                                                    );
    
    type KartenartRückgabeZuKartenArray is array (RueckgabeDatentypen.Kartenart_Enum'Range) of KartenDatentypen.Kartenart_Enum;
    KartenartRückgabeZuKarten : constant KartenartRückgabeZuKartenArray := (
@@ -70,9 +59,6 @@ private
                                                                                            RueckgabeDatentypen.Kartenressourcen_Überfluss_Enum => KartenDatentypen.Kartenressourcen_Überfluss_Enum
                                                                                           );
    
-   procedure GrößeSelbstBestimmen
-     (KartengrößeExtern : in KartenDatentypen.Kartengröße_Enum);
-   
    procedure KartenformZuweisen
      (WelcheAchseExtern : in RueckgabeDatentypen.Kartenform_Enum);
    
@@ -85,5 +71,8 @@ private
    function Polgrößen
      (YAchseXAchseExtern : in Boolean)
       return KartenDatentypen.KartenfeldNatural;
+   
+   function GrößeSelbstBestimmen
+     return KartenRecords.YXAchsenKartenfeldPositivRecord;
 
 end SpieleinstellungenKarten;

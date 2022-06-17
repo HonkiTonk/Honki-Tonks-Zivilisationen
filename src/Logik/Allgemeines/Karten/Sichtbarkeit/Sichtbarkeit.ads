@@ -35,9 +35,9 @@ package Sichtbarkeit is
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
      with
        Pre =>
-         (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+         (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartenparameter.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse
+            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartenparameter.Kartengröße.XAchse
           and
             SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
 
@@ -142,8 +142,8 @@ private
       return Boolean
      with
        Pre =>
-         (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+         (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartenparameter.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartenparameter.Kartengröße.XAchse);
 
 end Sichtbarkeit;

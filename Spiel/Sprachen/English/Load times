@@ -1,12 +1,17 @@
-Spielwelt wird generiert
-Generiere Allgemeines
-Generiere Küstenwasser
-Generiere Landschaft
-Generiere Unterfläche
-Generiere Flüsse
-Generiere Ressourcen
-Bewerte Kartenfelder
-Platziere Rassen
-KI Rechnet
-Berechnungen zwischen den Runden
-Speichern/Laden
+Generate game world
+Generate general stuff
+Generate coastal water
+Generate landscape
+Generate subsurface
+Generate rivers
+Generate ressources
+Rate map fields
+Place races
+AI calculates
+Race name placeholder
+Calculate units
+Calculate cities
+Calculate research
+Calculate diplomacy
+Calculations between rounds
+Save/Load

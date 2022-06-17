@@ -3,6 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with SonstigeVariablen;
+with ZahlenDatentypen;
 
 package KI is
 
@@ -13,6 +14,8 @@ package KI is
          (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_KI_Enum);
 
 private
+
+   Multiplikator : ZahlenDatentypen.EigenesPositive;
 
    procedure EinheitenDurchgehen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

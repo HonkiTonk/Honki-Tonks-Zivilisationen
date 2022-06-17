@@ -3,6 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with SonstigeVariablen;
+with ZahlenDatentypen;
 
 package KIForschung is
 
@@ -13,6 +14,8 @@ package KIForschung is
          (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_KI_Enum);
    
 private
+   
+   Multiplikator : ZahlenDatentypen.EigenesPositive;
       
    procedure NeuesForschungsprojekt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

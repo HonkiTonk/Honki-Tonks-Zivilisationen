@@ -49,52 +49,60 @@ package ChangelogJuni2022 is
    
    
 
-   -- Version 0.01. => 0.01. (23.06.2022):
+   -- Version 0.01.1 => 0.01. (23.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01. => 0.01. (22.06.2022):
+   -- Version 0.01.1 => 0.01.1 (22.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01. => 0.01. (21.06.2022):
+   -- Version 0.01.1 => 0.01.1 (21.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01. => 0.01. (20.06.2022):
+   -- Version 0.01.1 => 0.01.1 (20.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01. => 0.01. (19.06.2022):
+   -- Version 0.01.1 => 0.01.1 (19.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01. => 0.01. (18.06.2022):
+   -- Version 0.01.1395 => 0.01.1 (18.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.1295 => 0.01. (17.06.2022):
+   -- Version 0.01.1295 => 0.01.1395 (17.06.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fortschrittsanzeige für die KI erweitert.
+   -- Speichern/Ladesystem überarbeitet.
+   -- Festlegung und Speicherung der Kartengröße überarbeitet.
+   -- Unnötigen Code gelöscht.
+   -- Fehler behoben der das Spiel beendete anstatt zurück zum Hauptmenü zu gehen.
+   -- Es wird jetzt automatisch eine Rasse zugewiesen, wenn keine ausgewählt wurde man aber die Auswahl beendet.
+   -- Einheiten sollten bei der Startfestlegung nicht mehr auf Eis platziert werden.
+   -- Schnellstart eingebaut.
+   -- Alle Werte sollte jetzt wieder korrekt auf Standardwerte gesetzt werden, wenn man eine neue Runde startet ohne das Spiel zu beenden.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

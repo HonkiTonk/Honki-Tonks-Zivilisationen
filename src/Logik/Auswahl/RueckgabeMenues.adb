@@ -124,24 +124,29 @@ package body RueckgabeMenues is
         AktuelleAuswahlExtern = AnfangExtern
       then
          return RueckgabeDatentypen.Start_Weiter_Enum;
-                  
+         
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 1
+      then
+         return RueckgabeDatentypen.Schnellstart_Enum;
+                  
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 2
       then
          return RueckgabeDatentypen.Laden_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 2
+        AktuelleAuswahlExtern = AnfangExtern + 3
       then
          return RueckgabeDatentypen.Optionen_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 3
+        AktuelleAuswahlExtern = AnfangExtern + 4
       then
          return RueckgabeDatentypen.Editoren_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 4
+        AktuelleAuswahlExtern = AnfangExtern + 5
       then
          return RueckgabeDatentypen.Würdigungen_Enum;
                     

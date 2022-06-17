@@ -31,12 +31,13 @@ package body ImSpiel is
      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
-      -- Muss hier einmal auf True gesetzt werden, damit die eventuell geänderten Kartenfeldergrößen neu/korrekt berechnet werden vom Grafiktask.
+      -- Muss hier einmal auf Verändert gesetzt werden, damit die eventuell geänderten Kartenfeldergrößen neu/korrekt berechnet werden vom Grafiktask.
       InteraktionGrafiktask.FensterVerändert := InteraktionGrafiktask.Fenster_Verändert_Enum;
       
       SpielSchleife:
       loop
          
+         -- Wird hier Nullgesetzt damit die Zeiten für das Debugmenü auch alle wieder korrekt sind. Ist das nötig?
          Ladezeiten.KINullsetzen;
          
          RassenSchleife:
@@ -284,11 +285,11 @@ package body ImSpiel is
          is
             when RueckgabeDatentypen.Speichern_Enum =>
                SonstigeVariablen.RasseAmZugNachLaden := RasseExtern;
-               Speichern.SpeichernNeu (AutospeichernExtern => False);
+               Speichern.Speichern (AutospeichernExtern => False);
                
             when RueckgabeDatentypen.Laden_Enum =>
                if
-                 Laden.LadenNeu = True
+                 Laden.Laden = True
                then
                   return RueckgabeDatentypen.Laden_Enum;
 

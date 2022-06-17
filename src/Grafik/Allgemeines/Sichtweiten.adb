@@ -9,44 +9,27 @@ package body Sichtweiten is
    procedure SichtweiteBewegungsfeldFestlegen
    is begin
       
-      case
-        Karten.Kartenparameter.Kartengröße
-      is
-         when KartenDatentypen.Kartengröße_20_20_Enum =>
-            Sichtweiten.SichtweiteFestlegen := 1;
-            Sichtweiten.BewegungsfeldFestlegen := 1;
-            
-         when KartenDatentypen.Kartengröße_40_40_Enum =>
-            Sichtweiten.SichtweiteFestlegen := 2;
-            Sichtweiten.BewegungsfeldFestlegen := 2;
+      if
+        Karten.Kartenparameter.Kartengröße.YAchse <= 20
+        or
+          Karten.Kartenparameter.Kartengröße.XAchse <= 20
+      then
+         Sichtweiten.SichtweiteFestlegen := 1;
+         Sichtweiten.BewegungsfeldFestlegen := 1;
+         
+      elsif
+        Karten.Kartenparameter.Kartengröße.YAchse <= 40
+        or
+          Karten.Kartenparameter.Kartengröße.XAchse <= 40
+      then
+         Sichtweiten.SichtweiteFestlegen := 2;
+         Sichtweiten.BewegungsfeldFestlegen := 2;
 
-         when KartenDatentypen.Kartengröße_Nutzer_Enum =>
-            if
-              Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse <= Karten.Kartengrößen (KartenDatentypen.Kartengröße_20_20_Enum).YAchse
-              or
-                Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse <= Karten.Kartengrößen (KartenDatentypen.Kartengröße_20_20_Enum).XAchse
-            then
-               Sichtweiten.SichtweiteFestlegen := 1;
-               Sichtweiten.BewegungsfeldFestlegen := 1;
-               
-            elsif
-              Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse <= Karten.Kartengrößen (KartenDatentypen.Kartengröße_40_40_Enum).YAchse
-              or
-                Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse <= Karten.Kartengrößen (KartenDatentypen.Kartengröße_40_40_Enum).XAchse
-            then
-               Sichtweiten.SichtweiteFestlegen := 2;
-               Sichtweiten.BewegungsfeldFestlegen := 2;
-               
-            else
-               Sichtweiten.SichtweiteFestlegen := 3;
-               Sichtweiten.BewegungsfeldFestlegen := 3;
-            end if;
-            
-         when others =>
-            Sichtweiten.SichtweiteFestlegen := 3;
-            Sichtweiten.BewegungsfeldFestlegen := 3;
-      end case;
-      
+      else
+         Sichtweiten.SichtweiteFestlegen := 3;
+         Sichtweiten.BewegungsfeldFestlegen := 3;
+      end if;
+   
       BerechnungenKarteSFML.KartenfelderAbmessungBerechnen;
       BerechnungenKarteSFML.StadtfelderAbmessungBerechnen;
       

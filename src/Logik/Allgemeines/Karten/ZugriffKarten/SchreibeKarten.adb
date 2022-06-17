@@ -1,8 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with KartenRecordKonstanten;
-
 with Fehler;
 
 package body SchreibeKarten is
@@ -142,14 +140,4 @@ package body SchreibeKarten is
       Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Felderwertung (RasseExtern) := BewertungExtern;
       
    end Bewertung;
-   
-   
-   
-   procedure KarteNullsetzen
-   is begin
-      
-      Karten.Weltkarte := (others => (others => (others => KartenRecordKonstanten.LeerWeltkarte)));
-      
-   end KarteNullsetzen;
-
 end SchreibeKarten;

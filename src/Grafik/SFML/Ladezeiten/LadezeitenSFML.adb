@@ -24,14 +24,14 @@ package body LadezeitenSFML is
       
       StandardsFestlegen;
       
-      WelcheZeit := 1;
+      WelcheZeit := TextaccessVariablen.LadezeitenAccess'First;
       AktuelleTextposition.x := AllgemeineTextBerechnungenSFML.TextMittelPositionErmitteln (TextAccessExtern => TextaccessVariablen.LadezeitenAccess (WelcheZeit));
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
                                     position => (AktuelleTextposition));
       
       AktuelleTextposition.y := AktuelleTextposition.y + 3.00 * Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.LadezeitenAccess (WelcheZeit)).height + ZeilenAbstand;
-      
+            
       SpielweltErstellenSchleife:
       for SpielweltErstellenSchleifenwert in LadezeitenDatentypen.Spielwelt_Erstellen_Enum'Range loop
          
@@ -46,7 +46,7 @@ package body LadezeitenSFML is
             
             when others =>
                Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
-                                                  str  => To_Wide_Wide_String (Source => GlobaleTexte.Ladezeit (WelcheZeit)) & " "
+                                                  str  => To_Wide_Wide_String (Source => GlobaleTexte.Ladezeit (WelcheZeit)) & "   "
                                                   & To_Wide_Wide_String (Source => ZahlAlsStringLadefortschritt (ZahlExtern => Ladezeiten.FortschrittSpielwelt (SpielweltErstellenSchleifenwert))) & "/" & "100");
          end case;
                                                  
@@ -54,9 +54,9 @@ package body LadezeitenSFML is
             
          Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
                                        position => AktuelleTextposition);
-      
-         AktuelleTextposition.y := AktuelleTextposition.y + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.LadezeitenAccess (WelcheZeit)).height + ZeilenAbstand;
          
+         AktuelleTextposition.y := AktuelleTextposition.y + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.LadezeitenAccess (WelcheZeit)).height + ZeilenAbstand;
+               
       end loop SpielweltErstellenSchleife;
       
       TextanzeigeSchleife:
@@ -86,21 +86,49 @@ package body LadezeitenSFML is
             StandardsFestlegen;
       end case;
             
-      AktuelleTextposition.x := AllgemeineTextBerechnungenSFML.TextMittelPositionErmitteln (TextAccessExtern => TextaccessVariablen.KIZeitenAccess (TextaccessVariablen.KIZeitenAccess'First));
+      WelcheZeit := TextaccessVariablen.KIZeitenAccess'First;
+      AktuelleTextposition.x := AllgemeineTextBerechnungenSFML.TextMittelPositionErmitteln (TextAccessExtern => TextaccessVariablen.KIZeitenAccess (WelcheZeit));
       
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KIZeitenAccess (TextaccessVariablen.KIZeitenAccess'First),
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
                                     position => (AktuelleTextposition));
       
-      AktuelleTextposition.y := AktuelleTextposition.y + 3.00 * Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KIZeitenAccess (TextaccessVariablen.KIZeitenAccess'First)).height + ZeilenAbstand;
+      AktuelleTextposition.y := AktuelleTextposition.y + 3.00 * Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KIZeitenAccess (WelcheZeit)).height + ZeilenAbstand;
       
-      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KIZeitenAccess (TextaccessVariablen.KIZeitenAccess'Last),
-                                         str  => RassenAllgemein.Rassenname (RasseExtern => WelcheRasse) & " "
-                                         & To_Wide_Wide_String (Source => ZahlAlsStringLadefortschritt (ZahlExtern => Ladezeiten.FortschrittKI (WelcheRasse))) & "/" & "100");
+      WelcheZeit := WelcheZeit + 1;
+      
+      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
+                                         str  => RassenAllgemein.Rassenname (RasseExtern => WelcheRasse));
                                                  
-      AktuelleTextposition.x := AllgemeineTextBerechnungenSFML.TextMittelPositionErmitteln (TextAccessExtern => TextaccessVariablen.KIZeitenAccess (TextaccessVariablen.KIZeitenAccess'Last));
+      AktuelleTextposition.x := AllgemeineTextBerechnungenSFML.TextMittelPositionErmitteln (TextAccessExtern => TextaccessVariablen.KIZeitenAccess (WelcheZeit));
             
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KIZeitenAccess (TextaccessVariablen.KIZeitenAccess'Last),
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
                                     position => AktuelleTextposition);
+      
+      KIRechnetSchleife:
+      for KIRechnetSchleifenwert in LadezeitenDatentypen.KI_Rechnet_Enum'Range loop
+         
+         AktuelleTextposition.y := AktuelleTextposition.y + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KIZeitenAccess (WelcheZeit)).height + ZeilenAbstand;
+         WelcheZeit := WelcheZeit + 1;
+         
+         case
+           Ladezeiten.FortschrittKI (KIRechnetSchleifenwert)
+         is
+            when 0 =>
+               Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
+                                                  str  => To_Wide_Wide_String (Source => GlobaleTexte.Ladezeit (WelcheZeit)));
+            
+            when others =>
+               Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
+                                                  str  => To_Wide_Wide_String (Source => GlobaleTexte.Ladezeit (WelcheZeit)) & "   " &
+                                                    To_Wide_Wide_String (Source => ZahlAlsStringLadefortschritt (ZahlExtern => Ladezeiten.FortschrittKI (KIRechnetSchleifenwert))) & "/" & "100");
+         end case;
+         
+         AktuelleTextposition.x := AllgemeineTextBerechnungenSFML.TextMittelPositionErmitteln (TextAccessExtern => TextaccessVariablen.KIZeitenAccess (WelcheZeit));
+            
+         Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
+                                       position => AktuelleTextposition);
+         
+      end loop KIRechnetSchleife;
       
       TextanzeigeSchleife:
       for TextanzeigeSchleifenwert in TextaccessVariablen.KIZeitenAccessArray'Range loop

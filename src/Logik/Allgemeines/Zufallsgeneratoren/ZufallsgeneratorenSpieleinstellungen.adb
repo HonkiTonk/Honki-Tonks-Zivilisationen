@@ -7,10 +7,11 @@ with SonstigeVariablen;
 
 with Karten;
 
+------------------------------------ Überall mal Gen => hinzufügen, z. B. während P&P.
 package body ZufallsgeneratorenSpieleinstellungen is
    
    function ZufälligeVordefinierteKartengröße
-     return KartenDatentypen.Kartengröße_Verwendet_Enum
+     return RueckgabeDatentypen.Kartengrößen_Standard_Enum
    is begin
       
       ZufälligeVordefinierteKartengrößeWählen.Reset (ZufälligeVordefinierteKartengrößeGewählt);
@@ -21,21 +22,19 @@ package body ZufallsgeneratorenSpieleinstellungen is
    
    
    function ZufälligeKartengröße
-     return KartenDatentypen.Kartengröße_Verwendet_Enum
+     return KartenRecords.YXAchsenKartenfeldPositivRecord
    is begin
       
-      ------------------------ Überall mal Gen => hinzufügen, z. B. während P&P.
       ZufälligeKartengrößeWählen.Reset (Gen => ZufälligeKartengrößeGewählt);
       
       YAchseBestimmenSchleife:
       loop
          
-         AuswahlGröße := ZufälligeKartengrößeWählen.Random (ZufälligeKartengrößeGewählt);
+         YAchse := ZufälligeKartengrößeWählen.Random (ZufälligeKartengrößeGewählt);
          
          if
-           AuswahlGröße >= 20
+           YAchse >= 20
          then
-            Karten.Kartengrößen (KartenDatentypen.Kartengröße_Nutzer_Enum).YAchse := AuswahlGröße;
             exit YAchseBestimmenSchleife;
 
          else
@@ -47,12 +46,11 @@ package body ZufallsgeneratorenSpieleinstellungen is
       XAchseBestimmenSchleife:
       loop
 
-         AuswahlGröße := ZufälligeKartengrößeWählen.Random (ZufälligeKartengrößeGewählt);
+         XAchse := ZufälligeKartengrößeWählen.Random (ZufälligeKartengrößeGewählt);
          
          if
-           AuswahlGröße >= 20
+           XAchse >= 20
          then
-            Karten.Kartengrößen (KartenDatentypen.Kartengröße_Nutzer_Enum).XAchse := AuswahlGröße;
             exit XAchseBestimmenSchleife;
 
          else
@@ -61,7 +59,7 @@ package body ZufallsgeneratorenSpieleinstellungen is
 
       end loop XAchseBestimmenSchleife;
       
-      return KartenDatentypen.Kartengröße_Nutzer_Enum;
+      return (YAchse, XAchse);
       
    end ZufälligeKartengröße;
    
@@ -119,19 +117,30 @@ package body ZufallsgeneratorenSpieleinstellungen is
    
    
    
-   procedure ZufälligeRassen
+   function ZufälligeRasse
+     return RassenDatentypen.Rassen_Verwendet_Enum
+   is begin
+      
+      ZufälligeRasseWählen.Reset (Gen => ZufälligeRasseGewählt);
+      return ZufälligeRasseWählen.Random (Gen => ZufälligeRasseGewählt);
+      
+   end ZufälligeRasse;
+   
+   
+   
+   procedure ZufälligeRassenbelegung
    is begin
       
       SpielerVorhanden := False;
       SonstigeVariablen.RassenImSpiel := (others => RassenDatentypen.Leer_Spieler_Enum);
-      ZufälligeRassenWählen.Reset (ZufälligeRassenGewählt);
+      ZufälligeRassenbelegungWählen.Reset (ZufälligeRassenbelegungGewählt);
       
       SpielerSchleife:
       while SpielerVorhanden = False loop
          RassenSchleife:
          for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
-            RasseImSpiel := ZufälligeRassenWählen.Random (ZufälligeRassenGewählt);
+            RasseImSpiel := ZufälligeRassenbelegungWählen.Random (ZufälligeRassenbelegungGewählt);
 
             if
               RasseImSpiel = RassenDatentypen.Spieler_KI_Enum
@@ -146,7 +155,7 @@ package body ZufallsgeneratorenSpieleinstellungen is
          end loop RassenSchleife;
       end loop SpielerSchleife;
       
-      ZufälligeRassenWählen.Reset (ZufälligeRassenGewählt);
+      ZufälligeRassenbelegungWählen.Reset (ZufälligeRassenbelegungGewählt);
       
       MenschFestlegenSchleife:
       loop
@@ -156,7 +165,7 @@ package body ZufallsgeneratorenSpieleinstellungen is
             if
               SonstigeVariablen.RassenImSpiel (MenschlicheRasseSchleifenwert) = RassenDatentypen.Spieler_KI_Enum
             then
-               RasseImSpiel := ZufälligeRassenWählen.Random (ZufälligeRassenGewählt);
+               RasseImSpiel := ZufälligeRassenbelegungWählen.Random (ZufälligeRassenbelegungGewählt);
                
                case
                  RasseImSpiel
@@ -176,7 +185,7 @@ package body ZufallsgeneratorenSpieleinstellungen is
          end loop MenschlicherSpielerSchleife;
       end loop MenschFestlegenSchleife;
       
-   end ZufälligeRassen;
+   end ZufälligeRassenbelegung;
    
    
    

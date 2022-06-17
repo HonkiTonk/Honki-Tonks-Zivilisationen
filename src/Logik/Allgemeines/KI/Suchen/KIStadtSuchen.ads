@@ -20,14 +20,14 @@ package KIStadtSuchen is
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
           and
-            AnfangKoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+            AnfangKoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
           and
-            AnfangKoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse),
+            AnfangKoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse),
 
          Post =>
-           (NähesteFeindlicheStadtSuchen'Result.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+           (NähesteFeindlicheStadtSuchen'Result.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
             and
-              NähesteFeindlicheStadtSuchen'Result.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+              NähesteFeindlicheStadtSuchen'Result.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
 
    function UnbewachteStadtSuchen
      (FeindlicheRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
@@ -37,9 +37,9 @@ package KIStadtSuchen is
          (SonstigeVariablen.RassenImSpiel (FeindlicheRasseExtern) = RassenDatentypen.Spieler_KI_Enum),
 
          Post =>
-           (UnbewachteStadtSuchen'Result.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+           (UnbewachteStadtSuchen'Result.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
             and
-              UnbewachteStadtSuchen'Result.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+              UnbewachteStadtSuchen'Result.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
 
 private
 
@@ -56,9 +56,9 @@ private
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
           and
-            AnfangKoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+            AnfangKoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
           and
-            AnfangKoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse),
+            AnfangKoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse),
 
          Post =>
            (StadtSuchen'Result in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Städtegrenze);

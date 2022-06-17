@@ -119,63 +119,63 @@ private
           and
             SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum
           and
-            KarteKoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+            KarteKoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartenparameter.Kartengröße.YAchse
           and
-            KarteKoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+            KarteKoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartenparameter.Kartengröße.XAchse);
 
    procedure AnzeigeLandschaft
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre =>
-         (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+         (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartenparameter.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartenparameter.Kartengröße.XAchse);
 
    procedure KartenfeldZeichnen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre =>
-         (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+         (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartenparameter.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartenparameter.Kartengröße.XAchse);
 
    procedure FlussZeichnen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre =>
-         (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+         (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartenparameter.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartenparameter.Kartengröße.XAchse);
 
    procedure RessourceZeichnen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre =>
-         (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+         (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartenparameter.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartenparameter.Kartengröße.XAchse);
 
    procedure WegZeichnen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre =>
-         (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+         (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartenparameter.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartenparameter.Kartengröße.XAchse);
 
    procedure VerbesserungZeichnen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre =>
-         (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+         (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartenparameter.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartenparameter.Kartengröße.XAchse);
 
    procedure StadtZeichnen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
@@ -187,8 +187,8 @@ private
           and
             SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum
           and
-            KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+            KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartenparameter.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartenparameter.Kartengröße.XAchse);
 
 end KarteStadtSFML;

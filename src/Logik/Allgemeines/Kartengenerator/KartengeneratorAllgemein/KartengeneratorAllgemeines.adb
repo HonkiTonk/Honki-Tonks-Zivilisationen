@@ -8,15 +8,11 @@ with KartengeneratorPolregion;
 with KartengeneratorStandard;
 with PolbereicheBerechnen;
 
-with SchreibeKarten;
-
 package body KartengeneratorAllgemeines is
    
    procedure GenerierungAllgemeines
    is begin
-      
-      SchreibeKarten.KarteNullsetzen;
-      
+            
       PolbereicheBerechnen.PolbereicheBerechnen;
       GenerierungGrundlagen;
       

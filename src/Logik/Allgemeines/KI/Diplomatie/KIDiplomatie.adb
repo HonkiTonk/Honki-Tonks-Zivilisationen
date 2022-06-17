@@ -1,14 +1,29 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with LadezeitenDatentypen;
+
+with Ladezeiten;
+
 package body KIDiplomatie is
    
    procedure Diplomatie
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      null;
+      case
+        RasseExtern
+      is
+         when RassenDatentypen.Ekropa_Enum =>
+            return;
+            
+         when others =>
+            null;
+      end case;
       
+      Ladezeiten.FortschrittKISchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Berechne_Diplomatie_Enum);
+      Ladezeiten.FortschrittKIMaximum (WelcheBerechnungenExtern => LadezeitenDatentypen.Berechne_Diplomatie_Enum);
+            
    end Diplomatie;
    
    

@@ -72,9 +72,9 @@ package KartenRecordKonstanten is
                                                                                       );
    
    KartenparameterStandard : constant KartenRecords.KartenparameterRecord := (
-                                                                              Kartengröße      => KartenDatentypen.Kartengröße_40_40_Enum,
+                                                                              Kartengröße      => (40, 40),
 
-                                                                              -- Inseln, Kontinente, Pangäa, Nur Land, Chaos
+                                                                              -- Inseln, Kontinente, Pangäa
                                                                               Kartenart        => KartenDatentypen.Kartenart_Inseln_Enum,
 
                                                                               -- Kalt, Gemäßigt, Heiß, Eiszeit, Wüste

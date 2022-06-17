@@ -15,15 +15,15 @@ package body KartengeneratorPlaneteninneres is
       
       Multiplikator := 1;
       
-      YKernanfang := Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse / 2 - Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse / 10;
-      XKernanfang := Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse / 2 - Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse / 10;
-      YKernende := Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse / 2 + Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse / 10;
-      XKernende := Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse / 2 + Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse / 10;
+      YKernanfang := Karten.Kartenparameter.Kartengröße.YAchse / 2 - Karten.Kartenparameter.Kartengröße.YAchse / 10;
+      XKernanfang := Karten.Kartenparameter.Kartengröße.XAchse / 2 - Karten.Kartenparameter.Kartengröße.XAchse / 10;
+      YKernende := Karten.Kartenparameter.Kartengröße.YAchse / 2 + Karten.Kartenparameter.Kartengröße.YAchse / 10;
+      XKernende := Karten.Kartenparameter.Kartengröße.XAchse / 2 + Karten.Kartenparameter.Kartengröße.XAchse / 10;
                
       YAchseSchleife:
-      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse loop
+      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartenparameter.Kartengröße.YAchse loop
          XAchseSchleife:
-         for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse loop
+         for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartenparameter.Kartengröße.XAchse loop
             
             if
               YAchseSchleifenwert in YKernanfang .. YKernende
@@ -40,7 +40,7 @@ package body KartengeneratorPlaneteninneres is
          end loop XAchseSchleife;
             
          if
-           ZahlenDatentypen.EigenesPositive (YAchseSchleifenwert) >= Multiplikator * ZahlenDatentypen.EigenesPositive (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse) / 25
+           ZahlenDatentypen.EigenesPositive (YAchseSchleifenwert) >= Multiplikator * ZahlenDatentypen.EigenesPositive (Karten.Kartenparameter.Kartengröße.YAchse) / 25
          then
             Ladezeiten.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Allgemeines_Enum);
             Multiplikator := Multiplikator + 1;

@@ -166,7 +166,7 @@ package KartenRecords is
    
    type KartenparameterRecord is record
       
-      Kartengröße : KartenDatentypen.Kartengröße_Enum;
+      Kartengröße : YXAchsenKartenfeldPositivRecord;
       Kartenart : KartenDatentypen.Kartenart_Enum;
       Kartentemperatur : KartenDatentypen.Kartentemperatur_Enum;
       Kartenressourcen : KartenDatentypen.Kartenressourcen_Enum;

@@ -23,14 +23,23 @@ with InteraktionGrafiktask;
 package body Spieleinstellungen is
 
    function Spieleinstellungen
-     return RueckgabeDatentypen.Rückgabe_Werte_Enum
+     (SchnellstartExtern : in Boolean)
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
-      SonstigeVariablen.RassenImSpiel := (others => RassenDatentypen.Leer_Spieler_Enum);
+      case
+        SchnellstartExtern
+      is
+         when True =>
+            SpieleinstellungenRasseSpieler.RasseAutomatischBelegen;
+            return AutomatischeEinstellungen;
+            
+         when False =>
+            null;
+      end case;
       
       SpielGespieltSchleife:
       loop
-         ----------------------- Später auf Standardwerte für alles außer die Rassenbelegung festsetzen und dann nur prüfen ob eine Rasse belegt ist.
          SpielEinstellungenSchleife:
          loop
          
@@ -68,14 +77,16 @@ package body Spieleinstellungen is
                   if
                     SpieleinstellungenRasseSpieler.EineRasseBelegt = True
                   then
-                     exit SpielEinstellungenSchleife;
+                     null;
                   
                   else
-                     null;
+                     SpieleinstellungenRasseSpieler.RasseAutomatischBelegen;
                   end if;
+                  
+                  exit SpielEinstellungenSchleife;
 
                when RueckgabeDatentypen.Hauptmenü_Beenden_Enum'Range =>
-                  return Auswahl;
+                  return RueckgabeDatentypen.Hauptmenü_Enum;
 
                when others =>
                   null;
@@ -94,6 +105,7 @@ package body Spieleinstellungen is
             when others =>
                return Rückgabewert;
          end case;
+         
       end loop SpielGespieltSchleife;
               
    end Spieleinstellungen;

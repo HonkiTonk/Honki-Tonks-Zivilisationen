@@ -222,7 +222,8 @@ package body AuswahlMenuesEinfachSFML is
         WelchesMenüExtern
       is
          when MenueDatentypen.Kartengröße_Menü_Enum =>
-            AktuelleEinstellung := AktuelleEinstellung + KartenDatentypen.Kartengröße_Enum'Pos (Karten.Kartenparameter.Kartengröße);
+            -- Hier wird keine Farbfestlegung mehr benötigt, da ich die Art die Kartengröße zu speichern geändert habe.
+            return;
             
          when MenueDatentypen.Kartenart_Menü_Enum =>
             AktuelleEinstellung := AktuelleEinstellung + KartenDatentypen.Kartenart_Enum'Pos (Karten.Kartenparameter.Kartenart);
