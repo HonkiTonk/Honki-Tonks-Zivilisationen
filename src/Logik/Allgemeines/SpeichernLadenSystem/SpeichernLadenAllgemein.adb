@@ -1,6 +1,9 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with Ada.Directories; use Ada.Directories;
+with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
+
 with Eingabe;
 
 package body SpeichernLadenAllgemein is
@@ -31,16 +34,7 @@ package body SpeichernLadenAllgemein is
       return Boolean
    is begin
       
-      if
-        To_Wide_Wide_String (Source => SpielstandnameExtern) = " "
-      then
-         null;
-         
-      else
-         null;
-      end if;
-      
-      return False;
+      return Exists (Name => "Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => SpielstandnameExtern)));
       
    end SpielstandVorhanden;
 

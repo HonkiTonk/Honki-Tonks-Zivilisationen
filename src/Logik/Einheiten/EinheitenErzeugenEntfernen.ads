@@ -23,9 +23,9 @@ package EinheitenErzeugenEntfernen is
        Pre =>
          (SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
           and
-            KoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+            KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
 
    procedure EinheitEntfernen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

@@ -17,27 +17,27 @@ package SchreibeKarten is
       GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
      with
        Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
    
    procedure BasisGrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
      with
        Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
    
    procedure GleicherGrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
      with
        Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
    
    procedure UnterschiedlicherGrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
@@ -45,9 +45,9 @@ package SchreibeKarten is
       AktuellerGrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
      with
        Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
    
    procedure Sichtbar
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
@@ -57,54 +57,54 @@ package SchreibeKarten is
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
           and
-            KoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+            KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
 
    procedure Fluss
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       FlussExtern : in KartengrundDatentypen.Kartenfluss_Enum)
      with
        Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
 
    procedure Weg
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Enum)
      with
        Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
 
    procedure Verbesserung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Enum)
      with
        Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
 
    procedure Ressource
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Enum)
      with
        Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
 
    procedure BelegterGrund
      (KoordinatenExtern : KartenRecords.AchsenKartenfeldNaturalRecord;
       BelegterGrundExtern : in KartenRecords.BelegterGrundRecord)
      with
        Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
 
    procedure Bewertung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
@@ -114,8 +114,8 @@ package SchreibeKarten is
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
           and
-            KoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+            KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
 
 end SchreibeKarten;

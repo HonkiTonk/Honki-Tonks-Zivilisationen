@@ -23,9 +23,9 @@ package BewegungPassierbarkeitPruefen is
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            NeueKoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+            NeueKoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            NeueKoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse
+            NeueKoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
           and
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
    
@@ -36,9 +36,9 @@ package BewegungPassierbarkeitPruefen is
       return Boolean
      with
        Pre =>
-         (NeueKoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+         (NeueKoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            NeueKoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse
+            NeueKoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
           and
             SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
 
@@ -50,9 +50,9 @@ package BewegungPassierbarkeitPruefen is
        Pre =>
          (TransporterExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (TransporterExtern.Rasse).Einheitengrenze
           and
-            NeueKoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+            NeueKoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            NeueKoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse
+            NeueKoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
           and
             SonstigeVariablen.RassenImSpiel (TransporterExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
       
@@ -90,9 +90,9 @@ private
       return Boolean
      with
        Pre =>
-         (NeueKoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+         (NeueKoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            NeueKoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse
+            NeueKoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
           and
             SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
    
@@ -103,9 +103,9 @@ private
       return Boolean
      with
        Pre =>
-         (NeueKoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+         (NeueKoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            NeueKoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse
+            NeueKoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
           and
             SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
      
@@ -115,8 +115,8 @@ private
       return Boolean
      with
        Pre =>
-         (NeueKoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+         (NeueKoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            NeueKoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+            NeueKoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
 
 end BewegungPassierbarkeitPruefen;

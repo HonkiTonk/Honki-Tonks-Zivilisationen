@@ -15,9 +15,9 @@ package VerbesserungAnlegen is
       VerbesserungExtern : in AufgabenDatentypen.Einheitenbefehle_Gebilde_Enum)
      with
        Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
 
 private
 

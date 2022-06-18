@@ -3,13 +3,13 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 
-with Karten;
 with Fehler;
+with KartengeneratorVariablen;
 
 package body ZufallsgeneratorenKarten is
    
    function KartengeneratorZufallswerte
-     return KartenDatentypen.WahrscheinlichkeitKartengenerator
+     return KartenDatentypen.Auswahlbereich
    is begin
       
       ZufälligeZahl.Reset (ZufälligeZahlGewählt);
@@ -39,12 +39,12 @@ package body ZufallsgeneratorenKarten is
         YAchseXAchseExtern
       is
          when True =>
-            MinimalerWert := Karten.Landgrößen.MinimaleYAchse;
-            MaximalerWert := Karten.Landgrößen.MaximaleYAchse;
+            MinimalerWert := KartengeneratorVariablen.Landgrößen.MinimaleYAchse;
+            MaximalerWert := KartengeneratorVariablen.Landgrößen.MaximaleYAchse;
 
          when False =>
-            MinimalerWert := Karten.Landgrößen.MinimaleXAchse;
-            MaximalerWert := Karten.Landgrößen.MaximaleXAchse;
+            MinimalerWert := KartengeneratorVariablen.Landgrößen.MinimaleXAchse;
+            MaximalerWert := KartengeneratorVariablen.Landgrößen.MaximaleXAchse;
       end case;
 
       if
@@ -90,12 +90,12 @@ package body ZufallsgeneratorenKarten is
         YAchseXAchseExtern
       is
          when True =>
-            MinimalerWert := Karten.Abstände.MinimaleYAchse;
-            MaximalerWert := Karten.Abstände.MaximaleYAchse;
+            MinimalerWert := KartengeneratorVariablen.Abstände.MinimaleYAchse;
+            MaximalerWert := KartengeneratorVariablen.Abstände.MaximaleYAchse;
 
          when False =>
-            MinimalerWert := Karten.Abstände.MinimaleXAchse;
-            MaximalerWert := Karten.Abstände.MaximaleXAchse;
+            MinimalerWert := KartengeneratorVariablen.Abstände.MinimaleXAchse;
+            MaximalerWert := KartengeneratorVariablen.Abstände.MaximaleXAchse;
       end case;
 
       if

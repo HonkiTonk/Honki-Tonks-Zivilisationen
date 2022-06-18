@@ -5,7 +5,6 @@ with Ada.Calendar; use Ada.Calendar;
 
 with SystemDatentypen;
 with EinheitenKonstanten;
-with GrafikDatentypen;
 with LadezeitenDatentypen;
 
 with KartenfelderBewerten;
@@ -15,16 +14,12 @@ with KartengeneratorFluss;
 with KartengeneratorRessourcen;
 with KartengeneratorUnterwasserUnterirdisch;
 with KartengeneratorAllgemeines;
-with InteraktionGrafiktask;
 with Ladezeiten;
 
 package body Kartengenerator is
 
    procedure Kartengenerator
    is begin
-      
-      Ladezeiten.SpielweltNullsetzen;
-      InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Generierungszeit_Enum;
       
       AllgemeinesGenerieren;
       KüstenwasserGenerieren;

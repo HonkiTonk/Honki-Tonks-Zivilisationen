@@ -18,9 +18,9 @@ package body KartengeneratorWeltraum is
       Multiplikator := 1;
       
       YAchseSchleife:
-      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartenparameter.Kartengröße.YAchse loop
+      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Karteneinstellungen.Kartengröße.YAchse loop
          XAchseSchleife:
-         for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartenparameter.Kartengröße.XAchse loop
+         for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Karteneinstellungen.Kartengröße.XAchse loop
 
             SchreibeKarten.GleicherGrund (KoordinatenExtern => (2, YAchseSchleifenwert, XAchseSchleifenwert),
                                           GrundExtern       => KartengrundDatentypen.Weltraum_Enum);
@@ -28,7 +28,7 @@ package body KartengeneratorWeltraum is
          end loop XAchseSchleife;
             
          if
-           ZahlenDatentypen.EigenesPositive (YAchseSchleifenwert) >= Multiplikator * ZahlenDatentypen.EigenesPositive (Karten.Kartenparameter.Kartengröße.YAchse) / 25
+           ZahlenDatentypen.EigenesPositive (YAchseSchleifenwert) >= Multiplikator * ZahlenDatentypen.EigenesPositive (Karten.Karteneinstellungen.Kartengröße.YAchse) / 25
          then
             Ladezeiten.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Allgemeines_Enum);
             Multiplikator := Multiplikator + 1;

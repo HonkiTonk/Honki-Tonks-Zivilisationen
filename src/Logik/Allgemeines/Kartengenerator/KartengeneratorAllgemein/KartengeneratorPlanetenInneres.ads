@@ -23,7 +23,7 @@ private
 
    WelcherGrund : KartengrundDatentypen.Kartengrund_Enum;
 
-   type BasisWahrscheinlichkeitenArray is array (KartengrundDatentypen.Kartengrund_Kernfläche_Fest_Enum'Range) of KartenDatentypen.WahrscheinlichkeitKartengenerator;
+   type BasisWahrscheinlichkeitenArray is array (KartengrundDatentypen.Kartengrund_Kernfläche_Fest_Enum'Range) of KartenDatentypen.Auswahlbereich;
    BasisWahrscheinlichkeiten : BasisWahrscheinlichkeitenArray := (
                                                                   KartengrundDatentypen.Ringwoodit_Enum     => 20,
                                                                   KartengrundDatentypen.Majorit_Enum        => 20,
@@ -39,9 +39,9 @@ private
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
      with
        Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
 
 
 
@@ -51,9 +51,9 @@ private
       return KartengrundDatentypen.Kartengrund_Kernfläche_Basis_Enum
      with
        Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
 
    function ZusatzberechnungRingwoodit
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
@@ -61,9 +61,9 @@ private
       return KartengrundDatentypen.Kartengrund_Kernfläche_Basis_Enum
      with
        Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
 
 
 
@@ -73,9 +73,9 @@ private
       return KartengrundDatentypen.Kartengrund_Kernfläche_Basis_Enum
      with
        Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
 
 
 
@@ -85,9 +85,9 @@ private
       return KartengrundDatentypen.Kartengrund_Kernfläche_Basis_Enum
      with
        Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
 
 
 
@@ -97,8 +97,8 @@ private
       return KartengrundDatentypen.Kartengrund_Kernfläche_Basis_Enum
      with
        Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
 
 end KartengeneratorPlaneteninneres;

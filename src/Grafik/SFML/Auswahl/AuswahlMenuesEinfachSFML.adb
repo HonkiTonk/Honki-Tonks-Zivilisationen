@@ -20,9 +20,9 @@ with AllgemeineTextBerechnungenSFML;
 with AuswahlMenuesStringsSetzen;
 with AuswahlMenuesEinfach;
 with AuswahlMenuesZusatztextSFML;
-with Karten;
 with HintergrundSFML;
 with InteraktionAuswahl;
+with KartengeneratorVariablen;
 
 package body AuswahlMenuesEinfachSFML is
 
@@ -222,17 +222,17 @@ package body AuswahlMenuesEinfachSFML is
         WelchesMenüExtern
       is
          when MenueDatentypen.Kartengröße_Menü_Enum =>
-            -- Hier wird keine Farbfestlegung mehr benötigt, da ich die Art die Kartengröße zu speichern geändert habe.
+            -- Hier wird keine Farbfestlegung benötigt, da es inzwischen eine Zahlenanzeige dafür gibt.
             return;
             
          when MenueDatentypen.Kartenart_Menü_Enum =>
-            AktuelleEinstellung := AktuelleEinstellung + KartenDatentypen.Kartenart_Enum'Pos (Karten.Kartenparameter.Kartenart);
+            AktuelleEinstellung := AktuelleEinstellung + KartenDatentypen.Kartenart_Enum'Pos (KartengeneratorVariablen.Kartenparameter.Kartenart);
             
          when MenueDatentypen.Kartentemperatur_Menü_Enum =>
-            AktuelleEinstellung := AktuelleEinstellung + KartenDatentypen.Kartentemperatur_Enum'Pos (Karten.Kartenparameter.Kartentemperatur);
+            AktuelleEinstellung := AktuelleEinstellung + KartenDatentypen.Kartentemperatur_Enum'Pos (KartengeneratorVariablen.Kartenparameter.Kartentemperatur);
             
          when MenueDatentypen.Kartenressourcen_Menü_Enum =>
-            AktuelleEinstellung := AktuelleEinstellung + KartenDatentypen.Kartenressourcen_Enum'Pos (Karten.Kartenparameter.Kartenressourcen);
+            AktuelleEinstellung := AktuelleEinstellung + KartenDatentypen.Kartenressourcen_Enum'Pos (KartengeneratorVariablen.Kartenparameter.Kartenressourcen);
             
          when MenueDatentypen.Schwierigkeitsgrad_Menü_Enum =>
             AktuelleEinstellung := AktuelleEinstellung + SpielDatentypen.Schwierigkeitsgrad_Enum'Pos (SpielVariablen.Schwierigkeitsgrad);

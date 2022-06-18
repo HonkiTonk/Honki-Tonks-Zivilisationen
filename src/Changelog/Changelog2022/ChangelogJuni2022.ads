@@ -77,17 +77,19 @@ package ChangelogJuni2022 is
    
    
 
-   -- Version 0.01.1 => 0.01.1 (19.06.2022):
+   -- Version 0.01.1435 => 0.01.1 (19.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.1395 => 0.01.1 (18.06.2022):
+   -- Version 0.01.1395 => 0.01.1435 (18.06.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Speicherung der Karteneinstellungen in einen temporären und einen permanenten Teil aufgeteilt.
+   -- Es wird jetzt geprüft ob ein Spielstand vorhanden ist bevor er geladen/überschrieben wird.
+   -- Die KI berücksichtigt beim Auswählen eines neuen Forschungsprojektes jetzt auch die Forschungskosten.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

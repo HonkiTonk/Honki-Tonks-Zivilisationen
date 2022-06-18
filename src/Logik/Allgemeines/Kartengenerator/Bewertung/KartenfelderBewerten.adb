@@ -24,9 +24,9 @@ package body KartenfelderBewerten is
          Multiplikator (-1) := 1;
          
          YAchseUnterwasserSchleife:
-         for YAchseUnterwasserSchleifenwert in KartenDatentypen.KartenfeldPositiv'First .. Karten.Kartenparameter.Kartengröße.YAchse loop
+         for YAchseUnterwasserSchleifenwert in KartenDatentypen.KartenfeldPositiv'First .. Karten.Karteneinstellungen.Kartengröße.YAchse loop
             XAchseUnterwasserSchleife:
-            for XAchseUnterwasserSchleifenwert in KartenDatentypen.KartenfeldPositiv'First .. Karten.Kartenparameter.Kartengröße.XAchse loop
+            for XAchseUnterwasserSchleifenwert in KartenDatentypen.KartenfeldPositiv'First .. Karten.Karteneinstellungen.Kartengröße.XAchse loop
                
                FelderwerteFestlegen.KartenfelderBewertenKleineSchleife (RasseExtern       => RasseExtern,
                                                                         KoordinatenExtern => (-1, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert));
@@ -34,7 +34,7 @@ package body KartenfelderBewerten is
             end loop XAchseUnterwasserSchleife;
             
             if
-              ZahlenDatentypen.EigenesPositive (YAchseUnterwasserSchleifenwert) >= Multiplikator (-1) * ZahlenDatentypen.EigenesPositive (Karten.Kartenparameter.Kartengröße.YAchse) / 33
+              ZahlenDatentypen.EigenesPositive (YAchseUnterwasserSchleifenwert) >= Multiplikator (-1) * ZahlenDatentypen.EigenesPositive (Karten.Karteneinstellungen.Kartengröße.YAchse) / 33
             then
                Ladezeiten.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Bewerte_Kartenfelder_Enum);
                Multiplikator (-1) := Multiplikator (-1) + 1;
@@ -55,9 +55,9 @@ package body KartenfelderBewerten is
          Multiplikator (-2) := 1;
          
          YAchseInneresSchleife:
-         for YAchseInneresSchleifenwert in KartenDatentypen.KartenfeldPositiv'First .. Karten.Kartenparameter.Kartengröße.YAchse loop
+         for YAchseInneresSchleifenwert in KartenDatentypen.KartenfeldPositiv'First .. Karten.Karteneinstellungen.Kartengröße.YAchse loop
             XAchseInneresSchleife:
-            for XAchseInneresSchleifenwert in KartenDatentypen.KartenfeldPositiv'First .. Karten.Kartenparameter.Kartengröße.XAchse loop
+            for XAchseInneresSchleifenwert in KartenDatentypen.KartenfeldPositiv'First .. Karten.Karteneinstellungen.Kartengröße.XAchse loop
                
                FelderwerteFestlegen.KartenfelderBewertenKleineSchleife (RasseExtern       => RasseExtern,
                                                                         KoordinatenExtern => (-2, YAchseInneresSchleifenwert, XAchseInneresSchleifenwert));
@@ -65,7 +65,7 @@ package body KartenfelderBewerten is
             end loop XAchseInneresSchleife;
             
             if
-              ZahlenDatentypen.EigenesPositive (YAchseInneresSchleifenwert) >= Multiplikator (-2) * ZahlenDatentypen.EigenesPositive (Karten.Kartenparameter.Kartengröße.YAchse) / 33
+              ZahlenDatentypen.EigenesPositive (YAchseInneresSchleifenwert) >= Multiplikator (-2) * ZahlenDatentypen.EigenesPositive (Karten.Karteneinstellungen.Kartengröße.YAchse) / 33
             then
                Ladezeiten.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Bewerte_Kartenfelder_Enum);
                Multiplikator (-2) := Multiplikator (-2) + 1;
@@ -83,9 +83,9 @@ package body KartenfelderBewerten is
       Multiplikator (0) := 1;
       
       YAchseSchleife:
-      for YAchseSchleifenwert in KartenDatentypen.KartenfeldPositiv'First .. Karten.Kartenparameter.Kartengröße.YAchse loop
+      for YAchseSchleifenwert in KartenDatentypen.KartenfeldPositiv'First .. Karten.Karteneinstellungen.Kartengröße.YAchse loop
          XAchseSchleife:
-         for XAchseSchleifenwert in KartenDatentypen.KartenfeldPositiv'First .. Karten.Kartenparameter.Kartengröße.XAchse loop
+         for XAchseSchleifenwert in KartenDatentypen.KartenfeldPositiv'First .. Karten.Karteneinstellungen.Kartengröße.XAchse loop
             
             FelderwerteFestlegen.KartenfelderBewertenKleineSchleife (RasseExtern       => RasseExtern,
                                                                      KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert));
@@ -93,7 +93,7 @@ package body KartenfelderBewerten is
          end loop XAchseSchleife;
             
          if
-           ZahlenDatentypen.EigenesPositive (YAchseSchleifenwert) >= Multiplikator (0) * ZahlenDatentypen.EigenesPositive (Karten.Kartenparameter.Kartengröße.YAchse) / 33
+           ZahlenDatentypen.EigenesPositive (YAchseSchleifenwert) >= Multiplikator (0) * ZahlenDatentypen.EigenesPositive (Karten.Karteneinstellungen.Kartengröße.YAchse) / 33
          then
             Ladezeiten.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Bewerte_Kartenfelder_Enum);
             Multiplikator (0) := Multiplikator (0) + 1;

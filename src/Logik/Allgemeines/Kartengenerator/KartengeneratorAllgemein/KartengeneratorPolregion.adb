@@ -7,7 +7,7 @@ with KartenDatentypen; use KartenDatentypen;
 with SchreibeKarten;
 
 with Karten;
--- with KartengeneratorVariablen;
+with KartengeneratorVariablen;
 
 package body KartengeneratorPolregion is
 
@@ -65,7 +65,7 @@ package body KartengeneratorPolregion is
    is begin
       
       case
-        Karten.Kartenparameter.Kartenpole.Nordpol
+        KartengeneratorVariablen.Kartenparameter.Kartenpole.Nordpol
       is
          when KartenDatentypen.Kartenpol_Nicht_Vorhanden_Enum =>
             return;
@@ -75,9 +75,9 @@ package body KartengeneratorPolregion is
       end case;
       
       YAchseSchleife:
-      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Polgrößen (KartenDatentypen.Norden_Enum) loop
+      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) .. KartengeneratorVariablen.Polgrößen (KartenDatentypen.Norden_Enum) loop
          XAchseSchleife:
-         for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartenparameter.Kartengröße.XAchse loop
+         for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Karteneinstellungen.Kartengröße.XAchse loop
             
             SchreibeKarten.GleicherGrund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert),
                                          GrundExtern       => KartengrundDatentypen.Eis_Enum);
@@ -96,7 +96,7 @@ package body KartengeneratorPolregion is
    is begin
       
       case
-        Karten.Kartenparameter.Kartenpole.Südpol
+        KartengeneratorVariablen.Kartenparameter.Kartenpole.Südpol
       is
          when KartenDatentypen.Kartenpol_Nicht_Vorhanden_Enum =>
             return;
@@ -107,9 +107,9 @@ package body KartengeneratorPolregion is
 
       -- Hier ist + 1 nötig, da er nicht wie auf der anderen Polseite bis zu dem Punkt loopt sondern eins weiter.
       YAchseSchleife:
-      for YAchseSchleifenwert in Karten.Kartenparameter.Kartengröße.YAchse - Karten.Polgrößen (KartenDatentypen.Süden_Enum) + 1 .. Karten.Kartenparameter.Kartengröße.YAchse loop
+      for YAchseSchleifenwert in Karten.Karteneinstellungen.Kartengröße.YAchse - KartengeneratorVariablen.Polgrößen (KartenDatentypen.Süden_Enum) + 1 .. Karten.Karteneinstellungen.Kartengröße.YAchse loop
          XAchseSchleife:
-         for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartenparameter.Kartengröße.XAchse loop
+         for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Karteneinstellungen.Kartengröße.XAchse loop
             
             SchreibeKarten.GleicherGrund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert),
                                          GrundExtern       => KartengrundDatentypen.Eis_Enum);
@@ -128,7 +128,7 @@ package body KartengeneratorPolregion is
    is begin
       
       case
-        Karten.Kartenparameter.Kartenpole.Westpol
+        KartengeneratorVariablen.Kartenparameter.Kartenpole.Westpol
       is
          when KartenDatentypen.Kartenpol_Nicht_Vorhanden_Enum =>
             return;
@@ -138,9 +138,9 @@ package body KartengeneratorPolregion is
       end case;
       
       YAchseSchleife:
-      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartenparameter.Kartengröße.YAchse loop
+      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Karteneinstellungen.Kartengröße.YAchse loop
          XAchseSchleife:
-         for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Polgrößen (KartenDatentypen.Westen_Enum) loop
+         for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. KartengeneratorVariablen.Polgrößen (KartenDatentypen.Westen_Enum) loop
             
             SchreibeKarten.GleicherGrund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert),
                                          GrundExtern       => KartengrundDatentypen.Eis_Enum);
@@ -159,7 +159,7 @@ package body KartengeneratorPolregion is
    is begin
       
       case
-        Karten.Kartenparameter.Kartenpole.Ostpol
+        KartengeneratorVariablen.Kartenparameter.Kartenpole.Ostpol
       is
          when KartenDatentypen.Kartenpol_Nicht_Vorhanden_Enum =>
             return;
@@ -170,10 +170,10 @@ package body KartengeneratorPolregion is
       
       -- Hier ist + 1 nötig, da er nicht wie auf der anderen Polseite bis zu dem Punkt loopt sondern eins weiter.
       YAchseSchleife:
-      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartenparameter.Kartengröße.YAchse loop
+      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Karteneinstellungen.Kartengröße.YAchse loop
          XAchseSchleife:
-         for XAchseSchleifenwert in Karten.Kartenparameter.Kartengröße.XAchse - Karten.Polgrößen (KartenDatentypen.Osten_Enum) + 1
-           .. Karten.Kartenparameter.Kartengröße.XAchse loop
+         for XAchseSchleifenwert in Karten.Karteneinstellungen.Kartengröße.XAchse - KartengeneratorVariablen.Polgrößen (KartenDatentypen.Osten_Enum) + 1
+           .. Karten.Karteneinstellungen.Kartengröße.XAchse loop
             
             SchreibeKarten.GleicherGrund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert),
                                          GrundExtern       => KartengrundDatentypen.Eis_Enum);

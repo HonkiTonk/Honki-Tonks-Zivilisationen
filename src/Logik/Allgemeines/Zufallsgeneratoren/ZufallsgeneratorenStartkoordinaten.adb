@@ -62,7 +62,7 @@ package body ZufallsgeneratorenStartkoordinaten is
          YAchse := WerteWählen1000.Random (PositionGewählt1000);
          
          if
-           YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+           YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
          then
             exit YAchseSchleife;
             
@@ -78,7 +78,7 @@ package body ZufallsgeneratorenStartkoordinaten is
          XAchse := WerteWählen1000.Random (PositionGewählt1000);
          
          if
-           XAchse <= Karten.Kartenparameter.Kartengröße.XAchse
+           XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
          then
             exit XAchseSchleife;
             

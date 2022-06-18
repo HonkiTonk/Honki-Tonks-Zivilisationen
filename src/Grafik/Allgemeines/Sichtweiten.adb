@@ -10,17 +10,17 @@ package body Sichtweiten is
    is begin
       
       if
-        Karten.Kartenparameter.Kartengröße.YAchse <= 20
+        Karten.Karteneinstellungen.Kartengröße.YAchse <= 20
         or
-          Karten.Kartenparameter.Kartengröße.XAchse <= 20
+          Karten.Karteneinstellungen.Kartengröße.XAchse <= 20
       then
          Sichtweiten.SichtweiteFestlegen := 1;
          Sichtweiten.BewegungsfeldFestlegen := 1;
          
       elsif
-        Karten.Kartenparameter.Kartengröße.YAchse <= 40
+        Karten.Karteneinstellungen.Kartengröße.YAchse <= 40
         or
-          Karten.Kartenparameter.Kartengröße.XAchse <= 40
+          Karten.Karteneinstellungen.Kartengröße.XAchse <= 40
       then
          Sichtweiten.SichtweiteFestlegen := 2;
          Sichtweiten.BewegungsfeldFestlegen := 2;

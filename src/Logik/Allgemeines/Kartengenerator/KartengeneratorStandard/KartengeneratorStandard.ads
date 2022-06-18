@@ -19,7 +19,7 @@ private
    Landmassen : LandmassenArray;
    Landabstand : LandmassenArray;
    
-   BeliebigerLandwert : KartenDatentypen.WahrscheinlichkeitKartengenerator;
+   BeliebigerLandwert : KartenDatentypen.Auswahlbereich;
    
    Multiplikator : ZahlenDatentypen.EigenesPositive;
    
@@ -27,8 +27,8 @@ private
    
    type WahrscheinlichkeitenRecord is record
       
-      Anfangswert : KartenDatentypen.WahrscheinlichkeitKartengenerator;
-      Endwert : KartenDatentypen.WahrscheinlichkeitKartengenerator;
+      Anfangswert : KartenDatentypen.Auswahlbereich;
+      Endwert : KartenDatentypen.Auswahlbereich;
       
    end record;
    
@@ -42,27 +42,27 @@ private
       XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
      with
        Pre =>
-         (YAchseExtern <= Karten.Kartenparameter.Kartengröße.YAchse
+         (YAchseExtern <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            XAchseExtern <= Karten.Kartenparameter.Kartengröße.XAchse);
+            XAchseExtern <= Karten.Karteneinstellungen.Kartengröße.XAchse);
    
    procedure LandmasseGenerieren
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
      with
        Pre =>
-         (YAchseExtern <= Karten.Kartenparameter.Kartengröße.YAchse
+         (YAchseExtern <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            XAchseExtern <= Karten.Kartenparameter.Kartengröße.XAchse);
+            XAchseExtern <= Karten.Karteneinstellungen.Kartengröße.XAchse);
    
    procedure AbstandGenerieren
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
      with
        Pre =>
-         (YAchseExtern <= Karten.Kartenparameter.Kartengröße.YAchse
+         (YAchseExtern <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            XAchseExtern <= Karten.Kartenparameter.Kartengröße.XAchse);
+            XAchseExtern <= Karten.Karteneinstellungen.Kartengröße.XAchse);
 
    procedure GrundSchreiben
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
@@ -70,8 +70,8 @@ private
       MasseAbstandExtern : in Boolean)
      with
        Pre =>
-         (YAchseExtern <= Karten.Kartenparameter.Kartengröße.YAchse
+         (YAchseExtern <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            XAchseExtern <= Karten.Kartenparameter.Kartengröße.XAchse);
+            XAchseExtern <= Karten.Karteneinstellungen.Kartengröße.XAchse);
 
 end KartengeneratorStandard;

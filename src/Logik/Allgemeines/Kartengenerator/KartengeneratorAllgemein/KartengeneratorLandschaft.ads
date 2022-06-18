@@ -23,7 +23,7 @@ private
    
    BasisWahrscheinlichkeitAktuell : KartengrundDatentypen.Kartengrund_Oberfläche_Enum;
    
-   type BasisWahrscheinlichkeitenArray is array (KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum'Range) of KartenDatentypen.WahrscheinlichkeitKartengenerator;
+   type BasisWahrscheinlichkeitenArray is array (KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum'Range) of KartenDatentypen.Auswahlbereich;
    BasisWahrscheinlichkeiten : BasisWahrscheinlichkeitenArray := (
                                                                   KartengrundDatentypen.Flachland_Enum => 50,
                                                                   KartengrundDatentypen.Wüste_Enum     => 15,
@@ -39,7 +39,7 @@ private
    
    
    
-   type ZusatzWahrscheinlichkeitenArray is array (KartengrundDatentypen.Kartengrund_Oberfläche_Zusatz_Enum'Range) of KartenDatentypen.WahrscheinlichkeitKartengenerator;
+   type ZusatzWahrscheinlichkeitenArray is array (KartengrundDatentypen.Kartengrund_Oberfläche_Zusatz_Enum'Range) of KartenDatentypen.Auswahlbereich;
    ZusatzWahrscheinlichkeiten : ZusatzWahrscheinlichkeitenArray := (
                                                                     KartengrundDatentypen.Wald_Enum      => 40,
                                                                     KartengrundDatentypen.Dschungel_Enum => 30,
@@ -55,17 +55,17 @@ private
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
      with
        Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
    
    procedure ZusatzgrundBestimmen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
      with
        Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
    
    
    
@@ -75,9 +75,9 @@ private
       return KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum
      with
        Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
       
    function ZusatzExtraberechnungen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
@@ -85,9 +85,9 @@ private
       return KartengrundDatentypen.Kartengrund_Enum
      with
        Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
    
    function ZusatzberechnungTundra
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
@@ -95,9 +95,9 @@ private
       return KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum
      with
        Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
    
    function ZusatzberechnungWüste
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
@@ -105,9 +105,9 @@ private
       return KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum
      with
        Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
    
    function ZusatzberechnungHügel
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
@@ -115,9 +115,9 @@ private
       return KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum
      with
        Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
    
    function ZusatzberechnungGebirge
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
@@ -125,9 +125,9 @@ private
       return KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum
      with
        Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
    
    function ZusatzberechnungFlachland
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
@@ -135,9 +135,9 @@ private
       return KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum
      with
        Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
    
    function ZusatzberechnungWald
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
@@ -145,9 +145,9 @@ private
       return KartengrundDatentypen.Kartengrund_Enum
      with
        Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
    
    function ZusatzberechnungDschungel
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
@@ -155,9 +155,9 @@ private
       return KartengrundDatentypen.Kartengrund_Enum
      with
        Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
    
    function ZusatzberechnungSumpf
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
@@ -165,8 +165,8 @@ private
       return KartengrundDatentypen.Kartengrund_Enum
      with
        Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
 
 end KartengeneratorLandschaft;

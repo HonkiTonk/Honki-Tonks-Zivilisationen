@@ -34,7 +34,8 @@ package Ladezeiten is
    FortschrittSpeichernLaden : LadezeitenDatentypen.Ladefortschritt;
 
    procedure SpielweltNullsetzen;
-   procedure KINullsetzen;
+   procedure KINullsetzenFortschritt;
+   procedure KINullsetzenZeit;
    procedure RundenendeNullsetzen;
    procedure SpeichernLadenNullsetzen;
    procedure RundenendeSchreiben;

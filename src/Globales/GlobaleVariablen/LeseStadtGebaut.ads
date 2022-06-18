@@ -39,9 +39,9 @@ package LeseStadtGebaut is
             SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum),
    
          Post =>
-           (Koordinaten'Result.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+           (Koordinaten'Result.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
             and
-              Koordinaten'Result.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+              Koordinaten'Result.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
    
    function EinwohnerArbeiter
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;

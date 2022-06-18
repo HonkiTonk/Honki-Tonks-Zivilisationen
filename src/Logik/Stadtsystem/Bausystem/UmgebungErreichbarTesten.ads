@@ -19,16 +19,16 @@ package UmgebungErreichbarTesten is
       return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre =>
-         (AktuelleKoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+         (AktuelleKoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            AktuelleKoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse
+            AktuelleKoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
           and
             SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum),
            
          Post =>
-           (UmgebungErreichbarTesten'Result.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+           (UmgebungErreichbarTesten'Result.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
             and
-              UmgebungErreichbarTesten'Result.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+              UmgebungErreichbarTesten'Result.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
    
 private
    
@@ -47,9 +47,9 @@ private
       return Boolean
      with
        Pre =>
-         (AktuelleKoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+         (AktuelleKoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            AktuelleKoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse
+            AktuelleKoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
           and
             SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
 

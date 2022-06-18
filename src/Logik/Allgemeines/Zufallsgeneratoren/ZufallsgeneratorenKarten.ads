@@ -8,7 +8,7 @@ with KartenDatentypen;
 package ZufallsgeneratorenKarten is
 
    function KartengeneratorZufallswerte
-     return KartenDatentypen.WahrscheinlichkeitKartengenerator;
+     return KartenDatentypen.Auswahlbereich;
 
    function KartengeneratorBoolean
      return Boolean;
@@ -27,7 +27,7 @@ private
    MaximalerWert : KartenDatentypen.KartenfeldPositiv;
    GezogenerWert : KartenDatentypen.KartenfeldPositiv;
 
-   package ZufälligeZahl is new Ada.Numerics.Discrete_Random (KartenDatentypen.WahrscheinlichkeitKartengenerator);
+   package ZufälligeZahl is new Ada.Numerics.Discrete_Random (KartenDatentypen.Auswahlbereich);
    package ZufälligerBoolean is new Ada.Numerics.Discrete_Random (Boolean);
    package ZufälligeLandgrößenAbstände is new Ada.Numerics.Discrete_Random (KartenDatentypen.KartenfeldPositiv);
 

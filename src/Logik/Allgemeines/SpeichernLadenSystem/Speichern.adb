@@ -141,15 +141,15 @@ package body Speichern is
    procedure Karte
    is begin
       
-      KartenRecords.KartenparameterRecord'Write (Stream (File => DateiSpeichern),
-                                                 Karten.Kartenparameter);
+      KartenRecords.PermanenteKartenparameterRecord'Write (Stream (File => DateiSpeichern),
+                                                           Karten.Karteneinstellungen);
       
       EAchseSchleife:
       for EAchseSchleifenwert in Karten.WeltkarteArray'Range (1) loop
          YAchseSchleife:
-         for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartenparameter.Kartengröße.YAchse loop
+         for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Karteneinstellungen.Kartengröße.YAchse loop
             XAchseSchleife:
-            for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartenparameter.Kartengröße.XAchse loop
+            for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Karteneinstellungen.Kartengröße.XAchse loop
 
                KartenRecords.KartenRecord'Write (Stream (File => DateiSpeichern),
                                                  Karten.Weltkarte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));

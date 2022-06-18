@@ -31,9 +31,9 @@ package KIAufgabenVerteilt is
       return Boolean
      with
        Pre =>
-         (ZielKoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+         (ZielKoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            ZielKoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse
+            ZielKoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
           and
             SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_KI_Enum);
    
@@ -43,9 +43,9 @@ package KIAufgabenVerteilt is
       return Boolean
      with
        Pre =>
-         (ZielKoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+         (ZielKoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            ZielKoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse
+            ZielKoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
           and
             SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_KI_Enum);
    

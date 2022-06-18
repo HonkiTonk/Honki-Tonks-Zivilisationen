@@ -37,8 +37,8 @@ package body ImSpiel is
       SpielSchleife:
       loop
          
-         -- Wird hier Nullgesetzt damit die Zeiten für das Debugmenü auch alle wieder korrekt sind. Ist das nötig?
-         Ladezeiten.KINullsetzen;
+         -- Wird hier Nullgesetzt damit die Zeiten für das Debugmenü auch alle vorhanden und korrekt sind.
+         Ladezeiten.KINullsetzenZeit;
          
          RassenSchleife:
          for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
@@ -149,6 +149,9 @@ package body ImSpiel is
    procedure KISpieler
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
+      
+      ------------------------------- Bringt noch Warnmeldungen bei Forschung, warum auch immer.
+      Ladezeiten.KINullsetzenFortschritt;
       
       InteraktionGrafiktask.KIRechnet := RasseExtern;
       InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_KI_Rechenzeit_Enum;

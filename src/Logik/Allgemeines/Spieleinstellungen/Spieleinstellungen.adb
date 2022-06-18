@@ -19,6 +19,9 @@ with Warnung;
 with Ladezeiten;
 with AuswahlMenues;
 with InteraktionGrafiktask;
+with AllesAufAnfangSetzen;
+with Karten;
+with KartengeneratorVariablen;
 
 package body Spieleinstellungen is
 
@@ -26,6 +29,8 @@ package body Spieleinstellungen is
      (SchnellstartExtern : in Boolean)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
+      
+      AllesAufAnfangSetzen.AllesAufAnfangSetzen (EinstellungenBehaltenExtern => True);
       
       case
         SchnellstartExtern
@@ -116,8 +121,13 @@ package body Spieleinstellungen is
      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
+      ------------------------------ Nullsetzen der Ladezeiten und das umschalten der Grafik kombinieren?
+      Ladezeiten.SpielweltNullsetzen;
       InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Generierungszeit_Enum;
-      
+
+      -- Wird benötigt, da sonst die wichtigen Kartenwerte nicht gespeichert/geladen werden können. Sicherheitshalber immer vor Aufruf des Kartengenerators setzen.
+      Karten.Karteneinstellungen.Kartengröße := KartengeneratorVariablen.Kartenparameter.Kartengröße;
+      Karten.Karteneinstellungen.Kartenform := KartengeneratorVariablen.Kartenparameter.Kartenform;
       Kartengenerator.Kartengenerator;
       
       Ladezeiten.SpielweltErstellen (LadezeitenDatentypen.Platziere_Rassen_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;

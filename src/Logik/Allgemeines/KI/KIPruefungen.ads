@@ -24,9 +24,9 @@ package KIPruefungen is
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum),
            
          Post =>
-           (StadtUmgebungPrüfen'Result.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+           (StadtUmgebungPrüfen'Result.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
             and
-              StadtUmgebungPrüfen'Result.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+              StadtUmgebungPrüfen'Result.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
    
    function UmgebungStadtBauenPrüfen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
@@ -39,9 +39,9 @@ package KIPruefungen is
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum),
            
          Post =>
-           (UmgebungStadtBauenPrüfen'Result.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+           (UmgebungStadtBauenPrüfen'Result.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
             and
-              UmgebungStadtBauenPrüfen'Result.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+              UmgebungStadtBauenPrüfen'Result.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
    
 private
    
@@ -70,9 +70,9 @@ private
       return Boolean
      with
        Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse
+            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
           and
             EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
@@ -89,9 +89,9 @@ private
             StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze),
            
          Post =>
-           (StadtUmgebungUnverbessert'Result.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+           (StadtUmgebungUnverbessert'Result.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
             and
-              StadtUmgebungUnverbessert'Result.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+              StadtUmgebungUnverbessert'Result.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
    
    function VerbesserungDortAnlegen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
@@ -99,9 +99,9 @@ private
       return Boolean
      with
        Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse
+            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
           and
             EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
@@ -121,9 +121,9 @@ private
       return Boolean
      with
        Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
    
    function NeuesStadtFeldSuchen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
@@ -138,9 +138,9 @@ private
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum),
            
          Post =>
-           (NeuesStadtFeldSuchen'Result.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+           (NeuesStadtFeldSuchen'Result.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
             and
-              NeuesStadtFeldSuchen'Result.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+              NeuesStadtFeldSuchen'Result.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
    
    function FelderDurchgehen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
@@ -153,8 +153,8 @@ private
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum),
            
          Post =>
-           (FelderDurchgehen'Result.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+           (FelderDurchgehen'Result.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
             and
-              FelderDurchgehen'Result.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+              FelderDurchgehen'Result.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
    
 end KIPruefungen;

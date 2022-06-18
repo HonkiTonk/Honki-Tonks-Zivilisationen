@@ -118,7 +118,7 @@ package KartenDatentypen is
    
    
    
-   type WahrscheinlichkeitKartengenerator is range 0 .. 100;
-   subtype WahrscheinlichkeitKartengeneratorVorhanden is WahrscheinlichkeitKartengenerator range 1 .. WahrscheinlichkeitKartengenerator'Last;
+   type Auswahlbereich is range 0 .. 100;
+   subtype AuswahlbereichVorhanden is Auswahlbereich range 1 .. Auswahlbereich'Last;
 
 end KartenDatentypen;

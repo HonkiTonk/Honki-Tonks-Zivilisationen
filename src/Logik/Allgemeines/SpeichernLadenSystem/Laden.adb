@@ -41,6 +41,16 @@ package body Laden is
             null;
       end case;
       
+      case
+        SpeichernLadenAllgemein.SpielstandVorhanden (SpielstandnameExtern => NameSpielstand.EingegebenerText)
+      is
+         when True =>
+            null;
+            
+         when False =>
+            return False;
+      end case;
+      
       Open (File => DateiLaden,
             Mode => In_File,
             Name => "Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => NameSpielstand.EingegebenerText)));
@@ -125,15 +135,15 @@ package body Laden is
    procedure KarteLaden
    is begin
       
-      KartenRecords.KartenparameterRecord'Read (Stream (File => DateiLaden),
-                                                Karten.Kartenparameter);
+      KartenRecords.PermanenteKartenparameterRecord'Read (Stream (File => DateiLaden),
+                                                          Karten.Karteneinstellungen);
 
       EAchseSchleife:
       for EAchseSchleifenwert in Karten.WeltkarteArray'Range (1) loop
          YAchseSchleife:
-         for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartenparameter.Kartengröße.YAchse loop
+         for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Karteneinstellungen.Kartengröße.YAchse loop
             XAchseSchleife:
-            for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartenparameter.Kartengröße.XAchse loop
+            for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Karteneinstellungen.Kartengröße.XAchse loop
 
                KartenRecords.KartenRecord'Read (Stream (File => DateiLaden),
                                                 Karten.Weltkarte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));

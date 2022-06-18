@@ -22,9 +22,9 @@ package KISonstigesSuchen is
           and
             EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            AktuelleKoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+            AktuelleKoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            AktuelleKoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+            AktuelleKoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
    
 private
    
@@ -44,8 +44,8 @@ private
           and
             EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            AktuelleKoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+            AktuelleKoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            AktuelleKoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+            AktuelleKoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
 
 end KISonstigesSuchen;

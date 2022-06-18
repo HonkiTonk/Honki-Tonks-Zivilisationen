@@ -37,9 +37,9 @@ package LeseEinheitenGebaut is
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum),
    
          Post =>
-           (Koordinaten'Result.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+           (Koordinaten'Result.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
             and
-              Koordinaten'Result.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+              Koordinaten'Result.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
    
    function Heimatstadt
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

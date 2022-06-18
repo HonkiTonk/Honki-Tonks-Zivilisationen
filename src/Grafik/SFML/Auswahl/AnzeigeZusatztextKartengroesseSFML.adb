@@ -12,7 +12,7 @@ with KartenKonstanten;
 
 with GrafikEinstellungenSFML;
 with AuswahlMenuesStringsSetzen;
-with Karten;
+with KartengeneratorVariablen;
 with AllgemeineTextBerechnungenSFML;
 with InteraktionAuswahl;
 with TextaccessVariablen;
@@ -63,8 +63,8 @@ package body AnzeigeZusatztextKartengroesseSFML is
                                          str  =>
                                            AuswahlMenuesStringsSetzen.AuswahlMenüStringSetzen (WelcheZeileExtern => SystemKonstanten.EndeMenü (MenueDatentypen.Kartengröße_Menü_Enum) - 1,
                                                                                                 WelchesMenüExtern => MenueDatentypen.Kartengröße_Menü_Enum) & "    " & "5x"
-                                         & To_Wide_Wide_String (Source => ZahlAlsStringKartenfeldPositiv (ZahlExtern => Karten.Kartenparameter.Kartengröße.YAchse)) & "x"
-                                         & To_Wide_Wide_String (Source => ZahlAlsStringKartenfeldPositiv (ZahlExtern => Karten.Kartenparameter.Kartengröße.XAchse)));
+                                         & To_Wide_Wide_String (Source => ZahlAlsStringKartenfeldPositiv (ZahlExtern => KartengeneratorVariablen.Kartenparameter.Kartengröße.YAchse)) & "x"
+                                         & To_Wide_Wide_String (Source => ZahlAlsStringKartenfeldPositiv (ZahlExtern => KartengeneratorVariablen.Kartenparameter.Kartengröße.XAchse)));
       
       case
         AktuelleAuswahlExtern

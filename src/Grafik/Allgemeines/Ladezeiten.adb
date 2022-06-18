@@ -17,13 +17,21 @@ package body Ladezeiten is
    
    
    
-   procedure KINullsetzen
+   procedure KINullsetzenFortschritt
    is begin
       
-      KIZeiten := (others => (others => Clock));
       FortschrittKI := (others => 0);
       
-   end KINullsetzen;
+   end KINullsetzenFortschritt;
+   
+   
+   
+   procedure KINullsetzenZeit
+   is begin
+            
+      KIZeiten := (others => (others => Clock));
+      
+   end KINullsetzenZeit;
    
    
    

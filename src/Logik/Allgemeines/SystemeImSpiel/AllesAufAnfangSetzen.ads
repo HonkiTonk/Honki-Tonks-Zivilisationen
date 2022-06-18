@@ -3,6 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 package AllesAufAnfangSetzen is
 
-   procedure AllesAufAnfangSetzen;
+   procedure AllesAufAnfangSetzen
+     (EinstellungenBehaltenExtern : in Boolean);
 
 end AllesAufAnfangSetzen;

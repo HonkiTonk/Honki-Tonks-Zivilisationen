@@ -8,7 +8,6 @@ with MenueDatentypen;
 
 with Optionen;
 with Spieleinstellungen;
-with AllesAufAnfangSetzen;
 with ImSpiel;
 with Laden;
 with Wuerdigung;
@@ -31,17 +30,8 @@ package body Hauptmenue is
            AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Haupt_Menü_Enum)
          is
             when RueckgabeDatentypen.Start_Weiter_Enum =>
-               RückgabeKampagne := Spieleinstellungen.Spieleinstellungen (SchnellstartExtern => False);
-
                if
-                 RückgabeKampagne = RueckgabeDatentypen.Hauptmenü_Enum
-                 or
-                   RückgabeKampagne = RueckgabeDatentypen.Zurück_Enum
-               then
-                  AllesAufAnfangSetzen.AllesAufAnfangSetzen;
-
-               elsif
-                 RückgabeKampagne = RueckgabeDatentypen.Spiel_Beenden_Enum
+                 Spieleinstellungen.Spieleinstellungen (SchnellstartExtern => False) = RueckgabeDatentypen.Spiel_Beenden_Enum
                then
                   exit HauptmenüSchleife;
 
@@ -50,17 +40,8 @@ package body Hauptmenue is
                end if;
                
             when RueckgabeDatentypen.Schnellstart_Enum =>
-               RückgabeKampagne := Spieleinstellungen.Spieleinstellungen (SchnellstartExtern => True);
-
                if
-                 RückgabeKampagne = RueckgabeDatentypen.Hauptmenü_Enum
-                 or
-                   RückgabeKampagne = RueckgabeDatentypen.Zurück_Enum
-               then
-                  AllesAufAnfangSetzen.AllesAufAnfangSetzen;
-
-               elsif
-                 RückgabeKampagne = RueckgabeDatentypen.Spiel_Beenden_Enum
+                 Spieleinstellungen.Spieleinstellungen (SchnellstartExtern => True) = RueckgabeDatentypen.Spiel_Beenden_Enum
                then
                   exit HauptmenüSchleife;
 
@@ -75,9 +56,6 @@ package body Hauptmenue is
                   case
                     ImSpiel.ImSpiel
                   is
-                     when RueckgabeDatentypen.Hauptmenü_Enum =>
-                        AllesAufAnfangSetzen.AllesAufAnfangSetzen;
-
                      when RueckgabeDatentypen.Spiel_Beenden_Enum =>
                         exit HauptmenüSchleife;
 

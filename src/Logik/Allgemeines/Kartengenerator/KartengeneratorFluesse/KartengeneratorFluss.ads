@@ -21,14 +21,14 @@ private
    Multiplikator : MultiplikatorArray;
    
    ------------------- Später vom Nutzer änderbar machen.
-   type WahrscheinlichkeitFlussArray is array (KartenDatentypen.EbenePlanet'Range) of KartenDatentypen.WahrscheinlichkeitKartengenerator;
+   type WahrscheinlichkeitFlussArray is array (KartenDatentypen.EbenePlanet'Range) of KartenDatentypen.Auswahlbereich;
    WahrscheinlichkeitFluss : constant WahrscheinlichkeitFlussArray := (
                                                                        -2 => 30,
                                                                        -1 => 30,
                                                                        0  => 30
                                                                       );
          
-   type BeliebigerFlusswertArray is array (WahrscheinlichkeitFlussArray'Range) of KartenDatentypen.WahrscheinlichkeitKartengenerator;
+   type BeliebigerFlusswertArray is array (WahrscheinlichkeitFlussArray'Range) of KartenDatentypen.Auswahlbereich;
    BeliebigerFlusswert : BeliebigerFlusswertArray;
 
    type KartenWertArray is array (WahrscheinlichkeitFlussArray'Range) of KartenRecords.AchsenKartenfeldNaturalRecord;
@@ -46,8 +46,8 @@ private
       return Boolean
      with
        Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
 
 end KartengeneratorFluss;

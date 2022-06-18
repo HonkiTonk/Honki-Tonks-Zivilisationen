@@ -22,9 +22,9 @@ package ZufallsgeneratorenStartkoordinaten is
          Post =>
            (Startkoordinaten'Result.EAchse in -1 .. 0
             and
-              Startkoordinaten'Result.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+              Startkoordinaten'Result.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
             and
-              Startkoordinaten'Result.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+              Startkoordinaten'Result.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
 
 private
    
@@ -46,8 +46,8 @@ private
      return KartenRecords.YXAchsenKartenfeldPositivRecord
      with
        Post =>
-         (StartPunkteYXFestlegen'Result.YAchse <= Karten.Kartenparameter.Kartengröße.YAchse
+         (StartPunkteYXFestlegen'Result.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            StartPunkteYXFestlegen'Result.XAchse <= Karten.Kartenparameter.Kartengröße.XAchse);
+            StartPunkteYXFestlegen'Result.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
 
 end ZufallsgeneratorenStartkoordinaten;

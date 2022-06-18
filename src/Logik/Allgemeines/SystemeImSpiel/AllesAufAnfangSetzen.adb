@@ -11,11 +11,27 @@ with SpielVariablen;
 with KartenRecordKonstanten;
 
 with Karten;
+with KartengeneratorVariablen;
 
 package body AllesAufAnfangSetzen is
 
    procedure AllesAufAnfangSetzen
+     (EinstellungenBehaltenExtern : in Boolean)
    is begin
+      
+      case
+        EinstellungenBehaltenExtern
+      is
+         when True =>
+            null;
+            
+         when False =>
+            KartengeneratorVariablen.Kartenparameter := KartenRecordKonstanten.Standardkartengeneratorparameter;
+            KartengeneratorVariablen.Polgrößen := KartenRecordKonstanten.Eisrand;
+            KartengeneratorVariablen.Eisschild := KartenRecordKonstanten.Eisschild;
+            KartengeneratorVariablen.Landgrößen := KartenRecordKonstanten.Inselgröße;
+            KartengeneratorVariablen.Abstände := KartenRecordKonstanten.Inselabstand;
+      end case;
       
       SpielVariablen.EinheitenGebaut := (others => (others => EinheitenKonstanten.LeerEinheit));
       SpielVariablen.StadtGebaut := (others => (others => StadtKonstanten.LeerStadt));
@@ -31,13 +47,9 @@ package body AllesAufAnfangSetzen is
       SonstigeVariablen.WeiterSpielen := False;
       SonstigeVariablen.Debug := (others => False);
       
-      Karten.Kartenparameter := KartenRecordKonstanten.KartenparameterStandard;
+      Karten.Karteneinstellungen := KartenRecordKonstanten.Standardkartenparameter;
       Karten.Weltkarte := (others => (others => (others => KartenRecordKonstanten.LeerWeltkarte)));
       Karten.Stadtkarte := (others => (others => (0)));
-      Karten.Polgrößen := KartenRecordKonstanten.Eisrand;
-      Karten.Eisschild := KartenRecordKonstanten.Eisschild;
-      Karten.Landgrößen := KartenRecordKonstanten.Inselgröße;
-      Karten.Abstände := KartenRecordKonstanten.Inselabstand;
       
    end AllesAufAnfangSetzen;
 

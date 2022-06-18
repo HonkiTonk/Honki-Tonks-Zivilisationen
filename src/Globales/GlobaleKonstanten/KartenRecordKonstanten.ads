@@ -37,7 +37,6 @@ package KartenRecordKonstanten is
 
    LeerWeltkarte : constant KartenRecords.KartenRecord := (
                                                            AktuellerGrund          => KartengrundDatentypen.Leer_Grund_Enum,
-                                                           -------------------------------- Hügel wird aktuell noch nicht richtig belegt, später im Kartengenerator einbauen und hier wieder auf Leer setzen.
                                                            BasisGrund              => KartengrundDatentypen.Leer_Grund_Enum,
                                                            Sichtbar                => (others => KartenKonstanten.LeerSichtbar),
                                                            Fluss                   => KartengrundDatentypen.Leer_Fluss_Enum,
@@ -71,23 +70,30 @@ package KartenRecordKonstanten is
                                                                                        Kampf          => (others => (others => KartenKonstanten.LeerVerbesserungKampf))
                                                                                       );
    
-   KartenparameterStandard : constant KartenRecords.KartenparameterRecord := (
-                                                                              Kartengröße      => (40, 40),
+   Standardkartenparameter : constant KartenRecords.PermanenteKartenparameterRecord := (
+                                                                                        Kartengröße => (40, 40),
 
-                                                                              -- Inseln, Kontinente, Pangäa
-                                                                              Kartenart        => KartenDatentypen.Kartenart_Inseln_Enum,
+                                                                                        -- EAchsenübergang, YAchsenübergang, XAchsenübergang
+                                                                                        Kartenform  => KartenformStandard
+                                                                                       );
+   
+   Standardkartengeneratorparameter : constant KartenRecords.TemporäreKartenparameterRecord := (
+                                                                                                 Kartengröße      => Standardkartenparameter.Kartengröße,
 
-                                                                              -- Kalt, Gemäßigt, Heiß, Eiszeit, Wüste
-                                                                              Kartentemperatur => KartenDatentypen.Kartentemperatur_Kalt_Enum,
+                                                                                                 -- EAchsenübergang, YAchsenübergang, XAchsenübergang
+                                                                                                 Kartenform       => Standardkartenparameter.Kartenform,
 
-                                                                              -- Arm, Wenig, Mittel, Viel, Überfluss
-                                                                              Kartenressourcen => KartenDatentypen.Kartenressourcen_Mittel_Enum,
+                                                                                                 -- Inseln, Kontinente, Pangäa
+                                                                                                 Kartenart        => KartenDatentypen.Kartenart_Inseln_Enum,
+
+                                                                                                 -- Kalt, Gemäßigt, Heiß, Eiszeit, Wüste
+                                                                                                 Kartentemperatur => KartenDatentypen.Kartentemperatur_Kalt_Enum,
+
+                                                                                                 -- Arm, Wenig, Mittel, Viel, Überfluss
+                                                                                                 Kartenressourcen => KartenDatentypen.Kartenressourcen_Mittel_Enum,
                                                                               
-                                                                              Kartenpole       => KartenpoleStandard,
-
-                                                                              -- EAchsenübergang, YAchsenübergang, XAchsenübergang
-                                                                              Kartenform       => KartenformStandard
-                                                                             );
+                                                                                                 Kartenpole       => KartenpoleStandard
+                                                                                                );
    
    ---------------------------- Das hier sollte woanders hin, oder? Oder aus dem Array ein Record machen.
    ---------------------------- Polgrund auch definierbar machen, so dass die Pole nicht nur aus Eis bestehen?

@@ -12,11 +12,11 @@ with GrafikEinstellungenSFML;
 with AllgemeineTextBerechnungenSFML;
 with InteraktionAuswahl;
 with AuswahlMenuesStringsSetzen;
-with Karten;
 with Fehler;
 with AuswahlMenuesEinfach;
 with HintergrundSFML;
 with AuswahlMenuesZusatztextSFML;
+with KartengeneratorVariablen;
 
 package body AuswahlMenueKartenformSFML is
 
@@ -46,27 +46,27 @@ package body AuswahlMenueKartenformSFML is
          is
             when 2 =>
                Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                                  text         => TextaccessVariablen.KartenformauswahlAccess (WelcheFormEins (Karten.Kartenparameter.Kartenform.EAchseOben)));
+                                                  text         => TextaccessVariablen.KartenformauswahlAccess (WelcheFormEins (KartengeneratorVariablen.Kartenparameter.Kartenform.EAchseOben)));
                
             when 3 =>
                Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                                  text         => TextaccessVariablen.KartenformauswahlAccess (WelcheFormZwei (Karten.Kartenparameter.Kartenform.EAchseUnten)));
+                                                  text         => TextaccessVariablen.KartenformauswahlAccess (WelcheFormZwei (KartengeneratorVariablen.Kartenparameter.Kartenform.EAchseUnten)));
                
             when 4 =>
                Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                                  text         => TextaccessVariablen.KartenformauswahlAccess (WelcheFormEins (Karten.Kartenparameter.Kartenform.YAchseNorden)));
+                                                  text         => TextaccessVariablen.KartenformauswahlAccess (WelcheFormEins (KartengeneratorVariablen.Kartenparameter.Kartenform.YAchseNorden)));
                
             when 5 =>
                Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                                  text         => TextaccessVariablen.KartenformauswahlAccess (WelcheFormZwei (Karten.Kartenparameter.Kartenform.YAchseSüden)));
+                                                  text         => TextaccessVariablen.KartenformauswahlAccess (WelcheFormZwei (KartengeneratorVariablen.Kartenparameter.Kartenform.YAchseSüden)));
                
             when 6 =>
                Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                                  text         => TextaccessVariablen.KartenformauswahlAccess (WelcheFormEins (Karten.Kartenparameter.Kartenform.XAchseWesten)));
+                                                  text         => TextaccessVariablen.KartenformauswahlAccess (WelcheFormEins (KartengeneratorVariablen.Kartenparameter.Kartenform.XAchseWesten)));
                
             when 7 =>
                Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                                  text         => TextaccessVariablen.KartenformauswahlAccess (WelcheFormZwei (Karten.Kartenparameter.Kartenform.XAchseOsten)));
+                                                  text         => TextaccessVariablen.KartenformauswahlAccess (WelcheFormZwei (KartengeneratorVariablen.Kartenparameter.Kartenform.XAchseOsten)));
                
             when others =>
                null;

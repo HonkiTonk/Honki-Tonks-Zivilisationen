@@ -26,9 +26,9 @@ package body LeseEinheitenGebaut is
    is begin
       
       if
-        SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KoordinatenAktuell.YAchse > Karten.Kartenparameter.Kartengröße.YAchse
+        SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KoordinatenAktuell.YAchse > Karten.Karteneinstellungen.Kartengröße.YAchse
         or
-          SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KoordinatenAktuell.XAchse > Karten.Kartenparameter.Kartengröße.XAchse
+          SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KoordinatenAktuell.XAchse > Karten.Karteneinstellungen.Kartengröße.XAchse
       then
          SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KoordinatenAktuell := KartenRecordKonstanten.LeerKartenKoordinaten;
 
@@ -194,9 +194,9 @@ package body LeseEinheitenGebaut is
    is begin
       
       if
-        SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIZielKoordinaten.YAchse > Karten.Kartenparameter.Kartengröße.YAchse
+        SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIZielKoordinaten.YAchse > Karten.Karteneinstellungen.Kartengröße.YAchse
         or
-          SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIZielKoordinaten.XAchse > Karten.Kartenparameter.Kartengröße.XAchse
+          SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIZielKoordinaten.XAchse > Karten.Karteneinstellungen.Kartengröße.XAchse
       then
          SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KoordinatenAktuell := KartenRecordKonstanten.LeerKartenKoordinaten;
 
@@ -229,10 +229,10 @@ package body LeseEinheitenGebaut is
       
       if
         SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIBewegungPlan (PlanschrittExtern).YAchse
-        > Karten.Kartenparameter.Kartengröße.YAchse
+        > Karten.Karteneinstellungen.Kartengröße.YAchse
         or
           SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIBewegungPlan (PlanschrittExtern).XAchse
-        > Karten.Kartenparameter.Kartengröße.XAchse
+        > Karten.Karteneinstellungen.Kartengröße.XAchse
       then
          SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIBewegungPlan (PlanschrittExtern) := KartenRecordKonstanten.LeerKartenKoordinaten;
 

@@ -164,16 +164,22 @@ package KartenRecords is
    
    
    
-   type KartenparameterRecord is record
+   type PermanenteKartenparameterRecord is tagged record
       
       Kartengröße : YXAchsenKartenfeldPositivRecord;
+      Kartenform : KartenformRecord;
+      
+   end record;
+   
+   
+   
+   type TemporäreKartenparameterRecord is new PermanenteKartenparameterRecord with record
+            
       Kartenart : KartenDatentypen.Kartenart_Enum;
       Kartentemperatur : KartenDatentypen.Kartentemperatur_Enum;
       Kartenressourcen : KartenDatentypen.Kartenressourcen_Enum;
       Kartenpole : KartenpoleRecord;
-      
-      Kartenform : KartenformRecord;
-      
+            
    end record;
    
 end KartenRecords;

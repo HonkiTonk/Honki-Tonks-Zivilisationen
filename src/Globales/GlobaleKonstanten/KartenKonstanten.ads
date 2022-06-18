@@ -63,4 +63,6 @@ package KartenKonstanten is
                                                                      RueckgabeDatentypen.Kartengröße_1000_1000_Enum => (KartenDatentypen.KartenfeldPositiv'Last, KartenDatentypen.KartenfeldPositiv'Last)
                                                                     );
    
+   StandardKartenart : constant KartenDatentypen.Kartenart_Normal_Enum := KartenDatentypen.Kartenart_Inseln_Enum;
+   
 end KartenKonstanten;

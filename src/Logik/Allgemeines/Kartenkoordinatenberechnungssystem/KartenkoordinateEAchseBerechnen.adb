@@ -47,7 +47,7 @@ package body KartenkoordinateEAchseBerechnen is
    is begin
       
       case
-        Karten.Kartenparameter.Kartenform.EAchseUnten
+        Karten.Karteneinstellungen.Kartenform.EAchseUnten
       is
          when KartenDatentypen.Karte_E_Kein_Übergang_Enum =>
             return KartenKonstanten.LeerEAchse;
@@ -89,7 +89,7 @@ package body KartenkoordinateEAchseBerechnen is
    is begin
       
       case
-        Karten.Kartenparameter.Kartenform.EAchseOben
+        Karten.Karteneinstellungen.Kartenform.EAchseOben
       is
          when KartenDatentypen.Karte_E_Kein_Übergang_Enum =>
             return KartenKonstanten.LeerEAchse;

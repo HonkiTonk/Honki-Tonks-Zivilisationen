@@ -23,9 +23,9 @@ package body LeseStadtGebaut is
    is begin
       
       if
-        SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).KoordinatenAktuell.YAchse > Karten.Kartenparameter.Kartengröße.YAchse
+        SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).KoordinatenAktuell.YAchse > Karten.Karteneinstellungen.Kartengröße.YAchse
         or
-          SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).KoordinatenAktuell.XAchse > Karten.Kartenparameter.Kartengröße.XAchse
+          SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).KoordinatenAktuell.XAchse > Karten.Karteneinstellungen.Kartengröße.XAchse
       then
          SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).KoordinatenAktuell := KartenRecordKonstanten.LeerKartenKoordinaten;
 
