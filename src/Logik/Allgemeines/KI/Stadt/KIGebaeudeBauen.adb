@@ -15,6 +15,7 @@ with LeseStadtGebaut;
 with LeseWichtiges;
 
 with GebaeudeAllgemein;
+with KIKriegErmitteln;
 
 package body KIGebaeudeBauen is
 
@@ -33,9 +34,20 @@ package body KIGebaeudeBauen is
                                                             IDExtern               => GebäudeSchleifenwert)
          is
             when True =>
-               GebäudeBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                 IDExtern               => GebäudeSchleifenwert);
-               
+               Gebäudewertung := GebäudeBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                    IDExtern               => GebäudeSchleifenwert);
+                     
+               if
+                 GebäudeBewertet.ID = StadtKonstanten.LeerGebäudeID
+                 or
+                   GebäudeBewertet.Bewertung < Gebäudewertung
+               then
+                  GebäudeBewertet := (GebäudeSchleifenwert, Gebäudewertung);
+
+               else
+                  null;
+               end if;
+
             when False =>
                null;
          end case;
@@ -48,12 +60,13 @@ package body KIGebaeudeBauen is
    
    
    
-   procedure GebäudeBewerten
+   function GebäudeBewerten
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       IDExtern : in StadtDatentypen.GebäudeID)
+      return KIDatentypen.BauenBewertung
    is begin
       
-      Gesamtwertung := KIDatentypen.BauenBewertung (StadtDatentypen.GebäudeID'Last - IDExtern);
+      Gesamtwertung := 0;
       
       Gesamtwertung := Gesamtwertung + NahrungsproduktionBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                                    IDExtern               => IDExtern);
@@ -70,16 +83,7 @@ package body KIGebaeudeBauen is
       Gesamtwertung := Gesamtwertung + KostenBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                        IDExtern               => IDExtern);
       
-      if
-        GebäudeBewertet.ID = StadtKonstanten.LeerGebäudeID
-        or
-          GebäudeBewertet.Bewertung < Gesamtwertung
-      then
-         GebäudeBewertet := (IDExtern, Gesamtwertung);
-
-      else
-         null;
-      end if;
+      return Gesamtwertung;
             
    end GebäudeBewerten;
    
@@ -294,9 +298,19 @@ package body KIGebaeudeBauen is
       return KIDatentypen.BauenBewertung
    is begin
       
-      return KIDatentypen.BauenBewertung (LeseGebaeudeDatenbank.KampfBonus (RasseExtern      => StadtRasseNummerExtern.Rasse,
-                                                                            IDExtern         => IDExtern,
-                                                                            KampfBonusExtern => KartenKonstanten.KampfVerteidigung));
+      case
+        KIKriegErmitteln.IstImKrieg (RasseExtern => StadtRasseNummerExtern.Rasse)
+      is
+         when True =>
+            return 2 * KIDatentypen.BauenBewertung (LeseGebaeudeDatenbank.KampfBonus (RasseExtern      => StadtRasseNummerExtern.Rasse,
+                                                                                      IDExtern         => IDExtern,
+                                                                                      KampfBonusExtern => KartenKonstanten.KampfVerteidigung));
+            
+         when False =>
+            return KIDatentypen.BauenBewertung (LeseGebaeudeDatenbank.KampfBonus (RasseExtern      => StadtRasseNummerExtern.Rasse,
+                                                                                  IDExtern         => IDExtern,
+                                                                                  KampfBonusExtern => KartenKonstanten.KampfVerteidigung));
+      end case;
       
    end VerteidigungBewerten;
      
@@ -308,9 +322,19 @@ package body KIGebaeudeBauen is
       return KIDatentypen.BauenBewertung
    is begin
       
-      return KIDatentypen.BauenBewertung (LeseGebaeudeDatenbank.KampfBonus (RasseExtern      => StadtRasseNummerExtern.Rasse,
-                                                                            IDExtern         => IDExtern,
-                                                                            KampfBonusExtern => KartenKonstanten.KampfAngriff));
+      case
+        KIKriegErmitteln.IstImKrieg (RasseExtern => StadtRasseNummerExtern.Rasse)
+      is
+         when True =>
+            return 2 * KIDatentypen.BauenBewertung (LeseGebaeudeDatenbank.KampfBonus (RasseExtern      => StadtRasseNummerExtern.Rasse,
+                                                                                      IDExtern         => IDExtern,
+                                                                                      KampfBonusExtern => KartenKonstanten.KampfAngriff));
+            
+         when False =>
+            return KIDatentypen.BauenBewertung (LeseGebaeudeDatenbank.KampfBonus (RasseExtern      => StadtRasseNummerExtern.Rasse,
+                                                                                  IDExtern         => IDExtern,
+                                                                                  KampfBonusExtern => KartenKonstanten.KampfAngriff));
+      end case;
       
    end AngriffBewerten;
      

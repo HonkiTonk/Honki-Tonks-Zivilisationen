@@ -34,7 +34,7 @@ package KIStadtSuchen is
       return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre =>
-         (SonstigeVariablen.RassenImSpiel (FeindlicheRasseExtern) = RassenDatentypen.Spieler_KI_Enum),
+         (SonstigeVariablen.RassenImSpiel (FeindlicheRasseExtern) = RassenDatentypen.KI_Spieler_Enum),
 
          Post =>
            (UnbewachteStadtSuchen'Result.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse

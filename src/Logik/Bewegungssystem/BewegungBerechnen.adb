@@ -87,7 +87,7 @@ package body BewegungBerechnen is
       case
         SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse)
       is
-         when RassenDatentypen.Spieler_KI_Enum =>
+         when RassenDatentypen.KI_Spieler_Enum =>
             null;
             
          when others =>

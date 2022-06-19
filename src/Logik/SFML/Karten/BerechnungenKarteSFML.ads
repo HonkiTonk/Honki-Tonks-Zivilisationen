@@ -29,7 +29,7 @@ package BerechnungenKarteSFML is
       return KartenDatentypen.SichtbereichAnfangEndeArray
      with
        Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum);
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum);
    
 private
    

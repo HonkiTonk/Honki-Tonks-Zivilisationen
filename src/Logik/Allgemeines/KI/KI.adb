@@ -14,7 +14,7 @@ with Ladezeiten;
 with KIStadt;
 with KIForschung;
 with KIDiplomatie;
-with KIEinheitHandlungen;
+with KIEinheit;
 
 package body KI is
 
@@ -47,7 +47,7 @@ package body KI is
                null;
             
             when others =>
-               KIEinheitHandlungen.EinheitHandlungen (EinheitRasseNummerExtern => (RasseExtern, EinheitenSchleifenwert));
+               KIEinheit.Einheit (EinheitRasseNummerExtern => (RasseExtern, EinheitenSchleifenwert));
          end case;
             
          if

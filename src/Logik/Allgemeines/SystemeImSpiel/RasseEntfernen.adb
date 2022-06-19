@@ -95,7 +95,7 @@ package body RasseEntfernen is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      SonstigeVariablen.RassenImSpiel (RasseExtern) := RassenDatentypen.Spieler_KI_Enum;
+      SonstigeVariablen.RassenImSpiel (RasseExtern) := RassenDatentypen.KI_Spieler_Enum;
       Ladezeiten.SpielweltNullsetzen;
       KartenfelderBewerten.KartenfelderBewerten (RasseExtern => RasseExtern);
       

@@ -78,7 +78,7 @@ package body DebugmenueTerminal is
       case
         SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse)
       is
-         when RassenDatentypen.Spieler_KI_Enum =>
+         when RassenDatentypen.KI_Spieler_Enum =>
             BewegungPlanSchleife:
             for BewegungGeplantSchleifenwert in EinheitenRecords.KIBewegungPlanArray'Range loop
                       

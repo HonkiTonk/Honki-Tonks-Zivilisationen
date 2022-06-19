@@ -26,8 +26,6 @@ package body KIAufgabenPlanung is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
-      -- Muss für die Schleife weiter unten auf den ersten Wert gesetzt werden.
-      GewählteAufgabe := KIDatentypen.Einheit_Aufgabe_Enum'First;
       Wichtigkeit := (others => KIDatentypen.AufgabenWichtigkeit'First);
                   
       Wichtigkeit (KIDatentypen.Tut_Nichts_Enum) := KIVorhandeneAufgaben.NichtsTun;
@@ -39,9 +37,7 @@ package body KIAufgabenPlanung is
       
       EinheitSpezifischeAufgabenErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
-      AufgabenSortieren;
-      
-      AufgabeFestlegen (GewählteAufgabeExtern    => GewählteAufgabe,
+      AufgabeFestlegen (GewählteAufgabeExtern    => AufgabenSortieren,
                         EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
    end AufgabeErmitteln;
@@ -86,8 +82,11 @@ package body KIAufgabenPlanung is
    
    
    
-   procedure AufgabenSortieren
+   function AufgabenSortieren
+     return KIDatentypen.Einheit_Aufgabe_Enum
    is begin
+      
+      AufgabeAuswählen := KIDatentypen.Einheit_Aufgabe_Enum'First;
       
       WichtigkeitEinsSchleife:
       for WichtigkeitEinsSchleifenwert in WichtigkeitArray'Range loop
@@ -97,16 +96,16 @@ package body KIAufgabenPlanung is
             if
               Wichtigkeit (WichtigkeitEinsSchleifenwert) > Wichtigkeit (WichtigkeitZweiSchleifenwert)
               and
-                Wichtigkeit (GewählteAufgabe) < Wichtigkeit (WichtigkeitEinsSchleifenwert)
+                Wichtigkeit (AufgabeAuswählen) < Wichtigkeit (WichtigkeitEinsSchleifenwert)
             then
-               GewählteAufgabe := WichtigkeitEinsSchleifenwert;
+               AufgabeAuswählen := WichtigkeitEinsSchleifenwert;
                
             elsif
               Wichtigkeit (WichtigkeitEinsSchleifenwert) < Wichtigkeit (WichtigkeitZweiSchleifenwert)
               and
-                Wichtigkeit (GewählteAufgabe) < Wichtigkeit (WichtigkeitZweiSchleifenwert)
+                Wichtigkeit (AufgabeAuswählen) < Wichtigkeit (WichtigkeitZweiSchleifenwert)
             then
-               GewählteAufgabe := WichtigkeitZweiSchleifenwert;
+               AufgabeAuswählen := WichtigkeitZweiSchleifenwert;
                exit WichtigkeitZweiSchleife;
             
             else
@@ -115,6 +114,8 @@ package body KIAufgabenPlanung is
          
          end loop WichtigkeitZweiSchleife;
       end loop WichtigkeitEinsSchleife;
+      
+      return AufgabeAuswählen;
       
    end AufgabenSortieren;
    

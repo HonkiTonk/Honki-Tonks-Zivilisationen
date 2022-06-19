@@ -143,7 +143,7 @@ package body ZufallsgeneratorenSpieleinstellungen is
             RasseImSpiel := ZufälligeRassenbelegungWählen.Random (ZufälligeRassenbelegungGewählt);
 
             if
-              RasseImSpiel = RassenDatentypen.Spieler_KI_Enum
+              RasseImSpiel = RassenDatentypen.KI_Spieler_Enum
             then
                SonstigeVariablen.RassenImSpiel (RasseSchleifenwert) := RasseImSpiel;
                SpielerVorhanden := True;
@@ -163,15 +163,15 @@ package body ZufallsgeneratorenSpieleinstellungen is
          for MenschlicheRasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
 
             if
-              SonstigeVariablen.RassenImSpiel (MenschlicheRasseSchleifenwert) = RassenDatentypen.Spieler_KI_Enum
+              SonstigeVariablen.RassenImSpiel (MenschlicheRasseSchleifenwert) = RassenDatentypen.KI_Spieler_Enum
             then
                RasseImSpiel := ZufälligeRassenbelegungWählen.Random (ZufälligeRassenbelegungGewählt);
                
                case
                  RasseImSpiel
                is
-                  when RassenDatentypen.Spieler_Mensch_Enum =>
-                     SonstigeVariablen.RassenImSpiel (MenschlicheRasseSchleifenwert) := RassenDatentypen.Spieler_Mensch_Enum;
+                  when RassenDatentypen.Mensch_Spieler_Enum =>
+                     SonstigeVariablen.RassenImSpiel (MenschlicheRasseSchleifenwert) := RassenDatentypen.Mensch_Spieler_Enum;
                      return;
                      
                   when others =>

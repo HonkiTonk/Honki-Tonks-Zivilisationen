@@ -70,12 +70,12 @@ package body SpieleinstellungenRasseSpieler is
         SonstigeVariablen.RassenImSpiel (RasseExtern)
       is
          when RassenDatentypen.Leer_Spieler_Enum =>
-            SonstigeVariablen.RassenImSpiel (RasseExtern) := RassenDatentypen.Spieler_Mensch_Enum;
+            SonstigeVariablen.RassenImSpiel (RasseExtern) := RassenDatentypen.Mensch_Spieler_Enum;
                   
-         when RassenDatentypen.Spieler_Mensch_Enum =>
-            SonstigeVariablen.RassenImSpiel (RasseExtern) := RassenDatentypen.Spieler_KI_Enum;
+         when RassenDatentypen.Mensch_Spieler_Enum =>
+            SonstigeVariablen.RassenImSpiel (RasseExtern) := RassenDatentypen.KI_Spieler_Enum;
                   
-         when RassenDatentypen.Spieler_KI_Enum =>
+         when RassenDatentypen.KI_Spieler_Enum =>
             SonstigeVariablen.RassenImSpiel (RasseExtern) := RassenDatentypen.Leer_Spieler_Enum;
       end case;
       
@@ -111,7 +111,7 @@ package body SpieleinstellungenRasseSpieler is
    procedure RasseAutomatischBelegen
    is begin
       
-      SonstigeVariablen.RassenImSpiel (ZufallsgeneratorenSpieleinstellungen.ZufälligeRasse) := RassenDatentypen.Spieler_Mensch_Enum;
+      SonstigeVariablen.RassenImSpiel (ZufallsgeneratorenSpieleinstellungen.ZufälligeRasse) := RassenDatentypen.Mensch_Spieler_Enum;
       
    end RasseAutomatischBelegen;
 

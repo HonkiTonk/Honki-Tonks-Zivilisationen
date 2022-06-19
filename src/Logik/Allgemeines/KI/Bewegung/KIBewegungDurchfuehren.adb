@@ -36,7 +36,7 @@ package body KIBewegungDurchfuehren is
             return;
             
          elsif
-           LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerEinheit.Bewegungspunkte
+           LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerBewegungspunkte
          then
             return;
             
@@ -79,9 +79,8 @@ package body KIBewegungDurchfuehren is
          when KIKonstanten.BewegungNormal =>
             BewegtSich (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-         when KIKonstanten.KeineBewegung=>
+         when KIKonstanten.KeineBewegung =>
             SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIBewegungPlan := (others => KIKonstanten.LeerKoordinate);
-            return;
             
          when KIKonstanten.BewegungAngriff =>
             Blockiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern);

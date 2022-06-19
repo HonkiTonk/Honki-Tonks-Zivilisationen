@@ -52,10 +52,10 @@ package body StadtBauen is
       case
         SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse)
       is
-         when RassenDatentypen.Spieler_KI_Enum =>
+         when RassenDatentypen.KI_Spieler_Enum =>
             StadtName.EingegebenerText := StandardStadtNamen (RasseExtern => EinheitRasseNummerExtern.Rasse);
                   
-         when RassenDatentypen.Spieler_Mensch_Enum =>
+         when RassenDatentypen.Mensch_Spieler_Enum =>
             StadtName := Eingabe.StadtName;
             
             if
@@ -106,7 +106,7 @@ package body StadtBauen is
          return True;
          
       elsif
-        SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum
+        SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
       then
          return False;
          
@@ -136,7 +136,7 @@ package body StadtBauen is
             case
               SonstigeVariablen.RassenImSpiel (RasseExtern)
             is
-               when RassenDatentypen.Spieler_Mensch_Enum =>
+               when RassenDatentypen.Mensch_Spieler_Enum =>
                   -- Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                   --                                       TextZeileExtern => 7);
                   null;

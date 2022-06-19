@@ -22,7 +22,7 @@ package GrafischeAnzeigeTerminal is
           and
             KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
           and
-            SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum);
+            SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum);
 
 private
 
@@ -40,7 +40,7 @@ private
           and
             KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
           and
-            SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum);
+            SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum);
 
    procedure AnzeigeLandschaft
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
@@ -51,7 +51,7 @@ private
           and
             KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
           and
-            SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum);
+            SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum);
 
 
 
@@ -65,7 +65,7 @@ private
           and
             KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
           and
-            SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum);
+            SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum);
 
    function AnzeigeEinheit
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
@@ -77,7 +77,7 @@ private
           and
             KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
           and
-            SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum);
+            SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum);
 
    function AnzeigeCursor
      (InDerStadtExtern : in Boolean;
@@ -90,6 +90,6 @@ private
           and
             KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
           and
-            SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum);
+            SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum);
 
 end GrafischeAnzeigeTerminal;

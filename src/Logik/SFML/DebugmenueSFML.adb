@@ -165,7 +165,7 @@ package body DebugmenueSFML is
          case
            SonstigeVariablen.RassenImSpiel (KIZeitenSchleifenwert)
          is
-            when RassenDatentypen.Spieler_KI_Enum =>
+            when RassenDatentypen.KI_Spieler_Enum =>
                Put (KIZeitenSchleifenwert'Wide_Wide_Image & ": ");
          
                Zwischenzeit := Float (Ladezeiten.KIZeiten (KIZeitenSchleifenwert, SystemDatentypen.Endwert_Enum) - Ladezeiten.KIZeiten (KIZeitenSchleifenwert, SystemDatentypen.Anfangswert_Enum));

@@ -19,7 +19,7 @@ package KarteAllgemeinesSFML is
       return Sf.System.Vector2.sfVector2f
      with
        Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
           and
             TextpositionExtern.x > 0.00
           and

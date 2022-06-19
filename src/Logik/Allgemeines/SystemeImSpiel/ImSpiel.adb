@@ -126,10 +126,10 @@ package body ImSpiel is
          case
            SonstigeVariablen.RassenImSpiel (RasseExtern)
          is
-            when RassenDatentypen.Spieler_Mensch_Enum =>
+            when RassenDatentypen.Mensch_Spieler_Enum =>
                return MenschlicherSpieler (RasseExtern => RasseExtern);
                
-            when RassenDatentypen.Spieler_KI_Enum =>
+            when RassenDatentypen.KI_Spieler_Enum =>
                KISpieler (RasseExtern => RasseExtern);
                
             when RassenDatentypen.Leer_Spieler_Enum =>
@@ -216,7 +216,7 @@ package body ImSpiel is
          case
            SonstigeVariablen.RassenImSpiel (RasseExtern)
          is
-            when RassenDatentypen.Spieler_Mensch_Enum =>
+            when RassenDatentypen.Mensch_Spieler_Enum =>
                AktuellerBefehlSpieler := Befehle (RasseExtern => RasseExtern);
                
             when others =>
@@ -336,7 +336,7 @@ package body ImSpiel is
          if
            RasseSchleifenwert = RasseExtern
            or
-             SonstigeVariablen.RassenImSpiel (RasseSchleifenwert) /= RassenDatentypen.Spieler_Mensch_Enum
+             SonstigeVariablen.RassenImSpiel (RasseSchleifenwert) /= RassenDatentypen.Mensch_Spieler_Enum
          then
             null;
             

@@ -26,9 +26,9 @@ private
        Pre =>
          (EigeneRasseExtern /= FremdeRasseExtern
           and
-            SonstigeVariablen.RassenImSpiel (EigeneRasseExtern) = RassenDatentypen.Spieler_Mensch_Enum
+            SonstigeVariablen.RassenImSpiel (EigeneRasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
           and
-            SonstigeVariablen.RassenImSpiel (FremdeRasseExtern) = RassenDatentypen.Spieler_Mensch_Enum);
+            SonstigeVariablen.RassenImSpiel (FremdeRasseExtern) = RassenDatentypen.Mensch_Spieler_Enum);
 
    procedure ErstkontaktMenschKI
      (EigeneRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
@@ -37,8 +37,8 @@ private
        Pre =>
          (EigeneRasseExtern /= FremdeRasseExtern
           and
-            (SonstigeVariablen.RassenImSpiel (EigeneRasseExtern) = RassenDatentypen.Spieler_Mensch_Enum
+            (SonstigeVariablen.RassenImSpiel (EigeneRasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
              or
-               SonstigeVariablen.RassenImSpiel (FremdeRasseExtern) = RassenDatentypen.Spieler_Mensch_Enum));
+               SonstigeVariablen.RassenImSpiel (FremdeRasseExtern) = RassenDatentypen.Mensch_Spieler_Enum));
 
 end KennenLernen;

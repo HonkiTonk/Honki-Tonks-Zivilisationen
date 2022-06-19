@@ -27,7 +27,7 @@ package KarteSFML is
      (RasseEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseEinheitExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum);
+         (SonstigeVariablen.RassenImSpiel (RasseEinheitExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum);
    
 private
    
@@ -99,7 +99,7 @@ private
      (RasseEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseEinheitExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum);
+         (SonstigeVariablen.RassenImSpiel (RasseEinheitExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum);
    
    procedure IstSichtbar
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
@@ -107,7 +107,7 @@ private
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseEinheitExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum
+         (SonstigeVariablen.RassenImSpiel (RasseEinheitExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
           and
             KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
@@ -138,7 +138,7 @@ private
      with
        Pre =>
    -- Anders als die /= RassenDatentypen.Leer_Spieler_Enum weiter unten, funktioniert das hier mit der KI weil ja nur die Spielerrasse übergeben wird und die KI Einheit dann in der Prozedur selbst gesucht wird.
-     (SonstigeVariablen.RassenImSpiel (RasseEinheitExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum
+     (SonstigeVariablen.RassenImSpiel (RasseEinheitExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
       and
         KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
       and
@@ -150,7 +150,7 @@ private
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
           and
             KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and

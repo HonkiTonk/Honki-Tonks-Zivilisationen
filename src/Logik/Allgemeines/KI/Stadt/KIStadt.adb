@@ -93,6 +93,7 @@ package body KIStadt is
                SchreibeStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                      BeschäftigungExtern   => KIDatentypen.Einheit_Bauen_Enum);
          end case;
+         
          SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                          BauprojektExtern       => (0, EinheitBauenExtern.ID));
       
@@ -110,6 +111,7 @@ package body KIStadt is
                SchreibeStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                      BeschäftigungExtern   => KIDatentypen.Einheit_Bauen_Enum);
          end case;
+         
          SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                          BauprojektExtern       => (0, EinheitBauenExtern.ID));
 

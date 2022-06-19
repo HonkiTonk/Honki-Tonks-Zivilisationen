@@ -22,7 +22,7 @@ package KIAufgabenVerteilt is
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
+            SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum);
    
    function EinheitAufgabeZiel
      (AufgabeExtern : in KIDatentypen.Einheit_Aufgabe_Enum;
@@ -35,7 +35,7 @@ package KIAufgabenVerteilt is
           and
             ZielKoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
           and
-            SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_KI_Enum);
+            SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.KI_Spieler_Enum);
    
    function EinheitZiel
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
@@ -47,7 +47,7 @@ package KIAufgabenVerteilt is
           and
             ZielKoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
           and
-            SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_KI_Enum);
+            SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.KI_Spieler_Enum);
    
 private
      

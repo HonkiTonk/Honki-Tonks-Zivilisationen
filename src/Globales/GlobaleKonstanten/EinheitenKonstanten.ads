@@ -30,7 +30,6 @@ package EinheitenKonstanten is
    LeerBewegungspunkte : constant EinheitenDatentypen.VorhandeneBewegungspunkte := EinheitenDatentypen.VorhandeneBewegungspunkte'First;
    LeerErfahrungspunkte : constant KampfDatentypen.Kampfwerte := KampfDatentypen.Kampfwerte'First;
    LeerRang : constant KampfDatentypen.Kampfwerte := KampfDatentypen.Kampfwerte'First;
-   ----------------------- Beschäftigung und Tastenbelegung mal trennen?
    LeerBeschäftigung : constant AufgabenDatentypen.Einheiten_Aufgaben_Enum := AufgabenDatentypen.Leer_Aufgabe_Enum;
    LeerBeschäftigungszeit : constant EinheitenDatentypen.MaximaleEinheitenMitNullWert := EinheitenDatentypen.MaximaleEinheitenMitNullWert'First;
    LeerKIBeschäftigt : constant KIDatentypen.Einheit_Aufgabe_Enum := KIDatentypen.Tut_Nichts_Enum;
@@ -57,8 +56,6 @@ package EinheitenKonstanten is
                                                                         WirdTransportiert            => LeerWirdTransportiert,
                                                                         Meldungen                    => (others => LeerMeldung)
                                                                        );
-   
-   EinheitBefehlAbzug : constant Positive := 22;
       
    LeerEinheitenGrafik : constant Wide_Wide_Character := TextKonstanten.LeerZeichen;
    LeerEinheitArt : constant EinheitenDatentypen.Einheit_Art_Enum := EinheitenDatentypen.Leer_Einheitart_Enum;

@@ -30,7 +30,7 @@ package body EinheitInUmgebung is
          case
            SonstigeVariablen.RassenImSpiel (RasseSchleifenwert)
          is
-            when RassenDatentypen.Spieler_Mensch_Enum =>
+            when RassenDatentypen.Mensch_Spieler_Enum =>
                UmgebungStadt (RasseExtern => RasseSchleifenwert);
                UmgebungEinheit (RasseExtern => RasseSchleifenwert);
                

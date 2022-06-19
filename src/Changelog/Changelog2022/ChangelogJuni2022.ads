@@ -70,17 +70,18 @@ package ChangelogJuni2022 is
    
    
 
-   -- Version 0.01.1 => 0.01.1 (20.06.2022):
+   -- Version 0.01.1460 => 0.01.1 (20.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.1435 => 0.01.1 (19.06.2022):
+   -- Version 0.01.1435 => 0.01.1460 (19.06.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Angefangen die Stadtberechnungen der KI  zu überarbeiten.
+   -- Angefangen die Einheitenberechnungen der KI zu überarbeiten.
+   -- Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 

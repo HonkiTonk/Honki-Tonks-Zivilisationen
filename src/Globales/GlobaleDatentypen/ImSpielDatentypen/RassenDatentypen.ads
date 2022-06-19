@@ -20,12 +20,12 @@ package RassenDatentypen is
    type Spieler_Enum is (
                          Leer_Spieler_Enum,
                          
-                         Spieler_Mensch_Enum,
-                         Spieler_KI_Enum
+                         Mensch_Spieler_Enum,
+                         KI_Spieler_Enum
                         );
    pragma Ordered (Spieler_Enum);
    
-   subtype Spieler_Belegt_Enum is Spieler_Enum range Spieler_Mensch_Enum .. Spieler_KI_Enum;
+   subtype Spieler_Belegt_Enum is Spieler_Enum range Mensch_Spieler_Enum .. KI_Spieler_Enum;
    
    type RassenImSpielArray is array (Rassen_Verwendet_Enum'Range) of Spieler_Enum;
 

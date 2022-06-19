@@ -216,10 +216,10 @@ package body ForschungAllgemein is
             when RassenDatentypen.Leer_Spieler_Enum =>
                null;
                
-            when RassenDatentypen.Spieler_Mensch_Enum =>
+            when RassenDatentypen.Mensch_Spieler_Enum =>
                FortschrittMensch (RasseExtern => RasseSchleifenwert);
                
-            when RassenDatentypen.Spieler_KI_Enum =>
+            when RassenDatentypen.KI_Spieler_Enum =>
                FortschrittKI (RasseExtern => RasseSchleifenwert);
          end case;
                

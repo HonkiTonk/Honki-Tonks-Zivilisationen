@@ -25,17 +25,17 @@ package body KIEinheitenBauen is
       return KIRecords.EinheitIDBewertungRecord
    is begin
       
-      EinheitBewertet := KIKonstanten.LeerEinheitIDBewertung;
       -- 3 * AnzahlStädte sollte immer größer 0 sein, da nur bei vorhandenen Städten was gebaut werden sollte.
       ----------------------------------- AnzahlStädte mal übergeben und nicht mehr so einfach benutzen lassen.
       AnzahlStädte := EinheitenDatentypen.MaximaleEinheiten (LeseWichtiges.AnzahlStädte (RasseExtern => StadtRasseNummerExtern.Rasse));
+      VorhandeneEinheiten := LeseWichtiges.AnzahlEinheiten (RasseExtern => StadtRasseNummerExtern.Rasse);
       
       if
-        LeseWichtiges.AnzahlEinheiten (RasseExtern => StadtRasseNummerExtern.Rasse) > 3 * AnzahlStädte
+        VorhandeneEinheiten >= 3 * AnzahlStädte
         or
-          LeseWichtiges.AnzahlEinheiten (RasseExtern => StadtRasseNummerExtern.Rasse) = SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Einheitengrenze
+          VorhandeneEinheiten >= SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Einheitengrenze
       then
-         return EinheitBewertet;
+         return KIKonstanten.LeerEinheitIDBewertung;
          
       else
          return EinheitenDurchgehen (StadtRasseNummerExtern => StadtRasseNummerExtern);
@@ -50,6 +50,8 @@ package body KIEinheitenBauen is
       return KIRecords.EinheitIDBewertungRecord
    is begin
       
+      EinheitBewertet := KIKonstanten.LeerEinheitIDBewertung;
+      
       EinheitenSchleife:
       for EinheitenSchleifenwert in EinheitenDatentypen.EinheitenID'Range loop
          
@@ -58,8 +60,22 @@ package body KIEinheitenBauen is
                                                                IDExtern               => EinheitenSchleifenwert)
          is
             when True =>
-               EinheitBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                IDExtern               => EinheitenSchleifenwert);
+               Einheitwertung := EinheitBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                  IDExtern               => EinheitenSchleifenwert);
+               
+               if
+                 Einheitwertung <= 0
+               then
+                  null;
+         
+               elsif
+                 EinheitBewertet.Bewertung < Einheitwertung
+               then
+                  EinheitBewertet := (EinheitenSchleifenwert, Gesamtwertung);
+
+               else
+                  null;
+               end if;
                
             when False =>
                null;
@@ -73,14 +89,16 @@ package body KIEinheitenBauen is
    
    
    
-   procedure EinheitBewerten
+   function EinheitBewerten
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       IDExtern : in EinheitenDatentypen.EinheitenID)
+      return KIDatentypen.BauenBewertung
    is begin
       
       Gesamtwertung := 0;
-      Gesamtwertung := Gesamtwertung + KostenBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                       EinheitenIDExtern      => IDExtern);
+      
+      Gesamtwertung := Gesamtwertung + HerstellungskostenBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                                   EinheitenIDExtern      => IDExtern);
       Gesamtwertung := Gesamtwertung + GeldKostenBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                            EinheitenIDExtern      => IDExtern);
       Gesamtwertung := Gesamtwertung + NahrungKostenBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
@@ -90,20 +108,7 @@ package body KIEinheitenBauen is
       Gesamtwertung := Gesamtwertung + SpezielleEinheitBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                                  IDExtern               => IDExtern);
       
-      
-      if
-        Gesamtwertung <= 0
-      then
-         null;
-         
-      elsif
-        EinheitBewertet.Bewertung < Gesamtwertung
-      then
-         EinheitBewertet := (IDExtern, Gesamtwertung);
-
-      else
-         null;
-      end if;
+      return Gesamtwertung;
       
    end EinheitBewerten;
    
@@ -311,20 +316,20 @@ package body KIEinheitenBauen is
    
    
    
-   function KostenBewerten
+   function HerstellungskostenBewerten
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       EinheitenIDExtern : in EinheitenDatentypen.EinheitenID)
       return KIDatentypen.BauenBewertung
    is begin
       
       return -(KIDatentypen.BauenBewertung (LeseEinheitenDatenbank.PreisRessourcen (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                                   IDExtern    => EinheitenIDExtern)
-                                           / LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern)
-                                           / 10));
+                                                                                    IDExtern    => EinheitenIDExtern)
+               / LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern)
+               / 10));
       
-   end KostenBewerten;
+   end HerstellungskostenBewerten;
      
-     
+   
      
    function GeldKostenBewerten
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
