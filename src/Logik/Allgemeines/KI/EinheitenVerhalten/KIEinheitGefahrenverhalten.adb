@@ -42,11 +42,11 @@ package body KIEinheitGefahrenverhalten is
                exit AktivitätSchleife;
                
             when False =>
-               KIEinheitAllgemeines.BewegungAufgabenplanung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+               null;
          end case;
          
          case
-           KIEinheitAllgemeines.HandlungBeendet (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+           KIEinheitAllgemeines.Aufgabenplanung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
          is
             when True =>
                exit AktivitätSchleife;
@@ -58,7 +58,7 @@ package body KIEinheitGefahrenverhalten is
          if
            Vergleiche.KoordinateLeervergleich (KoordinateExtern => LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = False
          then
-            KIBewegungDurchfuehren.KIBewegungNeu (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            KIBewegungDurchfuehren.KIBewegung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          elsif
            LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= KIDatentypen.Tut_Nichts_Enum

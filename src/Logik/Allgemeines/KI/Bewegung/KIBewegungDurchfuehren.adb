@@ -21,7 +21,7 @@ with KIBewegungAllgemein;
 
 package body KIBewegungDurchfuehren is
    
-   procedure KIBewegungNeu
+   procedure KIBewegung
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
@@ -61,7 +61,7 @@ package body KIBewegungDurchfuehren is
          
       end loop BewegungSchleife;
       
-   end KIBewegungNeu;
+   end KIBewegung;
 
 
 

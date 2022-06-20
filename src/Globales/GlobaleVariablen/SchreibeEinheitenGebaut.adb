@@ -6,7 +6,6 @@ with KampfDatentypen; use KampfDatentypen;
 with StadtDatentypen; use StadtDatentypen;
 with EinheitenKonstanten;
 
-with SchreibeWichtiges;
 with LeseEinheitenDatenbank;
 
 package body SchreibeEinheitenGebaut is
@@ -371,37 +370,42 @@ package body SchreibeEinheitenGebaut is
    procedure Nullsetzung
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
-      
-      if
-        SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).ID = EinheitenKonstanten.LeerID
-      then
-         null;
-         
-      else
-         case
-           LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                              IDExtern    => (SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).ID))
-         is
-            when EinheitenDatentypen.Arbeiter_Enum =>
-               SchreibeWichtiges.AnzahlArbeiter (RasseExtern     => EinheitRasseNummerExtern.Rasse,
-                                                 PlusMinusExtern => False);
-            
-            when EinheitenDatentypen.Nahkämpfer_Enum | EinheitenDatentypen.Fernkämpfer_Enum | EinheitenDatentypen.Beides_Enum =>
-               SchreibeWichtiges.AnzahlKämpfer (RasseExtern     => EinheitRasseNummerExtern.Rasse,
-                                                 PlusMinusExtern => False);
-            
-            when EinheitenDatentypen.Sonstiges_Enum =>
-               SchreibeWichtiges.AnzahlSonstiges (RasseExtern     => EinheitRasseNummerExtern.Rasse,
-                                                  PlusMinusExtern => False);
-            
-            when others =>
-               null;
-         end case;
-      end if;
                                            
       SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer) := EinheitenKonstanten.LeerEinheit;
       
    end Nullsetzung;
+   
+   
+   
+   procedure Standardwerte
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      IDExtern : in EinheitenDatentypen.EinheitenID;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      StadtNummerExtern : in StadtDatentypen.MaximaleStädte)
+   is begin
+      
+      Nullsetzung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      
+      ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+          IDExtern                 => IDExtern);
+      
+      Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                   KoordinatenExtern        => KoordinatenExtern);
+      
+      Heimatstadt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                   HeimatstadtExtern        => StadtNummerExtern);
+      
+      Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                    LebenspunkteExtern       => LeseEinheitenDatenbank.MaximaleLebenspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                                             IDExtern    => IDExtern),
+                    RechnenSetzenExtern      => 0);
+      
+      Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                       BewegungspunkteExtern    => LeseEinheitenDatenbank.MaximaleBewegungspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                                                   IDExtern    => IDExtern),
+                       RechnenSetzenExtern      => 0);
+      
+   end Standardwerte;
    
    
    

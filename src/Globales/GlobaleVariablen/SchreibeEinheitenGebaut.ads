@@ -198,6 +198,21 @@ package SchreibeEinheitenGebaut is
           and
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
    
+   procedure Standardwerte
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      IDExtern : in EinheitenDatentypen.EinheitenID;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      StadtNummerExtern : in StadtDatentypen.MaximaleStädte)
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+          and
+            SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+          and
+            KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+          and
+            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+   
    procedure GanzerEintrag
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       EintragExtern : in EinheitenRecords.EinheitenGebautRecord)

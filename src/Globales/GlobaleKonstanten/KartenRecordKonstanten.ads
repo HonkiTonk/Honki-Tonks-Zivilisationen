@@ -11,6 +11,7 @@ with DatenbankRecords;
 
 package KartenRecordKonstanten is
 
+   ----------------------------------------- Diese LeerKoordinaten mal überall irgendwie herausziehen und in einer Datei unterbringen, geht aktuell nicht wegen Kreislinkung in KartenKonstanten/StadtKonstanten.
    LeerKartenKoordinaten : constant KartenRecords.AchsenKartenfeldNaturalRecord := (
                                                                                     EAchse => KartenKonstanten.LeerEAchse,
                                                                                     YAchse => KartenKonstanten.LeerYAchse,

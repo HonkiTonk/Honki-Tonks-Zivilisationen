@@ -10,7 +10,7 @@ with StadtRecords;
 
 package KIBewegungDurchfuehren is
    
-   procedure KIBewegungNeu
+   procedure KIBewegung
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre =>

@@ -3,12 +3,15 @@ pragma Warnings (Off, "*array aggregate*");
 
 package KIDatentypen is
 
+   -- Leer verwenden, wenn noch keine Aufgabe ermittelt wurde. Tut_Nichts, wenn die Einheit diese Runde nichts tun soll.
    type Einheit_Aufgabe_Enum is (
-                                 Tut_Nichts_Enum,
+                                 Leer_Aufgabe_Enum,
 
+                                 Tut_Nichts_Enum,
                                  Stadt_Bauen_Enum, Flucht_Enum, Erkunden_Enum, Verbesserung_Anlegen_Enum, Angreifen_Enum, Verteidigen_Enum, Einheit_Heilen_Enum, Einheit_Auflösen_Enum,
                                  Einheit_Festsetzen_Enum, Einheit_Verbessern_Enum, Stadt_Bewachen_Enum, Verbesserung_Zerstören_Enum, Auf_Transporter_Warten_Enum
                                 );
+   subtype Einheit_Aufgabe_Vorhanden_Enum is Einheit_Aufgabe_Enum range Tut_Nichts_Enum .. Einheit_Aufgabe_Enum'Last;
 
    type Stadt_Aufgabe_Enum is (
                                Keine_Aufgabe_Enum,

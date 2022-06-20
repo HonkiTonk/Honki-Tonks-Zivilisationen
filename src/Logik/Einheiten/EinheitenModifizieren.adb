@@ -21,6 +21,8 @@ with EinheitSuchen;
 with BewegungPassierbarkeitPruefen;
 with StadtProduktion;
 
+with KIDatentypen;
+
 package body EinheitenModifizieren is
 
    procedure HeilungBewegungspunkteNeueRundeErmitteln
@@ -40,7 +42,7 @@ package body EinheitenModifizieren is
                for EinheitNummerSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (RasseSchleifenwert).Einheitengrenze loop
                               
                   if
-                    LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseSchleifenwert, EinheitNummerSchleifenwert)) = EinheitenKonstanten.LeerEinheit.ID
+                    LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseSchleifenwert, EinheitNummerSchleifenwert)) = EinheitenKonstanten.LeerID
                   then
                      null;
                   
@@ -73,7 +75,7 @@ package body EinheitenModifizieren is
 
       else
          SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                  BewegungspunkteExtern    => EinheitenKonstanten.LeerEinheit.Bewegungspunkte,
+                                                  BewegungspunkteExtern    => EinheitenKonstanten.LeerBewegungspunkte,
                                                   RechnenSetzenExtern      => 0);
       end if;
 
@@ -89,10 +91,23 @@ package body EinheitenModifizieren is
             null;
       end case;
       
+      case
+        LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+      is
+         when KIDatentypen.Tut_Nichts_Enum =>
+            SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                    AufgabeExtern            => KIDatentypen.Leer_Aufgabe_Enum);
+            
+         when others =>
+            null;
+      end case;
+      
    end HeilungBewegungspunkteNeueRundeSetzen;
    
    
    
+   
+   --------------------------------------- VorzeichenWechselExtern mal in einen Boolean umschreiben?
    procedure PermanenteKostenÄndern
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       VorzeichenWechselExtern : in KartenDatentypen.UmgebungsbereichEins)

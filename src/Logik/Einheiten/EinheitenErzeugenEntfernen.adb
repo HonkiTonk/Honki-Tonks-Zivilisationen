@@ -22,27 +22,11 @@ package body EinheitenErzeugenEntfernen is
       StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
-      SchreibeEinheitenGebaut.Nullsetzung (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern));
-      SchreibeEinheitenGebaut.ID (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern),
-                                  IDExtern                 => IDExtern);
-      
-      SchreibeEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern),
-                                           KoordinatenExtern        => KoordinatenExtern);
-      
-      SchreibeEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern),
-                                           HeimatstadtExtern        => StadtRasseNummerExtern.Nummer);
-      
-      SchreibeEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern),
-                                            LebenspunkteExtern       =>
-                                              LeseEinheitenDatenbank.MaximaleLebenspunkte (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                                           IDExtern    => IDExtern),
-                                            RechnenSetzenExtern      => 0);
-      
-      SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern),
-                                               BewegungspunkteExtern    =>
-                                                 LeseEinheitenDatenbank.MaximaleBewegungspunkte (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                                                 IDExtern    => IDExtern),
-                                               RechnenSetzenExtern      => 0);
+      SchreibeEinheitenGebaut.Standardwerte (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern),
+                                             IDExtern                 => IDExtern,
+                                             KoordinatenExtern        => KoordinatenExtern,
+                                             StadtNummerExtern        => StadtRasseNummerExtern.Nummer);
+            
       case
         LeseEinheitenDatenbank.EinheitArt (RasseExtern => StadtRasseNummerExtern.Rasse,
                                            IDExtern    => IDExtern)
@@ -92,7 +76,7 @@ package body EinheitenErzeugenEntfernen is
       
       TransporterSchleife:
       for LadungSchleifenwert in EinheitenRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                                                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) loop
+                                                                                                                        IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) loop
         
          EinheitNummer := LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                              PlatzExtern              => LadungSchleifenwert);
@@ -118,6 +102,26 @@ package body EinheitenErzeugenEntfernen is
       
       EinheitenModifizieren.PermanenteKostenÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                      VorzeichenWechselExtern  => -1);
+      
+      case
+        LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                           IDExtern    => (SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).ID))
+      is
+         when EinheitenDatentypen.Arbeiter_Enum =>
+            SchreibeWichtiges.AnzahlArbeiter (RasseExtern     => EinheitRasseNummerExtern.Rasse,
+                                              PlusMinusExtern => False);
+            
+         when EinheitenDatentypen.Nahkämpfer_Enum | EinheitenDatentypen.Fernkämpfer_Enum | EinheitenDatentypen.Beides_Enum =>
+            SchreibeWichtiges.AnzahlKämpfer (RasseExtern     => EinheitRasseNummerExtern.Rasse,
+                                              PlusMinusExtern => False);
+            
+         when EinheitenDatentypen.Sonstiges_Enum =>
+            SchreibeWichtiges.AnzahlSonstiges (RasseExtern     => EinheitRasseNummerExtern.Rasse,
+                                               PlusMinusExtern => False);
+            
+         when others =>
+            null;
+      end case;
 
       SchreibeEinheitenGebaut.Nullsetzung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       

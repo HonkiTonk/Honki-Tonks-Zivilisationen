@@ -86,7 +86,7 @@ package body KIAufgabenPlanung is
      return KIDatentypen.Einheit_Aufgabe_Enum
    is begin
       
-      AufgabeAuswählen := KIDatentypen.Einheit_Aufgabe_Enum'First;
+      AufgabeAuswählen := KIDatentypen.Einheit_Aufgabe_Vorhanden_Enum'First;
       
       WichtigkeitEinsSchleife:
       for WichtigkeitEinsSchleifenwert in WichtigkeitArray'Range loop
@@ -122,7 +122,7 @@ package body KIAufgabenPlanung is
    
    
    procedure AufgabeFestlegen
-     (GewählteAufgabeExtern : in KIDatentypen.Einheit_Aufgabe_Enum;
+     (GewählteAufgabeExtern : in KIDatentypen.Einheit_Aufgabe_Vorhanden_Enum;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
@@ -216,7 +216,7 @@ package body KIAufgabenPlanung is
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     AufgabeExtern            => KIDatentypen.Tut_Nichts_Enum);
             
-         when KIDatentypen.Tut_Nichts_Enum | KIDatentypen.Auf_Transporter_Warten_Enum | KIDatentypen.Einheit_Auflösen_Enum =>
+         when KIDatentypen.Tut_Nichts_Enum | KIDatentypen.Auf_Transporter_Warten_Enum | KIDatentypen.Einheit_Auflösen_Enum | KIDatentypen.Leer_Aufgabe_Enum =>
             null;
       end case;
       

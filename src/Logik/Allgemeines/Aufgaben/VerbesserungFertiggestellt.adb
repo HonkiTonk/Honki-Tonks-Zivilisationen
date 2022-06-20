@@ -98,7 +98,7 @@ package body VerbesserungFertiggestellt is
       is
          when EinheitenKonstanten.LeerBeschäftigung =>
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    AufgabeExtern            => KIDatentypen.Tut_Nichts_Enum);
+                                                    AufgabeExtern            => KIDatentypen.Leer_Aufgabe_Enum);
             AufgabenAllgemein.Nullsetzung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
 
          when others =>

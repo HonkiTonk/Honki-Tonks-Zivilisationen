@@ -6,6 +6,7 @@ with EinheitenKonstanten;
 with KIGefahrErmitteln;
 with KIEinheitStandardverhalten;
 with KIEinheitGefahrenverhalten;
+with KIEinheitAllgemeines;
 
 package body KIEinheit is
 
@@ -14,12 +15,21 @@ package body KIEinheit is
    is begin
       
       FeindlicheEinheit := KIGefahrErmitteln.GefahrErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-            
+      
+      ------------------------------------ Kriegshandlungen einbauen oder die bei den entsprechenden Punkten mit berücksichtigen?
       case
         FeindlicheEinheit.Rasse
       is
          when EinheitenKonstanten.LeerRasse =>
-            KIEinheitStandardverhalten.NormaleHandlungen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            -- Nicht weiter vorne einbauen, da sonst bei Gefahren/Kriegssituationen keine Berechnungen für befestigte Einheiten durchgeführt werden kann.
+            if
+              KIEinheitAllgemeines.HandlungBeendet (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
+            then
+               return;
+               
+            else
+               KIEinheitStandardverhalten.NormaleHandlungen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            end if;
             
          when others =>
             KIEinheitGefahrenverhalten.GefahrenHandlungen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,

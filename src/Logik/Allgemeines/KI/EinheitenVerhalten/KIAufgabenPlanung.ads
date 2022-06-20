@@ -30,13 +30,13 @@ private
       
    AufgabeDurchführen : Boolean;
    
-   AufgabeAuswählen : KIDatentypen.Einheit_Aufgabe_Enum;
+   AufgabeAuswählen : KIDatentypen.Einheit_Aufgabe_Vorhanden_Enum;
       
-   type WichtigkeitArray is array (KIDatentypen.Einheit_Aufgabe_Enum'Range) of KIDatentypen.AufgabenWichtigkeit;
+   type WichtigkeitArray is array (KIDatentypen.Einheit_Aufgabe_Vorhanden_Enum'Range) of KIDatentypen.AufgabenWichtigkeit;
    Wichtigkeit : WichtigkeitArray;
    
    procedure AufgabeFestlegen
-     (GewählteAufgabeExtern : in KIDatentypen.Einheit_Aufgabe_Enum;
+     (GewählteAufgabeExtern : in KIDatentypen.Einheit_Aufgabe_Vorhanden_Enum;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre =>

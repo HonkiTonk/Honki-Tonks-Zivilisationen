@@ -39,7 +39,7 @@ package body KIBewegungBerechnen is
             SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIZielKoordinaten := KIKonstanten.LeerKoordinate;
             SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIBewegungPlan := (others => KIKonstanten.LeerKoordinate);
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    AufgabeExtern            => KIDatentypen.Tut_Nichts_Enum);
+                                                    AufgabeExtern            => KIDatentypen.Leer_Aufgabe_Enum);
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     BeschäftigungExtern      => EinheitenKonstanten.LeerBeschäftigung);
       end case;
