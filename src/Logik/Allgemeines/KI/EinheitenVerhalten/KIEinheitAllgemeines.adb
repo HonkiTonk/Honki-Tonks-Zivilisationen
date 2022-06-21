@@ -16,6 +16,7 @@ with KIKonstanten;
 with KIBewegungDurchfuehren;
 with KIAufgabenPlanung;
 
+---------------------------------- Besseren Namen geben.
 package body KIEinheitAllgemeines is
 
    function HandlungBeendet
@@ -46,6 +47,28 @@ package body KIEinheitAllgemeines is
       end if;
       
    end HandlungBeendet;
+           
+      
+   
+   -- Muss auch eine Funktion sein, es könnte ja als Aufgabe Stadt_Bewachen_Enum festgelegt werden für den Ort an dem sich die Einheit gerade befindet.
+   function Aufgabenplanung
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return Boolean
+   is begin
+      
+      if
+        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerBeschäftigung
+        and
+          LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = KIDatentypen.Leer_Aufgabe_Enum
+      then
+         KIAufgabenPlanung.AufgabeErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         return HandlungBeendet (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         
+      else
+         return False;
+      end if;
+      
+   end Aufgabenplanung;
    
    
    
@@ -77,6 +100,8 @@ package body KIEinheitAllgemeines is
       if
         LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= KIDatentypen.Tut_Nichts_Enum
         and
+          LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= KIDatentypen.Leer_Aufgabe_Enum
+        and
           LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerBeschäftigung
       then
          KIAufgabenPlanung.AufgabeUmsetzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -87,27 +112,5 @@ package body KIEinheitAllgemeines is
       end if;
       
    end Aufgabenumsetzung;
-           
-      
-   
-   -- Muss auch eine Funktion sein, es könnte ja als Aufgabe Stadt_Bewachen_Enum festgelegt werden für den Ort an dem sich die Einheit gerade befindet.
-   function Aufgabenplanung
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return Boolean
-   is begin
-      
-      if
-        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerBeschäftigung
-        and
-          LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = KIDatentypen.Leer_Aufgabe_Enum
-      then
-         KIAufgabenPlanung.AufgabeErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-         return HandlungBeendet (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-         
-      else
-         return False;
-      end if;
-      
-   end Aufgabenplanung;
 
 end KIEinheitAllgemeines;

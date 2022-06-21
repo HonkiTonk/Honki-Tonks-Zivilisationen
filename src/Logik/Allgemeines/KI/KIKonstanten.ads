@@ -5,13 +5,15 @@ with KartenRecords;
 with RassenDatentypen;
 with KartenDatentypen;
 with SpielDatentypen;
+with KartenRecordKonstanten;
 
 with KIDatentypen;
 with KIRecords;
 
 package KIKonstanten is
 
-   LeerKoordinate : constant KartenRecords.AchsenKartenfeldNaturalRecord := (0, 0, 0);
+   ------------------------------------ Auf eine LeerKoordinate zusammendampfen.
+   LeerKoordinate : constant KartenRecords.AchsenKartenfeldNaturalRecord := KartenRecordKonstanten.LeerKartenKoordinaten;
 
    LeerEinheitIDBewertung : constant KIRecords.EinheitIDBewertungRecord := (0, 0);
    LeerGebäudeIDBewertung : constant KIRecords.GebäudeIDBewertungRecord := (0, 0);
@@ -48,7 +50,7 @@ package KIKonstanten is
    type SchwierigkeitsgradArray is array (SpielDatentypen.Schwierigkeitsgrad_Enum'Range) of KIDatentypen.KINotAus;
    Schwierigkeitsgrad : constant SchwierigkeitsgradArray := (
                                                              SpielDatentypen.Schwierigkeitsgrad_Leicht_Enum => 10,
-                                                             SpielDatentypen.Schwierigkeitsgrad_Mittel_Enum => 33,
+                                                             SpielDatentypen.Schwierigkeitsgrad_Mittel_Enum => 25,
                                                              SpielDatentypen.Schwierigkeitsgrad_Schwer_Enum => KIDatentypen.KINotAus'Last
                                                             );
 

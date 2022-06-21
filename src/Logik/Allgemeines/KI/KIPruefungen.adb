@@ -21,6 +21,7 @@ with BewegungPassierbarkeitPruefen;
 with Aufgaben;
 
 with KIAufgabenVerteilt;
+with KIEinheitAllgemeinePruefungen;
 
 package body KIPruefungen is
    
@@ -199,11 +200,6 @@ package body KIPruefungen is
                                    MindestBewertungFeldExtern => MindestBewertungFeldExtern)
       is
          when False =>
-            YAchseKoordinatePrüfen := 1;
-            XAchseKoordinatePrüfen := 1;
-            YAchseKoordinatenSchonGeprüft := YAchseKoordinatePrüfen - 1;
-            XAchseKoordinatenSchonGeprüft := XAchseKoordinatePrüfen - 1;
-            
             return FelderDurchgehen (EinheitRasseNummerExtern   => EinheitRasseNummerExtern,
                                      MindestBewertungFeldExtern => MindestBewertungFeldExtern);
             
@@ -215,11 +211,17 @@ package body KIPruefungen is
    
    
    
+   ----------------------------------- Das gibt immer den Nullwert zurück und müsste dann zum Bau einer Stadt führen. Kann so nicht stimmen.
    function FelderDurchgehen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       MindestBewertungFeldExtern : in KartenDatentypen.GesamteFeldbewertung)
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
+      
+      YAchseKoordinatePrüfen := 1;
+      XAchseKoordinatePrüfen := 1;
+      YAchseKoordinatenSchonGeprüft := YAchseKoordinatePrüfen - 1;
+      XAchseKoordinatenSchonGeprüft := XAchseKoordinatePrüfen - 1;
             
       KartenfeldSuchenSchleife:
       loop
@@ -298,11 +300,11 @@ package body KIPruefungen is
                                                                                         LogikGrafikExtern => True);
                
             if
-              (YAchseKoordinatenSchonGeprüft >= abs YAchseSchleifenwert
-               and
-                 XAchseKoordinatenSchonGeprüft >= abs XAchseSchleifenwert)
+              StadtBauenUmgebungKoordinaten.XAchse = KartenKonstanten.LeerXAchse
               or
-                StadtBauenUmgebungKoordinaten.XAchse = KartenKonstanten.LeerXAchse
+                (YAchseKoordinatenSchonGeprüft >= abs YAchseSchleifenwert
+                 and
+                   XAchseKoordinatenSchonGeprüft >= abs XAchseSchleifenwert)
             then
                FeldGutUndFrei := False;
                
@@ -318,7 +320,9 @@ package body KIPruefungen is
                 (KIAufgabenVerteilt.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Stadt_Bauen_Enum,
                                                         RasseExtern           => EinheitRasseNummerExtern.Rasse,
                                                         ZielKoordinatenExtern => StadtBauenUmgebungKoordinaten)
-                 = False)
+                 = False
+                 and
+                   KIEinheitAllgemeinePruefungen.BlockiertDurchWasser (KoordinatenExtern => StadtBauenUmgebungKoordinaten) = False)
             then
                return StadtBauenUmgebungKoordinaten;
                   
@@ -394,8 +398,8 @@ package body KIPruefungen is
          for XAchseUmgebungSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
             
             KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                           ÄnderungExtern    => (0, YAchseUmgebungSchleifenwert, XAchseUmgebungSchleifenwert),
-                                                                           LogikGrafikExtern => True);
+                                                                                                 ÄnderungExtern    => (0, YAchseUmgebungSchleifenwert, XAchseUmgebungSchleifenwert),
+                                                                                                 LogikGrafikExtern => True);
             
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse

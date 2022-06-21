@@ -30,6 +30,6 @@ package KIDatentypen is
 
    type AufgabenWichtigkeit is range -1 .. 100;
 
-   type KINotAus is range 1 .. 100;
+   type KINotAus is range 1 .. 50;
 
 end KIDatentypen;

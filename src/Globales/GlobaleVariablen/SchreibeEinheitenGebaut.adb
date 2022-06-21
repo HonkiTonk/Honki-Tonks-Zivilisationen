@@ -8,6 +8,8 @@ with EinheitenKonstanten;
 
 with LeseEinheitenDatenbank;
 
+with KIKonstanten;
+
 package body SchreibeEinheitenGebaut is
 
    procedure ID
@@ -331,7 +333,17 @@ package body SchreibeEinheitenGebaut is
    end KIBewegungPlan;
    
    
+   
+   procedure KIBewegungsplanLeeren
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+   is begin
       
+      SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIBewegungPlan := (others => KIKonstanten.LeerKoordinate);
+      
+   end KIBewegungsplanLeeren;
+   
+   
+   
    procedure Transportiert
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       LadungExtern : in EinheitenDatentypen.MaximaleEinheitenMitNullWert;
@@ -381,7 +393,7 @@ package body SchreibeEinheitenGebaut is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       IDExtern : in EinheitenDatentypen.EinheitenID;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      StadtNummerExtern : in StadtDatentypen.MaximaleStädte)
+      StadtNummerExtern : in StadtDatentypen.MaximaleStädteMitNullWert)
    is begin
       
       Nullsetzung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);

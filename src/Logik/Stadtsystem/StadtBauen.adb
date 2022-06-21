@@ -167,6 +167,7 @@ package body StadtBauen is
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
       
+      --------------------------------------- Auch mal vollständig nach SchreibeStadt auslagern.
       SchreibeStadtGebaut.Nullsetzung (StadtRasseNummerExtern => StadtRasseNummerExtern);
       SchreibeStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern,
                               IDExtern               => HauptstadtPrüfen (RasseExtern => StadtRasseNummerExtern.Rasse));

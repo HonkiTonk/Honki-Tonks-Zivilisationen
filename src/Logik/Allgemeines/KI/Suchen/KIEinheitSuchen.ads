@@ -8,7 +8,7 @@ with KartenRecords;
 with EinheitenDatentypen;
 with SpielVariablen;
 
-package KIFeindlicheEinheitSuchen is
+package KIEinheitSuchen is
 
    function FeindlicheEinheitInUmgebungSuchen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
@@ -22,10 +22,13 @@ package KIFeindlicheEinheitSuchen is
           and
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum);
    
+   function TransporterSuchen
+     return Integer;
+   
 private
    
    FeindlicheEinheit : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
 
-end KIFeindlicheEinheitSuchen;
+end KIEinheitSuchen;

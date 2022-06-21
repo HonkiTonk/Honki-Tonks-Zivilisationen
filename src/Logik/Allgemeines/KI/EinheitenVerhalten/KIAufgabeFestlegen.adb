@@ -26,10 +26,11 @@ with DiplomatischerZustand;
 with KIPruefungen;
 with KIMindestBewertungKartenfeldErmitteln;
 with KIAufgabenVerteilt;
-with KIFeindlicheEinheitSuchen;
+with KIEinheitSuchen;
 with KIStadtSuchen;
 with KIBewegungAllgemein;
 with KISonstigesSuchen;
+with KIEinheitAllgemeinePruefungen;
 
 package body KIAufgabeFestlegen is
    
@@ -37,7 +38,7 @@ package body KIAufgabeFestlegen is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
-      -- Hier eventuell die Bewegungspukte auf 0 setzen?
+      ------------------------------------- Hier eventuell die Bewegungspukte auf 0 setzen?
       SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                               AufgabeExtern            => KIDatentypen.Tut_Nichts_Enum);
       SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -167,8 +168,8 @@ package body KIAufgabeFestlegen is
                                                     AufgabeExtern            => KIDatentypen.Angreifen_Enum);
       end case;
       
-      KoordinatenFeind := KIFeindlicheEinheitSuchen.FeindlicheEinheitInUmgebungSuchen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                       FeindExtern              => WenAngreifen);
+      KoordinatenFeind := KIEinheitSuchen.FeindlicheEinheitInUmgebungSuchen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                             FeindExtern              => WenAngreifen);
       
       case
         KoordinatenFeind.XAchse
@@ -277,13 +278,15 @@ package body KIAufgabeFestlegen is
                                          RasseExtern       => EinheitRasseNummerExtern.Rasse)
                     = False
                     and
-                      BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern    => EinheitRasseNummerExtern,
-                                                                                 NeueKoordinatenExtern       => KartenWert)
+                      BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                 NeueKoordinatenExtern    => KartenWert)
                     = True
                     and
                       KIAufgabenVerteilt.EinheitZiel (RasseExtern           => EinheitRasseNummerExtern.Rasse,
                                                       ZielKoordinatenExtern => KartenWert)
                     = False
+                    and
+                      KIEinheitAllgemeinePruefungen.BlockiertDurchWasser (KoordinatenExtern => KartenWert) = False
                   then
                      SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                 KoordinatenExtern        => KartenWert);

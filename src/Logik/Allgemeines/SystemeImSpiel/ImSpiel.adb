@@ -153,6 +153,10 @@ package body ImSpiel is
       ------------------------------- Bringt noch Warnmeldungen bei Forschung, warum auch immer.
       Ladezeiten.KINullsetzenFortschritt;
       
+      --------------------------------------- Mal was einbauen damit man die KI sieht bei ihren Bewegungen? Wenn dann bei Debug an, sonst würde man ja auch nicht sichtbare KIs sehen.
+      -- InteraktionGrafiktask.AktuelleRasseEinheit.Rasse := RasseExtern;
+      -- InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Weltkarte_Enum;
+      
       InteraktionGrafiktask.KIRechnet := RasseExtern;
       InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_KI_Rechenzeit_Enum;
       Ladezeiten.KIZeiten (RasseExtern, SystemDatentypen.Anfangswert_Enum) := Clock;

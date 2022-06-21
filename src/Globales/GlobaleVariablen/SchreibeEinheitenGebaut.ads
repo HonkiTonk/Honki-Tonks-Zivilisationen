@@ -160,6 +160,14 @@ package SchreibeEinheitenGebaut is
             KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
             KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+   
+   procedure KIBewegungsplanLeeren
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+          and
+            SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
       
    procedure Transportiert
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
@@ -202,7 +210,7 @@ package SchreibeEinheitenGebaut is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       IDExtern : in EinheitenDatentypen.EinheitenID;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      StadtNummerExtern : in StadtDatentypen.MaximaleStädte)
+      StadtNummerExtern : in StadtDatentypen.MaximaleStädteMitNullWert)
      with
        Pre =>
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze

@@ -47,7 +47,7 @@ private
    
    FeldGutUndFrei : Boolean;
    VerbesserungTesten : Boolean;
-
+   
    AbstandKleiner : KartenDatentypen.KartenfeldPositiv;
    YAchseKoordinatePrüfen : KartenDatentypen.KartenfeldPositiv;
    XAchseKoordinatePrüfen : KartenDatentypen.KartenfeldPositiv;

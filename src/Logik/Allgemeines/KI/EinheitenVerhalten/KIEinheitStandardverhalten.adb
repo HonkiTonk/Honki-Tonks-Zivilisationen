@@ -16,6 +16,16 @@ package body KIEinheitStandardverhalten is
       for AktivitätSchleifenwert in KIDatentypen.KINotAus'First .. KIKonstanten.Schwierigkeitsgrad (SpielVariablen.Schwierigkeitsgrad) loop
          
          case
+           KIEinheitAllgemeines.Aufgabenplanung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+         is
+            when True =>
+               exit AktivitätSchleife;
+               
+            when False =>
+               null;
+         end case;
+         
+         case
            KIEinheitAllgemeines.Bewegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
          is
             when True =>
@@ -27,16 +37,6 @@ package body KIEinheitStandardverhalten is
          
          case
            KIEinheitAllgemeines.Aufgabenumsetzung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
-         is
-            when True =>
-               exit AktivitätSchleife;
-               
-            when False =>
-               null;
-         end case;
-         
-         case
-           KIEinheitAllgemeines.Aufgabenplanung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
          is
             when True =>
                exit AktivitätSchleife;

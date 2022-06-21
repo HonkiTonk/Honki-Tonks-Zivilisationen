@@ -3,6 +3,8 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
+with MeldungenSchreiben;
+
 package body Warnung is
 
    procedure LogikWarnung
@@ -11,6 +13,7 @@ package body Warnung is
       
       Put_Line (Item => "Warnung.LogikWarnung:");
       Put_Line (Item => WarnmeldungExtern);
+      MeldungenSchreiben.MeldungSchreiben (FehlermeldungExtern => "Logikwarnung: " & WarnmeldungExtern);
       
    end LogikWarnung;
    
@@ -22,6 +25,7 @@ package body Warnung is
       
       Put_Line (Item => "Warnung.GrafikWarnung:");
       Put_Line (Item => WarnmeldungExtern);
+      MeldungenSchreiben.MeldungSchreiben (FehlermeldungExtern => "Grafikwarnung: " & WarnmeldungExtern);
       
    end GrafikWarnung;
    
@@ -33,6 +37,7 @@ package body Warnung is
       
       Put_Line (Item => "Warnung.MusikWarnung:");
       Put_Line (Item => WarnmeldungExtern);
+      MeldungenSchreiben.MeldungSchreiben (FehlermeldungExtern => "Musikwarnung: " & WarnmeldungExtern);
       
    end MusikWarnung;
    
@@ -44,6 +49,7 @@ package body Warnung is
       
       Put_Line (Item => "Warnung.SoundWarnung:");
       Put_Line (Item => WarnmeldungExtern);
+      MeldungenSchreiben.MeldungSchreiben (FehlermeldungExtern => "Soundwarnung: " & WarnmeldungExtern);
       
    end SoundWarnung;
 

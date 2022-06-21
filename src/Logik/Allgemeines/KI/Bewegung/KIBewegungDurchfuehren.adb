@@ -31,8 +31,9 @@ package body KIBewegungDurchfuehren is
          if
            LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
          then
-            SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIZielKoordinaten := KIKonstanten.LeerKoordinate;
-            SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIBewegungPlan := (others => KIKonstanten.LeerKoordinate);
+            SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                       KoordinatenExtern        => KIKonstanten.LeerKoordinate);
+            SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             return;
             
          elsif
@@ -80,7 +81,7 @@ package body KIBewegungDurchfuehren is
             BewegtSich (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when KIKonstanten.KeineBewegung =>
-            SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIBewegungPlan := (others => KIKonstanten.LeerKoordinate);
+            SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when KIKonstanten.BewegungAngriff =>
             Blockiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -97,6 +98,7 @@ package body KIBewegungDurchfuehren is
       BewegungBerechnen.BewegungEinheitenBerechnung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                      NeueKoordinatenExtern    => LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                                                                      PlanschrittExtern        => 1));
+      
       BewegungPlanVerschiebenSchleife:
       for PositionSchleifenwert in EinheitenRecords.KIBewegungPlanArray'First + 1 .. EinheitenRecords.KIBewegungPlanArray'Last loop
                

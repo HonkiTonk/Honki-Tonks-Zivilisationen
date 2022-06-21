@@ -36,8 +36,9 @@ package body KIBewegungBerechnen is
             VorhandenenPlanVereinfachen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when False =>
-            SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIZielKoordinaten := KIKonstanten.LeerKoordinate;
-            SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIBewegungPlan := (others => KIKonstanten.LeerKoordinate);
+            SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                       KoordinatenExtern        => KIKonstanten.LeerKoordinate);
+            SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     AufgabeExtern            => KIDatentypen.Leer_Aufgabe_Enum);
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -496,14 +497,14 @@ package body KIBewegungBerechnen is
                                                                         NeueKoordinatenExtern       => KoordinatenExtern)
            = True
          then
-            -- Hier später True zurückgeben
+            ---------------------------------------- Hier später True zurückgeben
             null;
             
          else
             null;
          end if;
          
-         -- Später entfernen
+         ----------------------------------------- Später entfernen
          exit EinheitenSchleife;
          
       end loop EinheitenSchleife;

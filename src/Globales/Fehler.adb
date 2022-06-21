@@ -3,6 +3,8 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
+with MeldungenSchreiben;
+
 package body Fehler is
 
    procedure LogikFehler
@@ -10,6 +12,7 @@ package body Fehler is
    is begin
       
       Put_Line (Item => FehlermeldungExtern);
+      MeldungenSchreiben.MeldungSchreiben (FehlermeldungExtern => "Logikfehler: " & FehlermeldungExtern);
       
       raise LogikStopp;
       
@@ -22,6 +25,7 @@ package body Fehler is
    is begin
          
       Put_Line (Item => FehlermeldungExtern);
+      MeldungenSchreiben.MeldungSchreiben (FehlermeldungExtern => "Grafikfehler: " & FehlermeldungExtern);
       
       raise GrafikStopp;
       
@@ -34,6 +38,7 @@ package body Fehler is
    is begin
       
       Put_Line (Item => FehlermeldungExtern);
+      MeldungenSchreiben.MeldungSchreiben (FehlermeldungExtern => "Musikfehler: " & FehlermeldungExtern);
       
       raise MusikStopp;
       
@@ -46,6 +51,7 @@ package body Fehler is
    is begin
       
       Put_Line (Item => FehlermeldungExtern);
+      MeldungenSchreiben.MeldungSchreiben (FehlermeldungExtern => "Soundfehler: " & FehlermeldungExtern);
       
       raise SoundStopp;
       

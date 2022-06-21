@@ -58,6 +58,7 @@ package body EinheitSuchen is
             when others =>
                EinheitNummer := KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseSchleifenwert,
                                                                   KoordinatenExtern => KoordinatenExtern);
+               
                if
                  EinheitNummer = EinheitenKonstanten.LeerNummer
                then

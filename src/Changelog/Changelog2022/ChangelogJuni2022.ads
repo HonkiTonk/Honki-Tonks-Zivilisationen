@@ -56,17 +56,18 @@ package ChangelogJuni2022 is
    
    
 
-   -- Version 0.01.1 => 0.01.1 (22.06.2022):
+   -- Version 0.01.1500 => 0.01.1 (22.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.1475 => 0.01.1 (21.06.2022):
+   -- Version 0.01.1475 => 0.01.1500 (21.06.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter an den Einheitenberechnungen der KI gearbeitet.
+   -- Angefangen ein Schreibesystem für anfallende Fehler und Warnungen einzubauen.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert.
    
    
 

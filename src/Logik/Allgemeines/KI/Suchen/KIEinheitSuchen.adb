@@ -12,7 +12,7 @@ with LeseEinheitenGebaut;
 with Kartenkoordinatenberechnungssystem;
 with EinheitSuchen;
 
-package body KIFeindlicheEinheitSuchen is
+package body KIEinheitSuchen is
 
    function FeindlicheEinheitInUmgebungSuchen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
@@ -61,5 +61,15 @@ package body KIFeindlicheEinheitSuchen is
       return KartenRecordKonstanten.LeerKartenKoordinaten;
       
    end FeindlicheEinheitInUmgebungSuchen;
+   
+   
+   
+   function TransporterSuchen
+     return Integer
+   is begin
+      
+      return 0;
+      
+   end TransporterSuchen;
 
-end KIFeindlicheEinheitSuchen;
+end KIEinheitSuchen;
