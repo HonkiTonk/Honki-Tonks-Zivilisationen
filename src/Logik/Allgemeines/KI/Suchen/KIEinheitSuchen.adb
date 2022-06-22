@@ -58,7 +58,7 @@ package body KIEinheitSuchen is
          end loop XAchseSchleife;
       end loop YAchseSchleife;
       
-      return KartenRecordKonstanten.LeerKartenKoordinaten;
+      return KartenRecordKonstanten.LeerKoordinate;
       
    end FeindlicheEinheitInUmgebungSuchen;
    

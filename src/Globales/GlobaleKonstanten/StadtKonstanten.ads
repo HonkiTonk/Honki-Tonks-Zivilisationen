@@ -4,7 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with SystemDatentypen;
-with KartenRecords;
 with ForschungKonstanten;
 with StadtDatentypen;
 with KartenDatentypen;
@@ -16,6 +15,7 @@ with ForschungenDatentypen;
 with ProduktionDatentypen;
 with StadtRecords;
 with KampfDatentypen;
+with KartenRecordKonstanten;
 
 with DatenbankRecords;
 
@@ -28,14 +28,12 @@ package StadtKonstanten is
    LeerRasseNummer : constant StadtRecords.RasseStadtnummerRecord := (LeerRasse, LeerNummer);
    
    LeerID : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum := KartenVerbesserungDatentypen.Leer_Verbesserung_Enum;
-   ----------------------------------------- Diese LeerKoordinaten mal überall irgendwie herausziehen und in einer Datei unterbringen, geht aktuell nicht wegen Kreislinkung in KartenKonstanten/StadtKonstanten.
-   LeerKoordinaten : constant KartenRecords.AchsenKartenfeldNaturalRecord := (0, 0, 0);
    LeerEinwohner : constant ProduktionDatentypen.Einwohner := 0;
    LeerArbeiter : constant ProduktionDatentypen.Einwohner := 0;
    LeerEinwohnerArbeiter : constant StadtRecords.EinwohnerArbeiterArray := (LeerEinwohner, LeerArbeiter);
-   LeerNahrungsmittel : constant ProduktionDatentypen.Stadtproduktion := 0;
+   LeerNahrungsmittel : constant ProduktionDatentypen.StadtLagermenge := 0;
    LeerNahrungsproduktion : constant ProduktionDatentypen.Stadtproduktion := 0;
-   LeerRessourcen : constant ProduktionDatentypen.Produktion := 0;
+   LeerRessourcen : constant ProduktionDatentypen.StadtLagermenge := 0;
    LeerProduktionrate : constant ProduktionDatentypen.Stadtproduktion := 0;
    LeerGeldgewinnung : constant ProduktionDatentypen.Stadtproduktion := 0;
    LeerPermanenteKosten : constant ProduktionDatentypen.Stadtproduktion := 0;
@@ -52,27 +50,27 @@ package StadtKonstanten is
    LeerKIBeschäftigung : constant KIDatentypen.Stadt_Aufgabe_Enum := KIDatentypen.Keine_Aufgabe_Enum;
    
    LeerStadt : constant StadtRecords.StadtGebautRecord := (
-                                                                  ID                      => LeerID,
-                                                                  KoordinatenAktuell      => LeerKoordinaten,
-                                                                  EinwohnerArbeiter       => LeerEinwohnerArbeiter,
-                                                                  Nahrungsmittel          => LeerNahrungsmittel,
-                                                                  Nahrungsproduktion      => LeerNahrungsproduktion,
-                                                                  Ressourcen              => LeerRessourcen,
-                                                                  Produktionrate          => LeerProduktionrate,
-                                                                  Geldgewinnung           => LeerGeldgewinnung,
-                                                                  PermanenteKostenPosten  => (others => LeerPermanenteKosten),
-                                                                  Forschungsrate          => LeerForschungsrate,
-                                                                  Bauprojekt              => LeerBauprojekt,
-                                                                  Bauzeit                 => LeerBauzeit,
-                                                                  Korruption              => LeerKorruption,
-                                                                  Zufriedenheit           => LeerZufriedenheit,
-                                                                  GebäudeVorhanden        => (others => LeerGebäude),
-                                                                  Name                    => LeerName,
-                                                                  UmgebungBewirtschaftung => (others => (others => LeerUmgebungBewitschaftet)),
-                                                                  UmgebungGröße           => LeerUmgebungGröße,
-                                                                  Meldungen               => (others => LeerMeldung),
-                                                                  KIBeschäftigung         => LeerKIBeschäftigung
-                                                                 );
+                                                           ID                      => LeerID,
+                                                           KoordinatenAktuell      => KartenRecordKonstanten.LeerKoordinate,
+                                                           EinwohnerArbeiter       => LeerEinwohnerArbeiter,
+                                                           Nahrungsmittel          => LeerNahrungsmittel,
+                                                           Nahrungsproduktion      => LeerNahrungsproduktion,
+                                                           Ressourcen              => LeerRessourcen,
+                                                           Produktionrate          => LeerProduktionrate,
+                                                           Geldgewinnung           => LeerGeldgewinnung,
+                                                           PermanenteKostenPosten  => (others => LeerPermanenteKosten),
+                                                           Forschungsrate          => LeerForschungsrate,
+                                                           Bauprojekt              => LeerBauprojekt,
+                                                           Bauzeit                 => LeerBauzeit,
+                                                           Korruption              => LeerKorruption,
+                                                           Zufriedenheit           => LeerZufriedenheit,
+                                                           GebäudeVorhanden        => (others => LeerGebäude),
+                                                           Name                    => LeerName,
+                                                           UmgebungBewirtschaftung => (others => (others => LeerUmgebungBewitschaftet)),
+                                                           UmgebungGröße           => LeerUmgebungGröße,
+                                                           Meldungen               => (others => LeerMeldung),
+                                                           KIBeschäftigung         => LeerKIBeschäftigung
+                                                          );
 
    MaximaleBauzeit : constant ProduktionDatentypen.Produktion := ProduktionDatentypen.Produktion'Last;
    

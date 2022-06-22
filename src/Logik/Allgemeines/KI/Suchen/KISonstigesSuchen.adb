@@ -2,8 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenKonstanten;
-
-with KIKonstanten;
+with KartenRecordKonstanten;
 
 with LeseKarten;
 
@@ -79,7 +78,7 @@ package body KISonstigesSuchen is
          end loop XAchseSchleife;
       end loop YAchseSchleife;
       
-      return KIKonstanten.LeerKoordinate;
+      return KartenRecordKonstanten.LeerKoordinate;
       
    end ZielSuchen;
 

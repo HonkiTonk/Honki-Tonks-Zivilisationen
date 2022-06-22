@@ -1,4 +1,4 @@
-# Civ-Klon - Version: 0.01.1500
+# Civ-Klon - Version: 0.01.1535
 4X-Rundenstrategiespiels im Stil von Civilization 1.
 Geschrieben in Ada mit der Standardbibliothek und ASFML. Wird nur unter Linux intensiv getestet, sollte aber auch unter anderen Betriebssystemen problemlos funktionieren.
 

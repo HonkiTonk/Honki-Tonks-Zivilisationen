@@ -63,7 +63,7 @@ private
    YAchsenWert : Unbounded_Wide_Wide_String;
    XAchsenWert : Unbounded_Wide_Wide_String;
 
-   LetzteKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord := KartenRecordKonstanten.LeerKartenKoordinaten;
+   LetzteKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord := KartenRecordKonstanten.LeerKoordinate;
    AktuelleKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    Textposition : Sf.System.Vector2.sfVector2f;

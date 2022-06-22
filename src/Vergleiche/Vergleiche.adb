@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with KartenRecords; use KartenRecords;
 with KartenRecordKonstanten;
 
 package body Vergleiche is
@@ -12,7 +11,11 @@ package body Vergleiche is
    is begin
       
       if
-        KoordinateExtern /= KartenRecordKonstanten.LeerKartenKoordinaten
+        KoordinateExtern.EAchse /= KartenRecordKonstanten.LeerKoordinate.EAchse
+        or
+          KoordinateExtern.YAchse /= KartenRecordKonstanten.LeerKoordinate.YAchse
+          or
+            KoordinateExtern.XAchse /= KartenRecordKonstanten.LeerKoordinate.XAchse
       then
          return False;
          
@@ -31,7 +34,11 @@ package body Vergleiche is
    is begin
       
       if
-        KoordinateEinsExtern /= KoordinatenZweiExtern
+        KoordinateEinsExtern.EAchse /= KoordinatenZweiExtern.EAchse
+        or
+          KoordinateEinsExtern.YAchse /= KoordinatenZweiExtern.YAchse
+          or
+            KoordinateEinsExtern.XAchse /= KoordinatenZweiExtern.XAchse
       then
          return False;
          

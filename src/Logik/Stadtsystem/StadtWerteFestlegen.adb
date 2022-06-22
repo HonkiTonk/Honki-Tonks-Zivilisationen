@@ -5,6 +5,7 @@ with KartenDatentypen; use KartenDatentypen;
 with KartenKonstanten;
 with StadtKonstanten;
 with StadtDatentypen;
+with KartenRecordKonstanten;
 
 with SchreibeKarten;
 with SchreibeStadtGebaut;
@@ -73,7 +74,7 @@ package body StadtWerteFestlegen is
               = True
             then
                SchreibeKarten.BelegterGrund (KoordinatenExtern   => KartenWert,
-                                             BelegterGrundExtern => KartenKonstanten.LeerDurchStadtBelegterGrund);
+                                             BelegterGrundExtern => KartenRecordKonstanten.LeerDurchStadtBelegterGrund);
                
                case
                  LeseStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
@@ -412,7 +413,7 @@ package body StadtWerteFestlegen is
                                                   RasseExtern       => StadtRasseNummerExtern.Rasse);
       
       if
-        LeseStadtGebaut.Forschungsrate (StadtRasseNummerExtern => StadtRasseNummerExtern) <= 0
+        LeseStadtGebaut.Forschungsrate (StadtRasseNummerExtern => StadtRasseNummerExtern) = 0
         and
           WissenGesamt >= 1
       then

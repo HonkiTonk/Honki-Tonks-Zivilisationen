@@ -3,8 +3,12 @@ pragma Warnings (Off, "*array aggregate*");
 
 package ProduktionDatentypen is
 
+   ----------------------- Produktion rauswerfen, Stadtproduktion auf -10000 .. 10000 und StadtLagermenge auf 0 .. 10000 erweitern?
+   ----------------------- Wobei ich ja für die Stadt prinzipiell kleinere Werte brauche als für die Gesamtwerte aller Städte.
    type Produktion is range -10_000 .. 10_000;
-   subtype Stadtproduktion is Produktion range -5000 .. 5000;
+   subtype Lagermenge is Produktion range 0 .. 10_000;
+   subtype Stadtproduktion is Produktion range -5_000 .. 5_000;
+   subtype StadtLagermenge is Stadtproduktion range 0 .. 5_000;
    subtype Feldproduktion is Stadtproduktion range 0 .. 50;
    subtype Einzelproduktion is Feldproduktion range 0 .. 10;
    subtype Zwischenlösung is Stadtproduktion range -1 .. 1;

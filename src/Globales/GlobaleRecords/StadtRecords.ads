@@ -59,9 +59,9 @@ package StadtRecords is
       KoordinatenAktuell : KartenRecords.AchsenKartenfeldNaturalRecord;
       EinwohnerArbeiter : EinwohnerArbeiterArray;
       
-      Nahrungsmittel : ProduktionDatentypen.Stadtproduktion;
+      Nahrungsmittel : ProduktionDatentypen.StadtLagermenge;
       Nahrungsproduktion : ProduktionDatentypen.Stadtproduktion;
-      Ressourcen : ProduktionDatentypen.Produktion;
+      Ressourcen : ProduktionDatentypen.StadtLagermenge;
       Produktionrate : ProduktionDatentypen.Stadtproduktion;
       Geldgewinnung : ProduktionDatentypen.Stadtproduktion;
       PermanenteKostenPosten : PermanenteKostenArray;

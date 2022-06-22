@@ -6,13 +6,14 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with RassenDatentypen; use RassenDatentypen;
 with EinheitenDatentypen; use EinheitenDatentypen;
 with StadtDatentypen; use StadtDatentypen;
+with KartenDatentypen; use KartenDatentypen;
 with SpielVariablen;
 with KartenRecords;
-with KartenDatentypen;
 with KartenVerbesserungDatentypen;
 with SonstigeVariablen;
 with ProduktionDatentypen;
 with StadtRecords;
+with KartenKonstanten;
 
 with KIDatentypen;
 
@@ -38,9 +39,16 @@ package SchreibeStadtGebaut is
           and
             SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
           and
-            KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Karteneinstellungen.Kartengröße.YAchse
+            KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Karteneinstellungen.Kartengröße.XAchse);
+            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+          and
+            (if KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse then KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse and KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse)
+          and
+            (if KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse then KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse and KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse)
+          and
+            (if KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse then KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse and KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse)
+         );
    
    procedure EinwohnerArbeiter
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;

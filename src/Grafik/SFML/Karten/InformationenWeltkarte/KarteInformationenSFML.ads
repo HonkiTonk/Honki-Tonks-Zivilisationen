@@ -44,7 +44,7 @@ private
    YAchsenWert : Unbounded_Wide_Wide_String;
    XAchsenWert : Unbounded_Wide_Wide_String;
 
-   LetzteKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord := KartenRecordKonstanten.LeerKartenKoordinaten;
+   LetzteKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord := KartenRecordKonstanten.LeerKoordinate;
    AktuelleKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
 
    StartpunktText : constant Sf.System.Vector2.sfVector2f := (5.00, 5.00);

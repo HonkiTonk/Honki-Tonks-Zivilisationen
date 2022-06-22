@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with ProduktionDatentypen; use ProduktionDatentypen;
-with WichtigesKonstanten;
 
 package body LeseWichtiges is
 
@@ -30,17 +29,8 @@ package body LeseWichtiges is
 
    function GesamteForschungsrate
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.Produktion
+      return ProduktionDatentypen.Lagermenge
    is begin
-
-      if
-        SpielVariablen.Wichtiges (RasseExtern).GesamteForschungsrate < WichtigesKonstanten.LeerWichtigesZeug.GesamteForschungsrate
-      then
-         SpielVariablen.Wichtiges (RasseExtern).GesamteForschungsrate := WichtigesKonstanten.LeerWichtigesZeug.GesamteForschungsrate;
-         
-      else
-         null;
-      end if;
       
       return SpielVariablen.Wichtiges (RasseExtern).GesamteForschungsrate;
 
@@ -50,17 +40,8 @@ package body LeseWichtiges is
    
    function Forschungsmenge
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.Produktion
+      return ProduktionDatentypen.Lagermenge
    is begin
-
-      if
-        SpielVariablen.Wichtiges (RasseExtern).Forschungsmenge < WichtigesKonstanten.LeerWichtigesZeug.Forschungsmenge
-      then
-         SpielVariablen.Wichtiges (RasseExtern).Forschungsmenge := WichtigesKonstanten.LeerWichtigesZeug.Forschungsmenge;
-         
-      else
-         null;
-      end if;
 
       return SpielVariablen.Wichtiges (RasseExtern).Forschungsmenge;
 
@@ -70,17 +51,8 @@ package body LeseWichtiges is
    
    function VerbleibendeForschungszeit
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.Produktion
+      return ProduktionDatentypen.Lagermenge
    is begin
-
-      if
-        SpielVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit > WichtigesKonstanten.LeerWichtigesZeug.VerbleibendeForschungszeit
-      then
-         SpielVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit := WichtigesKonstanten.LeerWichtigesZeug.VerbleibendeForschungszeit;
-         
-      else
-         null;
-      end if;
 
       return SpielVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit;
 

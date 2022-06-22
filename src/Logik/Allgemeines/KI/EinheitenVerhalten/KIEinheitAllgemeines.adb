@@ -5,13 +5,13 @@ with EinheitenDatentypen; use EinheitenDatentypen;
 with AufgabenDatentypen; use AufgabenDatentypen;
 with KartenRecords; use KartenRecords;
 with EinheitenKonstanten;
+with KartenRecordKonstanten;
 
 with LeseEinheitenGebaut;
 
 with Vergleiche;
 
 with KIDatentypen; use KIDatentypen;
-with KIKonstanten;
 
 with KIBewegungDurchfuehren;
 with KIAufgabenPlanung;
@@ -38,7 +38,7 @@ package body KIEinheitAllgemeines is
       elsif
         LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = KIDatentypen.Stadt_Bewachen_Enum
         and
-          LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = KIKonstanten.LeerKoordinate
+          LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = KartenRecordKonstanten.LeerKoordinate
       then
          return True;
             

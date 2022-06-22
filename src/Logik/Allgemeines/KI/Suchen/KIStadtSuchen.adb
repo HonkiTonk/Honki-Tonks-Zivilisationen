@@ -26,7 +26,7 @@ package body KIStadtSuchen is
         GefundeneStadt
       is
          when 0 =>
-            return KartenRecordKonstanten.LeerKartenKoordinaten;
+            return KartenRecordKonstanten.LeerKoordinate;
             
          when others =>
             return LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (RasseExtern, GefundeneStadt));
@@ -108,7 +108,7 @@ package body KIStadtSuchen is
          
       end loop StadtSchleife;
       
-      return KartenRecordKonstanten.LeerKartenKoordinaten;
+      return KartenRecordKonstanten.LeerKoordinate;
       
    end UnbewachteStadtSuchen;
 

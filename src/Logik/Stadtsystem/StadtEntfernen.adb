@@ -7,6 +7,7 @@ with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with StadtDatentypen; use StadtDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
+with KartenRecordKonstanten;
 
 with SchreibeEinheitenGebaut;
 with SchreibeStadtGebaut;
@@ -63,7 +64,7 @@ package body StadtEntfernen is
               = True
             then
                SchreibeKarten.BelegterGrund (KoordinatenExtern   => KartenWert,
-                                             BelegterGrundExtern => KartenKonstanten.LeerDurchStadtBelegterGrund);
+                                             BelegterGrundExtern => KartenRecordKonstanten.LeerDurchStadtBelegterGrund);
             
             else
                null;

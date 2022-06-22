@@ -5,10 +5,9 @@ with EinheitenDatentypen; use EinheitenDatentypen;
 with KampfDatentypen; use KampfDatentypen;
 with StadtDatentypen; use StadtDatentypen;
 with EinheitenKonstanten;
+with KartenRecordKonstanten;
 
 with LeseEinheitenDatenbank;
-
-with KIKonstanten;
 
 package body SchreibeEinheitenGebaut is
 
@@ -55,15 +54,15 @@ package body SchreibeEinheitenGebaut is
         RechnenSetzenExtern
       is
          when 1 =>
+            MaximaleLebenspunkte := LeseEinheitenDatenbank.MaximaleLebenspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                                 IDExtern    => SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).ID);
+            
             if
-              SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Lebenspunkte + LebenspunkteExtern
-              >= LeseEinheitenDatenbank.MaximaleLebenspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                              IDExtern    => SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).ID)
+              SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Lebenspunkte + LebenspunkteExtern >= MaximaleLebenspunkte
             then
-               SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Lebenspunkte
-                 := LeseEinheitenDatenbank.MaximaleLebenspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                 IDExtern    => SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).ID);
+               SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Lebenspunkte := MaximaleLebenspunkte;
                
+               ------------------------------------- Wird das nicht auch in den ganzen Prüfungen zwischen den Runden geprüft und kann hier entfernt werden?
                case
                  SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigung
                is
@@ -71,7 +70,7 @@ package body SchreibeEinheitenGebaut is
                      Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                      BeschäftigungExtern     => EinheitenKonstanten.LeerBeschäftigung);
                      Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                          ZeitExtern               => EinheitenKonstanten.LeerEinheit.Beschäftigungszeit,
+                                          ZeitExtern               => EinheitenKonstanten.LeerBeschäftigungszeit,
                                           RechnenSetzenExtern      => 0);
                   
                   when others =>
@@ -85,9 +84,9 @@ package body SchreibeEinheitenGebaut is
                
          when -1 =>
             if
-              SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Lebenspunkte - LebenspunkteExtern < EinheitenDatentypen.Lebenspunkte'First
+              SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Lebenspunkte - LebenspunkteExtern < EinheitenKonstanten.LeerLebenspunkte
             then
-               SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Lebenspunkte := EinheitenDatentypen.Lebenspunkte'First;
+               SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Lebenspunkte := EinheitenKonstanten.LeerLebenspunkte;
                
             else
                SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Lebenspunkte
@@ -112,14 +111,13 @@ package body SchreibeEinheitenGebaut is
         RechnenSetzenExtern
       is
          when 1 =>
+            MaximaleBewegungspunkte := LeseEinheitenDatenbank.MaximaleBewegungspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                                       IDExtern    => SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).ID);
+            
             if
-              SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Bewegungspunkte + BewegungspunkteExtern
-              > LeseEinheitenDatenbank.MaximaleBewegungspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                IDExtern    => SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).ID)
+              SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Bewegungspunkte + BewegungspunkteExtern >= MaximaleBewegungspunkte
             then
-               SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Bewegungspunkte
-                 := LeseEinheitenDatenbank.MaximaleBewegungspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                    IDExtern    => SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).ID);
+               SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Bewegungspunkte := MaximaleBewegungspunkte;
                  
             else
                SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Bewegungspunkte
@@ -128,9 +126,9 @@ package body SchreibeEinheitenGebaut is
             
          when -1 =>
             if
-              SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Bewegungspunkte - BewegungspunkteExtern < EinheitenKonstanten.LeerEinheit.Bewegungspunkte
+              SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Bewegungspunkte - BewegungspunkteExtern < EinheitenKonstanten.LeerBewegungspunkte
             then
-               SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Bewegungspunkte := EinheitenKonstanten.LeerEinheit.Bewegungspunkte;
+               SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Bewegungspunkte := EinheitenKonstanten.LeerBewegungspunkte;
                  
             else
                SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Bewegungspunkte
@@ -155,17 +153,17 @@ package body SchreibeEinheitenGebaut is
         AddierenSetzenExtern
       is
          when True =>
+            Beförderungsgrenze := LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                               IDExtern    => SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).ID);
+            
             if
-              SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Erfahrungspunkte + ErfahrungspunkteExtern
-              > LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                            IDExtern    => SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).ID)
+              SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Erfahrungspunkte + ErfahrungspunkteExtern >= Beförderungsgrenze
             then
                SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Erfahrungspunkte
-                 := SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Erfahrungspunkte + ErfahrungspunkteExtern
-                 - LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                               IDExtern    => SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).ID);
+                 := SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Erfahrungspunkte + ErfahrungspunkteExtern - Beförderungsgrenze;
+               
                Rang (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-                 
+               
             else
                SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Erfahrungspunkte :=
                  SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Erfahrungspunkte + ErfahrungspunkteExtern;
@@ -191,8 +189,7 @@ package body SchreibeEinheitenGebaut is
          null;
                            
       else
-         SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Rang :=
-           SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Rang + 1;
+         SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Rang := SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Rang + 1;
       end if;
       
    end Rang;
@@ -232,7 +229,7 @@ package body SchreibeEinheitenGebaut is
       is
          when 1 =>
             if
-              SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigungszeit + ZeitExtern > EinheitenDatentypen.MaximaleEinheiten'Last
+              SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigungszeit + ZeitExtern >= EinheitenDatentypen.MaximaleEinheiten'Last
             then
                SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigungszeit := EinheitenDatentypen.MaximaleEinheiten'Last;
                
@@ -243,9 +240,9 @@ package body SchreibeEinheitenGebaut is
             
          when -1 =>
             if
-              SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigungszeit - ZeitExtern < EinheitenKonstanten.LeerEinheit.Beschäftigungszeit
+              SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigungszeit - ZeitExtern <= EinheitenKonstanten.LeerBeschäftigungszeit
             then
-               SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigungszeit := EinheitenKonstanten.LeerEinheit.Beschäftigungszeit;
+               SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigungszeit := EinheitenKonstanten.LeerBeschäftigungszeit;
                
             else
                SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigungszeit :=
@@ -271,7 +268,7 @@ package body SchreibeEinheitenGebaut is
       is
          when 1 =>
             if
-              SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungszeitNachfolger + ZeitExtern > EinheitenDatentypen.MaximaleEinheiten'Last
+              SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungszeitNachfolger + ZeitExtern >= EinheitenDatentypen.MaximaleEinheiten'Last
             then
                SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungszeitNachfolger := EinheitenDatentypen.MaximaleEinheiten'Last;
                
@@ -282,10 +279,9 @@ package body SchreibeEinheitenGebaut is
             
          when -1 =>
             if
-              SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungszeitNachfolger - ZeitExtern
-              < EinheitenKonstanten.LeerEinheit.BeschäftigungszeitNachfolger
+              SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungszeitNachfolger - ZeitExtern <= EinheitenKonstanten.LeerBeschäftigungszeit
             then
-               SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungszeitNachfolger := EinheitenKonstanten.LeerEinheit.BeschäftigungszeitNachfolger;
+               SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungszeitNachfolger := EinheitenKonstanten.LeerBeschäftigungszeit;
                
             else
                SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungszeitNachfolger :=
@@ -338,7 +334,7 @@ package body SchreibeEinheitenGebaut is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
-      SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIBewegungPlan := (others => KIKonstanten.LeerKoordinate);
+      SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIBewegungPlan := (others => KartenRecordKonstanten.LeerKoordinate);
       
    end KIBewegungsplanLeeren;
    

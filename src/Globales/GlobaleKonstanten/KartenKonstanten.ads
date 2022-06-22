@@ -3,7 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with KartenRecords;
-with StadtKonstanten;
 with TextKonstanten;
 with ProduktionDatentypen;
 with KampfDatentypen;
@@ -34,7 +33,6 @@ package KartenKonstanten is
    LeerKampf : constant KampfDatentypen.Kampfwerte := KampfDatentypen.Kampfwerte'First;
    
    LeerSichtbar : constant Boolean := False;
-   LeerDurchStadtBelegterGrund : constant KartenRecords.BelegterGrundRecord := (StadtKonstanten.LeerRasse, StadtKonstanten.LeerNummer);
    LeerFelderwertung : constant KartenDatentypen.GesamteFeldbewertung := 0;
    
    LeerVerbesserungGrafik : constant Wide_Wide_Character := TextKonstanten.LeerZeichen;

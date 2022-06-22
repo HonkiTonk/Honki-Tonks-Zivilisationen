@@ -5,6 +5,7 @@ with EinheitenDatentypen; use EinheitenDatentypen;
 with KartenRecords; use KartenRecords;
 with KartenKonstanten;
 with EinheitenKonstanten;
+with KartenRecordKonstanten;
 
 with KIDatentypen; use KIDatentypen;
 with KIKonstanten;
@@ -37,7 +38,7 @@ package body KIBewegungBerechnen is
             
          when False =>
             SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                       KoordinatenExtern        => KIKonstanten.LeerKoordinate);
+                                                       KoordinatenExtern        => KartenRecordKonstanten.LeerKoordinate);
             SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     AufgabeExtern            => KIDatentypen.Leer_Aufgabe_Enum);
@@ -75,7 +76,7 @@ package body KIBewegungBerechnen is
                
             when False =>
                SchreibeEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                       KoordinatenExtern        => KIKonstanten.LeerKoordinate,
+                                                       KoordinatenExtern        => KartenRecordKonstanten.LeerKoordinate,
                                                        PlanplatzExtern          => AktuellePlanpositionExtern);
          end case;
          
@@ -388,11 +389,11 @@ package body KIBewegungBerechnen is
             if
               LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                   PlanschrittExtern        => ÜberNächsterZugSchleifenwert)
-              = KIKonstanten.LeerKoordinate
+              = KartenRecordKonstanten.LeerKoordinate
               or
                 LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     PlanschrittExtern        => ErsterZugSchleifenwert)
-              = KIKonstanten.LeerKoordinate
+              = KartenRecordKonstanten.LeerKoordinate
             then
                return;
                
@@ -457,7 +458,7 @@ package body KIBewegungBerechnen is
                   end loop BewegungPlanVerschiebenSchleife;
                   
                   SchreibeEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                          KoordinatenExtern        => KIKonstanten.LeerKoordinate,
+                                                          KoordinatenExtern        => KartenRecordKonstanten.LeerKoordinate,
                                                           PlanplatzExtern          => EinheitenRecords.KIBewegungPlanArray'Last);
                            
                else

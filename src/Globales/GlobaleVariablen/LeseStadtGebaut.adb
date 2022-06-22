@@ -1,9 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with StadtKonstanten;
-with KartenRecordKonstanten;
-
 package body LeseStadtGebaut is
 
    function ID
@@ -21,17 +18,6 @@ package body LeseStadtGebaut is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
-      
-      if
-        SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).KoordinatenAktuell.YAchse > Karten.Karteneinstellungen.Kartengröße.YAchse
-        or
-          SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).KoordinatenAktuell.XAchse > Karten.Karteneinstellungen.Kartengröße.XAchse
-      then
-         SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).KoordinatenAktuell := KartenRecordKonstanten.LeerKartenKoordinaten;
-
-      else
-         null;
-      end if;
             
       return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).KoordinatenAktuell;
       
@@ -49,47 +35,20 @@ package body LeseStadtGebaut is
         EinwohnerArbeiterExtern
       is
          when True =>
-            if
-              SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).EinwohnerArbeiter (1) < StadtKonstanten.LeerStadt.EinwohnerArbeiter (1)
-            then
-               SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).EinwohnerArbeiter (1) := StadtKonstanten.LeerStadt.EinwohnerArbeiter (1);
-               
-            else
-               null;
-            end if;
-                        
             return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).EinwohnerArbeiter (1);
             
          when False =>
-            if
-              SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).EinwohnerArbeiter (2) < StadtKonstanten.LeerStadt.EinwohnerArbeiter (2)
-            then
-               SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).EinwohnerArbeiter (2) := StadtKonstanten.LeerStadt.EinwohnerArbeiter (2);
-               
-            else
-               null;
-            end if;
-            
             return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).EinwohnerArbeiter (2);
       end case;
       
    end EinwohnerArbeiter;
    
    
-      
+   
    function Nahrungsmittel
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return ProduktionDatentypen.Stadtproduktion
+      return ProduktionDatentypen.StadtLagermenge
    is begin
-      
-      if
-        SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Nahrungsmittel < StadtKonstanten.LeerStadt.Nahrungsmittel
-      then
-         SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Nahrungsmittel := StadtKonstanten.LeerStadt.Nahrungsmittel;
-         
-      else
-         null;
-      end if;
       
       return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Nahrungsmittel;
       
@@ -110,7 +69,7 @@ package body LeseStadtGebaut is
    
    function Ressourcen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return ProduktionDatentypen.Produktion
+      return ProduktionDatentypen.StadtLagermenge
    is begin
       
       return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Ressourcen;
@@ -155,17 +114,8 @@ package body LeseStadtGebaut is
       
    function Forschungsrate
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return ProduktionDatentypen.Stadtproduktion
+      return ProduktionDatentypen.StadtLagermenge
    is begin
-      
-      if
-        SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Forschungsrate < StadtKonstanten.LeerStadt.Forschungsrate
-      then
-         SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Forschungsrate := StadtKonstanten.LeerStadt.Forschungsrate;
-         
-      else
-         null;
-      end if;
             
       return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Forschungsrate;
       
@@ -197,7 +147,7 @@ package body LeseStadtGebaut is
    
    function Korruption
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return ProduktionDatentypen.Stadtproduktion
+      return ProduktionDatentypen.StadtLagermenge
    is begin
       
       return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Korruption;
@@ -257,15 +207,6 @@ package body LeseStadtGebaut is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return KartenDatentypen.UmgebungsbereichDrei
    is begin
-      
-      if
-        SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).UmgebungGröße < StadtKonstanten.LeerStadt.UmgebungGröße
-      then
-         SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).UmgebungGröße := StadtKonstanten.LeerStadt.UmgebungGröße;
-         
-      else
-         null;
-      end if;
       
       return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).UmgebungGröße;
       

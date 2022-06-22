@@ -1,19 +1,14 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with KartenRecords;
 with RassenDatentypen;
 with KartenDatentypen;
 with SpielDatentypen;
-with KartenRecordKonstanten;
 
 with KIDatentypen;
 with KIRecords;
 
 package KIKonstanten is
-
-   ------------------------------------ Auf eine LeerKoordinate zusammendampfen.
-   LeerKoordinate : constant KartenRecords.AchsenKartenfeldNaturalRecord := KartenRecordKonstanten.LeerKartenKoordinaten;
 
    LeerEinheitIDBewertung : constant KIRecords.EinheitIDBewertungRecord := (0, 0);
    LeerGebäudeIDBewertung : constant KIRecords.GebäudeIDBewertungRecord := (0, 0);

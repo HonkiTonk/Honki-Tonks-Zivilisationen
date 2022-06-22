@@ -6,22 +6,25 @@ with KartenRecords;
 with KartenKonstanten;
 with KartengrundDatentypen;
 with KartenVerbesserungDatentypen;
+with StadtDatentypen;
+with RassenDatentypen;
 
 with DatenbankRecords;
 
 package KartenRecordKonstanten is
 
-   ----------------------------------------- Diese LeerKoordinaten mal überall irgendwie herausziehen und in einer Datei unterbringen, geht aktuell nicht wegen Kreislinkung in KartenKonstanten/StadtKonstanten.
-   LeerKartenKoordinaten : constant KartenRecords.AchsenKartenfeldNaturalRecord := (
-                                                                                    EAchse => KartenKonstanten.LeerEAchse,
-                                                                                    YAchse => KartenKonstanten.LeerYAchse,
-                                                                                    XAchse => KartenKonstanten.LeerXAchse
-                                                                                   );
+   LeerKoordinate : constant KartenRecords.AchsenKartenfeldNaturalRecord := (
+                                                                              EAchse => KartenKonstanten.LeerEAchse,
+                                                                              YAchse => KartenKonstanten.LeerYAchse,
+                                                                              XAchse => KartenKonstanten.LeerXAchse
+                                                                             );
    
-   LeerKartenYXKoordinate : constant KartenRecords.YXAchsenKartenfeldNaturalRecord := (
-                                                                                       YAchse => KartenKonstanten.LeerYAchse,
-                                                                                       XAchse => KartenKonstanten.LeerXAchse
-                                                                                      );
+   LeerYXKoordinate : constant KartenRecords.YXAchsenKartenfeldNaturalRecord := (
+                                                                                 YAchse => KartenKonstanten.LeerYAchse,
+                                                                                 XAchse => KartenKonstanten.LeerXAchse
+                                                                                );
+   
+   LeerStadtKoordinate : constant KartenRecords.AchsenStadtfeldRecord := (1, 1);
    
    LeerKartenListe : constant DatenbankRecords.KartenlisteRecord := (
                                                                      Bewertung      => (others => KartenKonstanten.LeerBewertung),
@@ -35,6 +38,8 @@ package KartenRecordKonstanten is
                                                                                Wirtschaft     => (others => (others => KartenKonstanten.LeerWirtschaft)),
                                                                                Kampf          => (others => (others => KartenKonstanten.LeerKampf))
                                                                               );
+   
+   LeerDurchStadtBelegterGrund : constant KartenRecords.BelegterGrundRecord := (RassenDatentypen.Keine_Rasse_Enum, StadtDatentypen.MaximaleStädteMitNullWert'First);
 
    LeerWeltkarte : constant KartenRecords.KartenRecord := (
                                                            AktuellerGrund          => KartengrundDatentypen.Leer_Grund_Enum,
@@ -44,7 +49,7 @@ package KartenRecordKonstanten is
                                                            Ressource               => KartengrundDatentypen.Leer_Ressource_Enum,
                                                            Weg                     => KartenVerbesserungDatentypen.Leer_Weg_Enum,
                                                            Verbesserung            => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum,
-                                                           DurchStadtBelegterGrund => KartenKonstanten.LeerDurchStadtBelegterGrund,
+                                                           DurchStadtBelegterGrund => LeerDurchStadtBelegterGrund,
                                                            Felderwertung           => (others => KartenKonstanten.LeerFelderwertung)
                                                           );
 

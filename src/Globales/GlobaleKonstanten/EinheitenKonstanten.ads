@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with KartenRecords;
 with ForschungKonstanten;
 with AufgabenDatentypen;
 with TextKonstanten;
@@ -25,8 +24,6 @@ package EinheitenKonstanten is
    LeerRasseNummer : constant EinheitenRecords.RasseEinheitnummerRecord := (LeerRasse, LeerNummer);
 
    LeerID : constant EinheitenDatentypen.EinheitenIDMitNullWert := EinheitenDatentypen.EinheitenIDMitNullWert'First;
-   ----------------------------------------- Diese LeerKoordinaten mal überall irgendwie herausziehen und in einer Datei unterbringen, geht aktuell nicht wegen Kreislinkung in KartenKonstanten/StadtKonstanten.
-   LeerKoordinaten : constant KartenRecords.AchsenKartenfeldNaturalRecord := KartenRecordKonstanten.LeerKartenKoordinaten;
    LeerHeimatstadt : constant StadtDatentypen.MaximaleStädteMitNullWert := StadtDatentypen.MaximaleStädteMitNullWert'First;
    LeerLebenspunkte : constant EinheitenDatentypen.Lebenspunkte := EinheitenDatentypen.Lebenspunkte'First;
    LeerBewegungspunkte : constant EinheitenDatentypen.VorhandeneBewegungspunkte := EinheitenDatentypen.VorhandeneBewegungspunkte'First;
@@ -41,7 +38,7 @@ package EinheitenKonstanten is
    
    LeerEinheit : constant EinheitenRecords.EinheitenGebautRecord := (
                                                                         ID                           => LeerID,
-                                                                        KoordinatenAktuell           => LeerKoordinaten,
+                                                                        KoordinatenAktuell           => KartenRecordKonstanten.LeerKoordinate,
                                                                         Heimatstadt                  => LeerHeimatstadt,
                                                                         Lebenspunkte                 => LeerLebenspunkte,
                                                                         Bewegungspunkte              => LeerBewegungspunkte,
@@ -51,9 +48,9 @@ package EinheitenKonstanten is
                                                                         BeschäftigungNachfolger      => LeerBeschäftigung,
                                                                         Beschäftigungszeit           => LeerBeschäftigungszeit,
                                                                         BeschäftigungszeitNachfolger => LeerBeschäftigungszeit,
-                                                                        KIZielKoordinaten            => LeerKoordinaten,
+                                                                        KIZielKoordinaten            => KartenRecordKonstanten.LeerKoordinate,
                                                                         KIBeschäftigt                => LeerKIBeschäftigt,
-                                                                        KIBewegungPlan               => (others => LeerKoordinaten),
+                                                                        KIBewegungPlan               => (others => KartenRecordKonstanten.LeerKoordinate),
                                                                         Transportiert                => (others => LeerTransportiert),
                                                                         WirdTransportiert            => LeerWirdTransportiert,
                                                                         Meldungen                    => (others => LeerMeldung)

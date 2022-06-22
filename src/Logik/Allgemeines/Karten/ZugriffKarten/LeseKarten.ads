@@ -18,10 +18,11 @@ package LeseKarten is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return KartengrundDatentypen.Kartengrund_Enum
      with
-       Pre =>
-         (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Karteneinstellungen.Kartengröße.YAchse
-          and
-            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Karteneinstellungen.Kartengröße.XAchse);
+       Pre => (
+                 KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Karteneinstellungen.Kartengröße.XAchse
+              );
    
    function BasisGrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)

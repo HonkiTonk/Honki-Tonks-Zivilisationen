@@ -49,17 +49,19 @@ package ChangelogJuni2022 is
    
    
 
-   -- Version 0.01.1 => 0.01. (23.06.2022):
+   -- Version 0.01.1525 => 0.01. (23.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.1500 => 0.01.1 (22.06.2022):
+   -- Version 0.01.1500 => 0.01.1535 (22.06.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Diverse Sicherheitsprüfungen überarbeitet und erweitert.
+   -- Diverse Konstanten zusammengeführt und sinnvoller gruppiert.
+   -- Angefangen Umwandlungen für einige eigene Records anzulegen.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert.
    
    
 

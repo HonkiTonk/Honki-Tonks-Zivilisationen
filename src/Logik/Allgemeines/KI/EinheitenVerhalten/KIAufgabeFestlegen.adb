@@ -8,6 +8,7 @@ with KartenKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
 with KartenVerbesserungDatentypen;
+with KartenRecordKonstanten;
 
 with KIDatentypen; use KIDatentypen;
 with KIKonstanten;
@@ -68,7 +69,7 @@ package body KIAufgabeFestlegen is
                                                                      (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       
       if
-        NeueStadtPosition = KIKonstanten.LeerKoordinate
+        NeueStadtPosition = KartenRecordKonstanten.LeerKoordinate
       then
          NullWert := StadtBauen.StadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
@@ -193,7 +194,7 @@ package body KIAufgabeFestlegen is
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     AufgabeExtern            => KIDatentypen.Tut_Nichts_Enum);
             SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                       KoordinatenExtern        => KIKonstanten.LeerKoordinate);
+                                                       KoordinatenExtern        => KartenRecordKonstanten.LeerKoordinate);
             
          when others =>
             SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -310,7 +311,7 @@ package body KIAufgabeFestlegen is
       end loop UnbekanntesFeldSuchenSchleife;
       
       SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                 KoordinatenExtern        => KIKonstanten.LeerKoordinate);
+                                                 KoordinatenExtern        => KartenRecordKonstanten.LeerKoordinate);
       SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                               AufgabeExtern            => KIDatentypen.Tut_Nichts_Enum);
       
@@ -445,7 +446,7 @@ package body KIAufgabeFestlegen is
          end loop XAchseSchleife;
       end loop YAchseSchleife;
       
-      return KIKonstanten.LeerKoordinate;
+      return KartenRecordKonstanten.LeerKoordinate;
       
    end EinheitVerbessernPlatz;
 

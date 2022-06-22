@@ -13,6 +13,7 @@ with KartenRecords;
 with KartenVerbesserungDatentypen;
 with SonstigeVariablen;
 with StadtRecords;
+with KartenKonstanten;
 
 with KIDatentypen;
 
@@ -33,15 +34,23 @@ package LeseStadtGebaut is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return KartenRecords.AchsenKartenfeldNaturalRecord
      with
-       Pre =>
-         (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
-          and
-            SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum),
+       Pre => (
+                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+               and
+                 SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+              ),
    
-         Post =>
-           (Koordinaten'Result.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-            and
-              Koordinaten'Result.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+       Post => (
+                  Koordinaten'Result.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                and
+                  Koordinaten'Result.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+                and
+                  (if Koordinaten'Result.YAchse = KartenKonstanten.LeerYAchse then Koordinaten'Result.XAchse = KartenKonstanten.LeerXAchse and Koordinaten'Result.EAchse = KartenKonstanten.LeerEAchse)
+                and
+                  (if Koordinaten'Result.XAchse = KartenKonstanten.LeerXAchse then Koordinaten'Result.YAchse = KartenKonstanten.LeerYAchse and Koordinaten'Result.EAchse = KartenKonstanten.LeerEAchse)
+                and
+                  (if Koordinaten'Result.EAchse = KartenKonstanten.LeerEAchse then Koordinaten'Result.YAchse = KartenKonstanten.LeerYAchse and Koordinaten'Result.XAchse = KartenKonstanten.LeerXAchse)
+               );
    
    function EinwohnerArbeiter
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
@@ -51,14 +60,11 @@ package LeseStadtGebaut is
        Pre =>
          (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
-            SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum),
-         Post =>
-           ---------------------------- Sollte das nicht immer > 0 sein?
-           (EinwohnerArbeiter'Result >= 0);
+            SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
       
    function Nahrungsmittel
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return ProduktionDatentypen.Stadtproduktion
+      return ProduktionDatentypen.StadtLagermenge
      with
        Pre =>
          (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -76,7 +82,7 @@ package LeseStadtGebaut is
    
    function Ressourcen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return ProduktionDatentypen.Produktion
+      return ProduktionDatentypen.StadtLagermenge
      with
        Pre =>
          (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -113,7 +119,7 @@ package LeseStadtGebaut is
       
    function Forschungsrate
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return ProduktionDatentypen.Stadtproduktion
+      return ProduktionDatentypen.StadtLagermenge
      with
        Pre =>
          (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -145,7 +151,7 @@ package LeseStadtGebaut is
 
    function Korruption
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return ProduktionDatentypen.Stadtproduktion
+      return ProduktionDatentypen.StadtLagermenge
      with
        Pre =>
          (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -195,10 +201,15 @@ package LeseStadtGebaut is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return KartenDatentypen.UmgebungsbereichDrei
      with
-       Pre =>
-         (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
-          and
-            SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
+       Pre => (
+                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+               and
+                 SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+              ),
+         
+       Post => (
+                  UmgebungGröße'Result >= 0
+               );
       
    function Meldungen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;

@@ -7,8 +7,8 @@ with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with TastenbelegungDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
+with KartenRecordKonstanten;
 
-with KIKonstanten;
 with KIDatentypen;
 
 with LeseKarten;
@@ -30,7 +30,7 @@ package body KIPruefungen is
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
       
-      VerbesserungAnlegen := KIKonstanten.LeerKoordinate;
+      VerbesserungAnlegen := KartenRecordKonstanten.LeerKoordinate;
       
       StadtSchleife:
       for StadtNummerSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Städtegrenze loop
@@ -107,7 +107,7 @@ package body KIPruefungen is
          end loop XAchseSchleife;
       end loop YAchseSchleife;
       
-      return KIKonstanten.LeerKoordinate;
+      return KartenRecordKonstanten.LeerKoordinate;
       
    end StadtUmgebungUnverbessert;
    
@@ -204,7 +204,7 @@ package body KIPruefungen is
                                      MindestBewertungFeldExtern => MindestBewertungFeldExtern);
             
          when True =>
-            return KIKonstanten.LeerKoordinate;
+            return KartenRecordKonstanten.LeerKoordinate;
       end case;
       
    end UmgebungStadtBauenPrüfen;
@@ -274,7 +274,7 @@ package body KIPruefungen is
          
       end loop KartenfeldSuchenSchleife;
       
-      return KIKonstanten.LeerKoordinate;
+      return KartenRecordKonstanten.LeerKoordinate;
       
    end FelderDurchgehen;
      
@@ -333,7 +333,7 @@ package body KIPruefungen is
          end loop XAchseKartenfeldSuchenSchleife;
       end loop YAchseKartenfeldSuchenSchleife;
       
-      return KIKonstanten.LeerKoordinate;
+      return KartenRecordKonstanten.LeerKoordinate;
       
    end NeuesStadtFeldSuchen;
    

@@ -11,6 +11,7 @@ with StadtDatentypen;
 with AufgabenDatentypen;
 with SonstigeVariablen;
 with KampfDatentypen;
+with KartenKonstanten;
 
 with KIDatentypen;
 
@@ -38,7 +39,14 @@ package SchreibeEinheitenGebaut is
           and
             KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+          and
+            (if KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse then KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse and KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse)
+          and
+            (if KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse then KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse and KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse)
+          and
+            (if KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse then KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse and KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse)
+         );
    
    procedure Heimatstadt
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
@@ -136,7 +144,14 @@ package SchreibeEinheitenGebaut is
           and
             KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+          and
+            (if KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse then KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse and KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse)
+          and
+            (if KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse then KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse and KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse)
+          and
+            (if KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse then KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse and KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse)
+         );
    
    procedure KIBeschäftigt
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
@@ -159,7 +174,14 @@ package SchreibeEinheitenGebaut is
           and
             KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+          and
+            (if KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse then KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse and KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse)
+          and
+            (if KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse then KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse and KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse)
+          and
+            (if KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse then KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse and KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse)
+         );
    
    procedure KIBewegungsplanLeeren
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
@@ -219,7 +241,14 @@ package SchreibeEinheitenGebaut is
           and
             KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
           and
-            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+          and
+            (if KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse then KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse and KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse)
+          and
+            (if KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse then KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse and KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse)
+          and
+            (if KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse then KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse and KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse)
+         );
    
    procedure GanzerEintrag
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
@@ -229,5 +258,13 @@ package SchreibeEinheitenGebaut is
          (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
+   
+private
+   
+   Beförderungsgrenze : KampfDatentypen.Kampfwerte;
+   
+   MaximaleLebenspunkte : EinheitenDatentypen.LebenspunkteVorhanden;
+   
+   MaximaleBewegungspunkte : EinheitenDatentypen.VorhandeneBewegungspunkte;
 
 end SchreibeEinheitenGebaut;

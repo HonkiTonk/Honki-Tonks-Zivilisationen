@@ -107,7 +107,7 @@ package body UmgebungErreichbarTesten is
                      
       end loop BereichSchleife;
       
-      return KartenRecordKonstanten.LeerKartenKoordinaten;
+      return KartenRecordKonstanten.LeerKoordinate;
       
    end UmgebungErreichbarTesten;
    

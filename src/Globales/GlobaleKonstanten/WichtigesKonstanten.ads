@@ -9,19 +9,18 @@ with SystemDatentypen;
 with ForschungenDatentypen;
 with ProduktionDatentypen;
 with ZahlenDatentypen;
+with KartenRecordKonstanten;
 
 with DatenbankRecords;
 
 package WichtigesKonstanten is
    
    LeerCursorGrafik : constant Wide_Wide_Character := '©';
-   LeerKoordinaten : constant KartenRecords.AchsenKartenfeldNaturalRecord := (0, 0, 0);
-   LeerKoordinatenStadt : constant KartenRecords.AchsenStadtfeldRecord := (1, 1);
    
    LeerCursor : constant KartenRecords.CursorRecord := (
-                                                        KoordinatenAktuell => LeerKoordinaten,
-                                                        KoordinatenAlt     => LeerKoordinaten,
-                                                        KoordinatenStadt   => LeerKoordinatenStadt
+                                                        KoordinatenAktuell => KartenRecordKonstanten.LeerKoordinate,
+                                                        KoordinatenAlt     => KartenRecordKonstanten.LeerKoordinate,
+                                                        KoordinatenStadt   => KartenRecordKonstanten.LeerStadtKoordinate
                                                        );
    
    LeerGeldmenge : constant ZahlenDatentypen.EigenesNatural := ZahlenDatentypen.EigenesNatural'First;

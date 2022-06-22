@@ -49,7 +49,7 @@ package body Kartenkoordinatenberechnungssystem is
             if
               NeueKoordinate (LogikGrafikExtern, KoordinatenExtern.EAchse).EAchse = KartenKonstanten.LeerEAchse
             then
-               return KartenRecordKonstanten.LeerKartenKoordinaten;
+               return KartenRecordKonstanten.LeerKoordinate;
             else
                null;
             end if;
@@ -64,7 +64,7 @@ package body Kartenkoordinatenberechnungssystem is
         NeueKoordinate (LogikGrafikExtern, KoordinatenExtern.EAchse).YAchse
       is
          when KartenKonstanten.LeerYAchse =>
-            return KartenRecordKonstanten.LeerKartenKoordinaten;
+            return KartenRecordKonstanten.LeerKoordinate;
             
          when others =>
             null;
@@ -79,7 +79,7 @@ package body Kartenkoordinatenberechnungssystem is
         NeueKoordinate (LogikGrafikExtern, KoordinatenExtern.EAchse).XAchse
       is
          when KartenKonstanten.LeerXAchse =>
-            return KartenRecordKonstanten.LeerKartenKoordinaten;
+            return KartenRecordKonstanten.LeerKoordinate;
             
          when others =>
             null;

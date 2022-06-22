@@ -9,6 +9,7 @@ package KartenDatentypen is
    subtype Stadtfeld is KartenfeldPositiv range KartenfeldPositiv'First .. 20;
    subtype SichtweiteNatural is KartenfeldNatural range KartenfeldNatural'First .. 10;
    subtype Sichtweite is SichtweiteNatural range 1 .. SichtweiteNatural'Last;
+   ---------------------------------- Noch Umgebungsbereich von 0 .. X einbauen?
    subtype UmgebungsbereichDrei is Kartenfeld range -3 .. 3;
    subtype UmgebungsbereichZwei is UmgebungsbereichDrei range -2 .. 2;
    subtype UmgebungsbereichEins is UmgebungsbereichZwei range -1 .. 1;

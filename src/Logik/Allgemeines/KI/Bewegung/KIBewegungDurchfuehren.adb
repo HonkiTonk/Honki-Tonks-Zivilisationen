@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with EinheitenDatentypen; use EinheitenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
 with EinheitenKonstanten;
+with KartenRecordKonstanten;
 
 with KIKonstanten;
 
@@ -32,7 +33,7 @@ package body KIBewegungDurchfuehren is
            LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
          then
             SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                       KoordinatenExtern        => KIKonstanten.LeerKoordinate);
+                                                       KoordinatenExtern        => KartenRecordKonstanten.LeerKoordinate);
             SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             return;
             
@@ -44,7 +45,7 @@ package body KIBewegungDurchfuehren is
          elsif
            LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                PlanschrittExtern        => 1)
-           = KIKonstanten.LeerKoordinate
+           = KartenRecordKonstanten.LeerKoordinate
          then
             case
               KIBewegungBerechnen.BewegungPlanen (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
@@ -110,7 +111,7 @@ package body KIBewegungDurchfuehren is
       end loop BewegungPlanVerschiebenSchleife;
             
       SchreibeEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                              KoordinatenExtern        => KIKonstanten.LeerKoordinate,
+                                              KoordinatenExtern        => KartenRecordKonstanten.LeerKoordinate,
                                               PlanplatzExtern          => EinheitenRecords.KIBewegungPlanArray'Last);
       
    end BewegtSich;

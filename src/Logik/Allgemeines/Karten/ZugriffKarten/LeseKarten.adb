@@ -7,6 +7,8 @@ with StadtKonstanten;
 
 with Fehler;
 
+------------------------------------ Mal den AchsenKartenfeldNaturalRecord auf AchsenKartenfeldPositiveRecord umschreiben oder hier überall eine Umwandlung einbauen?
+------------------------------------ Gilt auch für alle anderen KoordinatenExtern.
 package body LeseKarten is
    
    function AktuellerGrund
@@ -138,7 +140,6 @@ package body LeseKarten is
           Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund.StadtBelegt = StadtKonstanten.LeerNummer
       then
          Fehler.LogikFehler (FehlermeldungExtern => "LeseKarten.BelegterGrundLeer - Rasse oder Nummer nicht korrekt gesetzt");
-         -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
          return True;
          
       else
@@ -160,6 +161,14 @@ package body LeseKarten is
         and
           Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund.StadtBelegt = StadtRasseNummerExtern.Nummer
       then
+         return True;
+         
+      elsif
+        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund.RasseBelegt = StadtKonstanten.LeerRasse
+        or
+          Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund.StadtBelegt = StadtKonstanten.LeerNummer
+      then
+         Fehler.LogikFehler (FehlermeldungExtern => "LeseKarten.BestimmteStadtBelegtGrund - Rasse oder Nummer nicht korrekt gesetzt");
          return True;
          
       else

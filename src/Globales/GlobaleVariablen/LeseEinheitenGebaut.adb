@@ -2,14 +2,12 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KampfDatentypen; use KampfDatentypen;
-with EinheitenKonstanten;
-with KartenRecordKonstanten;
 
 with LeseEinheitenDatenbank;
 
 with Warnung;
 
------------------------------ Prüfungen durch Post => Contract austauschen? Müsste auch für andere Schreibe/Lese Teile gelten.
+----------------------------------- Noch mehr Prüfungen durch Contracts ersetzen? Theoretisch sollten all diese Dinge ja niemals auftreten wenn alles richtig funktioniert.
 package body LeseEinheitenGebaut is
 
    function ID
@@ -27,18 +25,6 @@ package body LeseEinheitenGebaut is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
-      
-      if
-        SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KoordinatenAktuell.YAchse > Karten.Karteneinstellungen.Kartengröße.YAchse
-        or
-          SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KoordinatenAktuell.XAchse > Karten.Karteneinstellungen.Kartengröße.XAchse
-      then
-         SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KoordinatenAktuell := KartenRecordKonstanten.LeerKartenKoordinaten;
-         Warnung.LogikWarnung (WarnmeldungExtern => "LeseEinheitenGebaut.Koordinaten - Koordinaten in ungültigem Bereich.");
-
-      else
-         null;
-      end if;
       
       return SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KoordinatenAktuell;
       
@@ -62,18 +48,18 @@ package body LeseEinheitenGebaut is
       return EinheitenDatentypen.Lebenspunkte
    is begin
       
-      -- if
-      --   SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Lebenspunkte
-      --   > LeseEinheitenDatenbank.MaximaleLebenspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
-      --                                                  IDExtern    => SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).ID)
-      -- then
-      --    SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Lebenspunkte
-      --      := LeseEinheitenDatenbank.MaximaleLebenspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
-      --                                                      IDExtern    => SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).ID);
+      ErlaubteLebenspunkte := LeseEinheitenDatenbank.MaximaleLebenspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                           IDExtern    => SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).ID);
+      
+      if
+        SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Lebenspunkte > ErlaubteLebenspunkte
+      then
+         SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Lebenspunkte := ErlaubteLebenspunkte;
+         Warnung.LogikWarnung (WarnmeldungExtern => "LeseEinheitenGebaut.Lebenspunkte - Vorhandene Lebenspunkte > Erlaubte Lebenspunkte.");
          
-      --  else
-      --     null;
-      --  end if;
+      else
+         null;
+      end if;
       
       return SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Lebenspunkte;
       
@@ -81,20 +67,11 @@ package body LeseEinheitenGebaut is
    
    
    
+   -- Hier sollte keine Prüfung notwendig sein ob die Bewegungspunkte < sind als die Leerkonstante der Bewegungspunkte, da dann der Rückgabewert auch kleiner sein müsste als der erlaubte Rückgabebereich.
    function Bewegungspunkte
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return EinheitenDatentypen.VorhandeneBewegungspunkte
    is begin
-      
-      if
-        SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Bewegungspunkte < EinheitenKonstanten.LeerBewegungspunkte
-      then
-         SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Bewegungspunkte := EinheitenKonstanten.LeerBewegungspunkte;
-         Warnung.LogikWarnung (WarnmeldungExtern => "LeseEinheitenGebaut.Bewegungspunkte - Bewegungspunkte < 0.00.");
-         
-      else
-         null;
-      end if;
       
       return SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Bewegungspunkte;
       
@@ -107,14 +84,13 @@ package body LeseEinheitenGebaut is
       return KampfDatentypen.Kampfwerte
    is begin
       
+      Beförderungsgrenze := LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                         IDExtern    => SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).ID);
+        
       if
-        SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Erfahrungspunkte
-        > LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                      IDExtern    => SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).ID)
+        SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Erfahrungspunkte > Beförderungsgrenze
       then
-         SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Erfahrungspunkte
-           := LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                          IDExtern    => SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).ID);
+         SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Erfahrungspunkte := Beförderungsgrenze;
          Warnung.LogikWarnung (WarnmeldungExtern => "LeseEinheitenGebaut.Erfahrungspunkte - Mehr Erfahrungspunkte als erlaubt.");
 
       else
@@ -132,14 +108,13 @@ package body LeseEinheitenGebaut is
       return KampfDatentypen.Kampfwerte
    is begin
       
+      MaximalerRang := LeseEinheitenDatenbank.MaximalerRang (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                             IDExtern    => SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).ID);
+      
       if
-        SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Rang
-        > LeseEinheitenDatenbank.MaximalerRang (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                IDExtern    => SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).ID)
+        SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Rang > MaximalerRang
       then
-         SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Rang
-           := LeseEinheitenDatenbank.MaximalerRang (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                    IDExtern    => SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).ID);
+         SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Rang := MaximalerRang;
          Warnung.LogikWarnung (WarnmeldungExtern => "LeseEinheitenGebaut.Rang - Höherer Rang als erlaubt.");
       else
          null;
@@ -200,18 +175,6 @@ package body LeseEinheitenGebaut is
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
       
-      if
-        SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIZielKoordinaten.YAchse > Karten.Karteneinstellungen.Kartengröße.YAchse
-        or
-          SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIZielKoordinaten.XAchse > Karten.Karteneinstellungen.Kartengröße.XAchse
-      then
-         SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KoordinatenAktuell := KartenRecordKonstanten.LeerKartenKoordinaten;
-         Warnung.LogikWarnung (WarnmeldungExtern => "LeseEinheitenGebaut.KIZielKoordinaten - Koordinaten in ungültigem Bereich.");
-
-      else
-         null;
-      end if;
-      
       return SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIZielKoordinaten;
       
    end KIZielKoordinaten;
@@ -234,18 +197,6 @@ package body LeseEinheitenGebaut is
       PlanschrittExtern : in KartenDatentypen.Stadtfeld)
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
-      
-      if
-        SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIBewegungPlan (PlanschrittExtern).YAchse > Karten.Karteneinstellungen.Kartengröße.YAchse
-        or
-          SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIBewegungPlan (PlanschrittExtern).XAchse > Karten.Karteneinstellungen.Kartengröße.XAchse
-      then
-         SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIBewegungPlan (PlanschrittExtern) := KartenRecordKonstanten.LeerKartenKoordinaten;
-         Warnung.LogikWarnung (WarnmeldungExtern => "LeseEinheitenGebaut.KIBewegungPlan - Koordinaten in ungültigem Bereich.");
-
-      else
-         null;
-      end if;
       
       return SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIBewegungPlan (PlanschrittExtern);
       
