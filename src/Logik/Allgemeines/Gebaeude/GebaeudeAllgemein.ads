@@ -16,19 +16,21 @@ package GebaeudeAllgemein is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       IDExtern : in StadtDatentypen.GebäudeID)
      with
-       Pre =>
-         (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
-          and
-            SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
+       Pre => (
+                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+               and
+                 SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+              );
    
    procedure GebäudeEntfernen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       WelchesGebäudeExtern : in StadtDatentypen.GebäudeID)
      with
-       Pre =>
-         (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
-          and
-            SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
+       Pre => (
+                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+               and
+                 SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+              );
    
    
 
@@ -45,10 +47,11 @@ package GebaeudeAllgemein is
       IDExtern : in StadtDatentypen.GebäudeID)
       return Boolean
      with
-       Pre =>
-         (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
-          and
-            SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
+       Pre => (
+                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+               and
+                 SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+              );
    
 private
    
@@ -61,11 +64,12 @@ private
       IDExtern : in StadtDatentypen.GebäudeID;
       VorzeichenWechselExtern : in KartenDatentypen.UmgebungsbereichEins)
      with
-       Pre =>
-         (VorzeichenWechselExtern /= 0
-          and
-            StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
-          and
-            SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
+       Pre => (
+                 VorzeichenWechselExtern /= 0
+               and
+                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+               and
+                 SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+              );
 
 end GebaeudeAllgemein;

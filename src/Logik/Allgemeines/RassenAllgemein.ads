@@ -9,14 +9,16 @@ package RassenAllgemein is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Wide_Wide_String
      with
-       Post =>
-         (Rassenname'Result'Length > 0);
+       Post => (
+                  Rassenname'Result'Length > 0
+               );
    
    function BeschreibungRasse
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Wide_Wide_String
      with
-       Post =>
-         (BeschreibungRasse'Result'Length > 0);
+       Post => (
+                  BeschreibungRasse'Result'Length > 0
+               );
 
 end RassenAllgemein;

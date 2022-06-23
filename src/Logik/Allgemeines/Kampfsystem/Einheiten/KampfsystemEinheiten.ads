@@ -16,26 +16,28 @@ package KampfsystemEinheiten is
       VerteidigerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
      with
-       Pre =>
-         (AngreiferExtern.Rasse /= VerteidigerExtern.Rasse
-          and
-            SonstigeVariablen.RassenImSpiel (AngreiferExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
-          and
-            SonstigeVariablen.RassenImSpiel (VerteidigerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
-          and
-            VerteidigerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (VerteidigerExtern.Rasse).Einheitengrenze
-          and
-            AngreiferExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (AngreiferExtern.Rasse).Einheitengrenze);
+       Pre => (
+                 AngreiferExtern.Rasse /= VerteidigerExtern.Rasse
+               and
+                 SonstigeVariablen.RassenImSpiel (AngreiferExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+               and
+                 SonstigeVariablen.RassenImSpiel (VerteidigerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+               and
+                 VerteidigerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (VerteidigerExtern.Rasse).Einheitengrenze
+               and
+                 AngreiferExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (AngreiferExtern.Rasse).Einheitengrenze
+              );
 
    procedure KampfBerechnung
      (VerteidigerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       AngriffExtern : in KampfDatentypen.Kampfwerte;
       VerteidigungExtern : in KampfDatentypen.Kampfwerte)
      with
-       Pre =>
-         (VerteidigerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (VerteidigerExtern.Rasse).Einheitengrenze
-          and
-            SonstigeVariablen.RassenImSpiel (VerteidigerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
+       Pre => (
+                 VerteidigerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (VerteidigerExtern.Rasse).Einheitengrenze
+               and
+                 SonstigeVariablen.RassenImSpiel (VerteidigerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+              );
 
 private
 
@@ -97,15 +99,16 @@ private
       AngreiferExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
      with
-       Pre =>
-         (AngreiferExtern.Rasse /= VerteidigerExtern.Rasse
-          and
-            SonstigeVariablen.RassenImSpiel (AngreiferExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
-          and
-            SonstigeVariablen.RassenImSpiel (VerteidigerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
-          and
-            VerteidigerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (VerteidigerExtern.Rasse).Einheitengrenze
-          and
-            AngreiferExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (AngreiferExtern.Rasse).Einheitengrenze);
+       Pre => (
+                 AngreiferExtern.Rasse /= VerteidigerExtern.Rasse
+               and
+                 SonstigeVariablen.RassenImSpiel (AngreiferExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+               and
+                 SonstigeVariablen.RassenImSpiel (VerteidigerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+               and
+                 VerteidigerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (VerteidigerExtern.Rasse).Einheitengrenze
+               and
+                 AngreiferExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (AngreiferExtern.Rasse).Einheitengrenze
+              );
 
 end KampfsystemEinheiten;

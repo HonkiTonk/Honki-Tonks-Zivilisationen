@@ -17,16 +17,17 @@ package KampfsystemStadt is
       VerteidigendeStadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return Boolean
      with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (AngreifendeEinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
-          and
-            SonstigeVariablen.RassenImSpiel (VerteidigendeStadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
-          and
-            AngreifendeEinheitRasseNummerExtern.Rasse /= VerteidigendeStadtRasseNummerExtern.Rasse
-          and
-            AngreifendeEinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (AngreifendeEinheitRasseNummerExtern.Rasse).Einheitengrenze
-          and
-            VerteidigendeStadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (VerteidigendeStadtRasseNummerExtern.Rasse).Städtegrenze);
+       Pre => (
+                 SonstigeVariablen.RassenImSpiel (AngreifendeEinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+               and
+                 SonstigeVariablen.RassenImSpiel (VerteidigendeStadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+               and
+                 AngreifendeEinheitRasseNummerExtern.Rasse /= VerteidigendeStadtRasseNummerExtern.Rasse
+               and
+                 AngreifendeEinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (AngreifendeEinheitRasseNummerExtern.Rasse).Einheitengrenze
+               and
+                 VerteidigendeStadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (VerteidigendeStadtRasseNummerExtern.Rasse).Städtegrenze
+              );
    
 private
    
@@ -92,32 +93,35 @@ private
       StadtgesundheitExtern : in ProduktionDatentypen.Feldproduktion)
       return ProduktionDatentypen.Feldproduktion
      with
-       Pre =>
-         (StadtgesundheitExtern > 0);
+       Pre => (
+                 StadtgesundheitExtern > 0
+              );
    
    function Kampfverlauf
      (AngreifendeEinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
      with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (AngreifendeEinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
-          and
-            AngreifendeEinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (AngreifendeEinheitRasseNummerExtern.Rasse).Einheitengrenze);
+       Pre => (
+                 SonstigeVariablen.RassenImSpiel (AngreifendeEinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+               and
+                 AngreifendeEinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (AngreifendeEinheitRasseNummerExtern.Rasse).Einheitengrenze
+              );
    
    function Kampf
      (AngreifendeEinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       VerteidigendeStadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return Boolean
      with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (AngreifendeEinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
-          and
-            SonstigeVariablen.RassenImSpiel (VerteidigendeStadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
-          and
-            AngreifendeEinheitRasseNummerExtern.Rasse /= VerteidigendeStadtRasseNummerExtern.Rasse
-          and
-            AngreifendeEinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (AngreifendeEinheitRasseNummerExtern.Rasse).Einheitengrenze
-          and
-            VerteidigendeStadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (VerteidigendeStadtRasseNummerExtern.Rasse).Städtegrenze);
+       Pre => (
+                 SonstigeVariablen.RassenImSpiel (AngreifendeEinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+               and
+                 SonstigeVariablen.RassenImSpiel (VerteidigendeStadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+               and
+                 AngreifendeEinheitRasseNummerExtern.Rasse /= VerteidigendeStadtRasseNummerExtern.Rasse
+               and
+                 AngreifendeEinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (AngreifendeEinheitRasseNummerExtern.Rasse).Einheitengrenze
+               and
+                 VerteidigendeStadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (VerteidigendeStadtRasseNummerExtern.Rasse).Städtegrenze
+              );
 
 end KampfsystemStadt;

@@ -17,29 +17,33 @@ package KIStadtSuchen is
       AnfangKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return KartenRecords.AchsenKartenfeldNaturalRecord
      with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
-          and
-            AnfangKoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-          and
-            AnfangKoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse),
+       Pre => (
+                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+               and
+                 AnfangKoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 AnfangKoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+              ),
 
-         Post =>
-           (NähesteFeindlicheStadtSuchen'Result.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-            and
-              NähesteFeindlicheStadtSuchen'Result.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+       Post => (
+                  NähesteFeindlicheStadtSuchen'Result.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                and
+                  NähesteFeindlicheStadtSuchen'Result.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+               );
 
    function UnbewachteStadtSuchen
      (FeindlicheRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KartenRecords.AchsenKartenfeldNaturalRecord
      with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (FeindlicheRasseExtern) = RassenDatentypen.KI_Spieler_Enum),
+       Pre => (
+                 SonstigeVariablen.RassenImSpiel (FeindlicheRasseExtern) = RassenDatentypen.KI_Spieler_Enum
+              ),
 
-         Post =>
-           (UnbewachteStadtSuchen'Result.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-            and
-              UnbewachteStadtSuchen'Result.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+       Post => (
+                  UnbewachteStadtSuchen'Result.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                and
+                  UnbewachteStadtSuchen'Result.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+               );
 
 private
 
@@ -53,14 +57,16 @@ private
       AnfangKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return StadtDatentypen.MaximaleStädteMitNullWert
      with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
-          and
-            AnfangKoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-          and
-            AnfangKoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse),
+       Pre => (
+                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+               and
+                 AnfangKoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 AnfangKoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+              ),
 
-         Post =>
-           (StadtSuchen'Result in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Städtegrenze);
+       Post => (
+                  StadtSuchen'Result in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Städtegrenze
+               );
 
 end KIStadtSuchen;

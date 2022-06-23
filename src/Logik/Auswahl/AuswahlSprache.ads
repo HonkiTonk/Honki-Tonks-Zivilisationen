@@ -22,8 +22,9 @@ package AuswahlSprache is
    function AuswahlSprache
      return Unbounded_Wide_Wide_String
      with
-       Post =>
-         (To_Wide_Wide_String (Source => AuswahlSprache'Result)'Length > 0);
+       Post => (
+                  To_Wide_Wide_String (Source => AuswahlSprache'Result)'Length > 0
+               );
    
 private
 
@@ -53,13 +54,15 @@ private
    function AuswahlSpracheSFML
      return Unbounded_Wide_Wide_String
      with
-       Post =>
-         (To_Wide_Wide_String (Source => AuswahlSpracheSFML'Result)'Length > 0);
+       Post => (
+                  To_Wide_Wide_String (Source => AuswahlSpracheSFML'Result)'Length > 0
+               );
          
    function AuswahlSpracheTerminal
      return Unbounded_Wide_Wide_String
      with
-       Post =>
-         (To_Wide_Wide_String (Source => AuswahlSpracheTerminal'Result)'Length > 0);
+       Post => (
+                  To_Wide_Wide_String (Source => AuswahlSpracheTerminal'Result)'Length > 0
+               );
 
 end AuswahlSprache;

@@ -15,8 +15,9 @@ package KIForschung is
    procedure Forschung
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.KI_Spieler_Enum);
+       Pre => (
+                 SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.KI_Spieler_Enum
+              );
    
 private
    
@@ -32,7 +33,8 @@ private
    procedure NeuesForschungsprojekt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.KI_Spieler_Enum);
+       Pre => (
+                 SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.KI_Spieler_Enum
+              );
 
 end KIForschung;

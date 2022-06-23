@@ -18,7 +18,7 @@ with InteraktionEingabe;
 
 package body EingabeSFML is
    
-   -- Wide_Wide_Image kann hier so bleiben weil es nicht für die Anzeige verwendet wird.
+   ----------------------------------- Wide_Wide_Image kann hier so bleiben weil es nicht für die Anzeige verwendet wird?
    function GanzeZahl
      (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
       ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger;
@@ -30,11 +30,6 @@ package body EingabeSFML is
         WelcheFrageExtern > GlobaleTexte.Frage'Last
       then
          Fehler.LogikFehler (FehlermeldungExtern => "EingabeSFML.GanzeZahl - Frage ist außerhalb des Fragenbereichs.");
-         
-      elsif
-        ZahlenMinimumExtern > ZahlenMaximumExtern
-      then
-         Fehler.LogikFehler (FehlermeldungExtern => "EingabeSFML.GanzeZahl - Zahlenminimum ist größer als Zahlenmaximum.");
          
       else
          -- Wegen der grafischen Anzeige festgelegt.

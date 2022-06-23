@@ -9,19 +9,22 @@ package RasseEntfernen is
    procedure RasseEntfernen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
+       Pre => (
+                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+              );
 
    procedure RasseExistenzPrüfen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
+       Pre => (
+                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+              );
 
    procedure RasseAufKISetzen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum);
+       Pre => (
+                 SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+              );
 
 end RasseEntfernen;

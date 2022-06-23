@@ -22,17 +22,19 @@ package KarteWichtigesSFML is
       TextpositionExtern : in Sf.System.Vector2.sfVector2f)
       return Sf.System.Vector2.sfVector2f
      with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
-          and
-            TextpositionExtern.x > 0.00
-          and
-            TextpositionExtern.y > 0.00),
+       Pre => (
+                 SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+               and
+                 TextpositionExtern.x > 0.00
+               and
+                 TextpositionExtern.y > 0.00
+              ),
    
-         Post =>
-           (WichtigesInformationen'Result.x > 0.00
-            and
-              WichtigesInformationen'Result.y > 0.00);
+       Post => (
+                  WichtigesInformationen'Result.x > 0.00
+                and
+                  WichtigesInformationen'Result.y > 0.00
+               );
    
 private
    

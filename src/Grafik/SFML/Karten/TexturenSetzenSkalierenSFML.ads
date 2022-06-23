@@ -11,56 +11,68 @@ package TexturenSetzenSkalierenSFML is
       TextureAccessExtern : in Sf.Graphics.sfTexture_Ptr)
       return Sf.System.Vector2.sfVector2f
      with
-       Pre =>
-         (SpriteAccessExtern /= null
-          and
-            TextureAccessExtern /= null),
-         Post =>
-           (TexturenSetzenSkalierenWeltkarte'Result.x >= 0.00
-            and
-              TexturenSetzenSkalierenWeltkarte'Result.y >= 0.00);
+       Pre => (
+                 SpriteAccessExtern /= null
+               and
+                 TextureAccessExtern /= null
+              ),
+         
+       Post => (
+                  TexturenSetzenSkalierenWeltkarte'Result.x >= 0.00
+                and
+                  TexturenSetzenSkalierenWeltkarte'Result.y >= 0.00
+               );
 
    function TexturenSetzenSkalierenStadtkarte
      (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
       TextureAccessExtern : in Sf.Graphics.sfTexture_Ptr)
       return Sf.System.Vector2.sfVector2f
      with
-       Pre =>
-         (SpriteAccessExtern /= null
-          and
-            TextureAccessExtern /= null),
-         Post =>
-           (TexturenSetzenSkalierenStadtkarte'Result.x >= 0.00
-            and
-              TexturenSetzenSkalierenStadtkarte'Result.y >= 0.00);
+       Pre => (
+                 SpriteAccessExtern /= null
+               and
+                 TextureAccessExtern /= null
+              ),
+         
+       Post => (
+                  TexturenSetzenSkalierenStadtkarte'Result.x >= 0.00
+                and
+                  TexturenSetzenSkalierenStadtkarte'Result.y >= 0.00
+               );
    
    function TexturenSetzenSkalierenGesamteStadtkarte
      (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
       TextureAccessExtern : in Sf.Graphics.sfTexture_Ptr)
       return Sf.System.Vector2.sfVector2f
      with
-       Pre =>
-         (SpriteAccessExtern /= null
-          and
-            TextureAccessExtern /= null),
-         Post =>
-           (TexturenSetzenSkalierenGesamteStadtkarte'Result.x >= 0.00
-            and
-              TexturenSetzenSkalierenGesamteStadtkarte'Result.y >= 0.00);
+       Pre => (
+                 SpriteAccessExtern /= null
+               and
+                 TextureAccessExtern /= null
+              ),
+         
+       Post => (
+                  TexturenSetzenSkalierenGesamteStadtkarte'Result.x >= 0.00
+                and
+                  TexturenSetzenSkalierenGesamteStadtkarte'Result.y >= 0.00
+               );
    
    function TexturenSetzenSkalierenGesamtesBild
      (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
       TextureAccessExtern : in Sf.Graphics.sfTexture_Ptr)
       return Sf.System.Vector2.sfVector2f
      with
-       Pre =>
-         (SpriteAccessExtern /= null
-          and
-            TextureAccessExtern /= null),
-         Post =>
-           (TexturenSetzenSkalierenGesamtesBild'Result.x >= 0.00
-            and
-              TexturenSetzenSkalierenGesamtesBild'Result.y >= 0.00);
+       Pre => (
+                 SpriteAccessExtern /= null
+               and
+                 TextureAccessExtern /= null
+              ),
+         
+       Post => (
+                  TexturenSetzenSkalierenGesamtesBild'Result.x >= 0.00
+                and
+                  TexturenSetzenSkalierenGesamtesBild'Result.y >= 0.00
+               );
    
    function TexturenSetzenSkalierenTeilBild
      (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
@@ -68,14 +80,17 @@ package TexturenSetzenSkalierenSFML is
       VerhältnisExtern : in Sf.System.Vector2.sfVector2f)
       return Sf.System.Vector2.sfVector2f
      with
-       Pre =>
-         (SpriteAccessExtern /= null
-          and
-            TextureAccessExtern /= null),
-         Post =>
-           (TexturenSetzenSkalierenTeilBild'Result.x >= 0.00
-            and
-              TexturenSetzenSkalierenTeilBild'Result.y >= 0.00);
+       Pre => (
+                 SpriteAccessExtern /= null
+               and
+                 TextureAccessExtern /= null
+              ),
+         
+       Post => (
+                  TexturenSetzenSkalierenTeilBild'Result.x >= 0.00
+                and
+                  TexturenSetzenSkalierenTeilBild'Result.y >= 0.00
+               );
    
 private
    

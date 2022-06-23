@@ -13,14 +13,16 @@ package CursorPlatzierenSFML is
    procedure CursorPlatzierenKarteSFML
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum);
+       Pre => (
+                 SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+              );
    
    procedure CursorPlatzierenStadtSFML
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum);
+       Pre => (
+                 SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+              );
    
 private
    

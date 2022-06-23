@@ -12,10 +12,11 @@ package KartengeneratorRessourcenUnterflaecheLand is
    procedure KartengeneratorRessourcenUnterflächeLand
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
      with
-       Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-          and
-            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+       Pre => (
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+              );
 
 private
 
@@ -41,59 +42,65 @@ private
       RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Unterfläche_Land_Enum)
       return KartengrundDatentypen.Kartenressourcen_Enum
      with
-       Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-          and
-            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+       Pre => (
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+              );
 
    function ZusatzberechnungKohle
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Unterfläche_Land_Enum)
       return KartengrundDatentypen.Kartenressourcen_Enum
      with
-       Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-          and
-            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+       Pre => (
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+              );
 
    function ZusatzberechnungEisen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Unterfläche_Land_Enum)
       return KartengrundDatentypen.Kartenressourcen_Enum
      with
-       Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-          and
-            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+       Pre => (
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+              );
 
    function ZusatzberechnungÖl
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Unterfläche_Land_Enum)
       return KartengrundDatentypen.Kartenressourcen_Enum
      with
-       Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-          and
-            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+       Pre => (
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+              );
 
    function ZusatzberechnungHochwertigerBoden
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Unterfläche_Land_Enum)
       return KartengrundDatentypen.Kartenressourcen_Enum
      with
-       Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-          and
-            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+       Pre => (
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+              );
 
    function ZusatzberechnungGold
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Unterfläche_Land_Enum)
       return KartengrundDatentypen.Kartenressourcen_Enum
      with
-       Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-          and
-            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+       Pre => (
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+              );
 
 end KartengeneratorRessourcenUnterflaecheLand;

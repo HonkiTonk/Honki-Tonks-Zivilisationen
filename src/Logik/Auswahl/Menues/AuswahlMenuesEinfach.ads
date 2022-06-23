@@ -31,12 +31,20 @@ private
      (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum;
       AnfangExtern : in Positive;
       EndeExtern : in Positive)
-      return Positive;
+      return Positive
+     with
+       Pre => (
+                 AnfangExtern <= EndeExtern
+              );
 
    function MausAuswahl
      (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum;
       AnfangExtern : in Positive;
       EndeExtern : in Positive)
-      return Natural;
+      return Natural
+     with
+       Pre => (
+                 AnfangExtern <= EndeExtern
+              );
 
 end AuswahlMenuesEinfach;

@@ -15,16 +15,18 @@ package DebugmenueSFML is
    procedure Debugmenü
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum);
+       Pre => (
+                 SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+              );
 
    procedure KarteInfosEinheiten
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
-          and
-            EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze);
+       Pre => (
+                 SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+               and
+                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+              );
 
 private
 
@@ -38,8 +40,9 @@ private
    procedure KarteAufdecken
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum);
+       Pre => (
+                 SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+              );
 
    procedure DiplomatischenStatusÄndern
      (NeuerStatusExtern : in SystemDatentypen.Status_Untereinander_Enum);

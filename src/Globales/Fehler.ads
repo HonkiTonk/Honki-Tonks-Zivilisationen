@@ -6,26 +6,30 @@ package Fehler is
    procedure LogikFehler
      (FehlermeldungExtern : in Wide_Wide_String)
      with
-       Pre =>
-         (FehlermeldungExtern'Length > 0);
+       Pre => (
+                 FehlermeldungExtern'Length > 0
+              );
             
    procedure GrafikFehler
      (FehlermeldungExtern : in Wide_Wide_String)
      with
-       Pre =>
-         (FehlermeldungExtern'Length > 0);
+       Pre => (
+                 FehlermeldungExtern'Length > 0
+              );
    
    procedure MusikFehler
      (FehlermeldungExtern : in Wide_Wide_String)
      with
-       Pre =>
-         (FehlermeldungExtern'Length > 0);
+       Pre => (
+                 FehlermeldungExtern'Length > 0
+              );
    
    procedure SoundFehler
      (FehlermeldungExtern : in Wide_Wide_String)
      with
-       Pre =>
-         (FehlermeldungExtern'Length > 0);
+       Pre => (
+                 FehlermeldungExtern'Length > 0
+              );
    
 private
 

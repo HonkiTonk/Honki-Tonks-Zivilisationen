@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 package KIDatentypen is
 
-   -- Leer verwenden, wenn noch keine Aufgabe ermittelt wurde. Tut_Nichts, wenn die Einheit diese Runde nichts tun soll.
+   -- Leer_Aufgabe_Enum verwenden, wenn noch keine Aufgabe ermittelt wurde. Tut_Nichts, wenn die Einheit diese Runde nichts tun soll.
    type Einheit_Aufgabe_Enum is (
                                  Leer_Aufgabe_Enum,
 
@@ -23,7 +23,7 @@ package KIDatentypen is
                           Belegt_Angriff_Enum, Unbelegt_Enum, Belegt_Kein_Angriff_Enum
                          );
 
-   -- Größe später besser anpassen.
+   ----------------------------------------------- Größe später besser anpassen.
    type BauenBewertung is range -500 .. 500;
    subtype BewegungBewertung is BauenBewertung range 0 .. 20;
 

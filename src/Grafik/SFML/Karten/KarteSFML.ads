@@ -26,8 +26,9 @@ package KarteSFML is
    procedure KarteAnzeigen
      (RasseEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseEinheitExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum);
+       Pre => (
+                 SonstigeVariablen.RassenImSpiel (RasseEinheitExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
+              );
    
 private
    
@@ -98,146 +99,161 @@ private
    procedure Sichtbarkeit
      (RasseEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseEinheitExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum);
+       Pre => (
+                 SonstigeVariablen.RassenImSpiel (RasseEinheitExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
+              );
    
    procedure IstSichtbar
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseEinheitExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
-          and
-            KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-          and
-            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+       Pre => (
+                 SonstigeVariablen.RassenImSpiel (RasseEinheitExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
+               and
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+              );
 
    procedure AnzeigeLandschaft
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
-       Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-          and
-            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+       Pre => (
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+              );
 
    procedure AnzeigeStadt
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
-       Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-          and
-            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+       Pre => (
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+              );
 
    procedure AnzeigeEinheit
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
-       Pre =>
-   -- Anders als die /= RassenDatentypen.Leer_Spieler_Enum weiter unten, funktioniert das hier mit der KI weil ja nur die Spielerrasse übergeben wird und die KI Einheit dann in der Prozedur selbst gesucht wird.
-     (SonstigeVariablen.RassenImSpiel (RasseEinheitExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
-      and
-        KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-      and
-        KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+       Pre => (
+               -- Anders als die /= RassenDatentypen.Leer_Spieler_Enum weiter unten, funktioniert das hier mit der KI weil nur die Spielerrasse übergeben wird und die KIEinheit in der Prozedur selbst gesucht wird.
+                 SonstigeVariablen.RassenImSpiel (RasseEinheitExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
+               and
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+              );
 
    procedure AnzeigeCursor
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
-          and
-            KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-          and
-            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+       Pre => (
+                 SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+               and
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+              );
    
    procedure AnzeigeFeldbesitzer
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
-       Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-          and
-            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+       Pre => (
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+              );
    
    procedure RahmenBesetztesFeld
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
-          and
-            KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-          and
-            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+       Pre => (
+                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+               and
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+              );
    
    procedure RahmenZeichnen
      (WelcheRichtungExtern : in Umgebung_Enum;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
+       Pre => (
+                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+              );
    
    procedure KartenfeldZeichnen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
-       Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-          and
-            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+       Pre => (
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+              );
    
    procedure FlussZeichnen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
-       Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-          and
-            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+       Pre => (
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+              );
    
    procedure RessourceZeichnen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
-       Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-          and
-            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+       Pre => (
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+              );
    
    procedure WegZeichnen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
-       Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-          and
-            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+       Pre => (
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+              );
    
    procedure VerbesserungZeichnen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
-       Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-          and
-            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+       Pre => (
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+              );
    
    procedure StadtnameAnzeigen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
-       Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-          and
-            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+       Pre => (
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+              );
    
    
    

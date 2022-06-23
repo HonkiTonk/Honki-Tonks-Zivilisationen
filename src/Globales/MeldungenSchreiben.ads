@@ -8,8 +8,9 @@ package MeldungenSchreiben is
    procedure MeldungSchreiben
      (FehlermeldungExtern : in Wide_Wide_String)
      with
-       Pre =>
-         (FehlermeldungExtern'Length > 0);
+       Pre => (
+                 FehlermeldungExtern'Length > 0
+              );
    
 private
 

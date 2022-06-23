@@ -11,8 +11,9 @@ package KartenfelderBewerten is
    procedure KartenfelderBewerten
      (RasseExtern : in RassenDatentypen.Rassen_Enum)
      with
-       Pre =>
-         (if RasseExtern /= RassenDatentypen.Keine_Rasse_Enum then SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
+       Pre => (
+                 if RasseExtern /= RassenDatentypen.Keine_Rasse_Enum then SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+              );
 
 private
 

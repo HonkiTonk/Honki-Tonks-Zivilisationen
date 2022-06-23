@@ -18,17 +18,19 @@ package UmgebungErreichbarTesten is
       NotwendigeFelderExtern : in Positive)
       return KartenRecords.AchsenKartenfeldNaturalRecord
      with
-       Pre =>
-         (AktuelleKoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-          and
-            AktuelleKoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
-          and
-            SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum),
+       Pre => (
+                 AktuelleKoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 AktuelleKoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+               and
+                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+              ),
            
-         Post =>
-           (UmgebungErreichbarTesten'Result.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-            and
-              UmgebungErreichbarTesten'Result.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+       Post => (
+                  UmgebungErreichbarTesten'Result.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                and
+                  UmgebungErreichbarTesten'Result.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+               );
    
 private
    
@@ -46,11 +48,12 @@ private
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return Boolean
      with
-       Pre =>
-         (AktuelleKoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-          and
-            AktuelleKoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
-          and
-            SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
+       Pre => (
+                 AktuelleKoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 AktuelleKoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+               and
+                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+              );
 
 end UmgebungErreichbarTesten;

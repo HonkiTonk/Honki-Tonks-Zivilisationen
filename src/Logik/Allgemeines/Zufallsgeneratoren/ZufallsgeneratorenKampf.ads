@@ -10,8 +10,6 @@ package ZufallsgeneratorenKampf is
 
 private
 
-   -- Generatoren für KampfErfolg
    ZufälligerFloatWert : Ada.Numerics.Float_Random.Generator;
-   -- Generatoren für KampfErfolg
 
 end ZufallsgeneratorenKampf;

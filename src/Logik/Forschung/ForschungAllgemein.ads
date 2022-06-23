@@ -18,8 +18,9 @@ package ForschungAllgemein is
    procedure Forschung
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
+       Pre => (
+                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+              );
 
    procedure ForschungFortschritt;
 
@@ -30,16 +31,18 @@ package ForschungAllgemein is
       ForschungIDExtern : in ForschungenDatentypen.ForschungID)
       return Boolean
      with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
+       Pre => (
+                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+              );
 
    function Beschreibung
      (IDExtern : in ForschungenDatentypen.ForschungIDMitNullWert;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Wide_Wide_String
      with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
+       Pre => (
+                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+              );
 
 private
 
@@ -56,26 +59,29 @@ private
    procedure FortschrittMensch
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum);
+       Pre => (
+                 SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+              );
 
    procedure FortschrittKI
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.KI_Spieler_Enum);
+       Pre => (
+                 SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.KI_Spieler_Enum
+              );
 
 
 
    function MausAuswahl
-      return ForschungenDatentypen.ForschungIDMitNullWert;
+     return ForschungenDatentypen.ForschungIDMitNullWert;
 
    function AuswahlForschung
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return ForschungenDatentypen.ForschungIDMitNullWert
      with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum);
+       Pre => (
+                 SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+              );
 
    function ForschungAuswahlSFML
      return ForschungenDatentypen.ForschungIDMitNullWert;

@@ -10,12 +10,13 @@ package KennenLernen is
      (EigeneRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       FremdeRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
-       Pre =>
-         (EigeneRasseExtern /= FremdeRasseExtern
-          and
-            SonstigeVariablen.RassenImSpiel (EigeneRasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
-          and
-            SonstigeVariablen.RassenImSpiel (FremdeRasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
+       Pre => (
+                 EigeneRasseExtern /= FremdeRasseExtern
+               and
+                 SonstigeVariablen.RassenImSpiel (EigeneRasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+               and
+                 SonstigeVariablen.RassenImSpiel (FremdeRasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+              );
 
 private
 
@@ -23,22 +24,24 @@ private
      (EigeneRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       FremdeRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
-       Pre =>
-         (EigeneRasseExtern /= FremdeRasseExtern
-          and
-            SonstigeVariablen.RassenImSpiel (EigeneRasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
-          and
-            SonstigeVariablen.RassenImSpiel (FremdeRasseExtern) = RassenDatentypen.Mensch_Spieler_Enum);
+       Pre => (
+                 EigeneRasseExtern /= FremdeRasseExtern
+               and
+                 SonstigeVariablen.RassenImSpiel (EigeneRasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+               and
+                 SonstigeVariablen.RassenImSpiel (FremdeRasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+              );
 
    procedure ErstkontaktMenschKI
      (EigeneRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       FremdeRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
-       Pre =>
-         (EigeneRasseExtern /= FremdeRasseExtern
-          and
-            (SonstigeVariablen.RassenImSpiel (EigeneRasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
-             or
-               SonstigeVariablen.RassenImSpiel (FremdeRasseExtern) = RassenDatentypen.Mensch_Spieler_Enum));
+       Pre => (
+                 EigeneRasseExtern /= FremdeRasseExtern
+               and
+                 (SonstigeVariablen.RassenImSpiel (EigeneRasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+                  or
+                    SonstigeVariablen.RassenImSpiel (FremdeRasseExtern) = RassenDatentypen.Mensch_Spieler_Enum)
+              );
 
 end KennenLernen;

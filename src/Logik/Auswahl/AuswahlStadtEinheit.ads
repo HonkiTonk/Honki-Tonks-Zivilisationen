@@ -31,12 +31,13 @@ package AuswahlStadtEinheit is
       EinheitNummerExtern : in EinheitenDatentypen.MaximaleEinheitenMitNullWert)
       return Integer
      with
-       Pre =>
-         (StadtNummerExtern <= SpielVariablen.Grenzen (RasseExtern).Städtegrenze
-          and
-            EinheitNummerExtern in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Einheitengrenze
-          and
-            SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
+       Pre => (
+                 StadtNummerExtern <= SpielVariablen.Grenzen (RasseExtern).Städtegrenze
+               and
+                 EinheitNummerExtern in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Einheitengrenze
+               and
+                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+              );
    
 private
    

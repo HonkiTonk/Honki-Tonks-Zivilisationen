@@ -30,14 +30,15 @@ package TextAnzeigeTerminal is
       AbstandMitteExtern : in GlobaleTexte.Welcher_Abstand_Enum;
       AbstandEndeExtern : in GlobaleTexte.Welcher_Abstand_Enum)
      with
-       Pre =>
-         (ErsteZeileExtern <= LetzteZeileExtern
-          and
-            (if ÜberschriftDateiExtern = GlobaleTexte.Leer then ÜberschriftZeileExtern = 0)
-          and
-            (if ÜberschriftZeileExtern = 0 then ÜberschriftDateiExtern = GlobaleTexte.Leer)
-          and
-            TextDateiExtern /= GlobaleTexte.Leer);
+       Pre => (
+                 ErsteZeileExtern <= LetzteZeileExtern
+               and
+                 (if ÜberschriftDateiExtern = GlobaleTexte.Leer then ÜberschriftZeileExtern = 0)
+               and
+                 (if ÜberschriftZeileExtern = 0 then ÜberschriftDateiExtern = GlobaleTexte.Leer)
+               and
+                 TextDateiExtern /= GlobaleTexte.Leer
+              );
 
    procedure EinzeiligeAnzeigeOhneAuswahl
      (TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
@@ -51,14 +52,15 @@ package TextAnzeigeTerminal is
       LetzteZeileExtern : in Natural;
       AktuelleAuswahlExtern : in Positive)
      with
-       Pre =>
-         (ErsteZeileExtern <= LetzteZeileExtern
-          and
-            (if FrageDateiExtern = GlobaleTexte.Leer then FrageZeileExtern = 0)
-          and
-            (if FrageZeileExtern = 0 then FrageDateiExtern = GlobaleTexte.Leer)
-          and
-            TextDateiExtern /= GlobaleTexte.Leer);
+       Pre => (
+                 ErsteZeileExtern <= LetzteZeileExtern
+               and
+                 (if FrageDateiExtern = GlobaleTexte.Leer then FrageZeileExtern = 0)
+               and
+                 (if FrageZeileExtern = 0 then FrageDateiExtern = GlobaleTexte.Leer)
+               and
+                 TextDateiExtern /= GlobaleTexte.Leer
+              );
 
    procedure AnzeigeLangerTextNeu
      (ÜberschriftDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
@@ -68,12 +70,13 @@ package TextAnzeigeTerminal is
       AbstandAnfangExtern : in GlobaleTexte.Welcher_Abstand_Enum;
       AbstandEndeExtern : in GlobaleTexte.Welcher_Abstand_Enum)
      with
-       Pre =>
-         ((if ÜberschriftDateiExtern = GlobaleTexte.Leer then ÜberschriftZeileExtern = 0)
-          and
-            (if ÜberschriftZeileExtern = 0 then ÜberschriftDateiExtern = GlobaleTexte.Leer)
-          and
-            TextDateiExtern /= GlobaleTexte.Leer);
+       Pre => (
+               (if ÜberschriftDateiExtern = GlobaleTexte.Leer then ÜberschriftZeileExtern = 0)
+               and
+                 (if ÜberschriftZeileExtern = 0 then ÜberschriftDateiExtern = GlobaleTexte.Leer)
+               and
+                 TextDateiExtern /= GlobaleTexte.Leer
+              );
    
    procedure AllgemeineAnzeige
      (AktuelleAuswahlExtern : in EinheitenDatentypen.EinheitenIDMitNullWert);
@@ -95,14 +98,15 @@ private
       LetzteZeileExtern : in Natural;
       AktuelleAuswahlExtern : in Positive)
      with
-       Pre =>
-         (ErsteZeileExtern <= LetzteZeileExtern
-          and
-            (if FrageDateiExtern = GlobaleTexte.Leer then FrageZeileExtern = 0)
-          and
-            (if FrageZeileExtern = 0 then FrageDateiExtern = GlobaleTexte.Leer)
-          and
-            TextDateiExtern /= GlobaleTexte.Leer);
+       Pre => (
+                 ErsteZeileExtern <= LetzteZeileExtern
+               and
+                 (if FrageDateiExtern = GlobaleTexte.Leer then FrageZeileExtern = 0)
+               and
+                 (if FrageZeileExtern = 0 then FrageDateiExtern = GlobaleTexte.Leer)
+               and
+                 TextDateiExtern /= GlobaleTexte.Leer
+              );
 
    procedure AnzeigeOhneAuswahl
      (ÜberschriftDateiExtern : in GlobaleTexte.Welche_Datei_Enum;

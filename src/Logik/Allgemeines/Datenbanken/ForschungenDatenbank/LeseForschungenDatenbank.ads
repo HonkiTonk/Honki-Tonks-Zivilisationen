@@ -13,8 +13,9 @@ package LeseForschungenDatenbank is
       IDExtern : in ForschungenDatentypen.ForschungID)
       return ProduktionDatentypen.Produktion
      with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
+       Pre => (
+                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+              );
 
    function AnforderungForschung
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
@@ -22,7 +23,8 @@ package LeseForschungenDatenbank is
       WelcheAnforderungExtern : in Positive)
       return ForschungenDatentypen.ForschungIDNichtMöglich
      with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
+       Pre => (
+                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+              );
 
 end LeseForschungenDatenbank;

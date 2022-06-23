@@ -12,8 +12,9 @@ package ForschungAnzeigeTerminal is
    procedure ForschungsBaum
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
+       Pre => (
+                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+              );
 
 private
 
@@ -25,14 +26,16 @@ private
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       ForschungNummerExtern : in ForschungenDatentypen.ForschungID)
      with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
+       Pre => (
+                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+              );
 
    procedure Benötigt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       ForschungNummerExtern : in ForschungenDatentypen.ForschungID)
      with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
+       Pre => (
+                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+              );
 
 end ForschungAnzeigeTerminal;

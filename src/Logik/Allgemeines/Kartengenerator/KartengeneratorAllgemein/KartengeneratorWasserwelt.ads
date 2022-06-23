@@ -12,10 +12,11 @@ package KartengeneratorWasserwelt is
    procedure KartengeneratorWasserwelt
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
      with
-       Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-          and
-            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+       Pre => (
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+              );
    
 private
       
@@ -36,18 +37,20 @@ private
    procedure BasisgrundBestimmen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
      with
-       Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-          and
-            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+       Pre => (
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+              );
      
    procedure ZusatzgrundBestimmen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
      with
-       Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-          and
-            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+       Pre => (
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+              );
    
    
    
@@ -56,49 +59,54 @@ private
       GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Wasserbasis_Enum)
       return KartengrundDatentypen.Kartengrund_Unterfläche_Wasserbasis_Enum
      with
-       Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-          and
-            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+       Pre => (
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+              );
          
    function ZusatzExtraberechnungen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Wasserzusatz_Enum)
       return KartengrundDatentypen.Kartengrund_Enum
      with
-       Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-          and
-            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+       Pre => (
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+              );
    
    function ZusatzberechnungMeeresgrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Wasserbasis_Enum)
       return KartengrundDatentypen.Kartengrund_Unterfläche_Wasserbasis_Enum
      with
-       Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-          and
-            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+       Pre => (
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+              );
    
    function ZusatzberechnungKorallen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Wasserzusatz_Enum)
       return KartengrundDatentypen.Kartengrund_Unterfläche_Wasserzusatz_Enum
      with
-       Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-          and
-            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+       Pre => (
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+              );
    
    function ZusatzberechnungUnterwald
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Wasserzusatz_Enum)
       return KartengrundDatentypen.Kartengrund_Unterfläche_Wasserzusatz_Enum
      with
-       Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-          and
-            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+       Pre => (
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+              );
 
 end KartengeneratorWasserwelt;

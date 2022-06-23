@@ -16,15 +16,17 @@ package ZufallsgeneratorenStartkoordinaten is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KartenRecords.AchsenKartenfeldNaturalRecord
      with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum),
+       Pre => (
+                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+              ),
            
-         Post =>
-           (Startkoordinaten'Result.EAchse in -1 .. 0
-            and
-              Startkoordinaten'Result.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-            and
-              Startkoordinaten'Result.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+       Post => (
+                  Startkoordinaten'Result.EAchse in -1 .. 0
+                and
+                  Startkoordinaten'Result.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                and
+                  Startkoordinaten'Result.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+               );
 
 private
    
@@ -45,9 +47,10 @@ private
    function StartPunkteYXFestlegen
      return KartenRecords.YXAchsenKartenfeldPositivRecord
      with
-       Post =>
-         (StartPunkteYXFestlegen'Result.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-          and
-            StartPunkteYXFestlegen'Result.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+       Post => (
+                  StartPunkteYXFestlegen'Result.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                and
+                  StartPunkteYXFestlegen'Result.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+               );
 
 end ZufallsgeneratorenStartkoordinaten;

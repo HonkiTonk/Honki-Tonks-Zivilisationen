@@ -18,14 +18,15 @@ package WaldErmitteln is
       AnlegenTestenExtern : in Boolean)
       return Boolean
      with
-       Pre =>
-         (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
-          and
-            SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
+       Pre => (
+                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+               and
+                 SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+              );
 
 private
 
-   ------------------------- Diesen Bool mal in ein konstantes Array umschreiben, so dass man das überall verwenden kann und man zur Prüfung nur noch reinspringen muss. Geht das überahupt und ist das sinnvoll?
+   ------------------------- Diesen Bool mal in ein konstantes Array umschreiben, so dass man das überall verwenden kann und man zur Prüfung nur noch reinspringen muss. Geht das überhaupt und ist das sinnvoll?
    VorarbeitNötig : Boolean;
 
    VorhandeneVerbesserung : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
@@ -43,10 +44,11 @@ private
       AnlegenTestenExtern : in Boolean)
       return EinheitenRecords.ArbeitRecord
      with
-       Pre =>
-         (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
-          and
-            SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
+       Pre => (
+                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+               and
+                 SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+              );
 
    function UnterflächeWasser
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
@@ -54,9 +56,10 @@ private
       AnlegenTestenExtern : in Boolean)
       return EinheitenRecords.ArbeitRecord
      with
-       Pre =>
-         (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
-          and
-            SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
+       Pre => (
+                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+               and
+                 SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+              );
 
 end WaldErmitteln;

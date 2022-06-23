@@ -73,19 +73,21 @@ private
       NotAusExtern : in ZahlenDatentypen.NotAus)
       return Boolean
      with
-       Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-          and
-            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+       Pre => (
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+              );
    
    function FelderBestimmen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KartenDatentypen.SichtweiteNatural
      with
-       Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-          and
-            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+       Pre => (
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+              );
 
 end SpieleinstellungenRasseSpieler;

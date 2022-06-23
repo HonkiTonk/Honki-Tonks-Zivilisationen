@@ -19,12 +19,13 @@ package KIBewegungAllgemein is
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return KIDatentypen.Bewegung_Enum
      with
-       Pre =>
-         (FeldKoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-          and
-            FeldKoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
-          and
-            SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum);
+       Pre => (
+                 FeldKoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 FeldKoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+               and
+                 SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
+              );
    
 private
 
@@ -35,9 +36,10 @@ private
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return KIDatentypen.Bewegung_Enum
      with
-       Pre =>
-         (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
-          and
-            SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum);
+       Pre => (
+                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+               and
+                 SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
+              );
 
 end KIBewegungAllgemein;

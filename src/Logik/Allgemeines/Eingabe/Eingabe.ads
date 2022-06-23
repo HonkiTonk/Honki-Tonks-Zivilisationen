@@ -16,7 +16,11 @@ package Eingabe is
      (ZeileExtern : in Positive;
       ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
       ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger)
-      return SystemRecords.ZahlenEingabeRecord;
+      return SystemRecords.ZahlenEingabeRecord
+     with
+       Pre => (
+                 ZahlenMinimumExtern <= ZahlenMaximumExtern
+              );
 
    function StadtName
      return SystemRecords.TextEingabeRecord;

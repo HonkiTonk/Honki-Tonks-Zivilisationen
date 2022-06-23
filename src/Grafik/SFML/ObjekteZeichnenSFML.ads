@@ -14,12 +14,14 @@ package ObjekteZeichnenSFML is
       FarbeExtern : in Sf.Graphics.Color.sfColor;
       RechteckAccessExtern : in Sf.Graphics.sfRectangleShape_Ptr)
      with
-       Pre =>
-         (RechteckAccessExtern /= null
-          and
-            (AbmessungExtern.x /= 0.00
-             or
-               AbmessungExtern.y /= 0.00));
+       Pre => (
+                 RechteckAccessExtern /= null
+               and
+                 (AbmessungExtern.x /= 0.00
+                      ----------------------------------- Müsste das hier nicht ein and sein?
+                  or
+                    AbmessungExtern.y /= 0.00)
+              );
          
    procedure KreisZeichnen
      (RadiusExtern : in Float;
@@ -27,10 +29,11 @@ package ObjekteZeichnenSFML is
       FarbeExtern : in Sf.Graphics.Color.sfColor;
       KreisAccessExtern : in Sf.Graphics.sfCircleShape_Ptr)
      with
-       Pre =>
-         (KreisAccessExtern /= null
-          and
-            RadiusExtern /= 0.00);
+       Pre => (
+                 KreisAccessExtern /= null
+               and
+                 RadiusExtern /= 0.00
+              );
 
    
    ----------------------- Hier eventuell noch einen Contract für AnzahlEckenExtern einbauen.
@@ -41,9 +44,10 @@ package ObjekteZeichnenSFML is
       FarbeExtern : in Sf.Graphics.Color.sfColor;
       PolygonAccessExtern : in Sf.Graphics.sfCircleShape_Ptr)
      with
-       Pre =>
-         (PolygonAccessExtern /= null
-          and
-            RadiusExtern /= 0.00);
+       Pre => (
+                 PolygonAccessExtern /= null
+               and
+                 RadiusExtern /= 0.00
+              );
 
 end ObjekteZeichnenSFML;

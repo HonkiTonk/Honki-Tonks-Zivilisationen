@@ -26,7 +26,11 @@ package EingabeSFML is
      (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
       ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger;
       WelcheFrageExtern : in Positive)
-      return SystemRecords.ZahlenEingabeRecord;
+      return SystemRecords.ZahlenEingabeRecord
+     with
+       Pre => (
+                 ZahlenMinimumExtern <= ZahlenMaximumExtern
+              );
    
    function StadtName
      return SystemRecords.TextEingabeRecord;
@@ -180,7 +184,11 @@ private
    procedure VorzeichenAnpassen
      (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
       ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger;
-      PlusMinusExtern : in Boolean);
+      PlusMinusExtern : in Boolean)
+     with
+       Pre => (
+                 ZahlenMinimumExtern <= ZahlenMaximumExtern
+              );
 
    procedure ZahlHinzufügen
      (EingegebeneZahlExtern : in Sf.Window.Keyboard.sfKeyCode);
@@ -193,12 +201,20 @@ private
    function MinimumMaximumSetzen
      (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
       ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger)
-      return Boolean;
+      return Boolean
+     with
+       Pre => (
+                 ZahlenMinimumExtern <= ZahlenMaximumExtern
+              );
    
    function ZahlSchleife
      (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
       ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger)
-      return Boolean;
+      return Boolean
+     with
+       Pre => (
+                 ZahlenMinimumExtern <= ZahlenMaximumExtern
+              );
    
    function GanzeZahlPrüfung
      (ZeichenExtern : in Sf.Window.Keyboard.sfKeyCode)

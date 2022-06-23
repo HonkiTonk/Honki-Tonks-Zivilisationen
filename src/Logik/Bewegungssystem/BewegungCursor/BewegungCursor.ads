@@ -15,14 +15,16 @@ package BewegungCursor is
       RichtungExtern : in TastenbelegungDatentypen.Tastenbelegung_Bewegung_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum);
+       Pre => (
+                 SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+              );
      
    procedure GeheZuCursor
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum);
+       Pre => (
+                 SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+              );
 
 private
 
@@ -51,26 +53,28 @@ private
      (ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
-       Pre =>
-         ((ÄnderungExtern.EAchse /= 0
-          or
-            ÄnderungExtern.YAchse /= 0
-          or
-            ÄnderungExtern.XAchse /= 0)
-          and
-            SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
+       Pre => (
+               (ÄnderungExtern.EAchse /= 0
+               or
+                 ÄnderungExtern.YAchse /= 0
+               or
+                 ÄnderungExtern.XAchse /= 0)
+               and
+                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+              );
 
    procedure BewegungCursorBerechnenStadt
      (ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
-       Pre =>
-         ((ÄnderungExtern.EAchse /= 0
-          or
-            ÄnderungExtern.YAchse /= 0
-          or
-            ÄnderungExtern.XAchse /= 0)
-          and
-            SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
+       Pre => (
+               (ÄnderungExtern.EAchse /= 0
+               or
+                 ÄnderungExtern.YAchse /= 0
+               or
+                 ÄnderungExtern.XAchse /= 0)
+               and
+                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+              );
 
 end BewegungCursor;

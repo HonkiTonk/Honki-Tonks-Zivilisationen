@@ -14,12 +14,13 @@ package DiplomatischerZustandAenderbar is
       NeuerStatusExtern : in SystemDatentypen.Status_Untereinander_Bekannt_Enum)
       return Boolean
      with
-       Pre =>
-         (RasseEinsExtern /= RasseZweiExtern
-          and
-            SonstigeVariablen.RassenImSpiel (RasseEinsExtern) /= RassenDatentypen.Leer_Spieler_Enum
-          and
-            SonstigeVariablen.RassenImSpiel (RasseZweiExtern) /= RassenDatentypen.Leer_Spieler_Enum);
+       Pre => (
+                 RasseEinsExtern /= RasseZweiExtern
+               and
+                 SonstigeVariablen.RassenImSpiel (RasseEinsExtern) /= RassenDatentypen.Leer_Spieler_Enum
+               and
+                 SonstigeVariablen.RassenImSpiel (RasseZweiExtern) /= RassenDatentypen.Leer_Spieler_Enum
+              );
    
 private
    

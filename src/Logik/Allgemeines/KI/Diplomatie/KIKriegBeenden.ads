@@ -8,11 +8,12 @@ package KIKriegBeenden is
       FeindlicheRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Boolean
      with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (EigeneRasseExtern) = RassenDatentypen.KI_Spieler_Enum
-          and
-            SonstigeVariablen.RassenImSpiel (FeindlicheRasseExtern) /= GlobaleDatentypen.Leer
-          and
-            EigeneRasseExtern /= FeindlicheRasseExtern);
+       Pre => (
+                 SonstigeVariablen.RassenImSpiel (EigeneRasseExtern) = RassenDatentypen.KI_Spieler_Enum
+               and
+                 SonstigeVariablen.RassenImSpiel (FeindlicheRasseExtern) /= GlobaleDatentypen.Leer
+               and
+                 EigeneRasseExtern /= FeindlicheRasseExtern
+              );
 
 end KIKriegBeenden;

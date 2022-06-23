@@ -49,10 +49,11 @@ package ChangelogJuni2022 is
    
    
 
-   -- Version 0.01.1525 => 0.01. (23.06.2022):
+   -- Version 0.01.1535 => 0.01. (23.06.2022):
    
+   -- Formatierung des Codes überarbeitet.
    -- 
-   -- Kleinigkeiten korrigiert.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert.
    
    
 

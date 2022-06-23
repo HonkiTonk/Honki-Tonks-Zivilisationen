@@ -15,39 +15,41 @@ package Kartenkoordinatenberechnungssystem is
       LogikGrafikExtern : in Boolean)
       return KartenRecords.AchsenKartenfeldNaturalRecord
      with
-       Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-          and
-            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse),
+       Pre => (
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+              ),
            
-         Post =>
-           ((if
+       Post => (
+                (if
                       Kartenkoordinatenberechnungssystem'Result.YAchse = KartenKonstanten.LeerYAchse
                         then
-              (Kartenkoordinatenberechnungssystem'Result.XAchse = KartenKonstanten.LeerXAchse
-               and
-                 Kartenkoordinatenberechnungssystem'Result.EAchse = KartenKonstanten.LeerEAchse)
-           )
-            and
-              (if
+                  (Kartenkoordinatenberechnungssystem'Result.XAchse = KartenKonstanten.LeerXAchse
+                   and
+                     Kartenkoordinatenberechnungssystem'Result.EAchse = KartenKonstanten.LeerEAchse)
+               )
+                and
+                  (if
                          Kartenkoordinatenberechnungssystem'Result.XAchse = KartenKonstanten.LeerXAchse
                            then
-                 (Kartenkoordinatenberechnungssystem'Result.YAchse = KartenKonstanten.LeerYAchse
-                  and
-                    Kartenkoordinatenberechnungssystem'Result.EAchse = KartenKonstanten.LeerEAchse)
-              )
-            and
-              (if
+                     (Kartenkoordinatenberechnungssystem'Result.YAchse = KartenKonstanten.LeerYAchse
+                      and
+                        Kartenkoordinatenberechnungssystem'Result.EAchse = KartenKonstanten.LeerEAchse)
+                  )
+                and
+                  (if
                          Kartenkoordinatenberechnungssystem'Result.EAchse = KartenKonstanten.LeerEAchse
                            then
-                 (Kartenkoordinatenberechnungssystem'Result.YAchse = KartenKonstanten.LeerYAchse
-                  and
-                    Kartenkoordinatenberechnungssystem'Result.XAchse = KartenKonstanten.LeerXAchse)
-              )
-            and
-              Kartenkoordinatenberechnungssystem'Result.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-            and
-              Kartenkoordinatenberechnungssystem'Result.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+                     (Kartenkoordinatenberechnungssystem'Result.YAchse = KartenKonstanten.LeerYAchse
+                      and
+                        Kartenkoordinatenberechnungssystem'Result.XAchse = KartenKonstanten.LeerXAchse)
+                  )
+                and
+                  Kartenkoordinatenberechnungssystem'Result.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                and
+                  Kartenkoordinatenberechnungssystem'Result.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+               );
    
 private
    

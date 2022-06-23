@@ -4,7 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 
-with KartenDatentypen; use KartenDatentypen;
 with KartenKonstanten;
 with SpielVariablen;
 

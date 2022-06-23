@@ -14,10 +14,11 @@ package VerbesserungAnlegen is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       VerbesserungExtern : in AufgabenDatentypen.Einheitenbefehle_Gebilde_Enum)
      with
-       Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-          and
-            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+       Pre => (
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+              );
 
 private
 

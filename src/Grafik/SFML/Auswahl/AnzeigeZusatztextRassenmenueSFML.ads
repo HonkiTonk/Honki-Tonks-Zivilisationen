@@ -62,10 +62,12 @@ private
       TextExtern : in Wide_Wide_String)
       return Wide_Wide_String
      with
-       Pre =>
-         (TextExtern'Length > 0),
+       Pre => (
+                 TextExtern'Length > 0
+              ),
 
-         Post =>
-           (ZeilenumbruchEinbauen'Result'Length > 0);
+       Post => (
+                  ZeilenumbruchEinbauen'Result'Length > 0
+               );
 
 end AnzeigeZusatztextRassenmenueSFML;

@@ -12,10 +12,11 @@ package KartengeneratorRessourcenUnterflaecheWasser is
    procedure KartengeneratorRessourcenUnterflächeWasser
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
      with
-       Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-          and
-            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+       Pre => (
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+              );
 
 private
 
@@ -38,29 +39,32 @@ private
       RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Unterfläche_Wasser_Enum)
       return KartengrundDatentypen.Kartenressourcen_Enum
      with
-       Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-          and
-            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+       Pre => (
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+              );
 
    function ZusatzberechnungFisch
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Enum)
       return KartengrundDatentypen.Kartenressourcen_Enum
      with
-       Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-          and
-            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+       Pre => (
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+              );
 
    function ZusatzberechnungWal
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Enum)
       return KartengrundDatentypen.Kartenressourcen_Enum
      with
-       Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-          and
-            KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse);
+       Pre => (
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+              );
 
 end KartengeneratorRessourcenUnterflaecheWasser;
