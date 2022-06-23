@@ -42,18 +42,20 @@ package ChangelogJuni2022 is
    
    
 
-   -- Version 0.01. => 0.01. (24.06.2022):
+   -- Version 0.01.1580 => 0.01. (24.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.1535 => 0.01. (23.06.2022):
+   -- Version 0.01.1535 => 0.01.1585 (23.06.2022):
    
    -- Formatierung des Codes überarbeitet.
-   -- 
-   -- Contracts, Kommentare und Kleinigkeiten korrigiert.
+   -- Vergessenen Code gelöscht.
+   -- Doppelten Code zusammengeführt.
+   -- Schreibesystem für Warnungen und Fehler fertiggestellt.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

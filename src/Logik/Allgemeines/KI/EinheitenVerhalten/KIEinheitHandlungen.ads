@@ -6,7 +6,7 @@ with EinheitenRecords;
 with SpielVariablen;
 with SonstigeVariablen;
 
-package KIEinheitAllgemeines is
+package KIEinheitHandlungen is
 
    function HandlungBeendet
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
@@ -48,4 +48,4 @@ package KIEinheitAllgemeines is
                  SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
               );
 
-end KIEinheitAllgemeines;
+end KIEinheitHandlungen;

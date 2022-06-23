@@ -169,6 +169,7 @@ package body StadtBauen is
       
       --------------------------------------- Auch mal vollständig nach SchreibeStadt auslagern.
       SchreibeStadtGebaut.Nullsetzung (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      
       SchreibeStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern,
                               IDExtern               => HauptstadtPrüfen (RasseExtern => StadtRasseNummerExtern.Rasse));
       SchreibeStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern,

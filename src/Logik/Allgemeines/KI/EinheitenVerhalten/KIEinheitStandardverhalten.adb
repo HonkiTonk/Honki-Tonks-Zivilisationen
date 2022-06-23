@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with KIDatentypen; use KIDatentypen;
 with KIKonstanten;
 
-with KIEinheitAllgemeines;
+with KIEinheitHandlungen;
 
 package body KIEinheitStandardverhalten is
    
@@ -16,7 +16,7 @@ package body KIEinheitStandardverhalten is
       for AktivitätSchleifenwert in KIDatentypen.KINotAus'First .. KIKonstanten.Schwierigkeitsgrad (SpielVariablen.Schwierigkeitsgrad) loop
          
          case
-           KIEinheitAllgemeines.Aufgabenplanung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+           KIEinheitHandlungen.Aufgabenplanung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
          is
             when True =>
                exit AktivitätSchleife;
@@ -26,7 +26,7 @@ package body KIEinheitStandardverhalten is
          end case;
          
          case
-           KIEinheitAllgemeines.Bewegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+           KIEinheitHandlungen.Bewegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
          is
             when True =>
                exit AktivitätSchleife;
@@ -36,7 +36,7 @@ package body KIEinheitStandardverhalten is
          end case;
          
          case
-           KIEinheitAllgemeines.Aufgabenumsetzung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+           KIEinheitHandlungen.Aufgabenumsetzung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
          is
             when True =>
                exit AktivitätSchleife;

@@ -11,6 +11,8 @@ with SpielVariablen;
 with StadtDatentypen;
 with StadtRecords;
 
+with KIDatentypen;
+
 package EinheitenModifizieren is
 
    procedure HeilungBewegungspunkteNeueRundeErmitteln;
@@ -52,6 +54,8 @@ private
    AktuelleID : EinheitenDatentypen.EinheitenID;
    
    AktuelleBeschäftigung : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
+   
+   KIBeschäftigung : KIDatentypen.Einheit_Aufgabe_Enum;
    
    Heimatstadt : StadtDatentypen.MaximaleStädteMitNullWert;
    StadtNummerNeu : StadtDatentypen.MaximaleStädteMitNullWert;

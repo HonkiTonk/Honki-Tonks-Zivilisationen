@@ -83,11 +83,11 @@ package body BewegungEinheiten is
           EinheitAufFeld.Rasse /= EinheitenKonstanten.LeerRasse
       then
          if
-           (FremderAufFeld (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                            FremdeEinheitExtern      => EinheitAufFeld)
-            = True)
+           FeldPassierbar
            and
-             FeldPassierbar
+             (FremderAufFeld (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                              FremdeEinheitExtern      => EinheitAufFeld)
+              = True)
          then
             BewegungDurchführen := True;
             
@@ -132,6 +132,7 @@ package body BewegungEinheiten is
    
    
    
+   -- Wird auch in KIEinheitHandlungen verwendet.
    function NochBewegungspunkte
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
@@ -140,7 +141,7 @@ package body BewegungEinheiten is
       if
         LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerBewegungspunkte
         or
-          LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerLebenspunkte
+          LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerID
       then
          return False;
             

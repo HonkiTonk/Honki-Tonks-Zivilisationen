@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+----------------------------------- Besseren Namen finden?
 package body EinlesenAllgemein is
 
    function VorzeitigesZeilenende
@@ -21,6 +22,11 @@ package body EinlesenAllgemein is
             return False;
       end case;
       
+      ---------------------------------- Geht das auch ohne exception?
+   exception
+      when End_Error =>
+         return True;
+      
    end VorzeitigesZeilenende;
-
+   
 end EinlesenAllgemein;

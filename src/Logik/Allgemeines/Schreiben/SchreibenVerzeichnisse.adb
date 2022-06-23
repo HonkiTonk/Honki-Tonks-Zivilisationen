@@ -157,6 +157,7 @@ package body SchreibenVerzeichnisse is
             Create_Directory (New_Directory => "Spielstand");
       end case;
       
+      ------------------------------------ Einstellungen genau wie die Logdatei einfach in den Hauptordner werfen?
       case
         Exists (Name => "Einstellungen")
       is

@@ -21,7 +21,7 @@ with EinheitSuchen;
 with BewegungPassierbarkeitPruefen;
 with StadtProduktion;
 
-with KIDatentypen;
+with KIDatentypen; use KIDatentypen;
 
 package body EinheitenModifizieren is
 
@@ -64,35 +64,41 @@ package body EinheitenModifizieren is
    is begin
       
       AktuelleBeschäftigung := LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      KIBeschäftigung := LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
-      if
-        AktuelleBeschäftigung = EinheitenKonstanten.LeerBeschäftigung
-      then
-         SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                  BewegungspunkteExtern    => LeseEinheitenDatenbank.MaximaleBewegungspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                                                                              IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)),
-                                                  RechnenSetzenExtern      => 0);
-
-      else
-         SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                  BewegungspunkteExtern    => EinheitenKonstanten.LeerBewegungspunkte,
-                                                  RechnenSetzenExtern      => 0);
-      end if;
-
       case
         AktuelleBeschäftigung
       is
-         when AufgabenDatentypen.Heilen_Enum | AufgabenDatentypen.Verschanzen_Enum =>
-            SchreibeEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                  LebenspunkteExtern       => Heilungsrate,
-                                                  RechnenSetzenExtern      => 1);
-            
+         when EinheitenKonstanten.LeerBeschäftigung =>
+            SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                     BewegungspunkteExtern    => LeseEinheitenDatenbank.MaximaleBewegungspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                                                                                 IDExtern    => LeseEinheitenGebaut.ID
+                                                                                                                                   (EinheitRasseNummerExtern => EinheitRasseNummerExtern)),
+                                                     RechnenSetzenExtern      => 0);
+
          when others =>
-            null;
+            SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                     BewegungspunkteExtern    => EinheitenKonstanten.LeerBewegungspunkte,
+                                                     RechnenSetzenExtern      => 0);
       end case;
+
+      if
+        AktuelleBeschäftigung = AufgabenDatentypen.Heilen_Enum
+        or
+          AktuelleBeschäftigung = AufgabenDatentypen.Verschanzen_Enum
+          or
+            KIBeschäftigung = KIDatentypen.Tut_Nichts_Enum
+      then
+         SchreibeEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                               LebenspunkteExtern       => Heilungsrate,
+                                               RechnenSetzenExtern      => 1);
+         
+      else
+         null;
+      end if;
       
       case
-        LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+        KIBeschäftigung
       is
          when KIDatentypen.Tut_Nichts_Enum =>
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,

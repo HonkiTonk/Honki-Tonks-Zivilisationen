@@ -6,7 +6,7 @@ with EinheitenKonstanten;
 with KIGefahrErmitteln;
 with KIEinheitStandardverhalten;
 with KIEinheitGefahrenverhalten;
-with KIEinheitAllgemeines;
+with KIEinheitHandlungen;
 
 package body KIEinheit is
 
@@ -23,7 +23,7 @@ package body KIEinheit is
          when EinheitenKonstanten.LeerRasse =>
             -- Nicht weiter vorne einbauen, da sonst bei Gefahren/Kriegssituationen keine Berechnungen für befestigte Einheiten durchgeführt werden kann.
             if
-              KIEinheitAllgemeines.HandlungBeendet (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
+              KIEinheitHandlungen.HandlungBeendet (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
             then
                return;
                

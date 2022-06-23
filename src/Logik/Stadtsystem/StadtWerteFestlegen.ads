@@ -38,8 +38,9 @@ package StadtWerteFestlegen is
                and
                  SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 1 < LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
-                                                        EinwohnerArbeiterExtern => True)
+                 LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+                                                    EinwohnerArbeiterExtern => True)
+               >= 1
               );
 
 private

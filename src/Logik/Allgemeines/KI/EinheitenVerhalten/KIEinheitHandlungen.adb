@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitenDatentypen; use EinheitenDatentypen;
 with AufgabenDatentypen; use AufgabenDatentypen;
 with KartenRecords; use KartenRecords;
 with EinheitenKonstanten;
@@ -10,6 +9,7 @@ with KartenRecordKonstanten;
 with LeseEinheitenGebaut;
 
 with Vergleiche;
+with BewegungEinheiten;
 
 with KIDatentypen; use KIDatentypen;
 
@@ -17,7 +17,7 @@ with KIBewegungDurchfuehren;
 with KIAufgabenPlanung;
 
 ---------------------------------- Besseren Namen geben.
-package body KIEinheitAllgemeines is
+package body KIEinheitHandlungen is
 
    function HandlungBeendet
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
@@ -25,13 +25,9 @@ package body KIEinheitAllgemeines is
    is begin
       
       if
-        LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerID
-        or
-          LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = KIDatentypen.Tut_Nichts_Enum
+        LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = KIDatentypen.Tut_Nichts_Enum
         or
           LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= EinheitenKonstanten.LeerBeschäftigung
-        or
-          LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) <= EinheitenKonstanten.LeerBewegungspunkte
       then
          return True;
          
@@ -43,7 +39,8 @@ package body KIEinheitAllgemeines is
          return True;
             
       else
-         return False;
+         -- Muss hier not sein wegen den Rückgabewerten in der Funktion selbst, die nicht geändert werden können wegen der Einbindung im Bewegungssystem.
+         return not BewegungEinheiten.NochBewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       end if;
       
    end HandlungBeendet;
@@ -113,4 +110,4 @@ package body KIEinheitAllgemeines is
       
    end Aufgabenumsetzung;
 
-end KIEinheitAllgemeines;
+end KIEinheitHandlungen;

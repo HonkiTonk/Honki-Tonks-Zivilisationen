@@ -10,6 +10,7 @@ with RassenDatentypen;
 with TextKonstanten;
 
 with Warnung;
+with EinlesenAllgemein;
 
 package body EinlesenText is
 
@@ -37,7 +38,8 @@ package body EinlesenText is
       for WelcheDateienSchleifenwert in TextdateienEinlesen'Range loop
 
          case
-           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheDateienSchleifenwert)
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                    AktuelleZeileExtern => WelcheDateienSchleifenwert)
          is
             when True =>
                Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.EinlesenDateien - Nicht genug Zeilen in der 0-Datei.");
@@ -75,27 +77,6 @@ package body EinlesenText is
       end case;
       
    end EinlesenDateien;
-   
-   
-   
-   function VorzeitigesZeilenende
-     (AktuelleZeileExtern : in Positive)
-      return Boolean
-   is begin
-      
-      case
-        End_Of_File (File => DateiTextEinlesen)
-      is
-         when True =>
-            return True;
-               
-         when False =>
-            Set_Line (File => DateiTextEinlesen,
-                      To   => Ada.Wide_Wide_Text_IO.Count (AktuelleZeileExtern));
-            return False;
-      end case;
-      
-   end VorzeitigesZeilenende;
    
    
    
@@ -254,7 +235,8 @@ package body EinlesenText is
       for WelcheZeileSchleifenwert in GlobaleTexte.Hauptmenü'Range loop
          
          case
-           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                    AktuelleZeileExtern => WelcheZeileSchleifenwert)
          is
             when True =>
                Put_Line ("EinlesenText.Hauptmenü -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
@@ -276,7 +258,8 @@ package body EinlesenText is
       for WelcheZeileSchleifenwert in GlobaleTexte.Spielmenü'Range loop
          
          case
-           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                    AktuelleZeileExtern => WelcheZeileSchleifenwert)
          is
             when True =>
                Put_Line ("EinlesenText.Spielmenü -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
@@ -298,7 +281,8 @@ package body EinlesenText is
       for WelcheZeileSchleifenwert in GlobaleTexte.Optionsmenü'Range loop
          
          case
-           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                    AktuelleZeileExtern => WelcheZeileSchleifenwert)
          is
             when True =>
                Put_Line ("EinlesenText.Optionsmenü -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
@@ -320,7 +304,8 @@ package body EinlesenText is
       for WelcheZeileSchleifenwert in GlobaleTexte.Grafikmenü'Range loop
          
          case
-           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                    AktuelleZeileExtern => WelcheZeileSchleifenwert)
          is
             when True =>
                Put_Line ("EinlesenText.Grafikmenü -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
@@ -342,7 +327,8 @@ package body EinlesenText is
       for WelcheZeileSchleifenwert in GlobaleTexte.Soundmenü'Range loop
          
          case
-           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                    AktuelleZeileExtern => WelcheZeileSchleifenwert)
          is
             when True =>
                Put_Line ("EinlesenText.Soundmenü -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
@@ -364,7 +350,8 @@ package body EinlesenText is
       for WelcheZeileSchleifenwert in GlobaleTexte.Steuerungmenü'Range loop
          
          case
-           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                    AktuelleZeileExtern => WelcheZeileSchleifenwert)
          is
             when True =>
                Put_Line ("EinlesenText.Steuerungmenü -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
@@ -386,7 +373,8 @@ package body EinlesenText is
       for WelcheZeileSchleifenwert in GlobaleTexte.Sonstigesmenü'Range loop
          
          case
-           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                    AktuelleZeileExtern => WelcheZeileSchleifenwert)
          is
             when True =>
                Put_Line ("EinlesenText.Sonstigesmenü -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
@@ -408,7 +396,8 @@ package body EinlesenText is
       for WelcheZeileSchleifenwert in GlobaleTexte.Kartengröße'Range loop
          
          case
-           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                    AktuelleZeileExtern => WelcheZeileSchleifenwert)
          is
             when True =>
                Put_Line ("EinlesenText.Kartengröße -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
@@ -430,7 +419,8 @@ package body EinlesenText is
       for WelcheZeileSchleifenwert in GlobaleTexte.Kartenart'Range loop
          
          case
-           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                    AktuelleZeileExtern => WelcheZeileSchleifenwert)
          is
             when True =>
                Put_Line ("EinlesenText.Kartenart -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
@@ -452,7 +442,8 @@ package body EinlesenText is
       for WelcheZeileSchleifenwert in GlobaleTexte.Kartentemperatur'Range loop
          
          case
-           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                    AktuelleZeileExtern => WelcheZeileSchleifenwert)
          is
             when True =>
                Put_Line ("EinlesenText.Kartentemperatur -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
@@ -474,7 +465,8 @@ package body EinlesenText is
       for WelcheZeileSchleifenwert in GlobaleTexte.Rassenauswahl'Range loop
          
          case
-           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                    AktuelleZeileExtern => WelcheZeileSchleifenwert)
          is
             when True =>
                Put_Line ("EinlesenText.Rassenauswahl -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
@@ -496,7 +488,8 @@ package body EinlesenText is
       for WelcheZeileSchleifenwert in GlobaleTexte.Schwierigkeitsgrad'Range loop
          
          case
-           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                    AktuelleZeileExtern => WelcheZeileSchleifenwert)
          is
             when True =>
                Put_Line ("EinlesenText.Schwierigkeitsgrad -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
@@ -518,7 +511,8 @@ package body EinlesenText is
       for WelcheZeileSchleifenwert in GlobaleTexte.Kartenform'Range loop
          
          case
-           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                    AktuelleZeileExtern => WelcheZeileSchleifenwert)
          is
             when True =>
                Put_Line ("EinlesenText.Kartenform -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
@@ -540,7 +534,8 @@ package body EinlesenText is
       for WelcheZeileSchleifenwert in GlobaleTexte.Ressourcenmenge'Range loop
          
          case
-           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                    AktuelleZeileExtern => WelcheZeileSchleifenwert)
          is
             when True =>
                Put_Line ("EinlesenText.Ressourcenmenge -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
@@ -562,7 +557,8 @@ package body EinlesenText is
       for WelcheZeileSchleifenwert in GlobaleTexte.JaNein'Range loop
          
          case
-           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                    AktuelleZeileExtern => WelcheZeileSchleifenwert)
          is
             when True =>
                Put_Line ("EinlesenText.JaNein -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
@@ -584,7 +580,8 @@ package body EinlesenText is
       for WelcheZeileSchleifenwert in GlobaleTexte.Rassen'Range loop
          
          case
-           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                    AktuelleZeileExtern => WelcheZeileSchleifenwert)
          is
             when True =>
                Put_Line ("EinlesenText.Rassen -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
@@ -606,7 +603,8 @@ package body EinlesenText is
       for WelcheZeileSchleifenwert in GlobaleTexte.Kartenfelder'Range loop
          
          case
-           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                    AktuelleZeileExtern => WelcheZeileSchleifenwert)
          is
             when True =>
                Put_Line ("EinlesenText.Kartenfelder -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
@@ -628,7 +626,8 @@ package body EinlesenText is
       for WelcheZeileSchleifenwert in GlobaleTexte.Einheiten'Range loop
          
          case
-           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                    AktuelleZeileExtern => WelcheZeileSchleifenwert)
          is
             when True =>
                Put_Line ("EinlesenText.Einheiten -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
@@ -650,7 +649,8 @@ package body EinlesenText is
       for WelcheZeileSchleifenwert in GlobaleTexte.Verbesserungen'Range loop
          
          case
-           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                    AktuelleZeileExtern => WelcheZeileSchleifenwert)
          is
             when True =>
                Put_Line ("EinlesenText.Verbesserungen -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
@@ -672,7 +672,8 @@ package body EinlesenText is
       for WelcheZeileSchleifenwert in GlobaleTexte.Gebäude'Range loop
          
          case
-           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                    AktuelleZeileExtern => WelcheZeileSchleifenwert)
          is
             when True =>
                Put_Line ("EinlesenText.Gebäude -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
@@ -694,7 +695,8 @@ package body EinlesenText is
       for WelcheZeileSchleifenwert in GlobaleTexte.Forschungen'Range loop
          
          case
-           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                    AktuelleZeileExtern => WelcheZeileSchleifenwert)
          is
             when True =>
                Put_Line ("EinlesenText.Forschungen -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
@@ -716,7 +718,8 @@ package body EinlesenText is
       for WelcheZeileSchleifenwert in GlobaleTexte.Beschäftigungen'Range loop
          
          case
-           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                    AktuelleZeileExtern => WelcheZeileSchleifenwert)
          is
             when True =>
                Put_Line ("EinlesenText.Beschäftigungen -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
@@ -742,7 +745,8 @@ package body EinlesenText is
          for WelcheZeileSchleifenwert in GlobaleTexte.StädtenamenKI'Range (2) loop
          
             case
-              VorzeitigesZeilenende (AktuelleZeileExtern => AktuelleZeile)
+              EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                       AktuelleZeileExtern => AktuelleZeile)
             is
                when True =>
                   Put_Line ("EinlesenText.StädtenamenKI -" & AktuelleZeile'Wide_Wide_Image);
@@ -765,9 +769,10 @@ package body EinlesenText is
       
       DebugmenüSchleife:
       for WelcheZeileSchleifenwert in GlobaleTexte.Debugmenü'Range loop
-         
+                  
          case
-           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                    AktuelleZeileExtern => WelcheZeileSchleifenwert)
          is
             when True =>
                Put_Line ("EinlesenText.Debugmenü -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
@@ -789,7 +794,8 @@ package body EinlesenText is
       for WelcheZeileSchleifenwert in GlobaleTexte.AllgemeineInformationen'Range loop
          
          case
-           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                    AktuelleZeileExtern => WelcheZeileSchleifenwert)
          is
             when True =>
                Put_Line ("EinlesenText.AllgemeineInformationen -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
@@ -811,7 +817,8 @@ package body EinlesenText is
       for WelcheZeileSchleifenwert in GlobaleTexte.Würdigung'Range loop
          
          case
-           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                    AktuelleZeileExtern => WelcheZeileSchleifenwert)
          is
             when True =>
                Put_Line ("EinlesenText.Würdigung -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
@@ -833,7 +840,8 @@ package body EinlesenText is
       for WelcheZeileSchleifenwert in GlobaleTexte.Diplomatiemenü'Range loop
          
          case
-           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                    AktuelleZeileExtern => WelcheZeileSchleifenwert)
          is
             when True =>
                Put_Line ("EinlesenText.Diplomatiemenü -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
@@ -855,7 +863,8 @@ package body EinlesenText is
       for WelcheZeileSchleifenwert in GlobaleTexte.DiplomatieKI'Range loop
          
          case
-           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                    AktuelleZeileExtern => WelcheZeileSchleifenwert)
          is
             when True =>
                Put_Line ("EinlesenText.DiplomatieKI -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
@@ -877,7 +886,8 @@ package body EinlesenText is
       for WelcheZeileSchleifenwert in GlobaleTexte.Endmeldungen'Range loop
          
          case
-           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                    AktuelleZeileExtern => WelcheZeileSchleifenwert)
          is
             when True =>
                Put_Line ("EinlesenText.Endmeldungen -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
@@ -899,7 +909,8 @@ package body EinlesenText is
       for WelcheZeileSchleifenwert in GlobaleTexte.Handelsmenü'Range loop
          
          case
-           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                    AktuelleZeileExtern => WelcheZeileSchleifenwert)
          is
             when True =>
                Put_Line ("EinlesenText.Handelsmenü -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
@@ -921,7 +932,8 @@ package body EinlesenText is
       for WelcheZeileSchleifenwert in GlobaleTexte.DiplomatieStatus'Range loop
          
          case
-           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                    AktuelleZeileExtern => WelcheZeileSchleifenwert)
          is
             when True =>
                Put_Line ("EinlesenText.DiplomatieStatus -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
@@ -943,7 +955,8 @@ package body EinlesenText is
       for WelcheZeileSchleifenwert in GlobaleTexte.Angebot'Range loop
          
          case
-           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                    AktuelleZeileExtern => WelcheZeileSchleifenwert)
          is
             when True =>
                Put_Line ("EinlesenText.Angebot -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
@@ -965,7 +978,8 @@ package body EinlesenText is
       for WelcheZeileSchleifenwert in GlobaleTexte.Fehlermeldung'Range loop
          
          case
-           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                    AktuelleZeileExtern => WelcheZeileSchleifenwert)
          is
             when True =>
                Put_Line ("EinlesenText.Fehlermeldung -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
@@ -987,7 +1001,8 @@ package body EinlesenText is
       for WelcheZeileSchleifenwert in GlobaleTexte.Ladezeit'Range loop
          
          case
-           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                    AktuelleZeileExtern => WelcheZeileSchleifenwert)
          is
             when True =>
                Put_Line ("EinlesenText.Ladezeit -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
@@ -1009,7 +1024,8 @@ package body EinlesenText is
       for WelcheZeileSchleifenwert in GlobaleTexte.Frage'Range loop
          
          case
-           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                    AktuelleZeileExtern => WelcheZeileSchleifenwert)
          is
             when True =>
                Put_Line ("EinlesenText.Frage -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
@@ -1031,7 +1047,8 @@ package body EinlesenText is
       for WelcheZeileSchleifenwert in GlobaleTexte.Zeug'Range loop
          
          case
-           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                    AktuelleZeileExtern => WelcheZeileSchleifenwert)
          is
             when True =>
                Put_Line ("EinlesenText.ZeugSachen -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
@@ -1053,7 +1070,8 @@ package body EinlesenText is
       for WelcheZeileSchleifenwert in GlobaleTexte.Editoren'Range loop
          
          case
-           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                    AktuelleZeileExtern => WelcheZeileSchleifenwert)
          is
             when True =>
                Put_Line ("EinlesenText.Editoren -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
@@ -1075,7 +1093,8 @@ package body EinlesenText is
       for WelcheZeileSchleifenwert in GlobaleTexte.Wege'Range loop
          
          case
-           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                    AktuelleZeileExtern => WelcheZeileSchleifenwert)
          is
             when True =>
                Put_Line ("EinlesenText.Wege -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
@@ -1097,7 +1116,8 @@ package body EinlesenText is
       for WelcheZeileSchleifenwert in GlobaleTexte.Kartenflüsse'Range loop
          
          case
-           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                    AktuelleZeileExtern => WelcheZeileSchleifenwert)
          is
             when True =>
                Put_Line ("EinlesenText.Kartenflüsse -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
@@ -1119,7 +1139,8 @@ package body EinlesenText is
       for WelcheZeileSchleifenwert in GlobaleTexte.Kartenressourcen'Range loop
          
          case
-           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                    AktuelleZeileExtern => WelcheZeileSchleifenwert)
          is
             when True =>
                Put_Line ("EinlesenText.Kartenressourcen -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
@@ -1141,7 +1162,8 @@ package body EinlesenText is
       for WelcheZeileSchleifenwert in GlobaleTexte.Einstellungsmenü'Range loop
          
          case
-           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                    AktuelleZeileExtern => WelcheZeileSchleifenwert)
          is
             when True =>
                Put_Line ("EinlesenText.Einstellungen -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
@@ -1163,7 +1185,8 @@ package body EinlesenText is
       for WelcheZeileSchleifenwert in GlobaleTexte.Kartenpole'Range loop
          
          case
-           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                    AktuelleZeileExtern => WelcheZeileSchleifenwert)
          is
             when True =>
                Put_Line ("EinlesenText.Kartenpole -" & WelcheZeileSchleifenwert'Wide_Wide_Image);

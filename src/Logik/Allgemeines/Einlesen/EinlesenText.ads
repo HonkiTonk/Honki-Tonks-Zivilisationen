@@ -20,10 +20,6 @@ private
 
    DateiTextEinlesen : File_Type;
    
-   function VorzeitigesZeilenende
-     (AktuelleZeileExtern : in Positive)
-      return Boolean;
-   
    procedure EinlesenTexte;
    procedure Hauptmenü;
    procedure Spielmenü;

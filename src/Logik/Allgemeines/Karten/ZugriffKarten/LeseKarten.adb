@@ -163,14 +163,6 @@ package body LeseKarten is
       then
          return True;
          
-      elsif
-        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund.RasseBelegt = StadtKonstanten.LeerRasse
-        or
-          Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund.StadtBelegt = StadtKonstanten.LeerNummer
-      then
-         Fehler.LogikFehler (FehlermeldungExtern => "LeseKarten.BestimmteStadtBelegtGrund - Rasse oder Nummer nicht korrekt gesetzt");
-         return True;
-         
       else
          return False;
       end if;

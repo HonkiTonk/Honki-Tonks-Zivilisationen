@@ -13,7 +13,7 @@ with KIKonstanten;
 
 with KIBewegungDurchfuehren;
 with KIAufgabenPlanung;
-with KIEinheitAllgemeines;
+with KIEinheitHandlungen;
 
 package body KIEinheitGefahrenverhalten is
    
@@ -36,7 +36,7 @@ package body KIEinheitGefahrenverhalten is
       for AktivitätSchleifenwert in KIDatentypen.KINotAus'First .. KIKonstanten.Schwierigkeitsgrad (SpielVariablen.Schwierigkeitsgrad) loop
          
          case
-           KIEinheitAllgemeines.HandlungBeendet (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+           KIEinheitHandlungen.HandlungBeendet (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
          is
             when True =>
                exit AktivitätSchleife;
@@ -46,7 +46,7 @@ package body KIEinheitGefahrenverhalten is
          end case;
          
          case
-           KIEinheitAllgemeines.Aufgabenplanung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+           KIEinheitHandlungen.Aufgabenplanung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
          is
             when True =>
                exit AktivitätSchleife;
