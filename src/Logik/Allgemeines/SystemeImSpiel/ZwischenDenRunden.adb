@@ -168,9 +168,9 @@ package body ZwischenDenRunden is
               or
                 RasseEinsSchleifenwert = RasseZweiSchleifenwert
                 or
-                  SonstigeVariablen.RassenImSpiel (RasseEinsSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
+                  SpielVariablen.RassenImSpiel (RasseEinsSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
               or
-                SonstigeVariablen.RassenImSpiel (RasseZweiSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
+                SpielVariablen.RassenImSpiel (RasseZweiSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
             then
                null;
                   
@@ -197,7 +197,7 @@ package body ZwischenDenRunden is
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
-           SonstigeVariablen.RassenImSpiel (RasseSchleifenwert)
+           SpielVariablen.RassenImSpiel (RasseSchleifenwert)
          is
             when RassenDatentypen.Leer_Spieler_Enum =>
                null;

@@ -9,6 +9,7 @@ with EinheitenDatentypen; use EinheitenDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
 with StadtDatentypen; use StadtDatentypen;
 with KartenVerbesserungDatentypen;
+with SonstigeVariablen;
 
 with LeseStadtGebaut;
 

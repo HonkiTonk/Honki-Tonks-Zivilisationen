@@ -3,7 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with KartenKonstanten;
-with SpielVariablen;
 
 with GrafikEinstellungenSFML;
 with BerechnungenKarteSFML;

@@ -50,7 +50,7 @@ package body StadtBauen is
       
       -- Anpassen damit man bei Namen abbrechen kann. Eigenes System bauen um Städte ohne Namen zu ermöglichen oder einfach einen Namen ab sofort vorraussetzen?
       case
-        SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse)
+        SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse)
       is
          when RassenDatentypen.KI_Spieler_Enum =>
             StadtName.EingegebenerText := StandardStadtNamen (RasseExtern => EinheitRasseNummerExtern.Rasse);
@@ -106,7 +106,7 @@ package body StadtBauen is
          return True;
          
       elsif
-        SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
+        SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
       then
          return False;
          
@@ -134,7 +134,7 @@ package body StadtBauen is
              LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtNummerSchleifenwert)) /= KartenVerbesserungDatentypen.Leer_Verbesserung_Enum
          then
             case
-              SonstigeVariablen.RassenImSpiel (RasseExtern)
+              SpielVariablen.RassenImSpiel (RasseExtern)
             is
                when RassenDatentypen.Mensch_Spieler_Enum =>
                   -- Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,

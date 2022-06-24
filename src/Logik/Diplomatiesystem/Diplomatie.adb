@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with SystemDatentypen; use SystemDatentypen;
-with SpielVariablen;
 
 with DiplomatischerZustandAenderbar;
 
@@ -37,7 +36,7 @@ package body Diplomatie is
          if
            RassenSchleifenwert = RasseExtern
            or
-             SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Leer_Spieler_Enum
+             SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Leer_Spieler_Enum
            or
              SpielVariablen.Diplomatie (RasseExtern, RassenSchleifenwert).AktuellerZustand = SystemDatentypen.Unbekannt_Enum
          then
@@ -83,7 +82,7 @@ package body Diplomatie is
             if
               RassenDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse) = RasseExtern
               or
-                SonstigeVariablen.RassenImSpiel (RassenDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse)) = RassenDatentypen.Leer_Spieler_Enum
+                SpielVariablen.RassenImSpiel (RassenDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse)) = RassenDatentypen.Leer_Spieler_Enum
                 or
                   SpielVariablen.Diplomatie (RasseExtern, RassenDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse)).AktuellerZustand = SystemDatentypen.Unbekannt_Enum
             then

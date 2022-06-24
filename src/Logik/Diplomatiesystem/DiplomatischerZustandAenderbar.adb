@@ -4,7 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 with SystemDatentypen; use SystemDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
 with WichtigesKonstanten;
-with SpielVariablen;
 
 with DiplomatischerZustand;
 

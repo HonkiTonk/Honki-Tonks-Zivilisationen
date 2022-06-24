@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with RassenDatentypen; use RassenDatentypen;
 with ZahlenDatentypen;
 with KartenDatentypen;
-with SonstigeVariablen;
+with SpielVariablen;
 
 package KartenfelderBewerten is
 
@@ -12,7 +12,7 @@ package KartenfelderBewerten is
      (RasseExtern : in RassenDatentypen.Rassen_Enum)
      with
        Pre => (
-                 if RasseExtern /= RassenDatentypen.Keine_Rasse_Enum then SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 if RasseExtern /= RassenDatentypen.Keine_Rasse_Enum then SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
 
 private

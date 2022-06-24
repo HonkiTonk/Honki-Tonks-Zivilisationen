@@ -8,7 +8,6 @@ with StadtDatentypen; use StadtDatentypen;
 with EinheitenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
-with SonstigeVariablen;
 
 package AuswahlStadtEinheit is
       
@@ -36,7 +35,7 @@ package AuswahlStadtEinheit is
                and
                  EinheitNummerExtern in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Einheitengrenze
                and
-                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
 private

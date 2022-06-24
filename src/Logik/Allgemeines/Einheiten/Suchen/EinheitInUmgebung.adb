@@ -6,7 +6,6 @@ with SystemDatentypen; use SystemDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
-with SpielVariablen;
 with StadtDatentypen;
 
 with LeseKarten;
@@ -28,7 +27,7 @@ package body EinheitInUmgebung is
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
-           SonstigeVariablen.RassenImSpiel (RasseSchleifenwert)
+           SpielVariablen.RassenImSpiel (RasseSchleifenwert)
          is
             when RassenDatentypen.Mensch_Spieler_Enum =>
                UmgebungStadt (RasseExtern => RasseSchleifenwert);

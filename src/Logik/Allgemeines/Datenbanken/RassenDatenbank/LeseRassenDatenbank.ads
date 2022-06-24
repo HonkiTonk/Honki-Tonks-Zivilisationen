@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with SystemDatentypen;
-with SonstigeVariablen;
+with SpielVariablen;
 with StadtDatentypen;
 
 package LeseRassenDatenbank is
@@ -13,7 +13,7 @@ package LeseRassenDatenbank is
       return StadtDatentypen.MaximaleStädteMitNullWert
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function RassenExpansion
@@ -21,7 +21,7 @@ package LeseRassenDatenbank is
       return StadtDatentypen.MaximaleStädteMitNullWert
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function RassenWissenschaft
@@ -29,7 +29,7 @@ package LeseRassenDatenbank is
       return StadtDatentypen.MaximaleStädteMitNullWert
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function RassenProduktion
@@ -37,7 +37,7 @@ package LeseRassenDatenbank is
       return StadtDatentypen.MaximaleStädteMitNullWert
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function RassenWirtschaft
@@ -45,7 +45,7 @@ package LeseRassenDatenbank is
       return StadtDatentypen.MaximaleStädteMitNullWert
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function RassenBewirtschaftung
@@ -53,7 +53,7 @@ package LeseRassenDatenbank is
       return StadtDatentypen.MaximaleStädteMitNullWert
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function RassenGültigeStaatsform
@@ -62,7 +62,7 @@ package LeseRassenDatenbank is
       return Boolean
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
 
 end LeseRassenDatenbank;

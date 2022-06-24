@@ -10,7 +10,7 @@ with ForschungenDatentypen; use ForschungenDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
 with KartenDatentypen;
 with KartenRecords;
-with SonstigeVariablen;
+with SpielVariablen;
 with KartenRecordKonstanten;
 
 with UmwandlungenAdaNachEigenes;
@@ -23,7 +23,7 @@ package KarteWichtigesSFML is
       return Sf.System.Vector2.sfVector2f
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
                and
                  TextpositionExtern.x > 0.00
                and

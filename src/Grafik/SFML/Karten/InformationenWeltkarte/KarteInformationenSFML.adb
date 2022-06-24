@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with StadtKonstanten;
 with EinheitenKonstanten;
-with SpielVariablen;
+with SonstigeVariablen;
 
 with LeseKarten;
 

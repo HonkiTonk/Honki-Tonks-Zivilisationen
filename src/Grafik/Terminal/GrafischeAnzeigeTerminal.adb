@@ -10,7 +10,6 @@ with StadtDatentypen; use StadtDatentypen;
 with EinheitenKonstanten;
 with TextKonstanten;
 with StadtKonstanten;
-with SpielVariablen;
 
 with LeseKarten;
 with LeseEinheitenGebaut;

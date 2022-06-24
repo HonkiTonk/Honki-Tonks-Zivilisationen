@@ -76,7 +76,7 @@ package body DebugmenueTerminal is
       ErsteAnzeige := True;
       
       case
-        SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse)
+        SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse)
       is
          when RassenDatentypen.KI_Spieler_Enum =>
             BewegungPlanSchleife:

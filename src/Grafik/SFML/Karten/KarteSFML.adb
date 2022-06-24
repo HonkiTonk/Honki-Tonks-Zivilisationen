@@ -15,8 +15,8 @@ with StadtDatentypen; use StadtDatentypen;
 with EinheitenKonstanten;
 with KartenKonstanten;
 with StadtKonstanten;
-with SpielVariablen;
 with TextaccessVariablen;
+with SonstigeVariablen;
 
 with LeseKarten;
 with LeseEinheitenGebaut;

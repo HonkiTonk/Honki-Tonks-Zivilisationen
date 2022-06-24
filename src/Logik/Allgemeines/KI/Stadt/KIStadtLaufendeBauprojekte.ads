@@ -4,7 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 with RassenDatentypen; use RassenDatentypen;
 with StadtDatentypen; use StadtDatentypen;
 with EinheitenDatentypen; use EinheitenDatentypen;
-with SonstigeVariablen;
 with StadtRecords;
 with SpielVariablen;
 
@@ -18,7 +17,7 @@ package KIStadtLaufendeBauprojekte is
        Pre => (
                  StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
                and
-                 SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
                and
                  (if BauprojektExtern.Gebäude /= 0 then BauprojektExtern.Einheit = 0)
                and
@@ -37,7 +36,7 @@ package KIStadtLaufendeBauprojekte is
        Pre => (
                  StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
                and
-                 SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
               ),
    
        Post => (

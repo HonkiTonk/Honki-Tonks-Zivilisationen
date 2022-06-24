@@ -7,7 +7,6 @@ with StadtDatentypen; use StadtDatentypen;
 with StadtRecords;
 with EinheitenKonstanten;
 with StadtKonstanten;
-with SpielVariablen;
 with EinheitenRecords;
 
 with LeseEinheitenGebaut;

@@ -4,7 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 with WichtigesKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
-with SpielVariablen;
 
 with SchreibeStadtGebaut;
 with SchreibeEinheitenGebaut;
@@ -45,7 +44,7 @@ package body RasseEntfernen is
       SpielVariablen.CursorImSpiel (RasseExtern) := WichtigesKonstanten.LeerCursor;
       SpielVariablen.Wichtiges (RasseExtern) := WichtigesKonstanten.LeerWichtigesZeug;
       
-      SonstigeVariablen.RassenImSpiel (RasseExtern) := RassenDatentypen.Leer_Spieler_Enum;
+      SpielVariablen.RassenImSpiel (RasseExtern) := RassenDatentypen.Leer_Spieler_Enum;
       
    end RasseEntfernen;
    
@@ -95,7 +94,7 @@ package body RasseEntfernen is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      SonstigeVariablen.RassenImSpiel (RasseExtern) := RassenDatentypen.KI_Spieler_Enum;
+      SpielVariablen.RassenImSpiel (RasseExtern) := RassenDatentypen.KI_Spieler_Enum;
       Ladezeiten.SpielweltNullsetzen;
       KartenfelderBewerten.KartenfelderBewerten (RasseExtern => RasseExtern);
       

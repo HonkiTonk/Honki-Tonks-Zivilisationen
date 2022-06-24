@@ -12,9 +12,9 @@ package Handeln is
       return Integer
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer
+                 SpielVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer
                and
-                 SonstigeVariablen.RassenImSpiel (KontaktierteRasseExtern) /= SystemDatentypen.Leer
+                 SpielVariablen.RassenImSpiel (KontaktierteRasseExtern) /= SystemDatentypen.Leer
               );
    
 private
@@ -27,9 +27,9 @@ private
       KontaktierteRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer
+                 SpielVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer
                and
-                 SonstigeVariablen.RassenImSpiel (KontaktierteRasseExtern) /= SystemDatentypen.Leer
+                 SpielVariablen.RassenImSpiel (KontaktierteRasseExtern) /= SystemDatentypen.Leer
               );
    
    procedure KontakteKaufen
@@ -37,9 +37,9 @@ private
       KontaktierteRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer
+                 SpielVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer
                and
-                 SonstigeVariablen.RassenImSpiel (KontaktierteRasseExtern) /= SystemDatentypen.Leer
+                 SpielVariablen.RassenImSpiel (KontaktierteRasseExtern) /= SystemDatentypen.Leer
               );
    
    procedure KontakteTauschen
@@ -47,9 +47,9 @@ private
       KontaktierteRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer
+                 SpielVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer
                and
-                 SonstigeVariablen.RassenImSpiel (KontaktierteRasseExtern) /= SystemDatentypen.Leer
+                 SpielVariablen.RassenImSpiel (KontaktierteRasseExtern) /= SystemDatentypen.Leer
               );
    
    procedure GeldVerschenken
@@ -57,9 +57,9 @@ private
       KontaktierteRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer
+                 SpielVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer
                and
-                 SonstigeVariablen.RassenImSpiel (KontaktierteRasseExtern) /= SystemDatentypen.Leer
+                 SpielVariablen.RassenImSpiel (KontaktierteRasseExtern) /= SystemDatentypen.Leer
               );
    
    procedure GeldVerlangen
@@ -67,9 +67,9 @@ private
       KontaktierteRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer
+                 SpielVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer
                and
-                 SonstigeVariablen.RassenImSpiel (KontaktierteRasseExtern) /= SystemDatentypen.Leer
+                 SpielVariablen.RassenImSpiel (KontaktierteRasseExtern) /= SystemDatentypen.Leer
               );
    
    procedure SichtbarkeitTauschen
@@ -77,9 +77,9 @@ private
       RasseZweiExtern : in RueckgabeDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (RasseEinsExtern) /= SystemDatentypen.Leer
+                 SpielVariablen.RassenImSpiel (RasseEinsExtern) /= SystemDatentypen.Leer
                and
-                 SonstigeVariablen.RassenImSpiel (RasseZweiExtern) /= SystemDatentypen.Leer
+                 SpielVariablen.RassenImSpiel (RasseZweiExtern) /= SystemDatentypen.Leer
               );
    
    procedure SichtbarkeitKaufen
@@ -87,9 +87,9 @@ private
       RasseZweiExtern : in RueckgabeDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (RasseEinsExtern) /= SystemDatentypen.Leer
+                 SpielVariablen.RassenImSpiel (RasseEinsExtern) /= SystemDatentypen.Leer
                and
-                 SonstigeVariablen.RassenImSpiel (RasseZweiExtern) /= SystemDatentypen.Leer
+                 SpielVariablen.RassenImSpiel (RasseZweiExtern) /= SystemDatentypen.Leer
               );
    
    procedure SichtbarkeitVerkaufen
@@ -97,9 +97,9 @@ private
       RasseZweiExtern : in RueckgabeDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (RasseEinsExtern) /= SystemDatentypen.Leer
+                 SpielVariablen.RassenImSpiel (RasseEinsExtern) /= SystemDatentypen.Leer
                and
-                 SonstigeVariablen.RassenImSpiel (RasseZweiExtern) /= SystemDatentypen.Leer
+                 SpielVariablen.RassenImSpiel (RasseZweiExtern) /= SystemDatentypen.Leer
               );
    
    
@@ -110,9 +110,9 @@ private
       return Integer
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer
+                 SpielVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer
                and
-                 SonstigeVariablen.RassenImSpiel (KontaktierteRasseExtern) /= SystemDatentypen.Leer
+                 SpielVariablen.RassenImSpiel (KontaktierteRasseExtern) /= SystemDatentypen.Leer
               );
 
 end Handeln;

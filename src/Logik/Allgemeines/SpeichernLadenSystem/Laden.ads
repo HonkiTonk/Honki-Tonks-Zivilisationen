@@ -6,7 +6,7 @@ with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 with RassenDatentypen; use RassenDatentypen;
 with SystemRecords;
 with SonstigesKonstanten;
-with SonstigeVariablen;
+with SpielVariablen;
 
 package Laden is
 
@@ -29,7 +29,7 @@ private
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
 
 end Laden;

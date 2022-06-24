@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with KartengrundDatentypen; use KartengrundDatentypen;
 with RassenDatentypen; use RassenDatentypen;
 with KartenVerbesserungDatentypen;
-with SonstigeVariablen;
+with SpielVariablen;
 with EinheitenDatentypen;
 with EinheitenKonstanten;
 
@@ -22,9 +22,9 @@ package FarbgebungTerminal is
       RasseExtern : in RassenDatentypen.Rassen_Enum)
      with
        Pre => (
-               (if EigeneRasseExtern /= EinheitenKonstanten.LeerRasse then SonstigeVariablen.RassenImSpiel (EigeneRasseExtern) = RassenDatentypen.Mensch_Spieler_Enum)
+               (if EigeneRasseExtern /= EinheitenKonstanten.LeerRasse then SpielVariablen.RassenImSpiel (EigeneRasseExtern) = RassenDatentypen.Mensch_Spieler_Enum)
                and
-                 (if RasseExtern /= EinheitenKonstanten.LeerRasse then SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum)
+                 (if RasseExtern /= EinheitenKonstanten.LeerRasse then SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum)
               );
    
 private
@@ -71,9 +71,9 @@ private
       RasseExtern : in RassenDatentypen.Rassen_Enum)
      with
        Pre => (
-               (if EigeneRasseExtern /= EinheitenKonstanten.LeerRasse then SonstigeVariablen.RassenImSpiel (EigeneRasseExtern) = RassenDatentypen.Mensch_Spieler_Enum)
+               (if EigeneRasseExtern /= EinheitenKonstanten.LeerRasse then SpielVariablen.RassenImSpiel (EigeneRasseExtern) = RassenDatentypen.Mensch_Spieler_Enum)
                and
-                 (if RasseExtern /= EinheitenKonstanten.LeerRasse then SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum)
+                 (if RasseExtern /= EinheitenKonstanten.LeerRasse then SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum)
               );
    
    procedure FarbenFluss

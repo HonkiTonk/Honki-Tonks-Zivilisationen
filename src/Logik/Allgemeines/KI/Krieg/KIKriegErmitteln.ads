@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
-with SonstigeVariablen;
+with SpielVariablen;
 with ProduktionDatentypen;
 
 package KIKriegErmitteln is
@@ -12,7 +12,7 @@ package KIKriegErmitteln is
       return Boolean
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.KI_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.KI_Spieler_Enum
               );
 
    function KriegAnfangen
@@ -20,7 +20,7 @@ package KIKriegErmitteln is
       return RassenDatentypen.Rassen_Enum
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.KI_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.KI_Spieler_Enum
               );
 
 private
@@ -58,9 +58,9 @@ private
       return RassenDatentypen.Rassen_Enum
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (EigeneRasseExtern) = RassenDatentypen.KI_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (EigeneRasseExtern) = RassenDatentypen.KI_Spieler_Enum
                and
-                 SonstigeVariablen.RassenImSpiel (FremdeRasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (FremdeRasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
                and
                  EigeneRasseExtern /= FremdeRasseExtern
               );

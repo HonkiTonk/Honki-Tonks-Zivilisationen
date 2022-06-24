@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenKonstanten;
-with SpielVariablen;
 
 with Karten;
 with Eingabe;

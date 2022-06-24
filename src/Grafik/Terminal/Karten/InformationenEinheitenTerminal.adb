@@ -7,6 +7,7 @@ with Ada.Integer_Wide_Wide_Text_IO;
 with EinheitenDatentypen; use EinheitenDatentypen;
 with EinheitenKonstanten;
 with StadtKonstanten;
+with SonstigeVariablen;
 
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;

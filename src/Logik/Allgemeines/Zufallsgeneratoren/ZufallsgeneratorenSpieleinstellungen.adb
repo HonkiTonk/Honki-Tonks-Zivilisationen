@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
-with SonstigeVariablen;
+with SpielVariablen;
 
 with KartengeneratorVariablen;
 
@@ -132,7 +132,7 @@ package body ZufallsgeneratorenSpieleinstellungen is
    is begin
       
       SpielerVorhanden := False;
-      SonstigeVariablen.RassenImSpiel := (others => RassenDatentypen.Leer_Spieler_Enum);
+      SpielVariablen.RassenImSpiel := (others => RassenDatentypen.Leer_Spieler_Enum);
       ZufälligeRassenbelegungWählen.Reset (ZufälligeRassenbelegungGewählt);
       
       SpielerSchleife:
@@ -145,7 +145,7 @@ package body ZufallsgeneratorenSpieleinstellungen is
             if
               RasseImSpiel = RassenDatentypen.KI_Spieler_Enum
             then
-               SonstigeVariablen.RassenImSpiel (RasseSchleifenwert) := RasseImSpiel;
+               SpielVariablen.RassenImSpiel (RasseSchleifenwert) := RasseImSpiel;
                SpielerVorhanden := True;
             
             else
@@ -163,7 +163,7 @@ package body ZufallsgeneratorenSpieleinstellungen is
          for MenschlicheRasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
 
             if
-              SonstigeVariablen.RassenImSpiel (MenschlicheRasseSchleifenwert) = RassenDatentypen.KI_Spieler_Enum
+              SpielVariablen.RassenImSpiel (MenschlicheRasseSchleifenwert) = RassenDatentypen.KI_Spieler_Enum
             then
                RasseImSpiel := ZufälligeRassenbelegungWählen.Random (ZufälligeRassenbelegungGewählt);
                
@@ -171,7 +171,7 @@ package body ZufallsgeneratorenSpieleinstellungen is
                  RasseImSpiel
                is
                   when RassenDatentypen.Mensch_Spieler_Enum =>
-                     SonstigeVariablen.RassenImSpiel (MenschlicheRasseSchleifenwert) := RassenDatentypen.Mensch_Spieler_Enum;
+                     SpielVariablen.RassenImSpiel (MenschlicheRasseSchleifenwert) := RassenDatentypen.Mensch_Spieler_Enum;
                      return;
                      
                   when others =>

@@ -7,7 +7,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with SystemDatentypen; use SystemDatentypen;
 with RueckgabeDatentypen; use RueckgabeDatentypen;
-with SpielVariablen;
+with SonstigeVariablen;
 with KartenRecords;
 with StadtRecords;
 with WichtigeRecords;
@@ -120,7 +120,7 @@ package body Speichern is
                      SpielVariablen.Rundengrenze);
       
       RassenDatentypen.RassenImSpielArray'Write (Stream (File => DateiSpeichern),
-                                                 SonstigeVariablen.RassenImSpiel);
+                                                 SpielVariablen.RassenImSpiel);
       
       RassenDatentypen.Rassen_Enum'Write (Stream (File => DateiSpeichern),
                                           SonstigeVariablen.RasseAmZugNachLaden);
@@ -169,7 +169,7 @@ package body Speichern is
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
-           SonstigeVariablen.RassenImSpiel (RasseSchleifenwert)
+           SpielVariablen.RassenImSpiel (RasseSchleifenwert)
          is
             when RassenDatentypen.Leer_Spieler_Enum =>
                null;
@@ -214,7 +214,7 @@ package body Speichern is
       for DiplomatieSchleifenwert in SpielVariablen.DiplomatieArray'Range (2) loop
 
          case
-           SonstigeVariablen.RassenImSpiel (DiplomatieSchleifenwert)
+           SpielVariablen.RassenImSpiel (DiplomatieSchleifenwert)
          is
             when RassenDatentypen.Leer_Spieler_Enum =>
                null;

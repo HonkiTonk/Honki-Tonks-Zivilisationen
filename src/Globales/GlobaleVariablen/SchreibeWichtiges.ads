@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with ZahlenDatentypen;
-with SonstigeVariablen;
+with SpielVariablen;
 with ForschungenDatentypen;
 with ProduktionDatentypen;
 
@@ -15,7 +15,7 @@ package SchreibeWichtiges is
       RechnenSetzenExtern : in Boolean)
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    procedure GeldZugewinnProRunde
@@ -24,7 +24,7 @@ package SchreibeWichtiges is
       RechnenSetzenExtern : in Boolean)
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    procedure GesamteForschungsrate
@@ -33,7 +33,7 @@ package SchreibeWichtiges is
       RechnenSetzenExtern : in Boolean)
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    procedure Forschungsmenge
@@ -42,14 +42,14 @@ package SchreibeWichtiges is
       RechnenSetzenExtern : in Boolean)
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    procedure VerbleibendeForschungszeit
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    procedure Forschungsprojekt
@@ -57,14 +57,14 @@ package SchreibeWichtiges is
       ForschungIDExtern : in ForschungenDatentypen.ForschungIDMitNullWert)
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
 
    procedure Erforscht
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    procedure AnzahlStädte
@@ -72,7 +72,7 @@ package SchreibeWichtiges is
       PlusMinusExtern : in Boolean)
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
      
    procedure AnzahlArbeiter
@@ -80,7 +80,7 @@ package SchreibeWichtiges is
       PlusMinusExtern : in Boolean)
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
      
    procedure AnzahlKämpfer
@@ -88,7 +88,7 @@ package SchreibeWichtiges is
       PlusMinusExtern : in Boolean)
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
      
    procedure AnzahlSonstiges
@@ -96,7 +96,7 @@ package SchreibeWichtiges is
       PlusMinusExtern : in Boolean)
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
 
 end SchreibeWichtiges;

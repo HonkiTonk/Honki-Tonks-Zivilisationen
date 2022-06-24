@@ -5,7 +5,6 @@ with RassenDatentypen; use RassenDatentypen;
 with KartenRecords;
 with EinheitenRecords;
 with SpielVariablen;
-with SonstigeVariablen;
 with StadtRecords;
 
 package BewegungEinheiten is
@@ -18,7 +17,7 @@ package BewegungEinheiten is
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
                and
-                 SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
               );
    
    function NochBewegungspunkte
@@ -28,7 +27,7 @@ package BewegungEinheiten is
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
                and
-                 SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
 private
@@ -49,11 +48,11 @@ private
        Pre => (
                  BewegendeEinheitExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (BewegendeEinheitExtern.Rasse).Einheitengrenze
                and
-                 SonstigeVariablen.RassenImSpiel (BewegendeEinheitExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (BewegendeEinheitExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
                and
                  FeldBelegendeEinheitExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (FeldBelegendeEinheitExtern.Rasse).Einheitengrenze
                and
-                 SonstigeVariablen.RassenImSpiel (FeldBelegendeEinheitExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (FeldBelegendeEinheitExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    
@@ -66,11 +65,11 @@ private
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
                and
-                 SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
                and
                  FremdeEinheitExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (FremdeEinheitExtern.Rasse).Einheitengrenze
                and
-                 SonstigeVariablen.RassenImSpiel (FremdeEinheitExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (FremdeEinheitExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function FremdeStadtAufFeld
@@ -81,11 +80,11 @@ private
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
                and
-                 SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
                and
                  FremdeStadtExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (FremdeStadtExtern.Rasse).Städtegrenze
                and
-                 SonstigeVariablen.RassenImSpiel (FremdeStadtExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (FremdeStadtExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
               );
 
 end BewegungEinheiten;

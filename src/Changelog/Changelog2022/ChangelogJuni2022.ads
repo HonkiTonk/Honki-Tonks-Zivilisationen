@@ -42,10 +42,12 @@ package ChangelogJuni2022 is
    
    
 
-   -- Version 0.01.1580 => 0.01. (24.06.2022):
+   -- Version 0.01.1585 => 0.01.1620 (24.06.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter an den Einheitenberechnungen der KI gearbeitet.
+   -- Angefangen die Aufgabenermittlung der KI besser aufzuteilen und zu erweitern.
+   -- Angefangen einige globale Variablen besser aufzuteilen.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert.
    
    
 

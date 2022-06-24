@@ -8,6 +8,7 @@ with EinheitenDatentypen; use EinheitenDatentypen;
 with StadtDatentypen; use StadtDatentypen;
 with EinheitenKonstanten;
 with StadtKonstanten;
+with SonstigeVariablen;
 
 with LeseKarten;
 

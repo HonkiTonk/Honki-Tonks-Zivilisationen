@@ -5,7 +5,7 @@ with KartenDatentypen; use KartenDatentypen;
 with RassenDatentypen; use RassenDatentypen;
 with KartenRecords;
 with EinheitenDatentypen;
-with SonstigeVariablen;
+with SpielVariablen;
 
 with Karten;
 
@@ -23,7 +23,7 @@ package UmgebungErreichbarTesten is
                and
                  AktuelleKoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
                and
-                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               ),
            
        Post => (
@@ -53,7 +53,7 @@ private
                and
                  AktuelleKoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
                and
-                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
 
 end UmgebungErreichbarTesten;

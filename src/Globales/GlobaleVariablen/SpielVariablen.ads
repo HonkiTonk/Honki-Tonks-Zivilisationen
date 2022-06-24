@@ -18,6 +18,8 @@ with StadtRecords;
 
 package SpielVariablen is
    
+   RassenImSpiel : RassenDatentypen.RassenImSpielArray := (others => RassenDatentypen.Leer_Spieler_Enum);
+   
    -- Auch mal in einen Record packen?
    Schwierigkeitsgrad : SpielDatentypen.Schwierigkeitsgrad_Enum := SpielDatentypen.Schwierigkeitsgrad_Mittel_Enum;
    RundenAnzahl : Positive := Positive'First;

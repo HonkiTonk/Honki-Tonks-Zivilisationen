@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with EinheitenRecords;
-with SonstigeVariablen;
+with SpielVariablen;
 
 package Karte is
 
@@ -11,7 +11,7 @@ package Karte is
      (RasseEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (RasseEinheitExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (RasseEinheitExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
               );
 
 end Karte;

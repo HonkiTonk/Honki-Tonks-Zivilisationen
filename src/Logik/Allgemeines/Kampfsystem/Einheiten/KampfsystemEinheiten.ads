@@ -3,7 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with EinheitenRecords;
-with SonstigeVariablen;
 with SpielVariablen;
 with KampfRecords;
 with KampfDatentypen;
@@ -19,9 +18,9 @@ package KampfsystemEinheiten is
        Pre => (
                  AngreiferExtern.Rasse /= VerteidigerExtern.Rasse
                and
-                 SonstigeVariablen.RassenImSpiel (AngreiferExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (AngreiferExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 SonstigeVariablen.RassenImSpiel (VerteidigerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (VerteidigerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
                and
                  VerteidigerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (VerteidigerExtern.Rasse).Einheitengrenze
                and
@@ -36,7 +35,7 @@ package KampfsystemEinheiten is
        Pre => (
                  VerteidigerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (VerteidigerExtern.Rasse).Einheitengrenze
                and
-                 SonstigeVariablen.RassenImSpiel (VerteidigerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (VerteidigerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
               );
 
 private
@@ -102,9 +101,9 @@ private
        Pre => (
                  AngreiferExtern.Rasse /= VerteidigerExtern.Rasse
                and
-                 SonstigeVariablen.RassenImSpiel (AngreiferExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (AngreiferExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 SonstigeVariablen.RassenImSpiel (VerteidigerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (VerteidigerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
                and
                  VerteidigerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (VerteidigerExtern.Rasse).Einheitengrenze
                and

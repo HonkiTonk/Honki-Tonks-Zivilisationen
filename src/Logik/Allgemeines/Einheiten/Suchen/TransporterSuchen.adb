@@ -3,7 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenRecords; use KartenRecords;
 with EinheitenKonstanten;
-with SpielVariablen;
 
 with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;

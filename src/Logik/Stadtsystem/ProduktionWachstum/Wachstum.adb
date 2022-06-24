@@ -32,7 +32,7 @@ package body Wachstum is
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
-           SonstigeVariablen.RassenImSpiel (RasseSchleifenwert)
+           SpielVariablen.RassenImSpiel (RasseSchleifenwert)
          is
             when RassenDatentypen.Leer_Spieler_Enum =>
                null;
@@ -250,7 +250,7 @@ package body Wachstum is
             for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
                
                case
-                 SonstigeVariablen.RassenImSpiel (RasseSchleifenwert)
+                 SpielVariablen.RassenImSpiel (RasseSchleifenwert)
                is
                   when RassenDatentypen.Leer_Spieler_Enum =>
                      null;

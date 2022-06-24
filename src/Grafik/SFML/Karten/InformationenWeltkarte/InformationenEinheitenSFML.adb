@@ -11,6 +11,7 @@ with EinheitenKonstanten;
 with TextKonstanten;
 with TextaccessVariablen;
 with StadtKonstanten;
+with SonstigeVariablen;
 
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;

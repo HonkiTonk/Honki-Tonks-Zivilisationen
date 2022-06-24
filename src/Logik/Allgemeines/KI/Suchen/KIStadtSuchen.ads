@@ -3,7 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
-with SonstigeVariablen;
 with KartenRecords;
 with StadtDatentypen;
 with SpielVariablen;
@@ -18,7 +17,7 @@ package KIStadtSuchen is
       return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
                and
                  AnfangKoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
                and
@@ -36,7 +35,7 @@ package KIStadtSuchen is
       return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (FeindlicheRasseExtern) = RassenDatentypen.KI_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (FeindlicheRasseExtern) = RassenDatentypen.KI_Spieler_Enum
               ),
 
        Post => (
@@ -58,7 +57,7 @@ private
       return StadtDatentypen.MaximaleStädteMitNullWert
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
                and
                  AnfangKoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
                and

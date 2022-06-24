@@ -16,24 +16,36 @@ with Fehler;
 
 with KIDatentypen; use KIDatentypen;
 
-with KIVorhandeneAufgaben;
 with KIAufgabeFestlegen;
 with KIAufgabeUmsetzen;
+with KIEinheitAufgabeNichts;
+with KIEinheitAufgabeBefestigen;
+with KIEinheitAufgabeFliehen;
+with KIEinheitAufgabeHeilen;
+with KIEinheitAufgabeAngreifen;
+with KIEinheitAufgabeErkunden;
+with KIEinheitAufgabeAufloesen;
+with KIEinheitAufgabePluendern;
+with KIEinheitAufgabeModernisieren;
+with KIEinheitAufgabeSiedeln;
+with KIEinheitAufgabeBewachen;
+with KIEinheitAufgabeVerbesserungen;
 
 package body KIAufgabenPlanung is
    
+   -- Bei den Prüfungen zurückgeben: -1 wenn es nicht möglich sein soll, 0 wenn keine richtige Prüfung vorhanden ist und 1 .. 100 für die reguläre Bewertung.
    procedure AufgabeErmitteln
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       Wichtigkeit := (others => KIDatentypen.AufgabenWichtigkeit'First);
                   
-      Wichtigkeit (KIDatentypen.Tut_Nichts_Enum) := KIVorhandeneAufgaben.NichtsTun;
-      Wichtigkeit (KIDatentypen.Einheit_Auflösen_Enum) := KIVorhandeneAufgaben.EinheitAuflösen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      Wichtigkeit (KIDatentypen.Einheit_Heilen_Enum) := KIVorhandeneAufgaben.SichHeilen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      Wichtigkeit (KIDatentypen.Einheit_Festsetzen_Enum) := KIVorhandeneAufgaben.SichBefestigen;
-      Wichtigkeit (KIDatentypen.Einheit_Verbessern_Enum) := KIVorhandeneAufgaben.SichVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      Wichtigkeit (KIDatentypen.Flucht_Enum) := KIVorhandeneAufgaben.Fliehen;
+      Wichtigkeit (KIDatentypen.Tut_Nichts_Enum) := KIEinheitAufgabeNichts.NichtsTun (RasseExtern => EinheitRasseNummerExtern.Rasse);
+      Wichtigkeit (KIDatentypen.Einheit_Auflösen_Enum) := KIEinheitAufgabeAufloesen.EinheitAuflösen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      Wichtigkeit (KIDatentypen.Einheit_Heilen_Enum) := KIEinheitAufgabeHeilen.SichHeilen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      Wichtigkeit (KIDatentypen.Einheit_Festsetzen_Enum) := KIEinheitAufgabeBefestigen.SichBefestigen;
+      Wichtigkeit (KIDatentypen.Einheit_Verbessern_Enum) := KIEinheitAufgabeModernisieren.SichVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      Wichtigkeit (KIDatentypen.Flucht_Enum) := KIEinheitAufgabeFliehen.Fliehen;
       
       EinheitSpezifischeAufgabenErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
@@ -53,14 +65,14 @@ package body KIAufgabenPlanung is
                                            IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       is
          when EinheitenDatentypen.Arbeiter_Enum =>
-            Wichtigkeit (KIDatentypen.Stadt_Bauen_Enum) := KIVorhandeneAufgaben.NeueStadtBauenGehen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-            Wichtigkeit (KIDatentypen.Verbesserung_Anlegen_Enum) := KIVorhandeneAufgaben.StadtUmgebungVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            Wichtigkeit (KIDatentypen.Stadt_Bauen_Enum) := KIEinheitAufgabeSiedeln.NeueStadtBauenGehen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            Wichtigkeit (KIDatentypen.Verbesserung_Anlegen_Enum) := KIEinheitAufgabeVerbesserungen.StadtUmgebungVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when EinheitenDatentypen.Nahkämpfer_Enum =>
-            Wichtigkeit (KIDatentypen.Stadt_Bewachen_Enum) := KIVorhandeneAufgaben.StadtBewachen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-            Wichtigkeit (KIDatentypen.Verbesserung_Zerstören_Enum) := KIVorhandeneAufgaben.StadtUmgebungZerstören;
-            Wichtigkeit (KIDatentypen.Angreifen_Enum) := KIVorhandeneAufgaben.Angreifen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-            Wichtigkeit (KIDatentypen.Erkunden_Enum) := KIVorhandeneAufgaben.Erkunden;
+            Wichtigkeit (KIDatentypen.Stadt_Bewachen_Enum) := KIEinheitAufgabeBewachen.StadtBewachen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            Wichtigkeit (KIDatentypen.Verbesserung_Zerstören_Enum) := KIEinheitAufgabePluendern.StadtUmgebungZerstören;
+            Wichtigkeit (KIDatentypen.Angreifen_Enum) := KIEinheitAufgabeAngreifen.Angreifen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            Wichtigkeit (KIDatentypen.Erkunden_Enum) := KIEinheitAufgabeErkunden.Erkunden;
             
          when EinheitenDatentypen.Fernkämpfer_Enum =>
             null;

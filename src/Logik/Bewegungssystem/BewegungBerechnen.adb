@@ -85,7 +85,7 @@ package body BewegungBerechnen is
       end case;
       
       case
-        SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse)
+        SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse)
       is
          when RassenDatentypen.KI_Spieler_Enum =>
             null;
@@ -117,7 +117,7 @@ package body BewegungBerechnen is
          if
            FremdeSichtbarkeitSchleifenwert = EinheitRasseNummerExtern.Rasse
            or
-             SonstigeVariablen.RassenImSpiel (FremdeSichtbarkeitSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
+             SpielVariablen.RassenImSpiel (FremdeSichtbarkeitSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
          then
             null;
             

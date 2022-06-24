@@ -5,7 +5,6 @@ with KartenDatentypen; use KartenDatentypen;
 with KartenKonstanten;
 with GrafikDatentypen;
 with OptionenVariablen;
-with SpielVariablen;
 
 with Karten;
 with Kartenkoordinatenberechnungssystem;

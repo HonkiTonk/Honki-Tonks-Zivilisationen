@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
-with SonstigeVariablen;
+with SpielVariablen;
 with ForschungenDatentypen;
 with ProduktionDatentypen;
 
@@ -14,7 +14,7 @@ package LeseForschungenDatenbank is
       return ProduktionDatentypen.Produktion
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
 
    function AnforderungForschung
@@ -24,7 +24,7 @@ package LeseForschungenDatenbank is
       return ForschungenDatentypen.ForschungIDNichtMöglich
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
 
 end LeseForschungenDatenbank;

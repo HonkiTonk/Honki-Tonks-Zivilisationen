@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
-with SonstigeVariablen;
 with EinheitenRecords;
 with KartenRecords;
 with EinheitenDatentypen;
@@ -16,11 +15,11 @@ package KIEinheitSuchen is
       return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (FeindExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (FeindExtern) /= RassenDatentypen.Leer_Spieler_Enum
                and
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
                and
-                 SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
               );
    
    function TransporterSuchen

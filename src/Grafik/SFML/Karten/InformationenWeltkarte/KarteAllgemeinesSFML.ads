@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with Sf.System.Vector2;
 
 with RassenDatentypen; use RassenDatentypen;
-with SonstigeVariablen;
+with SpielVariablen;
 with KartenRecords;
 with KartenRecordKonstanten;
 with KartengrundDatentypen;
@@ -19,7 +19,7 @@ package KarteAllgemeinesSFML is
       return Sf.System.Vector2.sfVector2f
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
                and
                  TextpositionExtern.x > 0.00
                and

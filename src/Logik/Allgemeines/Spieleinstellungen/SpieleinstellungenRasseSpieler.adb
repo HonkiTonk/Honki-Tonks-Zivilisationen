@@ -8,7 +8,6 @@ with KartenKonstanten;
 with EinheitenKonstanten;
 with MenueDatentypen;
 with SpielVariablen;
-with SonstigeVariablen;
 
 with LeseEinheitenGebaut;
 with LeseKarten;
@@ -67,16 +66,16 @@ package body SpieleinstellungenRasseSpieler is
    is begin
       
       case
-        SonstigeVariablen.RassenImSpiel (RasseExtern)
+        SpielVariablen.RassenImSpiel (RasseExtern)
       is
          when RassenDatentypen.Leer_Spieler_Enum =>
-            SonstigeVariablen.RassenImSpiel (RasseExtern) := RassenDatentypen.Mensch_Spieler_Enum;
+            SpielVariablen.RassenImSpiel (RasseExtern) := RassenDatentypen.Mensch_Spieler_Enum;
                   
          when RassenDatentypen.Mensch_Spieler_Enum =>
-            SonstigeVariablen.RassenImSpiel (RasseExtern) := RassenDatentypen.KI_Spieler_Enum;
+            SpielVariablen.RassenImSpiel (RasseExtern) := RassenDatentypen.KI_Spieler_Enum;
                   
          when RassenDatentypen.KI_Spieler_Enum =>
-            SonstigeVariablen.RassenImSpiel (RasseExtern) := RassenDatentypen.Leer_Spieler_Enum;
+            SpielVariablen.RassenImSpiel (RasseExtern) := RassenDatentypen.Leer_Spieler_Enum;
       end case;
       
    end BelegungÄndern;
@@ -91,7 +90,7 @@ package body SpieleinstellungenRasseSpieler is
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
-           SonstigeVariablen.RassenImSpiel (RasseSchleifenwert)
+           SpielVariablen.RassenImSpiel (RasseSchleifenwert)
          is
             when RassenDatentypen.Leer_Spieler_Enum =>
                null;
@@ -111,7 +110,7 @@ package body SpieleinstellungenRasseSpieler is
    procedure RasseAutomatischBelegen
    is begin
       
-      SonstigeVariablen.RassenImSpiel (ZufallsgeneratorenSpieleinstellungen.ZufälligeRasse) := RassenDatentypen.Mensch_Spieler_Enum;
+      SpielVariablen.RassenImSpiel (ZufallsgeneratorenSpieleinstellungen.ZufälligeRasse) := RassenDatentypen.Mensch_Spieler_Enum;
       
    end RasseAutomatischBelegen;
 
@@ -124,7 +123,7 @@ package body SpieleinstellungenRasseSpieler is
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
         
          case
-           SonstigeVariablen.RassenImSpiel (RasseSchleifenwert)
+           SpielVariablen.RassenImSpiel (RasseSchleifenwert)
          is
             when RassenDatentypen.Leer_Spieler_Enum =>
                null;
@@ -159,7 +158,7 @@ package body SpieleinstellungenRasseSpieler is
                         --                                      TextZeileExtern => RueckgabeDatentypen.Rassen_Verwendet_Enum'Pos (RasseSchleifenwert));
                         -- Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                         --                                      TextZeileExtern => 17);
-                        SonstigeVariablen.RassenImSpiel (RasseSchleifenwert) := RassenDatentypen.Leer_Spieler_Enum;
+                        SpielVariablen.RassenImSpiel (RasseSchleifenwert) := RassenDatentypen.Leer_Spieler_Enum;
                         
                      when others =>
                         null;

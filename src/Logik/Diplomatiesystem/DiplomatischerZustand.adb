@@ -4,7 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 with RueckgabeDatentypen; use RueckgabeDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
 with WichtigesKonstanten;
-with SpielVariablen;
 with ZahlenDatentypen;
 
 with Auswahl;

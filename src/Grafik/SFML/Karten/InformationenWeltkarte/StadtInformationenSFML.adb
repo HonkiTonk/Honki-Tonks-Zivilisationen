@@ -12,6 +12,7 @@ with GlobaleTexte;
 with KartenVerbesserungDatentypen;
 with TextKonstanten;
 with TextaccessVariablen;
+with SonstigeVariablen;
 
 with LeseStadtGebaut;
 

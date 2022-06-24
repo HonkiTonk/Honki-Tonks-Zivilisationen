@@ -8,6 +8,7 @@ with Ada.Calendar; use Ada.Calendar;
 with MenueDatentypen;
 with ZahlenDatentypen;
 with GlobaleTexte;
+with SonstigeVariablen;
 
 with SchreibeKarten;
 with SchreibeWichtiges;
@@ -163,7 +164,7 @@ package body DebugmenueSFML is
          
          
          case
-           SonstigeVariablen.RassenImSpiel (KIZeitenSchleifenwert)
+           SpielVariablen.RassenImSpiel (KIZeitenSchleifenwert)
          is
             when RassenDatentypen.KI_Spieler_Enum =>
                Put (KIZeitenSchleifenwert'Wide_Wide_Image & ": ");

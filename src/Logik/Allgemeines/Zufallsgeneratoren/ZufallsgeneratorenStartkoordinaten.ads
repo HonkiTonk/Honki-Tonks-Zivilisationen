@@ -5,7 +5,7 @@ with Ada.Numerics.Discrete_Random;
 
 with KartenDatentypen; use KartenDatentypen;
 with RassenDatentypen; use RassenDatentypen;
-with SonstigeVariablen;
+with SpielVariablen;
 with KartenRecords;
 
 with Karten;
@@ -17,7 +17,7 @@ package ZufallsgeneratorenStartkoordinaten is
       return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               ),
            
        Post => (

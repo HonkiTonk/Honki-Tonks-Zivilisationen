@@ -6,7 +6,7 @@ with Sf.System.Vector2;
 with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen;
 with KartenRecords;
-with SonstigeVariablen;
+with SpielVariablen;
 
 package BerechnungenKarteSFML is
    
@@ -29,7 +29,7 @@ package BerechnungenKarteSFML is
       return KartenDatentypen.SichtbereichAnfangEndeArray
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
               );
    
 private

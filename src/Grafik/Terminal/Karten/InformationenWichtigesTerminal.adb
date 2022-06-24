@@ -4,8 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Integer_Wide_Wide_Text_IO;
 
-with SpielVariablen;
-
 with LeseWichtiges;
 
 with ForschungAllgemein;

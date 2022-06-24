@@ -5,7 +5,7 @@ with KartenDatentypen; use KartenDatentypen;
 with KartengrundDatentypen; use KartengrundDatentypen;
 with RassenDatentypen; use RassenDatentypen;
 with KartenVerbesserungDatentypen;
-with SonstigeVariablen;
+with SpielVariablen;
 with KartenRecords;
 
 with Karten;
@@ -59,7 +59,7 @@ package SchreibeKarten is
       SichtbarExtern : in Boolean)
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
                and
                  KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
                and
@@ -122,7 +122,7 @@ package SchreibeKarten is
       BewertungExtern : in KartenDatentypen.GesamteFeldbewertung)
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
                and
                  KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
                and

@@ -31,6 +31,7 @@ package SystemDatentypen is
 
 
 
+   ------------------------------------------ Hier auch mal Sachen rausverschieben.
    -- Für Diplomatie
    type Status_Untereinander_Enum is (
                                       Unbekannt_Enum, Neutral_Enum, Nichtangriffspakt_Enum, Krieg_Enum

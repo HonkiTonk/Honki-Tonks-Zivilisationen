@@ -13,8 +13,6 @@ package EinheitenDatentypen is
    subtype EinheitenID is EinheitenIDMitNullWert range 1 .. EinheitenIDMitNullWert'Last;
 
    type Passierbarkeit_Enum is (
-                                Leer_Passierbarkeit_Enum,
-                                
                                 Boden_Enum,
                                 
                                 Wasser_Enum, Küstenwasser_Enum,

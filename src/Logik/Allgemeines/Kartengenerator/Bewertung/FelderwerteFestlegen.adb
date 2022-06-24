@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
-with SonstigeVariablen;
+with SpielVariablen;
 with KartenKonstanten;
 with EinheitenKonstanten;
 with KartengrundDatentypen;
@@ -118,7 +118,7 @@ package body FelderwerteFestlegen is
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
-           SonstigeVariablen.RassenImSpiel (RasseSchleifenwert) = RassenDatentypen.KI_Spieler_Enum
+           SpielVariablen.RassenImSpiel (RasseSchleifenwert) = RassenDatentypen.KI_Spieler_Enum
            and
              (RasseExtern = EinheitenKonstanten.LeerRasse
               or

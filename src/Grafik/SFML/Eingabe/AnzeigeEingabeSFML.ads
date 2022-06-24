@@ -9,7 +9,7 @@ with Sf.System.Vector2;
 
 with RassenDatentypen; use RassenDatentypen;
 with EinheitenRecords;
-with SonstigeVariablen;
+with SpielVariablen;
 with StadtRecords;
 
 with AuswahlStadtEinheit;
@@ -25,7 +25,7 @@ package AnzeigeEingabeSFML is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
-                 SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
               );
    
 private

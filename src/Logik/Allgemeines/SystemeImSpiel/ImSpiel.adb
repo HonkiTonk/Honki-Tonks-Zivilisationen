@@ -8,8 +8,8 @@ with SystemDatentypen;
 with EinheitenKonstanten;
 with GrafikDatentypen;
 with OptionenVariablen;
-with SpielVariablen;
 with MenueDatentypen;
+with SonstigeVariablen;
 
 with Optionen;
 with Ladezeiten;
@@ -91,7 +91,7 @@ package body ImSpiel is
    is begin
       
       if
-        SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Leer_Spieler_Enum
+        SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Leer_Spieler_Enum
       then
          return RueckgabeDatentypen.Start_Weiter_Enum;
       
@@ -124,7 +124,7 @@ package body ImSpiel is
          SonstigeVariablen.RasseAmZugNachLaden := EinheitenKonstanten.LeerRasse;
             
          case
-           SonstigeVariablen.RassenImSpiel (RasseExtern)
+           SpielVariablen.RassenImSpiel (RasseExtern)
          is
             when RassenDatentypen.Mensch_Spieler_Enum =>
                return MenschlicherSpieler (RasseExtern => RasseExtern);
@@ -218,7 +218,7 @@ package body ImSpiel is
          InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Weltkarte_Enum;
          
          case
-           SonstigeVariablen.RassenImSpiel (RasseExtern)
+           SpielVariablen.RassenImSpiel (RasseExtern)
          is
             when RassenDatentypen.Mensch_Spieler_Enum =>
                AktuellerBefehlSpieler := Befehle (RasseExtern => RasseExtern);
@@ -340,7 +340,7 @@ package body ImSpiel is
          if
            RasseSchleifenwert = RasseExtern
            or
-             SonstigeVariablen.RassenImSpiel (RasseSchleifenwert) /= RassenDatentypen.Mensch_Spieler_Enum
+             SpielVariablen.RassenImSpiel (RasseSchleifenwert) /= RassenDatentypen.Mensch_Spieler_Enum
          then
             null;
             

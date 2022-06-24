@@ -6,7 +6,6 @@ with EinheitenDatentypen; use EinheitenDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
 with StadtDatentypen; use StadtDatentypen;
 with WichtigesKonstanten;
-with SpielVariablen;
 
 with LeseForschungenDatenbank;
 

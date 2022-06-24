@@ -6,7 +6,6 @@ with Sf.Graphics;
 with Sf.Graphics.Text;
 
 with KartenRecords; use KartenRecords;
-with SpielVariablen;
 with GlobaleTexte;
 with TextKonstanten;
 

@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Calendar; use Ada.Calendar;
 
-with SonstigeVariablen;
+with SpielVariablen;
 with RassenDatentypen;
 with SystemDatentypen;
 with MenueDatentypen;
@@ -139,7 +139,7 @@ package body Spieleinstellungen is
       for RassenSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
-           SonstigeVariablen.RassenImSpiel (RassenSchleifenwert)
+           SpielVariablen.RassenImSpiel (RassenSchleifenwert)
          is
             when RassenDatentypen.Leer_Spieler_Enum =>
                null;

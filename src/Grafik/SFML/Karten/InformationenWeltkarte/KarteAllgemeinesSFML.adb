@@ -7,7 +7,6 @@ with Sf.Graphics.Text;
 
 with KartenRecords; use KartenRecords;
 with KartengrundDatentypen; use KartengrundDatentypen;
-with SpielVariablen;
 
 with LeseKarten;
 
