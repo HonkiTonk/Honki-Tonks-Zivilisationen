@@ -7,7 +7,6 @@ with Ada.Integer_Wide_Wide_Text_IO;
 with EinheitenDatentypen; use EinheitenDatentypen;
 with EinheitenKonstanten;
 with StadtKonstanten;
-with SonstigeVariablen;
 
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
@@ -416,7 +415,7 @@ package body InformationenEinheitenTerminal is
    is begin
       
       case
-        SonstigeVariablen.Debug.VolleInformation
+        SpielVariablen.Debug.VolleInformation
       is
          when False =>
             null;

@@ -15,7 +15,7 @@ package body KIEinheitStandardverhalten is
    is begin
       
       AktivitätSchleife:
-      for AktivitätSchleifenwert in KIDatentypen.KINotAus'First .. KIKonstanten.Schwierigkeitsgrad (SpielVariablen.Schwierigkeitsgrad) loop
+      for AktivitätSchleifenwert in KIDatentypen.KINotAus'First .. KIKonstanten.Schwierigkeitsgrad (SpielVariablen.Allgemeines.Schwierigkeitsgrad) loop
          
          case
            KIEinheitHandlungen.Aufgabenplanung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)

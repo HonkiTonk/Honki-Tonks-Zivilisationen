@@ -9,7 +9,7 @@ package body KIEinheitAufgabeAngreifen is
 
    function Angreifen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return KIDatentypen.AufgabenWichtigkeit
+      return KIDatentypen.AufgabenWichtigkeitKlein
    is begin
       
       RassenSchleife:

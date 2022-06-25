@@ -16,7 +16,6 @@ with EinheitenKonstanten;
 with KartenKonstanten;
 with StadtKonstanten;
 with TextaccessVariablen;
-with SonstigeVariablen;
 
 with LeseKarten;
 with LeseEinheitenGebaut;
@@ -180,7 +179,7 @@ package body KarteSFML is
                            PositionExtern    => PositionExtern);
             
       case
-        SonstigeVariablen.Debug.Allgemeines
+        SpielVariablen.Debug.Allgemeines
       is
          when True =>
             AnzeigeCursor (KoordinatenExtern => KoordinatenExtern,

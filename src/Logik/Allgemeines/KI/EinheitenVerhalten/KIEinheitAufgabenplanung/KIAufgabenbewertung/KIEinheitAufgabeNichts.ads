@@ -10,7 +10,7 @@ package KIEinheitAufgabeNichts is
 
    function NichtsTun
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KIDatentypen.AufgabenWichtigkeit
+      return KIDatentypen.AufgabenWichtigkeitKlein
      with
        Pre => (
                  SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.KI_Spieler_Enum

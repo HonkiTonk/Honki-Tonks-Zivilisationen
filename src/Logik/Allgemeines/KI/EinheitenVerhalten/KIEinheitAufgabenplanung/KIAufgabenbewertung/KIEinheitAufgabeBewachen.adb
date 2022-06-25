@@ -15,7 +15,7 @@ package body KIEinheitAufgabeBewachen is
 
    function StadtBewachen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return KIDatentypen.AufgabenWichtigkeit
+      return KIDatentypen.AufgabenWichtigkeitKlein
    is begin
       
       EinheitNummer := 1;

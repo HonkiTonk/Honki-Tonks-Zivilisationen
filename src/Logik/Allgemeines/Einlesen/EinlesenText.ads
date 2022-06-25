@@ -11,9 +11,7 @@ package EinlesenText is
    procedure EinlesenDateien;
    
 private
-   
-   EinlesenMöglich : Boolean;
-   
+      
    AktuelleZeile : ZahlenDatentypen.EigenesPositive;
       
    TextdateienEinlesen : GlobaleTexte.TexteArray (1 .. 42);
@@ -63,5 +61,12 @@ private
    procedure Kartenressourcen;
    procedure Einstellungen;
    procedure Kartenpole;
+   
+   procedure EinlesenAufteilen
+     (WelcherDateiExtern : in Positive)
+     with
+       Pre => (
+                 WelcherDateiExtern <= TextdateienEinlesen'Last
+              );
    
 end EinlesenText;

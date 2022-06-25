@@ -10,7 +10,7 @@ package body KIEinheitAufgabeHeilen is
 
    function SichHeilen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return KIDatentypen.AufgabenWichtigkeit
+      return KIDatentypen.AufgabenWichtigkeitKlein
    is begin
       
       EinheitID := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern);

@@ -11,7 +11,6 @@ with EinheitenKonstanten;
 with TextKonstanten;
 with TextaccessVariablen;
 with StadtKonstanten;
-with SonstigeVariablen;
 
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
@@ -41,7 +40,7 @@ package body InformationenEinheitenSFML is
       if
         RasseExtern = EinheitRasseNummerExtern.Rasse
         or
-          SonstigeVariablen.Debug.VolleInformation
+          SpielVariablen.Debug.VolleInformation
       then
          Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummer);
          Erfahrungspunkte (EinheitRasseNummerExtern => EinheitRasseNummer);
@@ -399,7 +398,7 @@ package body InformationenEinheitenSFML is
    is begin
       
       case
-        SonstigeVariablen.Debug.VolleInformation
+        SpielVariablen.Debug.VolleInformation
       is
          when False =>
             null;

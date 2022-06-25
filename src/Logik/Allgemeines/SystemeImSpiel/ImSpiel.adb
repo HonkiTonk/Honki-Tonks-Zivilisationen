@@ -9,7 +9,6 @@ with EinheitenKonstanten;
 with GrafikDatentypen;
 with OptionenVariablen;
 with MenueDatentypen;
-with SonstigeVariablen;
 
 with Optionen;
 with Ladezeiten;
@@ -64,14 +63,14 @@ package body ImSpiel is
          end loop RassenSchleife;
                
          if
-           SonstigeVariablen.RasseAmZugNachLaden = EinheitenKonstanten.LeerRasse
+           SpielVariablen.Allgemeines.RasseAmZugNachLaden = EinheitenKonstanten.LeerRasse
            and
              ZwischenDenRunden.BerechnungenNachZugendeAllerSpieler = True
          then
             return RueckgabeDatentypen.Hauptmenü_Enum;
             
          elsif
-           SpielVariablen.Rundengrenze > SpielVariablen.RundenAnzahl
+           SpielVariablen.Allgemeines.Rundengrenze > SpielVariablen.Allgemeines.Rundenanzahl
          then
             return RueckgabeDatentypen.Hauptmenü_Enum;
             
@@ -96,7 +95,7 @@ package body ImSpiel is
          return RueckgabeDatentypen.Start_Weiter_Enum;
       
       elsif
-        SpielVariablen.Grenzen (RasseExtern).RassenRundengrenze < SpielVariablen.RundenAnzahl
+        SpielVariablen.Grenzen (RasseExtern).RassenRundengrenze < SpielVariablen.Allgemeines.Rundenanzahl
         and
           SpielVariablen.Grenzen (RasseExtern).RassenRundengrenze > 0
       then
@@ -117,11 +116,11 @@ package body ImSpiel is
    is begin
             
       if
-        SonstigeVariablen.RasseAmZugNachLaden = EinheitenKonstanten.LeerRasse
+        SpielVariablen.Allgemeines.RasseAmZugNachLaden = EinheitenKonstanten.LeerRasse
         or
-          RasseExtern = SonstigeVariablen.RasseAmZugNachLaden
+          RasseExtern = SpielVariablen.Allgemeines.RasseAmZugNachLaden
       then
-         SonstigeVariablen.RasseAmZugNachLaden := EinheitenKonstanten.LeerRasse;
+         SpielVariablen.Allgemeines.RasseAmZugNachLaden := EinheitenKonstanten.LeerRasse;
             
          case
            SpielVariablen.RassenImSpiel (RasseExtern)
@@ -291,7 +290,7 @@ package body ImSpiel is
            AuswahlSpielmenü
          is
             when RueckgabeDatentypen.Speichern_Enum =>
-               SonstigeVariablen.RasseAmZugNachLaden := RasseExtern;
+               SpielVariablen.Allgemeines.RasseAmZugNachLaden := RasseExtern;
                Speichern.Speichern (AutospeichernExtern => False);
                
             when RueckgabeDatentypen.Laden_Enum =>

@@ -17,12 +17,13 @@ with EinheitenAllgemeines;
 with KIDatentypen; use KIDatentypen;
 
 with KIKriegErmitteln;
+with KIPruefungen;
 
 package body KIEinheitAufgabeAufloesen is
 
    function EinheitAuflösen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return KIDatentypen.AufgabenWichtigkeit
+      return KIDatentypen.AufgabenWichtigkeitKlein
    is begin
       
       -------------------------------- Später noch mal erweitern, bringt ja nichts die Einheit zu behalten, wenn die Städte dafür verhungern.
@@ -34,9 +35,10 @@ package body KIEinheitAufgabeAufloesen is
          return -1;
          
       else
+         -- Braucht hier keine Prüfung, da ja etwas zugewiesen wird und nicht berechnet.
          Aufgabenwert := Stadtzustand (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       end if;
-            
+      
       ------------------------------ Das mal in ein rassenspezifisches Array auslagern und sinnvolle Werte finden.
       if
         EinheitenDatentypen.MaximaleEinheiten (18 + LeseWichtiges.AnzahlStädte (RasseExtern => EinheitRasseNummerExtern.Rasse))
@@ -83,7 +85,7 @@ package body KIEinheitAufgabeAufloesen is
    
    function Stadtzustand
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return KIDatentypen.AufgabenWichtigkeit
+      return KIDatentypen.AufgabenWichtigkeitKlein
    is begin
       
       Zwischenwert := 0;
@@ -96,18 +98,56 @@ package body KIEinheitAufgabeAufloesen is
             return Zwischenwert;
             
          when others =>
-            null;
+            EinheitID := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       end case;
       
       if
-        LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, Heimatstadt)) <= 0
+        LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, Heimatstadt)) < 0
         and
           LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => EinheitRasseNummerExtern.Rasse,
-                                                   IDExtern           => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                   IDExtern           => EinheitID,
                                                    WelcheKostenExtern => ProduktionDatentypen.Nahrung_Enum)
         > 0
       then
-         Zwischenwert := Zwischenwert + 10;
+         Zwischenwert := KIPruefungen.AufgabenWichtigkeitÄndern (AktuellerWertExtern => Zwischenwert,
+                                                                  ÄnderungExtern     => 10);
+         
+      elsif
+        LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, Heimatstadt)) = 0
+        and
+          LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => EinheitRasseNummerExtern.Rasse,
+                                                   IDExtern           => EinheitID,
+                                                   WelcheKostenExtern => ProduktionDatentypen.Nahrung_Enum)
+        > 0
+      then
+         Zwischenwert := KIPruefungen.AufgabenWichtigkeitÄndern (AktuellerWertExtern => Zwischenwert,
+                                                                  ÄnderungExtern     => 5);
+         
+      else
+         null;
+      end if;
+      
+      if
+        LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, Heimatstadt)) < 0
+        and
+          LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => EinheitRasseNummerExtern.Rasse,
+                                                   IDExtern           => EinheitID,
+                                                   WelcheKostenExtern => ProduktionDatentypen.Ressourcen_Enum)
+        > 0
+      then
+         Zwischenwert := KIPruefungen.AufgabenWichtigkeitÄndern (AktuellerWertExtern => Zwischenwert,
+                                                                  ÄnderungExtern     => 10);
+         
+      elsif
+        LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, Heimatstadt)) = 0
+        and
+          LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => EinheitRasseNummerExtern.Rasse,
+                                                   IDExtern           => EinheitID,
+                                                   WelcheKostenExtern => ProduktionDatentypen.Ressourcen_Enum)
+        > 0
+      then
+         Zwischenwert := KIPruefungen.AufgabenWichtigkeitÄndern (AktuellerWertExtern => Zwischenwert,
+                                                                  ÄnderungExtern     => 5);
          
       else
          null;

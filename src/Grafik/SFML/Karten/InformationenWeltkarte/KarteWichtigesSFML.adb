@@ -52,7 +52,7 @@ package body KarteWichtigesSFML is
       
             
       ----------------------------------- Wieso gibt es keine Lese/Schreibefunktion für die Rundenanzahl?
-      AktuelleRunde := SpielVariablen.RundenAnzahl;
+      AktuelleRunde := SpielVariablen.Allgemeines.Rundenanzahl;
         
       if
         AktuelleRunde /= LetzteRunde

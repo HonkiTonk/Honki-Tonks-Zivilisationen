@@ -7,10 +7,9 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with SystemDatentypen; use SystemDatentypen;
 with RueckgabeDatentypen; use RueckgabeDatentypen;
-with SonstigeVariablen;
 with KartenRecords;
 with StadtRecords;
-with WichtigeRecords;
+with SpielRecords;
 with SonstigesKonstanten;
 with TextKonstanten;
 with SpielDatentypen;
@@ -111,28 +110,28 @@ package body Speichern is
                               SonstigesKonstanten.Versionsnummer);
       
       Unbounded_Wide_Wide_String'Write (Stream (File => DateiSpeichern),
-                                        SpielVariablen.IronmanName);
+                                        SpielVariablen.Allgemeines.IronmanName);
       
       Positive'Write (Stream (File => DateiSpeichern),
-                      SpielVariablen.RundenAnzahl);
+                      SpielVariablen.Allgemeines.Rundenanzahl);
       
       Natural'Write (Stream (File => DateiSpeichern),
-                     SpielVariablen.Rundengrenze);
+                     SpielVariablen.Allgemeines.Rundengrenze);
       
       RassenDatentypen.RassenImSpielArray'Write (Stream (File => DateiSpeichern),
                                                  SpielVariablen.RassenImSpiel);
       
       RassenDatentypen.Rassen_Enum'Write (Stream (File => DateiSpeichern),
-                                          SonstigeVariablen.RasseAmZugNachLaden);
+                                          SpielVariablen.Allgemeines.RasseAmZugNachLaden);
       
       SpielDatentypen.Schwierigkeitsgrad_Enum'Write (Stream (File => DateiSpeichern),
-                                                     SpielVariablen.Schwierigkeitsgrad);
+                                                     SpielVariablen.Allgemeines.Schwierigkeitsgrad);
       
       Boolean'Write (Stream (File => DateiSpeichern),
-                     SonstigeVariablen.Gewonnen);
+                     SpielVariablen.Allgemeines.Gewonnen);
       
       Boolean'Write (Stream (File => DateiSpeichern),
-                     SonstigeVariablen.WeiterSpielen);
+                     SpielVariablen.Allgemeines.Weiterspielen);
       
    end Allgemeines;
    
@@ -188,7 +187,7 @@ package body Speichern is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      WichtigeRecords.GrenzenRecord'Write (Stream (File => DateiSpeichern),
+      SpielRecords.GrenzenRecord'Write (Stream (File => DateiSpeichern),
                                            SpielVariablen.Grenzen (RasseExtern));
       
       EinheitenSchleife:
@@ -207,7 +206,7 @@ package body Speichern is
             
       end loop StadtSchleife;
       
-      WichtigeRecords.WichtigesRecord'Write (Stream (File => DateiSpeichern),
+      SpielRecords.WichtigesRecord'Write (Stream (File => DateiSpeichern),
                                              SpielVariablen.Wichtiges (RasseExtern));
       
       DiplomatieSchleife:
@@ -220,7 +219,7 @@ package body Speichern is
                null;
                      
             when others =>
-               WichtigeRecords.DiplomatieRecord'Write (Stream (File => DateiSpeichern),
+               SpielRecords.DiplomatieRecord'Write (Stream (File => DateiSpeichern),
                                                        SpielVariablen.Diplomatie (RasseExtern, DiplomatieSchleifenwert));
          end case;
 
@@ -257,9 +256,9 @@ package body Speichern is
    is begin
       
       if
-        To_Wide_Wide_String (Source => SpielVariablen.IronmanName) /= TextKonstanten.LeerString
+        To_Wide_Wide_String (Source => SpielVariablen.Allgemeines.IronmanName) /= TextKonstanten.LeerString
       then
-         NameSpielstand := (True, SpielVariablen.IronmanName);
+         NameSpielstand := (True, SpielVariablen.Allgemeines.IronmanName);
                
       else
          ------------------------------ Anzeige der vorhandenen Spielstände einbauen
@@ -303,9 +302,9 @@ package body Speichern is
    is begin
       
       if
-        To_Wide_Wide_String (Source => SpielVariablen.IronmanName) /= TextKonstanten.LeerString
+        To_Wide_Wide_String (Source => SpielVariablen.Allgemeines.IronmanName) /= TextKonstanten.LeerString
       then
-         NameSpielstand := (True, SpielVariablen.IronmanName);
+         NameSpielstand := (True, SpielVariablen.Allgemeines.IronmanName);
                
       else
          NameSpielstand := (True, To_Unbounded_Wide_Wide_String (Source => "Auto" & AutospeichernWert'Wide_Wide_Image));
@@ -345,7 +344,7 @@ package body Speichern is
       end case;
       
       case
-        SpielVariablen.RundenAnzahl mod OptionenVariablen.NutzerEinstellungen.RundenBisAutosave
+        SpielVariablen.Allgemeines.Rundenanzahl mod OptionenVariablen.NutzerEinstellungen.RundenBisAutosave
       is
          when 0 =>
             Speichern (AutospeichernExtern => True);

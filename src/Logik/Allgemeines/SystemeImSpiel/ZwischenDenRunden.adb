@@ -6,7 +6,6 @@ with Ada.Calendar; use Ada.Calendar;
 with RassenDatentypen; use RassenDatentypen;
 with SystemDatentypen; use SystemDatentypen;
 with RueckgabeDatentypen; use RueckgabeDatentypen;
-with SonstigeVariablen;
 with StadtKonstanten;
 with SpielVariablen;
 with TextKonstanten;
@@ -37,7 +36,7 @@ package body ZwischenDenRunden is
    is begin
       
       case
-        SonstigeVariablen.RasseAmZugNachLaden
+        SpielVariablen.Allgemeines.RasseAmZugNachLaden
       is
          when StadtKonstanten.LeerRasse =>
             null;
@@ -111,7 +110,7 @@ package body ZwischenDenRunden is
    is begin
       
       case
-        SonstigeVariablen.WeiterSpielen
+        SpielVariablen.Allgemeines.Weiterspielen
       is
          when False =>
             if
@@ -122,7 +121,7 @@ package body ZwischenDenRunden is
             elsif
               Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageGewonnenWeiterspielen) = RueckgabeDatentypen.Ja_Enum
             then
-               SonstigeVariablen.WeiterSpielen := True;
+               SpielVariablen.Allgemeines.Weiterspielen := True;
                                  
             else
                return False;
@@ -142,13 +141,13 @@ package body ZwischenDenRunden is
    is begin
       
       case
-        SpielVariablen.RundenAnzahl
+        SpielVariablen.Allgemeines.Rundenanzahl
       is
          when Positive'Last =>
             null;
             
          when others =>
-            SpielVariablen.RundenAnzahl := SpielVariablen.RundenAnzahl + 1;
+            SpielVariablen.Allgemeines.Rundenanzahl := SpielVariablen.Allgemeines.Rundenanzahl + 1;
       end case;
       
    end RundenanzahlSetzen;

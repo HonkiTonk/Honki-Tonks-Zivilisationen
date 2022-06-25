@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with WichtigeRecords;
+with SpielRecords;
 with KartenRecords;
 with StadtDatentypen;
 with EinheitenDatentypen;
@@ -35,7 +35,7 @@ package WichtigesKonstanten is
    LeerAnzahlKämpfer : constant EinheitenDatentypen.MaximaleEinheitenMitNullWert := EinheitenDatentypen.MaximaleEinheitenMitNullWert'First;
    LeerAnzahlSonstiges : constant EinheitenDatentypen.MaximaleEinheitenMitNullWert := EinheitenDatentypen.MaximaleEinheitenMitNullWert'First;
    
-   LeerWichtigesZeug : constant WichtigeRecords.WichtigesRecord := (
+   LeerWichtigesZeug : constant SpielRecords.WichtigesRecord := (
                                                                     Geldmenge                  => LeerGeldmenge,
                                                                     GeldZugewinnProRunde       => LeerGeldZugewinnProRunde,
                                                                     GesamteForschungsrate      => LeerGesamteForschungsrate,
@@ -57,7 +57,7 @@ package WichtigesKonstanten is
    LeerForschungGewinngrenze : constant ProduktionDatentypen.Produktion := ProduktionDatentypen.Produktion'Last;
    LeerRassenRundengrenze : constant ZahlenDatentypen.EigenesNatural := ZahlenDatentypen.EigenesNatural'First;
 
-   LeerGrenzen : constant WichtigeRecords.GrenzenRecord := (
+   LeerGrenzen : constant SpielRecords.GrenzenRecord := (
                                                             Städtegrenze          => LeerStädtegrenze,
                                                             Einheitengrenze       => LeerEinheitengrenze,
                                                             Geldgrenze            => LeerGeldgrenze,
@@ -71,7 +71,7 @@ package WichtigesKonstanten is
    LeerAktuelleSympathieBewertung : constant ProduktionDatentypen.Feldproduktion := 0;
    LeerZeitSeitLetzterÄnderung : constant ZahlenDatentypen.EigenesNatural := ZahlenDatentypen.EigenesNatural'First;
 
-   LeerDiplomatie : constant WichtigeRecords.DiplomatieRecord := (
+   LeerDiplomatie : constant SpielRecords.DiplomatieRecord := (
                                                                   AktuellerZustand           => LeerAktuellerZustand,
                                                                   AktuelleSympathieBewertung => LeerAktuelleSympathieBewertung,
                                                                   ZeitSeitLetzterÄnderung    => LeerZeitSeitLetzterÄnderung

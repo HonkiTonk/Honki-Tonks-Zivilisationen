@@ -11,18 +11,19 @@ with TextKonstanten;
 
 with Warnung;
 with EinlesenAllgemein;
+with Fehler;
 
 package body EinlesenText is
 
    procedure EinlesenDateien
    is begin
-      
-      TextdateienEinlesen := (others => TextKonstanten.LeerUnboundedString);
-      
+            
       case
         Exists (Name => "Sprachen/" & Encode (Item => To_Wide_Wide_String (Source => OptionenVariablen.NutzerEinstellungen.Sprache)) & "/0")
       is
          when True =>
+            TextdateienEinlesen := (others => TextKonstanten.LeerUnboundedString);
+            
             Open (File => DateiTextEinlesen,
                   Mode => In_File,
                   Name => "Sprachen/" & Encode (Item => To_Wide_Wide_String (Source => OptionenVariablen.NutzerEinstellungen.Sprache)) & "/0");
@@ -31,8 +32,6 @@ package body EinlesenText is
             Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.EinlesenDateien - 0-Datei fehlt.");
             return;
       end case;
-      
-      EinlesenMöglich := True;
       
       EinlesenSchleife:
       for WelcheDateienSchleifenwert in TextdateienEinlesen'Range loop
@@ -43,38 +42,16 @@ package body EinlesenText is
          is
             when True =>
                Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.EinlesenDateien - Nicht genug Zeilen in der 0-Datei.");
-               EinlesenMöglich := False;
-               exit EinlesenSchleife;
                
             when False =>
                TextdateienEinlesen (WelcheDateienSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
-         end case;
-            
-         case
-           Exists (Name => Encode (Item => To_Wide_Wide_String (Source => TextdateienEinlesen (WelcheDateienSchleifenwert))))
-         is
-            when True =>
-               null;
-                  
-            when False =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.EinlesenDateien - Fehlende Datei:" & To_Wide_Wide_String (Source => TextdateienEinlesen (WelcheDateienSchleifenwert)));
-               EinlesenMöglich := False;
-               exit EinlesenSchleife;
          end case;
 
       end loop EinlesenSchleife;
 
       Close (File => DateiTextEinlesen);
       
-      case
-        EinlesenMöglich
-      is
-         when False =>
-            null;
-            
-         when True =>
-            EinlesenTexte;
-      end case;
+      EinlesenTexte;
       
    end EinlesenDateien;
    
@@ -86,145 +63,166 @@ package body EinlesenText is
       TexteSchleife:
       for WelcheDateiSchleifenwert in TextdateienEinlesen'Range loop
          
-         Open (File => DateiTextEinlesen,
-               Mode => In_File,
-               Name => Encode (Item => To_Wide_Wide_String (Source => TextdateienEinlesen (WelcheDateiSchleifenwert))));
-         
          case
-           WelcheDateiSchleifenwert
+           Exists (Name => Encode (Item => To_Wide_Wide_String (Source => TextdateienEinlesen (WelcheDateiSchleifenwert))))
          is
-            when 1 =>
-               Hauptmenü;
+            when True =>
+               Open (File => DateiTextEinlesen,
+                     Mode => In_File,
+                     Name => Encode (Item => To_Wide_Wide_String (Source => TextdateienEinlesen (WelcheDateiSchleifenwert))));
                
-            when 2 =>
-               Spielmenü;
-               
-            when 3 =>
-               Optionsmenü;
-               
-            when 4 =>
-               Grafikmenü;
-               
-            when 5 =>
-               Soundmenü;
-               
-            when 6 =>
-               Steuerungmenü;
-               
-            when 7 =>
-               Sonstigesmenü;
-               
-            when 8 =>
-               Kartengröße;
-               
-            when 9 =>
-               Kartenart;
-               
-            when 10 =>
-               Kartentemperatur;
-               
-            when 11 =>
-               Rassenauswahl;
-               
-            when 12 =>
-               Schwierigkeitsgrad;
-               
-            when 13 =>
-               Kartenform;
-               
-            when 14 =>
-               Ressourcenmenge;
-               
-            when 15 =>
-               JaNein;
-               
-            when 16 =>
-               Rassen;
-               
-            when 17 =>
-               Kartenfelder;
-               
-            when 18 =>
-               Einheiten;
-               
-            when 19 =>
-               Verbesserungen;
-               
-            when 20 =>
-               Gebäude;
-               
-            when 21 =>
-               Forschungen;
-               
-            when 22 =>
-               Beschäftigungen;
-               
-            when 23 =>
-               StädtenamenKI;
-               
-            when 24 =>
-               Debugmenü;
-               
-            when 25 =>
-               AllgemeineInformationen;
-               
-            when 26 =>
-               Würdigung;
-               
-            when 27 =>
-               Diplomatiemenü;
-               
-            when 28 =>
-               DiplomatieKI;
-               
-            when 29 =>
-               Endmeldungen;
-               
-            when 30 =>
-               Handelsmenü;
-               
-            when 31 =>
-               DiplomatieStatus;
-               
-            when 32 =>
-               Angebot;
-               
-            when 33 =>
-               Fehlermeldung;
-               
-            when 34 =>
-               Ladezeit;
-               
-            when 35 =>
-               Frage;
-               
-            when 36 =>
-               ZeugSachen;
-               
-            when 37 =>
-               Editoren;
-               
-            when 38 =>
-               Wege;
-               
-            when 39 =>
-               Kartenflüsse;
-               
-            when 40 =>
-               Kartenressourcen;
-               
-            when 41 =>
-               Einstellungen;
-               
-            when 42 =>
-               Kartenpole;
-         end case;
+               EinlesenAufteilen (WelcherDateiExtern => WelcheDateiSchleifenwert);
             
-         Close (File => DateiTextEinlesen);
+               Close (File => DateiTextEinlesen);
+               
+            when False =>
+               null;
+         end case;
          
       end loop TexteSchleife;
       
    end EinlesenTexte;
+   
+   
+   
+   procedure EinlesenAufteilen
+     (WelcherDateiExtern : in Positive)
+   is begin
+      
+      case
+        WelcherDateiExtern
+      is
+         when 1 =>
+            Hauptmenü;
+               
+         when 2 =>
+            Spielmenü;
+               
+         when 3 =>
+            Optionsmenü;
+               
+         when 4 =>
+            Grafikmenü;
+               
+         when 5 =>
+            Soundmenü;
+               
+         when 6 =>
+            Steuerungmenü;
+               
+         when 7 =>
+            Sonstigesmenü;
+               
+         when 8 =>
+            Kartengröße;
+               
+         when 9 =>
+            Kartenart;
+               
+         when 10 =>
+            Kartentemperatur;
+               
+         when 11 =>
+            Rassenauswahl;
+               
+         when 12 =>
+            Schwierigkeitsgrad;
+               
+         when 13 =>
+            Kartenform;
+               
+         when 14 =>
+            Ressourcenmenge;
+               
+         when 15 =>
+            JaNein;
+               
+         when 16 =>
+            Rassen;
+               
+         when 17 =>
+            Kartenfelder;
+               
+         when 18 =>
+            Einheiten;
+               
+         when 19 =>
+            Verbesserungen;
+               
+         when 20 =>
+            Gebäude;
+               
+         when 21 =>
+            Forschungen;
+               
+         when 22 =>
+            Beschäftigungen;
+               
+         when 23 =>
+            StädtenamenKI;
+               
+         when 24 =>
+            Debugmenü;
+               
+         when 25 =>
+            AllgemeineInformationen;
+               
+         when 26 =>
+            Würdigung;
+               
+         when 27 =>
+            Diplomatiemenü;
+               
+         when 28 =>
+            DiplomatieKI;
+               
+         when 29 =>
+            Endmeldungen;
+               
+         when 30 =>
+            Handelsmenü;
+               
+         when 31 =>
+            DiplomatieStatus;
+               
+         when 32 =>
+            Angebot;
+               
+         when 33 =>
+            Fehlermeldung;
+               
+         when 34 =>
+            Ladezeit;
+               
+         when 35 =>
+            Frage;
+               
+         when 36 =>
+            ZeugSachen;
+               
+         when 37 =>
+            Editoren;
+               
+         when 38 =>
+            Wege;
+               
+         when 39 =>
+            Kartenflüsse;
+               
+         when 40 =>
+            Kartenressourcen;
+               
+         when 41 =>
+            Einstellungen;
+               
+         when 42 =>
+            Kartenpole;
+            
+         when others =>
+            Fehler.LogikFehler (FehlermeldungExtern => "EinlesenText.EinlesenAufteilen - Es werden mehr Dateien eingelesen als möglich sind.");
+      end case;
+      
+   end EinlesenAufteilen;
    
    
    

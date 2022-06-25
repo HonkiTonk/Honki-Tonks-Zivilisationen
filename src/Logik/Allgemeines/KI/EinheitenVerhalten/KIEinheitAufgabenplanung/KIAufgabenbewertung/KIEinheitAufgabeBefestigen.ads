@@ -6,6 +6,6 @@ with KIDatentypen;
 package KIEinheitAufgabeBefestigen is
 
    function SichBefestigen
-     return KIDatentypen.AufgabenWichtigkeit;
+     return KIDatentypen.AufgabenWichtigkeitKlein;
 
 end KIEinheitAufgabeBefestigen;

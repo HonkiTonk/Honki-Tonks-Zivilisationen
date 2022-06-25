@@ -10,7 +10,6 @@ with KartengrundDatentypen; use KartengrundDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with StadtDatentypen; use StadtDatentypen;
 with KartenKonstanten;
-with SonstigeVariablen;
 
 with LeseKarten;
 with LeseStadtGebaut;
@@ -61,7 +60,7 @@ package body KarteStadtSFML is
                                  StadtRasseNummerExtern => StadtRasseNummerExtern);
             
             case
-              SonstigeVariablen.Debug.Allgemeines
+              SpielVariablen.Debug.Allgemeines
             is
                when True =>
                   MauszeigerAnzeigen (YAchseExtern   => YAchseSchleifenwert,

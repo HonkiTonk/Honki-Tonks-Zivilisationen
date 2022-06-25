@@ -22,10 +22,10 @@ package body SpieleinstellungenSonstiges is
            SchwierigkeitAuswahl
          is
             when RueckgabeDatentypen.Schwierigkeitsgrad_Enum'Range =>
-               SpielVariablen.Schwierigkeitsgrad := RückgabeZuSchwierigkeitsgrad (SchwierigkeitAuswahl);
+               SpielVariablen.Allgemeines.Schwierigkeitsgrad := RückgabeZuSchwierigkeitsgrad (SchwierigkeitAuswahl);
 
             when RueckgabeDatentypen.Zufall_Enum =>
-               SpielVariablen.Schwierigkeitsgrad := ZufallsgeneratorenSpieleinstellungen.ZufälligerSchwiewrigkeitsgrad;
+               SpielVariablen.Allgemeines.Schwierigkeitsgrad := ZufallsgeneratorenSpieleinstellungen.ZufälligerSchwiewrigkeitsgrad;
                
             when RueckgabeDatentypen.Fertig_Enum =>
                return;

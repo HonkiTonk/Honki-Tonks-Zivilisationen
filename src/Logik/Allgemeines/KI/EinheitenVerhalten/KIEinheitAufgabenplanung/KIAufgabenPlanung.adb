@@ -38,9 +38,11 @@ package body KIAufgabenPlanung is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
-      Wichtigkeit := (others => KIDatentypen.AufgabenWichtigkeit'First);
+      -- Wird benötigt, da je nach Einheitenart nicht alle Arrayteile neu gesetzt werden.
+      Wichtigkeit := (others => KIDatentypen.AufgabenWichtigkeitKlein'First);
                   
       Wichtigkeit (KIDatentypen.Tut_Nichts_Enum) := KIEinheitAufgabeNichts.NichtsTun (RasseExtern => EinheitRasseNummerExtern.Rasse);
+      
       Wichtigkeit (KIDatentypen.Einheit_Auflösen_Enum) := KIEinheitAufgabeAufloesen.EinheitAuflösen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       Wichtigkeit (KIDatentypen.Einheit_Heilen_Enum) := KIEinheitAufgabeHeilen.SichHeilen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       Wichtigkeit (KIDatentypen.Einheit_Festsetzen_Enum) := KIEinheitAufgabeBefestigen.SichBefestigen;

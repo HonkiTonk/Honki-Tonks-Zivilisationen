@@ -6,6 +6,6 @@ with KIDatentypen;
 package KIEinheitAufgabeFliehen is
 
    function Fliehen
-     return KIDatentypen.AufgabenWichtigkeit;
+     return KIDatentypen.AufgabenWichtigkeitKlein;
 
 end KIEinheitAufgabeFliehen;

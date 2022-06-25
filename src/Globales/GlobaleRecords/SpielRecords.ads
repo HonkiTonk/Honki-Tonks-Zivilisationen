@@ -1,14 +1,18 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+
 with StadtDatentypen;
 with EinheitenDatentypen;
 with SystemDatentypen;
 with ForschungenDatentypen;
 with ProduktionDatentypen;
 with ZahlenDatentypen;
+with RassenDatentypen;
+with SpielDatentypen;
 
-package WichtigeRecords is
+package SpielRecords is
    
    type ForschungRecord is record -- XXX
       
@@ -66,5 +70,19 @@ package WichtigeRecords is
       RassenRundengrenze : ZahlenDatentypen.EigenesNatural;
       
    end record;
+   
+   
+   
+   type AllgemeinesRecord is record
+      
+      Gewonnen : Boolean;
+      Weiterspielen : Boolean;
+      RasseAmZugNachLaden : RassenDatentypen.Rassen_Enum;
+      Schwierigkeitsgrad : SpielDatentypen.Schwierigkeitsgrad_Enum;
+      Rundenanzahl : Positive;
+      Rundengrenze : Natural;   
+      IronmanName : Unbounded_Wide_Wide_String;
+      
+   end record;
 
-end WichtigeRecords;
+end SpielRecords;

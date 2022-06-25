@@ -1,8 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SonstigeVariablen;
-
 with Fehler;
 
 package body RueckgabeMenues is
@@ -864,7 +862,7 @@ package body RueckgabeMenues is
          return RueckgabeDatentypen.Spiel_Beenden_Enum;
                     
       else
-         SonstigeVariablen.UmbelegungNummer := AktuelleAuswahlExtern;
+         UmbelegungNummer := AktuelleAuswahlExtern;
          return RueckgabeDatentypen.Eingabe_Enum;
       end if;
       

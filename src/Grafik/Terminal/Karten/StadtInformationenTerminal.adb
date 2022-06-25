@@ -9,7 +9,6 @@ with EinheitenDatentypen; use EinheitenDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
 with StadtDatentypen; use StadtDatentypen;
 with KartenVerbesserungDatentypen;
-with SonstigeVariablen;
 
 with LeseStadtGebaut;
 
@@ -34,7 +33,7 @@ package body StadtInformationenTerminal is
       if
         StadtRasseNummerExtern.Rasse = RasseExtern
         or
-          SonstigeVariablen.Debug.VolleInformation
+          SpielVariablen.Debug.VolleInformation
       then
          AktuelleNahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern);
          AktuelleNahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern);

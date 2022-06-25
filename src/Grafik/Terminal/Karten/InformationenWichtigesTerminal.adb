@@ -38,7 +38,7 @@ package body InformationenWichtigesTerminal is
       --                                          AbstandAnfangExtern    => GlobaleTexte.Leer,
      --                                           AbstandMitteExtern     => GlobaleTexte.Leer,
       --                                          AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      Ada.Integer_Wide_Wide_Text_IO.Put (Item  => SpielVariablen.RundenAnzahl,
+      Ada.Integer_Wide_Wide_Text_IO.Put (Item  => SpielVariablen.Allgemeines.Rundenanzahl,
                                          Width => 1);
       
    end Rundenanzahl;

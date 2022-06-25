@@ -8,7 +8,6 @@ with Sf.Window.Keyboard; use Sf.Window.Keyboard;
 
 with TastenbelegungDatentypen; use TastenbelegungDatentypen;
 with GrafikDatentypen;
-with SonstigeVariablen;
 with OptionenVariablen;
 with MenueDatentypen;
 
@@ -19,6 +18,7 @@ with EingabeSystemeSFML;
 with EingabeTerminal;
 with EingabeSFML;
 with Fehler;
+with RueckgabeMenues;
 
 package body OptionenSteuerung is
 
@@ -128,7 +128,7 @@ package body OptionenSteuerung is
    procedure AlteTasteEntfernenSFML
    is begin
                
-      NeueAuswahl := TastenbelegungDatentypen.Tastenbelegung_Enum'Val (SonstigeVariablen.UmbelegungNummer);
+      NeueAuswahl := TastenbelegungDatentypen.Tastenbelegung_Enum'Val (RueckgabeMenues.UmbelegungNummer);
       -- Das hier später entfernen.
       Put_Line (Item => NeueAuswahl'Wide_Wide_Image);
       

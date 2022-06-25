@@ -8,7 +8,6 @@ with EinheitenDatentypen; use EinheitenDatentypen;
 with StadtDatentypen; use StadtDatentypen;
 with EinheitenKonstanten;
 with StadtKonstanten;
-with SonstigeVariablen;
 
 with LeseKarten;
 
@@ -109,7 +108,7 @@ package body KarteInformationenTerminal is
                                        StadtRasseNummerExtern => StadtRasseNummerExtern);
 
       case
-        SonstigeVariablen.Debug.VolleInformation
+        SpielVariablen.Debug.VolleInformation
       is
          when False =>
             null;
@@ -370,7 +369,7 @@ package body KarteInformationenTerminal is
    is begin
       
       case
-        SonstigeVariablen.Debug.VolleInformation
+        SpielVariablen.Debug.VolleInformation
       is
          when False =>
             null;

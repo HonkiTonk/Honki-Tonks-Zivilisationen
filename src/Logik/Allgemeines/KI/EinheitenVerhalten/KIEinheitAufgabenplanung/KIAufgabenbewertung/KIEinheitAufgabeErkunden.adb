@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 package body KIEinheitAufgabeErkunden is
 
    function Erkunden
-     return KIDatentypen.AufgabenWichtigkeit
+     return KIDatentypen.AufgabenWichtigkeitKlein
    is begin
       
       return 2;

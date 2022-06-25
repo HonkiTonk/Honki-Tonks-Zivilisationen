@@ -8,7 +8,6 @@ with Ada.Calendar; use Ada.Calendar;
 with MenueDatentypen;
 with ZahlenDatentypen;
 with GlobaleTexte;
-with SonstigeVariablen;
 
 with SchreibeKarten;
 with SchreibeWichtiges;
@@ -44,13 +43,13 @@ package body DebugmenueSFML is
                                             RechnenSetzenExtern => False);
                
             when RueckgabeDatentypen.Lamustra_Enum =>
-               SonstigeVariablen.Debug.Allgemeines := not SonstigeVariablen.Debug.Allgemeines;
+               SpielVariablen.Debug.Allgemeines := not SpielVariablen.Debug.Allgemeines;
                
             when RueckgabeDatentypen.Manuky_Enum =>
-               SonstigeVariablen.Debug.VolleInformation := not SonstigeVariablen.Debug.VolleInformation;
+               SpielVariablen.Debug.VolleInformation := not SpielVariablen.Debug.VolleInformation;
                
             when RueckgabeDatentypen.Suroka_Enum =>
-               SonstigeVariablen.Debug.Sieg := not SonstigeVariablen.Debug.Sieg;
+               SpielVariablen.Debug.Sieg := not SpielVariablen.Debug.Sieg;
                
             when RueckgabeDatentypen.Pryolon_Enum =>
                LadezeitenAnzegien;

@@ -14,7 +14,7 @@ package body KIEinheitAufgabeSiedeln is
 
    function NeueStadtBauenGehen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return KIDatentypen.AufgabenWichtigkeit
+      return KIDatentypen.AufgabenWichtigkeitKlein
    is begin
       
       VorhandeneStädte := LeseWichtiges.AnzahlStädte (RasseExtern => EinheitRasseNummerExtern.Rasse);
@@ -27,7 +27,7 @@ package body KIEinheitAufgabeSiedeln is
          return 11;
          
       elsif
-        SpielVariablen.RundenAnzahl
+        SpielVariablen.Allgemeines.Rundenanzahl
           > (Positive (VorhandeneStädte)
              + KIAufgabenVerteilt.AufgabenVerteilt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     AufgabeExtern            => KIDatentypen.Stadt_Bauen_Enum))

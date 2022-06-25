@@ -6,6 +6,6 @@ with KIDatentypen;
 package KIEinheitAufgabeErkunden is
 
    function Erkunden
-     return KIDatentypen.AufgabenWichtigkeit;
+     return KIDatentypen.AufgabenWichtigkeitKlein;
 
 end KIEinheitAufgabeErkunden;

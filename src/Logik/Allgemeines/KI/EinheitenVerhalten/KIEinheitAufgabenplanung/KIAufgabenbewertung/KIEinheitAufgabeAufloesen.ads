@@ -5,6 +5,7 @@ with RassenDatentypen; use RassenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 with StadtDatentypen;
+with EinheitenDatentypen;
 
 with KIDatentypen;
 
@@ -12,7 +13,7 @@ package KIEinheitAufgabeAufloesen is
 
    function EinheitAuflösen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return KIDatentypen.AufgabenWichtigkeit
+      return KIDatentypen.AufgabenWichtigkeitKlein
      with
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -22,16 +23,18 @@ package KIEinheitAufgabeAufloesen is
    
 private
    
+   EinheitID : EinheitenDatentypen.EinheitenID;
+   
    Heimatstadt : StadtDatentypen.MaximaleStädteMitNullWert;
    
-   Aufgabenwert : KIDatentypen.AufgabenWichtigkeit;
-   Zwischenwert : KIDatentypen.AufgabenWichtigkeit;
+   Aufgabenwert : KIDatentypen.AufgabenWichtigkeitKlein;
+   Zwischenwert : KIDatentypen.AufgabenWichtigkeitKlein;
    
    
    
    function Stadtzustand
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return KIDatentypen.AufgabenWichtigkeit
+      return KIDatentypen.AufgabenWichtigkeitKlein
      with
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze

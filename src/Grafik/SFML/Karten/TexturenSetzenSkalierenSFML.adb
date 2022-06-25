@@ -19,7 +19,7 @@ package body TexturenSetzenSkalierenSFML is
                                      texture   => TextureAccessExtern,
                                      resetRect => Sf.sfTrue);
       
-      -- Sollte geprüft werden ob die Texturebreite/höhe /= 0 ist? -----------------------
+      ------------------------- Sollte geprüft werden ob die Texturebreite/höhe /= 0 ist?
       GrößeTextur := (Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).width, Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).height);
       KartenfelderAbmessung := BerechnungenKarteSFML.KartenfelderAbmessung;
       
@@ -42,7 +42,7 @@ package body TexturenSetzenSkalierenSFML is
                                      texture   => TextureAccessExtern,
                                      resetRect => Sf.sfTrue);
       
-      -- Sollte geprüft werden ob die Texturebreite/höhe /= 0 ist? -----------------------
+      ------------------------- Sollte geprüft werden ob die Texturebreite/höhe /= 0 ist?
       GrößeTextur := (Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).width, Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).height);
       StadtfelderAbmessung := BerechnungenKarteSFML.StadtfelderAbmessung;
       
@@ -65,7 +65,7 @@ package body TexturenSetzenSkalierenSFML is
                                      texture   => TextureAccessExtern,
                                      resetRect => Sf.sfTrue);
       
-      -- Sollte geprüft werden ob die Texturebreite/höhe /= 0 ist? -----------------------
+      ------------------------- Sollte geprüft werden ob die Texturebreite/höhe /= 0 ist?
       GrößeTextur := (Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).width, Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).height);
       StadtAbmessung := BerechnungenKarteSFML.StadtKarte;
       
@@ -88,7 +88,7 @@ package body TexturenSetzenSkalierenSFML is
                                      texture   => TextureAccessExtern,
                                      resetRect => Sf.sfTrue);
       
-      -- Sollte geprüft werden ob die Texturebreite/höhe /= 0 ist? -----------------------
+      ------------------------- Sollte geprüft werden ob die Texturebreite/höhe /= 0 ist?
       GrößeTextur := (Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).width, Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).height);
       GrößeGesamtbild := (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x), Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y));
       
@@ -112,7 +112,7 @@ package body TexturenSetzenSkalierenSFML is
                                      texture   => TextureAccessExtern,
                                      resetRect => Sf.sfTrue);
       
-      -- Sollte geprüft werden ob die Texturebreite/höhe /= 0 ist? -----------------------
+      ------------------------- Sollte geprüft werden ob die Texturebreite/höhe /= 0 ist?
       GrößeTextur := (Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).width, Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).height);
       GrößeGesamtbild := (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x), Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y));
       

@@ -10,12 +10,11 @@ with SystemDatentypen;
 with GlobaleVariablen;
 with KartenRecords;
 with StadtRecords;
-with WichtigeRecords;
+with SpielRecords;
 with SpielDatentypen;
 with EinheitenRecords;
 with TextKonstanten;
 with GrafikDatentypen;
-with SonstigeVariablen;
 
 with Karten;
 with Ladezeiten;
@@ -105,28 +104,28 @@ package body Laden is
    is begin
       
       Unbounded_Wide_Wide_String'Read (Stream (File => DateiLaden),
-                                       SpielVariablen.IronmanName);
+                                       SpielVariablen.Allgemeines.IronmanName);
 
       Positive'Read (Stream (File => DateiLaden),
-                     SpielVariablen.RundenAnzahl);
+                     SpielVariablen.Allgemeines.Rundenanzahl);
       
       Natural'Read (Stream (File => DateiLaden),
-                    SpielVariablen.Rundengrenze);
+                    SpielVariablen.Allgemeines.Rundengrenze);
       
       RassenDatentypen.RassenImSpielArray'Read (Stream (File => DateiLaden),
                                                  SpielVariablen.RassenImSpiel);
       
       RassenDatentypen.Rassen_Enum'Read (Stream (File => DateiLaden),
-                                         SonstigeVariablen.RasseAmZugNachLaden);
+                                         SpielVariablen.Allgemeines.RasseAmZugNachLaden);
       
       SpielDatentypen.Schwierigkeitsgrad_Enum'Read (Stream (File => DateiLaden),
-                                                    SpielVariablen.Schwierigkeitsgrad);
+                                                    SpielVariablen.Allgemeines.Schwierigkeitsgrad);
       
       Boolean'Read (Stream (File => DateiLaden),
-                    SonstigeVariablen.Gewonnen);
+                    SpielVariablen.Allgemeines.Gewonnen);
       
       Boolean'Read (Stream (File => DateiLaden),
-                    SonstigeVariablen.WeiterSpielen);
+                    SpielVariablen.Allgemeines.Weiterspielen);
       
    end Allgemeines;
    
@@ -182,7 +181,7 @@ package body Laden is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      WichtigeRecords.GrenzenRecord'Read (Stream (File => DateiLaden),
+      SpielRecords.GrenzenRecord'Read (Stream (File => DateiLaden),
                                           SpielVariablen.Grenzen (RasseExtern));
       
       EinheitenSchleife:
@@ -201,7 +200,7 @@ package body Laden is
             
       end loop StadtSchleife;
       
-      WichtigeRecords.WichtigesRecord'Read (Stream (File => DateiLaden),
+      SpielRecords.WichtigesRecord'Read (Stream (File => DateiLaden),
                                             SpielVariablen.Wichtiges (RasseExtern));
       
       DiplomatieSchleife:
@@ -214,7 +213,7 @@ package body Laden is
                null;
                      
             when others =>
-               WichtigeRecords.DiplomatieRecord'Read (Stream (File => DateiLaden),
+               SpielRecords.DiplomatieRecord'Read (Stream (File => DateiLaden),
                                                       SpielVariablen.Diplomatie (RasseExtern, RasseDiplomatieSchleifenwert));
          end case;
 

@@ -33,7 +33,7 @@ private
    
    AufgabeAuswählen : KIDatentypen.Einheit_Aufgabe_Vorhanden_Enum;
       
-   type WichtigkeitArray is array (KIDatentypen.Einheit_Aufgabe_Vorhanden_Enum'Range) of KIDatentypen.AufgabenWichtigkeit;
+   type WichtigkeitArray is array (KIDatentypen.Einheit_Aufgabe_Vorhanden_Enum'Range) of KIDatentypen.AufgabenWichtigkeitKlein;
    Wichtigkeit : WichtigkeitArray;
    
    procedure AufgabeFestlegen

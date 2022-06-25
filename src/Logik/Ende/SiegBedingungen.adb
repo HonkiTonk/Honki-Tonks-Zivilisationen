@@ -3,7 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with RassenDatentypen; use RassenDatentypen;
-with SonstigeVariablen;
 with SpielVariablen;
 
 with LeseWichtiges;
@@ -94,7 +93,7 @@ package body SiegBedingungen is
             return True;
             
          when 1 =>
-            SonstigeVariablen.Gewonnen := True;
+            SpielVariablen.Allgemeines.Gewonnen := True;
             return True;
             
          when others =>
@@ -120,7 +119,7 @@ package body SiegBedingungen is
          elsif
            LeseWichtiges.Geldmenge (RasseExtern => RassenGeldSchleifenwert) = Integer'Last
          then
-            SonstigeVariablen.Gewonnen := True;
+            SpielVariablen.Allgemeines.Gewonnen := True;
             return True;
             
          else
@@ -140,13 +139,13 @@ package body SiegBedingungen is
    is begin
       
       case
-        SonstigeVariablen.Debug.Sieg
+        SpielVariablen.Debug.Sieg
       is
          when False =>
             return False;
             
          when True =>
-            SonstigeVariablen.Gewonnen := True;
+            SpielVariablen.Allgemeines.Gewonnen := True;
             return True;
       end case;
          

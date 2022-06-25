@@ -9,7 +9,7 @@ package body KIEinheitAufgabeModernisieren is
 
    function SichVerbessern
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return KIDatentypen.AufgabenWichtigkeit
+      return KIDatentypen.AufgabenWichtigkeitKlein
    is begin
       
       ----------------------- Das hier ging möglicherweise beim auseinander Bauen von den ganzen IDs kaputt.

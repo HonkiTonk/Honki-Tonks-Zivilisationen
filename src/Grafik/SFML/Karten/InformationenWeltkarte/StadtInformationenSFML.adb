@@ -12,7 +12,6 @@ with GlobaleTexte;
 with KartenVerbesserungDatentypen;
 with TextKonstanten;
 with TextaccessVariablen;
-with SonstigeVariablen;
 
 with LeseStadtGebaut;
 
@@ -42,7 +41,7 @@ package body StadtInformationenSFML is
       if
         StadtRasseNummerExtern.Rasse = RasseExtern
         or
-          SonstigeVariablen.Debug.VolleInformation
+          SpielVariablen.Debug.VolleInformation
       then
          AktuelleNahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern);
          AktuelleNahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern);

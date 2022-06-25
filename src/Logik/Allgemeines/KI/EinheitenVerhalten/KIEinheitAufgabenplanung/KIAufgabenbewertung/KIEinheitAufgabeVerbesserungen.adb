@@ -9,7 +9,7 @@ package body KIEinheitAufgabeVerbesserungen is
 
    function StadtUmgebungVerbessern
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return KIDatentypen.AufgabenWichtigkeit
+      return KIDatentypen.AufgabenWichtigkeitKlein
    is begin
       
       case

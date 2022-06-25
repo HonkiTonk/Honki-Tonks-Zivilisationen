@@ -14,6 +14,7 @@ package ProduktionDatentypen is
    subtype Zwischenlösung is Stadtproduktion range -1 .. 1;
 
    -------------------------- Das hier wird für Einheiten und Gebäude benutzt.
+   -------------------------- Besser benennen und generell mal bessere Benennung für Produktion und Ressource einbauen, damit man die produzierte Menge in einer Stadt besser von den Kartenressourcen unterscheiden kann.
    type Permanente_Kosten_Enum is (
                                    Leer_Permanente_Kosten_Enum,
                                    

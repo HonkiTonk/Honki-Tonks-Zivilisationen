@@ -9,7 +9,7 @@ package body KIEinheitAufgabeNichts is
 
    function NichtsTun
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KIDatentypen.AufgabenWichtigkeit
+      return KIDatentypen.AufgabenWichtigkeitKlein
    is begin
       
       case

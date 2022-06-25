@@ -23,11 +23,11 @@ private
    
    WelchesProjekt : ForschungenDatentypen.ForschungIDMitNullWert;
    
-   Bewertung : KIDatentypen.AufgabenWichtigkeit;
+   Bewertung : KIDatentypen.AufgabenWichtigkeitKlein;
    
    Multiplikator : ZahlenDatentypen.EigenesPositive;
    
-   type MöglicheForschungenArray is array (ForschungenDatenbank.ForschungslisteArray'Range (2)) of KIDatentypen.AufgabenWichtigkeit;
+   type MöglicheForschungenArray is array (ForschungenDatenbank.ForschungslisteArray'Range (2)) of KIDatentypen.AufgabenWichtigkeitKlein;
    MöglicheForschungen : MöglicheForschungenArray;
       
    procedure NeuesForschungsprojekt

@@ -3,7 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 with StadtKonstanten;
 with EinheitenKonstanten;
-with SonstigeVariablen;
 
 with LeseKarten;
 
@@ -112,7 +111,7 @@ package body KarteInformationenSFML is
    is begin
       
       case
-        SonstigeVariablen.Debug.Allgemeines
+        SpielVariablen.Debug.Allgemeines
       is
          when False =>
             null;

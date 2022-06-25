@@ -28,7 +28,8 @@ package KIDatentypen is
    subtype BewegungBewertung is BauenBewertung range 0 .. 20;
 
 
-   type AufgabenWichtigkeit is range -1 .. 100;
+   type AufgabenWichtigkeit is range -100 .. 100;
+   subtype AufgabenWichtigkeitKlein is AufgabenWichtigkeit range -1 .. 100;
 
    type KINotAus is range 1 .. 50;
 

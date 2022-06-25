@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SonstigeVariablen;
 with WichtigesKonstanten;
 with TextKonstanten;
 with EinheitenKonstanten;
@@ -37,15 +36,15 @@ package body AllesAufAnfangSetzen is
       SpielVariablen.StadtGebaut := (others => (others => StadtKonstanten.LeerStadt));
       SpielVariablen.Wichtiges := (others => WichtigesKonstanten.LeerWichtigesZeug);
       SpielVariablen.Diplomatie := (others => (others => WichtigesKonstanten.LeerDiplomatie));
-      SpielVariablen.RundenAnzahl := Positive'First;
+      SpielVariablen.Allgemeines.Rundenanzahl := Positive'First;
       SpielVariablen.CursorImSpiel := (others => WichtigesKonstanten.LeerCursor);
-      SpielVariablen.IronmanName := TextKonstanten.LeerUnboundedString;
+      SpielVariablen.Allgemeines.IronmanName := TextKonstanten.LeerUnboundedString;
       
       SpielVariablen.RassenImSpiel := (others => RassenDatentypen.Leer_Spieler_Enum);
-      SonstigeVariablen.RasseAmZugNachLaden := EinheitenKonstanten.LeerRasse;
-      SonstigeVariablen.Gewonnen := False;
-      SonstigeVariablen.WeiterSpielen := False;
-      SonstigeVariablen.Debug := (others => False);
+      SpielVariablen.Allgemeines.RasseAmZugNachLaden := EinheitenKonstanten.LeerRasse;
+      SpielVariablen.Allgemeines.Gewonnen := False;
+      SpielVariablen.Allgemeines.Weiterspielen := False;
+      SpielVariablen.Debug := (others => False);
       
       Karten.Karteneinstellungen := KartenRecordKonstanten.Standardkartenparameter;
       Karten.Weltkarte := (others => (others => (others => KartenRecordKonstanten.LeerWeltkarte)));

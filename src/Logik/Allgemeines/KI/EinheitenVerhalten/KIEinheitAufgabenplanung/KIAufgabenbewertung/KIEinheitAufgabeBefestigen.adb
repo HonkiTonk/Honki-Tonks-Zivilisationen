@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 package body KIEinheitAufgabeBefestigen is
 
    function SichBefestigen
-     return KIDatentypen.AufgabenWichtigkeit
+     return KIDatentypen.AufgabenWichtigkeitKlein
    is begin
       
       return 0;

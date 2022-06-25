@@ -28,17 +28,19 @@ package ChangelogJuni2022 is
    
    
 
-   -- Version 0.01. => 0.01. (26.06.2022):
+   -- Version 0.01.1655 => 0.01. (26.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01. => 0.01. (25.06.2022):
+   -- Version 0.01.1620 => 0.01.1655 (25.06.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Diverse Spielvariablen zu einem Record zusammengefasst und unötigen Code gelöscht.
+   -- Einlesen der Texte überarbeitet.
+   -- Weiter an den Einheitenberechnungen der KI gearbeitet.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 

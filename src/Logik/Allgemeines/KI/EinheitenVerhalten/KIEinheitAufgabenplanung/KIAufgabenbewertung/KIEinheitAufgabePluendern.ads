@@ -6,6 +6,6 @@ with KIDatentypen;
 package KIEinheitAufgabePluendern is
 
    function StadtUmgebungZerstören
-     return KIDatentypen.AufgabenWichtigkeit;
+     return KIDatentypen.AufgabenWichtigkeitKlein;
 
 end KIEinheitAufgabePluendern;
