@@ -36,7 +36,7 @@ package body KIForschung is
    
    
    
-   ------------------------------------- Das muss auch mal durch eine komplexere Berechnung ersetzt werden.
+   ------------------------------------- Das muss durch eine bessere Berechnung ersetzt werden.
    procedure NeuesForschungsprojekt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
@@ -58,12 +58,10 @@ package body KIForschung is
          end case;
          
          if
-           ZahlenDatentypen.EigenesPositive (ForschungSchleifenwert) >= Multiplikator * ZahlenDatentypen.EigenesPositive (ForschungenDatenbank.ForschungslisteArray'Last (2)) / 1
+           ZahlenDatentypen.EigenesPositive (ForschungSchleifenwert) >= Multiplikator * ZahlenDatentypen.EigenesPositive (ForschungenDatenbank.ForschungslisteArray'Last (2)) * 2
          then
-            ------------------------------- Bringt noch Warnmeldungen bei Forschung, warum auch immer.
             Ladezeiten.FortschrittKISchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Berechne_Forschung_Enum);
             Multiplikator := Multiplikator + 1;
-            delay 0.01;
                
          else
             null;
@@ -100,12 +98,10 @@ package body KIForschung is
          end if;
          
          if
-           ZahlenDatentypen.EigenesPositive (BewertungSchleifenwert) >= Multiplikator * ZahlenDatentypen.EigenesPositive (ForschungenDatenbank.ForschungslisteArray'Last (2)) / 1
+           ZahlenDatentypen.EigenesPositive (BewertungSchleifenwert) >= Multiplikator * ZahlenDatentypen.EigenesPositive (ForschungenDatenbank.ForschungslisteArray'Last (2)) * 2
          then
-            ------------------------------- Bringt noch Warnmeldungen bei Forschung, warum auch immer.
             Ladezeiten.FortschrittKISchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Berechne_Forschung_Enum);
             Multiplikator := Multiplikator + 1;
-            delay 0.01;
                
          else
             null;

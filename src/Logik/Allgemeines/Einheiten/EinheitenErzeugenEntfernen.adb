@@ -35,7 +35,7 @@ package body EinheitenErzeugenEntfernen is
             SchreibeWichtiges.AnzahlArbeiter (RasseExtern     => StadtRasseNummerExtern.Rasse,
                                               PlusMinusExtern => True);
             
-         when EinheitenDatentypen.Nahkämpfer_Enum | EinheitenDatentypen.Fernkämpfer_Enum | EinheitenDatentypen.Beides_Enum =>
+         when EinheitenDatentypen.Einheitenart_Kampf_Enum'Range =>
             SchreibeWichtiges.AnzahlKämpfer (RasseExtern     => StadtRasseNummerExtern.Rasse,
                                               PlusMinusExtern => True);
             
@@ -111,7 +111,7 @@ package body EinheitenErzeugenEntfernen is
             SchreibeWichtiges.AnzahlArbeiter (RasseExtern     => EinheitRasseNummerExtern.Rasse,
                                               PlusMinusExtern => False);
             
-         when EinheitenDatentypen.Nahkämpfer_Enum | EinheitenDatentypen.Fernkämpfer_Enum | EinheitenDatentypen.Beides_Enum =>
+         when EinheitenDatentypen.Einheitenart_Kampf_Enum'Range =>
             SchreibeWichtiges.AnzahlKämpfer (RasseExtern     => EinheitRasseNummerExtern.Rasse,
                                               PlusMinusExtern => False);
             

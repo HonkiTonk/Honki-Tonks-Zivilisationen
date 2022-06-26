@@ -42,7 +42,7 @@ package body KIEinheitAufgabeBewachen is
                                                     ZielKoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert)))
            = False
          then
-            return 10;
+            return KIDatentypen.AufgabenWichtigkeitKlein'Last;
                
          else
             null;

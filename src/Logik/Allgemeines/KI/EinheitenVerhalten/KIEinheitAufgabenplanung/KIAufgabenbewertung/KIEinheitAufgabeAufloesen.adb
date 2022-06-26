@@ -5,7 +5,6 @@ with StadtDatentypen; use StadtDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
 with EinheitenDatentypen; use EinheitenDatentypen;
 with EinheitenKonstanten;
-with StadtKonstanten;
 
 with LeseStadtGebaut;
 with LeseEinheitenDatenbank;
@@ -17,7 +16,7 @@ with EinheitenAllgemeines;
 with KIDatentypen; use KIDatentypen;
 
 with KIKriegErmitteln;
-with KIPruefungen;
+with KIGrenzpruefungen;
 
 package body KIEinheitAufgabeAufloesen is
 
@@ -35,54 +34,30 @@ package body KIEinheitAufgabeAufloesen is
          return -1;
          
       else
-         -- Braucht hier keine Prüfung, da ja etwas zugewiesen wird und nicht berechnet.
          Aufgabenwert := Stadtzustand (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       end if;
       
-      ------------------------------ Das mal in ein rassenspezifisches Array auslagern und sinnvolle Werte finden.
       if
-        EinheitenDatentypen.MaximaleEinheiten (18 + LeseWichtiges.AnzahlStädte (RasseExtern => EinheitRasseNummerExtern.Rasse))
-          < LeseWichtiges.AnzahlEinheiten (RasseExtern => EinheitRasseNummerExtern.Rasse)
+        MaximaleEinheiten (EinheitRasseNummerExtern.Rasse) + EinheitenDatentypen.MaximaleEinheitenMitNullWert (LeseWichtiges.AnzahlStädte (RasseExtern => EinheitRasseNummerExtern.Rasse))
+        < LeseWichtiges.AnzahlEinheiten (RasseExtern => EinheitRasseNummerExtern.Rasse)
       then
-         return 3;
+         Aufgabenwert := KIGrenzpruefungen.AufgabenWichtigkeit (AktuellerWertExtern => Aufgabenwert,
+                                                                ÄnderungExtern      => 3);
          
       else
          null;
       end if;
-              
-      case
-        LeseEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
-      is
-         when 0 =>
-            return 0;
-
-         when others =>
-            null;
-      end case;
-
-      KostenSchleife:
-      for KostenSchleifenwert in ProduktionDatentypen.Permanente_Kosten_Verwendet_Enum'Range loop
-         
-         if
-           LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => EinheitRasseNummerExtern.Rasse,
-                                                    IDExtern           => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                    WelcheKostenExtern => KostenSchleifenwert)
-           = StadtKonstanten.LeerPermanenteKosten
-         then
-            null;
-            
-         else
-            return 1;
-         end if;
-         
-      end loop KostenSchleife;
-                     
-      return 0;
+      
+      Aufgabenwert := KIGrenzpruefungen.AufgabenWichtigkeit (AktuellerWertExtern => Aufgabenwert,
+                                                             ÄnderungExtern      => GlobalerZustand (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      
+      return Aufgabenwert;
       
    end EinheitAuflösen;
    
    
    
+   --------------------------------- Die folgenden Sachen mal rassenspezifisch bauen.
    function Stadtzustand
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return KIDatentypen.AufgabenWichtigkeitKlein
@@ -109,8 +84,8 @@ package body KIEinheitAufgabeAufloesen is
                                                    WelcheKostenExtern => ProduktionDatentypen.Nahrung_Enum)
         > 0
       then
-         Zwischenwert := KIPruefungen.AufgabenWichtigkeitÄndern (AktuellerWertExtern => Zwischenwert,
-                                                                  ÄnderungExtern     => 10);
+         Zwischenwert := KIGrenzpruefungen.AufgabenWichtigkeit (AktuellerWertExtern => Zwischenwert,
+                                                                ÄnderungExtern      => 10);
          
       elsif
         LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, Heimatstadt)) = 0
@@ -120,8 +95,8 @@ package body KIEinheitAufgabeAufloesen is
                                                    WelcheKostenExtern => ProduktionDatentypen.Nahrung_Enum)
         > 0
       then
-         Zwischenwert := KIPruefungen.AufgabenWichtigkeitÄndern (AktuellerWertExtern => Zwischenwert,
-                                                                  ÄnderungExtern     => 5);
+         Zwischenwert := KIGrenzpruefungen.AufgabenWichtigkeit (AktuellerWertExtern => Zwischenwert,
+                                                                ÄnderungExtern      => 5);
          
       else
          null;
@@ -135,8 +110,8 @@ package body KIEinheitAufgabeAufloesen is
                                                    WelcheKostenExtern => ProduktionDatentypen.Ressourcen_Enum)
         > 0
       then
-         Zwischenwert := KIPruefungen.AufgabenWichtigkeitÄndern (AktuellerWertExtern => Zwischenwert,
-                                                                  ÄnderungExtern     => 10);
+         Zwischenwert := KIGrenzpruefungen.AufgabenWichtigkeit (AktuellerWertExtern => Zwischenwert,
+                                                                ÄnderungExtern      => 10);
          
       elsif
         LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, Heimatstadt)) = 0
@@ -146,8 +121,8 @@ package body KIEinheitAufgabeAufloesen is
                                                    WelcheKostenExtern => ProduktionDatentypen.Ressourcen_Enum)
         > 0
       then
-         Zwischenwert := KIPruefungen.AufgabenWichtigkeitÄndern (AktuellerWertExtern => Zwischenwert,
-                                                                  ÄnderungExtern     => 5);
+         Zwischenwert := KIGrenzpruefungen.AufgabenWichtigkeit (AktuellerWertExtern => Zwischenwert,
+                                                                ÄnderungExtern      => 5);
          
       else
          null;
@@ -156,5 +131,33 @@ package body KIEinheitAufgabeAufloesen is
       return Zwischenwert;
       
    end Stadtzustand;
+   
+   
+   
+   function GlobalerZustand
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return KIDatentypen.AufgabenWichtigkeitKlein
+   is begin
+      
+      Zwischenwert := 0;
+         
+      if
+        LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => EinheitRasseNummerExtern.Rasse,
+                                                 IDExtern           => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                 WelcheKostenExtern => ProduktionDatentypen.Geld_Enum)
+        > 0
+        and
+          LeseWichtiges.GeldZugewinnProRunde (RasseExtern => EinheitRasseNummerExtern.Rasse) < 0
+      then
+         Zwischenwert := KIGrenzpruefungen.AufgabenWichtigkeit (AktuellerWertExtern => Zwischenwert,
+                                                                ÄnderungExtern      => 5);
+            
+      else
+         null;
+      end if;
+      
+      return Zwischenwert;
+      
+   end GlobalerZustand;
 
 end KIEinheitAufgabeAufloesen;

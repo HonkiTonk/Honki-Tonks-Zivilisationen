@@ -50,7 +50,7 @@ package body KIBewegungAllgemein is
         LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                            IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       is
-         when EinheitenDatentypen.Leer_Einheitart_Enum | EinheitenDatentypen.Arbeiter_Enum =>
+         when EinheitenDatentypen.Arbeiter_Enum =>
             return KIKonstanten.KeineBewegung;
             
          when others =>

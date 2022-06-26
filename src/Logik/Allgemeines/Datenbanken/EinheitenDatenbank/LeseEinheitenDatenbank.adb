@@ -13,7 +13,7 @@ package body LeseEinheitenDatenbank is
    function EinheitArt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenID)
-      return EinheitenDatentypen.Einheit_Art_Enum
+      return EinheitenDatentypen.Einheitart_Vorhanden_Enum
    is begin
       
       return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).EinheitArt;

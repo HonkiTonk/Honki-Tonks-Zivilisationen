@@ -13,6 +13,9 @@ with StartMusik;
 with StartSound;
 
 with InteraktionGrafiktask;
+with MeldungSchreiben;
+with SoundStartEndeSFML;
+with MusikStartEndeSFML;
 
 procedure Start
 is
@@ -49,6 +52,8 @@ is
       when StandardAdaFehler : others =>
          Ada.Text_IO.Put_Line (Item => "Logiktask wurde abgebrochen.");
          Ada.Text_IO.Put_Line (Item => Exception_Information (StandardAdaFehler));
+         MeldungSchreiben.MeldungSchreiben (MeldungExtern => "Logiktask wurde abgebrochen.");
+         MeldungSchreiben.MeldungSchreibenASCII (MeldungExtern => Exception_Information (StandardAdaFehler));
          UnerwarteterFehler := True;
 
    end Logik;
@@ -68,6 +73,8 @@ is
       when StandardAdaFehler : others =>
          Ada.Text_IO.Put_Line (Item => "Grafiktask wurde abgebrochen.");
          Ada.Text_IO.Put_Line (Item => Exception_Information (StandardAdaFehler));
+         MeldungSchreiben.MeldungSchreiben (MeldungExtern => "Grafiktask wurde abgebrochen.");
+         MeldungSchreiben.MeldungSchreibenASCII (MeldungExtern => Exception_Information (StandardAdaFehler));
          UnerwarteterFehler := True;
 
    end Grafik;
@@ -87,6 +94,8 @@ is
       when StandardAdaFehler : others =>
          Ada.Text_IO.Put_Line (Item => "Musiktask wurde abgebrochen.");
          Ada.Text_IO.Put_Line (Item => Exception_Information (StandardAdaFehler));
+         MeldungSchreiben.MeldungSchreiben (MeldungExtern => "Musiktask wurde abgebrochen.");
+         MeldungSchreiben.MeldungSchreibenASCII (MeldungExtern => Exception_Information (StandardAdaFehler));
          UnerwarteterFehler := True;
 
    end Musik;
@@ -103,9 +112,11 @@ is
       TasksLaufen (Task_Sound_Enum) := False;
 
    exception
-      when Err : others =>
+      when StandardAdaFehler : others =>
          Ada.Text_IO.Put_Line (Item => "Soundtask wurde abgebrochen.");
-         Ada.Text_IO.Put_Line (Item => Exception_Information (Err));
+         Ada.Text_IO.Put_Line (Item => Exception_Information (StandardAdaFehler));
+         MeldungSchreiben.MeldungSchreiben (MeldungExtern => "Soundtask wurde abgebrochen.");
+         MeldungSchreiben.MeldungSchreibenASCII (MeldungExtern => Exception_Information (StandardAdaFehler));
          UnerwarteterFehler := True;
 
    end Sound;
@@ -137,29 +148,44 @@ begin
 
    end loop TaskIDsBelegenLassenSchleife;
 
+   MeldungSchreiben.MeldungSchreiben (MeldungExtern => "Start erfolgreich.");
+
    SpielLäuftSchleife:
    loop
 
-      if
+      case
         UnerwarteterFehler
-      then
-         Abort_Task (T => TaskID (Task_Logik_Enum));
-         Abort_Task (T => TaskID (Task_Grafik_Enum));
-         Abort_Task (T => TaskID (Task_Musik_Enum));
-         Abort_Task (T => TaskID (Task_Sound_Enum));
-         exit SpielLäuftSchleife;
+      is
+         when True =>
+            Abort_Task (T => TaskID (Task_Logik_Enum));
+            Abort_Task (T => TaskID (Task_Grafik_Enum));
+            Abort_Task (T => TaskID (Task_Musik_Enum));
+            Abort_Task (T => TaskID (Task_Sound_Enum));
+            MeldungSchreiben.MeldungSchreiben (MeldungExtern => "Unerwartet beendet.");
+            exit SpielLäuftSchleife;
 
-      elsif
+         when False =>
+            Systemchecks.Größenprüfung;
+            delay 0.20;
+      end case;
+
+      case
         InteraktionGrafiktask.FensterGeschlossen
-      then
-         Abort_Task (T => TaskID (Task_Logik_Enum));
-         Abort_Task (T => TaskID (Task_Musik_Enum));
-         Abort_Task (T => TaskID (Task_Sound_Enum));
-         exit SpielLäuftSchleife;
+      is
+         when True =>
+            -- Hier nicht mehr direkt die Schleife verlassen, da sonst die erfolgreiche Endmeldung nicht mehr geschrieben wird.
+            Abort_Task (T => TaskID (Task_Logik_Enum));
+            Abort_Task (T => TaskID (Task_Musik_Enum));
+            Abort_Task (T => TaskID (Task_Sound_Enum));
+            SoundStartEndeSFML.SoundStoppen;
+            SoundStartEndeSFML.SoundEntfernen;
+            MusikStartEndeSFML.MusikStoppen;
+            MusikStartEndeSFML.MusikEntfernen;
+            TasksLaufen := (others => False);
 
-      else
-         null;
-      end if;
+         when False =>
+            null;
+      end case;
 
       if
         TasksLaufen (Task_Logik_Enum) = False
@@ -170,40 +196,29 @@ begin
         and
           TasksLaufen (Task_Sound_Enum) = False
       then
+         MeldungSchreiben.MeldungSchreiben (MeldungExtern => "Erfolgreich beendet.");
          exit SpielLäuftSchleife;
 
-      elsif
-        Is_Terminated (T => TaskID (Task_Logik_Enum)) = True
-        and
-          TasksLaufen (Task_Logik_Enum) = True
-      then
-         UnerwarteterFehler := True;
-
-      elsif
-        Is_Terminated (T => TaskID (Task_Grafik_Enum)) = True
-        and
-          TasksLaufen (Task_Grafik_Enum) = True
-      then
-         UnerwarteterFehler := True;
-
-      elsif
-        Is_Terminated (T => TaskID (Task_Musik_Enum)) = True
-        and
-          TasksLaufen (Task_Musik_Enum) = True
-      then
-         UnerwarteterFehler := True;
-
-      elsif
-        Is_Terminated (T => TaskID (Task_Sound_Enum)) = True
-        and
-          TasksLaufen (Task_Sound_Enum) = True
-      then
-         UnerwarteterFehler := True;
-
       else
-         Systemchecks.Größenprüfung;
-         delay 0.20;
+         null;
       end if;
+
+      UnerwarteterFehlerSchleife:
+      for UnerwarteterFehlerSchleifenwert in Tasks_Enum'Range loop
+
+         if
+           Is_Terminated (T => TaskID (UnerwarteterFehlerSchleifenwert)) = True
+           and
+             TasksLaufen (UnerwarteterFehlerSchleifenwert) = True
+         then
+            UnerwarteterFehler := True;
+            exit UnerwarteterFehlerSchleife;
+
+         else
+            null;
+         end if;
+
+      end loop UnerwarteterFehlerSchleife;
 
    end loop SpielLäuftSchleife;
 

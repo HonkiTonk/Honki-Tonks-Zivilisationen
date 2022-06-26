@@ -31,7 +31,7 @@ private
       
    AufgabeDurchführen : Boolean;
    
-   AufgabeAuswählen : KIDatentypen.Einheit_Aufgabe_Vorhanden_Enum;
+   WelcheAufgabe : KIDatentypen.Einheit_Aufgabe_Vorhanden_Enum;
       
    type WichtigkeitArray is array (KIDatentypen.Einheit_Aufgabe_Vorhanden_Enum'Range) of KIDatentypen.AufgabenWichtigkeitKlein;
    Wichtigkeit : WichtigkeitArray;
@@ -57,7 +57,7 @@ private
    
    
    
-   function AufgabenSortieren
-     return KIDatentypen.Einheit_Aufgabe_Enum;
+   function AufgabeAuswählen
+     return KIDatentypen.Einheit_Aufgabe_Vorhanden_Enum;
    
 end KIAufgabenPlanung;

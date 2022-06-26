@@ -55,9 +55,9 @@ package EinheitenKonstanten is
                                                                         WirdTransportiert            => LeerWirdTransportiert,
                                                                         Meldungen                    => (others => LeerMeldung)
                                                                        );
-      
+   
    LeerEinheitenGrafik : constant Wide_Wide_Character := TextKonstanten.LeerZeichen;
-   LeerEinheitArt : constant EinheitenDatentypen.Einheit_Art_Enum := EinheitenDatentypen.Leer_Einheitart_Enum;
+   LeerEinheitArt : constant EinheitenDatentypen.Einheitart_Enum := EinheitenDatentypen.Arbeiter_Enum;
    LeerPreisGeld : constant ProduktionDatentypen.Produktion := 0;
    LeerPreisRessourcen : constant ProduktionDatentypen.Produktion := 0;
    LeerPermanenteKosten : constant ProduktionDatentypen.Stadtproduktion := 0;

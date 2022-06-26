@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
-with MeldungenSchreiben;
+with MeldungSchreiben;
 
 package body Warnung is
 
@@ -13,7 +13,7 @@ package body Warnung is
       
       Put_Line (Item => "Warnung.LogikWarnung:");
       Put_Line (Item => WarnmeldungExtern);
-      MeldungenSchreiben.MeldungSchreiben (FehlermeldungExtern => "Logikwarnung: " & WarnmeldungExtern);
+      MeldungSchreiben.MeldungSchreiben (MeldungExtern => "Logikwarnung: " & WarnmeldungExtern);
       
    end LogikWarnung;
    
@@ -25,7 +25,7 @@ package body Warnung is
       
       Put_Line (Item => "Warnung.GrafikWarnung:");
       Put_Line (Item => WarnmeldungExtern);
-      MeldungenSchreiben.MeldungSchreiben (FehlermeldungExtern => "Grafikwarnung: " & WarnmeldungExtern);
+      MeldungSchreiben.MeldungSchreiben (MeldungExtern => "Grafikwarnung: " & WarnmeldungExtern);
       
    end GrafikWarnung;
    
@@ -37,7 +37,7 @@ package body Warnung is
       
       Put_Line (Item => "Warnung.MusikWarnung:");
       Put_Line (Item => WarnmeldungExtern);
-      MeldungenSchreiben.MeldungSchreiben (FehlermeldungExtern => "Musikwarnung: " & WarnmeldungExtern);
+      MeldungSchreiben.MeldungSchreiben (MeldungExtern => "Musikwarnung: " & WarnmeldungExtern);
       
    end MusikWarnung;
    
@@ -49,7 +49,7 @@ package body Warnung is
       
       Put_Line (Item => "Warnung.SoundWarnung:");
       Put_Line (Item => WarnmeldungExtern);
-      MeldungenSchreiben.MeldungSchreiben (FehlermeldungExtern => "Soundwarnung: " & WarnmeldungExtern);
+      MeldungSchreiben.MeldungSchreiben (MeldungExtern => "Soundwarnung: " & WarnmeldungExtern);
       
    end SoundWarnung;
 

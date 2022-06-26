@@ -2,9 +2,16 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with EinheitenDatentypen; use EinheitenDatentypen;
+with EinheitenRecords; use EinheitenRecords;
+with EinheitenKonstanten;
 
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
+
+with KIDatentypen; use KIDatentypen;
+
+with KIKriegErmitteln;
+with KIGefahrErmitteln;
 
 package body KIEinheitAufgabeHeilen is
 
@@ -13,33 +20,47 @@ package body KIEinheitAufgabeHeilen is
       return KIDatentypen.AufgabenWichtigkeitKlein
    is begin
       
-      EinheitID := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      case
+        KIKriegErmitteln.IstImKrieg (RasseExtern => EinheitRasseNummerExtern.Rasse)
+      is
+         when True =>
+            return HeilenKrieg (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            
+         when False =>
+            return HeilenFrieden (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      end case;
+      
+   end SichHeilen;
+   
+   
+   
+   -------------------------------- Zu Friedenszeiten immer den gleichen Wert für verletzte Einheiten zurückgeben?
+   function HeilenFrieden
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return KIDatentypen.AufgabenWichtigkeitKlein
+   is begin
+      
+      Lebenspunkte := LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      MaximaleLebenspunkte := LeseEinheitenDatenbank.MaximaleLebenspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       
       if
-        LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
-        = LeseEinheitenDatenbank.MaximaleLebenspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                       IDExtern    => EinheitID)
+        Lebenspunkte = MaximaleLebenspunkte
       then
-         return 0;
+         return -1;
          
       elsif
-        LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
-        > LeseEinheitenDatenbank.MaximaleLebenspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                       IDExtern    => EinheitID)
-        / 3 * 2
+        Lebenspunkte > (MaximaleLebenspunkte / 3) * 2
       then
          return 3;
          
       elsif
-        LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
-        > LeseEinheitenDatenbank.MaximaleLebenspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                       IDExtern    => EinheitID)
-        / 2
+        Lebenspunkte > MaximaleLebenspunkte / 2
       then
          return 5;
          
       elsif
-        LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = 1
+        Lebenspunkte = 1
       then
          return 10;
          
@@ -47,6 +68,41 @@ package body KIEinheitAufgabeHeilen is
          return 8;
       end if;
       
-   end SichHeilen;
+   end HeilenFrieden;
+   
+   
+   
+   ------------------------------- Abhängig von Gegner in der Nähe machen.
+   function HeilenKrieg
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return KIDatentypen.AufgabenWichtigkeitKlein
+   is begin
+      
+      if
+        KIGefahrErmitteln.GefahrErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerRasseNummer
+      then
+         return HeilenFrieden (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         
+      else
+         Lebenspunkte := LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         MaximaleLebenspunkte := LeseEinheitenDatenbank.MaximaleLebenspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                              IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      end if;
+          
+      if
+        Lebenspunkte < MaximaleLebenspunkte / 3
+      then
+         return 5;
+         
+      elsif
+        Lebenspunkte = 1
+      then
+         return 10;
+         
+      else
+         return -1;
+      end if;
+      
+   end HeilenKrieg;
 
 end KIEinheitAufgabeHeilen;

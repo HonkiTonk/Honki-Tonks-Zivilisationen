@@ -17,10 +17,10 @@ package body EinheitenAllgemeines is
         LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                            IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       is
-         when EinheitenDatentypen.Fernkämpfer_Enum | EinheitenDatentypen.Nahkämpfer_Enum | EinheitenDatentypen.Beides_Enum =>
+         when EinheitenDatentypen.Einheitenart_Kampf_Enum'Range =>
             return True;
             
-         when EinheitenDatentypen.Leer_Einheitart_Enum | EinheitenDatentypen.Arbeiter_Enum | EinheitenDatentypen.Sonstiges_Enum | EinheitenDatentypen.Cheat_Enum =>
+         when EinheitenDatentypen.Arbeiter_Enum | EinheitenDatentypen.Sonstiges_Enum | EinheitenDatentypen.Cheat_Enum =>
             return False;
       end case;
       

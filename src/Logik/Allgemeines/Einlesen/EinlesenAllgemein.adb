@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with Warnung;
+
 ----------------------------------- Besseren Namen finden?
 package body EinlesenAllgemein is
 
@@ -26,6 +28,7 @@ package body EinlesenAllgemein is
       ---------------------------------- Geht das auch ohne exception?
    exception
       when End_Error =>
+         Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenAllgemein.VorzeitigesZeilenende - Zu wenig Zeilen.");
          return True;
       
    end VorzeitigesZeilenende;

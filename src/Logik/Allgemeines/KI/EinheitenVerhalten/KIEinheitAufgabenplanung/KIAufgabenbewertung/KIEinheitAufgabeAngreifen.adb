@@ -1,9 +1,13 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemDatentypen; use SystemDatentypen;
+with EinheitenRecords; use EinheitenRecords;
+with EinheitenKonstanten;
 
-with DiplomatischerZustand;
+with KIDatentypen; use KIDatentypen;
+
+with KIKriegErmitteln;
+with KIGefahrErmitteln;
 
 package body KIEinheitAufgabeAngreifen is
 
@@ -12,28 +16,24 @@ package body KIEinheitAufgabeAngreifen is
       return KIDatentypen.AufgabenWichtigkeitKlein
    is begin
       
-      RassenSchleife:
-      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
-         
-         if
-           SpielVariablen.RassenImSpiel (RasseSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
-           or
-             RasseSchleifenwert = EinheitRasseNummerExtern.Rasse
-         then
+      case
+        KIKriegErmitteln.IstImKrieg (RasseExtern => EinheitRasseNummerExtern.Rasse)
+      is
+         when True =>
             null;
             
-         elsif
-           DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                              FremdeRasseExtern => RasseSchleifenwert)
-           = SystemDatentypen.Krieg_Enum
-         then
-            return 5;
-            
-         else
-            null;
-         end if;
+         when False =>
+            return -1;
+      end case;
+      
+      if
+        KIGefahrErmitteln.GefahrErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerRasseNummer
+      then
+         null;
          
-      end loop RassenSchleife;
+      else
+         null;
+      end if;
       
       return 0;
       

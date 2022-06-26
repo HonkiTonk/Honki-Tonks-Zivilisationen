@@ -45,13 +45,13 @@ package body KIAufgabenPlanung is
       
       Wichtigkeit (KIDatentypen.Einheit_Auflösen_Enum) := KIEinheitAufgabeAufloesen.EinheitAuflösen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       Wichtigkeit (KIDatentypen.Einheit_Heilen_Enum) := KIEinheitAufgabeHeilen.SichHeilen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      Wichtigkeit (KIDatentypen.Einheit_Festsetzen_Enum) := KIEinheitAufgabeBefestigen.SichBefestigen;
+      Wichtigkeit (KIDatentypen.Einheit_Festsetzen_Enum) := KIEinheitAufgabeBefestigen.SichBefestigen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       Wichtigkeit (KIDatentypen.Einheit_Verbessern_Enum) := KIEinheitAufgabeModernisieren.SichVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      Wichtigkeit (KIDatentypen.Flucht_Enum) := KIEinheitAufgabeFliehen.Fliehen;
+      Wichtigkeit (KIDatentypen.Flucht_Enum) := KIEinheitAufgabeFliehen.Fliehen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       EinheitSpezifischeAufgabenErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
-      AufgabeFestlegen (GewählteAufgabeExtern    => AufgabenSortieren,
+      AufgabeFestlegen (GewählteAufgabeExtern    => AufgabeAuswählen,
                         EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
    end AufgabeErmitteln;
@@ -72,9 +72,9 @@ package body KIAufgabenPlanung is
             
          when EinheitenDatentypen.Nahkämpfer_Enum =>
             Wichtigkeit (KIDatentypen.Stadt_Bewachen_Enum) := KIEinheitAufgabeBewachen.StadtBewachen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-            Wichtigkeit (KIDatentypen.Verbesserung_Zerstören_Enum) := KIEinheitAufgabePluendern.StadtUmgebungZerstören;
+            Wichtigkeit (KIDatentypen.Verbesserung_Zerstören_Enum) := KIEinheitAufgabePluendern.StadtumgebungZerstören (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             Wichtigkeit (KIDatentypen.Angreifen_Enum) := KIEinheitAufgabeAngreifen.Angreifen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-            Wichtigkeit (KIDatentypen.Erkunden_Enum) := KIEinheitAufgabeErkunden.Erkunden;
+            Wichtigkeit (KIDatentypen.Erkunden_Enum) := KIEinheitAufgabeErkunden.Erkunden (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when EinheitenDatentypen.Fernkämpfer_Enum =>
             null;
@@ -87,51 +87,35 @@ package body KIAufgabenPlanung is
             
          when EinheitenDatentypen.Cheat_Enum =>
             Fehler.LogikFehler (FehlermeldungExtern => "KIAufgabenPlanung.EinheitSpezifischeAufgabenErmitteln - KI hat Cheateinheit ausgewählt.");
-            
-         when EinheitenDatentypen.Leer_Einheitart_Enum =>
-            Fehler.LogikFehler (FehlermeldungExtern => "KIAufgabenPlanung.EinheitSpezifischeAufgabenErmitteln - KI hat keine Einheit ausgewählt.");
       end case;
       
    end EinheitSpezifischeAufgabenErmitteln;
    
    
    
-   function AufgabenSortieren
-     return KIDatentypen.Einheit_Aufgabe_Enum
+   function AufgabeAuswählen
+     return KIDatentypen.Einheit_Aufgabe_Vorhanden_Enum
    is begin
       
-      AufgabeAuswählen := KIDatentypen.Einheit_Aufgabe_Vorhanden_Enum'First;
+      WelcheAufgabe := WichtigkeitArray'First;
       
-      WichtigkeitEinsSchleife:
-      for WichtigkeitEinsSchleifenwert in WichtigkeitArray'Range loop
-         WichtigkeitZweiSchleife:
-         for WichtigkeitZweiSchleifenwert in WichtigkeitArray'Range loop
+      AufgabeAuswählenSchleife:
+      for AufgabeAuswählenSchleifenwert in WichtigkeitArray'Range loop
          
-            if
-              Wichtigkeit (WichtigkeitEinsSchleifenwert) > Wichtigkeit (WichtigkeitZweiSchleifenwert)
-              and
-                Wichtigkeit (AufgabeAuswählen) < Wichtigkeit (WichtigkeitEinsSchleifenwert)
-            then
-               AufgabeAuswählen := WichtigkeitEinsSchleifenwert;
-               
-            elsif
-              Wichtigkeit (WichtigkeitEinsSchleifenwert) < Wichtigkeit (WichtigkeitZweiSchleifenwert)
-              and
-                Wichtigkeit (AufgabeAuswählen) < Wichtigkeit (WichtigkeitZweiSchleifenwert)
-            then
-               AufgabeAuswählen := WichtigkeitZweiSchleifenwert;
-               exit WichtigkeitZweiSchleife;
+         if
+           Wichtigkeit (AufgabeAuswählen) < Wichtigkeit (AufgabeAuswählenSchleifenwert)
+         then
+            WelcheAufgabe := AufgabeAuswählenSchleifenwert;
             
-            else
-               null;
-            end if;
+         else
+            null;
+         end if;
          
-         end loop WichtigkeitZweiSchleife;
-      end loop WichtigkeitEinsSchleife;
+      end loop AufgabeAuswählenSchleife;
       
-      return AufgabeAuswählen;
+      return WelcheAufgabe;
       
-   end AufgabenSortieren;
+   end AufgabeAuswählen;
    
    
    

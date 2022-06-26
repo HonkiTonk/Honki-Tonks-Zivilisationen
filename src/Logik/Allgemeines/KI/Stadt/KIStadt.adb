@@ -202,7 +202,7 @@ package body KIStadt is
                        LeseEinheitenDatenbank.EinheitArt (RasseExtern => FremdeEinheit.Rasse,
                                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => FremdeEinheit))
                      is
-                        when EinheitenDatentypen.Leer_Einheitart_Enum | EinheitenDatentypen.Arbeiter_Enum =>
+                        when EinheitenDatentypen.Arbeiter_Enum =>
                            null;
             
                         when others =>
@@ -231,10 +231,6 @@ package body KIStadt is
            LeseEinheitenDatenbank.EinheitArt (RasseExtern => StadtRasseNummerExtern.Rasse,
                                               IDExtern    => EinheitenSchleifenwert)
            = EinheitenDatentypen.Arbeiter_Enum
-           or
-             LeseEinheitenDatenbank.EinheitArt (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                IDExtern    => EinheitenSchleifenwert)
-           = EinheitenDatentypen.Leer_Einheitart_Enum
          then
             null;
             

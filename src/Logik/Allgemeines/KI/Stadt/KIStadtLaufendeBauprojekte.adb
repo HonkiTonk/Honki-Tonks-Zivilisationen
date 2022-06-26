@@ -47,7 +47,7 @@ package body KIStadtLaufendeBauprojekte is
    
    function GleicheEinheitArtBauprojekte
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
-      EinheitArtExtern : in EinheitenDatentypen.Einheit_Art_Verwendet_Enum)
+      EinheitArtExtern : in EinheitenDatentypen.Einheitart_Vorhanden_Enum)
       return EinheitenDatentypen.MaximaleEinheitenMitNullWert
    is begin
       

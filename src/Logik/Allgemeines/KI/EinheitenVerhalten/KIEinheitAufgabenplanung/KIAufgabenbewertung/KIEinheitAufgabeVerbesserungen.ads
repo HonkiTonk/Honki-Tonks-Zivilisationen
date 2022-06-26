@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
 with EinheitenRecords;
+with KartenRecords;
 
 with KIDatentypen;
 
@@ -18,5 +19,9 @@ package KIEinheitAufgabeVerbesserungen is
                and
                  SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
               );
+
+private
+
+   Kartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
 
 end KIEinheitAufgabeVerbesserungen;

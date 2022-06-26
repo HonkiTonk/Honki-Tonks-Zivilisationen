@@ -421,30 +421,5 @@ package body KIPruefungen is
       return True;
       
    end FeldBelegt;
-   
-   
-   
-   ------------------------------------ Habe ich schon eine Datei für Rechenprüfungen für KI Werte?
-   function AufgabenWichtigkeitÄndern
-     (AktuellerWertExtern : in KIDatentypen.AufgabenWichtigkeitKlein;
-      ÄnderungExtern : in KIDatentypen.AufgabenWichtigkeit)
-      return KIDatentypen.AufgabenWichtigkeitKlein
-   is begin
-     
-      if
-        AktuellerWertExtern + ÄnderungExtern >= AufgabenWichtigkeitKlein'Last
-      then
-         return AufgabenWichtigkeitKlein'Last;
-         
-      elsif
-        AktuellerWertExtern + ÄnderungExtern <= AufgabenWichtigkeitKlein'First
-      then
-         return AufgabenWichtigkeitKlein'First;
-         
-      else
-         return AktuellerWertExtern + ÄnderungExtern;
-      end if;
-   
-   end AufgabenWichtigkeitÄndern;
 
 end KIPruefungen;

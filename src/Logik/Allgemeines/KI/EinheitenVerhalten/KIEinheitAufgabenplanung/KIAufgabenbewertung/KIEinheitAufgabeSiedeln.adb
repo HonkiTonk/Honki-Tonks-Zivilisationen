@@ -24,7 +24,7 @@ package body KIEinheitAufgabeSiedeln is
       then
          SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                  AufgabeExtern            => KIDatentypen.Stadt_Bauen_Enum);
-         return 11;
+         return KIDatentypen.AufgabenWichtigkeitKlein'Last;
          
       elsif
         SpielVariablen.Allgemeines.Rundenanzahl

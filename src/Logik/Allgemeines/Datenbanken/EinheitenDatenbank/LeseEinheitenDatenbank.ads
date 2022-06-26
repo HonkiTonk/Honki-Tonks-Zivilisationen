@@ -13,7 +13,7 @@ package LeseEinheitenDatenbank is
    function EinheitArt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenID)
-      return EinheitenDatentypen.Einheit_Art_Enum
+      return EinheitenDatentypen.Einheitart_Vorhanden_Enum
      with
        Pre => (
                  SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum

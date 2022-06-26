@@ -20,9 +20,9 @@ package DatenbankRecords is
    type EinheitenlisteRecord is record
       
       ----------------------- Solche Benennungen auch mal anpassen.
-      EinheitArt : EinheitenDatentypen.Einheit_Art_Enum;
+      EinheitArt : EinheitenDatentypen.Einheitart_Vorhanden_Enum;
       PreisGeld : ProduktionDatentypen.Produktion;
-      PreisRessourcen : ProduktionDatentypen.Produktion;
+      PreisRessourcen : ProduktionDatentypen.Lagermenge;
       PermanenteKosten : StadtRecords.PermanenteKostenArray;
       Anforderungen : ForschungenDatentypen.ForschungIDNichtMöglich;
 

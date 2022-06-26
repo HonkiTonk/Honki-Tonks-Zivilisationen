@@ -144,9 +144,6 @@ package body KIEinheitenBauen is
             
          when EinheitenDatentypen.Cheat_Enum =>
             return KIDatentypen.BauenBewertung'First;
-            
-         when EinheitenDatentypen.Leer_Einheitart_Enum =>
-            null;
       end case;
       
       return 0;

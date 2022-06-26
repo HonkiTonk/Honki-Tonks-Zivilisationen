@@ -1,9 +1,19 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with ForschungenDatentypen; use ForschungenDatentypen;
+
+with EinheitenKonstanten;
+with ForschungKonstanten;
+
 with LeseEinheitenDatenbank;
 with LeseWichtiges;
 with LeseEinheitenGebaut;
+
+with KIDatentypen; use KIDatentypen;
+
+-- with KIKriegErmitteln;
+-- with KIGefahrErmitteln;
 
 package body KIEinheitAufgabeModernisieren is
 
@@ -12,30 +22,34 @@ package body KIEinheitAufgabeModernisieren is
       return KIDatentypen.AufgabenWichtigkeitKlein
    is begin
       
-      ----------------------- Das hier ging möglicherweise beim auseinander Bauen von den ganzen IDs kaputt.
-      NotwendigeTechnologie := ForschungenDatentypen.ForschungIDMitNullWert (LeseEinheitenDatenbank.WirdVerbessertZu (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                                                                      IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)));
+      NeueEinheitenID := LeseEinheitenDatenbank.WirdVerbessertZu (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                  IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       
       case
-        NotwendigeTechnologie
+        NeueEinheitenID
       is
-         when ForschungenDatentypen.ForschungIDMitNullWert'First =>
-            return 0;
+         when EinheitenKonstanten.LeerID =>
+            return -1;
             
          when others =>
-            null;
+            NotwendigeTechnologie := LeseEinheitenDatenbank.Anforderungen (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                           IDExtern    => NeueEinheitenID);
       end case;
       
       if
-        LeseWichtiges.Erforscht (RasseExtern             => EinheitRasseNummerExtern.Rasse,
-                                 WelcheTechnologieExtern => NotwendigeTechnologie)
+        NotwendigeTechnologie = ForschungKonstanten.LeerForschungAnforderung
+        or else
+          LeseWichtiges.Erforscht (RasseExtern             => EinheitRasseNummerExtern.Rasse,
+                                   WelcheTechnologieExtern => NotwendigeTechnologie)
         = True
       then
-         return 3;
-            
+         null;
+         
       else
-         return 0;
+         return -1;
       end if;
+      
+      return 5;
       
    end SichVerbessern;
 

@@ -11,8 +11,6 @@ with StadtRecords;
 
 with Karten;
 
-with KIDatentypen;
-
 package KIPruefungen is
    
    function StadtUmgebungPrüfen
@@ -47,11 +45,6 @@ package KIPruefungen is
                 and
                   UmgebungStadtBauenPrüfen'Result.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
                );
-   
-   function AufgabenWichtigkeitÄndern
-     (AktuellerWertExtern : in KIDatentypen.AufgabenWichtigkeitKlein;
-      ÄnderungExtern : in KIDatentypen.AufgabenWichtigkeit)
-      return KIDatentypen.AufgabenWichtigkeitKlein;
    
 private
    
