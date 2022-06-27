@@ -7,7 +7,7 @@ with DatenbankRecords;
 
 package RasseLarinosLotaris is
 
-   RasseLarinosLotarisListe : constant DatenbankRecords.RassenListeRecord := (
+   RasseLarinosLotarisListe : constant DatenbankRecords.RassenlisteRecord := (
                                                                               Aggressivität       => 0,
                                                                               Expansion           => 20,
                                                                               Wissenschaft        => 0,

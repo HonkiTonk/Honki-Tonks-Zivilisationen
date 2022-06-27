@@ -135,7 +135,7 @@ package DatenbankRecords is
    
    
    -- RassenDatenbank
-   type RassenListeRecord is record
+   type RassenlisteRecord is record
       
       Aggressivität : StadtDatentypen.MaximaleStädteMitNullWert;
       Expansion : StadtDatentypen.MaximaleStädteMitNullWert;

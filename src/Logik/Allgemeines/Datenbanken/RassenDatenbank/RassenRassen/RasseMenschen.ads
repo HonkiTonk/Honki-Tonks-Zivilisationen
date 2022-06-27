@@ -7,7 +7,7 @@ with DatenbankRecords;
 
 package RasseMenschen is
 
-   RasseMenschenListe : constant DatenbankRecords.RassenListeRecord := (
+   RasseMenschenListe : constant DatenbankRecords.RassenlisteRecord := (
                                                                         Aggressivität       => 0,
                                                                         Expansion           => 20,
                                                                         Wissenschaft        => 0,

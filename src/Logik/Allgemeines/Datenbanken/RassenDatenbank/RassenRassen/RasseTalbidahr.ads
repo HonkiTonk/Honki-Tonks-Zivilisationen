@@ -7,7 +7,7 @@ with DatenbankRecords;
 
 package RasseTalbidahr is
 
-   RasseTalbidahrListe : constant DatenbankRecords.RassenListeRecord := (
+   RasseTalbidahrListe : constant DatenbankRecords.RassenlisteRecord := (
                                                                          Aggressivität       => 0,
                                                                          Expansion           => 20,
                                                                          Wissenschaft        => 0,

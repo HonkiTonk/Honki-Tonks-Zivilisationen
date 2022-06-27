@@ -7,7 +7,7 @@ with DatenbankRecords;
 
 package RasseMoruPhisihl is
 
-   RasseMoruPhisihlListe : constant DatenbankRecords.RassenListeRecord := (
+   RasseMoruPhisihlListe : constant DatenbankRecords.RassenlisteRecord := (
                                                                            Aggressivität       => 0,
                                                                            Expansion           => 20,
                                                                            Wissenschaft        => 0,

@@ -7,7 +7,7 @@ with DatenbankRecords;
 
 package RasseManuky is
 
-   RasseManukyListe : constant DatenbankRecords.RassenListeRecord := (
+   RasseManukyListe : constant DatenbankRecords.RassenlisteRecord := (
                                                                       Aggressivität       => 0,
                                                                       Expansion           => 20,
                                                                       Wissenschaft        => 0,

@@ -7,7 +7,8 @@ with DatenbankRecords;
 
 package RasseAlary is
 
-   RasseAlaryListe : constant DatenbankRecords.RassenListeRecord := (
+   ------------------------------------ Die ganzen Sachen mal nach RassenlisteRassenname umbenennen?
+   RasseAlaryListe : constant DatenbankRecords.RassenlisteRecord := (
                                                                      Aggressivität       => 0,
                                                                      Expansion           => 20,
                                                                      Wissenschaft        => 0,

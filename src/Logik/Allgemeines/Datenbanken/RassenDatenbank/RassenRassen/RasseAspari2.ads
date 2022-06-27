@@ -7,7 +7,7 @@ with DatenbankRecords;
 
 package RasseAspari2 is
 
-   RasseAspari2Liste : constant DatenbankRecords.RassenListeRecord := (
+   RasseAspari2Liste : constant DatenbankRecords.RassenlisteRecord := (
                                                                        Aggressivität       => 0,
                                                                        Expansion           => 20,
                                                                        Wissenschaft        => 0,

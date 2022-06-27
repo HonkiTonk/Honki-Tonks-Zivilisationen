@@ -7,7 +7,7 @@ with DatenbankRecords;
 
 package RasseEkropa is
 
-   RasseEkropaListe : constant DatenbankRecords.RassenListeRecord := (
+   RasseEkropaListe : constant DatenbankRecords.RassenlisteRecord := (
                                                                       Aggressivität       => 0,
                                                                       Expansion           => 20,
                                                                       Wissenschaft        => 0,

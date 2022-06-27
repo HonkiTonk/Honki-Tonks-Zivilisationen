@@ -175,7 +175,7 @@ package ChangelogMai2022 is
 
    -- Version 0.01.0660 => 0.01.0690 (09.05.2022):
    
-   -- Debian GNAT 12-20220428-1 auf Debian GNAT 12.1.0-1 aktusalisiert.
+   -- Debian GNAT 12-20220428-1 auf Debian GNAT 12.1.0-1 aktualisiert.
    -- EinheitenDatentypen vollständig in EinheitenDatentypen, StadtDatentypen, KampfDatentypen und ProduktionDatentypen aufgeteilt.
    -- EinheitenRecords vollständig in EinheitenRecords, KampfRecords und StadtRecords aufgeteilt.
    -- Bausystem überarbeitet und an die neue Trennung angepasst.

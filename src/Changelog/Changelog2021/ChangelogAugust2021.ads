@@ -2,7 +2,7 @@ package ChangelogAugust2021 is
 
    -- Version 0.00.8550 => 0.00.8550 (31.08.2021):
    
-   -- Internetprobleme.
+   -- null.
    
    
    
@@ -115,7 +115,7 @@ package ChangelogAugust2021 is
    
    -- Version 0.00.8410 => 0.00.8410 (21.08.2021):
    
-   -- Krank
+   -- null.
    
    
    

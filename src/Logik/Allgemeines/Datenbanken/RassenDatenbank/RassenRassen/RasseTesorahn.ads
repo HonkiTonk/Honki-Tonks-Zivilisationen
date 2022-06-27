@@ -7,7 +7,7 @@ with DatenbankRecords;
 
 package RasseTesorahn is
 
-   RasseTesorahnListe : constant DatenbankRecords.RassenListeRecord := (
+   RasseTesorahnListe : constant DatenbankRecords.RassenlisteRecord := (
                                                                         Aggressivität       => 0,
                                                                         Expansion           => 20,
                                                                         Wissenschaft        => 0,

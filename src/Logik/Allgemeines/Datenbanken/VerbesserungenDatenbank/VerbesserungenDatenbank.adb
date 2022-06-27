@@ -6,7 +6,7 @@ package body VerbesserungenDatenbank is
    procedure StandardVerbesserungenDatenbankLaden
    is begin
       
-      VerbesserungenListe := VerbesserungenListeStandard;
+      Verbesserungenliste := VerbesserungenlisteStandard;
       
    end StandardVerbesserungenDatenbankLaden;
    
@@ -15,7 +15,7 @@ package body VerbesserungenDatenbank is
    procedure StandardWegeDatenbankLaden
    is begin
       
-      WegeListe := WegeListeStandard;
+      Wegeliste := WegelisteStandard;
       
    end StandardWegeDatenbankLaden;
    

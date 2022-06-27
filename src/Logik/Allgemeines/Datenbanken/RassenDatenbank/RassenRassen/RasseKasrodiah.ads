@@ -7,7 +7,7 @@ with DatenbankRecords;
 
 package RasseKasrodiah is
 
-   RasseKasrodiahListe : constant DatenbankRecords.RassenListeRecord := (
+   RasseKasrodiahListe : constant DatenbankRecords.RassenlisteRecord := (
                                                                          Aggressivität       => 0,
                                                                          Expansion           => 20,
                                                                          Wissenschaft        => 0,

@@ -12,7 +12,7 @@ package body LeseRassenDatenbank is
       return StadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
-      return RassenDatenbank.RassenListe (RasseExtern).Aggressivität;
+      return RassenDatenbank.Rassenliste (RasseExtern).Aggressivität;
         
    end RassenAggressivität;
    
@@ -23,7 +23,7 @@ package body LeseRassenDatenbank is
       return StadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
-      return RassenDatenbank.RassenListe (RasseExtern).Expansion;
+      return RassenDatenbank.Rassenliste (RasseExtern).Expansion;
         
    end RassenExpansion;
    
@@ -34,7 +34,7 @@ package body LeseRassenDatenbank is
       return StadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
-      return RassenDatenbank.RassenListe (RasseExtern).Wissenschaft;
+      return RassenDatenbank.Rassenliste (RasseExtern).Wissenschaft;
         
    end RassenWissenschaft;
    
@@ -45,7 +45,7 @@ package body LeseRassenDatenbank is
       return StadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
-      return RassenDatenbank.RassenListe (RasseExtern).Produktion;
+      return RassenDatenbank.Rassenliste (RasseExtern).Produktion;
         
    end RassenProduktion;
    
@@ -56,7 +56,7 @@ package body LeseRassenDatenbank is
       return StadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
-      return RassenDatenbank.RassenListe (RasseExtern).Wirtschaft;
+      return RassenDatenbank.Rassenliste (RasseExtern).Wirtschaft;
         
    end RassenWirtschaft;
    
@@ -67,7 +67,7 @@ package body LeseRassenDatenbank is
       return StadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
-      return RassenDatenbank.RassenListe (RasseExtern).Bewirtschaftung;
+      return RassenDatenbank.Rassenliste (RasseExtern).Bewirtschaftung;
         
    end RassenBewirtschaftung;
    
@@ -83,7 +83,7 @@ package body LeseRassenDatenbank is
       for StaatsformSchleifenwert in SystemDatentypen.StaatsformenArray'Range loop
          
          if
-           RassenDatenbank.RassenListe (RasseExtern).GültigeStaatsformen (StaatsformSchleifenwert) = StaatsformExtern
+           RassenDatenbank.Rassenliste (RasseExtern).GültigeStaatsformen (StaatsformSchleifenwert) = StaatsformExtern
          then
             return True;
          

@@ -7,7 +7,7 @@ with DatenbankRecords;
 
 package RasseNatriesZermanis is
 
-   RasseNatriesZermanisListe : constant DatenbankRecords.RassenListeRecord := (
+   RasseNatriesZermanisListe : constant DatenbankRecords.RassenlisteRecord := (
                                                                                Aggressivität       => 0,
                                                                                Expansion           => 20,
                                                                                Wissenschaft        => 0,

@@ -80,7 +80,7 @@ package WichtigesKonstanten is
    DiplomatischerStatusÄnderungszeit : constant Positive := 10;
    
    -- Wird noch nicht verwendet.
-   LeerRassenListe : constant DatenbankRecords.RassenListeRecord := (
+   LeerRassenListe : constant DatenbankRecords.RassenlisteRecord := (
                                                                      Aggressivität       => 0,
                                                                      Expansion           => 0,
                                                                      Wissenschaft        => 0,

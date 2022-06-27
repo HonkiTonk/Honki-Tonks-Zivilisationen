@@ -7,7 +7,7 @@ with DatenbankRecords;
 
 package RassePryolon is
 
-   RassePryolonListe : constant DatenbankRecords.RassenListeRecord := (
+   RassePryolonListe : constant DatenbankRecords.RassenlisteRecord := (
                                                                        Aggressivität       => 0,
                                                                        Expansion           => 20,
                                                                        Wissenschaft        => 0,

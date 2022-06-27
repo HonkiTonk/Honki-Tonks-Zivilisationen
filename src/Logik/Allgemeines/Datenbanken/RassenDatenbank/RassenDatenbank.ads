@@ -7,9 +7,8 @@ with DatenbankRecords;
 
 package RassenDatenbank is
 
-   ------------------------ Hier weiter machen mit umbenennen.
-   type RassenListeArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of DatenbankRecords.RassenListeRecord;
-   RassenListe : RassenListeArray;
+   type RassenlisteArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of DatenbankRecords.RassenlisteRecord;
+   Rassenliste : RassenlisteArray;
    
    procedure StandardRassenDatenbankLaden;
 

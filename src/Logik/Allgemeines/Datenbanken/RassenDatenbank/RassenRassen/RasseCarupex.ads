@@ -7,7 +7,7 @@ with DatenbankRecords;
 
 package RasseCarupex is
 
-   RasseCarupexListe : constant DatenbankRecords.RassenListeRecord := (
+   RasseCarupexListe : constant DatenbankRecords.RassenlisteRecord := (
                                                                        Aggressivität       => 0,
                                                                        Expansion           => 20,
                                                                        Wissenschaft        => 0,

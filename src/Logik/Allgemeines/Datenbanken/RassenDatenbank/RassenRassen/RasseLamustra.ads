@@ -7,7 +7,7 @@ with DatenbankRecords;
 
 package RasseLamustra is
 
-   RasseLamustraListe : constant DatenbankRecords.RassenListeRecord := (
+   RasseLamustraListe : constant DatenbankRecords.RassenlisteRecord := (
                                                                         Aggressivität       => 0,
                                                                         Expansion           => 20,
                                                                         Wissenschaft        => 0,

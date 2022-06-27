@@ -7,7 +7,7 @@ with DatenbankRecords;
 
 package RasseLasupin is
 
-   RasseLasupinListe : constant DatenbankRecords.RassenListeRecord := (
+   RasseLasupinListe : constant DatenbankRecords.RassenlisteRecord := (
                                                                        Aggressivität       => 0,
                                                                        Expansion           => 20,
                                                                        Wissenschaft        => 0,

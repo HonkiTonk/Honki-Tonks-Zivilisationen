@@ -11,7 +11,7 @@ package body LeseVerbesserungenDatenbank is
       return Boolean
    is begin
       
-      return VerbesserungenDatenbank.VerbesserungenListe (VerbesserungExtern).Passierbarkeit (WelcheUmgebungExtern);
+      return VerbesserungenDatenbank.Verbesserungenliste (VerbesserungExtern).Passierbarkeit (WelcheUmgebungExtern);
       
    end PassierbarkeitVerbesserung;
    
@@ -23,7 +23,7 @@ package body LeseVerbesserungenDatenbank is
       return Boolean
    is begin
       
-      return VerbesserungenDatenbank.WegeListe (WegExtern).Passierbarkeit (WelcheUmgebungExtern);
+      return VerbesserungenDatenbank.Wegeliste (WegExtern).Passierbarkeit (WelcheUmgebungExtern);
       
    end PassierbarkeitWeg;
    
@@ -35,7 +35,7 @@ package body LeseVerbesserungenDatenbank is
       return KartenDatentypen.Einzelbewertung
    is begin
       
-      return VerbesserungenDatenbank.VerbesserungenListe (VerbesserungExtern).Bewertung (RasseExtern);
+      return VerbesserungenDatenbank.Verbesserungenliste (VerbesserungExtern).Bewertung (RasseExtern);
       
    end BewertungVerbesserung;
    
@@ -47,7 +47,7 @@ package body LeseVerbesserungenDatenbank is
       return KartenDatentypen.Einzelbewertung
    is begin
       
-      return VerbesserungenDatenbank.WegeListe (WegExtern).Bewertung (RasseExtern);
+      return VerbesserungenDatenbank.Wegeliste (WegExtern).Bewertung (RasseExtern);
       
    end BewertungWeg;
    
@@ -60,7 +60,7 @@ package body LeseVerbesserungenDatenbank is
       return ProduktionDatentypen.Einzelproduktion
    is begin
       
-      return VerbesserungenDatenbank.VerbesserungenListe (VerbesserungExtern).Wirtschaft (RasseExtern, WelcherWertExtern);
+      return VerbesserungenDatenbank.Verbesserungenliste (VerbesserungExtern).Wirtschaft (RasseExtern, WelcherWertExtern);
       
    end WirtschaftVerbesserung;
    
@@ -73,7 +73,7 @@ package body LeseVerbesserungenDatenbank is
       return ProduktionDatentypen.Einzelproduktion
    is begin
       
-      return VerbesserungenDatenbank.WegeListe (WegExtern).Wirtschaft (RasseExtern, WelcherWertExtern);
+      return VerbesserungenDatenbank.Wegeliste (WegExtern).Wirtschaft (RasseExtern, WelcherWertExtern);
       
    end WirtschaftWeg;
    
@@ -86,7 +86,7 @@ package body LeseVerbesserungenDatenbank is
       return KampfDatentypen.KampfwerteAllgemein
    is begin
       
-      return VerbesserungenDatenbank.VerbesserungenListe (VerbesserungExtern).Kampf (RasseExtern, WelcherWertExtern);
+      return VerbesserungenDatenbank.Verbesserungenliste (VerbesserungExtern).Kampf (RasseExtern, WelcherWertExtern);
       
    end KampfVerbesserung;
    
@@ -99,7 +99,7 @@ package body LeseVerbesserungenDatenbank is
       return KampfDatentypen.KampfwerteAllgemein
    is begin
       
-      return VerbesserungenDatenbank.WegeListe (WegExtern).Kampf (RasseExtern, WelcherWertExtern);
+      return VerbesserungenDatenbank.Wegeliste (WegExtern).Kampf (RasseExtern, WelcherWertExtern);
       
    end KampfWeg;
 

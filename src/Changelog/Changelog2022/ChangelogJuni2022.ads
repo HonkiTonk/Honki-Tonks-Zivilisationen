@@ -14,17 +14,16 @@ package ChangelogJuni2022 is
    
    
 
-   -- Version 0.01. => 0.01. (28.06.2022):
+   -- Version 0.01.1685 => 0.01. (28.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.1680 => 0.01. (27.06.2022):
+   -- Version 0.01.1680 => 0.01.1685 (27.06.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Kleinigkeiten umbenannt.
    
    
 

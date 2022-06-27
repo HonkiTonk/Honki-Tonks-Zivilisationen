@@ -9,18 +9,18 @@ with DatenbankRecords;
 
 package VerbesserungenDatenbank is
    
-   type VerbesserungenListeArray is array (KartenVerbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum'Range) of DatenbankRecords.VerbesserungenWegeListeRecord;
-   VerbesserungenListe : VerbesserungenListeArray;
+   type VerbesserungenlisteArray is array (KartenVerbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum'Range) of DatenbankRecords.VerbesserungenWegeListeRecord;
+   Verbesserungenliste : VerbesserungenlisteArray;
    
-   type WegeListeArray is array (KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Range) of DatenbankRecords.VerbesserungenWegeListeRecord;
-   WegeListe : WegeListeArray;
+   type WegelisteArray is array (KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Range) of DatenbankRecords.VerbesserungenWegeListeRecord;
+   Wegeliste : WegelisteArray;
    
    procedure StandardVerbesserungenDatenbankLaden;
    procedure StandardWegeDatenbankLaden;
       
 private
          
-   VerbesserungenListeStandard : constant VerbesserungenListeArray := (
+   VerbesserungenlisteStandard : constant VerbesserungenlisteArray := (
                                                                        -- Städte
                                                                        KartenVerbesserungDatentypen.Eigene_Hauptstadt_Enum =>
                                                                          (
@@ -105,7 +105,7 @@ private
    
    
    
-   WegeListeStandard : constant WegeListeArray := (
+   WegelisteStandard : constant WegelisteArray := (
                                                    -- Straßen
                                                    KartenVerbesserungDatentypen.Straßenkreuzung_Vier_Enum =>
                                                      (

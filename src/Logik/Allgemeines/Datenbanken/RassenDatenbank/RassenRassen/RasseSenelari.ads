@@ -7,7 +7,7 @@ with DatenbankRecords;
 
 package RasseSenelari is
 
-   RasseSenelariListe : constant DatenbankRecords.RassenListeRecord := (
+   RasseSenelariListe : constant DatenbankRecords.RassenlisteRecord := (
                                                                         Aggressivität       => 0,
                                                                         Expansion           => 20,
                                                                         Wissenschaft        => 0,

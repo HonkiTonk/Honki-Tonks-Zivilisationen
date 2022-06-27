@@ -191,8 +191,8 @@ package body SchreibenDatenbanken is
                     Name => "Datenbanken/VerbesserungenDatenbank");
       end case;
       
-      VerbesserungenDatenbank.VerbesserungenListeArray'Write (Stream (File => DatenbankSpeichern),
-                                                              VerbesserungenDatenbank.VerbesserungenListe);
+      VerbesserungenDatenbank.VerbesserungenlisteArray'Write (Stream (File => DatenbankSpeichern),
+                                                              VerbesserungenDatenbank.Verbesserungenliste);
       
       Close (File => DatenbankSpeichern);
       
@@ -212,8 +212,8 @@ package body SchreibenDatenbanken is
                     Name => "Datenbanken/WegeDatenbank");
       end case;
       
-      VerbesserungenDatenbank.WegeListeArray'Write (Stream (File => DatenbankSpeichern),
-                                                    VerbesserungenDatenbank.WegeListe);
+      VerbesserungenDatenbank.WegelisteArray'Write (Stream (File => DatenbankSpeichern),
+                                                    VerbesserungenDatenbank.Wegeliste);
       
       Close (File => DatenbankSpeichern);
       
@@ -238,8 +238,8 @@ package body SchreibenDatenbanken is
                     Name => "Datenbanken/RassenDatenbank");
       end case;
       
-      RassenDatenbank.RassenListeArray'Write (Stream (File => DatenbankSpeichern),
-                                              RassenDatenbank.RassenListe);
+      RassenDatenbank.RassenlisteArray'Write (Stream (File => DatenbankSpeichern),
+                                              RassenDatenbank.Rassenliste);
       
       Close (File => DatenbankSpeichern);
       

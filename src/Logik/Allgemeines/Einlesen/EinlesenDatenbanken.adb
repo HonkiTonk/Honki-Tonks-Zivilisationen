@@ -184,8 +184,8 @@ package body EinlesenDatenbanken is
             return;
       end case;
       
-      VerbesserungenDatenbank.VerbesserungenListeArray'Read (Stream (File => DatenbankEinlesen),
-                                                             VerbesserungenDatenbank.VerbesserungenListe);
+      VerbesserungenDatenbank.VerbesserungenlisteArray'Read (Stream (File => DatenbankEinlesen),
+                                                             VerbesserungenDatenbank.Verbesserungenliste);
       
       Close (File => DatenbankEinlesen);
       
@@ -204,8 +204,8 @@ package body EinlesenDatenbanken is
             return;
       end case;
       
-      VerbesserungenDatenbank.WegeListeArray'Read (Stream (File => DatenbankEinlesen),
-                                                   VerbesserungenDatenbank.WegeListe);
+      VerbesserungenDatenbank.WegelisteArray'Read (Stream (File => DatenbankEinlesen),
+                                                   VerbesserungenDatenbank.Wegeliste);
       
       Close (File => DatenbankEinlesen);
       
@@ -229,8 +229,8 @@ package body EinlesenDatenbanken is
             return;
       end case;
       
-      RassenDatenbank.RassenListeArray'Read (Stream (File => DatenbankEinlesen),
-                                             RassenDatenbank.RassenListe);
+      RassenDatenbank.RassenlisteArray'Read (Stream (File => DatenbankEinlesen),
+                                             RassenDatenbank.Rassenliste);
       
       Close (File => DatenbankEinlesen);
       

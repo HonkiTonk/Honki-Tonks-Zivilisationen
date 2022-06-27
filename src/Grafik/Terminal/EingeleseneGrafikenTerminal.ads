@@ -393,7 +393,7 @@ package EingeleseneGrafikenTerminal is
    
    
    
-   type VerbesserungenGrafikArray is array (VerbesserungenDatenbank.VerbesserungenListeArray'Range) of Wide_Wide_Character;
+   type VerbesserungenGrafikArray is array (VerbesserungenDatenbank.VerbesserungenlisteArray'Range) of Wide_Wide_Character;
    VerbesserungenGrafik : VerbesserungenGrafikArray := (
                                                         -- Städte
                                                         KartenVerbesserungDatentypen.Eigene_Hauptstadt_Enum => '♣',
@@ -414,7 +414,7 @@ package EingeleseneGrafikenTerminal is
    
    
    
-   type WegeGrafikArray is array (VerbesserungenDatenbank.WegeListeArray'Range) of Wide_Wide_Character;
+   type WegeGrafikArray is array (VerbesserungenDatenbank.WegelisteArray'Range) of Wide_Wide_Character;
    WegeGrafik : WegeGrafikArray := (
                                     -- Straßen
                                     KartenVerbesserungDatentypen.Straßenkreuzung_Vier_Enum        => '╬',

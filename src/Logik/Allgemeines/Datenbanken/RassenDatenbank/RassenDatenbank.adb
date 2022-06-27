@@ -25,7 +25,7 @@ package body RassenDatenbank is
    procedure StandardRassenDatenbankLaden
    is begin
       
-      RassenListe := (
+      Rassenliste := (
                       RasseMenschen.RasseMenschenListe,
                       RasseKasrodiah.RasseKasrodiahListe,
                       RasseLasupin.RasseLasupinListe,

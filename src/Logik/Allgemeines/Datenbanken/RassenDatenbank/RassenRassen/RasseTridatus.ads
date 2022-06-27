@@ -7,7 +7,7 @@ with DatenbankRecords;
 
 package RasseTridatus is
 
-   RasseTridatusListe : constant DatenbankRecords.RassenListeRecord := (
+   RasseTridatusListe : constant DatenbankRecords.RassenlisteRecord := (
                                                                         Aggressivität       => 0,
                                                                         Expansion           => 20,
                                                                         Wissenschaft        => 0,

@@ -7,7 +7,7 @@ with DatenbankRecords;
 
 package RasseSuroka is
 
-   RasseSurokaListe : constant DatenbankRecords.RassenListeRecord := (
+   RasseSurokaListe : constant DatenbankRecords.RassenlisteRecord := (
                                                                       Aggressivität       => 0,
                                                                       Expansion           => 20,
                                                                       Wissenschaft        => 0,
