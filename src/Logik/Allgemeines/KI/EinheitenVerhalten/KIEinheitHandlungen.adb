@@ -15,8 +15,9 @@ with KIDatentypen; use KIDatentypen;
 
 with KIBewegungDurchfuehren;
 with KIAufgabenPlanung;
+with KIAufgabenUmsetzung;
 
----------------------------------- Besseren Namen geben.
+---------------------------------- Besseren Namen geben?
 package body KIEinheitHandlungen is
 
    function HandlungBeendet
@@ -101,7 +102,7 @@ package body KIEinheitHandlungen is
         and
           LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerBeschäftigung
       then
-         KIAufgabenPlanung.AufgabeUmsetzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         KIAufgabenUmsetzung.AufgabeUmsetzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          return HandlungBeendet (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
       else

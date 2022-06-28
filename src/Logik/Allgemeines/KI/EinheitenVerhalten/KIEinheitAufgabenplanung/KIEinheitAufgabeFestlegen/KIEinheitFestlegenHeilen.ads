@@ -2,27 +2,19 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
-with EinheitenRecords;
-with KartenRecords;
-with KartenDatentypen;
 with SpielVariablen;
+with EinheitenRecords;
 
-package KIMindestBewertungKartenfeldErmitteln is
+package KIEinheitFestlegenHeilen is
 
-   function MindestBewertungKartenfeldStadtBauen
+   function Heilen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return KartenDatentypen.GesamteFeldbewertung
+      return Boolean
      with
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
                and
                  SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
               );
-   
-private
-   
-   MindestBewertungKartenfeld : KartenDatentypen.GesamteFeldbewertung;
-   
-   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
 
-end KIMindestBewertungKartenfeldErmitteln;
+end KIEinheitFestlegenHeilen;

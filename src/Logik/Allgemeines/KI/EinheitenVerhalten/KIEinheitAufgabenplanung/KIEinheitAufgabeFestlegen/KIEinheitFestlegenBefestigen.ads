@@ -2,17 +2,14 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
-with SpielVariablen;
 with EinheitenRecords;
-with KartenRecords;
+with SpielVariablen;
 
-with KIDatentypen;
+package KIEinheitFestlegenBefestigen is
 
-package KIEinheitAufgabeVerbesserungen is
-
-   function StadtUmgebungVerbessern
+   function Befestigen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return KIDatentypen.AufgabenWichtigkeitKlein
+      return Boolean
      with
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -20,8 +17,4 @@ package KIEinheitAufgabeVerbesserungen is
                  SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
               );
 
-private
-
-   Kartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
-
-end KIEinheitAufgabeVerbesserungen;
+end KIEinheitFestlegenBefestigen;

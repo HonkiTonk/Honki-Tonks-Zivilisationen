@@ -36,7 +36,8 @@ private
    
    function ZielSuchen
      (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      BereichExtern : in KartenDatentypen.Sichtweite)
       return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre => (

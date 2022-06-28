@@ -12,7 +12,6 @@ with KIDatentypen; use KIDatentypen;
 with KIKonstanten;
 
 with KIBewegungDurchfuehren;
-with KIAufgabenPlanung;
 with KIEinheitHandlungen;
 
 package body KIEinheitGefahrenverhalten is
@@ -65,7 +64,8 @@ package body KIEinheitGefahrenverhalten is
            and
              LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerBeschäftigung
          then
-            KIAufgabenPlanung.AufgabeUmsetzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            null;
+            -- KIAufgabenPlanung.AufgabeUmsetzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
          else
             exit AktivitätSchleife;

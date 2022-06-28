@@ -7,17 +7,17 @@ with EinheitenKonstanten;
 
 with KIDatentypen; use KIDatentypen;
 
-with KIPruefungen;
+with KIEinheitAufgabeplanungAllgemeines;
 with KIGefahrErmitteln;
 
 package body KIEinheitAufgabeVerbesserungen is
 
-   function StadtUmgebungVerbessern
+   function StadtumgebungVerbessern
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return KIDatentypen.AufgabenWichtigkeitKlein
    is begin
       
-      Kartenwert := KIPruefungen.StadtUmgebungPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      Kartenwert := KIEinheitAufgabeplanungAllgemeines.StadtUmgebungPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       case
         Kartenwert.XAchse
@@ -40,6 +40,6 @@ package body KIEinheitAufgabeVerbesserungen is
       
       return 10;
             
-   end StadtUmgebungVerbessern;
+   end StadtumgebungVerbessern;
 
 end KIEinheitAufgabeVerbesserungen;

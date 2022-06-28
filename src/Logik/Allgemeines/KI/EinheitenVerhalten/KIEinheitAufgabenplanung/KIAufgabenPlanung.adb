@@ -2,22 +2,15 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with EinheitenDatentypen; use EinheitenDatentypen;
-with TastenbelegungDatentypen;
-with EinheitenKonstanten;
-
-with SchreibeEinheitenGebaut;
+  
 with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;
 
-with StadtBauen;
-with Aufgaben;
 with EinheitenErzeugenEntfernen;
 with Fehler;
 
 with KIDatentypen; use KIDatentypen;
 
-with KIAufgabeFestlegen;
-with KIAufgabeUmsetzen;
 with KIEinheitAufgabeNichts;
 with KIEinheitAufgabeBefestigen;
 with KIEinheitAufgabeFliehen;
@@ -30,6 +23,17 @@ with KIEinheitAufgabeModernisieren;
 with KIEinheitAufgabeSiedeln;
 with KIEinheitAufgabeBewachen;
 with KIEinheitAufgabeVerbesserungen;
+with KIEinheitFestlegenSiedeln;
+with KIEinheitFestlegenVerbesserungen;
+with KIEinheitFestlegenFliehen;
+with KIEinheitFestlegenHeilen;
+with KIEinheitFestlegenBefestigen;
+with KIEinheitFestlegenModernisieren;
+with KIEinheitFestlegenBewachen;
+with KIEinheitFestlegenPluendern;
+with KIEinheitFestlegenAngreifen;
+with KIEinheitFestlegenErkunden;
+with KIEinheitFestlegenNichts;
 
 package body KIAufgabenPlanung is
    
@@ -49,16 +53,15 @@ package body KIAufgabenPlanung is
       Wichtigkeit (KIDatentypen.Einheit_Verbessern_Enum) := KIEinheitAufgabeModernisieren.SichVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       Wichtigkeit (KIDatentypen.Flucht_Enum) := KIEinheitAufgabeFliehen.Fliehen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
-      EinheitSpezifischeAufgabenErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      EinheitSpezifischeAufgabeErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
-      AufgabeFestlegen (GewählteAufgabeExtern    => AufgabeAuswählen,
-                        EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      AufgabeFestlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
    end AufgabeErmitteln;
    
    
    
-   procedure EinheitSpezifischeAufgabenErmitteln
+   procedure EinheitSpezifischeAufgabeErmitteln
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
@@ -68,7 +71,7 @@ package body KIAufgabenPlanung is
       is
          when EinheitenDatentypen.Arbeiter_Enum =>
             Wichtigkeit (KIDatentypen.Stadt_Bauen_Enum) := KIEinheitAufgabeSiedeln.NeueStadtBauenGehen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-            Wichtigkeit (KIDatentypen.Verbesserung_Anlegen_Enum) := KIEinheitAufgabeVerbesserungen.StadtUmgebungVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            Wichtigkeit (KIDatentypen.Verbesserung_Anlegen_Enum) := KIEinheitAufgabeVerbesserungen.StadtumgebungVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when EinheitenDatentypen.Nahkämpfer_Enum =>
             Wichtigkeit (KIDatentypen.Stadt_Bewachen_Enum) := KIEinheitAufgabeBewachen.StadtBewachen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -89,21 +92,28 @@ package body KIAufgabenPlanung is
             Fehler.LogikFehler (FehlermeldungExtern => "KIAufgabenPlanung.EinheitSpezifischeAufgabenErmitteln - KI hat Cheateinheit ausgewählt.");
       end case;
       
-   end EinheitSpezifischeAufgabenErmitteln;
+   end EinheitSpezifischeAufgabeErmitteln;
    
    
    
+   ------------------------------------------ Das hier nochmal überarbeiten.
    function AufgabeAuswählen
-     return KIDatentypen.Einheit_Aufgabe_Vorhanden_Enum
+     return KIDatentypen.Einheit_Aufgabe_Enum
    is begin
       
       WelcheAufgabe := WichtigkeitArray'First;
+      AufgabenDurchgegangen := 1;
       
       AufgabeAuswählenSchleife:
       for AufgabeAuswählenSchleifenwert in WichtigkeitArray'Range loop
          
          if
-           Wichtigkeit (AufgabeAuswählen) < Wichtigkeit (AufgabeAuswählenSchleifenwert)
+           Wichtigkeit (AufgabeAuswählenSchleifenwert) = -1
+         then
+            AufgabenDurchgegangen := AufgabenDurchgegangen + 1;
+           
+         elsif
+           Wichtigkeit (WelcheAufgabe) < Wichtigkeit (AufgabeAuswählenSchleifenwert)
          then
             WelcheAufgabe := AufgabeAuswählenSchleifenwert;
             
@@ -113,6 +123,15 @@ package body KIAufgabenPlanung is
          
       end loop AufgabeAuswählenSchleife;
       
+      if
+        AufgabenDurchgegangen >= WichtigkeitArray'Length
+      then
+         WelcheAufgabe := KIDatentypen.Leer_Aufgabe_Enum;
+         
+      else
+         null;
+      end if;
+      
       return WelcheAufgabe;
       
    end AufgabeAuswählen;
@@ -120,117 +139,75 @@ package body KIAufgabenPlanung is
    
    
    procedure AufgabeFestlegen
-     (GewählteAufgabeExtern : in KIDatentypen.Einheit_Aufgabe_Vorhanden_Enum;
-      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-   is begin
-      
-      case
-        GewählteAufgabeExtern
-      is
-         when KIDatentypen.Stadt_Bauen_Enum =>
-            KIAufgabeFestlegen.StadtBauenPrüfung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-            
-         when KIDatentypen.Verbesserung_Anlegen_Enum =>
-            KIAufgabeFestlegen.StadtUmgebungVerbesserung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-            
-         when KIDatentypen.Einheit_Auflösen_Enum =>
-            EinheitenErzeugenEntfernen.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-            
-         when KIDatentypen.Flucht_Enum =>
-            KIAufgabeFestlegen.Fliehen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-            
-         when KIDatentypen.Einheit_Heilen_Enum =>
-            KIAufgabeFestlegen.Heilen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-            
-         when KIDatentypen.Einheit_Festsetzen_Enum =>
-            KIAufgabeFestlegen.Befestigen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-            
-         when KIDatentypen.Einheit_Verbessern_Enum =>
-            KIAufgabeFestlegen.EinheitVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-            
-         when KIDatentypen.Stadt_Bewachen_Enum =>
-            KIAufgabeFestlegen.StadtBewachen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-            
-         when KIDatentypen.Verbesserung_Zerstören_Enum =>
-            KIAufgabeFestlegen.StadtUmgebungZerstören (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-            
-         when KIDatentypen.Angreifen_Enum =>
-            KIAufgabeFestlegen.Angreifen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-            
-         when KIDatentypen.Erkunden_Enum =>
-            KIAufgabeFestlegen.Erkunden (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-            
-         when KIDatentypen.Tut_Nichts_Enum | KIDatentypen.Verteidigen_Enum | KIDatentypen.Auf_Transporter_Warten_Enum =>
-            KIAufgabeFestlegen.KeineAufgabe (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      end case;
-      
-   end AufgabeFestlegen;
-   
-   
-   
-   procedure AufgabeUmsetzen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
-      AufgabeDurchführen := True;
+      AufgabeFestlegenSchleife:
+      loop
+         
+         Aufgabe := AufgabeAuswählen;
       
-      case
-        LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
-      is
-         when KIDatentypen.Stadt_Bauen_Enum =>
-            AufgabeDurchführen := StadtBauen.StadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         case
+           Aufgabe
+         is
+            when KIDatentypen.Stadt_Bauen_Enum =>
+               AufgabeFestgelegt := KIEinheitFestlegenSiedeln.StadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-         when KIDatentypen.Stadt_Bewachen_Enum =>
-            AufgabeDurchführen := Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                 BefehlExtern             => TastenbelegungDatentypen.Verschanzen_Enum);
+            when KIDatentypen.Verbesserung_Anlegen_Enum =>
+               AufgabeFestgelegt := KIEinheitFestlegenVerbesserungen.StadtumgebungVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-         when KIDatentypen.Verbesserung_Anlegen_Enum =>
-            AufgabeDurchführen := KIAufgabeUmsetzen.WelcheVerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            when KIDatentypen.Einheit_Auflösen_Enum =>
+               -- Hier wird keine spezifische KILösung benötigt, da einfach die Standardentfernprozedur verwendet wird.
+               AufgabeFestgelegt := True;
+               EinheitenErzeugenEntfernen.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-         when KIDatentypen.Verbesserung_Zerstören_Enum =>
-            null;
+            when KIDatentypen.Flucht_Enum =>
+               AufgabeFestgelegt := KIEinheitFestlegenFliehen.Fliehen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-         when KIDatentypen.Flucht_Enum =>
-            null;
+            when KIDatentypen.Einheit_Heilen_Enum =>
+               AufgabeFestgelegt := KIEinheitFestlegenHeilen.Heilen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-         when KIDatentypen.Einheit_Heilen_Enum =>
-            AufgabeDurchführen := Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                 BefehlExtern             => TastenbelegungDatentypen.Heilen_Enum);
+            when KIDatentypen.Einheit_Festsetzen_Enum =>
+               AufgabeFestgelegt := KIEinheitFestlegenBefestigen.Befestigen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-         when KIDatentypen.Einheit_Festsetzen_Enum =>
-            AufgabeDurchführen := Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                 BefehlExtern             => TastenbelegungDatentypen.Verschanzen_Enum);
+            when KIDatentypen.Einheit_Verbessern_Enum =>
+               AufgabeFestgelegt := KIEinheitFestlegenModernisieren.EinheitVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-         when KIDatentypen.Einheit_Verbessern_Enum =>
-            AufgabeDurchführen := KIAufgabeUmsetzen.EinheitVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            when KIDatentypen.Stadt_Bewachen_Enum =>
+               AufgabeFestgelegt := KIEinheitFestlegenBewachen.StadtBewachen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-         when KIDatentypen.Angreifen_Enum =>
-            KIAufgabeFestlegen.Angreifen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            when KIDatentypen.Verbesserung_Zerstören_Enum =>
+               AufgabeFestgelegt := KIEinheitFestlegenPluendern.StadtumgebungZerstören (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-         when KIDatentypen.Verteidigen_Enum =>
-            null;
+            when KIDatentypen.Angreifen_Enum =>
+               AufgabeFestgelegt := KIEinheitFestlegenAngreifen.Angreifen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-         when KIDatentypen.Erkunden_Enum =>
-            SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    AufgabeExtern            => KIDatentypen.Tut_Nichts_Enum);
+            when KIDatentypen.Erkunden_Enum =>
+               AufgabeFestgelegt := KIEinheitFestlegenErkunden.Erkunden (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-         when KIDatentypen.Tut_Nichts_Enum | KIDatentypen.Auf_Transporter_Warten_Enum | KIDatentypen.Einheit_Auflösen_Enum | KIDatentypen.Leer_Aufgabe_Enum =>
-            null;
-      end case;
+            when KIDatentypen.Verteidigen_Enum | KIDatentypen.Auf_Transporter_Warten_Enum =>
+               AufgabeFestgelegt := False;
+            
+            when KIDatentypen.Tut_Nichts_Enum =>
+               AufgabeFestgelegt := KIEinheitFestlegenNichts.NichtsTun (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            
+            when KIDatentypen.Leer_Aufgabe_Enum =>
+               exit AufgabeFestlegenSchleife;
+               
+         end case;
       
-      case
-        AufgabeDurchführen
-      is
-         when True =>
-            null;
+         case
+           AufgabeFestgelegt
+         is
+            when True =>
+               exit AufgabeFestlegenSchleife;
             
-         when False =>
-            SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern     => EinheitenKonstanten.LeerBeschäftigung);
-            SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    AufgabeExtern            => KIDatentypen.Tut_Nichts_Enum);
-      end case;
+            when False =>
+               Wichtigkeit (Aufgabe) := -1;
+         end case;
+         
+      end loop AufgabeFestlegenSchleife;
       
-   end AufgabeUmsetzen;
+   end AufgabeFestlegen;
 
 end KIAufgabenPlanung;

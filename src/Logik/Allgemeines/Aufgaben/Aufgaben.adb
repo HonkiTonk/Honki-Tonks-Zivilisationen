@@ -10,6 +10,7 @@ with ForschungenDatentypen; use ForschungenDatentypen;
 with RueckgabeDatentypen; use RueckgabeDatentypen;
 with EinheitenKonstanten;
 with ForschungKonstanten;
+with TextKonstanten;
 
 with SchreibeKarten;
 with SchreibeEinheitenGebaut;
@@ -84,9 +85,7 @@ package body Aufgaben is
          
       else
          case
-           -------------------- Hier korrekte Nummer einfügen.
-           Auswahl.AuswahlJaNein (FrageZeileExtern => 1)
-           -- EinheitenBeschreibungen.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahlExtern => 7)
+           Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageLandverbesserungErsetzen)
          is
             when RueckgabeDatentypen.Ja_Enum =>
                return VerbesserungFestgelegt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,

@@ -18,27 +18,21 @@ package KIAufgabenPlanung is
                  SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
               );
    
-   procedure AufgabeUmsetzen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-     with
-       Pre => (
-                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
-               and
-                 SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
-              );
-   
 private
       
    AufgabeDurchführen : Boolean;
+   AufgabeFestgelegt : Boolean;
    
-   WelcheAufgabe : KIDatentypen.Einheit_Aufgabe_Vorhanden_Enum;
+   AufgabenDurchgegangen : Natural;
+   
+   WelcheAufgabe : KIDatentypen.Einheit_Aufgabe_Enum;
+   Aufgabe : KIDatentypen.Einheit_Aufgabe_Enum;
       
    type WichtigkeitArray is array (KIDatentypen.Einheit_Aufgabe_Vorhanden_Enum'Range) of KIDatentypen.AufgabenWichtigkeitKlein;
    Wichtigkeit : WichtigkeitArray;
    
    procedure AufgabeFestlegen
-     (GewählteAufgabeExtern : in KIDatentypen.Einheit_Aufgabe_Vorhanden_Enum;
-      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -46,7 +40,7 @@ private
                  SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
               );
    
-   procedure EinheitSpezifischeAufgabenErmitteln
+   procedure EinheitSpezifischeAufgabeErmitteln
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre => (
@@ -56,8 +50,8 @@ private
               );
    
    
-   
+      
    function AufgabeAuswählen
-     return KIDatentypen.Einheit_Aufgabe_Vorhanden_Enum;
+     return KIDatentypen.Einheit_Aufgabe_Enum;
    
 end KIAufgabenPlanung;

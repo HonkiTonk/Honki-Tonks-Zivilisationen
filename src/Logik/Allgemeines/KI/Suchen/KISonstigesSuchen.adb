@@ -18,20 +18,28 @@ package body KISonstigesSuchen is
    is begin
       
       Bereich := 1;
+      --------------------------- Der geprüfte Bereich wird noch nicht ausgeschlossen und die Suche fängt noch nicht bei 0 an, ändern.
       BereichGeprüft := Bereich - 1;
       
       FeldSuchenSchleife:
       loop
          
          Ziel := ZielSuchen (AktuelleKoordinatenExtern => AktuelleKoordinatenExtern,
-                             EinheitRasseNummerExtern  => EinheitRasseNummerExtern);
+                             EinheitRasseNummerExtern  => EinheitRasseNummerExtern,
+                             BereichExtern             => Bereich);
          
-         exit FeldSuchenSchleife when Ziel.XAchse /= KartenKonstanten.LeerXAchse;
-         exit FeldSuchenSchleife when Bereich = KartenDatentypen.Sichtweite'Last;
-         
-         Bereich := Bereich + 1;
-         BereichGeprüft := Bereich - 1;
-      
+         if
+           Ziel.XAchse /= KartenKonstanten.LeerXAchse
+           or
+             Bereich = KartenDatentypen.Sichtweite'Last
+         then
+            exit FeldSuchenSchleife;
+            
+         else
+            Bereich := Bereich + 1;
+            BereichGeprüft := Bereich - 1;
+         end if;
+               
       end loop FeldSuchenSchleife;
               
       return Ziel;
@@ -42,14 +50,15 @@ package body KISonstigesSuchen is
    
    function ZielSuchen
      (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      BereichExtern : in KartenDatentypen.Sichtweite)
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
       
       YAchseSchleife:
-      for YAchseSchleifenwert in -Bereich .. Bereich loop
+      for YAchseSchleifenwert in -BereichExtern .. BereichExtern loop
          XAchseSchleife:
-         for XAchseSchleifenwert in -Bereich .. Bereich loop
+         for XAchseSchleifenwert in -BereichExtern .. BereichExtern loop
             
             KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => AktuelleKoordinatenExtern,
                                                                                                  ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
