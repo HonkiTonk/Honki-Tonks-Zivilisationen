@@ -7,15 +7,14 @@ with SpielVariablen;
 
 with KartengeneratorVariablen;
 
------------------------------------- Überall mal Gen => hinzufügen, z. B. während P&P.
 package body ZufallsgeneratorenSpieleinstellungen is
    
    function ZufälligeVordefinierteKartengröße
      return RueckgabeDatentypen.Kartengrößen_Standard_Enum
    is begin
       
-      ZufälligeVordefinierteKartengrößeWählen.Reset (ZufälligeVordefinierteKartengrößeGewählt);
-      return ZufälligeVordefinierteKartengrößeWählen.Random (ZufälligeVordefinierteKartengrößeGewählt);
+      ZufälligeVordefinierteKartengrößeWählen.Reset (Gen => ZufälligeVordefinierteKartengrößeGewählt);
+      return ZufälligeVordefinierteKartengrößeWählen.Random (Gen => ZufälligeVordefinierteKartengrößeGewählt);
         
    end ZufälligeVordefinierteKartengröße;
    
@@ -30,7 +29,7 @@ package body ZufallsgeneratorenSpieleinstellungen is
       YAchseBestimmenSchleife:
       loop
          
-         YAchse := ZufälligeKartengrößeWählen.Random (ZufälligeKartengrößeGewählt);
+         YAchse := ZufälligeKartengrößeWählen.Random (Gen => ZufälligeKartengrößeGewählt);
          
          if
            YAchse >= 20
@@ -46,7 +45,7 @@ package body ZufallsgeneratorenSpieleinstellungen is
       XAchseBestimmenSchleife:
       loop
 
-         XAchse := ZufälligeKartengrößeWählen.Random (ZufälligeKartengrößeGewählt);
+         XAchse := ZufälligeKartengrößeWählen.Random (Gen => ZufälligeKartengrößeGewählt);
          
          if
            XAchse >= 20
@@ -69,8 +68,8 @@ package body ZufallsgeneratorenSpieleinstellungen is
      return KartenDatentypen.Kartenart_Enum
    is begin
       
-      ZufälligeKartenartWählen.Reset (ZufälligeKartenartGewählt);
-      return ZufälligeKartenartWählen.Random (ZufälligeKartenartGewählt);
+      ZufälligeKartenartWählen.Reset (Gen => ZufälligeKartenartGewählt);
+      return ZufälligeKartenartWählen.Random (Gen => ZufälligeKartenartGewählt);
       
    end ZufälligeKartenart;
    
@@ -80,16 +79,16 @@ package body ZufallsgeneratorenSpieleinstellungen is
    is begin
       
       --------------------------- In drei Teile aufteilen damit man jede Achsen einzeln zufällig zuweisen kann?
-      ZufälligerEAchsenÜbergangWählen.Reset (ZufälligerEAchsenÜbergangGewählt);
-      ZufälligerYAchsenÜbergangWählen.Reset (ZufälligerYAchsenÜbergangGewählt);
-      ZufälligerXAchsenÜbergangWählen.Reset (ZufälligerXAchsenÜbergangGewählt);
+      ZufälligerEAchsenÜbergangWählen.Reset (Gen => ZufälligerEAchsenÜbergangGewählt);
+      ZufälligerYAchsenÜbergangWählen.Reset (Gen => ZufälligerYAchsenÜbergangGewählt);
+      ZufälligerXAchsenÜbergangWählen.Reset (Gen => ZufälligerXAchsenÜbergangGewählt);
             
-      KartengeneratorVariablen.Kartenparameter.Kartenform.EAchseOben := ZufälligerEAchsenÜbergangWählen.Random (ZufälligerEAchsenÜbergangGewählt);
-      KartengeneratorVariablen.Kartenparameter.Kartenform.EAchseUnten := ZufälligerEAchsenÜbergangWählen.Random (ZufälligerEAchsenÜbergangGewählt);
-      KartengeneratorVariablen.Kartenparameter.Kartenform.YAchseNorden := ZufälligerYAchsenÜbergangWählen.Random (ZufälligerYAchsenÜbergangGewählt);
-      KartengeneratorVariablen.Kartenparameter.Kartenform.YAchseSüden := ZufälligerYAchsenÜbergangWählen.Random (ZufälligerYAchsenÜbergangGewählt);
-      KartengeneratorVariablen.Kartenparameter.Kartenform.XAchseWesten := ZufälligerXAchsenÜbergangWählen.Random (ZufälligerXAchsenÜbergangGewählt);
-      KartengeneratorVariablen.Kartenparameter.Kartenform.XAchseOsten := ZufälligerXAchsenÜbergangWählen.Random (ZufälligerXAchsenÜbergangGewählt);
+      KartengeneratorVariablen.Kartenparameter.Kartenform.EAchseOben := ZufälligerEAchsenÜbergangWählen.Random (Gen => ZufälligerEAchsenÜbergangGewählt);
+      KartengeneratorVariablen.Kartenparameter.Kartenform.EAchseUnten := ZufälligerEAchsenÜbergangWählen.Random (Gen => ZufälligerEAchsenÜbergangGewählt);
+      KartengeneratorVariablen.Kartenparameter.Kartenform.YAchseNorden := ZufälligerYAchsenÜbergangWählen.Random (Gen => ZufälligerYAchsenÜbergangGewählt);
+      KartengeneratorVariablen.Kartenparameter.Kartenform.YAchseSüden := ZufälligerYAchsenÜbergangWählen.Random (Gen => ZufälligerYAchsenÜbergangGewählt);
+      KartengeneratorVariablen.Kartenparameter.Kartenform.XAchseWesten := ZufälligerXAchsenÜbergangWählen.Random (Gen => ZufälligerXAchsenÜbergangGewählt);
+      KartengeneratorVariablen.Kartenparameter.Kartenform.XAchseOsten := ZufälligerXAchsenÜbergangWählen.Random (Gen => ZufälligerXAchsenÜbergangGewählt);
       
    end ZufälligeKartenform;
 
@@ -99,8 +98,8 @@ package body ZufallsgeneratorenSpieleinstellungen is
      return KartenDatentypen.Kartentemperatur_Enum
    is begin
       
-      ZufälligeKartentemperaturWählen.Reset (ZufälligeKartentemperaturGewählt);
-      return ZufälligeKartentemperaturWählen.Random (ZufälligeKartentemperaturGewählt);
+      ZufälligeKartentemperaturWählen.Reset (Gen => ZufälligeKartentemperaturGewählt);
+      return ZufälligeKartentemperaturWählen.Random (Gen => ZufälligeKartentemperaturGewählt);
       
    end ZufälligeKartentemperatur;
 
@@ -110,8 +109,8 @@ package body ZufallsgeneratorenSpieleinstellungen is
      return KartenDatentypen.Kartenressourcen_Enum
    is begin
       
-      ZufälligeKartenressourcenWählen.Reset (ZufälligeKartenressourcenGewählt);
-      return ZufälligeKartenressourcenWählen.Random (ZufälligeKartenressourcenGewählt);
+      ZufälligeKartenressourcenWählen.Reset (Gen => ZufälligeKartenressourcenGewählt);
+      return ZufälligeKartenressourcenWählen.Random (Gen => ZufälligeKartenressourcenGewählt);
       
    end ZufälligeKartenressourcen;
    
@@ -133,14 +132,14 @@ package body ZufallsgeneratorenSpieleinstellungen is
       
       SpielerVorhanden := False;
       SpielVariablen.RassenImSpiel := (others => RassenDatentypen.Leer_Spieler_Enum);
-      ZufälligeRassenbelegungWählen.Reset (ZufälligeRassenbelegungGewählt);
+      ZufälligeRassenbelegungWählen.Reset (Gen => ZufälligeRassenbelegungGewählt);
       
       SpielerSchleife:
       while SpielerVorhanden = False loop
          RassenSchleife:
          for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
-            RasseImSpiel := ZufälligeRassenbelegungWählen.Random (ZufälligeRassenbelegungGewählt);
+            RasseImSpiel := ZufälligeRassenbelegungWählen.Random (Gen => ZufälligeRassenbelegungGewählt);
 
             if
               RasseImSpiel = RassenDatentypen.KI_Spieler_Enum
@@ -155,7 +154,7 @@ package body ZufallsgeneratorenSpieleinstellungen is
          end loop RassenSchleife;
       end loop SpielerSchleife;
       
-      ZufälligeRassenbelegungWählen.Reset (ZufälligeRassenbelegungGewählt);
+      ZufälligeRassenbelegungWählen.Reset (Gen => ZufälligeRassenbelegungGewählt);
       
       MenschFestlegenSchleife:
       loop
@@ -165,7 +164,7 @@ package body ZufallsgeneratorenSpieleinstellungen is
             if
               SpielVariablen.RassenImSpiel (MenschlicheRasseSchleifenwert) = RassenDatentypen.KI_Spieler_Enum
             then
-               RasseImSpiel := ZufälligeRassenbelegungWählen.Random (ZufälligeRassenbelegungGewählt);
+               RasseImSpiel := ZufälligeRassenbelegungWählen.Random (Gen => ZufälligeRassenbelegungGewählt);
                
                case
                  RasseImSpiel
@@ -193,8 +192,8 @@ package body ZufallsgeneratorenSpieleinstellungen is
      return SpielDatentypen.Schwierigkeitsgrad_Enum
    is begin
       
-      ZufälligenSchwierigkeitsgradWählen.Reset (ZufälligerSchwierigkeitsgradGewählt);
-      return ZufälligenSchwierigkeitsgradWählen.Random (ZufälligerSchwierigkeitsgradGewählt);
+      ZufälligenSchwierigkeitsgradWählen.Reset (Gen => ZufälligerSchwierigkeitsgradGewählt);
+      return ZufälligenSchwierigkeitsgradWählen.Random (Gen => ZufälligerSchwierigkeitsgradGewählt);
       
    end ZufälligerSchwiewrigkeitsgrad;
    

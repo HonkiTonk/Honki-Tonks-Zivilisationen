@@ -54,12 +54,12 @@ package body ZufallsgeneratorenStartkoordinaten is
      return KartenRecords.YXAchsenKartenfeldPositivRecord
    is begin
       
-      WerteWählen1000.Reset (PositionGewählt1000);
+      WerteWählen1000.Reset (Gen => PositionGewählt1000);
       
       YAchseSchleife:
       loop
          
-         YAchse := WerteWählen1000.Random (PositionGewählt1000);
+         YAchse := WerteWählen1000.Random (Gen => PositionGewählt1000);
          
          if
            YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
@@ -75,7 +75,7 @@ package body ZufallsgeneratorenStartkoordinaten is
       XAchseSchleife:
       loop
          
-         XAchse := WerteWählen1000.Random (PositionGewählt1000);
+         XAchse := WerteWählen1000.Random (Gen => PositionGewählt1000);
          
          if
            XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse

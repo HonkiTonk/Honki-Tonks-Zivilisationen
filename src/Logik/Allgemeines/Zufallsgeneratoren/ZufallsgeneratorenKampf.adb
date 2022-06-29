@@ -7,8 +7,8 @@ package body ZufallsgeneratorenKampf is
      return Float
    is begin
       
-      Ada.Numerics.Float_Random.Reset (ZufälligerFloatWert);
-      return Ada.Numerics.Float_Random.Random (ZufälligerFloatWert);
+      Ada.Numerics.Float_Random.Reset (Gen => ZufälligerFloatWert);
+      return Ada.Numerics.Float_Random.Random (Gen => ZufälligerFloatWert);
       
    end KampfErfolg;
 

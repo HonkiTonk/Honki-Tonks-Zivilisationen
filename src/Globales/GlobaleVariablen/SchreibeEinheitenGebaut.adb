@@ -64,8 +64,7 @@ package body SchreibeEinheitenGebaut is
             then
                SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Lebenspunkte := MaximaleLebenspunkte;
                
-               ------------------------------------- Wird das nicht auch in den ganzen Prüfungen zwischen den Runden geprüft und kann hier entfernt werden?
-               ------------------------------------- Wird es nicht, sinnvoll es auszulagern? Scheint eher nicht der Fall zu sein.
+               ------------------------------------- Wäre es sinnvoll das auszulagern? Scheint eher nicht der Fall zu sein.
                case
                  SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigung
                is

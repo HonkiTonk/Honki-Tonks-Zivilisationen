@@ -27,9 +27,9 @@ private
    MaximalerWert : KartenDatentypen.KartenfeldPositiv;
    GezogenerWert : KartenDatentypen.KartenfeldPositiv;
 
-   package ZufälligeZahl is new Ada.Numerics.Discrete_Random (KartenDatentypen.Auswahlbereich);
-   package ZufälligerBoolean is new Ada.Numerics.Discrete_Random (Boolean);
-   package ZufälligeLandgrößenAbstände is new Ada.Numerics.Discrete_Random (KartenDatentypen.KartenfeldPositiv);
+   package ZufälligeZahl is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.Auswahlbereich);
+   package ZufälligerBoolean is new Ada.Numerics.Discrete_Random (Result_Subtype => Boolean);
+   package ZufälligeLandgrößenAbstände is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.KartenfeldPositiv);
 
    ZufälligeZahlGewählt : ZufälligeZahl.Generator;
    ZufälligerBooleanGewählt : ZufälligerBoolean.Generator;

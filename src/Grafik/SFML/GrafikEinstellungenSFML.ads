@@ -32,6 +32,7 @@ package GrafikEinstellungenSFML is
    
    type RassenFarbenArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of Sf.Graphics.Color.sfColor;
    ------------------------------------- Weniger transparente Version für Rahmen bauen. Dann das hier nur leicht transparent machen und den Rahmen dann gar nicht.
+   ------------------------------------- Müsste wahrscheinlich eh besser gebaut werden.
    RassenFarben : RassenFarbenArray;
    RassenFarbenRahmen : RassenFarbenArray;
    

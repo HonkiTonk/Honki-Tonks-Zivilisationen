@@ -1,19 +1,21 @@
 package ChangelogJuni2022 is
    
-   -- Version 0.01.1785 => 0.01. (30.06.2022):
+   -- Version 0.03.0000 => 0.03. (30.06.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.1725 => 0.01.1785 (29.06.2022):
+   -- Version 0.01.1725 => 0.03.0000 (29.06.2022):
    
    -- Datentypen und Konstanten angepasst/besser aufgeteilt/erweitert.
    -- Weiter an den Einheitenberechnungen der KI gearbeitet.
    -- Schnellstart fügt jetzt eine durch die KI gesteuerte Rasse ein.
    -- Weiter an der Aufgabenplanung der KIEinheiten gearbeitet.
    -- Weiter an der Aufgabenfestlegung der KIEinheiten gearbeitet.
+   -- Interne Benennung überarbeitet.
+   -- Versionsnummer soweit wie möglich an die neue Versionierung angepasst.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    

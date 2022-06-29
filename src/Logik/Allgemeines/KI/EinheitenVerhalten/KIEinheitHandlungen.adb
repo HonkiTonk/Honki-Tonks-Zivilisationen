@@ -17,7 +17,6 @@ with KIBewegungDurchfuehren;
 with KIEinheitAufgabenplanung;
 with KIEinheitAufgabenumsetzung;
 
----------------------------------- Besseren Namen geben?
 package body KIEinheitHandlungen is
 
    function HandlungBeendet

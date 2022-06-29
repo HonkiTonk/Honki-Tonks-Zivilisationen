@@ -3,7 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Warnung;
 
------------------------------------ Besseren Namen finden?
 package body EinlesenAllgemein is
 
    function VorzeitigesZeilenende

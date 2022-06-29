@@ -18,7 +18,7 @@ package ObjekteZeichnenSFML is
                  RechteckAccessExtern /= null
                and
                  (AbmessungExtern.x /= 0.00
-                      ----------------------------------- Müsste das hier nicht ein and sein?
+                        -- Muss hier kein 'and' sein, da es sonst unmöglich wäre einen Strich zu zeichnen.
                   or
                     AbmessungExtern.y /= 0.00)
               );

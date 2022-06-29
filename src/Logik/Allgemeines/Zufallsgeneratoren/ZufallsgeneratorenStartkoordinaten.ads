@@ -40,7 +40,7 @@ private
    -- Generatoren für Positionsbestimmung bei Spielstart, in Abhängigkeit der Kartengröße, da gibt es doch bestimmt eine bessere Lösung für
    ZufallsPunktKarte : KartenRecords.AchsenKartenfeldNaturalRecord;
 
-   package WerteWählen1000 is new Ada.Numerics.Discrete_Random (KartenDatentypen.KartenfeldPositiv);
+   package WerteWählen1000 is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.KartenfeldPositiv);
 
    PositionGewählt1000 : WerteWählen1000.Generator;
       

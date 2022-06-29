@@ -14,7 +14,6 @@ package body EinheitenTransporterAuswahlTerminal is
       return EinheitenDatentypen.MaximaleEinheitenMitNullWert
    is begin
 
-      ------------------------------- Mal in Logik und Grafik und Terminal und SFML aufteilen.
       -- TextAnzeigeTerminal.AllgemeineAnzeigeText := (others => (TextKonstanten.LeerUnboundedString, 0));
       -- TextAnzeigeTerminal.AllgemeineAnzeigeText (1) := (GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Einheiten_Kurz),
       --                                                 Positive (LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))), Positive (EinheitRasseNummerExtern.Platznummer));

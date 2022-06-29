@@ -12,8 +12,8 @@ package body ZufallsgeneratorenKarten is
      return KartenDatentypen.Auswahlbereich
    is begin
       
-      ZufälligeZahl.Reset (ZufälligeZahlGewählt);
-      return ZufälligeZahl.Random (ZufälligeZahlGewählt);
+      ZufälligeZahl.Reset (Gen => ZufälligeZahlGewählt);
+      return ZufälligeZahl.Random (Gen => ZufälligeZahlGewählt);
       
    end KartengeneratorZufallswerte;
    
@@ -23,8 +23,8 @@ package body ZufallsgeneratorenKarten is
      return Boolean
    is begin
       
-      ZufälligerBoolean.Reset (ZufälligerBooleanGewählt);
-      return ZufälligerBoolean.Random (ZufälligerBooleanGewählt);
+      ZufälligerBoolean.Reset (Gen => ZufälligerBooleanGewählt);
+      return ZufälligerBoolean.Random (Gen => ZufälligerBooleanGewählt);
       
    end KartengeneratorBoolean;
    
@@ -58,13 +58,13 @@ package body ZufallsgeneratorenKarten is
          Fehler.LogikFehler (FehlermeldungExtern => "ZufallsgeneratorenKarten.KartengeneratorLandgrößen - Minimum größe als Maximum");
 
       else
-         ZufälligeLandgrößenAbstände.Reset (ZufälligeLandgrößeAbstandGewählt);
+         ZufälligeLandgrößenAbstände.Reset (Gen => ZufälligeLandgrößeAbstandGewählt);
       end if;
 
       LandgrößeSchleife:
       loop
 
-         GezogenerWert := ZufälligeLandgrößenAbstände.Random (ZufälligeLandgrößeAbstandGewählt);
+         GezogenerWert := ZufälligeLandgrößenAbstände.Random (Gen => ZufälligeLandgrößeAbstandGewählt);
 
          if
            GezogenerWert in MinimalerWert .. MaximalerWert
@@ -109,13 +109,13 @@ package body ZufallsgeneratorenKarten is
          Fehler.LogikFehler (FehlermeldungExtern => "ZufallsgeneratorenKarten.KartengeneratorAbstände - Minimum größe als Maximum");
 
       else
-         ZufälligeLandgrößenAbstände.Reset (ZufälligeLandgrößeAbstandGewählt);
+         ZufälligeLandgrößenAbstände.Reset (Gen => ZufälligeLandgrößeAbstandGewählt);
       end if;
 
       LandabstandSchleife:
       loop
 
-         GezogenerWert := ZufälligeLandgrößenAbstände.Random (ZufälligeLandgrößeAbstandGewählt);
+         GezogenerWert := ZufälligeLandgrößenAbstände.Random (Gen => ZufälligeLandgrößeAbstandGewählt);
 
          if
            GezogenerWert in MinimalerWert .. MaximalerWert
