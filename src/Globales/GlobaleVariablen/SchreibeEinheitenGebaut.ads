@@ -11,6 +11,7 @@ with StadtDatentypen;
 with AufgabenDatentypen;
 with KampfDatentypen;
 with KartenKonstanten;
+with ProduktionDatentypen;
 
 with KIDatentypen;
 
@@ -122,7 +123,7 @@ package SchreibeEinheitenGebaut is
    
    procedure Beschäftigungszeit
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      ZeitExtern : in EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      ZeitExtern : in ProduktionDatentypen.Arbeitszeit;
       RechnenSetzenExtern : in KartenDatentypen.UmgebungsbereichEins)
      with
        Pre => (
@@ -133,7 +134,7 @@ package SchreibeEinheitenGebaut is
    
    procedure BeschäftigungszeitNachfolger
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      ZeitExtern : in EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      ZeitExtern : in ProduktionDatentypen.Arbeitszeit;
       RechnenSetzenExtern : in KartenDatentypen.UmgebungsbereichEins)
      with
        Pre => (

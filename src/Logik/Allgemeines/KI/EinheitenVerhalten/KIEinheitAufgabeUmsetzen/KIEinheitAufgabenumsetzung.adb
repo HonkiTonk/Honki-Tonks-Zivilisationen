@@ -12,10 +12,11 @@ with Aufgaben;
 
 with KIDatentypen;
 
-with KIAufgabeUmsetzen;
-with KIEinheitFestlegenAngreifen;
+with KIEinheitUmsetzenVerbesserungen;
+with KIEinheitUmsetzenModernisieren;
+with KIEinheitUmsetzenAngreifen;
 
-package body KIAufgabenUmsetzung is
+package body KIEinheitAufgabenumsetzung is
 
    procedure AufgabeUmsetzen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
@@ -34,13 +35,13 @@ package body KIAufgabenUmsetzung is
                                                                  BefehlExtern             => TastenbelegungDatentypen.Verschanzen_Enum);
             
          when KIDatentypen.Verbesserung_Anlegen_Enum =>
-            AufgabeDurchführen := KIAufgabeUmsetzen.WelcheVerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            AufgabeDurchführen := KIEinheitUmsetzenVerbesserungen.WelcheVerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when KIDatentypen.Verbesserung_Zerstören_Enum =>
-            null;
+            AufgabeDurchführen := False;
             
          when KIDatentypen.Flucht_Enum =>
-            null;
+            AufgabeDurchführen := False;
             
          when KIDatentypen.Einheit_Heilen_Enum =>
             AufgabeDurchführen := Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -51,23 +52,38 @@ package body KIAufgabenUmsetzung is
                                                                  BefehlExtern             => TastenbelegungDatentypen.Verschanzen_Enum);
             
          when KIDatentypen.Einheit_Verbessern_Enum =>
-            AufgabeDurchführen := KIAufgabeUmsetzen.EinheitVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            AufgabeDurchführen := KIEinheitUmsetzenModernisieren.EinheitVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when KIDatentypen.Angreifen_Enum =>
-            AufgabeDurchführen := KIEinheitFestlegenAngreifen.Angreifen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            AufgabeDurchführen := KIEinheitUmsetzenAngreifen.Angreifen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            -- KIEinheitFestlegenAngreifen.Angreifen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when KIDatentypen.Verteidigen_Enum =>
-            null;
+            AufgabeDurchführen := False;
             
          when KIDatentypen.Erkunden_Enum =>
-            SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    AufgabeExtern            => KIDatentypen.Tut_Nichts_Enum);
+            AufgabeDurchführen := False;
             
-         when KIDatentypen.Tut_Nichts_Enum | KIDatentypen.Auf_Transporter_Warten_Enum | KIDatentypen.Einheit_Auflösen_Enum | KIDatentypen.Leer_Aufgabe_Enum =>
-            null;
+         when KIDatentypen.Auf_Transporter_Warten_Enum =>
+            AufgabeDurchführen := False;
+            
+         when KIDatentypen.Einheit_Auflösen_Enum =>
+            AufgabeDurchführen := False;
+               
+         when KIDatentypen.Angriffskrieg_Vorbereiten_Enum =>
+            AufgabeDurchführen := False;
+            
+         when KIDatentypen.Verteidigungskrieg_Vorbereiten_Enum =>
+            AufgabeDurchführen := False;
+            
+         when KIDatentypen.Tut_Nichts_Enum =>
+            -- Sollte theoretisch schon vorher aus der Schleife springen, aber sicherheitshalber mal so definiert drinnen lassen.
+            AufgabeDurchführen := True;
+            
+         when KIDatentypen.Leer_Aufgabe_Enum =>
+            AufgabeDurchführen := False;
       end case;
       
-      --------------------------- Das hier ist so auch noch nicht so sinnvoll, oder?
       case
         AufgabeDurchführen
       is
@@ -78,9 +94,9 @@ package body KIAufgabenUmsetzung is
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     BeschäftigungExtern     => EinheitenKonstanten.LeerBeschäftigung);
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    AufgabeExtern            => KIDatentypen.Tut_Nichts_Enum);
+                                                    AufgabeExtern            => KIDatentypen.Leer_Aufgabe_Enum);
       end case;
       
    end AufgabeUmsetzen;
 
-end KIAufgabenUmsetzung;
+end KIEinheitAufgabenumsetzung;

@@ -8,7 +8,7 @@ with SpielVariablen;
 with AufgabenDatentypen;
 with KartenVerbesserungDatentypen;
 with ForschungenDatentypen;
-with EinheitenDatentypen;
+with ProduktionDatentypen;
 
 package WegErmitteln is
 
@@ -31,8 +31,8 @@ private
    WelcherWeg : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
    WelcheArbeit : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
 
-   Arbeitszeit : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
-   Grundzeit : EinheitenDatentypen.MaximaleEinheitenMitNullWert := 1;
+   Arbeitszeit : ProduktionDatentypen.Arbeitszeit;
+   Grundzeit : ProduktionDatentypen.Arbeitszeit := 1;
 
    Arbeitswerte : EinheitenRecords.ArbeitRecord;
 

@@ -1,9 +1,9 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitenDatentypen; use EinheitenDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
-with EinheitenKonstanten;
+with ProduktionDatentypen; use ProduktionDatentypen;
+with EinheitenRecordKonstanten;
 with RueckgabeDatentypen;
 with TextKonstanten;
 
@@ -114,7 +114,7 @@ package body FestungErmitteln is
             Arbeitszeit := Grundzeit + 5;
                
          when others =>
-            return EinheitenKonstanten.KeineArbeit;
+            return EinheitenRecordKonstanten.KeineArbeit;
       end case;
             
       return (AufgabenDatentypen.Festung_Bauen_Enum, Arbeitszeit);
@@ -138,7 +138,7 @@ package body FestungErmitteln is
             Arbeitszeit := Grundzeit + 5;
                
          when others =>
-            return EinheitenKonstanten.KeineArbeit;
+            return EinheitenRecordKonstanten.KeineArbeit;
       end case;
             
       return (AufgabenDatentypen.Festung_Bauen_Enum, Arbeitszeit);

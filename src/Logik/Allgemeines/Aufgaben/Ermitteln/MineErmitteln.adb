@@ -1,10 +1,10 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitenDatentypen; use EinheitenDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
+with ProduktionDatentypen; use ProduktionDatentypen;
 with RueckgabeDatentypen;
-with EinheitenKonstanten;
+with EinheitenRecordKonstanten;
 with TextKonstanten;
 
 with SchreibeEinheitenGebaut;
@@ -143,11 +143,11 @@ package body MineErmitteln is
                VorarbeitNötig := True;
             
             else
-               return EinheitenKonstanten.KeineArbeit;
+               return EinheitenRecordKonstanten.KeineArbeit;
             end if;
                
          when others =>
-            return EinheitenKonstanten.KeineArbeit;
+            return EinheitenRecordKonstanten.KeineArbeit;
       end case;
             
       return (AufgabenDatentypen.Mine_Bauen_Enum, Arbeitszeit);
@@ -201,7 +201,7 @@ package body MineErmitteln is
                VorarbeitNötig := True;
             
             else
-               return EinheitenKonstanten.KeineArbeit;
+               return EinheitenRecordKonstanten.KeineArbeit;
             end if;
       end case;
             

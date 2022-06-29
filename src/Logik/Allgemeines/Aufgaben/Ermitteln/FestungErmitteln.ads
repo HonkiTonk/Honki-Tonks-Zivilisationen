@@ -6,8 +6,8 @@ with EinheitenRecords;
 with KartengrundDatentypen;
 with SpielVariablen;
 with AufgabenDatentypen;
-with EinheitenDatentypen;
 with KartenVerbesserungDatentypen;
+with ProduktionDatentypen;
 
 package FestungErmitteln is
 
@@ -29,8 +29,8 @@ private
 
    VorhandeneVerbesserung : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
 
-   Arbeitszeit : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
-   Grundzeit : EinheitenDatentypen.MaximaleEinheitenMitNullWert := 1;
+   Arbeitszeit : ProduktionDatentypen.Arbeitszeit;
+   Grundzeit : ProduktionDatentypen.Arbeitszeit := 1;
 
    Arbeitswerte : EinheitenRecords.ArbeitRecord;
 

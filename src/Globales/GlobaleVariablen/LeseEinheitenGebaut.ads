@@ -11,6 +11,7 @@ with KartenRecords;
 with AufgabenDatentypen;
 with KampfDatentypen;
 with KartenKonstanten;
+with ProduktionDatentypen;
 
 with KIDatentypen;
 
@@ -122,7 +123,7 @@ package LeseEinheitenGebaut is
       
    function Beschäftigungszeit
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return EinheitenDatentypen.MaximaleEinheitenMitNullWert
+      return ProduktionDatentypen.Arbeitszeit
      with
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -132,7 +133,7 @@ package LeseEinheitenGebaut is
    
    function BeschäftigungszeitNachfolger
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return EinheitenDatentypen.MaximaleEinheitenMitNullWert
+      return ProduktionDatentypen.Arbeitszeit
      with
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze

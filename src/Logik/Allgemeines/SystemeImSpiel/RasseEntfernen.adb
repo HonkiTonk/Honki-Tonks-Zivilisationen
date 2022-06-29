@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with WichtigesKonstanten;
+with WichtigesRecordKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
 
@@ -36,13 +36,13 @@ package body RasseEntfernen is
       DiplomatieSchleife:
       for DiplomatieSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
-         SpielVariablen.Diplomatie (RasseExtern, DiplomatieSchleifenwert) := WichtigesKonstanten.LeerDiplomatie;
-         SpielVariablen.Diplomatie (DiplomatieSchleifenwert, RasseExtern) := WichtigesKonstanten.LeerDiplomatie;
+         SpielVariablen.Diplomatie (RasseExtern, DiplomatieSchleifenwert) := WichtigesRecordKonstanten.LeerDiplomatie;
+         SpielVariablen.Diplomatie (DiplomatieSchleifenwert, RasseExtern) := WichtigesRecordKonstanten.LeerDiplomatie;
          
       end loop DiplomatieSchleife;
       
-      SpielVariablen.CursorImSpiel (RasseExtern) := WichtigesKonstanten.LeerCursor;
-      SpielVariablen.Wichtiges (RasseExtern) := WichtigesKonstanten.LeerWichtigesZeug;
+      SpielVariablen.CursorImSpiel (RasseExtern) := WichtigesRecordKonstanten.LeerCursor;
+      SpielVariablen.Wichtiges (RasseExtern) := WichtigesRecordKonstanten.LeerWichtigesZeug;
       
       SpielVariablen.RassenImSpiel (RasseExtern) := RassenDatentypen.Leer_Spieler_Enum;
       

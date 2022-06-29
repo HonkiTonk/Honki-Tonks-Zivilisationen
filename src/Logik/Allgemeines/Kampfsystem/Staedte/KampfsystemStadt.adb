@@ -136,7 +136,7 @@ package body KampfsystemStadt is
                                                VerteidigungExtern => KampfwerteAngreifer.Verteidigung);
          
          if
-           LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern) = EinheitenKonstanten.LeerEinheit.Lebenspunkte
+           LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern) = EinheitenKonstanten.LeerLebenspunkte
          then
             EinheitenErzeugenEntfernen.EinheitEntfernen (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern);
             return False;

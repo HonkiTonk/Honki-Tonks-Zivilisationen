@@ -16,11 +16,11 @@ package ForschungKonstanten is
    ForschungUnmöglich : constant ForschungenDatentypen.ForschungIDNichtMöglich := ForschungenDatentypen.ForschungIDNichtMöglich'First;
    
    LeerForschungListe : constant DatenbankRecords.ForschungslisteRecord := (
-                                                                           PreisForschung       => LeerPreisForschung,
-                                                                           AnforderungForschung => (others => ForschungUnmöglich)
-                                                                          );
+                                                                            PreisForschung       => LeerPreisForschung,
+                                                                            AnforderungForschung => (others => ForschungUnmöglich)
+                                                                           );
    
-   type TechnologieVerbesserungArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum'Range) of ForschungenDatentypen.ForschungIDNichtMöglich;
+   type TechnologieVerbesserungArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, TastenbelegungDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range) of ForschungenDatentypen.ForschungIDNichtMöglich;
    TechnologieVerbesserung : constant TechnologieVerbesserungArray := (
                                                                        RassenDatentypen.Menschen_Enum =>
                                                                          (
@@ -29,8 +29,7 @@ package ForschungKonstanten is
                                                                           TastenbelegungDatentypen.Mine_Bauen_Enum         => 6,
                                                                           TastenbelegungDatentypen.Farm_Bauen_Enum         => 2,
                                                                           TastenbelegungDatentypen.Festung_Bauen_Enum      => 11,
-                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1,
-                                                                          others                                           => LeerForschungAnforderung
+                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1
                                                                          ),
 
                                                                        RassenDatentypen.Kasrodiah_Enum =>
@@ -40,8 +39,7 @@ package ForschungKonstanten is
                                                                           TastenbelegungDatentypen.Mine_Bauen_Enum         => 6,
                                                                           TastenbelegungDatentypen.Farm_Bauen_Enum         => 2,
                                                                           TastenbelegungDatentypen.Festung_Bauen_Enum      => 11,
-                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1,
-                                                                          others                                           => LeerForschungAnforderung
+                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1
                                                                          ),
 
                                                                        RassenDatentypen.Lasupin_Enum =>
@@ -51,8 +49,7 @@ package ForschungKonstanten is
                                                                           TastenbelegungDatentypen.Mine_Bauen_Enum         => 6,
                                                                           TastenbelegungDatentypen.Farm_Bauen_Enum         => 2,
                                                                           TastenbelegungDatentypen.Festung_Bauen_Enum      => 11,
-                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1,
-                                                                          others                                           => LeerForschungAnforderung
+                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1
                                                                          ),
 
                                                                        RassenDatentypen.Lamustra_Enum =>
@@ -62,8 +59,7 @@ package ForschungKonstanten is
                                                                           TastenbelegungDatentypen.Mine_Bauen_Enum         => 6,
                                                                           TastenbelegungDatentypen.Farm_Bauen_Enum         => 2,
                                                                           TastenbelegungDatentypen.Festung_Bauen_Enum      => 11,
-                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1,
-                                                                          others                                           => LeerForschungAnforderung
+                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1
                                                                          ),
 
                                                                        RassenDatentypen.Manuky_Enum =>
@@ -73,8 +69,7 @@ package ForschungKonstanten is
                                                                           TastenbelegungDatentypen.Mine_Bauen_Enum         => 6,
                                                                           TastenbelegungDatentypen.Farm_Bauen_Enum         => 2,
                                                                           TastenbelegungDatentypen.Festung_Bauen_Enum      => 11,
-                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1,
-                                                                          others                                           => LeerForschungAnforderung
+                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1
                                                                          ),
 
                                                                        RassenDatentypen.Suroka_Enum =>
@@ -84,8 +79,7 @@ package ForschungKonstanten is
                                                                           TastenbelegungDatentypen.Mine_Bauen_Enum         => 6,
                                                                           TastenbelegungDatentypen.Farm_Bauen_Enum         => 2,
                                                                           TastenbelegungDatentypen.Festung_Bauen_Enum      => 11,
-                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1,
-                                                                          others                                           => LeerForschungAnforderung
+                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1
                                                                          ),
 
                                                                        RassenDatentypen.Pryolon_Enum =>
@@ -95,8 +89,7 @@ package ForschungKonstanten is
                                                                           TastenbelegungDatentypen.Mine_Bauen_Enum         => 6,
                                                                           TastenbelegungDatentypen.Farm_Bauen_Enum         => 2,
                                                                           TastenbelegungDatentypen.Festung_Bauen_Enum      => 11,
-                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1,
-                                                                          others                                           => LeerForschungAnforderung
+                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1
                                                                          ),
 
                                                                        RassenDatentypen.Talbidahr_Enum =>
@@ -106,8 +99,7 @@ package ForschungKonstanten is
                                                                           TastenbelegungDatentypen.Mine_Bauen_Enum         => 6,
                                                                           TastenbelegungDatentypen.Farm_Bauen_Enum         => 2,
                                                                           TastenbelegungDatentypen.Festung_Bauen_Enum      => 11,
-                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1,
-                                                                          others                                           => LeerForschungAnforderung
+                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1
                                                                          ),
 
                                                                        RassenDatentypen.Moru_Phisihl_Enum =>
@@ -117,8 +109,7 @@ package ForschungKonstanten is
                                                                           TastenbelegungDatentypen.Mine_Bauen_Enum         => 6,
                                                                           TastenbelegungDatentypen.Farm_Bauen_Enum         => 2,
                                                                           TastenbelegungDatentypen.Festung_Bauen_Enum      => 11,
-                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1,
-                                                                          others                                           => LeerForschungAnforderung
+                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1
                                                                          ),
 
                                                                        RassenDatentypen.Larinos_Lotaris_Enum =>
@@ -128,8 +119,7 @@ package ForschungKonstanten is
                                                                           TastenbelegungDatentypen.Mine_Bauen_Enum         => 6,
                                                                           TastenbelegungDatentypen.Farm_Bauen_Enum         => 2,
                                                                           TastenbelegungDatentypen.Festung_Bauen_Enum      => 11,
-                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1,
-                                                                          others                                           => LeerForschungAnforderung
+                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1
                                                                          ),
 
                                                                        RassenDatentypen.Carupex_Enum =>
@@ -139,8 +129,7 @@ package ForschungKonstanten is
                                                                           TastenbelegungDatentypen.Mine_Bauen_Enum         => 6,
                                                                           TastenbelegungDatentypen.Farm_Bauen_Enum         => 2,
                                                                           TastenbelegungDatentypen.Festung_Bauen_Enum      => 11,
-                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1,
-                                                                          others                                           => LeerForschungAnforderung
+                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1
                                                                          ),
 
                                                                        RassenDatentypen.Alary_Enum =>
@@ -150,8 +139,7 @@ package ForschungKonstanten is
                                                                           TastenbelegungDatentypen.Mine_Bauen_Enum         => 6,
                                                                           TastenbelegungDatentypen.Farm_Bauen_Enum         => 2,
                                                                           TastenbelegungDatentypen.Festung_Bauen_Enum      => 11,
-                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1,
-                                                                          others                                           => LeerForschungAnforderung
+                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1
                                                                          ),
 
                                                                        RassenDatentypen.Tesorahn_Enum =>
@@ -161,8 +149,7 @@ package ForschungKonstanten is
                                                                           TastenbelegungDatentypen.Mine_Bauen_Enum         => 6,
                                                                           TastenbelegungDatentypen.Farm_Bauen_Enum         => 2,
                                                                           TastenbelegungDatentypen.Festung_Bauen_Enum      => 11,
-                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1,
-                                                                          others                                           => LeerForschungAnforderung
+                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1
                                                                          ),
 
                                                                        RassenDatentypen.Natries_Zermanis_Enum =>
@@ -172,8 +159,7 @@ package ForschungKonstanten is
                                                                           TastenbelegungDatentypen.Mine_Bauen_Enum         => 6,
                                                                           TastenbelegungDatentypen.Farm_Bauen_Enum         => 2,
                                                                           TastenbelegungDatentypen.Festung_Bauen_Enum      => 11,
-                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1,
-                                                                          others                                           => LeerForschungAnforderung
+                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1
                                                                          ),
 
                                                                        RassenDatentypen.Tridatus_Enum =>
@@ -183,8 +169,7 @@ package ForschungKonstanten is
                                                                           TastenbelegungDatentypen.Mine_Bauen_Enum         => 6,
                                                                           TastenbelegungDatentypen.Farm_Bauen_Enum         => 2,
                                                                           TastenbelegungDatentypen.Festung_Bauen_Enum      => 11,
-                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1,
-                                                                          others                                           => LeerForschungAnforderung
+                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1
                                                                          ),
 
                                                                        RassenDatentypen.Senelari_Enum =>
@@ -194,8 +179,7 @@ package ForschungKonstanten is
                                                                           TastenbelegungDatentypen.Mine_Bauen_Enum         => 6,
                                                                           TastenbelegungDatentypen.Farm_Bauen_Enum         => 2,
                                                                           TastenbelegungDatentypen.Festung_Bauen_Enum      => 11,
-                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1,
-                                                                          others                                           => LeerForschungAnforderung
+                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1
                                                                          ),
 
                                                                        RassenDatentypen.Aspari_2_Enum =>
@@ -205,8 +189,7 @@ package ForschungKonstanten is
                                                                           TastenbelegungDatentypen.Mine_Bauen_Enum         => 6,
                                                                           TastenbelegungDatentypen.Farm_Bauen_Enum         => 2,
                                                                           TastenbelegungDatentypen.Festung_Bauen_Enum      => 11,
-                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1,
-                                                                          others                                           => LeerForschungAnforderung
+                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1
                                                                          ),
 
                                                                        RassenDatentypen.Ekropa_Enum =>
@@ -216,8 +199,7 @@ package ForschungKonstanten is
                                                                           TastenbelegungDatentypen.Mine_Bauen_Enum         => 6,
                                                                           TastenbelegungDatentypen.Farm_Bauen_Enum         => 2,
                                                                           TastenbelegungDatentypen.Festung_Bauen_Enum      => 11,
-                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1,
-                                                                          others                                           => LeerForschungAnforderung
+                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1
                                                                          )
                                                                       );
 

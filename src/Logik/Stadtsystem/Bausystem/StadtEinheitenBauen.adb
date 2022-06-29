@@ -106,10 +106,10 @@ package body StadtEinheitenBauen is
                                                   IDExtern               =>  EinheitenDatentypen.EinheitenID (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Einheit),
                                                   StadtRasseNummerExtern => StadtRasseNummerExtern);
       SchreibeStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                      RessourcenExtern       => StadtKonstanten.LeerStadt.Ressourcen,
+                                      RessourcenExtern       => StadtKonstanten.LeerRessourcen,
                                       ÄndernSetzenExtern     => False);
       SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                      BauprojektExtern       => StadtKonstanten.LeerStadt.Bauprojekt);
+                                      BauprojektExtern       => StadtKonstanten.LeerBauprojekt);
             
       case
         SpielVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse)

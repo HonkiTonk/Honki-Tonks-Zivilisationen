@@ -52,20 +52,20 @@ package body KIEinheitAufgabeHeilen is
       elsif
         Lebenspunkte > (MaximaleLebenspunkte / 3) * 2
       then
-         return 3;
+         return 10;
          
       elsif
         Lebenspunkte > MaximaleLebenspunkte / 2
       then
-         return 5;
+         return 15;
          
       elsif
         Lebenspunkte = 1
       then
-         return 10;
+         return 20;
          
       else
-         return 8;
+         return 18;
       end if;
       
    end HeilenFrieden;
@@ -92,12 +92,12 @@ package body KIEinheitAufgabeHeilen is
       if
         Lebenspunkte < MaximaleLebenspunkte / 3
       then
-         return 5;
+         return 15;
          
       elsif
         Lebenspunkte = 1
       then
-         return 10;
+         return 50;
          
       else
          return -1;

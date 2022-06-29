@@ -1,10 +1,10 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitenDatentypen; use EinheitenDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with RueckgabeDatentypen; use RueckgabeDatentypen;
-with EinheitenKonstanten;
+with ProduktionDatentypen; use ProduktionDatentypen;
+with EinheitenRecordKonstanten;
 with TextKonstanten;
 
 with SchreibeEinheitenGebaut;
@@ -135,11 +135,11 @@ package body WaldErmitteln is
                VorarbeitNötig := True;
             
             else
-               return EinheitenKonstanten.KeineArbeit;
+               return EinheitenRecordKonstanten.KeineArbeit;
             end if;
                
          when others =>
-            return EinheitenKonstanten.KeineArbeit;
+            return EinheitenRecordKonstanten.KeineArbeit;
       end case;
             
       return (AufgabenDatentypen.Wald_Aufforsten_Enum, Arbeitszeit);
@@ -172,11 +172,11 @@ package body WaldErmitteln is
                VorarbeitNötig := True;
                
             else
-               return EinheitenKonstanten.KeineArbeit;
+               return EinheitenRecordKonstanten.KeineArbeit;
             end if;
                
          when others =>
-            return EinheitenKonstanten.KeineArbeit;
+            return EinheitenRecordKonstanten.KeineArbeit;
       end case;
             
       return (AufgabenDatentypen.Wald_Aufforsten_Enum, Arbeitszeit);

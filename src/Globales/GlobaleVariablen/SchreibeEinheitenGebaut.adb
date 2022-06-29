@@ -4,8 +4,10 @@ pragma Warnings (Off, "*array aggregate*");
 with EinheitenDatentypen; use EinheitenDatentypen;
 with KampfDatentypen; use KampfDatentypen;
 with StadtDatentypen; use StadtDatentypen;
+with ProduktionDatentypen; use ProduktionDatentypen;
 with EinheitenKonstanten;
 with KartenRecordKonstanten;
+with EinheitenRecordKonstanten;
 
 with LeseEinheitenDatenbank;
 
@@ -221,7 +223,7 @@ package body SchreibeEinheitenGebaut is
    
    procedure Beschäftigungszeit
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      ZeitExtern : in EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      ZeitExtern : in ProduktionDatentypen.Arbeitszeit;
       RechnenSetzenExtern : in KartenDatentypen.UmgebungsbereichEins)
    is begin
       
@@ -230,9 +232,9 @@ package body SchreibeEinheitenGebaut is
       is
          when 1 =>
             if
-              SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigungszeit + ZeitExtern >= EinheitenDatentypen.MaximaleEinheiten'Last
+              SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigungszeit + ZeitExtern >= ProduktionDatentypen.Arbeitszeit'Last
             then
-               SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigungszeit := EinheitenDatentypen.MaximaleEinheiten'Last;
+               SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigungszeit := ProduktionDatentypen.Arbeitszeit'Last;
                
             else
                SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigungszeit :=
@@ -260,7 +262,7 @@ package body SchreibeEinheitenGebaut is
    
    procedure BeschäftigungszeitNachfolger
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      ZeitExtern : in EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      ZeitExtern : in ProduktionDatentypen.Arbeitszeit;
       RechnenSetzenExtern : in KartenDatentypen.UmgebungsbereichEins)
    is begin
       
@@ -269,9 +271,9 @@ package body SchreibeEinheitenGebaut is
       is
          when 1 =>
             if
-              SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungszeitNachfolger + ZeitExtern >= EinheitenDatentypen.MaximaleEinheiten'Last
+              SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungszeitNachfolger + ZeitExtern >= ProduktionDatentypen.Arbeitszeit'Last
             then
-               SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungszeitNachfolger := EinheitenDatentypen.MaximaleEinheiten'Last;
+               SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungszeitNachfolger := ProduktionDatentypen.Arbeitszeit'Last;
                
             else
                SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungszeitNachfolger :=
@@ -380,7 +382,7 @@ package body SchreibeEinheitenGebaut is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
                                            
-      SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer) := EinheitenKonstanten.LeerEinheit;
+      SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer) := EinheitenRecordKonstanten.LeerEinheit;
       
    end Nullsetzung;
    

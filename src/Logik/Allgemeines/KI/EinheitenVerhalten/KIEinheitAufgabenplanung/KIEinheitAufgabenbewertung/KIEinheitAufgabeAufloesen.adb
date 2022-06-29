@@ -25,13 +25,12 @@ package body KIEinheitAufgabeAufloesen is
       return KIDatentypen.AufgabenWichtigkeitKlein
    is begin
       
-      -------------------------------- Später noch mal erweitern, bringt ja nichts die Einheit zu behalten, wenn die Städte dafür verhungern.
       if
         KIKriegErmitteln.IstImKrieg (RasseExtern => EinheitRasseNummerExtern.Rasse) = True
         and
           EinheitenAllgemeines.Kampfeinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
       then
-         return -1;
+         return StadtzustandKrieg (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
       else
          Aufgabenwert := Stadtzustand (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -159,5 +158,28 @@ package body KIEinheitAufgabeAufloesen is
       return Zwischenwert;
       
    end GlobalerZustand;
+   
+   
+   
+   -------------------------------- Später noch mal erweitern, bringt ja nichts die Einheit zu behalten, wenn die Städte dafür verhungern.
+   function StadtzustandKrieg
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return KIDatentypen.AufgabenWichtigkeitKlein
+   is begin
+      
+      -- Platzhalter
+      case
+        EinheitRasseNummerExtern.Rasse
+      is
+         when RassenDatentypen.Ekropa_Enum =>
+            null;
+            
+         when others =>
+            null;
+      end case;
+      
+      return -1;
+      
+   end StadtzustandKrieg;
 
 end KIEinheitAufgabeAufloesen;

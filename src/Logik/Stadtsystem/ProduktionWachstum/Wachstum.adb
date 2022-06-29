@@ -127,7 +127,7 @@ package body Wachstum is
    is begin
       
       SchreibeStadtGebaut.Nahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                          NahrungsmittelExtern   => StadtKonstanten.LeerStadt.Nahrungsmittel,
+                                          NahrungsmittelExtern   => StadtKonstanten.LeerNahrungsmittel,
                                           ÄndernSetzenExtern     => False);
       SchreibeStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                              EinwohnerArbeiterExtern => True,

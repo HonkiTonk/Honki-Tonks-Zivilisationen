@@ -5,7 +5,6 @@ with StadtDatentypen; use StadtDatentypen;
 with StadtKonstanten;
 
 with LeseWichtiges;
-with SchreibeEinheitenGebaut;
 with LeseRassenDatenbank;
 
 with KIAufgabenVerteilt;
@@ -22,19 +21,12 @@ package body KIEinheitAufgabeSiedeln is
       if
         VorhandeneStädte = StadtKonstanten.LeerNummer
       then
-         SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                 AufgabeExtern            => KIDatentypen.Stadt_Bauen_Enum);
          return KIDatentypen.AufgabenWichtigkeitKlein'Last;
          
       elsif
-        SpielVariablen.Allgemeines.Rundenanzahl
-          > (Positive (VorhandeneStädte)
-             + KIAufgabenVerteilt.AufgabenVerteilt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    AufgabeExtern            => KIDatentypen.Stadt_Bauen_Enum))
-        * 20
+        SpielVariablen.Allgemeines.Rundenanzahl > 30 * (Positive (VorhandeneStädte) + KIAufgabenVerteilt.AufgabenVerteilt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                                                            AufgabeExtern            => KIDatentypen.Stadt_Bauen_Enum))
       then
-         SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                 AufgabeExtern            => KIDatentypen.Stadt_Bauen_Enum);
          return 5;
          
       else

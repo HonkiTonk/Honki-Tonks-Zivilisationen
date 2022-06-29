@@ -24,7 +24,9 @@ package KartenRecordKonstanten is
                                                                                  XAchse => KartenKonstanten.LeerXAchse
                                                                                 );
    
-   LeerStadtKoordinate : constant KartenRecords.AchsenStadtfeldRecord := (1, 1);
+   LeerStadtKoordinate : constant KartenRecords.AchsenStadtfeldRecord := (
+                                                                          YAchse => KartenDatentypen.Stadtfeld'First,
+                                                                          XAchse => KartenDatentypen.Stadtfeld'First);
    
    LeerKartenListe : constant DatenbankRecords.KartenlisteRecord := (
                                                                      Bewertung      => (others => KartenKonstanten.LeerBewertung),
@@ -39,7 +41,10 @@ package KartenRecordKonstanten is
                                                                                Kampf          => (others => (others => KartenKonstanten.LeerKampf))
                                                                               );
    
-   LeerDurchStadtBelegterGrund : constant KartenRecords.BelegterGrundRecord := (RassenDatentypen.Keine_Rasse_Enum, StadtDatentypen.MaximaleStädteMitNullWert'First);
+   LeerDurchStadtBelegterGrund : constant KartenRecords.BelegterGrundRecord := (
+                                                                                RasseBelegt => RassenDatentypen.Keine_Rasse_Enum,
+                                                                                StadtBelegt => StadtDatentypen.MaximaleStädteMitNullWert'First
+                                                                               );
 
    LeerWeltkarte : constant KartenRecords.KartenRecord := (
                                                            AktuellerGrund          => KartengrundDatentypen.Leer_Grund_Enum,
@@ -54,12 +59,12 @@ package KartenRecordKonstanten is
                                                           );
 
    KartenformStandard : constant KartenRecords.KartenformRecord := (
-                                                                    EAchseOben                       => KartenDatentypen.Karte_E_Kein_Übergang_Enum,
-                                                                    EAchseUnten                      => KartenDatentypen.Karte_E_Kein_Übergang_Enum,
-                                                                    YAchseNorden                     => KartenDatentypen.Karte_Y_Kein_Übergang_Enum,
-                                                                    YAchseSüden                      => KartenDatentypen.Karte_Y_Kein_Übergang_Enum,
-                                                                    XAchseWesten                     => KartenDatentypen.Karte_X_Übergang_Enum,
-                                                                    XAchseOsten                      => KartenDatentypen.Karte_X_Übergang_Enum
+                                                                    EAchseOben   => KartenDatentypen.Karte_E_Kein_Übergang_Enum,
+                                                                    EAchseUnten  => KartenDatentypen.Karte_E_Kein_Übergang_Enum,
+                                                                    YAchseNorden => KartenDatentypen.Karte_Y_Kein_Übergang_Enum,
+                                                                    YAchseSüden  => KartenDatentypen.Karte_Y_Kein_Übergang_Enum,
+                                                                    XAchseWesten => KartenDatentypen.Karte_X_Übergang_Enum,
+                                                                    XAchseOsten  => KartenDatentypen.Karte_X_Übergang_Enum
                                                                    );
    
    KartenpoleStandard : constant KartenRecords.KartenpoleRecord := (

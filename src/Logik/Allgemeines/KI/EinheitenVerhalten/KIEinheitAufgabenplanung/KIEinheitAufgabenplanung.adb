@@ -6,7 +6,6 @@ with EinheitenDatentypen; use EinheitenDatentypen;
 with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;
 
-with EinheitenErzeugenEntfernen;
 with Fehler;
 
 with KIDatentypen; use KIDatentypen;
@@ -34,10 +33,15 @@ with KIEinheitFestlegenPluendern;
 with KIEinheitFestlegenAngreifen;
 with KIEinheitFestlegenErkunden;
 with KIEinheitFestlegenNichts;
+with KIEinheitFestlegenVerteidigen;
+with KIEinheitFestlegenAngriffskrieg;
+with KIEinheitFestlegenVerteidigungskrieg;
+with KIEinheitFestlegenAufloesen;
 
-package body KIAufgabenPlanung is
+package body KIEinheitAufgabenplanung is
    
    -- Bei den Prüfungen zurückgeben: -1 wenn es nicht möglich sein soll, 0 wenn keine richtige Prüfung vorhanden ist und 1 .. 100 für die reguläre Bewertung.
+   ----------------------------------------- Später ändern?
    procedure AufgabeErmitteln
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
@@ -79,11 +83,18 @@ package body KIAufgabenPlanung is
             Wichtigkeit (KIDatentypen.Angreifen_Enum) := KIEinheitAufgabeAngreifen.Angreifen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             Wichtigkeit (KIDatentypen.Erkunden_Enum) := KIEinheitAufgabeErkunden.Erkunden (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
+            ----------------------------- Später noch Extraberechnungen für Fernkämpfer im Angriff durchführen lassen. Aktuell ist das ja eh nicht implementiert.
          when EinheitenDatentypen.Fernkämpfer_Enum =>
-            null;
+            Wichtigkeit (KIDatentypen.Stadt_Bewachen_Enum) := KIEinheitAufgabeBewachen.StadtBewachen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            Wichtigkeit (KIDatentypen.Verbesserung_Zerstören_Enum) := KIEinheitAufgabePluendern.StadtumgebungZerstören (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            Wichtigkeit (KIDatentypen.Angreifen_Enum) := KIEinheitAufgabeAngreifen.Angreifen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            Wichtigkeit (KIDatentypen.Erkunden_Enum) := KIEinheitAufgabeErkunden.Erkunden (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when EinheitenDatentypen.Beides_Enum =>
-            null;
+            Wichtigkeit (KIDatentypen.Stadt_Bewachen_Enum) := KIEinheitAufgabeBewachen.StadtBewachen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            Wichtigkeit (KIDatentypen.Verbesserung_Zerstören_Enum) := KIEinheitAufgabePluendern.StadtumgebungZerstören (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            Wichtigkeit (KIDatentypen.Angreifen_Enum) := KIEinheitAufgabeAngreifen.Angreifen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            Wichtigkeit (KIDatentypen.Erkunden_Enum) := KIEinheitAufgabeErkunden.Erkunden (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when EinheitenDatentypen.Sonstiges_Enum =>
             null;
@@ -102,7 +113,6 @@ package body KIAufgabenPlanung is
    is begin
       
       WelcheAufgabe := WichtigkeitArray'First;
-      AufgabenDurchgegangen := 1;
       
       AufgabeAuswählenSchleife:
       for AufgabeAuswählenSchleifenwert in WichtigkeitArray'Range loop
@@ -110,10 +120,19 @@ package body KIAufgabenPlanung is
          if
            Wichtigkeit (AufgabeAuswählenSchleifenwert) = -1
          then
-            AufgabenDurchgegangen := AufgabenDurchgegangen + 1;
-           
+            null;
+            
          elsif
-           Wichtigkeit (WelcheAufgabe) < Wichtigkeit (AufgabeAuswählenSchleifenwert)
+           WelcheAufgabe /= KIDatentypen.Leer_Aufgabe_Enum
+           and then
+             Wichtigkeit (WelcheAufgabe) < Wichtigkeit (AufgabeAuswählenSchleifenwert)
+         then
+            WelcheAufgabe := AufgabeAuswählenSchleifenwert;
+            
+         elsif
+           WelcheAufgabe = KIDatentypen.Leer_Aufgabe_Enum
+           and
+             Wichtigkeit (AufgabeAuswählenSchleifenwert) > -1
          then
             WelcheAufgabe := AufgabeAuswählenSchleifenwert;
             
@@ -122,15 +141,6 @@ package body KIAufgabenPlanung is
          end if;
          
       end loop AufgabeAuswählenSchleife;
-      
-      if
-        AufgabenDurchgegangen >= WichtigkeitArray'Length
-      then
-         WelcheAufgabe := KIDatentypen.Leer_Aufgabe_Enum;
-         
-      else
-         null;
-      end if;
       
       return WelcheAufgabe;
       
@@ -157,9 +167,9 @@ package body KIAufgabenPlanung is
                AufgabeFestgelegt := KIEinheitFestlegenVerbesserungen.StadtumgebungVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
             when KIDatentypen.Einheit_Auflösen_Enum =>
-               -- Hier wird keine spezifische KILösung benötigt, da einfach die Standardentfernprozedur verwendet wird.
-               AufgabeFestgelegt := True;
-               EinheitenErzeugenEntfernen.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+               ------------------------------------ Trotzdem in eine eigene Datei auslagern? Muss sogar, das hier entfernt direkt die Einheit anstatt die Aufgabe nur festzulegen.
+               AufgabeFestgelegt := KIEinheitFestlegenAufloesen.EinheitAuflösen;
+               -- EinheitenErzeugenEntfernen.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
             when KIDatentypen.Flucht_Enum =>
                AufgabeFestgelegt := KIEinheitFestlegenFliehen.Fliehen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -185,15 +195,24 @@ package body KIAufgabenPlanung is
             when KIDatentypen.Erkunden_Enum =>
                AufgabeFestgelegt := KIEinheitFestlegenErkunden.Erkunden (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-            when KIDatentypen.Verteidigen_Enum | KIDatentypen.Auf_Transporter_Warten_Enum =>
+            when KIDatentypen.Verteidigen_Enum =>
+               AufgabeFestgelegt := KIEinheitFestlegenVerteidigen.Verteidigen;
+               
+               -------------------------------- Hier müsste ich erst das Ziel ermitteln lassen und dann entsprechend die Aufgabe setzen. Bin mal gespannt wie ich das löse.
+            when KIDatentypen.Auf_Transporter_Warten_Enum =>
                AufgabeFestgelegt := False;
+               
+            when KIDatentypen.Angriffskrieg_Vorbereiten_Enum =>
+               AufgabeFestgelegt := KIEinheitFestlegenAngriffskrieg.AngriffskriegVorbereiten;
             
+            when KIDatentypen.Verteidigungskrieg_Vorbereiten_Enum =>
+               AufgabeFestgelegt := KIEinheitFestlegenVerteidigungskrieg.VerteidigungskriegVorbereiten;
+               
             when KIDatentypen.Tut_Nichts_Enum =>
                AufgabeFestgelegt := KIEinheitFestlegenNichts.NichtsTun (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
             when KIDatentypen.Leer_Aufgabe_Enum =>
                exit AufgabeFestlegenSchleife;
-               
          end case;
       
          case
@@ -210,4 +229,4 @@ package body KIAufgabenPlanung is
       
    end AufgabeFestlegen;
 
-end KIAufgabenPlanung;
+end KIEinheitAufgabenplanung;

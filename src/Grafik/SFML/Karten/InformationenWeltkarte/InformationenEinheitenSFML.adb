@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics;
 with Sf.Graphics.Text;
@@ -19,7 +21,6 @@ with EinheitenBeschreibungen;
 with KampfwerteEinheitErmitteln;
 with GrafikEinstellungenSFML;
 with StadtInformationenSFML;
-with DebugmenueSFML;
 
 package body InformationenEinheitenSFML is
 
@@ -185,7 +186,7 @@ package body InformationenEinheitenSFML is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
-      WertOhneTrennzeichen := ZahlAlsStringMaximaleEinheitenMitNullWert (ZahlExtern => LeseEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      WertOhneTrennzeichen := ZahlAlsStringArbeitszeit (ZahlExtern => LeseEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitenInformationenAccess (6),
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugBeschäftigungszeit)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
@@ -337,7 +338,7 @@ package body InformationenEinheitenSFML is
             
             LadungSchleife:
             for LadungSchleifenwert in EinheitenRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                                                                                 IDExtern    => IDEinheit) loop
+                                                                                                                              IDExtern    => IDEinheit) loop
                   
                if
                  LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -401,10 +402,18 @@ package body InformationenEinheitenSFML is
         SpielVariablen.Debug.VolleInformation
       is
          when False =>
-            null;
+            return;
             
          when True =>
-           DebugmenueSFML.KarteInfosEinheiten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);                     
+            if
+              SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Mensch_Spieler_Enum
+            then
+               Put_Line (LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern)'Wide_Wide_Image & "    "
+                         & LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)'Wide_Wide_Image);
+               
+            else
+               null;
+            end if;
       end case;
       
    end DebugInformationen;

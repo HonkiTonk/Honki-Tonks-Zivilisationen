@@ -56,7 +56,7 @@ package body LeseEinheitenDatenbank is
       if
         EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).PermanenteKosten (WelcheKostenExtern) < StadtKonstanten.LeerPermanenteKosten
       then
-         return EinheitenKonstanten.LeerEinheitListe.PermanenteKosten (WelcheKostenExtern);
+         return EinheitenKonstanten.LeerPermanenteKosten;
       
       else
          return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).PermanenteKosten (WelcheKostenExtern);

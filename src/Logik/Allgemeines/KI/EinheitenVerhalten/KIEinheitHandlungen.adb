@@ -14,8 +14,8 @@ with BewegungEinheiten;
 with KIDatentypen; use KIDatentypen;
 
 with KIBewegungDurchfuehren;
-with KIAufgabenPlanung;
-with KIAufgabenUmsetzung;
+with KIEinheitAufgabenplanung;
+with KIEinheitAufgabenumsetzung;
 
 ---------------------------------- Besseren Namen geben?
 package body KIEinheitHandlungen is
@@ -59,7 +59,7 @@ package body KIEinheitHandlungen is
         and
           LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = KIDatentypen.Leer_Aufgabe_Enum
       then
-         KIAufgabenPlanung.AufgabeErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         KIEinheitAufgabenplanung.AufgabeErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          return HandlungBeendet (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
       else
@@ -102,7 +102,7 @@ package body KIEinheitHandlungen is
         and
           LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerBeschäftigung
       then
-         KIAufgabenUmsetzung.AufgabeUmsetzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         KIEinheitAufgabenumsetzung.AufgabeUmsetzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          return HandlungBeendet (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
       else

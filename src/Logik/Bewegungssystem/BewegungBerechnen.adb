@@ -62,7 +62,7 @@ package body BewegungBerechnen is
         BewegungspunkteAbzug = EinheitUnbewegbar
       then
          SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                  BewegungspunkteExtern    => EinheitenKonstanten.LeerEinheit.Bewegungspunkte,
+                                                  BewegungspunkteExtern    => EinheitenKonstanten.LeerBewegungspunkte,
                                                   RechnenSetzenExtern      => 0);
          return;
          

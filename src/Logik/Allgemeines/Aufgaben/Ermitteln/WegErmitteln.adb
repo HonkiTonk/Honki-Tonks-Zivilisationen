@@ -5,8 +5,8 @@ with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with KartengrundDatentypen; use KartengrundDatentypen;
 with AufgabenDatentypen; use AufgabenDatentypen;
 with ForschungenDatentypen; use ForschungenDatentypen;
-with EinheitenDatentypen; use EinheitenDatentypen;
-with EinheitenKonstanten;
+with ProduktionDatentypen; use ProduktionDatentypen;
+with EinheitenRecordKonstanten;
 
 with SchreibeEinheitenGebaut;
 with LeseKarten;
@@ -102,11 +102,11 @@ package body WegErmitteln is
                WelcheArbeit := WelcheWegart (WegVorhanden);
                
             else
-               return EinheitenKonstanten.KeineArbeit;
+               return EinheitenRecordKonstanten.KeineArbeit;
             end if;
             
          when others =>
-            return EinheitenKonstanten.KeineArbeit;
+            return EinheitenRecordKonstanten.KeineArbeit;
       end case;
       
       case
@@ -151,11 +151,11 @@ package body WegErmitteln is
                WelcheArbeit := WelcheWegart (WegVorhanden);
                
             else
-               return EinheitenKonstanten.KeineArbeit;
+               return EinheitenRecordKonstanten.KeineArbeit;
             end if;
             
          when others =>
-            return EinheitenKonstanten.KeineArbeit;
+            return EinheitenRecordKonstanten.KeineArbeit;
       end case;
       
       case
@@ -196,11 +196,11 @@ package body WegErmitteln is
                WelcheArbeit := WelcheWegart (WegVorhanden);
                
             else
-               return EinheitenKonstanten.KeineArbeit;
+               return EinheitenRecordKonstanten.KeineArbeit;
             end if;
             
          when others =>
-            return EinheitenKonstanten.KeineArbeit;
+            return EinheitenRecordKonstanten.KeineArbeit;
       end case;
       
       case
@@ -244,11 +244,11 @@ package body WegErmitteln is
                WelcheArbeit := WelcheWegart (WegVorhanden);
                
             else
-               return EinheitenKonstanten.KeineArbeit;
+               return EinheitenRecordKonstanten.KeineArbeit;
             end if;
             
          when others =>
-            return EinheitenKonstanten.KeineArbeit;
+            return EinheitenRecordKonstanten.KeineArbeit;
       end case;
       
       case

@@ -88,7 +88,7 @@ package body StadtEntfernen is
            LeseEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerSchleifenwert)) = StadtRasseNummerExtern.Nummer
          then
             SchreibeEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerSchleifenwert),
-                                                 HeimatstadtExtern        => EinheitenKonstanten.LeerEinheit.Heimatstadt);
+                                                 HeimatstadtExtern        => EinheitenKonstanten.LeerHeimatstadt);
             
          else
             null;

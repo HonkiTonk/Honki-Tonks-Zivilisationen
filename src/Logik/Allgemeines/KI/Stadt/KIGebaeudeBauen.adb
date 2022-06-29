@@ -96,33 +96,33 @@ package body KIGebaeudeBauen is
    is begin
       
       if
-        LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern) < StadtKonstanten.LeerStadt.Nahrungsproduktion
+        LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern) < StadtKonstanten.LeerNahrungsproduktion
         and
           LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern)
         + LeseGebaeudeDatenbank.WirtschaftBonus (RasseExtern            => StadtRasseNummerExtern.Rasse,
                                                  IDExtern               => IDExtern,
                                                  WWirtschaftBonusExtern => KartenKonstanten.WirtschaftNahrung)
-        >= StadtKonstanten.LeerStadt.Nahrungsproduktion
+        >= StadtKonstanten.LeerNahrungsproduktion
       then
          return 20;
                   
       elsif
-        LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern) < StadtKonstanten.LeerStadt.Nahrungsproduktion
+        LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern) < StadtKonstanten.LeerNahrungsproduktion
         and
           LeseGebaeudeDatenbank.WirtschaftBonus (RasseExtern            => StadtRasseNummerExtern.Rasse,
                                                  IDExtern               => IDExtern,
                                                  WWirtschaftBonusExtern => KartenKonstanten.WirtschaftNahrung)
-        > StadtKonstanten.LeerStadt.Nahrungsproduktion
+        > StadtKonstanten.LeerNahrungsproduktion
       then
          return 10;
          
       elsif
-        LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern) < StadtKonstanten.LeerStadt.Nahrungsproduktion
+        LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern) < StadtKonstanten.LeerNahrungsproduktion
         and
           LeseGebaeudeDatenbank.WirtschaftBonus (RasseExtern            => StadtRasseNummerExtern.Rasse,
                                                  IDExtern               => IDExtern,
                                                  WWirtschaftBonusExtern => KartenKonstanten.WirtschaftNahrung)
-        = StadtKonstanten.LeerStadt.Nahrungsproduktion
+        = StadtKonstanten.LeerNahrungsproduktion
       then
          return 5;
       
@@ -131,7 +131,7 @@ package body KIGebaeudeBauen is
         - LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                   IDExtern           => IDExtern,
                                                   WelcheKostenExtern => ProduktionDatentypen.Nahrung_Enum)
-        < StadtKonstanten.LeerStadt.Nahrungsproduktion
+        < StadtKonstanten.LeerNahrungsproduktion
       then
          return -20;
          
@@ -155,33 +155,33 @@ package body KIGebaeudeBauen is
    is begin
       
       if
-        LeseWichtiges.GeldZugewinnProRunde (RasseExtern => StadtRasseNummerExtern.Rasse) < WichtigesKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
+        LeseWichtiges.GeldZugewinnProRunde (RasseExtern => StadtRasseNummerExtern.Rasse) < WichtigesKonstanten.LeerGeldZugewinnProRunde
         and
           LeseWichtiges.GeldZugewinnProRunde (RasseExtern => StadtRasseNummerExtern.Rasse)
         + LeseGebaeudeDatenbank.WirtschaftBonus (RasseExtern            => StadtRasseNummerExtern.Rasse,
                                                  IDExtern               => IDExtern,
                                                  WWirtschaftBonusExtern => KartenKonstanten.WirtschaftGeld)
-        >= WichtigesKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
+        >= WichtigesKonstanten.LeerGeldZugewinnProRunde
       then
          return 20;
          
       elsif
-        LeseWichtiges.GeldZugewinnProRunde (RasseExtern => StadtRasseNummerExtern.Rasse) < WichtigesKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
+        LeseWichtiges.GeldZugewinnProRunde (RasseExtern => StadtRasseNummerExtern.Rasse) < WichtigesKonstanten.LeerGeldZugewinnProRunde
         and
           LeseGebaeudeDatenbank.WirtschaftBonus (RasseExtern            => StadtRasseNummerExtern.Rasse,
                                                  IDExtern               => IDExtern,
                                                  WWirtschaftBonusExtern => KartenKonstanten.WirtschaftGeld)
-        > StadtKonstanten.LeerStadt.Geldgewinnung
+        > StadtKonstanten.LeerGeldgewinnung
       then
          return 10;
          
       elsif
-        LeseWichtiges.GeldZugewinnProRunde (RasseExtern => StadtRasseNummerExtern.Rasse) < WichtigesKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
+        LeseWichtiges.GeldZugewinnProRunde (RasseExtern => StadtRasseNummerExtern.Rasse) < WichtigesKonstanten.LeerGeldZugewinnProRunde
         and
           LeseGebaeudeDatenbank.WirtschaftBonus (RasseExtern            => StadtRasseNummerExtern.Rasse,
                                                  IDExtern               => IDExtern,
                                                  WWirtschaftBonusExtern => KartenKonstanten.WirtschaftGeld)
-        = StadtKonstanten.LeerStadt.Geldgewinnung
+        = StadtKonstanten.LeerGeldgewinnung
       then
          return 5;
          
@@ -190,7 +190,7 @@ package body KIGebaeudeBauen is
         - LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                   IDExtern           => IDExtern,
                                                   WelcheKostenExtern => ProduktionDatentypen.Geld_Enum)
-        < WichtigesKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
+        < WichtigesKonstanten.LeerGeldZugewinnProRunde
       then
          return -20;
          
@@ -214,12 +214,12 @@ package body KIGebaeudeBauen is
    is begin
       
       if
-        LeseStadtGebaut.Forschungsrate (StadtRasseNummerExtern => StadtRasseNummerExtern) = StadtKonstanten.LeerStadt.Forschungsrate
+        LeseStadtGebaut.Forschungsrate (StadtRasseNummerExtern => StadtRasseNummerExtern) = StadtKonstanten.LeerForschungsrate
         and
           LeseGebaeudeDatenbank.WirtschaftBonus (RasseExtern            => StadtRasseNummerExtern.Rasse,
                                                  IDExtern               => IDExtern,
                                                  WWirtschaftBonusExtern => KartenKonstanten.WirtschaftForschung)
-        > WichtigesKonstanten.LeerWichtigesZeug.GesamteForschungsrate
+        > WichtigesKonstanten.LeerGesamteForschungsrate
       then
          return 5;
          
@@ -240,33 +240,33 @@ package body KIGebaeudeBauen is
    is begin
       
       if
-        LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern) < StadtKonstanten.LeerStadt.Produktionrate
+        LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern) < StadtKonstanten.LeerProduktionrate
         and
           LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern)
         + LeseGebaeudeDatenbank.WirtschaftBonus (RasseExtern            => StadtRasseNummerExtern.Rasse,
                                                  IDExtern               => IDExtern,
                                                  WWirtschaftBonusExtern => KartenKonstanten.WirtschaftProduktion)
-        >= StadtKonstanten.LeerStadt.Produktionrate
+        >= StadtKonstanten.LeerProduktionrate
       then
          return 20;
          
       elsif
-        LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern) < StadtKonstanten.LeerStadt.Produktionrate
+        LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern) < StadtKonstanten.LeerProduktionrate
         and
           + LeseGebaeudeDatenbank.WirtschaftBonus (RasseExtern            => StadtRasseNummerExtern.Rasse,
                                                    IDExtern               => IDExtern,
                                                    WWirtschaftBonusExtern => KartenKonstanten.WirtschaftProduktion)
-        > StadtKonstanten.LeerStadt.Produktionrate
+        > StadtKonstanten.LeerProduktionrate
       then
          return 10;
          
       elsif
-        LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern) < StadtKonstanten.LeerStadt.Produktionrate
+        LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern) < StadtKonstanten.LeerProduktionrate
         and
           + LeseGebaeudeDatenbank.WirtschaftBonus (RasseExtern            => StadtRasseNummerExtern.Rasse,
                                                    IDExtern               => IDExtern,
                                                    WWirtschaftBonusExtern => KartenKonstanten.WirtschaftProduktion)
-        = StadtKonstanten.LeerStadt.Produktionrate
+        = StadtKonstanten.LeerProduktionrate
       then
          return 5;
          
@@ -275,7 +275,7 @@ package body KIGebaeudeBauen is
         - LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                   IDExtern           => IDExtern,
                                                   WelcheKostenExtern => ProduktionDatentypen.Ressourcen_Enum)
-        < StadtKonstanten.LeerStadt.Produktionrate
+        < StadtKonstanten.LeerProduktionrate
       then
          return -20;
          

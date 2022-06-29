@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with EinheitenDatentypen;
-with EinheitenKonstanten;
+with EinheitenRecordKonstanten;
 with EinheitenRecords;
 
 with DatenbankRecords;
@@ -1089,7 +1089,7 @@ package EinheitenLasupin is
                                                                                 Transportkapazität      => EinheitenRecords.TransporterArray'Last
                                                                                ),
                                                                
-                                                                             others => EinheitenKonstanten.LeerEinheitListe
+                                                                             others => EinheitenRecordKonstanten.LeerEinheitListe
                                                                             );
 
 end EinheitenLasupin;

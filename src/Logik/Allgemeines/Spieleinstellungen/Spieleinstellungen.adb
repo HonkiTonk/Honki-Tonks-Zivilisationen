@@ -36,7 +36,7 @@ package body Spieleinstellungen is
         SchnellstartExtern
       is
          when True =>
-            SpieleinstellungenRasseSpieler.RasseAutomatischBelegen;
+            SpieleinstellungenRasseSpieler.RasseBelegenSchnellstart;
             return AutomatischeEinstellungen;
             
          when False =>

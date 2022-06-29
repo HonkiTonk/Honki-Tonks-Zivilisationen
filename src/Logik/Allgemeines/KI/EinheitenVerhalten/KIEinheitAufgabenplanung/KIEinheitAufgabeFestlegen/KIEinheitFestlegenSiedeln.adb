@@ -79,6 +79,7 @@ package body KIEinheitFestlegenSiedeln is
                return MöglichesFeld;
          end case;
          
+         ------------------------------ Einschränken wie beim Erkunden, eventuell um die Einheit und dann um alle Städte herum prüfen?
          if
            YAchseKoordinatePrüfen > Karten.Karteneinstellungen.Kartengröße.YAchse / 2
            and

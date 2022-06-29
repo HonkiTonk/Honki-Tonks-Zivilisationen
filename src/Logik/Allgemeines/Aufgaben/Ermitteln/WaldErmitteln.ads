@@ -6,8 +6,8 @@ with EinheitenRecords;
 with SpielVariablen;
 with KartengrundDatentypen;
 with AufgabenDatentypen;
-with EinheitenDatentypen;
 with KartenVerbesserungDatentypen;
+with ProduktionDatentypen;
 
 package WaldErmitteln is
 
@@ -32,8 +32,8 @@ private
 
    WelcheArbeit : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
 
-   Arbeitszeit : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
-   Grundzeit : EinheitenDatentypen.MaximaleEinheitenMitNullWert := 1;
+   Arbeitszeit : ProduktionDatentypen.Arbeitszeit;
+   Grundzeit : ProduktionDatentypen.Arbeitszeit := 1;
 
    Arbeitswerte : EinheitenRecords.ArbeitRecord;
 

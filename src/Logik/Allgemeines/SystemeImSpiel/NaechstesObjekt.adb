@@ -36,11 +36,11 @@ package body NaechstesObjekt is
          if
            LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheit (RasseExtern))) = EinheitenKonstanten.LeerID
            or
-             (LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheit (RasseExtern))) <= EinheitenKonstanten.LeerEinheit.Bewegungspunkte
+             (LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheit (RasseExtern))) <= EinheitenKonstanten.LeerBewegungspunkte
               and
                 BewegungspunkteExtern = Hat_Bewegungspunkte)
            or
-             (LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheit (RasseExtern))) > EinheitenKonstanten.LeerEinheit.Bewegungspunkte
+             (LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheit (RasseExtern))) > EinheitenKonstanten.LeerBewegungspunkte
               and
                 BewegungspunkteExtern = Keine_Bewegungspunkte)
          then

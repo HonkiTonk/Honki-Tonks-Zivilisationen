@@ -39,7 +39,7 @@ package body BewegungLadenEntladen is
                                                    LadungExtern             => LadungExtern,
                                                    LadungsplatzExtern       => FreierPlatzNummer);
             SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern),
-                                                     BewegungspunkteExtern    => EinheitenKonstanten.LeerEinheit.Bewegungspunkte,
+                                                     BewegungspunkteExtern    => EinheitenKonstanten.LeerBewegungspunkte,
                                                      RechnenSetzenExtern      => 0);
             SchreibeEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern),
                                                  KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => TransporterExtern));

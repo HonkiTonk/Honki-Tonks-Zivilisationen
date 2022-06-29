@@ -113,6 +113,34 @@ package body SpieleinstellungenRasseSpieler is
       SpielVariablen.RassenImSpiel (ZufallsgeneratorenSpieleinstellungen.ZufälligeRasse) := RassenDatentypen.Mensch_Spieler_Enum;
       
    end RasseAutomatischBelegen;
+   
+   
+   
+   procedure RasseBelegenSchnellstart
+   is begin
+      
+      RasseMenschSchnellstart := ZufallsgeneratorenSpieleinstellungen.ZufälligeRasse;
+      
+      SpielVariablen.RassenImSpiel (RasseMenschSchnellstart) := RassenDatentypen.Mensch_Spieler_Enum;
+      
+      KIBelegenSchleife:
+      loop
+         
+         RasseKISchnellstart := ZufallsgeneratorenSpieleinstellungen.ZufälligeRasse;
+         
+         if
+           RasseMenschSchnellstart = RasseKISchnellstart
+         then
+            null;
+            
+         else
+            SpielVariablen.RassenImSpiel (RasseKISchnellstart) := RassenDatentypen.KI_Spieler_Enum;
+            exit KIBelegenSchleife;
+         end if;
+         
+      end loop KIBelegenSchleife;
+      
+   end RasseBelegenSchnellstart;
 
 
 

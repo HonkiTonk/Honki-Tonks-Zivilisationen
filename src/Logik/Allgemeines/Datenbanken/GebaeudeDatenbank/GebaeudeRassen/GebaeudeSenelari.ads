@@ -3,6 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with StadtKonstanten;
 with KartenDatentypen;
+with StadtRecordKonstanten;
 
 with DatenbankRecords;
 
@@ -400,7 +401,7 @@ package GebaeudeSenelari is
                                                                                GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft
                                                                               ),
                                                               
-                                                                            others => StadtKonstanten.LeerGebäudeListe
+                                                                            others => StadtRecordKonstanten.LeerGebäudeListe
                                                                            );
 
 end GebaeudeSenelari;

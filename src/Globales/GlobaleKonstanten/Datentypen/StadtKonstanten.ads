@@ -15,9 +15,6 @@ with ForschungenDatentypen;
 with ProduktionDatentypen;
 with StadtRecords;
 with KampfDatentypen;
-with KartenRecordKonstanten;
-
-with DatenbankRecords;
 
 with KIDatentypen;
 
@@ -49,28 +46,7 @@ package StadtKonstanten is
    LeerMeldung : constant StadtDatentypen.Stadt_Meldung_Enum := StadtDatentypen.Leer_Stadt_Meldung_Enum;
    LeerKIBeschäftigung : constant KIDatentypen.Stadt_Aufgabe_Enum := KIDatentypen.Keine_Aufgabe_Enum;
    
-   LeerStadt : constant StadtRecords.StadtGebautRecord := (
-                                                           ID                      => LeerID,
-                                                           KoordinatenAktuell      => KartenRecordKonstanten.LeerKoordinate,
-                                                           EinwohnerArbeiter       => LeerEinwohnerArbeiter,
-                                                           Nahrungsmittel          => LeerNahrungsmittel,
-                                                           Nahrungsproduktion      => LeerNahrungsproduktion,
-                                                           Ressourcen              => LeerRessourcen,
-                                                           Produktionrate          => LeerProduktionrate,
-                                                           Geldgewinnung           => LeerGeldgewinnung,
-                                                           PermanenteKostenPosten  => (others => LeerPermanenteKosten),
-                                                           Forschungsrate          => LeerForschungsrate,
-                                                           Bauprojekt              => LeerBauprojekt,
-                                                           Bauzeit                 => LeerBauzeit,
-                                                           Korruption              => LeerKorruption,
-                                                           Zufriedenheit           => LeerZufriedenheit,
-                                                           GebäudeVorhanden        => (others => LeerGebäude),
-                                                           Name                    => LeerName,
-                                                           UmgebungBewirtschaftung => (others => (others => LeerUmgebungBewitschaftet)),
-                                                           UmgebungGröße           => LeerUmgebungGröße,
-                                                           Meldungen               => (others => LeerMeldung),
-                                                           KIBeschäftigung         => LeerKIBeschäftigung
-                                                          );
+   
 
    MaximaleBauzeit : constant ProduktionDatentypen.Produktion := ProduktionDatentypen.Produktion'Last;
    
@@ -86,18 +62,7 @@ package StadtKonstanten is
    LeerRessourceBenötigt : constant KartengrundDatentypen.Kartenressourcen_Enum := KartengrundDatentypen.Leer_Ressource_Enum;
    LeerSpezielleEigenschaft : constant StadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum := StadtDatentypen.Leer_Gebäude_Spezielle_Egienschaft_Enum;
    
-   LeerGebäudeListe : constant DatenbankRecords.GebäudelisteRecord := (
-                                                                         PreisGeld                   => LeerPreisGeld,
-                                                                         PreisRessourcen             => LeerPreisRessourcen,
-                                                                         PermanenteKosten            => (others => LeerPermanenteKosten),
-                                                                         Anforderungen               => LeerAnforderungen,
-                                                                         BonusWirtschaft             => (others => LeerBonusWirtschaft),
-                                                                         BonusKampf                  => (others => LeerBonusKampf),
-                                                                         GrundBenötigt               => LeerGrundBenötigt,
-                                                                         FlussBenötigt               => LeerFlussBenötigt,
-                                                                         RessourceBenötigt           => LeerRessourceBenötigt,
-                                                                         GebäudeSpezielleEigenschaft => LeerSpezielleEigenschaft
-                                                                        );
+   
    
    type StadtUmgebungWachstumArray is array (SystemDatentypen.Anfang_Ende_Enum'Range, RassenDatentypen.Rassen_Verwendet_Enum'Range) of ProduktionDatentypen.Einwohner;
    StadtUmgebungWachstum : constant StadtUmgebungWachstumArray := (

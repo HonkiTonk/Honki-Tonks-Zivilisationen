@@ -39,7 +39,7 @@ package body InDerStadtBauen is
          SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                          BauprojektExtern       => NeuesBauprojekt);
          SchreibeStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                         RessourcenExtern       => StadtKonstanten.LeerStadt.Ressourcen,
+                                         RessourcenExtern       => StadtKonstanten.LeerRessourcen,
                                          ÄndernSetzenExtern     => False);
       end if;
       

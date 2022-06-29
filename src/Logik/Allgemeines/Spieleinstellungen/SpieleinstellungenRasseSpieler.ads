@@ -14,6 +14,7 @@ package SpieleinstellungenRasseSpieler is
    procedure StartwerteErmitteln;
    procedure RassenWählen;
    procedure RasseAutomatischBelegen;
+   procedure RasseBelegenSchnellstart;
    
    
    
@@ -30,6 +31,9 @@ private
    RassenAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
    SpielerartAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
    SpieleranzahlAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
+   
+   RasseMenschSchnellstart : RassenDatentypen.Rassen_Verwendet_Enum;
+   RasseKISchnellstart : RassenDatentypen.Rassen_Verwendet_Enum;
    
    GezogeneWerte : KartenRecords.AchsenKartenfeldNaturalRecord;
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;

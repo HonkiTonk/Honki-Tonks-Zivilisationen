@@ -3,6 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with ProduktionDatentypen; use ProduktionDatentypen;
 with StadtKonstanten;
+with StadtRecordKonstanten;
 
 with LeseGebaeudeDatenbank;
 with LeseEinheitenDatenbank;
@@ -552,7 +553,7 @@ package body SchreibeStadtGebaut is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
-      SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer) := StadtKonstanten.LeerStadt;
+      SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer) := StadtRecordKonstanten.LeerStadt;
       
    end Nullsetzung;
    

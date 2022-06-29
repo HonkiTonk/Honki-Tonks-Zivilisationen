@@ -1,8 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitenDatentypen; use EinheitenDatentypen;
-with EinheitenKonstanten;
+with ProduktionDatentypen; use ProduktionDatentypen;
+with EinheitenRecordKonstanten;
 
 with SchreibeEinheitenGebaut;
   
@@ -75,7 +75,7 @@ package body RodenErmitteln is
             Arbeitszeit := Grundzeit + 2;
                
          when others =>
-            return EinheitenKonstanten.KeineArbeit;
+            return EinheitenRecordKonstanten.KeineArbeit;
       end case;
             
       return (AufgabenDatentypen.Roden_Trockenlegen_Enum, Arbeitszeit);
@@ -96,7 +96,7 @@ package body RodenErmitteln is
             Arbeitszeit := Grundzeit + 2;
                
          when others =>
-            return EinheitenKonstanten.KeineArbeit;
+            return EinheitenRecordKonstanten.KeineArbeit;
       end case;
             
       return (AufgabenDatentypen.Roden_Trockenlegen_Enum, Arbeitszeit);

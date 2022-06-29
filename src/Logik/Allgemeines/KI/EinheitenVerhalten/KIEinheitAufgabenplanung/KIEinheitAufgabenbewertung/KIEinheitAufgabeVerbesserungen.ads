@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
 with EinheitenRecords;
-with KartenRecords;
+with ForschungenDatentypen;
 
 with KIDatentypen;
 
@@ -22,6 +22,17 @@ package KIEinheitAufgabeVerbesserungen is
 
 private
 
-   Kartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Gesamtwert : KIDatentypen.AufgabenWichtigkeitKlein;
+   Zwischenwert : KIDatentypen.AufgabenWichtigkeitKlein;
+
+   NötigeTechnologie : ForschungenDatentypen.ForschungIDNichtMöglich;
+
+   function MöglicheVerbesserungen
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      return KIDatentypen.AufgabenWichtigkeitKlein
+     with
+       Pre => (
+                 SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.KI_Spieler_Enum
+              );
 
 end KIEinheitAufgabeVerbesserungen;

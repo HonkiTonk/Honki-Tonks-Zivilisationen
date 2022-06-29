@@ -107,16 +107,6 @@ package body DebugmenueSFML is
       end loop RassenErsteSchleife;
       
    end DiplomatischenStatusÄndern;
-      
-   
-   
-   procedure KarteInfosEinheiten
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-   is begin
-      
-      null;
-      
-   end KarteInfosEinheiten;
    
    
    

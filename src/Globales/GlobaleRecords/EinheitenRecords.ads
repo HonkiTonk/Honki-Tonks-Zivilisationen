@@ -8,6 +8,7 @@ with KartenRecords;
 with AufgabenDatentypen;
 with KartenDatentypen;
 with KampfDatentypen;
+with ProduktionDatentypen;
 
 with KIDatentypen;
 
@@ -50,9 +51,9 @@ package EinheitenRecords is
       Beschäftigung : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
       BeschäftigungNachfolger : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
       
-      ---------------------------- Besseren Datentypen für die Beschäftigungszeit einbauen? Z. B. für Arbeiten die niemals fertig werden?
-      Beschäftigungszeit : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
-      BeschäftigungszeitNachfolger : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      ---------------------------- Besseren Datentypen für die Beschäftigungszeit einbauen? Z. B. für Arbeiten die niemals fertig werden? Ist das sinnvoll?
+      Beschäftigungszeit : ProduktionDatentypen.Arbeitszeit;
+      BeschäftigungszeitNachfolger : ProduktionDatentypen.Arbeitszeit;
       
       KIZielKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
       KIBeschäftigt : KIDatentypen.Einheit_Aufgabe_Enum;
@@ -70,7 +71,7 @@ package EinheitenRecords is
    type ArbeitRecord is record
       
       WelcheArbeit : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
-      Arbeitszeit : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      Arbeitszeit : ProduktionDatentypen.Arbeitszeit;
       
    end record;
 

@@ -49,8 +49,30 @@ package body KIEinheitAufgabeModernisieren is
          return -1;
       end if;
       
-      return 5;
+      return NeueKosten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
    end SichVerbessern;
+   
+   
+   
+   function NeueKosten
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return KIDatentypen.AufgabenWichtigkeitKlein
+   is begin
+      
+      -- Platzhalter
+      case
+        EinheitRasseNummerExtern.Rasse
+      is
+         when RassenDatentypen.Ekropa_Enum =>
+            null;
+            
+         when others =>
+            null;
+      end case;
+      
+      return 5;
+      
+   end NeueKosten;
 
 end KIEinheitAufgabeModernisieren;

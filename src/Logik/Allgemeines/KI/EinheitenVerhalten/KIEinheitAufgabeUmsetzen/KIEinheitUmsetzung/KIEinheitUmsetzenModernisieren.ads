@@ -2,13 +2,14 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
-with SpielVariablen;
 with EinheitenRecords;
+with SpielVariablen;
 
-package KIAufgabenUmsetzung is
+package KIEinheitUmsetzenModernisieren is
 
-   procedure AufgabeUmsetzen
+   function EinheitVerbessern
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return Boolean
      with
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -18,6 +19,6 @@ package KIAufgabenUmsetzung is
    
 private
    
-   AufgabeDurchführen : Boolean;
+   NullWert : Boolean;
 
-end KIAufgabenUmsetzung;
+end KIEinheitUmsetzenModernisieren;

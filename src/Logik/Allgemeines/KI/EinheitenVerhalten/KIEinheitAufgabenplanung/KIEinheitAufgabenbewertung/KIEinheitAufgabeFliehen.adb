@@ -92,7 +92,7 @@ package body KIEinheitAufgabeFliehen is
             null;
       end case;
       
-      return 1;
+      return 10;
       
    end FliehenUnbewaffnet;
 

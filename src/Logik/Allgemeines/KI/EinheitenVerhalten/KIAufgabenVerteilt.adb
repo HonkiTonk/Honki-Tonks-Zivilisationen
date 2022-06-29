@@ -23,7 +23,7 @@ package body KIAufgabenVerteilt is
          if
            EinheitNummerSchleifenwert = EinheitRasseNummerExtern.Nummer
            or
-             LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerEinheit.ID
+             LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerID
          then
             null;
                

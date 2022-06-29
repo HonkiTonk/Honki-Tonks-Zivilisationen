@@ -7,7 +7,7 @@ with SpielVariablen;
 
 with KIDatentypen;
 
-package KIAufgabenPlanung is
+package KIEinheitAufgabenplanung is
    
    procedure AufgabeErmitteln
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
@@ -22,8 +22,6 @@ private
       
    AufgabeDurchführen : Boolean;
    AufgabeFestgelegt : Boolean;
-   
-   AufgabenDurchgegangen : Natural;
    
    WelcheAufgabe : KIDatentypen.Einheit_Aufgabe_Enum;
    Aufgabe : KIDatentypen.Einheit_Aufgabe_Enum;
@@ -54,4 +52,4 @@ private
    function AufgabeAuswählen
      return KIDatentypen.Einheit_Aufgabe_Enum;
    
-end KIAufgabenPlanung;
+end KIEinheitAufgabenplanung;

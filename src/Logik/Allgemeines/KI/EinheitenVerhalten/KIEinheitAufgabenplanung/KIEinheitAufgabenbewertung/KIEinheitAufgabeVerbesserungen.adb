@@ -2,13 +2,17 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with EinheitenRecords; use EinheitenRecords;
-with KartenKonstanten;
+with ForschungenDatentypen; use ForschungenDatentypen;
 with EinheitenKonstanten;
+with ForschungKonstanten;
+with TastenbelegungDatentypen;
+
+with LeseWichtiges;
 
 with KIDatentypen; use KIDatentypen;
 
-with KIEinheitAufgabeplanungAllgemeines;
 with KIGefahrErmitteln;
+with KIGrenzpruefungen;
 
 package body KIEinheitAufgabeVerbesserungen is
 
@@ -17,29 +21,55 @@ package body KIEinheitAufgabeVerbesserungen is
       return KIDatentypen.AufgabenWichtigkeitKlein
    is begin
       
-      Kartenwert := KIEinheitAufgabeplanungAllgemeines.StadtUmgebungPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      
-      case
-        Kartenwert.XAchse
-      is
-         when KartenKonstanten.LeerXAchse =>
-            return -1;
-            
-         when others =>
-            null;
-      end case;
-      
       if
         KIGefahrErmitteln.GefahrErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerRasseNummer
       then
-         null;
+         Gesamtwert := MöglicheVerbesserungen (RasseExtern => EinheitRasseNummerExtern.Rasse);
          
       else
-         return -1;
+         Gesamtwert := -1;
       end if;
       
-      return 10;
+      return Gesamtwert;
             
    end StadtumgebungVerbessern;
+   
+   
+   
+   function MöglicheVerbesserungen
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      return KIDatentypen.AufgabenWichtigkeitKlein
+   is begin
+      
+      Zwischenwert := 0;
+      
+      AufgabenSchleife:
+      for AufgabeSchleifenwert in TastenbelegungDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range loop
+         
+         NötigeTechnologie := ForschungKonstanten.TechnologieVerbesserung (RasseExtern, AufgabeSchleifenwert);
+         
+         if
+           NötigeTechnologie = ForschungKonstanten.LeerForschung
+         then
+            Zwischenwert := KIGrenzpruefungen.AufgabenWichtigkeit (AktuellerWertExtern => Zwischenwert,
+                                                                   ÄnderungExtern      => 2);
+            
+         elsif
+           LeseWichtiges.Erforscht (RasseExtern             => RasseExtern,
+                                    WelcheTechnologieExtern => NötigeTechnologie)
+           = True
+         then
+            Zwischenwert := KIGrenzpruefungen.AufgabenWichtigkeit (AktuellerWertExtern => Zwischenwert,
+                                                                   ÄnderungExtern      => 2);
+            
+         else
+            null;
+         end if;
+         
+      end loop AufgabenSchleife;
+      
+      return Zwischenwert;
+      
+   end MöglicheVerbesserungen;
 
 end KIEinheitAufgabeVerbesserungen;

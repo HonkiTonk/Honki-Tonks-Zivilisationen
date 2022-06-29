@@ -9,8 +9,8 @@ with LeseEinheitenGebaut;
 
 with Aufgaben;
 
-package body KIAufgabeUmsetzen is
-   
+package body KIEinheitUmsetzenVerbesserungen is
+
    function WelcheVerbesserungAnlegen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
@@ -107,19 +107,5 @@ package body KIAufgabeUmsetzen is
                                            BefehlExtern             => Befehl);
       
    end VerbesserungGebiet;
-      
-      
 
-   function EinheitVerbessern
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return Boolean
-   is begin
-      
-      NullWert := Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                BefehlExtern             => TastenbelegungDatentypen.Einheit_Verbessern_Enum);
-      
-      return False;
-      
-   end EinheitVerbessern;
-
-end KIAufgabeUmsetzen;
+end KIEinheitUmsetzenVerbesserungen;

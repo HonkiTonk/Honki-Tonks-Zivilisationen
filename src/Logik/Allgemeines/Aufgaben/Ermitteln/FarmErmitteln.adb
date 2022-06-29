@@ -2,9 +2,9 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartengrundDatentypen; use KartengrundDatentypen;
-with EinheitenDatentypen; use EinheitenDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
-with EinheitenKonstanten;
+with ProduktionDatentypen; use ProduktionDatentypen;
+with EinheitenRecordKonstanten;
 with RueckgabeDatentypen;
 with TextKonstanten;
 
@@ -147,11 +147,11 @@ package body FarmErmitteln is
                VorarbeitNötig := True;
             
             else
-               return EinheitenKonstanten.KeineArbeit;
+               return EinheitenRecordKonstanten.KeineArbeit;
             end if;
                
          when others =>
-            return EinheitenKonstanten.KeineArbeit;
+            return EinheitenRecordKonstanten.KeineArbeit;
       end case;
             
       return (AufgabenDatentypen.Farm_Bauen_Enum, Arbeitszeit);
@@ -205,7 +205,7 @@ package body FarmErmitteln is
                VorarbeitNötig := True;
             
             else
-               return EinheitenKonstanten.KeineArbeit;
+               return EinheitenRecordKonstanten.KeineArbeit;
             end if;
       end case;
       

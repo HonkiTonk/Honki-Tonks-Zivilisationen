@@ -264,7 +264,7 @@ package body Aufgaben is
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     BeschäftigungExtern     => EinheitenKonstanten.LeerBeschäftigung);
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                         ZeitExtern               => EinheitenKonstanten.LeerEinheit.Beschäftigungszeit,
+                                                         ZeitExtern               => EinheitenKonstanten.LeerBeschäftigungszeit,
                                                          RechnenSetzenExtern      => 0);
       end case;
       
@@ -290,7 +290,7 @@ package body Aufgaben is
    is begin
       
       SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                               BewegungspunkteExtern    => EinheitenKonstanten.LeerEinheit.Bewegungspunkte,
+                                               BewegungspunkteExtern    => EinheitenKonstanten.LeerBewegungspunkte,
                                                RechnenSetzenExtern      => 0);
       
    end RundeAussetzen;
@@ -456,7 +456,7 @@ package body Aufgaben is
    is begin
       
       SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                               BewegungspunkteExtern    => EinheitenKonstanten.LeerEinheit.Bewegungspunkte,
+                                               BewegungspunkteExtern    => EinheitenKonstanten.LeerBewegungspunkte,
                                                RechnenSetzenExtern      => 0);
       
       EinheitenModifizieren.PermanenteKostenÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,

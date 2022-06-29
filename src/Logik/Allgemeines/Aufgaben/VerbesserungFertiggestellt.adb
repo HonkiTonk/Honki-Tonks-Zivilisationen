@@ -3,6 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with EinheitenDatentypen; use EinheitenDatentypen;
+with ProduktionDatentypen; use ProduktionDatentypen;
 with EinheitenKonstanten;
 
 with KIDatentypen;
@@ -74,7 +75,7 @@ package body VerbesserungFertiggestellt is
                                                    RechnenSetzenExtern      => -1);
       
       if
-        LeseEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerEinheit.Beschäftigungszeit
+        LeseEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerBeschäftigungszeit
       then
          EinheitenMeldungenSetzen.EinheitMeldungSetzenEreignis (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                 EreignisExtern           => EinheitenDatentypen.Aufgabe_Abgeschlossen_Enum);
@@ -110,7 +111,7 @@ package body VerbesserungFertiggestellt is
             SchreibeEinheitenGebaut.BeschäftigungNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                               BeschäftigungExtern     => EinheitenKonstanten.LeerBeschäftigung);
             SchreibeEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                   ZeitExtern               => EinheitenKonstanten.LeerEinheit.BeschäftigungszeitNachfolger,
+                                                                   ZeitExtern               => EinheitenKonstanten.LeerBeschäftigungszeit,
                                                                    RechnenSetzenExtern      => 0);
       end case;
       

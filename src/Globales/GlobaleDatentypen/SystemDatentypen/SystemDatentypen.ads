@@ -20,6 +20,7 @@ package SystemDatentypen is
    
     
    
+   ------------------------------------------ Alles ab hier sollte woanders hin, oder?
    -- Sonstiges
    type Staatsform_Enum is (
                             Anarchie_Enum,

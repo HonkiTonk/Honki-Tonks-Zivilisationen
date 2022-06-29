@@ -45,12 +45,12 @@ package body AufgabenAllgemein is
       SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                               BeschäftigungExtern     => EinheitenKonstanten.LeerBeschäftigung);
       SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                   ZeitExtern               => EinheitenKonstanten.LeerEinheit.Beschäftigungszeit,
+                                                   ZeitExtern               => EinheitenKonstanten.LeerBeschäftigungszeit,
                                                    RechnenSetzenExtern      => 0);
       SchreibeEinheitenGebaut.BeschäftigungNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                         BeschäftigungExtern     => EinheitenKonstanten.LeerBeschäftigung);
       SchreibeEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                             ZeitExtern               => EinheitenKonstanten.LeerEinheit.BeschäftigungszeitNachfolger,
+                                                             ZeitExtern               => EinheitenKonstanten.LeerBeschäftigungszeit,
                                                              RechnenSetzenExtern      => 0);
       
    end Nullsetzung;

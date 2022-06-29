@@ -5,7 +5,6 @@ with Ada.Wide_Wide_Text_IO;
 
 with RassenDatentypen; use RassenDatentypen;
 with RueckgabeDatentypen;
-with EinheitenRecords;
 with SpielVariablen;
 with SystemDatentypen;
 
@@ -16,15 +15,6 @@ package DebugmenueSFML is
      with
        Pre => (
                  SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
-              );
-
-   procedure KarteInfosEinheiten
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-     with
-       Pre => (
-                 SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
-               and
-                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
               );
 
 private

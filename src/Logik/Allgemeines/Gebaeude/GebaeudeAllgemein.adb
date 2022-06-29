@@ -72,7 +72,7 @@ package body GebaeudeAllgemein is
    is begin
       
       SchreibeStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                      RessourcenExtern       => StadtKonstanten.LeerStadt.Ressourcen,
+                                      RessourcenExtern       => StadtKonstanten.LeerRessourcen,
                                       ÄndernSetzenExtern     => False);
       SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                       BauprojektExtern       => StadtKonstanten.LeerBauprojekt);

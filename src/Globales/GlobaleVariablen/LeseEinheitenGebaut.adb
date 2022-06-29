@@ -150,7 +150,7 @@ package body LeseEinheitenGebaut is
       
    function Beschäftigungszeit
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return EinheitenDatentypen.MaximaleEinheitenMitNullWert
+      return ProduktionDatentypen.Arbeitszeit
    is begin
       
       return SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigungszeit;
@@ -161,7 +161,7 @@ package body LeseEinheitenGebaut is
    
    function BeschäftigungszeitNachfolger
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return EinheitenDatentypen.MaximaleEinheitenMitNullWert
+      return ProduktionDatentypen.Arbeitszeit
    is begin
       
       return SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungszeitNachfolger;
