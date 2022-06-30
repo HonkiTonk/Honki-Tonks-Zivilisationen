@@ -2,9 +2,11 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with EinheitenDatentypen; use EinheitenDatentypen;
+with KartenRecordKonstanten;
   
 with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;
+with SchreibeEinheitenGebaut;
 
 with Fehler;
 
@@ -22,6 +24,10 @@ with KIEinheitAufgabeModernisieren;
 with KIEinheitAufgabeSiedeln;
 with KIEinheitAufgabeBewachen;
 with KIEinheitAufgabeVerbesserungen;
+with KIEinheitAufgabeAngriffskrieg;
+with KIEinheitAufgabeVerteidigen;
+with KIEinheitAufgabeVerteidigungskrieg;
+with KIEinheitAufgabeTransporter;
 with KIEinheitFestlegenSiedeln;
 with KIEinheitFestlegenVerbesserungen;
 with KIEinheitFestlegenFliehen;
@@ -37,6 +43,7 @@ with KIEinheitFestlegenVerteidigen;
 with KIEinheitFestlegenAngriffskrieg;
 with KIEinheitFestlegenVerteidigungskrieg;
 with KIEinheitFestlegenAufloesen;
+with KIEinheitFestlegenTransporter;
 
 package body KIEinheitAufgabenplanung is
    
@@ -49,7 +56,7 @@ package body KIEinheitAufgabenplanung is
       -- Wird benötigt, da je nach Einheitenart nicht alle Arrayteile neu gesetzt werden.
       Wichtigkeit := (others => KIDatentypen.AufgabenWichtigkeitKlein'First);
                   
-      Wichtigkeit (KIDatentypen.Tut_Nichts_Enum) := KIEinheitAufgabeNichts.NichtsTun (RasseExtern => EinheitRasseNummerExtern.Rasse);
+      Wichtigkeit (KIDatentypen.Tut_Nichts_Enum) := KIEinheitAufgabeNichts.NichtsTun (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       Wichtigkeit (KIDatentypen.Einheit_Auflösen_Enum) := KIEinheitAufgabeAufloesen.EinheitAuflösen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       Wichtigkeit (KIDatentypen.Einheit_Heilen_Enum) := KIEinheitAufgabeHeilen.SichHeilen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -57,12 +64,18 @@ package body KIEinheitAufgabenplanung is
       Wichtigkeit (KIDatentypen.Einheit_Verbessern_Enum) := KIEinheitAufgabeModernisieren.SichVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       Wichtigkeit (KIDatentypen.Flucht_Enum) := KIEinheitAufgabeFliehen.Fliehen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
+      -------------------------------- Hier später besser aufteilen.
+      Wichtigkeit (KIDatentypen.Verteidigen_Enum) := KIEinheitAufgabeVerteidigen.Verteidigen;
+      Wichtigkeit (KIDatentypen.Auf_Transporter_Warten_Enum) := KIEinheitAufgabeTransporter.AbholungAbwarten;
+      Wichtigkeit (KIDatentypen.Angriffskrieg_Vorbereiten_Enum) := KIEinheitAufgabeAngriffskrieg.AngriffskriegVorbereiten;
+      Wichtigkeit (KIDatentypen.Verteidigungskrieg_Vorbereiten_Enum) := KIEinheitAufgabeVerteidigungskrieg.VerteidigungskriegVorbereiten;
+      -------------------------------- Hier später besser aufteilen.
+      
       EinheitSpezifischeAufgabeErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       AufgabeFestlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
    end AufgabeErmitteln;
-   
    
    
    procedure EinheitSpezifischeAufgabeErmitteln
@@ -167,9 +180,7 @@ package body KIEinheitAufgabenplanung is
                AufgabeFestgelegt := KIEinheitFestlegenVerbesserungen.StadtumgebungVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
             when KIDatentypen.Einheit_Auflösen_Enum =>
-               ------------------------------------ Trotzdem in eine eigene Datei auslagern? Muss sogar, das hier entfernt direkt die Einheit anstatt die Aufgabe nur festzulegen.
-               AufgabeFestgelegt := KIEinheitFestlegenAufloesen.EinheitAuflösen;
-               -- EinheitenErzeugenEntfernen.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+               AufgabeFestgelegt := KIEinheitFestlegenAufloesen.EinheitAuflösen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
             when KIDatentypen.Flucht_Enum =>
                AufgabeFestgelegt := KIEinheitFestlegenFliehen.Fliehen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -199,8 +210,9 @@ package body KIEinheitAufgabenplanung is
                AufgabeFestgelegt := KIEinheitFestlegenVerteidigen.Verteidigen;
                
                -------------------------------- Hier müsste ich erst das Ziel ermitteln lassen und dann entsprechend die Aufgabe setzen. Bin mal gespannt wie ich das löse.
+               -------------------------------- Eventuell eine KIBeschäftigungNachfolger einbauen und dann entsprechnd verschieben? Wie bei VerbesserungenNachfolger.
             when KIDatentypen.Auf_Transporter_Warten_Enum =>
-               AufgabeFestgelegt := False;
+               AufgabeFestgelegt := KIEinheitFestlegenTransporter.AbholungAbwarten;
                
             when KIDatentypen.Angriffskrieg_Vorbereiten_Enum =>
                AufgabeFestgelegt := KIEinheitFestlegenAngriffskrieg.AngriffskriegVorbereiten;
@@ -222,6 +234,11 @@ package body KIEinheitAufgabenplanung is
                exit AufgabeFestlegenSchleife;
             
             when False =>
+               -- Hier auf Leer setzen, für den Fall dass es Probleme in den Festlegungen gibt.
+               SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                          KoordinatenExtern        => KartenRecordKonstanten.LeerKoordinate);
+               SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                       AufgabeExtern            => KIDatentypen.Leer_Aufgabe_Enum);
                Wichtigkeit (Aufgabe) := -1;
          end case;
          

@@ -5,7 +5,7 @@ with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
-with KartenRecords;
+private with KartenRecords;
 
 with Karten;
 

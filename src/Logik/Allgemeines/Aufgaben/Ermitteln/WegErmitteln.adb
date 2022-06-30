@@ -48,7 +48,7 @@ package body WegErmitteln is
       end case;
       
       case
-        Arbeitswerte.WelcheArbeit
+        Arbeitswerte.Aufgabe
       is
          when AufgabenDatentypen.Leer_Aufgabe_Enum =>
             return False;

@@ -24,8 +24,8 @@ package body KIEinheitFestlegenErkunden is
       
       EinheitKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-      KarteReichweite := 1;
-      KarteGeprüft := KarteReichweite - 1;
+      UmgebungPrüfen := 0;
+      BereitsGeprüft := 0;
       
       UnbekanntesFeldSuchenSchleife:
       loop
@@ -33,8 +33,8 @@ package body KIEinheitFestlegenErkunden is
          case
            ZielSuchen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                        KoordinatenExtern        => EinheitKoordinaten,
-                       KartenreichweiteExtern   => KarteReichweite,
-                       GeprüftExtern            => KarteGeprüft)
+                       KartenreichweiteExtern   => UmgebungPrüfen,
+                       GeprüftExtern            => BereitsGeprüft)
          is
             when True =>
                return True;
@@ -44,13 +44,13 @@ package body KIEinheitFestlegenErkunden is
          end case;
          
          if
-           KarteReichweite > 15
+           UmgebungPrüfen > 15
          then
             exit UnbekanntesFeldSuchenSchleife;
             
          else
-            KarteGeprüft := KarteReichweite;
-            KarteReichweite := KarteReichweite + 1;
+            UmgebungPrüfen := UmgebungPrüfen + 1;
+            BereitsGeprüft := UmgebungPrüfen - 1;
          end if;
          
       end loop UnbekanntesFeldSuchenSchleife;
@@ -77,9 +77,9 @@ package body KIEinheitFestlegenErkunden is
             for XÄnderungSchleifenwert in -KartenreichweiteExtern .. KartenreichweiteExtern loop
             
                if
-                 GeprüftExtern >= abs (YÄnderungSchleifenwert)
-                 or
-                   GeprüftExtern >= abs (XÄnderungSchleifenwert)
+                 GeprüftExtern > abs (YÄnderungSchleifenwert)
+                 and
+                   GeprüftExtern > abs (XÄnderungSchleifenwert)
                then
                   null;
                   

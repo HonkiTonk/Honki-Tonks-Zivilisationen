@@ -11,7 +11,6 @@ with LeseEinheitenGebaut;
 with KIDatentypen; use KIDatentypen;
 
 with KIGefahrErmitteln;
-with KIKriegErmitteln;
 
 package body KIEinheitAufgabeBefestigen is
 
@@ -19,16 +18,6 @@ package body KIEinheitAufgabeBefestigen is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return KIDatentypen.AufgabenWichtigkeitKlein
    is begin
-      
-      case
-        KIKriegErmitteln.IstImKrieg (RasseExtern => EinheitRasseNummerExtern.Rasse)
-      is
-         when True =>
-            null;
-            
-         when False =>
-            return -1;
-      end case;
       
       if
         KIGefahrErmitteln.GefahrErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerRasseNummer

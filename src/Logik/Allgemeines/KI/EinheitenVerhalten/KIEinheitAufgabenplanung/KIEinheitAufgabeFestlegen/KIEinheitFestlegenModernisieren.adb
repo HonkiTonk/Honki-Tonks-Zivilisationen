@@ -21,6 +21,7 @@ with KIBewegungAllgemein;
 
 package body KIEinheitFestlegenModernisieren is
 
+   -------------------------------- Hier wird weder geprüft ob das Feld schon belegt ist, noch ob sich eine andere Einheit bereits dahin befindet.
    function EinheitVerbessern
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean

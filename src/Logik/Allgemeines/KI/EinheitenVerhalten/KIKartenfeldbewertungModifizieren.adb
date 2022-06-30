@@ -46,14 +46,32 @@ package body KIKartenfeldbewertungModifizieren is
                null;
             
             else
-               BewertungKartenfeld := KIGrenzpruefungen.GesamteFeldbewertung (AktuellerWertExtern => BewertungKartenfeld,
-                                                                              ÄnderungExtern      => 10);
+               if
+               abs (YAchseSchleifenwert) = 3
+                 or
+               abs (XAchseSchleifenwert) = 3
+               then
+                  BewertungKartenfeld := KIGrenzpruefungen.GesamteFeldbewertung (AktuellerWertExtern => BewertungKartenfeld,
+                                                                                 ÄnderungExtern      => 5);
+                  
+               elsif
+               abs (YAchseSchleifenwert) = 3
+                 or
+               abs (XAchseSchleifenwert) = 3
+               then
+                  BewertungKartenfeld := KIGrenzpruefungen.GesamteFeldbewertung (AktuellerWertExtern => BewertungKartenfeld,
+                                                                                 ÄnderungExtern      => 15);
+                  
+               else
+                  BewertungKartenfeld := KIGrenzpruefungen.GesamteFeldbewertung (AktuellerWertExtern => BewertungKartenfeld,
+                                                                                 ÄnderungExtern      => 30);
+               end if;
             end if;
                
          end loop XAchseSchleife;
       end loop YAchseSchleife;
       -- end loop EAchseSchleife;
-      
+         
       return BewertungKartenfeld;
       
    end BewertungStadtBauen;

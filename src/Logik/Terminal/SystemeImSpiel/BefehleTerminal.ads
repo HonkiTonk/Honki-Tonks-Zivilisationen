@@ -1,17 +1,17 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Sf.Window.Event;
+private with Sf.Window.Event;
 
 with RassenDatentypen; use RassenDatentypen;
-with EinheitenRecords;
-with EinheitenDatentypen;
-with StadtDatentypen;
-with SystemRecords;
-with TastenbelegungDatentypen;
 with RueckgabeDatentypen;
-with StadtRecords;
 with SpielVariablen;
+private with EinheitenRecords;
+private with EinheitenDatentypen;
+private with StadtDatentypen;
+private with SystemRecords;
+private with TastenbelegungDatentypen;
+private with StadtRecords;
 
 package BefehleTerminal is
 

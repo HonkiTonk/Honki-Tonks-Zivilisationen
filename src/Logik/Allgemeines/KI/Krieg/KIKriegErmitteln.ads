@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
-with ProduktionDatentypen;
+private with ProduktionDatentypen;
 
 package KIKriegErmitteln is
 

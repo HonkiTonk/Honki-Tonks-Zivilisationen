@@ -210,7 +210,7 @@ package ChangelogJuli2022 is
    
    
 
-   -- Version 0.03. => 0.03. (01.07.2022):
+   -- Version 0.03.0070 => 0.03. (01.07.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.

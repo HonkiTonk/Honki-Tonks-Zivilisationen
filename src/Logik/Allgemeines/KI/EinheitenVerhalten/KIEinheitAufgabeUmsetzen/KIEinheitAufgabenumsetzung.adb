@@ -9,20 +9,20 @@ with SchreibeEinheitenGebaut;
 
 with StadtBauen;
 with Aufgaben;
+with EinheitenErzeugenEntfernen;
 
 with KIDatentypen;
 
 with KIEinheitUmsetzenVerbesserungen;
 with KIEinheitUmsetzenModernisieren;
 with KIEinheitUmsetzenAngreifen;
+with KIEinheitUmsetzenErkunden;
 
 package body KIEinheitAufgabenumsetzung is
 
    procedure AufgabeUmsetzen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
-      
-      AufgabeDurchführen := True;
       
       case
         LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
@@ -38,7 +38,8 @@ package body KIEinheitAufgabenumsetzung is
             AufgabeDurchführen := KIEinheitUmsetzenVerbesserungen.WelcheVerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when KIDatentypen.Verbesserung_Zerstören_Enum =>
-            AufgabeDurchführen := False;
+            AufgabeDurchführen := Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                 BefehlExtern             => TastenbelegungDatentypen.Plündern_Enum);
             
          when KIDatentypen.Flucht_Enum =>
             AufgabeDurchführen := False;
@@ -62,12 +63,13 @@ package body KIEinheitAufgabenumsetzung is
             AufgabeDurchführen := False;
             
          when KIDatentypen.Erkunden_Enum =>
-            AufgabeDurchführen := False;
+            AufgabeDurchführen := KIEinheitUmsetzenErkunden.Erkunden (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when KIDatentypen.Auf_Transporter_Warten_Enum =>
             AufgabeDurchführen := False;
             
          when KIDatentypen.Einheit_Auflösen_Enum =>
+            EinheitenErzeugenEntfernen.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             AufgabeDurchführen := False;
                
          when KIDatentypen.Angriffskrieg_Vorbereiten_Enum =>
@@ -92,7 +94,7 @@ package body KIEinheitAufgabenumsetzung is
             
          when False =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern     => EinheitenKonstanten.LeerBeschäftigung);
+                                                    BeschäftigungExtern      => EinheitenKonstanten.LeerBeschäftigung);
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     AufgabeExtern            => KIDatentypen.Leer_Aufgabe_Enum);
       end case;

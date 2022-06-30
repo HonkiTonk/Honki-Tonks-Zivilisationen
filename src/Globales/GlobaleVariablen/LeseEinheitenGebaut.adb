@@ -131,7 +131,7 @@ package body LeseEinheitenGebaut is
       return AufgabenDatentypen.Einheiten_Aufgaben_Enum
    is begin
 
-      return SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigung;
+      return SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigung.Aufgabe;
       
    end Beschäftigung;
    
@@ -142,7 +142,7 @@ package body LeseEinheitenGebaut is
       return AufgabenDatentypen.Einheiten_Aufgaben_Enum
    is begin
       
-      return SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungNachfolger;
+      return SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungNachfolger.Aufgabe;
       
    end BeschäftigungNachfolger;
    
@@ -153,7 +153,7 @@ package body LeseEinheitenGebaut is
       return ProduktionDatentypen.Arbeitszeit
    is begin
       
-      return SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigungszeit;
+      return SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigung.Arbeitszeit;
       
    end Beschäftigungszeit;
    
@@ -164,7 +164,7 @@ package body LeseEinheitenGebaut is
       return ProduktionDatentypen.Arbeitszeit
    is begin
       
-      return SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungszeitNachfolger;
+      return SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungNachfolger.Arbeitszeit;
       
    end BeschäftigungszeitNachfolger;
    

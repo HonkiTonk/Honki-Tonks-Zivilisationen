@@ -26,7 +26,7 @@ package SpielVariablen is
                                                     Gewonnen            => False,
                                                     Weiterspielen       => False,
                                                     RasseAmZugNachLaden => EinheitenKonstanten.LeerRasse,
-                                                    Schwierigkeitsgrad  => SpielDatentypen.Schwierigkeitsgrad_Mittel_Enum,
+                                                    Schwierigkeitsgrad  => SpielDatentypen.Schwierigkeitsgrad_Leicht_Enum,
                                                     Rundenanzahl        => Positive'First,
                                                     Rundengrenze        => Natural'First,   
                                                     IronmanName         => TextKonstanten.LeerUnboundedString
@@ -35,7 +35,7 @@ package SpielVariablen is
    type CursorImSpielArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of KartenRecords.CursorRecord;
    CursorImSpiel : CursorImSpielArray := (others => WichtigesRecordKonstanten.LeerCursor);
    
-   -- Später über Nutzereingaben neu belegbar machen.
+   --------------------------------------- Später über Nutzereingaben neu belegbar machen.
    type GrenzenArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of SpielRecords.GrenzenRecord;
    Grenzen : GrenzenArray := (others => WichtigesRecordKonstanten.LeerGrenzen);
 

@@ -5,7 +5,6 @@ with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with EinheitenDatentypen; use EinheitenDatentypen;
 with KartenRecordKonstanten;
 with KartenKonstanten;
-with EinheitenKonstanten;
 with TastenbelegungDatentypen;
 
 with LeseStadtGebaut;
@@ -14,13 +13,12 @@ with LeseKarten;
 
 with Vergleiche;
 with Kartenkoordinatenberechnungssystem;
-with BewegungPassierbarkeitPruefen;
 with Aufgaben;
-with EinheitSuchen;
 
 with KIDatentypen;
 
 with KIAufgabenVerteilt;
+with KIEinheitAllgemeinePruefungen;
 
 package body KIEinheitFestlegenVerbesserungen is
 
@@ -145,33 +143,21 @@ package body KIEinheitFestlegenVerbesserungen is
       return Boolean
    is begin
       
-      EinheitAufFeld := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
+      case
+        KIEinheitAllgemeinePruefungen.KartenfeldPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                         KoordinatenExtern        => KoordinatenExtern)
+      is
+         when False =>
+            return False;
             
+         when True =>
+            null;
+      end case;
+      
       if
-        BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                   NeueKoordinatenExtern    => KoordinatenExtern)
-        = False
-      then
-         return False;
-         
-      elsif
         LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern) /= KartenVerbesserungDatentypen.Leer_Verbesserung_Enum
         and
           LeseKarten.Weg (KoordinatenExtern => KoordinatenExtern) /= KartenVerbesserungDatentypen.Leer_Weg_Enum
-      then
-         return False;
-         
-      elsif
-        EinheitAufFeld.Nummer /= EinheitenKonstanten.LeerNummer
-        and
-          EinheitAufFeld.Nummer /= EinheitRasseNummerExtern.Nummer
-      then
-         return False;
-         
-      elsif
-        LeseKarten.BelegterGrund (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                  KoordinatenExtern => KoordinatenExtern)
-        = False
       then
          return False;
          

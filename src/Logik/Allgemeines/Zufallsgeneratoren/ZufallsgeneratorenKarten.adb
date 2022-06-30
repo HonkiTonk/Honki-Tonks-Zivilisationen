@@ -55,27 +55,15 @@ package body ZufallsgeneratorenKarten is
       elsif
         MinimalerWert > MaximalerWert
       then
-         Fehler.LogikFehler (FehlermeldungExtern => "ZufallsgeneratorenKarten.KartengeneratorLandgrößen - Minimum größe als Maximum");
+         Fehler.LogikFehler (FehlermeldungExtern => "ZufallsgeneratorenKarten.KartengeneratorLandgrößen - Minimum größer als Maximum");
 
       else
          ZufälligeLandgrößenAbstände.Reset (Gen => ZufälligeLandgrößeAbstandGewählt);
       end if;
-
-      LandgrößeSchleife:
-      loop
-
-         GezogenerWert := ZufälligeLandgrößenAbstände.Random (Gen => ZufälligeLandgrößeAbstandGewählt);
-
-         if
-           GezogenerWert in MinimalerWert .. MaximalerWert
-         then
-            return GezogenerWert;
-
-         else
-            null;
-         end if;
-
-      end loop LandgrößeSchleife;
+      
+      return ZufälligeLandgrößenAbstände.Random (Gen   => ZufälligeLandgrößeAbstandGewählt,
+                                                     First => MinimalerWert,
+                                                     Last  => MaximalerWert);
       
    end KartengeneratorLandgrößen;
    
@@ -106,27 +94,15 @@ package body ZufallsgeneratorenKarten is
       elsif
         MinimalerWert > MaximalerWert
       then
-         Fehler.LogikFehler (FehlermeldungExtern => "ZufallsgeneratorenKarten.KartengeneratorAbstände - Minimum größe als Maximum");
+         Fehler.LogikFehler (FehlermeldungExtern => "ZufallsgeneratorenKarten.KartengeneratorAbstände - Minimum größer als Maximum");
 
       else
          ZufälligeLandgrößenAbstände.Reset (Gen => ZufälligeLandgrößeAbstandGewählt);
       end if;
-
-      LandabstandSchleife:
-      loop
-
-         GezogenerWert := ZufälligeLandgrößenAbstände.Random (Gen => ZufälligeLandgrößeAbstandGewählt);
-
-         if
-           GezogenerWert in MinimalerWert .. MaximalerWert
-         then
-            return GezogenerWert;
-
-         else
-            null;
-         end if;
-
-      end loop LandabstandSchleife;
+      
+      return ZufälligeLandgrößenAbstände.Random (Gen   => ZufälligeLandgrößeAbstandGewählt,
+                                                     First => MinimalerWert,
+                                                     Last  => MaximalerWert);
       
    end KartengeneratorAbstände;
 

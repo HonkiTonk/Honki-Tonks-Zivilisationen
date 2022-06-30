@@ -5,9 +5,9 @@ with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
 with SpielVariablen;
 with EinheitenRecords;
-with KartenRecords;
+private with KartenRecords;
 
-with Karten;
+private with Karten;
 
 package KIEinheitFestlegenSiedeln is
 
@@ -25,10 +25,8 @@ private
 
    FeldGutUndFrei : Boolean;
 
-   YAchseKoordinatePrüfen : KartenDatentypen.KartenfeldNatural;
-   XAchseKoordinatePrüfen : KartenDatentypen.KartenfeldNatural;
-   YAchseKoordinatenSchonGeprüft : KartenDatentypen.KartenfeldNatural;
-   XAchseKoordinatenSchonGeprüft : KartenDatentypen.KartenfeldNatural;
+   UmgebungPrüfen : KartenDatentypen.KartenfeldNatural;
+   BereitsGeprüft : KartenDatentypen.KartenfeldNatural;
 
    EinheitAufFeld : EinheitenRecords.RasseEinheitnummerRecord;
 
@@ -56,22 +54,14 @@ private
 
    function NeuesStadtfeld
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      UmgebungExtern : in KartenRecords.YXAchsenKartenfeldNaturalRecord;
-      GeprüftExtern : in KartenRecords.YXAchsenKartenfeldNaturalRecord)
+      UmgebungExtern : in KartenDatentypen.KartenfeldNatural;
+      GeprüftExtern : in KartenDatentypen.KartenfeldNatural)
       return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
                and
                  SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
-               and
-                 UmgebungExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-               and
-                 UmgebungExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-               and
-                 GeprüftExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-               and
-                 GeprüftExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
               ),
 
        Post => (

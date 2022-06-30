@@ -1,26 +1,28 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with EinheitenRecords; use EinheitenRecords;
+with EinheitenKonstanten;
+
 with KIDatentypen; use KIDatentypen;
 
-with KIKriegErmitteln;
+with KIGefahrErmitteln;
 
 package body KIEinheitAufgabeNichts is
 
    function NichtsTun
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return KIDatentypen.AufgabenWichtigkeitKlein
    is begin
       
-      case
-        KIKriegErmitteln.IstImKrieg (RasseExtern => RasseExtern)
-      is
-         when True =>
-            return -1;
-            
-         when False =>
-            return 1;
-      end case;
+      if
+        KIGefahrErmitteln.GefahrErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerRasseNummer
+      then
+         return 1;
+         
+      else
+         return -1;
+      end if;
       
    end NichtsTun;
 

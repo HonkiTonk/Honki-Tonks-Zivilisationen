@@ -1,7 +1,7 @@
 pragma SPARK_Mode (Off);
 pragma Warnings (Off, "*array aggregate*");
 
-with Ada.Numerics.Discrete_Random;
+private with Ada.Numerics.Discrete_Random;
 
 with KartenDatentypen;
 with RassenDatentypen;
@@ -43,9 +43,6 @@ private
    SpielerVorhanden : Boolean;
    
    RasseImSpiel : RassenDatentypen.Spieler_Enum;
-   
-   YAchse : KartenDatentypen.KartenfeldPositiv;
-   XAchse : KartenDatentypen.KartenfeldPositiv;
    
    package ZufälligeVordefinierteKartengrößeWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => RueckgabeDatentypen.Kartengrößen_Standard_Enum);
    package ZufälligeKartengrößeWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.KartenfeldPositiv);

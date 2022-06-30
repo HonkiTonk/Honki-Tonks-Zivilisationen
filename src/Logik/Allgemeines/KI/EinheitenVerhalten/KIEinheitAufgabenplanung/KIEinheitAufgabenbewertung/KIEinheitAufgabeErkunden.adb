@@ -1,9 +1,12 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with EinheitenRecords; use EinheitenRecords;
+with EinheitenKonstanten;
+
 with KIDatentypen; use KIDatentypen;
 
-with KIKriegErmitteln;
+with KIGefahrErmitteln;
 
 package body KIEinheitAufgabeErkunden is
 
@@ -12,15 +15,14 @@ package body KIEinheitAufgabeErkunden is
      return KIDatentypen.AufgabenWichtigkeitKlein
    is begin
       
-      case
-        KIKriegErmitteln.IstImKrieg (RasseExtern => EinheitRasseNummerExtern.Rasse)
-      is
-         when True =>
-            return -1;
-            
-         when False =>
-            null;
-      end case;
+      if
+        KIGefahrErmitteln.GefahrErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerRasseNummer
+      then
+         null;
+         
+      else
+         return -1;
+      end if;
       
       return 5;
       

@@ -1,7 +1,7 @@
 pragma SPARK_Mode (Off);
 pragma Warnings (Off, "*array aggregate*");
 
-with Ada.Numerics.Discrete_Random;
+private with Ada.Numerics.Discrete_Random;
 
 with KartenDatentypen; use KartenDatentypen;
 with RassenDatentypen; use RassenDatentypen;
@@ -35,22 +35,11 @@ private
    YAchse : KartenDatentypen.KartenfeldPositiv;
    XAchse : KartenDatentypen.KartenfeldPositiv;
    
-   YXAchsen : KartenRecords.YXAchsenKartenfeldPositivRecord;
-   
    -- Generatoren für Positionsbestimmung bei Spielstart, in Abhängigkeit der Kartengröße, da gibt es doch bestimmt eine bessere Lösung für
    ZufallsPunktKarte : KartenRecords.AchsenKartenfeldNaturalRecord;
 
-   package WerteWählen1000 is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.KartenfeldPositiv);
+   package KartenpunktWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.KartenfeldPositiv);
 
-   PositionGewählt1000 : WerteWählen1000.Generator;
-      
-   function StartPunkteYXFestlegen
-     return KartenRecords.YXAchsenKartenfeldPositivRecord
-     with
-       Post => (
-                  StartPunkteYXFestlegen'Result.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-                and
-                  StartPunkteYXFestlegen'Result.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
-               );
+   KartenpunktGewählt : KartenpunktWählen.Generator;
 
 end ZufallsgeneratorenStartkoordinaten;

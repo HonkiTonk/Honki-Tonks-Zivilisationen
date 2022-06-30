@@ -17,10 +17,8 @@ package EinheitenRecordKonstanten is
                                                                      Bewegungspunkte              => EinheitenKonstanten.LeerBewegungspunkte,
                                                                      Erfahrungspunkte             => EinheitenKonstanten.LeerErfahrungspunkte,
                                                                      Rang                         => EinheitenKonstanten.LeerRang,
-                                                                     Beschäftigung                => EinheitenKonstanten.LeerBeschäftigung,
-                                                                     BeschäftigungNachfolger      => EinheitenKonstanten.LeerBeschäftigung,
-                                                                     Beschäftigungszeit           => EinheitenKonstanten.LeerBeschäftigungszeit,
-                                                                     BeschäftigungszeitNachfolger => EinheitenKonstanten.LeerBeschäftigungszeit,
+                                                                     Beschäftigung                => (EinheitenKonstanten.LeerBeschäftigung, EinheitenKonstanten.LeerBeschäftigungszeit),
+                                                                     BeschäftigungNachfolger      => (EinheitenKonstanten.LeerBeschäftigung, EinheitenKonstanten.LeerBeschäftigungszeit),
                                                                      KIZielKoordinaten            => KartenRecordKonstanten.LeerKoordinate,
                                                                      KIBeschäftigt                => EinheitenKonstanten.LeerKIBeschäftigt,
                                                                      KIBewegungPlan               => (others => KartenRecordKonstanten.LeerKoordinate),
@@ -50,8 +48,8 @@ package EinheitenRecordKonstanten is
                                                                         );
    
    KeineArbeit : constant EinheitenRecords.ArbeitRecord := (
-                                                            WelcheArbeit => EinheitenKonstanten.LeerArbeit,
-                                                            Arbeitszeit  => EinheitenKonstanten.LeerArbeitszeit
+                                                            Aufgabe     => EinheitenKonstanten.LeerArbeit,
+                                                            Arbeitszeit => EinheitenKonstanten.LeerArbeitszeit
                                                            );
 
 end EinheitenRecordKonstanten;

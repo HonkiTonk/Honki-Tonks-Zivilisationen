@@ -44,9 +44,9 @@ package KIKonstanten is
 
    type SchwierigkeitsgradArray is array (SpielDatentypen.Schwierigkeitsgrad_Enum'Range) of KIDatentypen.KINotAus;
    Schwierigkeitsgrad : constant SchwierigkeitsgradArray := (
-                                                             SpielDatentypen.Schwierigkeitsgrad_Leicht_Enum => 10,
-                                                             SpielDatentypen.Schwierigkeitsgrad_Mittel_Enum => 25,
-                                                             SpielDatentypen.Schwierigkeitsgrad_Schwer_Enum => KIDatentypen.KINotAus'Last
+                                                             SpielDatentypen.Schwierigkeitsgrad_Leicht_Enum => 1,
+                                                             SpielDatentypen.Schwierigkeitsgrad_Mittel_Enum => 2,
+                                                             SpielDatentypen.Schwierigkeitsgrad_Schwer_Enum => 5
                                                             );
 
 end KIKonstanten;

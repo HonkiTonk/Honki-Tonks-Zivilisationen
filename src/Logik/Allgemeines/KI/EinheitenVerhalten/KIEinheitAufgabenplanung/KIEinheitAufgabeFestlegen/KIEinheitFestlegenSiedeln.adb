@@ -2,20 +2,15 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenRecords; use KartenRecords;
-with EinheitenDatentypen; use EinheitenDatentypen;
 with KartengrundDatentypen; use KartengrundDatentypen;
-with EinheitenRecords; use EinheitenRecords;
 with KartenKonstanten;
 with KartenRecordKonstanten;
-with EinheitenKonstanten;
 
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
 with LeseKarten;
 
 with Kartenkoordinatenberechnungssystem;
-with EinheitSuchen;
-with BewegungPassierbarkeitPruefen;
 with Vergleiche;
 
 with KIDatentypen;
@@ -26,7 +21,6 @@ with KIEinheitAllgemeinePruefungen;
 
 package body KIEinheitFestlegenSiedeln is
 
-   ----------------------------------- Hier noch eine Beschränkung auf nur sichtbare Felder einbauen.
    function StadtBauen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
@@ -57,17 +51,15 @@ package body KIEinheitFestlegenSiedeln is
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
             
-      YAchseKoordinatePrüfen := 0;
-      XAchseKoordinatePrüfen := 0;
-      YAchseKoordinatenSchonGeprüft := 0;
-      XAchseKoordinatenSchonGeprüft := 0;
+      UmgebungPrüfen := 0;
+      BereitsGeprüft := 0;
             
       KartenfeldSuchenSchleife:
       loop
                   
          MöglichesFeld := NeuesStadtfeld (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                           UmgebungExtern           => (YAchseKoordinatePrüfen, XAchseKoordinatePrüfen),
-                                           GeprüftExtern            => (YAchseKoordinatenSchonGeprüft, XAchseKoordinatenSchonGeprüft));
+                                           UmgebungExtern           => UmgebungPrüfen,
+                                           GeprüftExtern            => BereitsGeprüft);
          
          case
            MöglichesFeld.XAchse
@@ -79,36 +71,16 @@ package body KIEinheitFestlegenSiedeln is
                return MöglichesFeld;
          end case;
          
-         ------------------------------ Einschränken wie beim Erkunden, eventuell um die Einheit und dann um alle Städte herum prüfen?
+         ------------------------------ Eventuell um die Einheit und dann um alle Städte herum prüfen?
          if
-           YAchseKoordinatePrüfen > Karten.Karteneinstellungen.Kartengröße.YAchse / 2
-           and
-             XAchseKoordinatePrüfen > Karten.Karteneinstellungen.Kartengröße.XAchse / 2
+           UmgebungPrüfen > 15
          then
+            ---------------------------- Dann hier um andere Städte/Einheiten herumloopen?
             exit KartenfeldSuchenSchleife;
             
          else
-            null;
-         end if;
-         
-         if
-           YAchseKoordinatePrüfen < Karten.Karteneinstellungen.Kartengröße.YAchse / 2
-         then
-            YAchseKoordinatePrüfen := YAchseKoordinatePrüfen + 1;
-            YAchseKoordinatenSchonGeprüft := YAchseKoordinatePrüfen - 1;
-            
-         else
-            null;
-         end if;
-            
-         if
-           XAchseKoordinatePrüfen <= Karten.Karteneinstellungen.Kartengröße.XAchse / 2
-         then
-            XAchseKoordinatePrüfen := XAchseKoordinatePrüfen + 1;
-            XAchseKoordinatenSchonGeprüft := XAchseKoordinatePrüfen - 1;
-            
-         else
-            null;
+            UmgebungPrüfen := UmgebungPrüfen + 1;
+            BereitsGeprüft := UmgebungPrüfen - 1;
          end if;
          
       end loop KartenfeldSuchenSchleife;
@@ -121,20 +93,20 @@ package body KIEinheitFestlegenSiedeln is
       
    function NeuesStadtfeld
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      UmgebungExtern : in KartenRecords.YXAchsenKartenfeldNaturalRecord;
-      GeprüftExtern : in KartenRecords.YXAchsenKartenfeldNaturalRecord)
+      UmgebungExtern : in KartenDatentypen.KartenfeldNatural;
+      GeprüftExtern : in KartenDatentypen.KartenfeldNatural)
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
       
       YAchseKartenfeldSuchenSchleife:
-      for YAchseSchleifenwert in -UmgebungExtern.YAchse .. UmgebungExtern.YAchse loop
+      for YAchseSchleifenwert in -UmgebungExtern .. UmgebungExtern loop
          XAchseKartenfeldSuchenSchleife:
-         for XAchseSchleifenwert in -UmgebungExtern.XAchse .. UmgebungExtern.XAchse loop
+         for XAchseSchleifenwert in -UmgebungExtern .. UmgebungExtern loop
                
             if
-              GeprüftExtern.YAchse > abs (YAchseSchleifenwert)
+              GeprüftExtern > abs (YAchseSchleifenwert)
               and
-                GeprüftExtern.XAchse > abs (XAchseSchleifenwert)
+                GeprüftExtern > abs (XAchseSchleifenwert)
             then
                FeldGutUndFrei := False;
                
@@ -143,18 +115,17 @@ package body KIEinheitFestlegenSiedeln is
                                                                                                              ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                                                              LogikGrafikExtern => True);
                
-               case
-                 MöglichesStadtfeld.XAchse
-               is
-                  when KartenKonstanten.LeerXAchse =>
-                     FeldGutUndFrei := False;
+               if
+                 MöglichesStadtfeld.XAchse = KartenKonstanten.LeerXAchse
+               then
+                  FeldGutUndFrei := False;
                      
-                  when others =>
-                     FeldGutUndFrei := KartenfeldUmgebungPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                  KoordinatenExtern        => MöglichesStadtfeld);
-               end case;
+               else
+                  FeldGutUndFrei := KartenfeldUmgebungPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                               KoordinatenExtern        => MöglichesStadtfeld);
+               end if;
             end if;
-                           
+            
             if
               FeldGutUndFrei = False
             then
@@ -165,8 +136,6 @@ package body KIEinheitFestlegenSiedeln is
                                                      RasseExtern           => EinheitRasseNummerExtern.Rasse,
                                                      ZielKoordinatenExtern => MöglichesStadtfeld)
               = False
-              and
-                KIEinheitAllgemeinePruefungen.BlockiertDurchWasser (KoordinatenExtern => MöglichesStadtfeld) = False
             then
                return MöglichesStadtfeld;
                   
@@ -189,28 +158,18 @@ package body KIEinheitFestlegenSiedeln is
       return Boolean
    is begin
       
-      EinheitAufFeld := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
+      case
+        KIEinheitAllgemeinePruefungen.KartenfeldPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                         KoordinatenExtern        => KoordinatenExtern)
+      is
+         when False =>
+            return False;
+            
+         when True =>
+            null;
+      end case;
       
       if
-        EinheitAufFeld.Nummer /= EinheitenKonstanten.LeerNummer
-        and
-          EinheitAufFeld /= EinheitRasseNummerExtern
-      then
-         return False;
-      
-      elsif
-        BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                   NeueKoordinatenExtern    => KoordinatenExtern)
-        = False
-      then
-         return False;
-         
-      elsif
-        LeseKarten.BelegterGrundLeer (KoordinatenExtern => KoordinatenExtern) = False
-      then
-         return False;
-      
-      elsif
         LeseKarten.Bewertung (KoordinatenExtern => KoordinatenExtern,
                               RasseExtern       => EinheitRasseNummerExtern.Rasse)
         < KIKartenfeldbewertungModifizieren.BewertungStadtBauen (KoordinatenExtern => KoordinatenExtern,

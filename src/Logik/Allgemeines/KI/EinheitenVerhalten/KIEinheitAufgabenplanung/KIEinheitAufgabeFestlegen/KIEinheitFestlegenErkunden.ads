@@ -5,9 +5,9 @@ with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
-with KartenRecords;
+private with KartenRecords;
 
-with Karten;
+private with Karten;
 
 package KIEinheitFestlegenErkunden is
 
@@ -23,8 +23,8 @@ package KIEinheitFestlegenErkunden is
    
 private
    
-   KarteReichweite : KartenDatentypen.KartenfeldNatural;
-   KarteGeprüft : KartenDatentypen.KartenfeldNatural;
+   UmgebungPrüfen : KartenDatentypen.KartenfeldNatural;
+   BereitsGeprüft : KartenDatentypen.KartenfeldNatural;
    
    EinheitKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;

@@ -1,7 +1,7 @@
 pragma SPARK_Mode (Off);
 pragma Warnings (Off, "*array aggregate*");
 
-with Ada.Numerics.Discrete_Random;
+private with Ada.Numerics.Discrete_Random;
 
 with KartenDatentypen;
 
@@ -25,7 +25,6 @@ private
 
    MinimalerWert : KartenDatentypen.KartenfeldPositiv;
    MaximalerWert : KartenDatentypen.KartenfeldPositiv;
-   GezogenerWert : KartenDatentypen.KartenfeldPositiv;
 
    package ZufälligeZahl is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.Auswahlbereich);
    package ZufälligerBoolean is new Ada.Numerics.Discrete_Random (Result_Subtype => Boolean);

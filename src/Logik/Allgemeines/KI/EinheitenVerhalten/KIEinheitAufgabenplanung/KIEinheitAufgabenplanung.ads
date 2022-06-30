@@ -5,7 +5,7 @@ with RassenDatentypen; use RassenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 
-with KIDatentypen;
+private with KIDatentypen;
 
 package KIEinheitAufgabenplanung is
    

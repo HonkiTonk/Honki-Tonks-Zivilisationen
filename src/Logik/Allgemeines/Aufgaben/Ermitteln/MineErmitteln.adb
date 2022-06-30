@@ -73,7 +73,7 @@ package body MineErmitteln is
       end case;
       
       case
-        Arbeitswerte.WelcheArbeit
+        Arbeitswerte.Aufgabe
       is
          when AufgabenDatentypen.Leer_Aufgabe_Enum =>
             return False;
@@ -93,14 +93,14 @@ package body MineErmitteln is
               VorarbeitNötig
             then
                SchreibeEinheitenGebaut.BeschäftigungNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                 BeschäftigungExtern     => Arbeitswerte.WelcheArbeit);
+                                                                 BeschäftigungExtern     => Arbeitswerte.Aufgabe);
                SchreibeEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                       ZeitExtern               => Arbeitswerte.Arbeitszeit,
                                                                       RechnenSetzenExtern      => 0);
                
             else
                SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                       BeschäftigungExtern     => Arbeitswerte.WelcheArbeit);
+                                                       BeschäftigungExtern     => Arbeitswerte.Aufgabe);
                SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                             ZeitExtern               => Arbeitswerte.Arbeitszeit,
                                                             RechnenSetzenExtern      => 0);

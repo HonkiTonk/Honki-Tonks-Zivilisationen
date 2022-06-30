@@ -17,6 +17,8 @@ with Kartenkoordinatenberechnungssystem;
 with EinheitSuchen;
 with DiplomatischerZustand;
 
+with KIKriegErmitteln;
+
 package body KIGefahrErmitteln is
    
    function GefahrErmitteln
@@ -31,7 +33,14 @@ package body KIGefahrErmitteln is
             return EinheitenKonstanten.LeerRasseNummer;
             
          when others =>
-            return GefahrSuchen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            if
+              KIKriegErmitteln.IstImKrieg (RasseExtern => EinheitRasseNummerExtern.Rasse) = False
+            then
+               return EinheitenKonstanten.LeerRasseNummer;
+               
+            else
+               return GefahrSuchen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            end if;
       end case;
             
    end GefahrErmitteln;

@@ -38,9 +38,12 @@ package body KIEinheitAufgabeModernisieren is
       
       if
         NotwendigeTechnologie = ForschungKonstanten.LeerForschungAnforderung
-        or else
-          LeseWichtiges.Erforscht (RasseExtern             => EinheitRasseNummerExtern.Rasse,
-                                   WelcheTechnologieExtern => NotwendigeTechnologie)
+      then
+         null;
+         
+      elsif
+        LeseWichtiges.Erforscht (RasseExtern             => EinheitRasseNummerExtern.Rasse,
+                                 WelcheTechnologieExtern => NotwendigeTechnologie)
         = True
       then
          null;

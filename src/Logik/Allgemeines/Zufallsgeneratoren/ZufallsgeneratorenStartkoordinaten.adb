@@ -24,21 +24,29 @@ package body ZufallsgeneratorenStartkoordinaten is
             EAchse := 0;
       end case;
       
+      KartenpunktWählen.Reset (Gen => KartenpunktGewählt);
+      
       PositionBestimmenSchleife:
       loop
          
-         YXAchsen := StartPunkteYXFestlegen;
+         YAchse := KartenpunktWählen.Random (Gen   => KartenpunktGewählt,
+                                              First => KartenDatentypen.KartenfeldPositiv'First,
+                                              Last  => Karten.Karteneinstellungen.Kartengröße.YAchse);
+      
+         XAchse := KartenpunktWählen.Random (Gen   => KartenpunktGewählt,
+                                              First => KartenDatentypen.KartenfeldPositiv'First,
+                                              Last  => Karten.Karteneinstellungen.Kartengröße.XAchse);
          
          ------------------------ Diese Prüfungen hier mal verbessern/nach SpieleinstellungenRasseSpieler verschieben.
          if
            BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern           => RasseExtern,
                                                                   IDExtern              => 1,
-                                                                  NeueKoordinatenExtern => (EAchse, YXAchsen.YAchse, YXAchsen.XAchse))
+                                                                  NeueKoordinatenExtern => (EAchse, YAchse, XAchse))
              = True
            and
-             LeseKarten.AktuellerGrund (KoordinatenExtern => (EAchse, YXAchsen.YAchse, YXAchsen.XAchse)) /= KartengrundDatentypen.Eis_Enum
+             LeseKarten.AktuellerGrund (KoordinatenExtern => (EAchse, YAchse, XAchse)) /= KartengrundDatentypen.Eis_Enum
          then
-            return (EAchse, YXAchsen.YAchse, YXAchsen.XAchse);
+            return (EAchse, YAchse, XAchse);
                
          else
             null;
@@ -47,49 +55,5 @@ package body ZufallsgeneratorenStartkoordinaten is
       end loop PositionBestimmenSchleife;
       
    end Startkoordinaten;
-   
-   
-   
-   function StartPunkteYXFestlegen
-     return KartenRecords.YXAchsenKartenfeldPositivRecord
-   is begin
-      
-      WerteWählen1000.Reset (Gen => PositionGewählt1000);
-      
-      YAchseSchleife:
-      loop
-         
-         YAchse := WerteWählen1000.Random (Gen => PositionGewählt1000);
-         
-         if
-           YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-         then
-            exit YAchseSchleife;
-            
-         else
-            null;
-         end if;
-         
-      end loop YAchseSchleife;
-      
-      XAchseSchleife:
-      loop
-         
-         XAchse := WerteWählen1000.Random (Gen => PositionGewählt1000);
-         
-         if
-           XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
-         then
-            exit XAchseSchleife;
-            
-         else
-            null;
-         end if;
-         
-      end loop XAchseSchleife;
-      
-      return (YAchse, XAchse);
-      
-   end StartPunkteYXFestlegen;
 
 end ZufallsgeneratorenStartkoordinaten;

@@ -13,6 +13,7 @@ package body KIEinheitFestlegenHeilen is
    is begin
       
       ------------------------------- Hier eventuell Zielkoordinaten hinzufügen? Z. B. wenn im Krieg? Eventuell auf mögliche Stadt prüfen und ob es möglich ist diese zu erreichen?
+      ------------------------------- Muss Gefahren und Einheitenart abhängig sein.
       SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                               AufgabeExtern            => KIDatentypen.Einheit_Heilen_Enum);
       

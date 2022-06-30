@@ -2,7 +2,6 @@ pragma SPARK_Mode (Off);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
-with KartenDatentypen; use KartenDatentypen;
 with SpielVariablen;
 
 with KartengeneratorVariablen;
@@ -26,39 +25,13 @@ package body ZufallsgeneratorenSpieleinstellungen is
       
       ZufälligeKartengrößeWählen.Reset (Gen => ZufälligeKartengrößeGewählt);
       
-      YAchseBestimmenSchleife:
-      loop
-         
-         YAchse := ZufälligeKartengrößeWählen.Random (Gen => ZufälligeKartengrößeGewählt);
-         
-         if
-           YAchse >= 20
-         then
-            exit YAchseBestimmenSchleife;
-
-         else
-            null;
-         end if;
-
-      end loop YAchseBestimmenSchleife;
-
-      XAchseBestimmenSchleife:
-      loop
-
-         XAchse := ZufälligeKartengrößeWählen.Random (Gen => ZufälligeKartengrößeGewählt);
-         
-         if
-           XAchse >= 20
-         then
-            exit XAchseBestimmenSchleife;
-
-         else
-            null;
-         end if;
-
-      end loop XAchseBestimmenSchleife;
-      
-      return (YAchse, XAchse);
+      return (ZufälligeKartengrößeWählen.Random (Gen   => ZufälligeKartengrößeGewählt,
+                                                 First => 20,
+                                                     Last  => KartenDatentypen.KartenfeldPositiv'Last),
+              
+              ZufälligeKartengrößeWählen.Random (Gen   => ZufälligeKartengrößeGewählt,
+                                                     First => 20,
+                                                     Last  => KartenDatentypen.KartenfeldPositiv'Last));
       
    end ZufälligeKartengröße;
    

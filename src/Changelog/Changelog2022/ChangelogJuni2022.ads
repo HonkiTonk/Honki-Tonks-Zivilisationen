@@ -1,9 +1,14 @@
 package ChangelogJuni2022 is
    
-   -- Version 0.03.0000 => 0.03. (30.06.2022):
+   -- Version 0.03.0000 => 0.03.0070 (30.06.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter an den Einheitenberechnungen der KI gearbeitet.
+   -- Diverse Kleinigkeiten für zukünftige Codeüberarbeitungen angelegt.
+   -- Weiter an der Aufgabenplanung der KIEinheiten gearbeitet.
+   -- Weiter an der Aufgabenfestlegung der KIEinheiten gearbeitet.
+   -- Angefangen die Aufgabendurchführung der KIEinheiten zu überarbeiten.
+   -- Zufallsgeneratoren überarbeitet.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 

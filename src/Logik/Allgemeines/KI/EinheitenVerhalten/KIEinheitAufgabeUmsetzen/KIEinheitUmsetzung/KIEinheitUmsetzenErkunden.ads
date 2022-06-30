@@ -2,12 +2,13 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
-with EinheitenRecords;
 with SpielVariablen;
+with EinheitenRecords;
+private with KartenRecords;
 
-package KIEinheitFestlegenAufloesen is
+package KIEinheitUmsetzenErkunden is
 
-   function EinheitAuflösen
+   function Erkunden
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
      with
@@ -17,4 +18,8 @@ package KIEinheitFestlegenAufloesen is
                  SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
               );
 
-end KIEinheitFestlegenAufloesen;
+private
+
+   ZielKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+
+end KIEinheitUmsetzenErkunden;

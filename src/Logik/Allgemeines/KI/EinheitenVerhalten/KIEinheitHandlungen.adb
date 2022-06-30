@@ -19,6 +19,7 @@ with KIEinheitAufgabenumsetzung;
 
 package body KIEinheitHandlungen is
 
+   ----------------------------------- Eventuell noch mal so anpassen dass bei Erkunden (anderen noch kommenden Sachen) hier nocht nicht rausgesprungen wird?
    function HandlungBeendet
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
@@ -94,6 +95,7 @@ package body KIEinheitHandlungen is
       return Boolean
    is begin
       
+      -- Hier sollte keine Prüfung auf Zielkoordinate nötig sein, da er sich so lange bewegen sollte bis er das Ziel erreicht hat oder keine Bewegungspunkte mehr hat.
       if
         LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= KIDatentypen.Tut_Nichts_Enum
         and

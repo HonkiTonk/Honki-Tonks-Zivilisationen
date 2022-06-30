@@ -5,6 +5,8 @@ with KartenRecordKonstanten;
 
 with SchreibeEinheitenGebaut;
 
+with Vergleiche;
+
 with KIDatentypen;
 
 package body KIEinheitFestlegenFliehen is
@@ -16,11 +18,20 @@ package body KIEinheitFestlegenFliehen is
       
       ZielKoordinate := Ziel (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
-      --------------------------------- Hier muss noch ein Ziel hinzugefügt werden.
-      SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                              AufgabeExtern            => KIDatentypen.Flucht_Enum);
-      
-      return True;
+      case
+        Vergleiche.KoordinateLeervergleich (KoordinateExtern => ZielKoordinate)
+      is
+         when False =>
+            --------------------------------- Hier muss noch ein Ziel hinzugefügt werden.
+            SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                    AufgabeExtern            => KIDatentypen.Flucht_Enum);
+            SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                       KoordinatenExtern        => ZielKoordinate);
+            return True;
+            
+         when True =>
+            return False;
+      end case;
       
    end Fliehen;
    

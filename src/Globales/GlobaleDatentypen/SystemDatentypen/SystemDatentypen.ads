@@ -15,6 +15,13 @@ package SystemDatentypen is
                                 Zahlen_Eingabe_Enum, Text_Eingabe_Enum, Einheit_Auswahl_Enum, Ja_Nein_Enum
                                );
    
+   --------------------------------- Das dann mal überall einbauen und die KartenDatentypen.UmgebungsbereichEins/Boolean Varianten rauswerfen.
+   type Rechenoperation_Enum is (
+                                 Minus_Enum, Plus_Enum, Setzen_Enum 
+                                );
+   
+   subtype Rechenoperation_Vereinfacht_Enum is Rechenoperation_Enum range Plus_Enum .. Setzen_Enum;
+   
    --------------------- Hier den Schwierigkeitsgrad_Enum einbauen?
    -- Wichtige Werte
    
