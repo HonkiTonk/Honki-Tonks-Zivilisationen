@@ -5,8 +5,9 @@ with SystemDatentypen; use SystemDatentypen;
 with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
 with ForschungenDatentypen;
-with KartenDatentypen;
 with StadtRecords;
+
+private with KartenDatentypen;
 
 package StadtUmgebungsbereichFestlegen is
    

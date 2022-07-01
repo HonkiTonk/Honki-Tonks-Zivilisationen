@@ -8,12 +8,13 @@ with Sf.System.Vector2;
 with RassenDatentypen; use RassenDatentypen;
 with ForschungenDatentypen; use ForschungenDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
-with KartenDatentypen;
-with KartenRecords;
 with SpielVariablen;
-with KartenRecordKonstanten;
 
-with UmwandlungenAdaNachEigenes;
+private with KartenRecordKonstanten;
+private with KartenDatentypen;
+private with KartenRecords;
+
+private with UmwandlungenAdaNachEigenes;
 
 package KarteWichtigesSFML is
 

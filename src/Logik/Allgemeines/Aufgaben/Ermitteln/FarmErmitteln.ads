@@ -5,9 +5,10 @@ with RassenDatentypen; use RassenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 with KartengrundDatentypen;
-with AufgabenDatentypen;
-with KartenVerbesserungDatentypen;
-with ProduktionDatentypen;
+
+private with AufgabenDatentypen;
+private with KartenVerbesserungDatentypen;
+private with ProduktionDatentypen;
 
 package FarmErmitteln is
    

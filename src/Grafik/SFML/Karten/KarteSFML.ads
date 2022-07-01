@@ -3,23 +3,24 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Calendar; use Ada.Calendar;
 
-with Sf.System.Vector2;
-with Sf.Graphics.Color;
-with Sf.Graphics.RectangleShape;
-with Sf.Graphics.CircleShape;
-with Sf.Graphics.Sprite;
+private with Sf.System.Vector2;
+private with Sf.Graphics.Color;
+private with Sf.Graphics.RectangleShape;
+private with Sf.Graphics.CircleShape;
+private with Sf.Graphics.Sprite;
 
 with KartenDatentypen; use KartenDatentypen;
 with RassenDatentypen; use RassenDatentypen;
-with EinheitenDatentypen;
-with KartenRecords;
 with SpielVariablen;
 with EinheitenRecords;
-with KartengrundDatentypen;
-with KartenVerbesserungDatentypen;
-with StadtRecords;
 
-with Karten;
+private with KartengrundDatentypen;
+private with KartenVerbesserungDatentypen;
+private with StadtRecords;
+private with EinheitenDatentypen;
+private with KartenRecords;
+
+private with Karten;
 
 package KarteSFML is
    

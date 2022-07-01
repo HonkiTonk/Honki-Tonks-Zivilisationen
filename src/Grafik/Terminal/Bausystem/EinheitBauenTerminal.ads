@@ -3,7 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 with SystemDatentypen; use SystemDatentypen;
 with EinheitenRecords;
-with GlobaleVariablen;
 
 package EinheitBauenTerminal is
 

@@ -6,7 +6,8 @@ with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
-with TastenbelegungDatentypen;
+
+private with TastenbelegungDatentypen;
 
 package BewegungEinheitenTerminal is
 

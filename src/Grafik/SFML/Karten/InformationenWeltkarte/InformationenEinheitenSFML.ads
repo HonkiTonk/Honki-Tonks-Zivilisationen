@@ -8,11 +8,12 @@ with Sf.System.Vector2;
 with RassenDatentypen; use RassenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
-with EinheitenDatentypen;
-with ProduktionDatentypen;
-with KampfDatentypen;
 
-with UmwandlungenAdaNachEigenes;
+private with EinheitenDatentypen;
+private with ProduktionDatentypen;
+private with KampfDatentypen;
+
+private with UmwandlungenAdaNachEigenes;
 
 package InformationenEinheitenSFML is
 

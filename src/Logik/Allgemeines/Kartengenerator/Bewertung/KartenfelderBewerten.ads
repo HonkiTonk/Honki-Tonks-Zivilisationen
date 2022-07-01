@@ -2,9 +2,10 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
-with ZahlenDatentypen;
-with KartenDatentypen;
 with SpielVariablen;
+
+private with ZahlenDatentypen;
+private with KartenDatentypen;
 
 package KartenfelderBewerten is
 

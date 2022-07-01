@@ -5,11 +5,12 @@ with Sf.System.Vector2;
 
 with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
-with KartenRecords;
-with KartenRecordKonstanten;
-with KartengrundDatentypen;
-with KartenVerbesserungDatentypen;
-with TextaccessVariablen;
+
+private with KartenRecords;
+private with KartenRecordKonstanten;
+private with KartengrundDatentypen;
+private with KartenVerbesserungDatentypen;
+private with TextaccessVariablen;
 
 package KarteAllgemeinesSFML is
 

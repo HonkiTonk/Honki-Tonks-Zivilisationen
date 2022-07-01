@@ -3,11 +3,12 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with EinheitenDatentypen; use EinheitenDatentypen;
-with KartenDatentypen;
 with SpielVariablen;
 with EinheitenRecords;
-with StadtRecords;
-with KartenRecords;
+
+private with StadtRecords;
+private with KartenRecords;
+private with KartenDatentypen;
 
 package KIEinheitFestlegenModernisieren is
 

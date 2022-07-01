@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with RueckgabeDatentypen;
+private with RueckgabeDatentypen;
 
 package Hauptmenue is
 

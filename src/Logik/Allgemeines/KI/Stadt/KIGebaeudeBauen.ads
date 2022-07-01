@@ -2,12 +2,14 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
-with StadtDatentypen;
 with StadtRecords;
 with SpielVariablen;
 
-with KIDatentypen;
+private with StadtDatentypen;
+
 with KIRecords;
+
+private with KIDatentypen;
 
 package KIGebaeudeBauen is
 

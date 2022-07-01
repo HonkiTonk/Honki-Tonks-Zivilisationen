@@ -1,8 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with KartenDatentypen;
-with ZahlenDatentypen;
+private with KartenDatentypen;
+private with ZahlenDatentypen;
 
 package KartengeneratorRessourcen is
    

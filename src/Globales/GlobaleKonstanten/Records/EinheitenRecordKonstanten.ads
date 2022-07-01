@@ -10,21 +10,21 @@ with DatenbankRecords;
 package EinheitenRecordKonstanten is
 
    LeerEinheit : constant EinheitenRecords.EinheitenGebautRecord := (
-                                                                     ID                           => EinheitenKonstanten.LeerID,
-                                                                     KoordinatenAktuell           => KartenRecordKonstanten.LeerKoordinate,
-                                                                     Heimatstadt                  => EinheitenKonstanten.LeerHeimatstadt,
-                                                                     Lebenspunkte                 => EinheitenKonstanten.LeerLebenspunkte,
-                                                                     Bewegungspunkte              => EinheitenKonstanten.LeerBewegungspunkte,
-                                                                     Erfahrungspunkte             => EinheitenKonstanten.LeerErfahrungspunkte,
-                                                                     Rang                         => EinheitenKonstanten.LeerRang,
-                                                                     Beschäftigung                => (EinheitenKonstanten.LeerBeschäftigung, EinheitenKonstanten.LeerBeschäftigungszeit),
-                                                                     BeschäftigungNachfolger      => (EinheitenKonstanten.LeerBeschäftigung, EinheitenKonstanten.LeerBeschäftigungszeit),
-                                                                     KIZielKoordinaten            => KartenRecordKonstanten.LeerKoordinate,
-                                                                     KIBeschäftigt                => EinheitenKonstanten.LeerKIBeschäftigt,
-                                                                     KIBewegungPlan               => (others => KartenRecordKonstanten.LeerKoordinate),
-                                                                     Transportiert                => (others => EinheitenKonstanten.LeerTransportiert),
-                                                                     WirdTransportiert            => EinheitenKonstanten.LeerWirdTransportiert,
-                                                                     Meldungen                    => (others => EinheitenKonstanten.LeerMeldung)
+                                                                     ID                      => EinheitenKonstanten.LeerID,
+                                                                     KoordinatenAktuell      => KartenRecordKonstanten.LeerKoordinate,
+                                                                     Heimatstadt             => EinheitenKonstanten.LeerHeimatstadt,
+                                                                     Lebenspunkte            => EinheitenKonstanten.LeerLebenspunkte,
+                                                                     Bewegungspunkte         => EinheitenKonstanten.LeerBewegungspunkte,
+                                                                     Erfahrungspunkte        => EinheitenKonstanten.LeerErfahrungspunkte,
+                                                                     Rang                    => EinheitenKonstanten.LeerRang,
+                                                                     Beschäftigung           => (EinheitenKonstanten.LeerBeschäftigung, EinheitenKonstanten.LeerBeschäftigungszeit),
+                                                                     BeschäftigungNachfolger => (EinheitenKonstanten.LeerBeschäftigung, EinheitenKonstanten.LeerBeschäftigungszeit),
+                                                                     KIZielKoordinaten       => KartenRecordKonstanten.LeerKoordinate,
+                                                                     KIBeschäftigt           => EinheitenKonstanten.LeerKIBeschäftigt,
+                                                                     KIBewegungPlan          => (others => KartenRecordKonstanten.LeerKoordinate),
+                                                                     Transportiert           => (others => EinheitenKonstanten.LeerTransportiert),
+                                                                     WirdTransportiert       => EinheitenKonstanten.LeerWirdTransportiert,
+                                                                     Meldungen               => (others => EinheitenKonstanten.LeerMeldung)
                                                                     );
    
    LeerEinheitListe : constant DatenbankRecords.EinheitenlisteRecord := (

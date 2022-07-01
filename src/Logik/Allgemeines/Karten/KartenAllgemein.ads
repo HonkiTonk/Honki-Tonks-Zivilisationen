@@ -6,9 +6,10 @@ with RassenDatentypen;
 with KartenRecords;
 with EinheitenDatentypen;
 with KartengrundDatentypen;
-with KartenVerbesserungDatentypen;
 with ProduktionDatentypen;
 with KampfDatentypen;
+
+private with KartenVerbesserungDatentypen;
 
 with Karten;
 

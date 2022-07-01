@@ -212,7 +212,9 @@ package ChangelogJuli2022 is
 
    -- Version 0.03.0070 => 0.03. (01.07.2022):
    
+   -- Vergessenen Code gelöscht.
+   -- Diverses privatisiert.
    -- 
-   -- Kleinigkeiten korrigiert.
+   -- Kommentare und Kleinigkeiten korrigiert.
 
 end ChangelogJuli2022;

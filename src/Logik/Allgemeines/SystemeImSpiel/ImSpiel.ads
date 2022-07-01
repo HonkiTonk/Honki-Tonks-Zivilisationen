@@ -3,7 +3,8 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with RueckgabeDatentypen;
-with SpielVariablen;
+
+private with SpielVariablen;
 
 package ImSpiel is
 

@@ -2,9 +2,10 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
-with EinheitenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
+
+private with EinheitenDatentypen;
 
 with KIDatentypen;
 

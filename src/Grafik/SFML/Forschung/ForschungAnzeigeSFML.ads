@@ -1,11 +1,11 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Sf.Graphics;
-with Sf.Graphics.RectangleShape;
-with Sf.System.Vector2;
+private with Sf.Graphics;
+private with Sf.Graphics.RectangleShape;
+private with Sf.System.Vector2;
 
-with ForschungenDatentypen;
+private with ForschungenDatentypen;
 
 package ForschungAnzeigeSFML is
 

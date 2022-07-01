@@ -1,14 +1,15 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Sf.System.Vector2;
+private with Sf.System.Vector2;
 
 with KartenRecords; use KartenRecords;
 with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
-with TastenbelegungDatentypen;
+
+private with TastenbelegungDatentypen;
 
 package BewegungEinheitenSFML is
 

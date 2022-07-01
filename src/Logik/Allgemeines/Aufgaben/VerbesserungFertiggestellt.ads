@@ -2,11 +2,12 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
-with EinheitenRecords;
-with SpielVariablen;
-with AufgabenDatentypen;
-with KartenVerbesserungDatentypen;
-with KartenRecords;
+
+private with EinheitenRecords;
+private with SpielVariablen;
+private with AufgabenDatentypen;
+private with KartenVerbesserungDatentypen;
+private with KartenRecords;
 
 package VerbesserungFertiggestellt is
 

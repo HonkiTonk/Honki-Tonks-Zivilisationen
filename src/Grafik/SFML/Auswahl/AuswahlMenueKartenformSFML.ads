@@ -1,13 +1,13 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Sf.Graphics;
-with Sf.Graphics.Sprite;
-with Sf.System.Vector2;
+private with Sf.Graphics;
+private with Sf.Graphics.Sprite;
+private with Sf.System.Vector2;
 
-with SystemKonstanten;
-with KartenDatentypen;
-with TextaccessVariablen;
+private with SystemKonstanten;
+private with KartenDatentypen;
+private with TextaccessVariablen;
 
 package AuswahlMenueKartenformSFML is
 

@@ -4,9 +4,9 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with TextKonstanten;
+private with TextKonstanten;
 
-with EingeleseneTexturenSFML;
+private with EingeleseneTexturenSFML;
 
 package EinlesenTexturen is
 
@@ -14,8 +14,8 @@ package EinlesenTexturen is
 
 private
 
-   ------------------- Das hier mal in Bereiche aufteilen um die Zeilenanzahl in der adb ein wenig zu verringern?
-   ------------------- Wenn dann in die gleichen Bereiche wie in EingeleseneTexturenSFML.
+   ------------------------------------- Das hier mal in Bereiche aufteilen um die Zeilenanzahl in der adb ein wenig zu verringern?
+   ------------------------------------- Wenn dann in die gleichen Bereiche wie in EingeleseneTexturenSFML.
 
    AktuelleZeile : Positive;
 

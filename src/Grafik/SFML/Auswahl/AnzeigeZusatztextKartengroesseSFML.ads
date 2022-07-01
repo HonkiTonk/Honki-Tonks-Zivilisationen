@@ -1,12 +1,12 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Sf.System.Vector2;
+private with Sf.System.Vector2;
 
-with KartenDatentypen;
-with RueckgabeDatentypen;
+private with KartenDatentypen;
+private with RueckgabeDatentypen;
 
-with UmwandlungenAdaNachEigenes;
+private with UmwandlungenAdaNachEigenes;
 
 package AnzeigeZusatztextKartengroesseSFML is
 

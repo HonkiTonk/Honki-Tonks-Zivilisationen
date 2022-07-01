@@ -3,11 +3,12 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
-with KartenRecords;
-with KartenDatentypen;
 with StadtKonstanten;
 with StadtRecords;
-with ProduktionDatentypen;
+
+private with KartenRecords;
+private with KartenDatentypen;
+private with ProduktionDatentypen;
 
 package StadtProduktion is
    

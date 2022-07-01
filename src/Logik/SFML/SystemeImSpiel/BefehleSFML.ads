@@ -2,14 +2,15 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
-with EinheitenRecords;
-with EinheitenDatentypen;
-with StadtDatentypen;
-with SystemRecords;
-with TastenbelegungDatentypen;
 with RueckgabeDatentypen;
 with SpielVariablen;
-with StadtRecords;
+
+private with StadtRecords;
+private with EinheitenRecords;
+private with EinheitenDatentypen;
+private with StadtDatentypen;
+private with SystemRecords;
+private with TastenbelegungDatentypen;
 
 package BefehleSFML is
    

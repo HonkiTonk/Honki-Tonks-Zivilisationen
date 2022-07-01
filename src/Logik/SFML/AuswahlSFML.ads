@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Sf.System.Vector2;
+private with Sf.System.Vector2;
 
 with RueckgabeDatentypen;
 

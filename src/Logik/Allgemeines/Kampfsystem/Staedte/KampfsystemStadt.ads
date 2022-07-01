@@ -5,9 +5,10 @@ with RassenDatentypen; use RassenDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
-with KampfRecords;
-with KampfDatentypen;
 with StadtRecords;
+
+private with KampfRecords;
+private with KampfDatentypen;
 
 package KampfsystemStadt is
 

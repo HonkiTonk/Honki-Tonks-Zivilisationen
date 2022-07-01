@@ -3,11 +3,12 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
-with EinheitenRecords;
-with KartenRecords;
-with SpielVariablen;
 
-with Karten;
+private with EinheitenRecords;
+private with KartenRecords;
+private with SpielVariablen;
+
+private with Karten;
 
 package EinheitInUmgebung is
 

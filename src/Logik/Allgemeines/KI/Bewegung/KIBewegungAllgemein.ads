@@ -7,9 +7,9 @@ with EinheitenRecords;
 with KartenRecords;
 with SpielVariablen;
 
-with KIDatentypen;
-
 with Karten;
+
+with KIDatentypen;
 
 package KIBewegungAllgemein is
    

@@ -4,7 +4,8 @@ pragma Warnings (Off, "*array aggregate*");
 with RassenDatentypen; use RassenDatentypen;
 with SystemDatentypen;
 with SpielVariablen;
-with ProduktionDatentypen;
+
+private with ProduktionDatentypen;
 
 package DiplomatischerZustandAenderbar is
 

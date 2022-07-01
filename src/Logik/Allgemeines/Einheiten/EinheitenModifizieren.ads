@@ -5,12 +5,13 @@ with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
 with EinheitenRecords;
 with EinheitenDatentypen;
-with AufgabenDatentypen;
 with SpielVariablen;
-with StadtDatentypen;
 with StadtRecords;
 
-with KIDatentypen;
+private with StadtDatentypen;
+private with AufgabenDatentypen;
+
+private with KIDatentypen;
 
 package EinheitenModifizieren is
 

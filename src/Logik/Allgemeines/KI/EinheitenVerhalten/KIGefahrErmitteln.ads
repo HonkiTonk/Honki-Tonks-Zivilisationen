@@ -3,8 +3,9 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with EinheitenRecords;
-with KartenRecords;
 with SpielVariablen;
+
+private with KartenRecords;
 
 package KIGefahrErmitteln is
 

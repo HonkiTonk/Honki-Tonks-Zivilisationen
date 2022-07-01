@@ -3,13 +3,13 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with Sf;
-with Sf.Graphics;
-with Sf.System.Vector2;
-with Sf.Graphics.Sprite;
+private with Sf;
+private with Sf.Graphics;
+private with Sf.System.Vector2;
+private with Sf.Graphics.Sprite;
 
-with RassenDatentypen;
-with TextaccessVariablen;
+private with RassenDatentypen;
+private with TextaccessVariablen;
 
 package AnzeigeZusatztextRassenmenueSFML is
 

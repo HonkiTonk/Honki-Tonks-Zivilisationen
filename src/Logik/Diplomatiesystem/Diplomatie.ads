@@ -2,8 +2,9 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
-with RueckgabeDatentypen;
 with SpielVariablen;
+
+private with RueckgabeDatentypen;
 
 package Diplomatie is
 

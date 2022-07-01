@@ -4,7 +4,8 @@ pragma Warnings (Off, "*array aggregate*");
 with RassenDatentypen; use RassenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
-with KartenRecords;
+
+private with KartenRecords;
 
 package KIEinheitFestlegenAngreifen is
 

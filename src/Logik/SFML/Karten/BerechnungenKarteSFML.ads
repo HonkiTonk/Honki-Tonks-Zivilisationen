@@ -5,11 +5,13 @@ with Sf.System.Vector2;
 
 with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen;
-with KartenRecords;
 with SpielVariablen;
+
+private with KartenRecords;
 
 package BerechnungenKarteSFML is
    
+   ---------------------------- Das hier über eine Funktion abrufen?
    FensterKarte : Sf.System.Vector2.sfVector2f;
    FensterAnzeige : Sf.System.Vector2.sfVector2f;
    

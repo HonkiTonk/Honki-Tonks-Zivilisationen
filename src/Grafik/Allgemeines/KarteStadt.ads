@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
-with GlobaleVariablen;
 with SpielVariablen;
 with StadtRecords;
 

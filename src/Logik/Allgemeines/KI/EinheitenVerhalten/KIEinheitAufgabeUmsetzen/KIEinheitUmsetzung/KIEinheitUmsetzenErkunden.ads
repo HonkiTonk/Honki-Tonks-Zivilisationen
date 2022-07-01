@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
 with EinheitenRecords;
+
 private with KartenRecords;
 
 package KIEinheitUmsetzenErkunden is

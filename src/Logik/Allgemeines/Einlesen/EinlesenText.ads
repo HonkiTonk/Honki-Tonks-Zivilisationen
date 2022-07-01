@@ -3,8 +3,8 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
-with GlobaleTexte;
-with ZahlenDatentypen;
+private with GlobaleTexte;
+private with ZahlenDatentypen;
 
 package EinlesenText is
    

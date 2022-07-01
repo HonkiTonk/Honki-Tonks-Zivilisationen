@@ -1,12 +1,13 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Sf.System.Vector2;
+private with Sf.System.Vector2;
 
 with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
-with KartenDatentypen;
-with KartenRecords;
+
+private with KartenDatentypen;
+private with KartenRecords;
 
 package CursorPlatzierenSFML is
    

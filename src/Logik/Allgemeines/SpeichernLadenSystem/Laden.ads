@@ -4,9 +4,10 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 
 with RassenDatentypen; use RassenDatentypen;
-with SystemRecords;
-with SonstigesKonstanten;
-with SpielVariablen;
+
+private with SystemRecords;
+private with SonstigesKonstanten;
+private with SpielVariablen;
 
 package Laden is
 

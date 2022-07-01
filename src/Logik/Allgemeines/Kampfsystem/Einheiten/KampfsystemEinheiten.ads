@@ -4,9 +4,10 @@ pragma Warnings (Off, "*array aggregate*");
 with RassenDatentypen; use RassenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
-with KampfRecords;
 with KampfDatentypen;
-with StadtDatentypen;
+
+private with KampfRecords;
+private with StadtDatentypen;
 
 package KampfsystemEinheiten is
 

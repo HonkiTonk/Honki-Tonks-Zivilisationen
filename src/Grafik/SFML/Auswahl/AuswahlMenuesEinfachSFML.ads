@@ -1,15 +1,16 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Sf.System.Vector2;
-with Sf.Graphics;
-with Sf.Graphics.Color;
-with Sf.Graphics.Sprite;
+private with Sf.System.Vector2;
+private with Sf.Graphics;
+private with Sf.Graphics.Color;
+private with Sf.Graphics.Sprite;
 
 with MenueDatentypen;
-with SystemRecords;
-with SystemKonstanten;
-with TextaccessVariablen;
+
+private with SystemRecords;
+private with SystemKonstanten;
+private with TextaccessVariablen;
 
 package AuswahlMenuesEinfachSFML is
 

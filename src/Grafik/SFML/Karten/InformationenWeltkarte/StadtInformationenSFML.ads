@@ -6,14 +6,15 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Sf.System.Vector2;
 
 with RassenDatentypen; use RassenDatentypen;
-with KartenRecords;
 with SpielVariablen;
-with ProduktionDatentypen;
-with KampfDatentypen;
 with StadtRecords;
 
-with Karten;
-with UmwandlungenAdaNachEigenes;
+private with KartenRecords;
+private with ProduktionDatentypen;
+private with KampfDatentypen;
+
+private with Karten;
+private with UmwandlungenAdaNachEigenes;
 
 package StadtInformationenSFML is
      

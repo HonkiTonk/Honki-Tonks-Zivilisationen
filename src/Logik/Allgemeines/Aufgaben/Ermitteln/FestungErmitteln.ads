@@ -5,9 +5,10 @@ with RassenDatentypen; use RassenDatentypen;
 with EinheitenRecords;
 with KartengrundDatentypen;
 with SpielVariablen;
-with AufgabenDatentypen;
-with KartenVerbesserungDatentypen;
-with ProduktionDatentypen;
+
+private with AufgabenDatentypen;
+private with KartenVerbesserungDatentypen;
+private with ProduktionDatentypen;
 
 package FestungErmitteln is
 

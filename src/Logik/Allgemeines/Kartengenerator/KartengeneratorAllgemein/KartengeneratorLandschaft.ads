@@ -2,11 +2,12 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
-with KartengrundDatentypen;
-with ZahlenDatentypen;
-with KartenRecords;
 
-with Karten;
+private with KartengrundDatentypen;
+private with ZahlenDatentypen;
+private with KartenRecords;
+
+private with Karten;
 
 package KartengeneratorLandschaft is
 

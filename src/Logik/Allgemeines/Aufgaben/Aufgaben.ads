@@ -4,9 +4,10 @@ pragma Warnings (Off, "*array aggregate*");
 with RassenDatentypen; use RassenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
-with EinheitenDatentypen;
 with TastenbelegungDatentypen;
-with KartengrundDatentypen;
+
+private with EinheitenDatentypen;
+private with KartengrundDatentypen;
 
 package Aufgaben is
    

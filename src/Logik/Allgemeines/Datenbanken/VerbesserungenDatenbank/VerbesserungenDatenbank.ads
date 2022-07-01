@@ -1,9 +1,10 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitenDatentypen;
 with KartenVerbesserungDatentypen;
-with KartenRecordKonstanten;
+
+private with EinheitenDatentypen;
+private with KartenRecordKonstanten;
 
 with DatenbankRecords;
 

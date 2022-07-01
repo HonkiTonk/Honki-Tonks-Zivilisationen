@@ -3,8 +3,9 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
-with EinheitenDatentypen;
-with StadtDatentypen;
+
+private with EinheitenDatentypen;
+private with StadtDatentypen;
 
 package NaechstesObjekt is
 

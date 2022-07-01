@@ -4,7 +4,8 @@ pragma Warnings (Off, "*array aggregate*");
 with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
 with EinheitenRecords;
-with ForschungenDatentypen;
+
+private with ForschungenDatentypen;
 
 with KIDatentypen;
 

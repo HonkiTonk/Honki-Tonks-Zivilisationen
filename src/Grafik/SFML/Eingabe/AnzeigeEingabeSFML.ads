@@ -3,17 +3,18 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with Sf.Graphics;
-with Sf.Graphics.RectangleShape;
-with Sf.System.Vector2;
+private with Sf.Graphics;
+private with Sf.Graphics.RectangleShape;
+private with Sf.System.Vector2;
 
 with RassenDatentypen; use RassenDatentypen;
-with EinheitenRecords;
 with SpielVariablen;
-with StadtRecords;
 
-with AuswahlStadtEinheit;
-with UmwandlungenAdaNachEigenes;
+private with EinheitenRecords;
+private with StadtRecords;
+
+private with AuswahlStadtEinheit;
+private with UmwandlungenAdaNachEigenes;
 
 package AnzeigeEingabeSFML is
 

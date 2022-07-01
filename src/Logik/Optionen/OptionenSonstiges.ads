@@ -4,7 +4,8 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with RueckgabeDatentypen;
-with SystemRecords;
+
+private with SystemRecords;
 
 package OptionenSonstiges is
 

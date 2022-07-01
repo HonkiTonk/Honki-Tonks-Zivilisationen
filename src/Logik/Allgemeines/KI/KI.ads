@@ -3,7 +3,8 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
-with ZahlenDatentypen;
+
+private with ZahlenDatentypen;
 
 package KI is
 

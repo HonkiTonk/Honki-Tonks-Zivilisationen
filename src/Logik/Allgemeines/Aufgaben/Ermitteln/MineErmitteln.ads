@@ -2,12 +2,13 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
-with KartenVerbesserungDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 with KartengrundDatentypen;
-with AufgabenDatentypen;
-with ProduktionDatentypen;
+
+private with AufgabenDatentypen;
+private with ProduktionDatentypen;
+private with KartenVerbesserungDatentypen;
 
 package MineErmitteln is
 

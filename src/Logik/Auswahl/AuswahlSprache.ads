@@ -3,11 +3,11 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with Sf.Graphics;
-with Sf.Graphics.Text;
-with Sf.System.Vector2;
+private with Sf.Graphics;
+private with Sf.Graphics.Text;
+private with Sf.System.Vector2;
 
-with TastenbelegungDatentypen;
+private with TastenbelegungDatentypen;
 
 package AuswahlSprache is
    

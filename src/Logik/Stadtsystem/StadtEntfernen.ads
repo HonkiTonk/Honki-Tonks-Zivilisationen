@@ -3,8 +3,9 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
-with KartenRecords;
 with StadtRecords;
+
+private with KartenRecords;
 
 package StadtEntfernen is
 

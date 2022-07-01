@@ -5,7 +5,8 @@ with KartenRecords; use KartenRecords;
 with RassenDatentypen; use RassenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
-with StadtRecords;
+
+private with StadtRecords;
 
 package KIBewegungDurchfuehren is
    

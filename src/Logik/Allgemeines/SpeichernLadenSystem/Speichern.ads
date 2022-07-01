@@ -4,8 +4,9 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 
 with RassenDatentypen; use RassenDatentypen;
-with SystemRecords;
-with SpielVariablen;
+
+private with SystemRecords;
+private with SpielVariablen;
 
 package Speichern is
 

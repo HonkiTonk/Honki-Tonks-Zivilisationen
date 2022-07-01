@@ -2,9 +2,10 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
-with KartenVerbesserungDatentypen;
 with KartenRecords;
 with AufgabenDatentypen;
+
+private with KartenVerbesserungDatentypen;
 
 with Karten;
 

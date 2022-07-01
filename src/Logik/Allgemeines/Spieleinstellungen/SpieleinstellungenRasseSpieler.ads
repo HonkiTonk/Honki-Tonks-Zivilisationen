@@ -3,11 +3,12 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with RassenDatentypen; use RassenDatentypen;
-with RueckgabeDatentypen;
-with KartenRecords;
-with ZahlenDatentypen;
 
-with Karten;
+private with RueckgabeDatentypen;
+private with KartenRecords;
+private with ZahlenDatentypen;
+
+private with Karten;
 
 package SpieleinstellungenRasseSpieler is
    

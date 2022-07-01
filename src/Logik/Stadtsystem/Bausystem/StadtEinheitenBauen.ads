@@ -4,10 +4,11 @@ pragma Warnings (Off, "*array aggregate*");
 with RassenDatentypen; use RassenDatentypen;
 with StadtRecords;
 with SpielVariablen;
-with KartenRecords;
-with EinheitenDatentypen;
 
-with Karten;
+private with KartenRecords;
+private with EinheitenDatentypen;
+
+private with Karten;
 
 package StadtEinheitenBauen is
 

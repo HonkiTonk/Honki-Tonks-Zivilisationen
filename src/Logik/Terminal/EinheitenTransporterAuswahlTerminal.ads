@@ -25,6 +25,8 @@ private
    AktuellePosition : EinheitenDatentypen.EinheitenIDMitNullWert;
    Transportiert : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    
+   
+   
    function EinheitAuswählen
      return EinheitenDatentypen.MaximaleEinheitenMitNullWert;
 

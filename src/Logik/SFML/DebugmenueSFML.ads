@@ -1,12 +1,13 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Ada.Wide_Wide_Text_IO;
+private with Ada.Wide_Wide_Text_IO;
 
 with RassenDatentypen; use RassenDatentypen;
-with RueckgabeDatentypen;
 with SpielVariablen;
-with SystemDatentypen;
+
+private with RueckgabeDatentypen;
+private with SystemDatentypen;
 
 package DebugmenueSFML is
 

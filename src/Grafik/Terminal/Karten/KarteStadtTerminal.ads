@@ -3,10 +3,11 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
-with KartenRecords;
-with KartenDatentypen;
-with StadtDatentypen;
 with StadtRecords;
+
+private with KartenRecords;
+private with KartenDatentypen;
+private with StadtDatentypen;
 
 package KarteStadtTerminal is
 

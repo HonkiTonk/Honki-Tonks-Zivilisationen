@@ -2,9 +2,10 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
-with ProduktionDatentypen;
 with SpielVariablen;
-with StadtRecords;
+
+private with ProduktionDatentypen;
+private with StadtRecords;
 
 package Wachstum is
    

@@ -2,11 +2,12 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
-with KartengrundDatentypen;
-with KartenRecords;
-with ZahlenDatentypen;
 
-with Karten;
+private with KartengrundDatentypen;
+private with KartenRecords;
+private with ZahlenDatentypen;
+
+private with Karten;
 
 package KartengeneratorPlaneteninneres is
 

@@ -1,11 +1,11 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Sf.Graphics;
-with Sf.Graphics.Color;
-with Sf.Graphics.ConvexShape;
+private with Sf.Graphics;
+private with Sf.Graphics.Color;
+private with Sf.Graphics.ConvexShape;
 
-with AuswahlSprache;
+private with AuswahlSprache;
 
 package AnzeigeSprachauswahlSFML is
    

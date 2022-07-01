@@ -5,8 +5,9 @@ with RassenDatentypen; use RassenDatentypen;
 with EinheitenRecords;
 with KartengrundDatentypen;
 with SpielVariablen;
-with AufgabenDatentypen;
-with ProduktionDatentypen;
+
+private with AufgabenDatentypen;
+private with ProduktionDatentypen;
 
 package RodenErmitteln is
 

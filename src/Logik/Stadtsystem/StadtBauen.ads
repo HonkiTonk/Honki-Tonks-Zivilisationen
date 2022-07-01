@@ -7,13 +7,14 @@ with RassenDatentypen; use RassenDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
-with KartenRecords;
-with StadtDatentypen;
-with SystemRecords;
-with StadtRecords;
-with ZahlenDatentypen;
 
-with Karten;
+private with KartenRecords;
+private with StadtDatentypen;
+private with SystemRecords;
+private with StadtRecords;
+private with ZahlenDatentypen;
+
+private with Karten;
 
 package StadtBauen is
 

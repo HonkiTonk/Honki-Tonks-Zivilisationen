@@ -1,11 +1,12 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemDatentypen;
 with EinheitenRecords;
-with KartenRecords;
-with KartenDatentypen;
-with EinheitenDatentypen;
+
+private with SystemDatentypen;
+private with KartenRecords;
+private with KartenDatentypen;
+private with EinheitenDatentypen;
 
 package EinheitVerschieben is
 

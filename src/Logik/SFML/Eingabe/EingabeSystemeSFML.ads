@@ -3,9 +3,10 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with Sf.Window.Event;
 with Sf.Window.Keyboard;
 with Sf.Window.Mouse;
+
+private with Sf.Window.Event;
 
 package EingabeSystemeSFML is
 
@@ -20,9 +21,6 @@ package EingabeSystemeSFML is
    EingegebenerText : Unbounded_Wide_Wide_String;
 
    procedure TastenEingabe;
-
-
-
    procedure TextEingeben;
 
 private

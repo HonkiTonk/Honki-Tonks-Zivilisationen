@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with ZahlenDatentypen;
+private with ZahlenDatentypen;
 
 package KartengeneratorUnterwasserUnterirdisch is
 

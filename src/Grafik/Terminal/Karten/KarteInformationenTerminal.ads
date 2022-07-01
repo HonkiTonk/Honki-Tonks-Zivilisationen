@@ -4,14 +4,15 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with RassenDatentypen; use RassenDatentypen;
-with EinheitenRecords;
-with KartenDatentypen;
-with KartengrundDatentypen;
-with KartenVerbesserungDatentypen;
 with SpielVariablen;
-with StadtRecords;
 
-with UmwandlungenAdaNachEigenes;
+private with StadtRecords;
+private with EinheitenRecords;
+private with KartenDatentypen;
+private with KartengrundDatentypen;
+private with KartenVerbesserungDatentypen;
+
+private with UmwandlungenAdaNachEigenes;
 
 package KarteInformationenTerminal is
 

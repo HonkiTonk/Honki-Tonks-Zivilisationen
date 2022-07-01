@@ -4,8 +4,9 @@ pragma Warnings (Off, "*array aggregate*");
 with RassenDatentypen; use RassenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
-with StadtDatentypen;
-with EinheitenDatentypen;
+
+private with StadtDatentypen;
+private with EinheitenDatentypen;
 
 with KIDatentypen;
 

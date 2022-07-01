@@ -5,9 +5,10 @@ with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
+
 private with KartenRecords;
 
-with Karten;
+private with Karten;
 
 package KIEinheitFestlegenFliehen is
 

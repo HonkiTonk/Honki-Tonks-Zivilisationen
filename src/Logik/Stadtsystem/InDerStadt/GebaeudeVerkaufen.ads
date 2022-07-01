@@ -3,8 +3,9 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
-with KartenDatentypen;
 with StadtRecords;
+
+private with KartenDatentypen;
 
 package GebaeudeVerkaufen is
 

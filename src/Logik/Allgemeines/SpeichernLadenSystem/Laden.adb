@@ -7,7 +7,6 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with RueckgabeDatentypen;
 with SystemDatentypen;
-with GlobaleVariablen;
 with KartenRecords;
 with StadtRecords;
 with SpielRecords;

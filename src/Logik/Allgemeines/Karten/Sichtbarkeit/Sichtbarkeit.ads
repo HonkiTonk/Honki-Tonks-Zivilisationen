@@ -6,8 +6,9 @@ with KartenDatentypen; use KartenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 with KartenRecords;
-with KartengrundDatentypen;
 with StadtRecords;
+
+private with KartengrundDatentypen;
 
 with Karten;
 

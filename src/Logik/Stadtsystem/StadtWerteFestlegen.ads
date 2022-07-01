@@ -4,9 +4,10 @@ pragma Warnings (Off, "*array aggregate*");
 with RassenDatentypen; use RassenDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
 with SpielVariablen;
-with KartenRecords;
-with KartenDatentypen;
 with StadtRecords;
+
+private with KartenRecords;
+private with KartenDatentypen;
 
 with LeseStadtGebaut;
 

@@ -5,11 +5,12 @@ with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
-with KartenRecords;
 
-with KIDatentypen;
+private with KartenRecords;
 
-with Karten;
+private with Karten;
+
+private with KIDatentypen;
 
 package KIBewegungBerechnen is
    

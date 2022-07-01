@@ -1,10 +1,11 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Sf.Graphics;
 with Sf.System.Vector2;
-with Sf.Graphics.Rect;
-with Sf.Graphics.View;
+
+private with Sf.Graphics;
+private with Sf.Graphics.Rect;
+private with Sf.Graphics.View;
 
 package GrafikAllgemeinSFML is
 

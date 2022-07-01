@@ -1,11 +1,11 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with MenueDatentypen;
-with RassenDatentypen;
-with StadtDatentypen;
-with EinheitenRecords;
-with StadtRecords;
+private with MenueDatentypen;
+private with RassenDatentypen;
+private with StadtDatentypen;
+private with EinheitenRecords;
+private with StadtRecords;
 
 package GrafikSFML is
 

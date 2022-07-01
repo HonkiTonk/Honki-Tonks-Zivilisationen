@@ -3,9 +3,10 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
-with KartenRecords;
-with KartenDatentypen;
 with StadtRecords;
+
+private with KartenRecords;
+private with KartenDatentypen;
 
 package EinwohnerZuweisenEntfernen is
 

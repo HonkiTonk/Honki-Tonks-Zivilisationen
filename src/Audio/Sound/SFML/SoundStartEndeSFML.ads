@@ -1,8 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Sf.Audio;
-with Sf.Audio.Sound;
+private with Sf.Audio;
+private with Sf.Audio.Sound;
 
 package SoundStartEndeSFML is
 

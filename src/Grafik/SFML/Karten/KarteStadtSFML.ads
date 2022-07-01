@@ -1,23 +1,24 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Sf.Graphics;
-with Sf.Graphics.RectangleShape;
-with Sf.Graphics.CircleShape;
-with Sf.System.Vector2;
-with Sf.Graphics.Color;
-with Sf.Graphics.Sprite;
+private with Sf.Graphics;
+private with Sf.Graphics.RectangleShape;
+private with Sf.Graphics.CircleShape;
+private with Sf.System.Vector2;
+private with Sf.Graphics.Color;
+private with Sf.Graphics.Sprite;
 
 with RassenDatentypen; use RassenDatentypen;
-with KartenDatentypen;
 with SpielVariablen;
-with StadtDatentypen;
-with KartenRecords;
-with KartengrundDatentypen;
-with KartenVerbesserungDatentypen;
 with StadtRecords;
 
-with Karten;
+private with StadtDatentypen;
+private with KartenRecords;
+private with KartengrundDatentypen;
+private with KartenVerbesserungDatentypen;
+private with KartenDatentypen;
+
+private with Karten;
 
 package KarteStadtSFML is
 

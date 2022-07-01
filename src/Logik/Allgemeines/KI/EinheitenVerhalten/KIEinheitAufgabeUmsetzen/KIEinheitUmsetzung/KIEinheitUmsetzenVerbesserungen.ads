@@ -2,11 +2,12 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
-with KartengrundDatentypen;
-with KartenRecords;
-with TastenbelegungDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
+
+private with KartengrundDatentypen;
+private with KartenRecords;
+private with TastenbelegungDatentypen;
 
 package KIEinheitUmsetzenVerbesserungen is
 

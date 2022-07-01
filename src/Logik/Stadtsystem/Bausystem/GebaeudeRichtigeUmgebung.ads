@@ -4,8 +4,9 @@ pragma Warnings (Off, "*array aggregate*");
 with RassenDatentypen; use RassenDatentypen;
 with StadtDatentypen;
 with SpielVariablen;
-with KartenRecords;
 with StadtRecords;
+
+private with KartenRecords;
 
 package GebaeudeRichtigeUmgebung is
 

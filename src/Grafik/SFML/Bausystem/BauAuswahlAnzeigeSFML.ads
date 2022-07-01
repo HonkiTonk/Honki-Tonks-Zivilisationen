@@ -3,14 +3,14 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with Sf.Graphics;
-with Sf.Graphics.RectangleShape;
-with Sf.System.Vector2;
-with Sf.Graphics.Sprite;
+private with Sf.Graphics;
+private with Sf.Graphics.RectangleShape;
+private with Sf.System.Vector2;
+private with Sf.Graphics.Sprite;
 
-with StadtDatentypen;
-with EinheitenDatentypen;
-with StadtRecords;
+private with StadtDatentypen;
+private with EinheitenDatentypen;
+private with StadtRecords;
 
 package BauAuswahlAnzeigeSFML is
 

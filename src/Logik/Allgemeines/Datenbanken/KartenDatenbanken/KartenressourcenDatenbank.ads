@@ -2,7 +2,8 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartengrundDatentypen;
-with RassenDatentypen;
+
+private with RassenDatentypen;
 
 with DatenbankRecords;
 

@@ -7,8 +7,9 @@ with SpielVariablen;
 with KartenRecords;
 with EinheitenRecords;
 with EinheitenDatentypen;
-with StadtDatentypen;
 with StadtRecords;
+
+private with StadtDatentypen;
 
 with Karten;
 

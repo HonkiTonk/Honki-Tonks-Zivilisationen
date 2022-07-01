@@ -2,8 +2,9 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
-with ForschungenDatentypen;
 with SpielVariablen;
+
+private with ForschungenDatentypen;
 
 package ForschungAnzeigeTerminal is
 

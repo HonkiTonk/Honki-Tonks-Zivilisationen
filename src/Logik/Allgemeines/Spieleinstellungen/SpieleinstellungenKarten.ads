@@ -1,10 +1,10 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with RueckgabeDatentypen;
-with KartenDatentypen;
-with SystemRecords;
-with KartenRecords;
+private with RueckgabeDatentypen;
+private with KartenDatentypen;
+private with SystemRecords;
+private with KartenRecords;
 
 package SpieleinstellungenKarten is
    

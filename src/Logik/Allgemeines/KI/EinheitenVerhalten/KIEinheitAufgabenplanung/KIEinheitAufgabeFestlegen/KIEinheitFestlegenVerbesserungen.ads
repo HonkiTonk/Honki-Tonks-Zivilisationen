@@ -5,11 +5,12 @@ with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
-with KartenRecords;
-with StadtRecords;
-with EinheitenDatentypen;
 
-with Karten;
+private with KartenRecords;
+private with StadtRecords;
+private with EinheitenDatentypen;
+
+private with Karten;
 
 package KIEinheitFestlegenVerbesserungen is
 

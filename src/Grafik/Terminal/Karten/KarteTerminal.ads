@@ -4,9 +4,10 @@ pragma Warnings (Off, "*array aggregate*");
 with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
 with SpielVariablen;
-with KartenRecords;
 
-with Karten;
+private with KartenRecords;
+
+private with Karten;
 
 package KarteTerminal is
 

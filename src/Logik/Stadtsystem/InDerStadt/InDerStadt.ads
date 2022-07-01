@@ -3,11 +3,11 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with StadtDatentypen;
-with GlobaleVariablen;
-with SystemRecords;
-with TastenbelegungDatentypen;
 with SpielVariablen;
 with StadtRecords;
+
+private with SystemRecords;
+private with TastenbelegungDatentypen;
 
 package InDerStadt is
 

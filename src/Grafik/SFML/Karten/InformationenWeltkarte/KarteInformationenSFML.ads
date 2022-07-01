@@ -3,22 +3,23 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with Sf.System.Vector2;
-with Sf.Graphics;
-with Sf.Graphics.RectangleShape;
-with Sf.Graphics.Rect;
-with Sf.Graphics.View;
+private with Sf.System.Vector2;
+private with Sf.Graphics;
+private with Sf.Graphics.RectangleShape;
+private with Sf.Graphics.Rect;
+private with Sf.Graphics.View;
 
 with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
-with EinheitenRecords;
-with KartenDatentypen;
-with KartenRecords;
-with KartenRecordKonstanten;
-with ProduktionDatentypen;
-with StadtRecords;
 
-with UmwandlungenAdaNachEigenes;
+private with EinheitenRecords;
+private with KartenDatentypen;
+private with KartenRecords;
+private with KartenRecordKonstanten;
+private with ProduktionDatentypen;
+private with StadtRecords;
+
+private with UmwandlungenAdaNachEigenes;
 
 package KarteInformationenSFML is
 

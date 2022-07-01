@@ -3,12 +3,13 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
-with ZahlenDatentypen;
-with ForschungenDatentypen;
 
-with ForschungenDatenbank;
+private with ZahlenDatentypen;
+private with ForschungenDatentypen;
 
-with KIDatentypen;
+private with ForschungenDatenbank;
+
+private with KIDatentypen;
 
 package KIForschung is
 

@@ -2,8 +2,9 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
-with KartengrundDatentypen;
 with KartenRecords;
+
+private with KartengrundDatentypen;
 
 with Karten;
 

@@ -1,10 +1,11 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Sf.Window.Keyboard;
+private with Sf.Window.Keyboard;
 
 with RueckgabeDatentypen;
-with TastenbelegungDatentypen;
+
+private with TastenbelegungDatentypen;
 
 package OptionenSteuerung is
 

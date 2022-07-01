@@ -5,9 +5,10 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 
 with ZahlenDatentypen;
-with KartenDatentypen;
 with SystemRecords;
 with TastenbelegungDatentypen;
+
+private with KartenDatentypen;
 
 package EingabeTerminal is
 

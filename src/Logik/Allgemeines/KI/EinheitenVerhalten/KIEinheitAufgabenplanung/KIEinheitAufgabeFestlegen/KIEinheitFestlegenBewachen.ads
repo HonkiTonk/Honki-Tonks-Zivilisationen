@@ -4,7 +4,8 @@ pragma Warnings (Off, "*array aggregate*");
 with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
 with EinheitenRecords;
-with EinheitenDatentypen;
+
+private with EinheitenDatentypen;
 
 package KIEinheitFestlegenBewachen is
 

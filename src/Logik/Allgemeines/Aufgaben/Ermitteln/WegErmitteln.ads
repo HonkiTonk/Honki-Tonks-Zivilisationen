@@ -5,10 +5,11 @@ with RassenDatentypen; use RassenDatentypen;
 with EinheitenRecords;
 with KartengrundDatentypen;
 with SpielVariablen;
-with AufgabenDatentypen;
-with KartenVerbesserungDatentypen;
-with ForschungenDatentypen;
-with ProduktionDatentypen;
+
+private with AufgabenDatentypen;
+private with KartenVerbesserungDatentypen;
+private with ForschungenDatentypen;
+private with ProduktionDatentypen;
 
 package WegErmitteln is
 

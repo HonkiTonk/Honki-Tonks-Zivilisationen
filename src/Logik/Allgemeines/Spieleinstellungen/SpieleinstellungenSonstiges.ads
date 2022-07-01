@@ -1,8 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with RueckgabeDatentypen;
-with SpielDatentypen;
+private with RueckgabeDatentypen;
+private with SpielDatentypen;
 
 package SpieleinstellungenSonstiges is
 

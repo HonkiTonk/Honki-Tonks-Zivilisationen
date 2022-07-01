@@ -5,7 +5,8 @@ with RassenDatentypen; use RassenDatentypen;
 with KartenRecords;
 with EinheitenRecords;
 with SpielVariablen;
-with StadtRecords;
+
+private with StadtRecords;
 
 package BewegungEinheiten is
    

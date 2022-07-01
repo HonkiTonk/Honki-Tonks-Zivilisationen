@@ -2,13 +2,14 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
-with EinheitenRecords;
-with KartenRecords;
-with EinheitenDatentypen;
 with StadtRecords;
 with SpielVariablen;
 
-with KIRecords;
+private with EinheitenRecords;
+private with KartenRecords;
+private with EinheitenDatentypen;
+
+private with KIRecords;
 
 package KIStadt is
 

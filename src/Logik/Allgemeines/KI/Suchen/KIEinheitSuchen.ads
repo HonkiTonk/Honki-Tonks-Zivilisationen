@@ -4,8 +4,9 @@ pragma Warnings (Off, "*array aggregate*");
 with RassenDatentypen; use RassenDatentypen;
 with EinheitenRecords;
 with KartenRecords;
-with EinheitenDatentypen;
 with SpielVariablen;
+
+private with EinheitenDatentypen;
 
 package KIEinheitSuchen is
 
