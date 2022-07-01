@@ -19,7 +19,6 @@ with KIEinheitAufgabenumsetzung;
 
 package body KIEinheitHandlungen is
 
-   ----------------------------------- Eventuell noch mal so anpassen dass bei Erkunden (anderen noch kommenden Sachen) hier nocht nicht rausgesprungen wird?
    function HandlungBeendet
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean

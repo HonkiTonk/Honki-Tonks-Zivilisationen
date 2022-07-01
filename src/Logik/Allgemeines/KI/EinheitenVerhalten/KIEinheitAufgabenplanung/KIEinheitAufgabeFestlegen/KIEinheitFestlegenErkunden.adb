@@ -106,7 +106,9 @@ package body KIEinheitFestlegenErkunden is
                                                       ZielKoordinatenExtern => KartenWert)
                     = False
                     and
-                      KIEinheitAllgemeinePruefungen.BlockiertDurchWasser (KoordinatenExtern => KartenWert) = False
+                      KIEinheitAllgemeinePruefungen.AktuellUnpassierbar (KoordinatenExtern => KartenWert,
+                                                                         RasseExtern       => EinheitRasseNummerExtern.Rasse)
+                    = False
                   then
                      SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                 KoordinatenExtern        => KartenWert);

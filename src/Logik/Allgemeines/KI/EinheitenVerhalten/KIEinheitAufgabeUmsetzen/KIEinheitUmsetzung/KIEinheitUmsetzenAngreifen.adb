@@ -10,6 +10,9 @@ package body KIEinheitUmsetzenAngreifen is
       return Boolean
    is begin
       
+      --------------------------------------- Hier direkt nächste Einheit zum Angreifen suchen?
+      --------------------------------------- KIEinheitFestlegenAngreifen.Angreifen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      
       -- Platzhalter
       case
         KIKriegErmitteln.IstImKrieg (RasseExtern => EinheitRasseNummerExtern.Rasse)

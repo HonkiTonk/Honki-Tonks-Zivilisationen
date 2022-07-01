@@ -7,6 +7,8 @@ with SpielVariablen;
 with KartenRecords;
 with EinheitenRecords;
 
+private with KartengrundDatentypen;
+
 with Karten;
 
 package KIEinheitAllgemeinePruefungen is
@@ -26,22 +28,49 @@ package KIEinheitAllgemeinePruefungen is
                  SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
               );
    
-   function BlockiertDurchWasser
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+   function AktuellUnpassierbar
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Boolean
      with
        Pre => (
                  KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
                and
                  KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+               and
+                 SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.KI_Spieler_Enum
               );
    
 private
    
-   Wasserfelder : KartenDatentypen.KartenfeldNatural;
+   UmgebungPrüfen : KartenDatentypen.UmgebungsbereichDrei;
+   BereitsGeprüft : KartenDatentypen.UmgebungsbereichDrei;
+   
+   BlockierteFelder : KartenDatentypen.KartenfeldNatural;
+   
+   WelcherGrund : KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
    
    EinheitAufFeld : EinheitenRecords.RasseEinheitnummerRecord;
    
    Wasserumgebung : KartenRecords.AchsenKartenfeldNaturalRecord;
+   
+   
+   
+   function FeldUnpassierbar
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      return KartenDatentypen.SichtweiteNatural
+     with
+       Pre => (
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+               and
+                 SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.KI_Spieler_Enum
+              ),
+         
+       Post => (
+                  FeldUnpassierbar'Result <= 1
+               );
 
 end KIEinheitAllgemeinePruefungen;

@@ -203,18 +203,20 @@ package ChangelogJuli2022 is
    
    
 
-   -- Version 0.03. => 0.03. (02.07.2022):
+   -- Version 0.03.0125 => 0.03. (02.07.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.0070 => 0.03. (01.07.2022):
+   -- Version 0.03.0070 => 0.03.0125 (01.07.2022):
    
    -- Vergessenen Code gelöscht.
    -- Diverses privatisiert.
-   -- 
-   -- Kommentare und Kleinigkeiten korrigiert.
+   -- Weiter an den Einheitenberechnungen der KI gearbeitet.
+   -- Weiter an der Aufgabendurchführung der KIEinheiten gearbeitet.
+   -- KIPrüfung ob ein Feld von unpassierbaren Feldern umgeben ist erweitert.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert.
 
 end ChangelogJuli2022;

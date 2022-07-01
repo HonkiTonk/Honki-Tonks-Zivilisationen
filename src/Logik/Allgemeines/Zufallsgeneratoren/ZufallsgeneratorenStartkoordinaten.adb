@@ -17,7 +17,7 @@ package body ZufallsgeneratorenStartkoordinaten is
       case
         RasseExtern
       is
-         when RassenDatentypen.Rassen_Unterirdisch_ENum'Range =>
+         when RassenDatentypen.Rassen_Unterirdisch_Enum'Range =>
             EAchse := -1;
             
          when RassenDatentypen.Rassen_Überirdisch_Enum'Range =>

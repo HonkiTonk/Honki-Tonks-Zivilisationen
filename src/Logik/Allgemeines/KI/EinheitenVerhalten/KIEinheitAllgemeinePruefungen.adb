@@ -6,7 +6,6 @@ with EinheitenRecords; use EinheitenRecords;
 with EinheitenDatentypen; use EinheitenDatentypen;
 with EinheitenKonstanten;
 with KartenKonstanten;
-with ForschungenDatentypen;
 
 with LeseKarten;
 
@@ -43,7 +42,9 @@ package body KIEinheitAllgemeinePruefungen is
          return False;
          
       elsif
-        BlockiertDurchWasser (KoordinatenExtern => KoordinatenExtern) = True
+        AktuellUnpassierbar (KoordinatenExtern => KoordinatenExtern,
+                             RasseExtern       => EinheitRasseNummerExtern.Rasse)
+        = True
       then
          return False;   
          
@@ -67,58 +68,142 @@ package body KIEinheitAllgemeinePruefungen is
    
    
    
-   function BlockiertDurchWasser
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+   function AktuellUnpassierbar
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Boolean
    is begin
       
-      Wasserfelder := 0;
+      UmgebungPrüfen := 1;
+      BereitsGeprüft := UmgebungPrüfen - 1;
       
-      YAchseSchleife:
-      for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
-            
-            Wasserumgebung := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                     ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                     LogikGrafikExtern => True);
-            
-            if
-              Wasserumgebung.XAchse = KartenKonstanten.LeerXAchse
-            then
-               Wasserfelder := Wasserfelder + 1;
+      PassierbareUmgebungSchleife:
+      loop
+         
+         BlockierteFelder := 0;
+         
+         YAchseSchleife:
+         for YAchseSchleifenwert in -UmgebungPrüfen .. UmgebungPrüfen loop
+            XAchseSchleife:
+            for XAchseSchleifenwert in -UmgebungPrüfen .. UmgebungPrüfen loop
                
-            elsif
-              LeseKarten.BasisGrund (KoordinatenExtern => Wasserumgebung) = KartengrundDatentypen.Wasser_Enum
-            then
-               Wasserfelder := Wasserfelder + 1;
+               if
+                 BereitsGeprüft >= abs (YAchseSchleifenwert)
+                 and
+                   BereitsGeprüft >= abs (XAchseSchleifenwert)
+               then
+                  null;
+                  
+               else
+                  Wasserumgebung := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+                                                                                                           ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                           LogikGrafikExtern => True);
+            
+                  case
+                    Wasserumgebung.XAchse
+                  is
+                     when KartenKonstanten.LeerXAchse =>
+                        BlockierteFelder := BlockierteFelder + 1;
+                  
+                     when others =>
+                        BlockierteFelder := BlockierteFelder + FeldUnpassierbar (KoordinatenExtern => Wasserumgebung,
+                                                                                 RasseExtern       => RasseExtern);
+                        
+                  end case;
+               end if;
+            
+            end loop XAchseSchleife;
+         end loop YAchseSchleife;
+         
+         case
+           UmgebungPrüfen
+         is
+            when 1 =>
+               if
+                 BlockierteFelder >= 8
+               then
+                  return True;
+            
+               else
+                  null;
+               end if;
                
-            else
-               null;
-            end if;
+            when 2 =>
+               if
+                 BlockierteFelder >= 16
+               then
+                  return True;
             
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
-      
-      if
-        Wasserfelder >= 8
-      then
-         null;
+               else
+                  null;
+               end if;
+               
+            when others =>
+               if
+                 BlockierteFelder >= 24
+               then
+                  return True;
             
-      else
-         return False;
-      end if;
+               else
+                  return False;
+               end if;
+         end case;
+         
+         UmgebungPrüfen := UmgebungPrüfen + 1;
+         BereitsGeprüft := UmgebungPrüfen - 1;
+                  
+      end loop PassierbareUmgebungSchleife;
       
       ------------------------------------- Hier später noch brauchbare Prüfungen auf vorhandene Technologie und Wassertransporter einbauen.
-      ForschungenSchleife:
-      for ForschungSchleifenwert in ForschungenDatentypen.ForschungID'Range loop
+      ------------------------------------- Die Technologieprüfung mit in die Passierbarkeitsprüfung werfen? Bzw. eine Abspaltung davon für die KI vornehmen.
+      -- ForschungenSchleife:
+      -- for ForschungSchleifenwert in ForschungenDatentypen.ForschungID'Range loop
          
-         null;
+      --    null;
          
-      end loop ForschungenSchleife;
+      -- end loop ForschungenSchleife;
       
-      return True;
+      -- return True;
       
-   end BlockiertDurchWasser;
+   end AktuellUnpassierbar;
    
+   
+   
+   function FeldUnpassierbar
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      return KartenDatentypen.SichtweiteNatural
+   is begin
+      
+      WelcherGrund := LeseKarten.BasisGrund (KoordinatenExtern => KoordinatenExtern);
+                  
+      if
+        RasseExtern in RassenDatentypen.Rassen_Überirdisch_Enum'Range
+        and
+          (WelcherGrund = KartengrundDatentypen.Wasser_Enum
+           or
+             WelcherGrund = KartengrundDatentypen.Küstengewässer_Enum)
+      then
+         return 1;
+                     
+      elsif
+        RasseExtern = RassenDatentypen.Tesorahn_Enum
+        and
+          WelcherGrund not in KartengrundDatentypen.Kartengrund_Unterfläche_Wasser_Enum
+      then
+         return 1;
+                     
+      elsif
+        RasseExtern = RassenDatentypen.Talbidahr_Enum
+        and
+          WelcherGrund not in KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum
+      then
+         return 1;
+               
+      else
+         return 0;
+      end if;
+      
+   end FeldUnpassierbar;
+        
 end KIEinheitAllgemeinePruefungen;

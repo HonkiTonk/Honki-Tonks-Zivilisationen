@@ -15,7 +15,9 @@ package RassenDatentypen is
    
    subtype Rassen_Verwendet_Enum is Rassen_Enum range Menschen_Enum .. Talbidahr_Enum;
    subtype Rassen_Überirdisch_Enum is Rassen_Verwendet_Enum range  Menschen_Enum.. Ekropa_Enum;
-   subtype Rassen_Unterirdisch_ENum is Rassen_Verwendet_Enum range Tesorahn_Enum .. Talbidahr_Enum;
+   subtype Rassen_Unterirdisch_Enum is Rassen_Verwendet_Enum range Tesorahn_Enum .. Talbidahr_Enum;
+   subtype Rassen_Wasser_Enum is Rassen_Unterirdisch_Enum range Tesorahn_Enum .. Tesorahn_Enum;
+   subtype Rassen_Erde_Enum is Rassen_Unterirdisch_Enum range Talbidahr_Enum .. Talbidahr_Enum;
 
    type Spieler_Enum is (
                          Leer_Spieler_Enum,

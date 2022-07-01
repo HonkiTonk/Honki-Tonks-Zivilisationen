@@ -1,15 +1,10 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with TastenbelegungDatentypen;
 with EinheitenKonstanten;
 
 with LeseEinheitenGebaut;
 with SchreibeEinheitenGebaut;
-
-with StadtBauen;
-with Aufgaben;
-with EinheitenErzeugenEntfernen;
 
 with KIDatentypen;
 
@@ -17,6 +12,18 @@ with KIEinheitUmsetzenVerbesserungen;
 with KIEinheitUmsetzenModernisieren;
 with KIEinheitUmsetzenAngreifen;
 with KIEinheitUmsetzenErkunden;
+with KIEinheitUmsetzenSiedeln;
+with KIEinheitUmsetzenBewachen;
+with KIEinheitUmsetzenPluendern;
+with KIEinheitUmsetzenFliehen;
+with KIEinheitUmsetzenHeilen;
+with KIEinheitUmsetzenBefestigen;
+with KIEinheitUmsetzenVerteidigen;
+with KIEinheitUmsetzenTransporter;
+with KIEinheitUmsetzenAufloesen;
+with KIEinheitUmsetzenAngriffskrieg;
+with KIEinheitUmsetzenVerteidigungskrieg;
+with KIEinheitUmsetzenNichts;
 
 package body KIEinheitAufgabenumsetzung is
 
@@ -28,59 +35,52 @@ package body KIEinheitAufgabenumsetzung is
         LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       is
          when KIDatentypen.Stadt_Bauen_Enum =>
-            AufgabeDurchführen := StadtBauen.StadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            AufgabeDurchführen := KIEinheitUmsetzenSiedeln.StadtErrichten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when KIDatentypen.Stadt_Bewachen_Enum =>
-            AufgabeDurchführen := Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                 BefehlExtern             => TastenbelegungDatentypen.Verschanzen_Enum);
+            AufgabeDurchführen := KIEinheitUmsetzenBewachen.StadtBewachen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when KIDatentypen.Verbesserung_Anlegen_Enum =>
             AufgabeDurchführen := KIEinheitUmsetzenVerbesserungen.WelcheVerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when KIDatentypen.Verbesserung_Zerstören_Enum =>
-            AufgabeDurchführen := Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                 BefehlExtern             => TastenbelegungDatentypen.Plündern_Enum);
+            AufgabeDurchführen := KIEinheitUmsetzenPluendern.StadtumgebungZerstören (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when KIDatentypen.Flucht_Enum =>
-            AufgabeDurchführen := False;
+            AufgabeDurchführen := KIEinheitUmsetzenFliehen.Fliehen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when KIDatentypen.Einheit_Heilen_Enum =>
-            AufgabeDurchführen := Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                 BefehlExtern             => TastenbelegungDatentypen.Heilen_Enum);
+            AufgabeDurchführen := KIEinheitUmsetzenHeilen.Heilen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when KIDatentypen.Einheit_Festsetzen_Enum =>
-            AufgabeDurchführen := Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                 BefehlExtern             => TastenbelegungDatentypen.Verschanzen_Enum);
+            AufgabeDurchführen := KIEinheitUmsetzenBefestigen.Befestigen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when KIDatentypen.Einheit_Verbessern_Enum =>
             AufgabeDurchführen := KIEinheitUmsetzenModernisieren.EinheitVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when KIDatentypen.Angreifen_Enum =>
             AufgabeDurchführen := KIEinheitUmsetzenAngreifen.Angreifen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-            -- KIEinheitFestlegenAngreifen.Angreifen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when KIDatentypen.Verteidigen_Enum =>
-            AufgabeDurchführen := False;
+            AufgabeDurchführen := KIEinheitUmsetzenVerteidigen.Verteidigen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when KIDatentypen.Erkunden_Enum =>
             AufgabeDurchführen := KIEinheitUmsetzenErkunden.Erkunden (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when KIDatentypen.Auf_Transporter_Warten_Enum =>
-            AufgabeDurchführen := False;
+            AufgabeDurchführen := KIEinheitUmsetzenTransporter.AbholungAbwarten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when KIDatentypen.Einheit_Auflösen_Enum =>
-            EinheitenErzeugenEntfernen.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-            AufgabeDurchführen := False;
+            AufgabeDurchführen := KIEinheitUmsetzenAufloesen.EinheitAuflösen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
                
          when KIDatentypen.Angriffskrieg_Vorbereiten_Enum =>
-            AufgabeDurchführen := False;
+            AufgabeDurchführen := KIEinheitUmsetzenAngriffskrieg.AngriffskriegVorbereiten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when KIDatentypen.Verteidigungskrieg_Vorbereiten_Enum =>
-            AufgabeDurchführen := False;
+            AufgabeDurchführen := KIEinheitUmsetzenVerteidigungskrieg.VerteidigungskriegVorbereiten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when KIDatentypen.Tut_Nichts_Enum =>
-            -- Sollte theoretisch schon vorher aus der Schleife springen, aber sicherheitshalber mal so definiert drinnen lassen.
-            AufgabeDurchführen := True;
+            AufgabeDurchführen := KIEinheitUmsetzenNichts.NichtsTun (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when KIDatentypen.Leer_Aufgabe_Enum =>
             AufgabeDurchführen := False;
