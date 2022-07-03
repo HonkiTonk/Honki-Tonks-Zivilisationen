@@ -189,24 +189,24 @@ package ChangelogJuli2022 is
    
    
 
-   -- Version 0.03. => 0.03. (04.07.2022):
+   -- Version 0.03.0150 => 0.03. (04.07.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03. => 0.03. (03.07.2022):
+   -- Version 0.03.0125 => 0.03.0150 (03.07.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter an den Einheitenberechnungen der KI gearbeitet.
+   -- Weiter an der Aufgabenplanung der KIEinheiten gearbeitet.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.0125 => 0.03. (02.07.2022):
+   -- Version 0.03.0125 => 0.03.0125 (02.07.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 

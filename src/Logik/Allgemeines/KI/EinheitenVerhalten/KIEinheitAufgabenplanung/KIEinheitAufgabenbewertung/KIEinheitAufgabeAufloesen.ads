@@ -28,6 +28,8 @@ private
    
    Heimatstadt : StadtDatentypen.MaximaleStädteMitNullWert;
    
+   VorhandeneEinheiten : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   
    Aufgabenwert : KIDatentypen.AufgabenWichtigkeitKlein;
    Zwischenwert : KIDatentypen.AufgabenWichtigkeitKlein;
    
@@ -53,6 +55,190 @@ private
                                                            RassenDatentypen.Tesorahn_Enum         => 18,
                                                            RassenDatentypen.Talbidahr_Enum        => 18
                                                           );
+   
+   ---------------------------------------- Das wird auch nochmal für den Kriegsfall benötigt.
+   type ZustandmalusArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, KIDatentypen.Zustand_Enum'Range) of KIDatentypen.AufgabenWichtigkeitKlein;
+   Zustandmalus : constant ZustandmalusArray := (
+                                                 RassenDatentypen.Menschen_Enum =>
+                                                   (
+                                                    KIDatentypen.Hunger_Enum                => 20,
+                                                    KIDatentypen.Stagniert_Enum             => 10,
+                                                    KIDatentypen.Produktionsverlust_Enum    => 10,
+                                                    KIDatentypen.Produktionsstagnation_Enum => 5,
+                                                    KIDatentypen.Geldverlust_Enum           => 5,
+                                                    KIDatentypen.Geldstagnation_Enum        => 2
+                                                   ),
+                                       
+                                                 RassenDatentypen.Kasrodiah_Enum =>
+                                                   (
+                                                    KIDatentypen.Hunger_Enum                => 20,
+                                                    KIDatentypen.Stagniert_Enum             => 10,
+                                                    KIDatentypen.Produktionsverlust_Enum    => 10,
+                                                    KIDatentypen.Produktionsstagnation_Enum => 5,
+                                                    KIDatentypen.Geldverlust_Enum           => 5,
+                                                    KIDatentypen.Geldstagnation_Enum        => 2
+                                                   ),
+                                       
+                                                 RassenDatentypen.Lasupin_Enum =>
+                                                   (
+                                                    KIDatentypen.Hunger_Enum                => 20,
+                                                    KIDatentypen.Stagniert_Enum             => 10,
+                                                    KIDatentypen.Produktionsverlust_Enum    => 10,
+                                                    KIDatentypen.Produktionsstagnation_Enum => 5,
+                                                    KIDatentypen.Geldverlust_Enum           => 5,
+                                                    KIDatentypen.Geldstagnation_Enum        => 2
+                                                   ),
+                                       
+                                                 RassenDatentypen.Lamustra_Enum =>
+                                                   (
+                                                    KIDatentypen.Hunger_Enum                => 20,
+                                                    KIDatentypen.Stagniert_Enum             => 10,
+                                                    KIDatentypen.Produktionsverlust_Enum    => 10,
+                                                    KIDatentypen.Produktionsstagnation_Enum => 5,
+                                                    KIDatentypen.Geldverlust_Enum           => 5,
+                                                    KIDatentypen.Geldstagnation_Enum        => 2
+                                                   ),
+                                       
+                                                 RassenDatentypen.Manuky_Enum =>
+                                                   (
+                                                    KIDatentypen.Hunger_Enum                => 20,
+                                                    KIDatentypen.Stagniert_Enum             => 10,
+                                                    KIDatentypen.Produktionsverlust_Enum    => 10,
+                                                    KIDatentypen.Produktionsstagnation_Enum => 5,
+                                                    KIDatentypen.Geldverlust_Enum           => 5,
+                                                    KIDatentypen.Geldstagnation_Enum        => 2
+                                                   ),
+                                       
+                                                 RassenDatentypen.Suroka_Enum =>
+                                                   (
+                                                    KIDatentypen.Hunger_Enum                => 20,
+                                                    KIDatentypen.Stagniert_Enum             => 10,
+                                                    KIDatentypen.Produktionsverlust_Enum    => 10,
+                                                    KIDatentypen.Produktionsstagnation_Enum => 5,
+                                                    KIDatentypen.Geldverlust_Enum           => 5,
+                                                    KIDatentypen.Geldstagnation_Enum        => 2
+                                                   ),
+                                       
+                                                 RassenDatentypen.Pryolon_Enum =>
+                                                   (
+                                                    KIDatentypen.Hunger_Enum                => 20,
+                                                    KIDatentypen.Stagniert_Enum             => 10,
+                                                    KIDatentypen.Produktionsverlust_Enum    => 10,
+                                                    KIDatentypen.Produktionsstagnation_Enum => 5,
+                                                    KIDatentypen.Geldverlust_Enum           => 5,
+                                                    KIDatentypen.Geldstagnation_Enum        => 2
+                                                   ),
+                                       
+                                                 RassenDatentypen.Moru_Phisihl_Enum =>
+                                                   (
+                                                    KIDatentypen.Hunger_Enum                => 20,
+                                                    KIDatentypen.Stagniert_Enum             => 10,
+                                                    KIDatentypen.Produktionsverlust_Enum    => 10,
+                                                    KIDatentypen.Produktionsstagnation_Enum => 5,
+                                                    KIDatentypen.Geldverlust_Enum           => 5,
+                                                    KIDatentypen.Geldstagnation_Enum        => 2
+                                                   ),
+                                       
+                                                 RassenDatentypen.Larinos_Lotaris_Enum =>
+                                                   (
+                                                    KIDatentypen.Hunger_Enum                => 20,
+                                                    KIDatentypen.Stagniert_Enum             => 10,
+                                                    KIDatentypen.Produktionsverlust_Enum    => 10,
+                                                    KIDatentypen.Produktionsstagnation_Enum => 5,
+                                                    KIDatentypen.Geldverlust_Enum           => 5,
+                                                    KIDatentypen.Geldstagnation_Enum        => 2
+                                                   ),
+                                       
+                                                 RassenDatentypen.Carupex_Enum =>
+                                                   (
+                                                    KIDatentypen.Hunger_Enum                => 20,
+                                                    KIDatentypen.Stagniert_Enum             => 10,
+                                                    KIDatentypen.Produktionsverlust_Enum    => 10,
+                                                    KIDatentypen.Produktionsstagnation_Enum => 5,
+                                                    KIDatentypen.Geldverlust_Enum           => 5,
+                                                    KIDatentypen.Geldstagnation_Enum        => 2
+                                                   ),
+                                       
+                                                 RassenDatentypen.Alary_Enum =>
+                                                   (
+                                                    KIDatentypen.Hunger_Enum                => 20,
+                                                    KIDatentypen.Stagniert_Enum             => 10,
+                                                    KIDatentypen.Produktionsverlust_Enum    => 10,
+                                                    KIDatentypen.Produktionsstagnation_Enum => 5,
+                                                    KIDatentypen.Geldverlust_Enum           => 5,
+                                                    KIDatentypen.Geldstagnation_Enum        => 2
+                                                   ),
+                                       
+                                                 RassenDatentypen.Natries_Zermanis_Enum =>
+                                                   (
+                                                    KIDatentypen.Hunger_Enum                => 20,
+                                                    KIDatentypen.Stagniert_Enum             => 10,
+                                                    KIDatentypen.Produktionsverlust_Enum    => 10,
+                                                    KIDatentypen.Produktionsstagnation_Enum => 5,
+                                                    KIDatentypen.Geldverlust_Enum           => 5,
+                                                    KIDatentypen.Geldstagnation_Enum        => 2
+                                                   ),
+                                       
+                                                 RassenDatentypen.Tridatus_Enum =>
+                                                   (
+                                                    KIDatentypen.Hunger_Enum                => 20,
+                                                    KIDatentypen.Stagniert_Enum             => 10,
+                                                    KIDatentypen.Produktionsverlust_Enum    => 10,
+                                                    KIDatentypen.Produktionsstagnation_Enum => 5,
+                                                    KIDatentypen.Geldverlust_Enum           => 5,
+                                                    KIDatentypen.Geldstagnation_Enum        => 2
+                                                   ),
+                                       
+                                                 RassenDatentypen.Senelari_Enum =>
+                                                   (
+                                                    KIDatentypen.Hunger_Enum                => 20,
+                                                    KIDatentypen.Stagniert_Enum             => 10,
+                                                    KIDatentypen.Produktionsverlust_Enum    => 10,
+                                                    KIDatentypen.Produktionsstagnation_Enum => 5,
+                                                    KIDatentypen.Geldverlust_Enum           => 5,
+                                                    KIDatentypen.Geldstagnation_Enum        => 2
+                                                   ),
+                                       
+                                                 RassenDatentypen.Aspari_2_Enum =>
+                                                   (
+                                                    KIDatentypen.Hunger_Enum                => 20,
+                                                    KIDatentypen.Stagniert_Enum             => 10,
+                                                    KIDatentypen.Produktionsverlust_Enum    => 10,
+                                                    KIDatentypen.Produktionsstagnation_Enum => 5,
+                                                    KIDatentypen.Geldverlust_Enum           => 5,
+                                                    KIDatentypen.Geldstagnation_Enum        => 2
+                                                   ),
+                                       
+                                                 RassenDatentypen.Ekropa_Enum =>
+                                                   (
+                                                    KIDatentypen.Hunger_Enum                => 20,
+                                                    KIDatentypen.Stagniert_Enum             => 10,
+                                                    KIDatentypen.Produktionsverlust_Enum    => 10,
+                                                    KIDatentypen.Produktionsstagnation_Enum => 5,
+                                                    KIDatentypen.Geldverlust_Enum           => 0,
+                                                    KIDatentypen.Geldstagnation_Enum        => 0
+                                                   ),
+                                       
+                                                 RassenDatentypen.Tesorahn_Enum =>
+                                                   (
+                                                    KIDatentypen.Hunger_Enum                => 20,
+                                                    KIDatentypen.Stagniert_Enum             => 10,
+                                                    KIDatentypen.Produktionsverlust_Enum    => 10,
+                                                    KIDatentypen.Produktionsstagnation_Enum => 5,
+                                                    KIDatentypen.Geldverlust_Enum           => 5,
+                                                    KIDatentypen.Geldstagnation_Enum        => 2
+                                                   ),
+                                       
+                                                 RassenDatentypen.Talbidahr_Enum =>
+                                                   (
+                                                    KIDatentypen.Hunger_Enum                => 20,
+                                                    KIDatentypen.Stagniert_Enum             => 10,
+                                                    KIDatentypen.Produktionsverlust_Enum    => 10,
+                                                    KIDatentypen.Produktionsstagnation_Enum => 5,
+                                                    KIDatentypen.Geldverlust_Enum           => 5,
+                                                    KIDatentypen.Geldstagnation_Enum        => 2
+                                                   )
+                                                );
    
    
    

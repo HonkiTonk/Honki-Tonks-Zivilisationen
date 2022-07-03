@@ -125,7 +125,7 @@ package body KIEinheitAufgabenplanung is
      return KIDatentypen.Einheit_Aufgabe_Enum
    is begin
       
-      WelcheAufgabe := WichtigkeitArray'First;
+      WelcheAufgabe := KIDatentypen.Einheit_Aufgabe_Enum'First;
       
       AufgabeAuswählenSchleife:
       for AufgabeAuswählenSchleifenwert in WichtigkeitArray'Range loop

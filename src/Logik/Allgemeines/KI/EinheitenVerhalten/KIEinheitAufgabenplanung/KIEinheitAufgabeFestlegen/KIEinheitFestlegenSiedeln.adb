@@ -169,6 +169,16 @@ package body KIEinheitFestlegenSiedeln is
             null;
       end case;
       
+      case
+        LeseKarten.BelegterGrundLeer (KoordinatenExtern => KoordinatenExtern)
+      is
+         when False =>
+            return False;
+         
+         when True =>
+            null;
+      end case;
+      
       if
         LeseKarten.Bewertung (KoordinatenExtern => KoordinatenExtern,
                               RasseExtern       => EinheitRasseNummerExtern.Rasse)

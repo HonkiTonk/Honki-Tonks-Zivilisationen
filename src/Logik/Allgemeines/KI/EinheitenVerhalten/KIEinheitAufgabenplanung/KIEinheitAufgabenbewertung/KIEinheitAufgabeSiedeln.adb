@@ -34,12 +34,12 @@ package body KIEinheitAufgabeSiedeln is
       end if;
       
       if
-        LeseRassenDatenbank.RassenExpansion (EinheitRasseNummerExtern.Rasse) > 10
+        LeseRassenDatenbank.RassenExpansion (EinheitRasseNummerExtern.Rasse) > 20
       then
          return 3;
          
       else
-         return 2;
+         return 0;
       end if;
       
    end NeueStadtBauenGehen;

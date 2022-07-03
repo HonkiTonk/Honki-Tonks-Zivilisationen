@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with EinheitenDatentypen; use EinheitenDatentypen;
 with KartenRecordKonstanten;
@@ -28,7 +30,7 @@ package body KIEinheitFestlegenVerbesserungen is
    is begin
       
       ZielVerbesserungKoordinaten := StadtUmgebungPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      
+            
       case
         Vergleiche.KoordinateLeervergleich (KoordinateExtern => ZielVerbesserungKoordinaten)
       is
@@ -142,7 +144,7 @@ package body KIEinheitFestlegenVerbesserungen is
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
-      
+            
       case
         KIEinheitAllgemeinePruefungen.KartenfeldPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                          KoordinatenExtern        => KoordinatenExtern)
@@ -152,6 +154,17 @@ package body KIEinheitFestlegenVerbesserungen is
             
          when True =>
             null;
+      end case;
+      
+      --------------------------------------- Prüft aktuell noch nicht auf die eigene Rasse.
+      case
+        LeseKarten.BelegterGrundLeer (KoordinatenExtern => KoordinatenExtern)
+      is
+         when False =>
+            null;
+         
+         when True =>
+            return False;
       end case;
       
       if
@@ -173,6 +186,8 @@ package body KIEinheitFestlegenVerbesserungen is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
+      
+      Put_Line ("3");
       
       AufgabenSchleife:
       for AufgabeSchleifenwert in TastenbelegungDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range loop

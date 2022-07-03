@@ -34,4 +34,10 @@ package KIDatentypen is
 
    type KINotAus is range 1 .. 50;
 
+   type Zustand_Enum is (
+                         Hunger_Enum, Stagniert_Enum,
+                         Produktionsverlust_Enum, Produktionsstagnation_Enum,
+                         Geldverlust_Enum, Geldstagnation_Enum
+                        );
+
 end KIDatentypen;

@@ -36,6 +36,8 @@ package body KIEinheitAufgabeVerbesserungen is
    
    
    
+   ---------------------------- Rassenarray anlegen wie bei Einheit auflösen?
+   ---------------------------- Was tun wenn nichts mehr zu verbessern ist? Die Stadt die Verbesserungen befehlen lassen?
    function MöglicheVerbesserungen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KIDatentypen.AufgabenWichtigkeitKlein
@@ -52,7 +54,7 @@ package body KIEinheitAufgabeVerbesserungen is
            NötigeTechnologie = ForschungKonstanten.LeerForschung
          then
             Zwischenwert := KIGrenzpruefungen.AufgabenWichtigkeit (AktuellerWertExtern => Zwischenwert,
-                                                                   ÄnderungExtern      => 2);
+                                                                   ÄnderungExtern      => 10);
             
          elsif
            LeseWichtiges.Erforscht (RasseExtern             => RasseExtern,
@@ -60,7 +62,7 @@ package body KIEinheitAufgabeVerbesserungen is
            = True
          then
             Zwischenwert := KIGrenzpruefungen.AufgabenWichtigkeit (AktuellerWertExtern => Zwischenwert,
-                                                                   ÄnderungExtern      => 2);
+                                                                   ÄnderungExtern      => 20);
             
          else
             null;

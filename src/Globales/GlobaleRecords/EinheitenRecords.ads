@@ -14,7 +14,7 @@ with KIDatentypen;
 
 package EinheitenRecords is
 
-   type RasseEinheitnummerRecord is record
+   type RasseEinheitnummerRecord is tagged record
       
       Rasse : RassenDatentypen.Rassen_Enum;
       Nummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;

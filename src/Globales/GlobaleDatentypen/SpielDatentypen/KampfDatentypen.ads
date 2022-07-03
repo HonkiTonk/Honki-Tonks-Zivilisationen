@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 package KampfDatentypen is
 
    -- Negativer Bereich für Abzug.
+   --------------------------------- Das mal überall so gestalten?
    type KampfwerteAllgemein is range -100 .. 100;
    subtype Kampfwerte is KampfwerteAllgemein range 0 .. 100;
 

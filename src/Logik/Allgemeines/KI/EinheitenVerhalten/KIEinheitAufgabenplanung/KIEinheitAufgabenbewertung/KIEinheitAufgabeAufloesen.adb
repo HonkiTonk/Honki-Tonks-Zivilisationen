@@ -25,7 +25,14 @@ package body KIEinheitAufgabeAufloesen is
       return KIDatentypen.AufgabenWichtigkeitKlein
    is begin
       
+      VorhandeneEinheiten := LeseWichtiges.AnzahlEinheiten (RasseExtern => EinheitRasseNummerExtern.Rasse);
+         
       if
+        VorhandeneEinheiten > SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+      then
+         return KIDatentypen.AufgabenWichtigkeitKlein'Last;
+      
+      elsif
         KIKriegErmitteln.IstImKrieg (RasseExtern => EinheitRasseNummerExtern.Rasse) = True
         and
           EinheitenAllgemeines.Kampfeinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
@@ -37,8 +44,8 @@ package body KIEinheitAufgabeAufloesen is
       end if;
       
       if
-        MaximaleEinheiten (EinheitRasseNummerExtern.Rasse) + EinheitenDatentypen.MaximaleEinheitenMitNullWert (LeseWichtiges.AnzahlStädte (RasseExtern => EinheitRasseNummerExtern.Rasse))
-        < LeseWichtiges.AnzahlEinheiten (RasseExtern => EinheitRasseNummerExtern.Rasse)
+        -- Das hier ist nicht gleichzusetzen mit der Einheitengrenze!
+        MaximaleEinheiten (EinheitRasseNummerExtern.Rasse) + EinheitenDatentypen.MaximaleEinheitenMitNullWert (LeseWichtiges.AnzahlStädte (RasseExtern => EinheitRasseNummerExtern.Rasse)) < VorhandeneEinheiten
       then
          Aufgabenwert := KIGrenzpruefungen.AufgabenWichtigkeit (AktuellerWertExtern => Aufgabenwert,
                                                                 ÄnderungExtern      => 3);
@@ -56,7 +63,7 @@ package body KIEinheitAufgabeAufloesen is
    
    
    
-   --------------------------------- Die folgenden Sachen mal rassenspezifisch bauen.
+   --------------------------------- In einzelne Bereiche aufteilen?
    function Stadtzustand
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return KIDatentypen.AufgabenWichtigkeitKlein
@@ -84,7 +91,7 @@ package body KIEinheitAufgabeAufloesen is
         > 0
       then
          Zwischenwert := KIGrenzpruefungen.AufgabenWichtigkeit (AktuellerWertExtern => Zwischenwert,
-                                                                ÄnderungExtern      => 10);
+                                                                ÄnderungExtern      => Zustandmalus (EinheitRasseNummerExtern.Rasse, KIDatentypen.Hunger_Enum));
          
       elsif
         LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, Heimatstadt)) = 0
@@ -95,7 +102,7 @@ package body KIEinheitAufgabeAufloesen is
         > 0
       then
          Zwischenwert := KIGrenzpruefungen.AufgabenWichtigkeit (AktuellerWertExtern => Zwischenwert,
-                                                                ÄnderungExtern      => 5);
+                                                                ÄnderungExtern      => Zustandmalus (EinheitRasseNummerExtern.Rasse, KIDatentypen.Stagniert_Enum));
          
       else
          null;
@@ -110,7 +117,7 @@ package body KIEinheitAufgabeAufloesen is
         > 0
       then
          Zwischenwert := KIGrenzpruefungen.AufgabenWichtigkeit (AktuellerWertExtern => Zwischenwert,
-                                                                ÄnderungExtern      => 10);
+                                                                ÄnderungExtern      => Zustandmalus (EinheitRasseNummerExtern.Rasse, KIDatentypen.Produktionsverlust_Enum));
          
       elsif
         LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, Heimatstadt)) = 0
@@ -121,7 +128,7 @@ package body KIEinheitAufgabeAufloesen is
         > 0
       then
          Zwischenwert := KIGrenzpruefungen.AufgabenWichtigkeit (AktuellerWertExtern => Zwischenwert,
-                                                                ÄnderungExtern      => 5);
+                                                                ÄnderungExtern      => Zustandmalus (EinheitRasseNummerExtern.Rasse, KIDatentypen.Produktionsstagnation_Enum));
          
       else
          null;
@@ -138,7 +145,15 @@ package body KIEinheitAufgabeAufloesen is
       return KIDatentypen.AufgabenWichtigkeitKlein
    is begin
       
-      Zwischenwert := 0;
+      case
+        EinheitRasseNummerExtern.Rasse
+      is
+         when RassenDatentypen.Ekropa_Enum =>
+            return 0;
+            
+         when others =>
+            Zwischenwert := 0;
+      end case;
          
       if
         LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => EinheitRasseNummerExtern.Rasse,
@@ -149,7 +164,18 @@ package body KIEinheitAufgabeAufloesen is
           LeseWichtiges.GeldZugewinnProRunde (RasseExtern => EinheitRasseNummerExtern.Rasse) < 0
       then
          Zwischenwert := KIGrenzpruefungen.AufgabenWichtigkeit (AktuellerWertExtern => Zwischenwert,
-                                                                ÄnderungExtern      => 5);
+                                                                ÄnderungExtern      => Zustandmalus (EinheitRasseNummerExtern.Rasse, KIDatentypen.Geldverlust_Enum));
+         
+      elsif
+        LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => EinheitRasseNummerExtern.Rasse,
+                                                 IDExtern           => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                 WelcheKostenExtern => ProduktionDatentypen.Geld_Enum)
+        > 0
+        and
+          LeseWichtiges.GeldZugewinnProRunde (RasseExtern => EinheitRasseNummerExtern.Rasse) = 0
+      then
+         Zwischenwert := KIGrenzpruefungen.AufgabenWichtigkeit (AktuellerWertExtern => Zwischenwert,
+                                                                ÄnderungExtern      => Zustandmalus (EinheitRasseNummerExtern.Rasse, KIDatentypen.Geldstagnation_Enum));
             
       else
          null;

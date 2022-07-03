@@ -24,6 +24,7 @@ private
    EinheitUnzugeordnet : EinheitenRecords.RasseEinheitnummerRecord;
 
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   AktuelleKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
 
    function ReaktionErfoderlich
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

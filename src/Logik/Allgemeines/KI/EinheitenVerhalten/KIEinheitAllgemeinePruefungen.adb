@@ -18,7 +18,7 @@ package body KIEinheitAllgemeinePruefungen is
    
    -- Einige Prüfungen sind nicht immer 100% sinnvoll, beispielsweise von KIEinheitFestlegenVerbesserungen.StadtumgebungVerbessern kommend ist die Sichtbarkeitsprüfung ein wenig unsinnig,
    -- aber nur dafür eine Extrafunktion schein ein wenig übertrieben.
-   -------------------------------------- Werde aber später wohl doch noch mehrere Versionen bauen müssen.
+   -------------------------------------- Werde wohl mehrere Versionen bauen müssen.
    function KartenfeldPrüfen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
@@ -45,11 +45,6 @@ package body KIEinheitAllgemeinePruefungen is
         AktuellUnpassierbar (KoordinatenExtern => KoordinatenExtern,
                              RasseExtern       => EinheitRasseNummerExtern.Rasse)
         = True
-      then
-         return False;   
-         
-      elsif
-        LeseKarten.BelegterGrundLeer (KoordinatenExtern => KoordinatenExtern) = False
       then
          return False;
                   

@@ -3,6 +3,8 @@ pragma Warnings (Off, "*array aggregate*");
 
 with EinheitenDatentypen;
 with StadtDatentypen;
+with KampfDatentypen;
+with EinheitenRecords;
 
 with KIDatentypen;
 
@@ -21,6 +23,15 @@ package KIRecords is
 
       ID : StadtDatentypen.GebäudeIDMitNullwert;
       Bewertung : KIDatentypen.BauenBewertung;
+
+   end record;
+
+
+
+   type FeindlicheEinheitBewertet is new EinheitenRecords.RasseEinheitnummerRecord with record
+
+      Angriff : KampfDatentypen.Kampfwerte;
+      Verteidigung : KampfDatentypen.Kampfwerte;
 
    end record;
 
