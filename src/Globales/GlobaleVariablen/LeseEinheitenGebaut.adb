@@ -191,6 +191,39 @@ package body LeseEinheitenGebaut is
    end KIBeschäftigt;
    
    
+      
+   function KIZielKoordinatenNachfolger
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return KartenRecords.AchsenKartenfeldNaturalRecord
+   is begin
+      
+      return SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIZielKoordinatenNachfolger;
+      
+   end KIZielKoordinatenNachfolger;
+   
+   
+   
+   function KIBeschäftigtNachfolger
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return KIDatentypen.Einheit_Aufgabe_Enum
+   is begin
+      
+      return SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIBeschäftigtNachfolger;
+      
+   end KIBeschäftigtNachfolger;
+   
+   
+   
+   function KIVerbesserung
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return AufgabenDatentypen.Einheiten_Aufgaben_Enum
+   is begin
+      
+      return SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIVerbesserung;
+      
+   end KIVerbesserung;
+   
+   
    
    function KIBewegungPlan
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

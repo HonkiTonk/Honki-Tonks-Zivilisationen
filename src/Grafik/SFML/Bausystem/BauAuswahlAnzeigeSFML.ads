@@ -11,6 +11,7 @@ private with Sf.Graphics.Sprite;
 private with StadtDatentypen;
 private with EinheitenDatentypen;
 private with StadtRecords;
+private with MenueDatentypen;
 
 package BauAuswahlAnzeigeSFML is
 
@@ -24,6 +25,8 @@ private
    AbstandÜberschrift : Float;
    Multiplikator : Float;
    BreiteTextfeld : Float;
+
+   Hintergrund : MenueDatentypen.Welches_Menü_Vorhanden_Enum;
 
    ZusatztextGebäude : StadtDatentypen.GebäudeIDMitNullwert;
    ZusatztextEinheiten : EinheitenDatentypen.EinheitenIDMitNullWert;

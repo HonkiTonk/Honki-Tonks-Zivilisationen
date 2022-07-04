@@ -16,8 +16,8 @@ with KartenressourcenDatenbank;
 
 package EingeleseneTexturenSFML is
 
-   ---------------- Eventuell nach Bereiche aufteilen, damit dass hier nicht zu unübersichtlich wird?
-   ---------------- Wenn dann in die gleichen Bereiche wie in EinlesenTexturen.
+   ----------------------------- Eventuell nach Bereiche aufteilen, damit dass hier nicht zu unübersichtlich wird?
+   ----------------------------- Wenn dann in die gleichen Bereiche wie in EinlesenTexturen.
 
    type StandardHintergrundAccessArray is array (GrafikDatentypen.Standard_Texturen_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
    StandardHintergrundAccess : StandardHintergrundAccessArray := (others => null);
@@ -34,6 +34,7 @@ package EingeleseneTexturenSFML is
    type KartenressourcenAccessArray is array (KartenressourcenDatenbank.KartenressourcenListeArray'Range) of Sf.Graphics.sfTexture_Ptr;
    KartenressourceAccess : KartenressourcenAccessArray := (others => null);
 
+   ---------------------------- Auch auf Rasse erweitern, damit man verschieden aussehende Städte/Verbesserungen hat?
    type VerbesserungenAccessArray is array (KartenVerbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
    VerbesserungenAccess : VerbesserungenAccessArray := (others => null);
 

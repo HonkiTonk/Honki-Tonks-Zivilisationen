@@ -9,6 +9,7 @@ with SpielVariablen;
 private with KartenRecords;
 private with StadtRecords;
 private with EinheitenDatentypen;
+private with KartengrundDatentypen;
 
 private with Karten;
 
@@ -27,8 +28,13 @@ package KIEinheitFestlegenVerbesserungen is
 private
 
    VerbesserungTesten : Boolean;
+   WelcheVerbesserung : Boolean;
 
    Stadtumgebung : KartenDatentypen.UmgebungsbereichDrei;
+
+   BasisGrund : KartengrundDatentypen.Kartengrund_Enum;
+
+   Ressourcen : KartengrundDatentypen.Kartenressourcen_Enum;
 
    EinheitAufFeld : EinheitenRecords.RasseEinheitnummerRecord;
 
@@ -39,7 +45,7 @@ private
 
 
 
-   function StadtUmgebungPrüfen
+   function StädteDurchgehen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return KartenRecords.AchsenKartenfeldNaturalRecord
      with
@@ -50,12 +56,12 @@ private
               ),
 
        Post => (
-                  StadtUmgebungPrüfen'Result.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                  StädteDurchgehen'Result.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
                 and
-                  StadtUmgebungPrüfen'Result.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+                  StädteDurchgehen'Result.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
                );
 
-   function StadtUmgebungUnverbessert
+   function StadtumgebungErmitteln
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       EinheitNummerExtern : in EinheitenDatentypen.MaximaleEinheiten)
       return KartenRecords.AchsenKartenfeldNaturalRecord
@@ -67,12 +73,12 @@ private
               ),
 
        Post => (
-                  StadtUmgebungUnverbessert'Result.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                  StadtumgebungErmitteln'Result.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
                 and
-                  StadtUmgebungUnverbessert'Result.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+                  StadtumgebungErmitteln'Result.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
                );
 
-   function VerbesserungDortAnlegen
+   function AllgemeineVerbesserungenPrüfungen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
@@ -88,6 +94,24 @@ private
               );
 
    function VerbesserungAnlegbar
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return Boolean
+     with
+       Pre => (
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+               and
+                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+               and
+                 SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
+              );
+
+   function VerbesserungErsetzen
+     return Boolean;
+
+   function WegAnlegbar
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
      with

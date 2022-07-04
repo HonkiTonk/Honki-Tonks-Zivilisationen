@@ -7,6 +7,7 @@ with AufgabenDatentypen; use AufgabenDatentypen;
 with ForschungenDatentypen; use ForschungenDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
 with EinheitenRecordKonstanten;
+with ForschungKonstanten;
 
 with SchreibeEinheitenGebaut;
 with LeseKarten;
@@ -93,7 +94,7 @@ package body WegErmitteln is
       is
          when KartenVerbesserungDatentypen.Karten_Straße_Enum'Range | KartenVerbesserungDatentypen.Leer_Weg_Enum =>
             if
-              TechnologischeVoraussetzung (EinheitRasseNummerExtern.Rasse, WelcheWegart (WegVorhanden)) = 0
+              TechnologischeVoraussetzung (EinheitRasseNummerExtern.Rasse, WelcheWegart (WegVorhanden)) = ForschungKonstanten.LeerForschungAnforderung
               or else
                 LeseWichtiges.Erforscht (RasseExtern             => EinheitRasseNummerExtern.Rasse,
                                          WelcheTechnologieExtern => TechnologischeVoraussetzung (EinheitRasseNummerExtern.Rasse, WelcheWegart (WegVorhanden)))

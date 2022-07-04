@@ -11,7 +11,6 @@ with EinheitenDatentypen; use EinheitenDatentypen;
 with StadtDatentypen; use StadtDatentypen;
 with GlobaleTexte;
 with TextKonstanten;
-with MenueDatentypen;
 
 with GrafikEinstellungenSFML;
 with ObjekteZeichnenSFML;
@@ -22,6 +21,7 @@ with Fehler;
 with EingeleseneTexturenSFML;
 with TexturenSetzenSkalierenSFML;
 with TextaccessVariablen;
+with Warnung;
 
 package body BauAuswahlAnzeigeSFML is
 
@@ -318,9 +318,11 @@ package body BauAuswahlAnzeigeSFML is
    procedure TextHintergrund
      (GebäudeEinheitExtern : in Boolean)
    is begin
-            
+      
+      Hintergrund := MenueDatentypen.Rassen_Menü_Enum;
+      
       if
-        EingeleseneTexturenSFML.MenüHintergrundAccess (MenueDatentypen.Rassen_Menü_Enum) /= null
+        EingeleseneTexturenSFML.MenüHintergrundAccess (Hintergrund) /= null
       then
          case
            GebäudeEinheitExtern
@@ -345,7 +347,7 @@ package body BauAuswahlAnzeigeSFML is
          
       else
          -------------------- Später hier einen einfarbigen Hintergrund wie bei den Kartenfeldern einbauen.
-         null;
+         Warnung.GrafikWarnung (WarnmeldungExtern => "BauAuswahlAnzeigeSFML.TextHintergrund - Textur nicht gefunden: " & Hintergrund'Wide_Wide_Image);
       end if;
       
    end TextHintergrund;

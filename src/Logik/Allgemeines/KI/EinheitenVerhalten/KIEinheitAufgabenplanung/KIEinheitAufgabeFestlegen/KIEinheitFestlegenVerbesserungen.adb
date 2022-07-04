@@ -5,9 +5,11 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with EinheitenDatentypen; use EinheitenDatentypen;
+with KartengrundDatentypen; use KartengrundDatentypen;
 with KartenRecordKonstanten;
 with KartenKonstanten;
 with TastenbelegungDatentypen;
+with AufgabenDatentypen;
 
 with LeseStadtGebaut;
 with SchreibeEinheitenGebaut;
@@ -29,7 +31,7 @@ package body KIEinheitFestlegenVerbesserungen is
       return Boolean
    is begin
       
-      ZielVerbesserungKoordinaten := StadtUmgebungPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      ZielVerbesserungKoordinaten := StädteDurchgehen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
       case
         Vergleiche.KoordinateLeervergleich (KoordinateExtern => ZielVerbesserungKoordinaten)
@@ -49,7 +51,7 @@ package body KIEinheitFestlegenVerbesserungen is
    
    
    
-   function StadtUmgebungPrüfen
+   function StädteDurchgehen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
@@ -66,8 +68,8 @@ package body KIEinheitFestlegenVerbesserungen is
                null;
                
             when others =>
-               VerbesserungAnlegen := StadtUmgebungUnverbessert (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert),
-                                                                 EinheitNummerExtern    => EinheitRasseNummerExtern.Nummer);
+               VerbesserungAnlegen := StadtumgebungErmitteln (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert),
+                                                              EinheitNummerExtern    => EinheitRasseNummerExtern.Nummer);
          end case;
          
          case
@@ -84,11 +86,11 @@ package body KIEinheitFestlegenVerbesserungen is
       
       return VerbesserungAnlegen;
       
-   end StadtUmgebungPrüfen;
+   end StädteDurchgehen;
    
    
    
-   function StadtUmgebungUnverbessert
+   function StadtumgebungErmitteln
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       EinheitNummerExtern : in EinheitenDatentypen.MaximaleEinheiten)
       return KartenRecords.AchsenKartenfeldNaturalRecord
@@ -97,118 +99,209 @@ package body KIEinheitFestlegenVerbesserungen is
       Stadtumgebung := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern);
       StadtKoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
+      -------------------------------- Das Stadtfeld selbst noch aus der Prüfung nehmen. Stadt zählt ja selbst als Verbesserung.
       YAchseSchleife:
       for YÄnderungSchleifenwert in -Stadtumgebung .. Stadtumgebung loop
          XAchseSchleife:
          for XÄnderungSchleifenwert in -Stadtumgebung .. Stadtumgebung loop
             
-            VerbesserungKoordinaten := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtKoordinaten,
-                                                                                                              ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                                                              LogikGrafikExtern => True);
-            
             if
-              VerbesserungKoordinaten.XAchse = KartenKonstanten.LeerXAchse
+              YÄnderungSchleifenwert = 0
+              and
+                XÄnderungSchleifenwert = 0
             then
                null;
                
-            elsif
-              KIAufgabenVerteilt.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Verbesserung_Anlegen_Enum,
-                                                     RasseExtern           => StadtRasseNummerExtern.Rasse,
-                                                     ZielKoordinatenExtern => VerbesserungKoordinaten)
-              = True
-            then
-               null;
-                  
-            elsif
-              VerbesserungDortAnlegen (KoordinatenExtern        => VerbesserungKoordinaten,
-                                       EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern))
-                = True
-            then
-               return VerbesserungKoordinaten;
-                     
             else
-               null;
-            end if;
+               VerbesserungKoordinaten := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtKoordinaten,
+                                                                                                                 ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                                                                 LogikGrafikExtern => True);
             
+               case
+                 VerbesserungKoordinaten.XAchse
+               is
+                  when KartenKonstanten.LeerXAchse =>
+                     null;
+                  
+                  when others =>
+                     if
+                       True = AllgemeineVerbesserungenPrüfungen (KoordinatenExtern        => VerbesserungKoordinaten,
+                                                                  EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern))
+                     then
+                        return VerbesserungKoordinaten;
+                  
+                     else
+                        null;
+                     end if;
+               end case;
+            end if;
+                     
          end loop XAchseSchleife;
       end loop YAchseSchleife;
       
       return KartenRecordKonstanten.LeerKoordinate;
       
-   end StadtUmgebungUnverbessert;
+   end StadtumgebungErmitteln;
    
    
    
-   function VerbesserungDortAnlegen
+   function AllgemeineVerbesserungenPrüfungen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
             
-      case
-        KIEinheitAllgemeinePruefungen.KartenfeldPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                         KoordinatenExtern        => KoordinatenExtern)
-      is
-         when False =>
-            return False;
-            
-         when True =>
-            null;
-      end case;
-      
-      --------------------------------------- Prüft aktuell noch nicht auf die eigene Rasse.
-      case
-        LeseKarten.BelegterGrundLeer (KoordinatenExtern => KoordinatenExtern)
-      is
-         when False =>
-            null;
-         
-         when True =>
-            return False;
-      end case;
-      
       if
-        LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern) /= KartenVerbesserungDatentypen.Leer_Verbesserung_Enum
-        and
-          LeseKarten.Weg (KoordinatenExtern => KoordinatenExtern) /= KartenVerbesserungDatentypen.Leer_Weg_Enum
+        LeseKarten.RasseBelegtGrund (KoordinatenExtern => VerbesserungKoordinaten) /= EinheitRasseNummerExtern.Rasse
+      then
+         return False;
+               
+      elsif
+        -------------------------------- Auch auf Einheiten ohne die gleiche Aufgabe aber mit gleichem Ziel prüfen?
+        True = KIAufgabenVerteilt.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Verbesserung_Anlegen_Enum,
+                                                      RasseExtern           => EinheitRasseNummerExtern.Rasse,
+                                                      ZielKoordinatenExtern => VerbesserungKoordinaten)
+      then
+         return False;
+            
+      elsif
+        False = KIEinheitAllgemeinePruefungen.KartenfeldPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                 KoordinatenExtern        => KoordinatenExtern)
       then
          return False;
          
+      elsif
+        LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern) = KartenVerbesserungDatentypen.Leer_Verbesserung_Enum
+      then
+         WelcheVerbesserung := VerbesserungAnlegbar (KoordinatenExtern        => KoordinatenExtern,
+                                                     EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            
       else
-         return VerbesserungAnlegbar (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         WelcheVerbesserung := VerbesserungErsetzen;
       end if;
+            
+      case
+        WelcheVerbesserung
+      is
+         when True =>
+            return WelcheVerbesserung;
+            
+         when False =>
+            return WegAnlegbar (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      end case;
       
-   end VerbesserungDortAnlegen;
+   end AllgemeineVerbesserungenPrüfungen;
    
    
    
    function VerbesserungAnlegbar
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return Boolean
+   is begin
+      
+      Ressourcen := LeseKarten.Ressource (KoordinatenExtern => KoordinatenExtern);
+      BasisGrund := LeseKarten.BasisGrund (KoordinatenExtern => KoordinatenExtern);
+      
+      case
+        Aufgaben.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                     BefehlExtern             => TastenbelegungDatentypen.Mine_Bauen_Enum)
+      is
+         when True =>
+            if
+              BasisGrund = KartengrundDatentypen.Hügel_Enum
+              or
+                BasisGrund = KartengrundDatentypen.Gebirge_Enum
+                or
+                  Ressourcen = KartengrundDatentypen.Kohle_Enum
+                  or
+                    Ressourcen = KartengrundDatentypen.Eisen_Enum
+                    or
+                      Ressourcen = KartengrundDatentypen.Gold_Enum
+            then
+               SchreibeEinheitenGebaut.KIVerbesserung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                       BeschäftigungExtern      => AufgabenDatentypen.Mine_Bauen_Enum);
+               return True;
+               
+            else
+               null;
+            end if;
+            
+         when False =>
+            null;
+      end case;
+      
+      case
+        Aufgaben.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                     BefehlExtern             => TastenbelegungDatentypen.Festung_Bauen_Enum)
+      is
+         when True =>
+            if
+              BasisGrund = KartengrundDatentypen.Eis_Enum
+            then
+               SchreibeEinheitenGebaut.KIVerbesserung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                       BeschäftigungExtern      => AufgabenDatentypen.Festung_Bauen_Enum);
+               return True;
+               
+            else
+               null;
+            end if;
+               
+         when False =>
+            null;
+      end case;
+         
+      case
+        Aufgaben.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                     BefehlExtern             => TastenbelegungDatentypen.Farm_Bauen_Enum)
+      is
+         when True =>
+            SchreibeEinheitenGebaut.KIVerbesserung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                    BeschäftigungExtern      => AufgabenDatentypen.Farm_Bauen_Enum);
+            return True;
+            
+         when False =>
+            null;
+      end case;
+      
+      return False;
+      
+   end VerbesserungAnlegbar;
+
+
+
+   function VerbesserungErsetzen
+     return Boolean
+   is begin
+   
+      return False;
+   
+   end VerbesserungErsetzen;
+   
+   
+   
+   function WegAnlegbar
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
       
-      Put_Line ("3");
+      Put_Line ("1");
+      -------------------------------- Vielleicht ist das Problem ja dass da immer die Koordinaten der Einheit genutzt werden und nicht die ermittelten Koordinaten?
+      case
+        Aufgaben.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                     BefehlExtern             => TastenbelegungDatentypen.Straße_Bauen_Enum)
+      is
+         when True =>
+            Put_Line ("2");
+            SchreibeEinheitenGebaut.KIVerbesserung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                    BeschäftigungExtern      => AufgabenDatentypen.Straße_Bauen_Enum);
+            return True;
+            
+         when False =>
+            Put_Line ("3");
+            return False;
+      end case;
       
-      AufgabenSchleife:
-      for AufgabeSchleifenwert in TastenbelegungDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range loop
-         
-         VerbesserungTesten := Aufgaben.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                            BefehlExtern             => AufgabeSchleifenwert);
-         
-         case
-           VerbesserungTesten
-         is
-            when True =>
-               exit AufgabenSchleife;
-               
-            when False =>
-               null;
-         end case;
-         
-      end loop AufgabenSchleife;
-      
-      return VerbesserungTesten;
-      
-   end VerbesserungAnlegbar;
+   end WegAnlegbar;
 
 end KIEinheitFestlegenVerbesserungen;

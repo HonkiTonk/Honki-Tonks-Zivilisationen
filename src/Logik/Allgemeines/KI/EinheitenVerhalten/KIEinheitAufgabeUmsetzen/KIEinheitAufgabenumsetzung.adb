@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with EinheitenKonstanten;
+with AufgabenDatentypen;
 
 with LeseEinheitenGebaut;
 with SchreibeEinheitenGebaut;
@@ -97,6 +98,8 @@ package body KIEinheitAufgabenumsetzung is
                                                     BeschäftigungExtern      => EinheitenKonstanten.LeerBeschäftigung);
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     AufgabeExtern            => KIDatentypen.Leer_Aufgabe_Enum);
+            SchreibeEinheitenGebaut.KIVerbesserung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                    BeschäftigungExtern      => AufgabenDatentypen.Leer_Aufgabe_Enum);
       end case;
       
    end AufgabeUmsetzen;

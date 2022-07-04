@@ -31,7 +31,7 @@ with WaldErmitteln;
 with AufgabenAllgemein;
 with Auswahl;
 
------------------------- Das hier auch mal besser aufteilen.
+------------------------------ Das hier auch mal besser aufteilen.
 package body Aufgaben is
    
    function VerbesserungTesten

@@ -6,6 +6,9 @@ with KartenRecordKonstanten;
 with SpielRecords;
 with WichtigesKonstanten;
 with SystemDatentypen;
+with EinheitenKonstanten;
+with SpielDatentypen;
+with TextKonstanten;
 
 with DatenbankRecords;
 
@@ -29,6 +32,16 @@ package WichtigesRecordKonstanten is
                                                                  AnzahlArbeiter             => WichtigesKonstanten.LeerAnzahlArbeiter,
                                                                  AnzahlKämpfer              => WichtigesKonstanten.LeerAnzahlKämpfer,
                                                                  AnzahlSonstiges            => WichtigesKonstanten.LeerAnzahlSonstiges
+                                                                );
+  
+   LeerAllgemeines : constant SpielRecords.AllgemeinesRecord := (
+                                                                 Gewonnen            => False,
+                                                                 Weiterspielen       => False,
+                                                                 RasseAmZugNachLaden => EinheitenKonstanten.LeerRasse,
+                                                                 Schwierigkeitsgrad  => SpielDatentypen.Schwierigkeitsgrad_Leicht_Enum,
+                                                                 Rundenanzahl        => Positive'First,
+                                                                 Rundengrenze        => Natural'First,   
+                                                                 IronmanName         => TextKonstanten.LeerUnboundedString
                                                                 );
    
    LeerGrenzen : constant SpielRecords.GrenzenRecord := (

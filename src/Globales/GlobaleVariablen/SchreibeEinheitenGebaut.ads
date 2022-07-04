@@ -150,7 +150,7 @@ package SchreibeEinheitenGebaut is
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
                and
-                 SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
                and
                  KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
                and
@@ -170,7 +170,47 @@ package SchreibeEinheitenGebaut is
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
                and
-                 SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
+              );
+   
+   procedure KIZielKoordinatenNachfolger
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     with
+       Pre => (
+                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+               and
+                 SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
+               and
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+               and
+                 (if KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse then KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse and KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse)
+               and
+                 (if KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse then KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse and KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse)
+               and
+                 (if KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse then KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse and KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse)
+              );
+     
+   procedure KIBeschäftigtNachfolger
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      AufgabeExtern : in KIDatentypen.Einheit_Aufgabe_Enum)
+     with
+       Pre => (
+                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+               and
+                 SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
+              );
+     
+   procedure KIVerbesserung
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      BeschäftigungExtern : in AufgabenDatentypen.Einheiten_Aufgaben_Enum)
+     with
+       Pre => (
+                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+               and
+                 SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
               );
    
    procedure KIBewegungPlan
@@ -181,7 +221,7 @@ package SchreibeEinheitenGebaut is
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
                and
-                 SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
                and
                  KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
                and
@@ -200,7 +240,7 @@ package SchreibeEinheitenGebaut is
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
                and
-                 SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
               );
       
    procedure Transportiert

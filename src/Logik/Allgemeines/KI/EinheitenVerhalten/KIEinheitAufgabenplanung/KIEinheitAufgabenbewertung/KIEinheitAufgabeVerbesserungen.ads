@@ -23,6 +23,8 @@ package KIEinheitAufgabeVerbesserungen is
 
 private
 
+   NurWege : constant KIDatentypen.AufgabenWichtigkeitKlein := 25;
+   AuchVerbesserungen : constant KIDatentypen.AufgabenWichtigkeitKlein := 50;
    Gesamtwert : KIDatentypen.AufgabenWichtigkeitKlein;
    Zwischenwert : KIDatentypen.AufgabenWichtigkeitKlein;
 

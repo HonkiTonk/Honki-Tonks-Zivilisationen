@@ -3,6 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with EinheitenDatentypen; use EinheitenDatentypen;
 with KartenRecordKonstanten;
+with AufgabenDatentypen;
   
 with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;
@@ -239,6 +240,8 @@ package body KIEinheitAufgabenplanung is
                                                           KoordinatenExtern        => KartenRecordKonstanten.LeerKoordinate);
                SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                        AufgabeExtern            => KIDatentypen.Leer_Aufgabe_Enum);
+               SchreibeEinheitenGebaut.KIVerbesserung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                       BeschäftigungExtern      => AufgabenDatentypen.Leer_Aufgabe_Enum);
                Wichtigkeit (Aufgabe) := -1;
          end case;
          

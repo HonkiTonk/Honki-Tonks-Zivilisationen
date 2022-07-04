@@ -12,7 +12,7 @@ with LeseWichtiges;
 with KIDatentypen; use KIDatentypen;
 
 with KIGefahrErmitteln;
-with KIGrenzpruefungen;
+-- with KIGrenzpruefungen;
 
 package body KIEinheitAufgabeVerbesserungen is
 
@@ -24,13 +24,11 @@ package body KIEinheitAufgabeVerbesserungen is
       if
         KIGefahrErmitteln.GefahrErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerRasseNummer
       then
-         Gesamtwert := MöglicheVerbesserungen (RasseExtern => EinheitRasseNummerExtern.Rasse);
+         return MöglicheVerbesserungen (RasseExtern => EinheitRasseNummerExtern.Rasse);
          
       else
-         Gesamtwert := -1;
+         return -1;
       end if;
-      
-      return Gesamtwert;
             
    end StadtumgebungVerbessern;
    
@@ -42,27 +40,25 @@ package body KIEinheitAufgabeVerbesserungen is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KIDatentypen.AufgabenWichtigkeitKlein
    is begin
-      
-      Zwischenwert := 0;
-      
+            
       AufgabenSchleife:
-      for AufgabeSchleifenwert in TastenbelegungDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range loop
+      for AufgabeSchleifenwert in TastenbelegungDatentypen.Tastenbelegung_Konstruktionen_Enum'Range loop
          
          NötigeTechnologie := ForschungKonstanten.TechnologieVerbesserung (RasseExtern, AufgabeSchleifenwert);
          
          if
            NötigeTechnologie = ForschungKonstanten.LeerForschung
          then
-            Zwischenwert := KIGrenzpruefungen.AufgabenWichtigkeit (AktuellerWertExtern => Zwischenwert,
-                                                                   ÄnderungExtern      => 10);
+            null;
+            -- Zwischenwert := KIGrenzpruefungen.AufgabenWichtigkeit (AktuellerWertExtern => Zwischenwert,
+            --                                                        ÄnderungExtern      => 10);
             
          elsif
            LeseWichtiges.Erforscht (RasseExtern             => RasseExtern,
                                     WelcheTechnologieExtern => NötigeTechnologie)
            = True
          then
-            Zwischenwert := KIGrenzpruefungen.AufgabenWichtigkeit (AktuellerWertExtern => Zwischenwert,
-                                                                   ÄnderungExtern      => 20);
+            return AuchVerbesserungen;
             
          else
             null;
@@ -70,7 +66,7 @@ package body KIEinheitAufgabeVerbesserungen is
          
       end loop AufgabenSchleife;
       
-      return Zwischenwert;
+      return NurWege;
       
    end MöglicheVerbesserungen;
 

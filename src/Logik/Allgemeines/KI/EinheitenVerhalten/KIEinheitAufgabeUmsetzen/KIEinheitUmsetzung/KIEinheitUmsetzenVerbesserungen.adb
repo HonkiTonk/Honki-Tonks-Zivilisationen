@@ -1,13 +1,13 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with KartengrundDatentypen; use KartengrundDatentypen;
-with KartenVerbesserungDatentypen;
+with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 
 with LeseKarten;
 with LeseEinheitenGebaut;
 
 with Aufgaben;
+with Fehler;
 
 package body KIEinheitUmsetzenVerbesserungen is
 
@@ -16,96 +16,100 @@ package body KIEinheitUmsetzenVerbesserungen is
       return Boolean
    is begin
       
+      EinheitKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      WelcheVerbesserung := LeseEinheitenGebaut.KIVerbesserung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      VorhandeneVerbesserung := LeseKarten.Verbesserung (KoordinatenExtern => EinheitKoordinaten);
+      
+      ------------------------------------- Verhindert das Verbinden von Städten mit Straßen und weiteres. Später eine bessere Lösung bauen.
+      if
+        LeseKarten.RasseBelegtGrund (KoordinatenExtern => EinheitKoordinaten) /= EinheitRasseNummerExtern.Rasse
+      then
+         return False;
+         
+      else
+         null;
+      end if;
+      
+      ------------------------------------- Aufgaben muss dringend überarbeitet werden.
+      ------------------------------------- Diese ganze Aufteilung zwischen AufgabenDatentypen, TastenbelegungDatentypen und KartenVerbesserungDatentypen muss mal verbessert werden.
       case
-        LeseKarten.Verbesserung (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
+        WelcheVerbesserung
       is
-         when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum =>
+         when AufgabenDatentypen.Mine_Bauen_Enum =>
+            Befehl := TastenbelegungDatentypen.Mine_Bauen_Enum;
+            
             if
-              VerbesserungGebiet (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
+              VorhandeneVerbesserung = KartenVerbesserungDatentypen.Mine_Enum
             then
-               return True;
+               return False;
+               
+            elsif
+              True = Aufgaben.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                  BefehlExtern             => TastenbelegungDatentypen.Mine_Bauen_Enum)
+            then
+               null;
                
             else
-               null;
+               return False;
             end if;
-      
-         when others =>
-            null;
-      end case;
-      
-      case
-        LeseKarten.Weg (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
-      is
-         when KartenVerbesserungDatentypen.Leer_Weg_Enum =>
-            return Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                 BefehlExtern             => TastenbelegungDatentypen.Straße_Bauen_Enum);
+            
+         when AufgabenDatentypen.Farm_Bauen_Enum =>
+            Befehl := TastenbelegungDatentypen.Farm_Bauen_Enum;
+            
+            if
+              VorhandeneVerbesserung = KartenVerbesserungDatentypen.Farm_Enum
+            then
+               return False;
+               
+            elsif
+              True = Aufgaben.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                  BefehlExtern             => TastenbelegungDatentypen.Farm_Bauen_Enum)
+            then
+               null;
+               
+            else
+               return False;
+            end if;
+            
+         when AufgabenDatentypen.Festung_Bauen_Enum =>
+            Befehl := TastenbelegungDatentypen.Festung_Bauen_Enum;
+            
+            if
+              VorhandeneVerbesserung = KartenVerbesserungDatentypen.Festung_Enum
+            then
+               return False;
+               
+            elsif
+              True = Aufgaben.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                  BefehlExtern             => TastenbelegungDatentypen.Festung_Bauen_Enum)
+            then
+               null;
+               
+            else
+               return False;
+            end if;
+            
+         when AufgabenDatentypen.Straße_Bauen_Enum =>
+            Befehl := TastenbelegungDatentypen.Straße_Bauen_Enum;
+            
+            if
+              True = Aufgaben.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                  BefehlExtern             => TastenbelegungDatentypen.Straße_Bauen_Enum)
+            then
+               null;
+               
+            else
+               return False;
+            end if;
             
          when others =>
-            null;
+            Fehler.LogikFehler (FehlermeldungExtern => "KIEinheitUmsetzenVerbesserungen.WelcheVerbesserungAnlegen - Falsche Verbesserung ausgewählt.");
+            return False;
       end case;
-      
-      return False;
-      
-   end WelcheVerbesserungAnlegen;
-   
-   
-   
-   function VerbesserungGebiet
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return Boolean
-   is begin
-      
-      EinheitKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      
-      AktuellerGrund := LeseKarten.AktuellerGrund (KoordinatenExtern => EinheitKoordinaten);
-      Ressourcen := LeseKarten.Ressource (KoordinatenExtern => EinheitKoordinaten);
-      BasisGrund := LeseKarten.BasisGrund (KoordinatenExtern => EinheitKoordinaten);
-         
-      ------------------------- Hügel
-      if
-        (AktuellerGrund = KartengrundDatentypen.Hügel_Enum
-         or
-           AktuellerGrund = KartengrundDatentypen.Gebirge_Enum
-         or
-           Ressourcen = KartengrundDatentypen.Kohle_Enum
-         or
-           Ressourcen = KartengrundDatentypen.Eisen_Enum
-         or
-           Ressourcen = KartengrundDatentypen.Gold_Enum
-         or
-           BasisGrund = KartengrundDatentypen.Hügel_Enum
-         or
-           BasisGrund = KartengrundDatentypen.Gebirge_Enum)
-        and
-          Aufgaben.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                       BefehlExtern             => TastenbelegungDatentypen.Mine_Bauen_Enum)
-        = True
-      then
-         Befehl := TastenbelegungDatentypen.Mine_Bauen_Enum;
-         
-      elsif
-        AktuellerGrund = KartengrundDatentypen.Eis_Enum
-        and
-          Aufgaben.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                       BefehlExtern             => TastenbelegungDatentypen.Festung_Bauen_Enum)
-        = True
-      then
-         Befehl := TastenbelegungDatentypen.Festung_Bauen_Enum;
-         
-      elsif
-        Aufgaben.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                     BefehlExtern             => TastenbelegungDatentypen.Farm_Bauen_Enum)
-        = True
-      then
-         Befehl := TastenbelegungDatentypen.Farm_Bauen_Enum;
-            
-      else
-         return False;
-      end if;
       
       return Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                            BefehlExtern             => Befehl);
       
-   end VerbesserungGebiet;
+   end WelcheVerbesserungAnlegen;
 
 end KIEinheitUmsetzenVerbesserungen;

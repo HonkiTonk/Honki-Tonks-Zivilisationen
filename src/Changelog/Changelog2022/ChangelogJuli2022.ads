@@ -182,17 +182,20 @@ package ChangelogJuli2022 is
    
    
 
-   -- Version 0.03. => 0.03. (05.07.2022):
+   -- Version 0.03.0200 => 0.03. (05.07.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.0150 => 0.03. (04.07.2022):
+   -- Version 0.03.0150 => 0.03.0200 (04.07.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter an den Einheitenberechnungen der KI gearbeitet.
+   -- Mehr Warnungen bei fehlenden Texturen/Sprites/Grafiken eingebaut.
+   -- Weiter an der Aufgabenfestlegung der KIEinheiten gearbeitet.
+   -- Weiter an der Aufgabendurchführung der KIEinheiten gearbeitet.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 

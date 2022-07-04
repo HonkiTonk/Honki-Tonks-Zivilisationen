@@ -7,6 +7,7 @@ with Sf.Graphics.RenderWindow;
 with EingeleseneTexturenSFML;
 with TexturenSetzenSkalierenSFML;
 with GrafikEinstellungenSFML;
+with Warnung;
 
 package body HintergrundSFML is
    
@@ -28,10 +29,12 @@ package body HintergrundSFML is
                                               object       => StandardspriteAccess);
          
       else
-         null;
+         Warnung.GrafikWarnung (WarnmeldungExtern => "HintergrundSFML.StandardHintergrund - Hintergrund nicht vorhanden: " & StandardHintergrundExtern'Wide_Wide_Image);
       end if;
       
    end StandardHintergrund;
+   
+   
    
    ------------------------- Ein SpriteAccess für jedes Menübild?
    procedure MenüHintergrund
@@ -53,7 +56,7 @@ package body HintergrundSFML is
          
       else
          -- Hier wird kein einfarbiger Hintergrund wie bei den Kartenfeldern benötigt, da es ja immer auf schwarz gesetzt wird.
-         null;
+         Warnung.GrafikWarnung (WarnmeldungExtern => "HintergrundSFML.MenüHintergrund - Hintergrund nicht vorhanden: " & WelchesMenüExtern'Wide_Wide_Image);
       end if;
       
    end MenüHintergrund;

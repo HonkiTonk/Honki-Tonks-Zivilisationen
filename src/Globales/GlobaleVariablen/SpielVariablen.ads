@@ -1,14 +1,11 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with TextKonstanten;
 with RassenDatentypen;
-with SpielDatentypen;
 with KartenRecords;
 with SpielRecords;
 with StadtDatentypen;
 with EinheitenDatentypen;
-with EinheitenKonstanten;
 with EinheitenRecords;
 with StadtRecords;
 with SystemRecords;
@@ -22,15 +19,7 @@ package SpielVariablen is
    
    Debug : SystemRecords.DebugRecord := (others => False);
    
-   Allgemeines : SpielRecords.AllgemeinesRecord := (
-                                                    Gewonnen            => False,
-                                                    Weiterspielen       => False,
-                                                    RasseAmZugNachLaden => EinheitenKonstanten.LeerRasse,
-                                                    Schwierigkeitsgrad  => SpielDatentypen.Schwierigkeitsgrad_Leicht_Enum,
-                                                    Rundenanzahl        => Positive'First,
-                                                    Rundengrenze        => Natural'First,   
-                                                    IronmanName         => TextKonstanten.LeerUnboundedString
-                                                   );
+   Allgemeines : SpielRecords.AllgemeinesRecord := WichtigesRecordKonstanten.LeerAllgemeines;
       
    type CursorImSpielArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of KartenRecords.CursorRecord;
    CursorImSpiel : CursorImSpielArray := (others => WichtigesRecordKonstanten.LeerCursor);

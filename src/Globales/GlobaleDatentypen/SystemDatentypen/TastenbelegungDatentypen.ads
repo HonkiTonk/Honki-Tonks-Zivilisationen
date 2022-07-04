@@ -15,7 +15,9 @@ package TastenbelegungDatentypen is
                                 Nächste_Stadt_Enum, Einheit_Mit_Bewegungspunkte_Enum, Alle_Einheiten_Enum, Einheiten_Ohne_Bewegungspunkte_Enum, Nächste_Stadt_Mit_Meldung_Enum, Nächste_Einheit_Mit_Meldung_Enum,
                                 
                                 -- Einheitenbefehle Verbesserungen
-                                Straße_Bauen_Enum, Mine_Bauen_Enum, Farm_Bauen_Enum, Festung_Bauen_Enum, Wald_Aufforsten_Enum, Roden_Trockenlegen_Enum,
+                                Straße_Bauen_Enum,
+                                Mine_Bauen_Enum, Farm_Bauen_Enum, Festung_Bauen_Enum,
+                                Wald_Aufforsten_Enum, Roden_Trockenlegen_Enum,
                                 
                                 -- Einheitenbefehle allgemein
                                 Heilen_Enum, Verschanzen_Enum, Runde_Aussetzen_Enum, Plündern_Enum, Auflösen_Enum, Einheit_Verbessern_Enum, Heimatstadt_Ändern_Enum,
@@ -30,6 +32,12 @@ package TastenbelegungDatentypen is
    subtype Tastenbelegung_Befehle_Enum is Tastenbelegung_Verwendet_Enum range Straße_Bauen_Enum .. Einheit_Verbessern_Enum;
    subtype Tastenbelegung_Befehle_Anzeige is Tastenbelegung_Befehle_Enum range Straße_Bauen_Enum .. Verschanzen_Enum;
    subtype Tastenbelegung_Verbesserung_Befehle_Enum is Tastenbelegung_Befehle_Enum range Straße_Bauen_Enum .. Roden_Trockenlegen_Enum;
+   
+   subtype Tastenbelegung_Straße_Enum is Tastenbelegung_Verbesserung_Befehle_Enum range Straße_Bauen_Enum .. Straße_Bauen_Enum;
+   subtype Tastenbelegung_Verbesserung_Enum is Tastenbelegung_Verbesserung_Befehle_Enum range Mine_Bauen_Enum .. Tastenbelegung_Verbesserung_Befehle_Enum'Last;
+   subtype Tastenbelegung_Konstruktionen_Enum is Tastenbelegung_Verbesserung_Enum range Mine_Bauen_Enum .. Festung_Bauen_Enum;
+   subtype Tastenbelegung_Grundbearbeitung_Enum is Tastenbelegung_Verbesserung_Enum range Wald_Aufforsten_Enum .. Roden_Trockenlegen_Enum;
+   
    subtype Tastenbelegung_Allgemeine_Befehle_Enum is Tastenbelegung_Befehle_Enum range Heilen_Enum .. Tastenbelegung_Befehle_Enum'Last;
    
 end TastenbelegungDatentypen;

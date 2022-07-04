@@ -34,6 +34,7 @@ with TexturenSetzenSkalierenSFML;
 with KarteGrafikenZeichnenSFML;
 with FarbgebungSFML;
 with AllgemeineTextBerechnungenSFML;
+with Warnung;
 
 package body KarteSFML is
    
@@ -540,6 +541,7 @@ package body KarteSFML is
                                                  AnzahlEckenExtern   => 4,
                                                  FarbeExtern         => GrafikEinstellungenSFML.RassenFarbenRahmen (EinheitRasseNummer.Rasse),
                                                  PolygonAccessExtern => PolygonAccess);
+            Warnung.GrafikWarnung (WarnmeldungExtern => "KarteSFML.AnzeigeEinheit - Sprite nicht vorhanden: " & RasseEinheitExtern.Rasse'Wide_Wide_Image & " - " & EinheitID'Wide_Wide_Image);
          end if;
       end if;
       

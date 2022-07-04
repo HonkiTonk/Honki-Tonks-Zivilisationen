@@ -319,6 +319,39 @@ package body SchreibeEinheitenGebaut is
    end KIBeschäftigt;
    
    
+      
+   procedure KIZielKoordinatenNachfolger
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+   is begin
+      
+      SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIZielKoordinatenNachfolger := KoordinatenExtern;
+      
+   end KIZielKoordinatenNachfolger;
+   
+   
+   
+   procedure KIBeschäftigtNachfolger
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      AufgabeExtern : in KIDatentypen.Einheit_Aufgabe_Enum)
+   is begin
+      
+      SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIBeschäftigtNachfolger := AufgabeExtern;
+      
+   end KIBeschäftigtNachfolger;
+   
+   
+   
+   procedure KIVerbesserung
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      BeschäftigungExtern : in AufgabenDatentypen.Einheiten_Aufgaben_Enum)
+   is begin
+      
+      SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIVerbesserung := BeschäftigungExtern;
+      
+   end KIVerbesserung;
+   
+   
    
    procedure KIBewegungPlan
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

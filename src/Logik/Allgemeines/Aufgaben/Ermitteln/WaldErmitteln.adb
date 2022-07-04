@@ -25,7 +25,7 @@ package body WaldErmitteln is
    is begin
       
       VorhandeneVerbesserung := LeseKarten.Verbesserung (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
-      
+            
       ------------------------------------ Mehr Prüfungen einbauen, beispielweise keinen Wald auf Eis erlauben. Gilt für alle Aufgaben.
       if
         (VorhandeneVerbesserung = KartenVerbesserungDatentypen.Farm_Enum

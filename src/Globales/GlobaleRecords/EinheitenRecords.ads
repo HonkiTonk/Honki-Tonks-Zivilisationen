@@ -41,7 +41,6 @@ package EinheitenRecords is
    
    
    
-   ---------------------------------- Dafür auch mal eigene Datentypen erstellen.
    type KIBewegungPlanArray is array (KartenDatentypen.Stadtfeld'Range) of KartenRecords.AchsenKartenfeldNaturalRecord;
    type TransporterArray is array (EinheitenDatentypen.TransportplätzeVorhanden'Range) of EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    type EinheitMeldungenArray is array (EinheitenDatentypen.Einheit_Meldung_Art_Enum'Range) of EinheitenDatentypen.Einheit_Meldung_Enum;
@@ -62,8 +61,9 @@ package EinheitenRecords is
       
       KIZielKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
       KIBeschäftigt : KIDatentypen.Einheit_Aufgabe_Enum;
-      ---------------------------------- Brauche ich dafür auch ein KIZielKoordinatenNachfolger?
-      -- KIBeschäftigtNachfolger : KIDatentypen.Einheit_Aufgabe_Enum;
+      KIZielKoordinatenNachfolger : KartenRecords.AchsenKartenfeldNaturalRecord;
+      KIBeschäftigtNachfolger : KIDatentypen.Einheit_Aufgabe_Enum;
+      KIVerbesserung : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
       KIBewegungPlan : KIBewegungPlanArray;
       
       Transportiert : TransporterArray;

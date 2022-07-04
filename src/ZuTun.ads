@@ -1,7 +1,6 @@
 -- Womit ich aufgehört habe:
 
--- Verbesserungen anlegen funktioniert so nicht richtig, weil es nur prüft ob eine Verbesserung anlegbar ist, aber nicht in Abhängigkeit ob alle möglichen schon vorhanden sind.
--- Prüft nur ob Straßen AND Verbesserungen noch nicht vorhanden sind.
+-- Verbesserungen anlegen funktioniert so nicht richtig, weil es nur die Position der Einheit und nicht die neue Position prüft.
 
 
 
@@ -17,4 +16,5 @@
 
 -- Sonstiges:
 
--- 
+-- Aufgaben muss dringend überarbeitet werden.
+-- Diese ganze Aufteilung zwischen AufgabenDatentypen, TastenbelegungDatentypen und KartenVerbesserungDatentypen muss mal verbessert werden.

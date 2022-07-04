@@ -148,7 +148,7 @@ package LeseEinheitenGebaut is
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
                and
-                 SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
               ),
          
        Post => (
@@ -173,6 +173,51 @@ package LeseEinheitenGebaut is
                  SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
+   function KIZielKoordinatenNachfolger
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return KartenRecords.AchsenKartenfeldNaturalRecord
+     with
+       Pre => (
+                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+               and
+                 SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
+              ),
+         
+       Post => (
+                  KIZielKoordinatenNachfolger'Result.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                and
+                  KIZielKoordinatenNachfolger'Result.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+                and
+                  (if KIZielKoordinatenNachfolger'Result.YAchse = KartenKonstanten.LeerYAchse
+                         then KIZielKoordinatenNachfolger'Result.XAchse = KartenKonstanten.LeerXAchse and KIZielKoordinatenNachfolger'Result.EAchse = KartenKonstanten.LeerEAchse)
+                and
+                  (if KIZielKoordinatenNachfolger'Result.XAchse = KartenKonstanten.LeerXAchse
+                         then KIZielKoordinatenNachfolger'Result.YAchse = KartenKonstanten.LeerYAchse and KIZielKoordinatenNachfolger'Result.EAchse = KartenKonstanten.LeerEAchse)
+                and
+                  (if KIZielKoordinatenNachfolger'Result.EAchse = KartenKonstanten.LeerEAchse
+                         then KIZielKoordinatenNachfolger'Result.YAchse = KartenKonstanten.LeerYAchse and KIZielKoordinatenNachfolger'Result.XAchse = KartenKonstanten.LeerXAchse)
+               );
+     
+   function KIBeschäftigtNachfolger
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return KIDatentypen.Einheit_Aufgabe_Enum
+     with
+       Pre => (
+                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+               and
+                 SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
+              );
+   
+   function KIVerbesserung
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return AufgabenDatentypen.Einheiten_Aufgaben_Enum
+     with
+       Pre => (
+                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+               and
+                 SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
+              );
+   
    function KIBewegungPlan
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       PlanschrittExtern : in KartenDatentypen.Stadtfeld)
@@ -181,7 +226,7 @@ package LeseEinheitenGebaut is
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
                and
-                 SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
               ),
          
        Post => (

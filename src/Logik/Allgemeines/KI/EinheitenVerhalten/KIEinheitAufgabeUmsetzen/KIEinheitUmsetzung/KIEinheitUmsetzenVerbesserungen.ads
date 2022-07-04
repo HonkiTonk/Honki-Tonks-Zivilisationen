@@ -5,9 +5,10 @@ with RassenDatentypen; use RassenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 
-private with KartengrundDatentypen;
 private with KartenRecords;
 private with TastenbelegungDatentypen;
+private with AufgabenDatentypen;
+private with KartenVerbesserungDatentypen;
 
 package KIEinheitUmsetzenVerbesserungen is
 
@@ -23,25 +24,12 @@ package KIEinheitUmsetzenVerbesserungen is
    
 private
    
-   AktuellerGrund : KartengrundDatentypen.Kartengrund_Enum;
-   BasisGrund : KartengrundDatentypen.Kartengrund_Enum;
-
-   Ressourcen : KartengrundDatentypen.Kartenressourcen_Enum;
+   WelcheVerbesserung : AufgabenDatentypen.Einheiten_Aufgabe_Vorhanden_Enum;
+   
+   VorhandeneVerbesserung : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
    
    Befehl : TastenbelegungDatentypen.Tastenbelegung_Enum;
    
    EinheitKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
-   
-   
-   
-   function VerbesserungGebiet
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return Boolean
-     with
-       Pre => (
-                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
-               and
-                 SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
-              );
 
 end KIEinheitUmsetzenVerbesserungen;

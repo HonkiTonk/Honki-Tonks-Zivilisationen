@@ -26,6 +26,7 @@ package body KIBewegungDurchfuehren is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
+      ---------------------------------- Hier noch ein paar Nullsetzung reinwerfen, wenn das Feld nicht betreten werden kann.
       BewegungSchleife:
       loop
          

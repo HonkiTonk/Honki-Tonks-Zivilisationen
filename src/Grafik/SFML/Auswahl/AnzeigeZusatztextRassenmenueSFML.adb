@@ -16,6 +16,7 @@ with EingeleseneTexturenSFML;
 with TexturenSetzenSkalierenSFML;
 with AuswahlMenuesStringsSetzen;
 with InteraktionAuswahl;
+with Warnung;
 
 package body AnzeigeZusatztextRassenmenueSFML is
 
@@ -147,7 +148,7 @@ package body AnzeigeZusatztextRassenmenueSFML is
          
       else
          -------------------- Später hier einen einfarbigen Hintergrund wie bei den Kartenfeldern einbauen.
-         null;
+         Warnung.GrafikWarnung (WarnmeldungExtern => "AnzeigeZusatztextRassenmenueSFML.TextHintergrund - Hintergrund nicht vorhanden: " & MenueDatentypen.Rassen_Menü_Enum'Wide_Wide_Image);
       end if;
       
    end TextHintergrund;

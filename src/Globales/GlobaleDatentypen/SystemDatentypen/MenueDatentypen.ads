@@ -37,5 +37,8 @@ package MenueDatentypen is
    subtype Menü_Zusatztext_Komplex_Enum is Menü_Zusatztext_Enum range Kartenform_Menü_Enum .. Kartenform_Menü_Enum;
    
    subtype Menü_Komplex_Enum is Welches_Menü_Enum range Kartenform_Menü_Enum .. Steuerung_Menü_Enum;
+   
+   -------------------------- Mal ein eigenen Enum für die Hintergründe anlegen?
+   -------------------------- Eher das GrafikDatentypen.Standard_Texturen_Enum erweitern.
 
 end MenueDatentypen;
