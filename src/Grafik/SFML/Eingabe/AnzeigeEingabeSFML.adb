@@ -90,7 +90,7 @@ package body AnzeigeEingabeSFML is
                                     position => ((Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) / 2.00 - Textbreite / 2.00), 100.00));
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.AnzeigeZahlTexteingabeAccess (TextaccessVariablen.AnzeigeZahlTexteingabeAccessArray'Last),
-                                         str  => To_Wide_Wide_String (Source => EingabeSystemeSFML.EingegebenerText));
+                                         str  => To_Wide_Wide_String (Source => EingabeSystemeSFML.EingegebenerText.EingegebenerText));
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.AnzeigeZahlTexteingabeAccess (TextaccessVariablen.AnzeigeZahlTexteingabeAccessArray'Last),
                                     position => ((Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) / 2.00

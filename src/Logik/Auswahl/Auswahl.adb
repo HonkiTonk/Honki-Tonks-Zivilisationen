@@ -11,7 +11,7 @@ package body Auswahl is
    
    function AuswahlJaNein
      (FrageZeileExtern : in Positive)
-      return RueckgabeDatentypen.Ja_Nein_Enum
+      return Boolean
    is begin
       
       case

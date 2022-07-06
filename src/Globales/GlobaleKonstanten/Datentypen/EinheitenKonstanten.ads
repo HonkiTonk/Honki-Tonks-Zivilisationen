@@ -27,7 +27,7 @@ package EinheitenKonstanten is
    LeerErfahrungspunkte : constant KampfDatentypen.Kampfwerte := KampfDatentypen.Kampfwerte'First;
    LeerRang : constant KampfDatentypen.Kampfwerte := KampfDatentypen.Kampfwerte'First;
    LeerBeschäftigung : constant AufgabenDatentypen.Einheiten_Aufgaben_Enum := AufgabenDatentypen.Leer_Aufgabe_Enum;
-   LeerBeschäftigungszeit : constant ProduktionDatentypen.Arbeitszeit := ProduktionDatentypen.Arbeitszeit'First;
+   LeerBeschäftigungszeit : constant ProduktionDatentypen.ArbeitszeitVorhanden := ProduktionDatentypen.ArbeitszeitVorhanden'First;
    LeerKIBeschäftigt : constant KIDatentypen.Einheit_Aufgabe_Enum := KIDatentypen.Leer_Aufgabe_Enum;
    LeerTransportiert : constant EinheitenDatentypen.MaximaleEinheitenMitNullWert := EinheitenDatentypen.MaximaleEinheitenMitNullWert'First;
    LeerWirdTransportiert : constant EinheitenDatentypen.MaximaleEinheitenMitNullWert := EinheitenDatentypen.MaximaleEinheitenMitNullWert'First;
@@ -57,6 +57,6 @@ package EinheitenKonstanten is
    
    
    LeerArbeit : constant AufgabenDatentypen.Einheiten_Aufgaben_Enum := AufgabenDatentypen.Leer_Aufgabe_Enum;
-   LeerArbeitszeit : constant ProduktionDatentypen.Arbeitszeit := ProduktionDatentypen.Arbeitszeit'First;
+   LeerArbeitszeit : constant ProduktionDatentypen.ArbeitszeitVorhanden := ProduktionDatentypen.ArbeitszeitVorhanden'First;
    
 end EinheitenKonstanten;

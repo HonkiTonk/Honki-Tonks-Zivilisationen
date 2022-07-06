@@ -1,6 +1,6 @@
 -- Womit ich aufgehört habe:
 
--- Verbesserungen anlegen funktioniert so nicht richtig, weil es nur die Position der Einheit und nicht die neue Position prüft.
+-- AufgabeEinheitWeg fertig überarbeiten (Contracts) und dann die restlichen Kartenverbesserungenaufgaben.
 
 
 
@@ -10,7 +10,7 @@
 -- Grafiken überarbeiten.
 -- Einfache Musik/Sounds einbauen.
 -- Forschungen/Einheiten/Gebäude für zweite Rasse einbauen.
--- Einmal großes Überabeiten.
+-- Einmal den Code großflächig überarbeitetn.
 
 
 

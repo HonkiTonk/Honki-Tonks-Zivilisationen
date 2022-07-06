@@ -2,23 +2,31 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
+with KartenDatentypen; use KartenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 with KartengrundDatentypen;
+with KartenRecords;
 
 private with AufgabenDatentypen;
 private with KartenVerbesserungDatentypen;
 private with ProduktionDatentypen;
 
-package WaldErmitteln is
+with Karten;
+
+package AufgabeEinheitWald is
 
    function WaldErmitteln
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
-      AnlegenTestenExtern : in Boolean)
+      AnlegenTestenExtern : in Boolean;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
      with
        Pre => (
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+               and
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
                and
                  SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
@@ -33,18 +41,25 @@ private
 
    WelcheArbeit : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
 
-   Arbeitszeit : ProduktionDatentypen.Arbeitszeit;
-   Grundzeit : ProduktionDatentypen.Arbeitszeit := 1;
+   Arbeitszeit : ProduktionDatentypen.ArbeitszeitVorhanden;
+   Grundzeit : ProduktionDatentypen.ArbeitszeitVorhanden := 1;
 
    Arbeitswerte : EinheitenRecords.ArbeitRecord;
+
+   VorhandenerGrund : KartenRecords.KartengrundRecord;
 
    function OberflächeLand
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Enum;
-      AnlegenTestenExtern : in Boolean)
+      AnlegenTestenExtern : in Boolean;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return EinheitenRecords.ArbeitRecord
      with
        Pre => (
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+               and
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
                and
                  SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
@@ -53,13 +68,18 @@ private
    function UnterflächeWasser
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Wasser_Enum;
-      AnlegenTestenExtern : in Boolean)
+      AnlegenTestenExtern : in Boolean;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return EinheitenRecords.ArbeitRecord
      with
        Pre => (
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+               and
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
                and
                  SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
               );
 
-end WaldErmitteln;
+end AufgabeEinheitWald;

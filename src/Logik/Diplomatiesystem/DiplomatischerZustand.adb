@@ -1,10 +1,10 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with RueckgabeDatentypen; use RueckgabeDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
 with WichtigesKonstanten;
 with ZahlenDatentypen;
+with TextKonstanten;
 
 with Auswahl;
 
@@ -123,7 +123,7 @@ package body DiplomatischerZustand is
                return False;
               
             elsif
-              Auswahl.AuswahlJaNein (FrageZeileExtern => 11) = RueckgabeDatentypen.Ja_Enum
+              Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageKriegErklären) = True
             then
                DiplomatischenStatusÄndern (RasseEinsExtern   => EigeneRasseExtern,
                                             RasseZweiExtern   => GegnerischeRasseExtern,

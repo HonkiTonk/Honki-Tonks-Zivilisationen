@@ -35,7 +35,7 @@ package EinheitenRecords is
    type ArbeitRecord is record
       
       Aufgabe : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
-      Arbeitszeit : ProduktionDatentypen.Arbeitszeit;
+      Arbeitszeit : ProduktionDatentypen.ArbeitszeitVorhanden;
       
    end record;
    

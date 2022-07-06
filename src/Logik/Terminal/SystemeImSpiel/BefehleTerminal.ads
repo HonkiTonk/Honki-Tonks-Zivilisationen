@@ -53,7 +53,7 @@ private
 
    procedure EinheitOderStadt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      AuswahlExtern : in RueckgabeDatentypen.Rückgabe_Werte_Enum;
+      AuswahlExtern : in Boolean;
       StadtNummerExtern : in StadtDatentypen.MaximaleStädteMitNullWert;
       EinheitNummerExtern : in EinheitenDatentypen.MaximaleEinheitenMitNullWert)
      with

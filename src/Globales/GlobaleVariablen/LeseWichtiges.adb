@@ -77,6 +77,7 @@ package body LeseWichtiges is
       return Boolean
    is begin
 
+      ------------------------------------ Hier auch ForschungIDMitNullwert reingeben und entsprechend zurückgeben? Scheint schon ein wenig sinnvoll.
       return SpielVariablen.Wichtiges (RasseExtern).Erforscht (WelcheTechnologieExtern);
 
    end Erforscht;

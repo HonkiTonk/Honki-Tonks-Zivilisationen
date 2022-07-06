@@ -1,76 +1,68 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with KartengrundDatentypen; use KartengrundDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
 with EinheitenRecordKonstanten;
-with RueckgabeDatentypen;
 with TextKonstanten;
 
 with SchreibeEinheitenGebaut;
 with LeseKarten;
-with LeseEinheitenGebaut;
 
-with RodenErmitteln;
+with AufgabeEinheitRoden;
 with Fehler;
 with Auswahl;
 
-package body FarmErmitteln is
+package body AufgabeEinheitWald is
 
-   function FarmErmitteln
+   function WaldErmitteln
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
-      AnlegenTestenExtern : in Boolean)
+      AnlegenTestenExtern : in Boolean;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is begin
       
-      VorhandeneVerbesserung := LeseKarten.Verbesserung (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
-      VorhandenerGrund := LeseKarten.AktuellerGrund (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
-
+      VorhandenerGrund := LeseKarten.VorhandenerGrund (KoordinatenExtern => KoordinatenExtern);
+      VorhandeneVerbesserung := LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern);
+            
+      ------------------------------------ Mehr Prüfungen einbauen, beispielweise keinen Wald auf Eis erlauben. Gilt für alle Aufgaben.
       if
-        VorhandeneVerbesserung = KartenVerbesserungDatentypen.Farm_Enum
-        or
-          VorhandenerGrund = KartengrundDatentypen.Eis_Enum
-      then
-         return False;
-
-      elsif
-        VorhandeneVerbesserung in KartenVerbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum'Range
+        (VorhandeneVerbesserung = KartenVerbesserungDatentypen.Farm_Enum
+         or
+           VorhandeneVerbesserung = KartenVerbesserungDatentypen.Mine_Enum)
         and
           SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
       then
          case
            Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageLandverbesserungErsetzen)
          is
-            when RueckgabeDatentypen.Ja_Enum =>
+            when True =>
                null;
-               
-            when RueckgabeDatentypen.Nein_Enum =>
+            
+            when False =>
                return False;
          end case;
 
       else
          null;
       end if;
-    
+      
       VorarbeitNötig := False;
-    
+      
       case
-        GrundExtern
+        VorhandenerGrund.AktuellerGrund
       is
          when KartengrundDatentypen.Kartengrund_Oberfläche_Land_Enum'Range =>
             Arbeitswerte := OberflächeLand (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                             GrundExtern              => GrundExtern,
-                                             AnlegenTestenExtern      => AnlegenTestenExtern);
+                                             GrundExtern              => VorhandenerGrund.AktuellerGrund,
+                                             AnlegenTestenExtern      => AnlegenTestenExtern,
+                                             KoordinatenExtern        => KoordinatenExtern);
             
          when KartengrundDatentypen.Kartengrund_Unterfläche_Wasser_Enum'Range =>
             Arbeitswerte := UnterflächeWasser (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                GrundExtern              => GrundExtern,
-                                                AnlegenTestenExtern      => AnlegenTestenExtern);
-            
-         when KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum'Range =>
-            Arbeitswerte := UnterflächeLand (GrundExtern => GrundExtern);
+                                                GrundExtern              => VorhandenerGrund.AktuellerGrund,
+                                                AnlegenTestenExtern      => AnlegenTestenExtern,
+                                                KoordinatenExtern        => KoordinatenExtern);
             
          when others =>
             return False;
@@ -82,7 +74,7 @@ package body FarmErmitteln is
          when AufgabenDatentypen.Leer_Aufgabe_Enum =>
             return False;
             
-         when AufgabenDatentypen.Farm_Bauen_Enum =>
+         when AufgabenDatentypen.Wald_Aufforsten_Enum =>
             null;
             
          when others =>
@@ -116,31 +108,29 @@ package body FarmErmitteln is
       
       return True;
       
-   end FarmErmitteln;
+   end WaldErmitteln;
    
    
    
    function OberflächeLand
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Enum;
-      AnlegenTestenExtern : in Boolean)
+      AnlegenTestenExtern : in Boolean;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return EinheitenRecords.ArbeitRecord
    is begin
       
       case
         GrundExtern
       is
-         when KartengrundDatentypen.Flachland_Enum | KartengrundDatentypen.Tundra_Enum | KartengrundDatentypen.Wüste_Enum | KartengrundDatentypen.Hügel_Enum =>
+         when KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum'Range =>
             Arbeitszeit := Grundzeit + 2;
-            
-         when KartengrundDatentypen.Gebirge_Enum =>
-            Arbeitszeit := Grundzeit + 4;
 
-         when KartengrundDatentypen.Wald_Enum | KartengrundDatentypen.Dschungel_Enum | KartengrundDatentypen.Sumpf_Enum =>
+         when KartengrundDatentypen.Dschungel_Enum | KartengrundDatentypen.Sumpf_Enum =>
             if
-              RodenErmitteln.RodenErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                   GrundExtern              => GrundExtern,
-                                                   AnlegenTestenExtern      => AnlegenTestenExtern)
+              AufgabeEinheitRoden.RodenErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                  AnlegenTestenExtern      => AnlegenTestenExtern,
+                                                  KoordinatenExtern        => KoordinatenExtern)
               = True
             then
                Arbeitszeit := Grundzeit + 2;
@@ -154,37 +144,17 @@ package body FarmErmitteln is
             return EinheitenRecordKonstanten.KeineArbeit;
       end case;
             
-      return (AufgabenDatentypen.Farm_Bauen_Enum, Arbeitszeit);
+      return (AufgabenDatentypen.Wald_Aufforsten_Enum, Arbeitszeit);
    
    end OberflächeLand;
-     
-   
-     
-   function UnterflächeLand
-     (GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum)
-      return EinheitenRecords.ArbeitRecord
-   is begin
-      
-      case
-        GrundExtern
-      is
-         when KartengrundDatentypen.Erde_Enum | KartengrundDatentypen.Erdgestein_Enum | KartengrundDatentypen.Sand_Enum =>
-            Arbeitszeit := Grundzeit + 2;
-            
-         when KartengrundDatentypen.Gestein_Enum =>
-            Arbeitszeit := Grundzeit + 4;
-      end case;
-            
-      return (AufgabenDatentypen.Farm_Bauen_Enum, Arbeitszeit);
-      
-   end UnterflächeLand;
      
      
      
    function UnterflächeWasser
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Wasser_Enum;
-      AnlegenTestenExtern : in Boolean)
+      AnlegenTestenExtern : in Boolean;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return EinheitenRecords.ArbeitRecord
    is begin
       
@@ -194,23 +164,26 @@ package body FarmErmitteln is
          when KartengrundDatentypen.Meeresgrund_Enum | KartengrundDatentypen.Küstengrund_Enum =>
             Arbeitszeit := Grundzeit + 2;
 
-         when KartengrundDatentypen.Korallen_Enum | KartengrundDatentypen.Unterwald_Enum =>
+         when KartengrundDatentypen.Korallen_Enum =>
             if
-              RodenErmitteln.RodenErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                   GrundExtern              => GrundExtern,
-                                                   AnlegenTestenExtern      => AnlegenTestenExtern)
+              AufgabeEinheitRoden.RodenErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                  AnlegenTestenExtern      => AnlegenTestenExtern,
+                                                  KoordinatenExtern        => KoordinatenExtern)
               = True
             then
                Arbeitszeit := Grundzeit + 2;
                VorarbeitNötig := True;
-            
+               
             else
                return EinheitenRecordKonstanten.KeineArbeit;
             end if;
+               
+         when others =>
+            return EinheitenRecordKonstanten.KeineArbeit;
       end case;
-      
-      return (AufgabenDatentypen.Farm_Bauen_Enum, Arbeitszeit);
+            
+      return (AufgabenDatentypen.Wald_Aufforsten_Enum, Arbeitszeit);
    
    end UnterflächeWasser;
 
-end FarmErmitteln;
+end AufgabeEinheitWald;

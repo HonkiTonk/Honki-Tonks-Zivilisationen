@@ -5,7 +5,6 @@ with Ada.Calendar; use Ada.Calendar;
 
 with RassenDatentypen; use RassenDatentypen;
 with SystemDatentypen; use SystemDatentypen;
-with RueckgabeDatentypen; use RueckgabeDatentypen;
 with StadtKonstanten;
 with SpielVariablen;
 with TextKonstanten;
@@ -119,7 +118,7 @@ package body ZwischenDenRunden is
                null;
             
             elsif
-              Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageGewonnenWeiterspielen) = RueckgabeDatentypen.Ja_Enum
+              Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageGewonnenWeiterspielen) = True
             then
                SpielVariablen.Allgemeines.Weiterspielen := True;
                                  

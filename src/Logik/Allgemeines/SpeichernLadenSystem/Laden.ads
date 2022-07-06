@@ -22,12 +22,18 @@ private
 
    NameSpielstand : SystemRecords.TextEingabeRecord;
 
-   procedure Allgemeines;
-   procedure KarteLaden;
-   procedure RassenwerteLaden;
+   procedure Allgemeines
+     (DateiLadenExtern : in File_Type);
+
+   procedure KarteLaden
+     (DateiLadenExtern : in File_Type);
+
+   procedure RassenwerteLaden
+     (DateiLadenExtern : in File_Type);
 
    procedure Rassenwerte
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      DateiLadenExtern : in File_Type)
      with
        Pre => (
                  SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum

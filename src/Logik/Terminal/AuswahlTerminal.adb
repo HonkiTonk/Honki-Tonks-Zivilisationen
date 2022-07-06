@@ -5,7 +5,7 @@ package body AuswahlTerminal is
 
    function AuswahlJaNeinTerminal
      (FrageZeileExtern : in Positive)
-      return RueckgabeDatentypen.Ja_Nein_Enum
+      return Boolean
    is begin
       
       case
@@ -18,7 +18,7 @@ package body AuswahlTerminal is
             null;
       end case;
       
-      return RueckgabeDatentypen.Ja_Enum;
+      return True;
       
    end AuswahlJaNeinTerminal;
 

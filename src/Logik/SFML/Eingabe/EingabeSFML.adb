@@ -11,6 +11,7 @@ with Sf;
 with GlobaleTexte;
 with TextKonstanten;
 with SystemDatentypen;
+with SystemRecordKonstanten;
 
 with EingabeSystemeSFML;
 with Fehler;
@@ -309,7 +310,7 @@ package body EingabeSFML is
       
       Frage := WelcheFrageExtern;
       
-      EingabeSystemeSFML.EingegebenerText := TextKonstanten.LeerUnboundedString;
+      EingabeSystemeSFML.EingegebenerText := SystemRecordKonstanten.LeerTexteingabe;
       
       InteraktionEingabe.Eingabe := SystemDatentypen.Text_Eingabe_Enum;
       
@@ -323,7 +324,7 @@ package body EingabeSFML is
       
       InteraktionEingabe.Eingabe := SystemDatentypen.Keine_Eingabe_Enum;
       
-      return (EingabeSystemeSFML.ErfolgreichAbbruch, EingabeSystemeSFML.EingegebenerText);
+      return EingabeSystemeSFML.EingegebenerText;
       
    end NameEingeben;
    

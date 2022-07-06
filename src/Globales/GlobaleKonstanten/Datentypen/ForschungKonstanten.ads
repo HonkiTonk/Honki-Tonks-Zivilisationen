@@ -5,6 +5,7 @@ with RassenDatentypen;
 with TastenbelegungDatentypen;
 with ForschungenDatentypen;
 with ProduktionDatentypen;
+with AufgabenDatentypen;
 
 with DatenbankRecords;
 
@@ -20,6 +21,7 @@ package ForschungKonstanten is
                                                                             AnforderungForschung => (others => ForschungUnmöglich)
                                                                            );
    
+   ------------------------------- Später so umbauen dass es auch veränderbar ist.
    type TechnologieVerbesserungArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, TastenbelegungDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range) of ForschungenDatentypen.ForschungIDNichtMöglich;
    TechnologieVerbesserung : constant TechnologieVerbesserungArray := (
                                                                        RassenDatentypen.Menschen_Enum =>
@@ -202,5 +204,135 @@ package ForschungKonstanten is
                                                                           TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1
                                                                          )
                                                                       );
+      
+   ------------------------------- Später so umbauen dass es auch veränderbar ist.
+   type TechnologischeVoraussetzungArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, AufgabenDatentypen.Einheitenbefehle_Wege_Enum'Range) of ForschungenDatentypen.ForschungIDNichtMöglich;
+   TechnologischeVoraussetzung : constant TechnologischeVoraussetzungArray := (
+                                                                               RassenDatentypen.Menschen_Enum =>
+                                                                                 (
+                                                                                  AufgabenDatentypen.Straße_Bauen_Enum  => 0,
+                                                                                  AufgabenDatentypen.Schiene_Bauen_Enum => 10,
+                                                                                  AufgabenDatentypen.Tunnel_Bauen_Enum  => 20
+                                                                                 ),
+
+                                                                               RassenDatentypen.Kasrodiah_Enum =>
+                                                                                 (
+                                                                                  AufgabenDatentypen.Straße_Bauen_Enum  => 0,
+                                                                                  AufgabenDatentypen.Schiene_Bauen_Enum => 10,
+                                                                                  AufgabenDatentypen.Tunnel_Bauen_Enum  => 20
+                                                                                 ),
+
+                                                                               RassenDatentypen.Lasupin_Enum =>
+                                                                                 (
+                                                                                  AufgabenDatentypen.Straße_Bauen_Enum  => 0,
+                                                                                  AufgabenDatentypen.Schiene_Bauen_Enum => 10,
+                                                                                  AufgabenDatentypen.Tunnel_Bauen_Enum  => 20
+                                                                                 ),
+
+                                                                               RassenDatentypen.Lamustra_Enum =>
+                                                                                 (
+                                                                                  AufgabenDatentypen.Straße_Bauen_Enum  => 0,
+                                                                                  AufgabenDatentypen.Schiene_Bauen_Enum => 10,
+                                                                                  AufgabenDatentypen.Tunnel_Bauen_Enum  => 20
+                                                                                 ),
+
+                                                                               RassenDatentypen.Manuky_Enum =>
+                                                                                 (
+                                                                                  AufgabenDatentypen.Straße_Bauen_Enum  => 0,
+                                                                                  AufgabenDatentypen.Schiene_Bauen_Enum => 10,
+                                                                                  AufgabenDatentypen.Tunnel_Bauen_Enum  => 20
+                                                                                 ),
+
+                                                                               RassenDatentypen.Suroka_Enum =>
+                                                                                 (
+                                                                                  AufgabenDatentypen.Straße_Bauen_Enum  => 0,
+                                                                                  AufgabenDatentypen.Schiene_Bauen_Enum => 10,
+                                                                                  AufgabenDatentypen.Tunnel_Bauen_Enum  => 20
+                                                                                 ),
+
+                                                                               RassenDatentypen.Pryolon_Enum =>
+                                                                                 (
+                                                                                  AufgabenDatentypen.Straße_Bauen_Enum  => 0,
+                                                                                  AufgabenDatentypen.Schiene_Bauen_Enum => 10,
+                                                                                  AufgabenDatentypen.Tunnel_Bauen_Enum  => 20
+                                                                                 ),
+
+                                                                               RassenDatentypen.Moru_Phisihl_Enum =>
+                                                                                 (
+                                                                                  AufgabenDatentypen.Straße_Bauen_Enum  => 0,
+                                                                                  AufgabenDatentypen.Schiene_Bauen_Enum => 10,
+                                                                                  AufgabenDatentypen.Tunnel_Bauen_Enum  => 20
+                                                                                 ),
+
+                                                                               RassenDatentypen.Larinos_Lotaris_Enum =>
+                                                                                 (
+                                                                                  AufgabenDatentypen.Straße_Bauen_Enum  => 0,
+                                                                                  AufgabenDatentypen.Schiene_Bauen_Enum => 10,
+                                                                                  AufgabenDatentypen.Tunnel_Bauen_Enum  => 20
+                                                                                 ),
+
+                                                                               RassenDatentypen.Carupex_Enum =>
+                                                                                 (
+                                                                                  AufgabenDatentypen.Straße_Bauen_Enum  => 0,
+                                                                                  AufgabenDatentypen.Schiene_Bauen_Enum => 10,
+                                                                                  AufgabenDatentypen.Tunnel_Bauen_Enum  => 20
+                                                                                 ),
+
+                                                                               RassenDatentypen.Alary_Enum =>
+                                                                                 (
+                                                                                  AufgabenDatentypen.Straße_Bauen_Enum  => 0,
+                                                                                  AufgabenDatentypen.Schiene_Bauen_Enum => 10,
+                                                                                  AufgabenDatentypen.Tunnel_Bauen_Enum  => 20
+                                                                                 ),
+
+                                                                               RassenDatentypen.Natries_Zermanis_Enum =>
+                                                                                 (
+                                                                                  AufgabenDatentypen.Straße_Bauen_Enum  => 0,
+                                                                                  AufgabenDatentypen.Schiene_Bauen_Enum => 10,
+                                                                                  AufgabenDatentypen.Tunnel_Bauen_Enum  => 20
+                                                                                 ),
+
+                                                                               RassenDatentypen.Tridatus_Enum =>
+                                                                                 (
+                                                                                  AufgabenDatentypen.Straße_Bauen_Enum  => 0,
+                                                                                  AufgabenDatentypen.Schiene_Bauen_Enum => 10,
+                                                                                  AufgabenDatentypen.Tunnel_Bauen_Enum  => 20
+                                                                                 ),
+
+                                                                               RassenDatentypen.Senelari_Enum =>
+                                                                                 (
+                                                                                  AufgabenDatentypen.Straße_Bauen_Enum  => 0,
+                                                                                  AufgabenDatentypen.Schiene_Bauen_Enum => 10,
+                                                                                  AufgabenDatentypen.Tunnel_Bauen_Enum  => 20
+                                                                                 ),
+
+                                                                               RassenDatentypen.Aspari_2_Enum =>
+                                                                                 (
+                                                                                  AufgabenDatentypen.Straße_Bauen_Enum  => 0,
+                                                                                  AufgabenDatentypen.Schiene_Bauen_Enum => 10,
+                                                                                  AufgabenDatentypen.Tunnel_Bauen_Enum  => 20
+                                                                                 ),
+
+                                                                               RassenDatentypen.Ekropa_Enum =>
+                                                                                 (
+                                                                                  AufgabenDatentypen.Straße_Bauen_Enum  => 0,
+                                                                                  AufgabenDatentypen.Schiene_Bauen_Enum => 10,
+                                                                                  AufgabenDatentypen.Tunnel_Bauen_Enum  => 20
+                                                                                 ),
+
+                                                                               RassenDatentypen.Tesorahn_Enum =>
+                                                                                 (
+                                                                                  AufgabenDatentypen.Straße_Bauen_Enum  => 0,
+                                                                                  AufgabenDatentypen.Schiene_Bauen_Enum => 10,
+                                                                                  AufgabenDatentypen.Tunnel_Bauen_Enum  => 20
+                                                                                 ),
+
+                                                                               RassenDatentypen.Talbidahr_Enum =>
+                                                                                 (
+                                                                                  AufgabenDatentypen.Straße_Bauen_Enum  => 0,
+                                                                                  AufgabenDatentypen.Schiene_Bauen_Enum => 10,
+                                                                                  AufgabenDatentypen.Tunnel_Bauen_Enum  => 20
+                                                                                 )
+                                                                              );
 
 end ForschungKonstanten;

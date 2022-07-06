@@ -63,8 +63,9 @@ package body BewegungEinheitenSFML is
                
          when TastenbelegungDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range | TastenbelegungDatentypen.Tastenbelegung_Allgemeine_Befehle_Enum'Range =>
             -- Das Umgekehrte zurückgeben da bei erfolgreichen Aufgabenanfang keine Bewegung mehr möglich ist und umgekehrt.
-            return not Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                     BefehlExtern             => BefehlExtern);
+            return not Aufgaben.Aufgabe (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                         BefehlExtern             => BefehlExtern,
+                                         KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
                
          when TastenbelegungDatentypen.Bauen_Enum =>
             -- Das Umgekehrte zurückgeben da bei erfolgreichem Städtebau keine Bewegung mehr möglich ist und umgekehrt.

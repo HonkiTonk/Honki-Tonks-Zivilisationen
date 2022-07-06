@@ -1,8 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
-
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with EinheitenDatentypen; use EinheitenDatentypen;
 with KartengrundDatentypen; use KartengrundDatentypen;
@@ -99,12 +97,12 @@ package body KIEinheitFestlegenVerbesserungen is
       Stadtumgebung := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern);
       StadtKoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
-      -------------------------------- Das Stadtfeld selbst noch aus der Prüfung nehmen. Stadt zählt ja selbst als Verbesserung.
       YAchseSchleife:
       for YÄnderungSchleifenwert in -Stadtumgebung .. Stadtumgebung loop
          XAchseSchleife:
          for XÄnderungSchleifenwert in -Stadtumgebung .. Stadtumgebung loop
             
+            -------------------------------- Das Stadtfeld aus der Prüfung nehmen? Stadt zählt ja selbst als Verbesserung und es könnte deswegen zu Problemen führen?
             if
               YÄnderungSchleifenwert = 0
               and
@@ -187,7 +185,8 @@ package body KIEinheitFestlegenVerbesserungen is
             return WelcheVerbesserung;
             
          when False =>
-            return WegAnlegbar (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            return WegAnlegbar (KoordinatenExtern        => KoordinatenExtern,
+                                EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       end case;
       
    end AllgemeineVerbesserungenPrüfungen;
@@ -204,8 +203,9 @@ package body KIEinheitFestlegenVerbesserungen is
       BasisGrund := LeseKarten.BasisGrund (KoordinatenExtern => KoordinatenExtern);
       
       case
-        Aufgaben.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                     BefehlExtern             => TastenbelegungDatentypen.Mine_Bauen_Enum)
+        Aufgaben.AufgabeTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                     BefehlExtern             => TastenbelegungDatentypen.Mine_Bauen_Enum,
+                                     KoordinatenExtern        => KoordinatenExtern)
       is
          when True =>
             if
@@ -232,8 +232,9 @@ package body KIEinheitFestlegenVerbesserungen is
       end case;
       
       case
-        Aufgaben.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                     BefehlExtern             => TastenbelegungDatentypen.Festung_Bauen_Enum)
+        Aufgaben.AufgabeTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                     BefehlExtern             => TastenbelegungDatentypen.Festung_Bauen_Enum,
+                                     KoordinatenExtern        => KoordinatenExtern)
       is
          when True =>
             if
@@ -252,8 +253,9 @@ package body KIEinheitFestlegenVerbesserungen is
       end case;
          
       case
-        Aufgaben.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                     BefehlExtern             => TastenbelegungDatentypen.Farm_Bauen_Enum)
+        Aufgaben.AufgabeTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                     BefehlExtern             => TastenbelegungDatentypen.Farm_Bauen_Enum,
+                                     KoordinatenExtern        => KoordinatenExtern)
       is
          when True =>
             SchreibeEinheitenGebaut.KIVerbesserung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -281,24 +283,23 @@ package body KIEinheitFestlegenVerbesserungen is
    
    
    function WegAnlegbar
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
       
-      Put_Line ("1");
       -------------------------------- Vielleicht ist das Problem ja dass da immer die Koordinaten der Einheit genutzt werden und nicht die ermittelten Koordinaten?
       case
-        Aufgaben.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                     BefehlExtern             => TastenbelegungDatentypen.Straße_Bauen_Enum)
+        Aufgaben.AufgabeTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                     BefehlExtern             => TastenbelegungDatentypen.Straße_Bauen_Enum,
+                                     KoordinatenExtern        => KoordinatenExtern)
       is
          when True =>
-            Put_Line ("2");
             SchreibeEinheitenGebaut.KIVerbesserung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     BeschäftigungExtern      => AufgabenDatentypen.Straße_Bauen_Enum);
             return True;
             
          when False =>
-            Put_Line ("3");
             return False;
       end case;
       

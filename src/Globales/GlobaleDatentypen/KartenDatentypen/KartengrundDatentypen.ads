@@ -37,6 +37,7 @@ package KartengrundDatentypen is
    pragma Ordered (Kartengrund_Enum);
    
    subtype Kartengrund_Vorhanden_Enum is Kartengrund_Enum range Weltraum_Enum .. Kartengrund_Enum'Last;
+   subtype Kartengrund_Arbeitszeit_Enum is Kartengrund_Vorhanden_Enum range Eis_Enum .. Magnesiowüstit_Enum;
    
    -- Weltraum
    subtype Kartengrund_Weltraum_Enum is Kartengrund_Vorhanden_Enum range Weltraum_Enum .. Weltraum_Enum;

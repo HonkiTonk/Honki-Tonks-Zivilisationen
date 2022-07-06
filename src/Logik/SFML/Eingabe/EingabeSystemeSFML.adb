@@ -1,13 +1,14 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 
 with Sf; use Sf;
 with Sf.Window.Keyboard; use Sf.Window.Keyboard;
 with Sf.Graphics.RenderWindow;
 
-with TextKonstanten;
+with SystemRecordKonstanten;
 
 with GrafikEinstellungenSFML;
 with InteraktionGrafiktask;
@@ -32,8 +33,7 @@ package body EingabeSystemeSFML is
            ZeichenEingeben.eventType
          is
             when Sf.Window.Event.sfEvtClosed =>
-               -- Hier noch einen universellen Endebefehl einbauen.
-               -- Nur als Zwischenlösung gedacht, später wieder entfernen!
+               -- Hier noch einen besseren universellen Endebefehl einbauen?
                InteraktionGrafiktask.FensterGeschlossen := True;
                return;
                   
@@ -90,14 +90,13 @@ package body EingabeSystemeSFML is
                if
                  TextEingegeben.key.code = Sf.Window.Keyboard.sfKeyEnter
                then
-                  ErfolgreichAbbruch := True;
+                  EingegebenerText.ErfolgreichAbbruch := True;
                   InteraktionEingabe.TextEingabe := False;
                      
                elsif
                  TextEingegeben.key.code = Sf.Window.Keyboard.sfKeyEscape
                then
-                  ErfolgreichAbbruch := False;
-                  EingegebenerText := TextKonstanten.LeerUnboundedString;
+                  EingegebenerText := SystemRecordKonstanten.LeerTexteingabe;
                   InteraktionEingabe.TextEingabe := False;
                   
                else
@@ -146,9 +145,41 @@ package body EingabeSystemeSFML is
      (EingegebenesZeichenExtern : in Wide_Wide_Character)
    is begin
       
+      case
+        InteraktionGrafiktask.NameSpielstand
+      is
+         when False =>
+            null;
+            
+         when True =>
+            if
+              EingegebenesZeichenExtern not in 'a' .. 'z'
+              and
+                EingegebenesZeichenExtern not in 'A' .. 'Z'
+                and
+                  EingegebenesZeichenExtern not in '0' .. '9'
+                  and
+                    EingegebenesZeichenExtern /= Space
+                    and
+                      EingegebenesZeichenExtern /= Hyphen
+                      and
+                        EingegebenesZeichenExtern /= Low_Line
+            then
+               return;
+              
+            elsif
+              To_Wide_Wide_String (Source => EingegebenerText.EingegebenerText)'Length > MaximaleZeichenlängeDateisystem
+            then
+               return;
+               
+            else
+               null;
+            end if;
+      end case;
+      
       CharacterZuText (1) := EingegebenesZeichenExtern;
       
-      EingegebenerText := EingegebenerText & To_Unbounded_Wide_Wide_String (Source => CharacterZuText);
+      EingegebenerText.EingegebenerText := EingegebenerText.EingegebenerText & To_Unbounded_Wide_Wide_String (Source => CharacterZuText);
       
    end ZeichenHinzufügen;
    
@@ -158,14 +189,14 @@ package body EingabeSystemeSFML is
    is begin
       
       if
-        To_Wide_Wide_String (Source => EingegebenerText)'Length < 1
+        To_Wide_Wide_String (Source => EingegebenerText.EingegebenerText)'Length < 1
       then
          null;
          
       else
-         EingegebenerText := Ada.Strings.Wide_Wide_Unbounded.Delete (Source  => EingegebenerText,
-                                                                     From    => To_Wide_Wide_String (Source => EingegebenerText)'Last,
-                                                                     Through => To_Wide_Wide_String (Source => EingegebenerText)'Last);
+         EingegebenerText.EingegebenerText := Ada.Strings.Wide_Wide_Unbounded.Delete (Source  => EingegebenerText.EingegebenerText,
+                                                                                      From    => To_Wide_Wide_String (Source => EingegebenerText.EingegebenerText)'Last,
+                                                                                      Through => To_Wide_Wide_String (Source => EingegebenerText.EingegebenerText)'Last);
       end if;
       
    end ZeichenEntfernen;

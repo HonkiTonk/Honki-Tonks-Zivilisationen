@@ -168,24 +168,29 @@ package ChangelogJuli2022 is
    
    
 
-   -- Version 0.03. => 0.03. (07.07.2022):
+   -- Version 0.03.0285 => 0.03. (07.07.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03. => 0.03. (06.07.2022):
+   -- Version 0.03.0200 => 0.03.0285 (06.07.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Speichern/Laden überarbeitet, so dass es jetzt nicht mehr möglich ist Spielstandnamen einzugeben die vom vorhandenem Dateisystem möglicherweise nicht korrekt verarbeitet werden.
+   -- Fehler im Aufgabesystem behoben der unter bestimmten Umständen zu unerwarteten Stopps führen konnte.
+   -- Weiter an den Einheitenberechnungen der KI gearbeitet.
+   -- Aufgabensystem an die neue Einheitenberechnungen der KI angepasst.
+   -- Aufgabensystem überarbeitet.
+   -- Berechnungen ob ein Weg gebaut werden kann und wie lange es dauern würde überarbeitet.
+   -- Mehr rassenabhängige Prüfungen eingebaut.
+   -- Contracs, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet/entfernt.
    
    
 
-   -- Version 0.03.0200 => 0.03. (05.07.2022):
+   -- Version 0.03.0200 => 0.03.0200 (05.07.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 

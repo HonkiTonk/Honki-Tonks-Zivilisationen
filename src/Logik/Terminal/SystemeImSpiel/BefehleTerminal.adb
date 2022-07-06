@@ -8,6 +8,7 @@ with StadtDatentypen; use StadtDatentypen;
 with RueckgabeDatentypen; use RueckgabeDatentypen;
 with EinheitenKonstanten;
 with StadtKonstanten;
+with TextKonstanten;
 with ForschungenDatentypen;
 
 with SchreibeStadtGebaut;
@@ -146,7 +147,7 @@ package body BefehleTerminal is
           StadtNummer /= StadtDatentypen.MaximaleStädteMitNullWert'First
       then
          EinheitOderStadt (RasseExtern         => RasseExtern,
-                           AuswahlExtern       => Auswahl.AuswahlJaNein (FrageZeileExtern => 15),
+                           AuswahlExtern       => Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageStadtBetreten),
                            StadtNummerExtern   => StadtNummer,
                            EinheitNummerExtern => EinheitNummer);
          
@@ -154,7 +155,7 @@ package body BefehleTerminal is
         StadtNummer /= StadtDatentypen.MaximaleStädteMitNullWert'First
       then
          EinheitOderStadt (RasseExtern         => RasseExtern,
-                           AuswahlExtern       => RueckgabeDatentypen.Ja_Enum,
+                           AuswahlExtern       => True,
                            StadtNummerExtern   => StadtNummer,
                            EinheitNummerExtern => EinheitNummer);
          
@@ -202,7 +203,7 @@ package body BefehleTerminal is
                         
          when others =>
             EinheitOderStadt (RasseExtern         => EinheitRasseNummerExtern.Rasse,
-                              AuswahlExtern       => RueckgabeDatentypen.Nein_Enum,
+                              AuswahlExtern       => False,
                               StadtNummerExtern   => StadtDatentypen.MaximaleStädteMitNullWert'First,
                               EinheitNummerExtern => EinheitTransportNummer);
       end case;
@@ -213,7 +214,7 @@ package body BefehleTerminal is
 
    procedure EinheitOderStadt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      AuswahlExtern : in RueckgabeDatentypen.Rückgabe_Werte_Enum;
+      AuswahlExtern : in Boolean;
       StadtNummerExtern : in StadtDatentypen.MaximaleStädteMitNullWert;
       EinheitNummerExtern : in EinheitenDatentypen.MaximaleEinheitenMitNullWert)
    is begin
@@ -221,10 +222,10 @@ package body BefehleTerminal is
       case
         AuswahlExtern
       is
-         when RueckgabeDatentypen.Ja_Enum =>
+         when True =>
             StadtBetreten (StadtRasseNummerExtern => (RasseExtern, StadtNummerExtern));
             
-         when others =>
+         when False =>
             EinheitSteuern (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerExtern));
       end case;
       
@@ -251,9 +252,7 @@ package body BefehleTerminal is
       if
         LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= EinheitenKonstanten.LeerBeschäftigung
         and then
-      -------------------- Hier korrekte Nummer einfügen.
-        Auswahl.AuswahlJaNein (FrageZeileExtern => 1) = RueckgabeDatentypen.Ja_Enum
-      -- EinheitenBeschreibungen.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (7) = True
+        Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageBeschäftigungAbbrechen) = True
       then
          AufgabenAllgemein.Nullsetzung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
                   
@@ -315,12 +314,12 @@ package body BefehleTerminal is
       end case;
                     
       case
-        Auswahl.AuswahlJaNein (FrageZeileExtern => 17)
+        Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageForschungAbbrechen)
       is
-         when RueckgabeDatentypen.Ja_Enum =>
+         when True =>
             ForschungAllgemein.Forschung (RasseExtern => RasseExtern);
                      
-         when others =>
+         when False =>
             null;
       end case;
       
@@ -351,8 +350,9 @@ package body BefehleTerminal is
          AufgabeDurchführen := False;
                      
       else
-         AufgabeDurchführen := Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer),
-                                                              BefehlExtern             => BefehlExtern);
+         AufgabeDurchführen := Aufgaben.Aufgabe (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer),
+                                                  BefehlExtern             => BefehlExtern,
+                                                  KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer)));
       end if;
       
    end EinheitBefehle;
@@ -407,12 +407,12 @@ package body BefehleTerminal is
       end case;
          
       case
-        Auswahl.AuswahlJaNein (FrageZeileExtern => 30)
+        Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageStadtAbreißen)
       is
-         when RueckgabeDatentypen.Ja_Enum =>
+         when True =>
             StadtEntfernen.StadtEntfernen (StadtRasseNummerExtern => (RasseExtern, StadtNummer));
             
-         when others =>
+         when False =>
             null;
       end case;
       

@@ -12,6 +12,16 @@ with StadtRecords;
 with Karten;
 
 package LeseKarten is
+   
+   function BasisGrund
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      return KartengrundDatentypen.Kartengrund_Enum
+     with
+       Pre => (
+                 KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Karteneinstellungen.Kartengröße.XAchse
+              );
 
    function AktuellerGrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
@@ -23,9 +33,9 @@ package LeseKarten is
                  KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Karteneinstellungen.Kartengröße.XAchse
               );
    
-   function BasisGrund
+   function VorhandenerGrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return KartengrundDatentypen.Kartengrund_Enum
+      return KartenRecords.KartengrundRecord
      with
        Pre => (
                  KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Karteneinstellungen.Kartengröße.YAchse

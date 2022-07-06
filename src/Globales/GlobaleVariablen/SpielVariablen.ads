@@ -13,6 +13,7 @@ with EinheitenRecordKonstanten;
 with StadtRecordKonstanten;
 with WichtigesRecordKonstanten;
 
+------------------------------ Die Zugriffe auf das alles hier auch mal in Funktionen/Prozeduren auslagern?
 package SpielVariablen is
    
    RassenImSpiel : RassenDatentypen.RassenImSpielArray := (others => RassenDatentypen.Leer_Spieler_Enum);

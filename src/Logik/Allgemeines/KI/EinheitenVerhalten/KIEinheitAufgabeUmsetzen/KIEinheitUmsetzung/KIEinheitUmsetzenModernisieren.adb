@@ -3,6 +3,8 @@ pragma Warnings (Off, "*array aggregate*");
 
 with TastenbelegungDatentypen;
 
+with LeseEinheitenGebaut;
+
 with Aufgaben;
 
 package body KIEinheitUmsetzenModernisieren is
@@ -12,8 +14,9 @@ package body KIEinheitUmsetzenModernisieren is
       return Boolean
    is begin
       
-      NullWert := Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                BefehlExtern             => TastenbelegungDatentypen.Einheit_Verbessern_Enum);
+      NullWert := Aufgaben.Aufgabe (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                BefehlExtern             => TastenbelegungDatentypen.Einheit_Verbessern_Enum,
+                                                KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       
       return False;
       

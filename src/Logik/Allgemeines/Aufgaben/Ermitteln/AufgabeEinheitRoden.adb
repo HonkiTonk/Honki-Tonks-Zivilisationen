@@ -5,26 +5,29 @@ with ProduktionDatentypen; use ProduktionDatentypen;
 with EinheitenRecordKonstanten;
 
 with SchreibeEinheitenGebaut;
+with LeseKarten;
   
 with Fehler;
 
-package body RodenErmitteln is
+package body AufgabeEinheitRoden is
 
    function RodenErmitteln
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
-      AnlegenTestenExtern : in Boolean)
+      AnlegenTestenExtern : in Boolean;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is begin
       
+      VorhandenerGrund := LeseKarten.VorhandenerGrund (KoordinatenExtern => KoordinatenExtern);
+      
       case
-        GrundExtern
+        VorhandenerGrund.AktuellerGrund
       is
          when KartengrundDatentypen.Kartengrund_Oberfläche_Land_Enum'Range =>
-            Arbeitswerte := OberflächeLand (GrundExtern => GrundExtern);
+            Arbeitswerte := OberflächeLand (GrundExtern => VorhandenerGrund.AktuellerGrund);
             
          when KartengrundDatentypen.Kartengrund_Unterfläche_Wasser_Enum'Range =>
-            Arbeitswerte := UnterflächeWasser (GrundExtern => GrundExtern);
+            Arbeitswerte := UnterflächeWasser (GrundExtern => VorhandenerGrund.AktuellerGrund);
             
          when others =>
             return False;
@@ -103,4 +106,4 @@ package body RodenErmitteln is
    
    end UnterflächeWasser;
 
-end RodenErmitteln;
+end AufgabeEinheitRoden;

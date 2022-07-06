@@ -6,7 +6,6 @@ with Ada.Calendar; use Ada.Calendar;
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with SystemDatentypen; use SystemDatentypen;
-with RueckgabeDatentypen; use RueckgabeDatentypen;
 with KartenRecords;
 with StadtRecords;
 with SpielRecords;
@@ -58,13 +57,14 @@ package body Speichern is
               Mode => Out_File,
               Name => "Spielstand/" & Encode (Item => (To_Wide_Wide_String (Source => NameSpielstand.EingegebenerText))));
       
-      Allgemeines;
+      Allgemeines (DateiSpeichernExtern => DateiSpeichern);
       FortschrittErhöhen (AutospeichernExtern => AutospeichernExtern);
       
-      Karte;
+      Karte (DateiSpeichernExtern => DateiSpeichern);
+      -------------------------------------- Das hier auch noch mal überarbeiten, damit es nicht auf 33 springt und bei größeren Karten da dann länger bleibt, bis die Karte vollständig eingelesen ist.
       FortschrittErhöhen (AutospeichernExtern => AutospeichernExtern);
       
-      RassenwerteSpeichern;
+      RassenwerteSpeichern (DateiSpeichernExtern => DateiSpeichern);
       FortschrittErhöhen (AutospeichernExtern => AutospeichernExtern);
             
       Close (File => DateiSpeichern);
@@ -104,33 +104,34 @@ package body Speichern is
    
    
    procedure Allgemeines
+     (DateiSpeichernExtern : in File_Type)
    is begin
       
-      Wide_Wide_String'Write (Stream (File => DateiSpeichern),
+      Wide_Wide_String'Write (Stream (File => DateiSpeichernExtern),
                               SonstigesKonstanten.Versionsnummer);
       
-      Unbounded_Wide_Wide_String'Write (Stream (File => DateiSpeichern),
+      Unbounded_Wide_Wide_String'Write (Stream (File => DateiSpeichernExtern),
                                         SpielVariablen.Allgemeines.IronmanName);
       
-      Positive'Write (Stream (File => DateiSpeichern),
+      Positive'Write (Stream (File => DateiSpeichernExtern),
                       SpielVariablen.Allgemeines.Rundenanzahl);
       
-      Natural'Write (Stream (File => DateiSpeichern),
+      Natural'Write (Stream (File => DateiSpeichernExtern),
                      SpielVariablen.Allgemeines.Rundengrenze);
       
-      RassenDatentypen.RassenImSpielArray'Write (Stream (File => DateiSpeichern),
+      RassenDatentypen.RassenImSpielArray'Write (Stream (File => DateiSpeichernExtern),
                                                  SpielVariablen.RassenImSpiel);
       
-      RassenDatentypen.Rassen_Enum'Write (Stream (File => DateiSpeichern),
+      RassenDatentypen.Rassen_Enum'Write (Stream (File => DateiSpeichernExtern),
                                           SpielVariablen.Allgemeines.RasseAmZugNachLaden);
       
-      SpielDatentypen.Schwierigkeitsgrad_Enum'Write (Stream (File => DateiSpeichern),
+      SpielDatentypen.Schwierigkeitsgrad_Enum'Write (Stream (File => DateiSpeichernExtern),
                                                      SpielVariablen.Allgemeines.Schwierigkeitsgrad);
       
-      Boolean'Write (Stream (File => DateiSpeichern),
+      Boolean'Write (Stream (File => DateiSpeichernExtern),
                      SpielVariablen.Allgemeines.Gewonnen);
       
-      Boolean'Write (Stream (File => DateiSpeichern),
+      Boolean'Write (Stream (File => DateiSpeichernExtern),
                      SpielVariablen.Allgemeines.Weiterspielen);
       
    end Allgemeines;
@@ -138,9 +139,10 @@ package body Speichern is
    
    
    procedure Karte
+     (DateiSpeichernExtern : in File_Type)
    is begin
       
-      KartenRecords.PermanenteKartenparameterRecord'Write (Stream (File => DateiSpeichern),
+      KartenRecords.PermanenteKartenparameterRecord'Write (Stream (File => DateiSpeichernExtern),
                                                            Karten.Karteneinstellungen);
       
       EAchseSchleife:
@@ -150,7 +152,7 @@ package body Speichern is
             XAchseSchleife:
             for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Karteneinstellungen.Kartengröße.XAchse loop
 
-               KartenRecords.KartenRecord'Write (Stream (File => DateiSpeichern),
+               KartenRecords.KartenRecord'Write (Stream (File => DateiSpeichernExtern),
                                                  Karten.Weltkarte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
                
             end loop XAchseSchleife;
@@ -162,6 +164,7 @@ package body Speichern is
    
    
    procedure RassenwerteSpeichern
+     (DateiSpeichernExtern : in File_Type)
    is begin
       
       RassenSchleife:
@@ -174,7 +177,8 @@ package body Speichern is
                null;
                
             when others =>
-               Rassenwerte (RasseExtern => RasseSchleifenwert);
+               Rassenwerte (RasseExtern          => RasseSchleifenwert,
+                            DateiSpeichernExtern => DateiSpeichernExtern);
          end case;
          
       end loop RassenSchleife;
@@ -184,16 +188,17 @@ package body Speichern is
    
    
    procedure Rassenwerte
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      DateiSpeichernExtern : in File_Type)
    is begin
       
-      SpielRecords.GrenzenRecord'Write (Stream (File => DateiSpeichern),
-                                           SpielVariablen.Grenzen (RasseExtern));
+      SpielRecords.GrenzenRecord'Write (Stream (File => DateiSpeichernExtern),
+                                        SpielVariablen.Grenzen (RasseExtern));
       
       EinheitenSchleife:
       for EinheitSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Einheitengrenze loop
                   
-         EinheitenRecords.EinheitenGebautRecord'Write (Stream (File => DateiSpeichern),
+         EinheitenRecords.EinheitenGebautRecord'Write (Stream (File => DateiSpeichernExtern),
                                                        SpielVariablen.EinheitenGebaut (RasseExtern, EinheitSchleifenwert));
             
       end loop EinheitenSchleife;
@@ -201,13 +206,13 @@ package body Speichern is
       StadtSchleife:
       for StadtSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Städtegrenze loop
                   
-         StadtRecords.StadtGebautRecord'Write (Stream (File => DateiSpeichern),
+         StadtRecords.StadtGebautRecord'Write (Stream (File => DateiSpeichernExtern),
                                                SpielVariablen.StadtGebaut (RasseExtern, StadtSchleifenwert));
             
       end loop StadtSchleife;
       
-      SpielRecords.WichtigesRecord'Write (Stream (File => DateiSpeichern),
-                                             SpielVariablen.Wichtiges (RasseExtern));
+      SpielRecords.WichtigesRecord'Write (Stream (File => DateiSpeichernExtern),
+                                          SpielVariablen.Wichtiges (RasseExtern));
       
       DiplomatieSchleife:
       for DiplomatieSchleifenwert in SpielVariablen.DiplomatieArray'Range (2) loop
@@ -219,13 +224,13 @@ package body Speichern is
                null;
                      
             when others =>
-               SpielRecords.DiplomatieRecord'Write (Stream (File => DateiSpeichern),
-                                                       SpielVariablen.Diplomatie (RasseExtern, DiplomatieSchleifenwert));
+               SpielRecords.DiplomatieRecord'Write (Stream (File => DateiSpeichernExtern),
+                                                    SpielVariablen.Diplomatie (RasseExtern, DiplomatieSchleifenwert));
          end case;
 
       end loop DiplomatieSchleife;
       
-      KartenRecords.CursorRecord'Write (Stream (File => DateiSpeichern),
+      KartenRecords.CursorRecord'Write (Stream (File => DateiSpeichernExtern),
                                         SpielVariablen.CursorImSpiel (RasseExtern));
       
    end Rassenwerte;
@@ -276,9 +281,7 @@ package body Speichern is
                   null;
                   
                elsif
-                 SpielstandVorhanden
-                 and then
-                   Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageSpielstandÜberschreiben) = RueckgabeDatentypen.Ja_Enum
+                 Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageSpielstandÜberschreiben) = True
                then
                   null;
             

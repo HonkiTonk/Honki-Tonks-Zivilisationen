@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with LeseEinheitenGebaut;
+
 -- with Karte;
 with Eingabe;
 with EinheitenModifizieren;
@@ -34,8 +36,9 @@ package body BewegungEinheitenTerminal is
                Änderung := KeineÄnderung;
                
             when TastenbelegungDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range | TastenbelegungDatentypen.Tastenbelegung_Allgemeine_Befehle_Enum'Range =>
-               AufgabeDurchführen := Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                    BefehlExtern             => Befehl);
+               AufgabeDurchführen := Aufgaben.Aufgabe (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                        BefehlExtern             => Befehl,
+                                                        KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
                
                case
                  AufgabeDurchführen

@@ -23,8 +23,9 @@ package ProduktionDatentypen is
    
    subtype Permanente_Kosten_Verwendet_Enum is Permanente_Kosten_Enum range Nahrung_Enum .. Permanente_Kosten_Enum'Last;
    
-   -------------------------------------- subtype von den Produkationstypen?
-   type Arbeitszeit is range 0 .. 1_000;
+   -------------------------------------- subtype von den Produktionstypen?
+   type Arbeitszeit is range -100 .. 100;
+   subtype ArbeitszeitVorhanden is Arbeitszeit range 1 .. Arbeitszeit'Last;
    
    ------------------------------ Es werden benötigt:
    ------------------------------ Datentypen für diplomatischen Zustand, später in passendere Datei verschieben:

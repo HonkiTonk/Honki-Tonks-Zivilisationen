@@ -70,8 +70,6 @@ package RueckgabeDatentypen is
    subtype Zurück_Beenden_Enum is Rückgabe_Werte_Enum range Zurück_Enum .. Spiel_Beenden_Enum;
    subtype Hauptmenü_Beenden_Enum is Zurück_Beenden_Enum range Hauptmenü_Enum .. Spiel_Beenden_Enum;
    
-   subtype Ja_Nein_Enum is Rückgabe_Werte_Enum range Ja_Enum .. Nein_Enum;
-   
    subtype Rassen_Enum is Rückgabe_Werte_Enum range Keine_Rasse_Enum .. Talbidahr_Enum;
    subtype Rassen_Verwendet_Enum is Rassen_Enum range Menschen_Enum .. Talbidahr_Enum;
 

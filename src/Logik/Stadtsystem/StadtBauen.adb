@@ -3,6 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with EinheitenDatentypen; use EinheitenDatentypen;
 with StadtDatentypen; use StadtDatentypen;
+with KartenDatentypen; use KartenDatentypen;
 with GlobaleTexte;
 
 with SchreibeStadtGebaut;
@@ -88,6 +89,17 @@ package body StadtBauen is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
+      
+      if
+        EinheitRasseNummerExtern.Rasse = RassenDatentypen.Ekropa_Enum
+        and
+          LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern).EAchse /= 0
+      then
+         return False;
+         
+      else
+         null;
+      end if;
       
       case
         LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,

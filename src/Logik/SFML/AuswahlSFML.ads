@@ -3,13 +3,11 @@ pragma Warnings (Off, "*array aggregate*");
 
 private with Sf.System.Vector2;
 
-with RueckgabeDatentypen;
-
 package AuswahlSFML is
 
    function AuswahlJaNeinSFML
      (FrageZeileExtern : in Positive)
-      return RueckgabeDatentypen.Ja_Nein_Enum;
+      return Boolean;
 
 private
 

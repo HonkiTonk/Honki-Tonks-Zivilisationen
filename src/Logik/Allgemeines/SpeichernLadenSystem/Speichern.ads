@@ -25,15 +25,21 @@ private
 
    NameSpielstand : SystemRecords.TextEingabeRecord;
 
-   procedure Allgemeines;
-   procedure Karte;
-   procedure RassenwerteSpeichern;
+   procedure Allgemeines
+     (DateiSpeichernExtern : in File_Type);
+
+   procedure Karte
+     (DateiSpeichernExtern : in File_Type);
+
+   procedure RassenwerteSpeichern
+     (DateiSpeichernExtern : in File_Type);
 
    procedure FortschrittErhöhen
      (AutospeichernExtern : in Boolean);
 
    procedure Rassenwerte
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      DateiSpeichernExtern : in File_Type)
      with
        Pre => (
                  SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum

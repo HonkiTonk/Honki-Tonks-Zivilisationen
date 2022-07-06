@@ -4,26 +4,25 @@ pragma Warnings (Off, "*array aggregate*");
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
 with EinheitenRecordKonstanten;
-with RueckgabeDatentypen;
 with TextKonstanten;
 
 with SchreibeEinheitenGebaut;
 with LeseKarten;
-with LeseEinheitenGebaut;
 
 with Fehler;
 with Auswahl;
 
-package body FestungErmitteln is
+package body AufgabeEinheitFestung is
 
    function FestungErmitteln
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
-      AnlegenTestenExtern : in Boolean)
+      AnlegenTestenExtern : in Boolean;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is begin
       
-      VorhandeneVerbesserung := LeseKarten.Verbesserung (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      VorhandenerGrund := LeseKarten.VorhandenerGrund (KoordinatenExtern => KoordinatenExtern);
+      VorhandeneVerbesserung := LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern);
             
       if
         VorhandeneVerbesserung = KartenVerbesserungDatentypen.Festung_Enum
@@ -38,10 +37,10 @@ package body FestungErmitteln is
          case
            Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageLandverbesserungErsetzen)
          is
-            when RueckgabeDatentypen.Ja_Enum =>
+            when True =>
                null;
                      
-            when RueckgabeDatentypen.Nein_Enum =>
+            when False =>
                return False;
          end case;
 
@@ -50,16 +49,16 @@ package body FestungErmitteln is
       end if;
     
       case
-        GrundExtern
+        VorhandenerGrund.AktuellerGrund
       is
          when KartengrundDatentypen.Eis_Enum | KartengrundDatentypen.Kartengrund_Oberfläche_Land_Enum'Range =>
-            Arbeitswerte := OberflächeLand (GrundExtern => GrundExtern);
+            Arbeitswerte := OberflächeLand (GrundExtern => VorhandenerGrund.AktuellerGrund);
             
          when KartengrundDatentypen.Kartengrund_Unterfläche_Wasser_Enum'Range =>
-            Arbeitswerte := UnterflächeWasser (GrundExtern => GrundExtern);
+            Arbeitswerte := UnterflächeWasser (GrundExtern => VorhandenerGrund.AktuellerGrund);
             
          when KartengrundDatentypen.Untereis_Enum | KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum'Range =>
-            Arbeitswerte := UnterflächeLand (GrundExtern => GrundExtern);
+            Arbeitswerte := UnterflächeLand (GrundExtern => VorhandenerGrund.AktuellerGrund);
             
          when others =>
             return False;
@@ -163,4 +162,4 @@ package body FestungErmitteln is
    
    end UnterflächeWasser;
 
-end FestungErmitteln;
+end AufgabeEinheitFestung;

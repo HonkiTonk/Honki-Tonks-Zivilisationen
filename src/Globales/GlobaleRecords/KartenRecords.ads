@@ -182,4 +182,14 @@ package KartenRecords is
             
    end record;
    
+   
+   
+   ------------------------------------ Später überall einbauen wo es sinnvoll ist.
+   type KartengrundRecord is record
+      
+      BasisGrund : KartengrundDatentypen.Kartengrund_Enum;
+      AktuellerGrund : KartengrundDatentypen.Kartengrund_Enum;
+      
+   end record;
+   
 end KartenRecords;

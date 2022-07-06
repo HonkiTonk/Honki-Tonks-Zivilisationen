@@ -265,7 +265,7 @@ package body BefehleSFML is
       if
         LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= EinheitenKonstanten.LeerBeschäftigung
         and then
-          Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageBeschäftigungAbbrechen) = RueckgabeDatentypen.Ja_Enum
+          Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageBeschäftigungAbbrechen) = True
       then
          AufgabenAllgemein.Nullsetzung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          BewegungEinheitenSFML.BewegungEinheitenRichtung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -274,7 +274,7 @@ package body BefehleSFML is
         LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerBewegungspunkte
       then
          null;
-                     
+         
       else
          BewegungEinheitenSFML.BewegungEinheitenRichtung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       end if;
@@ -336,8 +336,9 @@ package body BefehleSFML is
          AufgabeDurchführen := False;
                      
       else
-         AufgabeDurchführen := Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer),
-                                                              BefehlExtern             => BefehlExtern);
+         AufgabeDurchführen := Aufgaben.Aufgabe (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer),
+                                                  BefehlExtern             => BefehlExtern,
+                                                  KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer)));
       end if;
       
    end EinheitBefehle;
@@ -394,10 +395,10 @@ package body BefehleSFML is
       case
         Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageStadtAbreißen)
       is
-         when RueckgabeDatentypen.Ja_Enum =>
+         when True =>
             StadtEntfernen.StadtEntfernen (StadtRasseNummerExtern => (RasseExtern, StadtNummer));
             
-         when others =>
+         when False =>
             null;
       end case;
       

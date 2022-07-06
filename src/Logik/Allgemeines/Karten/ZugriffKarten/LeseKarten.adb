@@ -11,6 +11,17 @@ with Fehler;
 ------------------------------------ Gilt auch für alle anderen KoordinatenExtern.
 package body LeseKarten is
    
+   function BasisGrund
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      return KartengrundDatentypen.Kartengrund_Enum
+   is begin
+      
+      return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).BasisGrund;
+      
+   end BasisGrund;
+   
+   
+   
    function AktuellerGrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return KartengrundDatentypen.Kartengrund_Enum
@@ -22,14 +33,14 @@ package body LeseKarten is
    
    
    
-   function BasisGrund
+   function VorhandenerGrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return KartengrundDatentypen.Kartengrund_Enum
+      return KartenRecords.KartengrundRecord
    is begin
       
-      return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).BasisGrund;
+      return (BasisGrund (KoordinatenExtern => KoordinatenExtern), AktuellerGrund (KoordinatenExtern => KoordinatenExtern));
       
-   end BasisGrund;
+   end VorhandenerGrund;
    
    
    

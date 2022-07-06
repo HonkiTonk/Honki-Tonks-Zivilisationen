@@ -123,7 +123,7 @@ package SchreibeEinheitenGebaut is
    
    procedure Beschäftigungszeit
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      ZeitExtern : in ProduktionDatentypen.Arbeitszeit;
+      ZeitExtern : in ProduktionDatentypen.ArbeitszeitVorhanden;
       RechnenSetzenExtern : in KartenDatentypen.UmgebungsbereichEins)
      with
        Pre => (
@@ -134,7 +134,7 @@ package SchreibeEinheitenGebaut is
    
    procedure BeschäftigungszeitNachfolger
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      ZeitExtern : in ProduktionDatentypen.Arbeitszeit;
+      ZeitExtern : in ProduktionDatentypen.ArbeitszeitVorhanden;
       RechnenSetzenExtern : in KartenDatentypen.UmgebungsbereichEins)
      with
        Pre => (
@@ -170,7 +170,9 @@ package SchreibeEinheitenGebaut is
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
                and
-                 SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
+               --------------------------- Kann hier nicht nur auf KISpieler geprüft werden, da in VerbesserungFertiggestellt.AufgabeNachfolgerVerschieben es auch bei menschlichem Spieler entsprechend gesetzt wird.
+               --------------------------- Später mal anpassen?
+                 SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    procedure KIZielKoordinatenNachfolger

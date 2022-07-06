@@ -1,16 +1,14 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
-
 with Sf.Window.Keyboard;
 with Sf.Window.Mouse;
 
 private with Sf.Window.Event;
 
-package EingabeSystemeSFML is
+with SystemRecords;
 
-   ErfolgreichAbbruch : Boolean;
+package EingabeSystemeSFML is
 
    MausRad : Float;
 
@@ -18,13 +16,14 @@ package EingabeSystemeSFML is
 
    MausTaste : Sf.Window.Mouse.sfMouseButton;
 
-   EingegebenerText : Unbounded_Wide_Wide_String;
+   EingegebenerText : SystemRecords.TextEingabeRecord;
 
    procedure TastenEingabe;
    procedure TextEingeben;
 
 private
 
+   MaximaleZeichenlängeDateisystem : constant Positive := 256;
 
    EingegebenesZeichen : Wide_Wide_Character;
 

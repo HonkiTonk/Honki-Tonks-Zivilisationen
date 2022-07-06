@@ -14,7 +14,7 @@ package body AuswahlSFML is
 
    function AuswahlJaNeinSFML
      (FrageZeileExtern : in Positive)
-      return RueckgabeDatentypen.Ja_Nein_Enum
+      return Boolean
    is begin
       
       InteraktionEingabe.JaNeinFrage := FrageZeileExtern;
@@ -55,10 +55,10 @@ package body AuswahlSFML is
         AktuelleAuswahl
       is
          when 1 =>
-            return RueckgabeDatentypen.Ja_Enum;
+            return True;
             
          when others =>
-            return RueckgabeDatentypen.Nein_Enum;
+            return False;
       end case;
       
    end AuswahlJaNeinSFML;

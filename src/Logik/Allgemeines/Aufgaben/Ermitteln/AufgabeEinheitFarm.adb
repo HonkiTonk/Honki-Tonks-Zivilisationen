@@ -1,33 +1,35 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with KartengrundDatentypen; use KartengrundDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
-with RueckgabeDatentypen;
 with EinheitenRecordKonstanten;
 with TextKonstanten;
 
 with SchreibeEinheitenGebaut;
 with LeseKarten;
-with LeseEinheitenGebaut;
 
-with RodenErmitteln;
+with AufgabeEinheitRoden;
 with Fehler;
 with Auswahl;
 
-package body MineErmitteln is
+package body AufgabeEinheitFarm is
 
-   function MineErmitteln
+   function FarmErmitteln
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
-      AnlegenTestenExtern : in Boolean)
+      AnlegenTestenExtern : in Boolean;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is begin
       
-      VorhandeneVerbesserung := LeseKarten.Verbesserung (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
-      
+      VorhandenerGrund := LeseKarten.VorhandenerGrund (KoordinatenExtern => KoordinatenExtern);
+      VorhandeneVerbesserung := LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern);
+
       if
-        VorhandeneVerbesserung = KartenVerbesserungDatentypen.Mine_Enum
+        VorhandeneVerbesserung = KartenVerbesserungDatentypen.Farm_Enum
+        or
+          VorhandenerGrund.BasisGrund = KartengrundDatentypen.Eis_Enum
       then
          return False;
 
@@ -39,10 +41,10 @@ package body MineErmitteln is
          case
            Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageLandverbesserungErsetzen)
          is
-            when RueckgabeDatentypen.Ja_Enum =>
+            when True =>
                null;
-                     
-            when RueckgabeDatentypen.Nein_Enum =>
+               
+            when False =>
                return False;
          end case;
 
@@ -53,20 +55,22 @@ package body MineErmitteln is
       VorarbeitNötig := False;
     
       case
-        GrundExtern
+        VorhandenerGrund.AktuellerGrund
       is
          when KartengrundDatentypen.Kartengrund_Oberfläche_Land_Enum'Range =>
             Arbeitswerte := OberflächeLand (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                             GrundExtern              => GrundExtern,
-                                             AnlegenTestenExtern      => AnlegenTestenExtern);
+                                             GrundExtern              => VorhandenerGrund.AktuellerGrund,
+                                             AnlegenTestenExtern      => AnlegenTestenExtern,
+                                             KoordinatenExtern        => KoordinatenExtern);
             
          when KartengrundDatentypen.Kartengrund_Unterfläche_Wasser_Enum'Range =>
             Arbeitswerte := UnterflächeWasser (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                GrundExtern              => GrundExtern,
-                                                AnlegenTestenExtern      => AnlegenTestenExtern);
+                                                GrundExtern              => VorhandenerGrund.AktuellerGrund,
+                                                AnlegenTestenExtern      => AnlegenTestenExtern,
+                                                KoordinatenExtern        => KoordinatenExtern);
             
          when KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum'Range =>
-            Arbeitswerte := UnterflächeLand (GrundExtern => GrundExtern);
+            Arbeitswerte := UnterflächeLand (GrundExtern => VorhandenerGrund.AktuellerGrund);
             
          when others =>
             return False;
@@ -78,11 +82,11 @@ package body MineErmitteln is
          when AufgabenDatentypen.Leer_Aufgabe_Enum =>
             return False;
             
-         when AufgabenDatentypen.Mine_Bauen_Enum =>
+         when AufgabenDatentypen.Farm_Bauen_Enum =>
             null;
             
          when others =>
-            Fehler.LogikFehler (FehlermeldungExtern => "MineErmitteln.MineErmitteln - Ungültige Aufgabe wurde ausgewählt.");
+            Fehler.LogikFehler (FehlermeldungExtern => "WaldErmitteln.WaldErmitteln - Ungültige Aufgabe wurde ausgewählt.");
       end case;
       
       case
@@ -112,21 +116,22 @@ package body MineErmitteln is
       
       return True;
       
-   end MineErmitteln;
+   end FarmErmitteln;
    
    
    
    function OberflächeLand
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Enum;
-      AnlegenTestenExtern : in Boolean)
+      AnlegenTestenExtern : in Boolean;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return EinheitenRecords.ArbeitRecord
    is begin
-                     
+      
       case
         GrundExtern
       is
-         when KartengrundDatentypen.Eis_Enum | KartengrundDatentypen.Flachland_Enum | KartengrundDatentypen.Tundra_Enum | KartengrundDatentypen.Wüste_Enum | KartengrundDatentypen.Hügel_Enum =>
+         when KartengrundDatentypen.Flachland_Enum | KartengrundDatentypen.Tundra_Enum | KartengrundDatentypen.Wüste_Enum | KartengrundDatentypen.Hügel_Enum =>
             Arbeitszeit := Grundzeit + 2;
             
          when KartengrundDatentypen.Gebirge_Enum =>
@@ -134,9 +139,9 @@ package body MineErmitteln is
 
          when KartengrundDatentypen.Wald_Enum | KartengrundDatentypen.Dschungel_Enum | KartengrundDatentypen.Sumpf_Enum =>
             if
-              RodenErmitteln.RodenErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                   GrundExtern              => GrundExtern,
-                                                   AnlegenTestenExtern      => AnlegenTestenExtern)
+              AufgabeEinheitRoden.RodenErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                  AnlegenTestenExtern      => AnlegenTestenExtern,
+                                                  KoordinatenExtern        => KoordinatenExtern)
               = True
             then
                Arbeitszeit := Grundzeit + 2;
@@ -150,10 +155,10 @@ package body MineErmitteln is
             return EinheitenRecordKonstanten.KeineArbeit;
       end case;
             
-      return (AufgabenDatentypen.Mine_Bauen_Enum, Arbeitszeit);
+      return (AufgabenDatentypen.Farm_Bauen_Enum, Arbeitszeit);
    
    end OberflächeLand;
-   
+     
    
      
    function UnterflächeLand
@@ -171,7 +176,7 @@ package body MineErmitteln is
             Arbeitszeit := Grundzeit + 4;
       end case;
             
-      return (AufgabenDatentypen.Mine_Bauen_Enum, Arbeitszeit);
+      return (AufgabenDatentypen.Farm_Bauen_Enum, Arbeitszeit);
       
    end UnterflächeLand;
      
@@ -180,7 +185,8 @@ package body MineErmitteln is
    function UnterflächeWasser
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Wasser_Enum;
-      AnlegenTestenExtern : in Boolean)
+      AnlegenTestenExtern : in Boolean;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return EinheitenRecords.ArbeitRecord
    is begin
       
@@ -192,9 +198,9 @@ package body MineErmitteln is
 
          when KartengrundDatentypen.Korallen_Enum | KartengrundDatentypen.Unterwald_Enum =>
             if
-              RodenErmitteln.RodenErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                   GrundExtern              => GrundExtern,
-                                                   AnlegenTestenExtern      => AnlegenTestenExtern)
+              AufgabeEinheitRoden.RodenErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                  AnlegenTestenExtern      => AnlegenTestenExtern,
+                                                  KoordinatenExtern        => KoordinatenExtern)
               = True
             then
                Arbeitszeit := Grundzeit + 2;
@@ -204,9 +210,9 @@ package body MineErmitteln is
                return EinheitenRecordKonstanten.KeineArbeit;
             end if;
       end case;
-            
-      return (AufgabenDatentypen.Mine_Bauen_Enum, Arbeitszeit);
+      
+      return (AufgabenDatentypen.Farm_Bauen_Enum, Arbeitszeit);
    
    end UnterflächeWasser;
 
-end MineErmitteln;
+end AufgabeEinheitFarm;

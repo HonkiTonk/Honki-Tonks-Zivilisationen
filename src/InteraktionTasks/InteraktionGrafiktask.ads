@@ -10,6 +10,7 @@ with RassenDatentypen;
 package InteraktionGrafiktask is
    
    FensterGeschlossen : Boolean := False;
+   NameSpielstand : Boolean := False;
    
    KIRechnet : RassenDatentypen.Rassen_Enum := RassenDatentypen.Keine_Rasse_Enum;
    
