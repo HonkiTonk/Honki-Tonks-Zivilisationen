@@ -5,17 +5,16 @@ with ForschungenDatentypen; use ForschungenDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
 with GlobaleTexte;
 with StadtKonstanten;
-with ForschungKonstanten;
 with TextKonstanten;
 
 with SchreibeWichtiges;
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
 with LeseGebaeudeDatenbank;
-with LeseWichtiges;
 
 with GebaeudeRichtigeUmgebung;
 with StadtProduktion;
+with ForschungAllgemein;
 
 package body GebaeudeAllgemein is
 
@@ -161,36 +160,10 @@ package body GebaeudeAllgemein is
             return False;
             
          when True =>
-            null;
+            return ForschungAllgemein.TechnologieVorhanden (RasseExtern       => StadtRasseNummerExtern.Rasse,
+                                                            TechnologieExtern => LeseGebaeudeDatenbank.Anforderungen (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                                                                                      IDExtern    => IDExtern));
       end case;
-      
-      if
-        LeseGebaeudeDatenbank.Anforderungen (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                             IDExtern    => IDExtern)
-        = ForschungKonstanten.LeerForschungAnforderung
-      then
-         null;
-         
-      elsif
-        LeseGebaeudeDatenbank.Anforderungen (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                             IDExtern    => IDExtern)
-        = ForschungKonstanten.ForschungUnmöglich
-      then
-         return False;
-         
-      elsif
-        LeseWichtiges.Erforscht (RasseExtern             => StadtRasseNummerExtern.Rasse,
-                                 WelcheTechnologieExtern => LeseGebaeudeDatenbank.Anforderungen (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                                                 IDExtern    => IDExtern))
-        = True
-      then
-         null;
-      
-      else
-         return False;
-      end if;
-      
-      return True;
       
    end GebäudeAnforderungenErfüllt;
 

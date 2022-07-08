@@ -32,11 +32,19 @@ package EinheitenRecords is
    
    
    
-   type ArbeitRecord is record
+   type ArbeitRecord is tagged record
       
       Aufgabe : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
       Arbeitszeit : ProduktionDatentypen.ArbeitszeitVorhanden;
       
+   end record;
+   
+   
+   
+   type ArbeitVorleistungRecord is new ArbeitRecord with record
+     
+      Vorarbeit : Boolean;
+   
    end record;
    
    

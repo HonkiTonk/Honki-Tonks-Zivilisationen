@@ -1,6 +1,6 @@
 -- Womit ich aufgehört habe:
 
--- AufgabeEinheitWeg fertig überarbeiten (Contracts) und dann die restlichen Kartenverbesserungenaufgaben.
+-- StadtID könnte auch ein Boolean sein und die ID sollte auf die Karten geschrieben werden, würde diverse Prüfungen vereinfachen und unnötiges Suchen reduzieren.
 
 
 
@@ -16,5 +16,4 @@
 
 -- Sonstiges:
 
--- Aufgaben muss dringend überarbeitet werden.
 -- Diese ganze Aufteilung zwischen AufgabenDatentypen, TastenbelegungDatentypen und KartenVerbesserungDatentypen muss mal verbessert werden.

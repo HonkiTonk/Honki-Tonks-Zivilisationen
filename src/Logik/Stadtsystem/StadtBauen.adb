@@ -12,6 +12,7 @@ with LeseKarten;
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
 with LeseStadtGebaut;
+with SchreibeKarten;
 
 with StadtWerteFestlegen;
 with Eingabe;
@@ -204,8 +205,26 @@ package body StadtBauen is
       SchreibeWichtiges.VerbleibendeForschungszeit (RasseExtern => StadtRasseNummerExtern.Rasse);
       Sichtbarkeit.SichtbarkeitsprüfungFürStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
+      case
+        StadtRasseNummerExtern.Rasse
+      is
+         when RassenDatentypen.Keine_Rasse_Enum =>
+            Fehler.LogikFehler (FehlermeldungExtern => "StadtBauen.StadtEintragen - Keine Rasse baut eine Stadt.");
+            
+         when RassenDatentypen.Rassen_Überirdisch_Enum'Range =>
+            SchreibeKarten.Weg (KoordinatenExtern => KoordinatenExtern,
+                                WegExtern         => KartenVerbesserungDatentypen.Straße_Einzeln_Enum);
+            
+         when RassenDatentypen.Rassen_Erde_Enum'Range =>
+            SchreibeKarten.Weg (KoordinatenExtern => KoordinatenExtern,
+                                WegExtern         => KartenVerbesserungDatentypen.Tunnel_Einzeln_Enum);
+            
+         when RassenDatentypen.Rassen_Wasser_Enum'Range =>
+            null;
+      end case;
+      
    end StadtEintragen;
-
+   
 
 
    function HauptstadtPrüfen

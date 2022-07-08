@@ -3,14 +3,16 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
-with EinheitenRecordKonstanten;
 with TextKonstanten;
+with EinheitenKonstanten;
 
 with SchreibeEinheitenGebaut;
 with LeseKarten;
 
 with Fehler;
 with Auswahl;
+with AufgabenArbeitszeitFestung;
+with Grenzpruefungen;
 
 package body AufgabeEinheitFestung is
 
@@ -22,8 +24,19 @@ package body AufgabeEinheitFestung is
    is begin
       
       VorhandenerGrund := LeseKarten.VorhandenerGrund (KoordinatenExtern => KoordinatenExtern);
-      VorhandeneVerbesserung := LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern);
-            
+      
+      -- Nur auf Basisgrund prüfen? Müsste hierbei ausreichen. äöü
+      if
+        AufgabenArbeitszeitFestung.Arbeitszeit (EinheitRasseNummerExtern.Rasse, VorhandenerGrund.BasisGrund) = EinheitenKonstanten.UnmöglicheArbeit
+        or
+          AufgabenArbeitszeitFestung.Arbeitszeit (EinheitRasseNummerExtern.Rasse, VorhandenerGrund.AktuellerGrund) = EinheitenKonstanten.UnmöglicheArbeit
+      then
+         return False;
+         
+      else
+         VorhandeneVerbesserung := LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern);
+      end if;
+      
       if
         VorhandeneVerbesserung = KartenVerbesserungDatentypen.Festung_Enum
       then
@@ -52,13 +65,16 @@ package body AufgabeEinheitFestung is
         VorhandenerGrund.AktuellerGrund
       is
          when KartengrundDatentypen.Eis_Enum | KartengrundDatentypen.Kartengrund_Oberfläche_Land_Enum'Range =>
-            Arbeitswerte := OberflächeLand (GrundExtern => VorhandenerGrund.AktuellerGrund);
+            Arbeitswerte := OberflächeLand (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                            GrundExtern => VorhandenerGrund);
             
          when KartengrundDatentypen.Kartengrund_Unterfläche_Wasser_Enum'Range =>
-            Arbeitswerte := UnterflächeWasser (GrundExtern => VorhandenerGrund.AktuellerGrund);
+            Arbeitswerte := UnterflächeWasser (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                  GrundExtern => VorhandenerGrund);
             
          when KartengrundDatentypen.Untereis_Enum | KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum'Range =>
-            Arbeitswerte := UnterflächeLand (GrundExtern => VorhandenerGrund.AktuellerGrund);
+            Arbeitswerte := UnterflächeLand (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                GrundExtern => VorhandenerGrund);
             
          when others =>
             return False;
@@ -98,67 +114,84 @@ package body AufgabeEinheitFestung is
    
    
    function OberflächeLand
-     (GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      GrundExtern : in KartenRecords.KartengrundRecord)
       return EinheitenRecords.ArbeitRecord
    is begin
       
-      case
-        GrundExtern
-      is
-         when KartengrundDatentypen.Eis_Enum | KartengrundDatentypen.Flachland_Enum | KartengrundDatentypen.Tundra_Enum | KartengrundDatentypen.Wüste_Enum | KartengrundDatentypen.Hügel_Enum
-            | KartengrundDatentypen.Wald_Enum | KartengrundDatentypen.Dschungel_Enum =>
-            Arbeitszeit := Grundzeit + 2;
-            
-         when KartengrundDatentypen.Gebirge_Enum =>
-            Arbeitszeit := Grundzeit + 5;
-               
-         when others =>
-            return EinheitenRecordKonstanten.KeineArbeit;
-      end case;
-            
-      return (AufgabenDatentypen.Festung_Bauen_Enum, Arbeitszeit);
+      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
+                                                  ÄnderungExtern      => AufgabenArbeitszeitFestung.Arbeitszeit (RasseExtern, GrundExtern.BasisGrund));
+
+      if
+        GrundExtern.BasisGrund = GrundExtern.AktuellerGrund
+      then
+         null;
+
+      else
+         Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
+                                                     ÄnderungExtern      => AufgabenArbeitszeitFestung.Arbeitszeit (RasseExtern, GrundExtern.AktuellerGrund));
+      end if;
+      
+      return (
+              Aufgabe     => AufgabenDatentypen.Festung_Bauen_Enum,
+              Arbeitszeit => Arbeitszeit
+             );
    
    end OberflächeLand;
      
    
    
    function UnterflächeLand
-     (GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      GrundExtern : in KartenRecords.KartengrundRecord)
       return EinheitenRecords.ArbeitRecord
    is begin
       
-      case
-        GrundExtern
-      is
-         when KartengrundDatentypen.Untereis_Enum | KartengrundDatentypen.Erde_Enum | KartengrundDatentypen.Erdgestein_Enum | KartengrundDatentypen.Sand_Enum =>
-            Arbeitszeit := Grundzeit + 2;
-            
-         when KartengrundDatentypen.Gestein_Enum =>
-            Arbeitszeit := Grundzeit + 5;
-               
-         when others =>
-            return EinheitenRecordKonstanten.KeineArbeit;
-      end case;
-            
-      return (AufgabenDatentypen.Festung_Bauen_Enum, Arbeitszeit);
+      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
+                                                  ÄnderungExtern      => AufgabenArbeitszeitFestung.Arbeitszeit (RasseExtern, GrundExtern.BasisGrund));
+
+      if
+        GrundExtern.BasisGrund = GrundExtern.AktuellerGrund
+      then
+         null;
+
+      else
+         Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
+                                                     ÄnderungExtern      => AufgabenArbeitszeitFestung.Arbeitszeit (RasseExtern, GrundExtern.AktuellerGrund));
+      end if;
+      
+      return (
+              Aufgabe     => AufgabenDatentypen.Festung_Bauen_Enum,
+              Arbeitszeit => Arbeitszeit
+             );
       
    end UnterflächeLand;
      
      
      
    function UnterflächeWasser
-     (GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Wasser_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      GrundExtern : in KartenRecords.KartengrundRecord)
       return EinheitenRecords.ArbeitRecord
    is begin
       
-      case
-        GrundExtern
-      is
-         when KartengrundDatentypen.Unterwald_Enum | KartengrundDatentypen.Küstengrund_Enum | KartengrundDatentypen.Meeresgrund_Enum | KartengrundDatentypen.Korallen_Enum =>
-            Arbeitszeit := Grundzeit + 2;
-      end case;
-            
-      return (AufgabenDatentypen.Festung_Bauen_Enum, Arbeitszeit);
+      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
+                                                  ÄnderungExtern      => AufgabenArbeitszeitFestung.Arbeitszeit (RasseExtern, GrundExtern.BasisGrund));
+
+      if
+        GrundExtern.BasisGrund = GrundExtern.AktuellerGrund
+      then
+         null;
+
+      else
+         Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
+                                                     ÄnderungExtern      => AufgabenArbeitszeitFestung.Arbeitszeit (RasseExtern, GrundExtern.AktuellerGrund));
+      end if;
+      
+      return (
+              Aufgabe     => AufgabenDatentypen.Festung_Bauen_Enum,
+              Arbeitszeit => Arbeitszeit
+             );
    
    end UnterflächeWasser;
 

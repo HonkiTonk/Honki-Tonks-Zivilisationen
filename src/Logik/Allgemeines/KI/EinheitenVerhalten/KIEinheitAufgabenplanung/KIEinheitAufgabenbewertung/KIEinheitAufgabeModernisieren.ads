@@ -5,7 +5,6 @@ with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
 with EinheitenRecords;
 
-private with ForschungenDatentypen;
 private with EinheitenDatentypen;
 
 with KIDatentypen;
@@ -25,8 +24,6 @@ package KIEinheitAufgabeModernisieren is
 private
    
    NeueEinheitenID : EinheitenDatentypen.EinheitenIDMitNullWert;
-   
-   NotwendigeTechnologie : ForschungenDatentypen.ForschungIDMitNullWert;
    
    
    

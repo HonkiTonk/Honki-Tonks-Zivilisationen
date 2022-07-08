@@ -6,6 +6,7 @@ with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
 with ForschungenDatentypen;
 with StadtRecords;
+with ProduktionDatentypen;
 
 private with KartenDatentypen;
 
@@ -134,6 +135,8 @@ package StadtUmgebungsbereichFestlegen is
 private
    
    Umgebung : KartenDatentypen.UmgebungsbereichDrei;
+   
+   Einwohner : ProduktionDatentypen.Einwohner;
    
    procedure StadtUmgebungErmitteln
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)

@@ -3,7 +3,8 @@ pragma Warnings (Off, "*array aggregate*");
 
 package KartengrundDatentypen is
 
-   -------------------- Das hier muss mal neu sortiert und anschließend alles angepasst werden.
+   -- Das hier muss mal neu sortiert und anschließend alles angepasst werden. Gilt das nocht? äöü
+   -- Auf jeden Fall mal schauen ob man das Eis auf nach dem Wasser/Unterwasserzeug schieben kann. äöü
    type Kartengrund_Enum is (
                              Leer_Grund_Enum,
                              
@@ -62,6 +63,7 @@ package KartengrundDatentypen is
    subtype Kartengrund_Unterfläche_Eiswasser_Enum is Kartengrund_Unterfläche_Enum range Untereis_Enum .. Unterwald_Enum;
    subtype Kartengrund_Unterfläche_Wasser_Enum is Kartengrund_Unterfläche_Eiswasser_Enum range Küstengrund_Enum .. Unterwald_Enum;
    
+   -- Später mal nachprüfen warum die Wasserbasis nicht Küstengrund enthält, wahrscheinlich wegen dem Kartengenerator und dem Setzen der Küste aufgrund der darüber liegenden Ebene. äöü
    subtype Kartengrund_Unterfläche_Wasserbasis_Enum is Kartengrund_Unterfläche_Wasser_Enum range Meeresgrund_Enum .. Meeresgrund_Enum;
    subtype Kartengrund_Unterfläche_Wasserzusatz_Enum is Kartengrund_Unterfläche_Wasser_Enum range Korallen_Enum .. Unterwald_Enum;
    
@@ -83,7 +85,7 @@ package KartengrundDatentypen is
    
    
    
-   ---------------------- Ressourcen für den Kern hinzufügen.
+   -- Ressourcen für den Kern hinzufügen. äöü
    type Kartenressourcen_Enum is (
                                    Leer_Ressource_Enum,
                                    

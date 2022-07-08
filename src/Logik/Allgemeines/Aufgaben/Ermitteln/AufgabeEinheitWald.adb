@@ -5,6 +5,7 @@ with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
 with EinheitenRecordKonstanten;
 with TextKonstanten;
+with EinheitenKonstanten;
 
 with SchreibeEinheitenGebaut;
 with LeseKarten;
@@ -12,6 +13,8 @@ with LeseKarten;
 with AufgabeEinheitRoden;
 with Fehler;
 with Auswahl;
+with AufgabenArbeitszeitWald;
+with Grenzpruefungen;
 
 package body AufgabeEinheitWald is
 
@@ -23,9 +26,21 @@ package body AufgabeEinheitWald is
    is begin
       
       VorhandenerGrund := LeseKarten.VorhandenerGrund (KoordinatenExtern => KoordinatenExtern);
-      VorhandeneVerbesserung := LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern);
-            
-      ------------------------------------ Mehr Prüfungen einbauen, beispielweise keinen Wald auf Eis erlauben. Gilt für alle Aufgaben.
+      
+      -- Nur auf Basisgrund prüfen? Müsste hierbei ausreichen. äöü
+      if
+        AufgabenArbeitszeitWald.Arbeitszeit (EinheitRasseNummerExtern.Rasse, VorhandenerGrund.BasisGrund) = EinheitenKonstanten.UnmöglicheArbeit
+        or
+          AufgabenArbeitszeitWald.Arbeitszeit (EinheitRasseNummerExtern.Rasse, VorhandenerGrund.AktuellerGrund) = EinheitenKonstanten.UnmöglicheArbeit
+      then
+         return False;
+         
+      else
+         VorhandeneVerbesserung := LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern);
+      end if;
+                  
+      -- Mehr Prüfungen einbauen, beispielweise keinen Wald auf Eis erlauben. Gilt für alle Aufgaben. äöü
+      -- Kann jetzt über die Arbeitszeit geregelt werden. äöü
       if
         (VorhandeneVerbesserung = KartenVerbesserungDatentypen.Farm_Enum
          or
@@ -46,21 +61,19 @@ package body AufgabeEinheitWald is
       else
          null;
       end if;
-      
-      VorarbeitNötig := False;
-      
+            
       case
         VorhandenerGrund.AktuellerGrund
       is
          when KartengrundDatentypen.Kartengrund_Oberfläche_Land_Enum'Range =>
             Arbeitswerte := OberflächeLand (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                             GrundExtern              => VorhandenerGrund.AktuellerGrund,
+                                             GrundExtern              => VorhandenerGrund,
                                              AnlegenTestenExtern      => AnlegenTestenExtern,
                                              KoordinatenExtern        => KoordinatenExtern);
             
          when KartengrundDatentypen.Kartengrund_Unterfläche_Wasser_Enum'Range =>
             Arbeitswerte := UnterflächeWasser (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                GrundExtern              => VorhandenerGrund.AktuellerGrund,
+                                                GrundExtern              => VorhandenerGrund,
                                                 AnlegenTestenExtern      => AnlegenTestenExtern,
                                                 KoordinatenExtern        => KoordinatenExtern);
             
@@ -86,7 +99,7 @@ package body AufgabeEinheitWald is
       is
          when True =>
             if
-              VorarbeitNötig
+              Arbeitswerte.Vorarbeit
             then
                SchreibeEinheitenGebaut.BeschäftigungNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                  BeschäftigungExtern     => Arbeitswerte.Aufgabe);
@@ -114,37 +127,38 @@ package body AufgabeEinheitWald is
    
    function OberflächeLand
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Enum;
+      GrundExtern : in KartenRecords.KartengrundRecord;
       AnlegenTestenExtern : in Boolean;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return EinheitenRecords.ArbeitRecord
+      return EinheitenRecords.ArbeitVorleistungRecord
    is begin
       
-      case
-        GrundExtern
-      is
-         when KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum'Range =>
-            Arbeitszeit := Grundzeit + 2;
-
-         when KartengrundDatentypen.Dschungel_Enum | KartengrundDatentypen.Sumpf_Enum =>
-            if
-              AufgabeEinheitRoden.RodenErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                  AnlegenTestenExtern      => AnlegenTestenExtern,
-                                                  KoordinatenExtern        => KoordinatenExtern)
-              = True
-            then
-               Arbeitszeit := Grundzeit + 2;
-               VorarbeitNötig := True;
-            
-            else
-               return EinheitenRecordKonstanten.KeineArbeit;
-            end if;
-               
-         when others =>
-            return EinheitenRecordKonstanten.KeineArbeit;
-      end case;
-            
-      return (AufgabenDatentypen.Wald_Aufforsten_Enum, Arbeitszeit);
+      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
+                                                  ÄnderungExtern      => AufgabenArbeitszeitWald.Arbeitszeit (EinheitRasseNummerExtern.Rasse, GrundExtern.BasisGrund));
+      
+      if
+        GrundExtern.BasisGrund = GrundExtern.AktuellerGrund
+      then
+         VorarbeitNötig := False;
+         
+      elsif
+        True = AufgabeEinheitRoden.RodenErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                   AnlegenTestenExtern      => AnlegenTestenExtern,
+                                                   KoordinatenExtern        => KoordinatenExtern)
+      then
+         Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
+                                                     ÄnderungExtern      => AufgabenArbeitszeitWald.Arbeitszeit (EinheitRasseNummerExtern.Rasse, GrundExtern.AktuellerGrund));
+         VorarbeitNötig := True;
+         
+      else
+         return EinheitenRecordKonstanten.KeineArbeitVorleistung;
+      end if;
+      
+      return (
+              Aufgabe     => AufgabenDatentypen.Wald_Aufforsten_Enum,
+              Arbeitszeit => Arbeitszeit,
+              Vorarbeit   => VorarbeitNötig
+             );
    
    end OberflächeLand;
      
@@ -152,38 +166,39 @@ package body AufgabeEinheitWald is
      
    function UnterflächeWasser
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Wasser_Enum;
+      GrundExtern : in KartenRecords.KartengrundRecord;
       AnlegenTestenExtern : in Boolean;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return EinheitenRecords.ArbeitRecord
+      return EinheitenRecords.ArbeitVorleistungRecord
    is begin
       
-      case
-        GrundExtern
-      is
-         when KartengrundDatentypen.Meeresgrund_Enum | KartengrundDatentypen.Küstengrund_Enum =>
-            Arbeitszeit := Grundzeit + 2;
-
-         when KartengrundDatentypen.Korallen_Enum =>
-            if
-              AufgabeEinheitRoden.RodenErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                  AnlegenTestenExtern      => AnlegenTestenExtern,
-                                                  KoordinatenExtern        => KoordinatenExtern)
-              = True
-            then
-               Arbeitszeit := Grundzeit + 2;
-               VorarbeitNötig := True;
-               
-            else
-               return EinheitenRecordKonstanten.KeineArbeit;
-            end if;
-               
-         when others =>
-            return EinheitenRecordKonstanten.KeineArbeit;
-      end case;
-            
-      return (AufgabenDatentypen.Wald_Aufforsten_Enum, Arbeitszeit);
-   
+      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
+                                                  ÄnderungExtern      => AufgabenArbeitszeitWald.Arbeitszeit (EinheitRasseNummerExtern.Rasse, GrundExtern.BasisGrund));
+      
+      if
+        GrundExtern.BasisGrund = GrundExtern.AktuellerGrund
+      then
+         VorarbeitNötig := False;
+         
+      elsif
+        True = AufgabeEinheitRoden.RodenErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                   AnlegenTestenExtern      => AnlegenTestenExtern,
+                                                   KoordinatenExtern        => KoordinatenExtern)
+      then
+         Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
+                                                     ÄnderungExtern      => AufgabenArbeitszeitWald.Arbeitszeit (EinheitRasseNummerExtern.Rasse, GrundExtern.AktuellerGrund));
+         VorarbeitNötig := True;
+         
+      else
+         return EinheitenRecordKonstanten.KeineArbeitVorleistung;
+      end if;
+      
+      return (
+              Aufgabe     => AufgabenDatentypen.Wald_Aufforsten_Enum,
+              Arbeitszeit => Arbeitszeit,
+              Vorarbeit   => VorarbeitNötig
+             );
+      
    end UnterflächeWasser;
 
 end AufgabeEinheitWald;

@@ -3,8 +3,8 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
+with KartengrundDatentypen; use KartengrundDatentypen;
 with EinheitenRecords;
-with KartengrundDatentypen;
 with SpielVariablen;
 with KartenRecords;
 
@@ -36,18 +36,45 @@ private
    WelcheArbeit : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
 
    Arbeitszeit : ProduktionDatentypen.ArbeitszeitVorhanden;
-   Grundzeit : ProduktionDatentypen.ArbeitszeitVorhanden := 1;
 
    Arbeitswerte : EinheitenRecords.ArbeitRecord;
 
    VorhandenerGrund : KartenRecords.KartengrundRecord;
 
    function OberflächeLand
-     (GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Enum)
-      return EinheitenRecords.ArbeitRecord;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      GrundExtern : in KartenRecords.KartengrundRecord)
+      return EinheitenRecords.ArbeitRecord
+     with
+       Pre => (
+                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+               and
+                 (GrundExtern.BasisGrund in KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum'Range
+                  or
+                    GrundExtern.BasisGrund = KartengrundDatentypen.Eis_Enum)
+               and
+                 (GrundExtern.AktuellerGrund in KartengrundDatentypen.Kartengrund_Oberfläche_Land_Enum'Range
+                  or
+                    GrundExtern.BasisGrund = KartengrundDatentypen.Eis_Enum)
+              );
 
    function UnterflächeWasser
-     (GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Wasser_Enum)
-      return EinheitenRecords.ArbeitRecord;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      GrundExtern : in KartenRecords.KartengrundRecord)
+      return EinheitenRecords.ArbeitRecord
+     with
+       Pre => (
+                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+               and
+                 (GrundExtern.BasisGrund = KartengrundDatentypen.Küstengrund_Enum
+                  or
+                    GrundExtern.BasisGrund = KartengrundDatentypen.Meeresgrund_Enum)
+               and
+                 (GrundExtern.AktuellerGrund in KartengrundDatentypen.Kartengrund_Unterfläche_Wasserzusatz_Enum'Range
+                  or
+                    GrundExtern.BasisGrund = KartengrundDatentypen.Küstengrund_Enum
+                  or
+                    GrundExtern.BasisGrund = KartengrundDatentypen.Meeresgrund_Enum)
+              );
 
 end AufgabeEinheitRoden;

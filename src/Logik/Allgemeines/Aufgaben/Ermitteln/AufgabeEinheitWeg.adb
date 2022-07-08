@@ -7,13 +7,15 @@ with ForschungenDatentypen; use ForschungenDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
 with EinheitenRecordKonstanten;
 with ForschungKonstanten;
+with EinheitenKonstanten;
 
 with SchreibeEinheitenGebaut;
 with LeseKarten;
-with LeseWichtiges;
 
 with Fehler;
 with Grenzpruefungen;
+with ForschungAllgemein;
+with AufgabenArbeitszeitWeg;
 
 package body AufgabeEinheitWeg is
    
@@ -25,7 +27,18 @@ package body AufgabeEinheitWeg is
    is begin
       
       VorhandenerGrund := LeseKarten.VorhandenerGrund (KoordinatenExtern => KoordinatenExtern);
-      WegVorhanden := LeseKarten.Weg (KoordinatenExtern => KoordinatenExtern);
+      
+      -- Nur auf Basisgrund prüfen? Müsste hierbei ausreichen. äöü
+      if
+        AufgabenArbeitszeitWeg.Arbeitszeit (EinheitRasseNummerExtern.Rasse, VorhandenerGrund.BasisGrund) = EinheitenKonstanten.UnmöglicheArbeit
+        or
+          AufgabenArbeitszeitWeg.Arbeitszeit (EinheitRasseNummerExtern.Rasse, VorhandenerGrund.AktuellerGrund) = EinheitenKonstanten.UnmöglicheArbeit
+      then
+         return False;
+         
+      else
+         WegVorhanden := LeseKarten.Weg (KoordinatenExtern => KoordinatenExtern);
+      end if;
 
       case
         VorhandenerGrund.AktuellerGrund
@@ -99,11 +112,8 @@ package body AufgabeEinheitWeg is
       is
          when KartenVerbesserungDatentypen.Karten_Straße_Enum'Range | KartenVerbesserungDatentypen.Leer_Weg_Enum =>
             if
-              ForschungKonstanten.TechnologischeVoraussetzung (RasseExtern, WelcheWegart (WegExtern)) = ForschungKonstanten.LeerForschungAnforderung
-              or else
-                LeseWichtiges.Erforscht (RasseExtern             => RasseExtern,
-                                         WelcheTechnologieExtern => ForschungKonstanten.TechnologischeVoraussetzung (RasseExtern, WelcheWegart (WegExtern)))
-              = True
+              True = ForschungAllgemein.TechnologieVorhanden (RasseExtern       => RasseExtern,
+                                                              TechnologieExtern => ForschungKonstanten.TechnologischeVoraussetzung (RasseExtern, WelcheWegart (WegExtern)))
             then
                WelcheArbeit := WelcheWegart (WegExtern);
                
@@ -115,9 +125,8 @@ package body AufgabeEinheitWeg is
             return EinheitenRecordKonstanten.KeineArbeit;
       end case;
       
-      Arbeitszeit := 1;
-      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                  ÄnderungExtern      => NötigteArbeitszeit (RasseExtern, GrundExtern.BasisGrund));
+      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
+                                                  ÄnderungExtern      => AufgabenArbeitszeitWeg.Arbeitszeit (RasseExtern, GrundExtern.BasisGrund));
 
       if
         GrundExtern.BasisGrund = GrundExtern.AktuellerGrund
@@ -126,7 +135,7 @@ package body AufgabeEinheitWeg is
 
       else
          Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                     ÄnderungExtern      => NötigteArbeitszeit (RasseExtern, GrundExtern.AktuellerGrund));
+                                                     ÄnderungExtern      => AufgabenArbeitszeitWeg.Arbeitszeit (RasseExtern, GrundExtern.AktuellerGrund));
       end if;
       
       return (WelcheArbeit, Arbeitszeit);
@@ -158,11 +167,8 @@ package body AufgabeEinheitWeg is
       is
          when KartenVerbesserungDatentypen.Karten_Straße_Enum'Range | KartenVerbesserungDatentypen.Leer_Weg_Enum =>
             if
-              ForschungKonstanten.TechnologischeVoraussetzung (RasseExtern, WelcheWegart (WegExtern)) = ForschungKonstanten.LeerForschungAnforderung
-              or else
-                LeseWichtiges.Erforscht (RasseExtern             => RasseExtern,
-                                         WelcheTechnologieExtern => ForschungKonstanten.TechnologischeVoraussetzung (RasseExtern, WelcheWegart (WegExtern)))
-              = True
+              True = ForschungAllgemein.TechnologieVorhanden (RasseExtern       => RasseExtern,
+                                                              TechnologieExtern => ForschungKonstanten.TechnologischeVoraussetzung (RasseExtern, WelcheWegart (WegExtern)))
             then
                WelcheArbeit := WelcheWegart (WegExtern);
                
@@ -174,9 +180,8 @@ package body AufgabeEinheitWeg is
             return EinheitenRecordKonstanten.KeineArbeit;
       end case;
       
-      Arbeitszeit := 1;
-      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                  ÄnderungExtern      => NötigteArbeitszeit (RasseExtern, GrundExtern.BasisGrund));
+      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
+                                                  ÄnderungExtern      => AufgabenArbeitszeitWeg.Arbeitszeit (RasseExtern, GrundExtern.BasisGrund));
 
       if
         GrundExtern.BasisGrund = GrundExtern.AktuellerGrund
@@ -185,7 +190,7 @@ package body AufgabeEinheitWeg is
 
       else
          Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                     ÄnderungExtern      => NötigteArbeitszeit (RasseExtern, GrundExtern.AktuellerGrund));
+                                                     ÄnderungExtern      => AufgabenArbeitszeitWeg.Arbeitszeit (RasseExtern, GrundExtern.AktuellerGrund));
       end if;
       
       return (WelcheArbeit, Arbeitszeit);
@@ -201,18 +206,13 @@ package body AufgabeEinheitWeg is
       return EinheitenRecords.ArbeitRecord
    is begin
       
-      Arbeitszeit := 1;
-      
       case
         WegExtern
       is
          when KartenVerbesserungDatentypen.Karten_Straße_Enum'Range | KartenVerbesserungDatentypen.Leer_Weg_Enum =>
             if
-              ForschungKonstanten.TechnologischeVoraussetzung (RasseExtern, WelcheWegart (WegExtern)) = ForschungKonstanten.LeerForschungAnforderung
-              or else
-                LeseWichtiges.Erforscht (RasseExtern             => RasseExtern,
-                                         WelcheTechnologieExtern => ForschungKonstanten.TechnologischeVoraussetzung (RasseExtern, WelcheWegart (WegExtern)))
-              = True
+              True = ForschungAllgemein.TechnologieVorhanden (RasseExtern       => RasseExtern,
+                                                              TechnologieExtern => ForschungKonstanten.TechnologischeVoraussetzung (RasseExtern, WelcheWegart (WegExtern)))
             then
                WelcheArbeit := WelcheWegart (WegExtern);
                
@@ -224,9 +224,8 @@ package body AufgabeEinheitWeg is
             return EinheitenRecordKonstanten.KeineArbeit;
       end case;
       
-      Arbeitszeit := 1;
-      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                  ÄnderungExtern      => NötigteArbeitszeit (RasseExtern, GrundExtern.BasisGrund));
+      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
+                                                  ÄnderungExtern      => AufgabenArbeitszeitWeg.Arbeitszeit (RasseExtern, GrundExtern.BasisGrund));
 
       if
         GrundExtern.BasisGrund = GrundExtern.AktuellerGrund
@@ -235,7 +234,7 @@ package body AufgabeEinheitWeg is
 
       else
          Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                     ÄnderungExtern      => NötigteArbeitszeit (RasseExtern, GrundExtern.AktuellerGrund));
+                                                     ÄnderungExtern      => AufgabenArbeitszeitWeg.Arbeitszeit (RasseExtern, GrundExtern.AktuellerGrund));
       end if;
       
       return (WelcheArbeit, Arbeitszeit);
@@ -244,6 +243,7 @@ package body AufgabeEinheitWeg is
      
      
      
+   -- Das ist doch ein wenig sinnfrei, oder? äöü
    function UnterflächeWasser
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Enum;
@@ -251,18 +251,13 @@ package body AufgabeEinheitWeg is
       return EinheitenRecords.ArbeitRecord
    is begin
       
-      Arbeitszeit := 1;
-      
       case
         WegExtern
       is
          when KartenVerbesserungDatentypen.Karten_Straße_Enum'Range | KartenVerbesserungDatentypen.Leer_Weg_Enum =>
             if
-              ForschungKonstanten.TechnologischeVoraussetzung (RasseExtern, WelcheWegart (WegExtern)) = ForschungKonstanten.LeerForschungAnforderung
-              or else
-                LeseWichtiges.Erforscht (RasseExtern             => RasseExtern,
-                                         WelcheTechnologieExtern => ForschungKonstanten.TechnologischeVoraussetzung (RasseExtern, WelcheWegart (WegExtern)))
-              = True
+              True = ForschungAllgemein.TechnologieVorhanden (RasseExtern       => RasseExtern,
+                                                              TechnologieExtern => ForschungKonstanten.TechnologischeVoraussetzung (RasseExtern, WelcheWegart (WegExtern)))
             then
                WelcheArbeit := WelcheWegart (WegExtern);
                
@@ -274,9 +269,8 @@ package body AufgabeEinheitWeg is
             return EinheitenRecordKonstanten.KeineArbeit;
       end case;
       
-      Arbeitszeit := 1;
-      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                  ÄnderungExtern      => NötigteArbeitszeit (RasseExtern, GrundExtern.BasisGrund));
+      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
+                                                  ÄnderungExtern      => AufgabenArbeitszeitWeg.Arbeitszeit (RasseExtern, GrundExtern.BasisGrund));
 
       if
         GrundExtern.BasisGrund = GrundExtern.AktuellerGrund
@@ -285,7 +279,7 @@ package body AufgabeEinheitWeg is
 
       else
          Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                     ÄnderungExtern      => NötigteArbeitszeit (RasseExtern, GrundExtern.AktuellerGrund));
+                                                     ÄnderungExtern      => AufgabenArbeitszeitWeg.Arbeitszeit (RasseExtern, GrundExtern.AktuellerGrund));
       end if;
       
       return (WelcheArbeit, Arbeitszeit);

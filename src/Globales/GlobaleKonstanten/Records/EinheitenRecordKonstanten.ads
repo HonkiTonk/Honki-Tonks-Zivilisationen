@@ -54,5 +54,11 @@ package EinheitenRecordKonstanten is
                                                             Aufgabe     => EinheitenKonstanten.LeerArbeit,
                                                             Arbeitszeit => EinheitenKonstanten.LeerArbeitszeit
                                                            );
+   
+   KeineArbeitVorleistung : constant EinheitenRecords.ArbeitVorleistungRecord := (
+                                                                                  Aufgabe     => EinheitenKonstanten.LeerArbeit,
+                                                                                  Arbeitszeit => EinheitenKonstanten.LeerArbeitszeit,
+                                                                                  Vorarbeit   => False
+                                                                                 );
 
 end EinheitenRecordKonstanten;

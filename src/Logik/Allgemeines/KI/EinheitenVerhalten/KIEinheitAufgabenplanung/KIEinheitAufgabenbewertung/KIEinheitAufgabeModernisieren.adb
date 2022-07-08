@@ -4,11 +4,11 @@ pragma Warnings (Off, "*array aggregate*");
 with ForschungenDatentypen; use ForschungenDatentypen;
 
 with EinheitenKonstanten;
-with ForschungKonstanten;
 
 with LeseEinheitenDatenbank;
-with LeseWichtiges;
 with LeseEinheitenGebaut;
+
+with ForschungAllgemein;
 
 with KIDatentypen; use KIDatentypen;
 
@@ -32,27 +32,20 @@ package body KIEinheitAufgabeModernisieren is
             return -1;
             
          when others =>
-            NotwendigeTechnologie := LeseEinheitenDatenbank.Anforderungen (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                           IDExtern    => NeueEinheitenID);
+            null;
       end case;
       
-      if
-        NotwendigeTechnologie = ForschungKonstanten.LeerForschungAnforderung
-      then
-         null;
-         
-      elsif
-        LeseWichtiges.Erforscht (RasseExtern             => EinheitRasseNummerExtern.Rasse,
-                                 WelcheTechnologieExtern => NotwendigeTechnologie)
-        = True
-      then
-         null;
-         
-      else
-         return -1;
-      end if;
-      
-      return NeueKosten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      case
+        ForschungAllgemein.TechnologieVorhanden (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                                 TechnologieExtern => LeseEinheitenDatenbank.Anforderungen (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                                                            IDExtern    => NeueEinheitenID))
+      is
+         when True =>
+            return NeueKosten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+              
+         when False =>
+            return -1;
+      end case;
       
    end SichVerbessern;
    

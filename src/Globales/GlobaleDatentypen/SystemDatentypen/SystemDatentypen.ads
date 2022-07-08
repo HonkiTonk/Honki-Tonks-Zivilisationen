@@ -15,7 +15,7 @@ package SystemDatentypen is
                                 Zahlen_Eingabe_Enum, Text_Eingabe_Enum, Einheit_Auswahl_Enum, Ja_Nein_Enum
                                );
    
-   --------------------------------- Das dann mal überall einbauen und die KartenDatentypen.UmgebungsbereichEins/Boolean Varianten rauswerfen.
+   -- Das dann mal überall einbauen und die KartenDatentypen.UmgebungsbereichEins/Boolean Varianten rauswerfen. äöü
    type Rechenoperation_Enum is (
                                  Minus_Enum, Plus_Enum, Setzen_Enum 
                                 );

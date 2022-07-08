@@ -154,24 +154,30 @@ package ChangelogJuli2022 is
    
    
 
-   -- Version 0.03. => 0.03. (09.07.2022):
+   -- Version 0.03.0375 => 0.03. (09.07.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03. => 0.03. (08.07.2022):
+   -- Version 0.03.0285 => 0.03.0375 (08.07.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Aufgabensystem überarbeitet.
+   -- Berechnungen ob ein Weg gebaut werden kann und wie lange es dauern würde überarbeitet.
+   -- Berechnungen ob eine Farm gebaut werden kann und wie lange es dauern würde überarbeitet.
+   -- Berechnungen ob eine Mine gebaut werden kann und wie lange es dauern würde überarbeitet.
+   -- Berechnungen ob eine Festung gebaut werden kann und wie lange es dauern würde überarbeitet.
+   -- Berechnungen ob ein Wald gepflanzt werden kann und wie lange es dauern würde überarbeitet.
+   -- Berechnungen ob etwas gerodet/trockengelegt werden kann und wie lange es dauern würde überarbeitet.
+   -- Beim Bauen einer Stadt wird jetzt auch rassenabhängig ein Weg dazu angelegt.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    
 
-   -- Version 0.03.0285 => 0.03. (07.07.2022):
+   -- Version 0.03.0285 => 0.03.0285 (07.07.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 

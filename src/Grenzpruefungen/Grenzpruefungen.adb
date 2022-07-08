@@ -2,9 +2,11 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with ProduktionDatentypen; use ProduktionDatentypen;
+with EinheitenKonstanten;
 
 package body Grenzpruefungen is
 
+   -- Minimum ist die minimale Arbeitszeit.
    function Arbeitszeit
      (AktuellerWertExtern : in ProduktionDatentypen.ArbeitszeitVorhanden;
       ÄnderungExtern : in ProduktionDatentypen.Arbeitszeit)
@@ -17,9 +19,9 @@ package body Grenzpruefungen is
          return ProduktionDatentypen.ArbeitszeitVorhanden'Last;
          
       elsif
-        AktuellerWertExtern + ÄnderungExtern <= ProduktionDatentypen.ArbeitszeitVorhanden'First
+        AktuellerWertExtern + ÄnderungExtern <= EinheitenKonstanten.MinimaleArbeitszeit
       then
-         return ProduktionDatentypen.ArbeitszeitVorhanden'First;
+         return EinheitenKonstanten.MinimaleArbeitszeit;
          
       else
          return AktuellerWertExtern + ÄnderungExtern;

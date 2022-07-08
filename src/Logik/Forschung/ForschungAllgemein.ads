@@ -43,6 +43,15 @@ package ForschungAllgemein is
                  SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
 
+   function TechnologieVorhanden
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      TechnologieExtern : in ForschungenDatentypen.ForschungIDNichtMöglich)
+      return Boolean
+     with
+       Pre => (
+                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+              );
+
 private
 
    WasErforschtWerdenSoll : ForschungenDatentypen.ForschungIDMitNullWert;

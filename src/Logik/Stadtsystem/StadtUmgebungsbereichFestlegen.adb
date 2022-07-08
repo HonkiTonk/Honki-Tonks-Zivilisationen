@@ -6,9 +6,9 @@ with StadtKonstanten;
 
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
-with LeseWichtiges;
 
 with Fehler;
+with ForschungAllgemein;
 
 package body StadtUmgebungsbereichFestlegen is
 
@@ -35,25 +35,22 @@ package body StadtUmgebungsbereichFestlegen is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
+      Einwohner := LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+                                                      EinwohnerArbeiterExtern => True);
+      
       if
-        LeseWichtiges.Erforscht (RasseExtern             => StadtRasseNummerExtern.Rasse,
-                                 WelcheTechnologieExtern => TechnologieUmgebungsgröße (StadtRasseNummerExtern.Rasse, SystemDatentypen.Endwert_Enum))
-          = True
+        True = ForschungAllgemein.TechnologieVorhanden (RasseExtern       => StadtRasseNummerExtern.Rasse,
+                                                        TechnologieExtern => TechnologieUmgebungsgröße (StadtRasseNummerExtern.Rasse, SystemDatentypen.Endwert_Enum))
         and
-          LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
-                                             EinwohnerArbeiterExtern => True)
-        >= StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Endwert_Enum, StadtRasseNummerExtern.Rasse)
+          Einwohner >= StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Endwert_Enum, StadtRasseNummerExtern.Rasse)
       then
          Umgebung := 3;
          
       elsif
-        LeseWichtiges.Erforscht (RasseExtern             => StadtRasseNummerExtern.Rasse,
-                                 WelcheTechnologieExtern => TechnologieUmgebungsgröße (StadtRasseNummerExtern.Rasse, SystemDatentypen.Anfangswert_Enum))
-          = True
+        True = ForschungAllgemein.TechnologieVorhanden (RasseExtern       => StadtRasseNummerExtern.Rasse,
+                                                        TechnologieExtern => TechnologieUmgebungsgröße (StadtRasseNummerExtern.Rasse, SystemDatentypen.Anfangswert_Enum))
         and
-          LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
-                                             EinwohnerArbeiterExtern => True)
-        >= StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Anfangswert_Enum, StadtRasseNummerExtern.Rasse)
+          Einwohner >= StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Anfangswert_Enum, StadtRasseNummerExtern.Rasse)
       then
          Umgebung := 2;      
                   

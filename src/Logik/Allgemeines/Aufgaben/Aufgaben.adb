@@ -11,8 +11,8 @@ with TextKonstanten;
 
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
-with LeseWichtiges;
 
+with ForschungAllgemein;
 with Auswahl;
 with AufgabenAllgemein;
 with AufgabeEinheitWeg;
@@ -117,24 +117,13 @@ package body Aufgaben is
       is
          when TastenbelegungDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range =>
             if
-              ForschungKonstanten.TechnologieVerbesserung (RasseExtern, BefehlExtern) = ForschungKonstanten.ForschungUnmöglich
+              False = ForschungAllgemein.TechnologieVorhanden (RasseExtern       => RasseExtern,
+                                                               TechnologieExtern => ForschungKonstanten.TechnologieVerbesserung (RasseExtern, BefehlExtern))
             then
                return False;
-
-            elsif
-              ForschungKonstanten.TechnologieVerbesserung (RasseExtern, BefehlExtern) = ForschungKonstanten.LeerForschung
-            then
-               null;
-
-            elsif
-              LeseWichtiges.Erforscht (RasseExtern             => RasseExtern,
-                                       WelcheTechnologieExtern => ForschungKonstanten.TechnologieVerbesserung (RasseExtern, BefehlExtern))
-                = True
-            then
-               null;
-         
+               
             else
-               return False;
+               null;
             end if;
             
          when others =>
@@ -173,6 +162,7 @@ package body Aufgaben is
       
       AufgabenAllgemein.Nullsetzung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
+      -- äöü Statt die Koordinaten direkt die Gründe in die Verbesserungen geben?
       case
         BefehlExtern
       is

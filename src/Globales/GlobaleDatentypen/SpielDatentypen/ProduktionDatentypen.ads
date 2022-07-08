@@ -25,7 +25,7 @@ package ProduktionDatentypen is
    
    -------------------------------------- subtype von den Produktionstypen?
    type Arbeitszeit is range -100 .. 100;
-   subtype ArbeitszeitVorhanden is Arbeitszeit range 1 .. Arbeitszeit'Last;
+   subtype ArbeitszeitVorhanden is Arbeitszeit range -1 .. Arbeitszeit'Last;
    
    ------------------------------ Es werden benötigt:
    ------------------------------ Datentypen für diplomatischen Zustand, später in passendere Datei verschieben:

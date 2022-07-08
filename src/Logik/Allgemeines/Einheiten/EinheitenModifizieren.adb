@@ -7,19 +7,18 @@ with EinheitenDatentypen; use EinheitenDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
 with StadtDatentypen; use StadtDatentypen;
 with EinheitenKonstanten;
-with ForschungKonstanten;
 with StadtKonstanten;
 
 with SchreibeEinheitenGebaut;
 with SchreibeStadtGebaut;
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
-with LeseWichtiges;
 
 with StadtSuchen;
 with EinheitSuchen;
 with BewegungPassierbarkeitPruefen;
 with StadtProduktion;
+with ForschungAllgemein;
 
 with KIDatentypen; use KIDatentypen;
 
@@ -221,36 +220,10 @@ package body EinheitenModifizieren is
             return False;
             
          when True =>
-            null;
+            return ForschungAllgemein.TechnologieVorhanden (RasseExtern       => StadtRasseNummerExtern.Rasse,
+                                                            TechnologieExtern => LeseEinheitenDatenbank.Anforderungen (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                                                                                       IDExtern    => IDExtern));
       end case;
-      
-      if
-        LeseEinheitenDatenbank.Anforderungen (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                              IDExtern    => IDExtern)
-        = ForschungKonstanten.LeerForschungAnforderung
-      then
-         null;
-         
-      elsif
-        LeseEinheitenDatenbank.Anforderungen (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                              IDExtern    => IDExtern)
-        = ForschungKonstanten.ForschungUnmöglich
-      then
-         return False;
-         
-      elsif
-        LeseWichtiges.Erforscht (RasseExtern             => StadtRasseNummerExtern.Rasse,
-                                 WelcheTechnologieExtern => LeseEinheitenDatenbank.Anforderungen (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                                                  IDExtern    => IDExtern))
-        = True
-      then
-         null;
-         
-      else
-         return False;
-      end if;
-      
-      return True;
       
    end EinheitAnforderungenErfüllt;
 

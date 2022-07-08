@@ -7,11 +7,11 @@ with EinheitenKonstanten;
 
 with LeseEinheitenGebaut;
 with LeseKarten;
-with LeseWichtiges;
 with SchreibeEinheitenGebaut;
 with LeseEinheitenDatenbank;
 
 with EinheitenModifizieren;
+with ForschungAllgemein;
 
 package body AufgabeEinheitVerbessern is
 
@@ -37,9 +37,9 @@ package body AufgabeEinheitVerbessern is
          return False;
          
       elsif
-        False = LeseWichtiges.Erforscht (RasseExtern             => EinheitRasseNummerExtern.Rasse,
-                                         WelcheTechnologieExtern => LeseEinheitenDatenbank.Anforderungen (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                                                          IDExtern    => IDNeueEinheit))
+        False = ForschungAllgemein.TechnologieVorhanden (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                                         TechnologieExtern => LeseEinheitenDatenbank.Anforderungen (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                                                                    IDExtern    => IDNeueEinheit))
       then
          return False;
          

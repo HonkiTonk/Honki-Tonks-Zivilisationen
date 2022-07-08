@@ -56,9 +56,34 @@ package body ForschungAllgemein is
       return To_Wide_Wide_String (Source => BeschreibungText);
       
    end Beschreibung;
+   
+   
+   
+   function TechnologieVorhanden
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      TechnologieExtern : in ForschungenDatentypen.ForschungIDNichtMöglich)
+      return Boolean
+   is begin
+      
+      case
+        TechnologieExtern
+      is
+         when ForschungKonstanten.ForschungUnmöglich =>
+            return False;
+            
+         when ForschungKonstanten.LeerForschungAnforderung =>
+            return True;
+            
+         when others =>
+            return LeseWichtiges.Erforscht (RasseExtern             => RasseExtern,
+                                            WelcheTechnologieExtern => TechnologieExtern);
+      end case;
+            
+   end TechnologieVorhanden;
 
+   
 
-
+   --------------------------------------------- Diesen Teil mal aus ForschungAllgemein auslagern.
    -- Hier noch mehr Optionen einbauen, z. B. Informationen über bereits erforschte Technologien
    procedure Forschung
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

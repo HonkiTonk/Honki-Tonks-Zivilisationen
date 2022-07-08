@@ -55,6 +55,7 @@ package StadtRecords is
 
    type StadtGebautRecord is record
       
+      -- Das über einen Boolean regeln? äöü
       ID : KartenVerbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
       KoordinatenAktuell : KartenRecords.AchsenKartenfeldNaturalRecord;
       EinwohnerArbeiter : EinwohnerArbeiterArray;

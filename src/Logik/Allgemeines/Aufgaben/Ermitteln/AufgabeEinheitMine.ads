@@ -3,9 +3,9 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
+with KartengrundDatentypen; use KartengrundDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
-with KartengrundDatentypen;
 with KartenRecords;
 
 private with AufgabenDatentypen;
@@ -34,7 +34,6 @@ package AufgabeEinheitMine is
 
 private
 
-   ------------------------- Diesen Bool mal in ein konstantes Array umschreiben, so dass man das überall verwenden kann und man zur Prüfung nur noch reinspringen muss.
    VorarbeitNötig : Boolean;
 
    VorhandeneVerbesserung : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
@@ -42,18 +41,17 @@ private
    WelcheArbeit : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
 
    Arbeitszeit : ProduktionDatentypen.ArbeitszeitVorhanden;
-   Grundzeit : ProduktionDatentypen.ArbeitszeitVorhanden := 1;
 
-   Arbeitswerte : EinheitenRecords.ArbeitRecord;
+   Arbeitswerte : EinheitenRecords.ArbeitVorleistungRecord;
 
    VorhandenerGrund : KartenRecords.KartengrundRecord;
 
    function OberflächeLand
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Enum;
+      GrundExtern : in KartenRecords.KartengrundRecord;
       AnlegenTestenExtern : in Boolean;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return EinheitenRecords.ArbeitRecord
+      return EinheitenRecords.ArbeitVorleistungRecord
      with
        Pre => (
                  KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
@@ -63,18 +61,41 @@ private
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
                and
                  SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+               and
+                 (GrundExtern.BasisGrund in KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum'Range
+                  or
+                    GrundExtern.BasisGrund = KartengrundDatentypen.Eis_Enum)
+               and
+                 (GrundExtern.AktuellerGrund in Kartengrund_Oberfläche_Land_Enum'Range
+                  or
+                    GrundExtern.AktuellerGrund = KartengrundDatentypen.Eis_Enum)
               );
 
    function UnterflächeLand
-     (GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum)
-      return EinheitenRecords.ArbeitRecord;
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      GrundExtern : in KartenRecords.KartengrundRecord)
+      return EinheitenRecords.ArbeitVorleistungRecord
+     with
+       Pre => (
+                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+               and
+                 SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+               and
+                 (GrundExtern.BasisGrund in KartengrundDatentypen.Kartengrund_Unterfläche_Landbasis_Enum'Range
+                  or
+                    GrundExtern.BasisGrund = KartengrundDatentypen.Untereis_Enum)
+               and
+                 (GrundExtern.AktuellerGrund in Kartengrund_Unterfläche_Land_Enum'Range
+                  or
+                    GrundExtern.AktuellerGrund = KartengrundDatentypen.Untereis_Enum)
+              );
 
    function UnterflächeWasser
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Wasser_Enum;
+      GrundExtern : in KartenRecords.KartengrundRecord;
       AnlegenTestenExtern : in Boolean;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return EinheitenRecords.ArbeitRecord
+      return EinheitenRecords.ArbeitVorleistungRecord
      with
        Pre => (
                  KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
@@ -84,6 +105,10 @@ private
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
                and
                  SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+               and
+                 GrundExtern.BasisGrund in KartengrundDatentypen.Kartengrund_Unterfläche_Wasserbasis_Enum'Range
+               and
+                 GrundExtern.AktuellerGrund in Kartengrund_Unterfläche_Wasser_Enum'Range
               );
 
    ----------------------- Später Minen für den Kern einbauen?
