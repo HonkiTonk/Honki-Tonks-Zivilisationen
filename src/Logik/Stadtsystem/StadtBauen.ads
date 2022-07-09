@@ -30,6 +30,8 @@ package StadtBauen is
 
 private
 
+   Stadtart : Karten_Verbesserung_Eigene_Städte_Enum;
+
    StadtNummer : StadtDatentypen.MaximaleStädteMitNullWert;
 
    StadtName : SystemRecords.TextEingabeRecord;
@@ -85,7 +87,7 @@ private
 
    function HauptstadtPrüfen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenVerbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum
+      return KartenVerbesserungDatentypen.Karten_Verbesserung_Eigene_Städte_Enum
      with
        Pre => (
                  SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum

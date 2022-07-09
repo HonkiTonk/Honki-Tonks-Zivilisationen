@@ -147,17 +147,17 @@ package ChangelogJuli2022 is
    
    
 
-   -- Version 0.03. => 0.03. (10.07.2022):
+   -- Version 0.03.0390 => 0.03. (10.07.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.0375 => 0.03. (09.07.2022):
+   -- Version 0.03.0375 => 0.03.0390 (09.07.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Angefangen die Stadtartbelegung, -speicherung und -anzeige zu überarbeiten.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 

@@ -183,8 +183,9 @@ package body StadtBauen is
       --------------------------------------- Auch mal vollständig nach SchreibeStadt auslagern.
       SchreibeStadtGebaut.Nullsetzung (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
+      Stadtart := HauptstadtPrüfen (RasseExtern => StadtRasseNummerExtern.Rasse);
       SchreibeStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                              IDExtern               => HauptstadtPrüfen (RasseExtern => StadtRasseNummerExtern.Rasse));
+                              IDExtern               => Stadtart);
       SchreibeStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                        KoordinatenExtern      => KoordinatenExtern);
       SchreibeStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern,
@@ -223,13 +224,16 @@ package body StadtBauen is
             null;
       end case;
       
+      SchreibeKarten.Verbesserung (KoordinatenExtern  => KoordinatenExtern,
+                                   VerbesserungExtern => Stadtart);
+      
    end StadtEintragen;
    
 
 
    function HauptstadtPrüfen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenVerbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum
+      return KartenVerbesserungDatentypen.Karten_Verbesserung_Eigene_Städte_Enum
    is begin
       
       HauptsstadtSchleife:

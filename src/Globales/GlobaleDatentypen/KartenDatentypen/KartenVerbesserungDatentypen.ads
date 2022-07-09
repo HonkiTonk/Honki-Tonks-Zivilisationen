@@ -7,6 +7,8 @@ package KartenVerbesserungDatentypen is
                                      Leer_Verbesserung_Enum,
                                      
                                      -- Städte
+                                     -- Reduzieren auf Hauptstadt und Stadt? äöü
+                                     -- Hauptstadt_Enum, Stadt_Enum,
                                      Eigene_Hauptstadt_Enum, Eigene_Stadt_Enum,
                                      Fremde_Hauptstadt_Enum, Fremde_Stadt_Enum,
                                      

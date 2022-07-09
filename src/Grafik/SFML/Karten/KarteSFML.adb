@@ -413,6 +413,8 @@ package body KarteSFML is
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
+      -- Diese Suche nur dann durchführen, wenn auf der Karte eine Stadt gespeichert ist. äöü
+      -- Außerdem bei den Aufgaben eine Prüfung einbauen ob die Verbesserung eine Stadt ist und dann dementsprechend keine Verbesserung zulassen äöü
       StadtRasseNummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
          
       case
