@@ -166,23 +166,23 @@ package body FarbgebungTerminal is
          Put (Item => EingeleseneGrafikenTerminal.EinheitenGrafik (EigeneRasseExtern, EinheitIDExtern) & CSI & "0m");
         
       elsif
-        VerbesserungExtern in KartenVerbesserungDatentypen.Karten_Verbesserung_Eigene_Städte_Enum'Range
+        VerbesserungExtern in KartenVerbesserungDatentypen.Karten_Verbesserung_Städte_Enum'Range
         and
           RasseExtern = EigeneRasseExtern
       then
          Put (Item => EingeleseneGrafikenTerminal.VerbesserungenGrafik (VerbesserungExtern) & CSI & "0m");
             
       elsif
-        VerbesserungExtern in KartenVerbesserungDatentypen.Karten_Verbesserung_Eigene_Städte_Enum'Range
+        VerbesserungExtern in KartenVerbesserungDatentypen.Karten_Verbesserung_Städte_Enum'Range
       then
          case
            VerbesserungExtern
          is
-            when KartenVerbesserungDatentypen.Eigene_Hauptstadt_Enum =>
-               Put (Item => EingeleseneGrafikenTerminal.VerbesserungenGrafik (KartenVerbesserungDatentypen.Fremde_Hauptstadt_Enum) & CSI & "0m");
+            when KartenVerbesserungDatentypen.Hauptstadt_Enum =>
+               Put (Item => EingeleseneGrafikenTerminal.VerbesserungenGrafik (KartenVerbesserungDatentypen.Hauptstadt_Enum) & CSI & "0m");
                
-            when KartenVerbesserungDatentypen.Eigene_Stadt_Enum =>
-               Put (Item => EingeleseneGrafikenTerminal.VerbesserungenGrafik (KartenVerbesserungDatentypen.Fremde_Stadt_Enum) & CSI & "0m");
+            when KartenVerbesserungDatentypen.Stadt_Enum =>
+               Put (Item => EingeleseneGrafikenTerminal.VerbesserungenGrafik (KartenVerbesserungDatentypen.Stadt_Enum) & CSI & "0m");
                
             when others =>
                null;

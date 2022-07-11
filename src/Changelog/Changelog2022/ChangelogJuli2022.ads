@@ -133,24 +133,25 @@ package ChangelogJuli2022 is
    
    
 
-   -- Version 0.03. => 0.03. (12.07.2022):
+   -- Version 0.03.0430 => 0.03. (12.07.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03. => 0.03. (11.07.2022):
+   -- Version 0.03.0390 => 0.03.0430 (11.07.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Unnötigen Code gelöscht/zusammengefasst.
+   -- StadtID und alle daran hängende Systeme überarbeitet/angepasst.
+   -- Aufgaben überarbeitet.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 
-   -- Version 0.03.0390 => 0.03. (10.07.2022):
+   -- Version 0.03.0390 => 0.03.0390 (10.07.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 

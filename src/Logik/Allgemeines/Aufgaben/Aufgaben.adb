@@ -5,12 +5,14 @@ with EinheitenDatentypen; use EinheitenDatentypen;
 with TastenbelegungDatentypen; use TastenbelegungDatentypen;
 with AufgabenDatentypen; use AufgabenDatentypen;
 with ForschungenDatentypen; use ForschungenDatentypen;
+with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with EinheitenKonstanten;
 with ForschungKonstanten;
 with TextKonstanten;
 
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
+with LeseKarten;
 
 with ForschungAllgemein;
 with Auswahl;
@@ -27,6 +29,7 @@ with AufgabeEinheitVerbessern;
 with AufgabeEinheitAussetzen;
 with AufgabeEinheitVerschanzen;
 with AufgabeEinheitAufloesen;
+with UmwandlungenVerschiedeneDatentypen;
 
 package body Aufgaben is
    
@@ -38,10 +41,11 @@ package body Aufgaben is
    is begin
       
       case
-        Anfangstest (RasseExtern      => EinheitRasseNummerExtern.Rasse,
-                     EinheitartExtern => LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                            IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)),
-                     BefehlExtern     => BefehlExtern)
+        Anfangstest (RasseExtern        => EinheitRasseNummerExtern.Rasse,
+                     EinheitartExtern   => LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                              IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)),
+                     BefehlExtern       => BefehlExtern,
+                     VerbesserungExtern => LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern))
       is
          when True =>
             return AufgabeFestlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -65,10 +69,11 @@ package body Aufgaben is
    is begin
       
       case
-        Anfangstest (RasseExtern      => EinheitRasseNummerExtern.Rasse,
-                     EinheitartExtern => LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                            IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)),
-                     BefehlExtern     => BefehlExtern)
+        Anfangstest (RasseExtern        => EinheitRasseNummerExtern.Rasse,
+                     EinheitartExtern   => LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                              IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)),
+                     BefehlExtern       => BefehlExtern,
+                     VerbesserungExtern => LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern))
       is
          when True =>
             null;
@@ -78,22 +83,22 @@ package body Aufgaben is
       end case;
      
       if
-        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerBeschäftigung
-        or
-          SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
+        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= EinheitenKonstanten.LeerBeschäftigung
+        and
+          SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.KI_Spieler_Enum
       then
-         null;
-         
-      else
          case
-           Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageLandverbesserungErsetzen)
+           Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageBeschäftigungAbbrechen)
          is
             when True =>
                null;
-                     
+               
             when False =>
                return False;
          end case;
+         
+      else
+         null;
       end if;
       
       return AufgabeFestlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -108,9 +113,28 @@ package body Aufgaben is
    function Anfangstest
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       EinheitartExtern : in EinheitenDatentypen.Einheitart_Vorhanden_Enum;
-      BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum)
+      BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum;
+      VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Enum)
       return Boolean
    is begin
+              
+      if
+        BefehlExtern in TastenbelegungDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range
+        and
+          EinheitartExtern /= EinheitenDatentypen.Arbeiter_Enum
+      then
+         return False;
+         
+      elsif
+        BefehlExtern = TastenbelegungDatentypen.Plündern_Enum
+        and
+          EinheitartExtern = EinheitenDatentypen.Arbeiter_Enum
+      then
+         return False;
+         
+      else
+         null;
+      end if;
       
       case
         BefehlExtern
@@ -130,24 +154,40 @@ package body Aufgaben is
             null;
       end case;
       
-      if
-        BefehlExtern in TastenbelegungDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range
-        and
-          EinheitartExtern /= EinheitenDatentypen.Arbeiter_Enum
-      then
-         return False;
-         
-      elsif
-        BefehlExtern = TastenbelegungDatentypen.Plündern_Enum
-        and
-          EinheitartExtern = EinheitenDatentypen.Arbeiter_Enum
-      then
-         return False;
-         
-      else
-         return True;
-      end if;
+      -- Das hier immer berücksichtigen bei einer Änderung von Tastenbelegung_Konstruktionen_Enum.
+      case
+        BefehlExtern
+      is
+         when TastenbelegungDatentypen.Tastenbelegung_Konstruktionen_Enum'Range =>
+            if
+              VerbesserungExtern in KartenVerbesserungDatentypen.Karten_Verbesserung_Städte_Enum'Range
+            then
+               return False;
+               
+            elsif
+              VerbesserungExtern = UmwandlungenVerschiedeneDatentypen.TastenbelegungNachKartenverbesserung (TasteExtern => BefehlExtern)
+            then
+               return False;
+               
+            elsif
+              (SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+               and
+                 VerbesserungExtern /= KartenVerbesserungDatentypen.Leer_Verbesserung_Enum)
+              and then
+                Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageLandverbesserungErsetzen) = False
+            then
+               return False;
+               
+            else
+               null;
+            end if;
             
+         when others =>
+            null;
+      end case;
+      
+      return True;
+                  
    end Anfangstest;
    
 
@@ -162,7 +202,6 @@ package body Aufgaben is
       
       AufgabenAllgemein.Nullsetzung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
-      -- äöü Statt die Koordinaten direkt die Gründe in die Verbesserungen geben?
       case
         BefehlExtern
       is

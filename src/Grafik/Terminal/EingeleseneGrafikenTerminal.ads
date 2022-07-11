@@ -396,10 +396,11 @@ package EingeleseneGrafikenTerminal is
    type VerbesserungenGrafikArray is array (VerbesserungenDatenbank.VerbesserungenlisteArray'Range) of Wide_Wide_Character;
    VerbesserungenGrafik : VerbesserungenGrafikArray := (
                                                         -- Städte
-                                                        KartenVerbesserungDatentypen.Eigene_Hauptstadt_Enum => '♣',
-                                                        KartenVerbesserungDatentypen.Eigene_Stadt_Enum      => '♠',
-                                                        KartenVerbesserungDatentypen.Fremde_Hauptstadt_Enum => '⌂',
-                                                        KartenVerbesserungDatentypen.Fremde_Stadt_Enum      => '¤',
+                                                        KartenVerbesserungDatentypen.Hauptstadt_Enum => '♣',
+                                                        KartenVerbesserungDatentypen.Stadt_Enum      => '♠',
+                                                        -- Veraltet, rassenabhängiges Symbol einbauen? äöü
+                                                        -- KartenVerbesserungDatentypen.Fremde_Hauptstadt_Enum => '⌂',
+                                                        -- KartenVerbesserungDatentypen.Fremde_Stadt_Enum      => '¤',
                                                         -- Städte
       
       
@@ -407,8 +408,7 @@ package EingeleseneGrafikenTerminal is
                                                         -- Gebilde
                                                         KartenVerbesserungDatentypen.Farm_Enum    => 'F',
                                                         KartenVerbesserungDatentypen.Mine_Enum    => 'M',
-                                                        KartenVerbesserungDatentypen.Festung_Enum => 'B',
-                                                        KartenVerbesserungDatentypen.Sperre_Enum  => 'S'
+                                                        KartenVerbesserungDatentypen.Festung_Enum => 'B'
                                                         -- Gebilde
                                                        );
    

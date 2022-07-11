@@ -6,7 +6,7 @@ with KartenRecords;
 
 with Karten;
 
-package UmwandlungenEigenesNachEigenes is
+package UmwandlungenGleicheDatentypen is
 
    function KartenfeldNaturalNachKartenfeldVorhanden
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
@@ -26,4 +26,4 @@ package UmwandlungenEigenesNachEigenes is
                   KartenfeldNaturalNachKartenfeldVorhanden'Result.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
                );
 
-end UmwandlungenEigenesNachEigenes;
+end UmwandlungenGleicheDatentypen;

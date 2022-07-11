@@ -81,14 +81,14 @@ package body StadtInformationenSFML is
       StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
-      -- Diese Anzeige komplett in die Kartenanzeige verschieben? 
+      -- Diese Anzeige komplett in die Kartenanzeige verschieben? äöü
       case
         LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern)
       is
          when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum =>
-            Fehler.GrafikFehler (FehlermeldungExtern => "StadtInformationenSFML.StadtartName - Stadt sollte existieren tut sie aber nicht.");
+            Fehler.GrafikFehler (FehlermeldungExtern => "StadtInformationenSFML.StadtartName - Existierende Stadt existiert nicht.");
             
-         when KartenVerbesserungDatentypen.Eigene_Hauptstadt_Enum =>
+         when KartenVerbesserungDatentypen.Hauptstadt_Enum =>
             if
               RasseExtern = StadtRasseNummerExtern.Rasse
             then
@@ -98,7 +98,7 @@ package body StadtInformationenSFML is
                Stadtart := 3;
             end if;
             
-         when KartenVerbesserungDatentypen.Eigene_Stadt_Enum =>
+         when KartenVerbesserungDatentypen.Stadt_Enum =>
             if
               RasseExtern = StadtRasseNummerExtern.Rasse
             then

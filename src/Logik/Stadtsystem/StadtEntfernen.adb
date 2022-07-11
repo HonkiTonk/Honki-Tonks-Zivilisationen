@@ -107,7 +107,7 @@ package body StadtEntfernen is
       case
         LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern)
       is
-         when KartenVerbesserungDatentypen.Eigene_Hauptstadt_Enum =>
+         when KartenVerbesserungDatentypen.Hauptstadt_Enum =>
             null;
             
          when others =>
@@ -126,7 +126,7 @@ package body StadtEntfernen is
             
          else
             SchreibeStadtGebaut.ID (StadtRasseNummerExtern => (StadtRasseNummerExtern.Rasse, StadtSchleifenwert),
-                                    IDExtern               => KartenVerbesserungDatentypen.Eigene_Hauptstadt_Enum);
+                                    IDExtern               => KartenVerbesserungDatentypen.Hauptstadt_Enum);
             return;
          end if;
          

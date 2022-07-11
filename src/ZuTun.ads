@@ -1,6 +1,7 @@
 -- Womit ich aufgehört habe:
 
--- StadtID könnte auch ein Boolean sein und die ID sollte auf die Karten geschrieben werden, würde diverse Prüfungen vereinfachen und unnötiges Suchen reduzieren.
+-- StadtSuchen anspassen und SpriteGezeichnet auslagern.
+-- Weitere Umwandlungen für Datentypen anlegen.
 
 
 

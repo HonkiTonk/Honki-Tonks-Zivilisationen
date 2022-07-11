@@ -10,7 +10,6 @@ with KartenRecords;
 
 private with AufgabenDatentypen;
 private with ProduktionDatentypen;
-private with KartenVerbesserungDatentypen;
 
 with Karten;
 
@@ -35,8 +34,6 @@ package AufgabeEinheitMine is
 private
 
    VorarbeitNötig : Boolean;
-
-   VorhandeneVerbesserung : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
 
    WelcheArbeit : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
 

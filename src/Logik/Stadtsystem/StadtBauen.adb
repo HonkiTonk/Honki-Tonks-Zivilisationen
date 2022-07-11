@@ -233,7 +233,7 @@ package body StadtBauen is
 
    function HauptstadtPrüfen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenVerbesserungDatentypen.Karten_Verbesserung_Eigene_Städte_Enum
+      return KartenVerbesserungDatentypen.Karten_Verbesserung_Städte_Enum
    is begin
       
       HauptsstadtSchleife:
@@ -242,8 +242,8 @@ package body StadtBauen is
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, HauptstadtSchleifenwert))
          is
-            when KartenVerbesserungDatentypen.Eigene_Hauptstadt_Enum =>
-               return KartenVerbesserungDatentypen.Eigene_Stadt_Enum;
+            when KartenVerbesserungDatentypen.Hauptstadt_Enum =>
+               return KartenVerbesserungDatentypen.Stadt_Enum;
                
             when others =>
                null;
@@ -251,7 +251,7 @@ package body StadtBauen is
          
       end loop HauptsstadtSchleife;
       
-      return KartenVerbesserungDatentypen.Eigene_Hauptstadt_Enum;
+      return KartenVerbesserungDatentypen.Hauptstadt_Enum;
       
    end HauptstadtPrüfen;
    

@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-package body UmwandlungenEigenesNachEigenes is
+package body UmwandlungenGleicheDatentypen is
 
    function KartenfeldNaturalNachKartenfeldVorhanden
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
@@ -18,6 +18,6 @@ package body UmwandlungenEigenesNachEigenes is
    -- function TastenbelegungNachAufgaben
   --   (BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum)
    --   return AufgabenDatentypen.Einheiten_Aufgabe_Vorhanden_Enum
-   -- is begin
+  -- is begin
 
-end UmwandlungenEigenesNachEigenes;
+end UmwandlungenGleicheDatentypen;

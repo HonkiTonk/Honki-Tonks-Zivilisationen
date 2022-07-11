@@ -204,4 +204,11 @@ private
                  KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Karteneinstellungen.Kartengröße.XAchse
               );
 
+
+
+   function SpriteGezeichnet
+     (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
+      return Boolean;
+
 end KarteStadtSFML;

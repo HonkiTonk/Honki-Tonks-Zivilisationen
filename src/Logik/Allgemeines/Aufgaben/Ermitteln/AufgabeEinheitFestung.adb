@@ -1,16 +1,13 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
-with TextKonstanten;
 with EinheitenKonstanten;
 
 with SchreibeEinheitenGebaut;
 with LeseKarten;
 
 with Fehler;
-with Auswahl;
 with AufgabenArbeitszeitFestung;
 with Grenzpruefungen;
 
@@ -34,33 +31,9 @@ package body AufgabeEinheitFestung is
          return False;
          
       else
-         VorhandeneVerbesserung := LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern);
-      end if;
-      
-      if
-        VorhandeneVerbesserung = KartenVerbesserungDatentypen.Festung_Enum
-      then
-         return False;
-
-      elsif
-        VorhandeneVerbesserung in KartenVerbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum'Range
-        and
-          SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
-      then
-         case
-           Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageLandverbesserungErsetzen)
-         is
-            when True =>
-               null;
-                     
-            when False =>
-               return False;
-         end case;
-
-      else
          null;
       end if;
-    
+                
       case
         VorhandenerGrund.AktuellerGrund
       is

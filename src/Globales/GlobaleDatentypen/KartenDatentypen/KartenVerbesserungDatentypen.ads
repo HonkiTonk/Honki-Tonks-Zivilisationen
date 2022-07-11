@@ -7,25 +7,20 @@ package KartenVerbesserungDatentypen is
                                      Leer_Verbesserung_Enum,
                                      
                                      -- Städte
-                                     -- Reduzieren auf Hauptstadt und Stadt? äöü
-                                     -- Hauptstadt_Enum, Stadt_Enum,
-                                     Eigene_Hauptstadt_Enum, Eigene_Stadt_Enum,
-                                     Fremde_Hauptstadt_Enum, Fremde_Stadt_Enum,
+                                     Hauptstadt_Enum, Stadt_Enum,
                                      
                                      -- Gebilde
                                      Farm_Enum, Mine_Enum,
-                                     Festung_Enum, Sperre_Enum
+                                     Festung_Enum
                                     );
    
-   subtype Karten_Verbesserung_Vorhanden_Enum is Karten_Verbesserung_Enum range Eigene_Hauptstadt_Enum .. Karten_Verbesserung_Enum'Last;
+   subtype Karten_Verbesserung_Vorhanden_Enum is Karten_Verbesserung_Enum range Hauptstadt_Enum .. Karten_Verbesserung_Enum'Last;
 
-   subtype Karten_Verbesserung_Stadt_ID_Enum is Karten_Verbesserung_Enum range Leer_Verbesserung_Enum .. Eigene_Stadt_Enum;
-   subtype Karten_Verbesserung_Städte_Enum is Karten_Verbesserung_Vorhanden_Enum range Eigene_Hauptstadt_Enum .. Fremde_Stadt_Enum;
-   subtype Karten_Verbesserung_Eigene_Städte_Enum is Karten_Verbesserung_Städte_Enum range Eigene_Hauptstadt_Enum .. Eigene_Stadt_Enum;
-   subtype Karten_Verbesserung_Fremde_Städte_Enum is Karten_Verbesserung_Städte_Enum range Fremde_Hauptstadt_Enum .. Fremde_Stadt_Enum;
-   subtype Karten_Verbesserung_Gebilde_Enum is Karten_Verbesserung_Vorhanden_Enum range Farm_Enum .. Sperre_Enum;
+   subtype Karten_Verbesserung_Stadt_ID_Enum is Karten_Verbesserung_Enum range Leer_Verbesserung_Enum .. Stadt_Enum;
+   subtype Karten_Verbesserung_Städte_Enum is Karten_Verbesserung_Stadt_ID_Enum range Hauptstadt_Enum .. Stadt_Enum;
+   subtype Karten_Verbesserung_Gebilde_Enum is Karten_Verbesserung_Vorhanden_Enum range Farm_Enum .. Festung_Enum;
    subtype Karten_Verbesserung_Gebilde_Friedlich_Enum is Karten_Verbesserung_Gebilde_Enum range Farm_Enum .. Mine_Enum;
-   subtype Karten_Verbesserung_Gebilde_Kampf_Enum is Karten_Verbesserung_Gebilde_Enum range Festung_Enum .. Sperre_Enum;
+   subtype Karten_Verbesserung_Gebilde_Kampf_Enum is Karten_Verbesserung_Gebilde_Enum range Festung_Enum .. Festung_Enum;
    
    
    

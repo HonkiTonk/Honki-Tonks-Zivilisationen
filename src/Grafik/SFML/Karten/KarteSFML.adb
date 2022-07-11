@@ -373,6 +373,7 @@ package body KarteSFML is
    
    
    
+   -- Verbesserung und Stadt zeichnen zusammenführen, müsste mit dem neuen System gehen. äöü
    procedure VerbesserungZeichnen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
@@ -414,19 +415,18 @@ package body KarteSFML is
    is begin
       
       -- Diese Suche nur dann durchführen, wenn auf der Karte eine Stadt gespeichert ist. äöü
-      -- Außerdem bei den Aufgaben eine Prüfung einbauen ob die Verbesserung eine Stadt ist und dann dementsprechend keine Verbesserung zulassen äöü
-      StadtRasseNummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
-         
+      -- Dieses ganze Suchen- und Speichernsystem mal überarbeiten. äöü
       case
-        StadtRasseNummer.Nummer
+        LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern)
       is
-         when StadtKonstanten.LeerNummer =>
-            return;
-         
-         when others =>
+         when KartenVerbesserungDatentypen.Karten_Verbesserung_Städte_Enum'Range =>
+            StadtRasseNummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
             Stadtart := LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummer);
+            
+         when others =>
+            return;
       end case;
-      
+            
       case
         SpriteGezeichnet (TexturAccessExtern => EingeleseneTexturenSFML.VerbesserungenAccess (Stadtart),
                           PositionExtern     => PositionExtern)
@@ -436,7 +436,7 @@ package body KarteSFML is
             
          when False =>
             if
-              Stadtart = KartenVerbesserungDatentypen.Eigene_Hauptstadt_Enum
+              Stadtart = KartenVerbesserungDatentypen.Hauptstadt_Enum
             then
                ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00,
                                                     PositionExtern      => PositionExtern,
@@ -445,7 +445,7 @@ package body KarteSFML is
                                                     PolygonAccessExtern => PolygonAccess);
                
             elsif
-              Stadtart = KartenVerbesserungDatentypen.Eigene_Stadt_Enum
+              Stadtart = KartenVerbesserungDatentypen.Stadt_Enum
             then
                ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 3.00,
                                                     PositionExtern      => PositionExtern,
@@ -456,6 +456,8 @@ package body KarteSFML is
             else
                Fehler.GrafikFehler (FehlermeldungExtern => "KarteSFML.AnzeigeStadt - Vorhandene Stadt ist nicht vorhanden.");
             end if;
+            
+            Warnung.GrafikWarnung (WarnmeldungExtern => "KarteSFML.AnzeigeStadt - Sprite nicht vorhanden: " & StadtRasseNummer.Rasse'Wide_Wide_Image & " - " & Stadtart'Wide_Wide_Image);
       end case;
       
    end AnzeigeStadt;

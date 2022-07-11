@@ -74,7 +74,7 @@ package body StadtInformationenTerminal is
          when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum =>
             Fehler.GrafikFehler (FehlermeldungExtern => "StadtInformationenTerminal.StadtArtBesitzer - Stadt sollte existieren tut sie aber nicht.");
             
-         when KartenVerbesserungDatentypen.Eigene_Hauptstadt_Enum =>
+         when KartenVerbesserungDatentypen.Hauptstadt_Enum =>
             if
               RasseExtern = StadtRasseNummerExtern.Rasse
             then
@@ -84,7 +84,7 @@ package body StadtInformationenTerminal is
                Stadtart := 3;
             end if;
                   
-         when KartenVerbesserungDatentypen.Eigene_Stadt_Enum =>
+         when KartenVerbesserungDatentypen.Stadt_Enum =>
             if
               RasseExtern = StadtRasseNummerExtern.Rasse
             then

@@ -9,7 +9,6 @@ with SpielVariablen;
 with KartenRecords;
 
 private with AufgabenDatentypen;
-private with KartenVerbesserungDatentypen;
 private with ProduktionDatentypen;
 
 with Karten;
@@ -35,8 +34,6 @@ package AufgabeEinheitFestung is
 private
 
    WelcheArbeit : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
-
-   VorhandeneVerbesserung : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
 
    Arbeitszeit : ProduktionDatentypen.ArbeitszeitVorhanden;
    Grundzeit : ProduktionDatentypen.ArbeitszeitVorhanden := 1;

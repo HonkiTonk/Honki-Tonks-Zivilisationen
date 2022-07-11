@@ -1,10 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
 with EinheitenRecordKonstanten;
-with TextKonstanten;
 with EinheitenKonstanten;
 
 with SchreibeEinheitenGebaut;
@@ -12,7 +10,6 @@ with LeseKarten;
 
 with AufgabeEinheitRoden;
 with Fehler;
-with Auswahl;
 with AufgabenArbeitszeitFarm;
 with Grenzpruefungen;
 
@@ -36,35 +33,18 @@ package body AufgabeEinheitFarm is
          return False;
          
       else
-         VorhandeneVerbesserung := LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern);
+         null;
       end if;
 
       if
-        VorhandeneVerbesserung = KartenVerbesserungDatentypen.Farm_Enum
-        or
-          VorhandenerGrund.BasisGrund = KartengrundDatentypen.Eis_Enum
+        VorhandenerGrund.BasisGrund = KartengrundDatentypen.Eis_Enum
       then
          return False;
-
-      elsif
-        VorhandeneVerbesserung in KartenVerbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum'Range
-        and
-          SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
-      then
-         case
-           Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageLandverbesserungErsetzen)
-         is
-            when True =>
-               null;
-               
-            when False =>
-               return False;
-         end case;
 
       else
          null;
       end if;
-        
+      
       case
         VorhandenerGrund.AktuellerGrund
       is

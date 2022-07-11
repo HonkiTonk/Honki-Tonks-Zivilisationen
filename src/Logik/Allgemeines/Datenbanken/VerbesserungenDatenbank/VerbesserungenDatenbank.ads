@@ -20,10 +20,11 @@ package VerbesserungenDatenbank is
    procedure StandardWegeDatenbankLaden;
       
 private
-         
+   
+   -- Rassenabhängige Stadtgrafiken erstellen? äöü
    VerbesserungenlisteStandard : constant VerbesserungenlisteArray := (
                                                                        -- Städte
-                                                                       KartenVerbesserungDatentypen.Eigene_Hauptstadt_Enum =>
+                                                                       KartenVerbesserungDatentypen.Hauptstadt_Enum =>
                                                                          (
                                                                           Passierbarkeit     => (others => True),
                                                                           Bewertung          => (others => 1),
@@ -31,23 +32,7 @@ private
                                                                           Kampf              => (others => (others => 1))
                                                                          ),
                                                   
-                                                                       KartenVerbesserungDatentypen.Eigene_Stadt_Enum =>
-                                                                         (
-                                                                          Passierbarkeit     => (others => True),
-                                                                          Bewertung          => (others => 1),
-                                                                          Wirtschaft         => (others => (others => 1)),
-                                                                          Kampf              => (others => (others => 1))
-                                                                         ),
-                                                  
-                                                                       KartenVerbesserungDatentypen.Fremde_Hauptstadt_Enum =>
-                                                                         (
-                                                                          Passierbarkeit     => (others => True),
-                                                                          Bewertung          => (others => 1),
-                                                                          Wirtschaft         => (others => (others => 1)),
-                                                                          Kampf              => (others => (others => 1))
-                                                                         ),
-                                                  
-                                                                       KartenVerbesserungDatentypen.Fremde_Stadt_Enum =>
+                                                                       KartenVerbesserungDatentypen.Stadt_Enum =>
                                                                          (
                                                                           Passierbarkeit     => (others => True),
                                                                           Bewertung          => (others => 1),
@@ -57,7 +42,7 @@ private
                                                                          -- Städte
       
       
-                                                  
+                                                                       
                                                                        -- Gebilde
                                                                        KartenVerbesserungDatentypen.Farm_Enum =>
                                                                          (
@@ -85,16 +70,6 @@ private
                                                                          (
                                                                           Passierbarkeit     => (EinheitenDatentypen.Boden_Enum    => True,
                                                                                                  EinheitenDatentypen.Luft_Enum     => True,
-                                                                                                 EinheitenDatentypen.Weltraum_Enum => True,
-                                                                                                 others                               => False),
-                                                                          Bewertung          => (others => 1),
-                                                                          Wirtschaft         => (others => (others => 1)),
-                                                                          Kampf              => (others => (others => 1))
-                                                                         ),
-                                                  
-                                                                       KartenVerbesserungDatentypen.Sperre_Enum =>
-                                                                         (
-                                                                          Passierbarkeit     => (EinheitenDatentypen.Luft_Enum     => True,
                                                                                                  EinheitenDatentypen.Weltraum_Enum => True,
                                                                                                  others                               => False),
                                                                           Bewertung          => (others => 1),
