@@ -43,7 +43,9 @@ package StadtInformationenSFML is
               );
    
 private
-      
+   
+   VolleInformation : Boolean;
+   
    Stadtart : Positive;
    
    Zeilenabstand : Float;

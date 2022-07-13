@@ -168,17 +168,8 @@ package body GrafikSFML is
          when GrafikDatentypen.Grafik_Pause_Enum =>
             delay ZeitKonstanten.WartezeitGrafik;
             
-         when GrafikDatentypen.Grafik_Generierungszeit_Enum =>
-            LadezeitenSFML.SpielweltErstellen;
-            
-         when GrafikDatentypen.Grafik_KI_Rechenzeit_Enum =>
-            LadezeitenSFML.KIRechnet;
-            
-         when GrafikDatentypen.Grafik_Rundenende_Enum =>
-            LadezeitenSFML.Rundenende;
-            
-         when GrafikDatentypen.Grafik_Speichern_Laden_Enum =>
-            LadezeitenSFML.SpeichernLaden;
+         when GrafikDatentypen.Ladezeiten_Enum'Range =>
+            LadezeitenSFML.LadezeitenSFML (WelcheLadeanzeigeExtern => InteraktionGrafiktask.AktuelleDarstellung);
          
          when GrafikDatentypen.Grafik_Menüs_Enum =>
             AktuellesMenü := InteraktionGrafiktask.AktuellesMenü;

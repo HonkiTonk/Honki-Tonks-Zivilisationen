@@ -31,7 +31,39 @@ package AllgemeineTextBerechnungenSFML is
               );
    
    function HalbeBildschirmhöhe
-     return Float;
+     return Float
+     with
+       Post => (
+                  HalbeBildschirmhöhe'Result > 0.00
+               );
+   
+   function AbstandZeilen
+     return Float
+     with
+       Post => (
+                  AbstandZeilen'Result > 0.00
+               );
+   
+   function AbstandZeilenGroß
+     return Float
+     with
+       Post => (
+                  AbstandZeilenGroß'Result > 0.00
+               );
+   
+   function AbstandÜberschrift
+     return Float
+     with
+       Post => (
+                  AbstandÜberschrift'Result > 0.00
+               );
+   
+   function AbstandÜberschriftGroß
+     return Float
+     with
+       Post => (
+                  AbstandÜberschriftGroß'Result > 0.00
+               );
    
 private
    

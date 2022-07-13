@@ -14,6 +14,7 @@ package GrafikDatentypen is
                                              Grafik_Ende_Enum
                                             );
    
+   subtype Ladezeiten_Enum is Grafik_Aktuelle_Darstellung_Enum range Grafik_Generierungszeit_Enum .. Grafik_Speichern_Laden_Enum;
    subtype Anzeige_Art_Enum is Grafik_Aktuelle_Darstellung_Enum range Grafik_Terminal_Enum .. Grafik_SFML_Enum;
    subtype Editoren_Anzeigen_Enum is Grafik_Aktuelle_Darstellung_Enum range Grafik_Editoren_Enum .. Grafik_Editoren_Enum;
    

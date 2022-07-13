@@ -126,17 +126,19 @@ package ChangelogJuli2022 is
    
    
 
-   -- Version 0.03. => 0.03. (13.07.2022):
+   -- Version 0.03.0430 => 0.03.0480 (13.07.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Unnötigen Code gelöscht.
+   -- Code zusammengeführt.
+   -- Fehler in der Textanzeige der Karteninformationen behoben.
+   -- Angefangen Teile der Textanzeige zu überarbeiten.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 
-   -- Version 0.03.0430 => 0.03. (12.07.2022):
+   -- Version 0.03.0430 => 0.03.0430 (12.07.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 

@@ -21,7 +21,7 @@ package body AllgemeineTextBerechnungenSFML is
          return Position;
          
       else
-         -- Hier später ein Fehler.GrafikStopp einbauen?
+         -- Hier später ein Fehler.GrafikStopp einbauen? äöü
          return Position;
       end if;
       
@@ -54,7 +54,7 @@ package body AllgemeineTextBerechnungenSFML is
          return Position;
          
       else
-         -- Hier später ein Fehler.GrafikStopp einbauen?
+         -- Hier später ein Fehler.GrafikStopp einbauen? äöü
          return Position;
       end if;
       
@@ -73,7 +73,7 @@ package body AllgemeineTextBerechnungenSFML is
    
    
    
-   ---------------------- In was Anderes auslagern.
+   -- In was Anderes auslagern. äöü
    function HalbeBildschirmhöhe
      return Float
    is begin
@@ -81,5 +81,45 @@ package body AllgemeineTextBerechnungenSFML is
       return Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y) / 2.00;
       
    end HalbeBildschirmhöhe;
+   
+   
+   
+   function AbstandZeilen
+     return Float
+   is begin
+      
+      return 0.20 * Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
+      
+   end AbstandZeilen;
+   
+   
+   
+   function AbstandZeilenGroß
+     return Float
+   is begin
+      
+      return 0.50 * Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
+      
+   end AbstandZeilenGroß;
+   
+   
+   
+   function AbstandÜberschrift
+     return Float
+   is begin
+      
+      return 3.00 * Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeÜberschrift);
+      
+   end AbstandÜberschrift;
+   
+   
+   
+   function AbstandÜberschriftGroß
+     return Float
+   is begin
+      
+      return 5.00 * Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeÜberschrift);
+      
+   end AbstandÜberschriftGroß;
 
 end AllgemeineTextBerechnungenSFML;

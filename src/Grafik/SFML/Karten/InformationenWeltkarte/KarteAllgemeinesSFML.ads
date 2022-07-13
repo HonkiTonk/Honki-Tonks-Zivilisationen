@@ -7,7 +7,6 @@ with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
 
 private with KartenRecords;
-private with KartenRecordKonstanten;
 private with KartengrundDatentypen;
 private with KartenVerbesserungDatentypen;
 private with TextaccessVariablen;
@@ -34,9 +33,6 @@ package KarteAllgemeinesSFML is
                );
    
 private
-
-   KartenGrund : KartengrundDatentypen.Kartengrund_Enum;
-   BasisGrund : KartengrundDatentypen.Kartengrund_Enum;
    
    KartenFluss : KartengrundDatentypen.Kartenfluss_Enum;
    
@@ -46,8 +42,9 @@ private
    KartenWeg : KartenVerbesserungDatentypen.Karten_Weg_Enum;
    
    Zeilenabstand : Float;
+   
+   VorhandenerGrund : KartenRecords.KartengrundRecord;
 
-   LetzteKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord := KartenRecordKonstanten.LeerKoordinate;
    AktuelleKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    Textposition : Sf.System.Vector2.sfVector2f;

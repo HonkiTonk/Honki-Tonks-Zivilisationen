@@ -17,8 +17,9 @@ with KarteAllgemeinesSFML;
 
 package body KarteInformationenSFML is
 
-   ------------------------ Den gesamten Text auf einem eigenen View schreiben und dann anzeigen. Damit sollte dann die Skalierung des Textes einfach? funktionieren.
-   ------------------------ Das dann überall so machen und die Views in einer Datei schreiben um sie von der Grafik jederzeit in beliebiger Mischung anzeigen zu können?
+   -- Den gesamten Text auf einem eigenen View schreiben und dann anzeigen. Damit sollte dann die Skalierung des Textes einfach? funktionieren. äöü
+   -- Das dann überall so machen und die Views in einer Datei schreiben um sie von der Grafik jederzeit in beliebiger Mischung anzeigen zu können? äöü
+   -- Diese ganzen Prüfungen in den Unterbereichen rauswerfen und immer alles neu berechnen lassen? äöü
    procedure KarteInformationenSFML
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
@@ -45,7 +46,7 @@ package body KarteInformationenSFML is
          when True =>
             Textposition := KarteAllgemeinesSFML.AllgemeineInformationen (RasseExtern        => RasseExtern,
                                                                           TextpositionExtern => Textposition);
-            Textposition.y := Textposition.y + 5.00 * Zeilenabstand;
+            Textposition.y := Textposition.y + 3.00 * Zeilenabstand;
             
             StadtInformationen (RasseExtern => RasseExtern);
               
@@ -77,7 +78,7 @@ package body KarteInformationenSFML is
             Textposition := StadtInformationenSFML.Stadt (RasseExtern            => RasseExtern,
                                                           StadtRasseNummerExtern => StadtRasseNummer,
                                                           AnzeigeAnfangenExtern  => Textposition);
-            Textposition.y := Textposition.y + 5.00 * Zeilenabstand;
+            Textposition.y := Textposition.y + 3.00 * Zeilenabstand;
       end case;
       
    end StadtInformationen;

@@ -34,6 +34,7 @@ package InformationenEinheitenSFML is
 private
       
    ErsteAnzeige : Boolean;
+   VolleInformation : Boolean;
    
    IDEinheit : EinheitenDatentypen.EinheitenID;
    

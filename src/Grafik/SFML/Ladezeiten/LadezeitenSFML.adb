@@ -6,7 +6,6 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Text;
 
-with GrafikDatentypen;
 with GlobaleTexte;
 
 with HintergrundSFML;
@@ -18,19 +17,54 @@ with InteraktionGrafiktask;
 with RassenAllgemein;
 
 package body LadezeitenSFML is
+   
+   procedure LadezeitenSFML
+     (WelcheLadeanzeigeExtern : in GrafikDatentypen.Ladezeiten_Enum)
+   is begin
+      
+      HintergrundSFML.StandardHintergrund (StandardHintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum);
+      StandardsFestlegen;
+      
+      case
+        WelcheLadeanzeigeExtern
+      is
+         when GrafikDatentypen.Grafik_Generierungszeit_Enum =>
+            SpielweltErstellen;
+            
+         when GrafikDatentypen.Grafik_KI_Rechenzeit_Enum =>
+            KIRechnet;
+            
+         when GrafikDatentypen.Grafik_Rundenende_Enum =>
+            Rundenende;
+            
+         when GrafikDatentypen.Grafik_Speichern_Laden_Enum =>
+            SpeichernLaden;
+      end case;
+      
+   end LadezeitenSFML;
+   
+   
+   
+   procedure StandardsFestlegen
+   is begin
+      
+      ZeilenAbstand := 0.50 * Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
+      AktuelleTextposition.y := 20.00;
+      
+   end StandardsFestlegen;
+   
+   
 
    procedure SpielweltErstellen
    is begin
-      
-      StandardsFestlegen;
-      
+            
       WelcheZeit := TextaccessVariablen.LadezeitenAccess'First;
       AktuelleTextposition.x := AllgemeineTextBerechnungenSFML.TextMittelPositionErmitteln (TextAccessExtern => TextaccessVariablen.LadezeitenAccess (WelcheZeit));
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
                                     position => (AktuelleTextposition));
       
-      AktuelleTextposition.y := AktuelleTextposition.y + 3.00 * Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.LadezeitenAccess (WelcheZeit)).height + ZeilenAbstand;
+      AktuelleTextposition.y := AktuelleTextposition.y + AllgemeineTextBerechnungenSFML.AbstandÜberschrift;
             
       SpielweltErstellenSchleife:
       for SpielweltErstellenSchleifenwert in LadezeitenDatentypen.Spielwelt_Erstellen_Enum'Range loop
@@ -83,7 +117,7 @@ package body LadezeitenSFML is
             return;
             
          when others =>
-            StandardsFestlegen;
+            null;
       end case;
             
       WelcheZeit := TextaccessVariablen.KIZeitenAccess'First;
@@ -144,9 +178,7 @@ package body LadezeitenSFML is
    
    procedure Rundenende
    is begin
-      
-      StandardsFestlegen;
-            
+                  
       AktuelleTextposition.x := AllgemeineTextBerechnungenSFML.TextMittelPositionErmitteln (TextAccessExtern => TextaccessVariablen.RundenendeAccess (TextaccessVariablen.RundenendeAccess'First));
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.RundenendeAccess (TextaccessVariablen.RundenendeAccess'First),
@@ -176,9 +208,7 @@ package body LadezeitenSFML is
    
    procedure SpeichernLaden
    is begin
-      
-      StandardsFestlegen;
-            
+                  
       AktuelleTextposition.x := AllgemeineTextBerechnungenSFML.TextMittelPositionErmitteln (TextAccessExtern => TextaccessVariablen.SpeichernLadenAccess (TextaccessVariablen.SpeichernLadenAccess'First));
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.SpeichernLadenAccess (TextaccessVariablen.SpeichernLadenAccess'First),
@@ -203,16 +233,5 @@ package body LadezeitenSFML is
       end loop TextanzeigeSchleife;
       
    end SpeichernLaden;
-   
-   
-   
-   procedure StandardsFestlegen
-   is begin
-      
-      HintergrundSFML.StandardHintergrund (StandardHintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum);
-      ZeilenAbstand := 0.50 * Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
-      AktuelleTextposition.y := 20.00;
-      
-   end StandardsFestlegen;
 
 end LadezeitenSFML;

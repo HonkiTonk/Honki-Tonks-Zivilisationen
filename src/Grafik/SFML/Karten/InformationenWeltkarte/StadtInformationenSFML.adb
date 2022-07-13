@@ -57,16 +57,27 @@ package body StadtInformationenSFML is
          EinwohnerOhneArbeit (StadtRasseNummerExtern => StadtRasseNummerExtern);
                         
          AktuellesBauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern);
+         
+         VolleInformation := True;
 
       else
-         null;
+         VolleInformation := False;
       end if;
       
       TextSchleife:
       for TextSchleifenwert in TextaccessVariablen.StadtInformationenAccessArray'Range loop
          
-         Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                            text         => TextaccessVariablen.StadtInformationenAccess (TextSchleifenwert));
+         if
+           VolleInformation = False
+           and
+             TextSchleifenwert > 2
+         then
+            exit TextSchleife;
+            
+         else
+            Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                               text         => TextaccessVariablen.StadtInformationenAccess (TextSchleifenwert));
+         end if;
          
       end loop TextSchleife;
       

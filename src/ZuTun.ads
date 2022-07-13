@@ -1,7 +1,7 @@
 -- Womit ich aufgehört habe:
 
--- StadtSuchen anspassen und SpriteGezeichnet auslagern.
--- Weitere Umwandlungen für Datentypen anlegen.
+-- Weitere Umwandlungen für Datentypen anlegen?
+-- textanzeige weiter überarbeiten, Abstände über die Funktionen regeln.
 
 
 

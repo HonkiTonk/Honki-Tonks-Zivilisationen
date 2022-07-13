@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+-- with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics;
@@ -55,8 +55,10 @@ package body InformationenEinheitenSFML is
          AktuellerAngriff (EinheitRasseNummerExtern => EinheitRasseNummer);
          Ladung (EinheitRasseNummerExtern => EinheitRasseNummer);
          
+         VolleInformation := True;
+         
       else
-         null;
+         VolleInformation := False;
       end if;
       
       DebugInformationen (EinheitRasseNummerExtern => EinheitRasseNummer);
@@ -64,8 +66,17 @@ package body InformationenEinheitenSFML is
       TextSchleife:
       for TextSchleifenwert in TextaccessVariablen.EinheitenInformationenAccessArray'Range loop
          
-         Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                            text         => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert));
+         if
+           VolleInformation = False
+           and
+             TextSchleifenwert > 2
+         then
+            exit TextSchleife;
+            
+         else
+            Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                               text         => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert));
+         end if;
          
       end loop TextSchleife;
       
@@ -408,8 +419,9 @@ package body InformationenEinheitenSFML is
             if
               SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Mensch_Spieler_Enum
             then
-               Put_Line (LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern)'Wide_Wide_Image & "    "
-                         & LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)'Wide_Wide_Image);
+               null;
+               -- Put_Line (LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern)'Wide_Wide_Image & "    "
+               --          & LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)'Wide_Wide_Image);
                
             else
                null;

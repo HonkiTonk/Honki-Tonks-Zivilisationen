@@ -128,16 +128,6 @@ private
                  KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
               );
 
-   procedure AnzeigeStadt
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      PositionExtern : in Sf.System.Vector2.sfVector2f)
-     with
-       Pre => (
-                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-               and
-                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
-              );
-
    procedure AnzeigeEinheit
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord;
@@ -256,12 +246,5 @@ private
                and
                  KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
               );
-   
-   
-   
-   function SpriteGezeichnet
-     (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
-      PositionExtern : in Sf.System.Vector2.sfVector2f)
-      return Boolean;
 
 end KarteSFML;

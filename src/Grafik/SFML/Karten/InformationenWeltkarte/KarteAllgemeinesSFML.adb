@@ -27,45 +27,31 @@ package body KarteAllgemeinesSFML is
       
       AktuelleKoordinaten := SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell;
       
-      KartenGrund := LeseKarten.AktuellerGrund (KoordinatenExtern => AktuelleKoordinaten);
-      BasisGrund := LeseKarten.BasisGrund (KoordinatenExtern => AktuelleKoordinaten);
+      VorhandenerGrund := LeseKarten.VorhandenerGrund (KoordinatenExtern => AktuelleKoordinaten);
       
       TextAnzeigen (1) := True;
       
       if
-        BasisGrund = KartenGrund
+        VorhandenerGrund.BasisGrund = VorhandenerGrund.AktuellerGrund
       then
-         if
-           AktuelleKoordinaten /= LetzteKoordinaten
-         then
-            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (1),
-                                               str  => KartenAllgemein.BeschreibungBasisgrund (KartenGrundExtern => KartenGrund));
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (1),
+                                            str  => KartenAllgemein.BeschreibungBasisgrund (KartenGrundExtern => VorhandenerGrund.AktuellerGrund));
             
-            Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteAllgemeinesAccess (1),
-                                          position => Textposition);
-            
-         else
-            null;
-         end if;
+         Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteAllgemeinesAccess (1),
+                                       position => Textposition);
          
       else
-         if
-           AktuelleKoordinaten /= LetzteKoordinaten
-         then
-            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (1),
-                                               str  => KartenAllgemein.BeschreibungBasisgrund (KartenGrundExtern => BasisGrund) & " - " & KartenAllgemein.BeschreibungZusatzgrund (KartenGrundExtern => KartenGrund));
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (1),
+                                            str  => KartenAllgemein.BeschreibungBasisgrund (KartenGrundExtern => VorhandenerGrund.BasisGrund) & " - "
+                                            & KartenAllgemein.BeschreibungZusatzgrund (KartenGrundExtern => VorhandenerGrund.AktuellerGrund));
       
-            Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteAllgemeinesAccess (1),
-                                          position => Textposition);
-         
-         else
-            null;
-         end if;
+         Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteAllgemeinesAccess (1),
+                                       position => Textposition);
       end if;
-         
-      -- Textposition.x := Textposition.x + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteAllgemeinesAccess (1)).width + 5.00;      
       
-      Textposition.x := TextpositionExtern.x;
+      -- Textposition.x := Textposition.x + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteAllgemeinesAccess (1)).width + 5.00;      
+      -- Textposition.x := TextpositionExtern.x;
+      
       Textposition.y := Textposition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteAllgemeinesAccess (1)).height;
       
       
@@ -81,18 +67,11 @@ package body KarteAllgemeinesSFML is
          when others =>
             TextAnzeigen (2) := True;
             
-            if
-              AktuelleKoordinaten /= LetzteKoordinaten
-            then
-               Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (2),
-                                                  str  =>
-                                                    KartenAllgemein.BeschreibungRessource (KartenRessourceExtern => KartenRessource));
-               Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteAllgemeinesAccess (2),
-                                             position => Textposition);
-               
-            else
-               null;
-            end if;
+            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (2),
+                                               str  =>
+                                                  KartenAllgemein.BeschreibungRessource (KartenRessourceExtern => KartenRessource));
+            Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteAllgemeinesAccess (2),
+                                          position => Textposition);
       
             Textposition.y := Textposition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteAllgemeinesAccess (2)).height;
       end case;
@@ -110,18 +89,11 @@ package body KarteAllgemeinesSFML is
          when others =>
             TextAnzeigen (3) := True;
             
-            if
-              AktuelleKoordinaten /= LetzteKoordinaten
-            then
-               Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (3),
-                                                  str  => AufgabenAllgemein.BeschreibungVerbesserung (KartenVerbesserungExtern => KartenVerbesserung));
-               Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteAllgemeinesAccess (3),
-                                             position => Textposition);
-               
-            else
-               null;
-            end if;
-      
+            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (3),
+                                               str  => AufgabenAllgemein.BeschreibungVerbesserung (KartenVerbesserungExtern => KartenVerbesserung));
+            Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteAllgemeinesAccess (3),
+                                          position => Textposition);
+            
             Textposition.y := Textposition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteAllgemeinesAccess (3)).height;
       end case;
       
@@ -138,17 +110,10 @@ package body KarteAllgemeinesSFML is
          when others =>
             TextAnzeigen (4) := True;
             
-            if
-              AktuelleKoordinaten /= LetzteKoordinaten
-            then
-               Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (4),
-                                                  str  => AufgabenAllgemein.BeschreibungWeg (KartenWegExtern => KartenWeg));
-               Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteAllgemeinesAccess (4),
-                                             position => Textposition);
-               
-            else
-               null;
-            end if;
+            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (4),
+                                               str  => AufgabenAllgemein.BeschreibungWeg (KartenWegExtern => KartenWeg));
+            Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteAllgemeinesAccess (4),
+                                          position => Textposition);
       
             Textposition.y := Textposition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteAllgemeinesAccess (4)).height;
       end case;
@@ -166,21 +131,14 @@ package body KarteAllgemeinesSFML is
          when others =>
             TextAnzeigen (5) := True;
             
-            if
-              AktuelleKoordinaten /= LetzteKoordinaten
-            then
-               Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (5),
-                                                  str  => KartenAllgemein.BeschreibungFluss (KartenFlussExtern => KartenFluss));
-               Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteAllgemeinesAccess (5),
-                                             position => Textposition);
-               
-            else
-               null;
-            end if;
+            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (5),
+                                               str  => KartenAllgemein.BeschreibungFluss (KartenFlussExtern => KartenFluss));
+            Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteAllgemeinesAccess (5),
+                                          position => Textposition);
+      
+            Textposition.y := Textposition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteAllgemeinesAccess (5)).height;
       end case;
          
-      LetzteKoordinaten := AktuelleKoordinaten;
-      
       TextSchleife:
       for TextSchleifenwert in TextaccessVariablen.KarteAllgemeinesAccessArray'Range loop
          

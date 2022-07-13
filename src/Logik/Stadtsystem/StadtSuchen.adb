@@ -5,8 +5,10 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with KartenRecords; use KartenRecords;
 with StadtKonstanten;
+with KartenVerbesserungDatentypen;
 
 with LeseStadtGebaut;
+with LeseKarten;
   
 with Eingabe;
 
@@ -17,6 +19,16 @@ package body StadtSuchen is
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return StadtDatentypen.MaximaleStädteMitNullWert
    is begin
+      
+      case
+        LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern)
+      is
+         when KartenVerbesserungDatentypen.Karten_Verbesserung_Städte_Enum'Range =>
+            null;
+            
+         when others =>
+            return StadtKonstanten.LeerNummer;
+      end case;
       
       StadtSchleife:
       for StadtNummerSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Städtegrenze loop

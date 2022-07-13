@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with Sf.Graphics; use Sf.Graphics;
+with Sf.Graphics;
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Text;
 
@@ -26,12 +26,10 @@ with EinheitSuchen;
 with StadtSuchen;
 with KarteInformationenSFML;
 with BerechnungenKarteSFML;
-with Fehler;
 with ObjekteZeichnenSFML;
 with GrafikEinstellungenSFML;
 with EingeleseneTexturenSFML;
-with TexturenSetzenSkalierenSFML;
-with KarteGrafikenZeichnenSFML;
+with KartenspritesZeichnenSFML;
 with FarbgebungSFML;
 with AllgemeineTextBerechnungenSFML;
 with Warnung;
@@ -160,17 +158,13 @@ package body KarteSFML is
    is begin
       
       -- Über den Kartenfeldern kommen die Kartenressourcen.
-      -- Über den Kartenressourcen kommen die Kartenverbesserungen.
-      -- Über die Kartenverbesserungen kommen die Städte.
+      -- Über den Kartenressourcen kommen die Kartenverbesserungen (Städte sind jetzt Teil der Verbesserungen).
       -- Über die Städte kommen die nicht Transporteinheiten.
       -- Über den nicht Transporteinheiten kommen die Transporteinheiten.
       -- Über den Transporteinheiten kommt der Cursor.
       
       AnzeigeLandschaft (KoordinatenExtern => KoordinatenExtern,
                          PositionExtern    => PositionExtern);
-            
-      AnzeigeStadt (KoordinatenExtern => KoordinatenExtern,
-                    PositionExtern    => PositionExtern);
             
       AnzeigeEinheit (KoordinatenExtern  => KoordinatenExtern,
                       RasseEinheitExtern => RasseEinheitExtern,
@@ -235,8 +229,9 @@ package body KarteSFML is
          
       else
          case
-           SpriteGezeichnet (TexturAccessExtern => EingeleseneTexturenSFML.KartenfelderAccess (BasisKartengrund),
-                             PositionExtern     => PositionExtern)
+           KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld (SpriteAccesExtern  => SpriteAccess,
+                                                                 TexturAccessExtern => EingeleseneTexturenSFML.KartenfelderAccess (BasisKartengrund),
+                                                                 PositionExtern     => PositionExtern)
          is
             when True =>
                null;
@@ -251,8 +246,9 @@ package body KarteSFML is
       
       -------------------------- Kan man das auch noch an anderen Stellen (Dateien) verwenden? Wahrscheinlich ja.
       case
-        SpriteGezeichnet (TexturAccessExtern => EingeleseneTexturenSFML.KartenfelderAccess (AktuellerKartengrund),
-                          PositionExtern     => PositionExtern)
+        KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld (SpriteAccesExtern  => SpriteAccess,
+                                                              TexturAccessExtern => EingeleseneTexturenSFML.KartenfelderAccess (AktuellerKartengrund),
+                                                              PositionExtern     => PositionExtern)
       is
          when True =>
             null;
@@ -286,8 +282,9 @@ package body KarteSFML is
       end case;
       
       case
-        SpriteGezeichnet (TexturAccessExtern => EingeleseneTexturenSFML.KartenflussAccess (KartenfeldFluss),
-                          PositionExtern     => PositionExtern)
+        KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld (SpriteAccesExtern  => SpriteAccess,
+                                                              TexturAccessExtern => EingeleseneTexturenSFML.KartenflussAccess (KartenfeldFluss),
+                                                              PositionExtern     => PositionExtern)
       is
          when True =>
             null;
@@ -321,8 +318,9 @@ package body KarteSFML is
       end case;
       
       case
-        SpriteGezeichnet (TexturAccessExtern => EingeleseneTexturenSFML.KartenressourceAccess (KartenfeldRessource),
-                          PositionExtern     => PositionExtern)
+        KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld (SpriteAccesExtern  => SpriteAccess,
+                                                              TexturAccessExtern => EingeleseneTexturenSFML.KartenressourceAccess (KartenfeldRessource),
+                                                              PositionExtern     => PositionExtern)
       is
          when True =>
             null;
@@ -356,8 +354,9 @@ package body KarteSFML is
       end case;
       
       case
-        SpriteGezeichnet (TexturAccessExtern => EingeleseneTexturenSFML.WegeAccess (Wegfeld),
-                          PositionExtern     => PositionExtern)
+        KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld (SpriteAccesExtern  => SpriteAccess,
+                                                              TexturAccessExtern => EingeleseneTexturenSFML.WegeAccess (Wegfeld),
+                                                              PositionExtern     => PositionExtern)
       is
          when True =>
             null;
@@ -392,8 +391,9 @@ package body KarteSFML is
       end case;
       
       case
-        SpriteGezeichnet (TexturAccessExtern => EingeleseneTexturenSFML.VerbesserungenAccess (Verbesserungsfeld),
-                          PositionExtern     => PositionExtern)
+        KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld (SpriteAccesExtern  => SpriteAccess,
+                                                              TexturAccessExtern => EingeleseneTexturenSFML.VerbesserungenAccess (Verbesserungsfeld),
+                                                              PositionExtern     => PositionExtern)
       is
          when True =>
             null;
@@ -406,61 +406,6 @@ package body KarteSFML is
       end case;
       
    end VerbesserungZeichnen;
-   
-   
-   
-   procedure AnzeigeStadt
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      PositionExtern : in Sf.System.Vector2.sfVector2f)
-   is begin
-      
-      -- Diese Suche nur dann durchführen, wenn auf der Karte eine Stadt gespeichert ist. äöü
-      -- Dieses ganze Suchen- und Speichernsystem mal überarbeiten. äöü
-      case
-        LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern)
-      is
-         when KartenVerbesserungDatentypen.Karten_Verbesserung_Städte_Enum'Range =>
-            StadtRasseNummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
-            Stadtart := LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummer);
-            
-         when others =>
-            return;
-      end case;
-            
-      case
-        SpriteGezeichnet (TexturAccessExtern => EingeleseneTexturenSFML.VerbesserungenAccess (Stadtart),
-                          PositionExtern     => PositionExtern)
-      is
-         when True =>
-            null;
-            
-         when False =>
-            if
-              Stadtart = KartenVerbesserungDatentypen.Hauptstadt_Enum
-            then
-               ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00,
-                                                    PositionExtern      => PositionExtern,
-                                                    AnzahlEckenExtern   => 5,
-                                                    FarbeExtern         => GrafikEinstellungenSFML.RassenFarbenRahmen (StadtRasseNummer.Rasse),
-                                                    PolygonAccessExtern => PolygonAccess);
-               
-            elsif
-              Stadtart = KartenVerbesserungDatentypen.Stadt_Enum
-            then
-               ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 3.00,
-                                                    PositionExtern      => PositionExtern,
-                                                    AnzahlEckenExtern   => 6,
-                                                    FarbeExtern         => GrafikEinstellungenSFML.RassenFarbenRahmen (StadtRasseNummer.Rasse),
-                                                    PolygonAccessExtern => PolygonAccess);
-               
-            else
-               Fehler.GrafikFehler (FehlermeldungExtern => "KarteSFML.AnzeigeStadt - Vorhandene Stadt ist nicht vorhanden.");
-            end if;
-            
-            Warnung.GrafikWarnung (WarnmeldungExtern => "KarteSFML.AnzeigeStadt - Sprite nicht vorhanden: " & StadtRasseNummer.Rasse'Wide_Wide_Image & " - " & Stadtart'Wide_Wide_Image);
-      end case;
-      
-   end AnzeigeStadt;
    
    
    
@@ -513,8 +458,9 @@ package body KarteSFML is
          is
             when True =>
                if
-                 SpriteGezeichnet (TexturAccessExtern => EingeleseneTexturenSFML.EinheitenAccess (RasseEinheitExtern.Rasse, EinheitID),
-                                   PositionExtern     => PositionExtern)
+                 KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld (SpriteAccesExtern  => SpriteAccess,
+                                                                       TexturAccessExtern => EingeleseneTexturenSFML.EinheitenAccess (RasseEinheitExtern.Rasse, EinheitID),
+                                                                       PositionExtern     => PositionExtern)
                  = True
                then
                   null;
@@ -533,8 +479,9 @@ package body KarteSFML is
          
       else
          if
-           SpriteGezeichnet (TexturAccessExtern => EingeleseneTexturenSFML.EinheitenAccess (RasseEinheitExtern.Rasse, EinheitID),
-                             PositionExtern     => PositionExtern)
+           KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld (SpriteAccesExtern  => SpriteAccess,
+                                                                 TexturAccessExtern => EingeleseneTexturenSFML.EinheitenAccess (RasseEinheitExtern.Rasse, EinheitID),
+                                                                 PositionExtern     => PositionExtern)
            = True
          then
             null;
@@ -550,29 +497,6 @@ package body KarteSFML is
       end if;
       
    end AnzeigeEinheit;
-   
-   
-   
-   function SpriteGezeichnet
-     (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
-      PositionExtern : in Sf.System.Vector2.sfVector2f)
-      return Boolean
-   is begin
-      
-      if
-        TexturAccessExtern /= null
-      then
-         KarteGrafikenZeichnenSFML.SpriteZeichnen (SpriteAccesExtern => SpriteAccess,
-                                                   PositionExtern    => PositionExtern,
-                                                   SkalierungExtern  => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenWeltkarte (SpriteAccessExtern  => SpriteAccess,
-                                                                                                                                      TextureAccessExtern => TexturAccessExtern));
-         return True;
-         
-      else
-         return False;
-      end if;
-      
-   end SpriteGezeichnet;
    
    
    
