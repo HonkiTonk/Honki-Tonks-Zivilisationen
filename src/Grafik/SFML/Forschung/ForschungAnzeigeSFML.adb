@@ -9,7 +9,7 @@ with ForschungKonstanten;
 
 with GrafikEinstellungenSFML;
 with ObjekteZeichnenSFML;
-with AllgemeineTextBerechnungenSFML;
+with TextberechnungenBreiteSFML;
 with ForschungAllgemein;
 with InteraktionAuswahl;
 with TextaccessVariablen;
@@ -36,7 +36,7 @@ package body ForschungAnzeigeSFML is
             TextPosition := StartPositionText;
       
             Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüAccess (ForschungKonstanten.LeerForschung),
-                                          position => (AllgemeineTextBerechnungenSFML.TextMittelPositionErmitteln (TextAccessExtern => TextaccessVariablen.ForschungsmenüAccess (ForschungKonstanten.LeerForschung)),
+                                          position => (TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.ForschungsmenüAccess (ForschungKonstanten.LeerForschung)),
                                                        StartPositionText.y));
       
             TextPosition.y := TextPosition.y + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.ForschungsmenüAccess (ForschungKonstanten.LeerForschung)).height + 10.00 * Zeilenabstand;

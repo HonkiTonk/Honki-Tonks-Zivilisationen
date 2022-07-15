@@ -105,24 +105,24 @@ package ChangelogJuli2022 is
    
    
 
-   -- Version 0.03. => 0.03. (16.07.2022):
+   -- Version 0.03.0510 => 0.03. (16.07.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03. => 0.03. (15.07.2022):
+   -- Version 0.03.0480 => 0.03.0510 (15.07.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Textanzeige weiter überarbeitet.
+   -- Textanzeige auf der Weltkarte überarbeitet.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 
-   -- Version 0.03. => 0.03. (14.07.2022):
+   -- Version 0.03.0480 => 0.03.0480 (14.07.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 

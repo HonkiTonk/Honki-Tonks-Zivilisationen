@@ -31,7 +31,7 @@ with GrafikEinstellungenSFML;
 with EingeleseneTexturenSFML;
 with KartenspritesZeichnenSFML;
 with FarbgebungSFML;
-with AllgemeineTextBerechnungenSFML;
+with TextberechnungenBreiteSFML;
 with Warnung;
 
 package body KarteSFML is
@@ -42,7 +42,7 @@ package body KarteSFML is
       
       Sichtbarkeit (RasseEinheitExtern => RasseEinheitExtern);
       
-      ------------------------ Die Einheit auch mitübergeben? Wäre das hier überhaupt sinnvoll? Müsste ja gehen und je nach Belegung der Einheit den Check auf eine Einheit durchführen oder nicht.
+      -- Die Einheit auch mitübergeben? Wäre das hier überhaupt sinnvoll? Müsste ja gehen und je nach Belegung der Einheit den Check auf eine Einheit durchführen oder nicht. äöü
       KarteInformationenSFML.KarteInformationenSFML (RasseExtern => RasseEinheitExtern.Rasse);
       
    end KarteAnzeigen;
@@ -642,11 +642,11 @@ package body KarteSFML is
             end if;
       end case;
       
-      -- Wenn ich das ganze als View anlege, die Städtenamen da rein schreibe und den dann am Schluss anzeige, müsste das nicht gehen?
+      -- Wenn ich das ganze als View anlege, die Städtenamen da rein schreibe und den dann am Schluss anzeige, müsste das nicht gehen? äöü
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAccess,
                                          str  => To_Wide_Wide_String (Source => LeseStadtGebaut.Name (StadtRasseNummerExtern => StadtRasseNummer)));
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteAccess,
-                                    position => (PositionExtern.x - AllgemeineTextBerechnungenSFML.TextHalbeBreiteErmitteln (TextAccessExtern => TextaccessVariablen.KarteAccess), PositionExtern.y));
+                                    position => (PositionExtern.x - TextberechnungenBreiteSFML.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.KarteAccess), PositionExtern.y));
       
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                          text         => TextaccessVariablen.KarteAccess);

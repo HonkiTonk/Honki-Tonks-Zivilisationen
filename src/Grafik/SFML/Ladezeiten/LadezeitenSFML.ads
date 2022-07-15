@@ -17,14 +17,12 @@ package LadezeitenSFML is
 private
    
    WelcheZeit : Positive;
-   
-   ZeilenAbstand : Float;
-   
+      
    WelcheRasse : RassenDatentypen.Rassen_Enum;
+   
+   AnfangspositionText : constant Float := 20.00;
          
    AktuelleTextposition : Sf.System.Vector2.sfVector2f;
-   
-   procedure StandardsFestlegen;
    
    procedure SpielweltErstellen;
    procedure KIRechnet;

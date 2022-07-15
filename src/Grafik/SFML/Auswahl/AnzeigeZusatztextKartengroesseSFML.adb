@@ -9,13 +9,15 @@ with Sf.Graphics.Text;
 with SystemKonstanten;
 with MenueDatentypen;
 with KartenKonstanten;
+with TextKonstanten;
 
 with GrafikEinstellungenSFML;
 with AuswahlMenuesStringsSetzen;
 with KartengeneratorVariablen;
-with AllgemeineTextBerechnungenSFML;
+with TextberechnungenBreiteSFML;
 with InteraktionAuswahl;
 with TextaccessVariablen;
+with TextberechnungenHoeheSFML;
 
 package body AnzeigeZusatztextKartengroesseSFML is
 
@@ -23,7 +25,8 @@ package body AnzeigeZusatztextKartengroesseSFML is
      (AktuelleAuswahlExtern : in Natural)
    is begin
       
-      Textbearbeitung (AktuelleAuswahlExtern => AktuelleAuswahlExtern);
+      TextFestlegen (AktuelleAuswahlExtern => AktuelleAuswahlExtern);
+      PositionFestlegen;
       
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                          text         => TextaccessVariablen.ZusatztextKartengrößeAccess (1));
@@ -43,26 +46,13 @@ package body AnzeigeZusatztextKartengroesseSFML is
    
    
    
-   procedure Textbearbeitung
-     (AktuelleAuswahlExtern : in Natural)
-   is begin
-      
-      TextFestlegen (AktuelleAuswahlExtern => AktuelleAuswahlExtern);
-      
-      PositionFestlegen;
-      
-   end Textbearbeitung;
-   
-   
-   
    procedure TextFestlegen
      (AktuelleAuswahlExtern : in Natural)
    is begin
     
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ZusatztextKartengrößeAccess (1),
-                                         str  =>
-                                           AuswahlMenuesStringsSetzen.AuswahlMenüStringSetzen (WelcheZeileExtern => SystemKonstanten.EndeMenü (MenueDatentypen.Kartengröße_Menü_Enum) - 1,
-                                                                                                WelchesMenüExtern => MenueDatentypen.Kartengröße_Menü_Enum) & "    " & "5x"
+                                         str  => AuswahlMenuesStringsSetzen.AuswahlMenüStringSetzen (WelcheZeileExtern => SystemKonstanten.EndeMenü (MenueDatentypen.Kartengröße_Menü_Enum) - 1,
+                                                                                                      WelchesMenüExtern => MenueDatentypen.Kartengröße_Menü_Enum) & TextKonstanten.StandardAbstand & "5x"
                                          & To_Wide_Wide_String (Source => ZahlAlsStringKartenfeldPositiv (ZahlExtern => KartengeneratorVariablen.Kartenparameter.Kartengröße.YAchse)) & "x"
                                          & To_Wide_Wide_String (Source => ZahlAlsStringKartenfeldPositiv (ZahlExtern => KartengeneratorVariablen.Kartenparameter.Kartengröße.XAchse)));
       
@@ -74,9 +64,8 @@ package body AnzeigeZusatztextKartengroesseSFML is
             
          when others =>
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ZusatztextKartengrößeAccess (2),
-                                               str  =>
-                                                  AuswahlMenuesStringsSetzen.AuswahlMenüStringSetzen (WelcheZeileExtern => SystemKonstanten.EndeMenü (MenueDatentypen.Kartengröße_Menü_Enum),
-                                                                                                       WelchesMenüExtern => MenueDatentypen.Kartengröße_Menü_Enum) & "    " & "5x"
+                                               str  => AuswahlMenuesStringsSetzen.AuswahlMenüStringSetzen (WelcheZeileExtern => SystemKonstanten.EndeMenü (MenueDatentypen.Kartengröße_Menü_Enum),
+                                                                                                            WelchesMenüExtern => MenueDatentypen.Kartengröße_Menü_Enum) & TextKonstanten.StandardAbstand & "5x"
                                                & To_Wide_Wide_String (Source => ZahlAlsStringKartenfeldPositiv
                                                                       (ZahlExtern => KartenKonstanten.StandardKartengrößen (StandardKartengrößen (AktuelleAuswahlExtern)).YAchse))
                                                & "x"
@@ -91,14 +80,13 @@ package body AnzeigeZusatztextKartengroesseSFML is
    procedure PositionFestlegen
    is begin
       
-      PositionText.x := AllgemeineTextBerechnungenSFML.TextMittelPositionErmitteln (TextAccessExtern => TextaccessVariablen.ZusatztextKartengrößeAccess (1));
-      PositionText.y := InteraktionAuswahl.LetzteTextpositionKartengröße + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.ZusatztextKartengrößeAccess (1)).height;
-      
+      PositionText.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.ZusatztextKartengrößeAccess (1));
+      PositionText.y := InteraktionAuswahl.LetzteTextpositionKartengröße + TextberechnungenHoeheSFML.Zeilenabstand;
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ZusatztextKartengrößeAccess (1),
                                     position => PositionText);
       
-      PositionText.x := AllgemeineTextBerechnungenSFML.TextMittelPositionErmitteln (TextAccessExtern => TextaccessVariablen.ZusatztextKartengrößeAccess (2));
-      PositionText.y := PositionText.y + 2.00 * Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.ZusatztextKartengrößeAccess (2)).height;
+      PositionText.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.ZusatztextKartengrößeAccess (2));
+      PositionText.y := PositionText.y + TextberechnungenHoeheSFML.Zeilenabstand;
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ZusatztextKartengrößeAccess (2),
                                     position => PositionText);
       

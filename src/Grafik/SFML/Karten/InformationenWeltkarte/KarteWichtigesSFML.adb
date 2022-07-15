@@ -13,6 +13,7 @@ with LeseWichtiges;
 
 with ForschungAllgemein;
 with GrafikEinstellungenSFML;
+with TextberechnungenHoeheSFML;
 with TextaccessVariablen;
 
 package body KarteWichtigesSFML is
@@ -24,7 +25,6 @@ package body KarteWichtigesSFML is
    is begin
       
       Textposition := TextpositionExtern;
-      Zeilenabstand := Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard) * 0.15;
       
       AktuelleKoordinaten := SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell;
       
@@ -38,7 +38,7 @@ package body KarteWichtigesSFML is
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteWichtigesAccess (1),
                                     position => Textposition);
                
-      Textposition.y := Textposition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteWichtigesAccess (1)).height;
+      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
       
             
@@ -50,7 +50,7 @@ package body KarteWichtigesSFML is
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteWichtigesAccess (2),
                                     position => Textposition);
       
-      Textposition.y := Textposition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteWichtigesAccess (2)).height;
+      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
       
                   
@@ -61,7 +61,7 @@ package body KarteWichtigesSFML is
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteWichtigesAccess (3),
                                     position => Textposition);
       
-      Textposition.y := Textposition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteWichtigesAccess (3)).height;
+      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
       
                   
@@ -72,7 +72,7 @@ package body KarteWichtigesSFML is
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteWichtigesAccess (4),
                                     position => Textposition);
       
-      Textposition.y := Textposition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteWichtigesAccess (4)).height;
+      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
       
             
@@ -84,7 +84,7 @@ package body KarteWichtigesSFML is
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteWichtigesAccess (5),
                                     position => Textposition);
       
-      Textposition.y := Textposition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteWichtigesAccess (5)).height;
+      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
       
       
@@ -95,7 +95,7 @@ package body KarteWichtigesSFML is
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteWichtigesAccess (6),
                                     position => Textposition);
       
-      Textposition.y := Textposition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteWichtigesAccess (6)).height;
+      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
       
       
@@ -106,7 +106,7 @@ package body KarteWichtigesSFML is
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteWichtigesAccess (7),
                                     position => Textposition);
       
-      Textposition.y := Textposition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteWichtigesAccess (7)).height;
+      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
       
             
@@ -116,8 +116,6 @@ package body KarteWichtigesSFML is
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugAktuellerForschungsgewinn)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteWichtigesAccess (8),
                                     position => Textposition);
-      
-      Textposition.y := Textposition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteWichtigesAccess (8)).height;
       
       TextSchleife:
       for TextSchleifenwert in TextaccessVariablen.KarteWichtigesAccessArray'Range loop

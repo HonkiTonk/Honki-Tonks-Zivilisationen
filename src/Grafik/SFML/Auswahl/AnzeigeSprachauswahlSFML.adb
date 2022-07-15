@@ -7,19 +7,20 @@ with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Text;
 
 with GrafikEinstellungenSFML;
-with AllgemeineTextBerechnungenSFML;
+with TextberechnungenBreiteSFML;
 with TextaccessVariablen;
+with TextberechnungenHoeheSFML;
 
 package body AnzeigeSprachauswahlSFML is
    
    procedure AnzeigeSprache
    is begin
       
+      -- Das hier mal Überarbeiten. äöü
       MehrereSeiten := AuswahlSprache.MehrereSeiten;
       AktuelleAuswahl := AuswahlSprache.AktuelleAuswahl;
       Ende := AuswahlSprache.Ende;
       AktuelleSprachen := AuswahlSprache.AktuelleSprachen;
-      ZeilenAbstand := Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard) * 0.15;
       
       YPosition := StartPositionYAchse;
             
@@ -45,13 +46,13 @@ package body AnzeigeSprachauswahlSFML is
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.SprachauswahlAccess,
                                                str  => To_Wide_Wide_String (Source => AktuelleSprachen (ZeileSchleifenwert)));
             Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.SprachauswahlAccess,
-                                          position => (AllgemeineTextBerechnungenSFML.TextMittelPositionErmitteln (TextAccessExtern => TextaccessVariablen.SprachauswahlAccess), YPosition));
+                                          position => (TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.SprachauswahlAccess), YPosition));
             Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SprachauswahlAccess,
                                        color => AktuelleTextFarbe);
             Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                                text         => TextaccessVariablen.SprachauswahlAccess);
          
-            YPosition := YPosition + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.SprachauswahlAccess).height + 3.00 * ZeilenAbstand;
+            YPosition := YPosition + TextberechnungenHoeheSFML.Zeilenabstand;
             
          elsif
            MehrereSeiten
@@ -81,8 +82,10 @@ package body AnzeigeSprachauswahlSFML is
             Sf.Graphics.ConvexShape.setPoint (shape => PfeilAccess,
                                               index => 6,
                                               point => (0.00, 20.00));
+            
+            YPosition := YPosition + 15.00;
             Sf.Graphics.ConvexShape.setPosition (shape    => PfeilAccess,
-                                                 position => (AllgemeineTextBerechnungenSFML.TextMittelPositionErmitteln (TextAccessExtern => TextaccessVariablen.SprachauswahlAccess), YPosition + 15.00));
+                                                 position => (TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.SprachauswahlAccess), YPosition));
             Sf.Graphics.ConvexShape.setFillColor (shape => PfeilAccess,
                                                   color => AktuelleTextFarbe);
             Sf.Graphics.RenderWindow.drawConvexShape (renderWindow => GrafikEinstellungenSFML.FensterAccess,

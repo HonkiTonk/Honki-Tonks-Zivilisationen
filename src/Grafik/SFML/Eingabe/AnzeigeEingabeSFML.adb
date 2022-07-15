@@ -18,9 +18,10 @@ with EinheitenBeschreibungen;
 with LeseEinheitenGebaut;
 with LeseStadtGebaut;
 with TextaccessVariablen;
-with AllgemeineTextBerechnungenSFML;
+with TextberechnungenHoeheSFML;
 with InteraktionAuswahl;
 with InteraktionEingabe;
+with TextberechnungenBreiteSFML;
 
 package body AnzeigeEingabeSFML is
 
@@ -214,13 +215,13 @@ package body AnzeigeEingabeSFML is
             Zeilenabstand := Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard) * 0.15;
       end case;
       
-      TextPosition := (AllgemeineTextBerechnungenSFML.TextMittelPositionErmitteln (TextAccessExtern => TextaccessVariablen.JaNeinAccess (1)), AllgemeineTextBerechnungenSFML.HalbeBildschirmhöhe);
+      TextPosition := (TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.JaNeinAccess (1)), TextberechnungenHoeheSFML.HalbeBildschirmhöhe);
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.JaNeinAccess (1),
                                     position => TextPosition);
       
       TextPosition.y := TextPosition.y + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.JaNeinAccess (1)).height + 3.00 * Zeilenabstand;
-      TextPosition.x := AllgemeineTextBerechnungenSFML.TextMittelPositionErmitteln (TextAccessExtern => TextaccessVariablen.JaNeinAccess (2));
+      TextPosition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.JaNeinAccess (2));
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.JaNeinAccess (2),
                                     position => TextPosition);
@@ -228,7 +229,7 @@ package body AnzeigeEingabeSFML is
       InteraktionAuswahl.PositionenJaNein (1) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.JaNeinAccess (2));
       
       TextPosition.y := TextPosition.y + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.JaNeinAccess (2)).height + 3.00 * Zeilenabstand;
-      TextPosition.x := AllgemeineTextBerechnungenSFML.TextMittelPositionErmitteln (TextAccessExtern => TextaccessVariablen.JaNeinAccess (3));
+      TextPosition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.JaNeinAccess (3));
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.JaNeinAccess (3),
                                     position => TextPosition);

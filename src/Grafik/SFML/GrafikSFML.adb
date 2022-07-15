@@ -172,6 +172,7 @@ package body GrafikSFML is
             LadezeitenSFML.LadezeitenSFML (WelcheLadeanzeigeExtern => InteraktionGrafiktask.AktuelleDarstellung);
          
          when GrafikDatentypen.Grafik_Menüs_Enum =>
+            -- Diese ganzen Rassen/Menü/Sosntigesfestlegungen/prüfungen in die jeweiligen Unterbereiche verschieben um hier eine bessere Übersicht zu haben. äöü
             AktuellesMenü := InteraktionGrafiktask.AktuellesMenü;
             
             if

@@ -174,6 +174,7 @@ package body KarteStadtSFML is
       StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
+      -- Diese Werte sollte man mal in Konstanten schieben.
       if
         YAchseExtern < Karten.Stadtkarte'First (1) + 7
         and
@@ -508,31 +509,28 @@ package body KarteStadtSFML is
          return;
       end if;
       
-      case
-        LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                           WelchesGebäudeExtern  => GebäudeID)
-      is
-         when True =>
-            if
-              True = KartenspritesZeichnenSFML.SpriteGezeichnetStadtfeld (SpriteAccesExtern  => SpriteAccess,
-                                                                          TexturAccessExtern => EingeleseneTexturenSFML.GebäudeAccess (StadtRasseNummerExtern.Rasse, GebäudeID),
-                                                                          PositionExtern     => PositionExtern)
-            then
-               null;
+      if
+        False = LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                   WelchesGebäudeExtern  => GebäudeID)
+      then
+         null;
+         
+      elsif
+        True = KartenspritesZeichnenSFML.SpriteGezeichnetStadtfeld (SpriteAccesExtern  => SpriteAccess,
+                                                                    TexturAccessExtern => EingeleseneTexturenSFML.GebäudeAccess (StadtRasseNummerExtern.Rasse, GebäudeID),
+                                                                    PositionExtern     => PositionExtern)
+      then
+         null;
                
-            else
-               ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.StadtfelderAbmessung.x / 2.00,
-                                                    PositionExtern      => PositionExtern,
-                                                    AnzahlEckenExtern   => 3,
-                                                    FarbeExtern         => Sf.Graphics.Color.sfMagenta,
-                                                    PolygonAccessExtern => PolygonAccess);
+      else
+         ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.StadtfelderAbmessung.x / 2.00,
+                                              PositionExtern      => PositionExtern,
+                                              AnzahlEckenExtern   => 3,
+                                              FarbeExtern         => Sf.Graphics.Color.sfMagenta,
+                                              PolygonAccessExtern => PolygonAccess);
             
-               Warnung.GrafikWarnung (WarnmeldungExtern => "KarteStadtSFML.DarstellungGebäude - Sprite nicht vorhanden: " & StadtRasseNummerExtern.Rasse'Wide_Wide_Image & " - " & GebäudeID'Wide_Wide_Image);
-            end if;
-            
-         when False =>
-            null;
-      end case;
+         Warnung.GrafikWarnung (WarnmeldungExtern => "KarteStadtSFML.DarstellungGebäude - Sprite nicht vorhanden: " & StadtRasseNummerExtern.Rasse'Wide_Wide_Image & " - " & GebäudeID'Wide_Wide_Image);
+      end if;
       
    end DarstellungGebäude;
 

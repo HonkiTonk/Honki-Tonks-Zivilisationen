@@ -37,8 +37,6 @@ package KarteWichtigesSFML is
    
 private
       
-   Zeilenabstand : Float;
-
    WertOhneTrennzeichen : Unbounded_Wide_Wide_String;
    YAchsenWert : Unbounded_Wide_Wide_String;
    XAchsenWert : Unbounded_Wide_Wide_String;

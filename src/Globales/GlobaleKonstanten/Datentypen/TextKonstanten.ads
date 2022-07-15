@@ -8,7 +8,10 @@ package TextKonstanten is
    LeerString : constant Wide_Wide_String := "";
    LeerUnboundedString : constant Unbounded_Wide_Wide_String := To_Unbounded_Wide_Wide_String (Source => LeerString);
    LeerZeichen : constant Wide_Wide_Character := ' ';
-      
+   StandardAbstand : constant Wide_Wide_String (1 .. 4) := "    ";
+   
+   
+   -- Das woanders hin verschieben. äöü
    ZeugHauptstadt : constant Positive := 1;
    ZeugStadt : constant Positive := 2;
    ZeugFremdeHauptstadt : constant Positive := 3;

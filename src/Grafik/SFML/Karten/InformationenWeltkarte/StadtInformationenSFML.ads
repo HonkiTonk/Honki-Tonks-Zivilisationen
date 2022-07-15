@@ -30,7 +30,13 @@ package StadtInformationenSFML is
                  SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
                and
                  StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
-              );
+              ),
+   
+       Post => (
+                  Stadt'Result.y > 0.00
+                and
+                  Stadt'Result.x > 0.00
+               );
    
    function StadtName
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
@@ -47,9 +53,7 @@ private
    VolleInformation : Boolean;
    
    Stadtart : Positive;
-   
-   Zeilenabstand : Float;
-   
+      
    Text : Unbounded_Wide_Wide_String;
    WertOhneTrennzeichen : Unbounded_Wide_Wide_String;
    

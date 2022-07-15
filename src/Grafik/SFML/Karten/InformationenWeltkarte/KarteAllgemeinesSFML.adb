@@ -13,6 +13,7 @@ with LeseKarten;
 with GrafikEinstellungenSFML;
 with KartenAllgemein;
 with AufgabenAllgemein;
+with TextberechnungenHoeheSFML;
 
 package body KarteAllgemeinesSFML is
 
@@ -23,7 +24,6 @@ package body KarteAllgemeinesSFML is
    is begin
       
       Textposition := TextpositionExtern;
-      Zeilenabstand := Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard) * 0.15;
       
       AktuelleKoordinaten := SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell;
       
@@ -41,6 +41,7 @@ package body KarteAllgemeinesSFML is
                                        position => Textposition);
          
       else
+         -- Für " - " mal ein einzulesendes Wort einbauen.
          Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (1),
                                             str  => KartenAllgemein.BeschreibungBasisgrund (KartenGrundExtern => VorhandenerGrund.BasisGrund) & " - "
                                             & KartenAllgemein.BeschreibungZusatzgrund (KartenGrundExtern => VorhandenerGrund.AktuellerGrund));
@@ -49,13 +50,14 @@ package body KarteAllgemeinesSFML is
                                        position => Textposition);
       end if;
       
+      -- Da irgendwie einrücken? äöü
       -- Textposition.x := Textposition.x + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteAllgemeinesAccess (1)).width + 5.00;      
       -- Textposition.x := TextpositionExtern.x;
       
-      Textposition.y := Textposition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteAllgemeinesAccess (1)).height;
+      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
       
-      
+      -- Eventuell auch mehr Wörter zusammenfassen? äöü
       KartenRessource := LeseKarten.Ressource (KoordinatenExtern => AktuelleKoordinaten);
       
       case
@@ -68,12 +70,11 @@ package body KarteAllgemeinesSFML is
             TextAnzeigen (2) := True;
             
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (2),
-                                               str  =>
-                                                  KartenAllgemein.BeschreibungRessource (KartenRessourceExtern => KartenRessource));
+                                               str  => KartenAllgemein.BeschreibungRessource (KartenRessourceExtern => KartenRessource));
             Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteAllgemeinesAccess (2),
                                           position => Textposition);
       
-            Textposition.y := Textposition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteAllgemeinesAccess (2)).height;
+            Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       end case;
       
       
@@ -94,7 +95,7 @@ package body KarteAllgemeinesSFML is
             Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteAllgemeinesAccess (3),
                                           position => Textposition);
             
-            Textposition.y := Textposition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteAllgemeinesAccess (3)).height;
+            Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       end case;
       
       
@@ -115,7 +116,7 @@ package body KarteAllgemeinesSFML is
             Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteAllgemeinesAccess (4),
                                           position => Textposition);
       
-            Textposition.y := Textposition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteAllgemeinesAccess (4)).height;
+            Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       end case;
       
       
@@ -136,8 +137,10 @@ package body KarteAllgemeinesSFML is
             Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteAllgemeinesAccess (5),
                                           position => Textposition);
       
-            Textposition.y := Textposition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteAllgemeinesAccess (5)).height;
+            Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       end case;
+      
+      Textposition.y := Textposition.y - TextberechnungenHoeheSFML.KleinerZeilenabstand;
          
       TextSchleife:
       for TextSchleifenwert in TextaccessVariablen.KarteAllgemeinesAccessArray'Range loop

@@ -14,7 +14,7 @@ with TextKonstanten;
 
 with GrafikEinstellungenSFML;
 with ObjekteZeichnenSFML;
-with AllgemeineTextBerechnungenSFML;
+with TextberechnungenBreiteSFML;
 with InDerStadtBauen;
 with InteraktionAuswahl;
 with Fehler;
@@ -55,18 +55,18 @@ package body BauAuswahlAnzeigeSFML is
             Grundposition := StartPositionText;
             
             Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.BaumenüÜberschriftAccess,
-                                          position => (AllgemeineTextBerechnungenSFML.TextMittelPositionErmitteln (TextAccessExtern => TextaccessVariablen.BaumenüÜberschriftAccess), Grundposition.y));
+                                          position => (TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.BaumenüÜberschriftAccess), Grundposition.y));
             
             Grundposition.y := Grundposition.y + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.BaumenüÜberschriftAccess).height + 10.00 * Zeilenabstand;
       
             Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.GebäudetextAccess (0),
-                                          position => (AllgemeineTextBerechnungenSFML.TextViertelPositionErmitteln (TextAccessExtern  => TextaccessVariablen.GebäudetextAccess (0),
-                                                                                                                    LinksRechtsExtern => True),
+                                          position => (TextberechnungenBreiteSFML.ViertelpositionBerechnen (TextAccessExtern  => TextaccessVariablen.GebäudetextAccess (0),
+                                                                                                            LinksRechtsExtern => True),
                                                        Grundposition.y));
       
             Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitentextAccess (0),
-                                          position => (AllgemeineTextBerechnungenSFML.TextViertelPositionErmitteln (TextAccessExtern  => TextaccessVariablen.GebäudetextAccess (0),
-                                                                                                                    LinksRechtsExtern => False),
+                                          position => (TextberechnungenBreiteSFML.ViertelpositionBerechnen (TextAccessExtern  => TextaccessVariablen.GebäudetextAccess (0),
+                                                                                                            LinksRechtsExtern => False),
                                                        Grundposition.y));
             
             Grundposition.y := Grundposition.y + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.BaumenüÜberschriftAccess).height + 10.00 * Zeilenabstand;
@@ -106,8 +106,8 @@ package body BauAuswahlAnzeigeSFML is
                if
                  InteraktionAuswahl.PositionenBauenFestgelegt = False
                then
-                  TextPosition.x := AllgemeineTextBerechnungenSFML.TextViertelPositionErmitteln (TextAccessExtern  => TextaccessVariablen.GebäudetextAccess (GebäudeSchleifenwert),
-                                                                                                 LinksRechtsExtern => True);
+                  TextPosition.x := TextberechnungenBreiteSFML.ViertelpositionBerechnen (TextAccessExtern  => TextaccessVariablen.GebäudetextAccess (GebäudeSchleifenwert),
+                                                                                         LinksRechtsExtern => True);
                   Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.GebäudetextAccess (GebäudeSchleifenwert),
                                                 position => TextPosition);
          
@@ -155,8 +155,8 @@ package body BauAuswahlAnzeigeSFML is
                if
                  InteraktionAuswahl.PositionenBauenFestgelegt = False
                then
-                  TextPosition.x := AllgemeineTextBerechnungenSFML.TextViertelPositionErmitteln (TextAccessExtern  => TextaccessVariablen.EinheitentextAccess (EinheitenSchleifenwert),
-                                                                                                 LinksRechtsExtern => False);
+                  TextPosition.x := TextberechnungenBreiteSFML.ViertelpositionBerechnen (TextAccessExtern  => TextaccessVariablen.EinheitentextAccess (EinheitenSchleifenwert),
+                                                                                         LinksRechtsExtern => False);
                   Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitentextAccess (EinheitenSchleifenwert),
                                                 position => TextPosition);
          

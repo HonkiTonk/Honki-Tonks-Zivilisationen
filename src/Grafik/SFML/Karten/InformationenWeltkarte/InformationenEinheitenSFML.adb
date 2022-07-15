@@ -1,8 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
--- with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
-
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics;
 with Sf.Graphics.Text;
@@ -21,18 +19,18 @@ with EinheitenBeschreibungen;
 with KampfwerteEinheitErmitteln;
 with GrafikEinstellungenSFML;
 with StadtInformationenSFML;
+with TextberechnungenHoeheSFML;
 
 package body InformationenEinheitenSFML is
 
    function Einheiten
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      PositionTextExtern : in Sf.System.Vector2.sfVector2f)
+      TextpositionExtern : in Sf.System.Vector2.sfVector2f)
       return Sf.System.Vector2.sfVector2f
    is begin
       
-      PositionText := PositionTextExtern;
-      Zeilenabstand := Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard) * 0.15;
+      Textposition := TextpositionExtern;
       
       -- Diese Zuweisung ist wichtig weil die gefundene Einheit eventuell auf einem Transporter ist.
       EinheitRasseNummer := Allgemeines (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -63,6 +61,8 @@ package body InformationenEinheitenSFML is
       
       DebugInformationen (EinheitRasseNummerExtern => EinheitRasseNummer);
       
+      Textposition.y := Textposition.y - TextberechnungenHoeheSFML.KleinerZeilenabstand;
+      
       TextSchleife:
       for TextSchleifenwert in TextaccessVariablen.EinheitenInformationenAccessArray'Range loop
          
@@ -80,7 +80,7 @@ package body InformationenEinheitenSFML is
          
       end loop TextSchleife;
       
-      return PositionText;
+      return Textposition;
       
    end Einheiten;
    
@@ -104,9 +104,9 @@ package body InformationenEinheitenSFML is
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitenInformationenAccess (1),
                                          str  => EinheitenBeschreibungen.BeschreibungKurz (IDExtern => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer))));
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitenInformationenAccess (1),
-                                    position => PositionText);
+                                    position => Textposition);
       
-      PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.EinheitenInformationenAccess (1)).height;
+      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
       return (EinheitRasseNummerExtern.Rasse, EinheitNummer);
       
@@ -127,9 +127,9 @@ package body InformationenEinheitenSFML is
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugLebenspunkte)) & " " & To_Wide_Wide_String (Source => WertLinksVomTrennzeichen) & Trennzeichen 
                                          & To_Wide_Wide_String (Source => WertLinksVomTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitenInformationenAccess (2),
-                                    position => PositionText);
+                                    position => Textposition);
       
-      PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.EinheitenInformationenAccess (2)).height;
+      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
    end Lebenspunkte;
    
@@ -148,9 +148,9 @@ package body InformationenEinheitenSFML is
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugBewegungspunkte)) & " " & To_Wide_Wide_String (Source => WertLinksVomTrennzeichen) & Trennzeichen
                                          & To_Wide_Wide_String (Source => WertRechtsVomTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitenInformationenAccess (3),
-                                    position => PositionText);
+                                    position => Textposition);
       
-      PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.EinheitenInformationenAccess (3)).height;
+      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
    end Bewegungspunkte;
    
@@ -169,9 +169,9 @@ package body InformationenEinheitenSFML is
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugErfahrungspunkte)) & " " & To_Wide_Wide_String (Source => WertLinksVomTrennzeichen) & Trennzeichen
                                          & To_Wide_Wide_String (Source => WertRechtsVomTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitenInformationenAccess (4),
-                                    position => PositionText);
+                                    position => Textposition);
       
-      PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.EinheitenInformationenAccess (4)).height;
+      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
    end Erfahrungspunkte;
    
@@ -185,9 +185,9 @@ package body InformationenEinheitenSFML is
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugBeschäftigung)) & " "
                                          & EinheitenBeschreibungen.Beschäftigung (LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)));
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitenInformationenAccess (5),
-                                    position => PositionText);
+                                    position => Textposition);
       
-      PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.EinheitenInformationenAccess (5)).height;
+      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
    end Beschäftigung;
    
@@ -202,9 +202,9 @@ package body InformationenEinheitenSFML is
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitenInformationenAccess (6),
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugBeschäftigungszeit)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitenInformationenAccess (6),
-                                    position => PositionText);
+                                    position => Textposition);
       
-      PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.EinheitenInformationenAccess (6)).height;
+      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
    end Beschäftigungszeit;
    
@@ -220,9 +220,9 @@ package body InformationenEinheitenSFML is
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitenInformationenAccess (7),
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugAngriff)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitenInformationenAccess (7),
-                                    position => PositionText);
+                                    position => Textposition);
       
-      PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.EinheitenInformationenAccess (7)).height;
+      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
    end Angriff;
    
@@ -238,9 +238,9 @@ package body InformationenEinheitenSFML is
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitenInformationenAccess (8),
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugVerteidigung)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitenInformationenAccess (8),
-                                    position => PositionText);
+                                    position => Textposition);
       
-      PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.EinheitenInformationenAccess (8)).height;
+      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
    end Verteidigung;
    
@@ -259,9 +259,9 @@ package body InformationenEinheitenSFML is
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugRang)) & " " & To_Wide_Wide_String (Source => WertLinksVomTrennzeichen) & Trennzeichen
                                          & To_Wide_Wide_String (Source => WertRechtsVomTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitenInformationenAccess (9),
-                                    position => PositionText);
+                                    position => Textposition);
       
-      PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.EinheitenInformationenAccess (9)).height;
+      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
    end Rang;
    
@@ -287,9 +287,9 @@ package body InformationenEinheitenSFML is
       end case;
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitenInformationenAccess (10),
-                                    position => PositionText);
+                                    position => Textposition);
       
-      PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.EinheitenInformationenAccess (10)).height;
+      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
    end Heimatstadt;
    
@@ -305,9 +305,9 @@ package body InformationenEinheitenSFML is
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitenInformationenAccess (11),
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugGegenschlagskraftFeld)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitenInformationenAccess (11),
-                                    position => PositionText);
+                                    position => Textposition);
       
-      PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.EinheitenInformationenAccess (11)).height;
+      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
    end AktuelleVerteidigung;
    
@@ -323,9 +323,9 @@ package body InformationenEinheitenSFML is
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitenInformationenAccess (12),
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugGegenschlagskraft)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitenInformationenAccess (12),
-                                    position => PositionText);
+                                    position => Textposition);
       
-      PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.EinheitenInformationenAccess (12)).height;
+      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
    end AktuellerAngriff;
    
@@ -363,9 +363,9 @@ package body InformationenEinheitenSFML is
                   Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitenInformationenAccess (13),
                                                      str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugAktuelleLadung)));
                   Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitenInformationenAccess (13),
-                                                position => PositionText);
+                                                position => Textposition);
       
-                  PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.EinheitenInformationenAccess (13)).height;
+                  Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
                   
                   
       
@@ -375,9 +375,9 @@ package body InformationenEinheitenSFML is
                                                                                                                          LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                                                                                                             PlatzExtern              => LadungSchleifenwert)))));
                   Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitenInformationenAccess (14),
-                                                position => PositionText);
+                                                position => Textposition);
       
-                  PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.EinheitenInformationenAccess (14)).height;
+                  Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
                   
                elsif
                  LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -390,9 +390,9 @@ package body InformationenEinheitenSFML is
                                                                                                                          LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                                                                                                             PlatzExtern              => LadungSchleifenwert)))));
                   Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitenInformationenAccess (13),
-                                                position => PositionText);
+                                                position => Textposition);
       
-                  PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.EinheitenInformationenAccess (13)).height;
+                  Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
                   
                else
                   null;

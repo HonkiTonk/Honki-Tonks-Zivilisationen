@@ -14,6 +14,7 @@ with StadtInformationenSFML;
 with InformationenEinheitenSFML;
 with KarteWichtigesSFML;
 with KarteAllgemeinesSFML;
+with TextberechnungenHoeheSFML;
 
 package body KarteInformationenSFML is
 
@@ -26,44 +27,47 @@ package body KarteInformationenSFML is
       
       FensterInformationen := (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) * 0.20, Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y));
       
+      -- Farbkonstanten anlegen? Habe ich sowas nicht schon? äöü
+      -- Das alles mal verschieben? äöü
       ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => FensterInformationen,
                                             PositionExtern       => (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) * 0.80, 0.00),
                                             FarbeExtern          => (105, 105, 105, 255),
                                             RechteckAccessExtern => RechteckAcces);
       
       Textposition := (StartpunktText.x + Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) * 0.80, StartpunktText.y);
-      Zeilenabstand := Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard) * 0.15;
       
       Textposition := KarteWichtigesSFML.WichtigesInformationen (RasseExtern        => RasseExtern,
                                                                  TextpositionExtern => Textposition);
-      Textposition.y := Textposition.y + 3.00 * Zeilenabstand;
       
-
       case
         LeseKarten.Sichtbar (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell,
                              RasseExtern       => RasseExtern)
       is
          when True =>
+            Textposition.y := Textposition.y + TextberechnungenHoeheSFML.GroßerZeilenabstand;
+            
             Textposition := KarteAllgemeinesSFML.AllgemeineInformationen (RasseExtern        => RasseExtern,
                                                                           TextpositionExtern => Textposition);
-            Textposition.y := Textposition.y + 3.00 * Zeilenabstand;
+            Textposition.y := Textposition.y + TextberechnungenHoeheSFML.GroßerZeilenabstand;
             
-            StadtInformationen (RasseExtern => RasseExtern);
+            Textposition := StadtInformationen (RasseExtern        => RasseExtern,
+                                                TextpositionExtern => Textposition);
               
-            EinheitInformationen (RasseExtern => RasseExtern);
+            Textposition := EinheitInformationen (RasseExtern        => RasseExtern,
+                                                  TextpositionExtern => Textposition);
 
          when False =>
             null;
       end case;
-
-      DebugInformationen;
       
    end KarteInformationenSFML;
    
    
    
-   procedure StadtInformationen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+   function StadtInformationen
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      TextpositionExtern : in Sf.System.Vector2.sfVector2f)
+      return Sf.System.Vector2.sfVector2f
    is begin
       
       StadtRasseNummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
@@ -72,21 +76,23 @@ package body KarteInformationenSFML is
         StadtRasseNummer.Nummer
       is
          when StadtKonstanten.LeerNummer =>
-            null;
+            return TextpositionExtern;
             
          when others =>
-            Textposition := StadtInformationenSFML.Stadt (RasseExtern            => RasseExtern,
-                                                          StadtRasseNummerExtern => StadtRasseNummer,
-                                                          AnzeigeAnfangenExtern  => Textposition);
-            Textposition.y := Textposition.y + 3.00 * Zeilenabstand;
+            TextpositionStadt := StadtInformationenSFML.Stadt (RasseExtern            => RasseExtern,
+                                                               StadtRasseNummerExtern => StadtRasseNummer,
+                                                               AnzeigeAnfangenExtern  => Textposition);
+            return (TextpositionStadt.x, TextpositionStadt.y + TextberechnungenHoeheSFML.GroßerZeilenabstand);
       end case;
       
    end StadtInformationen;
    
    
    
-   procedure EinheitInformationen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+   function EinheitInformationen
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      TextpositionExtern : in Sf.System.Vector2.sfVector2f)
+      return Sf.System.Vector2.sfVector2f
    is begin
       
       EinheitRasseNummer := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
@@ -95,32 +101,15 @@ package body KarteInformationenSFML is
         EinheitRasseNummer.Nummer
       is
          when EinheitenKonstanten.LeerNummer =>
-            null;
+            return TextpositionExtern;
             
          when others =>
-            Textposition := InformationenEinheitenSFML.Einheiten (RasseExtern              => RasseExtern,
-                                                                  EinheitRasseNummerExtern => EinheitRasseNummer,
-                                                                  PositionTextExtern       => Textposition);
-            Textposition.y := Textposition.y + 3.00 * Zeilenabstand;
+            TextpositionEinheit := InformationenEinheitenSFML.Einheiten (RasseExtern              => RasseExtern,
+                                                                         EinheitRasseNummerExtern => EinheitRasseNummer,
+                                                                         TextpositionExtern       => Textposition);
+            return (TextpositionEinheit.x, TextpositionEinheit.y + TextberechnungenHoeheSFML.GroßerZeilenabstand);
       end case;
       
    end EinheitInformationen;
-   
-   
-   
-   procedure DebugInformationen
-   is begin
-      
-      case
-        SpielVariablen.Debug.Allgemeines
-      is
-         when False =>
-            null;
-            
-         when True =>
-            null;
-      end case;
-      
-   end DebugInformationen;
 
 end KarteInformationenSFML;

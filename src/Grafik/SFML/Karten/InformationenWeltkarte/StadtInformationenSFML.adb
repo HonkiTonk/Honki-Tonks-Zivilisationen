@@ -19,6 +19,7 @@ with GesamtwerteFeld;
 with KampfwerteStadtErmitteln;
 with GrafikEinstellungenSFML;
 with Fehler;
+with TextberechnungenHoeheSFML;
 
 package body StadtInformationenSFML is
 
@@ -30,7 +31,6 @@ package body StadtInformationenSFML is
    is begin
       
       TextPosition := AnzeigeAnfangenExtern;
-      Zeilenabstand := Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard) * 0.15;
       
       -- Allgemeine Stadtinformationen, nur sichtbar wenn das Kartenfeld aufgedeckt ist und sich dort eine Stadt befindet.
       StadtartName (RasseExtern            => RasseExtern,
@@ -63,6 +63,8 @@ package body StadtInformationenSFML is
       else
          VolleInformation := False;
       end if;
+            
+      TextPosition.y := TextPosition.y - TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
       TextSchleife:
       for TextSchleifenwert in TextaccessVariablen.StadtInformationenAccessArray'Range loop
@@ -125,7 +127,7 @@ package body StadtInformationenSFML is
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.StadtInformationenAccess (1),
                                     position => TextPosition);
       
-      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.StadtInformationenAccess (1)).height;
+      TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
    end StadtartName;
    
@@ -154,7 +156,7 @@ package body StadtInformationenSFML is
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.StadtInformationenAccess (2),
                                     position => TextPosition);
       
-      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.StadtInformationenAccess (2)).height;
+      TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
    end Einwohner;
    
@@ -171,7 +173,7 @@ package body StadtInformationenSFML is
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.StadtInformationenAccess (3),
                                     position => TextPosition);
       
-      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.StadtInformationenAccess (3)).height;
+      TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
    end AktuelleNahrungsmittel;
    
@@ -188,7 +190,7 @@ package body StadtInformationenSFML is
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.StadtInformationenAccess (4),
                                     position => TextPosition);
       
-      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.StadtInformationenAccess (4)).height;
+      TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
    end AktuelleNahrungsproduktion;
    
@@ -205,7 +207,7 @@ package body StadtInformationenSFML is
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.StadtInformationenAccess (5),
                                     position => TextPosition);
       
-      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.StadtInformationenAccess (5)).height;
+      TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
    end AktuelleProduktionrate;
    
@@ -222,7 +224,7 @@ package body StadtInformationenSFML is
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.StadtInformationenAccess (6),
                                     position => TextPosition);
       
-      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.StadtInformationenAccess (6)).height;
+      TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
    end AktuelleGeldgewinnung;
    
@@ -239,7 +241,7 @@ package body StadtInformationenSFML is
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.StadtInformationenAccess (7),
                                     position => TextPosition);
       
-      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.StadtInformationenAccess (7)).height;
+      TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
    end AktuelleForschungsrate;
    
@@ -256,7 +258,7 @@ package body StadtInformationenSFML is
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.StadtInformationenAccess (8),
                                     position => TextPosition);
       
-      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.StadtInformationenAccess (8)).height;
+      TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
    end AktuelleVerteidigung;
    
@@ -273,7 +275,7 @@ package body StadtInformationenSFML is
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.StadtInformationenAccess (9),
                                     position => TextPosition);
       
-      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.StadtInformationenAccess (9)).height;
+      TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
    end AktuellerAngriff;
    
@@ -290,7 +292,7 @@ package body StadtInformationenSFML is
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.StadtInformationenAccess (10),
                                     position => TextPosition);
       
-      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.StadtInformationenAccess (10)).height;
+      TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
    end Korruption;
    
@@ -310,7 +312,7 @@ package body StadtInformationenSFML is
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.StadtInformationenAccess (11),
                                     position => TextPosition);
       
-      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.StadtInformationenAccess (11)).height;
+      TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
    end EinwohnerOhneArbeit;
    
@@ -343,7 +345,7 @@ package body StadtInformationenSFML is
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.StadtInformationenAccess (12),
                                     position => TextPosition);
       
-      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.StadtInformationenAccess (12)).height;
+      TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
       
       
@@ -354,7 +356,7 @@ package body StadtInformationenSFML is
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.StadtInformationenAccess (13),
                                     position => TextPosition);
       
-      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.StadtInformationenAccess (13)).height;
+      TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
    end AktuellesBauprojekt;
    
@@ -373,7 +375,7 @@ package body StadtInformationenSFML is
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.StadtInformationenAccess (14),
                                     position => TextPosition);
       
-      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.StadtInformationenAccess (14)).height;
+      TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
    end EinzelnesFeldNahrungsgewinnung;
    
@@ -392,7 +394,7 @@ package body StadtInformationenSFML is
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.StadtInformationenAccess (15),
                                     position => TextPosition);
       
-      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.StadtInformationenAccess (15)).height;
+      TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
    end EinzelnesFeldRessourcengewinnung;
    
@@ -411,7 +413,7 @@ package body StadtInformationenSFML is
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.StadtInformationenAccess (16),
                                     position => TextPosition);
       
-      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.StadtInformationenAccess (16)).height;
+      TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
    end EinzelnesFeldGeldgewinnung;
    
@@ -430,7 +432,7 @@ package body StadtInformationenSFML is
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.StadtInformationenAccess (17),
                                     position => TextPosition);
       
-      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.StadtInformationenAccess (17)).height;
+      TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
    end EinzelnesFeldWissensgewinnung;
    

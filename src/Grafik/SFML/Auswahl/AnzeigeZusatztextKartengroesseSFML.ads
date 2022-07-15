@@ -30,9 +30,6 @@ private
                                                                      9 => RueckgabeDatentypen.Kartengröße_1000_1000_Enum
                                                                     );
                                          
-   procedure Textbearbeitung
-     (AktuelleAuswahlExtern : in Natural);
-   
    procedure TextFestlegen
      (AktuelleAuswahlExtern : in Natural);
    

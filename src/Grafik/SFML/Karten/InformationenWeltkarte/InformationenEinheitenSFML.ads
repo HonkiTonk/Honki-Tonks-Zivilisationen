@@ -20,7 +20,7 @@ package InformationenEinheitenSFML is
    function Einheiten
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      PositionTextExtern : in Sf.System.Vector2.sfVector2f)
+      TextpositionExtern : in Sf.System.Vector2.sfVector2f)
       return Sf.System.Vector2.sfVector2f
      with
        Pre => (
@@ -39,9 +39,7 @@ private
    IDEinheit : EinheitenDatentypen.EinheitenID;
    
    EinheitNummer : EinheitenDatentypen.MaximaleEinheiten;
-   
-   Zeilenabstand : Float;
-   
+      
    Trennzeichen : constant Wide_Wide_String (1 .. 1) := "/";
    
    -- Alternativ auch aktueller Wert und maximaler Wert.
@@ -51,7 +49,7 @@ private
       
    EinheitRasseNummer : EinheitenRecords.RasseEinheitnummerRecord;
    
-   PositionText : Sf.System.Vector2.sfVector2f;
+   Textposition : Sf.System.Vector2.sfVector2f;
    
    function Allgemeines
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

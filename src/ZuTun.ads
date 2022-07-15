@@ -1,7 +1,7 @@
 -- Womit ich aufgehört habe:
 
 -- Weitere Umwandlungen für Datentypen anlegen?
--- textanzeige weiter überarbeiten, Abstände über die Funktionen regeln.
+-- Textanzeige weiter überarbeiten, Abstände über die Funktionen regeln.
 
 
 

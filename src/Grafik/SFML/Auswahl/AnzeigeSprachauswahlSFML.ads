@@ -20,7 +20,6 @@ private
    LängsterText : Positive;
    
    StartPositionYAchse : constant Float := 10.00;
-   ZeilenAbstand : Float;
    YPosition : Float;
    
    AktuelleTextFarbe : Sf.Graphics.Color.sfColor;
