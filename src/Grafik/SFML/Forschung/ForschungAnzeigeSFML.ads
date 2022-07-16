@@ -5,11 +5,14 @@ private with Sf.Graphics;
 private with Sf.Graphics.RectangleShape;
 private with Sf.System.Vector2;
 
+with RassenDatentypen;
 private with ForschungenDatentypen;
 
 package ForschungAnzeigeSFML is
 
-   procedure ForschungAnzeige;
+   -- Hier später "KOrREKTEN" Contract einfügen. äöü
+   procedure ForschungAnzeige
+     (RasseExtern : in RassenDatentypen.Rassen_Enum);
    
 private
    

@@ -1,8 +1,11 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with StadtDatentypen; use StadtDatentypen;
 with GrafikDatentypen;
 with OptionenVariablen;
+with ZeitKonstanten;
+with StadtKonstanten;
 
 with KarteStadtTerminal;
 with KarteStadtSFML;
@@ -14,7 +17,17 @@ package body KarteStadt is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
-      CursorPlatzierenSFML.CursorPlatzierenStadtSFML (RasseExtern => StadtRasseNummerExtern.Rasse);
+      if
+        StadtRasseNummerExtern.Rasse = RassenDatentypen.Keine_Rasse_Enum
+        or
+          StadtRasseNummerExtern.Nummer = StadtKonstanten.LeerNummer
+      then
+         delay ZeitKonstanten.WartezeitGrafik;
+         return;
+                  
+      else
+         CursorPlatzierenSFML.CursorPlatzierenStadtSFML (RasseExtern => StadtRasseNummerExtern.Rasse);
+      end if;
       
       case
         OptionenVariablen.NutzerEinstellungen.Anzeigeart

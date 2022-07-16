@@ -26,8 +26,21 @@ with Warnung;
 package body BauAuswahlAnzeigeSFML is
 
    procedure BauAuswahlAnzeige
+     (RasseExtern : in RassenDatentypen.Rassen_Enum)
    is begin
       
+      case
+        RasseExtern
+      is
+         when RassenDatentypen.Keine_Rasse_Enum =>
+            -- Da die Rasse schon auf der Weltkarte festgelegt wird, sollte dieser Fall niemals eintreten können. Beachten dass die Rasse zwischen den Zügen notwendig aber nicht festgelegt ist.
+            Fehler.GrafikFehler (FehlermeldungExtern => "BauAuswahlAnzeigeSFML.BauAuswahlAnzeige - Baumenü ohne Rasse aufgerufen.");
+                     
+         when others =>
+            null;
+      end case;
+      
+      -- Kann das nicht raus? äöü
       case
         SchriftgrößeFestgelegt
       is

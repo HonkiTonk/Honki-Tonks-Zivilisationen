@@ -283,10 +283,10 @@ package body ForschungAllgemein is
             null;
          end if;
          
-         InteraktionGrafiktask.AktuelleRasseEinheit.Rasse := RasseExtern;
+         InteraktionGrafiktask.AktuelleRasse := RasseExtern;
          SchreibeWichtiges.Forschungsprojekt (RasseExtern       => RasseExtern,
                                               ForschungIDExtern => AuswahlForschung (RasseExtern => RasseExtern));
-         InteraktionGrafiktask.AktuelleRasseEinheit.Rasse := RassenDatentypen.Keine_Rasse_Enum;
+         InteraktionGrafiktask.AktuelleRasse := RassenDatentypen.Keine_Rasse_Enum;
             
       else
          SchreibeWichtiges.VerbleibendeForschungszeit (RasseExtern => RasseExtern);

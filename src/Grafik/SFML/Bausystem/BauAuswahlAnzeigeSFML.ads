@@ -8,6 +8,7 @@ private with Sf.Graphics.RectangleShape;
 private with Sf.System.Vector2;
 private with Sf.Graphics.Sprite;
 
+with RassenDatentypen;
 private with StadtDatentypen;
 private with EinheitenDatentypen;
 private with StadtRecords;
@@ -15,7 +16,9 @@ private with MenueDatentypen;
 
 package BauAuswahlAnzeigeSFML is
 
-   procedure BauAuswahlAnzeige;
+   -- Hier später KORREKTEN Contract hinzufügen. äöü
+   procedure BauAuswahlAnzeige
+     (RasseExtern : in RassenDatentypen.Rassen_Enum);
 
 private
 

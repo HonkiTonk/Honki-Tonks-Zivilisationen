@@ -6,6 +6,6 @@ with MenueDatentypen;
 package AuswahlMenuesSFML is
 
    procedure AuswahlMenüsAufteilung
-     (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum);
+     (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Enum);
 
 end AuswahlMenuesSFML;

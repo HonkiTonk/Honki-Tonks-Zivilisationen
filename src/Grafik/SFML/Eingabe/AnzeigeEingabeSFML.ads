@@ -7,8 +7,7 @@ private with Sf.Graphics;
 private with Sf.Graphics.RectangleShape;
 private with Sf.System.Vector2;
 
-with RassenDatentypen; use RassenDatentypen;
-with SpielVariablen;
+with RassenDatentypen;
 
 private with EinheitenRecords;
 private with StadtRecords;
@@ -22,12 +21,9 @@ package AnzeigeEingabeSFML is
    procedure AnzeigeText;
    procedure AnzeigeJaNein;
    
+   -- Später KORREKTEN Contract einfügen- äöü
    procedure AnzeigeEinheitenStadt
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-     with
-       Pre => (
-                 SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
-              );
+     (RasseExtern : in RassenDatentypen.Rassen_Enum);
    
 private
       
@@ -35,7 +31,6 @@ private
    
    AktuelleAuswahl : Integer;
    
-   Zeilenabstand : Float;
    Textbreite : Float;
    
    AktuellerText : Unbounded_Wide_Wide_String;

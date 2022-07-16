@@ -1,12 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemDatentypen; use SystemDatentypen;
-with RassenDatentypen; use RassenDatentypen;
-with MenueDatentypen; use MenueDatentypen;
-with StadtDatentypen; use StadtDatentypen;
+with SystemDatentypen;
 with GrafikDatentypen;
-with StadtKonstanten;
 with ZeitKonstanten;
 
 with Fehler;
@@ -16,7 +12,6 @@ with AuswahlMenuesSFML;
 with Karte;
 with InteraktionGrafiktask;
 with KarteStadt;
-with InDerStadt;
 with GrafikAllgemeinSFML;
 with Sichtweiten;
 with ForschungAnzeigeSFML;
@@ -96,14 +91,7 @@ package body GrafikSFML is
             GrafikAllgemeinSFML.FensterAnpassen;
             Sichtweiten.SichtweiteBewegungsfeldFestlegen;
             InteraktionGrafiktask.FensterVerändert := InteraktionGrafiktask.Keine_Änderung_Enum;
-               
-         when InteraktionGrafiktask.Fenster_Unverändert_Enum'Range =>
-            null;
-      end case;
-         
-      case
-        InteraktionGrafiktask.FensterVerändert
-      is
+            
          when InteraktionGrafiktask.Bildrate_Ändern_Enum =>
             GrafikAllgemeinSFML.BildrateÄndern;
             InteraktionGrafiktask.FensterVerändert := InteraktionGrafiktask.Keine_Änderung_Enum;
@@ -172,72 +160,22 @@ package body GrafikSFML is
             LadezeitenSFML.LadezeitenSFML (WelcheLadeanzeigeExtern => InteraktionGrafiktask.AktuelleDarstellung);
          
          when GrafikDatentypen.Grafik_Menüs_Enum =>
-            -- Diese ganzen Rassen/Menü/Sosntigesfestlegungen/prüfungen in die jeweiligen Unterbereiche verschieben um hier eine bessere Übersicht zu haben. äöü
-            AktuellesMenü := InteraktionGrafiktask.AktuellesMenü;
-            
-            if
-              AktuellesMenü = MenueDatentypen.Leer_Menü_Enum
-            then
-               null;
-               
-            else
-               AuswahlMenuesSFML.AuswahlMenüsAufteilung (WelchesMenüExtern => AktuellesMenü);
-            end if;
+            AuswahlMenuesSFML.AuswahlMenüsAufteilung (WelchesMenüExtern => InteraktionGrafiktask.AktuellesMenü);
                
          when GrafikDatentypen.Editoren_Anzeigen_Enum'Range =>
             AnzeigeEditoren;
                
          when GrafikDatentypen.Grafik_Weltkarte_Enum =>
-            AktuelleRasseEinheit := InteraktionGrafiktask.AktuelleRasseEinheit;
+            Karte.AnzeigeKarte (RasseEinheitExtern => (InteraktionGrafiktask.AktuelleRasse, InteraktionGrafiktask.AktuelleEinheit));
             
-            if
-              AktuelleRasseEinheit.Rasse = RassenDatentypen.Keine_Rasse_Enum
-            then
-               delay ZeitKonstanten.WartezeitGrafik;
-                     
-            else
-               Karte.AnzeigeKarte (RasseEinheitExtern => AktuelleRasseEinheit);
-            end if;
-               
          when GrafikDatentypen.Grafik_Stadtkarte_Enum =>
-            AktuelleRasseStadt := (InteraktionGrafiktask.AktuelleRasseEinheit.Rasse, InDerStadt.AktuelleStadtNummerGrafik);
-            
-            if
-              AktuelleRasseStadt.Rasse = RassenDatentypen.Keine_Rasse_Enum
-              or
-                AktuelleRasseStadt.Nummer = StadtKonstanten.LeerNummer
-            then
-               delay ZeitKonstanten.WartezeitGrafik;
-                  
-            else
-               KarteStadt.AnzeigeStadt (StadtRasseNummerExtern => AktuelleRasseStadt);
-            end if;
+            KarteStadt.AnzeigeStadt (StadtRasseNummerExtern => (InteraktionGrafiktask.AktuelleRasse, InteraktionGrafiktask.AktuelleStadt));
                
          when GrafikDatentypen.Grafik_Forschung_Enum =>
-            AktuelleRasse := InteraktionGrafiktask.AktuelleRasseEinheit.Rasse;
-            
-            if
-              AktuelleRasse = RassenDatentypen.Keine_Rasse_Enum
-            then
-               -- Da die Rasse schon auf der Weltkarte festgelegt wird, sollte dieser Fall niemals eintreten können. Beachten dass die Rasse zwischen den Zügen notwendig aber nicht festgelegt ist.
-               Fehler.GrafikFehler (FehlermeldungExtern => "GrafikSFML.AnzeigeAuswahl - Forschungsmenü wird ohne Rasse aufgerufen.");
-                     
-            else
-               ForschungAnzeigeSFML.ForschungAnzeige;
-            end if;
+            ForschungAnzeigeSFML.ForschungAnzeige (RasseExtern => InteraktionGrafiktask.AktuelleRasse);
             
          when GrafikDatentypen.Grafik_Bauen_Enum =>
-            AktuelleRasse := InteraktionGrafiktask.AktuelleRasseEinheit.Rasse;
-            
-            if
-              AktuelleRasse = RassenDatentypen.Keine_Rasse_Enum
-            then
-               -- Da die Rasse schon auf der Weltkarte festgelegt wird, sollte dieser Fall niemals eintreten können. Beachten dass die Rasse zwischen den Zügen notwendig aber nicht festgelegt ist.
-               Fehler.GrafikFehler (FehlermeldungExtern => "GrafikSFML.AnzeigeAuswahl - Baumenü wird ohne Rasse aufgerufen.");
-                     
-            else
-               BauAuswahlAnzeigeSFML.BauAuswahlAnzeige;
-            end if;
+            BauAuswahlAnzeigeSFML.BauAuswahlAnzeige (RasseExtern => InteraktionGrafiktask.AktuelleRasse);
          
          when GrafikDatentypen.Grafik_Ende_Enum =>
             return False;
@@ -264,17 +202,11 @@ package body GrafikSFML is
             AnzeigeEingabeSFML.AnzeigeGanzeZahl;
             
          when SystemDatentypen.Einheit_Auswahl_Enum =>
-            AktuelleRasse := InteraktionGrafiktask.AktuelleRasseEinheit.Rasse;
+            AnzeigeEingabeSFML.AnzeigeEinheitenStadt (RasseExtern => InteraktionGrafiktask.AktuelleRasse);
             
-            if
-              AktuelleRasse = RassenDatentypen.Keine_Rasse_Enum
-            then
-               null;
-                     
-            else
-               AnzeigeEingabeSFML.AnzeigeEinheitenStadt (RasseExtern => AktuelleRasse);
-            end if;
-            
+            -- Wenn ich das Baumenü/Forschungsmenü hierher verschiebe, dann könnte ich das Neusetzen vermeiden und diese Setzsachen in eine Prozedur auslagern. äöü
+            -- Dann könnte ich auch ein durchsichtiges Fenster für die Menüs erstellen. äöü
+            -- Könnte Probleme mit den anderen Möglichkeiten erzeugen, genauer prüfen vor dem Umbau. äöü
          when SystemDatentypen.Ja_Nein_Enum =>
             AnzeigeEingabeSFML.AnzeigeJaNein;
                

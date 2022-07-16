@@ -19,7 +19,7 @@ package body InDerStadt is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
-      AktuelleStadtNummerGrafik := StadtRasseNummerExtern.Nummer;
+      InteraktionGrafiktask.AktuelleStadt := StadtRasseNummerExtern.Nummer;
       
       StadtSchleife:
       loop
@@ -77,9 +77,7 @@ package body InDerStadt is
       end loop StadtSchleife;
       
       InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
-      
-      -- Theoretisch kann diese Wertzuweisung raus, sicherheitshalber trotzdem drinnen lassen?
-      AktuelleStadtNummerGrafik := StadtKonstanten.LeerNummer;
+      InteraktionGrafiktask.AktuelleStadt := StadtKonstanten.LeerNummer;
       
    end InDerStadt;
    

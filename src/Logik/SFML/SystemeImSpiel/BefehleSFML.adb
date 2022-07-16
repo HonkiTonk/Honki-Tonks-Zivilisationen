@@ -260,7 +260,7 @@ package body BefehleSFML is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
-      InteraktionGrafiktask.AktuelleRasseEinheit.Nummer := EinheitRasseNummerExtern.Nummer;
+      InteraktionGrafiktask.AktuelleEinheit := EinheitRasseNummerExtern.Nummer;
       
       if
         LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= EinheitenKonstanten.LeerBeschäftigung
@@ -279,7 +279,7 @@ package body BefehleSFML is
          BewegungEinheitenSFML.BewegungEinheitenRichtung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       end if;
       
-      InteraktionGrafiktask.AktuelleRasseEinheit.Nummer := EinheitenKonstanten.LeerNummer;
+      InteraktionGrafiktask.AktuelleEinheit := EinheitenKonstanten.LeerNummer;
       
    end EinheitSteuern;
    

@@ -26,6 +26,7 @@ with KI;
 
 package body ImSpiel is
 
+   -- Hier mal alles überarbeiten, funktioniert nicht wenn alle Einheiten aufgelöst werden. äöü
    function ImSpiel
      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
@@ -209,7 +210,7 @@ package body ImSpiel is
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
-      InteraktionGrafiktask.AktuelleRasseEinheit.Rasse := RasseExtern;
+      InteraktionGrafiktask.AktuelleRasse := RasseExtern;
       
       SpielerSchleife:
       loop
@@ -223,8 +224,8 @@ package body ImSpiel is
                AktuellerBefehlSpieler := Befehle (RasseExtern => RasseExtern);
                
             when others =>
-               -- Sollte niemals auftreten? Könnte auftreten wenn der Spieler eliminiert wird oder auf KI gesetzt wird? Mal ein besseres System bauen.
-               Fehler.LogikFehler (FehlermeldungExtern => "ImSpiel.MenschAmZug - Nicht von Mensch belegt.");
+               RückgabeMenschAmZug := RueckgabeDatentypen.Hauptmenü_Enum;
+               exit SpielerSchleife;
          end case;
          
          case
@@ -268,7 +269,7 @@ package body ImSpiel is
       end loop SpielerSchleife;
       
       InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
-      InteraktionGrafiktask.AktuelleRasseEinheit.Rasse := RassenDatentypen.Keine_Rasse_Enum;
+      InteraktionGrafiktask.AktuelleRasse := RassenDatentypen.Keine_Rasse_Enum;
       
       return RückgabeMenschAmZug;
       

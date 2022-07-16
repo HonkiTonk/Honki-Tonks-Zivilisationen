@@ -13,11 +13,24 @@ with TextberechnungenBreiteSFML;
 with ForschungAllgemein;
 with InteraktionAuswahl;
 with TextaccessVariablen;
+with Fehler;
 
 package body ForschungAnzeigeSFML is
 
    procedure ForschungAnzeige
+     (RasseExtern : in RassenDatentypen.Rassen_Enum)
    is begin
+      
+      case
+        RasseExtern
+      is
+         when RassenDatentypen.Keine_Rasse_Enum =>
+            -- Da die Rasse schon auf der Weltkarte festgelegt wird, sollte dieser Fall niemals eintreten können. Beachten dass die Rasse zwischen den Zügen notwendig aber nicht festgelegt ist.
+            Fehler.GrafikFehler (FehlermeldungExtern => "GrafikSFML.AnzeigeAuswahl - Forschungsmenü ohne Rasse aufgerufen.");
+                     
+         when others =>
+            null;
+      end case;
       
       ----------------------- Hier Aufruf für Hintergrundbild einbauen.
       ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x), Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y)),

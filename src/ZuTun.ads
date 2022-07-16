@@ -1,7 +1,9 @@
 -- Womit ich aufgehört habe:
 
--- Weitere Umwandlungen für Datentypen anlegen?
--- Textanzeige weiter überarbeiten, Abstände über die Funktionen regeln.
+-- Mehr Zeug über die Interaktionsdatei durchführen.
+-- ImSpiel überarbeiten.
+-- Mehr Textanzeigezeug überarbeiten.
+-- Eventuell die Bau/Forschungsmenüs umlagern.
 
 
 

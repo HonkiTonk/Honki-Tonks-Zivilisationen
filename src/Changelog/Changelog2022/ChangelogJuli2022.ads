@@ -98,17 +98,19 @@ package ChangelogJuli2022 is
    
    
 
-   -- Version 0.03. => 0.03. (17.07.2022):
+   -- Version 0.03.0545 => 0.03. (17.07.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.0510 => 0.03. (16.07.2022):
+   -- Version 0.03.0510 => 0.03.0545 (16.07.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehler behoben der beim Entfernen einer Stadt die Stadtgrafik nicht entferte.
+   -- Grafikanzeigeaufrufe überarbeitet.
+   -- Textanzeige weiter überarbeitet.
+   -- Kommentare, Contracts und Kleinigkeiten korrigiert.
    
    
 

@@ -28,6 +28,7 @@ package body AnzeigeEingabeSFML is
    procedure AnzeigeGanzeZahl
    is begin
       
+      -- Das hier mal über InteraktionGrafiktask durchprüfen, am besten über GrafikSFML übergeben.
       WelcheFrage := EingabeSFML.Frage;
                   
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.AnzeigeZahlTexteingabeAccess (TextaccessVariablen.AnzeigeZahlTexteingabeAccessArray'First),
@@ -56,7 +57,7 @@ package body AnzeigeEingabeSFML is
                                                  - Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.AnzeigeZahlTexteingabeAccess (TextaccessVariablen.AnzeigeZahlTexteingabeAccessArray'Last)).width / 2.00),
                                                  150.00));
       
-      ----------------------- Die Abmessungen der Rechtecke immer an den größten Text anpassen.
+      -- Die Abmessungen der Rechtecke immer an den größten Text anpassen. äöü
       ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => (Textbreite + 20.00, 100.00),
                                             PositionExtern       => (Sf.Graphics.Text.getPosition (text => TextaccessVariablen.AnzeigeZahlTexteingabeAccess (TextaccessVariablen.AnzeigeZahlTexteingabeAccessArray'First)).x
                                                                      - 10.00,
@@ -119,12 +120,19 @@ package body AnzeigeEingabeSFML is
    
    
    procedure AnzeigeEinheitenStadt
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Enum)
    is begin
       
-      -------------------- Allgemeine Werte wie Zeilenabstand, Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) / 2.00 und Änhliches auch mal auslagern und nur bei Änderungen der jeweiligen Werte anpassen.
-      Zeilenabstand := Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard) * 0.15;
-      
+      case
+        RasseExtern
+      is
+         when RassenDatentypen.Keine_Rasse_Enum =>
+            return;
+            
+         when others =>
+            null;
+      end case;
+            
       AktuelleAuswahl := AuswahlStadtEinheit.AktuelleAuswahl;
       WelcheAuswahl := AuswahlStadtEinheit.WelcheAuswahl;
       TextPosition := (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) / 2.00, Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y) / 2.00);
@@ -142,7 +150,7 @@ package body AnzeigeEingabeSFML is
                   Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
                                                      str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugStadt))
                                                      & To_Wide_Wide_String (Source => LeseStadtGebaut.Name
-                                                                              (StadtRasseNummerExtern => (RasseExtern, StadtDatentypen.MaximaleStädteMitNullWert (WelcheAuswahl.MöglicheAuswahlen (0))))));
+                                                                            (StadtRasseNummerExtern => (RasseExtern, StadtDatentypen.MaximaleStädteMitNullWert (WelcheAuswahl.MöglicheAuswahlen (0))))));
                   
                when False =>
                   Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
@@ -189,7 +197,7 @@ package body AnzeigeEingabeSFML is
             Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                                text         => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert));
             
-            TextPosition.y := TextPosition.y + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert)).height + 3.00 * Zeilenabstand;
+            TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.Zeilenabstand;
          end if;
          
       end loop AuswahlSchleife;
@@ -212,7 +220,6 @@ package body AnzeigeEingabeSFML is
          when others =>
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.JaNeinAccess (1),
                                                str  => To_Wide_Wide_String (Source => GlobaleTexte.Frage (WelcheFrage)));
-            Zeilenabstand := Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard) * 0.15;
       end case;
       
       TextPosition := (TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.JaNeinAccess (1)), TextberechnungenHoeheSFML.HalbeBildschirmhöhe);
@@ -220,7 +227,7 @@ package body AnzeigeEingabeSFML is
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.JaNeinAccess (1),
                                     position => TextPosition);
       
-      TextPosition.y := TextPosition.y + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.JaNeinAccess (1)).height + 3.00 * Zeilenabstand;
+      TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.Zeilenabstand;
       TextPosition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.JaNeinAccess (2));
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.JaNeinAccess (2),
@@ -228,7 +235,7 @@ package body AnzeigeEingabeSFML is
       
       InteraktionAuswahl.PositionenJaNein (1) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.JaNeinAccess (2));
       
-      TextPosition.y := TextPosition.y + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.JaNeinAccess (2)).height + 3.00 * Zeilenabstand;
+      TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.Zeilenabstand;
       TextPosition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.JaNeinAccess (3));
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.JaNeinAccess (3),
@@ -236,7 +243,8 @@ package body AnzeigeEingabeSFML is
       
       InteraktionAuswahl.PositionenJaNein (2) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.JaNeinAccess (3));
       
-      ------------------------ Das ganze Draw Zeug mal auslagern.
+      -- Das ganze Draw Zeug mal auslagern? äöü
+      -- Bringt es wahrscheinlich nicht wirklich, da ich ja dann immer noch die Schleife hier habe. äöü
       TextAnzeigenSchleife:
       for TextAnzeigenSchleifenwert in TextaccessVariablen.JaNeinAccessArray'Range loop
          

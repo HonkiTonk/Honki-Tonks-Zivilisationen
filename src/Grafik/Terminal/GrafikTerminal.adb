@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with GrafikDatentypen; use GrafikDatentypen;
-with RassenDatentypen; use RassenDatentypen;
 with ZeitKonstanten;
 
 with InteraktionStart;
@@ -63,16 +62,7 @@ package body GrafikTerminal is
                null;
                
             when GrafikDatentypen.Grafik_Weltkarte_Enum =>
-               if
-                 ---------------------- Leerwert mal auf die leere Konstante umschreiben? Vielleicht generell bei Leerwerten machen?
-                 InteraktionGrafiktask.AktuelleRasseEinheit.Rasse = RassenDatentypen.Keine_Rasse_Enum
-               then
-                  delay ZeitKonstanten.WartezeitGrafik;
-                     
-               else
-                  Karte.AnzeigeKarte (RasseEinheitExtern => InteraktionGrafiktask.AktuelleRasseEinheit);
-                  InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
-               end if;
+                  Karte.AnzeigeKarte (RasseEinheitExtern => (InteraktionGrafiktask.AktuelleRasse, InteraktionGrafiktask.AktuelleEinheit));
                
             when GrafikDatentypen.Grafik_Stadtkarte_Enum =>
                InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
