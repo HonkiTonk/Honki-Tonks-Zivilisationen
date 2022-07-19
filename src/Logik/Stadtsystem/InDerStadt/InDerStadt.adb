@@ -11,7 +11,7 @@ with BewegungCursor;
 with Eingabe;
 with EinwohnerZuweisenEntfernen;
 with GebaeudeVerkaufen;
-with InteraktionGrafiktask;
+with NachGrafiktask;
 
 package body InDerStadt is
 
@@ -19,12 +19,12 @@ package body InDerStadt is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
-      InteraktionGrafiktask.AktuelleStadt := StadtRasseNummerExtern.Nummer;
+      NachGrafiktask.AktuelleStadt := StadtRasseNummerExtern.Nummer;
       
       StadtSchleife:
       loop
          
-         InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Stadtkarte_Enum;
+         NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Stadtkarte_Enum;
          
          Befehl := Eingabe.Tastenwert;
          
@@ -76,8 +76,8 @@ package body InDerStadt is
          
       end loop StadtSchleife;
       
-      InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
-      InteraktionGrafiktask.AktuelleStadt := StadtKonstanten.LeerNummer;
+      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
+      NachGrafiktask.AktuelleStadt := StadtKonstanten.LeerNummer;
       
    end InDerStadt;
    

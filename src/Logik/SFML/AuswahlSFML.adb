@@ -17,7 +17,7 @@ package body AuswahlSFML is
       return Boolean
    is begin
       
-      InteraktionEingabe.JaNeinFrage := FrageZeileExtern;
+      InteraktionEingabe.AnzeigeFrage := FrageZeileExtern;
       InteraktionEingabe.Eingabe := SystemDatentypen.Ja_Nein_Enum;
       
       AuswahlSchleife:
@@ -49,7 +49,7 @@ package body AuswahlSFML is
       end loop AuswahlSchleife;
       
       InteraktionEingabe.Eingabe := SystemDatentypen.Keine_Eingabe_Enum;
-      InteraktionEingabe.JaNeinFrage := 0;
+      InteraktionEingabe.AnzeigeFrage := 0;
       
       case
         AktuelleAuswahl
@@ -65,7 +65,7 @@ package body AuswahlSFML is
    
    
    
-   ----------------------- Allgemeiners System für die ganzen MausAuswahlen bauen.
+   -- Allgemeineres System für die ganzen MausAuswahlen bauen. äöü
    function MausAuswahl
      return Natural
    is begin

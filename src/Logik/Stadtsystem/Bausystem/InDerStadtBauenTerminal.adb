@@ -8,7 +8,7 @@ package body InDerStadtBauenTerminal is
    is begin
       
       AktuelleAuswahl := 1;
-      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Bauen_Enum);
+      NachGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Bauen_Enum);
       
       AuswahlSchleife:
       loop
@@ -58,7 +58,7 @@ package body InDerStadtBauenTerminal is
          
       end loop AuswahlSchleife;
       
-      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Pause_Enum);
+      NachGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Pause_Enum);
       
       return GewähltesBauprojekt;
       

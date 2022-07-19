@@ -13,7 +13,7 @@ with LeseStadtGebaut;
 with Eingabe;
 with GebaeudeAllgemein;
 with EinheitenModifizieren;
-with InteraktionGrafiktask;
+with NachGrafiktask;
 with GrafikEinstellungenSFML;
 with InteraktionAuswahl;
 
@@ -155,7 +155,7 @@ package body InDerStadtBauen is
    is begin
       
       InteraktionAuswahl.PositionenBauenFestgelegt := False;
-      InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Bauen_Enum;
+      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Bauen_Enum;
       
       AuswahlSchleife:
       loop
@@ -188,7 +188,7 @@ package body InDerStadtBauen is
          
       end loop AuswahlSchleife;
       
-      InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
+      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
       
       return GewähltesBauprojekt;
       

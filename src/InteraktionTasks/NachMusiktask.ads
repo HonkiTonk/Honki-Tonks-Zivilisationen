@@ -3,8 +3,8 @@ pragma Warnings (Off, "*array aggregate*");
 
 with TonDatentypen;
 
-package InteraktionMusiktask is
+package NachMusiktask is
 
    AktuelleMusik : TonDatentypen.Musik_Aktuelle_Auswahl_Enum := TonDatentypen.Musik_SFML_Enum;
    
-end InteraktionMusiktask;
+end NachMusiktask;

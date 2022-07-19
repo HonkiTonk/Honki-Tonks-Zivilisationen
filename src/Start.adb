@@ -12,7 +12,7 @@ with StartGrafik;
 with StartMusik;
 with StartSound;
 
-with InteraktionGrafiktask;
+with NachGrafiktask;
 with MeldungSchreiben;
 with SoundStartEndeSFML;
 with MusikStartEndeSFML;
@@ -171,7 +171,7 @@ begin
       end case;
 
       case
-        InteraktionGrafiktask.FensterGeschlossen
+        NachGrafiktask.FensterGeschlossen
       is
          when True =>
             -- Hier nicht mehr direkt die Schleife verlassen, da sonst die erfolgreiche Endmeldung nicht mehr geschrieben wird.

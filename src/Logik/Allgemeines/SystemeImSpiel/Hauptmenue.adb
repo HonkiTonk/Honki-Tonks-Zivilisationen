@@ -13,10 +13,10 @@ with Laden;
 with Wuerdigung;
 with AuswahlMenues;
 with Fehler;
-with InteraktionSoundtask;
-with InteraktionGrafiktask;
+with NachSoundtask;
+with NachGrafiktask;
 with DatenbankenEditoren;
-with InteraktionMusiktask;
+with NachMusiktask;
 
 package body Hauptmenue is
 
@@ -99,9 +99,9 @@ package body Hauptmenue is
          
       end loop HauptmenüSchleife;
       
-      InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Ende_Enum;
-      InteraktionMusiktask.AktuelleMusik := TonDatentypen.Musik_Ende_Enum;
-      InteraktionSoundtask.AktuellerSound := TonDatentypen.Sound_Ende_Enum;
+      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Ende_Enum;
+      NachMusiktask.AktuelleMusik := TonDatentypen.Musik_Ende_Enum;
+      NachSoundtask.AktuellerSound := TonDatentypen.Sound_Ende_Enum;
       
    end Hauptmenü;
 

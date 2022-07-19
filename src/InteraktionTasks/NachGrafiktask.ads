@@ -9,7 +9,11 @@ with EinheitenDatentypen;
 with StadtKonstanten;
 with StadtDatentypen;
 
-package InteraktionGrafiktask is
+package NachGrafiktask is
+   
+   -- Wird für Spielstart benötigt.
+   ErzeugeFenster : Boolean := False;
+   -- Wird für Spielstart benötigt.
    
    FensterGeschlossen : Boolean := False;
    NameSpielstand : Boolean := False;
@@ -36,4 +40,4 @@ package InteraktionGrafiktask is
    
    AktuelleDarstellung : GrafikDatentypen.Grafik_Aktuelle_Darstellung_Enum := GrafikDatentypen.Grafik_SFML_Enum;
 
-end InteraktionGrafiktask;
+end NachGrafiktask;

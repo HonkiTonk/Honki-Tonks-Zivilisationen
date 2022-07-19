@@ -9,7 +9,7 @@ with OptionenVariablen;
 with Eingabe;
 with GrafikEinstellungenSFML;
 with Fehler;
-with InteraktionGrafiktask;
+with NachGrafiktask;
 
 package body AuswahlSprache is
 
@@ -128,7 +128,7 @@ package body AuswahlSprache is
      return Unbounded_Wide_Wide_String
    is begin
                   
-      InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Sprache_Enum;
+      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Sprache_Enum;
       
       AuswahlTerminalSchleife:
       loop
@@ -204,7 +204,7 @@ package body AuswahlSprache is
             null;
       end case;
       
-      InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Sprache_Enum;
+      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Sprache_Enum;
       
       AuswahlSchleife:
       loop

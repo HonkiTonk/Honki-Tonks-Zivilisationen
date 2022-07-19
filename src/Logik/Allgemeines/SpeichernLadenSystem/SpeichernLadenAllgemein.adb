@@ -5,7 +5,7 @@ with Ada.Directories; use Ada.Directories;
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 
 with Eingabe;
-with InteraktionGrafiktask;
+with NachGrafiktask;
 
 package body SpeichernLadenAllgemein is
 
@@ -13,9 +13,9 @@ package body SpeichernLadenAllgemein is
      return SystemRecords.TextEingabeRecord
    is begin
      
-      InteraktionGrafiktask.NameSpielstand := True;
+      NachGrafiktask.NameSpielstand := True;
       SpielstandName := Eingabe.SpielstandName;
-      InteraktionGrafiktask.NameSpielstand := False;
+      NachGrafiktask.NameSpielstand := False;
       
       -- Es wird hier keine Prüfung benötigt ob die Namenslänge > 0 ist, da dies schon in EingabeSFML.SpielstandName geprüft wird.
       return SpielstandName;

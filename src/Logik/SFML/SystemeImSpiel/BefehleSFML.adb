@@ -31,7 +31,7 @@ with AufgabenAllgemein;
 with BewegungEinheitenSFML;
 with AuswahlStadtEinheit;
 with Auswahl;
-with InteraktionGrafiktask;
+with NachGrafiktask;
 
 package body BefehleSFML is
    
@@ -260,7 +260,7 @@ package body BefehleSFML is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
-      InteraktionGrafiktask.AktuelleEinheit := EinheitRasseNummerExtern.Nummer;
+      NachGrafiktask.AktuelleEinheit := EinheitRasseNummerExtern.Nummer;
       
       if
         LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= EinheitenKonstanten.LeerBeschäftigung
@@ -279,7 +279,7 @@ package body BefehleSFML is
          BewegungEinheitenSFML.BewegungEinheitenRichtung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       end if;
       
-      InteraktionGrafiktask.AktuelleEinheit := EinheitenKonstanten.LeerNummer;
+      NachGrafiktask.AktuelleEinheit := EinheitenKonstanten.LeerNummer;
       
    end EinheitSteuern;
    

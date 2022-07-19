@@ -90,7 +90,7 @@ package GlobaleTexte is
    Angebot : TexteArray (1 .. 2) := (others => FehlenderText);
    Fehlermeldung : TexteArray (1 .. 20) := (others => FehlenderText);
    Ladezeit : TexteArray (1 .. 17) := (others => FehlenderText);
-   Frage : TexteArray (1 .. 44) := (others => FehlenderText);
+   Frage : TexteArray (1 .. 45) := (others => FehlenderText);
    Zeug : TexteArray (1 .. 69) := (others => FehlenderText);
    
    type ZweidimensionaleTexteArray is array (RassenDatentypen.Rassen_Verwendet_Enum range <>, ZahlenDatentypen.EigenesPositive range <>) of Unbounded_Wide_Wide_String;

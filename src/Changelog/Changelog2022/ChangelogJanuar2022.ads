@@ -191,7 +191,7 @@ package ChangelogJanuar2022 is
    -- Unnötigen Code gelöscht.
    -- Angefangen die Verzeichnisstruktur des Projekts zu verbessern.
    -- Fehlersystem und Prüfung auf unerwartet beendete Tasks verbessert.
-   -- InteraktionTask in die Dateien InteraktionGrafiktask, InteraktionLogiktask und InteraktionSoundtask aufgeteilt.
+   -- InteraktionTask in die Dateien NachGrafiktask, InteraktionLogiktask und NachSoundtask aufgeteilt.
    -- Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    

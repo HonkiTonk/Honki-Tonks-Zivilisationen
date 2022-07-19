@@ -84,30 +84,30 @@ package ChangelogJuli2022 is
    
    
 
-   -- Version 0.03. => 0.03. (19.07.2022):
+   -- Version 0.03.0570 => 0.03. (19.07.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03. => 0.03. (18.07.2022):
+   -- Version 0.03.0545 => 0.03.0570 (18.07.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Angefangen die Zugriffe unter den Tasks neu zu regeln.
+   -- Angefangen ImSpiel zu überarbeiten.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.0545 => 0.03. (17.07.2022):
+   -- Version 0.03.0545 => 0.03.0545 (17.07.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
    -- Version 0.03.0510 => 0.03.0545 (16.07.2022):
    
-   -- Fehler behoben der beim Entfernen einer Stadt die Stadtgrafik nicht entferte.
+   -- Fehler behoben der beim Entfernen einer Stadt die Stadtgrafik nicht entfernte.
    -- Grafikanzeigeaufrufe überarbeitet.
    -- Textanzeige weiter überarbeitet.
    -- Kommentare, Contracts und Kleinigkeiten korrigiert.

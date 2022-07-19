@@ -4,11 +4,10 @@ pragma Warnings (Off, "*array aggregate*");
 with GrafikDatentypen;
 with ZeitKonstanten;
 
-with InteraktionGrafiktask;
+with NachGrafiktask;
 with GrafikTerminal;
 with GrafikSFML;
 with Fehler;
-with InteraktionStart;
 
 package body StartGrafik is
 
@@ -16,14 +15,14 @@ package body StartGrafik is
    is begin
       
       GrafikStartenSchleife:
-      while InteraktionStart.ErzeugeFenster = False loop
+      while NachGrafiktask.ErzeugeFenster = False loop
 
          delay ZeitKonstanten.WartezeitGrafik;
          
       end loop GrafikStartenSchleife;
             
       case
-        InteraktionGrafiktask.AktuelleDarstellung
+        NachGrafiktask.AktuelleDarstellung
       is
          when GrafikDatentypen.Grafik_Terminal_Enum =>
             GrafikTerminal.GrafikTerminal;

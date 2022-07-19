@@ -18,7 +18,7 @@ with SpieleinstellungenSonstiges;
 with Warnung;
 with Ladezeiten;
 with AuswahlMenues;
-with InteraktionGrafiktask;
+with NachGrafiktask;
 with AllesAufAnfangSetzen;
 with Karten;
 with KartengeneratorVariablen;
@@ -123,7 +123,7 @@ package body Spieleinstellungen is
       
       ------------------------------ Nullsetzen der Ladezeiten und das umschalten der Grafik kombinieren?
       Ladezeiten.SpielweltNullsetzen;
-      InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Generierungszeit_Enum;
+      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Generierungszeit_Enum;
 
       -- Wird benötigt, da sonst die wichtigen Kartenwerte nicht gespeichert/geladen werden können. Sicherheitshalber immer vor Aufruf des Kartengenerators setzen.
       Karten.Karteneinstellungen.Kartengröße := KartengeneratorVariablen.Kartenparameter.Kartengröße;
@@ -135,6 +135,7 @@ package body Spieleinstellungen is
       SpieleinstellungenRasseSpieler.StartwerteErmitteln;
       RassenVorhanden := False;
       
+      -- Das hier mit der Funktion aus ImSpiel zusammenführen? äöü
       SicherheitsSchleife:
       for RassenSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          

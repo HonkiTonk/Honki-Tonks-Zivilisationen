@@ -18,7 +18,7 @@ with Karten;
 with Ladezeiten;
 with Auswahl;
 with SpeichernLadenAllgemein;
-with InteraktionGrafiktask;
+with NachGrafiktask;
 
 package body Laden is
    
@@ -75,7 +75,7 @@ package body Laden is
       
       Ladezeiten.SpeichernLadenNullsetzen;
       Ladezeiten.SpeichernLaden (SystemDatentypen.Anfangswert_Enum) := Clock;
-      InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Speichern_Laden_Enum;
+      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Speichern_Laden_Enum;
       
       Allgemeines (DateiLadenExtern => DateiLaden);
       Ladezeiten.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
@@ -89,7 +89,7 @@ package body Laden is
       Close (File => DateiLaden);
       
       Ladezeiten.SpeichernLadenMaximum;
-      InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
+      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
       Ladezeiten.SpeichernLaden (SystemDatentypen.Endwert_Enum) := Clock;
 
       return True;

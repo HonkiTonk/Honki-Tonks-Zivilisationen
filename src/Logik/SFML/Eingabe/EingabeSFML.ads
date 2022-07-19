@@ -10,9 +10,7 @@ with TastenbelegungDatentypen;
 package EingabeSFML is
    
    WelchesVorzeichen : Boolean;
-   
-   Frage : Positive;
-   
+      
    AktuellerWert : Natural;
       
    type TastenbelegungArray is array (1 .. 2, TastenbelegungDatentypen.Tastenbelegung_Verwendet_Enum'Range) of Sf.Window.Keyboard.sfKeyCode;

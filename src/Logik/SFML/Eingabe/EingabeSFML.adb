@@ -19,7 +19,6 @@ with InteraktionEingabe;
 
 package body EingabeSFML is
    
-   ----------------------------------- Wide_Wide_Image kann hier so bleiben weil es nicht für die Anzeige verwendet wird?
    function GanzeZahl
      (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
       ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger;
@@ -34,7 +33,7 @@ package body EingabeSFML is
          
       else
          -- Wegen der grafischen Anzeige festgelegt.
-         Frage := WelcheFrageExtern;
+         InteraktionEingabe.AnzeigeFrage := WelcheFrageExtern;
          AktuellerWert := 0;
          EingegebeneZahl.EingegebeneZahl := AktuellerWert;
          ZahlenString := ZahlenStringLeer;
@@ -308,7 +307,7 @@ package body EingabeSFML is
       return SystemRecords.TextEingabeRecord
    is begin
       
-      Frage := WelcheFrageExtern;
+      InteraktionEingabe.AnzeigeFrage := WelcheFrageExtern;
       
       EingabeSystemeSFML.EingegebenerText := SystemRecordKonstanten.LeerTexteingabe;
       

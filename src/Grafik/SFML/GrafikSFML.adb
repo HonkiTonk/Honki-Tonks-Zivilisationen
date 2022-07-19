@@ -10,7 +10,7 @@ with GrafikStartEndeSFML;
 with GrafikIntroSFML;
 with AuswahlMenuesSFML;
 with Karte;
-with InteraktionGrafiktask;
+with NachGrafiktask;
 with KarteStadt;
 with GrafikAllgemeinSFML;
 with Sichtweiten;
@@ -18,7 +18,7 @@ with ForschungAnzeigeSFML;
 with AnzeigeSprachauswahlSFML;
 with AnzeigeEingabeSFML;
 with BauAuswahlAnzeigeSFML;
-with InteraktionStart;
+with NachLogiktask;
 with EingabeSystemeSFML;
 with TextaccesseAllesSetzenSFML;
 with InteraktionTextanzeige;
@@ -43,7 +43,7 @@ package body GrafikSFML is
          Eingaben;
          
          case
-           InteraktionGrafiktask.FensterGeschlossen
+           NachGrafiktask.FensterGeschlossen
          is
             when True =>
                exit GrafikSchleife;
@@ -85,16 +85,16 @@ package body GrafikSFML is
       end case;
          
       case
-        InteraktionGrafiktask.FensterVerändert
+        NachGrafiktask.FensterVerändert
       is
-         when InteraktionGrafiktask.Fenster_Wurde_Verändert_Enum'Range =>
+         when NachGrafiktask.Fenster_Wurde_Verändert_Enum'Range =>
             GrafikAllgemeinSFML.FensterAnpassen;
             Sichtweiten.SichtweiteBewegungsfeldFestlegen;
-            InteraktionGrafiktask.FensterVerändert := InteraktionGrafiktask.Keine_Änderung_Enum;
+            NachGrafiktask.FensterVerändert := NachGrafiktask.Keine_Änderung_Enum;
             
-         when InteraktionGrafiktask.Bildrate_Ändern_Enum =>
+         when NachGrafiktask.Bildrate_Ändern_Enum =>
             GrafikAllgemeinSFML.BildrateÄndern;
-            InteraktionGrafiktask.FensterVerändert := InteraktionGrafiktask.Keine_Änderung_Enum;
+            NachGrafiktask.FensterVerändert := NachGrafiktask.Keine_Änderung_Enum;
                
          when others =>
             null;
@@ -137,45 +137,46 @@ package body GrafikSFML is
    is begin
             
       case
-        InteraktionGrafiktask.AktuelleDarstellung
+        NachGrafiktask.AktuelleDarstellung
       is
          when GrafikDatentypen.Grafik_Terminal_Enum =>
             Fehler.GrafikFehler (FehlermeldungExtern => "GrafikSFML.AnzeigeAuswahl - Terminal wird bei SFML aufgerufen.");
             
          when GrafikDatentypen.Grafik_SFML_Enum =>
-            InteraktionStart.FensterErzeugt := True;
-            InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
+            NachLogiktask.FensterErzeugt := True;
+            NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
             
          when GrafikDatentypen.Grafik_Sprache_Enum =>
             AnzeigeSprachauswahlSFML.AnzeigeSprache;
                
          when GrafikDatentypen.Grafik_Intro_Enum =>
             GrafikIntroSFML.Intro;
-            InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
+            NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
+            NachLogiktask.Hauptmenü := True;
                               
          when GrafikDatentypen.Grafik_Pause_Enum =>
             delay ZeitKonstanten.WartezeitGrafik;
             
          when GrafikDatentypen.Ladezeiten_Enum'Range =>
-            LadezeitenSFML.LadezeitenSFML (WelcheLadeanzeigeExtern => InteraktionGrafiktask.AktuelleDarstellung);
+            LadezeitenSFML.LadezeitenSFML (WelcheLadeanzeigeExtern => NachGrafiktask.AktuelleDarstellung);
          
          when GrafikDatentypen.Grafik_Menüs_Enum =>
-            AuswahlMenuesSFML.AuswahlMenüsAufteilung (WelchesMenüExtern => InteraktionGrafiktask.AktuellesMenü);
+            AuswahlMenuesSFML.AuswahlMenüsAufteilung (WelchesMenüExtern => NachGrafiktask.AktuellesMenü);
                
          when GrafikDatentypen.Editoren_Anzeigen_Enum'Range =>
             AnzeigeEditoren;
                
          when GrafikDatentypen.Grafik_Weltkarte_Enum =>
-            Karte.AnzeigeKarte (RasseEinheitExtern => (InteraktionGrafiktask.AktuelleRasse, InteraktionGrafiktask.AktuelleEinheit));
+            Karte.AnzeigeKarte (RasseEinheitExtern => (NachGrafiktask.AktuelleRasse, NachGrafiktask.AktuelleEinheit));
             
          when GrafikDatentypen.Grafik_Stadtkarte_Enum =>
-            KarteStadt.AnzeigeStadt (StadtRasseNummerExtern => (InteraktionGrafiktask.AktuelleRasse, InteraktionGrafiktask.AktuelleStadt));
+            KarteStadt.AnzeigeStadt (StadtRasseNummerExtern => (NachGrafiktask.AktuelleRasse, NachGrafiktask.AktuelleStadt));
                
          when GrafikDatentypen.Grafik_Forschung_Enum =>
-            ForschungAnzeigeSFML.ForschungAnzeige (RasseExtern => InteraktionGrafiktask.AktuelleRasse);
+            ForschungAnzeigeSFML.ForschungAnzeige (RasseExtern => NachGrafiktask.AktuelleRasse);
             
          when GrafikDatentypen.Grafik_Bauen_Enum =>
-            BauAuswahlAnzeigeSFML.BauAuswahlAnzeige (RasseExtern => InteraktionGrafiktask.AktuelleRasse);
+            BauAuswahlAnzeigeSFML.BauAuswahlAnzeige (RasseExtern => NachGrafiktask.AktuelleRasse);
          
          when GrafikDatentypen.Grafik_Ende_Enum =>
             return False;
@@ -195,20 +196,16 @@ package body GrafikSFML is
       case
         InteraktionEingabe.Eingabe
       is
-         when SystemDatentypen.Text_Eingabe_Enum =>
-            AnzeigeEingabeSFML.AnzeigeText;
-            
-         when SystemDatentypen.Zahlen_Eingabe_Enum =>
-            AnzeigeEingabeSFML.AnzeigeGanzeZahl;
+         when SystemDatentypen.Eingaben_Fragen_Enum'Range =>
+            AnzeigeEingabeSFML.Fragenaufteilung (FrageExtern   => InteraktionEingabe.AnzeigeFrage,
+                                                 EingabeExtern => InteraktionEingabe.Eingabe);
             
          when SystemDatentypen.Einheit_Auswahl_Enum =>
-            AnzeigeEingabeSFML.AnzeigeEinheitenStadt (RasseExtern => InteraktionGrafiktask.AktuelleRasse);
+            AnzeigeEingabeSFML.AnzeigeEinheitenStadt (RasseExtern => NachGrafiktask.AktuelleRasse);
             
             -- Wenn ich das Baumenü/Forschungsmenü hierher verschiebe, dann könnte ich das Neusetzen vermeiden und diese Setzsachen in eine Prozedur auslagern. äöü
             -- Dann könnte ich auch ein durchsichtiges Fenster für die Menüs erstellen. äöü
             -- Könnte Probleme mit den anderen Möglichkeiten erzeugen, genauer prüfen vor dem Umbau. äöü
-         when SystemDatentypen.Ja_Nein_Enum =>
-            AnzeigeEingabeSFML.AnzeigeJaNein;
                
          when SystemDatentypen.Keine_Eingabe_Enum =>
             null;

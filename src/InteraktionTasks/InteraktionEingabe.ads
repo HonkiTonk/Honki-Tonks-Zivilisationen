@@ -9,7 +9,7 @@ package InteraktionEingabe is
    TastenEingabe : Boolean := False;
    TextEingabe : Boolean := False;
    
-   JaNeinFrage : ZahlenDatentypen.EigenesNatural := ZahlenDatentypen.EigenesNatural'First;
+   AnzeigeFrage : ZahlenDatentypen.EigenesNatural := ZahlenDatentypen.EigenesNatural'First;
    
    Eingabe : SystemDatentypen.Welche_Eingabe_Enum := SystemDatentypen.Keine_Eingabe_Enum;
 

@@ -9,7 +9,7 @@ with GrafikDatentypen;
 with GrafikEinstellungenSFML;
 with Eingabe;
 with RueckgabeMenues;
-with InteraktionGrafiktask;
+with NachGrafiktask;
 with InteraktionAuswahl;
 
 package body AuswahlMenuesEinfach is
@@ -21,8 +21,8 @@ package body AuswahlMenuesEinfach is
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
-      InteraktionGrafiktask.AktuellesMenü := WelchesMenüExtern;
-      InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Menüs_Enum;
+      NachGrafiktask.AktuellesMenü := WelchesMenüExtern;
+      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Menüs_Enum;
                  
       Ende := SystemKonstanten.EndeMenü (WelchesMenüExtern) - SystemKonstanten.EndeAbzugLogik (WelchesMenüExtern);
       
@@ -35,8 +35,8 @@ package body AuswahlMenuesEinfach is
                                                         AktuelleAuswahlExtern => Ausgewählt,
                                                         WelchesMenüExtern     => WelchesMenüExtern);
       
-      -- InteraktionGrafiktask.AktuellesMenü := MenueDatentypen.Leer_Menü_Enum;
-      -- InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
+      -- NachGrafiktask.AktuellesMenü := MenueDatentypen.Leer_Menü_Enum;
+      -- NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
       
       return RückgabeWert;
       

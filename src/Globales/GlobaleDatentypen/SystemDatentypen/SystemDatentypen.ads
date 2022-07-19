@@ -12,8 +12,13 @@ package SystemDatentypen is
    type Welche_Eingabe_Enum is (
                                 Keine_Eingabe_Enum,
                                 
-                                Zahlen_Eingabe_Enum, Text_Eingabe_Enum, Einheit_Auswahl_Enum, Ja_Nein_Enum
+                                Zahlen_Eingabe_Enum, Text_Eingabe_Enum, Ja_Nein_Enum,
+                                
+                                Einheit_Auswahl_Enum
                                );
+   
+   subtype Eingaben_Vorhanden_Enum is Welche_Eingabe_Enum range Zahlen_Eingabe_Enum .. Welche_Eingabe_Enum'Last;
+   subtype Eingaben_Fragen_Enum is Eingaben_Vorhanden_Enum range Zahlen_Eingabe_Enum .. Ja_Nein_Enum;
    
    -- Das dann mal überall einbauen und die KartenDatentypen.UmgebungsbereichEins/Boolean Varianten rauswerfen. äöü
    type Rechenoperation_Enum is (

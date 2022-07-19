@@ -5,7 +5,7 @@ with TextKonstanten;
 with ZahlenDatentypen;
 with MenueDatentypen;
 
-with InteraktionGrafiktask; use InteraktionGrafiktask;
+with NachGrafiktask; use NachGrafiktask;
 with AuswahlMenues;
 with Eingabe;
 with GrafikEinstellungenSFML;
@@ -88,10 +88,10 @@ package body OptionenGrafik is
       GrafikEinstellungenSFML.FensterEinstellungen.FensterBreite := NeueAuflösung.x;
       GrafikEinstellungenSFML.FensterEinstellungen.FensterHöhe := NeueAuflösung.y;
       
-      InteraktionGrafiktask.FensterVerändert := InteraktionGrafiktask.Auflösung_Verändert_Enum;
+      NachGrafiktask.FensterVerändert := NachGrafiktask.Auflösung_Verändert_Enum;
       
       ErzeugungNeuesFensterAbwartenSchleife:
-      while InteraktionGrafiktask.FensterVerändert = InteraktionGrafiktask.Auflösung_Verändert_Enum loop
+      while NachGrafiktask.FensterVerändert = NachGrafiktask.Auflösung_Verändert_Enum loop
          
          delay 0.002;
          
@@ -118,10 +118,10 @@ package body OptionenGrafik is
       end if;
       
       GrafikEinstellungenSFML.FensterEinstellungen.Bildrate := Sf.sfUint32 (EingabeBildrate.EingegebeneZahl);
-      InteraktionGrafiktask.FensterVerändert := InteraktionGrafiktask.Bildrate_Ändern_Enum;
+      NachGrafiktask.FensterVerändert := NachGrafiktask.Bildrate_Ändern_Enum;
       
       NeueBildrateAbwartenSchleife:
-      while InteraktionGrafiktask.FensterVerändert = InteraktionGrafiktask.Bildrate_Ändern_Enum loop
+      while NachGrafiktask.FensterVerändert = NachGrafiktask.Bildrate_Ändern_Enum loop
          
          delay 0.002;
          
@@ -147,10 +147,10 @@ package body OptionenGrafik is
             Fehler.LogikFehler (FehlermeldungExtern => "OptionenGrafik.VollbildFenster - Unbekannter Fenstermodus ausgewählt.");
       end case;
       
-      InteraktionGrafiktask.FensterVerändert := InteraktionGrafiktask.Modus_Verändert_Enum;
+      NachGrafiktask.FensterVerändert := NachGrafiktask.Modus_Verändert_Enum;
       
       ErzeugungNeuesFensterAbwartenSchleife:
-      while InteraktionGrafiktask.FensterVerändert = InteraktionGrafiktask.Modus_Verändert_Enum loop
+      while NachGrafiktask.FensterVerändert = NachGrafiktask.Modus_Verändert_Enum loop
          
          delay 0.002;
          

@@ -19,7 +19,7 @@ with GrafikDatentypen;
 with Karten;
 with Ladezeiten;
 with SpeichernLadenAllgemein;
-with InteraktionGrafiktask;
+with NachGrafiktask;
 with Auswahl;
 
 -- Bei Änderungen am Speichersystem auch immer das Ladesystem anpassen!
@@ -50,7 +50,7 @@ package body Speichern is
          when False =>
             Ladezeiten.SpeichernLadenNullsetzen;
             Ladezeiten.SpeichernLaden (SystemDatentypen.Anfangswert_Enum) := Clock;
-            InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Speichern_Laden_Enum;
+            NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Speichern_Laden_Enum;
       end case;
       
       Create (File => DateiSpeichern,
@@ -77,7 +77,7 @@ package body Speichern is
             
          when False =>
             Ladezeiten.SpeichernLadenMaximum;
-            InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
+            NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
             Ladezeiten.SpeichernLaden (SystemDatentypen.Endwert_Enum) := Clock;
       end case;
    

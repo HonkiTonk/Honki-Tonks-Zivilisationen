@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with TonDatentypen;
 with ZeitKonstanten;
 
-with InteraktionSoundtask;
+with NachSoundtask;
 with Fehler;
 with SoundStartEndeSFML;
 
@@ -20,7 +20,7 @@ package body SoundSFML is
       loop
          
          case
-           InteraktionSoundtask.AktuellerSound
+           NachSoundtask.AktuellerSound
          is
             when TonDatentypen.Sound_Terminal_Enum =>
                Fehler.SoundFehler (FehlermeldungExtern => "SoundSFML.SoundSFML - Terminal wird bei SFML aufgerufen.");

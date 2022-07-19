@@ -9,6 +9,7 @@ with EinheitenKonstanten;
 with GrafikDatentypen;
 with OptionenVariablen;
 with MenueDatentypen;
+with TextKonstanten;
 
 with Optionen;
 with Ladezeiten;
@@ -18,21 +19,21 @@ with RasseEntfernen;
 with ZwischenDenRunden;
 with AuswahlMenues;
 with Fehler;
-with InteraktionGrafiktask;
+with NachGrafiktask;
 with BefehleTerminal;
 with BefehleSFML;
+with Auswahl;
 
 with KI;
 
 package body ImSpiel is
 
-   -- Hier mal alles überarbeiten, funktioniert nicht wenn alle Einheiten aufgelöst werden. äöü
    function ImSpiel
      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
-      -- Muss hier einmal auf Verändert gesetzt werden, damit die eventuell geänderten Kartenfeldergrößen neu/korrekt berechnet werden vom Grafiktask.
-      InteraktionGrafiktask.FensterVerändert := InteraktionGrafiktask.Fenster_Verändert_Enum;
+      -- Muss hier einmal auf Verändert gesetzt werden, damit die Kartenfeldergrößen korrekt berechnet werden vom Grafiktask.
+      NachGrafiktask.FensterVerändert := NachGrafiktask.Fenster_Verändert_Enum;
       
       SpielSchleife:
       loop
@@ -62,6 +63,16 @@ package body ImSpiel is
             end case;
             
          end loop RassenSchleife;
+         
+       --  case
+       --    ZwischenDenRunden.BerechnungenNachZugendeAllerSpieler
+       --  is
+       --     when False =>
+        --       return RueckgabeDatentypen.Hauptmenü_Enum;
+               
+       --     when True =>
+       --       null;
+       --  end case;
                
          if
            SpielVariablen.Allgemeines.RasseAmZugNachLaden = EinheitenKonstanten.LeerRasse
@@ -150,21 +161,21 @@ package body ImSpiel is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      ------------------------------- Bringt noch Warnmeldungen bei Forschung, warum auch immer.
+      -- Bringt noch Warnmeldungen bei Forschung. äöü
       Ladezeiten.KINullsetzenFortschritt;
       
-      --------------------------------------- Mal was einbauen damit man die KI sieht bei ihren Bewegungen? Wenn dann bei Debug an, sonst würde man ja auch nicht sichtbare KIs sehen.
-      -- InteraktionGrafiktask.AktuelleRasseEinheit.Rasse := RasseExtern;
-      -- InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Weltkarte_Enum;
+      -- Mal was einbauen damit man die KI sieht bei ihren Bewegungen? Wenn dann bei Debug an, sonst würde man ja auch nicht sichtbare KIs sehen. äöü
+      -- NachGrafiktask.AktuelleRasseEinheit.Rasse := RasseExtern;
+      -- NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Weltkarte_Enum;
       
-      InteraktionGrafiktask.KIRechnet := RasseExtern;
-      InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_KI_Rechenzeit_Enum;
+      NachGrafiktask.KIRechnet := RasseExtern;
+      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_KI_Rechenzeit_Enum;
       Ladezeiten.KIZeiten (RasseExtern, SystemDatentypen.Anfangswert_Enum) := Clock;
       
       KI.KI (RasseExtern => RasseExtern);
       
       Ladezeiten.KIZeiten (RasseExtern, SystemDatentypen.Endwert_Enum) := Clock;
-      InteraktionGrafiktask.KIRechnet := RassenDatentypen.Keine_Rasse_Enum;
+      NachGrafiktask.KIRechnet := RassenDatentypen.Keine_Rasse_Enum;
       
    end KISpieler;
    
@@ -178,11 +189,13 @@ package body ImSpiel is
       RückgabeWert := MenschAmZug (RasseExtern => RasseExtern);
       
       if
-        (RückgabeWert = RueckgabeDatentypen.Spiel_Beenden_Enum
-         or
-           RückgabeWert = RueckgabeDatentypen.Hauptmenü_Enum)
-        and
-          NochSpielerVorhanden (RasseExtern => RasseExtern) = True
+        ((RückgabeWert = RueckgabeDatentypen.Spiel_Beenden_Enum
+          or
+            RückgabeWert = RueckgabeDatentypen.Hauptmenü_Enum)
+         and
+           NochSpielerVorhanden (RasseExtern => RasseExtern) = True)
+        and then
+          Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageKIEinsetzen)
       then
          RasseEntfernen.RasseAufKISetzen (RasseExtern => RasseExtern);
                         
@@ -210,12 +223,12 @@ package body ImSpiel is
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
-      InteraktionGrafiktask.AktuelleRasse := RasseExtern;
+      NachGrafiktask.AktuelleRasse := RasseExtern;
       
       SpielerSchleife:
       loop
          
-         InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Weltkarte_Enum;
+         NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Weltkarte_Enum;
          
          case
            SpielVariablen.RassenImSpiel (RasseExtern)
@@ -268,8 +281,8 @@ package body ImSpiel is
                      
       end loop SpielerSchleife;
       
-      InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
-      InteraktionGrafiktask.AktuelleRasse := RassenDatentypen.Keine_Rasse_Enum;
+      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
+      NachGrafiktask.AktuelleRasse := RassenDatentypen.Keine_Rasse_Enum;
       
       return RückgabeMenschAmZug;
       

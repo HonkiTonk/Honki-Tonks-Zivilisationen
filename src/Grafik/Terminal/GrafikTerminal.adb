@@ -4,12 +4,12 @@ pragma Warnings (Off, "*array aggregate*");
 with GrafikDatentypen; use GrafikDatentypen;
 with ZeitKonstanten;
 
-with InteraktionStart;
+with NachLogiktask;
 with GrafikIntroTerminal;
 with Fehler;
 with Karte;
 with ForschungAnzeigeTerminal;
-with InteraktionGrafiktask;
+with NachGrafiktask;
 
 package body GrafikTerminal is
 
@@ -22,22 +22,22 @@ package body GrafikTerminal is
          -- Hier die Auslagerung der Auswahl auch sinnvoll?
          -- In der Terminalnanzeige später noch die Auswahlinteraktion einbauen.
          case
-           InteraktionGrafiktask.AktuelleDarstellung
+           NachGrafiktask.AktuelleDarstellung
          is
             when GrafikDatentypen.Grafik_Terminal_Enum =>
-               InteraktionStart.FensterErzeugt := True;
-               InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
+               NachLogiktask.FensterErzeugt := True;
+               NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
             
             when GrafikDatentypen.Grafik_SFML_Enum =>
                Fehler.GrafikFehler (FehlermeldungExtern => "SFMLDarstellungAuswahl.SFMLDarstellungAuswahl - SFML wird bei Terminal aufgerufen.");
                
             when GrafikDatentypen.Grafik_Sprache_Enum =>
                -- AuswahlSpracheAnzeige.AnzeigeSpracheTerminal;
-               InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
+               NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
                
             when GrafikDatentypen.Grafik_Intro_Enum =>
                GrafikIntroTerminal.Intro;
-               InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
+               NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
                               
             when GrafikDatentypen.Grafik_Pause_Enum =>
                delay ZeitKonstanten.WartezeitGrafik;
@@ -56,20 +56,20 @@ package body GrafikTerminal is
          
             when GrafikDatentypen.Grafik_Menüs_Enum =>
                -- AuswahlMenueAnzeige.AnzeigeSFMLAnfang;
-               InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
+               NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
                
             when GrafikDatentypen.Editoren_Anzeigen_Enum'Range =>
                null;
                
             when GrafikDatentypen.Grafik_Weltkarte_Enum =>
-                  Karte.AnzeigeKarte (RasseEinheitExtern => (InteraktionGrafiktask.AktuelleRasse, InteraktionGrafiktask.AktuelleEinheit));
+                  Karte.AnzeigeKarte (RasseEinheitExtern => (NachGrafiktask.AktuelleRasse, NachGrafiktask.AktuelleEinheit));
                
             when GrafikDatentypen.Grafik_Stadtkarte_Enum =>
-               InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
+               NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
                
             when GrafikDatentypen.Grafik_Forschung_Enum =>
                ForschungAnzeigeTerminal.ForschungAnzeige;
-               InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
+               NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
                
             when GrafikDatentypen.Grafik_Bauen_Enum =>
                null;

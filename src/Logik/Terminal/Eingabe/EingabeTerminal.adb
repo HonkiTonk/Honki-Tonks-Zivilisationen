@@ -10,7 +10,7 @@ with GrafikDatentypen;
 with SystemDatentypen;
 
 with Fehler;
-with InteraktionGrafiktask;
+with NachGrafiktask;
 with InteraktionEingabe;
 
 package body EingabeTerminal is
@@ -47,14 +47,14 @@ package body EingabeTerminal is
       end if;
       
       case
-        InteraktionGrafiktask.AktuelleDarstellung
+        NachGrafiktask.AktuelleDarstellung
       is
          -- Brauche ich den Stadtteil wirklich? Eventuell um in der Stadt bestimmte Dinge festzulegen.
          when GrafikDatentypen.Grafik_Weltkarte_Enum | GrafikDatentypen.Grafik_Stadtkarte_Enum =>
             null;
             
          when others =>
-            InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Menüs_Enum;
+            NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Menüs_Enum;
       end case;
                   
       case
@@ -78,11 +78,11 @@ package body EingabeTerminal is
       end if;
       
       case
-        InteraktionGrafiktask.AktuelleDarstellung
+        NachGrafiktask.AktuelleDarstellung
       is
          when GrafikDatentypen.Grafik_Menüs_Enum =>
             InteraktionEingabe.Eingabe := SystemDatentypen.Keine_Eingabe_Enum;
-            InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
+            NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
             
          when others =>
             null;

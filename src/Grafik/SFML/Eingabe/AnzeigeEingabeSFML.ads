@@ -8,6 +8,8 @@ private with Sf.Graphics.RectangleShape;
 private with Sf.System.Vector2;
 
 with RassenDatentypen;
+with ZahlenDatentypen;
+with SystemDatentypen;
 
 private with EinheitenRecords;
 private with StadtRecords;
@@ -16,19 +18,17 @@ private with AuswahlStadtEinheit;
 private with UmwandlungenAdaNachEigenes;
 
 package AnzeigeEingabeSFML is
-
-   procedure AnzeigeGanzeZahl;
-   procedure AnzeigeText;
-   procedure AnzeigeJaNein;
+   
+   procedure Fragenaufteilung
+     (FrageExtern : in ZahlenDatentypen.EigenesNatural;
+      EingabeExtern : in SystemDatentypen.Eingaben_Fragen_Enum);
    
    -- Später KORREKTEN Contract einfügen- äöü
    procedure AnzeigeEinheitenStadt
      (RasseExtern : in RassenDatentypen.Rassen_Enum);
    
 private
-      
-   WelcheFrage : Natural;
-   
+         
    AktuelleAuswahl : Integer;
    
    Textbreite : Float;
@@ -45,6 +45,15 @@ private
    TextPosition : Sf.System.Vector2.sfVector2f;
    
    RechteckAccess : constant Sf.Graphics.sfRectangleShape_Ptr := Sf.Graphics.RectangleShape.create;
+
+   procedure AnzeigeGanzeZahl
+     (FrageExtern : in ZahlenDatentypen.EigenesNatural);
+   
+   procedure AnzeigeText
+     (FrageExtern : in ZahlenDatentypen.EigenesNatural);
+   
+   procedure AnzeigeJaNein
+     (FrageExtern : in ZahlenDatentypen.EigenesNatural);
    
    
    

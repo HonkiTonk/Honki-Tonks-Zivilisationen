@@ -5,7 +5,7 @@ with TonDatentypen;
 with ZeitKonstanten;
 
 with Fehler;
-with InteraktionSoundtask;
+with NachSoundtask;
 
 package body SoundTerminal is
 
@@ -16,7 +16,7 @@ package body SoundTerminal is
       loop
          
          case
-           InteraktionSoundtask.AktuellerSound
+           NachSoundtask.AktuellerSound
          is
             when TonDatentypen.Sound_Terminal_Enum =>
                delay ZeitKonstanten.WartezeitSound;

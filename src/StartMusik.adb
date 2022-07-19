@@ -6,11 +6,11 @@ with ZeitKonstanten;
 with GrafikDatentypen;
 with OptionenVariablen;
 
-with InteraktionMusiktask;
+with NachMusiktask;
 with MusikSFML;
 with MusikTerminal;
 with Fehler;
-with InteraktionStart;
+with VonLogiktaskAnAlle;
 
 package body StartMusik is
 
@@ -28,14 +28,14 @@ package body StartMusik is
       end case;
       
       EinlesenAbwartenSchleife:
-      while InteraktionStart.EinlesenAbgeschlossen = False loop
+      while VonLogiktaskAnAlle.EinlesenAbgeschlossen = False loop
          
          delay ZeitKonstanten.WartezeitMusik;
          
       end loop EinlesenAbwartenSchleife;
       
       case
-        InteraktionMusiktask.AktuelleMusik
+        NachMusiktask.AktuelleMusik
       is
          when TonDatentypen.Musik_SFML_Enum =>
             MusikSFML.MusikSFML;

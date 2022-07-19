@@ -128,5 +128,6 @@ package TextKonstanten is
    FrageMaximalerHöhenabstand : constant Positive := 42;
    FrageMinimaleBreitenabstand : constant Positive := 43;
    FrageMaximalerBreitenabstand : constant Positive := 44;
+   FrageKIEinsetzen : constant Positive := 45;
 
 end TextKonstanten;

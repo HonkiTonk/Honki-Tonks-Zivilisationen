@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with TonDatentypen;
 with ZeitKonstanten;
 
-with InteraktionMusiktask;
+with NachMusiktask;
 with Fehler;
 with MusikIntroTerminal;
 
@@ -17,7 +17,7 @@ package body MusikTerminal is
       loop
          
          case
-           InteraktionMusiktask.AktuelleMusik
+           NachMusiktask.AktuelleMusik
          is
             when TonDatentypen.Musik_Terminal_Enum =>
                delay ZeitKonstanten.WartezeitMusik;

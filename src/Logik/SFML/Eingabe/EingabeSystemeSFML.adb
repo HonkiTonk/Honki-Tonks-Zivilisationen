@@ -11,7 +11,7 @@ with Sf.Graphics.RenderWindow;
 with SystemRecordKonstanten;
 
 with GrafikEinstellungenSFML;
-with InteraktionGrafiktask;
+with NachGrafiktask;
 with InteraktionEingabe;
 
 package body EingabeSystemeSFML is
@@ -34,11 +34,11 @@ package body EingabeSystemeSFML is
          is
             when Sf.Window.Event.sfEvtClosed =>
                -- Hier noch einen besseren universellen Endebefehl einbauen?
-               InteraktionGrafiktask.FensterGeschlossen := True;
+               NachGrafiktask.FensterGeschlossen := True;
                return;
                   
             when Sf.Window.Event.sfEvtResized =>
-               InteraktionGrafiktask.FensterVerändert := InteraktionGrafiktask.Fenster_Verändert_Enum;
+               NachGrafiktask.FensterVerändert := NachGrafiktask.Fenster_Verändert_Enum;
                   
             when Sf.Window.Event.sfEvtMouseMoved =>
                -- Immer hier die neue Mausposition festlegen, denn es kann/wird bei mehreren gleichzeitigen Mausaufrufen des RenderWindow zu Abstürzen kommen.
@@ -146,7 +146,7 @@ package body EingabeSystemeSFML is
    is begin
       
       case
-        InteraktionGrafiktask.NameSpielstand
+        NachGrafiktask.NameSpielstand
       is
          when False =>
             null;

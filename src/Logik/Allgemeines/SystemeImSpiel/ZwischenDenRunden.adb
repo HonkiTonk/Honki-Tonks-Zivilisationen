@@ -25,7 +25,7 @@ with EinheitenModifizieren;
 with Ladezeiten;
 with Speichern;
 with VerbesserungFertiggestellt;
-with InteraktionGrafiktask;
+with NachGrafiktask;
 with Auswahl;
 
 package body ZwischenDenRunden is
@@ -50,7 +50,7 @@ package body ZwischenDenRunden is
          when True =>
             Ladezeiten.RundenendeNullsetzen;
             Ladezeiten.RundenendeZeit (SystemDatentypen.Anfangswert_Enum) := Clock;
-            InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Rundenende_Enum;
+            NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Rundenende_Enum;
             
          when False =>
             return True;
@@ -94,7 +94,7 @@ package body ZwischenDenRunden is
       Speichern.AutoSpeichern;
       Ladezeiten.RundenendeMaximum;
       
-      InteraktionGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
+      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
       Ladezeiten.RundenendeZeit (SystemDatentypen.Endwert_Enum) := Clock;
       
       --------------------- Wäre True statt False und oben umgekehrt nicht besser?

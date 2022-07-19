@@ -14,7 +14,7 @@ with GrafikEinstellungenSFML;
 with TextberechnungenHoeheSFML;
 with TextaccessVariablen;
 with Ladezeiten;
-with InteraktionGrafiktask;
+with NachGrafiktask;
 with RassenAllgemein;
 with TextberechnungenBreiteSFML;
 
@@ -100,7 +100,7 @@ package body LadezeitenSFML is
    procedure KIRechnet
    is begin
       
-      WelcheRasse := InteraktionGrafiktask.KIRechnet;
+      WelcheRasse := NachGrafiktask.KIRechnet;
       
       case
         WelcheRasse
