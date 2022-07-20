@@ -23,6 +23,7 @@ with NachGrafiktask;
 with BefehleTerminal;
 with BefehleSFML;
 with Auswahl;
+with SpielerVorhanden;
 
 with KI;
 
@@ -33,7 +34,7 @@ package body ImSpiel is
    is begin
       
       -- Muss hier einmal auf Verändert gesetzt werden, damit die Kartenfeldergrößen korrekt berechnet werden vom Grafiktask.
-      NachGrafiktask.FensterVerändert := NachGrafiktask.Fenster_Verändert_Enum;
+      NachGrafiktask.FensterVerändert := GrafikDatentypen.Fenster_Verändert_Enum;
       
       SpielSchleife:
       loop
@@ -64,33 +65,41 @@ package body ImSpiel is
             
          end loop RassenSchleife;
          
-       --  case
-       --    ZwischenDenRunden.BerechnungenNachZugendeAllerSpieler
-       --  is
-       --     when False =>
-        --       return RueckgabeDatentypen.Hauptmenü_Enum;
-               
-       --     when True =>
-       --       null;
-       --  end case;
-               
          if
            SpielVariablen.Allgemeines.RasseAmZugNachLaden = EinheitenKonstanten.LeerRasse
-           and
-             ZwischenDenRunden.BerechnungenNachZugendeAllerSpieler = True
          then
-            return RueckgabeDatentypen.Hauptmenü_Enum;
+            case
+              SpielerVorhanden.MenschlicheSpieler (RasseExtern => RassenDatentypen.Keine_Rasse_Enum)
+            is
+               when True =>
+                  null;
+               
+               when False =>
+                  exit SpielSchleife;
+            end case;
+            
+            case
+              ZwischenDenRunden.BerechnungenRundenende
+            is
+               when False =>
+                  exit SpielSchleife;
+               
+               when True =>
+                  null;
+            end case;
             
          elsif
            SpielVariablen.Allgemeines.Rundengrenze > SpielVariablen.Allgemeines.Rundenanzahl
          then
-            return RueckgabeDatentypen.Hauptmenü_Enum;
+            exit SpielSchleife;
             
          else
             null;
          end if;
             
       end loop SpielSchleife;
+      
+      return RueckgabeDatentypen.Hauptmenü_Enum;
             
    end ImSpiel;
    
@@ -144,7 +153,7 @@ package body ImSpiel is
                KISpieler (RasseExtern => RasseExtern);
                
             when RassenDatentypen.Leer_Spieler_Enum =>
-               Fehler.LogikFehler (FehlermeldungExtern => "ImSpiel.RasseDurchgehen - Rasse ist Leer.");
+               Fehler.LogikFehler (FehlermeldungExtern => "ImSpiel.RasseDurchgehen - Keine Rasse.");
          end case;
 
       else
@@ -188,29 +197,27 @@ package body ImSpiel is
                            
       RückgabeWert := MenschAmZug (RasseExtern => RasseExtern);
       
-      if
-        ((RückgabeWert = RueckgabeDatentypen.Spiel_Beenden_Enum
-          or
-            RückgabeWert = RueckgabeDatentypen.Hauptmenü_Enum)
-         and
-           NochSpielerVorhanden (RasseExtern => RasseExtern) = True)
-        and then
-          Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageKIEinsetzen)
-      then
-         RasseEntfernen.RasseAufKISetzen (RasseExtern => RasseExtern);
-                        
-      elsif
-        RückgabeWert = RueckgabeDatentypen.Spiel_Beenden_Enum
-        or
-          RückgabeWert = RueckgabeDatentypen.Hauptmenü_Enum
-          or
-            RückgabeWert = RueckgabeDatentypen.Schleife_Verlassen_Enum
-      then
-         return RückgabeWert;
-                        
-      else
-         null;
-      end if;
+      case
+        RückgabeWert
+      is
+         when RueckgabeDatentypen.Spiel_Beenden_Enum | RueckgabeDatentypen.Hauptmenü_Enum =>
+            if
+              SpielerVorhanden.MenschlicheSpieler (RasseExtern => RasseExtern) = True
+              and then
+                Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageKIEinsetzen) = True
+            then
+               RasseEntfernen.RasseAufKISetzen (RasseExtern => RasseExtern);
+               
+            else
+               return RückgabeWert;
+            end if;
+            
+         when RueckgabeDatentypen.Schleife_Verlassen_Enum =>
+            return RückgabeWert;
+            
+         when others =>
+            null;
+      end case;
       
       return RueckgabeDatentypen.Start_Weiter_Enum;
       
@@ -245,7 +252,15 @@ package body ImSpiel is
            AktuellerBefehlSpieler
          is
             when RueckgabeDatentypen.Start_Weiter_Enum =>
-               null;
+               if
+                 SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+               then
+                  null;
+                  
+               else
+                  RückgabeMenschAmZug := RueckgabeDatentypen.Start_Weiter_Enum;
+                  exit SpielerSchleife;
+               end if;
                
             when RueckgabeDatentypen.Runde_Beenden_Enum =>
                RückgabeMenschAmZug := AktuellerBefehlSpieler;
@@ -272,7 +287,7 @@ package body ImSpiel is
                   null;
                   
                else
-                  Fehler.LogikFehler (FehlermeldungExtern => "ImSpiel.MenschAmZug - Keine gültige Menürückgabe.");
+                  Fehler.LogikFehler (FehlermeldungExtern => "ImSpiel.MenschAmZug - Keine gültige Rückgabe.");
                end if;
                
             when others =>
@@ -333,39 +348,12 @@ package body ImSpiel is
                return AuswahlSpielmenü;
                   
             when others =>
-               Fehler.LogikFehler (FehlermeldungExtern => "ImSpiel.Spielmenü - Keine gültige Menürückgabe.");
+               Fehler.LogikFehler (FehlermeldungExtern => "ImSpiel.Spielmenü - Keine gültige Rückgabe.");
          end case;
       
       end loop SpielmenüSchleife;
    
    end Spielmenü;
-   
-   
-   
-   function NochSpielerVorhanden
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return Boolean
-   is begin
-      
-      RassenSchleife:
-      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
-         
-         if
-           RasseSchleifenwert = RasseExtern
-           or
-             SpielVariablen.RassenImSpiel (RasseSchleifenwert) /= RassenDatentypen.Mensch_Spieler_Enum
-         then
-            null;
-            
-         else
-            return True;
-         end if;
-         
-      end loop RassenSchleife;
-      
-      return False;
-      
-   end NochSpielerVorhanden;
    
    
    

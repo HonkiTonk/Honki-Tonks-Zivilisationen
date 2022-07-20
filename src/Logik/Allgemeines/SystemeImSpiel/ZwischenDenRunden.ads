@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 package ZwischenDenRunden is
 
-   function BerechnungenNachZugendeAllerSpieler
+   function BerechnungenRundenende
      return Boolean;
 
 private

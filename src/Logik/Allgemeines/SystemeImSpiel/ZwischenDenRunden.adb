@@ -30,19 +30,9 @@ with Auswahl;
 
 package body ZwischenDenRunden is
 
-   function BerechnungenNachZugendeAllerSpieler
+   function BerechnungenRundenende
      return Boolean
    is begin
-      
-      case
-        SpielVariablen.Allgemeines.RasseAmZugNachLaden
-      is
-         when StadtKonstanten.LeerRasse =>
-            null;
-            
-         when others =>
-            return False;
-      end case;
       
       case
         NachSiegWeiterspielen
@@ -53,10 +43,10 @@ package body ZwischenDenRunden is
             NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Rundenende_Enum;
             
          when False =>
-            return True;
+            return False;
       end case;
       
-      ---------------------------------- Später in verschiedene Teilbereiche aufteilen und nicht nur einen einzelnen Berechnungsfortschritt anzeigen?
+      -- Später in verschiedene Teilbereiche aufteilen und nicht nur einen einzelnen Berechnungsfortschritt anzeigen? äöü
       StadtMeldungenSetzen.StadtMeldungenSetzenRundenEnde;
       Ladezeiten.RundenendeSchreiben;
       
@@ -97,10 +87,9 @@ package body ZwischenDenRunden is
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
       Ladezeiten.RundenendeZeit (SystemDatentypen.Endwert_Enum) := Clock;
       
-      --------------------- Wäre True statt False und oben umgekehrt nicht besser?
-      return False;
+      return True;
       
-   end BerechnungenNachZugendeAllerSpieler;
+   end BerechnungenRundenende;
    
    
    

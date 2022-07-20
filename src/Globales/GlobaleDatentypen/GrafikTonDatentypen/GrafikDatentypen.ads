@@ -21,5 +21,13 @@ package GrafikDatentypen is
    type Standard_Texturen_Enum is (
                                    Standard_Hintergrund_Enum
                                   );
+   
+   type Fenster_Ändern_Enum is (
+                                 Keine_Änderung_Enum,
+                                 
+                                 Bildrate_Ändern_Enum, Fenster_Verändert_Enum, Auflösung_Verändert_Enum, Modus_Verändert_Enum
+                                );
+   
+   subtype Fenster_Wurde_Verändert_Enum is Fenster_Ändern_Enum range Fenster_Verändert_Enum .. Modus_Verändert_Enum;
 
 end GrafikDatentypen;

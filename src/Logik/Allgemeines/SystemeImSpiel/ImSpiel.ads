@@ -64,14 +64,6 @@ private
                  SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
               );
 
-   function NochSpielerVorhanden
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return Boolean
-     with
-       Pre => (
-                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
-              );
-
    function Befehle
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum

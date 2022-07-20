@@ -5,7 +5,6 @@ with Sf.Graphics.RenderWindow;
 with Sf.Graphics;
 with Sf.Graphics.Text;
 
-with KartenRecords; use KartenRecords;
 with GlobaleTexte;
 with TextKonstanten;
 
@@ -20,17 +19,16 @@ package body KarteWichtigesSFML is
 
    function WichtigesInformationen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      TextpositionExtern : in Sf.System.Vector2.sfVector2f)
+      TextpositionExtern : in Sf.System.Vector2.sfVector2f;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Sf.System.Vector2.sfVector2f
    is begin
       
       Textposition := TextpositionExtern;
       
-      AktuelleKoordinaten := SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell;
-      
-      WertOhneTrennzeichen := ZahlAlsStringEbeneVorhanden (ZahlExtern => AktuelleKoordinaten.EAchse);
-      YAchsenWert := ZahlAlsStringKartenfeldPositivMitNullwert (ZahlExtern => AktuelleKoordinaten.YAchse);
-      XAchsenWert := ZahlAlsStringKartenfeldPositivMitNullwert (ZahlExtern => AktuelleKoordinaten.XAchse);
+      WertOhneTrennzeichen := ZahlAlsStringEbeneVorhanden (ZahlExtern => KoordinatenExtern.EAchse);
+      YAchsenWert := ZahlAlsStringKartenfeldPositivMitNullwert (ZahlExtern => KoordinatenExtern.YAchse);
+      XAchsenWert := ZahlAlsStringKartenfeldPositivMitNullwert (ZahlExtern => KoordinatenExtern.XAchse);
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteWichtigesAccess (1),
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugAktuellePosition)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen) & ","

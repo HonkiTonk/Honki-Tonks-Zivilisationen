@@ -6,6 +6,8 @@ with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Font;
 with Sf.Window.Cursor;
 
+with GrafikDatentypen;
+
 with GrafikStartEndeSFML;
 with GrafikEinstellungenSFML;
 with NachGrafiktask;
@@ -18,12 +20,12 @@ package body GrafikAllgemeinSFML is
       case
         NachGrafiktask.FensterVerändert
       is
-         when NachGrafiktask.Auflösung_Verändert_Enum | NachGrafiktask.Modus_Verändert_Enum =>
+         when GrafikDatentypen.Auflösung_Verändert_Enum | GrafikDatentypen.Modus_Verändert_Enum =>
             GrafikStartEndeSFML.FensterEntfernen;
             GrafikStartEndeSFML.FensterErzeugen;
             GrafikEinstellungenSFML.AktuelleFensterAuflösung.x := Sf.Graphics.RenderWindow.getSize (renderWindow => GrafikEinstellungenSFML.FensterAccess).x;
             GrafikEinstellungenSFML.AktuelleFensterAuflösung.y := Sf.Graphics.RenderWindow.getSize (renderWindow => GrafikEinstellungenSFML.FensterAccess).y;
-            NachGrafiktask.FensterVerändert := NachGrafiktask.Keine_Änderung_Enum;
+            NachGrafiktask.FensterVerändert := GrafikDatentypen.Keine_Änderung_Enum;
             
          when others =>
             GrafikEinstellungenSFML.AktuelleFensterAuflösung.x := Sf.Graphics.RenderWindow.getSize (renderWindow => GrafikEinstellungenSFML.FensterAccess).x;

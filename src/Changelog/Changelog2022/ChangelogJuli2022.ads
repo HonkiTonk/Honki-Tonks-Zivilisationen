@@ -77,17 +77,18 @@ package ChangelogJuli2022 is
    
    
 
-   -- Version 0.03. => 0.03. (20.07.2022):
+   -- Version 0.03.0595 => 0.03. (20.07.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.0570 => 0.03. (19.07.2022):
+   -- Version 0.03.0570 => 0.03.0595 (19.07.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- ImSpiel überarbeitet.
+   -- Fehler behoben der beim Entfernen aller Einheiten zu einem Programmstopp führte.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

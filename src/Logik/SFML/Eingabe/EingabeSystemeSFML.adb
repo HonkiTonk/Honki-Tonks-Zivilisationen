@@ -9,6 +9,7 @@ with Sf.Window.Keyboard; use Sf.Window.Keyboard;
 with Sf.Graphics.RenderWindow;
 
 with SystemRecordKonstanten;
+with GrafikDatentypen;
 
 with GrafikEinstellungenSFML;
 with NachGrafiktask;
@@ -38,7 +39,7 @@ package body EingabeSystemeSFML is
                return;
                   
             when Sf.Window.Event.sfEvtResized =>
-               NachGrafiktask.FensterVerändert := NachGrafiktask.Fenster_Verändert_Enum;
+               NachGrafiktask.FensterVerändert := GrafikDatentypen.Fenster_Verändert_Enum;
                   
             when Sf.Window.Event.sfEvtMouseMoved =>
                -- Immer hier die neue Mausposition festlegen, denn es kann/wird bei mehreren gleichzeitigen Mausaufrufen des RenderWindow zu Abstürzen kommen.

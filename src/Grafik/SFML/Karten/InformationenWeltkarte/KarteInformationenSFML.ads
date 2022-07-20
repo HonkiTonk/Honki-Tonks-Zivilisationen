@@ -8,10 +8,13 @@ private with Sf.Graphics.RectangleShape;
 -- private with Sf.Graphics.View;
 
 with RassenDatentypen; use RassenDatentypen;
+with KartenDatentypen; use KartenDatentypen;
 with SpielVariablen;
+with Karten;
 
 private with EinheitenRecords;
 private with StadtRecords;
+private with KartenRecords;
 
 package KarteInformationenSFML is
 
@@ -27,6 +30,8 @@ private
    StadtRasseNummer : StadtRecords.RasseStadtnummerRecord;
 
    EinheitRasseNummer : EinheitenRecords.RasseEinheitnummerRecord;
+
+   AktuelleKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
 
    StartpunktText : constant Sf.System.Vector2.sfVector2f := (5.00, 5.00);
 
@@ -45,11 +50,16 @@ private
 
    function StadtInformationen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      TextpositionExtern : in Sf.System.Vector2.sfVector2f)
+      TextpositionExtern : in Sf.System.Vector2.sfVector2f;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Sf.System.Vector2.sfVector2f
      with
        Pre => (
                  SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+               and
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
               ),
 
        Post => (
@@ -60,11 +70,16 @@ private
 
    function EinheitInformationen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      TextpositionExtern : in Sf.System.Vector2.sfVector2f)
+      TextpositionExtern : in Sf.System.Vector2.sfVector2f;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Sf.System.Vector2.sfVector2f
      with
        Pre => (
                  SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+               and
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
               ),
 
        Post => (

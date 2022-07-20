@@ -40,7 +40,6 @@ package body AllesAufAnfangSetzen is
       SpielVariablen.Allgemeines.Rundenanzahl := Positive'First;
       SpielVariablen.CursorImSpiel := (others => WichtigesRecordKonstanten.LeerCursor);
       SpielVariablen.Allgemeines.IronmanName := TextKonstanten.LeerUnboundedString;
-      
       SpielVariablen.RassenImSpiel := (others => RassenDatentypen.Leer_Spieler_Enum);
       SpielVariablen.Allgemeines.RasseAmZugNachLaden := EinheitenKonstanten.LeerRasse;
       SpielVariablen.Allgemeines.Gewonnen := False;

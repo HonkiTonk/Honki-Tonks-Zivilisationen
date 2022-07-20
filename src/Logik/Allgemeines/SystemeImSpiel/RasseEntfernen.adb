@@ -26,6 +26,7 @@ package body RasseEntfernen is
          
       end loop EinheitenSchleife;
       
+      -- Der Teil ist auf jeden Fall nicht mehr korrekt, mal an das neue kartenplatzierungssystem anpassen. äöü
       StadtSchleife:
       for StadtSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Städtegrenze loop
          

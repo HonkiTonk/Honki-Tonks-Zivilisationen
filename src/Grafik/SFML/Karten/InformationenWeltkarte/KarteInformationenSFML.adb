@@ -15,6 +15,7 @@ with InformationenEinheitenSFML;
 with KarteWichtigesSFML;
 with KarteAllgemeinesSFML;
 with TextberechnungenHoeheSFML;
+with Vergleiche;
 
 package body KarteInformationenSFML is
 
@@ -24,6 +25,18 @@ package body KarteInformationenSFML is
    procedure KarteInformationenSFML
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
+      
+      AktuelleKoordinaten := SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell;
+      
+      case
+        Vergleiche.KoordinateLeervergleich (KoordinateExtern => AktuelleKoordinaten)
+      is
+         when True =>
+            return;
+            
+         when False =>
+            null;
+      end case;
       
       FensterInformationen := (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) * 0.20, Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y));
       
@@ -37,7 +50,8 @@ package body KarteInformationenSFML is
       Textposition := (StartpunktText.x + Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) * 0.80, StartpunktText.y);
       
       Textposition := KarteWichtigesSFML.WichtigesInformationen (RasseExtern        => RasseExtern,
-                                                                 TextpositionExtern => Textposition);
+                                                                 TextpositionExtern => Textposition,
+                                                                 KoordinatenExtern  => AktuelleKoordinaten);
       
       case
         LeseKarten.Sichtbar (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell,
@@ -51,10 +65,12 @@ package body KarteInformationenSFML is
             Textposition.y := Textposition.y + TextberechnungenHoeheSFML.GroßerZeilenabstand;
             
             Textposition := StadtInformationen (RasseExtern        => RasseExtern,
-                                                TextpositionExtern => Textposition);
+                                                TextpositionExtern => Textposition,
+                                                KoordinatenExtern  => AktuelleKoordinaten);
               
             Textposition := EinheitInformationen (RasseExtern        => RasseExtern,
-                                                  TextpositionExtern => Textposition);
+                                                  TextpositionExtern => Textposition,
+                                                  KoordinatenExtern  => AktuelleKoordinaten);
 
          when False =>
             null;
@@ -66,11 +82,12 @@ package body KarteInformationenSFML is
    
    function StadtInformationen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      TextpositionExtern : in Sf.System.Vector2.sfVector2f)
+      TextpositionExtern : in Sf.System.Vector2.sfVector2f;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Sf.System.Vector2.sfVector2f
    is begin
       
-      StadtRasseNummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
+      StadtRasseNummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
       
       case
         StadtRasseNummer.Nummer
@@ -91,11 +108,12 @@ package body KarteInformationenSFML is
    
    function EinheitInformationen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      TextpositionExtern : in Sf.System.Vector2.sfVector2f)
+      TextpositionExtern : in Sf.System.Vector2.sfVector2f;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Sf.System.Vector2.sfVector2f
    is begin
       
-      EinheitRasseNummer := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
+      EinheitRasseNummer := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
       
       case
         EinheitRasseNummer.Nummer

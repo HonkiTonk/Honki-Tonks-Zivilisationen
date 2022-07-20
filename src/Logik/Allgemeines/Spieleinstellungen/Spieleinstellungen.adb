@@ -3,7 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Calendar; use Ada.Calendar;
 
-with SpielVariablen;
 with RassenDatentypen;
 with SystemDatentypen;
 with MenueDatentypen;
@@ -22,6 +21,7 @@ with NachGrafiktask;
 with AllesAufAnfangSetzen;
 with Karten;
 with KartengeneratorVariablen;
+with SpielerVorhanden;
 
 package body Spieleinstellungen is
 
@@ -78,7 +78,6 @@ package body Spieleinstellungen is
                   SpieleinstellungenSonstiges.SchwierigkeitsgradFestlegen;
                
                when RueckgabeDatentypen.Fertig_Enum =>
-                  -- Oder eine Rasse zufällig belegen lassen?
                   if
                     SpieleinstellungenRasseSpieler.EineRasseBelegt = True
                   then
@@ -133,27 +132,9 @@ package body Spieleinstellungen is
       Ladezeiten.SpielweltErstellen (LadezeitenDatentypen.Platziere_Rassen_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
       
       SpieleinstellungenRasseSpieler.StartwerteErmitteln;
-      RassenVorhanden := False;
-      
-      -- Das hier mit der Funktion aus ImSpiel zusammenführen? äöü
-      SicherheitsSchleife:
-      for RassenSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
-         
-         case
-           SpielVariablen.RassenImSpiel (RassenSchleifenwert)
-         is
-            when RassenDatentypen.Leer_Spieler_Enum =>
-               null;
-               
-            when RassenDatentypen.Spieler_Belegt_Enum'Range =>
-               RassenVorhanden := True;
-               exit SicherheitsSchleife;
-         end case;
-         
-      end loop SicherheitsSchleife;
       
       case
-        RassenVorhanden
+        SpielerVorhanden.BeliebigeSpielerart (RasseExtern => RassenDatentypen.Keine_Rasse_Enum)
       is
          when True =>
             null;

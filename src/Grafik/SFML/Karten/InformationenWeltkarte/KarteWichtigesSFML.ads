@@ -7,10 +7,10 @@ with Sf.System.Vector2;
 
 with RassenDatentypen; use RassenDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
+with KartenDatentypen; use KartenDatentypen;
 with SpielVariablen;
-
-private with KartenDatentypen;
-private with KartenRecords;
+with KartenRecords;
+with Karten;
 
 private with UmwandlungenAdaNachEigenes;
 
@@ -18,7 +18,8 @@ package KarteWichtigesSFML is
 
    function WichtigesInformationen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      TextpositionExtern : in Sf.System.Vector2.sfVector2f)
+      TextpositionExtern : in Sf.System.Vector2.sfVector2f;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Sf.System.Vector2.sfVector2f
      with
        Pre => (
@@ -27,6 +28,10 @@ package KarteWichtigesSFML is
                  TextpositionExtern.x > 0.00
                and
                  TextpositionExtern.y > 0.00
+               and
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
               ),
    
        Post => (
@@ -40,8 +45,6 @@ private
    WertOhneTrennzeichen : Unbounded_Wide_Wide_String;
    YAchsenWert : Unbounded_Wide_Wide_String;
    XAchsenWert : Unbounded_Wide_Wide_String;
-
-   AktuelleKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    Textposition : Sf.System.Vector2.sfVector2f;
 

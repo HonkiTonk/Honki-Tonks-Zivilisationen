@@ -9,6 +9,7 @@ with EinheitenDatentypen;
 with StadtKonstanten;
 with StadtDatentypen;
 
+-- Alle Entfernen (auch in den anderen Dateien), dann entsprechend den Fehlermeldungen folgend alles neu aufbauen in entsprechenden Dateien? äöü
 package NachGrafiktask is
    
    -- Wird für Spielstart benötigt.
@@ -28,15 +29,7 @@ package NachGrafiktask is
    
    AktuelleStadt : StadtDatentypen.MaximaleStädteMitNullWert := StadtKonstanten.LeerNummer;
    
-   type Fenster_Ändern_Enum is (
-                                 Keine_Änderung_Enum,
-                                 
-                                 Bildrate_Ändern_Enum, Fenster_Verändert_Enum, Auflösung_Verändert_Enum, Modus_Verändert_Enum
-                                );
-   
-   subtype Fenster_Wurde_Verändert_Enum is Fenster_Ändern_Enum range Fenster_Verändert_Enum .. Modus_Verändert_Enum;
-   
-   FensterVerändert : Fenster_Ändern_Enum;
+   FensterVerändert : GrafikDatentypen.Fenster_Ändern_Enum;
    
    AktuelleDarstellung : GrafikDatentypen.Grafik_Aktuelle_Darstellung_Enum := GrafikDatentypen.Grafik_SFML_Enum;
 

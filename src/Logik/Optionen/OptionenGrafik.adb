@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with GrafikDatentypen; use GrafikDatentypen;
 with TextKonstanten;
 with ZahlenDatentypen;
 with MenueDatentypen;
@@ -88,10 +89,10 @@ package body OptionenGrafik is
       GrafikEinstellungenSFML.FensterEinstellungen.FensterBreite := NeueAuflösung.x;
       GrafikEinstellungenSFML.FensterEinstellungen.FensterHöhe := NeueAuflösung.y;
       
-      NachGrafiktask.FensterVerändert := NachGrafiktask.Auflösung_Verändert_Enum;
+      NachGrafiktask.FensterVerändert := GrafikDatentypen.Auflösung_Verändert_Enum;
       
       ErzeugungNeuesFensterAbwartenSchleife:
-      while NachGrafiktask.FensterVerändert = NachGrafiktask.Auflösung_Verändert_Enum loop
+      while NachGrafiktask.FensterVerändert = GrafikDatentypen.Auflösung_Verändert_Enum loop
          
          delay 0.002;
          
@@ -118,10 +119,10 @@ package body OptionenGrafik is
       end if;
       
       GrafikEinstellungenSFML.FensterEinstellungen.Bildrate := Sf.sfUint32 (EingabeBildrate.EingegebeneZahl);
-      NachGrafiktask.FensterVerändert := NachGrafiktask.Bildrate_Ändern_Enum;
+      NachGrafiktask.FensterVerändert := GrafikDatentypen.Bildrate_Ändern_Enum;
       
       NeueBildrateAbwartenSchleife:
-      while NachGrafiktask.FensterVerändert = NachGrafiktask.Bildrate_Ändern_Enum loop
+      while NachGrafiktask.FensterVerändert = GrafikDatentypen.Bildrate_Ändern_Enum loop
          
          delay 0.002;
          
@@ -147,10 +148,10 @@ package body OptionenGrafik is
             Fehler.LogikFehler (FehlermeldungExtern => "OptionenGrafik.VollbildFenster - Unbekannter Fenstermodus ausgewählt.");
       end case;
       
-      NachGrafiktask.FensterVerändert := NachGrafiktask.Modus_Verändert_Enum;
+      NachGrafiktask.FensterVerändert := GrafikDatentypen.Modus_Verändert_Enum;
       
       ErzeugungNeuesFensterAbwartenSchleife:
-      while NachGrafiktask.FensterVerändert = NachGrafiktask.Modus_Verändert_Enum loop
+      while NachGrafiktask.FensterVerändert = GrafikDatentypen.Modus_Verändert_Enum loop
          
          delay 0.002;
          

@@ -32,7 +32,7 @@ package body GrafikSFML is
       
       -- Das Setzen der Schriftart kann scheinbar erst nach dem Erzeugen eines Fensters stattfinden.
       GrafikStartEndeSFML.FensterErzeugen;
-            
+                  
       GrafikSchleife:
       loop
          
@@ -87,14 +87,14 @@ package body GrafikSFML is
       case
         NachGrafiktask.FensterVerändert
       is
-         when NachGrafiktask.Fenster_Wurde_Verändert_Enum'Range =>
+         when GrafikDatentypen.Fenster_Wurde_Verändert_Enum'Range =>
             GrafikAllgemeinSFML.FensterAnpassen;
             Sichtweiten.SichtweiteBewegungsfeldFestlegen;
-            NachGrafiktask.FensterVerändert := NachGrafiktask.Keine_Änderung_Enum;
+            NachGrafiktask.FensterVerändert := GrafikDatentypen.Keine_Änderung_Enum;
             
-         when NachGrafiktask.Bildrate_Ändern_Enum =>
+         when GrafikDatentypen.Bildrate_Ändern_Enum =>
             GrafikAllgemeinSFML.BildrateÄndern;
-            NachGrafiktask.FensterVerändert := NachGrafiktask.Keine_Änderung_Enum;
+            NachGrafiktask.FensterVerändert := GrafikDatentypen.Keine_Änderung_Enum;
                
          when others =>
             null;

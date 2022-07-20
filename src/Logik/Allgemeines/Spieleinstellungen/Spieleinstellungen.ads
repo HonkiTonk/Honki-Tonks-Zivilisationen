@@ -11,8 +11,6 @@ package Spieleinstellungen is
 
 private
 
-   RassenVorhanden : Boolean;
-
    Auswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
    Rückgabewert : RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
