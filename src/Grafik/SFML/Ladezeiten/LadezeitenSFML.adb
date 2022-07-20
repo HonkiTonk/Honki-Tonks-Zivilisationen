@@ -14,17 +14,25 @@ with GrafikEinstellungenSFML;
 with TextberechnungenHoeheSFML;
 with TextaccessVariablen;
 with Ladezeiten;
-with NachGrafiktask;
 with RassenAllgemein;
 with TextberechnungenBreiteSFML;
 
 package body LadezeitenSFML is
    
    procedure LadezeitenSFML
-     (WelcheLadeanzeigeExtern : in GrafikDatentypen.Ladezeiten_Enum)
+     (WelcheLadeanzeigeExtern : in GrafikDatentypen.Ladezeiten_Enum;
+      RasseExtern : in RassenDatentypen.Rassen_Enum)
    is begin
       
-      HintergrundSFML.StandardHintergrund (StandardHintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum);
+      case
+        RasseExtern
+      is
+         when RassenDatentypen.Keine_Rasse_Enum =>
+            return;
+            
+         when others =>
+            HintergrundSFML.StandardHintergrund (StandardHintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum);
+      end case;
       
       case
         WelcheLadeanzeigeExtern
@@ -33,7 +41,7 @@ package body LadezeitenSFML is
             SpielweltErstellen;
             
          when GrafikDatentypen.Grafik_KI_Rechenzeit_Enum =>
-            KIRechnet;
+            KIRechnet (RasseExtern => RasseExtern);
             
          when GrafikDatentypen.Grafik_Rundenende_Enum =>
             Rundenende;
@@ -98,19 +106,8 @@ package body LadezeitenSFML is
    
    
    procedure KIRechnet
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
-      
-      WelcheRasse := NachGrafiktask.KIRechnet;
-      
-      case
-        WelcheRasse
-      is
-         when RassenDatentypen.Keine_Rasse_Enum =>
-            return;
-            
-         when others =>
-            null;
-      end case;
             
       WelcheZeit := TextaccessVariablen.KIZeitenAccess'First;
       AktuelleTextposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.KIZeitenAccess (WelcheZeit));
@@ -124,7 +121,7 @@ package body LadezeitenSFML is
       WelcheZeit := WelcheZeit + 1;
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
-                                         str  => RassenAllgemein.Rassenname (RasseExtern => WelcheRasse));
+                                         str  => RassenAllgemein.Rassenname (RasseExtern => RasseExtern));
                                                  
       AktuelleTextposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.KIZeitenAccess (WelcheZeit));
             

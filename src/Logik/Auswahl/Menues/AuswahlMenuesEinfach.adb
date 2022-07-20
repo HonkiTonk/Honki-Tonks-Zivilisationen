@@ -35,8 +35,8 @@ package body AuswahlMenuesEinfach is
                                                         AktuelleAuswahlExtern => Ausgewählt,
                                                         WelchesMenüExtern     => WelchesMenüExtern);
       
-      -- NachGrafiktask.AktuellesMenü := MenueDatentypen.Leer_Menü_Enum;
-      -- NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
+      NachGrafiktask.AktuellesMenü := MenueDatentypen.Leer_Menü_Enum;
+      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
       
       return RückgabeWert;
       

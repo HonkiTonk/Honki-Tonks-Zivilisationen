@@ -24,7 +24,6 @@ private
 
    SchriftgrößeFestgelegt : Boolean := False;
 
-   Zeilenabstand : Float;
    AbstandÜberschrift : Float;
    Multiplikator : Float;
    BreiteTextfeld : Float;

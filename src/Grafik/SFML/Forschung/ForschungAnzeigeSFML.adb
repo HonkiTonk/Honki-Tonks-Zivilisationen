@@ -14,6 +14,7 @@ with ForschungAllgemein;
 with InteraktionAuswahl;
 with TextaccessVariablen;
 with Fehler;
+with TextberechnungenHoeheSFML;
 
 package body ForschungAnzeigeSFML is
 
@@ -40,8 +41,7 @@ package body ForschungAnzeigeSFML is
       
       AktuelleAuswahl := ForschungAllgemein.AktuelleAuswahl;
       
-      Zeilenabstand := Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard) * 0.15;
-      
+      -- Die Positionen immer festlegen lassen? Damit es nicht wieder zu Problemen bei der falschen Anzeige kommt? äöü
       case
         InteraktionAuswahl.PositionenForschungFestgelegt
       is
@@ -52,7 +52,7 @@ package body ForschungAnzeigeSFML is
                                           position => (TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.ForschungsmenüAccess (ForschungKonstanten.LeerForschung)),
                                                        StartPositionText.y));
       
-            TextPosition.y := TextPosition.y + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.ForschungsmenüAccess (ForschungKonstanten.LeerForschung)).height + 10.00 * Zeilenabstand;
+            TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.Überschriftabstand;
             AbstandÜberschrift := TextPosition.y;
             
          when True =>
@@ -88,7 +88,7 @@ package body ForschungAnzeigeSFML is
                   Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüAccess (ForschungSchleifenwert),
                                                 position => TextPosition);
          
-                  TextPosition.y := TextPosition.y + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.ForschungsmenüAccess (ForschungSchleifenwert)).height + 3.00 * Zeilenabstand;
+                  TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.Zeilenabstand;
                
                   InteraktionAuswahl.PositionenForschung (ForschungSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.ForschungsmenüAccess (ForschungSchleifenwert));
                   

@@ -15,7 +15,8 @@ with SystemRecordKonstanten;
 
 with EingabeSystemeSFML;
 with Fehler;
-with InteraktionEingabe;
+with NachGrafiktask;
+with NachLogiktask;
 
 package body EingabeSFML is
    
@@ -33,7 +34,7 @@ package body EingabeSFML is
          
       else
          -- Wegen der grafischen Anzeige festgelegt.
-         InteraktionEingabe.AnzeigeFrage := WelcheFrageExtern;
+         NachGrafiktask.AnzeigeFrage := WelcheFrageExtern;
          AktuellerWert := 0;
          EingegebeneZahl.EingegebeneZahl := AktuellerWert;
          ZahlenString := ZahlenStringLeer;
@@ -41,7 +42,7 @@ package body EingabeSFML is
                              ZahlenMaximumExtern => ZahlenMaximumExtern,
                              PlusMinusExtern     => True);
          
-         InteraktionEingabe.Eingabe := SystemDatentypen.Zahlen_Eingabe_Enum;
+         NachGrafiktask.Eingabe := SystemDatentypen.Zahlen_Eingabe_Enum;
       end if;
                   
       case
@@ -55,7 +56,7 @@ package body EingabeSFML is
             EingegebeneZahl.EingabeAbbruch := False;
       end case;
       
-      InteraktionEingabe.Eingabe := SystemDatentypen.Keine_Eingabe_Enum;
+      NachGrafiktask.Eingabe := SystemDatentypen.Keine_Eingabe_Enum;
       
       if
         WelchesVorzeichen
@@ -307,21 +308,22 @@ package body EingabeSFML is
       return SystemRecords.TextEingabeRecord
    is begin
       
-      InteraktionEingabe.AnzeigeFrage := WelcheFrageExtern;
+      NachGrafiktask.AnzeigeFrage := WelcheFrageExtern;
       
       EingabeSystemeSFML.EingegebenerText := SystemRecordKonstanten.LeerTexteingabe;
       
-      InteraktionEingabe.Eingabe := SystemDatentypen.Text_Eingabe_Enum;
+      NachGrafiktask.Eingabe := SystemDatentypen.Text_Eingabe_Enum;
       
-      InteraktionEingabe.TextEingabe := True;
+      NachLogiktask.Warten := True;
+      NachGrafiktask.TextEingabe := True;
         
-      while InteraktionEingabe.TextEingabe loop
+      while NachLogiktask.Warten loop
          
          delay 0.0002;
          
       end loop;
       
-      InteraktionEingabe.Eingabe := SystemDatentypen.Keine_Eingabe_Enum;
+      NachGrafiktask.Eingabe := SystemDatentypen.Keine_Eingabe_Enum;
       
       return EingabeSystemeSFML.EingegebenerText;
       
@@ -362,9 +364,10 @@ package body EingabeSFML is
    procedure EingabeAbwarten
    is begin
       
-      InteraktionEingabe.TastenEingabe := True;
+      NachLogiktask.Warten := True;
+      NachGrafiktask.TastenEingabe := True;
         
-      while InteraktionEingabe.TastenEingabe loop
+      while NachLogiktask.Warten loop
          
          delay 0.0002;
          

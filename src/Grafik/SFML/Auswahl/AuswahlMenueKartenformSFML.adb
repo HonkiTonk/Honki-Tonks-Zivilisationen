@@ -17,6 +17,7 @@ with AuswahlMenuesEinfach;
 with HintergrundSFML;
 with AuswahlMenuesZusatztextSFML;
 with KartengeneratorVariablen;
+with TextberechnungenHoeheSFML;
 
 package body AuswahlMenueKartenformSFML is
 
@@ -262,9 +263,7 @@ package body AuswahlMenueKartenformSFML is
    function SchriftpositionFestlegen
      return Boolean
    is begin
-      
-      ZeilenAbstand := 0.50 * Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
-      
+            
       Rechenwert.y := Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y / 100);
       
       if
@@ -281,7 +280,7 @@ package body AuswahlMenueKartenformSFML is
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KartenformauswahlAccess (Überschrift),
                                     position => Rechenwert);
       
-      Rechenwert.y := Rechenwert.y + 3.00 * Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KartenformauswahlAccess (Überschrift)).height + ZeilenAbstand;
+      Rechenwert.y := Rechenwert.y + TextberechnungenHoeheSFML.Überschriftabstand;
       
       PositionenSchleife:
       for PositionSchleifenwert in TextaccessVariablen.KartenformauswahlAccessArray'First + Überschrift .. 7 loop
@@ -335,7 +334,7 @@ package body AuswahlMenueKartenformSFML is
                Fehler.GrafikFehler (FehlermeldungExtern => "AuswahlMenueKartenformSFML.SchriftpositionFestlegen - Schleife loopt falsch.");
          end case;
          
-         Rechenwert.y := Rechenwert.y + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KartenformauswahlAccess (Überschrift)).height + ZeilenAbstand;
+         Rechenwert.y := Rechenwert.y + TextberechnungenHoeheSFML.Zeilenabstand;
          
       end loop PositionenSchleife;
       

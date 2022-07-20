@@ -26,8 +26,6 @@ private
    Versionsnummer : constant Positive := TextaccessVariablen.Versionsnummer;
    Ende : Positive;
 
-   ZeilenAbstand : Float;
-
    Rechenwert : Sf.System.Vector2.sfVector2f;
 
    SpriteAccess : constant Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;

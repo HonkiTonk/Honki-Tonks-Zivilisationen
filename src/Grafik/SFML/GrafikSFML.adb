@@ -21,8 +21,6 @@ with BauAuswahlAnzeigeSFML;
 with NachLogiktask;
 with EingabeSystemeSFML;
 with TextaccesseAllesSetzenSFML;
-with InteraktionTextanzeige;
-with InteraktionEingabe;
 with LadezeitenSFML;
 
 package body GrafikSFML is
@@ -74,11 +72,11 @@ package body GrafikSFML is
    is begin
       
       case
-        InteraktionTextanzeige.AccesseSetzen
+        NachGrafiktask.AccesseSetzen
       is
          when True =>
             TextaccesseAllesSetzenSFML.AllesAufStandard;
-            InteraktionTextanzeige.AccesseSetzen := False;
+            NachGrafiktask.AccesseSetzen := False;
                
          when False =>
             null;
@@ -91,6 +89,7 @@ package body GrafikSFML is
             GrafikAllgemeinSFML.FensterAnpassen;
             Sichtweiten.SichtweiteBewegungsfeldFestlegen;
             NachGrafiktask.FensterVerändert := GrafikDatentypen.Keine_Änderung_Enum;
+            NachLogiktask.Warten := False;
             
          when GrafikDatentypen.Bildrate_Ändern_Enum =>
             GrafikAllgemeinSFML.BildrateÄndern;
@@ -108,7 +107,7 @@ package body GrafikSFML is
    is begin
       
       case
-        InteraktionEingabe.TextEingabe
+        NachGrafiktask.TextEingabe
       is
          when True =>
             EingabeSystemeSFML.TextEingeben;
@@ -118,11 +117,12 @@ package body GrafikSFML is
       end case;
          
       case
-        InteraktionEingabe.TastenEingabe
+        NachGrafiktask.TastenEingabe
       is
          when True =>
             EingabeSystemeSFML.TastenEingabe;
-            InteraktionEingabe.TastenEingabe := False;
+            NachGrafiktask.TastenEingabe := False;
+            NachLogiktask.Warten := False;
                
          when False =>
             null;
@@ -143,7 +143,7 @@ package body GrafikSFML is
             Fehler.GrafikFehler (FehlermeldungExtern => "GrafikSFML.AnzeigeAuswahl - Terminal wird bei SFML aufgerufen.");
             
          when GrafikDatentypen.Grafik_SFML_Enum =>
-            NachLogiktask.FensterErzeugt := True;
+            NachLogiktask.Warten := False;
             NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
             
          when GrafikDatentypen.Grafik_Sprache_Enum =>
@@ -152,13 +152,14 @@ package body GrafikSFML is
          when GrafikDatentypen.Grafik_Intro_Enum =>
             GrafikIntroSFML.Intro;
             NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
-            NachLogiktask.Hauptmenü := True;
+            NachLogiktask.Warten := False;
                               
          when GrafikDatentypen.Grafik_Pause_Enum =>
             delay ZeitKonstanten.WartezeitGrafik;
             
          when GrafikDatentypen.Ladezeiten_Enum'Range =>
-            LadezeitenSFML.LadezeitenSFML (WelcheLadeanzeigeExtern => NachGrafiktask.AktuelleDarstellung);
+            LadezeitenSFML.LadezeitenSFML (WelcheLadeanzeigeExtern => NachGrafiktask.AktuelleDarstellung,
+                                           RasseExtern             => NachGrafiktask.KIRechnet);
          
          when GrafikDatentypen.Grafik_Menüs_Enum =>
             AuswahlMenuesSFML.AuswahlMenüsAufteilung (WelchesMenüExtern => NachGrafiktask.AktuellesMenü);
@@ -194,11 +195,11 @@ package body GrafikSFML is
    is begin
       
       case
-        InteraktionEingabe.Eingabe
+        NachGrafiktask.Eingabe
       is
          when SystemDatentypen.Eingaben_Fragen_Enum'Range =>
-            AnzeigeEingabeSFML.Fragenaufteilung (FrageExtern   => InteraktionEingabe.AnzeigeFrage,
-                                                 EingabeExtern => InteraktionEingabe.Eingabe);
+            AnzeigeEingabeSFML.Fragenaufteilung (FrageExtern   => NachGrafiktask.AnzeigeFrage,
+                                                 EingabeExtern => NachGrafiktask.Eingabe);
             
          when SystemDatentypen.Einheit_Auswahl_Enum =>
             AnzeigeEingabeSFML.AnzeigeEinheitenStadt (RasseExtern => NachGrafiktask.AktuelleRasse);

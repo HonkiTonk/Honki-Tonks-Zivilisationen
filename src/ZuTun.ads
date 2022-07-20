@@ -3,7 +3,9 @@
 -- Mehr Zeug über die Interaktionsdatei durchführen.
 -- Mehr Textanzeigezeug überarbeiten.
 -- Eventuell die Bau/Forschungsmenüs umlagern.
--- Taskzugriff mal so ändern, dass die Tasks nur ihre eigene Datei Lesen/Schreiben dürfen, die Dateien der anderen Task aber nur schreiben.
+-- Bei Veränderung des Fensters wird das Baumenü (und Andere?) nicht korrekt neu gesetzt, wahrscheinlich wegen der Positionsprüfung, das mal auf immer ändern umbauen.
+-- Änderung der Sprache wird nicht überall korrekt übernommen.
+-- Feste Werte für den YAbstand einbauen.
 
 
 

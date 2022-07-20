@@ -6,7 +6,8 @@ with TextKonstanten;
 with ZahlenDatentypen;
 with MenueDatentypen;
 
-with NachGrafiktask; use NachGrafiktask;
+with NachGrafiktask;
+with NachLogiktask;
 with AuswahlMenues;
 with Eingabe;
 with GrafikEinstellungenSFML;
@@ -89,10 +90,11 @@ package body OptionenGrafik is
       GrafikEinstellungenSFML.FensterEinstellungen.FensterBreite := NeueAuflösung.x;
       GrafikEinstellungenSFML.FensterEinstellungen.FensterHöhe := NeueAuflösung.y;
       
+      NachLogiktask.Warten := True;
       NachGrafiktask.FensterVerändert := GrafikDatentypen.Auflösung_Verändert_Enum;
       
       ErzeugungNeuesFensterAbwartenSchleife:
-      while NachGrafiktask.FensterVerändert = GrafikDatentypen.Auflösung_Verändert_Enum loop
+      while NachLogiktask.Warten loop
          
          delay 0.002;
          

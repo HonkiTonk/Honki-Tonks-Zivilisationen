@@ -10,7 +10,6 @@ with Einlesen;
 with Hauptmenue;
 with NachGrafiktask;
 with NachLogiktask;
-with InteraktionTextanzeige;
 with VonLogiktaskAnAlle;
 
 package body StartLogik is
@@ -26,20 +25,21 @@ package body StartLogik is
       NachGrafiktask.ErzeugeFenster := True;
       
       FensterVorhandenSchleife:
-      while NachLogiktask.FensterErzeugt = False loop
+      while NachLogiktask.Warten loop
          
          delay ZeitKonstanten.WartezeitLogik;
          
       end loop FensterVorhandenSchleife;
       
+      NachLogiktask.Warten := True;
       Einlesen.EinlesenMitAnzeige;
-      InteraktionTextanzeige.AccesseSetzen := True;
+      NachGrafiktask.AccesseSetzen := True;
       
       VonLogiktaskAnAlle.EinlesenAbgeschlossen := True;
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Intro_Enum;
       
       IntroSchleife:
-      while NachLogiktask.Hauptmenü = False loop
+      while NachLogiktask.Warten loop
          
          delay ZeitKonstanten.WartezeitLogik;
          

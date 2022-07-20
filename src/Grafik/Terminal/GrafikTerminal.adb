@@ -25,7 +25,7 @@ package body GrafikTerminal is
            NachGrafiktask.AktuelleDarstellung
          is
             when GrafikDatentypen.Grafik_Terminal_Enum =>
-               NachLogiktask.FensterErzeugt := True;
+               NachLogiktask.Warten := False;
                NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
             
             when GrafikDatentypen.Grafik_SFML_Enum =>

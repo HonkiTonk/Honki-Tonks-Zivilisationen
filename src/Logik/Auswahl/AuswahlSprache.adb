@@ -10,6 +10,7 @@ with Eingabe;
 with GrafikEinstellungenSFML;
 with Fehler;
 with NachGrafiktask;
+with TextberechnungenHoeheSFML;
 
 package body AuswahlSprache is
 
@@ -18,7 +19,6 @@ package body AuswahlSprache is
    is begin
       
       ZehnerReihe := 0;
-      ZeilenAbstand := 0.15 * Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
       MehrereSeiten := False;
       
       SprachenListeFestlegen;
@@ -257,6 +257,7 @@ package body AuswahlSprache is
    
    
    
+   -- Mal überarbeiten und an die anderen Systemvarianten anpassen? äöü
    procedure MausAuswahl
    is begin
       
@@ -279,14 +280,13 @@ package body AuswahlSprache is
          end if;
          
          if
-           MausZeigerPosition.y in Sf.sfInt32 (TextPositionMaus)
-           .. Sf.sfInt32 (TextPositionMaus + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height)
+           MausZeigerPosition.y in Sf.sfInt32 (TextPositionMaus) .. Sf.sfInt32 (TextPositionMaus + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height)
          then
             AktuelleAuswahl := ZeileSchleifenwert;
             return;
          
          else
-            TextPositionMaus := TextPositionMaus + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height + 3.00 * ZeilenAbstand;
+            TextPositionMaus := TextPositionMaus + TextberechnungenHoeheSFML.KleinerZeilenabstand;
          end if;
          
       end loop MausZeigerSchleife;

@@ -15,6 +15,7 @@ package body TextberechnungenHoeheSFML is
    
    
    
+   -- Feste Werte einbauen, dann kommt es nicht zu Problemen bei großen Texteinstellungen. äöü
    function KleinerZeilenabstand
      return Float
    is begin

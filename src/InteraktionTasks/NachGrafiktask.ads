@@ -8,8 +8,10 @@ with RassenDatentypen;
 with EinheitenDatentypen;
 with StadtKonstanten;
 with StadtDatentypen;
+with ZahlenDatentypen;
+with SystemDatentypen;
 
--- Alle Entfernen (auch in den anderen Dateien), dann entsprechend den Fehlermeldungen folgend alles neu aufbauen in entsprechenden Dateien? äöü
+-- Variablen mal nach Kategorien in Records sortieren.
 package NachGrafiktask is
    
    -- Wird für Spielstart benötigt.
@@ -19,10 +21,9 @@ package NachGrafiktask is
    FensterGeschlossen : Boolean := False;
    NameSpielstand : Boolean := False;
    
-   KIRechnet : RassenDatentypen.Rassen_Enum := RassenDatentypen.Keine_Rasse_Enum;
-   
    AktuellesMenü : MenueDatentypen.Welches_Menü_Enum := MenueDatentypen.Leer_Menü_Enum;
    
+   KIRechnet : RassenDatentypen.Rassen_Enum := RassenDatentypen.Keine_Rasse_Enum;
    AktuelleRasse : RassenDatentypen.Rassen_Enum := EinheitenKonstanten.LeerRasse;
    
    AktuelleEinheit : EinheitenDatentypen.MaximaleEinheitenMitNullWert := EinheitenKonstanten.LeerNummer;
@@ -32,5 +33,17 @@ package NachGrafiktask is
    FensterVerändert : GrafikDatentypen.Fenster_Ändern_Enum;
    
    AktuelleDarstellung : GrafikDatentypen.Grafik_Aktuelle_Darstellung_Enum := GrafikDatentypen.Grafik_SFML_Enum;
+   
+   -- Später erweitern mit nur Schriftgröße setzen, nur Schriftfarbe setzen, usw.. äöü
+   AccesseSetzen : Boolean := False;
+   
+   
+
+   TastenEingabe : Boolean := False;
+   TextEingabe : Boolean := False;
+   
+   AnzeigeFrage : ZahlenDatentypen.EigenesNatural := ZahlenDatentypen.EigenesNatural'First;
+   
+   Eingabe : SystemDatentypen.Welche_Eingabe_Enum := SystemDatentypen.Keine_Eingabe_Enum;
 
 end NachGrafiktask;

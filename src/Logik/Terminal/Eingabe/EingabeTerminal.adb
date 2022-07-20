@@ -11,7 +11,6 @@ with SystemDatentypen;
 
 with Fehler;
 with NachGrafiktask;
-with InteraktionEingabe;
 
 package body EingabeTerminal is
    
@@ -43,7 +42,7 @@ package body EingabeTerminal is
          VorzeichenAnpassen (ZahlenMinimumExtern => ZahlenMinimumExtern,
                              ZahlenMaximumExtern => ZahlenMaximumExtern,
                              PlusMinusExtern     => True);
-         InteraktionEingabe.Eingabe := SystemDatentypen.Zahlen_Eingabe_Enum;
+         NachGrafiktask.Eingabe := SystemDatentypen.Zahlen_Eingabe_Enum;
       end if;
       
       case
@@ -81,7 +80,7 @@ package body EingabeTerminal is
         NachGrafiktask.AktuelleDarstellung
       is
          when GrafikDatentypen.Grafik_Menüs_Enum =>
-            InteraktionEingabe.Eingabe := SystemDatentypen.Keine_Eingabe_Enum;
+            NachGrafiktask.Eingabe := SystemDatentypen.Keine_Eingabe_Enum;
             NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
             
          when others =>

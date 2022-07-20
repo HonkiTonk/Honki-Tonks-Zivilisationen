@@ -34,7 +34,6 @@ private
    ZehnerReihe : Natural;
    
    StartPositionYAchse : constant Float := 10.00;
-   ZeilenAbstand : Float;
    Zeile : Float;
    TextPositionMaus : Float;
    

@@ -37,8 +37,6 @@ private
    ZuletztAusgewählt : Natural;
    AktuelleEinstellung : Positive;
 
-   ZeilenAbstand : Float;
-
    LeerSchriftgrößeFestgelegt : constant Sf.sfUint32 := 0;
 
    AktuelleSchriftgröße : Sf.sfUint32;

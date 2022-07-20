@@ -25,7 +25,6 @@ package body GrafikAllgemeinSFML is
             GrafikStartEndeSFML.FensterErzeugen;
             GrafikEinstellungenSFML.AktuelleFensterAuflösung.x := Sf.Graphics.RenderWindow.getSize (renderWindow => GrafikEinstellungenSFML.FensterAccess).x;
             GrafikEinstellungenSFML.AktuelleFensterAuflösung.y := Sf.Graphics.RenderWindow.getSize (renderWindow => GrafikEinstellungenSFML.FensterAccess).y;
-            NachGrafiktask.FensterVerändert := GrafikDatentypen.Keine_Änderung_Enum;
             
          when others =>
             GrafikEinstellungenSFML.AktuelleFensterAuflösung.x := Sf.Graphics.RenderWindow.getSize (renderWindow => GrafikEinstellungenSFML.FensterAccess).x;

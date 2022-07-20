@@ -22,6 +22,7 @@ with EingeleseneTexturenSFML;
 with TexturenSetzenSkalierenSFML;
 with TextaccessVariablen;
 with Warnung;
+with TextberechnungenHoeheSFML;
 
 package body BauAuswahlAnzeigeSFML is
 
@@ -59,8 +60,7 @@ package body BauAuswahlAnzeigeSFML is
       
       AktuelleAuswahl := InDerStadtBauen.AktuelleAuswahl;
       
-      Zeilenabstand := Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard) * 0.15;
-      
+      -- Die Positionen immer festlegen lassen? Damit es nicht wieder zu Problemen bei der falschen Anzeige kommt? äöü
       case
         InteraktionAuswahl.PositionenBauenFestgelegt
       is
@@ -70,7 +70,7 @@ package body BauAuswahlAnzeigeSFML is
             Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.BaumenüÜberschriftAccess,
                                           position => (TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.BaumenüÜberschriftAccess), Grundposition.y));
             
-            Grundposition.y := Grundposition.y + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.BaumenüÜberschriftAccess).height + 10.00 * Zeilenabstand;
+            Grundposition.y := Grundposition.y + TextberechnungenHoeheSFML.Überschriftabstand;
       
             Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.GebäudetextAccess (0),
                                           position => (TextberechnungenBreiteSFML.ViertelpositionBerechnen (TextAccessExtern  => TextaccessVariablen.GebäudetextAccess (0),
@@ -82,7 +82,7 @@ package body BauAuswahlAnzeigeSFML is
                                                                                                             LinksRechtsExtern => False),
                                                        Grundposition.y));
             
-            Grundposition.y := Grundposition.y + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.BaumenüÜberschriftAccess).height + 10.00 * Zeilenabstand;
+            Grundposition.y := Grundposition.y + TextberechnungenHoeheSFML.Überschriftabstand;
             TextPosition := Grundposition;
             AbstandÜberschrift := TextPosition.y;
             
@@ -124,7 +124,7 @@ package body BauAuswahlAnzeigeSFML is
                   Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.GebäudetextAccess (GebäudeSchleifenwert),
                                                 position => TextPosition);
          
-                  TextPosition.y := TextPosition.y + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.GebäudetextAccess (GebäudeSchleifenwert)).height + 3.00 * Zeilenabstand;
+                  TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.Zeilenabstand;
                
                   InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.GebäudetextAccess (GebäudeSchleifenwert));
                   
@@ -173,7 +173,7 @@ package body BauAuswahlAnzeigeSFML is
                   Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitentextAccess (EinheitenSchleifenwert),
                                                 position => TextPosition);
          
-                  TextPosition.y := TextPosition.y + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.EinheitentextAccess (EinheitenSchleifenwert)).height + 3.00 * Zeilenabstand;
+                  TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.Zeilenabstand;
                
                   InteraktionAuswahl.PositionenEinheitenBauen (EinheitenSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.EinheitentextAccess (EinheitenSchleifenwert));
                   

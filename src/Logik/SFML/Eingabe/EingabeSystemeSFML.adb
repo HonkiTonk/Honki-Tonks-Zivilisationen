@@ -13,7 +13,7 @@ with GrafikDatentypen;
 
 with GrafikEinstellungenSFML;
 with NachGrafiktask;
-with InteraktionEingabe;
+with NachLogiktask;
 
 package body EingabeSystemeSFML is
 
@@ -92,13 +92,15 @@ package body EingabeSystemeSFML is
                  TextEingegeben.key.code = Sf.Window.Keyboard.sfKeyEnter
                then
                   EingegebenerText.ErfolgreichAbbruch := True;
-                  InteraktionEingabe.TextEingabe := False;
+                  NachGrafiktask.TextEingabe := False;
+                  NachLogiktask.Warten := False;
                      
                elsif
                  TextEingegeben.key.code = Sf.Window.Keyboard.sfKeyEscape
                then
                   EingegebenerText := SystemRecordKonstanten.LeerTexteingabe;
-                  InteraktionEingabe.TextEingabe := False;
+                  NachGrafiktask.TextEingabe := False;
+                  NachLogiktask.Warten := False;
                   
                else
                   null;

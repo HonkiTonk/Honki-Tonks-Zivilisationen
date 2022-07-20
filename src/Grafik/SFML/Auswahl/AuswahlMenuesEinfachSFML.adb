@@ -22,6 +22,7 @@ with AuswahlMenuesZusatztextSFML;
 with HintergrundSFML;
 with InteraktionAuswahl;
 with KartengeneratorVariablen;
+with TextberechnungenHoeheSFML;
 
 package body AuswahlMenuesEinfachSFML is
 
@@ -402,9 +403,7 @@ package body AuswahlMenuesEinfachSFML is
      (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum;
       TextbereichExtern : in Positive)
    is begin
-      
-      ZeilenAbstand := 0.50 * Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
-      
+            
       Rechenwert.y := Float (AktuelleAuflösung.y / 100);
       
       if
@@ -421,7 +420,7 @@ package body AuswahlMenuesEinfachSFML is
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift),
                                     position => Rechenwert);
       
-      Rechenwert.y := Rechenwert.y + 3.00 * Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift)).height + ZeilenAbstand;
+      Rechenwert.y := Rechenwert.y + TextberechnungenHoeheSFML.Überschriftabstand;
       
       PositionenSchleife:
       for PositionSchleifenwert in Überschrift .. SystemKonstanten.EndeMenü (WelchesMenüExtern) - SchleifenAbzug loop
@@ -446,7 +445,7 @@ package body AuswahlMenuesEinfachSFML is
          is
             when 0 =>
                -- Ist das nicht immer der Abstant zur Überschrift? Mal anpassen.
-               Rechenwert.y := Rechenwert.y + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift)).height + ZeilenAbstand;
+               Rechenwert.y := Rechenwert.y + TextberechnungenHoeheSFML.Zeilenabstand;
                
             when others =>
                null;

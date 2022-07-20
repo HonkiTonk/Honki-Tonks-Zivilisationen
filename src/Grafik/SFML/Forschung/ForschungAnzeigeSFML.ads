@@ -23,7 +23,6 @@ private
    
    WelcherText : Positive;
    
-   Zeilenabstand : Float;
    AbstandÜberschrift : Float;
    
    RechteckAccess : constant Sf.Graphics.sfRectangleShape_Ptr := Sf.Graphics.RectangleShape.create;

@@ -178,12 +178,14 @@ package body ImSpiel is
       -- NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Weltkarte_Enum;
       
       NachGrafiktask.KIRechnet := RasseExtern;
+      -- Wo wird das wieder auf Leer gesetzt? äöü
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_KI_Rechenzeit_Enum;
       Ladezeiten.KIZeiten (RasseExtern, SystemDatentypen.Anfangswert_Enum) := Clock;
       
       KI.KI (RasseExtern => RasseExtern);
       
       Ladezeiten.KIZeiten (RasseExtern, SystemDatentypen.Endwert_Enum) := Clock;
+      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
       NachGrafiktask.KIRechnet := RassenDatentypen.Keine_Rasse_Enum;
       
    end KISpieler;

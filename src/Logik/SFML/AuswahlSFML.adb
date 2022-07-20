@@ -8,7 +8,7 @@ with TastenbelegungDatentypen;
 with GrafikEinstellungenSFML;
 with Eingabe;
 with InteraktionAuswahl;
-with InteraktionEingabe;
+with NachGrafiktask;
 
 package body AuswahlSFML is
 
@@ -17,8 +17,8 @@ package body AuswahlSFML is
       return Boolean
    is begin
       
-      InteraktionEingabe.AnzeigeFrage := FrageZeileExtern;
-      InteraktionEingabe.Eingabe := SystemDatentypen.Ja_Nein_Enum;
+      NachGrafiktask.AnzeigeFrage := FrageZeileExtern;
+      NachGrafiktask.Eingabe := SystemDatentypen.Ja_Nein_Enum;
       
       AuswahlSchleife:
       loop
@@ -48,8 +48,8 @@ package body AuswahlSFML is
          
       end loop AuswahlSchleife;
       
-      InteraktionEingabe.Eingabe := SystemDatentypen.Keine_Eingabe_Enum;
-      InteraktionEingabe.AnzeigeFrage := 0;
+      NachGrafiktask.Eingabe := SystemDatentypen.Keine_Eingabe_Enum;
+      NachGrafiktask.AnzeigeFrage := 0;
       
       case
         AktuelleAuswahl
