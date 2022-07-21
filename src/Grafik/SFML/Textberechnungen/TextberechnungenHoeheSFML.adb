@@ -15,12 +15,11 @@ package body TextberechnungenHoeheSFML is
    
    
    
-   -- Feste Werte einbauen, dann kommt es nicht zu Problemen bei großen Texteinstellungen. äöü
    function KleinerZeilenabstand
      return Float
    is begin
       
-      return 1.20 * Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
+      return 28.80; -- 1.20 * Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
       
    end KleinerZeilenabstand;
    
@@ -30,7 +29,7 @@ package body TextberechnungenHoeheSFML is
      return Float
    is begin
       
-      return 1.50 * Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
+      return 36.00; -- 1.50 * Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
       
    end Zeilenabstand;
    
@@ -40,7 +39,7 @@ package body TextberechnungenHoeheSFML is
      return Float
    is begin
       
-      return 2.20 * Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
+      return 52.80; -- 2.20 * Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
       
    end GroßerZeilenabstand;
    
@@ -50,7 +49,7 @@ package body TextberechnungenHoeheSFML is
      return Float
    is begin
       
-      return 2.50 * Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeÜberschrift);
+      return 90.00; -- 2.50 * Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeÜberschrift);
       
    end Überschriftabstand;
    
@@ -60,7 +59,7 @@ package body TextberechnungenHoeheSFML is
      return Float
    is begin
       
-      return 5.00 * Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeÜberschrift);
+      return 180.00; -- 5.00 * Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeÜberschrift);
       
    end ÜberschriftabstandGroß;
    

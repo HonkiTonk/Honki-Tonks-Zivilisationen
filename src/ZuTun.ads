@@ -5,7 +5,6 @@
 -- Eventuell die Bau/Forschungsmenüs umlagern.
 -- Bei Veränderung des Fensters wird das Baumenü (und Andere?) nicht korrekt neu gesetzt, wahrscheinlich wegen der Positionsprüfung, das mal auf immer ändern umbauen.
 -- Änderung der Sprache wird nicht überall korrekt übernommen.
--- Feste Werte für den YAbstand einbauen.
 
 
 

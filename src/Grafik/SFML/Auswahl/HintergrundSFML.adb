@@ -19,14 +19,14 @@ package body HintergrundSFML is
       if
         EingeleseneTexturenSFML.StandardHintergrundAccess (StandardHintergrundExtern) /= null
       then
-         Sf.Graphics.Sprite.setPosition (sprite   => StandardspriteAccess,
+         Sf.Graphics.Sprite.setPosition (sprite   => HintergrundspriteAccess,
                                          position => Nullposition);
-         Sf.Graphics.Sprite.scale (sprite  => StandardspriteAccess,
-                                   factors => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenGesamtesBild (SpriteAccessExtern  => StandardspriteAccess,
+         Sf.Graphics.Sprite.scale (sprite  => HintergrundspriteAccess,
+                                   factors => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenGesamtesBild (SpriteAccessExtern  => HintergrundspriteAccess,
                                                                                                                TextureAccessExtern => EingeleseneTexturenSFML.StandardHintergrundAccess (StandardHintergrundExtern)));
          
          Sf.Graphics.RenderWindow.drawSprite (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                              object       => StandardspriteAccess);
+                                              object       => HintergrundspriteAccess);
          
       else
          Warnung.GrafikWarnung (WarnmeldungExtern => "HintergrundSFML.StandardHintergrund - Hintergrund nicht vorhanden: " & StandardHintergrundExtern'Wide_Wide_Image);
@@ -38,21 +38,20 @@ package body HintergrundSFML is
    
    ------------------------- Ein SpriteAccess für jedes Menübild?
    procedure MenüHintergrund
-     (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum;
-      SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr)
+     (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum)
    is begin
       
       if
         EingeleseneTexturenSFML.MenüHintergrundAccess (WelchesMenüExtern) /= null
       then
-         Sf.Graphics.Sprite.setPosition (sprite   => SpriteAccessExtern,
+         Sf.Graphics.Sprite.setPosition (sprite   => HintergrundspriteAccess,
                                          position => Nullposition);
-         Sf.Graphics.Sprite.scale (sprite  => SpriteAccessExtern,
-                                   factors => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenGesamtesBild (SpriteAccessExtern  => SpriteAccessExtern,
+         Sf.Graphics.Sprite.scale (sprite  => HintergrundspriteAccess,
+                                   factors => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenGesamtesBild (SpriteAccessExtern  => HintergrundspriteAccess,
                                                                                                                TextureAccessExtern => EingeleseneTexturenSFML.MenüHintergrundAccess (WelchesMenüExtern)));
          
          Sf.Graphics.RenderWindow.drawSprite (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                              object       => SpriteAccessExtern);
+                                              object       => HintergrundspriteAccess);
          
       else
          -- Hier wird kein einfarbiger Hintergrund wie bei den Kartenfeldern benötigt, da es ja immer auf schwarz gesetzt wird.

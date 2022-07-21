@@ -1,8 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-private with Sf.Graphics;
-private with Sf.Graphics.Sprite;
 private with Sf.System.Vector2;
 
 private with SystemKonstanten;
@@ -27,8 +25,6 @@ private
    Ende : Positive;
 
    Rechenwert : Sf.System.Vector2.sfVector2f;
-
-   SpriteAccess : constant Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;
 
    type SchleifenanpassungArray is array (2 .. 7) of Positive;
    Schleifenanpassung : constant SchleifenanpassungArray := (

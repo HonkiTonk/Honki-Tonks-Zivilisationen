@@ -15,13 +15,12 @@ package HintergrundSFML is
      (StandardHintergrundExtern : in GrafikDatentypen.Standard_Texturen_Enum);
 
    procedure MenüHintergrund
-     (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum;
-      SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr);
+     (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum);
 
 private
 
    Nullposition : constant Sf.System.Vector2.sfVector2f := (0.00, 0.00);
 
-   StandardspriteAccess : constant Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;
+   HintergrundspriteAccess : constant Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;
 
 end HintergrundSFML;

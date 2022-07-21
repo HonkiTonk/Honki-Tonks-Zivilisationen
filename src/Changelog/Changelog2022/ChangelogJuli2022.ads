@@ -70,10 +70,11 @@ package ChangelogJuli2022 is
    
    
 
-   -- Version 0.03. => 0.03. (21.07.2022):
+   -- Version 0.03.0615 => 0.03.0630 (21.07.2022):
    
+   -- Bei einer Änderung der Sprache werden jetzt alle Texte korrekt in der neuen Sprache angezeigt.
    -- 
-   -- Kleinigkeiten korrigiert.
+   -- Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 
