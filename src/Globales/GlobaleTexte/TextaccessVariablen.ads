@@ -55,6 +55,7 @@ package TextaccessVariablen is
    type GebäudetextAccessArray is array (StadtDatentypen.GebäudeIDMitNullwert'Range) of Sf.Graphics.sfText_Ptr;
    GebäudetextAccess : constant GebäudetextAccessArray := (others => Sf.Graphics.Text.create);
 
+   -- Wenn ich die Zusatztexte jetzt ja immer neu setzen, dann reicht da auch ein einzelner Access ohne Schleife, oder? äöü
    type GebäudezusatztextAccessArray is array (StadtDatentypen.GebäudeID'Range) of Sf.Graphics.sfText_Ptr;
    GebäudezusatztextAccess : constant GebäudezusatztextAccessArray := (others => Sf.Graphics.Text.create);
 

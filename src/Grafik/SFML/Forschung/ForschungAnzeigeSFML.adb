@@ -33,32 +33,25 @@ package body ForschungAnzeigeSFML is
             null;
       end case;
       
-      ----------------------- Hier Aufruf für Hintergrundbild einbauen.
+      -- Hier Aufruf für Hintergrundbild einbauen. äöü
       ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x), Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y)),
                                             PositionExtern       => (0.00, 0.00),
                                             FarbeExtern          => (105, 105, 105, 255),
                                             RechteckAccessExtern => RechteckAccess);
       
+      -- NachGrafiktastk verschieben. äöü
       AktuelleAuswahl := ForschungAllgemein.AktuelleAuswahl;
       
       -- Die Positionen immer festlegen lassen? Damit es nicht wieder zu Problemen bei der falschen Anzeige kommt? äöü
-      case
-        InteraktionAuswahl.PositionenForschungFestgelegt
-      is
-         when False =>
-            TextPosition := StartPositionText;
+      TextPosition := StartPositionText;
       
-            Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüAccess (ForschungKonstanten.LeerForschung),
-                                          position => (TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.ForschungsmenüAccess (ForschungKonstanten.LeerForschung)),
-                                                       StartPositionText.y));
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüAccess (ForschungKonstanten.LeerForschung),
+                                    position => (TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.ForschungsmenüAccess (ForschungKonstanten.LeerForschung)), TextPosition.y));
       
-            TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.Überschriftabstand;
-            AbstandÜberschrift := TextPosition.y;
-            
-         when True =>
-            null;
-      end case;
-      
+      TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.Überschriftabstand;
+      -- Diesen Wert nicht löschen, bestimmt später den Abstand der Zusatztextbox von der Überschrift.
+      AbstandÜberschrift := TextPosition.y;
+                  
       WelcherZusatztext := ForschungKonstanten.LeerForschung;
       
       AnzeigeSchleife:
@@ -82,28 +75,19 @@ package body ForschungAnzeigeSFML is
                                              color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
                end if;
                
-               if
-                 InteraktionAuswahl.PositionenForschungFestgelegt = False
-               then
-                  Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüAccess (ForschungSchleifenwert),
-                                                position => TextPosition);
+               Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüAccess (ForschungSchleifenwert),
+                                             position => TextPosition);
          
-                  TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.Zeilenabstand;
+               TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.Zeilenabstand;
                
-                  InteraktionAuswahl.PositionenForschung (ForschungSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.ForschungsmenüAccess (ForschungSchleifenwert));
-                  
-               else
-                  null;
-               end if;
-
+               InteraktionAuswahl.PositionenForschung (ForschungSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.ForschungsmenüAccess (ForschungSchleifenwert));
+               
             when False =>
                null;
          end case;
                
       end loop AnzeigeSchleife;
-      
-      InteraktionAuswahl.PositionenForschungFestgelegt := True;
-      
+            
       TextSchleife:
       for TextSchleifenwert in TextaccessVariablen.ForschungsmenüAccessArray'Range loop
          

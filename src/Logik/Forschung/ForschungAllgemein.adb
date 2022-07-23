@@ -114,7 +114,6 @@ package body ForschungAllgemein is
    is begin
       
       InteraktionAuswahl.MöglicheForschungen := (others => False);
-      InteraktionAuswahl.PositionenForschungFestgelegt := False;
 
       ForschungSchleife:
       for ForschungenSchleifenwert in ForschungenDatentypen.ForschungID loop

@@ -18,7 +18,7 @@ with ForschungAllgemein;
 
 package body GebaeudeAllgemein is
 
-   -------------- Um die Aufrufe der ganzen Beschreibungen mal ein wenig zu reduzieren die Nullprüfung vor den Aufruf verlegen (überall?).
+   -- Um die Aufrufe der ganzen Beschreibungen mal ein wenig zu reduzieren die Nullprüfung vor den Aufruf verlegen (überall?). äöü
    function BeschreibungKurz
      (IDExtern : in StadtDatentypen.GebäudeIDMitNullwert)
      return Wide_Wide_String

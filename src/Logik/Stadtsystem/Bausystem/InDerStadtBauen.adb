@@ -154,7 +154,6 @@ package body InDerStadtBauen is
      return StadtRecords.BauprojektRecord
    is begin
       
-      InteraktionAuswahl.PositionenBauenFestgelegt := False;
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Bauen_Enum;
       
       AuswahlSchleife:

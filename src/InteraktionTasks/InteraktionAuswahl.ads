@@ -29,8 +29,6 @@ package InteraktionAuswahl is
    type MöglicheForschungenArray is array (PositionenForschungArray'Range) of Boolean;
    MöglicheForschungen : MöglicheForschungenArray := (others => False);
 
-   PositionenForschungFestgelegt : Boolean := False;
-
 
 
    type PositionenGebäudeBauenArray is array (StadtDatentypen.GebäudeID'Range) of Sf.Graphics.Rect.sfFloatRect;
@@ -44,8 +42,6 @@ package InteraktionAuswahl is
 
    type MöglicheEinheitenArray is array (PositionenEinheitenBauenArray'Range) of Boolean;
    MöglicheEinheiten : MöglicheEinheitenArray := (others => False);
-
-   PositionenBauenFestgelegt : Boolean := False;
 
 
 

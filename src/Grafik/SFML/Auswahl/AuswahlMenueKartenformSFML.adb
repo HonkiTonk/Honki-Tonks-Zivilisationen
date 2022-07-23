@@ -7,6 +7,7 @@ with Sf.Graphics.Text;
 
 with SonstigesKonstanten;
 with MenueDatentypen;
+with SystemKonstanten;
 
 with GrafikEinstellungenSFML;
 with TextberechnungenBreiteSFML;
@@ -93,39 +94,13 @@ package body AuswahlMenueKartenformSFML is
      return Natural
    is begin
       
+      -- Auch mal NachGrafiktask umlagern. äöü
       AktuelleAuswahl := AuswahlMenuesEinfach.AktuelleAuswahl;
       
-      if
-        AktuelleAuswahl /= LetzteAuswahl
-      then
-         FarbeAktuelleAuswahlFestlegen (AktuelleAuswahlExtern => AktuelleAuswahl,
-                                        LetzteAuswahlExtern   => LetzteAuswahl);
-         
-         LetzteAuswahl := AktuelleAuswahl;
-         
-      else
-         null;
-      end if;
+      FarbeAktuelleAuswahlFestlegen (AktuelleAuswahlExtern => AktuelleAuswahl);
       
-      case
-        TextEingelesen
-      is
-         when False =>
-            TextEingelesen := TextEinlesen;
-            
-         when True =>
-            null;
-      end case;
-      
-      case
-        SchriftpositionFestgelegt
-      is
-         when False =>
-            SchriftpositionFestgelegt := SchriftpositionFestlegen;
-            
-         when True =>
-            null;
-      end case;
+      TextEinlesen;
+      SchriftpositionFestlegen;
       
       return AktuelleAuswahl;
       
@@ -134,38 +109,33 @@ package body AuswahlMenueKartenformSFML is
    
    
    procedure FarbeAktuelleAuswahlFestlegen
-     (AktuelleAuswahlExtern : in Natural;
-      LetzteAuswahlExtern : in Natural)
+     (AktuelleAuswahlExtern : in Natural)
    is begin
-                
-      case
-        LetzteAuswahlExtern
-      is
-         when SystemKonstanten.LeerAuswahl =>
-            null;
-            
-         when 1 .. 2 =>
-            EbeneSchleife:
-            for EbeneSchleifenwert in 0 .. 1 loop
-                                                
-               Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KartenformauswahlAccess (Schleifenanpassung (LetzteAuswahlExtern + Überschrift) + EbeneSchleifenwert),
+      
+      FarbenSchleife:
+      for FarbenSchleifenwert in TextaccessVariablen.KartenformauswahlAccess'Range loop
+         
+         case
+           FarbenSchleifenwert
+         is
+            when 1 =>
+               Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KartenformauswahlAccess (FarbenSchleifenwert),
+                                          color => GrafikEinstellungenSFML.Schriftfarben.FarbeÜberschrift);
+               
+            when 2 .. 9 =>
+               Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KartenformauswahlAccess (FarbenSchleifenwert),
+                                          color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
+               
+            when 10 .. 29 =>
+               Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KartenformauswahlAccess (FarbenSchleifenwert),
                                           color => GrafikEinstellungenSFML.Schriftfarben.FarbeMenschText);
-                  
-            end loop EbeneSchleife;
-            
-         when 3 .. 6 =>
-            AchsenSchleife:
-            for AchsenSchleifenwert in 0 .. 3 loop
-                                 
-               Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KartenformauswahlAccess (Schleifenanpassung (LetzteAuswahlExtern + Überschrift) + AchsenSchleifenwert),
-                                          color => GrafikEinstellungenSFML.Schriftfarben.FarbeMenschText);
-                  
-            end loop AchsenSchleife;
-
-         when others =>
-            Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KartenformauswahlAccess (LetzteAuswahlExtern + Überschrift),
-                                       color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
-      end case;
+               
+            when others =>
+               Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KartenformauswahlAccess (FarbenSchleifenwert),
+                                          color => GrafikEinstellungenSFML.Schriftfarben.FarbeSonstigerText);
+         end case;
+         
+      end loop FarbenSchleife;
       
       case
         AktuelleAuswahlExtern
@@ -173,6 +143,7 @@ package body AuswahlMenueKartenformSFML is
          when SystemKonstanten.LeerAuswahl =>
             null;
             
+            -- AktuelleAuswahl direkt die Werte 1/3 draufrechnen? Dann könnten diese Schleifen auch raus. äöü
          when 1 .. 2 =>
             AEbeneSchleife:
             for EbeneSchleifenwert in 0 .. 1 loop
@@ -200,8 +171,7 @@ package body AuswahlMenueKartenformSFML is
    
    
    
-   function TextEinlesen
-     return Boolean
+   procedure TextEinlesen
    is begin
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KartenformauswahlAccess (Überschrift),
@@ -253,33 +223,30 @@ package body AuswahlMenueKartenformSFML is
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KartenformauswahlAccess (TextaccessVariablen.KartenformauswahlAccessArray'Last),
                                          str  => "Version: " & SonstigesKonstanten.Versionsnummer);
       
-      return True;
-      
    end TextEinlesen;
    
    
    
-   function SchriftpositionFestlegen
-     return Boolean
+   procedure SchriftpositionFestlegen
    is begin
             
-      Rechenwert.y := Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y / 100);
+      Textposition.y := Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y / 100);
       
       if
-        Rechenwert.y < 20.00
+        Textposition.y < 20.00
       then
-         Rechenwert.y := 20.00;
+         Textposition.y := 20.00;
          
       else
          null;
       end if;
       
-      Rechenwert.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.KartenformauswahlAccess (Überschrift));
+      Textposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.KartenformauswahlAccess (Überschrift));
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KartenformauswahlAccess (Überschrift),
-                                    position => Rechenwert);
+                                    position => Textposition);
       
-      Rechenwert.y := Rechenwert.y + TextberechnungenHoeheSFML.Überschriftabstand;
+      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.Überschriftabstand;
       
       PositionenSchleife:
       for PositionSchleifenwert in TextaccessVariablen.KartenformauswahlAccessArray'First + Überschrift .. 7 loop
@@ -288,20 +255,20 @@ package body AuswahlMenueKartenformSFML is
            PositionSchleifenwert
          is
             when 2 .. 3 =>
-               Rechenwert.x := TextberechnungenBreiteSFML.ViertelpositionBerechnen (TextAccessExtern => TextaccessVariablen.KartenformauswahlAccess (PositionSchleifenwert),
-                                                                                    LinksRechtsExtern => True);
+               Textposition.x := TextberechnungenBreiteSFML.ViertelpositionBerechnen (TextAccessExtern => TextaccessVariablen.KartenformauswahlAccess (PositionSchleifenwert),
+                                                                                      LinksRechtsExtern => True);
                            
                Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KartenformauswahlAccess (PositionSchleifenwert),
-                                             position => Rechenwert);
+                                             position => Textposition);
                
-               Rechenwert.x := TextberechnungenBreiteSFML.ViertelpositionBerechnen (TextAccessExtern => TextaccessVariablen.KartenformauswahlAccess (PositionSchleifenwert),
-                                                                                    LinksRechtsExtern => False);
+               Textposition.x := TextberechnungenBreiteSFML.ViertelpositionBerechnen (TextAccessExtern => TextaccessVariablen.KartenformauswahlAccess (PositionSchleifenwert),
+                                                                                      LinksRechtsExtern => False);
                
                EbeneSchleife:
                for EbeneSchleifenwert in 0 .. 1 loop
                                  
                   Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KartenformauswahlAccess (Schleifenanpassung (PositionSchleifenwert) + EbeneSchleifenwert),
-                                                position => Rechenwert);
+                                                position => Textposition);
                   
                end loop EbeneSchleife;
          
@@ -309,20 +276,20 @@ package body AuswahlMenueKartenformSFML is
                  := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.KartenformauswahlAccess (Schleifenanpassung (PositionSchleifenwert)));
                
             when 4 .. 7 =>
-               Rechenwert.x := TextberechnungenBreiteSFML.ViertelpositionBerechnen (TextAccessExtern => TextaccessVariablen.KartenformauswahlAccess (PositionSchleifenwert),
-                                                                                    LinksRechtsExtern => True);
+               Textposition.x := TextberechnungenBreiteSFML.ViertelpositionBerechnen (TextAccessExtern => TextaccessVariablen.KartenformauswahlAccess (PositionSchleifenwert),
+                                                                                      LinksRechtsExtern => True);
                            
                Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KartenformauswahlAccess (PositionSchleifenwert),
-                                             position => Rechenwert);
+                                             position => Textposition);
                
-               Rechenwert.x := TextberechnungenBreiteSFML.ViertelpositionBerechnen (TextAccessExtern => TextaccessVariablen.KartenformauswahlAccess (PositionSchleifenwert),
-                                                                                    LinksRechtsExtern => False);
+               Textposition.x := TextberechnungenBreiteSFML.ViertelpositionBerechnen (TextAccessExtern => TextaccessVariablen.KartenformauswahlAccess (PositionSchleifenwert),
+                                                                                      LinksRechtsExtern => False);
                
                AchsenSchleife:
                for AchsenSchleifenwert in 0 .. 3 loop
                                  
                   Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KartenformauswahlAccess (Schleifenanpassung (PositionSchleifenwert) + AchsenSchleifenwert),
-                                                position => Rechenwert);
+                                                position => Textposition);
                   
                end loop AchsenSchleife;
          
@@ -333,36 +300,31 @@ package body AuswahlMenueKartenformSFML is
                Fehler.GrafikFehler (FehlermeldungExtern => "AuswahlMenueKartenformSFML.SchriftpositionFestlegen - Schleife loopt falsch.");
          end case;
          
-         Rechenwert.y := Rechenwert.y + TextberechnungenHoeheSFML.Zeilenabstand;
+         Textposition.y := Textposition.y + TextberechnungenHoeheSFML.Zeilenabstand;
          
       end loop PositionenSchleife;
       
-      Rechenwert.x := TextberechnungenBreiteSFML.ViertelpositionBerechnen (TextAccessExtern => TextaccessVariablen.KartenformauswahlAccess (8),
-                                                                           LinksRechtsExtern => True);
+      Textposition.x := TextberechnungenBreiteSFML.ViertelpositionBerechnen (TextAccessExtern => TextaccessVariablen.KartenformauswahlAccess (8),
+                                                                             LinksRechtsExtern => True);
                            
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KartenformauswahlAccess (8),
-                                    position => Rechenwert);
+                                    position => Textposition);
       
       InteraktionAuswahl.PositionenMenüeinträge (MenueDatentypen.Kartenform_Menü_Enum, 8 - Überschrift) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.KartenformauswahlAccess (8));
                
-      Rechenwert.x := TextberechnungenBreiteSFML.ViertelpositionBerechnen (TextAccessExtern => TextaccessVariablen.KartenformauswahlAccess (9),
-                                                                           LinksRechtsExtern => False);
+      Textposition.x := TextberechnungenBreiteSFML.ViertelpositionBerechnen (TextAccessExtern => TextaccessVariablen.KartenformauswahlAccess (9),
+                                                                             LinksRechtsExtern => False);
                
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KartenformauswahlAccess (9),
-                                    position => Rechenwert);
+                                    position => Textposition);
       
       InteraktionAuswahl.PositionenMenüeinträge (MenueDatentypen.Kartenform_Menü_Enum, 9 - Überschrift) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.KartenformauswahlAccess (9));
             
-      --------------------- Scheint noch nicht hoch genug zu sein.
-      Rechenwert.y := Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y)
-        - Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KartenformauswahlAccess (TextaccessVariablen.KartenformauswahlAccessArray'Last)).height
-        - Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y / 100);
-      Rechenwert.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.KartenformauswahlAccess (TextaccessVariablen.KartenformauswahlAccessArray'Last));
+      Textposition.y := Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y) - TextberechnungenHoeheSFML.KleinerZeilenabstand;
+      Textposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.KartenformauswahlAccess (TextaccessVariablen.KartenformauswahlAccessArray'Last));
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KartenformauswahlAccess (TextaccessVariablen.KartenformauswahlAccessArray'Last),
-                                    position => Rechenwert);
-      
-      return True;
+                                    position => Textposition);
       
    end SchriftpositionFestlegen;
 

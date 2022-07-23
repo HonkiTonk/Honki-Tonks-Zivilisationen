@@ -49,31 +49,30 @@ package ChangelogJuli2022 is
    
    
 
-   -- Version 0.03. => 0.03. (24.07.2022):
+   -- Version 0.03.0660 => 0.03. (24.07.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03. => 0.03. (23.07.2022):
+   -- Version 0.03.0630 => 0.03.0660 (23.07.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Textberechnung überarbeitet.
+   -- Alles Texte sollten jetzt sich jetzt anpassen wenn die Fenstergröße verändert wird.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 
-   -- Version 0.03. => 0.03. (22.07.2022):
+   -- Version 0.03.0630 => 0.03.0630 (22.07.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
    -- Version 0.03.0615 => 0.03.0630 (21.07.2022):
    
    -- Bei einer Änderung der Sprache werden jetzt alle Texte korrekt in der neuen Sprache angezeigt.
-   -- 
    -- Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    

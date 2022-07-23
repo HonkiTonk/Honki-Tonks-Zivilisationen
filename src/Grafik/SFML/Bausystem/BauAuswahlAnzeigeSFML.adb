@@ -3,13 +3,11 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Characters.Wide_Wide_Latin_1;
 
-with Sf.Graphics; use Sf.Graphics;
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Text;
 
 with EinheitenDatentypen; use EinheitenDatentypen;
 with StadtDatentypen; use StadtDatentypen;
-with GlobaleTexte;
 with TextKonstanten;
 
 with GrafikEinstellungenSFML;
@@ -18,11 +16,11 @@ with TextberechnungenBreiteSFML;
 with InDerStadtBauen;
 with InteraktionAuswahl;
 with Fehler;
-with EingeleseneTexturenSFML;
-with TexturenSetzenSkalierenSFML;
 with TextaccessVariablen;
-with Warnung;
 with TextberechnungenHoeheSFML;
+with GebaeudeAllgemein;
+with EinheitenBeschreibungen;
+with HintergrundSFML;
 
 package body BauAuswahlAnzeigeSFML is
 
@@ -41,18 +39,9 @@ package body BauAuswahlAnzeigeSFML is
             null;
       end case;
       
-      -- Kann das nicht raus? äöü
-      case
-        SchriftgrößeFestgelegt
-      is
-         when False =>
-            SchriftgrößeFestgelegt := SchriftgrößenFestlegen;
-            
-         when True =>
-            null;
-      end case;
+      SchriftgrößenFestlegen;
       
-      ------------------ Hier Aufruf für Hintergrundbild einbauen.
+      -- Hier Aufruf für Hintergrundbild einbauen. äöü
       ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x), Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y)),
                                             PositionExtern       => (0.00, 0.00),
                                             FarbeExtern          => (105, 105, 105, 255),
@@ -60,35 +49,26 @@ package body BauAuswahlAnzeigeSFML is
       
       AktuelleAuswahl := InDerStadtBauen.AktuelleAuswahl;
       
-      -- Die Positionen immer festlegen lassen? Damit es nicht wieder zu Problemen bei der falschen Anzeige kommt? äöü
-      case
-        InteraktionAuswahl.PositionenBauenFestgelegt
-      is
-         when False =>
-            Grundposition := StartPositionText;
+      Grundposition := StartPositionText;
             
-            Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.BaumenüÜberschriftAccess,
-                                          position => (TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.BaumenüÜberschriftAccess), Grundposition.y));
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.BaumenüÜberschriftAccess,
+                                    position => (TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.BaumenüÜberschriftAccess), Grundposition.y));
             
-            Grundposition.y := Grundposition.y + TextberechnungenHoeheSFML.Überschriftabstand;
+      Grundposition.y := Grundposition.y + TextberechnungenHoeheSFML.Überschriftabstand;
       
-            Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.GebäudetextAccess (0),
-                                          position => (TextberechnungenBreiteSFML.ViertelpositionBerechnen (TextAccessExtern  => TextaccessVariablen.GebäudetextAccess (0),
-                                                                                                            LinksRechtsExtern => True),
-                                                       Grundposition.y));
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.GebäudetextAccess (0),
+                                    position => (TextberechnungenBreiteSFML.ViertelpositionBerechnen (TextAccessExtern  => TextaccessVariablen.GebäudetextAccess (0),
+                                                                                                      LinksRechtsExtern => True),
+                                                 Grundposition.y));
       
-            Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitentextAccess (0),
-                                          position => (TextberechnungenBreiteSFML.ViertelpositionBerechnen (TextAccessExtern  => TextaccessVariablen.GebäudetextAccess (0),
-                                                                                                            LinksRechtsExtern => False),
-                                                       Grundposition.y));
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitentextAccess (0),
+                                    position => (TextberechnungenBreiteSFML.ViertelpositionBerechnen (TextAccessExtern  => TextaccessVariablen.GebäudetextAccess (0),
+                                                                                                      LinksRechtsExtern => False),
+                                                 Grundposition.y));
             
-            Grundposition.y := Grundposition.y + TextberechnungenHoeheSFML.Überschriftabstand;
-            TextPosition := Grundposition;
-            AbstandÜberschrift := TextPosition.y;
-            
-         when True =>
-            null;
-      end case;
+      Grundposition.y := Grundposition.y + TextberechnungenHoeheSFML.Überschriftabstand;
+      TextPosition := Grundposition;
+      AbstandÜberschrift := TextPosition.y;
 
       ZusatztextGebäude := 0;
       
@@ -108,29 +88,25 @@ package body BauAuswahlAnzeigeSFML is
                   Sf.Graphics.Text.setColor (text  => TextaccessVariablen.GebäudetextAccess (GebäudeSchleifenwert),
                                              color => GrafikEinstellungenSFML.Schriftfarben.FarbeAusgewähltText);
                   Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.GebäudezusatztextAccess (GebäudeSchleifenwert),
-                                                position => (2.00 * Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) / 4.00, AbstandÜberschrift));
-                  TextHintergrund (GebäudeEinheitExtern => True);
+                                                position => (AnfangsabstandExtratext + Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) / 2.00, AbstandÜberschrift));
+                  HintergrundSFML.TextHintergrund (GebäudeEinheitExtern     => True,
+                                                   AbstandÜberschriftExtern => AbstandÜberschrift,
+                                                   VerhältnisTextfeldExtern => VerhältnisTextfeld,
+                                                   StartpositionExtern      => StartPositionText.x);
             
                else
                   Sf.Graphics.Text.setColor (text  => TextaccessVariablen.GebäudetextAccess (GebäudeSchleifenwert),
                                              color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
                end if;
-                  
-               if
-                 InteraktionAuswahl.PositionenBauenFestgelegt = False
-               then
-                  TextPosition.x := TextberechnungenBreiteSFML.ViertelpositionBerechnen (TextAccessExtern  => TextaccessVariablen.GebäudetextAccess (GebäudeSchleifenwert),
-                                                                                         LinksRechtsExtern => True);
-                  Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.GebäudetextAccess (GebäudeSchleifenwert),
-                                                position => TextPosition);
-         
-                  TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.Zeilenabstand;
                
-                  InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.GebäudetextAccess (GebäudeSchleifenwert));
-                  
-               else
-                  null;
-               end if;
+               TextPosition.x := TextberechnungenBreiteSFML.ViertelpositionBerechnen (TextAccessExtern  => TextaccessVariablen.GebäudetextAccess (GebäudeSchleifenwert),
+                                                                                      LinksRechtsExtern => True);
+               Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.GebäudetextAccess (GebäudeSchleifenwert),
+                                             position => TextPosition);
+         
+               TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.Zeilenabstand;
+               
+               InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.GebäudetextAccess (GebäudeSchleifenwert));
 
             when False =>
                null;
@@ -157,37 +133,31 @@ package body BauAuswahlAnzeigeSFML is
                   Sf.Graphics.Text.setColor (text  => TextaccessVariablen.EinheitentextAccess (EinheitenSchleifenwert),
                                              color => GrafikEinstellungenSFML.Schriftfarben.FarbeAusgewähltText);
                   Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitenzusatztextAccess (EinheitenSchleifenwert),
-                                                position => (StartPositionText.x, AbstandÜberschrift));
-                  TextHintergrund (GebäudeEinheitExtern => False);
+                                                position => (AnfangsabstandExtratext + StartPositionText.x, AbstandÜberschrift));
+                  HintergrundSFML.TextHintergrund (GebäudeEinheitExtern     => False,
+                                                   AbstandÜberschriftExtern => AbstandÜberschrift,
+                                                   VerhältnisTextfeldExtern => VerhältnisTextfeld,
+                                                   StartpositionExtern      => StartPositionText.x);
             
                else
                   Sf.Graphics.Text.setColor (text  => TextaccessVariablen.EinheitentextAccess (EinheitenSchleifenwert),
                                              color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
                end if;
                   
-               if
-                 InteraktionAuswahl.PositionenBauenFestgelegt = False
-               then
-                  TextPosition.x := TextberechnungenBreiteSFML.ViertelpositionBerechnen (TextAccessExtern  => TextaccessVariablen.EinheitentextAccess (EinheitenSchleifenwert),
-                                                                                         LinksRechtsExtern => False);
-                  Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitentextAccess (EinheitenSchleifenwert),
-                                                position => TextPosition);
+               TextPosition.x := TextberechnungenBreiteSFML.ViertelpositionBerechnen (TextAccessExtern  => TextaccessVariablen.EinheitentextAccess (EinheitenSchleifenwert),
+                                                                                      LinksRechtsExtern => False);
+               Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitentextAccess (EinheitenSchleifenwert),
+                                             position => TextPosition);
          
-                  TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.Zeilenabstand;
+               TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.Zeilenabstand;
                
-                  InteraktionAuswahl.PositionenEinheitenBauen (EinheitenSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.EinheitentextAccess (EinheitenSchleifenwert));
-                  
-               else
-                  null;
-               end if;
+               InteraktionAuswahl.PositionenEinheitenBauen (EinheitenSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.EinheitentextAccess (EinheitenSchleifenwert));
 
             when False =>
                null;
          end case;
          
       end loop EinheitenSchleife;
-      
-      InteraktionAuswahl.PositionenBauenFestgelegt := True;
       
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                          text         => TextaccessVariablen.BaumenüÜberschriftAccess);
@@ -246,7 +216,7 @@ package body BauAuswahlAnzeigeSFML is
       
       AktuellerTextbereichEins := TextKonstanten.LeerUnboundedString;
       AktuellerTextbereichZwei := TextKonstanten.LeerUnboundedString;
-      BreiteTextfeld := Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) * VerhältnisTextfeld.x;
+      BreiteTextfeld := Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) * VerhältnisTextfeld.x - EndabstandExtratext;
       
       if
         ZusatztextGebäude /= 0
@@ -255,16 +225,17 @@ package body BauAuswahlAnzeigeSFML is
       then
          Fehler.GrafikFehler (FehlermeldungExtern => "BauAuswahlAnzeigeSFML.BauAuswahlAnzeige - Zwei Projekte sind gleichzeitig ausgewählt.");
          
+         -- Wenn ich die Zusatztexte jetzt ja immer neu setzen, dann reicht da auch ein einzelner Access ohne Schleife, oder? äöü
       elsif
         ZusatztextGebäude /= 0
       then
          Multiplikator := 1.00;
                     
          GebäudeTextbereichSchleife:
-         for TextbereichSchleifenwert in 1 .. To_Wide_Wide_String (Source => GlobaleTexte.Gebäude (2 * Positive (ZusatztextGebäude)))'Last loop
+         for TextbereichSchleifenwert in 1 .. GebaeudeAllgemein.BeschreibungLang (IDExtern => ZusatztextGebäude)'Last loop
          
-            AktuellerTextbereichEins := AktuellerTextbereichEins & To_Wide_Wide_String (Source => GlobaleTexte.Gebäude (2 * Positive (ZusatztextGebäude))) (TextbereichSchleifenwert);
-            AktuellerTextbereichZwei := AktuellerTextbereichZwei & To_Wide_Wide_String (Source => GlobaleTexte.Gebäude (2 * Positive (ZusatztextGebäude))) (TextbereichSchleifenwert);
+            AktuellerTextbereichEins := AktuellerTextbereichEins & GebaeudeAllgemein.BeschreibungLang (IDExtern => ZusatztextGebäude) (TextbereichSchleifenwert);
+            AktuellerTextbereichZwei := AktuellerTextbereichZwei & GebaeudeAllgemein.BeschreibungLang (IDExtern => ZusatztextGebäude) (TextbereichSchleifenwert);
             
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.GebäudezusatztextAccess (ZusatztextGebäude),
                                                str  => To_Wide_Wide_String (Source => AktuellerTextbereichEins));
@@ -287,16 +258,17 @@ package body BauAuswahlAnzeigeSFML is
          Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                             text         => TextaccessVariablen.GebäudezusatztextAccess (ZusatztextGebäude));
          
+         -- Wenn ich die Zusatztexte jetzt ja immer neu setzen, dann reicht da auch ein einzelner Access ohne Schleife, oder? äöü
       elsif
         ZusatztextEinheiten /= 0
       then
          Multiplikator := 1.00;
                     
          EinheitenTextbereichSchleife:
-         for TextbereichSchleifenwert in 1 .. To_Wide_Wide_String (Source => GlobaleTexte.Einheiten (2 * Positive (ZusatztextEinheiten)))'Last loop
+         for TextbereichSchleifenwert in 1 .. EinheitenBeschreibungen.BeschreibungLang (IDExtern => ZusatztextEinheiten)'Last loop
          
-            AktuellerTextbereichEins := AktuellerTextbereichEins & To_Wide_Wide_String (Source => GlobaleTexte.Einheiten (2 * Positive (ZusatztextEinheiten))) (TextbereichSchleifenwert);
-            AktuellerTextbereichZwei := AktuellerTextbereichZwei & To_Wide_Wide_String (Source => GlobaleTexte.Einheiten (2 * Positive (ZusatztextEinheiten))) (TextbereichSchleifenwert);
+            AktuellerTextbereichEins := AktuellerTextbereichEins & EinheitenBeschreibungen.BeschreibungLang (IDExtern => ZusatztextEinheiten) (TextbereichSchleifenwert);
+            AktuellerTextbereichZwei := AktuellerTextbereichZwei & EinheitenBeschreibungen.BeschreibungLang (IDExtern => ZusatztextEinheiten) (TextbereichSchleifenwert);
             
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitenzusatztextAccess (ZusatztextEinheiten),
                                                str  => To_Wide_Wide_String (Source => AktuellerTextbereichEins));
@@ -324,51 +296,10 @@ package body BauAuswahlAnzeigeSFML is
       end if;
       
    end BauAuswahlAnzeige;
-      
-   
-   
-   ----------------------------- Das hier alles noch einmal überarbeiten, unter anderem passt das mit den Menüs auch nicht.
-   procedure TextHintergrund
-     (GebäudeEinheitExtern : in Boolean)
-   is begin
-      
-      Hintergrund := MenueDatentypen.Rassen_Menü_Enum;
-      
-      if
-        EingeleseneTexturenSFML.MenüHintergrundAccess (Hintergrund) /= null
-      then
-         case
-           GebäudeEinheitExtern
-         is
-            when True =>
-               PositionHintergrund := (2.00 * Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) / 4.00, AbstandÜberschrift);
-               
-            when False =>
-               PositionHintergrund := (StartPositionText.x, AbstandÜberschrift);
-         end case;
-         
-         Sf.Graphics.Sprite.setPosition (sprite   => SpriteAccess,
-                                         position => PositionHintergrund);
-         
-         Sf.Graphics.Sprite.scale (sprite  => SpriteAccess,
-                                   factors => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenTeilBild (SpriteAccessExtern  => SpriteAccess,
-                                                                                                           TextureAccessExtern => EingeleseneTexturenSFML.MenüHintergrundAccess (MenueDatentypen.Rassen_Menü_Enum),
-                                                                                                           VerhältnisExtern    => VerhältnisTextfeld));
-         
-         Sf.Graphics.RenderWindow.drawSprite (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                              object       => SpriteAccess);
-         
-      else
-         -------------------- Später hier einen einfarbigen Hintergrund wie bei den Kartenfeldern einbauen.
-         Warnung.GrafikWarnung (WarnmeldungExtern => "BauAuswahlAnzeigeSFML.TextHintergrund - Textur nicht gefunden: " & Hintergrund'Wide_Wide_Image);
-      end if;
-      
-   end TextHintergrund;
 
 
 
-   function SchriftgrößenFestlegen
-     return Boolean
+   procedure SchriftgrößenFestlegen
    is begin
       
       Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.BaumenüÜberschriftAccess,
@@ -379,8 +310,6 @@ package body BauAuswahlAnzeigeSFML is
       
       Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.EinheitentextAccess (0),
                                          size => GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeÜberschrift);
-      
-      return True;
 
    end SchriftgrößenFestlegen;
 

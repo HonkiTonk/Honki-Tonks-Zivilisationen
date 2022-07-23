@@ -15,7 +15,7 @@ package body HintergrundSFML is
      (StandardHintergrundExtern : in GrafikDatentypen.Standard_Texturen_Enum)
    is begin
       
-      --------------------------------- EingeleseneTexturenSFML. ... später auch mal in eine lokale Variable auslagern.
+      -- EingeleseneTexturenSFML. ... später auch mal in eine lokale Variable auslagern. äöü
       if
         EingeleseneTexturenSFML.StandardHintergrundAccess (StandardHintergrundExtern) /= null
       then
@@ -36,7 +36,7 @@ package body HintergrundSFML is
    
    
    
-   ------------------------- Ein SpriteAccess für jedes Menübild?
+   -- Ein SpriteAccess für jedes Menübild? äöü
    procedure MenüHintergrund
      (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum)
    is begin
@@ -59,5 +59,47 @@ package body HintergrundSFML is
       end if;
       
    end MenüHintergrund;
+      
+   
+   
+   -- Hintergrund für das Baumenü.
+   -- Das hier alles noch einmal überarbeiten, unter anderem passt das mit den Menüs auch nicht. äöü
+   procedure TextHintergrund
+     (GebäudeEinheitExtern : in Boolean;
+      AbstandÜberschriftExtern : in Float;
+      VerhältnisTextfeldExtern : in Sf.System.Vector2.sfVector2f;
+      StartpositionExtern : in Float)
+   is begin
+      
+      if
+        EingeleseneTexturenSFML.MenüHintergrundAccess (MenueDatentypen.Rassen_Menü_Enum) /= null
+      then
+         case
+           GebäudeEinheitExtern
+         is
+            when True =>
+               PositionHintergrund := (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) / 2.00, AbstandÜberschriftExtern);
+               
+            when False =>
+               PositionHintergrund := (StartpositionExtern, AbstandÜberschriftExtern);
+         end case;
+         
+         Sf.Graphics.Sprite.setPosition (sprite   => HintergrundspriteAccess,
+                                         position => PositionHintergrund);
+         
+         Sf.Graphics.Sprite.scale (sprite  => HintergrundspriteAccess,
+                                   factors => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenTeilBild (SpriteAccessExtern  => HintergrundspriteAccess,
+                                                                                                           TextureAccessExtern => EingeleseneTexturenSFML.MenüHintergrundAccess (MenueDatentypen.Rassen_Menü_Enum),
+                                                                                                           VerhältnisExtern    => VerhältnisTextfeldExtern));
+         
+         Sf.Graphics.RenderWindow.drawSprite (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                              object       => HintergrundspriteAccess);
+         
+      else
+         -- Später hier einen einfarbigen Hintergrund wie bei den Kartenfeldern einbauen. äöü
+         Warnung.GrafikWarnung (WarnmeldungExtern => "HintergrundSFML.TextHintergrund - Textur nicht gefunden: " & MenueDatentypen.Rassen_Menü_Enum'Wide_Wide_Image);
+      end if;
+      
+   end TextHintergrund;
 
 end HintergrundSFML;

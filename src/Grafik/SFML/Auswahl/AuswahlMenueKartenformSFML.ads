@@ -3,7 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 private with Sf.System.Vector2;
 
-private with SystemKonstanten;
 private with KartenDatentypen;
 private with TextaccessVariablen;
 
@@ -13,18 +12,13 @@ package AuswahlMenueKartenformSFML is
 
 private
 
-   SchriftpositionFestgelegt : Boolean := False;
-   TextEingelesen : Boolean := False;
-
-   LetzteAuswahl : Natural := SystemKonstanten.LeerAuswahl;
    AktuelleAuswahl : Natural;
    AktuelleAuswahlRückgabewert : Natural;
 
    Überschrift : constant Positive := TextaccessVariablen.Überschrift;
    Versionsnummer : constant Positive := TextaccessVariablen.Versionsnummer;
-   Ende : Positive;
 
-   Rechenwert : Sf.System.Vector2.sfVector2f;
+   Textposition : Sf.System.Vector2.sfVector2f;
 
    type SchleifenanpassungArray is array (2 .. 7) of Positive;
    Schleifenanpassung : constant SchleifenanpassungArray := (
@@ -64,18 +58,14 @@ private
                                                 );
 
    procedure FarbeAktuelleAuswahlFestlegen
-     (AktuelleAuswahlExtern : in Natural;
-      LetzteAuswahlExtern : in Natural);
+     (AktuelleAuswahlExtern : in Natural);
+
+   procedure TextEinlesen;
+   procedure SchriftpositionFestlegen;
 
 
 
    function Textbearbeitung
      return Natural;
-
-   function TextEinlesen
-     return Boolean;
-
-   function SchriftpositionFestlegen
-     return Boolean;
 
 end AuswahlMenueKartenformSFML;
