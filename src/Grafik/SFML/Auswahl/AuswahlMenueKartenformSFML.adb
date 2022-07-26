@@ -7,6 +7,7 @@ with Sf.Graphics.Text;
 
 with SonstigesKonstanten;
 with MenueDatentypen;
+with GrafikDatentypen;
 with SystemKonstanten;
 
 with GrafikEinstellungenSFML;
@@ -26,7 +27,7 @@ package body AuswahlMenueKartenformSFML is
    procedure AuswahlMenüKartenform
    is begin
               
-      HintergrundSFML.MenüHintergrund (WelchesMenüExtern  => MenueDatentypen.Kartenform_Menü_Enum);
+      HintergrundSFML.StandardHintergrund (HintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum);
       
       AktuelleAuswahlRückgabewert := Textbearbeitung;
       

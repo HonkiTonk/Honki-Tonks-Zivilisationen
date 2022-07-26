@@ -9,13 +9,13 @@ with LeseKarten;
 with GrafikEinstellungenSFML;
 with StadtSuchen;
 with EinheitSuchen;
-with ObjekteZeichnenSFML;
 with StadtInformationenSFML;
 with InformationenEinheitenSFML;
 with KarteWichtigesSFML;
 with KarteAllgemeinesSFML;
 with TextberechnungenHoeheSFML;
 with Vergleiche;
+with HintergrundSFML;
 
 package body KarteInformationenSFML is
 
@@ -40,12 +40,7 @@ package body KarteInformationenSFML is
       
       FensterInformationen := (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) * 0.20, Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y));
       
-      -- Farbkonstanten anlegen? Habe ich sowas nicht schon? äöü
-      -- Das alles mal verschieben? äöü
-      ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => FensterInformationen,
-                                            PositionExtern       => (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) * 0.80, 0.00),
-                                            FarbeExtern          => (105, 105, 105, 255),
-                                            RechteckAccessExtern => RechteckAcces);
+      HintergrundSFML.SeitenleisteHintergrund;
       
       Textposition := (StartpunktText.x + Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) * 0.80, StartpunktText.y);
       

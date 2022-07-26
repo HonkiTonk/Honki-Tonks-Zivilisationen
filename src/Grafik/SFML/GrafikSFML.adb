@@ -9,9 +9,7 @@ with Fehler;
 with GrafikStartEndeSFML;
 with GrafikIntroSFML;
 with AuswahlMenuesSFML;
-with Karte;
 with NachGrafiktask;
-with KarteStadt;
 with GrafikAllgemeinSFML;
 with Sichtweiten;
 with ForschungAnzeigeSFML;
@@ -22,6 +20,7 @@ with NachLogiktask;
 with EingabeSystemeSFML;
 with TextaccesseAllesSetzenSFML;
 with LadezeitenSFML;
+with KartenaufteilungSFML;
 
 package body GrafikSFML is
    
@@ -135,12 +134,13 @@ package body GrafikSFML is
    function AnzeigeAuswahl
      return Boolean
    is begin
-            
+      
+      -- Überall, wenn möglich, so umbauen dass der zu übergebende Parameter bekannt ist bevor die Darstellungsart geändert wird und in den jeweiligen Bereichen dann ein Fehleraufruf einbauen. äöü
       case
         NachGrafiktask.AktuelleDarstellung
       is
          when GrafikDatentypen.Grafik_Terminal_Enum =>
-            Fehler.GrafikFehler (FehlermeldungExtern => "GrafikSFML.AnzeigeAuswahl - Terminal wird bei SFML aufgerufen.");
+            Fehler.GrafikFehler (FehlermeldungExtern => "GrafikSFML.AnzeigeAuswahl - SFML ruft Terminal auf.");
             
          when GrafikDatentypen.Grafik_SFML_Enum =>
             NachLogiktask.Warten := False;
@@ -168,10 +168,10 @@ package body GrafikSFML is
             AnzeigeEditoren;
                
          when GrafikDatentypen.Grafik_Weltkarte_Enum =>
-            Karte.AnzeigeKarte (RasseEinheitExtern => (NachGrafiktask.AktuelleRasse, NachGrafiktask.AktuelleEinheit));
+            KartenaufteilungSFML.Weltkarte (EinheitRasseNummerExtern => (NachGrafiktask.AktuelleRasse, NachGrafiktask.AktuelleEinheit));
             
          when GrafikDatentypen.Grafik_Stadtkarte_Enum =>
-            KarteStadt.AnzeigeStadt (StadtRasseNummerExtern => (NachGrafiktask.AktuelleRasse, NachGrafiktask.AktuelleStadt));
+            KartenaufteilungSFML.Stadtkarte (StadtRasseNummerExtern => (NachGrafiktask.AktuelleRasse, NachGrafiktask.AktuelleStadt));
                
          when GrafikDatentypen.Grafik_Forschung_Enum =>
             ForschungAnzeigeSFML.ForschungAnzeige (RasseExtern => NachGrafiktask.AktuelleRasse);

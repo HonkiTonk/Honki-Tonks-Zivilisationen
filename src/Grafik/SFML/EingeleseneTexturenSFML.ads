@@ -5,7 +5,6 @@ with Sf.Graphics;
 
 with StadtDatentypen;
 with EinheitenDatentypen;
-with MenueDatentypen;
 with KartenVerbesserungDatentypen;
 with RassenDatentypen;
 with GrafikDatentypen;
@@ -19,11 +18,8 @@ package EingeleseneTexturenSFML is
    ----------------------------- Eventuell nach Bereiche aufteilen, damit dass hier nicht zu unübersichtlich wird?
    ----------------------------- Wenn dann in die gleichen Bereiche wie in EinlesenTexturen.
 
-   type StandardHintergrundAccessArray is array (GrafikDatentypen.Standard_Texturen_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
-   StandardHintergrundAccess : StandardHintergrundAccessArray := (others => null);
-
-   type MenüHintergrundAccessArray is array (MenueDatentypen.Welches_Menü_Vorhanden_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
-   MenüHintergrundAccess : MenüHintergrundAccessArray := (others => null);
+   type HintergrundAccessArray is array (GrafikDatentypen.Hintergrund_Texturen_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
+   HintergrundAccess : HintergrundAccessArray := (others => null);
 
    type KartenfelderAccessArray is array (KartengrundDatenbank.KartengrundlisteArray'Range) of Sf.Graphics.sfTexture_Ptr;
    KartenfelderAccess : KartenfelderAccessArray := (others => null);

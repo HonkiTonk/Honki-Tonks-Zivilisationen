@@ -22,6 +22,7 @@ with GrafikEinstellungenSFML;
 with EingeleseneTexturenSFML;
 with KartenspritesZeichnenSFML;
 with Warnung;
+with HintergrundSFML;
 
 package body KarteStadtSFML is
 
@@ -132,10 +133,7 @@ package body KarteStadtSFML is
             Warnung.GrafikWarnung (WarnmeldungExtern => "KarteStadtSFML.GrafischeDarstellung - Sprite ist null: " & StadtRasseNummerExtern.Rasse'Wide_Wide_Image & " - " & StadtRasseNummerExtern.Nummer'Wide_Wide_Image);
       end case;
       
-      ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => (BerechnungenKarteSFML.StadtAnzeige.x - BerechnungenKarteSFML.StadtKarte.x, BerechnungenKarteSFML.StadtAnzeige.y),
-                                            PositionExtern       => (BerechnungenKarteSFML.StadtKarte.x, 0.00),
-                                            FarbeExtern          => (105, 105, 105, 255),
-                                            RechteckAccessExtern => RechteckAccess);
+      HintergrundSFML.SeitenleisteHintergrund;
       
    end GrafischeDarstellung;
    

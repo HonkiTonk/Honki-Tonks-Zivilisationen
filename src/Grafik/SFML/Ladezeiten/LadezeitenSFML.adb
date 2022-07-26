@@ -31,7 +31,7 @@ package body LadezeitenSFML is
             return;
             
          when others =>
-            HintergrundSFML.StandardHintergrund (StandardHintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum);
+            HintergrundSFML.StandardHintergrund (HintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum);
       end case;
       
       case

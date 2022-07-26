@@ -14,18 +14,15 @@ package EinlesenTexturen is
 
 private
 
-   ------------------------------------- Das hier mal in Bereiche aufteilen um die Zeilenanzahl in der adb ein wenig zu verringern?
-   ------------------------------------- Wenn dann in die gleichen Bereiche wie in EingeleseneTexturenSFML.
+   -- Das hier mal in Bereiche aufteilen um die Zeilenanzahl in der adb ein wenig zu verringern? äöü
+   -- Wenn dann in die gleichen Bereiche wie in EingeleseneTexturenSFML. äöü
 
    AktuelleZeile : Positive;
 
    DateiTextEinlesen : File_Type;
 
-   type StandardHintergrundEinlesenArray is array (EingeleseneTexturenSFML.StandardHintergrundAccessArray'Range) of Unbounded_Wide_Wide_String;
-   StandardHintergrundEinlesen : StandardHintergrundEinlesenArray := (others => TextKonstanten.LeerUnboundedString);
-
-   type MenüHintergrundEinlesenArray is array (EingeleseneTexturenSFML.MenüHintergrundAccessArray'Range) of Unbounded_Wide_Wide_String;
-   MenüHintergrundEinlesen : MenüHintergrundEinlesenArray := (others => TextKonstanten.LeerUnboundedString);
+   type HintergrundEinlesenArray is array (EingeleseneTexturenSFML.HintergrundAccessArray'Range) of Unbounded_Wide_Wide_String;
+   HintergrundEinlesen : HintergrundEinlesenArray := (others => TextKonstanten.LeerUnboundedString);
 
    type KartenfelderEinlesenArray is array (EingeleseneTexturenSFML.KartenfelderAccessArray'Range) of Unbounded_Wide_Wide_String;
    KartenfelderEinlesen : KartenfelderEinlesenArray := (others => TextKonstanten.LeerUnboundedString);
@@ -48,8 +45,7 @@ private
    type GebäudeEinlesenArray is array (EingeleseneTexturenSFML.GebäudeAccessArray'Range (1), EingeleseneTexturenSFML.GebäudeAccessArray'Range (2)) of Unbounded_Wide_Wide_String;
    GebäudeEinlesen : GebäudeEinlesenArray := (others => (others => TextKonstanten.LeerUnboundedString));
 
-   procedure EinlesenStandardHintergrund;
-   procedure EinlesenMenüHintergrund;
+   procedure EinlesenHintergrund;
    procedure EinlesenKartenfelder;
    procedure EinlesenKartenflüsse;
    procedure EinlesenKartenressourcen;

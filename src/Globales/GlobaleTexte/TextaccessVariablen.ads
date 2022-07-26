@@ -143,7 +143,7 @@ package TextaccessVariablen is
    
    
    -- Ladezeiten
-   ----------------------------------- Immer an die Textdatei Ladezeiten anpassen. Wieso mache ich das nicht öfters/überhaupt? Sollte eine Menge Arbeit ersparen.
+   -- Immer an die Textdatei Ladezeiten anpassen. Wieso mache ich das nicht öfters/überhaupt? Sollte eine Menge Arbeit ersparen. äöü
    type LadezeitenAccessArray is array (1 .. 9) of Sf.Graphics.sfText_Ptr;
    LadezeitenAccess : constant LadezeitenAccessArray := (others => Sf.Graphics.Text.create);
    

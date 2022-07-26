@@ -18,9 +18,13 @@ package GrafikDatentypen is
    subtype Anzeige_Art_Enum is Grafik_Aktuelle_Darstellung_Enum range Grafik_Terminal_Enum .. Grafik_SFML_Enum;
    subtype Editoren_Anzeigen_Enum is Grafik_Aktuelle_Darstellung_Enum range Grafik_Editoren_Enum .. Grafik_Editoren_Enum;
    
-   type Standard_Texturen_Enum is (
-                                   Standard_Hintergrund_Enum
-                                  );
+   type Hintergrund_Texturen_Enum is (
+                                      Standard_Hintergrund_Enum,
+                                      Zusatz_Hintergrund_Enum,
+                                      Seitenleiste_Hintergrund_Enum,
+                                      Bauen_Hintergrund_Enum,
+                                      Forschung_Hintergrund_Enum
+                                     );
    
    type Fenster_Ändern_Enum is (
                                  Keine_Änderung_Enum,

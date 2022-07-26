@@ -2,12 +2,23 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
+with EinheitenRecords;
 with SpielVariablen;
 with StadtRecords;
 
-package KarteStadt is
+package KartenaufteilungSFML is
+   
+   procedure Weltkarte
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     with
+       Pre => (
+                 EinheitRasseNummerExtern.Nummer <= SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+               and
+                 SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
+              );
 
-   procedure AnzeigeStadt
+   procedure Stadtkarte
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
      with
        Pre => (
@@ -16,4 +27,4 @@ package KarteStadt is
                  SpielVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
               );
 
-end KarteStadt;
+end KartenaufteilungSFML;

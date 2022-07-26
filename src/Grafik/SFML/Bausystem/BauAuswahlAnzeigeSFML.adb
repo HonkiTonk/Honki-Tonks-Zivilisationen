@@ -9,9 +9,9 @@ with Sf.Graphics.Text;
 with EinheitenDatentypen; use EinheitenDatentypen;
 with StadtDatentypen; use StadtDatentypen;
 with TextKonstanten;
+with GrafikDatentypen;
 
 with GrafikEinstellungenSFML;
-with ObjekteZeichnenSFML;
 with TextberechnungenBreiteSFML;
 with InDerStadtBauen;
 with InteraktionAuswahl;
@@ -33,19 +33,18 @@ package body BauAuswahlAnzeigeSFML is
       is
          when RassenDatentypen.Keine_Rasse_Enum =>
             -- Da die Rasse schon auf der Weltkarte festgelegt wird, sollte dieser Fall niemals eintreten können. Beachten dass die Rasse zwischen den Zügen notwendig aber nicht festgelegt ist.
+            -- Das überall so einbauen? Geht das? äöü
             Fehler.GrafikFehler (FehlermeldungExtern => "BauAuswahlAnzeigeSFML.BauAuswahlAnzeige - Baumenü ohne Rasse aufgerufen.");
                      
          when others =>
             null;
       end case;
       
+      -- Das auch in die TextaccessVariablen auslagern. äöü
+      -- Überall soweit möglich. äöü
       SchriftgrößenFestlegen;
       
-      -- Hier Aufruf für Hintergrundbild einbauen. äöü
-      ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x), Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y)),
-                                            PositionExtern       => (0.00, 0.00),
-                                            FarbeExtern          => (105, 105, 105, 255),
-                                            RechteckAccessExtern => RechteckAccess);
+      HintergrundSFML.StandardHintergrund (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum);
       
       AktuelleAuswahl := InDerStadtBauen.AktuelleAuswahl;
       
@@ -80,16 +79,14 @@ package body BauAuswahlAnzeigeSFML is
          is
             when True =>
                if
-                 AktuelleAuswahl.Gebäude /= 0
-                 and
-                   AktuelleAuswahl.Gebäude = GebäudeSchleifenwert
+                 AktuelleAuswahl.Gebäude = GebäudeSchleifenwert
                then
                   ZusatztextGebäude := GebäudeSchleifenwert;
                   Sf.Graphics.Text.setColor (text  => TextaccessVariablen.GebäudetextAccess (GebäudeSchleifenwert),
                                              color => GrafikEinstellungenSFML.Schriftfarben.FarbeAusgewähltText);
                   Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.GebäudezusatztextAccess (GebäudeSchleifenwert),
                                                 position => (AnfangsabstandExtratext + Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) / 2.00, AbstandÜberschrift));
-                  HintergrundSFML.TextHintergrund (GebäudeEinheitExtern     => True,
+                  HintergrundSFML.TextHintergrund (LinksRechtsExtern        => True,
                                                    AbstandÜberschriftExtern => AbstandÜberschrift,
                                                    VerhältnisTextfeldExtern => VerhältnisTextfeld,
                                                    StartpositionExtern      => StartPositionText.x);
@@ -125,16 +122,14 @@ package body BauAuswahlAnzeigeSFML is
          is
             when True =>
                if
-                 AktuelleAuswahl.Einheit /= 0
-                 and
-                   AktuelleAuswahl.Einheit = EinheitenSchleifenwert
+                 AktuelleAuswahl.Einheit = EinheitenSchleifenwert
                then
                   ZusatztextEinheiten := EinheitenSchleifenwert;
                   Sf.Graphics.Text.setColor (text  => TextaccessVariablen.EinheitentextAccess (EinheitenSchleifenwert),
                                              color => GrafikEinstellungenSFML.Schriftfarben.FarbeAusgewähltText);
                   Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitenzusatztextAccess (EinheitenSchleifenwert),
                                                 position => (AnfangsabstandExtratext + StartPositionText.x, AbstandÜberschrift));
-                  HintergrundSFML.TextHintergrund (GebäudeEinheitExtern     => False,
+                  HintergrundSFML.TextHintergrund (LinksRechtsExtern        => False,
                                                    AbstandÜberschriftExtern => AbstandÜberschrift,
                                                    VerhältnisTextfeldExtern => VerhältnisTextfeld,
                                                    StartpositionExtern      => StartPositionText.x);

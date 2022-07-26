@@ -2,8 +2,6 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 private with Sf.System.Vector2;
-private with Sf.Graphics;
-private with Sf.Graphics.RectangleShape;
 -- private with Sf.Graphics.Rect;
 -- private with Sf.Graphics.View;
 
@@ -39,8 +37,6 @@ private
    Textposition : Sf.System.Vector2.sfVector2f;
    TextpositionStadt : Sf.System.Vector2.sfVector2f;
    TextpositionEinheit : Sf.System.Vector2.sfVector2f;
-
-   RechteckAcces : constant Sf.Graphics.sfRectangleShape_Ptr := Sf.Graphics.RectangleShape.create;
 
    -- InformationenViewGröße : Sf.Graphics.Rect.sfFloatRect;
 

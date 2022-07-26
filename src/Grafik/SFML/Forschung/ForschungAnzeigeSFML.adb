@@ -6,15 +6,16 @@ with Sf.Graphics.Text;
 
 with ForschungenDatentypen; use ForschungenDatentypen;
 with ForschungKonstanten;
+with GrafikDatentypen;
 
 with GrafikEinstellungenSFML;
-with ObjekteZeichnenSFML;
 with TextberechnungenBreiteSFML;
 with ForschungAllgemein;
 with InteraktionAuswahl;
 with TextaccessVariablen;
 with Fehler;
 with TextberechnungenHoeheSFML;
+with HintergrundSFML;
 
 package body ForschungAnzeigeSFML is
 
@@ -30,19 +31,12 @@ package body ForschungAnzeigeSFML is
             Fehler.GrafikFehler (FehlermeldungExtern => "GrafikSFML.AnzeigeAuswahl - Forschungsmenü ohne Rasse aufgerufen.");
                      
          when others =>
-            null;
+            HintergrundSFML.StandardHintergrund (HintergrundExtern => GrafikDatentypen.Forschung_Hintergrund_Enum);
       end case;
-      
-      -- Hier Aufruf für Hintergrundbild einbauen. äöü
-      ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x), Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y)),
-                                            PositionExtern       => (0.00, 0.00),
-                                            FarbeExtern          => (105, 105, 105, 255),
-                                            RechteckAccessExtern => RechteckAccess);
       
       -- NachGrafiktastk verschieben. äöü
       AktuelleAuswahl := ForschungAllgemein.AktuelleAuswahl;
       
-      -- Die Positionen immer festlegen lassen? Damit es nicht wieder zu Problemen bei der falschen Anzeige kommt? äöü
       TextPosition := StartPositionText;
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüAccess (ForschungKonstanten.LeerForschung),
@@ -54,6 +48,7 @@ package body ForschungAnzeigeSFML is
                   
       WelcherZusatztext := ForschungKonstanten.LeerForschung;
       
+      -- Hier auch HintergrundSFML.TextHintergrund verwenden? Müsste mit immer rechts funktionieren. äöü
       AnzeigeSchleife:
       for ForschungSchleifenwert in ForschungenDatentypen.ForschungID'Range loop
          

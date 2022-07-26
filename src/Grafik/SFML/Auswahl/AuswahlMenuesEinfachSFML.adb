@@ -10,6 +10,7 @@ with Sf.Graphics.Text;
 with RassenDatentypen; use RassenDatentypen;
 with MenueDatentypen; use MenueDatentypen;
 with KartenDatentypen; use KartenDatentypen;
+with GrafikDatentypen;
 with SonstigesKonstanten;
 with SpielVariablen;
 with SpielDatentypen;
@@ -31,7 +32,7 @@ package body AuswahlMenuesEinfachSFML is
      (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum)
    is begin
       
-      HintergrundSFML.MenüHintergrund (WelchesMenüExtern  => WelchesMenüExtern);
+      HintergrundSFML.StandardHintergrund (HintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum);
       
       Textbereich := Überschrift + SystemKonstanten.EndeMenü (WelchesMenüExtern) - SystemKonstanten.EndeAbzugGrafik (WelchesMenüExtern) + Versionsnummer;
       

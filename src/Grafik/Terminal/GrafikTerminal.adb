@@ -7,9 +7,9 @@ with ZeitKonstanten;
 with NachLogiktask;
 with GrafikIntroTerminal;
 with Fehler;
-with Karte;
 with ForschungAnzeigeTerminal;
 with NachGrafiktask;
+with KartenaufteilungSFML;
 
 package body GrafikTerminal is
 
@@ -29,7 +29,7 @@ package body GrafikTerminal is
                NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
             
             when GrafikDatentypen.Grafik_SFML_Enum =>
-               Fehler.GrafikFehler (FehlermeldungExtern => "SFMLDarstellungAuswahl.SFMLDarstellungAuswahl - SFML wird bei Terminal aufgerufen.");
+               Fehler.GrafikFehler (FehlermeldungExtern => "GrafikTerminal.GrafikTerminal - Terminal ruft SFML auf.");
                
             when GrafikDatentypen.Grafik_Sprache_Enum =>
                -- AuswahlSpracheAnzeige.AnzeigeSpracheTerminal;
@@ -62,10 +62,10 @@ package body GrafikTerminal is
                null;
                
             when GrafikDatentypen.Grafik_Weltkarte_Enum =>
-                  Karte.AnzeigeKarte (RasseEinheitExtern => (NachGrafiktask.AktuelleRasse, NachGrafiktask.AktuelleEinheit));
+               KartenaufteilungSFML.Weltkarte (EinheitRasseNummerExtern => (NachGrafiktask.AktuelleRasse, NachGrafiktask.AktuelleEinheit));
                
             when GrafikDatentypen.Grafik_Stadtkarte_Enum =>
-               NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
+               KartenaufteilungSFML.Stadtkarte (StadtRasseNummerExtern => (NachGrafiktask.AktuelleRasse, NachGrafiktask.AktuelleStadt));
                
             when GrafikDatentypen.Grafik_Forschung_Enum =>
                ForschungAnzeigeTerminal.ForschungAnzeige;

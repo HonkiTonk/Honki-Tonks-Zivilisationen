@@ -3,7 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Characters.Wide_Wide_Latin_1;
 
-with Sf.Graphics; use Sf.Graphics;
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Text;
 
@@ -12,23 +11,26 @@ with TextKonstanten;
 with MenueDatentypen;
 
 with GrafikEinstellungenSFML;
-with EingeleseneTexturenSFML;
-with TexturenSetzenSkalierenSFML;
 with AuswahlMenuesStringsSetzen;
 with InteraktionAuswahl;
-with Warnung;
+with HintergrundSFML;
 
+-- Muss alles noch einmal ein wenig besser geschrieben sein. äöü
 package body AnzeigeZusatztextRassenmenueSFML is
 
    procedure AnzeigeZusatztextRassenmenü
      (AktuelleAuswahlExtern : in Positive)
    is begin
       
-      TextHintergrund (AktuelleAuswahlExtern => AktuelleAuswahlExtern);
-      
       RasseAnzeigen := RassenDatentypen.Rassen_Verwendet_Enum'Val (AktuelleAuswahlExtern);
       
-      Textbearbeitung (AktuelleRasseExtern => RasseAnzeigen);
+      LinksRechts := Textbearbeitung (AktuelleRasseExtern   => RasseAnzeigen,
+                                      AktuelleAuswahlExtern => AktuelleAuswahlExtern);
+      
+      HintergrundSFML.TextHintergrund (LinksRechtsExtern        => LinksRechts,
+                                       AbstandÜberschriftExtern => InteraktionAuswahl.PositionenMenüeinträge (MenueDatentypen.Rassen_Menü_Enum, 1).top,
+                                       VerhältnisTextfeldExtern => VerhältnisTextfeld,
+                                       StartpositionExtern      => PositionHintergrund.x);
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ZusatztextRassenAccess (RasseAnzeigen),
                                          str  => ZeilenumbruchEinbauen (RasseExtern => RasseAnzeigen,
@@ -41,7 +43,7 @@ package body AnzeigeZusatztextRassenmenueSFML is
    
    
    
-   -------------------------- Noch weiter verallgemeiner und dann überall benutzen.
+   -- Noch weiter verallgemeinern und dann überall benutzen. äöü
    function ZeilenumbruchEinbauen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       TextExtern : in Wide_Wide_String)
@@ -51,7 +53,7 @@ package body AnzeigeZusatztextRassenmenueSFML is
       AktuellerTextbereichZwei := TextKonstanten.LeerUnboundedString;
       
       -- Das muss für eine Verallgemeinerung vermutlich mit übergeben werden.
-      BreiteTextfeld := Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) * VerhältnisTextfeld.x;
+      BreiteTextfeld := Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) * VerhältnisTextfeld.x - EndabstandExtratext;
          
       SchleifenAnfang := 1;
       SchleifenEnde := TextExtern'Last;
@@ -65,7 +67,8 @@ package body AnzeigeZusatztextRassenmenueSFML is
          TextbereichSchleife:
          for TextbereichSchleifenwert in SchleifenAnfang .. SchleifenEnde loop
          
-            --------------------------- Wieso funktioniert das?
+            -- Wieso funktioniert das? äöü
+            -- Wieso sollte das nicht funktionieren? äöü
             AktuellerTextbereichEins := AktuellerTextbereichEins & TextExtern (TextbereichSchleifenwert);
             
             -- Das muss für die Verallgemeinerung auf einen einfachen Textaccess zugreifen.
@@ -117,99 +120,40 @@ package body AnzeigeZusatztextRassenmenueSFML is
    
    
    
-   procedure TextHintergrund
-     (AktuelleAuswahlExtern : in Positive)
-   is begin
-            
-      if
-        EingeleseneTexturenSFML.MenüHintergrundAccess (MenueDatentypen.Rassen_Menü_Enum) /= null
-      then
-         case
-           AktuelleAuswahlExtern mod 2
-         is
-            when 0 =>
-               PositionHintergrund := (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) / 100.00, InteraktionAuswahl.PositionenMenüeinträge (MenueDatentypen.Rassen_Menü_Enum, 1).top);
-               
-            when others =>
-               PositionHintergrund := ((Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) + Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) / 100.00) / 2.00,
-                                       InteraktionAuswahl.PositionenMenüeinträge (MenueDatentypen.Rassen_Menü_Enum, 1).top);
-         end case;
-         
-         Sf.Graphics.Sprite.setPosition (sprite   => SpriteAccess,
-                                         position => PositionHintergrund);
-         
-         Sf.Graphics.Sprite.scale (sprite  => SpriteAccess,
-                                   factors => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenTeilBild (SpriteAccessExtern  => SpriteAccess,
-                                                                                                           TextureAccessExtern => EingeleseneTexturenSFML.MenüHintergrundAccess (MenueDatentypen.Rassen_Menü_Enum),
-                                                                                                           VerhältnisExtern    => VerhältnisTextfeld));
-         
-         Sf.Graphics.RenderWindow.drawSprite (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                              object       => SpriteAccess);
-         
-      else
-         -------------------- Später hier einen einfarbigen Hintergrund wie bei den Kartenfeldern einbauen.
-         Warnung.GrafikWarnung (WarnmeldungExtern => "AnzeigeZusatztextRassenmenueSFML.TextHintergrund - Hintergrund nicht vorhanden: " & MenueDatentypen.Rassen_Menü_Enum'Wide_Wide_Image);
-      end if;
-      
-   end TextHintergrund;
-   
-   
-   
-   procedure Textbearbeitung
-     (AktuelleRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-   is begin
-      
-      case
-        TextFestgelegt
-      is
-         when False =>
-            TextFestgelegt := TextFestlegen;
-            
-         when True =>
-            null;
-      end case;
-      
-      if
-        AktuelleRasseExtern /= LetzteRasse
-      then
-         SchriftpositionFestlegen (AktuelleRasseExtern => AktuelleRasseExtern);
-         LetzteRasse := AktuelleRasseExtern;
-         
-      else
-         null;
-      end if;
-      
-   end Textbearbeitung;
-   
-   
-   
-   function TextFestlegen
-     return Boolean
+   function Textbearbeitung
+     (AktuelleRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      AktuelleAuswahlExtern : in Positive)
+      return Boolean
    is begin
       
       RassenSchleife:
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
-         ----------------------- Hier direkt auf die GlobaleTexte zugreifen?
+         -- Hier direkt auf die GlobaleTexte zugreifen? äöü
          RassenTexte (RasseSchleifenwert) :=
            To_Unbounded_Wide_Wide_String (Source => AuswahlMenuesStringsSetzen.AuswahlMenüZusatztextStringSetzen (WelcheZeileExtern => 2 * RassenDatentypen.Rassen_Verwendet_Enum'Pos (RasseSchleifenwert),
                                                                                                                    WelchesMenüExtern => MenueDatentypen.Rassen_Menü_Enum));
          
       end loop RassenSchleife;
       
-      return True;
-            
-   end TextFestlegen;
-   
-   
-   
-   procedure SchriftpositionFestlegen
-     (AktuelleRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-   is begin
+      case
+        AktuelleAuswahlExtern mod 2
+      is
+         when 0 =>
+            PositionHintergrund := (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) / 100.00, InteraktionAuswahl.PositionenMenüeinträge (MenueDatentypen.Rassen_Menü_Enum, 1).top);
+            Rückgabewert := False;
+               
+         when others =>
+            PositionHintergrund := ((Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) + Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) / 100.00) / 2.00,
+                                    InteraktionAuswahl.PositionenMenüeinträge (MenueDatentypen.Rassen_Menü_Enum, 1).top);
+            Rückgabewert := True;
+      end case;
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ZusatztextRassenAccess (AktuelleRasseExtern),
-                                    position => PositionHintergrund);
+                                    position => (PositionHintergrund.x + AnfangsabstandExtratext, PositionHintergrund.y));
       
-   end SchriftpositionFestlegen;
+      return Rückgabewert;
+      
+   end Textbearbeitung;
 
 end AnzeigeZusatztextRassenmenueSFML;
