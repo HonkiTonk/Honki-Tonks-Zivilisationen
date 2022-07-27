@@ -4,12 +4,13 @@ pragma Warnings (Off, "*array aggregate*");
 with ZahlenDatentypen; use ZahlenDatentypen;
 with LadezeitenDatentypen; use LadezeitenDatentypen;
 with KartengrundDatentypen; use KartengrundDatentypen;
+with RassenDatentypen; use RassenDatentypen;
+with KartenRecordKonstanten;
 with KartenKonstanten;
 with EinheitenKonstanten;
 with MenueDatentypen;
 with SpielVariablen;
 
-with LeseEinheitenGebaut;
 with LeseKarten;
 
 with ZufallsgeneratorenSpieleinstellungen;
@@ -21,6 +22,7 @@ with EinheitenErzeugenEntfernen;
 with AuswahlMenues;
 with Fehler;
 with Ladezeiten;
+with UmwandlungenVerschiedeneDatentypen;
 
 package body SpieleinstellungenRasseSpieler is
    
@@ -36,7 +38,7 @@ package body SpieleinstellungenRasseSpieler is
            RassenAuswahl
          is
             when RueckgabeDatentypen.Rassen_Verwendet_Enum'Range =>
-               BelegungÄndern (RasseExtern => RückgabeZuRasse (RassenAuswahl));
+               BelegungÄndern (RasseExtern => UmwandlungenVerschiedeneDatentypen.RückgabeNachRasse (RückgabeExtern => RassenAuswahl));
 
             when RueckgabeDatentypen.Zufall_Enum =>
                ZufallsgeneratorenSpieleinstellungen.ZufälligeRassenbelegung;
@@ -95,7 +97,7 @@ package body SpieleinstellungenRasseSpieler is
             when RassenDatentypen.Leer_Spieler_Enum =>
                null;
                
-            when RassenDatentypen.Spieler_Belegt_Enum =>
+            when RassenDatentypen.Spieler_Belegt_Enum'Range =>
                return True;
          end case;
          
@@ -159,14 +161,10 @@ package body SpieleinstellungenRasseSpieler is
             when others =>
                StartwerteFestlegenSchleife:
                for NotAusSchleifenwert in ZahlenDatentypen.NotAus'Range loop
-                  
-                  StartKoordinaten := ((0, 0, 0), (0, 0, 0));
-                  GezogeneWerte := ZufallsgeneratorenStartkoordinaten.Startkoordinaten (RasseExtern => RasseSchleifenwert);
-                  
+                                    
                   case
-                    UmgebungPrüfen (KoordinatenExtern => GezogeneWerte,
-                                    RasseExtern       => RasseSchleifenwert,
-                                    NotAusExtern      => NotAusSchleifenwert)
+                    StartpunktPrüfen (RasseExtern  => RasseSchleifenwert,
+                                      NotAusExtern => NotAusSchleifenwert)
                   is
                      when True =>
                         exit StartwerteFestlegenSchleife;
@@ -179,7 +177,7 @@ package body SpieleinstellungenRasseSpieler is
                     NotAusSchleifenwert
                   is
                      when ZahlenDatentypen.NotAus'Last =>
-                        ----------------------------- Neue Meldung durch den Grafiktask anzeigen lassen.
+                        -- Neue Meldung durch den Grafiktask anzeigen lassen. äöü
                         -- Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                         --                                      TextZeileExtern => 16);
                         -- Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Rassen_Beschreibung_Kurz,
@@ -205,15 +203,16 @@ package body SpieleinstellungenRasseSpieler is
 
 
 
-   function UmgebungPrüfen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+   function StartpunktPrüfen
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       NotAusExtern : in ZahlenDatentypen.NotAus)
       return Boolean
    is begin
       
+      GezogeneWerte := ZufallsgeneratorenStartkoordinaten.Startkoordinaten (RasseExtern => RasseExtern);
+      
       case
-        LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern)
+        LeseKarten.AktuellerGrund (KoordinatenExtern => GezogeneWerte)
       is
          when KartengrundDatentypen.Eis_Enum | KartengrundDatentypen.Untereis_Enum =>
             return False;
@@ -223,54 +222,42 @@ package body SpieleinstellungenRasseSpieler is
       end case;
       
       case
-        EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern).Nummer
+        EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => GezogeneWerte).Nummer
       is
          when EinheitenKonstanten.LeerNummer =>
-            StartKoordinaten (1) := KoordinatenExtern;
-            FelderGefunden := FelderBestimmen (KoordinatenExtern => KoordinatenExtern,
-                                               RasseExtern       => RasseExtern);
+            StartKoordinaten (1) := GezogeneWerte;
+            StartKoordinaten (2) := ZusatzfeldBestimmen (KoordinatenExtern => GezogeneWerte,
+                                                         RasseExtern       => RasseExtern,
+                                                         NotAusExtern      => NotAusExtern);
             
          when others =>
-            FelderGefunden := 0;
+            return False;
       end case;
-         
-      if
-        FelderGefunden >= 3
-      then
-         StartpunktFestlegen (RasseExtern => RasseExtern);
-         return True;
-         
-      elsif
-        NotAusExtern > ZahlenDatentypen.NotAus'Last - 10
-        and
-          FelderGefunden >= 2
-      then
-         StartpunktFestlegen (RasseExtern => RasseExtern);
-         return True;
-         
-      elsif
-        NotAusExtern = ZahlenDatentypen.NotAus'Last
-        and
-          FelderGefunden >= 1
-      then
-         StartpunktFestlegen (RasseExtern => RasseExtern);
-         return True;
-               
-      else
-         return False;
-      end if;
+            
+      case
+        StartKoordinaten (2).EAchse
+      is
+         when KartenKonstanten.LeerEAchse =>
+            return False;
+            
+         when others =>
+            StartpunktFestlegen (RasseExtern               => RasseExtern,
+                                 StartkoordinateEinsExtern => StartKoordinaten (1),
+                                 StartkoordinateZweiExtern => StartKoordinaten (2));
+            return True;
+      end case;
       
-   end UmgebungPrüfen;
+   end StartpunktPrüfen;
    
    
    
-   function FelderBestimmen
+   function ZusatzfeldBestimmen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenDatentypen.SichtweiteNatural
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      NotAusExtern : in ZahlenDatentypen.NotAus)
+      return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
             
-      StartpositionGefunden := False;
       FreieFelder := 0;
       
       YAchseSchleife:
@@ -310,14 +297,13 @@ package body SpieleinstellungenRasseSpieler is
                null;
                
             elsif
-              StartpositionGefunden = False
+              FreieFelder = 0
             then
                case
                  EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Nummer
                is
                   when EinheitenKonstanten.LeerNummer =>
-                     StartKoordinaten (2) := KartenWert;
-                     StartpositionGefunden := True;
+                     Zusatzkoordinate := KartenWert;
                      FreieFelder := FreieFelder + 1;
                                  
                   when others =>
@@ -331,28 +317,53 @@ package body SpieleinstellungenRasseSpieler is
          end loop XAchseSchleife;
       end loop YAchseSchleife;
       
-      return FreieFelder;
+      if
+        FreieFelder >= 3
+      then
+         null;
+         
+      elsif
+        NotAusExtern > ZahlenDatentypen.NotAus'Last - 10
+        and
+          FreieFelder >= 2
+      then
+         null;
+         
+      elsif
+        NotAusExtern = ZahlenDatentypen.NotAus'Last
+        and
+          FreieFelder >= 1
+      then
+         null;
+               
+      else
+         return KartenRecordKonstanten.LeerKoordinate;
+      end if;
       
-   end FelderBestimmen;
+      return Zusatzkoordinate;
+      
+   end ZusatzfeldBestimmen;
 
 
 
    procedure StartpunktFestlegen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      StartkoordinateEinsExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      StartkoordinateZweiExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
 
-      EinheitenErzeugenEntfernen.EinheitErzeugen (KoordinatenExtern      => StartKoordinaten (1),
+      EinheitenErzeugenEntfernen.EinheitErzeugen (KoordinatenExtern      => StartkoordinateEinsExtern,
                                                   EinheitNummerExtern    => 1,
                                                   IDExtern               => 1,
                                                   StadtRasseNummerExtern => (RasseExtern, 0));
       
-      EinheitenErzeugenEntfernen.EinheitErzeugen (KoordinatenExtern      => StartKoordinaten (2),
+      EinheitenErzeugenEntfernen.EinheitErzeugen (KoordinatenExtern      => StartkoordinateZweiExtern,
                                                   EinheitNummerExtern    => 2,
                                                   IDExtern               => 2,
                                                   StadtRasseNummerExtern => (RasseExtern, 0));
       
-      SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (RasseExtern, 1));
-      SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt := SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell;
+      SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell := StartkoordinateEinsExtern;
+      SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt := StartkoordinateEinsExtern;
       
    end StartpunktFestlegen;
 

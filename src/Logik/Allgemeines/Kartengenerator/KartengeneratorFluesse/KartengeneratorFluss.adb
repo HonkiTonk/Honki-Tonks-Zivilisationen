@@ -74,7 +74,7 @@ package body KartengeneratorFluss is
                   if
                     FlussumgebungTesten (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert)) = True
                   then
-                     Flussplatzierungssystem.FlussBerechnung (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert));
+                     Flussplatzierungssystem.Flussplatzierung (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert));
                      
                   else
                      null;
@@ -82,7 +82,7 @@ package body KartengeneratorFluss is
             end case;
          
          end loop XAchseSchleife;
-            
+         
          if
            ZahlenDatentypen.EigenesPositive (YAchseSchleifenwert) >= Multiplikator (EbeneExtern) * ZahlenDatentypen.EigenesPositive (KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse) / 33
          then

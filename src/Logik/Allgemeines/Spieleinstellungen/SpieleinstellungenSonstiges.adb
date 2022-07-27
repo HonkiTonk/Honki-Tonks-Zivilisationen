@@ -7,6 +7,7 @@ with MenueDatentypen;
 with ZufallsgeneratorenSpieleinstellungen;
 with AuswahlMenues;
 with Fehler;
+with UmwandlungenVerschiedeneDatentypen;
 
 package body SpieleinstellungenSonstiges is
 
@@ -22,7 +23,7 @@ package body SpieleinstellungenSonstiges is
            SchwierigkeitAuswahl
          is
             when RueckgabeDatentypen.Schwierigkeitsgrad_Enum'Range =>
-               SpielVariablen.Allgemeines.Schwierigkeitsgrad := RückgabeZuSchwierigkeitsgrad (SchwierigkeitAuswahl);
+               SpielVariablen.Allgemeines.Schwierigkeitsgrad := UmwandlungenVerschiedeneDatentypen.RückgabeNachSchwierigkeitsgrad (RückgabeExtern => SchwierigkeitAuswahl);
 
             when RueckgabeDatentypen.Zufall_Enum =>
                SpielVariablen.Allgemeines.Schwierigkeitsgrad := ZufallsgeneratorenSpieleinstellungen.ZufälligerSchwiewrigkeitsgrad;

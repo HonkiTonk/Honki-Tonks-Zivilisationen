@@ -15,6 +15,7 @@ with ZufallsgeneratorenSpieleinstellungen;
 with AuswahlMenues;
 with Fehler;
 with KartengeneratorVariablen;
+with UmwandlungenVerschiedeneDatentypen;
 
 package body SpieleinstellungenKarten is
    
@@ -176,7 +177,7 @@ package body SpieleinstellungenKarten is
    
    
 
-   ----------------------- Bei Zufall auch zurück?
+   -- Bei Zufall auch zurück? äöü
    procedure KartengrößeWählen
    is begin
       
@@ -252,8 +253,7 @@ package body SpieleinstellungenKarten is
 
 
 
-   -- Inseln, Kontinente, Pangäa, Nur Land
-   ------------------------------------ Theoretisch müsste die Unterteilung in die verschiedenen Kartenarten in KartenDatentypen entfernt werden können und nur die in RueckgabeDatentypen sind noch wichtig.
+   -- Theoretisch müsste die Unterteilung in die verschiedenen Kartenarten in KartenDatentypen entfernt werden können und nur die in RueckgabeDatentypen sind noch wichtig. äöü
    procedure KartenartWählen
    is begin
             
@@ -266,7 +266,7 @@ package body SpieleinstellungenKarten is
            KartenartAuswahl
          is
             when RueckgabeDatentypen.Kartenart_Enum'Range =>
-               KartengeneratorVariablen.Kartenparameter.Kartenart := KartenartRückgabeZuKarten (KartenartAuswahl);
+               KartengeneratorVariablen.Kartenparameter.Kartenart := UmwandlungenVerschiedeneDatentypen.KartenartrückgabeNachKartenart (RückgabeExtern => KartenartAuswahl);
                
             when RueckgabeDatentypen.Nutzerdefiniert_Enum =>
                KartengeneratorVariablen.Kartenparameter.Kartenart := KartenDatentypen.Kartenart_Nutzerdefiniert_Enum;
@@ -498,7 +498,7 @@ package body SpieleinstellungenKarten is
            KartentemperaturAuswahl
          is
             when RueckgabeDatentypen.Kartentemperatur_Enum'Range =>
-               KartengeneratorVariablen.Kartenparameter.Kartentemperatur := KartentemperaturRückgabeZuKarten (KartentemperaturAuswahl);
+               KartengeneratorVariablen.Kartenparameter.Kartentemperatur := UmwandlungenVerschiedeneDatentypen.KartentemperaturrückgabeNachKartentemperatur (RückgabeExtern => KartentemperaturAuswahl);
                
             when RueckgabeDatentypen.Zufall_Enum =>
                KartengeneratorVariablen.Kartenparameter.Kartentemperatur := ZufallsgeneratorenSpieleinstellungen.ZufälligeKartentemperatur;
@@ -529,7 +529,7 @@ package body SpieleinstellungenKarten is
            KartenressourcenAuswahl
          is
             when RueckgabeDatentypen.Kartenressourcen_Enum'Range =>
-               KartengeneratorVariablen.Kartenparameter.Kartenressourcen := KartenressourcenRückgabeZuKarten (KartenressourcenAuswahl);
+               KartengeneratorVariablen.Kartenparameter.Kartenressourcen := UmwandlungenVerschiedeneDatentypen.KartenressourcenrückgabeNachKartenressource (RückgabeExtern => KartenressourcenAuswahl);
                
             when RueckgabeDatentypen.Zufall_Enum =>
                KartengeneratorVariablen.Kartenparameter.Kartenressourcen := ZufallsgeneratorenSpieleinstellungen.ZufälligeKartenressourcen;

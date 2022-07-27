@@ -28,10 +28,15 @@ package ChangelogJuli2022 is
    
    
 
-   -- Version 0.03.0700 => 0.03. (27.07.2022):
+   -- Version 0.03.0700 => 0.03.0770 (27.07.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Diverse Umwandlungen nach Umwandlungen ausgelagert.
+   -- Startplatzierung überarbeitet.
+   -- Fehler behoben der zur falschen Platzierung von Weggrafiken führen konnte.
+   -- Fehler behoben der zur falschen Platzierung von Flussgrafiken führen konnte.
+   -- Fehler behoben durch den einige Ladebildschirme nicht angezeigt wurden.
+   -- Zusätzliche Fehlermeldungen eingebaut.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    
 

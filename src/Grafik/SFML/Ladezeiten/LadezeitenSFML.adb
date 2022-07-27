@@ -16,6 +16,7 @@ with TextaccessVariablen;
 with Ladezeiten;
 with RassenAllgemein;
 with TextberechnungenBreiteSFML;
+with Fehler;
 
 package body LadezeitenSFML is
    
@@ -24,15 +25,7 @@ package body LadezeitenSFML is
       RasseExtern : in RassenDatentypen.Rassen_Enum)
    is begin
       
-      case
-        RasseExtern
-      is
-         when RassenDatentypen.Keine_Rasse_Enum =>
-            return;
-            
-         when others =>
-            HintergrundSFML.StandardHintergrund (HintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum);
-      end case;
+      HintergrundSFML.StandardHintergrund (HintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum);
       
       case
         WelcheLadeanzeigeExtern
@@ -41,7 +34,14 @@ package body LadezeitenSFML is
             SpielweltErstellen;
             
          when GrafikDatentypen.Grafik_KI_Rechenzeit_Enum =>
-            KIRechnet (RasseExtern => RasseExtern);
+            if
+              RasseExtern = RassenDatentypen.Keine_Rasse_Enum
+            then
+               Fehler.GrafikFehler (FehlermeldungExtern => "LadezeitenSFML.LadezeitenSFML - Keine Rasse ausgewählt.");
+               
+            else
+               KIRechnet (RasseExtern => RasseExtern);
+            end if;
             
          when GrafikDatentypen.Grafik_Rundenende_Enum =>
             Rundenende;

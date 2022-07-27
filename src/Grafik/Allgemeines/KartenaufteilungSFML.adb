@@ -4,7 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 with StadtDatentypen; use StadtDatentypen;
 with GrafikDatentypen;
 with OptionenVariablen;
-with ZeitKonstanten;
 with StadtKonstanten;
 
 with KarteStadtTerminal;
@@ -13,6 +12,7 @@ with CursorPlatzierenSFML;
 with CursorAltPlatzieren;
 with KarteTerminal;
 with KarteSFML;
+with Fehler;
 
 -- Hier muss eventuell auch einiges noch in die NachTasks verschoben bzw. überarbeitet werden. äöü
 -- Ist die Cursorplatzierung überhaupt noch wirklich in Logik oder nur noch in Grafik? äöü
@@ -26,11 +26,11 @@ package body KartenaufteilungSFML is
         EinheitRasseNummerExtern.Rasse
       is
          when RassenDatentypen.Keine_Rasse_Enum =>
-            delay ZeitKonstanten.WartezeitGrafik;
-            return;
+            Fehler.GrafikFehler (FehlermeldungExtern => "KartenaufteilungSFML.Weltkarte - Keine Rasse festgelegt.");
             
          when others =>
             -- CursorAltPlatzieren braucht aktuelle Cursor Koordinaten. Kann man aber bestimmt trotzdem optimieren, oder? äöü
+            -- Auch mal in eine SFML- und eine Terminalversion aufteilen. äöü
             CursorPlatzierenSFML.CursorPlatzierenKarteSFML (RasseExtern => EinheitRasseNummerExtern.Rasse);
             CursorAltPlatzieren.CursorAltPlatzieren (RasseExtern => EinheitRasseNummerExtern.Rasse);
       end case;
@@ -58,8 +58,7 @@ package body KartenaufteilungSFML is
         or
           StadtRasseNummerExtern.Nummer = StadtKonstanten.LeerNummer
       then
-         delay ZeitKonstanten.WartezeitGrafik;
-         return;
+         Fehler.GrafikFehler (FehlermeldungExtern => "KartenaufteilungSFML.Weltkarte - Keine Rasse festgelegt.");
                   
       else
          CursorPlatzierenSFML.CursorPlatzierenStadtSFML (RasseExtern => StadtRasseNummerExtern.Rasse);

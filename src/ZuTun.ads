@@ -12,6 +12,7 @@
 -- Grafiken überarbeiten.
 -- Einfache Musik/Sounds einbauen.
 -- Forschungen/Einheiten/Gebäude für zweite Rasse einbauen.
+-- Herausfinden wie man eine Windowsversion ohne GPL Zwang kompiliert.
 -- Einmal den Code großflächig überarbeitetn.
 
 

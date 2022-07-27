@@ -130,9 +130,9 @@ package body VerbesserungFertiggestellt is
         WelcheAufgabe
       is
          when AufgabenDatentypen.Einheitenbefehle_Wege_Enum'Range =>
-            Wegeplatzierungssystem.WegBerechnen (KoordinatenExtern => Koordinaten,
-                                                 WegartExtern      => WelcheAufgabe);
-              
+            Wegeplatzierungssystem.Wegplatzierung (KoordinatenExtern => Koordinaten,
+                                                   WegartExtern      => WelcheAufgabe);
+            
          when AufgabenDatentypen.Einheitenbefehle_Gebilde_Enum'Range =>
             VerbesserungAnlegen.VerbesserungAnlegen (KoordinatenExtern  => Koordinaten,
                                                      VerbesserungExtern => WelcheAufgabe);

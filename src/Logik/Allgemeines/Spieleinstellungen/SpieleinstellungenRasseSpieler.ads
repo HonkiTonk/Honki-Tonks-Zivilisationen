@@ -2,14 +2,15 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
-with RassenDatentypen; use RassenDatentypen;
 
+private with RassenDatentypen;
 private with RueckgabeDatentypen;
 private with KartenRecords;
 private with ZahlenDatentypen;
 
 private with Karten;
 
+-- Hier noch Contracts für die Rasse einbauen? Eventuell nicht überall möglich wegen noch nicht vorhandener Belegung. äöü
 package SpieleinstellungenRasseSpieler is
    
    procedure StartwerteErmitteln;
@@ -23,10 +24,7 @@ package SpieleinstellungenRasseSpieler is
      return Boolean;
    
 private
-   
-   StartpositionGefunden : Boolean;
-   
-   FelderGefunden : KartenDatentypen.SichtweiteNatural;
+      
    FreieFelder : KartenDatentypen.SichtweiteNatural;
    
    RassenAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
@@ -38,29 +36,8 @@ private
    
    GezogeneWerte : KartenRecords.AchsenKartenfeldNaturalRecord;
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Zusatzkoordinate : KartenRecords.AchsenKartenfeldNaturalRecord;
       
-   type RückgabeZuRasseArray is array (RueckgabeDatentypen.Rassen_Verwendet_Enum'Range) of RassenDatentypen.Rassen_Verwendet_Enum;
-   RückgabeZuRasse : constant RückgabeZuRasseArray := (
-                                                         RueckgabeDatentypen.Menschen_Enum         => RassenDatentypen.Menschen_Enum,
-                                                         RueckgabeDatentypen.Kasrodiah_Enum        => RassenDatentypen.Kasrodiah_Enum,
-                                                         RueckgabeDatentypen.Lasupin_Enum          => RassenDatentypen.Lasupin_Enum,
-                                                         RueckgabeDatentypen.Lamustra_Enum         => RassenDatentypen.Lamustra_Enum,
-                                                         RueckgabeDatentypen.Manuky_Enum           => RassenDatentypen.Manuky_Enum,
-                                                         RueckgabeDatentypen.Suroka_Enum           => RassenDatentypen.Suroka_Enum,
-                                                         RueckgabeDatentypen.Pryolon_Enum          => RassenDatentypen.Pryolon_Enum,
-                                                         RueckgabeDatentypen.Talbidahr_Enum        => RassenDatentypen.Talbidahr_Enum,
-                                                         RueckgabeDatentypen.Moru_Phisihl_Enum     => RassenDatentypen.Moru_Phisihl_Enum,
-                                                         RueckgabeDatentypen.Larinos_Lotaris_Enum  => RassenDatentypen.Larinos_Lotaris_Enum,
-                                                         RueckgabeDatentypen.Carupex_Enum          => RassenDatentypen.Carupex_Enum,
-                                                         RueckgabeDatentypen.Alary_Enum            => RassenDatentypen.Alary_Enum,
-                                                         RueckgabeDatentypen.Tesorahn_Enum         => RassenDatentypen.Tesorahn_Enum,
-                                                         RueckgabeDatentypen.Natries_Zermanis_Enum => RassenDatentypen.Natries_Zermanis_Enum,
-                                                         RueckgabeDatentypen.Tridatus_Enum         => RassenDatentypen.Tridatus_Enum,
-                                                         RueckgabeDatentypen.Senelari_Enum         => RassenDatentypen.Senelari_Enum,
-                                                         RueckgabeDatentypen.Aspari_2_Enum         => RassenDatentypen.Aspari_2_Enum,
-                                                         RueckgabeDatentypen.Ekropa_Enum           => RassenDatentypen.Ekropa_Enum
-                                                        );
-   
    type KoordinatenArray is array (1 .. 2) of KartenRecords.AchsenKartenfeldNaturalRecord;
    StartKoordinaten : KoordinatenArray;
    
@@ -68,31 +45,43 @@ private
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
 
    procedure StartpunktFestlegen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      StartkoordinateEinsExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      StartkoordinateZweiExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     with
+       Pre => (
+                 StartkoordinateEinsExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 StartkoordinateEinsExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+               and
+                 StartkoordinateZweiExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 StartkoordinateZweiExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+              );
    
    
 
-   function UmgebungPrüfen
+   function StartpunktPrüfen
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      NotAusExtern : in ZahlenDatentypen.NotAus)
+      return Boolean;
+   
+   function ZusatzfeldBestimmen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       NotAusExtern : in ZahlenDatentypen.NotAus)
-      return Boolean
+      return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre => (
                  KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
                and
                  KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
-              );
+              ),
    
-   function FelderBestimmen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenDatentypen.SichtweiteNatural
-     with
-       Pre => (
-                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-               and
-                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
-              );
+       Post => (
+                  ZusatzfeldBestimmen'Result.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                and
+                  ZusatzfeldBestimmen'Result.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+               );
 
 end SpieleinstellungenRasseSpieler;

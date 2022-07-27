@@ -26,15 +26,13 @@ package body CursorPlatzierenSFML is
         and
           MausPosition.x in 0 .. Sf.sfInt32 (BerechnungenKarteSFML.FensterKarte.x)
       then
-         null;
+         SichtbereichAnfangEnde := BerechnungenKarteSFML.SichtbereichKarteBerechnen (RasseExtern => RasseExtern);
+         YMultiplikator := 0.00;
          
       else
          return;
       end if;
-      
-      SichtbereichAnfangEnde := BerechnungenKarteSFML.SichtbereichKarteBerechnen (RasseExtern => RasseExtern);
-      YMultiplikator := 0.00;
-      
+            
       YAchseSchleife:
       for YAchseSchleifenwert in SichtbereichAnfangEnde (1) .. SichtbereichAnfangEnde (2) loop
          

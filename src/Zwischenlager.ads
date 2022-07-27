@@ -1,6 +1,7 @@
 
 
 
+
 procedure AnzeigeSpracheTerminal;
 -- (AktuelleAuswahlExtern : in Positive;
 --  LetzteZeileExtern : in Positive);

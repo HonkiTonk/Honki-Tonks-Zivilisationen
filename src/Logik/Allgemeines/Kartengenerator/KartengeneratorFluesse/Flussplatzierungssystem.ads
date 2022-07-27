@@ -10,7 +10,7 @@ with Karten;
 
 package Flussplatzierungssystem is
    
-   procedure FlussBerechnung
+   procedure Flussplatzierung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
      with
        Pre => (
@@ -21,6 +21,7 @@ package Flussplatzierungssystem is
    
 private
    
+   -- Teile davon auch nach Umwandlungen auslagern? äöü
    type StandardFlussArray is array (KartenDatentypen.EbeneVorhanden'First .. 0) of KartengrundDatentypen.Kartenfluss_Vorhanden_Enum;
    StandardFluss : constant StandardFlussArray := (
                                                    -2 => KartengrundDatentypen.Lavasee_Enum,
@@ -173,8 +174,9 @@ private
    
    
    
-   procedure BerechnungLinks
+   function BerechnungLinks
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      return Boolean
      with
        Pre => (
                  KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
@@ -182,8 +184,9 @@ private
                  KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
               );
    
-   procedure BerechnungRechts
+   function BerechnungRechts
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      return Boolean
      with
        Pre => (
                  KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
@@ -191,8 +194,9 @@ private
                  KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
               );
    
-   procedure BerechnungOben
+   function BerechnungOben
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      return Boolean
      with
        Pre => (
                  KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
@@ -200,17 +204,9 @@ private
                  KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
               );
    
-   procedure BerechnungUnten
+   function BerechnungUnten
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-     with
-       Pre => (
-                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-               and
-                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
-              );
-   
-   procedure FlussPlatzieren
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      return Boolean
      with
        Pre => (
                  KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse

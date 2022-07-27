@@ -11,7 +11,7 @@ private with KartenRecords;
 
 package BerechnungenKarteSFML is
    
-   ---------------------------- Das hier über eine Funktion abrufen?
+   -- Das hier über eine Funktion abrufen? äöü
    FensterKarte : Sf.System.Vector2.sfVector2f;
    FensterAnzeige : Sf.System.Vector2.sfVector2f;
    

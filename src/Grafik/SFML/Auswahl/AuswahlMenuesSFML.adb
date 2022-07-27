@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with AuswahlMenuesEinfachSFML;
 with AuswahlMenueKartenformSFML;
 with AuswahlMenueSteuerungSFML;
+with Fehler;
 
 package body AuswahlMenuesSFML is
 
@@ -15,7 +16,7 @@ package body AuswahlMenuesSFML is
         WelchesMenüExtern
       is
          when MenueDatentypen.Leer_Menü_Enum =>
-            return;
+            Fehler.GrafikFehler (FehlermeldungExtern => "AuswahlMenuesSFML.AuswahlMenüsAufteilung - Kein Menü ausgewählt.");
             
          when MenueDatentypen.Menü_Einfach_Enum =>
             AuswahlMenuesEinfachSFML.AuswahlMenüsEinfach (WelchesMenüExtern => WelchesMenüExtern);

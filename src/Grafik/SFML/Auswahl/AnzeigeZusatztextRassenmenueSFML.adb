@@ -67,8 +67,6 @@ package body AnzeigeZusatztextRassenmenueSFML is
          TextbereichSchleife:
          for TextbereichSchleifenwert in SchleifenAnfang .. SchleifenEnde loop
          
-            -- Wieso funktioniert das? äöü
-            -- Wieso sollte das nicht funktionieren? äöü
             AktuellerTextbereichEins := AktuellerTextbereichEins & TextExtern (TextbereichSchleifenwert);
             
             -- Das muss für die Verallgemeinerung auf einen einfachen Textaccess zugreifen.

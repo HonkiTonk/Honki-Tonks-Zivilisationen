@@ -11,7 +11,7 @@ with Karten;
 
 package Wegeplatzierungssystem is
 
-   procedure WegBerechnen
+   procedure Wegplatzierung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       WegartExtern : in AufgabenDatentypen.Einheitenbefehle_Wege_Enum)
      with
@@ -27,14 +27,13 @@ private
    WegRechts : Boolean;
    WegOben : Boolean;
    WegUnten : Boolean;
-   
-   Weggruppe : Positive;
-   
+      
    WelcherWeg : KartenVerbesserungDatentypen.Karten_Weg_Enum;
    ZwischenWeg : KartenVerbesserungDatentypen.Karten_Weg_Enum;
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    
+   -- Teile davon auch nach Umwandlungen auslagern? äöü
    type StandardWegArray is array (KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Range) of AufgabenDatentypen.Einheitenbefehle_Wege_Enum;
    StandardWeg : constant StandardWegArray := (
                                                KartenVerbesserungDatentypen.Karten_Straße_Enum'Range  => AufgabenDatentypen.Straße_Bauen_Enum,
@@ -277,9 +276,11 @@ private
                                               (KartenVerbesserungDatentypen.Straßenkreuzung_Vier_Enum)
                                            );
    
-   procedure WegPlatzieren
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      WegartExtern : in AufgabenDatentypen.Einheitenbefehle_Wege_Enum)
+   
+   
+   function BerechnungUnten
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      return Boolean
      with
        Pre => (
                  KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
@@ -287,8 +288,9 @@ private
                  KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
               );
    
-   procedure BerechnungUnten
+   function BerechnungOben
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      return Boolean
      with
        Pre => (
                  KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
@@ -296,8 +298,9 @@ private
                  KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
               );
    
-   procedure BerechnungOben
+   function BerechnungRechts
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      return Boolean
      with
        Pre => (
                  KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
@@ -305,17 +308,9 @@ private
                  KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
               );
    
-   procedure BerechnungRechts
+   function BerechnungLinks
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-     with
-       Pre => (
-                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-               and
-                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
-              );
-   
-   procedure BerechnungLinks
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      return Boolean
      with
        Pre => (
                  KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
