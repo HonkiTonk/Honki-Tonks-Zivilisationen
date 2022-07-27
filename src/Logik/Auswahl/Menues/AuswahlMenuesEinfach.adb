@@ -14,8 +14,8 @@ with InteraktionAuswahl;
 
 package body AuswahlMenuesEinfach is
 
-   --------------------------- Das ganze noch einmal unabhängiger schreiben, damit man es zu Not auch auslagern kann und Überschreibungen nicht vorkommen können.
-   --------------------------- Dabei auch mal das Menüanzeigesystem überarbeiten, das ausgeklammerte wird vermutlich nicht mehr benötigt und führt bei Nutzereingaben nur zu ungeeigneter Eingabeanzeige.
+   -- Das ganze noch einmal unabhängiger schreiben, damit man es zu Not auch auslagern kann und Überschreibungen nicht vorkommen können. äöü
+   -- Dabei auch mal das Menüanzeigesystem überarbeiten, das ausgeklammerte wird vermutlich nicht mehr benötigt und führt bei Nutzereingaben nur zu ungeeigneter Eingabeanzeige. äöü
    function AuswahlMenüsEinfach
      (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
@@ -61,7 +61,7 @@ package body AuswahlMenuesEinfach is
          case
            Eingabe.Tastenwert
          is
-            ------------------- Hier noch eine Abbruchtaste einbauen?
+            -- Hier noch eine Abbruchtaste einbauen? äöü
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if
                  AktuelleAuswahl = SystemKonstanten.LeerAuswahl

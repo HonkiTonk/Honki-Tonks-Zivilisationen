@@ -12,7 +12,7 @@ package body TextaccesseSchriftartSetzenSFML is
    procedure SchriftartSetzen
    is begin
       
-      ---------------------- Ein paar der Sachen zusammenfassen? Oder doch lieber nach Dateien/Bereich getrennt lassen?
+      -- Ein paar der Sachen zusammenfassen? Oder doch lieber nach Dateien/Bereich getrennt lassen? äöü
       MenüsEinfach;
       ZusatztextRassenmenü;
       ZusatztextKartengröße;

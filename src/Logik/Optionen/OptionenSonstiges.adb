@@ -134,6 +134,6 @@ package body OptionenSonstiges is
    
    
    
-   -------------------- Hier später noch eine Option für den Wechsel der Schriftart einbauen.
+   -- Hier später noch eine Option für den Wechsel der Schriftart einbauen. äöü
 
 end OptionenSonstiges;

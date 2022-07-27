@@ -34,7 +34,7 @@ package body KIEinheitAufgabeHeilen is
    
    
    
-   -------------------------------- Zu Friedenszeiten immer den gleichen Wert für verletzte Einheiten zurückgeben?
+   -- Zu Friedenszeiten immer den gleichen Wert für verletzte Einheiten zurückgeben? äöü
    function HeilenFrieden
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return KIDatentypen.AufgabenWichtigkeitKlein
@@ -72,7 +72,7 @@ package body KIEinheitAufgabeHeilen is
    
    
    
-   ------------------------------- Abhängig von Gegner in der Nähe machen.
+   -- Abhängig von Gegner in der Nähe machen. äöü
    function HeilenKrieg
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return KIDatentypen.AufgabenWichtigkeitKlein

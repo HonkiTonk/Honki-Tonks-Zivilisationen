@@ -514,7 +514,6 @@ package body KarteStadtTerminal is
             null;
       end case;
       
-      --------------------------- Hügel
       case
         LeseKarten.BasisGrund (KoordinatenExtern => KartenWert)
       is

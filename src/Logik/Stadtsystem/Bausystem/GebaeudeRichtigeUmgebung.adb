@@ -19,7 +19,6 @@ package body GebaeudeRichtigeUmgebung is
       return Boolean
    is begin
      
-      -------------------   
       if
         LeseGebaeudeDatenbank.GrundBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
                                               IDExtern    => GebäudeIDExtern)
@@ -72,7 +71,7 @@ package body GebaeudeRichtigeUmgebung is
                null;
                   
             elsif
-              --------------------- An neues Mehrfachumgebung möglich anpassen.
+              -- An neues Mehrfachumgebung möglich anpassen. äöü
               -- Noch um Umgebungsverbesserung erweitern?
               LeseKarten.AktuellerGrund (KoordinatenExtern => KartenWert) = LeseGebaeudeDatenbank.GrundBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
                                                                                                          IDExtern    => GebäudeIDExtern)

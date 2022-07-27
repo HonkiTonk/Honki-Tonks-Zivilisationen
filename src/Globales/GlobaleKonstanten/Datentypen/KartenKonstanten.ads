@@ -18,7 +18,7 @@ package KartenKonstanten is
    LeerYAchseÄnderung : constant KartenDatentypen.KartenfeldNatural := LeerYAchse;
    LeerXAchseÄnderung : constant KartenDatentypen.KartenfeldNatural := LeerXAchse;
    
-   -------------------------- Das hier später mal überall einbauen.
+   -- Das hier später mal überall einbauen. äöü
    PlaneteninneresKonstante : constant KartenDatentypen.EbeneVorhanden := -2;
    UnterflächeKonstante : constant KartenDatentypen.EbeneVorhanden := -1;
    OberflächeKonstante : constant KartenDatentypen.EbeneVorhanden := 0;

@@ -108,6 +108,6 @@ private
                  GrundExtern.AktuellerGrund in Kartengrund_Unterfläche_Wasser_Enum'Range
               );
 
-   ----------------------- Später Minen für den Kern einbauen?
+   -- Später Minen für den Kern einbauen? äöü
 
 end AufgabeEinheitMine;

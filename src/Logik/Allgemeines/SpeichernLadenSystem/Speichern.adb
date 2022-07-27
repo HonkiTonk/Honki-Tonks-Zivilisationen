@@ -61,7 +61,7 @@ package body Speichern is
       FortschrittErhöhen (AutospeichernExtern => AutospeichernExtern);
       
       Karte (DateiSpeichernExtern => DateiSpeichern);
-      -------------------------------------- Das hier auch noch mal überarbeiten, damit es nicht auf 33 springt und bei größeren Karten da dann länger bleibt, bis die Karte vollständig eingelesen ist.
+      -- Das hier auch noch mal überarbeiten, damit es nicht auf 33 springt und bei größeren Karten da dann länger bleibt, bis die Karte vollständig eingelesen ist. äöü
       FortschrittErhöhen (AutospeichernExtern => AutospeichernExtern);
       
       RassenwerteSpeichern (DateiSpeichernExtern => DateiSpeichern);
@@ -266,7 +266,7 @@ package body Speichern is
          NameSpielstand := (True, SpielVariablen.Allgemeines.IronmanName);
                
       else
-         ------------------------------ Anzeige der vorhandenen Spielstände einbauen
+         -- Anzeige der vorhandenen Spielstände einbauen äöü
          NameSpielstand := SpeichernLadenAllgemein.SpielstandNameErmitteln;
          
          case

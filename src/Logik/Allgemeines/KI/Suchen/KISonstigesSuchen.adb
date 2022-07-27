@@ -18,7 +18,7 @@ package body KISonstigesSuchen is
    is begin
       
       Bereich := 1;
-      --------------------------- Der geprüfte Bereich wird noch nicht ausgeschlossen und die Suche fängt noch nicht bei 0 an, ändern.
+      -- Der geprüfte Bereich wird noch nicht ausgeschlossen und die Suche fängt noch nicht bei 0 an, ändern. äöü
       BereichGeprüft := Bereich - 1;
       
       FeldSuchenSchleife:

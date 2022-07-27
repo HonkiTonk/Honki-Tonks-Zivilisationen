@@ -19,7 +19,7 @@ package DatenbankRecords is
 
    type EinheitenlisteRecord is record
       
-      ----------------------- Solche Benennungen auch mal anpassen.
+      -- Solche Benennungen auch mal anpassen. äöü
       EinheitArt : EinheitenDatentypen.Einheitart_Vorhanden_Enum;
       PreisGeld : ProduktionDatentypen.Produktion;
       PreisRessourcen : ProduktionDatentypen.Lagermenge;
@@ -80,8 +80,8 @@ package DatenbankRecords is
       GrundBenötigt : KartengrundDatentypen.Kartengrund_Enum;
       FlussBenötigt : Boolean;
       RessourceBenötigt : KartengrundDatentypen.Kartenressourcen_Enum;
-      --------------------- UndOderGrundFlussBenötigt : Boolean; -- In ein Enum einbauen?
-      --------------------- Auch noch Abhängigkeit von anderen Gebäuden einbauen.
+      -- UndOderGrundFlussBenötigt : Boolean; -- In ein Enum einbauen? äöü
+      -- Auch noch Abhängigkeit von anderen Gebäuden einbauen. äöü
       
       GebäudeSpezielleEigenschaft : StadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum;
 

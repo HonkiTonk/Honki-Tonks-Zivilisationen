@@ -27,12 +27,12 @@ package SystemDatentypen is
    
    subtype Rechenoperation_Vereinfacht_Enum is Rechenoperation_Enum range Plus_Enum .. Setzen_Enum;
    
-   --------------------- Hier den Schwierigkeitsgrad_Enum einbauen?
+   -- Hier den Schwierigkeitsgrad_Enum einbauen? äöü
    -- Wichtige Werte
    
     
    
-   ------------------------------------------ Alles ab hier sollte woanders hin, oder?
+   -- Alles ab hier sollte woanders hin, oder? äöü
    -- Sonstiges
    type Staatsform_Enum is (
                             Anarchie_Enum,
@@ -44,7 +44,7 @@ package SystemDatentypen is
 
 
 
-   ------------------------------------------ Hier auch mal Sachen rausverschieben.
+   -- Hier auch mal Sachen rausverschieben. äöü
    -- Für Diplomatie
    type Status_Untereinander_Enum is (
                                       Unbekannt_Enum, Neutral_Enum, Nichtangriffspakt_Enum, Krieg_Enum

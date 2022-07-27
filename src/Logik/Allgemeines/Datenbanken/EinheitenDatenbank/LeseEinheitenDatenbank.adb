@@ -226,7 +226,7 @@ package body LeseEinheitenDatenbank is
       return EinheitenDatentypen.Transportplätze
    is begin
       
-      ----------------------- Hier mal noch Konstanten einbauen?
+      -- Hier mal noch Konstanten einbauen? äöü
       if
         EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).KannTransportieren = EinheitenDatentypen.Kein_Transport_Enum
         or

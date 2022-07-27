@@ -34,9 +34,9 @@ package body BerechnungenKarteSFML is
    
    
    
-   --------------------- Mal eine bessere Lösung finden.
-   --------------------- Die Aktuelle zeigt den schwarzen Rahmen an.
-   --------------------- Die Ausgeklammerte crasht aber wenn es nur einen Übergang in der jeweiligen Achse gibt.
+   -- Mal eine bessere Lösung finden. äöü
+   -- Die Aktuelle zeigt den schwarzen Rahmen an. äöü
+   -- Die Ausgeklammerte crasht aber wenn es nur einen Übergang in der jeweiligen Achse gibt. äöü
    function SichtbereichKarteBerechnen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KartenDatentypen.SichtbereichAnfangEndeArray

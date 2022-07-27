@@ -83,7 +83,7 @@ package body ForschungAllgemein is
 
    
 
-   --------------------------------------------- Diesen Teil mal aus ForschungAllgemein auslagern.
+   -- Diesen Teil mal aus ForschungAllgemein auslagern. äöü
    -- Hier noch mehr Optionen einbauen, z. B. Informationen über bereits erforschte Technologien
    procedure Forschung
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

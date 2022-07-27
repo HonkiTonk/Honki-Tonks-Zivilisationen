@@ -21,19 +21,19 @@ package GrafikEinstellungenSFML is
       
    FensterEinstellungen : SystemRecords.FensterRecord;
    
-   ------------------------ Hier mal einen globalen Zeilenabstand einbauen. Geht nicht so einfach da hier die Größe und alles noch gar nicht feststeht.
+   -- Hier mal einen globalen Zeilenabstand einbauen. Geht nicht so einfach da hier die Größe und alles noch gar nicht feststeht. äöü
    
    AktuelleFensterAuflösung : Sf.System.Vector2.sfVector2u;
    
-   ------------------------ Später wie hier überall mehr konstante Standards und dann einfach zuweisen. Nutzereinstellungen dann auch in den Einstellugnen speichern!
-   ------------------------ Später auch was für den Textstyle einbauen?
+   -- Später wie hier überall mehr konstante Standards und dann einfach zuweisen. Nutzereinstellungen dann auch in den Einstellugnen speichern! äöü
+   -- Später auch was für den Textstyle einbauen? äöü
    Schriftgrößen : SystemRecords.SchriftgrößenRecord;
    
    Schriftfarben : SystemRecords.SchriftfarbenRecord;
    
    type RassenFarbenArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of Sf.Graphics.Color.sfColor;
-   ------------------------------------- Weniger transparente Version für Rahmen bauen. Dann das hier nur leicht transparent machen und den Rahmen dann gar nicht.
-   ------------------------------------- Müsste wahrscheinlich eh besser gebaut werden.
+   -- Weniger transparente Version für Rahmen bauen. Dann das hier nur leicht transparent machen und den Rahmen dann gar nicht. äöü
+   -- Müsste wahrscheinlich eh besser gebaut werden. äöü
    RassenFarben : RassenFarbenArray;
    RassenFarbenRahmen : RassenFarbenArray;
    

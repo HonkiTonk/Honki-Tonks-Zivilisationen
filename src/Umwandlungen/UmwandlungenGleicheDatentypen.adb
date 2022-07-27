@@ -11,13 +11,5 @@ package body UmwandlungenGleicheDatentypen is
       return (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse);
       
    end KartenfeldNaturalNachKartenfeldVorhanden;
-   
-   
-   
-   --------------------------------- Darüber noch einmal nachdenken, die Idee scheint gut, die Umsetzung ist etwas kompliziert.
-   -- function TastenbelegungNachAufgaben
-  --   (BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum)
-   --   return AufgabenDatentypen.Einheiten_Aufgabe_Vorhanden_Enum
-  -- is begin
 
 end UmwandlungenGleicheDatentypen;

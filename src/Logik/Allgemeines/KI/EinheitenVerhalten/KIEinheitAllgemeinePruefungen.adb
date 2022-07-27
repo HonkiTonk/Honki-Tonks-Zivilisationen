@@ -18,7 +18,7 @@ package body KIEinheitAllgemeinePruefungen is
    
    -- Einige Prüfungen sind nicht immer 100% sinnvoll, beispielsweise von KIEinheitFestlegenVerbesserungen.StadtumgebungVerbessern kommend ist die Sichtbarkeitsprüfung ein wenig unsinnig,
    -- aber nur dafür eine Extrafunktion schein ein wenig übertrieben.
-   -------------------------------------- Werde wohl mehrere Versionen bauen müssen.
+   -- Werde wohl mehrere Versionen bauen müssen. äöü
    function KartenfeldPrüfen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
@@ -149,8 +149,8 @@ package body KIEinheitAllgemeinePruefungen is
                   
       end loop PassierbareUmgebungSchleife;
       
-      ------------------------------------- Hier später noch brauchbare Prüfungen auf vorhandene Technologie und Wassertransporter einbauen.
-      ------------------------------------- Die Technologieprüfung mit in die Passierbarkeitsprüfung werfen? Bzw. eine Abspaltung davon für die KI vornehmen.
+      -- Hier später noch brauchbare Prüfungen auf vorhandene Technologie und Wassertransporter einbauen. äöü
+      -- Die Technologieprüfung mit in die Passierbarkeitsprüfung werfen? Bzw. eine Abspaltung davon für die KI vornehmen. äöü
       -- ForschungenSchleife:
       -- for ForschungSchleifenwert in ForschungenDatentypen.ForschungID'Range loop
          

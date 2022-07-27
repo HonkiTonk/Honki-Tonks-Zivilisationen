@@ -11,7 +11,7 @@ package Karten is
    -- Muss gesetzt werden da sonst im aktuellen Problem die Berechnung der Sichweite durch den Grafiktast nicht funktioniert.
    Karteneinstellungen : KartenRecords.PermanenteKartenparameterRecord := KartenRecordKonstanten.Standardkartenparameter;
 
-   ----------------------- Später die Anzahl der Ebenen auch vom Nutzer einstellbar machen?
+   -- Später die Anzahl der Ebenen auch vom Nutzer einstellbar machen? äöü
    type WeltkarteArray is array (KartenDatentypen.EbeneVorhanden'Range, KartenDatentypen.KartenfeldPositiv'Range, KartenDatentypen.KartenfeldPositiv'Range) of KartenRecords.KartenRecord;
    Weltkarte : WeltkarteArray;
 

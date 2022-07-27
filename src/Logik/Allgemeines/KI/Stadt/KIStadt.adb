@@ -26,7 +26,7 @@ with KIGebaeudeBauen;
 
 package body KIStadt is
 
-   ---------------------------------------- KI baut manchmal Gebäude mehrfach in einer Stadt.
+   -- KI baut manchmal Gebäude mehrfach in einer Stadt. äöü
    procedure KIStadt
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
@@ -252,7 +252,7 @@ package body KIStadt is
    
    
    
-   ---------------------------------------- Die Baukosten noch mit in die Bewertung einfließen lassen.
+   -- Die Baukosten noch mit in die Bewertung einfließen lassen. äöü
    procedure NotfallEinheitBauen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       EinheitIDExtern : in EinheitenDatentypen.EinheitenID)

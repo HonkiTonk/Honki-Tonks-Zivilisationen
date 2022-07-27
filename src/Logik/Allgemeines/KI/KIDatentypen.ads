@@ -24,7 +24,7 @@ package KIDatentypen is
                           Belegt_Angriff_Enum, Unbelegt_Enum, Belegt_Kein_Angriff_Enum
                          );
 
-   ----------------------------------------------- Größe später besser anpassen.
+   -- Größe später besser anpassen. äöü
    type BauenBewertung is range -500 .. 500;
    subtype BewegungBewertung is BauenBewertung range 0 .. 20;
 

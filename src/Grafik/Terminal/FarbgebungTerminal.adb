@@ -120,8 +120,7 @@ package body FarbgebungTerminal is
         RessourceExtern
       is
          when KartengrundDatentypen.Öl_Enum =>
-            ------------------------
-            -- Eventuell mal verschiedene Farben für die einzelnen Ressourcen einbauen?
+            -- Eventuell mal verschiedene Farben für die einzelnen Ressourcen einbauen? äöü
             null;
             
          when others =>

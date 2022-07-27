@@ -71,11 +71,11 @@ package body KIEinheitFestlegenSiedeln is
                return MöglichesFeld;
          end case;
          
-         ------------------------------ Eventuell um die Einheit und dann um alle Städte herum prüfen?
+         -- Eventuell um die Einheit und dann um alle Städte herum prüfen? äöü
          if
            UmgebungPrüfen > 15
          then
-            ---------------------------- Dann hier um andere Städte/Einheiten herumloopen?
+            -- Dann hier um andere Städte/Einheiten herumloopen? äöü
             exit KartenfeldSuchenSchleife;
             
          else
@@ -187,7 +187,7 @@ package body KIEinheitFestlegenSiedeln is
       then
          return False;
          
-         -------------------------------- Diese Prüfung hier mal rassenspezifisch erweitern.
+         -- Diese Prüfung hier mal rassenspezifisch erweitern. äöü
       elsif
         LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern) = KartengrundDatentypen.Eis_Enum
       then

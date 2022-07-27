@@ -5,9 +5,9 @@ with KartenDatentypen; use KartenDatentypen;
 
 with KIDatentypen; use KIDatentypen;
 
--------------------------------------- Grenzprüfungen auch für andere Werte einbauen/auslagern.
--------------------------------------- Grenzprüfungen sind nur bei Rechnungen und nicht bei Zuweisungen nötig.
--------------------------------------- Geht das nicht auch als Generic?
+-- Grenzprüfungen auch für andere Werte einbauen/auslagern. äöü
+-- Grenzprüfungen sind nur bei Rechnungen und nicht bei Zuweisungen nötig. äöü
+-- Geht das nicht auch als Generic? äöü
 package body KIGrenzpruefungen is
 
    function AufgabenWichtigkeit
@@ -45,7 +45,7 @@ package body KIGrenzpruefungen is
       then
          return KartenDatentypen.GesamteFeldbewertung'Last;
        
-         --------------------------------------------- Doch noch negative Bereiche einbauen.         
+         -- Doch noch negative Bereiche einbauen. äöü
      -- elsif
        -- AktuellerWertExtern + ÄnderungExtern <= KartenDatentypen.GesamteFeldbewertung'First
      -- then

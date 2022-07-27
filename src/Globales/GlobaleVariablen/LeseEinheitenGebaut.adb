@@ -7,7 +7,7 @@ with LeseEinheitenDatenbank;
 
 with Warnung;
 
------------------------------------ Noch mehr Prüfungen durch Contracts ersetzen? Theoretisch sollten all diese Dinge ja niemals auftreten wenn alles richtig funktioniert.
+-- Noch mehr Prüfungen durch Contracts ersetzen? Theoretisch sollten all diese Dinge ja niemals auftreten wenn alles richtig funktioniert. äöü
 package body LeseEinheitenGebaut is
 
    function ID

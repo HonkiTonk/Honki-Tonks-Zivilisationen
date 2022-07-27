@@ -498,14 +498,14 @@ package body KIBewegungBerechnen is
                                                                         NeueKoordinatenExtern       => KoordinatenExtern)
            = True
          then
-            ---------------------------------------- Hier später True zurückgeben
+            -- Hier später True zurückgeben äöü
             null;
             
          else
             null;
          end if;
          
-         ----------------------------------------- Später entfernen
+         -- Später entfernen äöü
          exit EinheitenSchleife;
          
       end loop EinheitenSchleife;

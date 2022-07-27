@@ -39,7 +39,7 @@ package KartenkoordinateYAchseBerechnen is
    
 private
    
-   --------------------- Achsenverschiebung einstellbar machen?
+   -- Achsenverschiebung einstellbar machen? äöü
    HalberWert : constant Float := 0.50;
    
    type ÜberhangArray is array (Boolean'Range, KartenDatentypen.EbeneVorhanden'Range) of Integer;

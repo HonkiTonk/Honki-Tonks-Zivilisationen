@@ -59,7 +59,7 @@ private
    YMultiplikator : Float;
    XMultiplikator : Float;
    
-   ------------------- Intervall durch Nutzer einstellen lassen?
+   -- Intervall durch Nutzer einstellen lassen? äöü
    BlinkIntervall : constant Day_Duration := 0.50;
    
    ZeitEins : Time := Clock;

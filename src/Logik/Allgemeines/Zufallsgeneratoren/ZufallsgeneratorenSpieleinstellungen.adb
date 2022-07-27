@@ -51,7 +51,7 @@ package body ZufallsgeneratorenSpieleinstellungen is
    procedure ZufälligeKartenform
    is begin
       
-      --------------------------- In drei Teile aufteilen damit man jede Achsen einzeln zufällig zuweisen kann?
+      -- In drei Teile aufteilen damit man jede Achsen einzeln zufällig zuweisen kann? äöü
       ZufälligerEAchsenÜbergangWählen.Reset (Gen => ZufälligerEAchsenÜbergangGewählt);
       ZufälligerYAchsenÜbergangWählen.Reset (Gen => ZufälligerYAchsenÜbergangGewählt);
       ZufälligerXAchsenÜbergangWählen.Reset (Gen => ZufälligerXAchsenÜbergangGewählt);

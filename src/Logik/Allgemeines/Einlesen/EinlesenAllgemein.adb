@@ -18,13 +18,13 @@ package body EinlesenAllgemein is
             return True;
                
          when False =>
-            ---------------------------- Das Setzen der aktuellen Zeile herausziehen? Ist immerhin 'in' und wäre dann konsequenter.
+            -- Das Setzen der aktuellen Zeile herausziehen? Ist immerhin 'in' und wäre dann konsequenter. äöü
             Set_Line (File => AktuelleDateiExtern,
                       To   => Ada.Wide_Wide_Text_IO.Count (AktuelleZeileExtern));
             return False;
       end case;
       
-      ---------------------------------- Geht das auch ohne exception?
+      -- Geht das auch ohne exception? äöü
    exception
       when End_Error =>
          Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenAllgemein.VorzeitigesZeilenende - Zu wenig Zeilen.");

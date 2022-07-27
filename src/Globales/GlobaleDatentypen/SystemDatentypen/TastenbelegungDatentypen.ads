@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 package TastenbelegungDatentypen is
 
-   ------------------ Raus- und reinzoomen einbauen.
+   -- Raus- und reinzoomen einbauen. äöü
    type Tastenbelegung_Enum is (
                                 Leer_Tastenbelegung_Enum,
                                 

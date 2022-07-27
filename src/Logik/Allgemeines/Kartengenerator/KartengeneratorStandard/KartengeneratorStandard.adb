@@ -169,7 +169,7 @@ package body KartengeneratorStandard is
          XAchseAbstandFlächenSchleife:
          for XÄnderungSchleifenwert in -Landabstand (3) .. Landabstand (4) loop
             
-            ----------------------- Später die Abstandsschleifen anpassen damit diese Prüfung raus kann und nur noch der tatsächliche Abstand geloopt wird und nicht auch die Landmasse.
+            -- Später die Abstandsschleifen anpassen damit diese Prüfung raus kann und nur noch der tatsächliche Abstand geloopt wird und nicht auch die Landmasse. äöü
             if
               YÄnderungSchleifenwert in -Landmassen (1) .. Landmassen (2)
               and

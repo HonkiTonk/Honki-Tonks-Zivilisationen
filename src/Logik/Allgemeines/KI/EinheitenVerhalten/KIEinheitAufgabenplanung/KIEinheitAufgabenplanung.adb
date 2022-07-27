@@ -49,7 +49,7 @@ with KIEinheitFestlegenTransporter;
 package body KIEinheitAufgabenplanung is
    
    -- Bei den Prüfungen zurückgeben: -1 wenn es nicht möglich sein soll, 0 wenn keine richtige Prüfung vorhanden ist und 1 .. 100 für die reguläre Bewertung.
-   ----------------------------------------- Später ändern?
+   -- Später ändern? äöü
    procedure AufgabeErmitteln
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
@@ -65,12 +65,12 @@ package body KIEinheitAufgabenplanung is
       Wichtigkeit (KIDatentypen.Einheit_Verbessern_Enum) := KIEinheitAufgabeModernisieren.SichVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       Wichtigkeit (KIDatentypen.Flucht_Enum) := KIEinheitAufgabeFliehen.Fliehen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
-      -------------------------------- Hier später besser aufteilen.
+      -- Hier später besser aufteilen. äöü
       Wichtigkeit (KIDatentypen.Verteidigen_Enum) := KIEinheitAufgabeVerteidigen.Verteidigen;
       Wichtigkeit (KIDatentypen.Auf_Transporter_Warten_Enum) := KIEinheitAufgabeTransporter.AbholungAbwarten;
       Wichtigkeit (KIDatentypen.Angriffskrieg_Vorbereiten_Enum) := KIEinheitAufgabeAngriffskrieg.AngriffskriegVorbereiten;
       Wichtigkeit (KIDatentypen.Verteidigungskrieg_Vorbereiten_Enum) := KIEinheitAufgabeVerteidigungskrieg.VerteidigungskriegVorbereiten;
-      -------------------------------- Hier später besser aufteilen.
+      -- Hier später besser aufteilen. äöü
       
       EinheitSpezifischeAufgabeErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
@@ -97,7 +97,7 @@ package body KIEinheitAufgabenplanung is
             Wichtigkeit (KIDatentypen.Angreifen_Enum) := KIEinheitAufgabeAngreifen.Angreifen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             Wichtigkeit (KIDatentypen.Erkunden_Enum) := KIEinheitAufgabeErkunden.Erkunden (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-            ----------------------------- Später noch Extraberechnungen für Fernkämpfer im Angriff durchführen lassen. Aktuell ist das ja eh nicht implementiert.
+            -- Später noch Extraberechnungen für Fernkämpfer im Angriff durchführen lassen. Aktuell ist das ja eh nicht implementiert. äöü
          when EinheitenDatentypen.Fernkämpfer_Enum =>
             Wichtigkeit (KIDatentypen.Stadt_Bewachen_Enum) := KIEinheitAufgabeBewachen.StadtBewachen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             Wichtigkeit (KIDatentypen.Verbesserung_Zerstören_Enum) := KIEinheitAufgabePluendern.StadtumgebungZerstören (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -121,7 +121,7 @@ package body KIEinheitAufgabenplanung is
    
    
    
-   ------------------------------------------ Das hier nochmal überarbeiten.
+   -- Das hier nochmal überarbeiten. äöü
    function AufgabeAuswählen
      return KIDatentypen.Einheit_Aufgabe_Enum
    is begin
@@ -210,8 +210,8 @@ package body KIEinheitAufgabenplanung is
             when KIDatentypen.Verteidigen_Enum =>
                AufgabeFestgelegt := KIEinheitFestlegenVerteidigen.Verteidigen;
                
-               -------------------------------- Hier müsste ich erst das Ziel ermitteln lassen und dann entsprechend die Aufgabe setzen. Bin mal gespannt wie ich das löse.
-               -------------------------------- Eventuell eine KIBeschäftigungNachfolger einbauen und dann entsprechnd verschieben? Wie bei VerbesserungenNachfolger.
+               -- Hier müsste ich erst das Ziel ermitteln lassen und dann entsprechend die Aufgabe setzen. Bin mal gespannt wie ich das löse. äöü
+               -- Eventuell eine KIBeschäftigungNachfolger einbauen und dann entsprechnd verschieben? Wie bei VerbesserungenNachfolger. äöü
             when KIDatentypen.Auf_Transporter_Warten_Enum =>
                AufgabeFestgelegt := KIEinheitFestlegenTransporter.AbholungAbwarten;
                

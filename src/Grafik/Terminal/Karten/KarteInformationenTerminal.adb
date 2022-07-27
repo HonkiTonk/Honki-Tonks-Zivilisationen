@@ -192,7 +192,6 @@ package body KarteInformationenTerminal is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      --------------------------- Hügel
       case
         LeseKarten.BasisGrund (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell)
       is

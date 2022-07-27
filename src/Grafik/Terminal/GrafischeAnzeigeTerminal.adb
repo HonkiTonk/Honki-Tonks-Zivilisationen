@@ -67,7 +67,7 @@ package body GrafischeAnzeigeTerminal is
       
       -- Über den Kartenfeldern kommen die Kartenflüssen.
       -- Über den Kartenflüssen kommen die Kartenressourcen.
-      -- Über den Kartenressourcen kommen die Straßen und dann die Verbesserungen (eventuell anders herum? Dann könnte man die Straßen sehen und einfacher die Einheit bewegen). --------------------------
+      -- Über den Kartenressourcen kommen die Straßen und dann die Verbesserungen (eventuell anders herum? Dann könnte man die Straßen sehen und einfacher die Einheit bewegen). äöü
       -- Über die Kartenverbesserungen kommen die Städte.
       -- Über die Städte kommen die nicht Transporteinheiten.
       -- Über den nicht Transporteinheiten kommen die Transporteinheiten.
@@ -225,7 +225,7 @@ package body GrafischeAnzeigeTerminal is
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      -------------------------- Mal hier aufteilen damit die Abfragen hier nicht doppelt stattfinden.
+      -- Mal hier aufteilen damit die Abfragen hier nicht doppelt stattfinden. äöü
       if
         LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern) /= KartenVerbesserungDatentypen.Leer_Verbesserung_Enum
       then

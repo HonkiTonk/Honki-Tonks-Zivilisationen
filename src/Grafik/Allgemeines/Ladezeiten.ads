@@ -7,10 +7,10 @@ with RassenDatentypen;
 with LadezeitenDatentypen;
 with SystemDatentypen;
 
------------------------------- Gehört das nicht eher nach Logik?
+-- Gehört das nicht eher nach Logik? äöü
 package Ladezeiten is
    
-   ------------------------------ Die Sachen später nach private verschieben und die Clock, Abfragen, usw. dann in eine Prozedur/Funktion auslagern.
+   -- Die Sachen später nach private verschieben und die Clock, Abfragen, usw. dann in eine Prozedur/Funktion auslagern. äöü
    type SpielweltErstellenArray is array (LadezeitenDatentypen.Spielwelt_Erstellen_Enum'Range, SystemDatentypen.Anfang_Ende_Enum'Range) of Time;
    SpielweltErstellen : SpielweltErstellenArray;
    

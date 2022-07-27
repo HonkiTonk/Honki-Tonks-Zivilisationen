@@ -99,7 +99,7 @@ package body BewegungPassierbarkeitPruefen is
       return Boolean
    is begin
       
-      ------------------ Alles mal ein wenig optimieren.
+      -- Alles mal ein wenig optimieren. äöü
       if
         StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
                                                     KoordinatenExtern => NeueKoordinatenExtern)
@@ -142,7 +142,7 @@ package body BewegungPassierbarkeitPruefen is
       then
          null;
          
-         --------------------------- Funktioniert akutell nicht richtig, beheben oder entfernen?
+         -- Funktioniert akutell nicht richtig, beheben oder entfernen? äöü
     --  elsif
     --    LeseKarten.Weg (KoordinatenExtern => NeueKoordinatenExtern) /= KartenVerbesserungDatentypen.Leer_Weg_Enum
     --    and then

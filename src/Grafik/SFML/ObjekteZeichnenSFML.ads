@@ -36,7 +36,7 @@ package ObjekteZeichnenSFML is
               );
 
    
-   ----------------------- Hier eventuell noch einen Contract für AnzahlEckenExtern einbauen.
+   -- Hier eventuell noch einen Contract für AnzahlEckenExtern einbauen. äöü
    procedure PolygonZeichnen
      (RadiusExtern : in Float;
       PositionExtern : in Sf.System.Vector2.sfVector2f;

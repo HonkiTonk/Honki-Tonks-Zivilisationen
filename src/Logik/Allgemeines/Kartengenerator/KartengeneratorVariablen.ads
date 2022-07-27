@@ -7,7 +7,7 @@ with KartenRecordKonstanten;
 
 package KartengeneratorVariablen is
 
-   ----------------------------- Alle Einstellungen in die Parameter schieben oder thematische Gruppen bilden?
+   -- Alle Einstellungen in die Parameter schieben oder thematische Gruppen bilden? äöü
    Kartenparameter : KartenRecords.TemporäreKartenparameterRecord := KartenRecordKonstanten.Standardkartengeneratorparameter;
 
    Polgrößen : KartenDatentypen.PolregionenArray := KartenRecordKonstanten.Eisrand;

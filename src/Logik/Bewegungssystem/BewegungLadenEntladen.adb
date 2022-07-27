@@ -161,7 +161,8 @@ package body BewegungLadenEntladen is
             when EinheitenKonstanten.LeerTransportiert =>
                null;
                
-            when others => -- -----------------
+            when others =>
+               -- Mal übersichtlicher gestalten. äöü
                SchreibeEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                                                                                                     PlatzExtern              => BelegterPlatzSchleifenwert)),
                                                     KoordinatenExtern        =>

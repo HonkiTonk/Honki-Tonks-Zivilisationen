@@ -19,8 +19,7 @@ with KennenLernen;
 
 package body Sichtbarkeit is
    
-   ------------------------- Über die Sachen hier nochmal drüber gehen. Eventuell auch Sicht nach oben einbauen?
-   ------------------------- Hügel
+   -- Über die Sachen hier nochmal drüber gehen. Eventuell auch Sicht nach oben einbauen? äöü
    function SichtweiteErmitteln
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return KartenDatentypen.Sichtweite
@@ -714,7 +713,6 @@ package body Sichtbarkeit is
          BasisGrund := LeseKarten.AktuellerGrund (KoordinatenExtern => KartenBlockadeWert);
       end if;
          
-      ------------------------- Hügel
       if
         AktuellerGrund = KartengrundDatentypen.Gebirge_Enum
         or

@@ -16,7 +16,7 @@ package body KIEinheit is
       
       FeindlicheEinheit := KIGefahrErmitteln.GefahrErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
-      ------------------------------------ Kriegshandlungen einbauen oder die bei den entsprechenden Punkten mit berücksichtigen?
+      -- Kriegshandlungen einbauen oder die bei den entsprechenden Punkten mit berücksichtigen? äöü
       case
         FeindlicheEinheit.Rasse
       is

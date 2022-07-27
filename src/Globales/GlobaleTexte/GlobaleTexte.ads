@@ -17,7 +17,7 @@ package GlobaleTexte is
    WegartenMultiplikator : constant Positive := 3;
    FlussartenMultiplikator : constant Positive := 3;
    
-   -------------------- Gibt es einen Weg die Anzahl der Elemente eines Enum subtypes zu erfahren ohne sie selbst zu berechnen?
+   -- Gibt es einen Weg die Anzahl der Elemente eines Enum subtypes zu erfahren ohne sie selbst zu berechnen? äöü
    RassenAnzahlBeschreibung : constant Positive := NameBeschreibungMultiplikator * 18;
       
    -- type Welcher_Abstand_Enum is (Leer, Kleiner_Abstand, Großer_Abstand, Neue_Zeile);
@@ -73,7 +73,7 @@ package GlobaleTexte is
    
    Einheiten : TexteArray (1 .. RassenAnzahlBeschreibung * Positive (EinheitenDatentypen.EinheitenID'Last)) := (others => FehlenderText);
    
-   --------------------- Hier auch zweimal Enumlänge?
+   -- Hier auch zweimal Enumlänge? äöü
    Verbesserungen : TexteArray (1 .. NameBeschreibungMultiplikator * 8) := (others => FehlenderText);
    Wege : TexteArray (1 .. NameBeschreibungMultiplikator * WegartenMultiplikator * 16) := (others => FehlenderText);
    

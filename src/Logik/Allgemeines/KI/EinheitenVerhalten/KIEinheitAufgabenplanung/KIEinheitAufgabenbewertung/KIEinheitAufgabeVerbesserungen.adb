@@ -34,8 +34,8 @@ package body KIEinheitAufgabeVerbesserungen is
    
    
    
-   ---------------------------- Rassenarray anlegen wie bei Einheit auflösen?
-   ---------------------------- Was tun wenn nichts mehr zu verbessern ist? Die Stadt die Verbesserungen befehlen lassen?
+   -- Rassenarray anlegen wie bei Einheit auflösen? äöü
+   -- Was tun wenn nichts mehr zu verbessern ist? Die Stadt die Verbesserungen befehlen lassen? äöü
    function MöglicheVerbesserungen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KIDatentypen.AufgabenWichtigkeitKlein
@@ -46,7 +46,7 @@ package body KIEinheitAufgabeVerbesserungen is
          
          NötigeTechnologie := ForschungKonstanten.TechnologieVerbesserung (RasseExtern, AufgabeSchleifenwert);
          
-         -------------------------- Hier nicht die Funktion ForschungAllgemein.TechnologieVorhanden verwenden um später eine bessere Bewertung einbauen zu können.
+         -- Hier nicht die Funktion ForschungAllgemein.TechnologieVorhanden verwenden um später eine bessere Bewertung einbauen zu können. äöü
          if
            NötigeTechnologie = ForschungKonstanten.LeerForschung
          then

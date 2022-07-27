@@ -22,7 +22,7 @@ package body KIEinheitFestlegenFliehen is
         Vergleiche.KoordinateLeervergleich (KoordinateExtern => ZielKoordinate)
       is
          when False =>
-            --------------------------------- Hier muss noch ein Ziel hinzugefügt werden.
+            -- Hier muss noch ein Ziel hinzugefügt werden. äöü
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     AufgabeExtern            => KIDatentypen.Flucht_Enum);
             SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,

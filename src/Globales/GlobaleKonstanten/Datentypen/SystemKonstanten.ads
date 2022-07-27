@@ -9,7 +9,7 @@ package SystemKonstanten is
 
    LängstesMenü : constant Positive := 21;
 
-   ------------------------- Diese Konstanten nicht nur für die Menüarrays anlegen sondern für alle?
+   -- Diese Konstanten nicht nur für die Menüarrays anlegen sondern für alle? äöü
    type EndeMenüArray is array (MenueDatentypen.Welches_Menü_Vorhanden_Enum'Range) of Positive;
    -- Beim Ändern dieser Werte auch immer auf verwendete Variablen/Konstanten in anderen Dateien achten.
    -- Wenn möglich für Sonderfälle rückwärts zählen, wie z. B. beim Rückgabesystem oder beim Zusatztext für das Kartengrößenmenü.

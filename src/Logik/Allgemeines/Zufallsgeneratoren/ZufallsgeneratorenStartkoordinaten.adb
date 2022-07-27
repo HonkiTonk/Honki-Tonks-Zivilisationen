@@ -37,7 +37,7 @@ package body ZufallsgeneratorenStartkoordinaten is
                                               First => KartenDatentypen.KartenfeldPositiv'First,
                                               Last  => Karten.Karteneinstellungen.Kartengröße.XAchse);
          
-         ------------------------ Diese Prüfungen hier mal verbessern/nach SpieleinstellungenRasseSpieler verschieben.
+         -- Diese Prüfungen hier mal verbessern/nach SpieleinstellungenRasseSpieler verschieben. äöü
          if
            BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern           => RasseExtern,
                                                                   IDExtern              => 1,

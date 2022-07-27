@@ -8,7 +8,7 @@ with StadtRecordKonstanten;
 with LeseGebaeudeDatenbank;
 with LeseEinheitenDatenbank;
 
--------------------------------------------- Stadt (und eventuell einige andere Sachen) werden nicht vollständig auf Leer gesetzt beim entfernen, das mal besser ändern.
+-- Stadt (und eventuell einige andere Sachen) werden nicht vollständig auf Leer gesetzt beim entfernen, das mal besser ändern. äöü
 --  and
 -- KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Karteneinstellungen.Kartengröße.YAchse
 --  and
@@ -438,7 +438,7 @@ package body SchreibeStadtGebaut is
             then
                SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Zufriedenheit := ProduktionDatentypen.Feldproduktion'Last;
                
-               --------------------------------- Der Änderungswert kann aktuell nicht kleiner als 0 sein, später mal anpassen.
+               -- Der Änderungswert kann aktuell nicht kleiner als 0 sein, später mal anpassen. äöü
             elsif
               SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Zufriedenheit + ZufriedenheitExtern = StadtKonstanten.LeerZufriedenheit
             then

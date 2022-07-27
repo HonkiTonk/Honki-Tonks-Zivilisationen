@@ -14,14 +14,14 @@ package KartengeneratorFluss is
 
 private
    
-   ------------------------ Später vom Nutzer einstellbar machen.
-   ------------------------ Oder rauswerfen?
+   -- Später vom Nutzer einstellbar machen. äöü
+   -- Oder rauswerfen? äöü
    FlussumgebungBonus : Float := 1.25;
    
    type MultiplikatorArray is array (KartenDatentypen.EbenePlanet'Range) of ZahlenDatentypen.EigenesPositive;
    Multiplikator : MultiplikatorArray;
    
-   ------------------- Später vom Nutzer änderbar machen.
+   -- Später vom Nutzer änderbar machen. äöü
    type WahrscheinlichkeitFlussArray is array (KartenDatentypen.EbenePlanet'Range) of KartenDatentypen.Auswahlbereich;
    WahrscheinlichkeitFluss : constant WahrscheinlichkeitFlussArray := (
                                                                        -2 => 30,

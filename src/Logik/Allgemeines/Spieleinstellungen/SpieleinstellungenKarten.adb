@@ -294,7 +294,7 @@ package body SpieleinstellungenKarten is
    
    
    
-   ----------------------------------- Könnte bei Änderung der Kartengröße zu Problemen führen.
+   -- Könnte bei Änderung der Kartengröße zu Problemen führen. äöü
    procedure KartenartNutzerdefinition
    is begin
       

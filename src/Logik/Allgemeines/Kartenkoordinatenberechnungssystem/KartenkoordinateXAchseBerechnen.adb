@@ -98,7 +98,7 @@ package body KartenkoordinateXAchseBerechnen is
    
    
    
-   ------------------------- Die Überhangsschleife wird auch für den Kartengenerator benötigt, also muss sie hier auf jeden Fall noch eingebaut werden, oder?.
+   -- Die Überhangsschleife wird auch für den Kartengenerator benötigt, also muss sie hier auf jeden Fall noch eingebaut werden, oder? äöü
    function ÜbergangWestenRückwärts
      (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld)
@@ -167,7 +167,7 @@ package body KartenkoordinateXAchseBerechnen is
    
    
    
-   ------------------------- Die Überhangsschleife wird auch für den Kartengenerator benötigt, also muss sie hier auf jeden Fall noch eingebaut werden, oder?..
+   -- Die Überhangsschleife wird auch für den Kartengenerator benötigt, also muss sie hier auf jeden Fall noch eingebaut werden, oder? äöü
    function ÜbergangOstenRückwärts
      (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld)

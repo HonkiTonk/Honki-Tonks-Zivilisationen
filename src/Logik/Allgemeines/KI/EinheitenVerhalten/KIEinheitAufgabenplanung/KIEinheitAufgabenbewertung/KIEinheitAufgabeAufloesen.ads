@@ -33,7 +33,7 @@ private
    Aufgabenwert : KIDatentypen.AufgabenWichtigkeitKlein;
    Zwischenwert : KIDatentypen.AufgabenWichtigkeitKlein;
    
-   ------------------------------- Sinnvolle Werte finden
+   -- Sinnvolle Werte finden äöü
    type MaximaleEinheitenArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of EinheitenDatentypen.MaximaleEinheiten;
    MaximaleEinheiten : constant MaximaleEinheitenArray := (
                                                            RassenDatentypen.Menschen_Enum         => 18,
@@ -56,7 +56,7 @@ private
                                                            RassenDatentypen.Talbidahr_Enum        => 18
                                                           );
    
-   ---------------------------------------- Das wird auch nochmal für den Kriegsfall benötigt.
+   -- Das wird auch nochmal für den Kriegsfall benötigt. äöü
    type ZustandmalusArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, KIDatentypen.Zustand_Enum'Range) of KIDatentypen.AufgabenWichtigkeitKlein;
    Zustandmalus : constant ZustandmalusArray := (
                                                  RassenDatentypen.Menschen_Enum =>

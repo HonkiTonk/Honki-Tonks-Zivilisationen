@@ -18,7 +18,7 @@ package body SchreibenVerzeichnisse is
    
    
    
-   ------------------------ Das hier mal ein wenig anpassen, was welche Meldung gibt.
+   -- Das hier mal ein wenig anpassen, was welche Meldung gibt. äöü
    procedure SchreibeGrafikVerzeichnisse
    is begin
       
@@ -142,7 +142,7 @@ package body SchreibenVerzeichnisse is
             null;
             
          when False =>
-            ----------------------- Hier auch eine Fehlermeldung einbauen? Ohne Vorhandene Sprachen kann ja nichts angezeigt werden. Oder deutsch als festgelegten Standard einbauen? 
+            -- Hier auch eine Fehlermeldung einbauen? Ohne Vorhandene Sprachen kann ja nichts angezeigt werden. Oder deutsch als festgelegten Standard einbauen? äöü
             Create_Directory (New_Directory => "Sprachen");
             Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeSonstigeVerzeichnisse - Ordner Sprachen wurde erstellt.");
       end case;
@@ -157,7 +157,7 @@ package body SchreibenVerzeichnisse is
             Create_Directory (New_Directory => "Spielstand");
       end case;
       
-      ------------------------------------ Einstellungen genau wie die Logdatei einfach in den Hauptordner werfen?
+      -- Einstellungen genau wie die Logdatei einfach in den Hauptordner werfen? äöü
       case
         Exists (Name => "Einstellungen")
       is

@@ -22,7 +22,7 @@ package body KartenAllgemein is
       
       -- Die Zwischenrechnungen mal drin lassen, für den Fall dass ich die Beschreibungen rassenspezifisch machen will. Könnte dann eine komplexere Rechnung werden.
       
-      --------------------------------- Mal überall drüber schauen ob die 'Pos Angaben bei den Beschreibungen angepasst werden können.
+      -- Mal überall drüber schauen ob die 'Pos Angaben bei den Beschreibungen angepasst werden können. äöü
       GrundAktuell := 2 * KartengrundDatentypen.Kartengrund_Vorhanden_Enum'Pos (KartenGrundExtern) - 1;
    
       return To_Wide_Wide_String (Source => GlobaleTexte.Kartenfelder (GrundAktuell));
@@ -31,7 +31,7 @@ package body KartenAllgemein is
    
 
 
-   ------------------------ Später die Beschreibungen noch um RasseExtern erweitern damit jede Rasse ihren eigenen Text haben kann?
+   -- Später die Beschreibungen noch um RasseExtern erweitern damit jede Rasse ihren eigenen Text haben kann? äöü
    function BeschreibungZusatzgrund
      (KartenGrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
       return Wide_Wide_String
@@ -72,7 +72,7 @@ package body KartenAllgemein is
    
    
    
-   ---------------------------------- Später mal ein besseres Berechnungssystem einbauen.
+   -- Später mal ein besseres Berechnungssystem einbauen. äöü
    function GrundNahrung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
@@ -760,7 +760,6 @@ package body KartenAllgemein is
       return ProduktionDatentypen.Einzelproduktion
    is begin
       
-      -----------------------
       KartenRessource := LeseKarten.Ressource (KoordinatenExtern => KoordinatenExtern);
       
       case
@@ -928,9 +927,9 @@ package body KartenAllgemein is
       return Boolean
    is begin
       
-      ---------------------------- Was mach ich denn dann hier?
-      ---------------------------- Den aktuellen Grund zurückgeben und entsprechend auf dessen Basis zusätzliche Passierbarkeitseinschränkungen einbauen?
-      ---------------------------- Ist das im aktuellen System überhaupt möglich? Müsste da dann noch eine Unterscheidung zwischen Einheitentypen geben, z. B. Panzer, Infanterie, usw..
+      -- Was mach ich denn dann hier? äöü
+      -- Den aktuellen Grund zurückgeben und entsprechend auf dessen Basis zusätzliche Passierbarkeitseinschränkungen einbauen? äöü
+      -- Ist das im aktuellen System überhaupt möglich? Müsste da dann noch eine Unterscheidung zwischen Einheitentypen geben, z. B. Panzer, Infanterie, usw.. äöü
       
       return LeseKartenDatenbanken.Passierbarkeit (GrundExtern          => LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
                                                    WelcheUmgebungExtern => PassierbarkeitExtern);

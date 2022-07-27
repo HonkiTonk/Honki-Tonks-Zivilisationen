@@ -112,7 +112,7 @@ package body EinheitenModifizieren is
    
    
    
-   --------------------------------------- VorzeichenWechselExtern mal in einen Boolean umschreiben?
+   -- VorzeichenWechselExtern mal in einen Boolean umschreiben? äöü
    procedure PermanenteKostenÄndern
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       VorzeichenWechselExtern : in KartenDatentypen.UmgebungsbereichEins)

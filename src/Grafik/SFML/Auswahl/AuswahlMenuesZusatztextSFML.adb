@@ -17,7 +17,7 @@ package body AuswahlMenuesZusatztextSFML is
       is
          when MenueDatentypen.Rassen_Menü_Enum =>
             if
-              ---------------------- Das 1 .. 18 mal für alle Fälle in eine GloaleKonstante mit ErsteRasse .. LetzteRasse umwandeln?
+              -- Das 1 .. 18 mal für alle Fälle in eine GloaleKonstante mit ErsteRasse .. LetzteRasse umwandeln? äöü
               AktuelleAuswahlExtern in 1 .. 18
             then
                AnzeigeZusatztextRassenmenueSFML.AnzeigeZusatztextRassenmenü (AktuelleAuswahlExtern => AktuelleAuswahlExtern);

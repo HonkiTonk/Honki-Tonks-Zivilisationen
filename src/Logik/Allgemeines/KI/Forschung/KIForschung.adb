@@ -36,7 +36,7 @@ package body KIForschung is
    
    
    
-   ------------------------------------- Das muss durch eine bessere Berechnung ersetzt werden.
+   -- Das muss durch eine bessere Berechnung ersetzt werden. äöü
    procedure NeuesForschungsprojekt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
@@ -109,7 +109,7 @@ package body KIForschung is
                  
       end loop BewertungSchleife;
       
-      ---------------------- Solche Prüfungen alle mal nach Lese/Schreibe verschieben? Dann müsste ich die auch nicht immer wieder lokal Wiederholen. Dafür halt mehr Aufrufe, sollte aber ignorierbar sein.
+      -- Solche Prüfungen alle mal nach Lese/Schreibe verschieben? Dann müsste ich die auch nicht immer wieder lokal Wiederholen. Dafür halt mehr Aufrufe, sollte aber ignorierbar sein. äöü
       case
         WelchesProjekt
       is

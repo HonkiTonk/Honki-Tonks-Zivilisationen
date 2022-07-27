@@ -40,7 +40,7 @@ private
    KampfwerteAngreifer : KampfRecords.KampfwerteRecord;
    
    -- Die Werte gelten immer aus Sicht des Angreifers
-   ----------------------- Mal auslagern und mit KampfsystemEinheiten zusammenführen.
+   -- Mal auslagern und mit KampfsystemEinheiten zusammenführen. äöü
    type Kampf_Unterschiede_Enum is (
                                     Gleich_Enum, Stärker_Enum, Extrem_Stärker_Enum, Schwächer_Enum, Extrem_Schwächer_Enum
                                    );

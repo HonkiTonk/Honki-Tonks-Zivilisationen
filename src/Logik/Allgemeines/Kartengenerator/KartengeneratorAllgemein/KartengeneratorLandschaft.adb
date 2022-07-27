@@ -264,7 +264,7 @@ package body KartengeneratorLandschaft is
    
    
    
-   --------------------------- Die Unterfunktionen noch so umbauen das auch kein Zusatzgrund möglich ist.
+   -- Die Unterfunktionen noch so umbauen das auch kein Zusatzgrund möglich ist. äöü
    function ZusatzExtraberechnungen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Zusatz_Enum)

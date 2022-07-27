@@ -13,7 +13,7 @@ with KartenkoordinateXAchseBerechnen;
 -- Die Überhangschleifen in den Berechnungen sind nötig, da zwar eine Einheitenbewegung nicht so groß sein kann, aber der Spieler eventuell soweit rauszoomt.
 package body Kartenkoordinatenberechnungssystem is
 
-   --------------------------------------- Mal überall die KoordinatenRecords anpassen.
+   -- Mal überall die KoordinatenRecords anpassen. äöü
    function Kartenkoordinatenberechnungssystem
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
@@ -21,9 +21,9 @@ package body Kartenkoordinatenberechnungssystem is
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
       
-      ------------------------ Wenn man das in einen Grafik- und einen Logikteil aufteilt, könnte man dann Zufallsübergänge berechnen?
-      ------------------------ Nein, da auch der Kartengenerator Teil der Logik ist, wenn dann bräuchte man drei Teile, eventuell auch mehr.
-      ------------------------ Wobei, man könnte auch beim Kartengenerator dann einfach False statt True übergeben. Die Grafik sollte zu diesem Zeitpunkt ja nicht auf die Berechnungen zugreifen.
+      -- Wenn man das in einen Grafik- und einen Logikteil aufteilt, könnte man dann Zufallsübergänge berechnen? äöü
+      -- Nein, da auch der Kartengenerator Teil der Logik ist, wenn dann bräuchte man drei Teile, eventuell auch mehr. äöü
+      -- Wobei, man könnte auch beim Kartengenerator dann einfach False statt True übergeben. Die Grafik sollte zu diesem Zeitpunkt ja nicht auf die Berechnungen zugreifen. äöü
       
       if
         ÄnderungExtern.EAchse = KartenKonstanten.LeerEAchseÄnderung
@@ -42,7 +42,7 @@ package body Kartenkoordinatenberechnungssystem is
         ÄnderungExtern.EAchse
       is
          when KartenKonstanten.LeerEAchseÄnderung =>
-            ---------------------------------------------------- Hier mal herausfinden warum das gerne mal falsch ist.
+            -- Hier mal herausfinden warum das gerne mal falsch ist. äöü
             -- Put_Line (KoordinatenExtern.EAchse'Wide_Wide_Image);
             NeueKoordinate (LogikGrafikExtern, KoordinatenExtern.EAchse).EAchse := KoordinatenExtern.EAchse;
             

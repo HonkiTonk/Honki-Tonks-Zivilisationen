@@ -60,7 +60,7 @@ package WichtigesRecordKonstanten is
                                                                ZeitSeitLetzterÄnderung    => WichtigesKonstanten.LeerZeitSeitLetzterÄnderung
                                                               );
    
-   ---------------------------------- Wird noch nicht verwendet. Wird das jemals sinnvoll sein?
+   -- Wird noch nicht verwendet. Wird das jemals sinnvoll sein? äöü
    LeerRassenListe : constant DatenbankRecords.RassenlisteRecord := (
                                                                      Aggressivität       => 0,
                                                                      Expansion           => 0,

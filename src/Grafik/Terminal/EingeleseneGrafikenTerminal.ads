@@ -17,7 +17,7 @@ with KartenressourcenDatenbank;
 
 package EingeleseneGrafikenTerminal is
    
-   ---------------------- Alles hier mal besser aufteilen und übersichtlicher gestalten.
+   -- Alles hier mal besser aufteilen und übersichtlicher gestalten. äöü
    
    type CursorGrafikArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of Wide_Wide_Character;
    CursorGrafik : CursorGrafikArray := (others => WichtigesKonstanten.LeerCursorGrafik);

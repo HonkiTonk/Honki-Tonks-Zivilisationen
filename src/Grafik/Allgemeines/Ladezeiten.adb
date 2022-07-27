@@ -109,7 +109,7 @@ package body Ladezeiten is
    
    
    
-   ---------------------------------------- Die folgenden Ladezeitanzeigen noch erweitern.
+   -- Die folgenden Ladezeitanzeigen noch erweitern. äöü
    procedure RundenendeSchreiben
    is begin
       

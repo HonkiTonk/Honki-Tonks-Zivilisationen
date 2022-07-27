@@ -108,6 +108,6 @@ private
                  GrundExtern.AktuellerGrund in Kartengrund_Unterfläche_Wasser_Enum'Range
               );
 
-   ----------------------- Später Farmen für den Kern einbauen?
+   -- Später Farmen für den Kern einbauen? äöü
    
 end AufgabeEinheitFarm;

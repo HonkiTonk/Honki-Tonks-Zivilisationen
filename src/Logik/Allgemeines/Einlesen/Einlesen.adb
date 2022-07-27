@@ -17,7 +17,7 @@ with EinlesenSounds;
 
 package body Einlesen is
 
-   ---------------------- Die Ladezeiten beim Starten einfach weglassen?
+   -- Die Ladezeiten beim Starten einfach weglassen? äöü
    procedure EinlesenOhneAnzeige
    is begin
       

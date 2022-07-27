@@ -7,8 +7,8 @@ with StadtKonstanten;
 
 with Fehler;
 
------------------------------------- Mal den AchsenKartenfeldNaturalRecord auf AchsenKartenfeldPositiveRecord umschreiben oder hier überall eine Umwandlung einbauen?
------------------------------------- Gilt auch für alle anderen KoordinatenExtern.
+-- Mal den AchsenKartenfeldNaturalRecord auf AchsenKartenfeldPositiveRecord umschreiben oder hier überall eine Umwandlung einbauen? äöü
+-- Gilt auch für alle anderen KoordinatenExtern. äöü
 package body LeseKarten is
    
    function BasisGrund

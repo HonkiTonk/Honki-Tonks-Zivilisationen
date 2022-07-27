@@ -102,7 +102,7 @@ package body KIEinheitFestlegenVerbesserungen is
          XAchseSchleife:
          for XÄnderungSchleifenwert in -Stadtumgebung .. Stadtumgebung loop
             
-            -------------------------------- Das Stadtfeld aus der Prüfung nehmen? Stadt zählt ja selbst als Verbesserung und es könnte deswegen zu Problemen führen?
+            -- Das Stadtfeld aus der Prüfung nehmen? Stadt zählt ja selbst als Verbesserung und es könnte deswegen zu Problemen führen? äöü
             if
               YÄnderungSchleifenwert = 0
               and
@@ -155,7 +155,7 @@ package body KIEinheitFestlegenVerbesserungen is
          return False;
                
       elsif
-        -------------------------------- Auch auf Einheiten ohne die gleiche Aufgabe aber mit gleichem Ziel prüfen?
+        -- Auch auf Einheiten ohne die gleiche Aufgabe aber mit gleichem Ziel prüfen? äöü
         True = KIAufgabenVerteilt.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Verbesserung_Anlegen_Enum,
                                                       RasseExtern           => EinheitRasseNummerExtern.Rasse,
                                                       ZielKoordinatenExtern => VerbesserungKoordinaten)
@@ -288,7 +288,7 @@ package body KIEinheitFestlegenVerbesserungen is
       return Boolean
    is begin
       
-      -------------------------------- Vielleicht ist das Problem ja dass da immer die Koordinaten der Einheit genutzt werden und nicht die ermittelten Koordinaten?
+      -- Vielleicht ist das Problem ja dass da immer die Koordinaten der Einheit genutzt werden und nicht die ermittelten Koordinaten? äöü
       case
         Aufgaben.AufgabeTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                      BefehlExtern             => TastenbelegungDatentypen.Straße_Bauen_Enum,

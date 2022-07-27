@@ -22,7 +22,7 @@ package body DiplomatischerZustand is
       SpielVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern).ZeitSeitLetzterÄnderung := 0;
       SpielVariablen.Diplomatie (RasseZweiExtern, RasseEinsExtern).ZeitSeitLetzterÄnderung := 0;
       
-      --------------------------------- Ausgeklammert weil die -30 noch definiert waren über ProduktionDatentypen.Feldproduktion. Später eigene Datentypen dafür erstellen.
+      -- Ausgeklammert weil die -30 noch definiert waren über ProduktionDatentypen.Feldproduktion. Später eigene Datentypen dafür erstellen. äöü
       
       -- case
       --   NeuerStatusExtern
@@ -92,7 +92,7 @@ package body DiplomatischerZustand is
          SpielVariablen.Diplomatie (EigeneRasseExtern, FremdeRasseExtern).AktuelleSympathieBewertung := SympathieGrenzen (DiplomatischenStatusPrüfen (EigeneRasseExtern => EigeneRasseExtern,
                                                                                                                                                          FremdeRasseExtern => FremdeRasseExtern));
          
-         ------------------------------- Ausgeklammert wegen der Änderung an den ProduktionDatentypen.
+         -- Ausgeklammert wegen der Änderung an den ProduktionDatentypen. äöü
      -- elsif
      --   SpielVariablen.Diplomatie (EigeneRasseExtern, FremdeRasseExtern).AktuelleSympathieBewertung + ÄnderungExtern < ProduktionDatentypen.Feldproduktion'First
      -- then

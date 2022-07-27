@@ -21,7 +21,7 @@ with KIKriegErmitteln;
 
 package body KIGefahrErmitteln is
    
-   --------------------------------- Noch eine Version bauen um die Kampfstärken direkt zu vergleichen?
+   -- Noch eine Version bauen um die Kampfstärken direkt zu vergleichen? äöü
    function GefahrErmitteln
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return EinheitenRecords.RasseEinheitnummerRecord

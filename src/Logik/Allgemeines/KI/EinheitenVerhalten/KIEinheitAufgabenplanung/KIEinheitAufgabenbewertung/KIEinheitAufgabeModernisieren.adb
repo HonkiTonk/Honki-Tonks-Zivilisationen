@@ -67,7 +67,7 @@ package body KIEinheitAufgabeModernisieren is
             null;
       end case;
       
-      -------------------------------------- Muss prüfen ob die Heimatstadt das mitmacht und die Geldgewinnung. Und natürlich ob eine benötigte Ressource vorhanden ist.
+      -- Muss prüfen ob die Heimatstadt das mitmacht und die Geldgewinnung. Und natürlich ob eine benötigte Ressource vorhanden ist. äöü
       
       return 5;
       

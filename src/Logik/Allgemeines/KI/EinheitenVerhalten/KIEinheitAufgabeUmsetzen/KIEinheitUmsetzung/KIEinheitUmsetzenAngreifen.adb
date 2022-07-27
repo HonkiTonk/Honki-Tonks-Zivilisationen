@@ -10,8 +10,8 @@ package body KIEinheitUmsetzenAngreifen is
       return Boolean
    is begin
       
-      --------------------------------------- Hier direkt nächste Einheit zum Angreifen suchen?
-      --------------------------------------- KIEinheitFestlegenAngreifen.Angreifen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      -- Hier direkt nächste Einheit zum Angreifen suchen? äöü
+      -- KIEinheitFestlegenAngreifen.Angreifen (EinheitRasseNummerExtern => EinheitRasseNummerExtern); äöü
       
       -- Platzhalter
       case

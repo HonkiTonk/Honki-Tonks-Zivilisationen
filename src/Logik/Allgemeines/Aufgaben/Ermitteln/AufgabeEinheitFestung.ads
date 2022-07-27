@@ -95,6 +95,6 @@ private
                     GrundExtern.BasisGrund = KartengrundDatentypen.Meeresgrund_Enum)
               );
 
-   ----------------------- Später Festungen für den Kern einbauen.
+   -- Später Festungen für den Kern einbauen. äöü
 
 end AufgabeEinheitFestung;

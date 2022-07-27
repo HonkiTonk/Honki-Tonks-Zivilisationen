@@ -21,7 +21,7 @@ package ForschungKonstanten is
                                                                             AnforderungForschung => (others => ForschungUnmöglich)
                                                                            );
    
-   ------------------------------- Später so umbauen dass es auch veränderbar ist.
+   -- Später so umbauen dass es auch veränderbar ist. äöü
    type TechnologieVerbesserungArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, TastenbelegungDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range) of ForschungenDatentypen.ForschungIDNichtMöglich;
    TechnologieVerbesserung : constant TechnologieVerbesserungArray := (
                                                                        RassenDatentypen.Menschen_Enum =>
@@ -205,7 +205,7 @@ package ForschungKonstanten is
                                                                          )
                                                                       );
       
-   ------------------------------- Später so umbauen dass es auch veränderbar ist.
+   -- Später so umbauen dass es auch veränderbar ist. äöü
    type TechnologischeVoraussetzungArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, AufgabenDatentypen.Einheitenbefehle_Wege_Enum'Range) of ForschungenDatentypen.ForschungIDNichtMöglich;
    TechnologischeVoraussetzung : constant TechnologischeVoraussetzungArray := (
                                                                                RassenDatentypen.Menschen_Enum =>

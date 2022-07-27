@@ -29,7 +29,6 @@ package FarbgebungTerminal is
    
 private
    
-   ------------------------
    type FeldfarbeArray is array (KartengrundDatentypen.Kartengrund_Vorhanden_Enum'Range) of Wide_Wide_String (1 .. 17);
    Feldfarbe : FeldfarbeArray := (
                                   KartengrundDatentypen.Eis_Enum | KartengrundDatentypen.Untereis_Enum                       => "48;2;255;245;238m",

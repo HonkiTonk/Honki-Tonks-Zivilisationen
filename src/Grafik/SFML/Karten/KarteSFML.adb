@@ -218,7 +218,7 @@ package body KarteSFML is
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
-      ------------------------------------ Noch die Grafiken anpassen damit diese Anzeige hier auch Sinn ergibt.
+      -- Noch die Grafiken anpassen damit diese Anzeige hier auch Sinn ergibt. äöü
       AktuellerKartengrund := LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern);
       BasisKartengrund := LeseKarten.BasisGrund (KoordinatenExtern => KoordinatenExtern);
       
@@ -244,7 +244,7 @@ package body KarteSFML is
          end case;
       end if;
       
-      -------------------------- Kan man das auch noch an anderen Stellen (Dateien) verwenden? Wahrscheinlich ja.
+      -- Kan man das auch noch an anderen Stellen (Dateien) verwenden? Wahrscheinlich ja. äöü
       case
         KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld (SpriteAccesExtern  => SpriteAccess,
                                                               TexturAccessExtern => EingeleseneTexturenSFML.KartenfelderAccess (AktuellerKartengrund),

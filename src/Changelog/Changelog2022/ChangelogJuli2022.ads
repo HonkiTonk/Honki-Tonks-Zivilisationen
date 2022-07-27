@@ -21,14 +21,14 @@ package ChangelogJuli2022 is
    
    
 
-   -- Version 0.03. => 0.03. (28..2022):
+   -- Version 0.03.0771 => 0.03. (28..2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.0700 => 0.03.0770 (27.07.2022):
+   -- Version 0.03.0700 => 0.03.0771 (27.07.2022):
    
    -- Diverse Umwandlungen nach Umwandlungen ausgelagert.
    -- Startplatzierung überarbeitet.

@@ -164,7 +164,6 @@ package body TextaccesseSchriftfarbeSetzenSFML is
       Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KartenformauswahlAccess (TextaccessVariablen.KartenformauswahlAccessArray'First),
                                  color => GrafikEinstellungenSFML.Schriftfarben.FarbeÜberschrift);
       
-      ------------------------ Die Einstellposition blau einfärben.
       SchriftfarbeSchleife:
       for SchriftfarbeSchleifenwert in TextaccessVariablen.KartenformauswahlAccessArray'First + 1 .. TextaccessVariablen.KartenformauswahlAccessArray'Last - 1 loop
          

@@ -13,7 +13,7 @@ with KIGrenzpruefungen;
 
 package body KIKartenfeldbewertungModifizieren is
 
-   -------------------------------------- Später Rassen/Technolgie/Sonstigesabhängig die Mindestbewertung ermitteln.
+   -- Später Rassen/Technolgie/Sonstigesabhängig die Mindestbewertung ermitteln. äöü
    -- Ermittelt die Menge an belegtem Grund in der Umgebung und erhöht auf Basis dessen die Feldbewertung.
    function BewertungStadtBauen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
@@ -23,7 +23,7 @@ package body KIKartenfeldbewertungModifizieren is
       
       BewertungKartenfeld := KIKonstanten.KartenfeldBewertungStadtBauenMinimum (RasseExtern);
       
-      ---------------------------------------- Die EAchse später mit berücksichtigen?
+      -- Die EAchse später mit berücksichtigen? äöü
       -- EAchseSchleife:
       -- for EAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEinsEAchse'Range loop
       YAchseSchleife:

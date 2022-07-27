@@ -20,7 +20,7 @@ with EingabeSystemeSFML;
 
 package body DebugmenueTerminal is
 
-   ----------------------- Überarbeiten/Wieder für Terminal zurückbauen.
+   -- Überarbeiten/Wieder für Terminal zurückbauen. äöü
    procedure Menü
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin

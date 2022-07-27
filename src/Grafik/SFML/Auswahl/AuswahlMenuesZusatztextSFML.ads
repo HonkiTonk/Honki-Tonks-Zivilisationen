@@ -13,7 +13,7 @@ package AuswahlMenuesZusatztextSFML is
 
 private
 
-   ----------------------- Das mal auslagern, damit es auch in den Untermenüs verwendet werden kann?
+   -- Das mal auslagern, damit es auch in den Untermenüs verwendet werden kann? äöü
    MaximaleRassen : constant Positive := 18;
    AnzahlKartengrößen : constant Positive := 9;
    MaximaleKartenformen : constant Positive := 10;

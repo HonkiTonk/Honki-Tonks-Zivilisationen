@@ -91,7 +91,7 @@ package body KIEinheitFestlegenAngreifen is
                                                               FremdeRasseExtern => RasseSchleifenwert)
            = SystemDatentypen.Krieg_Enum
          then
-            -------------------------------------- Es sollte auch noch Prüfungen auf die Stärke der feindlichen Rassen erfolgen.
+            -- Es sollte auch noch Prüfungen auf die Stärke der feindlichen Rassen erfolgen. äöü
             Ziel := RasseSchleifenwert;
             exit RassenSchleife;
             

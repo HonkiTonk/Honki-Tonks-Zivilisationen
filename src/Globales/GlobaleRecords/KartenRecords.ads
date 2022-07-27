@@ -184,7 +184,7 @@ package KartenRecords is
    
    
    
-   ------------------------------------ Später überall einbauen wo es sinnvoll ist.
+   -- Später überall einbauen wo es sinnvoll ist. äöü
    type KartengrundRecord is record
       
       BasisGrund : KartengrundDatentypen.Kartengrund_Enum;

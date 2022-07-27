@@ -8,7 +8,7 @@ with ProduktionDatentypen;
 package AufgabenArbeitszeitWald is
 
    type ArbeitszeitArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, KartengrundDatentypen.Kartengrund_Arbeitszeit_Enum'Range) of ProduktionDatentypen.ArbeitszeitVorhanden;
-   ------------------------------- Lava und Planetenkern berücksichtigen wenn ich später die Kerfläche einbaue.
+   -- Lava und Planetenkern berücksichtigen wenn ich später die Kerfläche einbaue. äöü
    Arbeitszeit : constant ArbeitszeitArray := (
                                                RassenDatentypen.Menschen_Enum =>
                                                  (

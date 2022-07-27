@@ -20,7 +20,7 @@ package body KIEinheitUmsetzenVerbesserungen is
       WelcheVerbesserung := LeseEinheitenGebaut.KIVerbesserung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       VorhandeneVerbesserung := LeseKarten.Verbesserung (KoordinatenExtern => EinheitKoordinaten);
       
-      ------------------------------------- Verhindert das Verbinden von Städten mit Straßen und weiteres. Später eine bessere Lösung bauen.
+      -- Verhindert das Verbinden von Städten mit Straßen und weiteres. Später eine bessere Lösung bauen. äöü
       if
         LeseKarten.RasseBelegtGrund (KoordinatenExtern => EinheitKoordinaten) /= EinheitRasseNummerExtern.Rasse
       then
@@ -30,8 +30,8 @@ package body KIEinheitUmsetzenVerbesserungen is
          null;
       end if;
       
-      ------------------------------------- Aufgaben muss dringend überarbeitet werden.
-      ------------------------------------- Diese ganze Aufteilung zwischen AufgabenDatentypen, TastenbelegungDatentypen und KartenVerbesserungDatentypen muss mal verbessert werden.
+      -- Aufgaben muss dringend überarbeitet werden. äöü
+      -- Diese ganze Aufteilung zwischen AufgabenDatentypen, TastenbelegungDatentypen und KartenVerbesserungDatentypen muss mal verbessert werden. äöü
       case
         WelcheVerbesserung
       is

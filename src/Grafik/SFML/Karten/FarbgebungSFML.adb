@@ -25,8 +25,7 @@ package body FarbgebungSFML is
    
    
    
-   -- -------------------
-   -- function FarbeVerbesserungErmitteln ???
-   -- function FarbeEinheitErmitteln ???
+   -- function FarbeVerbesserungErmitteln ??? äöü
+   -- function FarbeEinheitErmitteln ??? äöü
 
 end FarbgebungSFML;

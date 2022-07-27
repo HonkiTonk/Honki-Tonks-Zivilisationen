@@ -63,7 +63,7 @@ package body KIEinheitAufgabeAufloesen is
    
    
    
-   --------------------------------- In einzelne Bereiche aufteilen?
+   -- In einzelne Bereiche aufteilen? äöü
    function Stadtzustand
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return KIDatentypen.AufgabenWichtigkeitKlein
@@ -187,7 +187,7 @@ package body KIEinheitAufgabeAufloesen is
    
    
    
-   -------------------------------- Später noch mal erweitern, bringt ja nichts die Einheit zu behalten, wenn die Städte dafür verhungern.
+   -- Später noch mal erweitern, bringt ja nichts die Einheit zu behalten, wenn die Städte dafür verhungern. äöü
    function StadtzustandKrieg
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return KIDatentypen.AufgabenWichtigkeitKlein

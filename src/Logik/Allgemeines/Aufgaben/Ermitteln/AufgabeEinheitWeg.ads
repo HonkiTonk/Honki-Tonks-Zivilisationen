@@ -45,8 +45,8 @@ private
 
    VorhandenerGrund : KartenRecords.KartengrundRecord;
 
-   --------------------- Benutze ich das mehrmals und wenn ja, kann ich es zusammenführen?
-   --------------------- Bräuchte ich hier aber in verschiedenen Ausführungen. Vermutlich sinnvoll die alle anzulegen aber wahrscheinlich nicht sie auszulagern.
+   -- Benutze ich das mehrmals und wenn ja, kann ich es zusammenführen? äöü
+   -- Bräuchte ich hier aber in verschiedenen Ausführungen. Vermutlich sinnvoll die alle anzulegen aber wahrscheinlich nicht sie auszulagern. äöü
    type WelcheWegartArray is array (KartenVerbesserungDatentypen.Karten_Weg_Enum'Range) of AufgabenDatentypen.Einheitenbefehle_Wege_Enum;
    WelcheWegart : constant WelcheWegartArray := (
                                                  KartenVerbesserungDatentypen.Leer_Weg_Enum             => AufgabenDatentypen.Straße_Bauen_Enum,
@@ -127,6 +127,6 @@ private
                     GrundExtern.BasisGrund = KartengrundDatentypen.Meeresgrund_Enum)
               );
 
-   ----------------------- Später Wege für den Kern einbauen?
+   -- Später Wege für den Kern einbauen? äöü
 
 end AufgabeEinheitWeg;

@@ -3,8 +3,8 @@ pragma Warnings (Off, "*array aggregate*");
 
 package EinheitenDatentypen is
    
-   ------------------ Eigenen Datentyp für Arbeitszeit anlegen.
-   ------------------ Eigene Datentypen für Erfahrung/Rang anlegen.
+   -- Eigenen Datentyp für Arbeitszeit anlegen. äöü
+   -- Eigene Datentypen für Erfahrung/Rang anlegen. äöü
    
    type MaximaleEinheitenMitNullWert is range 0 .. 1_000;
    subtype MaximaleEinheiten is MaximaleEinheitenMitNullWert range 1 .. MaximaleEinheitenMitNullWert'Last;

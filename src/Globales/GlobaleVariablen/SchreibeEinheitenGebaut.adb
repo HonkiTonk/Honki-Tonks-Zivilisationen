@@ -64,7 +64,7 @@ package body SchreibeEinheitenGebaut is
             then
                SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Lebenspunkte := MaximaleLebenspunkte;
                
-               ------------------------------------- Wäre es sinnvoll das auszulagern? Scheint eher nicht der Fall zu sein.
+               -- Wäre es sinnvoll das auszulagern? Scheint eher nicht der Fall zu sein. äöü
                case
                  SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigung.Aufgabe
                is

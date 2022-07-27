@@ -26,7 +26,7 @@ package body KIEinheitenBauen is
    is begin
       
       -- 3 * AnzahlStädte sollte immer größer 0 sein, da nur bei vorhandenen Städten was gebaut werden sollte.
-      ----------------------------------- AnzahlStädte mal übergeben und nicht mehr so einfach benutzen lassen.
+      -- AnzahlStädte mal übergeben und nicht mehr so einfach benutzen lassen. äöü
       AnzahlStädte := EinheitenDatentypen.MaximaleEinheiten (LeseWichtiges.AnzahlStädte (RasseExtern => StadtRasseNummerExtern.Rasse));
       VorhandeneEinheiten := LeseWichtiges.AnzahlEinheiten (RasseExtern => StadtRasseNummerExtern.Rasse);
       
@@ -177,7 +177,7 @@ package body KIEinheitenBauen is
          return -5;
          
       else
-         -------------------------------- Auf die maximale Größe der ID und des KIDatentypen.BauenBewertung Datentyps achten.
+         -- Auf die maximale Größe der ID und des KIDatentypen.BauenBewertung Datentyps achten. äöü
          return 20 + KIDatentypen.BauenBewertung (EinheitenIDExtern);
       end if;
       

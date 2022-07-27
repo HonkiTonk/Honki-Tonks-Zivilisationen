@@ -9,13 +9,13 @@ package KartenDatentypen is
    subtype Stadtfeld is KartenfeldPositiv range KartenfeldPositiv'First .. 20;
    subtype SichtweiteNatural is KartenfeldNatural range KartenfeldNatural'First .. 10;
    subtype Sichtweite is SichtweiteNatural range 1 .. SichtweiteNatural'Last;
-   ---------------------------------- Noch Umgebungsbereich von 0 .. X einbauen?
+   -- Noch Umgebungsbereich von 0 .. X einbauen? äöü
    subtype UmgebungsbereichDrei is Kartenfeld range -3 .. 3;
    subtype UmgebungsbereichZwei is UmgebungsbereichDrei range -2 .. 2;
    subtype UmgebungsbereichEins is UmgebungsbereichZwei range -1 .. 1;
    
-   --------------------------- Kann man das überhaupt sinnvoll einbauen? Müsste eventuell alle Funktionen/Prozeduren/Variablen/Records entsprechend anpassen, damit es immer eine Y- und XVariante gibt.
-   --------------------------- Alternative könnte man auch einen übergeordneten Typ erstellen und dann die beiden Achsen darauf basierend aufteilen, dann könnte man für allgemeine Sachen den Übertyp benutzen.
+   -- Kann man das überhaupt sinnvoll einbauen? Müsste eventuell alle Funktionen/Prozeduren/Variablen/Records entsprechend anpassen, damit es immer eine Y- und XVariante gibt. äöü
+   -- Alternative könnte man auch einen übergeordneten Typ erstellen und dann die beiden Achsen darauf basierend aufteilen, dann könnte man für allgemeine Sachen den Übertyp benutzen. äöü
    -- type KartenfeldXAchse is new Kartenfeld;
    -- subtype KartenfeldMitNullXAchse is KartenfeldXAchse range KartenfeldXAchse (KartenfeldNatural'First) .. KartenfeldXAchse (KartenfeldNatural'Last);
    -- subtype KartenfeldPositivXAchse is KartenfeldMitNullXAchse range KartenfeldMitNullXAchse (KartenfeldPositiv'First) .. KartenfeldMitNullXAchse (KartenfeldPositiv'Last);
@@ -62,7 +62,7 @@ package KartenDatentypen is
    subtype Kartenform_Y_Einstellbar_Enum is Kartenform_Enum range Karte_Y_Kein_Übergang_Enum .. Karte_Y_Verschobener_Übergang_Enum;
    subtype Kartenform_X_Einstellbar_Enum is Kartenform_Enum range Karte_X_Kein_Übergang_Enum .. Karte_X_Verschobener_Übergang_Enum;
    
-   -------------------------- Später umschreiben? auf
+   -- Später umschreiben? auf äöü
    -- type Kartenform_Enum is (
    --                         Kartenform_Kein_Übergang_Enum, Kartenform_Übergang_Enum, Kartenform_Rückwärts_Verschobener_Übergang_Enum, Kartenform_Verschobener_Übergang_Enum
    --                        ); 
@@ -74,7 +74,7 @@ package KartenDatentypen is
    
    
    -- Neue Kartentemperaturen immer vor Wüste einfügen um Anpassungen in KartenDatentypen zu vermeiden.
-   -------------------------------- Statt eines Enums einen Zahlenwert von 0 bis 100 einbauen?
+   -- Statt eines Enums einen Zahlenwert von 0 bis 100 einbauen? äöü
    type Kartentemperatur_Enum is (
                                   Kartentemperatur_Kalt_Enum, Kartentemperatur_Gemäßigt_Enum, Kartentemperatur_Heiß_Enum, Kartentemperatur_Eiszeit_Enum, Kartentemperatur_Wüste_Enum
                                  );
@@ -105,7 +105,6 @@ package KartenDatentypen is
    
    
    
-   -------------------------------- Auch mal bessere Bereiche ermitteln/einbauen.
    type GesamteFeldbewertung is range 0 .. 1_250;
    subtype Einzelbewertung is GesamteFeldbewertung range 0 .. 10;
 

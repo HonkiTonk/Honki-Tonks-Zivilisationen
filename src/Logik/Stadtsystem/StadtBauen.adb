@@ -180,7 +180,7 @@ package body StadtBauen is
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
       
-      --------------------------------------- Auch mal vollständig nach SchreibeStadt auslagern.
+      -- Auch mal vollständig nach SchreibeStadt auslagern. äöü
       SchreibeStadtGebaut.Nullsetzung (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
       Stadtart := HauptstadtPrüfen (RasseExtern => StadtRasseNummerExtern.Rasse);

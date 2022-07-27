@@ -25,7 +25,7 @@ package SpielVariablen is
    type CursorImSpielArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of KartenRecords.CursorRecord;
    CursorImSpiel : CursorImSpielArray := (others => WichtigesRecordKonstanten.LeerCursor);
    
-   --------------------------------------- Später über Nutzereingaben neu belegbar machen.
+   -- Später über Nutzereingaben neu belegbar machen. äöü
    type GrenzenArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of SpielRecords.GrenzenRecord;
    Grenzen : GrenzenArray := (others => WichtigesRecordKonstanten.LeerGrenzen);
 

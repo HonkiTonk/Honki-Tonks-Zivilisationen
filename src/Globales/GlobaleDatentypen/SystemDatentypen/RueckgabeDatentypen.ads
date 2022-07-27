@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 package RueckgabeDatentypen is
 
-   --------------------- Weitere Auteilungen vornehmen, wie bei den RassenDatentypen.
+   -- Weitere Auteilungen vornehmen, wie bei den RassenDatentypen. äöü
    type Rückgabe_Werte_Enum is (
                                  -- Allgemeines
                                  Start_Weiter_Enum, Zurück_Enum, Hauptmenü_Enum, Spiel_Beenden_Enum, Ja_Enum, Nein_Enum, Speichern_Enum, Laden_Enum, Optionen_Enum, Wiederherstellen_Enum, Standard_Enum,
