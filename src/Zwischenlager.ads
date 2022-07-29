@@ -1,4 +1,9 @@
-
+Sf.sfTrue = Sf.Graphics.Rect.contains (rect => (InteraktionAuswahl.PositionenForschung (ForschungSchleifenwert).left,
+                                                InteraktionAuswahl.PositionenForschung (ForschungSchleifenwert).top,
+                                                InteraktionAuswahl.PositionenForschung (ForschungSchleifenwert).width,
+                                                InteraktionAuswahl.PositionenForschung (ForschungSchleifenwert).height),
+                                       x    => Float (GrafikEinstellungenSFML.MausPosition.x),
+                                       y    => Float (GrafikEinstellungenSFML.MausPosition.y))
 
 
 

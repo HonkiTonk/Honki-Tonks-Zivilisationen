@@ -1,6 +1,9 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with Sf.Graphics.RenderWindow;
+with Sf.Graphics.View;
+
 with StadtKonstanten;
 with EinheitenKonstanten;
 
@@ -16,6 +19,7 @@ with KarteAllgemeinesSFML;
 with TextberechnungenHoeheSFML;
 with Vergleiche;
 with HintergrundSFML;
+with ViewsSFML;
 
 package body KarteInformationenSFML is
 
@@ -35,14 +39,18 @@ package body KarteInformationenSFML is
             return;
             
          when False =>
-            null;
+            Sf.Graphics.View.setSize (view => ViewsSFML.SeitenleisteKartenviewAccess,
+                                      size => (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x), Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y))); -- YWert verdoppeln?
+            Sf.Graphics.View.setCenter (view   => ViewsSFML.SeitenleisteKartenviewAccess,
+                                        center => (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) / 2.00, Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y) / 2.00)); -- YWert verdoppeln?
+            Sf.Graphics.RenderWindow.setView (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                              view         => ViewsSFML.SeitenleisteKartenviewAccess);
       end case;
       
-      FensterInformationen := (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) * 0.20, Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y));
       
       HintergrundSFML.SeitenleisteHintergrund;
       
-      Textposition := (StartpunktText.x + Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) * 0.80, StartpunktText.y);
+      Textposition := StartpunktText;
       
       Textposition := KarteWichtigesSFML.WichtigesInformationen (RasseExtern        => RasseExtern,
                                                                  TextpositionExtern => Textposition,
@@ -70,6 +78,12 @@ package body KarteInformationenSFML is
          when False =>
             null;
       end case;
+      
+      Sf.Graphics.View.setViewport (view     => ViewsSFML.SeitenleisteKartenviewAccess,
+                                    viewport => (0.80, 0.00, 0.80, 1.00)); -- YWert verdoppeln?
+      
+      Sf.Graphics.RenderWindow.setView (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                        view         => ViewsSFML.StandardviewAccess);
       
    end KarteInformationenSFML;
    

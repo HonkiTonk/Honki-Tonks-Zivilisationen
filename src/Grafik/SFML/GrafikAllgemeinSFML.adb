@@ -5,12 +5,14 @@ with Sf; use Sf;
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Font;
 with Sf.Window.Cursor;
+with Sf.Graphics.View;
 
 with GrafikDatentypen;
 
 with GrafikStartEndeSFML;
 with GrafikEinstellungenSFML;
 with NachGrafiktask;
+with ViewsSFML;
 
 package body GrafikAllgemeinSFML is
       
@@ -30,13 +32,13 @@ package body GrafikAllgemeinSFML is
             GrafikEinstellungenSFML.AktuelleFensterAuflösung.x := Sf.Graphics.RenderWindow.getSize (renderWindow => GrafikEinstellungenSFML.FensterAccess).x;
             GrafikEinstellungenSFML.AktuelleFensterAuflösung.y := Sf.Graphics.RenderWindow.getSize (renderWindow => GrafikEinstellungenSFML.FensterAccess).y;
             
-            Sf.Graphics.View.setSize (view => NeueAuflösungAccess,
+            Sf.Graphics.View.setSize (view => ViewsSFML.StandardviewAccess,
                                       size => (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x), Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y)));
-            Sf.Graphics.View.setCenter (view   => NeueAuflösungAccess,
+            Sf.Graphics.View.setCenter (view   => ViewsSFML.StandardviewAccess,
                                         center => (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) / 2.00, Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y) / 2.00));
       
             Sf.Graphics.RenderWindow.setView (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                              view         => NeueAuflösungAccess);
+                                              view         => ViewsSFML.StandardviewAccess);
       end case;
       
    end FensterAnpassen;

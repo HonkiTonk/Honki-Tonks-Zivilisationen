@@ -6,7 +6,6 @@ with Ada.Directories; use Ada.Directories;
 with SystemRecords;
 with OptionenVariablen;
 
-with SchreibenEinstellungen;
 with GrafikEinstellungenSFML;
 
 package body EinlesenEinstellungen is
@@ -15,17 +14,15 @@ package body EinlesenEinstellungen is
    is begin
       
       case
-        Exists (Name => "Einstellungen/Einstellungen")
+        Exists (Name => "Einstellungen")
       is
          when True =>
             Open (File => DateiEinstellungenEinlesen,
                   Mode => In_File,
-                  Name => "Einstellungen/Einstellungen");
+                  Name => "Einstellungen");
 
          when False =>
             GrafikEinstellungenSFML.StandardGrafikEinstellungenLaden;
-            -- Muss das schreiben hier sein? Könnte auch weggelassen werden, bis der Nutzer eigene Einstellungen vornimmt.
-            SchreibenEinstellungen.SchreibenEinstellungen;
             return;
       end case;
          

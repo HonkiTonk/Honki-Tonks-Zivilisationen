@@ -41,10 +41,6 @@ package body HintergrundSFML is
       if
         EingeleseneTexturenSFML.HintergrundAccess (GrafikDatentypen.Seitenleiste_Hintergrund_Enum) /= null
       then
-         Sf.Graphics.Sprite.setPosition (sprite   => HintergrundspriteAccess,
-                                         position => (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) * 0.80, 0.00));
-         -- Die aktuelle Skalierung macht die Leiste deutlich größer als es sein müsste, ist aber nicht zu bemerken weil sie einfach aus dem Bild rausgerendert wird. äöü
-         -- Später mal anpassen. äöü
          Sf.Graphics.Sprite.scale (sprite  => HintergrundspriteAccess,
                                    factors => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenGesamtesBild (SpriteAccessExtern  => HintergrundspriteAccess,
                                                                                                                TextureAccessExtern => EingeleseneTexturenSFML.HintergrundAccess

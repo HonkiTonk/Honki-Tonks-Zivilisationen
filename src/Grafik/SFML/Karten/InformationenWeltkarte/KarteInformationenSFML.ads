@@ -2,8 +2,6 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 private with Sf.System.Vector2;
--- private with Sf.Graphics.Rect;
--- private with Sf.Graphics.View;
 
 with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
@@ -32,15 +30,9 @@ private
    AktuelleKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
 
    StartpunktText : constant Sf.System.Vector2.sfVector2f := (5.00, 5.00);
-
-   FensterInformationen : Sf.System.Vector2.sfVector2f;
    Textposition : Sf.System.Vector2.sfVector2f;
    TextpositionStadt : Sf.System.Vector2.sfVector2f;
    TextpositionEinheit : Sf.System.Vector2.sfVector2f;
-
-   -- InformationenViewGröße : Sf.Graphics.Rect.sfFloatRect;
-
-   -- InformationenViewAcces : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.createFromRect (rectangle => InformationenViewGröße);
 
 
 

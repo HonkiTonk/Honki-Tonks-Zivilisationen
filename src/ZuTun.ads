@@ -20,3 +20,10 @@
 -- Sonstiges:
 
 -- Diese ganze Aufteilung zwischen AufgabenDatentypen, TastenbelegungDatentypen und KartenVerbesserungDatentypen muss mal verbessert werden.
+
+
+
+
+-- Erinnerungen:
+
+--

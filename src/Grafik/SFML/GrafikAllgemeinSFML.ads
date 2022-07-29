@@ -5,7 +5,6 @@ with Sf.System.Vector2;
 
 private with Sf.Graphics;
 private with Sf.Graphics.Rect;
-private with Sf.Graphics.View;
 
 package GrafikAllgemeinSFML is
 
@@ -20,7 +19,5 @@ package GrafikAllgemeinSFML is
 private
 
    NeueAuflösung : Sf.Graphics.Rect.sfFloatRect;
-
-   NeueAuflösungAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.createFromRect (rectangle => NeueAuflösung);
 
 end GrafikAllgemeinSFML;

@@ -7,24 +7,25 @@ package ChangelogJuli2022 is
    
    
 
-   -- Version 0.03. => 0.03. (30.07.2022):
+   -- Version 0.03.0810 => 0.03. (30.07.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03. => 0.03. (29.07.2022):
+   -- Version 0.03.0771 => 0.03.0810 (29.07.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Verzeichnisstruktur überarbeitet.
+   -- Mehr mit Views herumexperimentiert.
+   -- Text in der Weltkartenseitenleiste wird jetzt vollständig angezeigt.
+   -- Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    
 
-   -- Version 0.03.0771 => 0.03. (28..2022):
+   -- Version 0.03.0771 => 0.03.0771 (28.07.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 

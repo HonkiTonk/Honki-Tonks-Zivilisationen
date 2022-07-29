@@ -4,7 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 with Sf.Graphics;
 with Sf.Graphics.Color;
 with Sf.System.Vector2;
-
 with Sf.Window.Cursor;
 
 with SystemRecords;
@@ -16,13 +15,12 @@ package GrafikEinstellungenSFML is
    FensterAccess : Sf.Graphics.sfRenderWindow_Ptr;
    MausAccess : Sf.Window.sfCursor_Ptr;
    SchriftartAccess : Sf.Graphics.sfFont_Ptr;
-   
+      
+   -- Diesen Wert hier immer im Grafiktask neu festlegen lassen, da die Verwendung der A/SFML Funktion im Logiktask zu Abstürzen führen kann.
    MausPosition : Sf.System.Vector2.sfVector2i := (1, 1);
       
    FensterEinstellungen : SystemRecords.FensterRecord;
-   
-   -- Hier mal einen globalen Zeilenabstand einbauen. Geht nicht so einfach da hier die Größe und alles noch gar nicht feststeht. äöü
-   
+      
    AktuelleFensterAuflösung : Sf.System.Vector2.sfVector2u;
    
    -- Später wie hier überall mehr konstante Standards und dann einfach zuweisen. Nutzereinstellungen dann auch in den Einstellugnen speichern! äöü

@@ -14,17 +14,17 @@ package body SchreibenEinstellungen is
    is begin
       
       case
-        Exists (Name => "Einstellungen/Einstellungen")
+        Exists (Name => "Einstellungen")
       is
          when True =>
             Open (File => DateiEinstellungenSchreiben,
                   Mode => Out_File,
-                  Name => "Einstellungen/Einstellungen");
+                  Name => "Einstellungen");
 
          when False =>
             Create (File => DateiEinstellungenSchreiben,
                     Mode => Out_File,
-                    Name => "Einstellungen/Einstellungen");
+                    Name => "Einstellungen");
       end case;
          
       SystemRecords.NutzerEinstellungenRecord'Write (Stream (File => DateiEinstellungenSchreiben),

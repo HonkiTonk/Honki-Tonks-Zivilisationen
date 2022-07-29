@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Directories; use Ada.Directories;
 
 with Warnung;
+with Fehler;
 
 package body SchreibenVerzeichnisse is
 
@@ -18,7 +19,6 @@ package body SchreibenVerzeichnisse is
    
    
    
-   -- Das hier mal ein wenig anpassen, was welche Meldung gibt. äöü
    procedure SchreibeGrafikVerzeichnisse
    is begin
       
@@ -30,40 +30,7 @@ package body SchreibenVerzeichnisse is
 
          when False =>
             Create_Directory (New_Directory => "Grafik");
-            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeGrafikVerzeichnisse - Ordner Grafik wurde erstellt.");
-      end case;
-      
-      case
-        Exists (Name => "Grafik/Kartenfelder")
-      is
-         when True =>
-            null;
-
-         when False =>
-            Create_Directory (New_Directory => "Grafik/Kartenfelder");
-            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeGrafikVerzeichnisse - Ordner Grafik/Kartenfelder wurde erstellt.");
-      end case;
-      
-      case
-        Exists (Name => "Grafik/Verbesserungen")
-      is
-         when True =>
-            null;
-
-         when False =>
-            Create_Directory (New_Directory => "Grafik/Verbesserungen");
-            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeGrafikVerzeichnisse - Ordner Grafik/Verbesserungen wurde erstellt.");
-      end case;
-      
-      case
-        Exists (Name => "Grafik/Einheiten")
-      is
-         when True =>
-            null;
-
-         when False =>
-            Create_Directory (New_Directory => "Grafik/Einheiten");
-            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeGrafikVerzeichnisse - Ordner Grafik/Einheiten wurde erstellt.");
+            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeGrafikVerzeichnisse - Ordner Grafik erstellt.");
       end case;
       
       case
@@ -74,7 +41,18 @@ package body SchreibenVerzeichnisse is
 
          when False =>
             Create_Directory (New_Directory => "Grafik/Bauwerke");
-            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeGrafikVerzeichnisse - Ordner Grafik/Bauwerke wurde erstellt.");
+            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeGrafikVerzeichnisse - Ordner Bauwerke erstellt.");
+      end case;
+      
+      case
+        Exists (Name => "Grafik/Einheiten")
+      is
+         when True =>
+            null;
+
+         when False =>
+            Create_Directory (New_Directory => "Grafik/Einheiten");
+            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeGrafikVerzeichnisse - Ordner Einheiten erstellt.");
       end case;
       
       case
@@ -85,7 +63,62 @@ package body SchreibenVerzeichnisse is
 
          when False =>
             Create_Directory (New_Directory => "Grafik/Hintergrund");
-            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeGrafikVerzeichnisse - Ordner Grafik/Hintergrund wurde erstellt.");
+            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeGrafikVerzeichnisse - Ordner Hintergrund  erstellt.");
+      end case;
+      
+      case
+        Exists (Name => "Grafik/Kartenfelder")
+      is
+         when True =>
+            null;
+
+         when False =>
+            Create_Directory (New_Directory => "Grafik/Kartenfelder");
+            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeGrafikVerzeichnisse - Ordner Kartenfelder erstellt.");
+      end case;
+      
+      case
+        Exists (Name => "Grafik/Kartenfluss")
+      is
+         when True =>
+            null;
+
+         when False =>
+            Create_Directory (New_Directory => "Grafik/Kartenfluss");
+            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeGrafikVerzeichnisse - Ordner Kartenfluss erstellt.");
+      end case;
+      
+      case
+        Exists (Name => "Grafik/Kartenressourcen")
+      is
+         when True =>
+            null;
+
+         when False =>
+            Create_Directory (New_Directory => "Grafik/Kartenressourcen");
+            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeGrafikVerzeichnisse - Ordner Kartenressourcen erstellt.");
+      end case;
+      
+      case
+        Exists (Name => "Grafik/Verbesserungen")
+      is
+         when True =>
+            null;
+
+         when False =>
+            Create_Directory (New_Directory => "Grafik/Verbesserungen");
+            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeGrafikVerzeichnisse - Ordner Verbesserungen erstellt.");
+      end case;
+      
+      case
+        Exists (Name => "Grafik/Wege")
+      is
+         when True =>
+            null;
+
+         when False =>
+            Create_Directory (New_Directory => "Grafik/Wege");
+            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeGrafikVerzeichnisse - Ordner Wege erstellt.");
       end case;
       
    end SchreibeGrafikVerzeichnisse;
@@ -103,7 +136,7 @@ package body SchreibenVerzeichnisse is
 
          when False =>
             Create_Directory (New_Directory => "Audio");
-            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeAudioVerzeichnisse - Ordner Audio wurde erstellt.");
+            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeAudioVerzeichnisse - Ordner Audio erstellt.");
       end case;
       
       case
@@ -114,7 +147,7 @@ package body SchreibenVerzeichnisse is
 
          when False =>
             Create_Directory (New_Directory => "Audio/Musik");
-            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeAudioVerzeichnisse - Ordner Audio/Musik wurde erstellt.");
+            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeAudioVerzeichnisse - Ordner Musik erstellt.");
       end case;
       
       case
@@ -125,7 +158,7 @@ package body SchreibenVerzeichnisse is
 
          when False =>
             Create_Directory (New_Directory => "Audio/Sound");
-            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeAudioVerzeichnisse - Ordner Audio/Sound wurde erstellt.");
+            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeAudioVerzeichnisse - Ordner Sound erstellt.");
       end case;
       
    end SchreibeAudioVerzeichnisse;
@@ -142,9 +175,7 @@ package body SchreibenVerzeichnisse is
             null;
             
          when False =>
-            -- Hier auch eine Fehlermeldung einbauen? Ohne Vorhandene Sprachen kann ja nichts angezeigt werden. Oder deutsch als festgelegten Standard einbauen? äöü
-            Create_Directory (New_Directory => "Sprachen");
-            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeSonstigeVerzeichnisse - Ordner Sprachen wurde erstellt.");
+            Fehler.LogikFehler (FehlermeldungExtern => "SchreibenVerzeichnisse.SchreibeSonstigeVerzeichnisse - Sprachen nicht vorhanden.");
       end case;
       
       case
@@ -155,17 +186,6 @@ package body SchreibenVerzeichnisse is
 
          when False =>
             Create_Directory (New_Directory => "Spielstand");
-      end case;
-      
-      -- Einstellungen genau wie die Logdatei einfach in den Hauptordner werfen? äöü
-      case
-        Exists (Name => "Einstellungen")
-      is
-         when True =>
-            null;
-
-         when False =>
-            Create_Directory (New_Directory => "Einstellungen");
       end case;
       
       case
