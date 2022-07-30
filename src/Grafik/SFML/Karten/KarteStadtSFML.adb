@@ -25,6 +25,43 @@ with Warnung;
 with HintergrundSFML;
 
 package body KarteStadtSFML is
+   
+   procedure StadtkarteAnzeigen
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+   is begin
+      
+      AnzeigeStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      
+      TextPosition := StadtInformationenSFML.Stadt (RasseExtern            => StadtRasseNummerExtern.Rasse,
+                                                    StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                    AnzeigeAnfangenExtern  => (BerechnungenKarteSFML.StadtKarte.x + 5.00, 5.00));
+      
+      if
+        GrafikEinstellungenSFML.MausPosition.x in Sf.sfInt32 (0.00) .. Sf.sfInt32 (BerechnungenKarteSFML.StadtKarte.x)
+        and
+          GrafikEinstellungenSFML.MausPosition.y in Sf.sfInt32 (0.00) .. Sf.sfInt32 (BerechnungenKarteSFML.StadtKarte.y)
+      then
+         MausInformationen := True;
+         
+      else
+         MausInformationen := False;
+      end if;
+      
+      -- Werden die Mausinformationen in der SFML Version überhaupt benötigt?
+      case
+        MausInformationen
+      is
+         when True =>
+            -- Hier eventuell Informationen wie den Gebäudenamen und was das Gebäude macht einbauen?
+            null;
+            
+         when False =>
+            null;
+      end case;
+      
+   end StadtkarteAnzeigen;
+   
+   
 
    procedure AnzeigeStadt
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
@@ -78,33 +115,6 @@ package body KarteStadtSFML is
          YMultiplikator := YMultiplikator + 1.00;
          
       end loop YAchseSchleife;
-      
-      TextPosition := StadtInformationenSFML.Stadt (RasseExtern            => StadtRasseNummerExtern.Rasse,
-                                                    StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                    AnzeigeAnfangenExtern  => (BerechnungenKarteSFML.StadtKarte.x + 5.00, 5.00));
-      
-      if
-        GrafikEinstellungenSFML.MausPosition.x in Sf.sfInt32 (0.00) .. Sf.sfInt32 (BerechnungenKarteSFML.StadtKarte.x)
-        and
-          GrafikEinstellungenSFML.MausPosition.y in Sf.sfInt32 (0.00) .. Sf.sfInt32 (BerechnungenKarteSFML.StadtKarte.y)
-      then
-         MausInformationen := True;
-         
-      else
-         MausInformationen := False;
-      end if;
-      
-      -- Werden die Mausinformationen in der SFML Version überhaupt benötigt?
-      case
-        MausInformationen
-      is
-         when True =>
-            -- Hier eventuell Informationen wie den Gebäudenamen und was das Gebäude macht einbauen?
-            null;
-            
-         when False =>
-            null;
-      end case;
       
    end AnzeigeStadt;
    

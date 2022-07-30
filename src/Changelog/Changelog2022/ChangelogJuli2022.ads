@@ -1,16 +1,17 @@
 package ChangelogJuli2022 is
 
-   -- Version 0.03. => 0.03. (31.07.2022):
+   -- Version 0.03.0835 => 0.03. (31.07.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.0810 => 0.03. (30.07.2022):
+   -- Version 0.03.0810 => 0.03.0835 (30.07.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehler behoben der zur falschen Anzeige von Flüssen führte.
+   -- Weiter an der Aufteilung der Anzeige in mehrere Views gearbeitet.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

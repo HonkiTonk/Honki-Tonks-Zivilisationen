@@ -20,6 +20,7 @@ with TextberechnungenHoeheSFML;
 with Vergleiche;
 with HintergrundSFML;
 with ViewsSFML;
+with ViewsEinstellenSFML;
 
 package body KarteInformationenSFML is
 
@@ -39,22 +40,16 @@ package body KarteInformationenSFML is
             return;
             
          when False =>
-            Sf.Graphics.View.setSize (view => ViewsSFML.SeitenleisteKartenviewAccess,
-                                      size => (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x), Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y))); -- YWert verdoppeln?
-            Sf.Graphics.View.setCenter (view   => ViewsSFML.SeitenleisteKartenviewAccess,
-                                        center => (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) / 2.00, Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y) / 2.00)); -- YWert verdoppeln?
-            Sf.Graphics.RenderWindow.setView (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                              view         => ViewsSFML.SeitenleisteKartenviewAccess);
+            ViewsEinstellenSFML.ViewEinstellen (ViewExtern    => ViewsSFML.SeitenleisteKartenviewAccess,
+                                                GrößeExtern   => (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x), Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y)),
+                                                ZentrumExtern => (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) / 2.00, Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y) / 2.00));
+            HintergrundSFML.SeitenleisteHintergrund;
+      
+            Textposition := StartpunktText;
+            Textposition := KarteWichtigesSFML.WichtigesInformationen (RasseExtern        => RasseExtern,
+                                                                       TextpositionExtern => Textposition,
+                                                                       KoordinatenExtern  => AktuelleKoordinaten);
       end case;
-      
-      
-      HintergrundSFML.SeitenleisteHintergrund;
-      
-      Textposition := StartpunktText;
-      
-      Textposition := KarteWichtigesSFML.WichtigesInformationen (RasseExtern        => RasseExtern,
-                                                                 TextpositionExtern => Textposition,
-                                                                 KoordinatenExtern  => AktuelleKoordinaten);
       
       case
         LeseKarten.Sichtbar (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell,
@@ -79,8 +74,14 @@ package body KarteInformationenSFML is
             null;
       end case;
       
+      -- YWert verdoppeln? äöü
+      -- Da gibt es bestimmt einen besseren Weg. äöü
+      -- Gewissen Länge/Breite anlegen und bei erreichen von dieser einfach den View nachträglich vergrößern? äöü
+      -- Würde das gehen? Wenn ja den Stadtnamen ignorieren? äöü
+      -- Forschungs- und Stadtname in eigene Zeile? Stadtname kann auch ganz raus, wird ja auf der Weltkarte angezeigt und die Terminalversion braucht später eh was eigenes. äöä
+      -- Aktuelle Forschung mit Fortschritt und Zielmenge in das Forschungsmenü einbauen. äöü
       Sf.Graphics.View.setViewport (view     => ViewsSFML.SeitenleisteKartenviewAccess,
-                                    viewport => (0.80, 0.00, 0.80, 1.00)); -- YWert verdoppeln?
+                                    viewport => (0.80, 0.00, 0.80, 1.00));
       
       Sf.Graphics.RenderWindow.setView (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                         view         => ViewsSFML.StandardviewAccess);

@@ -71,7 +71,7 @@ package body KartenaufteilungSFML is
             KarteStadtTerminal.AnzeigeStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
             
          when GrafikDatentypen.Grafik_SFML_Enum =>
-            KarteStadtSFML.AnzeigeStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
+            KarteStadtSFML.StadtkarteAnzeigen (StadtRasseNummerExtern => StadtRasseNummerExtern);
       end case;
       
    end Stadtkarte;

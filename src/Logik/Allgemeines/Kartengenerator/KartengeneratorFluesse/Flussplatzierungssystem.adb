@@ -14,10 +14,10 @@ package body Flussplatzierungssystem is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
       
-      FlussLinks := (others => False);
-      FlussRechts := (others => False);
-      FlussOben := (others => False);
-      FlussUnten := (others => False);
+      FlussLinks (KoordinatenExtern.EAchse) := False;
+      FlussRechts (KoordinatenExtern.EAchse) := False;
+      FlussOben (KoordinatenExtern.EAchse) := False;
+      FlussUnten (KoordinatenExtern.EAchse) := False;
       
       YAchseSchleife:
       for YÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
