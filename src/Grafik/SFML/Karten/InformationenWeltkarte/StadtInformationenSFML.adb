@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics;
 with Sf.Graphics.Text;
+with Sf.Graphics.View;
 
 with EinheitenDatentypen; use EinheitenDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
@@ -20,8 +21,58 @@ with KampfwerteStadtErmitteln;
 with GrafikEinstellungenSFML;
 with Fehler;
 with TextberechnungenHoeheSFML;
+with BerechnungenKarteSFML;
+with HintergrundSFML;
+with ViewsEinstellenSFML;
+with ViewsSFML;
 
 package body StadtInformationenSFML is
+   
+   procedure Stadtinformationen
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+   is begin
+      
+      ViewsEinstellenSFML.ViewEinstellen (ViewExtern    => ViewsSFML.SeitenleisteKartenviewAccess,
+                                          GrößeExtern   => (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x), Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y)),
+                                          ZentrumExtern => (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) / 2.00, Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y) / 2.00));
+      HintergrundSFML.SeitenleisteHintergrund;
+      
+      TextPosition := Stadt (RasseExtern            => StadtRasseNummerExtern.Rasse,
+                             StadtRasseNummerExtern => StadtRasseNummerExtern,
+                             AnzeigeAnfangenExtern  => StartpunktText);
+      
+      if
+        GrafikEinstellungenSFML.MausPosition.x in Sf.sfInt32 (0.00) .. Sf.sfInt32 (BerechnungenKarteSFML.StadtKarte.x)
+        and
+          GrafikEinstellungenSFML.MausPosition.y in Sf.sfInt32 (0.00) .. Sf.sfInt32 (BerechnungenKarteSFML.StadtKarte.y)
+      then
+         MausInformationen := True;
+         
+      else
+         MausInformationen := False;
+      end if;
+      
+      -- Werden die Mausinformationen in der SFML Version überhaupt benötigt?
+      case
+        MausInformationen
+      is
+         when True =>
+            -- Hier eventuell Informationen wie den Gebäudenamen und was das Gebäude macht einbauen?
+            null;
+            
+         when False =>
+            null;
+      end case;
+      
+      Sf.Graphics.View.setViewport (view     => ViewsSFML.SeitenleisteKartenviewAccess,
+                                    viewport => (0.80, 0.00, 0.80, 1.00));
+      
+      Sf.Graphics.RenderWindow.setView (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                        view         => ViewsSFML.StandardviewAccess);
+      
+   end Stadtinformationen;
+   
+   
 
    function Stadt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;

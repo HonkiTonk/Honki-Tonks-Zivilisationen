@@ -24,9 +24,6 @@ with ViewsEinstellenSFML;
 
 package body KarteInformationenSFML is
 
-   -- Den gesamten Text auf einem eigenen View schreiben und dann anzeigen. Damit sollte dann die Skalierung des Textes einfach? funktionieren. äöü
-   -- Das dann überall so machen und die Views in einer Datei schreiben um sie von der Grafik jederzeit in beliebiger Mischung anzeigen zu können? äöü
-   -- Diese ganzen Prüfungen in den Unterbereichen rauswerfen und immer alles neu berechnen lassen? äöü
    procedure KarteInformationenSFML
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin

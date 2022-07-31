@@ -1,9 +1,9 @@
 package ChangelogJuli2022 is
 
-   -- Version 0.03.0835 => 0.03. (31.07.2022):
+   -- Version 0.03.0835 => 0.03.0850 (31.07.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Stadtinformationsleite in einen eigenen View ausgelagert.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 

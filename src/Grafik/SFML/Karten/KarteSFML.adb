@@ -6,6 +6,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Sf.Graphics;
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Text;
+with Sf.Graphics.View;
 
 with KartenRecords; use KartenRecords;
 with EinheitenDatentypen; use EinheitenDatentypen;
@@ -33,6 +34,8 @@ with KartenspritesZeichnenSFML;
 with FarbgebungSFML;
 with TextberechnungenBreiteSFML;
 with Warnung;
+with ViewsSFML;
+with ViewsEinstellenSFML;
 
 package body KarteSFML is
    
@@ -52,6 +55,10 @@ package body KarteSFML is
    procedure Sichtbarkeit
      (RasseEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
+      
+      ViewsEinstellenSFML.ViewEinstellen (ViewExtern    => ViewsSFML.KartenviewAccess,
+                                          GrößeExtern   => (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x), Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y)),
+                                          ZentrumExtern => (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) / 2.00, Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y) / 2.00));
         
       SichtbereichAnfangEnde := BerechnungenKarteSFML.SichtbereichKarteBerechnen (RasseExtern => RasseEinheitExtern.Rasse);
       
@@ -89,8 +96,6 @@ package body KarteSFML is
                             PositionExtern     => Position);
                
             else
-               -- Ist das Zeichnen von schwarzen Felder notwendig? Immerhin wird ja vorher das Fenster immer geleert und auf Schwarz gesetzt.
-               -- Schwarze Felder zu zeichnen könnte fehlerhafte Größenverhältnisse überdecken, lieber lassen.
                null;
             end if;
             
@@ -134,8 +139,6 @@ package body KarteSFML is
                                   PositionExtern    => Position);
                
             else
-               -- Ist das Zeichnen von schwarzen Felder notwendig? Immerhin wird ja vorher das Fenster immer geleert und auf Schwarz gesetzt.
-               -- Schwarze Felder zu zeichnen könnte fehlerhafte Größenverhältnisse überdecken, lieber lassen.
                null;
             end if;
             
@@ -146,6 +149,9 @@ package body KarteSFML is
          YMultiplikator := YMultiplikator + 1.00;
          
       end loop YAchseStadtnameSchleife;
+      
+      Sf.Graphics.View.setViewport (view     => ViewsSFML.KartenviewAccess,
+                                    viewport => (0.00, 0.00, 1.00, 1.00));
       
    end Sichtbarkeit;
    

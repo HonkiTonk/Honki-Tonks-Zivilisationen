@@ -35,7 +35,6 @@ private
 
    InformationenStadtAufrufen : Boolean;
    FeldBewirtschaftet : Boolean;
-   MausInformationen : Boolean;
 
    Stadtumgebungsgröße : KartenDatentypen.Stadtfeld;
 
@@ -57,7 +56,6 @@ private
    AktuelleFarbe : Sf.Graphics.Color.sfColor;
 
    AnfangGrafikPosition : constant Sf.System.Vector2.sfVector2f := (0.00, 0.00);
-   TextPosition : Sf.System.Vector2.sfVector2f;
    GrafikPosition : Sf.System.Vector2.sfVector2f;
 
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;

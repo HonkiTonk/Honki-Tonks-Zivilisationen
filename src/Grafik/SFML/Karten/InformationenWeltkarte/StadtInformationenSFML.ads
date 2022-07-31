@@ -17,6 +17,17 @@ private with Karten;
 private with UmwandlungenAdaNachEigenes;
 
 package StadtInformationenSFML is
+   
+   procedure Stadtinformationen
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     with
+       Pre => (
+                 SpielVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+               and
+                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+              );
+   
+   
      
    function Stadt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
@@ -51,6 +62,7 @@ package StadtInformationenSFML is
 private
    
    VolleInformation : Boolean;
+   MausInformationen : Boolean;
    
    Stadtart : Positive;
       
@@ -59,6 +71,7 @@ private
    
    Bauprojekt : StadtRecords.BauprojektRecord;
    
+   StartpunktText : constant Sf.System.Vector2.sfVector2f := (5.00, 5.00);
    TextPosition : Sf.System.Vector2.sfVector2f;
 
    procedure StadtartName

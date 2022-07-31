@@ -22,7 +22,6 @@ with GrafikEinstellungenSFML;
 with EingeleseneTexturenSFML;
 with KartenspritesZeichnenSFML;
 with Warnung;
-with HintergrundSFML;
 
 package body KarteStadtSFML is
    
@@ -32,32 +31,7 @@ package body KarteStadtSFML is
       
       AnzeigeStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
-      TextPosition := StadtInformationenSFML.Stadt (RasseExtern            => StadtRasseNummerExtern.Rasse,
-                                                    StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                    AnzeigeAnfangenExtern  => (BerechnungenKarteSFML.StadtKarte.x + 5.00, 5.00));
-      
-      if
-        GrafikEinstellungenSFML.MausPosition.x in Sf.sfInt32 (0.00) .. Sf.sfInt32 (BerechnungenKarteSFML.StadtKarte.x)
-        and
-          GrafikEinstellungenSFML.MausPosition.y in Sf.sfInt32 (0.00) .. Sf.sfInt32 (BerechnungenKarteSFML.StadtKarte.y)
-      then
-         MausInformationen := True;
-         
-      else
-         MausInformationen := False;
-      end if;
-      
-      -- Werden die Mausinformationen in der SFML Version überhaupt benötigt?
-      case
-        MausInformationen
-      is
-         when True =>
-            -- Hier eventuell Informationen wie den Gebäudenamen und was das Gebäude macht einbauen?
-            null;
-            
-         when False =>
-            null;
-      end case;
+      StadtInformationenSFML.Stadtinformationen (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
    end StadtkarteAnzeigen;
    
@@ -143,7 +117,7 @@ package body KarteStadtSFML is
             Warnung.GrafikWarnung (WarnmeldungExtern => "KarteStadtSFML.GrafischeDarstellung - Sprite ist null: " & StadtRasseNummerExtern.Rasse'Wide_Wide_Image & " - " & StadtRasseNummerExtern.Nummer'Wide_Wide_Image);
       end case;
       
-      HintergrundSFML.SeitenleisteHintergrund;
+      -- HintergrundSFML.SeitenleisteHintergrund;
       
    end GrafischeDarstellung;
    
