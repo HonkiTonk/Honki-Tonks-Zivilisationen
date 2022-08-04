@@ -54,7 +54,7 @@ package body SpieleinstellungenRasseSpieler is
                end if;
                
             when others =>
-               Fehler.LogikFehler (FehlermeldungExtern => "SpielEinstellungenRasseSpieler.RassenWählen - Ungültige Menüauswahl.");
+               Fehler.LogikFehler (FehlermeldungExtern => "SpielEinstellungenRasseSpieler.RassenWählen - Falsche Menüauswahl.");
          end case;
          
       end loop RasseSchleife;

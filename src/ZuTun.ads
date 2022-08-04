@@ -9,7 +9,7 @@
 -- Aktuell höchste Priorität:
 
 -- KI überarbeiten (Funktioniert inzwischen Minimal, später weiter verbessern).
--- Grafiken überarbeiten.
+-- Grafiken überarbeiten (Angefangen die Textanzeige zu überarbeiten).
 -- Einfache Musik/Sounds einbauen.
 -- Forschungen/Einheiten/Gebäude für zweite Rasse einbauen.
 -- Herausfinden wie man eine Windowsversion ohne GPL Zwang kompiliert.

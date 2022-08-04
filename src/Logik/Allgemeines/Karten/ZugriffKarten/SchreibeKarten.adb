@@ -25,7 +25,7 @@ package body SchreibeKarten is
         GrundExtern
       is
          when KartengrundDatentypen.Kartengrund_Oberfläche_Zusatz_Enum'Range | KartengrundDatentypen.Kartengrund_Unterfläche_Wasserzusatz_Enum'Range =>
-            Fehler.LogikFehler (FehlermeldungExtern => "SchreibeKarten.BasisGrund - Zusatzgrund wird auf Basisgrund geschrieben.");
+            Fehler.LogikFehler (FehlermeldungExtern => "SchreibeKarten.BasisGrund - Zusatzgrund auf Basisgrund geschrieben.");
             
          when others =>
             Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).BasisGrund := GrundExtern;

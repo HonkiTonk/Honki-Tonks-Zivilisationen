@@ -7,6 +7,7 @@ with EinheitenRecords;
 
 with DatenbankRecords;
 
+-- Es muss darauf geachtet werden dass KannTransportieren immer kleiner ist als KannTransportiertWerden.
 package EinheitenAspari2 is
 
    EinheitenlisteAspari2 : constant DatenbankRecords.EinheitenlisteArray := (

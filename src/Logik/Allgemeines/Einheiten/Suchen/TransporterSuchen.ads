@@ -45,5 +45,19 @@ package TransporterSuchen is
                and
                  EinheitRasseNummerExtern.Nummer > 0
               );
+   
+   function FreierPlatz
+     (TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return EinheitenDatentypen.Transportplätze
+     with
+       Pre => (
+                 TransporterExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (TransporterExtern.Rasse).Einheitengrenze
+               and
+                 SpielVariablen.RassenImSpiel (TransporterExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+              );
+   
+private
+   
+   Transporterkapazität : EinheitenDatentypen.Transportplätze;
 
 end TransporterSuchen;

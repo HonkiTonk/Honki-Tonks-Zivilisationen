@@ -289,11 +289,11 @@ package body ImSpiel is
                   null;
                   
                else
-                  Fehler.LogikFehler (FehlermeldungExtern => "ImSpiel.MenschAmZug - Keine gültige Rückgabe.");
+                  Fehler.LogikFehler (FehlermeldungExtern => "ImSpiel.MenschAmZug - Falsche Rückgabe.");
                end if;
                
             when others =>
-               Fehler.LogikFehler (FehlermeldungExtern => "ImSpiel.MenschAmZug - Kein gültiger Befehl.");
+               Fehler.LogikFehler (FehlermeldungExtern => "ImSpiel.MenschAmZug - Falscher Befehl.");
          end case;
                      
       end loop SpielerSchleife;
@@ -350,7 +350,7 @@ package body ImSpiel is
                return AuswahlSpielmenü;
                   
             when others =>
-               Fehler.LogikFehler (FehlermeldungExtern => "ImSpiel.Spielmenü - Keine gültige Rückgabe.");
+               Fehler.LogikFehler (FehlermeldungExtern => "ImSpiel.Spielmenü - Falsche Rückgabe.");
          end case;
       
       end loop SpielmenüSchleife;

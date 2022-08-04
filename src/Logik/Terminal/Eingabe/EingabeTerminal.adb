@@ -28,12 +28,12 @@ package body EingabeTerminal is
       if
         WelcheFrageExtern > GlobaleTexte.Frage'Last
       then
-         Fehler.LogikFehler (FehlermeldungExtern => "EingabeTerminal.GanzeZahl - Frage ist außerhalb des Fragenbereichs.");
+         Fehler.LogikFehler (FehlermeldungExtern => "EingabeTerminal.GanzeZahl - Frage außerhalb des Fragenbereichs.");
          
       elsif
         ZahlenMinimumExtern > ZahlenMaximumExtern
       then
-         Fehler.LogikFehler (FehlermeldungExtern => "EingabeTerminal.GanzeZahl - Zahlenminimum ist größer als Zahlenmaximum.");
+         Fehler.LogikFehler (FehlermeldungExtern => "EingabeTerminal.GanzeZahl - Zahlenminimum größer als Zahlenmaximum.");
          
       else
          -- Wegen der grafischen Anzeige festgelegt.

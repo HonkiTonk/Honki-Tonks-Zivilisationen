@@ -27,16 +27,14 @@ package body BewegungBerechnen is
 
       -- Immer berücksichtigen dass in BewegungssystemEinheiten.BewegungPrüfen bereits geprüft wird ob der Transporter die Einheit transportieren kann und ein freier Platz vorhanden ist.
       if
-        LeseEinheitenDatenbank.KannTransportieren (RasseExtern => EinheitRasseNummerExtern.Rasse,
+        EinheitenKonstanten.LeerKannTransportieren = LeseEinheitenDatenbank.KannTransportieren (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                    IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
-          = EinheitenKonstanten.LeerKannTransportieren
       then
          null;
          
       elsif
-        StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                    KoordinatenExtern => NeueKoordinatenExtern)
-        = StadtKonstanten.LeerNummer
+        StadtKonstanten.LeerNummer = StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                                                                 KoordinatenExtern => NeueKoordinatenExtern)
       then
          BewegungLadenEntladen.TransporterladungVerschieben (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                              NeueKoordinatenExtern    => NeueKoordinatenExtern);
@@ -122,9 +120,8 @@ package body BewegungBerechnen is
             null;
             
          elsif
-           LeseKarten.Sichtbar (KoordinatenExtern => NeueKoordinatenExtern,
-                                RasseExtern       => FremdeSichtbarkeitSchleifenwert)
-           = True
+           True = LeseKarten.Sichtbar (KoordinatenExtern => NeueKoordinatenExtern,
+                                       RasseExtern       => FremdeSichtbarkeitSchleifenwert)
          then
             KennenLernen.Erstkontakt (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
                                       FremdeRasseExtern => FremdeSichtbarkeitSchleifenwert);
@@ -188,15 +185,13 @@ package body BewegungBerechnen is
    is begin
 
       if
-        LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
-                                               IDExtern             => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                               WelcheUmgebungExtern => EinheitenDatentypen.Luft_Enum)
-        = False
+        False = LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
+                                                       IDExtern             => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                       WelcheUmgebungExtern => EinheitenDatentypen.Luft_Enum)
         and
-          LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
-                                                 IDExtern             => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                 WelcheUmgebungExtern => EinheitenDatentypen.Weltraum_Enum)
-        = False
+          False = LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
+                                                         IDExtern             => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                         WelcheUmgebungExtern => EinheitenDatentypen.Weltraum_Enum)
       then
          case
            LeseKarten.Weg (KoordinatenExtern => NeueKoordinatenExtern)

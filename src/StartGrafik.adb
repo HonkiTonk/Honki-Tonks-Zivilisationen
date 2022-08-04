@@ -31,7 +31,7 @@ package body StartGrafik is
             GrafikSFML.GrafikSFML;
             
          when others =>
-            Fehler.GrafikFehler (FehlermeldungExtern => "StartGrafik.StartGrafik - Ungültige Startdarstellung.");
+            Fehler.GrafikFehler (FehlermeldungExtern => "StartGrafik.StartGrafik - Falsche Startdarstellung.");
       end case;
       
    end StartGrafik;

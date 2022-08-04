@@ -62,7 +62,7 @@ package body Ladezeiten is
       if
         FortschrittSpielwelt (WelcheBerechnungenExtern) + FortschrittSchritte (1) > LadezeitenDatentypen.Ladefortschritt'Last
       then
-         Warnung.LogikWarnung (WarnmeldungExtern => "Ladezeiten.FortschrittSpielweltSchreiben - " & WelcheBerechnungenExtern'Wide_Wide_Image & " ist über 100.");
+         Warnung.LogikWarnung (WarnmeldungExtern => "Ladezeiten.FortschrittSpielweltSchreiben - " & WelcheBerechnungenExtern'Wide_Wide_Image & " über 100%.");
          
       else
          FortschrittSpielwelt (WelcheBerechnungenExtern) := FortschrittSpielwelt (WelcheBerechnungenExtern) + FortschrittSchritte (1);
@@ -89,7 +89,7 @@ package body Ladezeiten is
       if
         FortschrittKI (WelcheBerechnungenExtern) + FortschrittSchritte (2) > LadezeitenDatentypen.Ladefortschritt'Last
       then
-         Warnung.LogikWarnung (WarnmeldungExtern => "Ladezeiten.FortschrittKISchreiben - " & WelcheBerechnungenExtern'Wide_Wide_Image & " ist über 100.");
+         Warnung.LogikWarnung (WarnmeldungExtern => "Ladezeiten.FortschrittKISchreiben - " & WelcheBerechnungenExtern'Wide_Wide_Image & " über 100%.");
          
       else
          FortschrittKI (WelcheBerechnungenExtern) := FortschrittKI (WelcheBerechnungenExtern) + FortschrittSchritte (2);
@@ -116,7 +116,7 @@ package body Ladezeiten is
       if
         FortschrittRundenende + FortschrittSchritte (3) > LadezeitenDatentypen.Ladefortschritt'Last
       then
-         Warnung.LogikWarnung (WarnmeldungExtern => "Ladezeiten.RundenendeSchreiben - Fortschritt ist über 100.");
+         Warnung.LogikWarnung (WarnmeldungExtern => "Ladezeiten.RundenendeSchreiben - Fortschritt über 100%.");
          
       else
          FortschrittRundenende := FortschrittRundenende + FortschrittSchritte (3);
@@ -146,7 +146,7 @@ package body Ladezeiten is
             if
               FortschrittSpeichernLaden + FortschrittSchritte (4) > LadezeitenDatentypen.Ladefortschritt'Last
             then
-               Warnung.LogikWarnung (WarnmeldungExtern => "Ladezeiten.SpeichernSchreiben - Fortschritt ist über 100.");
+               Warnung.LogikWarnung (WarnmeldungExtern => "Ladezeiten.SpeichernSchreiben - Fortschritt über 100%.");
          
             else
                FortschrittSpeichernLaden := FortschrittSpeichernLaden + FortschrittSchritte (4);
@@ -156,7 +156,7 @@ package body Ladezeiten is
             if
               FortschrittSpeichernLaden + FortschrittSchritte (5) > LadezeitenDatentypen.Ladefortschritt'Last
             then
-               Warnung.LogikWarnung (WarnmeldungExtern => "Ladezeiten.LadenSchreiben - Fortschritt ist über 100.");
+               Warnung.LogikWarnung (WarnmeldungExtern => "Ladezeiten.LadenSchreiben - Fortschritt über 100%.");
          
             else
                FortschrittSpeichernLaden := FortschrittSpeichernLaden + FortschrittSchritte (5);

@@ -7,6 +7,7 @@ with EinheitenKonstanten;
 with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;
 
+-- Umbenennen nach TransporterDurchsuchen?
 package body TransporterSuchen is
 
    function KoordinatenTransporterMitRasseSuchen
@@ -24,9 +25,8 @@ package body TransporterSuchen is
             null;
             
          elsif
-           LeseEinheitenDatenbank.KannTransportieren (RasseExtern => RasseExtern,
-                                                      IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerSchleifenwert)))
-           = EinheitenKonstanten.LeerKannTransportieren
+           EinheitenKonstanten.LeerKannTransportieren = LeseEinheitenDatenbank.KannTransportieren (RasseExtern => RasseExtern,
+                                                                                                   IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerSchleifenwert)))
          then
             null;
             
@@ -47,18 +47,16 @@ package body TransporterSuchen is
       LadungExtern : in EinheitenDatentypen.MaximaleEinheiten)
       return EinheitenDatentypen.Transportplätze
    is begin
+      
+      Transporterkapazität := LeseEinheitenDatenbank.Transportkapazität (RasseExtern => TransporterExtern.Rasse,
+                                                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => TransporterExtern));
 
       TransporterSchleife:
-      for 
-        TransporterPlatzSchleifenwert
-      in
-        EinheitenRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => TransporterExtern.Rasse,
-                                                                                                  IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => TransporterExtern)) loop
+      for  TransporterPlatzSchleifenwert in  EinheitenRecords.TransporterArray'First .. Transporterkapazität loop
          
          if
-           LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
-                                              PlatzExtern              => TransporterPlatzSchleifenwert)
-           = LadungExtern
+           LadungExtern = LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
+                                                             PlatzExtern              => TransporterPlatzSchleifenwert)
          then
             return TransporterPlatzSchleifenwert;
             
@@ -68,7 +66,7 @@ package body TransporterSuchen is
          
       end loop TransporterSchleife;
       
-      return EinheitenDatentypen.Transportplätze'First;
+      return EinheitenKonstanten.LeerTransportkapazität;
       
    end EinheitAufTransporterSuchen;
 
@@ -79,15 +77,15 @@ package body TransporterSuchen is
       return Boolean
    is begin
       
+      Transporterkapazität := LeseEinheitenDatenbank.Transportkapazität (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      
       TransporterSchleife:
-      for TransporterPlatzSchleifenwert in EinheitenRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                                                                                     IDExtern    =>
-                                                                                                                                       LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) loop
+      for TransporterPlatzSchleifenwert in EinheitenRecords.TransporterArray'First .. Transporterkapazität loop
          
          if
-           LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                              PlatzExtern              => TransporterPlatzSchleifenwert)
-           /= EinheitenKonstanten.LeerTransportiert
+           EinheitenKonstanten.LeerTransportiert /= LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                       PlatzExtern              => TransporterPlatzSchleifenwert)
          then
             return True;
             
@@ -100,5 +98,35 @@ package body TransporterSuchen is
       return False;
       
    end HatTransporterLadung;
+   
+   
+   
+   function FreierPlatz
+     (TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return EinheitenDatentypen.Transportplätze
+   is begin
+      
+      Transporterkapazität := LeseEinheitenDatenbank.Transportkapazität (RasseExtern => TransporterExtern.Rasse,
+                                                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => TransporterExtern));
+      
+      TransporterSchleife:
+      for FreierPlatzSchleifenwert in EinheitenRecords.TransporterArray'First .. Transporterkapazität loop
+        
+         case
+           LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
+                                              PlatzExtern              => FreierPlatzSchleifenwert)
+         is
+            when EinheitenKonstanten.LeerTransportiert =>
+               return FreierPlatzSchleifenwert;
+               
+            when others =>
+               null;
+         end case;
+         
+      end loop TransporterSchleife;
+      
+      return EinheitenKonstanten.LeerTransportkapazität;
+      
+   end FreierPlatz;
 
 end TransporterSuchen;

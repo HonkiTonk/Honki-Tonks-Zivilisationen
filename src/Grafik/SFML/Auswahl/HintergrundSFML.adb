@@ -28,7 +28,7 @@ package body HintergrundSFML is
                                               object       => HintergrundspriteAccess);
          
       else
-         Warnung.GrafikWarnung (WarnmeldungExtern => "HintergrundSFML.StandardHintergrund - Hintergrund nicht vorhanden: " & HintergrundExtern'Wide_Wide_Image);
+         Warnung.GrafikWarnung (WarnmeldungExtern => "HintergrundSFML.StandardHintergrund - Hintergrund fehlt: " & HintergrundExtern'Wide_Wide_Image);
       end if;
       
    end StandardHintergrund;
@@ -36,21 +36,22 @@ package body HintergrundSFML is
    
    
    procedure SeitenleisteHintergrund
+     (AbmessungenExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
       if
         EingeleseneTexturenSFML.HintergrundAccess (GrafikDatentypen.Seitenleiste_Hintergrund_Enum) /= null
       then
          Sf.Graphics.Sprite.scale (sprite  => HintergrundspriteAccess,
-                                   factors => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenGesamtesBild (SpriteAccessExtern  => HintergrundspriteAccess,
-                                                                                                               TextureAccessExtern => EingeleseneTexturenSFML.HintergrundAccess
-                                                                                                                 (GrafikDatentypen.Seitenleiste_Hintergrund_Enum)));
-         
+                                   factors => TexturenSetzenSkalierenSFML.TexturskalierungVariabel (SpriteAccessExtern  => HintergrundspriteAccess,
+                                                                                                    TextureAccessExtern => EingeleseneTexturenSFML.HintergrundAccess (GrafikDatentypen.Seitenleiste_Hintergrund_Enum),
+                                                                                                    GrößeExtern         => AbmessungenExtern));
+                                   
          Sf.Graphics.RenderWindow.drawSprite (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                               object       => HintergrundspriteAccess);
          
       else
-         Warnung.GrafikWarnung (WarnmeldungExtern => "HintergrundSFML.SeitenleisteHintergrund - Hintergrund nicht vorhanden: " & GrafikDatentypen.Seitenleiste_Hintergrund_Enum'Wide_Wide_Image);
+         Warnung.GrafikWarnung (WarnmeldungExtern => "HintergrundSFML.SeitenleisteHintergrund - Hintergrund fehlt: " & GrafikDatentypen.Seitenleiste_Hintergrund_Enum'Wide_Wide_Image);
       end if;
       
    end SeitenleisteHintergrund;
@@ -92,7 +93,7 @@ package body HintergrundSFML is
          
       else
          -- Später hier einen einfarbigen Hintergrund wie bei den Kartenfeldern einbauen. äöü
-         Warnung.GrafikWarnung (WarnmeldungExtern => "HintergrundSFML.TextHintergrund - Textur nicht gefunden: " & GrafikDatentypen.Zusatz_Hintergrund_Enum'Wide_Wide_Image);
+         Warnung.GrafikWarnung (WarnmeldungExtern => "HintergrundSFML.TextHintergrund - Textur fehlt: " & GrafikDatentypen.Zusatz_Hintergrund_Enum'Wide_Wide_Image);
       end if;
       
    end TextHintergrund;

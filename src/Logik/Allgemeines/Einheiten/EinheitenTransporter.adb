@@ -7,6 +7,8 @@ with EinheitenKonstanten;
 with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;
 
+with TransporterSuchen;
+
 package body EinheitenTransporter is   
    
    function KannTransportiertWerden
@@ -26,9 +28,8 @@ package body EinheitenTransporter is
       end case;
             
       if
-        LeseEinheitenDatenbank.KannTransportiertWerden (RasseExtern => LadungExtern.Rasse,
-                                                        IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => LadungExtern))
-          = EinheitenKonstanten.LeerKannTransportiertWerden
+        EinheitenKonstanten.LeerKannTransportiertWerden = LeseEinheitenDatenbank.KannTransportiertWerden (RasseExtern => LadungExtern.Rasse,
+                                                                                                          IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => LadungExtern))
         or
           LeseEinheitenDatenbank.KannTransportieren (RasseExtern => TransporterExtern.Rasse,
                                                      IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => TransporterExtern))
@@ -39,37 +40,19 @@ package body EinheitenTransporter is
          return False;
          
       else
-         return PlatzFrei (TransporterExtern => TransporterExtern);
+         null;
       end if;
       
-   end KannTransportiertWerden;
-   
-   
-   
-   function PlatzFrei
-     (TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return Boolean
-   is begin
-      
-      PlatzFreiSchleife:
-      for PlatzSchleifenwert in EinheitenRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => TransporterExtern.Rasse,
-                                                                                                                       IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => TransporterExtern)) loop
-         
-         if
-           LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => (TransporterExtern.Rasse, TransporterExtern.Nummer),
-                                              PlatzExtern              => PlatzSchleifenwert)
-           = EinheitenKonstanten.LeerTransportiert
-         then
+      case
+        TransporterSuchen.FreierPlatz (TransporterExtern => TransporterExtern)
+      is
+         when EinheitenKonstanten.LeerTransportkapazität =>
+            return False;
+
+         when others =>
             return True;
-            
-         else
-            null;
-         end if;
-         
-      end loop PlatzFreiSchleife;
+      end case;
       
-      return False;
-      
-   end PlatzFrei;
+   end KannTransportiertWerden;
 
 end EinheitenTransporter;

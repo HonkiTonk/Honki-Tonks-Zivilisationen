@@ -63,7 +63,7 @@ package body AufgabeEinheitFestung is
             null;
             
          when others =>
-            Fehler.LogikFehler (FehlermeldungExtern => "FestungErmitteln.FestungErmitteln - Ungültige Aufgabe wurde ausgewählt.");
+            Fehler.LogikFehler (FehlermeldungExtern => "FestungErmitteln.FestungErmitteln - Falsche Aufgabe ausgewählt.");
       end case;
       
       case

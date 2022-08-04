@@ -48,7 +48,7 @@ package body OptionenGrafik is
                return AuswahlWert;
                
             when others =>
-               Fehler.LogikFehler (FehlermeldungExtern => "OptionenGrafik.OptionenGrafik - Ungültige Menüauswahl.");
+               Fehler.LogikFehler (FehlermeldungExtern => "OptionenGrafik.OptionenGrafik - Falsche Menüauswahl.");
          end case;
          
       end loop GrafikSchleife;
@@ -147,7 +147,7 @@ package body OptionenGrafik is
             GrafikEinstellungenSFML.FensterEinstellungen.FensterVollbild := 7;
             
          when others =>
-            Fehler.LogikFehler (FehlermeldungExtern => "OptionenGrafik.VollbildFenster - Unbekannter Fenstermodus ausgewählt.");
+            Fehler.LogikFehler (FehlermeldungExtern => "OptionenGrafik.VollbildFenster - Unbekannter Fenstermodus gewählt.");
       end case;
       
       NachGrafiktask.FensterVerändert := GrafikDatentypen.Modus_Verändert_Enum;

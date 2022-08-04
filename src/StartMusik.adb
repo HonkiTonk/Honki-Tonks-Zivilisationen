@@ -44,7 +44,7 @@ package body StartMusik is
             MusikTerminal.MusikTerminal;
             
          when others =>
-            Fehler.MusikFehler (FehlermeldungExtern => "StartMusik.StartMusik - Ungültige Musikwiedergabeart.");
+            Fehler.MusikFehler (FehlermeldungExtern => "StartMusik.StartMusik - Falsche Musikwiedergabeart.");
       end case;
       
    end StartMusik;

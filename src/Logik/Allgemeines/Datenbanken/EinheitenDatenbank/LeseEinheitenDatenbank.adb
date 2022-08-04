@@ -196,6 +196,9 @@ package body LeseEinheitenDatenbank is
    
    
    
+   -- Es muss darauf geachtet werden dass KannTransportieren immer kleiner ist als KannTransportiertWerden.
+   -- Deswegen hier entsprechende Zusatzprüfungen einbauen?
+   -- Nö, wenn hier jemand dran herumbasteln will und dabei Mist rauskommt ist das ja nicht mein Problem.
    function KannTransportieren
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenID)
@@ -226,13 +229,12 @@ package body LeseEinheitenDatenbank is
       return EinheitenDatentypen.Transportplätze
    is begin
       
-      -- Hier mal noch Konstanten einbauen? äöü
       if
-        EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).KannTransportieren = EinheitenDatentypen.Kein_Transport_Enum
+        EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).KannTransportieren = EinheitenKonstanten.LeerKannTransportiertWerden
         or
-          EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).Transportkapazität = 0
+          EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).Transportkapazität = EinheitenKonstanten.LeerTransportkapazität
       then
-         return 0;
+         return EinheitenKonstanten.LeerTransportkapazität;
          
       else
          return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).Transportkapazität;

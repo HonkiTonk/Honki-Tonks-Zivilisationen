@@ -74,9 +74,11 @@ package body EinheitenErzeugenEntfernen is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
+      Transporterkapazität := LeseEinheitenDatenbank.Transportkapazität (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      
       TransporterSchleife:
-      for LadungSchleifenwert in EinheitenRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                                                                        IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) loop
+      for LadungSchleifenwert in EinheitenRecords.TransporterArray'First .. Transporterkapazität loop
         
          EinheitNummer := LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                              PlatzExtern              => LadungSchleifenwert);

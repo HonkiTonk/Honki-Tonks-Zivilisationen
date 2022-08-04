@@ -62,6 +62,16 @@ package LeseStadtGebaut is
                and
                  SpielVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
               );
+   
+   function Arbeitslose
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+      return ProduktionDatentypen.Einwohner
+     with
+       Pre => (
+                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+               and
+                 SpielVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+              );
       
    function Nahrungsmittel
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)

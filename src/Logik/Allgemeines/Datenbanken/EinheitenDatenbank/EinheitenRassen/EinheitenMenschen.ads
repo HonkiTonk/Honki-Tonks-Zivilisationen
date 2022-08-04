@@ -7,6 +7,7 @@ with EinheitenRecords;
 
 with DatenbankRecords;
 
+-- Es muss darauf geachtet werden dass KannTransportieren immer kleiner ist als KannTransportiertWerden.
 package EinheitenMenschen is
    
    EinheitenlisteMenschen : constant DatenbankRecords.EinheitenlisteArray := (
@@ -99,7 +100,7 @@ package EinheitenMenschen is
                                                                                  Angriff                 => 3,
                                                                                  Verteidigung            => 1,
                                                                                  KannTransportieren      => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                                 KannTransportiertWerden => EinheitenDatentypen.Kein_Transport_Enum,
+                                                                                 KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                  Transportkapazität      => 1
                                                                                 ),
                                                
@@ -261,7 +262,7 @@ package EinheitenMenschen is
                                                                                  Reichweite              => 2,
                                                                                  Angriff                 => 3,
                                                                                  Verteidigung            => 1,
-                                                                                 KannTransportieren      => EinheitenDatentypen.Klein_Transport_Enum,
+                                                                                 KannTransportieren      => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                  KannTransportiertWerden => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                  Transportkapazität      => 4
                                                                                 ),

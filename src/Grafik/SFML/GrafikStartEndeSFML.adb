@@ -23,7 +23,7 @@ package body GrafikStartEndeSFML is
         OptionenVariablen.NutzerEinstellungen.Anzeigeart
       is
          when GrafikDatentypen.Grafik_Terminal_Enum =>
-            Fehler.GrafikFehler (FehlermeldungExtern => "GrafikStartEndeSFML.FensterErzeugen - Es soll ein Terminalnfenster erzeugt werden.");
+            Fehler.GrafikFehler (FehlermeldungExtern => "GrafikStartEndeSFML.FensterErzeugen - Es soll ein Terminalfenster erzeugt werden.");
             
          when GrafikDatentypen.Grafik_SFML_Enum =>
             FensterErzeugenErweitert;
@@ -70,7 +70,7 @@ package body GrafikStartEndeSFML is
                                                                                              style => GrafikEinstellungenSFML.FensterEinstellungen.FensterVollbild);
             
          when others =>
-            Fehler.GrafikFehler (FehlermeldungExtern => "GrafikStartEndeSFML.FensterErzeugenErweitert - Unbekannter Fenstermodus ausgewählt.");
+            Fehler.GrafikFehler (FehlermeldungExtern => "GrafikStartEndeSFML.FensterErzeugenErweitert - Unbekannter Fenstermodus gewählt.");
       end case;
             
    end FensterErzeugenErweitert;

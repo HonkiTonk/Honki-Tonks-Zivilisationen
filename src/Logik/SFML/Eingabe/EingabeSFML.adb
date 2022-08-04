@@ -30,7 +30,7 @@ package body EingabeSFML is
       if
         WelcheFrageExtern > GlobaleTexte.Frage'Last
       then
-         Fehler.LogikFehler (FehlermeldungExtern => "EingabeSFML.GanzeZahl - Frage ist außerhalb des Fragenbereichs.");
+         Fehler.LogikFehler (FehlermeldungExtern => "EingabeSFML.GanzeZahl - Frage außerhalb des Fragenbereichs.");
          
       else
          -- Wegen der grafischen Anzeige festgelegt.

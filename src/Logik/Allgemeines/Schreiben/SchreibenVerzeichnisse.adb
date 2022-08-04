@@ -30,7 +30,7 @@ package body SchreibenVerzeichnisse is
 
          when False =>
             Create_Directory (New_Directory => "Grafik");
-            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeGrafikVerzeichnisse - Ordner Grafik erstellt.");
+            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeGrafikVerzeichnisse - Grafik erstellt.");
       end case;
       
       case
@@ -41,7 +41,7 @@ package body SchreibenVerzeichnisse is
 
          when False =>
             Create_Directory (New_Directory => "Grafik/Bauwerke");
-            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeGrafikVerzeichnisse - Ordner Bauwerke erstellt.");
+            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeGrafikVerzeichnisse - Bauwerke erstellt.");
       end case;
       
       case
@@ -52,7 +52,7 @@ package body SchreibenVerzeichnisse is
 
          when False =>
             Create_Directory (New_Directory => "Grafik/Einheiten");
-            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeGrafikVerzeichnisse - Ordner Einheiten erstellt.");
+            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeGrafikVerzeichnisse - Einheiten erstellt.");
       end case;
       
       case
@@ -63,7 +63,7 @@ package body SchreibenVerzeichnisse is
 
          when False =>
             Create_Directory (New_Directory => "Grafik/Hintergrund");
-            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeGrafikVerzeichnisse - Ordner Hintergrund  erstellt.");
+            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeGrafikVerzeichnisse - Hintergrund erstellt.");
       end case;
       
       case
@@ -74,7 +74,7 @@ package body SchreibenVerzeichnisse is
 
          when False =>
             Create_Directory (New_Directory => "Grafik/Kartenfelder");
-            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeGrafikVerzeichnisse - Ordner Kartenfelder erstellt.");
+            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeGrafikVerzeichnisse - Kartenfelder erstellt.");
       end case;
       
       case
@@ -85,7 +85,7 @@ package body SchreibenVerzeichnisse is
 
          when False =>
             Create_Directory (New_Directory => "Grafik/Kartenfluss");
-            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeGrafikVerzeichnisse - Ordner Kartenfluss erstellt.");
+            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeGrafikVerzeichnisse - Kartenfluss erstellt.");
       end case;
       
       case
@@ -96,7 +96,7 @@ package body SchreibenVerzeichnisse is
 
          when False =>
             Create_Directory (New_Directory => "Grafik/Kartenressourcen");
-            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeGrafikVerzeichnisse - Ordner Kartenressourcen erstellt.");
+            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeGrafikVerzeichnisse - Kartenressourcen erstellt.");
       end case;
       
       case
@@ -107,7 +107,7 @@ package body SchreibenVerzeichnisse is
 
          when False =>
             Create_Directory (New_Directory => "Grafik/Verbesserungen");
-            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeGrafikVerzeichnisse - Ordner Verbesserungen erstellt.");
+            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeGrafikVerzeichnisse - Verbesserungen erstellt.");
       end case;
       
       case
@@ -118,7 +118,7 @@ package body SchreibenVerzeichnisse is
 
          when False =>
             Create_Directory (New_Directory => "Grafik/Wege");
-            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeGrafikVerzeichnisse - Ordner Wege erstellt.");
+            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeGrafikVerzeichnisse - Wege erstellt.");
       end case;
       
    end SchreibeGrafikVerzeichnisse;
@@ -136,7 +136,7 @@ package body SchreibenVerzeichnisse is
 
          when False =>
             Create_Directory (New_Directory => "Audio");
-            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeAudioVerzeichnisse - Ordner Audio erstellt.");
+            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeAudioVerzeichnisse - Audio erstellt.");
       end case;
       
       case
@@ -147,7 +147,7 @@ package body SchreibenVerzeichnisse is
 
          when False =>
             Create_Directory (New_Directory => "Audio/Musik");
-            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeAudioVerzeichnisse - Ordner Musik erstellt.");
+            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeAudioVerzeichnisse - Musik erstellt.");
       end case;
       
       case
@@ -158,7 +158,7 @@ package body SchreibenVerzeichnisse is
 
          when False =>
             Create_Directory (New_Directory => "Audio/Sound");
-            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeAudioVerzeichnisse - Ordner Sound erstellt.");
+            Warnung.LogikWarnung (WarnmeldungExtern => "SchreibenVerzeichnisse.SchreibeAudioVerzeichnisse - Sound erstellt.");
       end case;
       
    end SchreibeAudioVerzeichnisse;

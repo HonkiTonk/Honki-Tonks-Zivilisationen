@@ -26,7 +26,7 @@ package body MusikTerminal is
                MusikIntroTerminal.Intro;
                
             when TonDatentypen.Musik_SFML_Enum =>
-               Fehler.MusikFehler (FehlermeldungExtern => "MusikTerminal.MusikTerminal - SFML wird bei Terminal aufgerufen.");
+               Fehler.MusikFehler (FehlermeldungExtern => "MusikTerminal.MusikTerminal - SFML bei Terminal aufgerufen.");
                
             when TonDatentypen.Musik_Ende_Enum =>
                exit MusikSchleife;

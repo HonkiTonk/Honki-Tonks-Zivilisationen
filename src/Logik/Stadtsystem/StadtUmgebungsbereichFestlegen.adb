@@ -21,7 +21,7 @@ package body StadtUmgebungsbereichFestlegen is
       is
          when StadtKonstanten.LeerRasse =>
             -- Dieser Fall sollte niemals eintreten, muss aber mitgenommen werden wegen dem Record.
-            Fehler.LogikFehler (FehlermeldungExtern => "StadtUmgebungsbereichFestlegen.StadtUmgebungsbereichFestlegen - when StadtKonstanten.LeerRasse =>");
+            Fehler.LogikFehler (FehlermeldungExtern => "StadtUmgebungsbereichFestlegen.StadtUmgebungsbereichFestlegen - Keine Rasse ausgewählt.");
             
          when others =>
             StadtUmgebungErmitteln (StadtRasseNummerExtern => StadtRasseNummerExtern);

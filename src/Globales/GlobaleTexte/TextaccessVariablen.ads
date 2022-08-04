@@ -96,14 +96,14 @@ package TextaccessVariablen is
    
    
    -- StadtInformationen
-   type StadtInformationenAccessArray is array (1 .. 17) of Sf.Graphics.sfText_Ptr;
+   type StadtInformationenAccessArray is array (1 .. 13) of Sf.Graphics.sfText_Ptr;
    StadtInformationenAccess : constant StadtInformationenAccessArray := (others => Sf.Graphics.Text.create);
    -- StadtInformationen
    
    
    
    -- EinheitenInformationen
-   type EinheitenInformationenAccessArray is array (1 .. 14) of Sf.Graphics.sfText_Ptr;
+   type EinheitenInformationenAccessArray is array (1 .. 13) of Sf.Graphics.sfText_Ptr;
    EinheitenInformationenAccess : constant EinheitenInformationenAccessArray := (others => Sf.Graphics.Text.create);
    -- EinheitenInformationen
    

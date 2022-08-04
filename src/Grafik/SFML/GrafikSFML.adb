@@ -135,7 +135,6 @@ package body GrafikSFML is
      return Boolean
    is begin
       
-      -- Überall, wenn möglich, so umbauen dass der zu übergebende Parameter bekannt ist bevor die Darstellungsart geändert wird und in den jeweiligen Bereichen dann ein Fehleraufruf einbauen. äöü
       case
         NachGrafiktask.AktuelleDarstellung
       is

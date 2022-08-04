@@ -40,5 +40,15 @@ package body ViewsEinstellenSFML is
                                         view         => ViewExtern);
       
    end ViewEinstellen;
+   
+   
+   
+   function Anzeigeverhätlnis
+     return Sf.Graphics.Rect.sfFloatRect
+   is begin
+      
+      return (0.00, 0.00, 0.00, 0.00);
+      
+   end Anzeigeverhätlnis;
 
 end ViewsEinstellenSFML;

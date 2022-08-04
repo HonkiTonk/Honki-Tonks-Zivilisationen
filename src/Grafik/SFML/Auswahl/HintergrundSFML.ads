@@ -13,7 +13,8 @@ package HintergrundSFML is
    procedure StandardHintergrund
      (HintergrundExtern : in GrafikDatentypen.Hintergrund_Texturen_Enum);
 
-   procedure SeitenleisteHintergrund;
+   procedure SeitenleisteHintergrund
+     (AbmessungenExtern : in Sf.System.Vector2.sfVector2f);
 
    procedure TextHintergrund
      (LinksRechtsExtern : in Boolean;

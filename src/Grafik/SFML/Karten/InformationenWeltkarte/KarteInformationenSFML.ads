@@ -23,6 +23,8 @@ package KarteInformationenSFML is
 
 private
 
+   BreiteText : Float;
+
    StadtRasseNummer : StadtRecords.RasseStadtnummerRecord;
 
    EinheitRasseNummer : EinheitenRecords.RasseEinheitnummerRecord;
@@ -30,9 +32,8 @@ private
    AktuelleKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
 
    StartpunktText : constant Sf.System.Vector2.sfVector2f := (5.00, 5.00);
+   Viewfläche : Sf.System.Vector2.sfVector2f := StartpunktText;
    Textposition : Sf.System.Vector2.sfVector2f;
-   TextpositionStadt : Sf.System.Vector2.sfVector2f;
-   TextpositionEinheit : Sf.System.Vector2.sfVector2f;
 
 
 

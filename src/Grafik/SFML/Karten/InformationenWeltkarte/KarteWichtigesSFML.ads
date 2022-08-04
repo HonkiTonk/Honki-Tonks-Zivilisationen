@@ -6,10 +6,13 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Sf.System.Vector2;
 
 with RassenDatentypen; use RassenDatentypen;
-with ProduktionDatentypen; use ProduktionDatentypen;
 with KartenDatentypen; use KartenDatentypen;
 with SpielVariablen;
 with KartenRecords;
+
+private with TextaccessVariablen;
+private with ProduktionDatentypen;
+
 with Karten;
 
 private with UmwandlungenAdaNachEigenes;
@@ -41,19 +44,20 @@ package KarteWichtigesSFML is
                );
    
 private
-      
-   WertOhneTrennzeichen : Unbounded_Wide_Wide_String;
-   YAchsenWert : Unbounded_Wide_Wide_String;
-   XAchsenWert : Unbounded_Wide_Wide_String;
    
+   TextbreiteAktuell : Float;
+   TextbreiteNeu : Float;
+      
    Textposition : Sf.System.Vector2.sfVector2f;
+   
+   -- Das ohne Grenze mal irgendwo Global anlegen? äöü
+   type FestzulegenderTextArray is array (TextaccessVariablen.KarteWichtigesAccessArray'Range) of Unbounded_Wide_Wide_String;
+   FestzulegenderText : FestzulegenderTextArray;
 
-   function ZahlAlsStringInteger is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => Integer);
-
+   
+   
    function ZahlAlsStringKostenLager is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => ProduktionDatentypen.Produktion);
-
+   
    function ZahlAlsStringEbeneVorhanden is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => KartenDatentypen.EbeneVorhanden);
-
-   function ZahlAlsStringKartenfeldPositivMitNullwert is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => KartenDatentypen.KartenfeldNatural);
 
 end KarteWichtigesSFML;

@@ -45,6 +45,20 @@ package body LeseStadtGebaut is
    
    
    
+   function Arbeitslose
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+      return ProduktionDatentypen.Einwohner
+   is begin
+      
+      return EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+                                EinwohnerArbeiterExtern => True)
+        - EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+                             EinwohnerArbeiterExtern => False);
+      
+   end Arbeitslose;
+   
+   
+   
    function Nahrungsmittel
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return ProduktionDatentypen.StadtLagermenge

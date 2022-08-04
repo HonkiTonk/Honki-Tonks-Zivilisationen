@@ -74,7 +74,7 @@ package GlobaleTexte is
    Einheiten : TexteArray (1 .. RassenAnzahlBeschreibung * Positive (EinheitenDatentypen.EinheitenID'Last)) := (others => FehlenderText);
    
    -- Hier auch zweimal Enumlänge? äöü
-   Verbesserungen : TexteArray (1 .. NameBeschreibungMultiplikator * 8) := (others => FehlenderText);
+   Verbesserungen : TexteArray (1 .. NameBeschreibungMultiplikator * 5) := (others => FehlenderText);
    Wege : TexteArray (1 .. NameBeschreibungMultiplikator * WegartenMultiplikator * 16) := (others => FehlenderText);
    
    Gebäude : TexteArray (1 .. RassenAnzahlBeschreibung * Positive (StadtDatentypen.GebäudeID'Last)) := (others => FehlenderText);

@@ -1,218 +1,225 @@
 package ChangelogAugust2022 is
 
-   -- Version 0.0. => 0.0. (31.08.2022):
+   -- Version 0.03. => 0.03. (31.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (30.08.2022):
+   -- Version 0.03. => 0.03. (30.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (29.08.2022):
+   -- Version 0.03. => 0.03. (29.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (28.08.2022):
+   -- Version 0.03. => 0.03. (28.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (27.08.2022):
+   -- Version 0.03. => 0.03. (27.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (26.08.2022):
+   -- Version 0.03. => 0.03. (26.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (25.08.2022):
+   -- Version 0.03. => 0.03. (25.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (24.08.2022):
+   -- Version 0.03. => 0.03. (24.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (23.08.2022):
+   -- Version 0.03. => 0.03. (23.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (22.08.2022):
+   -- Version 0.03. => 0.03. (22.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (21.08.2022):
+   -- Version 0.03. => 0.03. (21.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (20.08.2022):
+   -- Version 0.03. => 0.03. (20.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (19.08.2022):
+   -- Version 0.03. => 0.03. (19.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (18.08.2022):
+   -- Version 0.03. => 0.03. (18.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (17.08.2022):
+   -- Version 0.03. => 0.03. (17.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (16.08.2022):
+   -- Version 0.03. => 0.03. (16.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (15.08.2022):
+   -- Version 0.03. => 0.03. (15.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (14.08.2022):
+   -- Version 0.03. => 0.03. (14.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (13.08.2022):
+   -- Version 0.03. => 0.03. (13.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (12.08.2022):
+   -- Version 0.03. => 0.03. (12.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (11.08.2022):
+   -- Version 0.03. => 0.03. (11.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (10.08.2022):
+   -- Version 0.03. => 0.03. (10.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (09.08.2022):
+   -- Version 0.03. => 0.03. (09.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (08.08.2022):
+   -- Version 0.03. => 0.03. (08.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (07.08.2022):
+   -- Version 0.03. => 0.03. (07.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (06.08.2022):
+   -- Version 0.03. => 0.03. (06.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (05.08.2022):
+   -- Version 0.03.0985 => 0.03. (05.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (04.08.2022):
+   -- Version 0.03.0870 => 0.03.0985 (04.08.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.0. => 0.0. (03.08.2022):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.0. => 0.0. (02.08.2022):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Änderungen rückgängig gemacht.
+   -- Mehr Warnungen eingebaut.
+   -- Unnötigen Code gelöscht.
+   -- Code zusammengefasst.
+   -- Weiter an der Textanzeige/skalierung gearbeitet.
+   -- Seitenleistenskalierung auf der Weltkare sollte jetzt immer die richtige Höhe haben.
+   -- Fehler behoben der Verhinderte das ein Schiff sich in eine Stadt bewegen konnte.
+   -- Es ist jetzt möglich kleine Transporter in größere Transporter zu laden.
+   -- Halbwegs brauchbare Lösung für die Darstellung und Skalierung der Seitenleiste auf der Weltkarte eingebaut.
+   -- Warn- und Fehlermeldungen gekürzt.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst/modifiziert.
    
    
 
-   -- Version 0.03.0850 => 0.0. (01.08.2022):
+   -- Version 0.03.0850 => 0.03.0870 (03.08.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter an der Textanzeige/skalierung durch Views gearbeitet.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet.
+   
+   
+
+   -- Version 0.03.0850 => 0.03.0850 (02.08.2022):
+   
+   -- null.
+   
+   
+
+   -- Version 0.03.0850 => 0.03.0850 (01.08.2022):
+   
+   -- null.
 
 end ChangelogAugust2022;

@@ -25,7 +25,7 @@ package body MusikSFML is
            NachMusiktask.AktuelleMusik
          is
             when TonDatentypen.Musik_Terminal_Enum =>
-               Fehler.MusikFehler (FehlermeldungExtern => "MusikSFML.MusikSFML - Terminal wird bei SFML aufgerufen.");
+               Fehler.MusikFehler (FehlermeldungExtern => "MusikSFML.MusikSFML - Terminal bei SFML aufgerufen.");
                
             when TonDatentypen.Musik_Intro_Enum =>
                MusikIntroSFML.Intro;

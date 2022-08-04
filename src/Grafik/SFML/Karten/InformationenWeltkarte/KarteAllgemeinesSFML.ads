@@ -40,6 +40,9 @@ private
 
    KartenVerbesserung : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
    KartenWeg : KartenVerbesserungDatentypen.Karten_Weg_Enum;
+   
+   TextbreiteAktuell : Float;
+   TextbreiteNeu : Float;
       
    VorhandenerGrund : KartenRecords.KartengrundRecord;
 

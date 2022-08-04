@@ -6,6 +6,7 @@ with Sf.Graphics.View;
 
 with StadtKonstanten;
 with EinheitenKonstanten;
+with EinheitenDatentypen;
 
 with LeseKarten;
 
@@ -16,11 +17,12 @@ with StadtInformationenSFML;
 with InformationenEinheitenSFML;
 with KarteWichtigesSFML;
 with KarteAllgemeinesSFML;
-with TextberechnungenHoeheSFML;
 with Vergleiche;
 with HintergrundSFML;
 with ViewsSFML;
 with ViewsEinstellenSFML;
+with TextaccessVariablen;
+with TextberechnungenHoeheSFML;
 
 package body KarteInformationenSFML is
 
@@ -30,6 +32,7 @@ package body KarteInformationenSFML is
       
       AktuelleKoordinaten := SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell;
       
+      -- Ist der Cursor jemals Leer? Wenn nein, dann eventuell einbauen? äöü
       case
         Vergleiche.KoordinateLeervergleich (KoordinateExtern => AktuelleKoordinaten)
       is
@@ -37,15 +40,20 @@ package body KarteInformationenSFML is
             return;
             
          when False =>
+            Viewfläche.y := StartpunktText.y + Float ((TextaccessVariablen.KarteWichtigesAccessArray'Last + TextaccessVariablen.KarteAllgemeinesAccessArray'Last + TextaccessVariablen.StadtInformationenAccessArray'Last
+                                                       + TextaccessVariablen.EinheitenInformationenAccessArray'Last + Natural (EinheitenDatentypen.Transportplätze'Last)
+                                                       -- Sollte ich später nach EinheitInformationen noch mehr hinzufügen, oder später Dinge entfernen, dann muss die 4 erhöht/gesenkt werden!
+                                                       + 4)) * TextberechnungenHoeheSFML.KleinerZeilenabstand;
+            
             ViewsEinstellenSFML.ViewEinstellen (ViewExtern    => ViewsSFML.SeitenleisteKartenviewAccess,
-                                                GrößeExtern   => (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x), Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y)),
-                                                ZentrumExtern => (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) / 2.00, Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y) / 2.00));
-            HintergrundSFML.SeitenleisteHintergrund;
+                                                GrößeExtern   => Viewfläche,
+                                                ZentrumExtern => (Viewfläche.x / 2.00, Viewfläche.y / 2.00));
+            HintergrundSFML.SeitenleisteHintergrund (AbmessungenExtern => Viewfläche);
       
-            Textposition := StartpunktText;
             Textposition := KarteWichtigesSFML.WichtigesInformationen (RasseExtern        => RasseExtern,
-                                                                       TextpositionExtern => Textposition,
+                                                                       TextpositionExtern => StartpunktText,
                                                                        KoordinatenExtern  => AktuelleKoordinaten);
+            BreiteText := Textposition.x;
       end case;
       
       case
@@ -53,32 +61,54 @@ package body KarteInformationenSFML is
                              RasseExtern       => RasseExtern)
       is
          when True =>
-            Textposition.y := Textposition.y + TextberechnungenHoeheSFML.GroßerZeilenabstand;
-            
             Textposition := KarteAllgemeinesSFML.AllgemeineInformationen (RasseExtern        => RasseExtern,
-                                                                          TextpositionExtern => Textposition);
-            Textposition.y := Textposition.y + TextberechnungenHoeheSFML.GroßerZeilenabstand;
+                                                                          TextpositionExtern => (StartpunktText.x, Textposition.y));
+            
+            if
+              Textposition.x > BreiteText
+            then
+               BreiteText := Textposition.x;
+               
+            else
+               null;
+            end if;
             
             Textposition := StadtInformationen (RasseExtern        => RasseExtern,
-                                                TextpositionExtern => Textposition,
+                                                TextpositionExtern => (StartpunktText.x, Textposition.y),
                                                 KoordinatenExtern  => AktuelleKoordinaten);
+            
+            if
+              Textposition.x > BreiteText
+            then
+               BreiteText := Textposition.x;
+               
+            else
+               null;
+            end if;
               
             Textposition := EinheitInformationen (RasseExtern        => RasseExtern,
-                                                  TextpositionExtern => Textposition,
+                                                  TextpositionExtern => (StartpunktText.x, Textposition.y),
                                                   KoordinatenExtern  => AktuelleKoordinaten);
+            
+            if
+              Textposition.x > BreiteText
+            then
+               BreiteText := Textposition.x;
+               
+            else
+               null;
+            end if;
 
          when False =>
             null;
       end case;
       
-      -- YWert verdoppeln? äöü
-      -- Da gibt es bestimmt einen besseren Weg. äöü
-      -- Gewissen Länge/Breite anlegen und bei erreichen von dieser einfach den View nachträglich vergrößern? äöü
-      -- Würde das gehen? Wenn ja den Stadtnamen ignorieren? äöü
+      Viewfläche.x := BreiteText;
+      
       -- Forschungs- und Stadtname in eigene Zeile? Stadtname kann auch ganz raus, wird ja auf der Weltkarte angezeigt und die Terminalversion braucht später eh was eigenes. äöä
       -- Aktuelle Forschung mit Fortschritt und Zielmenge in das Forschungsmenü einbauen. äöü
       Sf.Graphics.View.setViewport (view     => ViewsSFML.SeitenleisteKartenviewAccess,
-                                    viewport => (0.80, 0.00, 0.80, 1.00));
+                                    viewport => (0.80, 0.00, 0.20, 1.00));
       
       Sf.Graphics.RenderWindow.setView (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                         view         => ViewsSFML.StandardviewAccess);
@@ -103,10 +133,9 @@ package body KarteInformationenSFML is
             return TextpositionExtern;
             
          when others =>
-            TextpositionStadt := StadtInformationenSFML.Stadt (RasseExtern            => RasseExtern,
-                                                               StadtRasseNummerExtern => StadtRasseNummer,
-                                                               AnzeigeAnfangenExtern  => Textposition);
-            return (TextpositionStadt.x, TextpositionStadt.y + TextberechnungenHoeheSFML.GroßerZeilenabstand);
+            return StadtInformationenSFML.Stadt (RasseExtern            => RasseExtern,
+                                                 StadtRasseNummerExtern => StadtRasseNummer,
+                                                 AnzeigeAnfangenExtern  => TextpositionExtern);
       end case;
       
    end StadtInformationen;
@@ -129,10 +158,9 @@ package body KarteInformationenSFML is
             return TextpositionExtern;
             
          when others =>
-            TextpositionEinheit := InformationenEinheitenSFML.Einheiten (RasseExtern              => RasseExtern,
-                                                                         EinheitRasseNummerExtern => EinheitRasseNummer,
-                                                                         TextpositionExtern       => Textposition);
-            return (TextpositionEinheit.x, TextpositionEinheit.y + TextberechnungenHoeheSFML.GroßerZeilenabstand);
+            return InformationenEinheitenSFML.Einheiten (RasseExtern              => RasseExtern,
+                                                         EinheitRasseNummerExtern => EinheitRasseNummer,
+                                                         TextpositionExtern       => TextpositionExtern);
       end case;
       
    end EinheitInformationen;

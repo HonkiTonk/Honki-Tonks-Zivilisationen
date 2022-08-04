@@ -38,8 +38,18 @@ package TextberechnungenBreiteSFML is
                  TextAccessExtern /= null
               );
    
+   function NeueTextbreiteErmitteln
+     (TextAccessExtern : in Sf.Graphics.sfText_Ptr;
+      TextbreiteExtern : in Float)
+      return Float
+     with
+       Pre => (
+                 TextAccessExtern /= null
+              );
+   
 private
    
    Position : Float;
+   NeueTextbreite : Float;
 
 end TextberechnungenBreiteSFML;

@@ -38,7 +38,7 @@ package body TextAnzeigeTerminal is
                                                    AbstandEndeExtern      => AbstandEndeExtern);
             
          when GrafikDatentypen.Grafik_SFML_Enum =>
-            Fehler.GrafikFehler (FehlermeldungExtern => "Anzeige.AnzeigeOhneAuswahlNeu - SFML wird in Terminalngrafik aufgerufen.");
+            Fehler.GrafikFehler (FehlermeldungExtern => "Anzeige.AnzeigeOhneAuswahlNeu - SFML in Terminal aufgerufen.");
       end case;
       
    end AnzeigeOhneAuswahlNeu;
@@ -75,7 +75,7 @@ package body TextAnzeigeTerminal is
             end if;
             
          when GrafikDatentypen.Grafik_SFML_Enum =>
-            Fehler.GrafikFehler (FehlermeldungExtern => "Anzeige.EinzeiligeAnzeigeOhneAuswahl - SFML wird in Terminalngrafik aufgerufen.");
+            Fehler.GrafikFehler (FehlermeldungExtern => "Anzeige.EinzeiligeAnzeigeOhneAuswahl - SFML in Terminal aufgerufen.");
       end case;
       
    end EinzeiligeAnzeigeOhneAuswahl;
@@ -103,7 +103,7 @@ package body TextAnzeigeTerminal is
                                                   AktuelleAuswahlExtern       => AktuelleAuswahlExtern);
             
          when GrafikDatentypen.Grafik_SFML_Enum =>
-            Fehler.GrafikFehler (FehlermeldungExtern => "Anzeige.AnzeigeMitAuswahlNeu - SFML wird in Terminalngrafik aufgerufen.");
+            Fehler.GrafikFehler (FehlermeldungExtern => "Anzeige.AnzeigeMitAuswahlNeu - SFML in Terminal aufgerufen.");
       end case;
       
    end AnzeigeMitAuswahlNeu;

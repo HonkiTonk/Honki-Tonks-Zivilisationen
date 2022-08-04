@@ -24,7 +24,7 @@ package body OptionenSound is
                return AuswahlWert;
                
             when others =>
-               Fehler.LogikFehler (FehlermeldungExtern => "OptionenSound.OptionenSound - Ungültige Menüauswahl.");
+               Fehler.LogikFehler (FehlermeldungExtern => "OptionenSound.OptionenSound - Falsche Menüauswahl.");
          end case;
          
       end loop SoundSchleife;

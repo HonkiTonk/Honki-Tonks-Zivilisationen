@@ -135,7 +135,7 @@ package body SpieleinstellungenKarten is
                
             when others =>
                Put_Line (KartenpoleAuswahl'Wide_Wide_Image);
-               Fehler.LogikFehler (FehlermeldungExtern => "SpielEinstellungenKarten.KartenpoleWählen - Ungültige Menüauswahl.");
+               Fehler.LogikFehler (FehlermeldungExtern => "SpielEinstellungenKarten.KartenpoleWählen - Falsche Menüauswahl.");
          end case;
          
       end loop KartenpoleSchleife;
@@ -205,7 +205,7 @@ package body SpieleinstellungenKarten is
                return;
                
             when others =>
-               Fehler.LogikFehler (FehlermeldungExtern => "SpielEinstellungenKarten.KartengrößeWählen - Ungültige Menüauswahl.");
+               Fehler.LogikFehler (FehlermeldungExtern => "SpielEinstellungenKarten.KartengrößeWählen - Falsche Menüauswahl.");
          end case;
          
       end loop KartengrößeSchleife;
@@ -285,7 +285,7 @@ package body SpieleinstellungenKarten is
                return;
                
             when others =>
-               Fehler.LogikFehler (FehlermeldungExtern => "SpielEinstellungenKarten.KartenartWählen - Ungültige Menüauswahl.");
+               Fehler.LogikFehler (FehlermeldungExtern => "SpielEinstellungenKarten.KartenartWählen - Falsche Menüauswahl.");
          end case;
 
       end loop KartenartSchleife;
@@ -398,7 +398,7 @@ package body SpieleinstellungenKarten is
                return;
                
             when others =>
-               Fehler.LogikFehler (FehlermeldungExtern => "SpielEinstellungenKarten.KartenformWählen - Ungültige Menüauswahl.");
+               Fehler.LogikFehler (FehlermeldungExtern => "SpielEinstellungenKarten.KartenformWählen - Falsche Menüauswahl.");
          end case;
 
       end loop KartenformSchleife;
@@ -507,7 +507,7 @@ package body SpieleinstellungenKarten is
                return;
                
             when others =>
-               Fehler.LogikFehler (FehlermeldungExtern => "SpielEinstellungenKarten.KartentemperaturWählen - Ungültige Menüauswahl.");
+               Fehler.LogikFehler (FehlermeldungExtern => "SpielEinstellungenKarten.KartentemperaturWählen - Falsche Menüauswahl.");
          end case;
          
       end loop KartentemperaturSchleife;
@@ -538,7 +538,7 @@ package body SpieleinstellungenKarten is
                return;
                
             when others =>
-               Fehler.LogikFehler (FehlermeldungExtern => "SpielEinstellungenKarten.KartenressourcenWählen - Ungültige Menüauswahl.");
+               Fehler.LogikFehler (FehlermeldungExtern => "SpielEinstellungenKarten.KartenressourcenWählen - Falsche Menüauswahl.");
          end case;
                   
       end loop KartenressourcenSchleife;

@@ -77,7 +77,7 @@ package body AufgabeEinheitWeg is
             null;
             
          when others =>
-            Fehler.LogikFehler (FehlermeldungExtern => "WegErmitteln.WegErmitteln - Ungültige Aufgabe wurde ausgewählt.");
+            Fehler.LogikFehler (FehlermeldungExtern => "WegErmitteln.WegErmitteln - Falsche Aufgabe ausgewählt.");
       end case;
       
       case

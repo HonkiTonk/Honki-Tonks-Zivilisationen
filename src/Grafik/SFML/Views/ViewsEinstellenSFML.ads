@@ -3,6 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Sf.Graphics; use Sf.Graphics;
 with Sf.System.Vector2;
+with Sf.Graphics.Rect;
 
 package ViewsEinstellenSFML is
 
@@ -24,5 +25,20 @@ package ViewsEinstellenSFML is
                and
                  ZentrumExtern.y > 0.00
               );
+   
+   
+   
+   function Anzeigeverhätlnis
+     return Sf.Graphics.Rect.sfFloatRect
+     with
+       Post => (
+                  Anzeigeverhätlnis'Result.left >= 0.00
+                and
+                  Anzeigeverhätlnis'Result.top >= 0.00
+                and
+                  Anzeigeverhätlnis'Result.width >= 0.00
+                and
+                  Anzeigeverhätlnis'Result.height >= 0.00
+               );
 
 end ViewsEinstellenSFML;

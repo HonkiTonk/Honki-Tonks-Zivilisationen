@@ -218,7 +218,7 @@ package body BauAuswahlAnzeigeSFML is
         and
           ZusatztextEinheiten /= 0
       then
-         Fehler.GrafikFehler (FehlermeldungExtern => "BauAuswahlAnzeigeSFML.BauAuswahlAnzeige - Zwei Projekte sind gleichzeitig ausgewählt.");
+         Fehler.GrafikFehler (FehlermeldungExtern => "BauAuswahlAnzeigeSFML.BauAuswahlAnzeige - Zwei Projekte gleichzeitig ausgewählt.");
          
          -- Wenn ich die Zusatztexte jetzt ja immer neu setzen, dann reicht da auch ein einzelner Access ohne Schleife, oder? äöü
       elsif

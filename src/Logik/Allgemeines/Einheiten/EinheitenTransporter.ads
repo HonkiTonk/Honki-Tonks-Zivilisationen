@@ -21,17 +21,5 @@ package EinheitenTransporter is
                and
                  SpielVariablen.RassenImSpiel (TransporterExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
               );
-   
-private
-   
-   function PlatzFrei
-     (TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return Boolean
-     with
-       Pre => (
-                 TransporterExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (TransporterExtern.Rasse).Einheitengrenze
-               and
-                 SpielVariablen.RassenImSpiel (TransporterExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
-              );
 
 end EinheitenTransporter;

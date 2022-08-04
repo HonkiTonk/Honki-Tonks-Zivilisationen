@@ -34,7 +34,7 @@ package body EinlesenTexturen is
         Exists (Name => "Grafik/Hintergrund/0")
       is
          when False =>
-            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenHintergrund - 0-Datei nicht vorhanden.");
+            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenHintergrund - 0-Datei fehlt.");
             return;
             
          when True =>
@@ -53,7 +53,7 @@ package body EinlesenTexturen is
                                                     AktuelleZeileExtern => AktuelleZeile)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenHintergrund - Nicht genug Zeilen in der 0-Datei.");
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenHintergrund - Nicht genug Zeilen in 0-Datei.");
                Close (File => DateiTextEinlesen);
                HintergrundEinlesen (DateipfadeEinlesenSchleifenwert) := TextKonstanten.LeerUnboundedString;
                return;
@@ -95,7 +95,7 @@ package body EinlesenTexturen is
         Exists (Name => "Grafik/Kartenfelder/0")
       is
          when False =>
-            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenKartenfelder - 0-Datei nicht vorhanden.");
+            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenKartenfelder - 0-Datei fehlt.");
             return;
             
          when True =>
@@ -114,7 +114,7 @@ package body EinlesenTexturen is
                                                     AktuelleZeileExtern => AktuelleZeile)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenKartenfelder - Nicht genug Zeilen in der 0-Datei.");
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenKartenfelder - Nicht genug Zeilen in 0-Datei.");
                Close (File => DateiTextEinlesen);
                KartenfelderEinlesen (DateipfadeEinlesenSchleifenwert) := TextKonstanten.LeerUnboundedString;
                return;
@@ -156,7 +156,7 @@ package body EinlesenTexturen is
         Exists (Name => "Grafik/Kartenfluss/0")
       is
          when False =>
-            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenKartenflüsse - 0-Datei nicht vorhanden.");
+            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenKartenflüsse - 0-Datei fehlt.");
             return;
             
          when True =>
@@ -175,7 +175,7 @@ package body EinlesenTexturen is
                                                     AktuelleZeileExtern => AktuelleZeile)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenKartenflüsse - Nicht genug Zeilen in der 0-Datei.");
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenKartenflüsse - Nicht genug Zeilen in 0-Datei.");
                Close (File => DateiTextEinlesen);
                KartenflüsseEinlesen (DateipfadeEinlesenSchleifenwert) := TextKonstanten.LeerUnboundedString;
                return;
@@ -217,7 +217,7 @@ package body EinlesenTexturen is
         Exists (Name => "Grafik/Kartenressourcen/0")
       is
          when False =>
-            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenKartenressourcen - 0-Datei nicht vorhanden.");
+            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenKartenressourcen - 0-Datei fehlt.");
             return;
             
          when True =>
@@ -236,7 +236,7 @@ package body EinlesenTexturen is
                                                     AktuelleZeileExtern => AktuelleZeile)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenKartenressourcen - Nicht genug Zeilen in der 0-Datei.");
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenKartenressourcen - Nicht genug Zeilen in 0-Datei.");
                Close (File => DateiTextEinlesen);
                KartenressourcenEinlesen (DateipfadeEinlesenSchleifenwert) := TextKonstanten.LeerUnboundedString;
                return;
@@ -278,7 +278,7 @@ package body EinlesenTexturen is
         Exists (Name => "Grafik/Verbesserungen/0")
       is
          when False =>
-            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenVerbesserungen - 0-Datei nicht vorhanden.");
+            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenVerbesserungen - 0-Datei fehlt.");
             return;
             
          when True =>
@@ -297,7 +297,7 @@ package body EinlesenTexturen is
                                                     AktuelleZeileExtern => AktuelleZeile)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenVerbesserungen - Nicht genug Zeilen in der 0-Datei.");
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenVerbesserungen - Nicht genug Zeilen in 0-Datei.");
                Close (File => DateiTextEinlesen);
                VerbesserungenEinlesen (DateipfadeEinlesenSchleifenwert) := TextKonstanten.LeerUnboundedString;
                return;
@@ -339,7 +339,7 @@ package body EinlesenTexturen is
         Exists (Name => "Grafik/Wege/0")
       is
          when False =>
-            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenWege - 0-Datei nicht vorhanden.");
+            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenWege - 0-Datei fehlt.");
             return;
             
          when True =>
@@ -358,7 +358,7 @@ package body EinlesenTexturen is
                                                     AktuelleZeileExtern => AktuelleZeile)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenWege - Nicht genug Zeilen in der 0-Datei.");
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenWege - Nicht genug Zeilen in 0-Datei.");
                Close (File => DateiTextEinlesen);
                WegeEinlesen (DateipfadeEinlesenSchleifenwert) := TextKonstanten.LeerUnboundedString;
                return;
@@ -400,7 +400,7 @@ package body EinlesenTexturen is
         Exists (Name => "Grafik/Einheiten/0")
       is
          when False =>
-            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenEinheiten - 0-Datei nicht vorhanden.");
+            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenEinheiten - 0-Datei fehlt.");
             return;
             
          when True =>
@@ -421,7 +421,7 @@ package body EinlesenTexturen is
                                                        AktuelleZeileExtern => AktuelleZeile)
             is
                when True =>
-                  Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenEinheiten - Nicht genug Zeilen in der 0-Datei.");
+                  Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenEinheiten - Nicht genug Zeilen in 0-Datei.");
                   Close (File => DateiTextEinlesen);
                   EinheitenEinlesen (RasseSchleifenwert, DateipfadeEinlesenSchleifenwert) := TextKonstanten.LeerUnboundedString;
                   return;
@@ -467,7 +467,7 @@ package body EinlesenTexturen is
         Exists (Name => "Grafik/Bauwerke/0")
       is
          when False =>
-            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenGebäude - 0-Datei nicht vorhanden.");
+            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenGebäude - 0-Datei fehlt.");
             return;
             
          when True =>
@@ -488,7 +488,7 @@ package body EinlesenTexturen is
                                                        AktuelleZeileExtern => AktuelleZeile)
             is
                when True =>
-                  Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenGebäude - Nicht genug Zeilen in der 0-Datei.");
+                  Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenGebäude - Nicht genug Zeilen in 0-Datei.");
                   Close (File => DateiTextEinlesen);
                   GebäudeEinlesen (RasseSchleifenwert, DateipfadeEinlesenSchleifenwert) := TextKonstanten.LeerUnboundedString;
                   return;

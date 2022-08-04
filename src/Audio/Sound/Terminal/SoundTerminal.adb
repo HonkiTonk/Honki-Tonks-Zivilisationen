@@ -22,7 +22,7 @@ package body SoundTerminal is
                delay ZeitKonstanten.WartezeitSound;
                
             when TonDatentypen.Sound_SFML_Enum =>
-               Fehler.SoundFehler (FehlermeldungExtern => "SoundTerminal.SoundTerminal - SFML wird bei Terminal aufgerufen.");
+               Fehler.SoundFehler (FehlermeldungExtern => "SoundTerminal.SoundTerminal - SFML bei Terminal aufgerufen.");
                
             when TonDatentypen.Sound_Ende_Enum =>
                exit SoundSchleife;

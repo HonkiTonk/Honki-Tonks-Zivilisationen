@@ -44,7 +44,7 @@ package body StartSound is
             SoundTerminal.SoundTerminal;
             
          when others =>
-            Fehler.SoundFehler (FehlermeldungExtern => "StartSound.StartSound - Ungültige Soundwiedergabeart.");
+            Fehler.SoundFehler (FehlermeldungExtern => "StartSound.StartSound - Falsche Soundwiedergabeart.");
       end case;
       
    end StartSound;

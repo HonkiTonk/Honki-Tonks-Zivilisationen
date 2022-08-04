@@ -154,8 +154,7 @@ package body RueckgabeMenues is
          return RueckgabeDatentypen.Spiel_Beenden_Enum;
                     
       else
-         Fehler.LogikFehler (FehlermeldungExtern => "RueckgabeMenues.Hauptmenü - Ungültige Auswahl.");
-         -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
+         Fehler.LogikFehler (FehlermeldungExtern => "RueckgabeMenues.Hauptmenü - Falsche Auswahl.");
          return RueckgabeDatentypen.Spiel_Beenden_Enum;
       end if;
       
@@ -299,8 +298,7 @@ package body RueckgabeMenues is
          return RueckgabeDatentypen.Spiel_Beenden_Enum;
                     
       else
-         Fehler.LogikFehler (FehlermeldungExtern => "RueckgabeMenues.SpieleinstellungenMenü - Ungültige Auswahl.");
-         -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
+         Fehler.LogikFehler (FehlermeldungExtern => "RueckgabeMenues.SpieleinstellungenMenü - Falsche Auswahl.");
          return RueckgabeDatentypen.Spiel_Beenden_Enum;
       end if;
       
@@ -1007,8 +1005,7 @@ package body RueckgabeMenues is
          return RueckgabeDatentypen.Fertig_Enum;
                     
       else
-         Fehler.LogikFehler (FehlermeldungExtern => "RueckgabeMenues.Fertig - Ungültige Auswahl.");
-         -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
+         Fehler.LogikFehler (FehlermeldungExtern => "RueckgabeMenues.Fertig - Falsche Auswahl.");
          return RueckgabeDatentypen.Spiel_Beenden_Enum;
       end if;
       
@@ -1033,8 +1030,7 @@ package body RueckgabeMenues is
          return RueckgabeDatentypen.Spiel_Beenden_Enum;
                     
       else
-         Fehler.LogikFehler (FehlermeldungExtern => "RueckgabeMenues.ZurückHauptmenüEnde - Ungültige Auswahl.");
-         -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
+         Fehler.LogikFehler (FehlermeldungExtern => "RueckgabeMenues.ZurückHauptmenüEnde - Falsche Auswahl.");
          return RueckgabeDatentypen.Spiel_Beenden_Enum;
       end if;
       
@@ -1064,8 +1060,7 @@ package body RueckgabeMenues is
          return RueckgabeDatentypen.Spiel_Beenden_Enum;
                     
       else
-         Fehler.LogikFehler (FehlermeldungExtern => "RueckgabeMenues.ZurückHauptmenüEnde - Ungültige Auswahl.");
-         -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
+         Fehler.LogikFehler (FehlermeldungExtern => "RueckgabeMenues.ZurückHauptmenüEnde - Falsche Auswahl.");
          return RueckgabeDatentypen.Spiel_Beenden_Enum;
       end if;
       

@@ -9,7 +9,10 @@ with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
 
 with UmgebungErreichbarTesten;
+with TransporterSuchen;
 
+-- Das Verschachteln mehrerer Transporter ineinander sollte keine Probleme mit regulären Einheiten machen.
+-- Es muss nur darauf geachtet werden dass in der EinheitenDatenbank das KannTransportieren immer kleiner ist als KannTransportiertWerden.
 package body BewegungLadenEntladen is
 
    procedure TransporterBeladen
@@ -17,7 +20,7 @@ package body BewegungLadenEntladen is
       LadungExtern : in EinheitenDatentypen.MaximaleEinheiten)
    is begin
       
-      FreierPlatzNummer := FreienPlatzErmitteln (TransporterExtern => TransporterExtern);
+      FreierPlatzNummer := TransporterSuchen.FreierPlatz (TransporterExtern => TransporterExtern);
       
       case
         FreierPlatzNummer
@@ -35,49 +38,27 @@ package body BewegungLadenEntladen is
             else
                null;
             end if;
+            
             SchreibeEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
                                                    LadungExtern             => LadungExtern,
                                                    LadungsplatzExtern       => FreierPlatzNummer);
             SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern),
                                                      BewegungspunkteExtern    => EinheitenKonstanten.LeerBewegungspunkte,
                                                      RechnenSetzenExtern      => 0);
-            SchreibeEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern),
-                                                 KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => TransporterExtern));
             SchreibeEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern),
                                                        TransporterExtern        => TransporterExtern.Nummer);
-            SpielVariablen.CursorImSpiel (TransporterExtern.Rasse).KoordinatenAktuell := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern));
+            NeueKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => TransporterExtern);
+            SchreibeEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern),
+                                                 KoordinatenExtern        => NeueKoordinaten);
+            
+            TransporterladungVerschieben (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern),
+                                          NeueKoordinatenExtern    => NeueKoordinaten);
+            
+            -- Das hier sollte, wenn überhaupt, nur für die Terminalversion eine Rolle spielen.
+            -- SpielVariablen.CursorImSpiel (TransporterExtern.Rasse).KoordinatenAktuell := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern));
       end case;
       
    end TransporterBeladen;
-   
-   
-   
-   -- Ist das nicht identisch mit dem Zeug in TransporterSuchen?
-   function FreienPlatzErmitteln
-     (TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return EinheitenDatentypen.Transportplätze
-   is begin
-      
-      TransporterSchleife:
-      for FreierPlatzSchleifenwert in EinheitenRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => TransporterExtern.Rasse,
-                                                                                                                                IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => TransporterExtern)) loop
-        
-         case
-           LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
-                                              PlatzExtern              => FreierPlatzSchleifenwert)
-         is
-            when EinheitenKonstanten.LeerTransportiert =>
-               return FreierPlatzSchleifenwert;
-               
-            when others =>
-               null;
-         end case;
-         
-      end loop TransporterSchleife;
-      
-      return EinheitenDatentypen.Transportplätze'First;
-      
-   end FreienPlatzErmitteln;
      
       
    
@@ -86,17 +67,15 @@ package body BewegungLadenEntladen is
       LadungExtern : in EinheitenDatentypen.MaximaleEinheiten)
    is begin
       
+      Transporterkapazität := LeseEinheitenDatenbank.Transportkapazität (RasseExtern => TransporterExtern.Rasse,
+                                                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => TransporterExtern));
+      
       TransporterLeerenSchleife:
-      for
-        TransporterLeerenSchleifenwert
-      in
-        EinheitenRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => TransporterExtern.Rasse,
-                                                                                                  IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => TransporterExtern)) loop
+      for TransporterLeerenSchleifenwert in EinheitenRecords.TransporterArray'First .. Transporterkapazität loop
 
          if
-           LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
-                                              PlatzExtern              => TransporterLeerenSchleifenwert)
-           = LadungExtern
+           LadungExtern = LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
+                                                             PlatzExtern              => TransporterLeerenSchleifenwert)
          then
             SchreibeEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
                                                    LadungExtern             => EinheitenKonstanten.LeerTransportiert,
@@ -104,7 +83,7 @@ package body BewegungLadenEntladen is
             SchreibeEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern),
                                                        TransporterExtern        => EinheitenKonstanten.LeerWirdTransportiert);
             exit TransporterLeerenSchleife;
-                     
+            
          else
             null;
          end if;
@@ -120,22 +99,27 @@ package body BewegungLadenEntladen is
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
       
+      Transporterkapazität := LeseEinheitenDatenbank.Transportkapazität (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      
       TransporterUmladenSchleife:
-      for TransporterUmladenSchleifenwert in EinheitenRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                                                                                       IDExtern    =>
-                                                                                                                                         LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) loop
-               
+      for TransporterUmladenSchleifenwert in EinheitenRecords.TransporterArray'First .. Transporterkapazität loop
+         
+         Ladungsnummer := LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                             PlatzExtern              => TransporterUmladenSchleifenwert);
+         
          case
-           LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                              PlatzExtern              => TransporterUmladenSchleifenwert)
+           Ladungsnummer
          is
             when EinheitenKonstanten.LeerTransportiert =>
                null;
                      
             when others =>
-               SchreibeEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                                                                                    PlatzExtern              => TransporterUmladenSchleifenwert)),
+               SchreibeEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, Ladungsnummer),
                                                     KoordinatenExtern        => NeueKoordinatenExtern);
+               
+               TransporterladungVerschieben (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, Ladungsnummer),
+                                             NeueKoordinatenExtern    => NeueKoordinatenExtern);
          end case;
                
       end loop TransporterUmladenSchleife;
@@ -148,35 +132,31 @@ package body BewegungLadenEntladen is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
+      
+      Transporterkapazität := LeseEinheitenDatenbank.Transportkapazität (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
             
       BelegterPlatzSchleife:
-      for BelegterPlatzSchleifenwert in EinheitenRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                                                                                  IDExtern    =>
-                                                                                                                                    LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) loop
+      for BelegterPlatzSchleifenwert in EinheitenRecords.TransporterArray'First .. Transporterkapazität loop
          
+         EinheitnummerStadtprüfung := LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                          PlatzExtern              => BelegterPlatzSchleifenwert);
          case
-           LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                              PlatzExtern              => BelegterPlatzSchleifenwert)
+           EinheitnummerStadtprüfung
          is
             when EinheitenKonstanten.LeerTransportiert =>
                null;
                
             when others =>
-               -- Mal übersichtlicher gestalten. äöü
-               SchreibeEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                                                                                    PlatzExtern              => BelegterPlatzSchleifenwert)),
-                                                    KoordinatenExtern        =>
-                                                       UmgebungErreichbarTesten.UmgebungErreichbarTesten (AktuelleKoordinatenExtern => NeueKoordinatenExtern,
-                                                                                                          RasseExtern               => EinheitRasseNummerExtern.Rasse,
-                                                                                                          IDExtern                  =>
-                                                                                                             LeseEinheitenGebaut.ID (EinheitRasseNummerExtern =>
-                                                                                                                                       (EinheitRasseNummerExtern.Rasse,
-                                                                                                                                        LeseEinheitenGebaut.Transportiert
-                                                                                                                                          (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                                                                           PlatzExtern              => BelegterPlatzSchleifenwert))),
-                                                                                                          NotwendigeFelderExtern    => 1));
-               SchreibeEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                                                                                          PlatzExtern              => BelegterPlatzSchleifenwert)),
+               IDEinheit := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitnummerStadtprüfung));
+               
+               SchreibeEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitnummerStadtprüfung),
+                                                    KoordinatenExtern        => UmgebungErreichbarTesten.UmgebungErreichbarTesten (AktuelleKoordinatenExtern => NeueKoordinatenExtern,
+                                                                                                                                   RasseExtern               => EinheitRasseNummerExtern.Rasse,
+                                                                                                                                   IDExtern                  => IDEinheit,
+                                                                                                                                   NotwendigeFelderExtern    => 1));
+               
+               SchreibeEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitnummerStadtprüfung),
                                                           TransporterExtern        => EinheitenKonstanten.LeerWirdTransportiert);
          end case;
          

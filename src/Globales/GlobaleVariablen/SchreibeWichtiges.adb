@@ -13,6 +13,7 @@ with Fehler;
 
 package body SchreibeWichtiges is
 
+   -- Warum kann die vorhandene Geldmenge überhaupt kleiner als 0 sein? Das mal ändern? äöü
    procedure Geldmenge
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       GeldZugewinnExtern : in ZahlenDatentypen.EigenerInteger;

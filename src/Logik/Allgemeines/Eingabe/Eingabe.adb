@@ -81,7 +81,7 @@ package body Eingabe is
             EingabeTerminal.WartenEingabe;
             
          when GrafikDatentypen.Grafik_SFML_Enum =>
-            Fehler.LogikFehler (FehlermeldungExtern => "Eingabe.WartenEingabe - Nur bei Terminal so nötig.");
+            Fehler.LogikFehler (FehlermeldungExtern => "Eingabe.WartenEingabe - Nur bei Terminal nötig.");
       end case;
       
    end WartenEingabe;

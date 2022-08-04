@@ -32,7 +32,7 @@ package body SpieleinstellungenSonstiges is
                return;
                
             when others =>
-               Fehler.LogikFehler (FehlermeldungExtern => "SpielEinstellungenSonstiges.SchwierigkeitsgradFestlegen - Ungültige Menüasuwahl.");
+               Fehler.LogikFehler (FehlermeldungExtern => "SpielEinstellungenSonstiges.SchwierigkeitsgradFestlegen - Falsche Menüauswahl.");
          end case;
          
       end loop SchwierigkeitsgradSchleife;

@@ -34,7 +34,7 @@ package body BewegungPassierbarkeitPruefen is
         IDEinheit
       is
          when EinheitenDatentypen.EinheitenIDMitNullWert'First =>
-            Fehler.LogikFehler (FehlermeldungExtern => "BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer - Einheit ist vorhanden hat aber keine ID.");
+            Fehler.LogikFehler (FehlermeldungExtern => "BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer - Einheit ohne ID.");
             return False;
             
          when others =>
@@ -101,23 +101,21 @@ package body BewegungPassierbarkeitPruefen is
       
       -- Alles mal ein wenig optimieren. äöü
       if
-        StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                    KoordinatenExtern => NeueKoordinatenExtern)
-        = StadtKonstanten.LeerNummer
+        StadtKonstanten.LeerNummer /= StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
+                                                                                 KoordinatenExtern => NeueKoordinatenExtern)
       then
-         null;
+         return True;
                   
       elsif
         LeseKarten.Weg (KoordinatenExtern => NeueKoordinatenExtern) /= KartenVerbesserungDatentypen.Leer_Weg_Enum
         and then
-          LeseVerbesserungenDatenbank.PassierbarkeitWeg (WegExtern   => LeseKarten.Weg (KoordinatenExtern => NeueKoordinatenExtern),
-                                                         WelcheUmgebungExtern => UmgebungExtern)
-        = False
+          False = LeseVerbesserungenDatenbank.PassierbarkeitWeg (WegExtern            => LeseKarten.Weg (KoordinatenExtern => NeueKoordinatenExtern),
+                                                                 WelcheUmgebungExtern => UmgebungExtern)
       then
          null;
          
       else
-         return True;
+         null;
       end if;
       
       return False;
@@ -132,13 +130,12 @@ package body BewegungPassierbarkeitPruefen is
       return Boolean
    is begin
       
-      -- Prüfung ist für Zeug wie Sperre gedacht, nicht entfernen.
+      -- Prüfung war für Zeug wie Sperre gedacht, entfernen? äöü
       if
         LeseKarten.Verbesserung (KoordinatenExtern => NeueKoordinatenExtern) /= KartenVerbesserungDatentypen.Leer_Verbesserung_Enum
         and
-          KartenAllgemein.PassierbarVerbesserung (KoordinatenExtern    => NeueKoordinatenExtern,
-                                                  PassierbarkeitExtern => UmgebungExtern)
-        = False
+          False = KartenAllgemein.PassierbarVerbesserung (KoordinatenExtern    => NeueKoordinatenExtern,
+                                                          PassierbarkeitExtern => UmgebungExtern)
       then
          null;
          
@@ -235,13 +232,12 @@ package body BewegungPassierbarkeitPruefen is
          null;
             
       elsif
-        LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => RasseExtern,
-                                               IDExtern             => IDExtern,
-                                               WelcheUmgebungExtern => UmgebungExtern)
-        = False
+        False = LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => RasseExtern,
+                                                       IDExtern             => IDExtern,
+                                                       WelcheUmgebungExtern => UmgebungExtern)
       then
          null;
-            
+         
       else
          return True;
       end if;
@@ -259,10 +255,11 @@ package body BewegungPassierbarkeitPruefen is
    is begin
       
       BenötigteFelder := 1;
+      Transporterkapazität := LeseEinheitenDatenbank.Transportkapazität (RasseExtern => TransporterExtern.Rasse,
+                                                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => TransporterExtern));
          
       BelegterPlatzSchleife:
-      for BelegterPlatzSchleifenwert in EinheitenRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => TransporterExtern.Rasse,
-                                                                                                                                  IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => TransporterExtern)) loop
+      for BelegterPlatzSchleifenwert in EinheitenRecords.TransporterArray'First .. Transporterkapazität loop
          
          case
            LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
@@ -272,15 +269,13 @@ package body BewegungPassierbarkeitPruefen is
                null;
                               
             when others =>
+               IDEinheit := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
+                                                                                                                                             PlatzExtern              => BelegterPlatzSchleifenwert)));
                if
-                 UmgebungErreichbarTesten.UmgebungErreichbarTesten (AktuelleKoordinatenExtern => NeueKoordinatenExtern,
-                                                                    RasseExtern               => TransporterExtern.Rasse,
-                                                                    IDExtern                  =>
-                                                                      LeseEinheitenGebaut.ID (EinheitRasseNummerExtern =>
-                                                                                                  (TransporterExtern.Rasse, LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
-                                                                                                                                                               PlatzExtern              => BelegterPlatzSchleifenwert))),
-                                                                    NotwendigeFelderExtern    => BenötigteFelder).XAchse
-                 = KartenKonstanten.LeerXAchse
+                 KartenKonstanten.LeerXAchse = UmgebungErreichbarTesten.UmgebungErreichbarTesten (AktuelleKoordinatenExtern => NeueKoordinatenExtern,
+                                                                                                  RasseExtern               => TransporterExtern.Rasse,
+                                                                                                  IDExtern                  => IDEinheit,
+                                                                                                  NotwendigeFelderExtern    => BenötigteFelder).XAchse
                then
                   return False;
                      
@@ -303,8 +298,8 @@ package body BewegungPassierbarkeitPruefen is
       return Boolean
    is begin
       
-      -- Bei Einheiten nur um das direkte StadtumfeldUmfeld loopen. Das ist doch Blödsinn, die Einheiten werden ja auf einem beliebigen Feld innerhalb des Stadtbereiches platziert.
-      -- Oder reicht das weil es ja hauptsächlich dazu da ist um z.B. Panzer im Himmel zu verhindern?
+      -- Bei Einheiten nur um das direkte StadtumfeldUmfeld loopen. Das ist doch Blödsinn, die Einheiten werden ja auf einem beliebigen Feld innerhalb des Stadtbereiches platziert. äöü
+      -- Oder reicht das weil es ja hauptsächlich dazu da ist um z.B. Panzer im Himmel zu verhindern? äöü
       YAchseEinheitenSchleife:
       for YAchseEinheitenSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
          XAchseEinheitenSchleife:

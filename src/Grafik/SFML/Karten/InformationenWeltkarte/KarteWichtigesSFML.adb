@@ -13,7 +13,6 @@ with LeseWichtiges;
 with ForschungAllgemein;
 with GrafikEinstellungenSFML;
 with TextberechnungenHoeheSFML;
-with TextaccessVariablen;
 
 package body KarteWichtigesSFML is
 
@@ -25,103 +24,51 @@ package body KarteWichtigesSFML is
    is begin
       
       Textposition := TextpositionExtern;
+      TextbreiteAktuell := 0.00;
       
-      WertOhneTrennzeichen := ZahlAlsStringEbeneVorhanden (ZahlExtern => KoordinatenExtern.EAchse);
-      YAchsenWert := ZahlAlsStringKartenfeldPositivMitNullwert (ZahlExtern => KoordinatenExtern.YAchse);
-      XAchsenWert := ZahlAlsStringKartenfeldPositivMitNullwert (ZahlExtern => KoordinatenExtern.XAchse);
+      FestzulegenderText (1) := GlobaleTexte.Zeug (TextKonstanten.ZeugAktuellePosition) & " " & ZahlAlsStringEbeneVorhanden (ZahlExtern => KoordinatenExtern.EAchse) & "," & KoordinatenExtern.YAchse'Wide_Wide_Image
+        & "," & KoordinatenExtern.XAchse'Wide_Wide_Image;
       
-      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteWichtigesAccess (1),
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugAktuellePosition)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen) & ","
-                                         & To_Wide_Wide_String (Source => YAchsenWert) & "," & To_Wide_Wide_String (Source => XAchsenWert));
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteWichtigesAccess (1),
-                                    position => Textposition);
-               
-      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
-      
-      
-            
       -- Wieso gibt es keine Lese/Schreibefunktion für die Rundenanzahl? äöü
-      WertOhneTrennzeichen := ZahlAlsStringInteger (ZahlExtern => SpielVariablen.Allgemeines.Rundenanzahl);
+      FestzulegenderText (2) := GlobaleTexte.Zeug (TextKonstanten.ZeugAktuelleRunde) & SpielVariablen.Allgemeines.Rundenanzahl'Wide_Wide_Image;
       
-      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteWichtigesAccess (2),
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugAktuelleRunde)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteWichtigesAccess (2),
-                                    position => Textposition);
-      
-      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
-      
-      
-                  
-      WertOhneTrennzeichen := ZahlAlsStringInteger (ZahlExtern => LeseWichtiges.Geldmenge (RasseExtern => RasseExtern));
-      
-      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteWichtigesAccess (3),
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugAktuelleGeldmenge)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteWichtigesAccess (3),
-                                    position => Textposition);
-      
-      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
-      
-      
-                  
-      WertOhneTrennzeichen := ZahlAlsStringKostenLager (ZahlExtern => LeseWichtiges.GeldZugewinnProRunde (RasseExtern => RasseExtern));
-      
-      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteWichtigesAccess (4),
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugAktuellerGeldzuwachs)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteWichtigesAccess (4),
-                                    position => Textposition);
-      
-      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
-      
-      
+      FestzulegenderText (3) := GlobaleTexte.Zeug (TextKonstanten.ZeugAktuelleGeldmenge) & LeseWichtiges.Geldmenge (RasseExtern => RasseExtern)'Wide_Wide_Image;
+      FestzulegenderText (4) := GlobaleTexte.Zeug (TextKonstanten.ZeugAktuellerGeldzuwachs) & " " & ZahlAlsStringKostenLager (ZahlExtern => LeseWichtiges.GeldZugewinnProRunde (RasseExtern => RasseExtern));
+      FestzulegenderText (5) := GlobaleTexte.Zeug (TextKonstanten.ZeugAktuellesForschungsprojekt) & " " & ForschungAllgemein.Beschreibung (IDExtern    => LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern),
+                                                                                                                                           RasseExtern => RasseExtern);
+      FestzulegenderText (6) := GlobaleTexte.Zeug (TextKonstanten.ZeugVerbleibendeForschungszeit) & LeseWichtiges.VerbleibendeForschungszeit (RasseExtern => RasseExtern)'Wide_Wide_Image;
+      FestzulegenderText (7) := GlobaleTexte.Zeug (TextKonstanten.ZeugAktuelleForschungsmenge) & LeseWichtiges.Forschungsmenge (RasseExtern => RasseExtern)'Wide_Wide_Image;
+      FestzulegenderText (8) := GlobaleTexte.Zeug (TextKonstanten.ZeugAktuellerForschungsgewinn) & LeseWichtiges.GesamteForschungsrate (RasseExtern => RasseExtern)'Wide_Wide_Image;
             
-      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteWichtigesAccess (5),
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugAktuellesForschungsprojekt) & " "
-                                                                      & ForschungAllgemein.Beschreibung (IDExtern    => LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern),
-                                                                                                         RasseExtern => RasseExtern)));
-
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteWichtigesAccess (5),
-                                    position => Textposition);
-      
-      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
-      
-      
-      
-      WertOhneTrennzeichen := ZahlAlsStringKostenLager (ZahlExtern => LeseWichtiges.VerbleibendeForschungszeit (RasseExtern => RasseExtern));
-      
-      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteWichtigesAccess (6),
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugVerbleibendeForschungszeit)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteWichtigesAccess (6),
-                                    position => Textposition);
-      
-      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
-      
-      
-      
-      WertOhneTrennzeichen := ZahlAlsStringKostenLager (ZahlExtern => LeseWichtiges.Forschungsmenge (RasseExtern => RasseExtern));
-      
-      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteWichtigesAccess (7),
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugAktuelleForschungsmenge)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteWichtigesAccess (7),
-                                    position => Textposition);
-      
-      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
-      
-      
-            
-      WertOhneTrennzeichen := ZahlAlsStringKostenLager (ZahlExtern => LeseWichtiges.GesamteForschungsrate (RasseExtern => RasseExtern));
-      
-      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteWichtigesAccess (8),
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugAktuellerForschungsgewinn)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteWichtigesAccess (8),
-                                    position => Textposition);
-      
       TextSchleife:
       for TextSchleifenwert in TextaccessVariablen.KarteWichtigesAccessArray'Range loop
+         
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteWichtigesAccess (TextSchleifenwert),
+                                            str  => To_Wide_Wide_String (Source => FestzulegenderText (TextSchleifenwert)));
+         
+         Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteWichtigesAccess (TextSchleifenwert),
+                                       position => Textposition);
          
          Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                             text         => TextaccessVariablen.KarteWichtigesAccess (TextSchleifenwert));
          
+         TextbreiteNeu := Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteWichtigesAccess (TextSchleifenwert)).width + 2.00 * TextpositionExtern.x;
+         
+         if
+           TextbreiteAktuell < TextbreiteNeu
+         then
+            TextbreiteAktuell := TextbreiteNeu;
+            
+         else
+            null;
+         end if;
+         
+         Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
+         
       end loop TextSchleife;
+      
+      Textposition.x := TextbreiteAktuell;
+      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
       return Textposition;
       

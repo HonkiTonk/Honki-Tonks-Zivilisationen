@@ -74,6 +74,8 @@ private
    
    Passierbar : Boolean;
    
+   Transporterkapazität : EinheitenDatentypen.Transportplätze;
+   
    IDEinheit : EinheitenDatentypen.EinheitenIDMitNullWert;
    
    StadtNummer : StadtDatentypen.MaximaleStädteMitNullWert;

@@ -22,7 +22,7 @@ package body TextberechnungenBreiteSFML is
          
       else
          -- Später in ein Fehler.GrafikStopp umbauen? äöü
-         Warnung.GrafikWarnung (WarnmeldungExtern => "TextberechnungenBreiteSFML.MittelpositionBerechnen - Textposition ist außerhalb des Fensters.");
+         Warnung.GrafikWarnung (WarnmeldungExtern => "TextberechnungenBreiteSFML.MittelpositionBerechnen - Textposition außerhalb des Fensters.");
       end if;
       
       return Position;
@@ -56,7 +56,7 @@ package body TextberechnungenBreiteSFML is
          
       else
          -- Später in ein Fehler.GrafikStopp umbauen? äöü
-         Warnung.GrafikWarnung (WarnmeldungExtern => "TextberechnungenBreiteSFML.ViertelpositionBerechnen - Textposition ist außerhalb des Fensters.");
+         Warnung.GrafikWarnung (WarnmeldungExtern => "TextberechnungenBreiteSFML.ViertelpositionBerechnen - Textposition außerhalb des Fensters.");
       end if;
       
       return Position;
@@ -73,5 +73,26 @@ package body TextberechnungenBreiteSFML is
       return Sf.Graphics.Text.getLocalBounds (text => TextAccessExtern).width / 2.00;
       
    end HalbeBreiteBerechnen;
-
+   
+   
+   
+   function NeueTextbreiteErmitteln
+     (TextAccessExtern : in Sf.Graphics.sfText_Ptr;
+      TextbreiteExtern : in Float)
+      return Float
+   is begin
+      
+      NeueTextbreite := Sf.Graphics.Text.getLocalBounds (text => TextAccessExtern).width;
+      
+      if
+        NeueTextbreite > TextbreiteExtern
+      then
+         return NeueTextbreite;
+           
+      else
+         return TextbreiteExtern;
+      end if;
+      
+   end NeueTextbreiteErmitteln;
+   
 end TextberechnungenBreiteSFML;

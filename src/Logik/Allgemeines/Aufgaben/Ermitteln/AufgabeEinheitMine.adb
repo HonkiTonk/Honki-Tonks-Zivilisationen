@@ -69,7 +69,7 @@ package body AufgabeEinheitMine is
             null;
             
          when others =>
-            Fehler.LogikFehler (FehlermeldungExtern => "MineErmitteln.MineErmitteln - Ungültige Aufgabe wurde ausgewählt.");
+            Fehler.LogikFehler (FehlermeldungExtern => "MineErmitteln.MineErmitteln - Falsche Aufgabe ausgewählt.");
       end case;
       
       case

@@ -58,7 +58,7 @@ package body DebugmenueSFML is
                return;
                   
             when others =>
-               Fehler.LogikFehler (FehlermeldungExtern => "DebugmenueSFML.Debugmenü - Keine gültige Menürückgabe.");
+               Fehler.LogikFehler (FehlermeldungExtern => "DebugmenueSFML.Debugmenü - Falsche Rückgabe.");
          end case;
       
       end loop DebugmenüSchleife;

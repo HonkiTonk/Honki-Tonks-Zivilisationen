@@ -38,6 +38,8 @@ package EinheitenErzeugenEntfernen is
 
 private
 
+   Transporterkapazität : EinheitenDatentypen.Transportplätze;
+
    EinheitNummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
 
    procedure EinheitEntfernenLadung

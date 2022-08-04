@@ -78,7 +78,7 @@ package body AufgabeEinheitFarm is
             null;
             
          when others =>
-            Fehler.LogikFehler (FehlermeldungExtern => "WaldErmitteln.WaldErmitteln - Ungültige Aufgabe wurde ausgewählt.");
+            Fehler.LogikFehler (FehlermeldungExtern => "WaldErmitteln.WaldErmitteln - Falsche Aufgabe ausgewählt.");
       end case;
       
       case

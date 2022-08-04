@@ -114,7 +114,7 @@ package body KarteStadtSFML is
                                                   FarbeExtern          => FarbgebungSFML.FarbeKartenfeldErmitteln (GrundExtern => Kartenfeld),
                                                   RechteckAccessExtern => RechteckAccess);
          
-            Warnung.GrafikWarnung (WarnmeldungExtern => "KarteStadtSFML.GrafischeDarstellung - Sprite ist null: " & StadtRasseNummerExtern.Rasse'Wide_Wide_Image & " - " & StadtRasseNummerExtern.Nummer'Wide_Wide_Image);
+            Warnung.GrafikWarnung (WarnmeldungExtern => "KarteStadtSFML.GrafischeDarstellung - Nullsprite: " & StadtRasseNummerExtern.Rasse'Wide_Wide_Image & " - " & StadtRasseNummerExtern.Nummer'Wide_Wide_Image);
       end case;
       
       -- HintergrundSFML.SeitenleisteHintergrund;
@@ -324,7 +324,7 @@ package body KarteStadtSFML is
                                                   FarbeExtern          => FarbgebungSFML.FarbeKartenfeldErmitteln (GrundExtern => Kartenfeld),
                                                   RechteckAccessExtern => RechteckAccess);
             
-            Warnung.GrafikWarnung (WarnmeldungExtern => "KarteStadtSFML.KartenfeldZeichnen - Sprite nicht vorhanden: " & Kartenfeld'Wide_Wide_Image);
+            Warnung.GrafikWarnung (WarnmeldungExtern => "KarteStadtSFML.KartenfeldZeichnen - Sprite fehlt: " & Kartenfeld'Wide_Wide_Image);
       end case;
       
    end KartenfeldZeichnen;
@@ -356,7 +356,7 @@ package body KarteStadtSFML is
                                                FarbeExtern          => Sf.Graphics.Color.sfBlue,
                                                RechteckAccessExtern => RechteckAccess);
          
-         Warnung.GrafikWarnung (WarnmeldungExtern => "KarteStadtSFML.FlussZeichnen - Sprite nicht vorhanden: " & KartenfeldFluss'Wide_Wide_Image);
+         Warnung.GrafikWarnung (WarnmeldungExtern => "KarteStadtSFML.FlussZeichnen - Sprite fehlt: " & KartenfeldFluss'Wide_Wide_Image);
       end if;
       
    end FlussZeichnen;
@@ -388,7 +388,7 @@ package body KarteStadtSFML is
                                             FarbeExtern       => Sf.Graphics.Color.sfBlack,
                                             KreisAccessExtern => KreisAccess);
          
-         Warnung.GrafikWarnung (WarnmeldungExtern => "KarteStadtSFML.RessourceZeichnen - Sprite nicht vorhanden: " & KartenfeldRessource'Wide_Wide_Image);
+         Warnung.GrafikWarnung (WarnmeldungExtern => "KarteStadtSFML.RessourceZeichnen - Sprite fehlt: " & KartenfeldRessource'Wide_Wide_Image);
       end if;
       
    end RessourceZeichnen;
@@ -420,7 +420,7 @@ package body KarteStadtSFML is
                                                FarbeExtern          => Sf.Graphics.Color.sfRed,
                                                RechteckAccessExtern => RechteckAccess);
          
-         Warnung.GrafikWarnung (WarnmeldungExtern => "KarteStadtSFML.WegZeichnen - Sprite nicht vorhanden: " & Wegfeld'Wide_Wide_Image);
+         Warnung.GrafikWarnung (WarnmeldungExtern => "KarteStadtSFML.WegZeichnen - Sprite fehlt: " & Wegfeld'Wide_Wide_Image);
       end if;
    
    end WegZeichnen;
@@ -452,7 +452,7 @@ package body KarteStadtSFML is
                                                FarbeExtern          => Sf.Graphics.Color.sfCyan,
                                                RechteckAccessExtern => RechteckAccess);
             
-         Warnung.GrafikWarnung (WarnmeldungExtern => "KarteStadtSFML.VerbesserungZeichnen - Sprite nicht vorhanden: " & Verbesserungsfeld'Wide_Wide_Image);
+         Warnung.GrafikWarnung (WarnmeldungExtern => "KarteStadtSFML.VerbesserungZeichnen - Sprite fehlt: " & Verbesserungsfeld'Wide_Wide_Image);
       end if;
       
    end VerbesserungZeichnen;
@@ -511,7 +511,7 @@ package body KarteStadtSFML is
                                               FarbeExtern         => Sf.Graphics.Color.sfMagenta,
                                               PolygonAccessExtern => PolygonAccess);
             
-         Warnung.GrafikWarnung (WarnmeldungExtern => "KarteStadtSFML.DarstellungGebäude - Sprite nicht vorhanden: " & StadtRasseNummerExtern.Rasse'Wide_Wide_Image & " - " & GebäudeID'Wide_Wide_Image);
+         Warnung.GrafikWarnung (WarnmeldungExtern => "KarteStadtSFML.DarstellungGebäude - Sprite fehlt: " & StadtRasseNummerExtern.Rasse'Wide_Wide_Image & " - " & GebäudeID'Wide_Wide_Image);
       end if;
       
    end DarstellungGebäude;

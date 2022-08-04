@@ -37,7 +37,7 @@ package body LadezeitenSFML is
             if
               RasseExtern = RassenDatentypen.Keine_Rasse_Enum
             then
-               Fehler.GrafikFehler (FehlermeldungExtern => "LadezeitenSFML.LadezeitenSFML - Keine Rasse ausgewählt.");
+               Fehler.GrafikFehler (FehlermeldungExtern => "LadezeitenSFML.LadezeitenSFML - Keine Rasse gewählt.");
                
             else
                KIRechnet (RasseExtern => RasseExtern);
