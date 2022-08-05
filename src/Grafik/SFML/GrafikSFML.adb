@@ -1,8 +1,10 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with Ada.Calendar; use Ada.Calendar;
+
+with GrafikDatentypen; use GrafikDatentypen;
 with SystemDatentypen;
-with GrafikDatentypen;
 with ZeitKonstanten;
 
 with Fehler;
@@ -183,6 +185,7 @@ package body GrafikSFML is
       end case;
       
       AnzeigeEingaben;
+      AnzeigeSpielmeldungen;
       
       return True;
       
@@ -212,6 +215,32 @@ package body GrafikSFML is
       end case;
       
    end AnzeigeEingaben;
+   
+   
+   
+   procedure AnzeigeSpielmeldungen
+   is begin
+      
+      case
+        NachGrafiktask.Spielmeldung
+      is
+         when 0 =>
+            return;
+            
+         when others =>
+            null;
+      end case;
+      
+      if
+        Clock - NachGrafiktask.StartzeitSpielmeldung > ZeitKonstanten.AnzeigezeitSpielmeldungen
+      then
+         NachGrafiktask.Spielmeldung := 0;
+         
+      else
+         null;
+      end if;
+            
+   end AnzeigeSpielmeldungen;
    
    
    

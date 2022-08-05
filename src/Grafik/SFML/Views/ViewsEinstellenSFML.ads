@@ -11,8 +11,7 @@ package ViewsEinstellenSFML is
    
    procedure ViewEinstellen
      (ViewExtern : in Sf.Graphics.sfView_Ptr;
-      GrößeExtern : in Sf.System.Vector2.sfVector2f;
-      ZentrumExtern : in Sf.System.Vector2.sfVector2f)
+      GrößeExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre => (
                  ViewExtern /= null
@@ -20,10 +19,6 @@ package ViewsEinstellenSFML is
                  GrößeExtern.x /= 0.00
                and
                  GrößeExtern.y /= 0.00
-               and
-                 ZentrumExtern.x > 0.00
-               and
-                 ZentrumExtern.y > 0.00
               );
    
    

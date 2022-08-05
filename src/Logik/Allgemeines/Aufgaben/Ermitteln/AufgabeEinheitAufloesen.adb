@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with TextKonstanten;
+with TextnummernKonstanten;
 
 with EinheitenErzeugenEntfernen;
 with Auswahl;
@@ -21,7 +21,7 @@ package body AufgabeEinheitAufloesen is
             
          when others =>
             if
-              Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageEinheitAuflösen) = True
+              Auswahl.AuswahlJaNein (FrageZeileExtern => TextnummernKonstanten.FrageEinheitAuflösen) = True
             then
                EinheitenErzeugenEntfernen.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          

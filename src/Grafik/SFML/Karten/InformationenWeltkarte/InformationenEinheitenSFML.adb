@@ -10,6 +10,7 @@ with GlobaleTexte;
 with EinheitenKonstanten;
 with TextKonstanten;
 with StadtKonstanten;
+with TextnummernKonstanten;
 
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
@@ -46,39 +47,39 @@ package body InformationenEinheitenSFML is
       end case;
       
       FestzulegenderText (1) := To_Unbounded_Wide_Wide_String (Source => EinheitenBeschreibungen.BeschreibungKurz (IDExtern => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummer)));
-      FestzulegenderText (2) := GlobaleTexte.Zeug (TextKonstanten.ZeugLebenspunkte) & " " & LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummer)'Wide_Wide_Image & Trennzeichen
-        & ZahlAlsStringLebenspunkte (ZahlExtern => LeseEinheitenDatenbank.MaximaleLebenspunkte (RasseExtern => EinheitRasseNummer.Rasse,
-                                                                                                IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummer)));
+      FestzulegenderText (2) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugLebenspunkte) & " " & LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummer)'Wide_Wide_Image
+        & TextKonstanten.Trennzeichen & ZahlAlsStringLebenspunkte (ZahlExtern => LeseEinheitenDatenbank.MaximaleLebenspunkte (RasseExtern => EinheitRasseNummer.Rasse,
+                                                                                                                              IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummer)));
       
       if
         RasseExtern = EinheitRasseNummer.Rasse
         or
           SpielVariablen.Debug.VolleInformation
       then
-         FestzulegenderText (3) := GlobaleTexte.Zeug (TextKonstanten.ZeugBewegungspunkte) & " "
-           & UmwandlungenAdaNachEigenes.BewegungspunkteDarstellungNormal (KommazahlExtern => LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummer)) & Trennzeichen
+         FestzulegenderText (3) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugBewegungspunkte) & " "
+           & UmwandlungenAdaNachEigenes.BewegungspunkteDarstellungNormal (KommazahlExtern => LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummer)) & TextKonstanten.Trennzeichen
            & UmwandlungenAdaNachEigenes.BewegungspunkteDarstellungNormal (KommazahlExtern =>
                                                                             LeseEinheitenDatenbank.MaximaleBewegungspunkte (RasseExtern => EinheitRasseNummer.Rasse,
                                                                                                                             IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummer)));
-         FestzulegenderText (4) := GlobaleTexte.Zeug (TextKonstanten.ZeugErfahrungspunkte) & LeseEinheitenGebaut.Erfahrungspunkte (EinheitRasseNummerExtern => EinheitRasseNummer)'Wide_Wide_Image & Trennzeichen
-           & ZahlAlsStringKampfwerte (ZahlExtern => LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => EinheitRasseNummer.Rasse,
-                                                                                                IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummer)));
-         FestzulegenderText (5) := GlobaleTexte.Zeug (TextKonstanten.ZeugBeschäftigung) & " "
+         FestzulegenderText (4) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugErfahrungspunkte) & LeseEinheitenGebaut.Erfahrungspunkte (EinheitRasseNummerExtern => EinheitRasseNummer)'Wide_Wide_Image
+           & TextKonstanten.Trennzeichen & ZahlAlsStringKampfwerte (ZahlExtern => LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => EinheitRasseNummer.Rasse,
+                                                                                                                              IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummer)));
+         FestzulegenderText (5) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugBeschäftigung) & " "
            & EinheitenBeschreibungen.Beschäftigung (LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummer));
-         FestzulegenderText (6) := GlobaleTexte.Zeug (TextKonstanten.ZeugBeschäftigungszeit) & LeseEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummer)'Wide_Wide_Image;
-         FestzulegenderText (7) := GlobaleTexte.Zeug (TextKonstanten.ZeugAngriff) 
+         FestzulegenderText (6) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugBeschäftigungszeit) & LeseEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummer)'Wide_Wide_Image;
+         FestzulegenderText (7) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugAngriff) 
            & LeseEinheitenDatenbank.Angriff (RasseExtern => EinheitRasseNummer.Rasse,
                                              IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummer))'Wide_Wide_Image;
-         FestzulegenderText (8) := GlobaleTexte.Zeug (TextKonstanten.ZeugVerteidigung) &
+         FestzulegenderText (8) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugVerteidigung) &
            LeseEinheitenDatenbank.Verteidigung (RasseExtern => EinheitRasseNummer.Rasse,
                                                 IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummer))'Wide_Wide_Image;
-         FestzulegenderText (9) := GlobaleTexte.Zeug (TextKonstanten.ZeugRang) & LeseEinheitenGebaut.Rang (EinheitRasseNummerExtern => EinheitRasseNummer)'Wide_Wide_Image & Trennzeichen
+         FestzulegenderText (9) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugRang) & LeseEinheitenGebaut.Rang (EinheitRasseNummerExtern => EinheitRasseNummer)'Wide_Wide_Image & TextKonstanten.Trennzeichen
            & ZahlAlsStringKampfwerte (ZahlExtern => LeseEinheitenDatenbank.MaximalerRang (RasseExtern => EinheitRasseNummer.Rasse,
                                                                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummer)));
          FestzulegenderText (10) := Heimatstadt (EinheitRasseNummerExtern => EinheitRasseNummer);
-         FestzulegenderText (11) := GlobaleTexte.Zeug (TextKonstanten.ZeugGegenschlagskraftFeld) & KampfwerteEinheitErmitteln.AktuelleVerteidigungEinheit (EinheitRasseNummerExtern => EinheitRasseNummer,
+         FestzulegenderText (11) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugGegenschlagskraftFeld) & KampfwerteEinheitErmitteln.AktuelleVerteidigungEinheit (EinheitRasseNummerExtern => EinheitRasseNummer,
                                                                                                                                                            AngreiferExtern          => False)'Wide_Wide_Image;
-         FestzulegenderText (12) := GlobaleTexte.Zeug (TextKonstanten.ZeugGegenschlagskraft) & KampfwerteEinheitErmitteln.AktuellerAngriffEinheit (EinheitRasseNummerExtern => EinheitRasseNummer,
+         FestzulegenderText (12) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugGegenschlagskraft) & KampfwerteEinheitErmitteln.AktuellerAngriffEinheit (EinheitRasseNummerExtern => EinheitRasseNummer,
                                                                                                                                                    AngreiferExtern          => False)'Wide_Wide_Image;
          FestzulegenderText (13) := Ladung (EinheitRasseNummerExtern => EinheitRasseNummer);
          
@@ -145,10 +146,10 @@ package body InformationenEinheitenSFML is
         Stadtnummer
       is
          when StadtKonstanten.LeerNummer =>
-            return GlobaleTexte.Zeug (TextKonstanten.ZeugHeimatstadt) & " " & GlobaleTexte.Zeug (TextKonstanten.ZeugKeine);
+            return GlobaleTexte.Zeug (TextnummernKonstanten.ZeugHeimatstadt) & " " & GlobaleTexte.Zeug (TextnummernKonstanten.ZeugKeine);
                
          when others =>
-            return GlobaleTexte.Zeug (TextKonstanten.ZeugHeimatstadt) & " " & LeseStadtGebaut.Name (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, Stadtnummer));
+            return GlobaleTexte.Zeug (TextnummernKonstanten.ZeugHeimatstadt) & " " & LeseStadtGebaut.Name (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, Stadtnummer));
       end case;
       
    end Heimatstadt;
@@ -172,7 +173,7 @@ package body InformationenEinheitenSFML is
                
          when others =>
             Beladen := False;
-            Ladungstext := GlobaleTexte.Zeug (TextKonstanten.ZeugAktuelleLadung);
+            Ladungstext := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugAktuelleLadung);
       end case;
                   
       LadungSchleife:
@@ -186,8 +187,9 @@ package body InformationenEinheitenSFML is
            Ladungsnummer /= EinheitenKonstanten.LeerTransportiert
          then
             Beladen := True;
-            Ladungstext := Ladungstext & Ladungsabstand & EinheitenBeschreibungen.BeschreibungKurz (IDExtern => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, Ladungsnummer)));
-                  
+            Ladungstext := Ladungstext & TextKonstanten.UmbruchAbstand
+              & EinheitenBeschreibungen.BeschreibungKurz (IDExtern => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, Ladungsnummer)));
+            
          else
             null;
          end if;
@@ -201,7 +203,7 @@ package body InformationenEinheitenSFML is
             return Ladungstext;
             
          when False =>
-            return Ladungstext & " " & GlobaleTexte.Zeug (TextKonstanten.ZeugKeine);
+            return Ladungstext & " " & GlobaleTexte.Zeug (TextnummernKonstanten.ZeugKeine);
       end case;
       
    end Ladung;

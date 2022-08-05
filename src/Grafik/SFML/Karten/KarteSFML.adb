@@ -17,6 +17,7 @@ with EinheitenKonstanten;
 with KartenKonstanten;
 with StadtKonstanten;
 with TextaccessVariablen;
+with ZeitKonstanten;
 
 with LeseKarten;
 with LeseEinheitenGebaut;
@@ -57,8 +58,7 @@ package body KarteSFML is
    is begin
       
       ViewsEinstellenSFML.ViewEinstellen (ViewExtern    => ViewsSFML.KartenviewAccess,
-                                          GrößeExtern   => (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x), Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y)),
-                                          ZentrumExtern => (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) / 2.00, Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y) / 2.00));
+                                          GrößeExtern   => (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x), Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y)));
         
       SichtbereichAnfangEnde := BerechnungenKarteSFML.SichtbereichKarteBerechnen (RasseExtern => RasseEinheitExtern.Rasse);
       
@@ -449,14 +449,13 @@ package body KarteSFML is
           EinheitRasseNummer.Nummer = RasseEinheitExtern.Nummer
       then
          if
-           ZeitZwei - ZeitEins > BlinkIntervall
+           Clock - StartzeitBlinkintervall > ZeitKonstanten.Blinkintervall
          then
             AusgewählteEinheitAnzeigen := not AusgewählteEinheitAnzeigen;
-            ZeitEins := Clock;
-            ZeitZwei := Clock;
+            StartzeitBlinkintervall := Clock;
             
          else
-            ZeitZwei := Clock;
+            null;
          end if;
          
          case

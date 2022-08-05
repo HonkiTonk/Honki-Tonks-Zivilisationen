@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with GrafikDatentypen; use GrafikDatentypen;
-with TextKonstanten;
+with TextnummernKonstanten;
 with ZahlenDatentypen;
 with MenueDatentypen;
 
@@ -60,7 +60,7 @@ package body OptionenGrafik is
    procedure AuflösungÄndern
    is begin
       
-      EingabeAuflösung := Eingabe.GanzeZahl (ZeileExtern         => TextKonstanten.FrageAuflösungsbreite,
+      EingabeAuflösung := Eingabe.GanzeZahl (ZeileExtern         => TextnummernKonstanten.FrageAuflösungsbreite,
                                               ZahlenMinimumExtern => 320,
                                               ZahlenMaximumExtern => ZahlenDatentypen.EigenerInteger'Last);
       
@@ -73,7 +73,7 @@ package body OptionenGrafik is
          return;
       end if;
       
-      EingabeAuflösung := Eingabe.GanzeZahl (ZeileExtern         => TextKonstanten.FrageAuflösungshöhe,
+      EingabeAuflösung := Eingabe.GanzeZahl (ZeileExtern         => TextnummernKonstanten.FrageAuflösungshöhe,
                                               ZahlenMinimumExtern => 240,
                                               ZahlenMaximumExtern => ZahlenDatentypen.EigenerInteger'Last);
       
@@ -107,7 +107,7 @@ package body OptionenGrafik is
    procedure BildrateÄndern
    is begin
       
-      EingabeBildrate := Eingabe.GanzeZahl (ZeileExtern         => TextKonstanten.FrageBildrate,
+      EingabeBildrate := Eingabe.GanzeZahl (ZeileExtern         => TextnummernKonstanten.FrageBildrate,
                                             ZahlenMinimumExtern => 0,
                                             ZahlenMaximumExtern => ZahlenDatentypen.EigenerInteger'Last);
       

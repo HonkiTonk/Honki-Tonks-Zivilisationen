@@ -11,6 +11,7 @@ private
    procedure AnzeigeEditoren;
    procedure GrafikanpassungenVorFensterleerung;
    procedure Eingaben;
+   procedure AnzeigeSpielmeldungen;
 
 
 

@@ -11,7 +11,7 @@ with StadtRecords;
 with SpielRecords;
 with SpielDatentypen;
 with EinheitenRecords;
-with TextKonstanten;
+with TextnummernKonstanten;
 with GrafikDatentypen;
 
 with Karten;
@@ -62,7 +62,7 @@ package body Laden is
          
       else
          case
-           Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageLadeFalscheVersion)
+           Auswahl.AuswahlJaNein (FrageZeileExtern => TextnummernKonstanten.FrageLadeFalscheVersion)
          is
             when True =>
                null;

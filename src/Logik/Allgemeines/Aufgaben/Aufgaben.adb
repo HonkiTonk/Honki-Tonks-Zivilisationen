@@ -8,7 +8,7 @@ with ForschungenDatentypen; use ForschungenDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with EinheitenKonstanten;
 with ForschungKonstanten;
-with TextKonstanten;
+with TextnummernKonstanten;
 
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
@@ -88,7 +88,7 @@ package body Aufgaben is
           SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.KI_Spieler_Enum
       then
          case
-           Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageBeschäftigungAbbrechen)
+           Auswahl.AuswahlJaNein (FrageZeileExtern => TextnummernKonstanten.FrageBeschäftigungAbbrechen)
          is
             when True =>
                null;
@@ -174,7 +174,7 @@ package body Aufgaben is
                and
                  VerbesserungExtern /= KartenVerbesserungDatentypen.Leer_Verbesserung_Enum)
               and then
-                Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageLandverbesserungErsetzen) = False
+                Auswahl.AuswahlJaNein (FrageZeileExtern => TextnummernKonstanten.FrageLandverbesserungErsetzen) = False
             then
                return False;
                

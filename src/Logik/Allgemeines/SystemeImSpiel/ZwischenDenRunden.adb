@@ -7,7 +7,7 @@ with RassenDatentypen; use RassenDatentypen;
 with SystemDatentypen; use SystemDatentypen;
 with StadtKonstanten;
 with SpielVariablen;
-with TextKonstanten;
+with TextnummernKonstanten;
 with GrafikDatentypen;
 
 with SchreibeWichtiges;
@@ -107,7 +107,7 @@ package body ZwischenDenRunden is
                null;
             
             elsif
-              Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageGewonnenWeiterspielen) = True
+              Auswahl.AuswahlJaNein (FrageZeileExtern => TextnummernKonstanten.FrageGewonnenWeiterspielen) = True
             then
                SpielVariablen.Allgemeines.Weiterspielen := True;
                                  

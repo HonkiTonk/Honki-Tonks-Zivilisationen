@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with Ada.Calendar; use Ada.Calendar;
+
 with GrafikDatentypen;
 with MenueDatentypen;
 with EinheitenKonstanten;
@@ -37,7 +39,8 @@ package NachGrafiktask is
    -- Später erweitern mit nur Schriftgröße setzen, nur Schriftfarbe setzen, usw.. äöü
    AccesseSetzen : Boolean := False;
    
-   
+   Spielmeldung : GrafikDatentypen.Spielmeldungen;
+   StartzeitSpielmeldung : Time;
 
    TastenEingabe : Boolean := False;
    TextEingabe : Boolean := False;

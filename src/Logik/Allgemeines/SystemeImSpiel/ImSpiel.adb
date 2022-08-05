@@ -9,7 +9,7 @@ with EinheitenKonstanten;
 with GrafikDatentypen;
 with OptionenVariablen;
 with MenueDatentypen;
-with TextKonstanten;
+with TextnummernKonstanten;
 
 with Optionen;
 with Ladezeiten;
@@ -206,7 +206,7 @@ package body ImSpiel is
             if
               SpielerVorhanden.MenschlicheSpieler (RasseExtern => RasseExtern) = True
               and then
-                Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageKIEinsetzen) = True
+                Auswahl.AuswahlJaNein (FrageZeileExtern => TextnummernKonstanten.FrageKIEinsetzen) = True
             then
                RasseEntfernen.RasseAufKISetzen (RasseExtern => RasseExtern);
                

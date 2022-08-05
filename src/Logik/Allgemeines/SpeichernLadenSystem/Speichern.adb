@@ -15,6 +15,7 @@ with SpielDatentypen;
 with OptionenVariablen;
 with EinheitenRecords;
 with GrafikDatentypen;
+with TextnummernKonstanten;
 
 with Karten;
 with Ladezeiten;
@@ -281,7 +282,7 @@ package body Speichern is
                   null;
                   
                elsif
-                 Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageSpielstandÜberschreiben) = True
+                 Auswahl.AuswahlJaNein (FrageZeileExtern => TextnummernKonstanten.FrageSpielstandÜberschreiben) = True
                then
                   null;
             

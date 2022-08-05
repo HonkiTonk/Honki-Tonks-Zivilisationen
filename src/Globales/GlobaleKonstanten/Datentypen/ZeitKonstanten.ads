@@ -13,5 +13,10 @@ package ZeitKonstanten is
 
    -- Kleinstmögliche Zeiteinheit
    -- WartezeitMinimal : constant Duration := 0.000000001;
+   
+   -- Intervalle durch Nutzer einstellen lassen? äöü
+   Blinkintervall : constant Duration := 0.50;
+   
+   AnzeigezeitSpielmeldungen : constant Duration := 2.00;
 
 end ZeitKonstanten;

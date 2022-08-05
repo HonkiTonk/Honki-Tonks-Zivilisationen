@@ -40,14 +40,14 @@ package body KarteInformationenSFML is
             return;
             
          when False =>
+            -- Das nicht über die Textposition regeln, da es bei nicht sichtbaren Feldern unschön skaliert.
             Viewfläche.y := StartpunktText.y + Float ((TextaccessVariablen.KarteWichtigesAccessArray'Last + TextaccessVariablen.KarteAllgemeinesAccessArray'Last + TextaccessVariablen.StadtInformationenAccessArray'Last
                                                        + TextaccessVariablen.EinheitenInformationenAccessArray'Last + Natural (EinheitenDatentypen.Transportplätze'Last)
                                                        -- Sollte ich später nach EinheitInformationen noch mehr hinzufügen, oder später Dinge entfernen, dann muss die 4 erhöht/gesenkt werden!
-                                                       + 4)) * TextberechnungenHoeheSFML.KleinerZeilenabstand;
+                                                       + 6)) * TextberechnungenHoeheSFML.KleinerZeilenabstand;
             
             ViewsEinstellenSFML.ViewEinstellen (ViewExtern    => ViewsSFML.SeitenleisteKartenviewAccess,
-                                                GrößeExtern   => Viewfläche,
-                                                ZentrumExtern => (Viewfläche.x / 2.00, Viewfläche.y / 2.00));
+                                                GrößeExtern   => Viewfläche);
             HintergrundSFML.SeitenleisteHintergrund (AbmessungenExtern => Viewfläche);
       
             Textposition := KarteWichtigesSFML.WichtigesInformationen (RasseExtern        => RasseExtern,

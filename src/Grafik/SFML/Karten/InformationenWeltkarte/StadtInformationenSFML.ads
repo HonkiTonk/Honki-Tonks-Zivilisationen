@@ -58,13 +58,13 @@ private
    TextbreiteNeu : Float;
       
    Text : Unbounded_Wide_Wide_String;
-   WertOhneTrennzeichen : Unbounded_Wide_Wide_String;
    
    Bauprojekt : StadtRecords.BauprojektRecord;
    
    StartpunktText : constant Sf.System.Vector2.sfVector2f := (5.00, 5.00);
+   Viewfläche : Sf.System.Vector2.sfVector2f := StartpunktText;
    Textposition : Sf.System.Vector2.sfVector2f;
-   Viewfläche : Sf.System.Vector2.sfVector2f;
+   TextpositionStadt : Sf.System.Vector2.sfVector2f;
    
    type FestzulegenderTextArray is array (TextaccessVariablen.StadtInformationenAccessArray'Range) of Unbounded_Wide_Wide_String;
    FestzulegenderText : FestzulegenderTextArray;

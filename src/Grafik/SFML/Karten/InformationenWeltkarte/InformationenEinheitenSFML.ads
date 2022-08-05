@@ -3,8 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-private with Ada.Characters.Wide_Wide_Latin_1;
-
 with Sf.System.Vector2;
 
 with RassenDatentypen; use RassenDatentypen;
@@ -49,9 +47,6 @@ private
    TextbreiteAktuell : Float;
    TextbreiteNeu : Float;
       
-   Trennzeichen : constant Wide_Wide_String (1 .. 1) := "/";
-   Ladungsabstand : constant Wide_Wide_String (1 .. 5) := Ada.Characters.Wide_Wide_Latin_1.LF & "    ";
-   
    Ladungstext : Unbounded_Wide_Wide_String;
       
    EinheitRasseNummer : EinheitenRecords.RasseEinheitnummerRecord;

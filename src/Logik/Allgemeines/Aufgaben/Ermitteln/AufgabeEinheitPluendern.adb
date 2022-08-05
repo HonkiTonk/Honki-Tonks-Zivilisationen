@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
-with TextKonstanten;
+with TextnummernKonstanten;
 
 with LeseKarten;
 with SchreibeKarten;
@@ -43,7 +43,7 @@ package body AufgabeEinheitPluendern is
             
          when others =>
             if
-              Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageLandverbesserungPlündern) = True
+              Auswahl.AuswahlJaNein (FrageZeileExtern => TextnummernKonstanten.FrageLandverbesserungPlündern) = True
             then
                null;
                      

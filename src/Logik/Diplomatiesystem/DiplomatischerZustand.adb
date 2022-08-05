@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with ProduktionDatentypen; use ProduktionDatentypen;
 with WichtigesKonstanten;
 with ZahlenDatentypen;
-with TextKonstanten;
+with TextnummernKonstanten;
 
 with Auswahl;
 
@@ -123,7 +123,7 @@ package body DiplomatischerZustand is
                return False;
               
             elsif
-              Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageKriegErklären) = True
+              Auswahl.AuswahlJaNein (FrageZeileExtern => TextnummernKonstanten.FrageKriegErklären) = True
             then
                DiplomatischenStatusÄndern (RasseEinsExtern   => EigeneRasseExtern,
                                             RasseZweiExtern   => GegnerischeRasseExtern,

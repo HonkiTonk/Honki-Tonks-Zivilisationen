@@ -6,7 +6,7 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with KartenDatentypen; use KartenDatentypen;
 with MenueDatentypen;
 with KartenRecordKonstanten;
-with TextKonstanten;
+with TextnummernKonstanten;
 with KartenKonstanten;
 
 with Karten;
@@ -159,7 +159,7 @@ package body SpieleinstellungenKarten is
             MaximaleEisdicke := Karten.Karteneinstellungen.Kartengröße.XAchse / 2;
       end case;
 
-      BenutzerdefinierteGröße := Eingabe.GanzeZahl (ZeileExtern         => TextKonstanten.FrageEisschicht,
+      BenutzerdefinierteGröße := Eingabe.GanzeZahl (ZeileExtern         => TextnummernKonstanten.FrageEisschicht,
                                                       ZahlenMinimumExtern => 0,
                                                       ZahlenMaximumExtern => Positive (MaximaleEisdicke));
       if
@@ -298,7 +298,7 @@ package body SpieleinstellungenKarten is
    procedure KartenartNutzerdefinition
    is begin
       
-      BenutzerdefinierteKartenart := Eingabe.GanzeZahl (ZeileExtern         => TextKonstanten.FrageMinimaleLandhöhe,
+      BenutzerdefinierteKartenart := Eingabe.GanzeZahl (ZeileExtern         => TextnummernKonstanten.FrageMinimaleLandhöhe,
                                                         ZahlenMinimumExtern => 1,
                                                         ZahlenMaximumExtern => Positive (Karten.Karteneinstellungen.Kartengröße.YAchse / 2));
       
@@ -314,7 +314,7 @@ package body SpieleinstellungenKarten is
             ZwischenwertKartenart := BenutzerdefinierteKartenart.EingegebeneZahl;
       end case;
             
-      BenutzerdefinierteKartenart := Eingabe.GanzeZahl (ZeileExtern         => TextKonstanten.FrageMaximaleLandhöhe,
+      BenutzerdefinierteKartenart := Eingabe.GanzeZahl (ZeileExtern         => TextnummernKonstanten.FrageMaximaleLandhöhe,
                                                         ZahlenMinimumExtern => ZwischenwertKartenart,
                                                         ZahlenMaximumExtern => Positive (Karten.Karteneinstellungen.Kartengröße.YAchse / 2));
       
@@ -331,7 +331,7 @@ package body SpieleinstellungenKarten is
       
       
       
-      BenutzerdefinierteKartenart := Eingabe.GanzeZahl (ZeileExtern         => TextKonstanten.FrageMinimaleLandbreite,
+      BenutzerdefinierteKartenart := Eingabe.GanzeZahl (ZeileExtern         => TextnummernKonstanten.FrageMinimaleLandbreite,
                                                         ZahlenMinimumExtern => 1,
                                                         ZahlenMaximumExtern => Positive (Karten.Karteneinstellungen.Kartengröße.XAchse / 2));
       
@@ -347,7 +347,7 @@ package body SpieleinstellungenKarten is
             ZwischenwertKartenart := BenutzerdefinierteKartenart.EingegebeneZahl;
       end case;
             
-      BenutzerdefinierteKartenart := Eingabe.GanzeZahl (ZeileExtern         => TextKonstanten.FrageMaximaleLandbreite ,
+      BenutzerdefinierteKartenart := Eingabe.GanzeZahl (ZeileExtern         => TextnummernKonstanten.FrageMaximaleLandbreite ,
                                                         ZahlenMinimumExtern => ZwischenwertKartenart,
                                                         ZahlenMaximumExtern => Positive (Karten.Karteneinstellungen.Kartengröße.XAchse / 2));
       

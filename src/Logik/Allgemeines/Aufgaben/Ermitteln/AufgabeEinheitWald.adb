@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
 with EinheitenRecordKonstanten;
-with TextKonstanten;
+with TextnummernKonstanten;
 with EinheitenKonstanten;
 
 with SchreibeEinheitenGebaut;
@@ -49,7 +49,7 @@ package body AufgabeEinheitWald is
           SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
       then
          case
-           Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageLandverbesserungErsetzen)
+           Auswahl.AuswahlJaNein (FrageZeileExtern => TextnummernKonstanten.FrageLandverbesserungErsetzen)
          is
             when True =>
                null;

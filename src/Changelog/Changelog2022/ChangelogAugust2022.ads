@@ -175,17 +175,18 @@ package ChangelogAugust2022 is
    
    
 
-   -- Version 0.03. => 0.03. (06.08.2022):
+   -- Version 0.03.1010 => 0.03. (06.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.0985 => 0.03. (05.08.2022):
+   -- Version 0.03.0985 => 0.03.1010 (05.08.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Neue Seitenleistenskalierung auch in die Stadtkarte eingebaut.
+   -- Angefangen eine SFML Version der Spielmeldungsanzeige einzubauen.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

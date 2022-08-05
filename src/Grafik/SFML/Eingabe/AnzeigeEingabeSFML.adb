@@ -8,7 +8,7 @@ with Sf.Graphics.Text;
 with EinheitenDatentypen; use EinheitenDatentypen;
 with StadtDatentypen;
 with GlobaleTexte;
-with TextKonstanten;
+with TextnummernKonstanten;
 
 with EingabeSFML;
 with GrafikEinstellungenSFML;
@@ -176,7 +176,7 @@ package body AnzeigeEingabeSFML is
             is
                when True =>
                   Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
-                                                     str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugStadt))
+                                                     str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextnummernKonstanten.ZeugStadt))
                                                      & To_Wide_Wide_String (Source => LeseStadtGebaut.Name
                                                                             (StadtRasseNummerExtern => (RasseExtern, StadtDatentypen.MaximaleStädteMitNullWert (WelcheAuswahl.MöglicheAuswahlen (0))))));
                   

@@ -27,14 +27,13 @@ package body ViewsEinstellenSFML is
    
    procedure ViewEinstellen
      (ViewExtern : in Sf.Graphics.sfView_Ptr;
-      GrößeExtern : in Sf.System.Vector2.sfVector2f;
-      ZentrumExtern : in Sf.System.Vector2.sfVector2f)
+      GrößeExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
       Sf.Graphics.View.setSize (view => ViewExtern,
                                 size => GrößeExtern);
       Sf.Graphics.View.setCenter (view   => ViewExtern,
-                                  center => ZentrumExtern);
+                                  center => (GrößeExtern.x / 2.00, GrößeExtern.y / 2.00));
       
       Sf.Graphics.RenderWindow.setView (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                         view         => ViewExtern);

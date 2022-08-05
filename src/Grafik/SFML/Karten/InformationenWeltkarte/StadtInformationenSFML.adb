@@ -11,6 +11,7 @@ with ProduktionDatentypen; use ProduktionDatentypen;
 with StadtDatentypen; use StadtDatentypen;
 with GlobaleTexte;
 with TextKonstanten;
+with TextnummernKonstanten;
 
 with LeseStadtGebaut;
 
@@ -28,11 +29,10 @@ package body StadtInformationenSFML is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
-      Viewfläche.x := Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x);
-      Viewfläche.y := Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y);
+      Viewfläche.y := StartpunktText.y + TextberechnungenHoeheSFML.KleinerZeilenabstand * Float ((TextaccessVariablen.KarteWichtigesAccessArray'Last + TextaccessVariablen.KarteAllgemeinesAccessArray'Last
+                                                                                                  + TextaccessVariablen.StadtInformationenAccessArray'Last));
       ViewsEinstellenSFML.ViewEinstellen (ViewExtern    => ViewsSFML.SeitenleisteKartenviewAccess,
-                                          GrößeExtern   => Viewfläche,
-                                          ZentrumExtern => (Viewfläche.x / 2.00, Viewfläche.y / 2.00));
+                                          GrößeExtern   => Viewfläche);
       HintergrundSFML.SeitenleisteHintergrund (AbmessungenExtern => Viewfläche);
       
       Textposition := Stadt (RasseExtern            => StadtRasseNummerExtern.Rasse,
@@ -62,8 +62,10 @@ package body StadtInformationenSFML is
             null;
       end case;
       
+      Viewfläche.x := Textposition.x;
+      
       Sf.Graphics.View.setViewport (view     => ViewsSFML.SeitenleisteKartenviewAccess,
-                                    viewport => (0.80, 0.00, 0.80, 1.00));
+                                    viewport => (0.80, 0.00, 0.20, 1.00));
       
       Sf.Graphics.RenderWindow.setView (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                         view         => ViewsSFML.StandardviewAccess);
@@ -80,12 +82,12 @@ package body StadtInformationenSFML is
       return Sf.System.Vector2.sfVector2f
    is begin
       
-      Textposition := AnzeigeAnfangenExtern;
+      TextpositionStadt := AnzeigeAnfangenExtern;
       TextbreiteAktuell := 0.00;
       
       -- Allgemeine Stadtinformationen, nur sichtbar wenn das Kartenfeld aufgedeckt ist und sich dort eine Stadt befindet.
       FestzulegenderText (1) := LeseStadtGebaut.Name (StadtRasseNummerExtern => StadtRasseNummerExtern);
-      FestzulegenderText (2) := GlobaleTexte.Zeug (TextKonstanten.ZeugEinwohner) & LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+      FestzulegenderText (2) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugEinwohner) & LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                                                                                                       EinwohnerArbeiterExtern => True)'Wide_Wide_Image;
 
       -- Volle Stadtinformationen, nur sichtbar wenn eigene Stadt oder durch Debug.
@@ -94,20 +96,20 @@ package body StadtInformationenSFML is
         or
           SpielVariablen.Debug.VolleInformation
       then
-         FestzulegenderText (3) := GlobaleTexte.Zeug (TextKonstanten.ZeugNahrungsmittel) & LeseStadtGebaut.Nahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
-         FestzulegenderText (4) := GlobaleTexte.Zeug (TextKonstanten.ZeugNahrungsproduktion) & " "
+         FestzulegenderText (3) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel) & LeseStadtGebaut.Nahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
+         FestzulegenderText (4) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugNahrungsproduktion) & " "
            & ZahlAlsStringGesamtproduktionStadt (ZahlExtern => LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern));
-         FestzulegenderText (5) := GlobaleTexte.Zeug (TextKonstanten.ZeugRessourcenproduktion) & " "
+         FestzulegenderText (5) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugRessourcenproduktion) & " "
            & ZahlAlsStringGesamtproduktionStadt (ZahlExtern => LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern));
-         FestzulegenderText (6) := GlobaleTexte.Zeug (TextKonstanten.ZeugGeldproduktion) & " " &
+         FestzulegenderText (6) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugGeldproduktion) & " " &
            ZahlAlsStringGesamtproduktionStadt (ZahlExtern => LeseStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern));
-         FestzulegenderText (7) := GlobaleTexte.Zeug (TextKonstanten.ZeugWissensproduktion) & LeseStadtGebaut.Forschungsrate (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
-         FestzulegenderText (8) := GlobaleTexte.Zeug (TextKonstanten.ZeugVerteidigung) & KampfwerteStadtErmitteln.AktuelleVerteidigungStadt (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
-         FestzulegenderText (9) := GlobaleTexte.Zeug (TextKonstanten.ZeugAngriff) & KampfwerteStadtErmitteln.AktuellerAngriffStadt (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
-         FestzulegenderText (10) := GlobaleTexte.Zeug (TextKonstanten.ZeugKorruption) & LeseStadtGebaut.Korruption (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
-         FestzulegenderText (11) := GlobaleTexte.Zeug (TextKonstanten.ZeugVerfügbareArbeiter) & LeseStadtGebaut.Arbeitslose (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
+         FestzulegenderText (7) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugWissensproduktion) & LeseStadtGebaut.Forschungsrate (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
+         FestzulegenderText (8) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugVerteidigung) & KampfwerteStadtErmitteln.AktuelleVerteidigungStadt (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
+         FestzulegenderText (9) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugAngriff) & KampfwerteStadtErmitteln.AktuellerAngriffStadt (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
+         FestzulegenderText (10) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugKorruption) & LeseStadtGebaut.Korruption (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
+         FestzulegenderText (11) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugVerfügbareArbeiter) & LeseStadtGebaut.Arbeitslose (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
          FestzulegenderText (12) := AktuellesBauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern);
-         FestzulegenderText (13) := GlobaleTexte.Zeug (TextKonstanten.ZeugVerbleibendeBauzeit) & LeseStadtGebaut.Bauzeit (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
+         FestzulegenderText (13) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugVerbleibendeBauzeit) & LeseStadtGebaut.Bauzeit (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
                                  
          VolleInformation := True;
 
@@ -129,7 +131,7 @@ package body StadtInformationenSFML is
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.StadtInformationenAccess (TextSchleifenwert),
                                                str  => To_Wide_Wide_String (Source => FestzulegenderText (TextSchleifenwert)));
             Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.StadtInformationenAccess (TextSchleifenwert),
-                                          position => Textposition);
+                                          position => TextpositionStadt);
             
             Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                                text         => TextaccessVariablen.StadtInformationenAccess (TextSchleifenwert));
@@ -154,17 +156,27 @@ package body StadtInformationenSFML is
                end if;
             end if;
          end if;
+         
+         case
+           TextSchleifenwert
+         is
+            when 12 =>
+               TextpositionStadt.y := TextpositionStadt.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
+               
+            when others =>
+               null;
+         end case;
       
-         Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
+         TextpositionStadt.y := TextpositionStadt.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
          
       end loop TextSchleife;
       
-      Textposition.x := TextbreiteAktuell;
-      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
+      TextpositionStadt.x := TextbreiteAktuell;
+      TextpositionStadt.y := TextpositionStadt.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
       Debuginformationen (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
-      return Textposition;
+      return TextpositionStadt;
       
    end Stadt;
    
@@ -193,7 +205,7 @@ package body StadtInformationenSFML is
          Text := GlobaleTexte.Einheiten (2 * Natural (Bauprojekt.Einheit) - 1);
       end if;
       
-      return GlobaleTexte.Zeug (TextKonstanten.ZeugBauprojekt) & " " & Text;
+      return GlobaleTexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & TextKonstanten.UmbruchAbstand & Text;
       
    end AktuellesBauprojekt;
    

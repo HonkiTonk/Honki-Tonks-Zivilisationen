@@ -6,7 +6,7 @@ with Sf.Graphics;
 with Sf.Graphics.Text;
 
 with GlobaleTexte;
-with TextKonstanten;
+with TextnummernKonstanten;
 
 with LeseWichtiges;
 
@@ -26,19 +26,19 @@ package body KarteWichtigesSFML is
       Textposition := TextpositionExtern;
       TextbreiteAktuell := 0.00;
       
-      FestzulegenderText (1) := GlobaleTexte.Zeug (TextKonstanten.ZeugAktuellePosition) & " " & ZahlAlsStringEbeneVorhanden (ZahlExtern => KoordinatenExtern.EAchse) & "," & KoordinatenExtern.YAchse'Wide_Wide_Image
+      FestzulegenderText (1) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugAktuellePosition) & " " & ZahlAlsStringEbeneVorhanden (ZahlExtern => KoordinatenExtern.EAchse) & "," & KoordinatenExtern.YAchse'Wide_Wide_Image
         & "," & KoordinatenExtern.XAchse'Wide_Wide_Image;
       
       -- Wieso gibt es keine Lese/Schreibefunktion für die Rundenanzahl? äöü
-      FestzulegenderText (2) := GlobaleTexte.Zeug (TextKonstanten.ZeugAktuelleRunde) & SpielVariablen.Allgemeines.Rundenanzahl'Wide_Wide_Image;
+      FestzulegenderText (2) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugAktuelleRunde) & SpielVariablen.Allgemeines.Rundenanzahl'Wide_Wide_Image;
       
-      FestzulegenderText (3) := GlobaleTexte.Zeug (TextKonstanten.ZeugAktuelleGeldmenge) & LeseWichtiges.Geldmenge (RasseExtern => RasseExtern)'Wide_Wide_Image;
-      FestzulegenderText (4) := GlobaleTexte.Zeug (TextKonstanten.ZeugAktuellerGeldzuwachs) & " " & ZahlAlsStringKostenLager (ZahlExtern => LeseWichtiges.GeldZugewinnProRunde (RasseExtern => RasseExtern));
-      FestzulegenderText (5) := GlobaleTexte.Zeug (TextKonstanten.ZeugAktuellesForschungsprojekt) & " " & ForschungAllgemein.Beschreibung (IDExtern    => LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern),
+      FestzulegenderText (3) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugAktuelleGeldmenge) & LeseWichtiges.Geldmenge (RasseExtern => RasseExtern)'Wide_Wide_Image;
+      FestzulegenderText (4) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugAktuellerGeldzuwachs) & " " & ZahlAlsStringKostenLager (ZahlExtern => LeseWichtiges.GeldZugewinnProRunde (RasseExtern => RasseExtern));
+      FestzulegenderText (5) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt) & " " & ForschungAllgemein.Beschreibung (IDExtern    => LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern),
                                                                                                                                            RasseExtern => RasseExtern);
-      FestzulegenderText (6) := GlobaleTexte.Zeug (TextKonstanten.ZeugVerbleibendeForschungszeit) & LeseWichtiges.VerbleibendeForschungszeit (RasseExtern => RasseExtern)'Wide_Wide_Image;
-      FestzulegenderText (7) := GlobaleTexte.Zeug (TextKonstanten.ZeugAktuelleForschungsmenge) & LeseWichtiges.Forschungsmenge (RasseExtern => RasseExtern)'Wide_Wide_Image;
-      FestzulegenderText (8) := GlobaleTexte.Zeug (TextKonstanten.ZeugAktuellerForschungsgewinn) & LeseWichtiges.GesamteForschungsrate (RasseExtern => RasseExtern)'Wide_Wide_Image;
+      FestzulegenderText (6) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugVerbleibendeForschungszeit) & LeseWichtiges.VerbleibendeForschungszeit (RasseExtern => RasseExtern)'Wide_Wide_Image;
+      FestzulegenderText (7) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugAktuelleForschungsmenge) & LeseWichtiges.Forschungsmenge (RasseExtern => RasseExtern)'Wide_Wide_Image;
+      FestzulegenderText (8) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugAktuellerForschungsgewinn) & LeseWichtiges.GesamteForschungsrate (RasseExtern => RasseExtern)'Wide_Wide_Image;
             
       TextSchleife:
       for TextSchleifenwert in TextaccessVariablen.KarteWichtigesAccessArray'Range loop

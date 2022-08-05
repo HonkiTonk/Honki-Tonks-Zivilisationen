@@ -8,8 +8,8 @@ with StadtDatentypen; use StadtDatentypen;
 with RueckgabeDatentypen; use RueckgabeDatentypen;
 with EinheitenKonstanten;
 with StadtKonstanten;
-with TextKonstanten;
 with ForschungenDatentypen;
+with TextnummernKonstanten;
 
 with SchreibeStadtGebaut;
 with LeseEinheitenGebaut;
@@ -147,7 +147,7 @@ package body BefehleTerminal is
           StadtNummer /= StadtDatentypen.MaximaleStädteMitNullWert'First
       then
          EinheitOderStadt (RasseExtern         => RasseExtern,
-                           AuswahlExtern       => Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageStadtBetreten),
+                           AuswahlExtern       => Auswahl.AuswahlJaNein (FrageZeileExtern => TextnummernKonstanten.FrageStadtBetreten),
                            StadtNummerExtern   => StadtNummer,
                            EinheitNummerExtern => EinheitNummer);
          
@@ -252,7 +252,7 @@ package body BefehleTerminal is
       if
         LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= EinheitenKonstanten.LeerBeschäftigung
         and then
-        Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageBeschäftigungAbbrechen) = True
+        Auswahl.AuswahlJaNein (FrageZeileExtern => TextnummernKonstanten.FrageBeschäftigungAbbrechen) = True
       then
          AufgabenAllgemein.Nullsetzung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
                   
@@ -314,7 +314,7 @@ package body BefehleTerminal is
       end case;
                     
       case
-        Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageForschungAbbrechen)
+        Auswahl.AuswahlJaNein (FrageZeileExtern => TextnummernKonstanten.FrageForschungAbbrechen)
       is
          when True =>
             ForschungAllgemein.Forschung (RasseExtern => RasseExtern);
@@ -407,7 +407,7 @@ package body BefehleTerminal is
       end case;
          
       case
-        Auswahl.AuswahlJaNein (FrageZeileExtern => TextKonstanten.FrageStadtAbreißen)
+        Auswahl.AuswahlJaNein (FrageZeileExtern => TextnummernKonstanten.FrageStadtAbreißen)
       is
          when True =>
             StadtEntfernen.StadtEntfernen (StadtRasseNummerExtern => (RasseExtern, StadtNummer));

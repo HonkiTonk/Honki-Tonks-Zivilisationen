@@ -9,7 +9,7 @@ with Sf.Window.Mouse; use Sf.Window.Mouse;
 with Sf;
 
 with GlobaleTexte;
-with TextKonstanten;
+with TextnummernKonstanten;
 with SystemDatentypen;
 with SystemRecordKonstanten;
 
@@ -297,7 +297,7 @@ package body EingabeSFML is
    is begin
       
       -- Diese Funktion wird auch beim Suchen nach einer Stadt benutzt, Frage universeller gestalten oder eine entsprechende Prüfung welcher Fall vorliegt.
-      return NameEingeben (WelcheFrageExtern => TextKonstanten.FrageStadtname);
+      return NameEingeben (WelcheFrageExtern => TextnummernKonstanten.FrageStadtname);
       
    end StadtName;
    
@@ -335,7 +335,7 @@ package body EingabeSFML is
      return SystemRecords.TextEingabeRecord
    is begin
       
-      Name := NameEingeben (WelcheFrageExtern => TextKonstanten.FrageSpielstandname);
+      Name := NameEingeben (WelcheFrageExtern => TextnummernKonstanten.FrageSpielstandname);
       
       case
         Name.ErfolgreichAbbruch

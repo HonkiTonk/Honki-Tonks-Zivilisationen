@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with ForschungenDatentypen; use ForschungenDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
 with GlobaleTexte;
-with TextKonstanten;
+with TextnummernKonstanten;
 with TastenbelegungDatentypen;
 with GrafikDatentypen;
 with SystemDatentypen;
@@ -45,7 +45,7 @@ package body ForschungAllgemein is
         IDExtern
       is
          when ForschungKonstanten.LeerForschungAnforderung =>
-            BeschreibungText := GlobaleTexte.Zeug (TextKonstanten.ZeugKeines);
+            BeschreibungText := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugKeines);
             
          when others =>
             AktuelleForschung := 2 * Positive (IDExtern) - 1;

@@ -9,7 +9,7 @@ with TextaccessVariablen;
 with EinheitenDatentypen;
 with StadtDatentypen;
 with GlobaleTexte;
-with TextKonstanten;
+with TextnummernKonstanten;
 with ForschungKonstanten;
 with ForschungenDatentypen;
 
@@ -70,10 +70,10 @@ package body TextaccesseTextSetzenSFML is
    is begin
    
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.BaumenüÜberschriftAccess,
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Frage (TextKonstanten.FrageBauprojekt)));
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Frage (TextnummernKonstanten.FrageBauprojekt)));
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.GebäudetextAccess (0),
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugGebäude)));
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextnummernKonstanten.ZeugGebäude)));
       
       GebäudetextSchleife:
       for GebäudetextSchleifenwert in StadtDatentypen.GebäudeID'Range loop
@@ -87,7 +87,7 @@ package body TextaccesseTextSetzenSFML is
       end loop GebäudetextSchleife;
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitentextAccess (0),
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugEinheiten)));
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextnummernKonstanten.ZeugEinheiten)));
       
       EinheitentextSchleife:
       for EinheitentextSchleifenwert in EinheitenDatentypen.EinheitenID'Range loop
@@ -108,7 +108,7 @@ package body TextaccesseTextSetzenSFML is
    is begin
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüAccess (ForschungKonstanten.LeerForschung),
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Frage (TextKonstanten.FrageForschungsprojekt)));
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Frage (TextnummernKonstanten.FrageForschungsprojekt)));
       
       ForschungenSchleife:
       for ForschungSchleifenwert in ForschungenDatentypen.ForschungID'Range loop
