@@ -6,11 +6,11 @@ with Sf.Graphics.Color; use Sf.Graphics.Color;
 with Sf.Graphics; use Sf.Graphics;
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Text;
+with Sf.Graphics.View;
 
 with RassenDatentypen; use RassenDatentypen;
 with MenueDatentypen; use MenueDatentypen;
 with KartenDatentypen; use KartenDatentypen;
-with GrafikDatentypen;
 with SonstigesKonstanten;
 with SpielVariablen;
 with SpielDatentypen;
@@ -21,19 +21,18 @@ with TextberechnungenBreiteSFML;
 with AuswahlMenuesStringsSetzen;
 with AuswahlMenuesEinfach;
 with AuswahlMenuesZusatztextSFML;
-with HintergrundSFML;
 with InteraktionAuswahl;
 with KartengeneratorVariablen;
 with TextberechnungenHoeheSFML;
+with ViewsSFML;
 
 package body AuswahlMenuesEinfachSFML is
 
-   procedure AuswahlMenüsEinfach
+   function AuswahlMenüsEinfach
      (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum)
+      return Sf.System.Vector2.sfVector2f
    is begin
-      
-      HintergrundSFML.StandardHintergrund (HintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum);
-      
+            
       Textbereich := Überschrift + SystemKonstanten.EndeMenü (WelchesMenüExtern) - SystemKonstanten.EndeAbzugGrafik (WelchesMenüExtern) + Versionsnummer;
       
       case
@@ -64,11 +63,13 @@ package body AuswahlMenuesEinfachSFML is
       is
          when MenueDatentypen.Menü_Zusatztext_Einfach_Enum'Range =>
             AuswahlMenuesZusatztextSFML.MenüsZusatztextAufteilung (WelchesMenüExtern     => WelchesMenüExtern,
-                                                                    AktuelleAuswahlExtern => AktuelleAuswahlRückgabewert);
+                                                                    AktuelleAuswahlExtern => AktuelleAuswahlRückgabewert.Auswahl);
             
          when others =>
             null;
       end case;
+      
+      return AktuelleAuswahlRückgabewert.Textposition;
       
    end AuswahlMenüsEinfach;
    
@@ -77,7 +78,7 @@ package body AuswahlMenuesEinfachSFML is
    function Textbearbeitung
      (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum;
       TextbereichExtern : in Positive)
-      return Natural
+      return GrafikRecords.AuswahlTextpositionRecord
    is begin
       
       SchriftgrößenFestlegen (WelchesMenüExtern => WelchesMenüExtern,
@@ -100,15 +101,16 @@ package body AuswahlMenuesEinfachSFML is
       end case;
       
       -- Auch über die Taskdateien regeln lassen und niemals die Dateien direkt aufrufen, überall so einbauen. äöü
-      AktuelleAuswahl := AuswahlMenuesEinfach.AktuelleAuswahl;
+      -- AktuelleAuswahl := AuswahlMenuesEinfach.AktuelleAuswahl;
+      Rückgabewert.Auswahl := AuswahlMenuesEinfach.AktuelleAuswahl;
       
       FarbeAktuelleAuswahlFestlegen (WelchesMenüExtern     => WelchesMenüExtern,
-                                     AktuelleAuswahlExtern => AktuelleAuswahl);
+                                     AktuelleAuswahlExtern => Rückgabewert.Auswahl);
       
-      SchriftpositionFestlegen (WelchesMenüExtern => WelchesMenüExtern,
-                                TextbereichExtern => TextbereichExtern);
+      Rückgabewert.Textposition := TextpositionFestlegen (WelchesMenüExtern => WelchesMenüExtern,
+                                                              TextbereichExtern => TextbereichExtern);
       
-      return AktuelleAuswahl;
+      return Rückgabewert;
       
    end Textbearbeitung;
 
@@ -326,27 +328,23 @@ package body AuswahlMenuesEinfachSFML is
    
    
    
-   procedure SchriftpositionFestlegen
+   function TextpositionFestlegen
      (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum;
       TextbereichExtern : in Positive)
+      return Sf.System.Vector2.sfVector2f
    is begin
-            
-      Rechenwert.y := Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y / 100);
       
-      if
-        Rechenwert.y < 20.00
-      then
-         Rechenwert.y := 20.00;
-         
-      else
-         null;
-      end if;
-      
-      Rechenwert.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift));
+      Rechenwert.y := StartpositionText.y;
+      -- Den View später mit übergeben, wenn es denn so funktioniert wie ich mir das vorstelle.
+      Rechenwert.x := StartpositionText.x + Sf.Graphics.View.getSize (view => ViewsSFML.MenüviewAccess).x / 2.00
+        - TextberechnungenBreiteSFML.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift));
+      -- Rechenwert.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift));
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift),
                                     position => Rechenwert);
       
+      AktuelleTextbreite := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift)).left
+        + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift)).width + StartpositionText.x;
       Rechenwert.y := Rechenwert.y + TextberechnungenHoeheSFML.Überschriftabstand;
       
       PositionenSchleife:
@@ -356,16 +354,28 @@ package body AuswahlMenuesEinfachSFML is
            PositionSchleifenwert mod 2
          is
             when 0 =>
-               Rechenwert.x := TextberechnungenBreiteSFML.ViertelpositionBerechnen (TextAccessExtern => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + PositionSchleifenwert),
-                                                                                    LinksRechtsExtern => False);
+               Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + PositionSchleifenwert),
+                                             position => Rechenwert);
+               -- Rechenwert.x := TextberechnungenBreiteSFML.ViertelpositionBerechnen (TextAccessExtern => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + PositionSchleifenwert),
+               --                                                                      LinksRechtsExtern => False);
+               NeueTextbreite := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + PositionSchleifenwert)).left
+                 + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + PositionSchleifenwert)).width + StartpositionText.x;
                
             when others =>
-               Rechenwert.x := TextberechnungenBreiteSFML.ViertelpositionBerechnen (TextAccessExtern => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + PositionSchleifenwert),
-                                                                                    LinksRechtsExtern => True);
-         end case;
+               -- if
+               --   PositionSchleifenwert = SystemKonstanten.EndeMenü (WelchesMenüExtern) - SchleifenAbzug
+               -- then
+               -- Hier eine Prüfung bauen um den Text in der Mitte zu platzieren?
+               Rechenwert.x := StartpositionText.x;
          
-         Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + PositionSchleifenwert),
-                                       position => Rechenwert);
+               Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + PositionSchleifenwert),
+                                             position => Rechenwert);
+               
+               Rechenwert.x := Rechenwert.x + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + PositionSchleifenwert)).width + 20.00;
+               -- Rechenwert.x := TextberechnungenBreiteSFML.ViertelpositionBerechnen (TextAccessExtern => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + PositionSchleifenwert),
+               --                                                                      LinksRechtsExtern => True);
+               NeueTextbreite := StartpositionText.x + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + PositionSchleifenwert)).width;
+         end case;
          
          case
            PositionSchleifenwert mod 2
@@ -380,6 +390,15 @@ package body AuswahlMenuesEinfachSFML is
          InteraktionAuswahl.PositionenMenüeinträge (WelchesMenüExtern, PositionSchleifenwert)
            := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + PositionSchleifenwert));
          
+         if
+           NeueTextbreite > AktuelleTextbreite
+         then
+            AktuelleTextbreite := NeueTextbreite;
+            
+         else
+            null;
+         end if;
+         
       end loop PositionenSchleife;
       
       case
@@ -392,12 +411,17 @@ package body AuswahlMenuesEinfachSFML is
             null;
       end case;
       
-      Rechenwert.y := Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y) - TextberechnungenHoeheSFML.KleinerZeilenabstand;
-      Rechenwert.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, TextbereichExtern));
+      Rechenwert.y := Rechenwert.y + TextberechnungenHoeheSFML.ÜberschriftabstandGroß;
+      Rechenwert.x := StartpositionText.x + Sf.Graphics.View.getSize (view => ViewsSFML.MenüviewAccess).x / 2.00
+        - TextberechnungenBreiteSFML.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, TextbereichExtern));
+      -- Rechenwert.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, TextbereichExtern));
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, TextbereichExtern),
                                     position => Rechenwert);
+      Rechenwert.y := Rechenwert.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
-   end SchriftpositionFestlegen;
+      return (AktuelleTextbreite, Rechenwert.y);
+      
+   end TextpositionFestlegen;
 
 end AuswahlMenuesEinfachSFML;

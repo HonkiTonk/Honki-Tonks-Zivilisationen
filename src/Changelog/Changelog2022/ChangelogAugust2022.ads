@@ -168,17 +168,17 @@ package ChangelogAugust2022 is
    
    
 
-   -- Version 0.03. => 0.03. (07.08.2022):
+   -- Version 0.03.1030 => 0.03. (07.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.1010 => 0.03. (06.08.2022):
+   -- Version 0.03.1010 => 0.03.1030 (06.08.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Angefangen Textskalierung, durch Views, in den Menüs einzubauen.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

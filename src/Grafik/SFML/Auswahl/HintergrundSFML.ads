@@ -14,13 +14,37 @@ package HintergrundSFML is
      (HintergrundExtern : in GrafikDatentypen.Hintergrund_Texturen_Enum);
 
    procedure SeitenleisteHintergrund
-     (AbmessungenExtern : in Sf.System.Vector2.sfVector2f);
+     (AbmessungenExtern : in Sf.System.Vector2.sfVector2f)
+     with
+       Pre => (
+                 AbmessungenExtern.x > 0.00
+               and
+                 AbmessungenExtern.y > 0.00
+              );
+
+   procedure MenüHintergrund
+     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Texturen_Enum;
+      AbmessungenExtern : in Sf.System.Vector2.sfVector2f)
+     with
+       Pre => (
+                 AbmessungenExtern.x > 0.00
+               and
+                 AbmessungenExtern.y > 0.00
+              );
 
    procedure TextHintergrund
      (LinksRechtsExtern : in Boolean;
       AbstandÜberschriftExtern : in Float;
       VerhältnisTextfeldExtern : in Sf.System.Vector2.sfVector2f;
-      StartpositionExtern : in Float);
+      StartpositionExtern : in Float)
+     with
+       Pre => (
+                 VerhältnisTextfeldExtern.x > 0.00
+               and
+                 VerhältnisTextfeldExtern.y > 0.00
+               and
+                 StartpositionExtern >= 0.00
+              );
 
 private
 

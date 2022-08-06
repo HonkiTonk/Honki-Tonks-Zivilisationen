@@ -7,7 +7,6 @@ with Sf.Graphics.Text;
 
 with SonstigesKonstanten;
 with MenueDatentypen;
-with GrafikDatentypen;
 with SystemKonstanten;
 
 with GrafikEinstellungenSFML;
@@ -16,7 +15,6 @@ with InteraktionAuswahl;
 with AuswahlMenuesStringsSetzen;
 with Fehler;
 with AuswahlMenuesEinfach;
-with HintergrundSFML;
 with AuswahlMenuesZusatztextSFML;
 with KartengeneratorVariablen;
 with TextberechnungenHoeheSFML;
@@ -26,8 +24,6 @@ package body AuswahlMenueKartenformSFML is
    -- Für Überarbeitungen siehe auch das gespeicherte Kartenformmerkblatt.
    procedure AuswahlMenüKartenform
    is begin
-              
-      HintergrundSFML.StandardHintergrund (HintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum);
       
       AktuelleAuswahlRückgabewert := Textbearbeitung;
       

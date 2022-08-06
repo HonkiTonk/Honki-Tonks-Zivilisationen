@@ -35,6 +35,33 @@ package body HintergrundSFML is
    
    
    
+   procedure MenüHintergrund
+     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Texturen_Enum;
+      AbmessungenExtern : in Sf.System.Vector2.sfVector2f)
+   is begin
+      
+      if
+        EingeleseneTexturenSFML.HintergrundAccess (HintergrundExtern) /= null
+      then
+         -- Brauch ich setPosition wenn ich einfach über den ganzen View gehe? äöü
+         -- Sf.Graphics.Sprite.setPosition (sprite   => HintergrundspriteAccess,
+         --                                 position => Nullposition);
+         Sf.Graphics.Sprite.scale (sprite  => HintergrundspriteAccess,
+                                   factors => TexturenSetzenSkalierenSFML.TexturskalierungVariabel (SpriteAccessExtern  => HintergrundspriteAccess,
+                                                                                                    TextureAccessExtern => EingeleseneTexturenSFML.HintergrundAccess (HintergrundExtern),
+                                                                                                    GrößeExtern         => AbmessungenExtern));
+         
+         Sf.Graphics.RenderWindow.drawSprite (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                              object       => HintergrundspriteAccess);
+         
+      else
+         Warnung.GrafikWarnung (WarnmeldungExtern => "HintergrundSFML.MenüHintergrund - Hintergrund fehlt: " & HintergrundExtern'Wide_Wide_Image);
+      end if;
+      
+   end MenüHintergrund;
+   
+   
+   
    procedure SeitenleisteHintergrund
      (AbmessungenExtern : in Sf.System.Vector2.sfVector2f)
    is begin
