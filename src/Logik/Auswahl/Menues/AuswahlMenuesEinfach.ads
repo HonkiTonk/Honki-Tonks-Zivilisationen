@@ -25,7 +25,7 @@ private
 
    RückgabeWert : RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
-   MausZeigerPosition : Sf.System.Vector2.sfVector2i;
+   Mausposition : Sf.System.Vector2.sfVector2f;
 
    function Auswahl
      (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum;

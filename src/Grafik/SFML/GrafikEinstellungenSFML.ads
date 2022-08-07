@@ -60,7 +60,7 @@ private
    SchriftgrößenStandard : constant SystemRecords.SchriftgrößenRecord := (
                                                                               SchriftgrößeÜberschrift => 36,
                                                                               SchriftgrößeStandard    => 24,
-                                                                              SchriftgrößeKlein       => 12
+                                                                              SchriftgrößeKlein       => 16
                                                                              );
    
    SchriftfarbenStandard : constant SystemRecords.SchriftfarbenRecord := (

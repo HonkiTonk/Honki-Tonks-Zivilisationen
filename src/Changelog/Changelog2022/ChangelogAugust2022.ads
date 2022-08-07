@@ -161,17 +161,17 @@ package ChangelogAugust2022 is
    
    
 
-   -- Version 0.03. => 0.03. (08.08.2022):
+   -- Version 0.03.1045 => 0.03. (08.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.1030 => 0.03. (07.08.2022):
+   -- Version 0.03.1030 => 0.03.1045 (07.08.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter an der Textskalierung in den Menüs gearbeitet.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 

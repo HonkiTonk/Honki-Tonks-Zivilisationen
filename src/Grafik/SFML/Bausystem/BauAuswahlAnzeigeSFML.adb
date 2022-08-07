@@ -51,7 +51,9 @@ package body BauAuswahlAnzeigeSFML is
       Grundposition := StartPositionText;
             
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.BaumenüÜberschriftAccess,
-                                    position => (TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.BaumenüÜberschriftAccess), Grundposition.y));
+                                    position => (TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.BaumenüÜberschriftAccess,
+                                                                                                     ViewbreiteExtern => Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x)),
+                                                 Grundposition.y));
             
       Grundposition.y := Grundposition.y + TextberechnungenHoeheSFML.Überschriftabstand;
       

@@ -40,12 +40,14 @@ package body ForschungAnzeigeSFML is
       TextPosition := StartPositionText;
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüAccess (ForschungKonstanten.LeerForschung),
-                                    position => (TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.ForschungsmenüAccess (ForschungKonstanten.LeerForschung)), TextPosition.y));
+                                    position => (TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.ForschungsmenüAccess (ForschungKonstanten.LeerForschung),
+                                                                                                     ViewbreiteExtern => Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x)),
+                                                 TextPosition.y));
       
       TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.Überschriftabstand;
       -- Diesen Wert nicht löschen, bestimmt später den Abstand der Zusatztextbox von der Überschrift.
       AbstandÜberschrift := TextPosition.y;
-                  
+                                    
       WelcherZusatztext := ForschungKonstanten.LeerForschung;
       
       -- Hier auch HintergrundSFML.TextHintergrund verwenden? Müsste mit immer rechts funktionieren. äöü

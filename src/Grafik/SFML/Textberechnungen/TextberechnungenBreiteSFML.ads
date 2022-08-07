@@ -6,11 +6,14 @@ with Sf.Graphics; use Sf.Graphics;
 package TextberechnungenBreiteSFML is
 
    function MittelpositionBerechnen
-     (TextAccessExtern : in Sf.Graphics.sfText_Ptr)
+     (TextAccessExtern : in Sf.Graphics.sfText_Ptr;
+      ViewbreiteExtern : in Float)
       return Float
      with
        Pre => (
                  TextAccessExtern /= null
+               and
+                 ViewbreiteExtern > 0.00
               ),
    
        Post => (

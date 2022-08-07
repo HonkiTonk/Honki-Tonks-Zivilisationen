@@ -107,8 +107,8 @@ package body AnzeigeEingabeSFML is
    
    
    
-      procedure AnzeigeText
-        (FrageExtern : in ZahlenDatentypen.EigenesNatural)
+   procedure AnzeigeText
+     (FrageExtern : in ZahlenDatentypen.EigenesNatural)
    is begin
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.AnzeigeZahlTexteingabeAccess (TextaccessVariablen.AnzeigeZahlTexteingabeAccessArray'First),
@@ -249,13 +249,16 @@ package body AnzeigeEingabeSFML is
                                                str  => To_Wide_Wide_String (Source => GlobaleTexte.Frage (FrageExtern)));
       end case;
       
-      TextPosition := (TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.JaNeinAccess (1)), TextberechnungenHoeheSFML.HalbeBildschirmhöhe);
+      TextPosition := (TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.JaNeinAccess (1),
+                                                                           ViewbreiteExtern => Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x)),
+                       TextberechnungenHoeheSFML.HalbeBildschirmhöhe);
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.JaNeinAccess (1),
                                     position => TextPosition);
       
       TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.GroßerZeilenabstand;
-      TextPosition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.JaNeinAccess (2));
+      TextPosition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.JaNeinAccess (2),
+                                                                            ViewbreiteExtern => Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x));
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.JaNeinAccess (2),
                                     position => TextPosition);
@@ -263,7 +266,8 @@ package body AnzeigeEingabeSFML is
       InteraktionAuswahl.PositionenJaNein (1) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.JaNeinAccess (2));
       
       TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.Zeilenabstand;
-      TextPosition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.JaNeinAccess (3));
+      TextPosition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.JaNeinAccess (3),
+                                                                            ViewbreiteExtern => Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x));
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.JaNeinAccess (3),
                                     position => TextPosition);

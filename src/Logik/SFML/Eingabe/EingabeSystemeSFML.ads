@@ -10,6 +10,7 @@ with SystemRecords;
 
 package EingabeSystemeSFML is
 
+   -- Das hier NachLogiktask?
    MausRad : Float;
 
    TastaturTaste : Sf.Window.Keyboard.sfKeyCode;
@@ -29,7 +30,7 @@ private
 
    CharacterZuText : Wide_Wide_String (1 .. 1);
 
-   ZeichenEingeben : Sf.Window.Event.sfEvent;
+   Nutzereingabe : Sf.Window.Event.sfEvent;
    TextEingegeben : Sf.Window.Event.sfEvent;
 
    procedure TextPrüfen

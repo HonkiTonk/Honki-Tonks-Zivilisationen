@@ -89,18 +89,17 @@ package body AuswahlMenuesEinfach is
       return Natural
    is begin
       
-      -- Niemals direkt die Mausposition abrufen sondern immer die Werte in der Eingabe ermitteln lassen. Sonst kann es zu einem Absturz kommen.
-      MausZeigerPosition := GrafikEinstellungenSFML.MausPosition;
+      Mausposition := (Float (GrafikEinstellungenSFML.MausPosition.x), Float (GrafikEinstellungenSFML.MausPosition.y));
       
       PositionSchleife:
       for PositionSchleifenwert in AnfangExtern .. EndeExtern loop
          
          if
-           MausZeigerPosition.y in Sf.sfInt32 (InteraktionAuswahl.PositionenMenüeinträge (WelchesMenüExtern, PositionSchleifenwert).top)
-             .. Sf.sfInt32 (InteraktionAuswahl.PositionenMenüeinträge (WelchesMenüExtern, PositionSchleifenwert).top + InteraktionAuswahl.PositionenMenüeinträge (WelchesMenüExtern, PositionSchleifenwert).height)
-             and
-               MausZeigerPosition.x in Sf.sfInt32 (InteraktionAuswahl.PositionenMenüeinträge (WelchesMenüExtern, PositionSchleifenwert).left)
-                 .. Sf.sfInt32 (InteraktionAuswahl.PositionenMenüeinträge (WelchesMenüExtern, PositionSchleifenwert).left + InteraktionAuswahl.PositionenMenüeinträge (WelchesMenüExtern, PositionSchleifenwert).width)
+           Mausposition.y in InteraktionAuswahl.PositionenMenüeinträge (WelchesMenüExtern, PositionSchleifenwert).top
+           .. InteraktionAuswahl.PositionenMenüeinträge (WelchesMenüExtern, PositionSchleifenwert).top + InteraktionAuswahl.PositionenMenüeinträge (WelchesMenüExtern, PositionSchleifenwert).height
+           and
+             Mausposition.x in InteraktionAuswahl.PositionenMenüeinträge (WelchesMenüExtern, PositionSchleifenwert).left
+           .. InteraktionAuswahl.PositionenMenüeinträge (WelchesMenüExtern, PositionSchleifenwert).left + InteraktionAuswahl.PositionenMenüeinträge (WelchesMenüExtern, PositionSchleifenwert).width
          then
             return PositionSchleifenwert;
             

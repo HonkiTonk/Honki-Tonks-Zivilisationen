@@ -27,11 +27,11 @@ package body EingabeSystemeSFML is
       
       TasteSchleife:
       while Sf.Graphics.RenderWindow.pollEvent (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                                event        => ZeichenEingeben)
+                                                event        => Nutzereingabe)
         = Sf.sfTrue loop
                         
          case
-           ZeichenEingeben.eventType
+           Nutzereingabe.eventType
          is
             when Sf.Window.Event.sfEvtClosed =>
                -- Hier noch einen besseren universellen Endebefehl einbauen?
@@ -43,7 +43,7 @@ package body EingabeSystemeSFML is
                   
             when Sf.Window.Event.sfEvtMouseMoved =>
                -- Immer hier die neue Mausposition festlegen, denn es kann/wird bei mehreren gleichzeitigen Mausaufrufen des RenderWindow zu Abstürzen kommen.
-               GrafikEinstellungenSFML.MausPosition := (ZeichenEingeben.mouseMove.x, ZeichenEingeben.mouseMove.y);
+               GrafikEinstellungenSFML.MausPosition := (Nutzereingabe.mouseMove.x, Nutzereingabe.mouseMove.y);
                   
             when others =>
                null;
@@ -52,16 +52,16 @@ package body EingabeSystemeSFML is
          -- Gäbe es einen Vorteil diesen Teil in jeweils eine eigene Prüfung umzuwandeln? Eventuell um mehrere Dinge gleichzeitig festlegen zu können?
          -- Beeinflusst das nicht auch die Auswertung in EingabeSFML? Hier einzeln durchgehen und dann in EingabeSFML die Auswertungsreihenfolge festlegen?
          case
-           ZeichenEingeben.eventType
+           Nutzereingabe.eventType
          is
             when Sf.Window.Event.sfEvtKeyPressed =>
-               TastaturTaste := ZeichenEingeben.key.code;
+               TastaturTaste := Nutzereingabe.key.code;
                   
             when Sf.Window.Event.sfEvtMouseWheelScrolled =>
-               MausRad := ZeichenEingeben.mouseWheelScroll.eventDelta;
+               MausRad := Nutzereingabe.mouseWheelScroll.eventDelta;
                   
             when Sf.Window.Event.sfEvtMouseButtonPressed =>
-               MausTaste := ZeichenEingeben.mouseButton.button;
+               MausTaste := Nutzereingabe.mouseButton.button;
                   
             when others =>
                null;

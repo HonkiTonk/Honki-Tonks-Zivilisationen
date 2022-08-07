@@ -9,11 +9,12 @@ with Warnung;
 package body TextberechnungenBreiteSFML is
 
    function MittelpositionBerechnen
-     (TextAccessExtern : in Sf.Graphics.sfText_Ptr)
+     (TextAccessExtern : in Sf.Graphics.sfText_Ptr;
+      ViewbreiteExtern : in Float)
       return Float
    is begin
       
-      Position := Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) / 2.00 - HalbeBreiteBerechnen (TextAccessExtern => TextAccessExtern);
+      Position := ViewbreiteExtern / 2.00 - HalbeBreiteBerechnen (TextAccessExtern => TextAccessExtern);
       
       if
         Position in 0.00 .. Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x)

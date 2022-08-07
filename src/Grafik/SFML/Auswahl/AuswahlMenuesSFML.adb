@@ -12,6 +12,7 @@ with Fehler;
 with ViewsEinstellenSFML;
 with HintergrundSFML;
 with ViewsSFML;
+with GrafikEinstellungenSFML;
 
 package body AuswahlMenuesSFML is
 
@@ -21,7 +22,8 @@ package body AuswahlMenuesSFML is
                   
       ViewsEinstellenSFML.ViewEinstellen (ViewExtern    => ViewsSFML.MenüviewAccess,
                                           GrößeExtern   => Viewfläche);
-      HintergrundSFML.StandardHintergrund (HintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum);
+      HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum,
+                                        AbmessungenExtern => Viewfläche);
       
       case
         WelchesMenüExtern
@@ -38,6 +40,24 @@ package body AuswahlMenuesSFML is
          when MenueDatentypen.Steuerung_Menü_Enum =>
             AuswahlMenueSteuerungSFML.AuswahlMenüSteuerung;
       end case;
+      
+      if
+        Viewfläche.x < Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x)
+      then
+         Viewfläche.x := Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x);
+         
+      else
+         null;
+      end if;
+      
+      if
+        Viewfläche.y < Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y)
+      then
+         Viewfläche.y := Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y);
+         
+      else
+         null;
+      end if;
       
       Sf.Graphics.View.setViewport (view     => ViewsSFML.MenüviewAccess,
                                     viewport => (0.00, 0.00, 1.00, 1.00));

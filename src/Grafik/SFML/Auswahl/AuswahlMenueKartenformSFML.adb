@@ -238,7 +238,8 @@ package body AuswahlMenueKartenformSFML is
          null;
       end if;
       
-      Textposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.KartenformauswahlAccess (Überschrift));
+      Textposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.KartenformauswahlAccess (Überschrift),
+                                                                            ViewbreiteExtern => Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x));
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KartenformauswahlAccess (Überschrift),
                                     position => Textposition);
@@ -318,7 +319,8 @@ package body AuswahlMenueKartenformSFML is
       InteraktionAuswahl.PositionenMenüeinträge (MenueDatentypen.Kartenform_Menü_Enum, 9 - Überschrift) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.KartenformauswahlAccess (9));
             
       Textposition.y := Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y) - TextberechnungenHoeheSFML.KleinerZeilenabstand;
-      Textposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.KartenformauswahlAccess (TextaccessVariablen.KartenformauswahlAccessArray'Last));
+      Textposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.KartenformauswahlAccess (TextaccessVariablen.KartenformauswahlAccessArray'Last),
+                                                                            ViewbreiteExtern => Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x));
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KartenformauswahlAccess (TextaccessVariablen.KartenformauswahlAccessArray'Last),
                                     position => Textposition);
