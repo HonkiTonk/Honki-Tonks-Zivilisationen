@@ -21,7 +21,10 @@ private
 
    Anfang : constant Positive := 1;
    Ende : Positive;
-   Ausgewählt : Positive;
+   Ausgewählt : Natural;
+
+   Eins : Float;
+   Zwei : Float;
 
    RückgabeWert : RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
@@ -31,7 +34,7 @@ private
      (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum;
       AnfangExtern : in Positive;
       EndeExtern : in Positive)
-      return Positive
+      return Natural
      with
        Pre => (
                  AnfangExtern <= EndeExtern

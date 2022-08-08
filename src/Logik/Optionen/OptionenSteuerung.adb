@@ -14,7 +14,6 @@ with MenueDatentypen;
 with Eingabe;
 with AuswahlMenues;
 with SchreibenTastatur;
-with EingabeSystemeSFML;
 with EingabeTerminal;
 with EingabeSFML;
 with Fehler;
@@ -135,9 +134,9 @@ package body OptionenSteuerung is
       NeueTasteSchleife:
       loop
          
-         -- Hier nicht mehr direkt darauf zugreifen sondern so wie in allen anderen Menüs.
-         -- EingabeSystemeSFML.TastenEingabe;
-         NeueTasteSFML := EingabeSystemeSFML.TastaturTaste;
+         -- Hier nicht mehr direkt darauf zugreifen sondern so wie in allen anderen Menüs. äöü
+         -- EingabeSystemeSFML.TastenEingabe; äöü
+         -- NeueTasteSFML := EingabeSystemeSFML.TastaturTaste; äöü
          
          case
            NeueTasteSFML

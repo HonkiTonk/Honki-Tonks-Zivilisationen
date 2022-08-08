@@ -7,7 +7,7 @@ with SystemDatentypen;
 
 with LeseEinheitenGebaut;
 
-with GrafikEinstellungenSFML;
+with NachLogiktask;
 with NachGrafiktask;
 with Eingabe;
 with InteraktionAuswahl;
@@ -89,18 +89,17 @@ package body AuswahlStadtEinheit is
      return Integer
    is begin
       
-      -- Niemals direkt die Mausposition abrufen sondern immer die Werte in der Eingabe ermitteln lassen. Sonst kann es zu einem Absturz kommen.
-      MausZeigerPosition := GrafikEinstellungenSFML.MausPosition;
+      Mausposition := NachLogiktask.Mausposition;
       
       AuswahlSchleife:
       for AuswahlSchleifenwert in WelcheAuswahl.MöglicheAuswahlen'Range loop
          
          if
-           MausZeigerPosition.y in Sf.sfInt32 (InteraktionAuswahl.PositionenEinheitStadt (AuswahlSchleifenwert).top)
-             .. Sf.sfInt32 (InteraktionAuswahl.PositionenEinheitStadt (AuswahlSchleifenwert).top + InteraktionAuswahl.PositionenEinheitStadt (AuswahlSchleifenwert).height)
-             and
-               MausZeigerPosition.x in Sf.sfInt32 (InteraktionAuswahl.PositionenEinheitStadt (AuswahlSchleifenwert).left)
-                 .. Sf.sfInt32 (InteraktionAuswahl.PositionenEinheitStadt (AuswahlSchleifenwert).left + InteraktionAuswahl.PositionenEinheitStadt (AuswahlSchleifenwert).width)
+           Mausposition.y in InteraktionAuswahl.PositionenEinheitStadt (AuswahlSchleifenwert).top
+           .. InteraktionAuswahl.PositionenEinheitStadt (AuswahlSchleifenwert).top + InteraktionAuswahl.PositionenEinheitStadt (AuswahlSchleifenwert).height
+           and
+             Mausposition.x in InteraktionAuswahl.PositionenEinheitStadt (AuswahlSchleifenwert).left
+           .. InteraktionAuswahl.PositionenEinheitStadt (AuswahlSchleifenwert).left + InteraktionAuswahl.PositionenEinheitStadt (AuswahlSchleifenwert).width
          then
             return Natural (AuswahlSchleifenwert);
          

@@ -25,6 +25,7 @@ with InteraktionAuswahl;
 with KartengeneratorVariablen;
 with TextberechnungenHoeheSFML;
 with ViewsSFML;
+with TexteinstellungenSFML;
 
 package body AuswahlMenuesEinfachSFML is
 
@@ -122,10 +123,10 @@ package body AuswahlMenuesEinfachSFML is
    is begin
 
       Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift),
-                                         size => GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeÜberschrift);
+                                         size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeÜberschrift);
       
       Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, TextbereichExtern),
-                                         size => GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeKlein);
+                                         size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeKlein);
 
    end SchriftgrößenFestlegen;
 
@@ -137,18 +138,18 @@ package body AuswahlMenuesEinfachSFML is
    is begin
       
       Sf.Graphics.Text.setColor (text  => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift),
-                                 color => GrafikEinstellungenSFML.Schriftfarben.FarbeÜberschrift);
+                                 color => TexteinstellungenSFML.Schriftfarben.FarbeÜberschrift);
       
       TextfarbeSchleife:
       for TextfarbeSchleifenwert in Überschrift + 1 .. TextbereichExtern - 1 loop
          
          Sf.Graphics.Text.setColor (text  => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, TextfarbeSchleifenwert),
-                                    color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
+                                    color => TexteinstellungenSFML.Schriftfarben.FarbeStandardText);
          
       end loop TextfarbeSchleife;
       
       Sf.Graphics.Text.setColor (text  => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, TextbereichExtern),
-                                 color => GrafikEinstellungenSFML.Schriftfarben.FarbeSonstigerText);
+                                 color => TexteinstellungenSFML.Schriftfarben.FarbeSonstigerText);
 
    end SchriftfarbenFestlegen;
    
@@ -190,10 +191,10 @@ package body AuswahlMenuesEinfachSFML is
       for SchriftfarbeSchleifenwert in Überschrift .. SystemKonstanten.EndeMenü (WelchesMenüExtern) - SchleifenAbzug loop
          
          if
-           Sf.Graphics.Text.getColor (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + SchriftfarbeSchleifenwert)) = GrafikEinstellungenSFML.Schriftfarben.FarbeMenschText
+           Sf.Graphics.Text.getColor (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + SchriftfarbeSchleifenwert)) = TexteinstellungenSFML.Schriftfarben.FarbeMenschText
          then
             Sf.Graphics.Text.setColor (text  => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + SchriftfarbeSchleifenwert),
-                                       color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
+                                       color => TexteinstellungenSFML.Schriftfarben.FarbeStandardText);
             exit SchriftfarbeSchleife;
             
          else
@@ -203,13 +204,13 @@ package body AuswahlMenuesEinfachSFML is
       end loop SchriftfarbeSchleife;
       
       if
-        Sf.Graphics.Text.getColor (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, AktuelleEinstellung)) = GrafikEinstellungenSFML.Schriftfarben.FarbeAusgewähltText
+        Sf.Graphics.Text.getColor (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, AktuelleEinstellung)) = TexteinstellungenSFML.Schriftfarben.FarbeAusgewähltText
       then
          null;
                                    
       else
          Sf.Graphics.Text.setColor (text  => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, AktuelleEinstellung),
-                                    color => GrafikEinstellungenSFML.Schriftfarben.FarbeMenschText);
+                                    color => TexteinstellungenSFML.Schriftfarben.FarbeMenschText);
       end if;
       
    end FarbeAktuelleEinstellungenFestlegen;
@@ -225,12 +226,12 @@ package body AuswahlMenuesEinfachSFML is
          Farbe := Sf.Graphics.Text.getColor (text => TextaccessVariablen.MenüsEinfachSFMLAccess (MenueDatentypen.Rassen_Menü_Enum, Überschrift + SchriftfarbeSchleifenwert));
          
          if
-           Farbe = GrafikEinstellungenSFML.Schriftfarben.FarbeMenschText
+           Farbe = TexteinstellungenSFML.Schriftfarben.FarbeMenschText
            or
-             Farbe = GrafikEinstellungenSFML.Schriftfarben.FarbeKIText
+             Farbe = TexteinstellungenSFML.Schriftfarben.FarbeKIText
          then
             Sf.Graphics.Text.setColor (text  => TextaccessVariablen.MenüsEinfachSFMLAccess (MenueDatentypen.Rassen_Menü_Enum, Überschrift + SchriftfarbeSchleifenwert),
-                                       color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
+                                       color => TexteinstellungenSFML.Schriftfarben.FarbeStandardText);
             
          else
             null;
@@ -243,7 +244,7 @@ package body AuswahlMenuesEinfachSFML is
          
          if
            Sf.Graphics.Text.getColor (text => TextaccessVariablen.MenüsEinfachSFMLAccess (MenueDatentypen.Rassen_Menü_Enum, Überschrift + FarbenFestlegenSchleifenwert))
-             = GrafikEinstellungenSFML.Schriftfarben.FarbeAusgewähltText
+             = TexteinstellungenSFML.Schriftfarben.FarbeAusgewähltText
          then
             null;
             
@@ -256,13 +257,13 @@ package body AuswahlMenuesEinfachSFML is
            SpielVariablen.RassenImSpiel (RassenDatentypen.Rassen_Verwendet_Enum'Val (FarbenFestlegenSchleifenwert)) = RassenDatentypen.Mensch_Spieler_Enum
          then
             Sf.Graphics.Text.setColor (text  => TextaccessVariablen.MenüsEinfachSFMLAccess (MenueDatentypen.Rassen_Menü_Enum, Überschrift + FarbenFestlegenSchleifenwert),
-                                       color => GrafikEinstellungenSFML.Schriftfarben.FarbeMenschText);
+                                       color => TexteinstellungenSFML.Schriftfarben.FarbeMenschText);
             
          elsif
            SpielVariablen.RassenImSpiel (RassenDatentypen.Rassen_Verwendet_Enum'Val (FarbenFestlegenSchleifenwert)) = RassenDatentypen.KI_Spieler_Enum
          then
             Sf.Graphics.Text.setColor (text  => TextaccessVariablen.MenüsEinfachSFMLAccess (MenueDatentypen.Rassen_Menü_Enum, Überschrift + FarbenFestlegenSchleifenwert),
-                                       color => GrafikEinstellungenSFML.Schriftfarben.FarbeKIText);
+                                       color => TexteinstellungenSFML.Schriftfarben.FarbeKIText);
             
          else
             null;
@@ -287,7 +288,7 @@ package body AuswahlMenuesEinfachSFML is
             
          when others =>
             Sf.Graphics.Text.setColor (text  => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, AktuelleAuswahlExtern + Überschrift),
-                                       color => GrafikEinstellungenSFML.Schriftfarben.FarbeAusgewähltText);
+                                       color => TexteinstellungenSFML.Schriftfarben.FarbeAusgewähltText);
       end case;
       
    end FarbeAktuelleAuswahlFestlegen;
@@ -382,7 +383,7 @@ package body AuswahlMenuesEinfachSFML is
             null;
       end case;
       
-         Rechenwert.y := Rechenwert.y + TextberechnungenHoeheSFML.ÜberschriftabstandGroß;
+      Rechenwert.y := Rechenwert.y + TextberechnungenHoeheSFML.ÜberschriftabstandGroß;
       
       PositionVersionsnummer := Sf.Graphics.View.getSize (view => ViewsSFML.MenüviewAccess).y - 3.00 * StartpositionText.y
         - Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, TextbereichExtern)).height;
@@ -400,7 +401,7 @@ package body AuswahlMenuesEinfachSFML is
         NeueTextbreite > AktuelleTextbreite
       then
          AktuelleTextbreite := NeueTextbreite;
-            
+         
       else
          null;
       end if;

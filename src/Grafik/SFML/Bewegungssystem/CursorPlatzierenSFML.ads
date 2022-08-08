@@ -34,6 +34,6 @@ private
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    
-   MausPosition : Sf.System.Vector2.sfVector2i;
+   Mausposition : Sf.System.Vector2.sfVector2f;
 
 end CursorPlatzierenSFML;

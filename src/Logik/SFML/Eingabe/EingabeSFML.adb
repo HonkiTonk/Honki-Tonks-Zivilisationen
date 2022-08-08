@@ -13,7 +13,6 @@ with TextnummernKonstanten;
 with SystemDatentypen;
 with SystemRecordKonstanten;
 
-with EingabeSystemeSFML;
 with Fehler;
 with NachGrafiktask;
 with NachLogiktask;
@@ -81,11 +80,9 @@ package body EingabeSFML is
             
       ZahlenSchleife:
       loop
-            
-         -- Hier nicht mehr direkt darauf zugreifen.
-         -- EingabeSystemeSFML.TastenEingabe;
+         
          EingabeAbwarten;
-         Zahlen := EingabeSystemeSFML.TastaturTaste;
+         Zahlen := NachLogiktask.TastaturTaste;
          
          case
            GanzeZahlPrüfung (ZeichenExtern => Zahlen)
@@ -310,7 +307,7 @@ package body EingabeSFML is
       
       NachGrafiktask.AnzeigeFrage := WelcheFrageExtern;
       
-      EingabeSystemeSFML.EingegebenerText := SystemRecordKonstanten.LeerTexteingabe;
+      NachLogiktask.EingegebenerText := SystemRecordKonstanten.LeerTexteingabe;
       
       NachGrafiktask.Eingabe := SystemDatentypen.Text_Eingabe_Enum;
       
@@ -325,7 +322,7 @@ package body EingabeSFML is
       
       NachGrafiktask.Eingabe := SystemDatentypen.Keine_Eingabe_Enum;
       
-      return EingabeSystemeSFML.EingegebenerText;
+      return NachLogiktask.EingegebenerText;
       
    end NameEingeben;
    
@@ -385,32 +382,32 @@ package body EingabeSFML is
       
       -- Das Mausrad muss? vor der Maustaste geprüft werden. Sollte mit dem neuen System nicht mehr der Fall sein.
       if
-        EingabeSystemeSFML.MausRad > 0.00
+        NachLogiktask.MausRad > 0.00
       then
          return TastenbelegungDatentypen.Ebene_Hoch_Enum;
                
       elsif
-        EingabeSystemeSFML.MausRad < 0.00
+        NachLogiktask.MausRad < 0.00
       then
          return TastenbelegungDatentypen.Ebene_Runter_Enum;
          
       elsif
-        EingabeSystemeSFML.MausTaste = Sf.Window.Mouse.sfMouseLeft
+        NachLogiktask.MausTaste = Sf.Window.Mouse.sfMouseLeft
       then
          return TastenbelegungDatentypen.Auswählen_Enum;
          
       elsif
-        EingabeSystemeSFML.MausTaste = Sf.Window.Mouse.sfMouseRight
+        NachLogiktask.MausTaste = Sf.Window.Mouse.sfMouseRight
       then
          return TastenbelegungDatentypen.Menü_Zurück_Enum;
          
       elsif
-        EingabeSystemeSFML.TastaturTaste = Sf.Window.Keyboard.sfKeyUnknown
+        NachLogiktask.TastaturTaste = Sf.Window.Keyboard.sfKeyUnknown
       then
          return TastenbelegungDatentypen.Leer_Tastenbelegung_Enum;
             
       else
-         Taste := EingabeSystemeSFML.TastaturTaste;
+         Taste := NachLogiktask.TastaturTaste;
       end if;
       
       BelegungFeldSchleife:

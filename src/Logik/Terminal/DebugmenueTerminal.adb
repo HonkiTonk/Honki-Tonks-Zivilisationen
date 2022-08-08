@@ -3,8 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
-with Sf.Window.Keyboard;
-
 with KartenDatentypen; use KartenDatentypen;
 with ZahlenDatentypen;
 
@@ -16,11 +14,11 @@ with LeseWichtiges;
 
 with Karten;
 with ForschungAllgemein;
-with EingabeSystemeSFML;
 
 package body DebugmenueTerminal is
 
    -- Überarbeiten/Wieder für Terminal zurückbauen. äöü
+   -- Sollte hier nie auf SFML zugreifen.
    procedure Menü
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
@@ -31,24 +29,24 @@ package body DebugmenueTerminal is
          -- Hier nicht mehr direkt darauf zugreifen sondern so wie in allen anderen Menüs.
          -- EingabeSystemeSFML.TastenEingabe;
          
-         case
-           EingabeSystemeSFML.TastaturTaste
-         is
+       --  case
+       --    EingabeSystemeSFML.TastaturTaste
+       --  is
             -- Volle Informationen (unabhängig von der Rasse)
-            when Sf.Window.Keyboard.sfKeyI =>
+       --     when Sf.Window.Keyboard.sfKeyI =>
                Informationen;
                
-            when Sf.Window.Keyboard.sfKeyG =>
+       --     when Sf.Window.Keyboard.sfKeyG =>
                DebugSieg := not DebugSieg;
                
-            when Sf.Window.Keyboard.sfKeyM =>
+       --     when Sf.Window.Keyboard.sfKeyM =>
                SchreibeWichtiges.Geldmenge (RasseExtern         => RasseExtern,
                                             GeldZugewinnExtern  => ZahlenDatentypen.EigenerInteger'Last,
-                                            RechnenSetzenExtern => False);
+                                           RechnenSetzenExtern => False);
                
-            when others =>
-               return;
-         end case;
+       --     when others =>
+       --        return;
+       --  end case;
          
          -- Karte hier nur Anzeigen wenn Terminal aktiv ist? Oder kann die Terminal auch wie die SFML ausgelagert werden?
          -- Karte.AnzeigeKarte (RasseExtern => RasseExtern);

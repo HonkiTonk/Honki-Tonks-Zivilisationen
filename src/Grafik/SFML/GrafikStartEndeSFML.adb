@@ -13,6 +13,7 @@ with OptionenVariablen;
 with GrafikEinstellungenSFML;
 with GrafikAllgemeinSFML;
 with Fehler;
+with TexteinstellungenSFML;
 
 package body GrafikStartEndeSFML is
 
@@ -23,7 +24,7 @@ package body GrafikStartEndeSFML is
         OptionenVariablen.NutzerEinstellungen.Anzeigeart
       is
          when GrafikDatentypen.Grafik_Terminal_Enum =>
-            Fehler.GrafikFehler (FehlermeldungExtern => "GrafikStartEndeSFML.FensterErzeugen - Es soll ein Terminalfenster erzeugt werden.");
+            Fehler.GrafikFehler (FehlermeldungExtern => "GrafikStartEndeSFML.FensterErzeugen - Terminalfenster soll erzeugt werden.");
             
          when GrafikDatentypen.Grafik_SFML_Enum =>
             FensterErzeugenErweitert;
@@ -37,7 +38,7 @@ package body GrafikStartEndeSFML is
       else
          GrafikAllgemeinSFML.MauszeigerFestlegen;
          GrafikAllgemeinSFML.BildrateÄndern;
-         GrafikAllgemeinSFML.SchriftartFestlegen;
+         TexteinstellungenSFML.SchriftartFestlegen;
       end if;
       
    end FensterErzeugen;

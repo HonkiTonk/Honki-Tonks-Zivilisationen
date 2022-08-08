@@ -1,16 +1,18 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with TexteinstellungenSFML;
+with RasseneinstellungenSFML;
+
 package body GrafikEinstellungenSFML is
 
    procedure StandardGrafikEinstellungenLaden
    is begin
       
       FensterEinstellungen := FensterStandardEinstellungen;
-      Schriftgrößen := SchriftgrößenStandard;
-      Schriftfarben := SchriftfarbenStandard;
-      RassenFarben := RassenFarbenStandard;
-      RassenFarbenRahmen := RassenFarbenRahmenStandard;
+      
+      TexteinstellungenSFML.StandardLaden;
+      RasseneinstellungenSFML.StandardLaden;
       
    end StandardGrafikEinstellungenLaden;
 

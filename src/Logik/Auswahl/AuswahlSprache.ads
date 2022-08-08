@@ -43,7 +43,7 @@ private
    
    TextAccess : Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
    
-   MausZeigerPosition : Sf.System.Vector2.sfVector2i;
+   Mausposition : Sf.System.Vector2.sfVector2f;
    
    procedure SprachenListeFestlegen;
    procedure MausAuswahl;

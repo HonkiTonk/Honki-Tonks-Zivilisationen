@@ -154,17 +154,20 @@ package ChangelogAugust2022 is
    
    
 
-   -- Version 0.03. => 0.03. (09.08.2022):
+   -- Version 0.03.1090 => 0.03. (09.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.1045 => 0.03. (08.08.2022):
+   -- Version 0.03.1045 => 0.03.1090 (08.08.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- ASFML aktualisiert.
+   -- Code übersichtlicher aufgeteilt.
+   -- Eingabesystem überarbeitet.
+   -- Weiter an der textskalierung in den Menüs gearbeitet.
+   -- Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 

@@ -1,23 +1,9 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Sf.Window.Keyboard;
-with Sf.Window.Mouse;
-
 private with Sf.Window.Event;
 
-with SystemRecords;
-
 package EingabeSystemeSFML is
-
-   -- Das hier NachLogiktask?
-   MausRad : Float;
-
-   TastaturTaste : Sf.Window.Keyboard.sfKeyCode;
-
-   MausTaste : Sf.Window.Mouse.sfMouseButton;
-
-   EingegebenerText : SystemRecords.TextEingabeRecord;
 
    procedure TastenEingabe;
    procedure TextEingeben;

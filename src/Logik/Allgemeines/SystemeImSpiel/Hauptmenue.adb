@@ -93,6 +93,9 @@ package body Hauptmenue is
             when RueckgabeDatentypen.Spiel_Beenden_Enum =>
                exit HauptmenüSchleife;
                
+            when RueckgabeDatentypen.Zurück_Enum =>
+               null;
+               
             when others =>
                Fehler.LogikFehler (FehlermeldungExtern => "Hauptmenue.Hauptmenü - Ungültige Menüauswahl");
          end case;

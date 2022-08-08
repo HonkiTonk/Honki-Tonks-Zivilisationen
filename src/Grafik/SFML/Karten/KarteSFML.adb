@@ -36,6 +36,7 @@ with FarbgebungSFML;
 with TextberechnungenBreiteSFML;
 with Warnung;
 with ViewsSFML;
+with RasseneinstellungenSFML;
 with ViewsEinstellenSFML;
 
 package body KarteSFML is
@@ -474,7 +475,7 @@ package body KarteSFML is
                   ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.80,
                                                        PositionExtern      => PositionExtern,
                                                        AnzahlEckenExtern   => 4,
-                                                       FarbeExtern         => GrafikEinstellungenSFML.RassenFarbenRahmen (EinheitRasseNummer.Rasse),
+                                                       FarbeExtern         => RasseneinstellungenSFML.RassenFarbenRahmen (EinheitRasseNummer.Rasse),
                                                        PolygonAccessExtern => PolygonAccess);
                end if;
                
@@ -495,7 +496,7 @@ package body KarteSFML is
             ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.80,
                                                  PositionExtern      => PositionExtern,
                                                  AnzahlEckenExtern   => 4,
-                                                 FarbeExtern         => GrafikEinstellungenSFML.RassenFarbenRahmen (EinheitRasseNummer.Rasse),
+                                                 FarbeExtern         => RasseneinstellungenSFML.RassenFarbenRahmen (EinheitRasseNummer.Rasse),
                                                  PolygonAccessExtern => PolygonAccess);
             Warnung.GrafikWarnung (WarnmeldungExtern => "KarteSFML.AnzeigeEinheit - Sprite fehlt: " & RasseEinheitExtern.Rasse'Wide_Wide_Image & " - " & EinheitID'Wide_Wide_Image);
          end if;
@@ -539,7 +540,7 @@ package body KarteSFML is
       Sf.Graphics.RectangleShape.setPosition (shape    => RechteckBelegtesFeldAccess,
                                               position => PositionExtern);
       Sf.Graphics.RectangleShape.setFillColor (shape => RechteckBelegtesFeldAccess,
-                                               color => GrafikEinstellungenSFML.RassenFarben (RasseExtern));
+                                               color => RasseneinstellungenSFML.RassenFarben (RasseExtern));
       
       Sf.Graphics.RenderWindow.drawRectangleShape (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                                    object       => RechteckBelegtesFeldAccess);
@@ -582,7 +583,7 @@ package body KarteSFML is
    is begin
       
       Sf.Graphics.RectangleShape.setFillColor (shape => RechteckRahmenAccess,
-                                               color => GrafikEinstellungenSFML.RassenFarbenRahmen (RasseExtern));
+                                               color => RasseneinstellungenSFML.RassenFarbenRahmen (RasseExtern));
       
       case
         WelcheRichtungExtern

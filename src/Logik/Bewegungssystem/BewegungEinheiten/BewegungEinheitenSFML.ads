@@ -29,7 +29,7 @@ private
    
    BefehlMaus : TastenbelegungDatentypen.Tastenbelegung_Enum;
    
-   MausPosition : Sf.System.Vector2.sfVector2i;
+   Mausposition : Sf.System.Vector2.sfVector2f;
       
    Änderung : KartenRecords.AchsenKartenfeldRecord;
    KeineÄnderung : constant KartenRecords.AchsenKartenfeldRecord := (0, 0, 0);

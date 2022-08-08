@@ -6,6 +6,7 @@ with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 
 with Sf; use Sf;
 with Sf.Window.Keyboard; use Sf.Window.Keyboard;
+with Sf.Window.Mouse;
 with Sf.Graphics.RenderWindow;
 
 with SystemRecordKonstanten;
@@ -19,17 +20,18 @@ package body EingabeSystemeSFML is
 
    procedure TastenEingabe
    is begin
-            
-      TastaturTaste := Sf.Window.Keyboard.sfKeyUnknown;
+      
       -- Kann man sfMouseButtonCount einfach so als Leerwert nehmen? Scheint zu funktionieren.
-      MausTaste := Sf.Window.Mouse.sfMouseButtonCount;
-      MausRad := 0.00;
+      NachLogiktask.MausTaste := Sf.Window.Mouse.sfMouseButtonCount;
+      NachLogiktask.TastaturTaste := Sf.Window.Keyboard.sfKeyUnknown;
+      NachLogiktask.MausRad := 0.00;
       
       TasteSchleife:
-      while Sf.Graphics.RenderWindow.pollEvent (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                                event        => Nutzereingabe)
-        = Sf.sfTrue loop
-                        
+      while
+        Sf.sfTrue = Sf.Graphics.RenderWindow.pollEvent (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                                        event        => Nutzereingabe)
+      loop
+         
          case
            Nutzereingabe.eventType
          is
@@ -42,8 +44,8 @@ package body EingabeSystemeSFML is
                NachGrafiktask.FensterVerändert := GrafikDatentypen.Fenster_Verändert_Enum;
                   
             when Sf.Window.Event.sfEvtMouseMoved =>
-               -- Immer hier die neue Mausposition festlegen, denn es kann/wird bei mehreren gleichzeitigen Mausaufrufen des RenderWindow zu Abstürzen kommen.
-               GrafikEinstellungenSFML.MausPosition := (Nutzereingabe.mouseMove.x, Nutzereingabe.mouseMove.y);
+               -- Das bei jedem Aufruf setzen? äöü
+               NachLogiktask.Mausposition := (Float (Nutzereingabe.mouseMove.x), Float (Nutzereingabe.mouseMove.y));
                   
             when others =>
                null;
@@ -55,19 +57,22 @@ package body EingabeSystemeSFML is
            Nutzereingabe.eventType
          is
             when Sf.Window.Event.sfEvtKeyPressed =>
-               TastaturTaste := Nutzereingabe.key.code;
+               NachLogiktask.TastaturTaste := Nutzereingabe.key.code;
                   
             when Sf.Window.Event.sfEvtMouseWheelScrolled =>
-               MausRad := Nutzereingabe.mouseWheelScroll.eventDelta;
+               NachLogiktask.MausRad := Nutzereingabe.mouseWheelScroll.eventDelta;
                   
             when Sf.Window.Event.sfEvtMouseButtonPressed =>
-               MausTaste := Nutzereingabe.mouseButton.button;
+               NachLogiktask.MausTaste := Nutzereingabe.mouseButton.button;
                   
             when others =>
                null;
          end case;
                      
       end loop TasteSchleife;
+      
+      NachGrafiktask.TastenEingabe := False;
+      NachLogiktask.Warten := False;
       
    end TastenEingabe;
    
@@ -77,9 +82,10 @@ package body EingabeSystemeSFML is
    is begin
       
       TasteSchleife:
-      while Sf.Graphics.RenderWindow.pollEvent (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                                event        => TextEingegeben)
-        = Sf.sfTrue loop
+      while
+        Sf.sfTrue = Sf.Graphics.RenderWindow.pollEvent (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                                        event        => TextEingegeben)
+      loop
             
          case
            TextEingegeben.eventType
@@ -91,14 +97,14 @@ package body EingabeSystemeSFML is
                if
                  TextEingegeben.key.code = Sf.Window.Keyboard.sfKeyEnter
                then
-                  EingegebenerText.ErfolgreichAbbruch := True;
+                  NachLogiktask.EingegebenerText.ErfolgreichAbbruch := True;
                   NachGrafiktask.TextEingabe := False;
                   NachLogiktask.Warten := False;
                      
                elsif
                  TextEingegeben.key.code = Sf.Window.Keyboard.sfKeyEscape
                then
-                  EingegebenerText := SystemRecordKonstanten.LeerTexteingabe;
+                  NachLogiktask.EingegebenerText := SystemRecordKonstanten.LeerTexteingabe;
                   NachGrafiktask.TextEingabe := False;
                   NachLogiktask.Warten := False;
                   
@@ -171,7 +177,7 @@ package body EingabeSystemeSFML is
                return;
               
             elsif
-              To_Wide_Wide_String (Source => EingegebenerText.EingegebenerText)'Length > MaximaleZeichenlängeDateisystem
+              To_Wide_Wide_String (Source => NachLogiktask.EingegebenerText.EingegebenerText)'Length > MaximaleZeichenlängeDateisystem
             then
                return;
                
@@ -182,7 +188,7 @@ package body EingabeSystemeSFML is
       
       CharacterZuText (1) := EingegebenesZeichenExtern;
       
-      EingegebenerText.EingegebenerText := EingegebenerText.EingegebenerText & To_Unbounded_Wide_Wide_String (Source => CharacterZuText);
+      NachLogiktask.EingegebenerText.EingegebenerText := NachLogiktask.EingegebenerText.EingegebenerText & To_Unbounded_Wide_Wide_String (Source => CharacterZuText);
       
    end ZeichenHinzufügen;
    
@@ -192,14 +198,14 @@ package body EingabeSystemeSFML is
    is begin
       
       if
-        To_Wide_Wide_String (Source => EingegebenerText.EingegebenerText)'Length < 1
+        To_Wide_Wide_String (Source => NachLogiktask.EingegebenerText.EingegebenerText)'Length < 1
       then
          null;
          
       else
-         EingegebenerText.EingegebenerText := Ada.Strings.Wide_Wide_Unbounded.Delete (Source  => EingegebenerText.EingegebenerText,
-                                                                                      From    => To_Wide_Wide_String (Source => EingegebenerText.EingegebenerText)'Last,
-                                                                                      Through => To_Wide_Wide_String (Source => EingegebenerText.EingegebenerText)'Last);
+         NachLogiktask.EingegebenerText.EingegebenerText := Ada.Strings.Wide_Wide_Unbounded.Delete (Source  => NachLogiktask.EingegebenerText.EingegebenerText,
+                                                                                                    From    => To_Wide_Wide_String (Source => NachLogiktask.EingegebenerText.EingegebenerText)'Last,
+                                                                                                    Through => To_Wide_Wide_String (Source => NachLogiktask.EingegebenerText.EingegebenerText)'Last);
       end if;
       
    end ZeichenEntfernen;

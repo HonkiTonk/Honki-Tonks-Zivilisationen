@@ -38,7 +38,7 @@ private
    NeuesBauprojekt : StadtRecords.BauprojektRecord;
    GewähltesBauprojekt : StadtRecords.BauprojektRecord;
 
-   MausZeigerPosition : Sf.System.Vector2.sfVector2i;
+   Mausposition : Sf.System.Vector2.sfVector2f;
 
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
 

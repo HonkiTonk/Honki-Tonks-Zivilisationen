@@ -21,6 +21,7 @@ with TextberechnungenHoeheSFML;
 with GebaeudeAllgemein;
 with EinheitenBeschreibungen;
 with HintergrundSFML;
+with TexteinstellungenSFML;
 
 package body BauAuswahlAnzeigeSFML is
 
@@ -85,7 +86,7 @@ package body BauAuswahlAnzeigeSFML is
                then
                   ZusatztextGebäude := GebäudeSchleifenwert;
                   Sf.Graphics.Text.setColor (text  => TextaccessVariablen.GebäudetextAccess (GebäudeSchleifenwert),
-                                             color => GrafikEinstellungenSFML.Schriftfarben.FarbeAusgewähltText);
+                                             color => TexteinstellungenSFML.Schriftfarben.FarbeAusgewähltText);
                   Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.GebäudezusatztextAccess (GebäudeSchleifenwert),
                                                 position => (AnfangsabstandExtratext + Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) / 2.00, AbstandÜberschrift));
                   HintergrundSFML.TextHintergrund (LinksRechtsExtern        => True,
@@ -95,7 +96,7 @@ package body BauAuswahlAnzeigeSFML is
             
                else
                   Sf.Graphics.Text.setColor (text  => TextaccessVariablen.GebäudetextAccess (GebäudeSchleifenwert),
-                                             color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
+                                             color => TexteinstellungenSFML.Schriftfarben.FarbeStandardText);
                end if;
                
                TextPosition.x := TextberechnungenBreiteSFML.ViertelpositionBerechnen (TextAccessExtern  => TextaccessVariablen.GebäudetextAccess (GebäudeSchleifenwert),
@@ -128,7 +129,7 @@ package body BauAuswahlAnzeigeSFML is
                then
                   ZusatztextEinheiten := EinheitenSchleifenwert;
                   Sf.Graphics.Text.setColor (text  => TextaccessVariablen.EinheitentextAccess (EinheitenSchleifenwert),
-                                             color => GrafikEinstellungenSFML.Schriftfarben.FarbeAusgewähltText);
+                                             color => TexteinstellungenSFML.Schriftfarben.FarbeAusgewähltText);
                   Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitenzusatztextAccess (EinheitenSchleifenwert),
                                                 position => (AnfangsabstandExtratext + StartPositionText.x, AbstandÜberschrift));
                   HintergrundSFML.TextHintergrund (LinksRechtsExtern        => False,
@@ -138,7 +139,7 @@ package body BauAuswahlAnzeigeSFML is
             
                else
                   Sf.Graphics.Text.setColor (text  => TextaccessVariablen.EinheitentextAccess (EinheitenSchleifenwert),
-                                             color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
+                                             color => TexteinstellungenSFML.Schriftfarben.FarbeStandardText);
                end if;
                   
                TextPosition.x := TextberechnungenBreiteSFML.ViertelpositionBerechnen (TextAccessExtern  => TextaccessVariablen.EinheitentextAccess (EinheitenSchleifenwert),
@@ -300,13 +301,13 @@ package body BauAuswahlAnzeigeSFML is
    is begin
       
       Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.BaumenüÜberschriftAccess,
-                                         size => GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeÜberschrift);
+                                         size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeÜberschrift);
       
       Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.GebäudetextAccess (0),
-                                         size => GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeÜberschrift);
+                                         size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeÜberschrift);
       
       Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.EinheitentextAccess (0),
-                                         size => GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeÜberschrift);
+                                         size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeÜberschrift);
 
    end SchriftgrößenFestlegen;
 

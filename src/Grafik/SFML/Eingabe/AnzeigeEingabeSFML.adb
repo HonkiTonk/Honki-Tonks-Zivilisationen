@@ -13,7 +13,6 @@ with TextnummernKonstanten;
 with EingabeSFML;
 with GrafikEinstellungenSFML;
 with ObjekteZeichnenSFML;
-with EingabeSystemeSFML;
 with EinheitenBeschreibungen;
 with LeseEinheitenGebaut;
 with LeseStadtGebaut;
@@ -21,6 +20,8 @@ with TextaccessVariablen;
 with TextberechnungenHoeheSFML;
 with InteraktionAuswahl;
 with TextberechnungenBreiteSFML;
+with NachLogiktask;
+with TexteinstellungenSFML;
 
 package body AnzeigeEingabeSFML is
    
@@ -87,6 +88,7 @@ package body AnzeigeEingabeSFML is
                                                  150.00));
       
       -- Die Abmessungen der Rechtecke immer an den größten Text anpassen. äöü
+      -- Einfach über einen View regeln. äöü
       ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => (Textbreite + 20.00, 100.00),
                                             PositionExtern       => (Sf.Graphics.Text.getPosition (text => TextaccessVariablen.AnzeigeZahlTexteingabeAccess (TextaccessVariablen.AnzeigeZahlTexteingabeAccessArray'First)).x
                                                                      - 10.00,
@@ -120,7 +122,7 @@ package body AnzeigeEingabeSFML is
                                     position => ((Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) / 2.00 - Textbreite / 2.00), 100.00));
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.AnzeigeZahlTexteingabeAccess (TextaccessVariablen.AnzeigeZahlTexteingabeAccessArray'Last),
-                                         str  => To_Wide_Wide_String (Source => EingabeSystemeSFML.EingegebenerText.EingegebenerText));
+                                         str  => To_Wide_Wide_String (Source => NachLogiktask.EingegebenerText.EingegebenerText));
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.AnzeigeZahlTexteingabeAccess (TextaccessVariablen.AnzeigeZahlTexteingabeAccessArray'Last),
                                     position => ((Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) / 2.00
@@ -212,11 +214,11 @@ package body AnzeigeEingabeSFML is
               AktuelleAuswahl = Natural (AuswahlSchleifenwert)
             then
                Sf.Graphics.Text.setColor (text  => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
-                                          color => GrafikEinstellungenSFML.Schriftfarben.FarbeAusgewähltText);
+                                          color => TexteinstellungenSFML.Schriftfarben.FarbeAusgewähltText);
          
             else
                Sf.Graphics.Text.setColor (text  => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
-                                          color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
+                                          color => TexteinstellungenSFML.Schriftfarben.FarbeStandardText);
             end if;
             
             Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),

@@ -18,6 +18,7 @@ with AuswahlMenuesEinfach;
 with AuswahlMenuesZusatztextSFML;
 with KartengeneratorVariablen;
 with TextberechnungenHoeheSFML;
+with TexteinstellungenSFML;
 
 package body AuswahlMenueKartenformSFML is
 
@@ -117,19 +118,19 @@ package body AuswahlMenueKartenformSFML is
          is
             when 1 =>
                Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KartenformauswahlAccess (FarbenSchleifenwert),
-                                          color => GrafikEinstellungenSFML.Schriftfarben.FarbeÜberschrift);
+                                          color => TexteinstellungenSFML.Schriftfarben.FarbeÜberschrift);
                
             when 2 .. 9 =>
                Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KartenformauswahlAccess (FarbenSchleifenwert),
-                                          color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
+                                          color => TexteinstellungenSFML.Schriftfarben.FarbeStandardText);
                
             when 10 .. 29 =>
                Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KartenformauswahlAccess (FarbenSchleifenwert),
-                                          color => GrafikEinstellungenSFML.Schriftfarben.FarbeMenschText);
+                                          color => TexteinstellungenSFML.Schriftfarben.FarbeMenschText);
                
             when others =>
                Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KartenformauswahlAccess (FarbenSchleifenwert),
-                                          color => GrafikEinstellungenSFML.Schriftfarben.FarbeSonstigerText);
+                                          color => TexteinstellungenSFML.Schriftfarben.FarbeSonstigerText);
          end case;
          
       end loop FarbenSchleife;
@@ -146,7 +147,7 @@ package body AuswahlMenueKartenformSFML is
             for EbeneSchleifenwert in 0 .. 1 loop
                                  
                Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KartenformauswahlAccess (Schleifenanpassung (AktuelleAuswahlExtern + Überschrift) + EbeneSchleifenwert),
-                                          color => GrafikEinstellungenSFML.Schriftfarben.FarbeAusgewähltText);
+                                          color => TexteinstellungenSFML.Schriftfarben.FarbeAusgewähltText);
                   
             end loop AEbeneSchleife;
             
@@ -155,13 +156,13 @@ package body AuswahlMenueKartenformSFML is
             for AchsenSchleifenwert in 0 .. 3 loop
                                  
                Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KartenformauswahlAccess (Schleifenanpassung (AktuelleAuswahlExtern + Überschrift) + AchsenSchleifenwert),
-                                          color => GrafikEinstellungenSFML.Schriftfarben.FarbeAusgewähltText);
+                                          color => TexteinstellungenSFML.Schriftfarben.FarbeAusgewähltText);
                   
             end loop AAchsenSchleife;
             
          when others =>
             Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KartenformauswahlAccess (AktuelleAuswahlExtern + Überschrift),
-                                       color => GrafikEinstellungenSFML.Schriftfarben.FarbeAusgewähltText);
+                                       color => TexteinstellungenSFML.Schriftfarben.FarbeAusgewähltText);
       end case;
       
    end FarbeAktuelleAuswahlFestlegen;

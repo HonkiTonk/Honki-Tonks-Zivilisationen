@@ -7,6 +7,8 @@ with SystemRecords;
 with OptionenVariablen;
 
 with GrafikEinstellungenSFML;
+with TexteinstellungenSFML;
+with RasseneinstellungenSFML;
 
 package body EinlesenEinstellungen is
 
@@ -32,13 +34,13 @@ package body EinlesenEinstellungen is
       SystemRecords.FensterRecord'Read (Stream (File => DateiEinstellungenEinlesen),
                                         GrafikEinstellungenSFML.FensterEinstellungen);
       SystemRecords.SchriftgrößenRecord'Read (Stream (File => DateiEinstellungenEinlesen),
-                                                GrafikEinstellungenSFML.Schriftgrößen);
+                                                TexteinstellungenSFML.Schriftgrößen);
       SystemRecords.SchriftfarbenRecord'Read (Stream (File => DateiEinstellungenEinlesen),
-                                              GrafikEinstellungenSFML.Schriftfarben);
-      GrafikEinstellungenSFML.RassenFarbenArray'Read (Stream (File => DateiEinstellungenEinlesen),
-                                                      GrafikEinstellungenSFML.RassenFarben);
-      GrafikEinstellungenSFML.RassenFarbenArray'Read (Stream (File => DateiEinstellungenEinlesen),
-                                                      GrafikEinstellungenSFML.RassenFarbenRahmen);
+                                              TexteinstellungenSFML.Schriftfarben);
+      RasseneinstellungenSFML.RassenFarbenArray'Read (Stream (File => DateiEinstellungenEinlesen),
+                                                      RasseneinstellungenSFML.RassenFarben);
+      RasseneinstellungenSFML.RassenFarbenArray'Read (Stream (File => DateiEinstellungenEinlesen),
+                                                      RasseneinstellungenSFML.RassenFarbenRahmen);
 
       Close (File => DateiEinstellungenEinlesen);
       

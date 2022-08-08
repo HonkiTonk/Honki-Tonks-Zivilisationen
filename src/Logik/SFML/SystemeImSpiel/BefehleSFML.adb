@@ -35,6 +35,7 @@ with NachGrafiktask;
 
 package body BefehleSFML is
    
+   -- Kann man nicht auch hier eine Schleife einbauen und sich das Zurückgehen sparen? äöü
    function Befehle
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
@@ -63,7 +64,7 @@ package body BefehleSFML is
             ForschungAllgemein.Forschung (RasseExtern => RasseExtern);
             
          when TastenbelegungDatentypen.Tech_Baum_Enum =>
-            -- Kann in der SMFL Version ignoriert werden oder das auch in der Terminalnversion ändern und den Befehl komplett wegwerfen?
+            -- Kann in der SMFL Version ignoriert werden oder das auch in der Terminalversion ändern und den Befehl komplett wegwerfen?
             -- ForschungAllgemein.ForschungsBaum (RasseExtern => RasseExtern);
             null;
             

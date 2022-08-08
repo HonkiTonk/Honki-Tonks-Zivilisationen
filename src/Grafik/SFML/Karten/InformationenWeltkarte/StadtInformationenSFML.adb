@@ -22,6 +22,7 @@ with BerechnungenKarteSFML;
 with HintergrundSFML;
 with ViewsEinstellenSFML;
 with ViewsSFML;
+with NachLogiktask;
 
 package body StadtInformationenSFML is
    
@@ -40,9 +41,9 @@ package body StadtInformationenSFML is
                              AnzeigeAnfangenExtern  => StartpunktText);
       
       if
-        GrafikEinstellungenSFML.MausPosition.x in Sf.sfInt32 (0.00) .. Sf.sfInt32 (BerechnungenKarteSFML.StadtKarte.x)
+        NachLogiktask.Mausposition.x in 0.00 .. BerechnungenKarteSFML.StadtKarte.x
         and
-          GrafikEinstellungenSFML.MausPosition.y in Sf.sfInt32 (0.00) .. Sf.sfInt32 (BerechnungenKarteSFML.StadtKarte.y)
+          NachLogiktask.Mausposition.y in 0.00 .. BerechnungenKarteSFML.StadtKarte.y
       then
          MausInformationen := True;
          

@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with KartenDatentypen; use KartenDatentypen;
 with KartenKonstanten;
 
-with GrafikEinstellungenSFML;
+with NachLogiktask;
 with BerechnungenKarteSFML;
 with Kartenkoordinatenberechnungssystem;
 with Karten;
@@ -18,13 +18,12 @@ package body CursorPlatzierenSFML is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      -- Niemals direkt die Mausposition abrufen sondern immer die Werte vom Grafiktask ermitteln lassen. Sonst kann es aufgrund von Mehrfachnutzung des FensterAccess zu Abstürzen kommen.
-      MausPosition := GrafikEinstellungenSFML.MausPosition;
+      Mausposition := NachLogiktask.Mausposition;
       
       if
-        MausPosition.y in 0 .. Sf.sfInt32 (BerechnungenKarteSFML.FensterKarte.y)
+        Mausposition.y in 0.00 .. BerechnungenKarteSFML.FensterKarte.y
         and
-          MausPosition.x in 0 .. Sf.sfInt32 (BerechnungenKarteSFML.FensterKarte.x)
+          Mausposition.x in 0.00 .. BerechnungenKarteSFML.FensterKarte.x
       then
          SichtbereichAnfangEnde := BerechnungenKarteSFML.SichtbereichKarteBerechnen (RasseExtern => RasseExtern);
          YMultiplikator := 0.00;
@@ -42,13 +41,9 @@ package body CursorPlatzierenSFML is
          for XAchseSchleifenwert in SichtbereichAnfangEnde (3) .. SichtbereichAnfangEnde (4) loop
             
             if
-              MausPosition.y
-            in
-              Sf.sfInt32 (YMultiplikator * BerechnungenKarteSFML.KartenfelderAbmessung.y) .. Sf.sfInt32 (YMultiplikator * BerechnungenKarteSFML.KartenfelderAbmessung.y + BerechnungenKarteSFML.KartenfelderAbmessung.y)
+              Mausposition.y in YMultiplikator * BerechnungenKarteSFML.KartenfelderAbmessung.y .. YMultiplikator * BerechnungenKarteSFML.KartenfelderAbmessung.y + BerechnungenKarteSFML.KartenfelderAbmessung.y
               and
-                MausPosition.x
-            in
-              Sf.sfInt32 (XMultiplikator * BerechnungenKarteSFML.KartenfelderAbmessung.x) .. Sf.sfInt32 (XMultiplikator * BerechnungenKarteSFML.KartenfelderAbmessung.x + BerechnungenKarteSFML.KartenfelderAbmessung.x)
+                Mausposition.x in XMultiplikator * BerechnungenKarteSFML.KartenfelderAbmessung.x .. XMultiplikator * BerechnungenKarteSFML.KartenfelderAbmessung.x + BerechnungenKarteSFML.KartenfelderAbmessung.x
             then
                KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
                                                                                                     ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
@@ -85,13 +80,12 @@ package body CursorPlatzierenSFML is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      -- Niemals direkt die Mausposition abrufen sondern immer die Werte in der Eingabe ermitteln lassen. Sonst kommt es zu einem Absturz.
-      MausPosition := GrafikEinstellungenSFML.MausPosition;
+      Mausposition := NachLogiktask.Mausposition;
       
       if
-        MausPosition.y in 0 .. Sf.sfInt32 (BerechnungenKarteSFML.StadtKarte.y)
+        Mausposition.y in 0.00 .. BerechnungenKarteSFML.StadtKarte.y
         and
-          MausPosition.x in 0 .. Sf.sfInt32 (BerechnungenKarteSFML.StadtKarte.x)
+          Mausposition.x in 0.00 .. BerechnungenKarteSFML.StadtKarte.x
       then
          null;
          
@@ -111,18 +105,14 @@ package body CursorPlatzierenSFML is
          for XAchseSchleifenwert in Karten.StadtkarteArray'Range (2) loop
             
             if
-              MausPosition.y
-            in
-              Sf.sfInt32 (YMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.y) .. Sf.sfInt32 (YMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.y + BerechnungenKarteSFML.StadtfelderAbmessung.y)
+              Mausposition.y in YMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.y .. YMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.y + BerechnungenKarteSFML.StadtfelderAbmessung.y
               and
-                MausPosition.x
-            in
-              Sf.sfInt32 (XMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.x) .. Sf.sfInt32 (XMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.x + BerechnungenKarteSFML.StadtfelderAbmessung.x)
+                Mausposition.x in XMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.x .. XMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.x + BerechnungenKarteSFML.StadtfelderAbmessung.x
             then
                SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenStadt.YAchse := YAchseSchleifenwert;
                SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenStadt.XAchse := XAchseSchleifenwert;
                return;
-               
+             
             else
                XMultiplikator := XMultiplikator + 1.00;
             end if;

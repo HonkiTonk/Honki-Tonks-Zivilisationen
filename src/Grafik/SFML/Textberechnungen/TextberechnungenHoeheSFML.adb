@@ -19,7 +19,7 @@ package body TextberechnungenHoeheSFML is
      return Float
    is begin
       
-      return 28.80; -- 1.20 * Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
+      return 28.80; -- 1.20 * Float (TexteinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
       
    end KleinerZeilenabstand;
    
@@ -29,7 +29,7 @@ package body TextberechnungenHoeheSFML is
      return Float
    is begin
       
-      return 36.00; -- 1.50 * Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
+      return 36.00; -- 1.50 * Float (TexteinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
       
    end Zeilenabstand;
    
@@ -39,7 +39,7 @@ package body TextberechnungenHoeheSFML is
      return Float
    is begin
       
-      return 52.80; -- 2.20 * Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
+      return 52.80; -- 2.20 * Float (TexteinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
       
    end GroßerZeilenabstand;
    
@@ -49,7 +49,7 @@ package body TextberechnungenHoeheSFML is
      return Float
    is begin
       
-      return 90.00; -- 2.50 * Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeÜberschrift);
+      return 90.00; -- 2.50 * Float (TexteinstellungenSFML.Schriftgrößen.SchriftgrößeÜberschrift);
       
    end Überschriftabstand;
    
@@ -59,7 +59,7 @@ package body TextberechnungenHoeheSFML is
      return Float
    is begin
       
-      return 180.00; -- 5.00 * Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeÜberschrift);
+      return 180.00; -- 5.00 * Float (TexteinstellungenSFML.Schriftgrößen.SchriftgrößeÜberschrift);
       
    end ÜberschriftabstandGroß;
    

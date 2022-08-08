@@ -13,8 +13,6 @@ private
    procedure Eingaben;
    procedure AnzeigeSpielmeldungen;
 
-
-
    function AnzeigeAuswahl
      return Boolean;
 

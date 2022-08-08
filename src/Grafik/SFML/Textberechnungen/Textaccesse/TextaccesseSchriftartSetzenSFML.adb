@@ -5,7 +5,7 @@ with Sf.Graphics.Text;
 
 with TextaccessVariablen;
 
-with GrafikEinstellungenSFML;
+with TexteinstellungenSFML;
 
 package body TextaccesseSchriftartSetzenSFML is
 
@@ -43,7 +43,7 @@ package body TextaccesseSchriftartSetzenSFML is
          for InnenSchleifenwert in TextaccessVariablen.MenüsEinfachSFMLAccessArray'Range (2) loop
             
             Sf.Graphics.Text.setFont (text => TextaccessVariablen.MenüsEinfachSFMLAccess (AußenSchleifenwert, InnenSchleifenwert),
-                                      font => GrafikEinstellungenSFML.SchriftartAccess);
+                                      font => TexteinstellungenSFML.SchriftartAccess);
             
          end loop MenüsEinfachInnenSchleife;
       end loop MenüsEinfachAußenSchleife;
@@ -59,7 +59,7 @@ package body TextaccesseSchriftartSetzenSFML is
       for RasseSchleifenwert in TextaccessVariablen.ZusatztextRassenAccessArray'Range loop
          
          Sf.Graphics.Text.setFont (text => TextaccessVariablen.ZusatztextRassenAccess (RasseSchleifenwert),
-                                   font => GrafikEinstellungenSFML.SchriftartAccess);
+                                   font => TexteinstellungenSFML.SchriftartAccess);
          
       end loop ZusatztextRassenmenüSchleife;
       
@@ -74,7 +74,7 @@ package body TextaccesseSchriftartSetzenSFML is
       for ZusatztextSchleifenwert in TextaccessVariablen.ZusatztextKartengrößeAccessArray'Range loop
          
          Sf.Graphics.Text.setFont (text => TextaccessVariablen.ZusatztextKartengrößeAccess (ZusatztextSchleifenwert),
-                                   font => GrafikEinstellungenSFML.SchriftartAccess);
+                                   font => TexteinstellungenSFML.SchriftartAccess);
          
       end loop ZusatztextKartengrößeSchleife;
       
@@ -86,13 +86,13 @@ package body TextaccesseSchriftartSetzenSFML is
    is begin
       
       Sf.Graphics.Text.setFont (text => TextaccessVariablen.BaumenüÜberschriftAccess,
-                                font => GrafikEinstellungenSFML.SchriftartAccess);
+                                font => TexteinstellungenSFML.SchriftartAccess);
       
       GebäudetextSchleife:
       for GebäudetextSchleifenwert in TextaccessVariablen.GebäudetextAccessArray'Range loop
             
          Sf.Graphics.Text.setFont (text => TextaccessVariablen.GebäudetextAccess (GebäudetextSchleifenwert),
-                                   font => GrafikEinstellungenSFML.SchriftartAccess);
+                                   font => TexteinstellungenSFML.SchriftartAccess);
             
       end loop GebäudetextSchleife;
       
@@ -100,7 +100,7 @@ package body TextaccesseSchriftartSetzenSFML is
       for GebäudezusatztextSchleifenwert in TextaccessVariablen.GebäudezusatztextAccessArray'Range loop
          
          Sf.Graphics.Text.setFont (text => TextaccessVariablen.GebäudezusatztextAccess (GebäudezusatztextSchleifenwert),
-                                   font => GrafikEinstellungenSFML.SchriftartAccess);
+                                   font => TexteinstellungenSFML.SchriftartAccess);
          
       end loop GebäudezusatztextSchleife;
       
@@ -110,7 +110,7 @@ package body TextaccesseSchriftartSetzenSFML is
       for EinheitentextSchleifenwert in TextaccessVariablen.EinheitentextAccessArray'Range loop
             
          Sf.Graphics.Text.setFont (text => TextaccessVariablen.EinheitentextAccess (EinheitentextSchleifenwert),
-                                   font => GrafikEinstellungenSFML.SchriftartAccess);
+                                   font => TexteinstellungenSFML.SchriftartAccess);
             
       end loop EinheitentextSchleife;
       
@@ -118,7 +118,7 @@ package body TextaccesseSchriftartSetzenSFML is
       for EinheitenzusatztextSchleifenwert in TextaccessVariablen.EinheitenzusatztextAccessArray'Range loop
          
          Sf.Graphics.Text.setFont (text => TextaccessVariablen.EinheitenzusatztextAccess (EinheitenzusatztextSchleifenwert),
-                                   font => GrafikEinstellungenSFML.SchriftartAccess);
+                                   font => TexteinstellungenSFML.SchriftartAccess);
          
       end loop EinheitenzusatztextSchleife;
       
@@ -133,7 +133,7 @@ package body TextaccesseSchriftartSetzenSFML is
       for ForschungSchleifenwert in TextaccessVariablen.ForschungsmenüAccessArray'Range loop
             
          Sf.Graphics.Text.setFont (text => TextaccessVariablen.ForschungsmenüAccess (ForschungSchleifenwert),
-                                   font => GrafikEinstellungenSFML.SchriftartAccess);
+                                   font => TexteinstellungenSFML.SchriftartAccess);
             
       end loop ForschungenSchleife;
       
@@ -141,7 +141,7 @@ package body TextaccesseSchriftartSetzenSFML is
       for ForschungZusatztextSchleifenwert in TextaccessVariablen.ForschungsmenüZusatztextAccessArray'Range loop
          
          Sf.Graphics.Text.setFont (text => TextaccessVariablen.ForschungsmenüZusatztextAccess (ForschungZusatztextSchleifenwert),
-                                   font => GrafikEinstellungenSFML.SchriftartAccess);
+                                   font => TexteinstellungenSFML.SchriftartAccess);
          
       end loop ForschungenZusatztextSchleife;
       
@@ -153,7 +153,7 @@ package body TextaccesseSchriftartSetzenSFML is
    is begin
       
       Sf.Graphics.Text.setFont (text => TextaccessVariablen.SprachauswahlAccess,
-                                font => GrafikEinstellungenSFML.SchriftartAccess);
+                                font => TexteinstellungenSFML.SchriftartAccess);
       
    end Sprachauswahl;
    
@@ -166,7 +166,7 @@ package body TextaccesseSchriftartSetzenSFML is
       for KartenformauswahlSchleifenwert in TextaccessVariablen.KartenformauswahlAccessArray'Range loop
             
          Sf.Graphics.Text.setFont (text => TextaccessVariablen.KartenformauswahlAccess (KartenformauswahlSchleifenwert),
-                                   font => GrafikEinstellungenSFML.SchriftartAccess);
+                                   font => TexteinstellungenSFML.SchriftartAccess);
             
       end loop KartenformauswahlSchleife;
       
@@ -181,7 +181,7 @@ package body TextaccesseSchriftartSetzenSFML is
       for StadtInformationenSchleifenwert in TextaccessVariablen.StadtInformationenAccessArray'Range loop
             
          Sf.Graphics.Text.setFont (text => TextaccessVariablen.StadtInformationenAccess (StadtInformationenSchleifenwert),
-                                   font => GrafikEinstellungenSFML.SchriftartAccess);
+                                   font => TexteinstellungenSFML.SchriftartAccess);
             
       end loop StadtInformationenSchleife;
       
@@ -196,7 +196,7 @@ package body TextaccesseSchriftartSetzenSFML is
       for EinheitenInformationenSchleifenwert in TextaccessVariablen.EinheitenInformationenAccessArray'Range loop
             
          Sf.Graphics.Text.setFont (text => TextaccessVariablen.EinheitenInformationenAccess (EinheitenInformationenSchleifenwert),
-                                   font => GrafikEinstellungenSFML.SchriftartAccess);
+                                   font => TexteinstellungenSFML.SchriftartAccess);
             
       end loop EinheitenInformationenSchleife;
       
@@ -211,7 +211,7 @@ package body TextaccesseSchriftartSetzenSFML is
       for KarteWichtigesSchleifenwert in TextaccessVariablen.KarteWichtigesAccessArray'Range loop
             
          Sf.Graphics.Text.setFont (text => TextaccessVariablen.KarteWichtigesAccess (KarteWichtigesSchleifenwert),
-                                   font => GrafikEinstellungenSFML.SchriftartAccess);
+                                   font => TexteinstellungenSFML.SchriftartAccess);
             
       end loop KarteWichtigesSchleife;
       
@@ -226,7 +226,7 @@ package body TextaccesseSchriftartSetzenSFML is
       for KarteAllgemeinesSchleifenwert in TextaccessVariablen.KarteAllgemeinesAccessArray'Range loop
             
          Sf.Graphics.Text.setFont (text => TextaccessVariablen.KarteAllgemeinesAccess (KarteAllgemeinesSchleifenwert),
-                                   font => GrafikEinstellungenSFML.SchriftartAccess);
+                                   font => TexteinstellungenSFML.SchriftartAccess);
             
       end loop KarteAllgemeinesSchleife;
       
@@ -238,7 +238,7 @@ package body TextaccesseSchriftartSetzenSFML is
    is begin
       
       Sf.Graphics.Text.setFont (text => TextaccessVariablen.KarteAccess,
-                                font => GrafikEinstellungenSFML.SchriftartAccess);
+                                font => TexteinstellungenSFML.SchriftartAccess);
       
    end Karte;
    
@@ -251,7 +251,7 @@ package body TextaccesseSchriftartSetzenSFML is
       for ZahleneingabeSchleifenwert in TextaccessVariablen.AnzeigeZahlTexteingabeAccessArray'Range loop
          
          Sf.Graphics.Text.setFont (text => TextaccessVariablen.AnzeigeZahlTexteingabeAccess (ZahleneingabeSchleifenwert),
-                                   font => GrafikEinstellungenSFML.SchriftartAccess);
+                                   font => TexteinstellungenSFML.SchriftartAccess);
          
       end loop ZahleneingabeSchleife;
       
@@ -266,7 +266,7 @@ package body TextaccesseSchriftartSetzenSFML is
       for EinheitStadtSchleifenwert in TextaccessVariablen.AnzeigeEinheitStadtAccessArray'Range loop
       
          Sf.Graphics.Text.setFont (text => TextaccessVariablen.AnzeigeEinheitStadtAccess (EinheitStadtSchleifenwert),
-                                   font => GrafikEinstellungenSFML.SchriftartAccess);
+                                   font => TexteinstellungenSFML.SchriftartAccess);
          
       end loop EinheitStadtSchleife;
       
@@ -281,7 +281,7 @@ package body TextaccesseSchriftartSetzenSFML is
       for AnzeigeEingabeSchleifenwert in TextaccessVariablen.JaNeinAccessArray'Range loop
          
          Sf.Graphics.Text.setFont (text => TextaccessVariablen.JaNeinAccess (AnzeigeEingabeSchleifenwert),
-                                   font => GrafikEinstellungenSFML.SchriftartAccess);
+                                   font => TexteinstellungenSFML.SchriftartAccess);
          
       end loop AnzeigeEingabeSchleife;
          
@@ -296,7 +296,7 @@ package body TextaccesseSchriftartSetzenSFML is
       for LadezeitenSpielweltSchleifenwert in TextaccessVariablen.LadezeitenAccessArray'Range loop
          
          Sf.Graphics.Text.setFont (text => TextaccessVariablen.LadezeitenAccess (LadezeitenSpielweltSchleifenwert),
-                                   font => GrafikEinstellungenSFML.SchriftartAccess);
+                                   font => TexteinstellungenSFML.SchriftartAccess);
          
       end loop LadezeitenSpielweltSchleife;
       
@@ -306,7 +306,7 @@ package body TextaccesseSchriftartSetzenSFML is
       for KIZeitenSchleifenwert in TextaccessVariablen.KIZeitenAccessArray'Range loop
          
          Sf.Graphics.Text.setFont (text => TextaccessVariablen.KIZeitenAccess (KIZeitenSchleifenwert),
-                                   font => GrafikEinstellungenSFML.SchriftartAccess);
+                                   font => TexteinstellungenSFML.SchriftartAccess);
          
       end loop KIZeitenSchleife;
       
@@ -316,7 +316,7 @@ package body TextaccesseSchriftartSetzenSFML is
       for RundenendeSchleifenwert in TextaccessVariablen.RundenendeAccessArray'Range loop
          
          Sf.Graphics.Text.setFont (text => TextaccessVariablen.RundenendeAccess (RundenendeSchleifenwert),
-                                   font => GrafikEinstellungenSFML.SchriftartAccess);
+                                   font => TexteinstellungenSFML.SchriftartAccess);
          
       end loop RundenendeSchleife;
       
@@ -326,7 +326,7 @@ package body TextaccesseSchriftartSetzenSFML is
       for SpeichernLadenSchleifenwert in TextaccessVariablen.SpeichernLadenAccessArray'Range loop
          
          Sf.Graphics.Text.setFont (text => TextaccessVariablen.SpeichernLadenAccess (SpeichernLadenSchleifenwert),
-                                   font => GrafikEinstellungenSFML.SchriftartAccess);
+                                   font => TexteinstellungenSFML.SchriftartAccess);
          
       end loop SpeichernLadenSchleife;
       

@@ -6,7 +6,7 @@ with Sf;
 with TastenbelegungDatentypen;
 with GrafikDatentypen;
 
-with GrafikEinstellungenSFML;
+with NachLogiktask;
 with Eingabe;
 with RueckgabeMenues;
 with NachGrafiktask;
@@ -30,10 +30,18 @@ package body AuswahlMenuesEinfach is
                               AnfangExtern      => Anfang,
                               EndeExtern        => Ende);
    
-      RückgabeWert := RueckgabeMenues.RückgabeMenüs (AnfangExtern          => Anfang,
-                                                        EndeExtern            => Ende,
-                                                        AktuelleAuswahlExtern => Ausgewählt,
-                                                        WelchesMenüExtern     => WelchesMenüExtern);
+     -- case
+     --   Ausgewählt
+    --  is
+    --     when SystemKonstanten.LeerAuswahl =>
+     --       RückgabeWert := RueckgabeDatentypen.Zurück_Enum;
+            
+     --    when others =>
+            RückgabeWert := RueckgabeMenues.RückgabeMenüs (AnfangExtern          => Anfang,
+                                                              EndeExtern            => Ende,
+                                                              AktuelleAuswahlExtern => Ausgewählt,
+                                                              WelchesMenüExtern     => WelchesMenüExtern);
+     -- end case;
       
       NachGrafiktask.AktuellesMenü := MenueDatentypen.Leer_Menü_Enum;
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
@@ -48,7 +56,7 @@ package body AuswahlMenuesEinfach is
      (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum;
       AnfangExtern : in Positive;
       EndeExtern : in Positive)
-      return Positive
+      return Natural
    is begin
       
       AuswahlSchleife:
@@ -61,7 +69,6 @@ package body AuswahlMenuesEinfach is
          case
            Eingabe.Tastenwert
          is
-            -- Hier noch eine Abbruchtaste einbauen? äöü
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if
                  AktuelleAuswahl = SystemKonstanten.LeerAuswahl
@@ -71,6 +78,10 @@ package body AuswahlMenuesEinfach is
                else
                   return AktuelleAuswahl;
                end if;
+               
+               -- Später noch ordentlich einbauen, hängt aber einiges an Menüs dran. äöü
+               --  when TastenbelegungDatentypen.Menü_Zurück_Enum =>
+               --     return SystemKonstanten.LeerAuswahl;
             
             when others =>
                null;
@@ -89,7 +100,7 @@ package body AuswahlMenuesEinfach is
       return Natural
    is begin
       
-      Mausposition := (Float (GrafikEinstellungenSFML.MausPosition.x), Float (GrafikEinstellungenSFML.MausPosition.y));
+      Mausposition := NachLogiktask.Mausposition;
       
       PositionSchleife:
       for PositionSchleifenwert in AnfangExtern .. EndeExtern loop

@@ -10,6 +10,7 @@ with GrafikEinstellungenSFML;
 with TextberechnungenBreiteSFML;
 with TextaccessVariablen;
 with TextberechnungenHoeheSFML;
+with TexteinstellungenSFML;
 
 package body AnzeigeSprachauswahlSFML is
    
@@ -30,10 +31,10 @@ package body AnzeigeSprachauswahlSFML is
          if
            AktuelleAuswahl = ZeileSchleifenwert
          then
-            AktuelleTextFarbe := GrafikEinstellungenSFML.Schriftfarben.FarbeAusgewähltText;
+            AktuelleTextFarbe := TexteinstellungenSFML.Schriftfarben.FarbeAusgewähltText;
             
          else
-            AktuelleTextFarbe := GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText;
+            AktuelleTextFarbe := TexteinstellungenSFML.Schriftfarben.FarbeStandardText;
          end if;
          
          if

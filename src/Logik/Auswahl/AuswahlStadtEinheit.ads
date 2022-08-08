@@ -40,7 +40,7 @@ package AuswahlStadtEinheit is
    
 private
    
-   MausZeigerPosition : Sf.System.Vector2.sfVector2i;
+   Mausposition : Sf.System.Vector2.sfVector2f;
       
    function MausAuswahl
      return Integer;

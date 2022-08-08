@@ -12,7 +12,7 @@ with EinheitenModifizieren;
 with StadtBauen;
 with Aufgaben;
 with BewegungEinheiten;
-with GrafikEinstellungenSFML;
+with NachLogiktask;
 with BerechnungenKarteSFML;
 with Kartenkoordinatenberechnungssystem;
 with BewegungCursor;
@@ -123,23 +123,22 @@ package body BewegungEinheitenSFML is
       return Boolean
    is begin
       
-      -- Niemals direkt die Mausposition abrufen sondern immer die Werte in der Eingabe ermitteln lassen. Sonst kann es zu einem Absturz kommen.
-      MausPosition := GrafikEinstellungenSFML.MausPosition;
+      Mausposition := NachLogiktask.Mausposition;
       
       MausSchleife:
       loop
          
          if
-           MausPosition.x in 0 .. Sf.sfInt32 (BerechnungenKarteSFML.FensterKarte.x)
+           Mausposition.x in 0.00 .. BerechnungenKarteSFML.FensterKarte.x
            and
-             MausPosition.y in 0 .. Sf.sfInt32 (BerechnungenKarteSFML.FensterKarte.y)
+             Mausposition.y in 0.00 .. BerechnungenKarteSFML.FensterKarte.y
          then
             return MausInKarte (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
          elsif
-           MausPosition.x in Sf.sfInt32 (BerechnungenKarteSFML.FensterKarte.x) .. Sf.sfInt32 (BerechnungenKarteSFML.FensterAnzeige.x)
+           Mausposition.x in BerechnungenKarteSFML.FensterKarte.x .. BerechnungenKarteSFML.FensterAnzeige.x
            and
-             MausPosition.y in Sf.sfInt32 (BerechnungenKarteSFML.FensterKarte.y) .. Sf.sfInt32 (BerechnungenKarteSFML.FensterAnzeige.y)
+             Mausposition.y in BerechnungenKarteSFML.FensterKarte.y .. BerechnungenKarteSFML.FensterAnzeige.y
          then
             return MausInAnzeige (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          

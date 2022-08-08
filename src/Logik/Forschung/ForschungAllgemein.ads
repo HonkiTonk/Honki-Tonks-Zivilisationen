@@ -62,7 +62,7 @@ private
 
    BeschreibungText : Unbounded_Wide_Wide_String;
 
-   MausZeigerPosition : Sf.System.Vector2.sfVector2i;
+   Mausposition : Sf.System.Vector2.sfVector2f;
 
    procedure FortschrittMensch
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

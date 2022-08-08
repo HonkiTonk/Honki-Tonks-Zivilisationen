@@ -16,6 +16,7 @@ with TextaccessVariablen;
 with Fehler;
 with TextberechnungenHoeheSFML;
 with HintergrundSFML;
+with TexteinstellungenSFML;
 
 package body ForschungAnzeigeSFML is
 
@@ -63,13 +64,13 @@ package body ForschungAnzeigeSFML is
                then
                   WelcherZusatztext := ForschungSchleifenwert;
                   Sf.Graphics.Text.setColor (text  => TextaccessVariablen.ForschungsmenüAccess (ForschungSchleifenwert),
-                                             color => GrafikEinstellungenSFML.Schriftfarben.FarbeAusgewähltText);
+                                             color => TexteinstellungenSFML.Schriftfarben.FarbeAusgewähltText);
                   Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüZusatztextAccess (WelcherZusatztext),
                                                 position => (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) / 2.00, AbstandÜberschrift));
             
                else
                   Sf.Graphics.Text.setColor (text  => TextaccessVariablen.ForschungsmenüAccess (ForschungSchleifenwert),
-                                             color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
+                                             color => TexteinstellungenSFML.Schriftfarben.FarbeStandardText);
                end if;
                
                Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüAccess (ForschungSchleifenwert),

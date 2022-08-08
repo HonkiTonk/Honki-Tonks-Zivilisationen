@@ -3,7 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Sf;
 with Sf.Graphics.RenderWindow;
-with Sf.Graphics.Font;
 with Sf.Window.Cursor;
 
 with GrafikDatentypen;
@@ -11,7 +10,6 @@ with GrafikDatentypen;
 with GrafikStartEndeSFML;
 with GrafikEinstellungenSFML;
 with NachGrafiktask;
-with ViewsEinstellenSFML;
 
 package body GrafikAllgemeinSFML is
       
@@ -30,7 +28,6 @@ package body GrafikAllgemeinSFML is
          when others =>
             GrafikEinstellungenSFML.AktuelleFensterAuflösung.x := Sf.Graphics.RenderWindow.getSize (renderWindow => GrafikEinstellungenSFML.FensterAccess).x;
             GrafikEinstellungenSFML.AktuelleFensterAuflösung.y := Sf.Graphics.RenderWindow.getSize (renderWindow => GrafikEinstellungenSFML.FensterAccess).y;
-            ViewsEinstellenSFML.StandardviewGeändert;
       end case;
       
    end FensterAnpassen;
@@ -54,38 +51,6 @@ package body GrafikAllgemeinSFML is
       Sf.Graphics.RenderWindow.setMouseCursor (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                                cursor       => GrafikEinstellungenSFML.MausAccess);
       
-      MauszeigerPositionFestlegen (PositionExtern => (GrafikEinstellungenSFML.MausPosition));
-      
    end MauszeigerFestlegen;
-   
-   
-   
-   procedure MauszeigerPositionFestlegen
-     (PositionExtern : in Sf.System.Vector2.sfVector2i)
-   is begin
-      
-      if
-        Sf.sfUint32 (PositionExtern.x) in 0 .. GrafikEinstellungenSFML.AktuelleFensterAuflösung.x
-        and
-          Sf.sfUint32 (PositionExtern.y) in 0 .. GrafikEinstellungenSFML.AktuelleFensterAuflösung.y
-      then
-         Sf.Graphics.RenderWindow.Mouse.setPosition (position   => PositionExtern,
-                                                     relativeTo => GrafikEinstellungenSFML.FensterAccess);
-         
-      else
-         Sf.Graphics.RenderWindow.Mouse.setPosition (position   => (1, 1),
-                                                     relativeTo => GrafikEinstellungenSFML.FensterAccess);
-      end if;
-      
-   end MauszeigerPositionFestlegen;
-   
-   
-   
-   procedure SchriftartFestlegen
-   is begin
-      
-      GrafikEinstellungenSFML.SchriftartAccess := Sf.Graphics.Font.createFromFile (filename => "Sprachen/Schriftart/FreeSans.ttf");
-      
-   end SchriftartFestlegen;
 
 end GrafikAllgemeinSFML;

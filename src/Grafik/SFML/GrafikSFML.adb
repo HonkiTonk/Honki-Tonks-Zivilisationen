@@ -122,8 +122,6 @@ package body GrafikSFML is
       is
          when True =>
             EingabeSystemeSFML.TastenEingabe;
-            NachGrafiktask.TastenEingabe := False;
-            NachLogiktask.Warten := False;
                
          when False =>
             null;

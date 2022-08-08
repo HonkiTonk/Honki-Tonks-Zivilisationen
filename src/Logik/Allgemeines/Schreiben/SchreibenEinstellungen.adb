@@ -7,6 +7,8 @@ with OptionenVariablen;
 with SystemRecords;
 
 with GrafikEinstellungenSFML;
+with TexteinstellungenSFML;
+with RasseneinstellungenSFML;
 
 package body SchreibenEinstellungen is
 
@@ -33,13 +35,13 @@ package body SchreibenEinstellungen is
       SystemRecords.FensterRecord'Write (Stream (File => DateiEinstellungenSchreiben),
                                          GrafikEinstellungenSFML.FensterEinstellungen);
       SystemRecords.SchriftgrößenRecord'Write (Stream (File => DateiEinstellungenSchreiben),
-                                                 GrafikEinstellungenSFML.Schriftgrößen);
+                                                 TexteinstellungenSFML.Schriftgrößen);
       SystemRecords.SchriftfarbenRecord'Write (Stream (File => DateiEinstellungenSchreiben),
-                                               GrafikEinstellungenSFML.Schriftfarben);
-      GrafikEinstellungenSFML.RassenFarbenArray'Write (Stream (File => DateiEinstellungenSchreiben),
-                                                       GrafikEinstellungenSFML.RassenFarben);
-      GrafikEinstellungenSFML.RassenFarbenArray'Write (Stream (File => DateiEinstellungenSchreiben),
-                                                       GrafikEinstellungenSFML.RassenFarbenRahmen);
+                                               TexteinstellungenSFML.Schriftfarben);
+      RasseneinstellungenSFML.RassenFarbenArray'Write (Stream (File => DateiEinstellungenSchreiben),
+                                                       RasseneinstellungenSFML.RassenFarben);
+      RasseneinstellungenSFML.RassenFarbenArray'Write (Stream (File => DateiEinstellungenSchreiben),
+                                                       RasseneinstellungenSFML.RassenFarbenRahmen);
       
       Close (File => DateiEinstellungenSchreiben);
       

@@ -18,7 +18,7 @@ with Eingabe;
 with StadtWerteFestlegen;
 with StadtUmgebungsbereichFestlegen;
 with NachGrafiktask;
-with GrafikEinstellungenSFML;
+with NachLogiktask;
 with InteraktionAuswahl;
 
 with KIForschung;
@@ -193,8 +193,7 @@ package body ForschungAllgemein is
       return ForschungenDatentypen.ForschungIDMitNullWert
    is begin
       
-      -- Niemals direkt die Mausposition abrufen sondern immer die Werte in der Eingabe ermitteln lassen. Sonst kann es zu einem Absturz kommen.
-      MausZeigerPosition := GrafikEinstellungenSFML.MausPosition;
+      Mausposition := NachLogiktask.Mausposition;
             
       MausZeigerSchleife:
       for ForschungSchleifenwert in InteraktionAuswahl.MöglicheForschungenArray'Range loop
@@ -204,11 +203,11 @@ package body ForschungAllgemein is
          is
             when True =>
                if
-                 MausZeigerPosition.y in Sf.sfInt32 (InteraktionAuswahl.PositionenForschung (ForschungSchleifenwert).top)
-                   .. Sf.sfInt32 (InteraktionAuswahl.PositionenForschung (ForschungSchleifenwert).top + InteraktionAuswahl.PositionenForschung (ForschungSchleifenwert).height)
-                   and
-                     MausZeigerPosition.x in Sf.sfInt32 (InteraktionAuswahl.PositionenForschung (ForschungSchleifenwert).left)
-                       .. Sf.sfInt32 (InteraktionAuswahl.PositionenForschung (ForschungSchleifenwert).left + InteraktionAuswahl.PositionenForschung (ForschungSchleifenwert).width)
+                 Mausposition.y in InteraktionAuswahl.PositionenForschung (ForschungSchleifenwert).top
+                 .. InteraktionAuswahl.PositionenForschung (ForschungSchleifenwert).top + InteraktionAuswahl.PositionenForschung (ForschungSchleifenwert).height
+                 and
+                   Mausposition.x in InteraktionAuswahl.PositionenForschung (ForschungSchleifenwert).left
+                 .. InteraktionAuswahl.PositionenForschung (ForschungSchleifenwert).left + InteraktionAuswahl.PositionenForschung (ForschungSchleifenwert).width
                then
                   return ForschungSchleifenwert;
          

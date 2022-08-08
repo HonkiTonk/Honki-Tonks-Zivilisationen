@@ -7,10 +7,11 @@ with GrafikDatentypen;
 with OptionenVariablen;
 
 with Eingabe;
-with GrafikEinstellungenSFML;
+with TexteinstellungenSFML;
 with Fehler;
 with NachGrafiktask;
 with TextberechnungenHoeheSFML;
+with NachLogiktask;
 
 package body AuswahlSprache is
 
@@ -185,7 +186,7 @@ package body AuswahlSprache is
       is
          when False =>
             Sf.Graphics.Text.setFont (text => TextAccess,
-                                      font => GrafikEinstellungenSFML.SchriftartAccess);
+                                      font => TexteinstellungenSFML.SchriftartAccess);
             SchriftartFestgelegt := True;
             
          when True =>
@@ -197,7 +198,7 @@ package body AuswahlSprache is
       is
          when False =>
             Sf.Graphics.Text.setCharacterSize (text => TextAccess,
-                                               size => GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
+                                               size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
             SchriftgrößeFestgelegt := True;
             
          when True =>
@@ -257,12 +258,12 @@ package body AuswahlSprache is
    
    
    
-   -- Mal überarbeiten und an die anderen Systemvarianten anpassen? äöü
+   -- Auch mal in einen View umarbeiten. äöü
    procedure MausAuswahl
    is begin
       
       TextPositionMaus := StartPositionYAchse;
-      MausZeigerPosition := GrafikEinstellungenSFML.MausPosition;
+      Mausposition := NachLogiktask.Mausposition;
       
       MausZeigerSchleife:
       for ZeileSchleifenwert in AktuelleSprachen'First .. Ende loop
@@ -280,7 +281,7 @@ package body AuswahlSprache is
          end if;
          
          if
-           MausZeigerPosition.y in Sf.sfInt32 (TextPositionMaus) .. Sf.sfInt32 (TextPositionMaus + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height)
+           Mausposition.y in TextPositionMaus .. TextPositionMaus + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height
          then
             AktuelleAuswahl := ZeileSchleifenwert;
             return;

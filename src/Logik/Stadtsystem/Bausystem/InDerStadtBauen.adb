@@ -14,7 +14,7 @@ with Eingabe;
 with GebaeudeAllgemein;
 with EinheitenModifizieren;
 with NachGrafiktask;
-with GrafikEinstellungenSFML;
+with NachLogiktask;
 with InteraktionAuswahl;
 
 package body InDerStadtBauen is
@@ -199,8 +199,7 @@ package body InDerStadtBauen is
      return StadtRecords.BauprojektRecord
    is begin
       
-      -- Niemals direkt die Mausposition abrufen sondern immer die Werte in der Eingabe ermitteln lassen. Sonst kann es zu einem Absturz kommen.
-      MausZeigerPosition := GrafikEinstellungenSFML.MausPosition;
+      Mausposition := NachLogiktask.Mausposition;
       
       GebäudeSchleife:
       for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
@@ -210,11 +209,11 @@ package body InDerStadtBauen is
          is
             when True =>
                if
-                 MausZeigerPosition.y in Sf.sfInt32 (InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert).top)
-                   .. Sf.sfInt32 (InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert).top + InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert).height)
-                   and
-                     MausZeigerPosition.x in Sf.sfInt32 (InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert).left)
-                       .. Sf.sfInt32 (InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert).left + InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert).width)
+                 Mausposition.y in InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert).top
+                 .. InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert).top + InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert).height
+                 and
+                   Mausposition.x in InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert).left
+                 .. InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert).left + InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert).width
                then
                   return (GebäudeSchleifenwert, 0);
          
@@ -238,11 +237,11 @@ package body InDerStadtBauen is
          is
             when True =>
                if
-                 MausZeigerPosition.y in Sf.sfInt32 (InteraktionAuswahl.PositionenEinheitenBauen (EinheitenSchleifenwert).top)
-                   .. Sf.sfInt32 (InteraktionAuswahl.PositionenEinheitenBauen (EinheitenSchleifenwert).top + InteraktionAuswahl.PositionenEinheitenBauen (EinheitenSchleifenwert).height)
-                   and
-                     MausZeigerPosition.x in Sf.sfInt32 (InteraktionAuswahl.PositionenEinheitenBauen (EinheitenSchleifenwert).left)
-                       .. Sf.sfInt32 (InteraktionAuswahl.PositionenEinheitenBauen (EinheitenSchleifenwert).left + InteraktionAuswahl.PositionenEinheitenBauen (EinheitenSchleifenwert).width)
+                 Mausposition.y in InteraktionAuswahl.PositionenEinheitenBauen (EinheitenSchleifenwert).top
+                 .. InteraktionAuswahl.PositionenEinheitenBauen (EinheitenSchleifenwert).top + InteraktionAuswahl.PositionenEinheitenBauen (EinheitenSchleifenwert).height
+                 and
+                   Mausposition.x in InteraktionAuswahl.PositionenEinheitenBauen (EinheitenSchleifenwert).left
+                 .. InteraktionAuswahl.PositionenEinheitenBauen (EinheitenSchleifenwert).left + InteraktionAuswahl.PositionenEinheitenBauen (EinheitenSchleifenwert).width
                then
                   return (0, EinheitenSchleifenwert);
          
