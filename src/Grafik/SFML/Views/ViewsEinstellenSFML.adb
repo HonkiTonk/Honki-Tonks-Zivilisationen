@@ -10,13 +10,16 @@ package body ViewsEinstellenSFML is
    
    procedure ViewEinstellen
      (ViewExtern : in Sf.Graphics.sfView_Ptr;
-      GrößeExtern : in Sf.System.Vector2.sfVector2f)
+      GrößeExtern : in Sf.System.Vector2.sfVector2f;
+      AnzeigebereichExtern : in Sf.Graphics.Rect.sfFloatRect)
    is begin
       
       Sf.Graphics.View.setSize (view => ViewExtern,
                                 size => GrößeExtern);
       Sf.Graphics.View.setCenter (view   => ViewExtern,
                                   center => (GrößeExtern.x / 2.00, GrößeExtern.y / 2.00));
+      Sf.Graphics.View.setViewport (view     => ViewExtern,
+                                    viewport => AnzeigebereichExtern);
       
       Sf.Graphics.RenderWindow.setView (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                         view         => ViewExtern);
@@ -25,12 +28,32 @@ package body ViewsEinstellenSFML is
    
    
    
-   function Anzeigeverhätlnis
-     return Sf.Graphics.Rect.sfFloatRect
+   function ViewflächeAuflösungAnpassen
+     (ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
+      return Sf.System.Vector2.sfVector2f
    is begin
       
-      return (0.00, 0.00, 0.00, 0.00);
+      -- Fensterauflösung auch gleich als Float speichern? äöü
+      if
+        Viewfläche.x < GrafikEinstellungenSFML.AktuelleFensterAuflösung.x
+      then
+         Viewfläche.x := GrafikEinstellungenSFML.AktuelleFensterAuflösung.x;
+         
+      else
+         Viewfläche.x := ViewflächeExtern.x;
+      end if;
       
-   end Anzeigeverhätlnis;
+      if
+        Viewfläche.y < GrafikEinstellungenSFML.AktuelleFensterAuflösung.y
+      then
+         Viewfläche.y := GrafikEinstellungenSFML.AktuelleFensterAuflösung.y;
+         
+      else
+         Viewfläche.y := ViewflächeExtern.y;
+      end if;
+      
+      return Viewfläche;
+      
+   end ViewflächeAuflösungAnpassen;
 
 end ViewsEinstellenSFML;

@@ -48,13 +48,13 @@ package body AnzeigeSprachauswahlSFML is
                                                str  => To_Wide_Wide_String (Source => AktuelleSprachen (ZeileSchleifenwert)));
             Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.SprachauswahlAccess,
                                           position => (TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.SprachauswahlAccess,
-                                                                                                           ViewbreiteExtern => Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x)),
+                                                                                                           ViewbreiteExtern => GrafikEinstellungenSFML.AktuelleFensterAuflösung.x),
                                                        YPosition));
             Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SprachauswahlAccess,
                                        color => AktuelleTextFarbe);
             Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                                text         => TextaccessVariablen.SprachauswahlAccess);
-         
+            
             YPosition := YPosition + TextberechnungenHoeheSFML.Zeilenabstand;
             
          elsif
@@ -89,7 +89,7 @@ package body AnzeigeSprachauswahlSFML is
             YPosition := YPosition + 15.00;
             Sf.Graphics.ConvexShape.setPosition (shape    => PfeilAccess,
                                                  position => (TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.SprachauswahlAccess,
-                                                                                                                  ViewbreiteExtern => Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x)),
+                                                                                                                  ViewbreiteExtern => GrafikEinstellungenSFML.AktuelleFensterAuflösung.x),
                                                               YPosition));
             Sf.Graphics.ConvexShape.setFillColor (shape => PfeilAccess,
                                                   color => AktuelleTextFarbe);

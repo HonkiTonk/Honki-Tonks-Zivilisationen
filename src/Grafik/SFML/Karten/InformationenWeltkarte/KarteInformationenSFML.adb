@@ -1,16 +1,13 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Sf.Graphics.RenderWindow;
-with Sf.Graphics.View;
-
 with StadtKonstanten;
 with EinheitenKonstanten;
 with EinheitenDatentypen;
+with GrafikKonstanten;
 
 with LeseKarten;
 
-with GrafikEinstellungenSFML;
 with StadtSuchen;
 with EinheitSuchen;
 with StadtInformationenSFML;
@@ -46,8 +43,9 @@ package body KarteInformationenSFML is
                                                        -- Sollte ich später nach EinheitInformationen noch mehr hinzufügen, oder später Dinge entfernen, dann muss die 4 erhöht/gesenkt werden!
                                                        + 6)) * TextberechnungenHoeheSFML.KleinerZeilenabstand;
             
-            ViewsEinstellenSFML.ViewEinstellen (ViewExtern    => ViewsSFML.SeitenleisteKartenviewAccess,
-                                                GrößeExtern   => Viewfläche);
+            ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.SeitenleisteKartenviewAccess,
+                                                GrößeExtern          => Viewfläche,
+                                                AnzeigebereichExtern => GrafikKonstanten.SeitenleisteAnzeigebereich);
             HintergrundSFML.SeitenleisteHintergrund (AbmessungenExtern => Viewfläche);
       
             Textposition := KarteWichtigesSFML.WichtigesInformationen (RasseExtern        => RasseExtern,
@@ -104,14 +102,6 @@ package body KarteInformationenSFML is
       end case;
       
       Viewfläche.x := BreiteText;
-      
-      -- Forschungs- und Stadtname in eigene Zeile? Stadtname kann auch ganz raus, wird ja auf der Weltkarte angezeigt und die Terminalversion braucht später eh was eigenes. äöä
-      -- Aktuelle Forschung mit Fortschritt und Zielmenge in das Forschungsmenü einbauen. äöü
-      Sf.Graphics.View.setViewport (view     => ViewsSFML.SeitenleisteKartenviewAccess,
-                                    viewport => (0.80, 0.00, 0.20, 1.00));
-      
-      Sf.Graphics.RenderWindow.setView (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                        view         => ViewsSFML.StandardviewAccess);
       
    end KarteInformationenSFML;
    

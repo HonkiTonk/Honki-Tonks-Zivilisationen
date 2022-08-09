@@ -53,7 +53,7 @@ package body BauAuswahlAnzeigeSFML is
             
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.BaumenüÜberschriftAccess,
                                     position => (TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.BaumenüÜberschriftAccess,
-                                                                                                     ViewbreiteExtern => Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x)),
+                                                                                                     ViewbreiteExtern => GrafikEinstellungenSFML.AktuelleFensterAuflösung.x),
                                                  Grundposition.y));
             
       Grundposition.y := Grundposition.y + TextberechnungenHoeheSFML.Überschriftabstand;
@@ -88,7 +88,7 @@ package body BauAuswahlAnzeigeSFML is
                   Sf.Graphics.Text.setColor (text  => TextaccessVariablen.GebäudetextAccess (GebäudeSchleifenwert),
                                              color => TexteinstellungenSFML.Schriftfarben.FarbeAusgewähltText);
                   Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.GebäudezusatztextAccess (GebäudeSchleifenwert),
-                                                position => (AnfangsabstandExtratext + Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) / 2.00, AbstandÜberschrift));
+                                                position => (AnfangsabstandExtratext + GrafikEinstellungenSFML.AktuelleFensterAuflösung.x / 2.00, AbstandÜberschrift));
                   HintergrundSFML.TextHintergrund (LinksRechtsExtern        => True,
                                                    AbstandÜberschriftExtern => AbstandÜberschrift,
                                                    VerhältnisTextfeldExtern => VerhältnisTextfeld,
@@ -214,7 +214,7 @@ package body BauAuswahlAnzeigeSFML is
       
       AktuellerTextbereichEins := TextKonstanten.LeerUnboundedString;
       AktuellerTextbereichZwei := TextKonstanten.LeerUnboundedString;
-      BreiteTextfeld := Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) * VerhältnisTextfeld.x - EndabstandExtratext;
+      BreiteTextfeld := GrafikEinstellungenSFML.AktuelleFensterAuflösung.x * VerhältnisTextfeld.x - EndabstandExtratext;
       
       if
         ZusatztextGebäude /= 0

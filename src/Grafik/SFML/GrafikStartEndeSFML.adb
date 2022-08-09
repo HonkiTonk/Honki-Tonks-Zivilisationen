@@ -39,6 +39,7 @@ package body GrafikStartEndeSFML is
          GrafikAllgemeinSFML.MauszeigerFestlegen;
          GrafikAllgemeinSFML.BildrateÄndern;
          TexteinstellungenSFML.SchriftartFestlegen;
+         GrafikAllgemeinSFML.AktuelleAuflösungFestlegen;
       end if;
       
    end FensterErzeugen;
@@ -57,15 +58,11 @@ package body GrafikStartEndeSFML is
                                                                                                        GrafikEinstellungenSFML.FensterEinstellungen.Farbtiefe),
                                                                                              title => SonstigesKonstanten.Spielname,
                                                                                              style => GrafikEinstellungenSFML.FensterEinstellungen.FensterVollbild);
-      
-            GrafikEinstellungenSFML.AktuelleFensterAuflösung.x := GrafikEinstellungenSFML.FensterEinstellungen.FensterBreite;
-            GrafikEinstellungenSFML.AktuelleFensterAuflösung.y := GrafikEinstellungenSFML.FensterEinstellungen.FensterHöhe;
             
+            -- Die Vollbildauflösung noch seperat speichern? äöü
          when 8 =>
-            GrafikEinstellungenSFML.AktuelleFensterAuflösung.x := Sf.Window.VideoMode.getDesktopMode.width;
-            GrafikEinstellungenSFML.AktuelleFensterAuflösung.y := Sf.Window.VideoMode.getDesktopMode.height;
-            GrafikEinstellungenSFML.FensterAccess := Sf.Graphics.RenderWindow.createUnicode (mode  => (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x,
-                                                                                                       GrafikEinstellungenSFML.AktuelleFensterAuflösung.y,
+            GrafikEinstellungenSFML.FensterAccess := Sf.Graphics.RenderWindow.createUnicode (mode  => (Sf.Window.VideoMode.getDesktopMode.width,
+                                                                                                       Sf.Window.VideoMode.getDesktopMode.height,
                                                                                                        GrafikEinstellungenSFML.FensterEinstellungen.Farbtiefe),
                                                                                              title => SonstigesKonstanten.Spielname,
                                                                                              style => GrafikEinstellungenSFML.FensterEinstellungen.FensterVollbild);

@@ -81,13 +81,13 @@ package body AnzeigeZusatztextKartengroesseSFML is
    is begin
       
       PositionText.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.ZusatztextKartengrößeAccess (1),
-                                                                            ViewbreiteExtern => Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x));
+                                                                            ViewbreiteExtern => GrafikEinstellungenSFML.AktuelleFensterAuflösung.x);
       PositionText.y := InteraktionAuswahl.LetzteTextpositionKartengröße + TextberechnungenHoeheSFML.Zeilenabstand;
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ZusatztextKartengrößeAccess (1),
                                     position => PositionText);
       
       PositionText.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.ZusatztextKartengrößeAccess (2),
-                                                                            ViewbreiteExtern => Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x));
+                                                                            ViewbreiteExtern => GrafikEinstellungenSFML.AktuelleFensterAuflösung.x);
       PositionText.y := PositionText.y + TextberechnungenHoeheSFML.Zeilenabstand;
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ZusatztextKartengrößeAccess (2),
                                     position => PositionText);

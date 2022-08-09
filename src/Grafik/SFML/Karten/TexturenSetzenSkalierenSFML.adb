@@ -90,10 +90,9 @@ package body TexturenSetzenSkalierenSFML is
       
       -- Sollte geprüft werden ob die Texturebreite/höhe /= 0 ist? äöü
       GrößeTextur := (Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).width, Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).height);
-      GrößeGesamtbild := (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x), Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y));
       
-      SkalierungBild.x := GrößeGesamtbild.x / GrößeTextur.x;
-      SkalierungBild.y := GrößeGesamtbild.y / GrößeTextur.y;
+      SkalierungBild.x := GrafikEinstellungenSFML.AktuelleFensterAuflösung.x / GrößeTextur.x;
+      SkalierungBild.y := GrafikEinstellungenSFML.AktuelleFensterAuflösung.y / GrößeTextur.y;
       
       return SkalierungBild;
       
@@ -114,10 +113,9 @@ package body TexturenSetzenSkalierenSFML is
       
       -- Sollte geprüft werden ob die Texturebreite/höhe /= 0 ist? äöü
       GrößeTextur := (Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).width, Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).height);
-      GrößeGesamtbild := (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x), Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y));
       
-      SkalierungBild.x := GrößeGesamtbild.x * VerhältnisExtern.x / GrößeTextur.x;
-      SkalierungBild.y := GrößeGesamtbild.y * VerhältnisExtern.y / GrößeTextur.y;
+      SkalierungBild.x := GrafikEinstellungenSFML.AktuelleFensterAuflösung.x * VerhältnisExtern.x / GrößeTextur.x;
+      SkalierungBild.y := GrafikEinstellungenSFML.AktuelleFensterAuflösung.y * VerhältnisExtern.y / GrößeTextur.y;
       
       return SkalierungBild;
       

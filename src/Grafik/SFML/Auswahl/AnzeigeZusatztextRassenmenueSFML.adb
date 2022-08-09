@@ -53,7 +53,7 @@ package body AnzeigeZusatztextRassenmenueSFML is
       AktuellerTextbereichZwei := TextKonstanten.LeerUnboundedString;
       
       -- Das muss für eine Verallgemeinerung vermutlich mit übergeben werden.
-      BreiteTextfeld := Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) * VerhältnisTextfeld.x - EndabstandExtratext;
+      BreiteTextfeld := GrafikEinstellungenSFML.AktuelleFensterAuflösung.x * VerhältnisTextfeld.x - EndabstandExtratext;
          
       SchleifenAnfang := 1;
       SchleifenEnde := TextExtern'Last;
@@ -138,11 +138,11 @@ package body AnzeigeZusatztextRassenmenueSFML is
         AktuelleAuswahlExtern mod 2
       is
          when 0 =>
-            PositionHintergrund := (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) / 100.00, InteraktionAuswahl.PositionenMenüeinträge (MenueDatentypen.Rassen_Menü_Enum, 1).top);
+            PositionHintergrund := (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x / 100.00, InteraktionAuswahl.PositionenMenüeinträge (MenueDatentypen.Rassen_Menü_Enum, 1).top);
             Rückgabewert := False;
                
          when others =>
-            PositionHintergrund := ((Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) + Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) / 100.00) / 2.00,
+            PositionHintergrund := ((GrafikEinstellungenSFML.AktuelleFensterAuflösung.x + GrafikEinstellungenSFML.AktuelleFensterAuflösung.x / 100.00) / 2.00,
                                     InteraktionAuswahl.PositionenMenüeinträge (MenueDatentypen.Rassen_Menü_Enum, 1).top);
             Rückgabewert := True;
       end case;

@@ -17,7 +17,7 @@ package body TextberechnungenBreiteSFML is
       Position := ViewbreiteExtern / 2.00 - HalbeBreiteBerechnen (TextAccessExtern => TextAccessExtern);
       
       if
-        Position in 0.00 .. Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x)
+        Position in 0.00 .. GrafikEinstellungenSFML.AktuelleFensterAuflösung.x
       then
          null;
          
@@ -38,7 +38,7 @@ package body TextberechnungenBreiteSFML is
       return Float
    is begin
       
-      Position := Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) / 4.00;
+      Position := GrafikEinstellungenSFML.AktuelleFensterAuflösung.x / 4.00;
       
       case
         LinksRechtsExtern
@@ -51,7 +51,7 @@ package body TextberechnungenBreiteSFML is
       end case;
       
       if
-        Position in 0.00 .. Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x)
+        Position in 0.00 .. GrafikEinstellungenSFML.AktuelleFensterAuflösung.x
       then
          null;
          
@@ -71,7 +71,7 @@ package body TextberechnungenBreiteSFML is
       return Float
    is begin
       
-      return Sf.Graphics.Text.getLocalBounds (text => TextAccessExtern).width / 2.00;
+      return Sf.Graphics.Text.getGlobalBounds (text => TextAccessExtern).width / 2.00;
       
    end HalbeBreiteBerechnen;
    

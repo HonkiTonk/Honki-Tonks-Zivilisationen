@@ -42,7 +42,7 @@ package body ForschungAnzeigeSFML is
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüAccess (ForschungKonstanten.LeerForschung),
                                     position => (TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.ForschungsmenüAccess (ForschungKonstanten.LeerForschung),
-                                                                                                     ViewbreiteExtern => Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x)),
+                                                                                                     ViewbreiteExtern => GrafikEinstellungenSFML.AktuelleFensterAuflösung.x),
                                                  TextPosition.y));
       
       TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.Überschriftabstand;
@@ -66,7 +66,7 @@ package body ForschungAnzeigeSFML is
                   Sf.Graphics.Text.setColor (text  => TextaccessVariablen.ForschungsmenüAccess (ForschungSchleifenwert),
                                              color => TexteinstellungenSFML.Schriftfarben.FarbeAusgewähltText);
                   Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüZusatztextAccess (WelcherZusatztext),
-                                                position => (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) / 2.00, AbstandÜberschrift));
+                                                position => (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x / 2.00, AbstandÜberschrift));
             
                else
                   Sf.Graphics.Text.setColor (text  => TextaccessVariablen.ForschungsmenüAccess (ForschungSchleifenwert),

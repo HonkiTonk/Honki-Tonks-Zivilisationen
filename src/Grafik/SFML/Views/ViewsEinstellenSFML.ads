@@ -9,7 +9,8 @@ package ViewsEinstellenSFML is
    
    procedure ViewEinstellen
      (ViewExtern : in Sf.Graphics.sfView_Ptr;
-      GrößeExtern : in Sf.System.Vector2.sfVector2f)
+      GrößeExtern : in Sf.System.Vector2.sfVector2f;
+      AnzeigebereichExtern : in Sf.Graphics.Rect.sfFloatRect)
      with
        Pre => (
                  ViewExtern /= null
@@ -17,21 +18,36 @@ package ViewsEinstellenSFML is
                  GrößeExtern.x /= 0.00
                and
                  GrößeExtern.y /= 0.00
+               and
+                 AnzeigebereichExtern.left >= 0.00
+               and
+                 AnzeigebereichExtern.top >= 0.00
+               and
+                 AnzeigebereichExtern.width > 0.00
+               and
+                 AnzeigebereichExtern.height > 0.00
               );
    
    
    
-   function Anzeigeverhätlnis
-     return Sf.Graphics.Rect.sfFloatRect
+   function ViewflächeAuflösungAnpassen
+     (ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
+      return Sf.System.Vector2.sfVector2f
      with
+       Pre => (
+                 ViewflächeExtern.x > 0.00
+               and
+                 ViewflächeExtern.y > 0.00
+              ),
+         
        Post => (
-                  Anzeigeverhätlnis'Result.left >= 0.00
+                  ViewflächeAuflösungAnpassen'Result.x > 0.00
                 and
-                  Anzeigeverhätlnis'Result.top >= 0.00
-                and
-                  Anzeigeverhätlnis'Result.width >= 0.00
-                and
-                  Anzeigeverhätlnis'Result.height >= 0.00
+                  ViewflächeAuflösungAnpassen'Result.y > 0.00
                );
+   
+private
+   
+   Viewfläche : Sf.System.Vector2.sfVector2f;
 
 end ViewsEinstellenSFML;

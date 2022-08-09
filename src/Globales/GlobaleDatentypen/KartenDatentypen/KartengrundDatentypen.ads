@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 package KartengrundDatentypen is
 
-   -- Das hier muss mal neu sortiert und anschließend alles angepasst werden. Gilt das nocht? äöü
+   -- Das hier muss mal neu sortiert und anschließend alles angepasst werden. Gilt das noch? äöü
    -- Auf jeden Fall mal schauen ob man das Eis auf nach dem Wasser/Unterwasserzeug schieben kann. äöü
    type Kartengrund_Enum is (
                              Leer_Grund_Enum,

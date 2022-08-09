@@ -6,7 +6,6 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Sf.Graphics;
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Text;
-with Sf.Graphics.View;
 
 with KartenRecords; use KartenRecords;
 with EinheitenDatentypen; use EinheitenDatentypen;
@@ -18,6 +17,7 @@ with KartenKonstanten;
 with StadtKonstanten;
 with TextaccessVariablen;
 with ZeitKonstanten;
+with GrafikKonstanten;
 
 with LeseKarten;
 with LeseEinheitenGebaut;
@@ -35,9 +35,9 @@ with KartenspritesZeichnenSFML;
 with FarbgebungSFML;
 with TextberechnungenBreiteSFML;
 with Warnung;
-with ViewsSFML;
 with RasseneinstellungenSFML;
 with ViewsEinstellenSFML;
+with ViewsSFML;
 
 package body KarteSFML is
    
@@ -58,8 +58,12 @@ package body KarteSFML is
      (RasseEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
-      ViewsEinstellenSFML.ViewEinstellen (ViewExtern    => ViewsSFML.KartenviewAccess,
-                                          GrößeExtern   => (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x), Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y)));
+      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.KartenviewAccess,
+                                          GrößeExtern          => (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x, GrafikEinstellungenSFML.AktuelleFensterAuflösung.y),
+                                          AnzeigebereichExtern => GrafikKonstanten.StandardAnzeigebereich);
+      
+      -- Nimmt aktuell das ganze Fenster ein, weil mit den aktuellen Berechnungn nichts mehr rechts gezeichnet wird, fällt aber aktuell nicht auf weil die Leiste das verdeckt. äöü
+      -- Später mal anpassen? äöü
         
       SichtbereichAnfangEnde := BerechnungenKarteSFML.SichtbereichKarteBerechnen (RasseExtern => RasseEinheitExtern.Rasse);
       
@@ -88,9 +92,8 @@ package body KarteSFML is
                null;
                
             elsif
-              LeseKarten.Sichtbar (KoordinatenExtern => KartenWert,
-                                   RasseExtern       => RasseEinheitExtern.Rasse)
-              = True
+              True = LeseKarten.Sichtbar (KoordinatenExtern => KartenWert,
+                                          RasseExtern       => RasseEinheitExtern.Rasse)
             then
                IstSichtbar (KoordinatenExtern  => KartenWert,
                             RasseEinheitExtern => RasseEinheitExtern,
@@ -132,9 +135,8 @@ package body KarteSFML is
                null;
                
             elsif
-              LeseKarten.Sichtbar (KoordinatenExtern => KartenWert,
-                                   RasseExtern       => RasseEinheitExtern.Rasse)
-              = True
+              True = LeseKarten.Sichtbar (KoordinatenExtern => KartenWert,
+                                          RasseExtern       => RasseEinheitExtern.Rasse)
             then
                StadtnameAnzeigen (KoordinatenExtern => KartenWert,
                                   PositionExtern    => Position);
@@ -150,9 +152,6 @@ package body KarteSFML is
          YMultiplikator := YMultiplikator + 1.00;
          
       end loop YAchseStadtnameSchleife;
-      
-      Sf.Graphics.View.setViewport (view     => ViewsSFML.KartenviewAccess,
-                                    viewport => (0.00, 0.00, 1.00, 1.00));
       
    end Sichtbarkeit;
    
@@ -464,10 +463,9 @@ package body KarteSFML is
          is
             when True =>
                if
-                 KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld (SpriteAccesExtern  => SpriteAccess,
-                                                                       TexturAccessExtern => EingeleseneTexturenSFML.EinheitenAccess (RasseEinheitExtern.Rasse, EinheitID),
-                                                                       PositionExtern     => PositionExtern)
-                 = True
+                 True = KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld (SpriteAccesExtern  => SpriteAccess,
+                                                                              TexturAccessExtern => EingeleseneTexturenSFML.EinheitenAccess (RasseEinheitExtern.Rasse, EinheitID),
+                                                                              PositionExtern     => PositionExtern)
                then
                   null;
                   
@@ -485,10 +483,9 @@ package body KarteSFML is
          
       else
          if
-           KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld (SpriteAccesExtern  => SpriteAccess,
-                                                                 TexturAccessExtern => EingeleseneTexturenSFML.EinheitenAccess (RasseEinheitExtern.Rasse, EinheitID),
-                                                                 PositionExtern     => PositionExtern)
-           = True
+           True = KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld (SpriteAccesExtern  => SpriteAccess,
+                                                                        TexturAccessExtern => EingeleseneTexturenSFML.EinheitenAccess (RasseEinheitExtern.Rasse, EinheitID),
+                                                                        PositionExtern     => PositionExtern)
          then
             null;
             

@@ -9,7 +9,7 @@ package body TextberechnungenHoeheSFML is
      return Float
    is begin
       
-      return Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y) / 2.00;
+      return GrafikEinstellungenSFML.AktuelleFensterAuflösung.y / 2.00;
       
    end HalbeBildschirmhöhe;
    

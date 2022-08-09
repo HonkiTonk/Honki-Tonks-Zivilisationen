@@ -14,9 +14,16 @@ private with GrafikRecords;
 package AuswahlMenuesEinfachSFML is
 
    function AuswahlMenüsEinfach
-     (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum)
+     (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum;
+      ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
       return Sf.System.Vector2.sfVector2f
      with
+       Pre => (
+                 ViewflächeExtern.x > 0.00
+               and
+                 ViewflächeExtern.y > 0.00
+              ),
+
        Post => (
                   AuswahlMenüsEinfach'Result.x > 0.00
                 and
@@ -71,7 +78,8 @@ private
 
    function Textbearbeitung
      (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum;
-      TextbereichExtern : in Positive)
+      TextbereichExtern : in Positive;
+      ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
       return GrafikRecords.AuswahlTextpositionRecord
      with
        Post => (
@@ -82,7 +90,8 @@ private
 
    function TextpositionFestlegen
      (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum;
-      TextbereichExtern : in Positive)
+      TextbereichExtern : in Positive;
+      ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
       return Sf.System.Vector2.sfVector2f
      with
        Post => (

@@ -147,26 +147,29 @@ package ChangelogAugust2022 is
    
    
 
-   -- Version 0.03. => 0.03. (10.08.2022):
+   -- Version 0.03.1140 => 0.03. (10.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.1090 => 0.03. (09.08.2022):
+   -- Version 0.03.1090 => 0.03.1140 (09.08.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- ASFML auf Version 2.5.3 aktualisiert.
+   -- Weiter an der Textskalierung in den Menüs gearbeitet.
+   -- An der Anzeige der Karte herumgebastelt.
+   -- Fehlerhafte Textkoordinaten näher geprüft.
+   -- Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    
 
    -- Version 0.03.1045 => 0.03.1090 (08.08.2022):
    
-   -- ASFML aktualisiert.
+   -- ASFML auf Version eca5fc779c6656b91279c730e27c684aa5b3838e aktualisiert.
    -- Code übersichtlicher aufgeteilt.
    -- Eingabesystem überarbeitet.
-   -- Weiter an der textskalierung in den Menüs gearbeitet.
+   -- Weiter an der Textskalierung in den Menüs gearbeitet.
    -- Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    

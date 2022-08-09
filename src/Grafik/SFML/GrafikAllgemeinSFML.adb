@@ -22,15 +22,24 @@ package body GrafikAllgemeinSFML is
          when GrafikDatentypen.Auflösung_Verändert_Enum | GrafikDatentypen.Modus_Verändert_Enum =>
             GrafikStartEndeSFML.FensterEntfernen;
             GrafikStartEndeSFML.FensterErzeugen;
-            GrafikEinstellungenSFML.AktuelleFensterAuflösung.x := Sf.Graphics.RenderWindow.getSize (renderWindow => GrafikEinstellungenSFML.FensterAccess).x;
-            GrafikEinstellungenSFML.AktuelleFensterAuflösung.y := Sf.Graphics.RenderWindow.getSize (renderWindow => GrafikEinstellungenSFML.FensterAccess).y;
             
          when others =>
-            GrafikEinstellungenSFML.AktuelleFensterAuflösung.x := Sf.Graphics.RenderWindow.getSize (renderWindow => GrafikEinstellungenSFML.FensterAccess).x;
-            GrafikEinstellungenSFML.AktuelleFensterAuflösung.y := Sf.Graphics.RenderWindow.getSize (renderWindow => GrafikEinstellungenSFML.FensterAccess).y;
+            null;
       end case;
       
+      AktuelleAuflösungFestlegen;
+      
    end FensterAnpassen;
+   
+   
+   
+   procedure AktuelleAuflösungFestlegen
+   is begin
+            
+      GrafikEinstellungenSFML.AktuelleFensterAuflösung.x := Float (Sf.Graphics.RenderWindow.getSize (renderWindow => GrafikEinstellungenSFML.FensterAccess).x);
+      GrafikEinstellungenSFML.AktuelleFensterAuflösung.y := Float (Sf.Graphics.RenderWindow.getSize (renderWindow => GrafikEinstellungenSFML.FensterAccess).y);
+      
+   end AktuelleAuflösungFestlegen;
    
    
    

@@ -119,6 +119,5 @@ private
    KartenfelderAbmessung : Sf.System.Vector2.sfVector2f;
    StadtfelderAbmessung : Sf.System.Vector2.sfVector2f;
    StadtAbmessung : Sf.System.Vector2.sfVector2f;
-   GrößeGesamtbild : Sf.System.Vector2.sfVector2f;
 
 end TexturenSetzenSkalierenSFML;

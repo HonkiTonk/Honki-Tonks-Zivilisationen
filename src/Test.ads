@@ -1,5 +1,5 @@
-with Sf.Graphics.Rect;
-with Sf.System.Vector2;
+with Sf.Graphics.Text;
+with Sf.Graphics;
 
 package Test is
    
@@ -7,10 +7,8 @@ package Test is
    
 private
 
-   FloatRectangle : constant Sf.Graphics.Rect.sfFloatRect := (0.00, 0.00, 100.00, 100.00);
-   IntegerRectangle : constant Sf.Graphics.Rect.sfIntRect := (0, 0, 100, 100);
+   TestAccess : Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
    
-   FloatPoint : constant Sf.System.Vector2.sfVector2f := (10.00, 10.00);
-   IntegerPoint : constant Sf.System.Vector2.sfVector2i := (10, 10);
+   Text : constant Wide_Wide_String (1 .. 3) := "aAÄ";
 
 end Test;

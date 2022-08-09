@@ -15,7 +15,7 @@ package GrafikEinstellungenSFML is
    
    FensterEinstellungen : SystemRecords.FensterRecord;
       
-   AktuelleFensterAuflösung : Sf.System.Vector2.sfVector2u;
+   AktuelleFensterAuflösung : Sf.System.Vector2.sfVector2f;
    
    procedure StandardGrafikEinstellungenLaden;
    
@@ -31,6 +31,7 @@ private
       
    FensterStandardEinstellungen : constant SystemRecords.FensterRecord := (
                                                                            FensterVollbild => 7,
+                                                                           
                                                                            FensterBreite   => 640,
                                                                            FensterHöhe     => 480,
                                                                            Farbtiefe       => 32,

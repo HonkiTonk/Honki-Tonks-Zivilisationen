@@ -4,7 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics;
 with Sf.Graphics.Text;
-with Sf.Graphics.View;
 
 with EinheitenDatentypen; use EinheitenDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
@@ -12,6 +11,7 @@ with StadtDatentypen; use StadtDatentypen;
 with GlobaleTexte;
 with TextKonstanten;
 with TextnummernKonstanten;
+with GrafikKonstanten;
 
 with LeseStadtGebaut;
 
@@ -32,8 +32,9 @@ package body StadtInformationenSFML is
       
       Viewfläche.y := StartpunktText.y + TextberechnungenHoeheSFML.KleinerZeilenabstand * Float ((TextaccessVariablen.KarteWichtigesAccessArray'Last + TextaccessVariablen.KarteAllgemeinesAccessArray'Last
                                                                                                   + TextaccessVariablen.StadtInformationenAccessArray'Last));
-      ViewsEinstellenSFML.ViewEinstellen (ViewExtern    => ViewsSFML.SeitenleisteKartenviewAccess,
-                                          GrößeExtern   => Viewfläche);
+      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.SeitenleisteKartenviewAccess,
+                                          GrößeExtern          => Viewfläche,
+                                          AnzeigebereichExtern => GrafikKonstanten.SeitenleisteAnzeigebereich);
       HintergrundSFML.SeitenleisteHintergrund (AbmessungenExtern => Viewfläche);
       
       Textposition := Stadt (RasseExtern            => StadtRasseNummerExtern.Rasse,
@@ -64,12 +65,6 @@ package body StadtInformationenSFML is
       end case;
       
       Viewfläche.x := Textposition.x;
-      
-      Sf.Graphics.View.setViewport (view     => ViewsSFML.SeitenleisteKartenviewAccess,
-                                    viewport => (0.80, 0.00, 0.20, 1.00));
-      
-      Sf.Graphics.RenderWindow.setView (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                        view         => ViewsSFML.StandardviewAccess);
       
    end Stadtinformationen;
    

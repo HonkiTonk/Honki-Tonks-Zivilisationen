@@ -59,7 +59,7 @@ package body LadezeitenSFML is
             
       WelcheZeit := TextaccessVariablen.LadezeitenAccess'First;
       AktuelleTextposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
-                                                                                    ViewbreiteExtern => Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x));
+                                                                                    ViewbreiteExtern => GrafikEinstellungenSFML.AktuelleFensterAuflösung.x);
       AktuelleTextposition.y := AnfangspositionText;
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
@@ -86,7 +86,7 @@ package body LadezeitenSFML is
          end case;
                                                  
          AktuelleTextposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
-                                                                                       ViewbreiteExtern => Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x));
+                                                                                       ViewbreiteExtern => GrafikEinstellungenSFML.AktuelleFensterAuflösung.x);
             
          Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
                                        position => AktuelleTextposition);
@@ -113,7 +113,7 @@ package body LadezeitenSFML is
             
       WelcheZeit := TextaccessVariablen.KIZeitenAccess'First;
       AktuelleTextposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
-                                                                                    ViewbreiteExtern => Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x));
+                                                                                    ViewbreiteExtern => GrafikEinstellungenSFML.AktuelleFensterAuflösung.x);
       AktuelleTextposition.y := AnfangspositionText;
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
@@ -127,7 +127,7 @@ package body LadezeitenSFML is
                                          str  => RassenAllgemein.Rassenname (RasseExtern => RasseExtern));
                                                  
       AktuelleTextposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
-                                                                                    ViewbreiteExtern => Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x));
+                                                                                    ViewbreiteExtern => GrafikEinstellungenSFML.AktuelleFensterAuflösung.x);
             
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
                                     position => AktuelleTextposition);
@@ -152,7 +152,7 @@ package body LadezeitenSFML is
          end case;
          
          AktuelleTextposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
-                                                                                       ViewbreiteExtern => Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x));
+                                                                                       ViewbreiteExtern => GrafikEinstellungenSFML.AktuelleFensterAuflösung.x);
             
          Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
                                        position => AktuelleTextposition);
@@ -175,7 +175,7 @@ package body LadezeitenSFML is
    is begin
                   
       AktuelleTextposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.RundenendeAccess (TextaccessVariablen.RundenendeAccess'First),
-                                                                                    ViewbreiteExtern => Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x));
+                                                                                    ViewbreiteExtern => GrafikEinstellungenSFML.AktuelleFensterAuflösung.x);
       AktuelleTextposition.y := AnfangspositionText;
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.RundenendeAccess (TextaccessVariablen.RundenendeAccess'First),
@@ -187,7 +187,7 @@ package body LadezeitenSFML is
                                          str  => To_Wide_Wide_String (Source => ZahlAlsStringLadefortschritt (ZahlExtern => Ladezeiten.FortschrittRundenende)) & "/" & "100");
                                                  
       AktuelleTextposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.RundenendeAccess (TextaccessVariablen.RundenendeAccess'Last),
-                                                                                    ViewbreiteExtern => Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x));
+                                                                                    ViewbreiteExtern => GrafikEinstellungenSFML.AktuelleFensterAuflösung.x);
             
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.RundenendeAccess (TextaccessVariablen.RundenendeAccess'Last),
                                     position => AktuelleTextposition);
@@ -208,7 +208,7 @@ package body LadezeitenSFML is
    is begin
                   
       AktuelleTextposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.SpeichernLadenAccess (TextaccessVariablen.SpeichernLadenAccess'First),
-                                                                                    ViewbreiteExtern => Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x));
+                                                                                    ViewbreiteExtern => GrafikEinstellungenSFML.AktuelleFensterAuflösung.x);
       AktuelleTextposition.y := AnfangspositionText;
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.SpeichernLadenAccess (TextaccessVariablen.SpeichernLadenAccess'First),
@@ -220,7 +220,7 @@ package body LadezeitenSFML is
                                          str  => To_Wide_Wide_String (Source => ZahlAlsStringLadefortschritt (ZahlExtern => Ladezeiten.FortschrittSpeichernLaden)) & "/" & "100");
                                                  
       AktuelleTextposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.SpeichernLadenAccess (TextaccessVariablen.SpeichernLadenAccess'Last),
-                                                                                    ViewbreiteExtern => Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x));
+                                                                                    ViewbreiteExtern => GrafikEinstellungenSFML.AktuelleFensterAuflösung.x);
             
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.SpeichernLadenAccess (TextaccessVariablen.SpeichernLadenAccess'Last),
                                     position => AktuelleTextposition);

@@ -101,7 +101,7 @@ package body HintergrundSFML is
            LinksRechtsExtern
          is
             when True =>
-               PositionHintergrund := (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) / 2.00, AbstandÜberschriftExtern);
+               PositionHintergrund := (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x / 2.00, AbstandÜberschriftExtern);
                
             when False =>
                PositionHintergrund := (StartpositionExtern, AbstandÜberschriftExtern);

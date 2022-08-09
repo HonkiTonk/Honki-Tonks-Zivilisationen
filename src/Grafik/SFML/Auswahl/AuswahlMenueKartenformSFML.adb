@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Sf; use Sf;
+with Sf;
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Text;
 
@@ -228,7 +228,7 @@ package body AuswahlMenueKartenformSFML is
    procedure SchriftpositionFestlegen
    is begin
             
-      Textposition.y := Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y / 100);
+      Textposition.y := GrafikEinstellungenSFML.AktuelleFensterAuflösung.y / 100.00;
       
       if
         Textposition.y < 20.00
@@ -240,7 +240,7 @@ package body AuswahlMenueKartenformSFML is
       end if;
       
       Textposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.KartenformauswahlAccess (Überschrift),
-                                                                            ViewbreiteExtern => Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x));
+                                                                            ViewbreiteExtern => GrafikEinstellungenSFML.AktuelleFensterAuflösung.x);
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KartenformauswahlAccess (Überschrift),
                                     position => Textposition);
@@ -319,9 +319,9 @@ package body AuswahlMenueKartenformSFML is
       
       InteraktionAuswahl.PositionenMenüeinträge (MenueDatentypen.Kartenform_Menü_Enum, 9 - Überschrift) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.KartenformauswahlAccess (9));
             
-      Textposition.y := Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y) - TextberechnungenHoeheSFML.KleinerZeilenabstand;
+      Textposition.y := GrafikEinstellungenSFML.AktuelleFensterAuflösung.y - TextberechnungenHoeheSFML.KleinerZeilenabstand;
       Textposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.KartenformauswahlAccess (TextaccessVariablen.KartenformauswahlAccessArray'Last),
-                                                                            ViewbreiteExtern => Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x));
+                                                                            ViewbreiteExtern => GrafikEinstellungenSFML.AktuelleFensterAuflösung.x);
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KartenformauswahlAccess (TextaccessVariablen.KartenformauswahlAccessArray'Last),
                                     position => Textposition);
