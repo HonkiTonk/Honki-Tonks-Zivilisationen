@@ -140,17 +140,23 @@ package ChangelogAugust2022 is
    
    
 
-   -- Version 0.03. => 0.03. (11.08.2022):
+   -- Version 0.03.1220 => 0.03. (11.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.1140 => 0.03. (10.08.2022):
+   -- Version 0.03.1140 => 0.03.1220 (10.08.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter an der Textskalierung in den Menüs gearbeitet.
+   -- Debian GNAT auf Version 12.1.0-8 aktualisiert.
+   -- ASFML aktualisiert.
+   -- Einige Tests hinsichtlich der Aufteilung von Kartenfeldern wie Flussfelder und dem sich daraus ergebenden zusätzlichen Speicherverbrauch.
+   -- Weltraum-, Wolken- und Hügeltexturen überarbeitet.
+   -- Cheateinheiten können jetzt nur noch gebaut werden wenn Cheats aktiv sind.
+   -- Zoomfunktion eingebaut.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

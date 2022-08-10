@@ -212,18 +212,33 @@ package body EinheitenModifizieren is
       return Boolean
    is begin
       
-      case
-        BewegungPassierbarkeitPruefen.RichtigeUmgebungVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                                 EinheitenIDExtern      => IDExtern)
-      is
-         when False =>
-            return False;
-            
-         when True =>
-            return ForschungAllgemein.TechnologieVorhanden (RasseExtern       => StadtRasseNummerExtern.Rasse,
-                                                            TechnologieExtern => LeseEinheitenDatenbank.Anforderungen (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                                                                       IDExtern    => IDExtern));
-      end case;
+      if
+        False = BewegungPassierbarkeitPruefen.RichtigeUmgebungVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                                         EinheitenIDExtern      => IDExtern)
+      then
+         return False;
+         
+      elsif
+        SpielVariablen.Debug.VolleInformation = False
+        and
+          EinheitenDatentypen.Cheat_Enum = LeseEinheitenDatenbank.EinheitArt (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                                              IDExtern    => IDExtern)
+      then
+         return False;
+         
+      elsif
+        SpielVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
+        and
+          EinheitenDatentypen.Cheat_Enum = LeseEinheitenDatenbank.EinheitArt (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                                              IDExtern    => IDExtern)
+      then
+         return False;
+         
+      else
+         return ForschungAllgemein.TechnologieVorhanden (RasseExtern       => StadtRasseNummerExtern.Rasse,
+                                                         TechnologieExtern => LeseEinheitenDatenbank.Anforderungen (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                                                                                    IDExtern    => IDExtern));
+      end if;
       
    end EinheitAnforderungenErfüllt;
 

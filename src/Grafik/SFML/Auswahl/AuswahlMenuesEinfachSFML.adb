@@ -1,8 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
-
 with Sf; use Sf;
 with Sf.Graphics.Color; use Sf.Graphics.Color;
 with Sf.Graphics; use Sf.Graphics;
@@ -35,7 +33,7 @@ package body AuswahlMenuesEinfachSFML is
       ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
       return Sf.System.Vector2.sfVector2f
    is begin
-            
+      
       Textbereich := Überschrift + SystemKonstanten.EndeMenü (WelchesMenüExtern) - SystemKonstanten.EndeAbzugGrafik (WelchesMenüExtern) + Versionsnummer;
       
       case
@@ -342,7 +340,7 @@ package body AuswahlMenuesEinfachSFML is
    is begin
 
       Rechenwert.y := StartpositionText.y;
-      Rechenwert.x := ViewflächeExtern.x / 2.00 - TextberechnungenBreiteSFML.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift));
+      Rechenwert.x := StartpositionText.x + ViewflächeExtern.x / 2.00 - TextberechnungenBreiteSFML.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift));
 
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift),
                                     position => Rechenwert);
@@ -353,35 +351,14 @@ package body AuswahlMenuesEinfachSFML is
       PositionenSchleife:
       for PositionSchleifenwert in Überschrift .. SystemKonstanten.EndeMenü (WelchesMenüExtern) - SchleifenAbzug loop
 
-         Rechenwert.x := ViewflächeExtern.x / 2.00
-           - TextberechnungenBreiteSFML.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + PositionSchleifenwert));
+         Rechenwert.x := StartpositionText.x + ViewflächeExtern.x / 2.00
+           - TextberechnungenBreiteSFML.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + PositionSchleifenwert)) + StartpositionText.x;
          
-         case
-           PositionSchleifenwert
-         is
-            when Überschrift =>
-               Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + PositionSchleifenwert),
-                                             position => (0.00, 0.00));
-               
-               Put_Line ("X: " & Sf.Graphics.Text.getPosition (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + PositionSchleifenwert)).x'Wide_Wide_Image);
-               Put_Line ("Y: " & Sf.Graphics.Text.getPosition (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + PositionSchleifenwert)).y'Wide_Wide_Image);
-               Put_Line ("Gleft: " & Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + PositionSchleifenwert)).left'Wide_Wide_Image);
-               Put_Line ("Gtop: " & Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + PositionSchleifenwert)).top'Wide_Wide_Image);
-               Put_Line ("Gwidth: " & Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + PositionSchleifenwert)).width'Wide_Wide_Image);
-               Put_Line ("Gheight: " & Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + PositionSchleifenwert)).height'Wide_Wide_Image);
-               Put_Line ("Lleft: " & Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + PositionSchleifenwert)).left'Wide_Wide_Image);
-               Put_Line ("Ltop: " & Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + PositionSchleifenwert)).top'Wide_Wide_Image);
-               Put_Line ("Lwidth: " & Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + PositionSchleifenwert)).width'Wide_Wide_Image);
-               Put_Line ("Lheight: " & Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + PositionSchleifenwert)).height'Wide_Wide_Image);
-               New_Line (2);
-               
-            when others =>
-               Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + PositionSchleifenwert),
-                                             position => Rechenwert);
-         end case;
+         Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + PositionSchleifenwert),
+                                       position => Rechenwert);
 
          NeueTextbreite := StartpositionText.x + Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + PositionSchleifenwert)).width + StartpositionText.x;
-
+         
          InteraktionAuswahl.PositionenMenüeinträge (WelchesMenüExtern, PositionSchleifenwert)
            := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + PositionSchleifenwert));
 
@@ -417,7 +394,8 @@ package body AuswahlMenuesEinfachSFML is
          PositionVersionsnummer := Rechenwert.y;
       end if;
 
-      Rechenwert.x := ViewflächeExtern.x / 2.00 - TextberechnungenBreiteSFML.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, TextbereichExtern));
+      Rechenwert.x := StartpositionText.x
+        + ViewflächeExtern.x / 2.00 - TextberechnungenBreiteSFML.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, TextbereichExtern)) + StartpositionText.x;
 
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, TextbereichExtern),
                                     position => (Rechenwert.x, PositionVersionsnummer));

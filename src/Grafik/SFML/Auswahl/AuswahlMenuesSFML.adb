@@ -17,7 +17,7 @@ package body AuswahlMenuesSFML is
    procedure AuswahlMenüsAufteilung
      (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Enum)
    is begin
-      
+            
       Viewfläche := ViewsEinstellenSFML.ViewflächeAuflösungAnpassen (ViewflächeExtern => Viewfläche);
       
       ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.MenüviewAccess,
@@ -35,7 +35,7 @@ package body AuswahlMenuesSFML is
             
          when MenueDatentypen.Menü_Einfach_Enum =>
             Viewfläche := AuswahlMenuesEinfachSFML.AuswahlMenüsEinfach (WelchesMenüExtern => WelchesMenüExtern,
-                                                                        ViewflächeExtern  => Viewfläche);
+                                                                          ViewflächeExtern  => Viewfläche);
             
          when MenueDatentypen.Kartenform_Menü_Enum =>
             AuswahlMenueKartenformSFML.AuswahlMenüKartenform;
@@ -43,6 +43,7 @@ package body AuswahlMenuesSFML is
          when MenueDatentypen.Steuerung_Menü_Enum =>
             AuswahlMenueSteuerungSFML.AuswahlMenüSteuerung;
       end case;
+      
    end AuswahlMenüsAufteilung;
 
 end AuswahlMenuesSFML;

@@ -7,7 +7,7 @@ package TastenbelegungDatentypen is
    type Tastenbelegung_Enum is (
                                 Leer_Tastenbelegung_Enum,
                                 
-                                -- Bewegung
+                                -- Bewegungz
                                 Oben_Enum, Links_Enum, Unten_Enum, Rechts_Enum, Links_Oben_Enum, Rechts_Oben_Enum, Links_Unten_Enum, Rechts_Unten_Enum, Ebene_Hoch_Enum, Ebene_Runter_Enum,
                                 
                                 Auswählen_Enum, Menü_Zurück_Enum, Bauen_Enum, Forschung_Enum, Tech_Baum_Enum,

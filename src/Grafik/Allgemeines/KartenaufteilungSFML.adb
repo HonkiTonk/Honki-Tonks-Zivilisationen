@@ -29,7 +29,6 @@ package body KartenaufteilungSFML is
             Fehler.GrafikFehler (FehlermeldungExtern => "KartenaufteilungSFML.Weltkarte - Keine Rasse festgelegt.");
             
          when others =>
-            
             -- CursorAltPlatzieren braucht aktuelle Cursor Koordinaten. Kann man aber bestimmt trotzdem optimieren, oder? äöü
             -- Auch mal in eine SFML- und eine Terminalversion aufteilen. äöü
             CursorPlatzierenSFML.CursorPlatzierenKarteSFML (RasseExtern => EinheitRasseNummerExtern.Rasse);

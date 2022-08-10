@@ -14,8 +14,8 @@ package body BerechnungenKarteSFML is
       FensterKarte := (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x * AusschnittKarte, GrafikEinstellungenSFML.AktuelleFensterAuflösung.y);
       FensterAnzeige := (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x, GrafikEinstellungenSFML.AktuelleFensterAuflösung.y);
                   
-      KartenfelderAbmessung.x := FensterKarte.x / Float (2 * Sichtweiten.SichtweiteLesen (YAchseXAchseExtern => False) + 1);
-      KartenfelderAbmessung.y := FensterKarte.y / Float (2 * Sichtweiten.SichtweiteLesen (YAchseXAchseExtern => True) + 1);
+      KartenfelderAbmessung.x := FensterKarte.x / Float (2 * Sichtweiten.SichtweiteLesen + 1);
+      KartenfelderAbmessung.y := FensterKarte.y / Float (2 * Sichtweiten.SichtweiteLesen + 1);
       
    end KartenfelderAbmessungBerechnen;
    
@@ -52,10 +52,10 @@ package body BerechnungenKarteSFML is
             null;
       end case;
       
-      YSichtAnfang := -Sichtweiten.SichtweiteLesen (YAchseXAchseExtern => True);
-      YSichtEnde := Sichtweiten.SichtweiteLesen (YAchseXAchseExtern => True);
-      XSichtAnfang := -Sichtweiten.SichtweiteLesen (YAchseXAchseExtern => False);
-      XSichtEnde := Sichtweiten.SichtweiteLesen (YAchseXAchseExtern => False);
+      YSichtAnfang := -Sichtweiten.SichtweiteLesen;
+      YSichtEnde := Sichtweiten.SichtweiteLesen;
+      XSichtAnfang := -Sichtweiten.SichtweiteLesen;
+      XSichtEnde := Sichtweiten.SichtweiteLesen;
       
       -- YBereichSchleife:
       -- for YBereichSchleifenwert in YSichtAnfang .. YSichtEnde loop

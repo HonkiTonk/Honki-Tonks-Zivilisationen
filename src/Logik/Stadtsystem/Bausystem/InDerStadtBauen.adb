@@ -52,8 +52,8 @@ package body InDerStadtBauen is
       return StadtRecords.BauprojektRecord
    is begin
 
-      MöglicheGebäudeErmitteln (StadtRasseNummerExtern => StadtRasseNummerExtern);
-      MöglicheEinheitenErmitteln (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      GebäudeBaubar := MöglicheGebäudeErmitteln (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      EinheitenBaubar := MöglicheEinheitenErmitteln (StadtRasseNummerExtern => StadtRasseNummerExtern);
 
       if
         GebäudeBaubar = False
@@ -76,28 +76,28 @@ package body InDerStadtBauen is
    
    
    
-   procedure MöglicheGebäudeErmitteln
+   function MöglicheGebäudeErmitteln
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+      return Boolean
    is begin
       
-      GebäudeBaubar := False;
+      BauenMöglich := False;
       InteraktionAuswahl.MöglicheGebäude := (others => False);
       
       GebäudeSchleife:
       for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
                   
          if
-           GebaeudeAllgemein.GebäudeAnforderungenErfüllt (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                            IDExtern               => GebäudeSchleifenwert)
-           = True
+           True = GebaeudeAllgemein.GebäudeAnforderungenErfüllt (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                                   IDExtern               => GebäudeSchleifenwert)
          then
             InteraktionAuswahl.MöglicheGebäude (GebäudeSchleifenwert) := True;
             
             case
-              GebäudeBaubar
+              BauenMöglich
             is
                when False =>
-                  GebäudeBaubar := True;
+                  BauenMöglich := True;
                   
                when True =>
                   null;
@@ -109,32 +109,34 @@ package body InDerStadtBauen is
          
       end loop GebäudeSchleife;
       
+      return BauenMöglich;
+      
    end MöglicheGebäudeErmitteln;
    
    
    
-   procedure MöglicheEinheitenErmitteln
+   function MöglicheEinheitenErmitteln
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+      return Boolean
    is begin
       
-      EinheitenBaubar := False;
+      BauenMöglich := False;
       InteraktionAuswahl.MöglicheEinheiten := (others => False);
       
       EinheitenSchleife:
       for EinheitSchleifenwert in EinheitenDatentypen.EinheitenID'Range loop
          
          if
-           EinheitenModifizieren.EinheitAnforderungenErfüllt (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                               IDExtern               => EinheitSchleifenwert)
-           = True
+           True = EinheitenModifizieren.EinheitAnforderungenErfüllt (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                                      IDExtern               => EinheitSchleifenwert)
          then
             InteraktionAuswahl.MöglicheEinheiten (EinheitSchleifenwert) := True;
             
             case
-              EinheitenBaubar
+              BauenMöglich
             is
                when False =>
-                  EinheitenBaubar := True;
+                  BauenMöglich := True;
                   
                when True =>
                   null;
@@ -145,6 +147,8 @@ package body InDerStadtBauen is
          end if;
          
       end loop EinheitenSchleife;
+      
+      return BauenMöglich;
       
    end MöglicheEinheitenErmitteln;
    

@@ -28,6 +28,7 @@ private
 
    GebäudeBaubar : Boolean;
    EinheitenBaubar : Boolean;
+   BauenMöglich : Boolean;
 
    WasGebautWerdenSoll : Natural;
    Befehl : Natural;
@@ -42,8 +43,9 @@ private
 
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
 
-   procedure MöglicheGebäudeErmitteln
+   function MöglicheGebäudeErmitteln
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+      return Boolean
      with
        Pre => (
                  StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -51,8 +53,9 @@ private
                  SpielVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
               );
 
-   procedure MöglicheEinheitenErmitteln
+   function MöglicheEinheitenErmitteln
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+      return Boolean
      with
        Pre => (
                  StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze

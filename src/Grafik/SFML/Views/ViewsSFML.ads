@@ -6,6 +6,10 @@ with Sf.Graphics.View;
 
 package ViewsSFML is
 
+
+   type ViewsArray is array (1 .. 5) of Sf.Graphics.sfView_Ptr;
+   Views : ViewsArray := (others => null);
+
    StandardviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
 
    MenüviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;

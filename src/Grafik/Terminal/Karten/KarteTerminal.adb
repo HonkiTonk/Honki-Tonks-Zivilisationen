@@ -20,9 +20,9 @@ package body KarteTerminal is
       Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
 
       YAchseSchleife:
-      for YAchseSchleifenwert in -Sichtweiten.SichtweiteLesen (YAchseXAchseExtern => True) .. Sichtweiten.SichtweiteLesen (YAchseXAchseExtern => True) loop
+      for YAchseSchleifenwert in -Sichtweiten.SichtweiteLesen .. Sichtweiten.SichtweiteLesen loop
          XAchseSchleife:
-         for XAchseSchleifenwert in -Sichtweiten.SichtweiteLesen (YAchseXAchseExtern => False) .. Sichtweiten.SichtweiteLesen (YAchseXAchseExtern => False) loop
+         for XAchseSchleifenwert in -Sichtweiten.SichtweiteLesen .. Sichtweiten.SichtweiteLesen loop
             
             KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
                                                                                                  ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
@@ -58,7 +58,7 @@ package body KarteTerminal is
    is begin
       
       if
-        XAchseExtern = Sichtweiten.SichtweiteLesen (YAchseXAchseExtern => False)
+        XAchseExtern = Sichtweiten.SichtweiteLesen
       then
          if
        --    (Karten.Kartenform = RueckgabeDatentypen.Karte_Form_X_Zylinder_Enum

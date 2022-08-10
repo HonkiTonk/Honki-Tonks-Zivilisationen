@@ -9,6 +9,7 @@ with KartengrundDatentypen; use KartengrundDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with StadtDatentypen; use StadtDatentypen;
 with KartenKonstanten;
+with GrafikKonstanten;
 
 with LeseKarten;
 with LeseStadtGebaut;
@@ -22,6 +23,8 @@ with GrafikEinstellungenSFML;
 with EingeleseneTexturenSFML;
 with KartenspritesZeichnenSFML;
 with Warnung;
+with ViewsEinstellenSFML;
+with ViewsSFML;
 
 package body KarteStadtSFML is
    
@@ -33,6 +36,11 @@ package body KarteStadtSFML is
       
       StadtInformationenSFML.Stadtinformationen (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
+      -- Diese Sachen später entfernen, wenn ich die Views besser unter Kontrolle haben. äöü
+      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.StandardviewAccess,
+                                          GrößeExtern          => (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x, GrafikEinstellungenSFML.AktuelleFensterAuflösung.y),
+                                          AnzeigebereichExtern => GrafikKonstanten.StandardAnzeigebereich);
+      
    end StadtkarteAnzeigen;
    
    
@@ -40,6 +48,10 @@ package body KarteStadtSFML is
    procedure AnzeigeStadt
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
+      
+      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.KartenviewAccess,
+                                          GrößeExtern          => (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x, GrafikEinstellungenSFML.AktuelleFensterAuflösung.y),
+                                          AnzeigebereichExtern => GrafikKonstanten.StandardAnzeigebereich);
       
       Stadtumgebungsgröße := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern);
       InformationenStadtAufrufen := False;

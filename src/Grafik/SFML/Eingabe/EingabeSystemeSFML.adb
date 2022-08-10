@@ -15,6 +15,7 @@ with GrafikDatentypen;
 with GrafikEinstellungenSFML;
 with NachGrafiktask;
 with NachLogiktask;
+with Sichtweiten;
 
 package body EingabeSystemeSFML is
 
@@ -24,7 +25,7 @@ package body EingabeSystemeSFML is
       -- Kann man sfMouseButtonCount einfach so als Leerwert nehmen? Scheint zu funktionieren.
       NachLogiktask.MausTaste := Sf.Window.Mouse.sfMouseButtonCount;
       NachLogiktask.TastaturTaste := Sf.Window.Keyboard.sfKeyUnknown;
-      NachLogiktask.MausRad := 0.00;
+     -- NachLogiktask.MausRad := 0.00;
       
       TasteSchleife:
       while
@@ -60,7 +61,15 @@ package body EingabeSystemeSFML is
                NachLogiktask.TastaturTaste := Nutzereingabe.key.code;
                   
             when Sf.Window.Event.sfEvtMouseWheelScrolled =>
-               NachLogiktask.MausRad := Nutzereingabe.mouseWheelScroll.eventDelta;
+               -- NachLogiktask.MausRad := Nutzereingabe.mouseWheelScroll.eventDelta;
+               if
+                 Nutzereingabe.mouseWheelScroll.eventDelta < 0.00
+               then
+                  Sichtweiten.ZoomstufeÄndern (HöherTieferExtern => True);
+                  
+               else
+                  Sichtweiten.ZoomstufeÄndern (HöherTieferExtern => False);
+               end if;
                   
             when Sf.Window.Event.sfEvtMouseButtonPressed =>
                NachLogiktask.MausTaste := Nutzereingabe.mouseButton.button;

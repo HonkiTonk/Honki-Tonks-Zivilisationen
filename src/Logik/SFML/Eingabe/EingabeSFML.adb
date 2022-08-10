@@ -379,19 +379,8 @@ package body EingabeSFML is
    is begin
             
       EingabeAbwarten;
-      
-      -- Das Mausrad muss? vor der Maustaste geprüft werden. Sollte mit dem neuen System nicht mehr der Fall sein.
-      if
-        NachLogiktask.MausRad > 0.00
-      then
-         return TastenbelegungDatentypen.Ebene_Hoch_Enum;
-               
-      elsif
-        NachLogiktask.MausRad < 0.00
-      then
-         return TastenbelegungDatentypen.Ebene_Runter_Enum;
          
-      elsif
+      if
         NachLogiktask.MausTaste = Sf.Window.Mouse.sfMouseLeft
       then
          return TastenbelegungDatentypen.Auswählen_Enum;

@@ -32,10 +32,7 @@ package body ImSpiel is
    function ImSpiel
      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
-      
-      -- Muss hier einmal auf Verändert gesetzt werden, damit die Kartenfeldergrößen korrekt berechnet werden vom Grafiktask.
-      NachGrafiktask.FensterVerändert := GrafikDatentypen.Fenster_Verändert_Enum;
-      
+            
       SpielSchleife:
       loop
          

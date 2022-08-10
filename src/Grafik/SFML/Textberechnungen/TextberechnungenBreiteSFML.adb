@@ -83,7 +83,7 @@ package body TextberechnungenBreiteSFML is
       return Float
    is begin
       
-      NeueTextbreite := Sf.Graphics.Text.getLocalBounds (text => TextAccessExtern).width;
+      NeueTextbreite := Sf.Graphics.Text.getGlobalBounds (text => TextAccessExtern).width;
       
       if
         NeueTextbreite > TextbreiteExtern
