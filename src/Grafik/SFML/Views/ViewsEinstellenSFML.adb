@@ -5,8 +5,21 @@ with Sf.Graphics.View;
 with Sf.Graphics.RenderWindow;
 
 with GrafikEinstellungenSFML;
+with ViewsSFML;
 
 package body ViewsEinstellenSFML is
+   
+   -- Kann später wahrscheinlich entfernt werden. äöü
+   procedure Standardview
+   is begin
+      
+      ViewEinstellen (ViewExtern           => ViewsSFML.StandardviewAccess,
+                      GrößeExtern          => GrafikEinstellungenSFML.AktuelleFensterAuflösung,
+                      AnzeigebereichExtern => (0.00, 0.00, 1.00, 1.00));
+      
+   end Standardview;
+   
+   
    
    procedure ViewEinstellen
      (ViewExtern : in Sf.Graphics.sfView_Ptr;
@@ -33,7 +46,6 @@ package body ViewsEinstellenSFML is
       return Sf.System.Vector2.sfVector2f
    is begin
       
-      -- Fensterauflösung auch gleich als Float speichern? äöü
       if
         Viewfläche.x < GrafikEinstellungenSFML.AktuelleFensterAuflösung.x
       then

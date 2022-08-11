@@ -23,7 +23,7 @@ package AnzeigeEingabeSFML is
      (FrageExtern : in ZahlenDatentypen.EigenesNatural;
       EingabeExtern : in SystemDatentypen.Eingaben_Fragen_Enum);
    
-   -- Später KORREKTEN Contract einfügen- äöü
+   -- Später KORREKTEN Contract einfügen. äöü
    procedure AnzeigeEinheitenStadt
      (RasseExtern : in RassenDatentypen.Rassen_Enum);
    
@@ -42,7 +42,9 @@ private
    
    EinheitRasseNummer : EinheitenRecords.RasseEinheitnummerRecord;
    
-   TextPosition : Sf.System.Vector2.sfVector2f;
+   Startposition : constant Sf.System.Vector2.sfVector2f := (5.00, 5.00);
+   Viewfläche : Sf.System.Vector2.sfVector2f := Startposition;
+   Textposition : Sf.System.Vector2.sfVector2f;
    
    RechteckAccess : constant Sf.Graphics.sfRectangleShape_Ptr := Sf.Graphics.RectangleShape.create;
 

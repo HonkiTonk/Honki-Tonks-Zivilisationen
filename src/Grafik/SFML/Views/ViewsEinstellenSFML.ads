@@ -7,6 +7,8 @@ with Sf.Graphics.Rect;
 
 package ViewsEinstellenSFML is
    
+   procedure Standardview;
+   
    procedure ViewEinstellen
      (ViewExtern : in Sf.Graphics.sfView_Ptr;
       GrößeExtern : in Sf.System.Vector2.sfVector2f;

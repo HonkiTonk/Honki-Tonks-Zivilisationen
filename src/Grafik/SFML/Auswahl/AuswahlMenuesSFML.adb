@@ -44,6 +44,8 @@ package body AuswahlMenuesSFML is
             AuswahlMenueSteuerungSFML.AuswahlMenüSteuerung;
       end case;
       
+      -- ViewsEinstellenSFML.Standardview;
+      
    end AuswahlMenüsAufteilung;
 
 end AuswahlMenuesSFML;

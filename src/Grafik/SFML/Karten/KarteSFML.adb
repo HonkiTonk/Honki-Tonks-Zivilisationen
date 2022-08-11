@@ -51,9 +51,7 @@ package body KarteSFML is
       KarteInformationenSFML.KarteInformationenSFML (RasseExtern => RasseEinheitExtern.Rasse);
       
       -- Diese Sachen später entfernen, wenn ich die Views besser unter Kontrolle haben. äöü
-      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.StandardviewAccess,
-                                          GrößeExtern          => (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x, GrafikEinstellungenSFML.AktuelleFensterAuflösung.y),
-                                          AnzeigebereichExtern => GrafikKonstanten.StandardAnzeigebereich);
+      ViewsEinstellenSFML.Standardview;
       
    end KarteAnzeigen;
    

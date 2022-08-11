@@ -18,6 +18,7 @@ package ViewsSFML is
    SeitenleisteKartenviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
 
    BauForschungsviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
+
    ZusatztextviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
 
 end ViewsSFML;

@@ -133,17 +133,18 @@ package ChangelogAugust2022 is
    
    
 
-   -- Version 0.03. => 0.03. (12.08.2022):
+   -- Version 0.03.1245 => 0.03. (12.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.1220 => 0.03. (11.08.2022):
+   -- Version 0.03.1220 => 0.03.1245 (11.08.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Angefangen Zahleneingabe auf View umzubauen.
+   -- Fehler korrigiert der bei niedrigen Auflösung dafür sorgte dass die Auswahlpositionen nicht mit den Textpositionen übereinstimmten.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

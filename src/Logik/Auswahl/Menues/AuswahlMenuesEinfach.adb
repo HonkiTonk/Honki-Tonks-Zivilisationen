@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with Sf;
+with Sf.Graphics.RenderWindow;
 
 with TastenbelegungDatentypen;
 with GrafikDatentypen;
@@ -11,6 +12,8 @@ with Eingabe;
 with RueckgabeMenues;
 with NachGrafiktask;
 with InteraktionAuswahl;
+with ViewsSFML;
+with GrafikEinstellungenSFML;
 
 package body AuswahlMenuesEinfach is
 
@@ -100,7 +103,11 @@ package body AuswahlMenuesEinfach is
       return Natural
    is begin
       
-      Mausposition := NachLogiktask.Mausposition;
+      -- Das mal überall und in einer universelleren Version einbauen. äöü
+      -- Mausposition direkt als Int speichern? War das mal so? Sollte es wieder so sein? äöü
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                                                 point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
+                                                                 view         => ViewsSFML.MenüviewAccess);
       
       PositionSchleife:
       for PositionSchleifenwert in AnfangExtern .. EndeExtern loop
