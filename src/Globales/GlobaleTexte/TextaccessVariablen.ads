@@ -14,6 +14,11 @@ with MenueDatentypen;
 with InteraktionAuswahl;
 
 package TextaccessVariablen is
+   
+   -- Allgemeines
+   ÜberschriftAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
+   VersionsnummerAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
+   -- Allgemeines
 
    -- MenüsEinfach
    Überschrift : constant Positive := 1;
@@ -50,7 +55,8 @@ package TextaccessVariablen is
    
    
    -- Baumenü
-   BaumenüÜberschriftAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
+   GebäudeüberschriftAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
+   EinheitenüberschriftAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
    
    type GebäudetextAccessArray is array (StadtDatentypen.GebäudeIDMitNullwert'Range) of Sf.Graphics.sfText_Ptr;
    GebäudetextAccess : constant GebäudetextAccessArray := (others => Sf.Graphics.Text.create);

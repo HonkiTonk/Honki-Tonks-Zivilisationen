@@ -104,7 +104,7 @@ package body AuswahlMenuesEinfach is
    is begin
       
       -- Das mal überall und in einer universelleren Version einbauen. äöü
-      -- Mausposition direkt als Int speichern? War das mal so? Sollte es wieder so sein? äöü
+      -- Wie bekomme ich das ohne großen Abweichungen um Grafiktask unter? äöü
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                                                  point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
                                                                  view         => ViewsSFML.MenüviewAccess);

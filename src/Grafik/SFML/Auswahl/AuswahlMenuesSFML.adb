@@ -43,9 +43,7 @@ package body AuswahlMenuesSFML is
          when MenueDatentypen.Steuerung_Menü_Enum =>
             AuswahlMenueSteuerungSFML.AuswahlMenüSteuerung;
       end case;
-      
-      -- ViewsEinstellenSFML.Standardview;
-      
+            
    end AuswahlMenüsAufteilung;
 
 end AuswahlMenuesSFML;

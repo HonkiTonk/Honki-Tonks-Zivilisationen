@@ -100,5 +100,5 @@ package body GrafikStartEndeSFML is
       Sf.Graphics.RenderWindow.display (renderWindow => GrafikEinstellungenSFML.FensterAccess);
       
    end FensterAnzeigen;
-
+  
 end GrafikStartEndeSFML;

@@ -69,7 +69,7 @@ package body TextaccesseTextSetzenSFML is
    procedure Baumenü
    is begin
    
-      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.BaumenüÜberschriftAccess,
+      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ÜberschriftAccess,
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.Frage (TextnummernKonstanten.FrageBauprojekt)));
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.GebäudetextAccess (0),

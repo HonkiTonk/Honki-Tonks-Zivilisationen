@@ -338,30 +338,29 @@ package body AuswahlMenuesEinfachSFML is
       ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
       return Sf.System.Vector2.sfVector2f
    is begin
-
+      
       Rechenwert.y := StartpositionText.y;
-      Rechenwert.x := StartpositionText.x + ViewflächeExtern.x / 2.00 - TextberechnungenBreiteSFML.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift));
+      Rechenwert.x := ViewflächeExtern.x / 2.00 - TextberechnungenBreiteSFML.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift));
 
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift),
                                     position => Rechenwert);
 
-      AktuelleTextbreite := StartpositionText.x + Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift)).width + StartpositionText.x;
+      AktuelleTextbreite := 5.00 * StartpositionText.x + Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift)).width;
       Rechenwert.y := Rechenwert.y + TextberechnungenHoeheSFML.Überschriftabstand;
 
       PositionenSchleife:
       for PositionSchleifenwert in Überschrift .. SystemKonstanten.EndeMenü (WelchesMenüExtern) - SchleifenAbzug loop
 
-         Rechenwert.x := StartpositionText.x + ViewflächeExtern.x / 2.00
-           - TextberechnungenBreiteSFML.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + PositionSchleifenwert)) + StartpositionText.x;
+         Rechenwert.x := ViewflächeExtern.x / 2.00 - TextberechnungenBreiteSFML.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + PositionSchleifenwert));
          
          Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + PositionSchleifenwert),
                                        position => Rechenwert);
 
-         NeueTextbreite := StartpositionText.x + Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + PositionSchleifenwert)).width + StartpositionText.x;
+         NeueTextbreite := 5.00 * StartpositionText.x + Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + PositionSchleifenwert)).width;
          
          InteraktionAuswahl.PositionenMenüeinträge (WelchesMenüExtern, PositionSchleifenwert)
            := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + PositionSchleifenwert));
-
+         
          if
            NeueTextbreite > AktuelleTextbreite
          then
@@ -394,14 +393,13 @@ package body AuswahlMenuesEinfachSFML is
          PositionVersionsnummer := Rechenwert.y;
       end if;
 
-      Rechenwert.x := StartpositionText.x
-        + ViewflächeExtern.x / 2.00 - TextberechnungenBreiteSFML.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, TextbereichExtern)) + StartpositionText.x;
+      Rechenwert.x := ViewflächeExtern.x / 2.00 - TextberechnungenBreiteSFML.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, TextbereichExtern));
 
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, TextbereichExtern),
                                     position => (Rechenwert.x, PositionVersionsnummer));
       Rechenwert.y := Rechenwert.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
 
-      NeueTextbreite := StartpositionText.x + Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, TextbereichExtern)).width + StartpositionText.x;
+      NeueTextbreite := 5.00 * StartpositionText.x + Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, TextbereichExtern)).width;
 
       if
         NeueTextbreite > AktuelleTextbreite

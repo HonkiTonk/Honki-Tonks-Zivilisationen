@@ -32,5 +32,9 @@ project Stream is
       for Proof_Switches ("ada") use ("-j4", "--proof-warnings");
    end Prove;
 
+   package Linker is
+      for Linker_Options use ();
+   end Linker;
+
 end Stream;
 

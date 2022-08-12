@@ -88,7 +88,7 @@ package body TextaccesseSchriftfarbeSetzenSFML is
    procedure Baumenü
    is begin
       
-      Sf.Graphics.Text.setColor (text => TextaccessVariablen.BaumenüÜberschriftAccess,
+      Sf.Graphics.Text.setColor (text => TextaccessVariablen.ÜberschriftAccess,
                                  color => TexteinstellungenSFML.Schriftfarben.FarbeÜberschrift);
       
       Sf.Graphics.Text.setColor (text => TextaccessVariablen.GebäudetextAccess (0),

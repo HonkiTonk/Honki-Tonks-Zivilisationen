@@ -51,8 +51,8 @@ package body BauAuswahlAnzeigeSFML is
       
       Grundposition := StartPositionText;
             
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.BaumenüÜberschriftAccess,
-                                    position => (TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.BaumenüÜberschriftAccess,
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ÜberschriftAccess,
+                                    position => (TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.ÜberschriftAccess,
                                                                                                      ViewbreiteExtern => GrafikEinstellungenSFML.AktuelleFensterAuflösung.x),
                                                  Grundposition.y));
             
@@ -158,7 +158,7 @@ package body BauAuswahlAnzeigeSFML is
       end loop EinheitenSchleife;
       
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                         text         => TextaccessVariablen.BaumenüÜberschriftAccess);
+                                         text         => TextaccessVariablen.ÜberschriftAccess);
       
       GebäudetextSchleife:
       for GebäudetextSchleifenwert in TextaccessVariablen.GebäudetextAccessArray'Range loop
@@ -221,7 +221,7 @@ package body BauAuswahlAnzeigeSFML is
         and
           ZusatztextEinheiten /= 0
       then
-         Fehler.GrafikFehler (FehlermeldungExtern => "BauAuswahlAnzeigeSFML.BauAuswahlAnzeige - Zwei Projekte gleichzeitig ausgewählt.");
+         Fehler.GrafikFehler (FehlermeldungExtern => "BauAuswahlAnzeigeSFML.BauAuswahlAnzeige - Zwei Projekte ausgewählt.");
          
          -- Wenn ich die Zusatztexte jetzt ja immer neu setzen, dann reicht da auch ein einzelner Access ohne Schleife, oder? äöü
       elsif
@@ -300,7 +300,7 @@ package body BauAuswahlAnzeigeSFML is
    procedure SchriftgrößenFestlegen
    is begin
       
-      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.BaumenüÜberschriftAccess,
+      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.ÜberschriftAccess,
                                          size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeÜberschrift);
       
       Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.GebäudetextAccess (0),

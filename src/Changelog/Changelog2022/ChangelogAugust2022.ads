@@ -126,17 +126,17 @@ package ChangelogAugust2022 is
    
    
 
-   -- Version 0.03. => 0.03. (13.08.2022):
+   -- Version 0.03.1260 => 0.03. (13.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.1245 => 0.03. (12.08.2022):
+   -- Version 0.03.1245 => 0.03.1260 (12.08.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter am neuen Viewanzeigesystem gearbeitet.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 

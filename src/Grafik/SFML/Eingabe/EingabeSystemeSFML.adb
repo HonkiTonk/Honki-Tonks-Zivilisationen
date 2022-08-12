@@ -46,8 +46,12 @@ package body EingabeSystemeSFML is
                   
             when Sf.Window.Event.sfEvtMouseMoved =>
                -- Das bei jedem Aufruf setzen? äöü
+               -- Wie kriege ich die Berechnung im Grafiktask unter? CoordsToPixel scheint zu zu großen Rundungfehlern zu führen bei sehr kleinen Auflösungen. äöü
+               -- NachLogiktask.Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+               --                                                                         point        => (Nutzereingabe.mouseMove.x, Nutzereingabe.mouseMove.y),
+               --                                                                         view         => ViewsSFML.MenüviewAccess);
                NachLogiktask.Mausposition := (Float (Nutzereingabe.mouseMove.x), Float (Nutzereingabe.mouseMove.y));
-                  
+               
             when others =>
                null;
          end case;

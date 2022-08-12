@@ -85,7 +85,7 @@ package body TextaccesseSchriftartSetzenSFML is
    procedure Baumenü
    is begin
       
-      Sf.Graphics.Text.setFont (text => TextaccessVariablen.BaumenüÜberschriftAccess,
+      Sf.Graphics.Text.setFont (text => TextaccessVariablen.ÜberschriftAccess,
                                 font => TexteinstellungenSFML.SchriftartAccess);
       
       GebäudetextSchleife:
