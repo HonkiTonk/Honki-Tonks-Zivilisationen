@@ -13,6 +13,7 @@ package body TextaccesseSchriftartSetzenSFML is
    is begin
       
       -- Ein paar der Sachen zusammenfassen? Oder doch lieber nach Dateien/Bereich getrennt lassen? äöü
+      Allgemeines;
       MenüsEinfach;
       ZusatztextRassenmenü;
       ZusatztextKartengröße;
@@ -31,6 +32,19 @@ package body TextaccesseSchriftartSetzenSFML is
       Ladezeiten;
       
    end SchriftartSetzen;
+   
+   
+   
+   procedure Allgemeines
+   is begin
+      
+      Sf.Graphics.Text.setFont (text => TextaccessVariablen.ÜberschriftAccess,
+                                font => TexteinstellungenSFML.SchriftartAccess);
+      
+      Sf.Graphics.Text.setFont (text => TextaccessVariablen.VersionsnummerAccess,
+                                font => TexteinstellungenSFML.SchriftartAccess);
+      
+   end Allgemeines;
    
    
    
@@ -85,24 +99,24 @@ package body TextaccesseSchriftartSetzenSFML is
    procedure Baumenü
    is begin
       
-      Sf.Graphics.Text.setFont (text => TextaccessVariablen.ÜberschriftAccess,
-                                font => TexteinstellungenSFML.SchriftartAccess);
-      
       GebäudetextSchleife:
       for GebäudetextSchleifenwert in TextaccessVariablen.GebäudetextAccessArray'Range loop
             
          Sf.Graphics.Text.setFont (text => TextaccessVariablen.GebäudetextAccess (GebäudetextSchleifenwert),
                                    font => TexteinstellungenSFML.SchriftartAccess);
+         
+         case
+           GebäudetextSchleifenwert
+         is
+            when TextaccessVariablen.GebäudetextAccessArray'First =>
+               null;
+               
+            when others =>
+               Sf.Graphics.Text.setFont (text => TextaccessVariablen.GebäudezusatztextAccess (GebäudetextSchleifenwert),
+                                         font => TexteinstellungenSFML.SchriftartAccess);
+         end case;
             
       end loop GebäudetextSchleife;
-      
-      GebäudezusatztextSchleife:
-      for GebäudezusatztextSchleifenwert in TextaccessVariablen.GebäudezusatztextAccessArray'Range loop
-         
-         Sf.Graphics.Text.setFont (text => TextaccessVariablen.GebäudezusatztextAccess (GebäudezusatztextSchleifenwert),
-                                   font => TexteinstellungenSFML.SchriftartAccess);
-         
-      end loop GebäudezusatztextSchleife;
       
       
       
@@ -111,16 +125,19 @@ package body TextaccesseSchriftartSetzenSFML is
             
          Sf.Graphics.Text.setFont (text => TextaccessVariablen.EinheitentextAccess (EinheitentextSchleifenwert),
                                    font => TexteinstellungenSFML.SchriftartAccess);
+         
+         case
+           EinheitentextSchleifenwert
+         is
+            when TextaccessVariablen.EinheitentextAccessArray'First =>
+               null;
+               
+            when others =>
+               Sf.Graphics.Text.setFont (text => TextaccessVariablen.EinheitenzusatztextAccess (EinheitentextSchleifenwert),
+                                         font => TexteinstellungenSFML.SchriftartAccess);
+         end case;
             
       end loop EinheitentextSchleife;
-      
-      EinheitenzusatztextSchleife:
-      for EinheitenzusatztextSchleifenwert in TextaccessVariablen.EinheitenzusatztextAccessArray'Range loop
-         
-         Sf.Graphics.Text.setFont (text => TextaccessVariablen.EinheitenzusatztextAccess (EinheitenzusatztextSchleifenwert),
-                                   font => TexteinstellungenSFML.SchriftartAccess);
-         
-      end loop EinheitenzusatztextSchleife;
       
    end Baumenü;
       
@@ -134,16 +151,19 @@ package body TextaccesseSchriftartSetzenSFML is
             
          Sf.Graphics.Text.setFont (text => TextaccessVariablen.ForschungsmenüAccess (ForschungSchleifenwert),
                                    font => TexteinstellungenSFML.SchriftartAccess);
+         
+         case
+           ForschungSchleifenwert
+         is
+            when TextaccessVariablen.ForschungsmenüAccessArray'First =>
+               null;
+               
+            when others =>
+               Sf.Graphics.Text.setFont (text => TextaccessVariablen.ForschungsmenüZusatztextAccess (ForschungSchleifenwert),
+                                         font => TexteinstellungenSFML.SchriftartAccess);
+         end case;
             
       end loop ForschungenSchleife;
-      
-      ForschungenZusatztextSchleife:
-      for ForschungZusatztextSchleifenwert in TextaccessVariablen.ForschungsmenüZusatztextAccessArray'Range loop
-         
-         Sf.Graphics.Text.setFont (text => TextaccessVariablen.ForschungsmenüZusatztextAccess (ForschungZusatztextSchleifenwert),
-                                   font => TexteinstellungenSFML.SchriftartAccess);
-         
-      end loop ForschungenZusatztextSchleife;
       
    end Forschungsmenü;
       

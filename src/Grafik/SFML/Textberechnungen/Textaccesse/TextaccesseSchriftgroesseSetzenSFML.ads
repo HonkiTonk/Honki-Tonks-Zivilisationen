@@ -7,6 +7,7 @@ package TextaccesseSchriftgroesseSetzenSFML is
 
 private
 
+   procedure Allgemeines;
    procedure MenüsEinfach;
    procedure ZusatztextRassenmenü;
    procedure ZusatztextKartengröße;

@@ -8,7 +8,6 @@ private with Sf.Graphics.Color;
 
 with MenueDatentypen;
 
-private with TextaccessVariablen;
 private with GrafikRecords;
 
 package AuswahlMenuesEinfachSFML is
@@ -32,13 +31,8 @@ package AuswahlMenuesEinfachSFML is
 
 private
 
-   Überschrift : constant Positive := TextaccessVariablen.Überschrift;
-   Versionsnummer : constant Positive := TextaccessVariablen.Versionsnummer;
-
+   Startbereich : Positive;
    Textbereich : Positive;
-
-   HauptmenüAbzug : Natural;
-   SchleifenAbzug : Natural;
    AktuelleEinstellung : Positive;
 
    AktuelleTextbreite : Float;
@@ -52,10 +46,6 @@ private
 
    AktuelleAuswahlRückgabewert : GrafikRecords.AuswahlTextpositionRecord;
    Rückgabewert : GrafikRecords.AuswahlTextpositionRecord;
-
-   procedure SchriftgrößenFestlegen
-     (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum;
-      TextbereichExtern : in Positive);
 
    procedure SchriftfarbenFestlegen
      (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum;

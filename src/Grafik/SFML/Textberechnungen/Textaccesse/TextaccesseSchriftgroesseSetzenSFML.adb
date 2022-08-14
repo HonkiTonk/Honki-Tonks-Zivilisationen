@@ -4,10 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 with Sf.Graphics.Text;
 
 with TextaccessVariablen;
-with EinheitenDatentypen;
-with StadtDatentypen;
-with ForschungenDatentypen;
-with ForschungKonstanten;
 
 with TexteinstellungenSFML;
 
@@ -16,6 +12,7 @@ package body TextaccesseSchriftgroesseSetzenSFML is
    procedure SchriftgrößeSetzen
    is begin
       
+      Allgemeines;
       MenüsEinfach;
       ZusatztextRassenmenü;
       ZusatztextKartengröße;
@@ -34,6 +31,19 @@ package body TextaccesseSchriftgroesseSetzenSFML is
       Ladezeiten;
       
    end SchriftgrößeSetzen;
+   
+   
+   
+   procedure Allgemeines
+   is begin
+      
+      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.ÜberschriftAccess,
+                                         size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeÜberschrift);
+      
+      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.VersionsnummerAccess,
+                                         size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeKlein);
+      
+   end Allgemeines;
    
    
    
@@ -89,24 +99,44 @@ package body TextaccesseSchriftgroesseSetzenSFML is
    is begin
       
       GebäudetextSchleife:
-      for GebäudetextSchleifenwert in StadtDatentypen.GebäudeID'Range loop
-            
-         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.GebäudetextAccess (GebäudetextSchleifenwert),
-                                            size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
+      for GebäudetextSchleifenwert in TextaccessVariablen.GebäudetextAccessArray'Range loop
          
-         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.GebäudezusatztextAccess (GebäudetextSchleifenwert),
-                                            size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
-            
+         case
+           GebäudetextSchleifenwert
+         is
+            when TextaccessVariablen.GebäudetextAccessArray'First =>
+               Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.GebäudetextAccess (GebäudetextSchleifenwert),
+                                                  size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeÜberschrift);
+               
+            when others =>
+               Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.GebäudetextAccess (GebäudetextSchleifenwert),
+                                                  size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
+         
+               Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.GebäudezusatztextAccess (GebäudetextSchleifenwert),
+                                                  size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
+         end case;
+         
       end loop GebäudetextSchleife;
+
+
       
       EinheitentextSchleife:
-      for EinheitentextSchleifenwert in EinheitenDatentypen.EinheitenID'Range loop
-            
-         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.EinheitentextAccess (EinheitentextSchleifenwert),
-                                            size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
+      for EinheitentextSchleifenwert in TextaccessVariablen.EinheitentextAccessArray'Range loop
          
-         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.EinheitenzusatztextAccess (EinheitentextSchleifenwert),
-                                            size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
+         case
+           EinheitentextSchleifenwert
+         is
+            when TextaccessVariablen.EinheitentextAccessArray'First =>
+               Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.EinheitentextAccess (EinheitentextSchleifenwert),
+                                                  size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeÜberschrift);
+               
+            when others =>
+               Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.EinheitentextAccess (EinheitentextSchleifenwert),
+                                                  size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
+         
+               Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.EinheitenzusatztextAccess (EinheitentextSchleifenwert),
+                                                  size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
+         end case;
          
       end loop EinheitentextSchleife;
       
@@ -117,26 +147,26 @@ package body TextaccesseSchriftgroesseSetzenSFML is
    procedure Forschungsmenü
    is begin
       
-      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.ForschungsmenüAccess (ForschungKonstanten.LeerForschung),
-                                         size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeÜberschrift);
-      
-      SchriftgrößeSchleife:
-      for SchriftgrößeSchleifenwert in ForschungenDatentypen.ForschungID'Range loop
+      ForschungstextSchleife:
+      for ForschungstextSchleifenwert in TextaccessVariablen.ForschungsmenüAccessArray'Range loop
          
+         case
+           ForschungstextSchleifenwert
+         is
+            when TextaccessVariablen.ForschungsmenüAccessArray'First =>
+               Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.ForschungsmenüAccess (ForschungstextSchleifenwert),
+                                                  size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeÜberschrift);
+               
+            when others =>
+               Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.ForschungsmenüAccess (ForschungstextSchleifenwert),
+                                                  size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
+               
+               Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.ForschungsmenüZusatztextAccess (ForschungstextSchleifenwert),
+                                                  size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
+         end case;
          
-         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.ForschungsmenüAccess (SchriftgrößeSchleifenwert),
-                                            size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
+      end loop ForschungstextSchleife;
          
-      end loop SchriftgrößeSchleife;
-      
-      ZusatztextSchleife:
-      for ZusatztextSchleifenwert in TextaccessVariablen.ForschungsmenüZusatztextAccessArray'Range loop
-         
-         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.ForschungsmenüZusatztextAccess (ZusatztextSchleifenwert),
-                                            size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
-         
-      end loop ZusatztextSchleife;
-      
    end Forschungsmenü;
       
       

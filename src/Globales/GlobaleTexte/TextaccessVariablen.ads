@@ -24,51 +24,38 @@ package TextaccessVariablen is
    Überschrift : constant Positive := 1;
    Versionsnummer : constant Positive := 1;
    
-   type MenüsEinfachSFMLAccessArray is array (InteraktionAuswahl.PositionenMenüeinträgeArray'Range (1),
-                                               Überschrift .. Überschrift + InteraktionAuswahl.PositionenMenüeinträgeArray'Last (2) + Versionsnummer) of Sf.Graphics.sfText_Ptr;
-   MenüsEinfachSFMLAccess : constant MenüsEinfachSFMLAccessArray := (
-                                                                       others =>
-                                                                         (
-                                                                          others => Sf.Graphics.Text.create
-                                                                         )
-                                                                      );
+   -- Die ganzen Arrays mal so anpassen wie das MenüsEinfachSFMLAccessArray, bzw. soweit wie das möglich ist.
+   type MenüsEinfachSFMLAccessArray is array (InteraktionAuswahl.PositionenMenüeinträgeArray'Range (1), InteraktionAuswahl.PositionenMenüeinträgeArray'Range (2)) of Sf.Graphics.sfText_Ptr;
+   MenüsEinfachSFMLAccess : constant MenüsEinfachSFMLAccessArray := (others => (others => Sf.Graphics.Text.create));
    -- MenüsEinfach
    
    
    
    -- ZusatztextRassenmenü
    type ZusatztextRassenAccessArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of Sf.Graphics.sfText_Ptr;
-   ZusatztextRassenAccess : constant ZusatztextRassenAccessArray := (
-                                                                     others => Sf.Graphics.Text.create
-                                                                    );
+   ZusatztextRassenAccess : constant ZusatztextRassenAccessArray := (others => Sf.Graphics.Text.create);
    -- ZusatztextRassenmenü
    
    
    
    -- ZusatztextKartengröße
    type ZusatztextKartengrößeAccessArray is array (1 .. 2) of Sf.Graphics.sfText_Ptr;
-   ZusatztextKartengrößeAccess : constant ZusatztextKartengrößeAccessArray := (
-                                                                                   others => Sf.Graphics.Text.create
-                                                                                  );
+   ZusatztextKartengrößeAccess : constant ZusatztextKartengrößeAccessArray := (others => Sf.Graphics.Text.create);
    -- ZusatztextKartengröße
    
    
    
    -- Baumenü
-   GebäudeüberschriftAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
-   EinheitenüberschriftAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
-   
    type GebäudetextAccessArray is array (StadtDatentypen.GebäudeIDMitNullwert'Range) of Sf.Graphics.sfText_Ptr;
    GebäudetextAccess : constant GebäudetextAccessArray := (others => Sf.Graphics.Text.create);
 
-   -- Wenn ich die Zusatztexte jetzt ja immer neu setzen, dann reicht da auch ein einzelner Access ohne Schleife, oder? äöü
-   type GebäudezusatztextAccessArray is array (StadtDatentypen.GebäudeID'Range) of Sf.Graphics.sfText_Ptr;
+   type GebäudezusatztextAccessArray is array (StadtDatentypen.GebäudeID'First .. GebäudetextAccessArray'Last) of Sf.Graphics.sfText_Ptr;
    GebäudezusatztextAccess : constant GebäudezusatztextAccessArray := (others => Sf.Graphics.Text.create);
 
    type EinheitentextAccessArray is array (EinheitenDatentypen.EinheitenIDMitNullWert'Range) of Sf.Graphics.sfText_Ptr;
    EinheitentextAccess : constant EinheitentextAccessArray := (others => Sf.Graphics.Text.create);
 
-   type EinheitenzusatztextAccessArray is array (EinheitenDatentypen.EinheitenID'Range) of Sf.Graphics.sfText_Ptr;
+   type EinheitenzusatztextAccessArray is array (EinheitenDatentypen.EinheitenID'First .. EinheitentextAccessArray'Last) of Sf.Graphics.sfText_Ptr;
    EinheitenzusatztextAccess : constant EinheitenzusatztextAccessArray := (others => Sf.Graphics.Text.create);
    -- Baumenü
    
@@ -78,7 +65,7 @@ package TextaccessVariablen is
    type ForschungsmenüAccessArray is array (ForschungenDatentypen.ForschungIDMitNullWert'Range) of Sf.Graphics.sfText_Ptr;
    ForschungsmenüAccess : constant ForschungsmenüAccessArray := (others => Sf.Graphics.Text.create);
    
-   type ForschungsmenüZusatztextAccessArray is array (ForschungenDatentypen.ForschungID'Range) of Sf.Graphics.sfText_Ptr;
+   type ForschungsmenüZusatztextAccessArray is array (ForschungenDatentypen.ForschungID'First .. ForschungsmenüAccessArray'Last) of Sf.Graphics.sfText_Ptr;
    ForschungsmenüZusatztextAccess : constant ForschungsmenüZusatztextAccessArray := (others => Sf.Graphics.Text.create);
    -- Forschungsmenü
    
@@ -94,9 +81,7 @@ package TextaccessVariablen is
    Zusatzplatz : constant Positive := 16;
    
    type KartenformauswahlAccessArray is array (Überschrift .. SystemKonstanten.EndeMenü (MenueDatentypen.Kartenform_Menü_Enum) + Zusatzplatz + Versionsnummer) of Sf.Graphics.sfText_Ptr;
-   KartenformauswahlAccess : constant KartenformauswahlAccessArray := (
-                                                                       others => Sf.Graphics.Text.create
-                                                                      );
+   KartenformauswahlAccess : constant KartenformauswahlAccessArray := (others => Sf.Graphics.Text.create);
    -- Kartenformauswahl
 
    

@@ -27,7 +27,7 @@ package body AuswahlMenuesEinfach is
       NachGrafiktask.AktuellesMenü := WelchesMenüExtern;
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Menüs_Enum;
                  
-      Ende := SystemKonstanten.EndeMenü (WelchesMenüExtern) - SystemKonstanten.EndeAbzugLogik (WelchesMenüExtern);
+      Ende := SystemKonstanten.EndeMenü (WelchesMenüExtern);
       
       Ausgewählt := Auswahl (WelchesMenüExtern => WelchesMenüExtern,
                               AnfangExtern      => Anfang,

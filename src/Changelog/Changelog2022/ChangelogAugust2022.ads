@@ -112,24 +112,24 @@ package ChangelogAugust2022 is
    
    
 
-   -- Version 0.03. => 0.03. (15.08.2022):
+   -- Version 0.03.1285 => 0.03. (15.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03. => 0.03. (14.08.2022):
+   -- Version 0.03.1260 => 0.03.1285 (14.08.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Textaccesse und Positionspeicherung vereinfacht.
+   -- Menüsystem kaputt gemacht.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 
-   -- Version 0.03.1260 => 0.03. (13.08.2022):
+   -- Version 0.03.1260 => 0.03.1260 (13.08.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 

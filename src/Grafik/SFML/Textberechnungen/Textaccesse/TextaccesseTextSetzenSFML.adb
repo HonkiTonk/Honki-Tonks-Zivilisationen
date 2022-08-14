@@ -6,12 +6,11 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Sf.Graphics.Text;
 
 with TextaccessVariablen;
-with EinheitenDatentypen;
-with StadtDatentypen;
 with GlobaleTexte;
 with TextnummernKonstanten;
 with ForschungKonstanten;
 with ForschungenDatentypen;
+with SonstigesKonstanten;
 
 package body TextaccesseTextSetzenSFML is
 
@@ -36,6 +35,16 @@ package body TextaccesseTextSetzenSFML is
       Ladezeiten;
       
    end TextSetzen;
+   
+   
+   
+   procedure Allgemeines
+   is begin
+      
+      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.VersionsnummerAccess,
+                                         str  => "Version: " & SonstigesKonstanten.Versionsnummer);
+      
+   end Allgemeines;
    
    
    
@@ -68,35 +77,46 @@ package body TextaccesseTextSetzenSFML is
    
    procedure Baumenü
    is begin
-   
-      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ÜberschriftAccess,
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Frage (TextnummernKonstanten.FrageBauprojekt)));
-      
-      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.GebäudetextAccess (0),
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextnummernKonstanten.ZeugGebäude)));
       
       GebäudetextSchleife:
-      for GebäudetextSchleifenwert in StadtDatentypen.GebäudeID'Range loop
+      for GebäudetextSchleifenwert in TextaccessVariablen.GebäudetextAccessArray'Range loop
          
-         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.GebäudetextAccess (GebäudetextSchleifenwert),
-                                            str  => To_Wide_Wide_String (Source => GlobaleTexte.Gebäude (2 * Positive (GebäudetextSchleifenwert) - 1)));
+         case
+           GebäudetextSchleifenwert
+         is
+            when TextaccessVariablen.GebäudetextAccessArray'First =>
+               Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.GebäudetextAccess (GebäudetextSchleifenwert),
+                                                  str  => To_Wide_Wide_String (Source => GlobaleTexte.Frage (TextnummernKonstanten.FrageBauprojekt)));
+               
+            when others =>
+               Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.GebäudetextAccess (GebäudetextSchleifenwert),
+                                                  str  => To_Wide_Wide_String (Source => GlobaleTexte.Gebäude (2 * Positive (GebäudetextSchleifenwert) - 1)));
          
-         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.GebäudezusatztextAccess (GebäudetextSchleifenwert),
-                                            str  => To_Wide_Wide_String (Source => GlobaleTexte.Gebäude (2 * Positive (GebäudetextSchleifenwert))));
+               Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.GebäudezusatztextAccess (GebäudetextSchleifenwert),
+                                                  str  => To_Wide_Wide_String (Source => GlobaleTexte.Gebäude (2 * Positive (GebäudetextSchleifenwert))));
+         end case;
             
       end loop GebäudetextSchleife;
       
-      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitentextAccess (0),
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextnummernKonstanten.ZeugEinheiten)));
+      
       
       EinheitentextSchleife:
-      for EinheitentextSchleifenwert in EinheitenDatentypen.EinheitenID'Range loop
-            
-         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitentextAccess (EinheitentextSchleifenwert),
-                                            str  => To_Wide_Wide_String (Source => GlobaleTexte.Einheiten (2 * Positive (EinheitentextSchleifenwert) - 1)));
+      for EinheitentextSchleifenwert in TextaccessVariablen.EinheitentextAccessArray'Range loop
          
-         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitenzusatztextAccess (EinheitentextSchleifenwert),
-                                            str  => To_Wide_Wide_String (Source => GlobaleTexte.Einheiten (2 * Positive (EinheitentextSchleifenwert))));
+         case
+           EinheitentextSchleifenwert
+         is
+            when TextaccessVariablen.EinheitentextAccessArray'First =>
+               Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitentextAccess (EinheitentextSchleifenwert),
+                                                  str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextnummernKonstanten.ZeugEinheiten)));
+               
+            when others =>
+               Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitentextAccess (EinheitentextSchleifenwert),
+                                                  str  => To_Wide_Wide_String (Source => GlobaleTexte.Einheiten (2 * Positive (EinheitentextSchleifenwert) - 1)));
+         
+               Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitenzusatztextAccess (EinheitentextSchleifenwert),
+                                                  str  => To_Wide_Wide_String (Source => GlobaleTexte.Einheiten (2 * Positive (EinheitentextSchleifenwert))));
+         end case;
          
       end loop EinheitentextSchleife;
       

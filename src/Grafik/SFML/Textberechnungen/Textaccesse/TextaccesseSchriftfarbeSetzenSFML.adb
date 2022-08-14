@@ -4,10 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 with Sf.Graphics.Text;
 
 with TextaccessVariablen;
-with StadtDatentypen;
-with EinheitenDatentypen;
-with ForschungKonstanten;
-with ForschungenDatentypen;
 
 with TexteinstellungenSFML;
 
@@ -16,6 +12,7 @@ package body TextaccesseSchriftfarbeSetzenSFML is
    procedure SchriftfarbeSetzen
    is begin
       
+      Allgemeines;
       MenüsEinfach;
       ZusatztextRassenmenü;
       ZusatztextKartengröße;
@@ -34,6 +31,19 @@ package body TextaccesseSchriftfarbeSetzenSFML is
       Ladezeiten;
       
    end SchriftfarbeSetzen;
+   
+   
+   
+   procedure Allgemeines
+   is begin
+        
+      Sf.Graphics.Text.setColor (text => TextaccessVariablen.ÜberschriftAccess,
+                                 color => TexteinstellungenSFML.Schriftfarben.FarbeÜberschrift);
+      
+      Sf.Graphics.Text.setColor (text => TextaccessVariablen.VersionsnummerAccess,
+                                 color => TexteinstellungenSFML.Schriftfarben.FarbeSonstigerText);
+      
+   end Allgemeines;
    
    
    
@@ -88,36 +98,45 @@ package body TextaccesseSchriftfarbeSetzenSFML is
    procedure Baumenü
    is begin
       
-      Sf.Graphics.Text.setColor (text => TextaccessVariablen.ÜberschriftAccess,
-                                 color => TexteinstellungenSFML.Schriftfarben.FarbeÜberschrift);
-      
-      Sf.Graphics.Text.setColor (text => TextaccessVariablen.GebäudetextAccess (0),
-                                 color => TexteinstellungenSFML.Schriftfarben.FarbeÜberschrift);
-      
       GebäudetextSchleife:
-      for GebäudetextSchleifenwert in StadtDatentypen.GebäudeID'Range loop
-            
-         Sf.Graphics.Text.setColor (text => TextaccessVariablen.GebäudetextAccess (GebäudetextSchleifenwert),
-                                    color => TexteinstellungenSFML.Schriftfarben.FarbeStandardText);
-         
-         Sf.Graphics.Text.setColor (text => TextaccessVariablen.GebäudezusatztextAccess (GebäudetextSchleifenwert),
-                                    color => TexteinstellungenSFML.Schriftfarben.FarbeStandardText);
+      for GebäudetextSchleifenwert in TextaccessVariablen.GebäudetextAccessArray'Range loop
+                     
+         case
+           GebäudetextSchleifenwert
+         is
+            when TextaccessVariablen.GebäudetextAccessArray'First =>
+               Sf.Graphics.Text.setColor (text => TextaccessVariablen.GebäudetextAccess (GebäudetextSchleifenwert),
+                                          color => TexteinstellungenSFML.Schriftfarben.FarbeÜberschrift);
+               
+            when others =>
+               Sf.Graphics.Text.setColor (text => TextaccessVariablen.GebäudetextAccess (GebäudetextSchleifenwert),
+                                          color => TexteinstellungenSFML.Schriftfarben.FarbeStandardText);
+               
+               Sf.Graphics.Text.setColor (text => TextaccessVariablen.GebäudezusatztextAccess (GebäudetextSchleifenwert),
+                                          color => TexteinstellungenSFML.Schriftfarben.FarbeStandardText);
+         end case;
             
       end loop GebäudetextSchleife;
       
       
-      
-      Sf.Graphics.Text.setColor (text => TextaccessVariablen.EinheitentextAccess (0),
-                                 color => TexteinstellungenSFML.Schriftfarben.FarbeÜberschrift);
-      
-      EinheitentextSchleife:
-      for EinheitentextSchleifenwert in EinheitenDatentypen.EinheitenID'Range loop
             
-         Sf.Graphics.Text.setColor (text => TextaccessVariablen.EinheitentextAccess (EinheitentextSchleifenwert),
-                                    color => TexteinstellungenSFML.Schriftfarben.FarbeStandardText);
-         
-         Sf.Graphics.Text.setColor (text => TextaccessVariablen.EinheitenzusatztextAccess (EinheitentextSchleifenwert),
-                                    color => TexteinstellungenSFML.Schriftfarben.FarbeStandardText);
+      EinheitentextSchleife:
+      for EinheitentextSchleifenwert in TextaccessVariablen.EinheitentextAccess'Range loop
+            
+         case
+           EinheitentextSchleifenwert
+         is
+            when TextaccessVariablen.EinheitentextAccess'First =>
+               Sf.Graphics.Text.setColor (text => TextaccessVariablen.EinheitentextAccess (EinheitentextSchleifenwert),
+                                          color => TexteinstellungenSFML.Schriftfarben.FarbeÜberschrift);
+               
+            when others =>
+               Sf.Graphics.Text.setColor (text => TextaccessVariablen.EinheitentextAccess (EinheitentextSchleifenwert),
+                                          color => TexteinstellungenSFML.Schriftfarben.FarbeStandardText);
+               
+               Sf.Graphics.Text.setColor (text => TextaccessVariablen.EinheitenzusatztextAccess (EinheitentextSchleifenwert),
+                                          color => TexteinstellungenSFML.Schriftfarben.FarbeStandardText);
+         end case;
          
       end loop EinheitentextSchleife;
       
@@ -127,15 +146,24 @@ package body TextaccesseSchriftfarbeSetzenSFML is
    
    procedure Forschungsmenü
    is begin
-      
-      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.ForschungsmenüAccess (ForschungKonstanten.LeerForschung),
-                                 color => TexteinstellungenSFML.Schriftfarben.FarbeÜberschrift);
-                  
+                        
       ForschungenSchleife:
-      for ForschungSchleifenwert in ForschungenDatentypen.ForschungID'Range loop
+      for ForschungSchleifenwert in TextaccessVariablen.ForschungsmenüAccessArray'Range loop
          
-         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.ForschungsmenüAccess (ForschungSchleifenwert),
-                                    color => TexteinstellungenSFML.Schriftfarben.FarbeStandardText);
+         case
+           ForschungSchleifenwert
+         is
+            when TextaccessVariablen.ForschungsmenüAccessArray'First =>
+               Sf.Graphics.Text.setColor (text  => TextaccessVariablen.ForschungsmenüAccess (ForschungSchleifenwert),
+                                          color => TexteinstellungenSFML.Schriftfarben.FarbeÜberschrift);
+               
+            when others =>
+               Sf.Graphics.Text.setColor (text  => TextaccessVariablen.ForschungsmenüAccess (ForschungSchleifenwert),
+                                          color => TexteinstellungenSFML.Schriftfarben.FarbeStandardText);
+         
+               Sf.Graphics.Text.setColor (text  => TextaccessVariablen.ForschungsmenüAccess (ForschungSchleifenwert),
+                                          color => TexteinstellungenSFML.Schriftfarben.FarbeStandardText);
+         end case;
          
       end loop ForschungenSchleife;
       

@@ -9,18 +9,15 @@ package SystemKonstanten is
 
    LängstesMenü : constant Positive := 21;
 
-   -- Diese Konstanten nicht nur für die Menüarrays anlegen sondern für alle? äöü
    type EndeMenüArray is array (MenueDatentypen.Welches_Menü_Vorhanden_Enum'Range) of Positive;
-   -- Beim Ändern dieser Werte auch immer auf verwendete Variablen/Konstanten in anderen Dateien achten.
-   -- Wenn möglich für Sonderfälle rückwärts zählen, wie z. B. beim Rückgabesystem oder beim Zusatztext für das Kartengrößenmenü.
    EndeMenü : constant EndeMenüArray := (
                                            -- Einfache Auswahl, keine Überschrift und kein Zusatztext.
-                                           MenueDatentypen.Haupt_Menü_Enum              => 8,
+                                           MenueDatentypen.Haupt_Menü_Enum              => 7,
                                            MenueDatentypen.Spiel_Menü_Enum              => 6,
 
                                            -- Einfache Auswahl und kein Zusatztext.
                                            MenueDatentypen.Optionen_Menü_Enum           => 7,
-                                           MenueDatentypen.Einstellungen_Menü_Enum      => 11,
+                                           MenueDatentypen.Einstellungen_Menü_Enum      => 12,
                                            MenueDatentypen.Editoren_Menü_Enum           => 17,
                                            MenueDatentypen.Sonstiges_Menü_Enum          => 7,
                                            MenueDatentypen.Grafik_Menü_Enum             => 8,
@@ -52,7 +49,7 @@ package SystemKonstanten is
 
                                                  -- Einfache Auswahl und kein Zusatztext.
                                                  MenueDatentypen.Optionen_Menü_Enum           => 0,
-                                                 MenueDatentypen.Einstellungen_Menü_Enum      => 0,
+                                                 MenueDatentypen.Einstellungen_Menü_Enum      => 1,
                                                  MenueDatentypen.Editoren_Menü_Enum           => 0,
                                                  MenueDatentypen.Sonstiges_Menü_Enum          => 0,
                                                  MenueDatentypen.Grafik_Menü_Enum             => 0,
@@ -79,7 +76,7 @@ package SystemKonstanten is
    EndeAbzugLogik : constant EndeAbzugArray := (
                                                 -- Einfache Auswahl, keine Überschrift und kein Zusatztext.
                                                 MenueDatentypen.Haupt_Menü_Enum              => 1,
-                                                MenueDatentypen.Spiel_Menü_Enum              => 0,
+                                                MenueDatentypen.Spiel_Menü_Enum              => 1,
 
                                                 -- Einfache Auswahl und kein Zusatztext.
                                                 MenueDatentypen.Optionen_Menü_Enum           => 1,
