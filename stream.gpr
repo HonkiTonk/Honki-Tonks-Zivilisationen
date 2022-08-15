@@ -7,13 +7,15 @@ project Stream is
    for Create_Missing_Dirs use "True";
    for Exec_Dir use "Spiel";
    for Main use ("Start.adb");
+   for Library_Dir use "";
+   for Externally_Built use "True";
 
    package Naming is
       for Casing use "MixedCase";
    end Naming;
 
    package Compiler is
-      for Switches ("ada") use ("-gnatW8", "-fstack-check", "-gnato", "-gnatf", "-gnat2020", "-O3", "-gnatVacdefimoprst", 
+      for Switches ("ada") use ("-gnatW8", "-fstack-check", "-gnato", "-gnatf", "-gnat2020", "-gnatVacdefimoprst", 
          "-gnatw.a.b.c.d.f.g.h.i.j.k.l.m.n.o.p.q.r.s.t.v.w.x.zcdghiklmopqrtuvwxyz_c_re.u_pajf", "-gnatyACOSadefhiklnprsxM222L7");
    end Compiler;
 
@@ -33,7 +35,6 @@ project Stream is
    end Prove;
 
    package Linker is
-      for Linker_Options use ();
    end Linker;
 
 end Stream;

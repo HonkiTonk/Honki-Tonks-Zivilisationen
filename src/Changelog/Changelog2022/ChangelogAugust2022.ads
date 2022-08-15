@@ -105,16 +105,16 @@ package ChangelogAugust2022 is
    
    
 
-   -- Version 0.03. => 0.03. (16.08.2022):
+   -- Version 0.03.1300 => 0.03. (16.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.1285 => 0.03. (15.08.2022):
+   -- Version 0.03.1285 => 0.03.1300 (15.08.2022):
    
-   -- 
+   -- Versucht das Spiel mit statische C/SFML Versionen zum Kompilieren zu bringen.
    -- Kleinigkeiten korrigiert.
    
    
