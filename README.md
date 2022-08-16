@@ -1,4 +1,4 @@
-# Civ-Klon - Version: 0.03.1300
+# Civ-Klon - Version: 0.03.1315
 4X-Rundenstrategiespiels im Stil von Civilization 1.
 Geschrieben in Ada mit der Standardbibliothek und [ASFML](https://github.com/mgrojo/ASFML). Wird nur unter Linux intensiv getestet, sollte aber auch unter anderen Betriebssystemen problemlos funktionieren.
 
@@ -7,16 +7,8 @@ Written in Ada using the Standard Library and [ASFML](https://github.com/mgrojo/
 
 Mich unterstützen/Support me:
 
-[YouTube](https://www.youtube.com/user/tpHonkiTonk)
+[YouTube](https://www.youtube.com/user/tpHonkiTonk), [Twitch](https://www.twitch.tv/tphonkitonk)
 
-[Twitch](https://www.twitch.tv/tphonkitonk)
+[PayPal](https://www.paypal.com/paypalme/tpHonkiTonk), [Patreon](https://www.patreon.com/HonkiTonk), [Tipeee](https://www.tipeeestream.com/tphonkitonk/donation)
 
-[PayPal](https://www.paypal.com/paypalme/tpHonkiTonk)
-
-[Patreon](https://www.patreon.com/HonkiTonk)
-
-[Tipeee](https://www.tipeeestream.com/tphonkitonk/donation)
-
-[Amazon](https://www.amazon.de/registry/wishlist/2DNQHH9AI6JGR)
-
-[Steam](https://steamcommunity.com/profiles/76561197989126693/wishlist)
+[Amazon](https://www.amazon.de/registry/wishlist/2DNQHH9AI6JGR), [Steam](https://steamcommunity.com/profiles/76561197989126693/wishlist)

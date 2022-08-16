@@ -98,16 +98,16 @@ package ChangelogAugust2022 is
    
    
 
-   -- Version 0.03. => 0.03. (17.08.2022):
+   -- Version 0.03.1315 => 0.03. (17.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.1300 => 0.03. (16.08.2022):
+   -- Version 0.03.1300 => 0.03.1315 (16.08.2022):
    
-   -- 
+   -- Einen weiteren Tag damit verbracht statische Versionen der C/SFML zu kompilieren und einzubinden.
    -- Kleinigkeiten korrigiert.
    
    

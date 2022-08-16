@@ -7,8 +7,6 @@ project Stream is
    for Create_Missing_Dirs use "True";
    for Exec_Dir use "Spiel";
    for Main use ("Start.adb");
-   for Library_Dir use "";
-   for Externally_Built use "True";
 
    package Naming is
       for Casing use "MixedCase";
@@ -33,9 +31,6 @@ project Stream is
    package Prove is
       for Proof_Switches ("ada") use ("-j4", "--proof-warnings");
    end Prove;
-
-   package Linker is
-   end Linker;
 
 end Stream;
 
