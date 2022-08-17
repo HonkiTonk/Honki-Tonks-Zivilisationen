@@ -17,6 +17,7 @@ package body TextaccesseTextSetzenSFML is
    procedure TextSetzen
    is begin
       
+      Allgemeines;
       MenüsEinfach;
       ZusatztextRassenmenü;
       ZusatztextKartengröße;

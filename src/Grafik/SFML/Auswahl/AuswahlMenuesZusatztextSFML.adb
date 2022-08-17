@@ -7,9 +7,12 @@ with AnzeigeZusatztextKartenformSFML;
 
 package body AuswahlMenuesZusatztextSFML is
 
-   procedure MenüsZusatztextAufteilung
+   function MenüsZusatztextAufteilung
      (WelchesMenüExtern : in MenueDatentypen.Menü_Zusatztext_Enum;
-      AktuelleAuswahlExtern : in Natural)
+      AktuelleAuswahlExtern : in Natural;
+      ViewflächeExtern : in Sf.System.Vector2.sfVector2f;
+      TextpositionExtern : in Sf.System.Vector2.sfVector2f)
+      return Sf.System.Vector2.sfVector2f
    is begin
       
       case
@@ -30,11 +33,15 @@ package body AuswahlMenuesZusatztextSFML is
             if
               AktuelleAuswahlExtern > AnzahlKartengrößen
             then
-               AnzeigeZusatztextKartengroesseSFML.AnzeigeZusatztextKartengröße (AktuelleAuswahlExtern => 0);
+               AktuelleAuswahl := 0;
                
             else
-               AnzeigeZusatztextKartengroesseSFML.AnzeigeZusatztextKartengröße (AktuelleAuswahlExtern => AktuelleAuswahlExtern);
+               AktuelleAuswahl := AktuelleAuswahlExtern;
             end if;
+            
+            return AnzeigeZusatztextKartengroesseSFML.AnzeigeZusatztextKartengröße (AktuelleAuswahlExtern => AktuelleAuswahl,
+                                                                                    ViewflächeExtern      => ViewflächeExtern,
+                                                                                    TextpositionExtern    => TextpositionExtern);
             
          when MenueDatentypen.Kartenform_Menü_Enum =>
             AnzeigeZusatztextKartenformSFML.AnzeigeZusatztextKartenform;
@@ -43,15 +50,8 @@ package body AuswahlMenuesZusatztextSFML is
             null;
       end case;
       
+      return TextpositionExtern;
+      
    end MenüsZusatztextAufteilung;
-   
-   
-   
-   procedure MenüsZusatztextZurücksetzen
-   is begin
-      
-      null;
-      
-   end MenüsZusatztextZurücksetzen;
 
 end AuswahlMenuesZusatztextSFML;

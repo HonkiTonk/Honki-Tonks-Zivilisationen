@@ -31,17 +31,16 @@ package AuswahlMenuesEinfachSFML is
 
 private
 
-   Startbereich : Positive;
-   Textbereich : Positive;
+   StartpunktTextschleifen : constant Positive := 2;
    AktuelleEinstellung : Positive;
+   Ende : Positive;
 
+   PositionVersionsnummer : Float;
    AktuelleTextbreite : Float;
    NeueTextbreite : Float;
-   PositionVersionsnummer : Float;
 
    Farbe : Sf.Graphics.Color.sfColor;
 
-   StartpositionText : constant Sf.System.Vector2.sfVector2f := (5.00, 5.00);
    Rechenwert : Sf.System.Vector2.sfVector2f;
 
    AktuelleAuswahlRückgabewert : GrafikRecords.AuswahlTextpositionRecord;
@@ -52,9 +51,11 @@ private
       TextbereichExtern : in Positive);
 
    procedure FarbeAktuelleEinstellungenFestlegen
-     (WelchesMenüExtern : in MenueDatentypen.Menü_Einstellung_Anzeigen_Enum);
+     (WelchesMenüExtern : in MenueDatentypen.Menü_Einstellung_Anzeigen_Enum;
+      TextbereichExtern : in Positive);
 
-   procedure FarbeAusgewählteRassenFestlegen;
+   procedure FarbeAusgewählteRassenFestlegen
+     (TextbereichExtern : in Positive);
 
    procedure FarbeAktuelleAuswahlFestlegen
      (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum;

@@ -3,10 +3,12 @@ pragma Warnings (Off, "*array aggregate*");
 
 package body AuswahlMenueSteuerungSFML is
 
-   procedure AuswahlMenüSteuerung
+   function AuswahlMenüSteuerung
+     (ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
+      return Sf.System.Vector2.sfVector2f
    is begin
       
-      null;
+      return ViewflächeExtern;
       
    end AuswahlMenüSteuerung;
 

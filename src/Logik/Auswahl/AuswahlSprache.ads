@@ -3,8 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-private with Sf.Graphics;
-private with Sf.Graphics.Text;
 private with Sf.System.Vector2;
 
 private with TastenbelegungDatentypen;
@@ -40,9 +38,7 @@ private
    Befehl : TastenbelegungDatentypen.Tastenbelegung_Enum;
    
    MehrSprachen : constant Unbounded_Wide_Wide_String := To_Unbounded_Wide_Wide_String (Source => "+++++");
-   
-   TextAccess : Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
-   
+      
    Mausposition : Sf.System.Vector2.sfVector2f;
    
    procedure SprachenListeFestlegen;

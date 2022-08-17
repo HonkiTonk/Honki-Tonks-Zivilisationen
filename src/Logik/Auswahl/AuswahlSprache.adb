@@ -7,10 +7,8 @@ with GrafikDatentypen;
 with OptionenVariablen;
 
 with Eingabe;
-with TexteinstellungenSFML;
 with Fehler;
 with NachGrafiktask;
-with TextberechnungenHoeheSFML;
 with NachLogiktask;
 
 package body AuswahlSprache is
@@ -181,30 +179,6 @@ package body AuswahlSprache is
      return Unbounded_Wide_Wide_String
    is begin
       
-      case
-        SchriftartFestgelegt
-      is
-         when False =>
-            Sf.Graphics.Text.setFont (text => TextAccess,
-                                      font => TexteinstellungenSFML.SchriftartAccess);
-            SchriftartFestgelegt := True;
-            
-         when True =>
-            null;
-      end case;
-      
-      case
-        SchriftgrößeFestgelegt
-      is
-         when False =>
-            Sf.Graphics.Text.setCharacterSize (text => TextAccess,
-                                               size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
-            SchriftgrößeFestgelegt := True;
-            
-         when True =>
-            null;
-      end case;
-      
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Sprache_Enum;
       
       AuswahlSchleife:
@@ -267,10 +241,7 @@ package body AuswahlSprache is
       
       MausZeigerSchleife:
       for ZeileSchleifenwert in AktuelleSprachen'First .. Ende loop
-         
-         Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                            str  => To_Wide_Wide_String (Source => AktuelleSprachen (ZeileSchleifenwert)));
-         
+                  
          if
            AktuelleSprachen (ZeileSchleifenwert) = MehrSprachen
          then
@@ -281,13 +252,13 @@ package body AuswahlSprache is
          end if;
          
          if
-           Mausposition.y in TextPositionMaus .. TextPositionMaus + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height
+           Mausposition.y in TextPositionMaus .. TextPositionMaus
          then
             AktuelleAuswahl := ZeileSchleifenwert;
             return;
          
          else
-            TextPositionMaus := TextPositionMaus + TextberechnungenHoeheSFML.KleinerZeilenabstand;
+            TextPositionMaus := TextPositionMaus + 1.00;
          end if;
          
       end loop MausZeigerSchleife;

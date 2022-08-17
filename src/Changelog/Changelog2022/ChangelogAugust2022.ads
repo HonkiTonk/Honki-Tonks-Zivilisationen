@@ -91,17 +91,22 @@ package ChangelogAugust2022 is
    
    
 
-   -- Version 0.03. => 0.03. (18.08.2022):
+   -- Version 0.03.1370 => 0.03. (18.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.1315 => 0.03. (17.08.2022):
+   -- Version 0.03.1315 => 0.03.1380 (17.08.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Erfolgreich statische Versionen der C/SFML kompiliert und eingebunden.
+   -- Verbessertes Menüsystem funktioniert jetzt korrekt.
+   -- Anzeige des verbesserten Menüsystem funktioniert jetzt in den Standardmenüs fehlerfrei.
+   -- Zusatzanzeige der kartengröße funktioniert jetzt fehlerfrei.
+   -- Fehler behoben der zur Anzeige eines falschen Hintergrunds führte.
+   -- Sehr Unnötigen Code gelöscht.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

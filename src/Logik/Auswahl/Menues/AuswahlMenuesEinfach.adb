@@ -27,7 +27,7 @@ package body AuswahlMenuesEinfach is
       NachGrafiktask.AktuellesMenü := WelchesMenüExtern;
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Menüs_Enum;
                  
-      Ende := SystemKonstanten.EndeMenü (WelchesMenüExtern);
+      Ende := SystemKonstanten.EndeAbzugGrafik (WelchesMenüExtern) - 1;
       
       Ausgewählt := Auswahl (WelchesMenüExtern => WelchesMenüExtern,
                               AnfangExtern      => Anfang,
@@ -35,16 +35,16 @@ package body AuswahlMenuesEinfach is
    
      -- case
      --   Ausgewählt
-    --  is
-    --     when SystemKonstanten.LeerAuswahl =>
+     --  is
+     --     when SystemKonstanten.LeerAuswahl =>
      --       RückgabeWert := RueckgabeDatentypen.Zurück_Enum;
             
-     --    when others =>
-            RückgabeWert := RueckgabeMenues.RückgabeMenüs (AnfangExtern          => Anfang,
-                                                              EndeExtern            => Ende,
-                                                              AktuelleAuswahlExtern => Ausgewählt,
-                                                              WelchesMenüExtern     => WelchesMenüExtern);
-     -- end case;
+      --    when others =>
+      RückgabeWert := RueckgabeMenues.RückgabeMenüs (AnfangExtern          => Anfang,
+                                                        EndeExtern            => Ende,
+                                                        AktuelleAuswahlExtern => Ausgewählt,
+                                                        WelchesMenüExtern     => WelchesMenüExtern);
+      -- end case;
       
       NachGrafiktask.AktuellesMenü := MenueDatentypen.Leer_Menü_Enum;
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
@@ -68,7 +68,8 @@ package body AuswahlMenuesEinfach is
          AktuelleAuswahl := MausAuswahl (WelchesMenüExtern => WelchesMenüExtern,
                                          AnfangExtern      => AnfangExtern,
                                          EndeExtern        => EndeExtern);
-      
+         NachGrafiktask.AktuelleAuswahl := AktuelleAuswahl;
+         
          case
            Eingabe.Tastenwert
          is
@@ -79,6 +80,7 @@ package body AuswahlMenuesEinfach is
                   null;
                   
                else
+                  NachGrafiktask.AktuelleAuswahl := SystemKonstanten.LeerAuswahl;
                   return AktuelleAuswahl;
                end if;
                

@@ -24,10 +24,9 @@ package body AnzeigeZusatztextRassenmenueSFML is
       
       RasseAnzeigen := RassenDatentypen.Rassen_Verwendet_Enum'Val (AktuelleAuswahlExtern);
       
-      LinksRechts := Textbearbeitung (AktuelleRasseExtern   => RasseAnzeigen,
-                                      AktuelleAuswahlExtern => AktuelleAuswahlExtern);
+      Textbearbeitung (AktuelleRasseExtern => RasseAnzeigen);
       
-      HintergrundSFML.TextHintergrund (LinksRechtsExtern        => LinksRechts,
+      HintergrundSFML.TextHintergrund (LinksRechtsExtern        => False,
                                        AbstandÜberschriftExtern => InteraktionAuswahl.PositionenMenüeinträge (MenueDatentypen.Rassen_Menü_Enum, 1).top,
                                        VerhältnisTextfeldExtern => VerhältnisTextfeld,
                                        StartpositionExtern      => PositionHintergrund.x);
@@ -118,10 +117,8 @@ package body AnzeigeZusatztextRassenmenueSFML is
    
    
    
-   function Textbearbeitung
-     (AktuelleRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      AktuelleAuswahlExtern : in Positive)
-      return Boolean
+   procedure Textbearbeitung
+     (AktuelleRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       RassenSchleife:
@@ -134,23 +131,11 @@ package body AnzeigeZusatztextRassenmenueSFML is
          
       end loop RassenSchleife;
       
-      case
-        AktuelleAuswahlExtern mod 2
-      is
-         when 0 =>
-            PositionHintergrund := (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x / 100.00, InteraktionAuswahl.PositionenMenüeinträge (MenueDatentypen.Rassen_Menü_Enum, 1).top);
-            Rückgabewert := False;
-               
-         when others =>
-            PositionHintergrund := ((GrafikEinstellungenSFML.AktuelleFensterAuflösung.x + GrafikEinstellungenSFML.AktuelleFensterAuflösung.x / 100.00) / 2.00,
-                                    InteraktionAuswahl.PositionenMenüeinträge (MenueDatentypen.Rassen_Menü_Enum, 1).top);
-            Rückgabewert := True;
-      end case;
+      PositionHintergrund := ((GrafikEinstellungenSFML.AktuelleFensterAuflösung.x + GrafikEinstellungenSFML.AktuelleFensterAuflösung.x / 100.00) / 2.00,
+                              InteraktionAuswahl.PositionenMenüeinträge (MenueDatentypen.Rassen_Menü_Enum, 1).top);
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ZusatztextRassenAccess (AktuelleRasseExtern),
                                     position => (PositionHintergrund.x + AnfangsabstandExtratext, PositionHintergrund.y));
-      
-      return Rückgabewert;
       
    end Textbearbeitung;
 

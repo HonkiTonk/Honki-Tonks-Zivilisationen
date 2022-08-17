@@ -17,8 +17,10 @@ package body AuswahlMenuesSFML is
    procedure AuswahlMenüsAufteilung
      (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Enum)
    is begin
-            
-      Viewfläche := ViewsEinstellenSFML.ViewflächeAuflösungAnpassen (ViewflächeExtern => Viewfläche);
+      
+      -- Irgendwann mal herausfinden warum ich das zweimal aufrufen muss um das richtige Ergebnis zu bekommen. äöü
+     Viewfläche := ViewsEinstellenSFML.ViewflächeAuflösungAnpassen (ViewflächeExtern => Viewfläche);
+     Viewfläche := ViewsEinstellenSFML.ViewflächeAuflösungAnpassen (ViewflächeExtern => Viewfläche);
       
       ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.MenüviewAccess,
                                           GrößeExtern          => Viewfläche,
@@ -38,12 +40,15 @@ package body AuswahlMenuesSFML is
                                                                           ViewflächeExtern  => Viewfläche);
             
          when MenueDatentypen.Kartenform_Menü_Enum =>
-            AuswahlMenueKartenformSFML.AuswahlMenüKartenform;
+            Viewfläche := AuswahlMenueKartenformSFML.AuswahlMenüKartenform (ViewflächeExtern => Viewfläche);
+            
+            -- when MenueDatentypen.Rassen_Menü_Enum =>
+            -- Gibt es da noch eine Lösung die in die anderen Menüs mit rein passt. Vor allem wegen dem Zusatztext scheint das problematisch. äöü
             
          when MenueDatentypen.Steuerung_Menü_Enum =>
-            AuswahlMenueSteuerungSFML.AuswahlMenüSteuerung;
+            Viewfläche := AuswahlMenueSteuerungSFML.AuswahlMenüSteuerung (ViewflächeExtern => Viewfläche);
       end case;
-            
+      
    end AuswahlMenüsAufteilung;
 
 end AuswahlMenuesSFML;

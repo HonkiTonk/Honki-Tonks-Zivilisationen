@@ -9,7 +9,7 @@ with ViewsSFML;
 
 package body ViewsEinstellenSFML is
    
-   -- Kann später wahrscheinlich entfernt werden. äöü
+   -- Kann später entfernt werden. äöü
    procedure Standardview
    is begin
       

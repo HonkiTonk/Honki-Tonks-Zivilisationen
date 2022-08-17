@@ -11,8 +11,6 @@ with ForschungenDatentypen;
 
 package InteraktionAuswahl is
 
-   LetzteTextpositionKartengröße : Float;
-
    -- Immer das Längste verwenden.
    -- Wobei ein längeres Array hier auch keine Pobleme machen sollte? äöü
    -- Mit den aktuellen Prüfungen sollte doch sowieso immer nur der korrekte Bereich funktionieren, oder? äöü

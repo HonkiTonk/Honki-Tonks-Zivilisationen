@@ -1,14 +1,16 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-private with Sf.System.Vector2;
+with Sf.System.Vector2;
 
 private with KartenDatentypen;
 private with TextaccessVariablen;
 
 package AuswahlMenueKartenformSFML is
 
-   procedure AuswahlMenüKartenform;
+   function AuswahlMenüKartenform
+     (ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
+      return Sf.System.Vector2.sfVector2f;
 
 private
 

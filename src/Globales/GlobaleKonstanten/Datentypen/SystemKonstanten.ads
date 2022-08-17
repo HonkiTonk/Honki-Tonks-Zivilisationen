@@ -12,16 +12,16 @@ package SystemKonstanten is
    type EndeMenüArray is array (MenueDatentypen.Welches_Menü_Vorhanden_Enum'Range) of Positive;
    EndeMenü : constant EndeMenüArray := (
                                            -- Einfache Auswahl, keine Überschrift und kein Zusatztext.
-                                           MenueDatentypen.Haupt_Menü_Enum              => 7,
-                                           MenueDatentypen.Spiel_Menü_Enum              => 6,
+                                           MenueDatentypen.Haupt_Menü_Enum              => 8,
+                                           MenueDatentypen.Spiel_Menü_Enum              => 7,
 
                                            -- Einfache Auswahl und kein Zusatztext.
                                            MenueDatentypen.Optionen_Menü_Enum           => 7,
                                            MenueDatentypen.Einstellungen_Menü_Enum      => 12,
-                                           MenueDatentypen.Editoren_Menü_Enum           => 17,
+                                           MenueDatentypen.Editoren_Menü_Enum           => 9,
                                            MenueDatentypen.Sonstiges_Menü_Enum          => 7,
                                            MenueDatentypen.Grafik_Menü_Enum             => 8,
-                                           MenueDatentypen.Sound_Menü_Enum              => 7,
+                                           MenueDatentypen.Sound_Menü_Enum              => 4,
                                            MenueDatentypen.Debug_Menü_Enum              => 9,
 
                                            MenueDatentypen.Kartenart_Menü_Enum          => 9,
@@ -38,70 +38,39 @@ package SystemKonstanten is
                                            MenueDatentypen.Kartenform_Menü_Enum         => 13,
 
                                            -- Unsortiert.
-                                           MenueDatentypen.Steuerung_Menü_Enum          => 91
+                                           MenueDatentypen.Steuerung_Menü_Enum          => 46
                                           );
 
-   type EndeAbzugArray is array (EndeMenüArray'Range) of Natural;
+   type EndeAbzugArray is array (EndeMenüArray'Range) of Positive;
    EndeAbzugGrafik : constant EndeAbzugArray := (
                                                  -- Einfache Auswahl, keine Überschrift und kein Zusatztext.
-                                                 MenueDatentypen.Haupt_Menü_Enum              => 1,
-                                                 MenueDatentypen.Spiel_Menü_Enum              => 0,
+                                                 MenueDatentypen.Haupt_Menü_Enum              => EndeMenü (MenueDatentypen.Haupt_Menü_Enum),
+                                                 MenueDatentypen.Spiel_Menü_Enum              => EndeMenü (MenueDatentypen.Spiel_Menü_Enum),
 
                                                  -- Einfache Auswahl und kein Zusatztext.
-                                                 MenueDatentypen.Optionen_Menü_Enum           => 0,
-                                                 MenueDatentypen.Einstellungen_Menü_Enum      => 1,
-                                                 MenueDatentypen.Editoren_Menü_Enum           => 0,
-                                                 MenueDatentypen.Sonstiges_Menü_Enum          => 0,
-                                                 MenueDatentypen.Grafik_Menü_Enum             => 0,
-                                                 MenueDatentypen.Sound_Menü_Enum              => 0,
-                                                 MenueDatentypen.Debug_Menü_Enum              => 0,
+                                                 MenueDatentypen.Optionen_Menü_Enum           => EndeMenü (MenueDatentypen.Optionen_Menü_Enum),
+                                                 MenueDatentypen.Einstellungen_Menü_Enum      => EndeMenü (MenueDatentypen.Einstellungen_Menü_Enum),
+                                                 MenueDatentypen.Editoren_Menü_Enum           => EndeMenü (MenueDatentypen.Editoren_Menü_Enum),
+                                                 MenueDatentypen.Sonstiges_Menü_Enum          => EndeMenü (MenueDatentypen.Sonstiges_Menü_Enum),
+                                                 MenueDatentypen.Grafik_Menü_Enum             => EndeMenü (MenueDatentypen.Grafik_Menü_Enum),
+                                                 MenueDatentypen.Sound_Menü_Enum              => EndeMenü (MenueDatentypen.Sound_Menü_Enum),
+                                                 MenueDatentypen.Debug_Menü_Enum              => EndeMenü (MenueDatentypen.Debug_Menü_Enum),
 
-                                                 MenueDatentypen.Kartenart_Menü_Enum          => 0,
-                                                 MenueDatentypen.Kartentemperatur_Menü_Enum   => 0,
-                                                 MenueDatentypen.Kartenressourcen_Menü_Enum   => 0,
-                                                 MenueDatentypen.Schwierigkeitsgrad_Menü_Enum => 0,
+                                                 MenueDatentypen.Kartenart_Menü_Enum          => EndeMenü (MenueDatentypen.Kartenart_Menü_Enum),
+                                                 MenueDatentypen.Kartentemperatur_Menü_Enum   => EndeMenü (MenueDatentypen.Kartentemperatur_Menü_Enum),
+                                                 MenueDatentypen.Kartenressourcen_Menü_Enum   => EndeMenü (MenueDatentypen.Kartenressourcen_Menü_Enum),
+                                                 MenueDatentypen.Schwierigkeitsgrad_Menü_Enum => EndeMenü (MenueDatentypen.Schwierigkeitsgrad_Menü_Enum),
 
                                                  -- Einfache Auswahl.
-                                                 MenueDatentypen.Kartengröße_Menü_Enum        => 3,
-                                                 MenueDatentypen.Rassen_Menü_Enum             => 0,
-                                                 MenueDatentypen.Kartenpole_Menü_Enum         => 0,
+                                                 MenueDatentypen.Kartengröße_Menü_Enum        => 14,
+                                                 MenueDatentypen.Rassen_Menü_Enum             => EndeMenü (MenueDatentypen.Rassen_Menü_Enum),
+                                                 MenueDatentypen.Kartenpole_Menü_Enum         => EndeMenü (MenueDatentypen.Kartenpole_Menü_Enum),
 
                                                  -- Komplexe Auswahl.
-                                                 MenueDatentypen.Kartenform_Menü_Enum         => 0,
+                                                 MenueDatentypen.Kartenform_Menü_Enum         => EndeMenü (MenueDatentypen.Kartenform_Menü_Enum),
 
                                                  -- Unsortiert.
-                                                 MenueDatentypen.Steuerung_Menü_Enum          => 0
+                                                 MenueDatentypen.Steuerung_Menü_Enum          => EndeMenü (MenueDatentypen.Steuerung_Menü_Enum)
                                                 );
-
-   EndeAbzugLogik : constant EndeAbzugArray := (
-                                                -- Einfache Auswahl, keine Überschrift und kein Zusatztext.
-                                                MenueDatentypen.Haupt_Menü_Enum              => 1,
-                                                MenueDatentypen.Spiel_Menü_Enum              => 1,
-
-                                                -- Einfache Auswahl und kein Zusatztext.
-                                                MenueDatentypen.Optionen_Menü_Enum           => 1,
-                                                MenueDatentypen.Einstellungen_Menü_Enum      => 1,
-                                                MenueDatentypen.Editoren_Menü_Enum           => 1,
-                                                MenueDatentypen.Sonstiges_Menü_Enum          => 1,
-                                                MenueDatentypen.Grafik_Menü_Enum             => 1,
-                                                MenueDatentypen.Sound_Menü_Enum              => 1,
-                                                MenueDatentypen.Debug_Menü_Enum              => 1,
-
-                                                MenueDatentypen.Kartenart_Menü_Enum          => 1,
-                                                MenueDatentypen.Kartentemperatur_Menü_Enum   => 1,
-                                                MenueDatentypen.Kartenressourcen_Menü_Enum   => 1,
-                                                MenueDatentypen.Schwierigkeitsgrad_Menü_Enum => 1,
-
-                                                -- Einfache Auswahl.
-                                                MenueDatentypen.Kartengröße_Menü_Enum        => 3,
-                                                MenueDatentypen.Rassen_Menü_Enum             => 1,
-                                                MenueDatentypen.Kartenpole_Menü_Enum         => 1,
-
-                                                -- Komplexe Auswahl.
-                                                MenueDatentypen.Kartenform_Menü_Enum         => 5,
-
-                                                -- Unsortiert.
-                                                MenueDatentypen.Steuerung_Menü_Enum          => 1
-                                               );
 
 end SystemKonstanten;

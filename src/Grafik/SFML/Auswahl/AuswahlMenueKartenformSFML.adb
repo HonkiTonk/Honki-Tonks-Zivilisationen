@@ -14,16 +14,18 @@ with TextberechnungenBreiteSFML;
 with InteraktionAuswahl;
 with AuswahlMenuesStringsSetzen;
 with Fehler;
-with AuswahlMenuesEinfach;
 with AuswahlMenuesZusatztextSFML;
 with KartengeneratorVariablen;
 with TextberechnungenHoeheSFML;
 with TexteinstellungenSFML;
+with NachGrafiktask;
 
 package body AuswahlMenueKartenformSFML is
 
    -- Für Überarbeitungen siehe auch das gespeicherte Kartenformmerkblatt.
-   procedure AuswahlMenüKartenform
+   function AuswahlMenüKartenform
+     (ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
+      return Sf.System.Vector2.sfVector2f
    is begin
       
       AktuelleAuswahlRückgabewert := Textbearbeitung;
@@ -80,9 +82,13 @@ package body AuswahlMenueKartenformSFML is
             null;
             
          when others =>
-            AuswahlMenuesZusatztextSFML.MenüsZusatztextAufteilung (WelchesMenüExtern     => MenueDatentypen.Kartenform_Menü_Enum,
-                                                                    AktuelleAuswahlExtern => AktuelleAuswahlRückgabewert);
+            Textposition := AuswahlMenuesZusatztextSFML.MenüsZusatztextAufteilung (WelchesMenüExtern     => MenueDatentypen.Kartenform_Menü_Enum,
+                                                                                   AktuelleAuswahlExtern => AktuelleAuswahlRückgabewert,
+                                                                                   ViewflächeExtern      => (0.00, 0.00),
+                                                                                   TextpositionExtern    => (0.00, 0.00));
       end case;
+      
+      return ViewflächeExtern;
       
    end AuswahlMenüKartenform;
    
@@ -92,8 +98,7 @@ package body AuswahlMenueKartenformSFML is
      return Natural
    is begin
       
-      -- Auch mal NachGrafiktask umlagern. äöü
-      AktuelleAuswahl := AuswahlMenuesEinfach.AktuelleAuswahl;
+      AktuelleAuswahl := NachGrafiktask.AktuelleAuswahl;
       
       FarbeAktuelleAuswahlFestlegen (AktuelleAuswahlExtern => AktuelleAuswahl);
       
@@ -143,22 +148,22 @@ package body AuswahlMenueKartenformSFML is
             
             -- AktuelleAuswahl direkt die Werte 1/3 draufrechnen? Dann könnten diese Schleifen auch raus. äöü
          when 1 .. 2 =>
-            AEbeneSchleife:
+            EbeneSchleife:
             for EbeneSchleifenwert in 0 .. 1 loop
                                  
                Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KartenformauswahlAccess (Schleifenanpassung (AktuelleAuswahlExtern + Überschrift) + EbeneSchleifenwert),
                                           color => TexteinstellungenSFML.Schriftfarben.FarbeAusgewähltText);
                   
-            end loop AEbeneSchleife;
+            end loop EbeneSchleife;
             
          when 3 .. 6 =>
-            AAchsenSchleife:
+            AchsenSchleife:
             for AchsenSchleifenwert in 0 .. 3 loop
                                  
                Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KartenformauswahlAccess (Schleifenanpassung (AktuelleAuswahlExtern + Überschrift) + AchsenSchleifenwert),
                                           color => TexteinstellungenSFML.Schriftfarben.FarbeAusgewähltText);
                   
-            end loop AAchsenSchleife;
+            end loop AchsenSchleife;
             
          when others =>
             Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KartenformauswahlAccess (AktuelleAuswahlExtern + Überschrift),
@@ -229,15 +234,6 @@ package body AuswahlMenueKartenformSFML is
    is begin
             
       Textposition.y := GrafikEinstellungenSFML.AktuelleFensterAuflösung.y / 100.00;
-      
-      if
-        Textposition.y < 20.00
-      then
-         Textposition.y := 20.00;
-         
-      else
-         null;
-      end if;
       
       Textposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.KartenformauswahlAccess (Überschrift),
                                                                             ViewbreiteExtern => GrafikEinstellungenSFML.AktuelleFensterAuflösung.x);

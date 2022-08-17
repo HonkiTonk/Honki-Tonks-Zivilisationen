@@ -11,6 +11,7 @@ with Warnung;
 
 package body HintergrundSFML is
    
+   -- Das hier später entfernen? äöü
    procedure StandardHintergrund
      (HintergrundExtern : in GrafikDatentypen.Hintergrund_Texturen_Enum)
    is begin
@@ -43,16 +44,13 @@ package body HintergrundSFML is
       if
         EingeleseneTexturenSFML.HintergrundAccess (HintergrundExtern) /= null
       then
-         -- Brauch ich setPosition wenn ich einfach über den ganzen View gehe? äöü
-         -- Sf.Graphics.Sprite.setPosition (sprite   => HintergrundspriteAccess,
-         --                                 position => Nullposition);
-         Sf.Graphics.Sprite.scale (sprite  => HintergrundspriteAccess,
-                                   factors => TexturenSetzenSkalierenSFML.TexturskalierungVariabel (SpriteAccessExtern  => HintergrundspriteAccess,
+         Sf.Graphics.Sprite.scale (sprite  => MenüspriteAccess,
+                                   factors => TexturenSetzenSkalierenSFML.TexturskalierungVariabel (SpriteAccessExtern  => MenüspriteAccess,
                                                                                                     TextureAccessExtern => EingeleseneTexturenSFML.HintergrundAccess (HintergrundExtern),
                                                                                                     GrößeExtern         => AbmessungenExtern));
          
          Sf.Graphics.RenderWindow.drawSprite (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                              object       => HintergrundspriteAccess);
+                                              object       => MenüspriteAccess);
          
       else
          Warnung.GrafikWarnung (WarnmeldungExtern => "HintergrundSFML.MenüHintergrund - Hintergrund fehlt: " & HintergrundExtern'Wide_Wide_Image);
@@ -69,13 +67,13 @@ package body HintergrundSFML is
       if
         EingeleseneTexturenSFML.HintergrundAccess (GrafikDatentypen.Seitenleiste_Hintergrund_Enum) /= null
       then
-         Sf.Graphics.Sprite.scale (sprite  => HintergrundspriteAccess,
-                                   factors => TexturenSetzenSkalierenSFML.TexturskalierungVariabel (SpriteAccessExtern  => HintergrundspriteAccess,
+         Sf.Graphics.Sprite.scale (sprite  => SeitenleistespriteAccess,
+                                   factors => TexturenSetzenSkalierenSFML.TexturskalierungVariabel (SpriteAccessExtern  => SeitenleistespriteAccess,
                                                                                                     TextureAccessExtern => EingeleseneTexturenSFML.HintergrundAccess (GrafikDatentypen.Seitenleiste_Hintergrund_Enum),
                                                                                                     GrößeExtern         => AbmessungenExtern));
                                    
          Sf.Graphics.RenderWindow.drawSprite (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                              object       => HintergrundspriteAccess);
+                                              object       => SeitenleistespriteAccess);
          
       else
          Warnung.GrafikWarnung (WarnmeldungExtern => "HintergrundSFML.SeitenleisteHintergrund - Hintergrund fehlt: " & GrafikDatentypen.Seitenleiste_Hintergrund_Enum'Wide_Wide_Image);
@@ -107,16 +105,16 @@ package body HintergrundSFML is
                PositionHintergrund := (StartpositionExtern, AbstandÜberschriftExtern);
          end case;
          
-         Sf.Graphics.Sprite.setPosition (sprite   => HintergrundspriteAccess,
+         Sf.Graphics.Sprite.setPosition (sprite   => TextspriteAccess,
                                          position => PositionHintergrund);
          
-         Sf.Graphics.Sprite.scale (sprite  => HintergrundspriteAccess,
-                                   factors => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenTeilBild (SpriteAccessExtern  => HintergrundspriteAccess,
+         Sf.Graphics.Sprite.scale (sprite  => TextspriteAccess,
+                                   factors => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenTeilBild (SpriteAccessExtern  => TextspriteAccess,
                                                                                                            TextureAccessExtern => EingeleseneTexturenSFML.HintergrundAccess (GrafikDatentypen.Zusatz_Hintergrund_Enum),
                                                                                                            VerhältnisExtern    => VerhältnisTextfeldExtern));
          
          Sf.Graphics.RenderWindow.drawSprite (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                              object       => HintergrundspriteAccess);
+                                              object       => TextspriteAccess);
          
       else
          -- Später hier einen einfarbigen Hintergrund wie bei den Kartenfeldern einbauen. äöü

@@ -39,12 +39,10 @@ private
    type RassenTexteArray is array (TextaccessVariablen.ZusatztextRassenAccessArray'Range) of Unbounded_Wide_Wide_String;
    RassenTexte : RassenTexteArray;
 
+   procedure Textbearbeitung
+     (AktuelleRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
 
 
-   function Textbearbeitung
-     (AktuelleRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      AktuelleAuswahlExtern : in Positive)
-      return Boolean;
 
    function ZeilenumbruchEinbauen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;

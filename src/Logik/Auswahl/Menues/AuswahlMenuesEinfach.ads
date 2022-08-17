@@ -5,13 +5,10 @@ private with Sf.System.Vector2;
 
 with MenueDatentypen;
 with RueckgabeDatentypen;
-with SystemKonstanten;
+
+private with SystemKonstanten;
 
 package AuswahlMenuesEinfach is
-
-   AktuelleAuswahl : Natural := SystemKonstanten.LeerAuswahl;
-
-
 
    function AuswahlMenüsEinfach
      (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum)
@@ -21,6 +18,8 @@ private
 
    Anfang : constant Positive := 1;
    Ende : Positive;
+
+   AktuelleAuswahl : Natural := SystemKonstanten.LeerAuswahl;
    Ausgewählt : Natural;
 
    Eins : Float;

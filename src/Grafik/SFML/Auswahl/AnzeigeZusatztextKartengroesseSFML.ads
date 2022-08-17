@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-private with Sf.System.Vector2;
+with Sf.System.Vector2;
 
 private with KartenDatentypen;
 private with RueckgabeDatentypen;
@@ -10,12 +10,19 @@ private with UmwandlungenAdaNachEigenes;
 
 package AnzeigeZusatztextKartengroesseSFML is
 
-   procedure AnzeigeZusatztextKartengröße
-     (AktuelleAuswahlExtern : in Natural);
+   function AnzeigeZusatztextKartengröße
+     (AktuelleAuswahlExtern : in Natural;
+      ViewflächeExtern : in Sf.System.Vector2.sfVector2f;
+      TextpositionExtern : in Sf.System.Vector2.sfVector2f)
+      return Sf.System.Vector2.sfVector2f;
    
 private
-      
-   PositionText : Sf.System.Vector2.sfVector2f;
+   
+   AktuelleTextbreite : Float;
+   NeueTextbreite : Float;
+   
+   Rückgabewert : Sf.System.Vector2.sfVector2f;
+   Textposition : Sf.System.Vector2.sfVector2f;
    
    type StandardKartengrößenArray is array (1 .. 9) of RueckgabeDatentypen.Kartengrößen_Standard_Enum;
    StandardKartengrößen : constant StandardKartengrößenArray := (
@@ -33,9 +40,12 @@ private
    procedure TextFestlegen
      (AktuelleAuswahlExtern : in Natural);
    
-   procedure PositionFestlegen;
    
-      
+   
+   function PositionFestlegen
+     (ViewflächeExtern : in Sf.System.Vector2.sfVector2f;
+      TextpositionExtern : in Sf.System.Vector2.sfVector2f)
+      return Sf.System.Vector2.sfVector2f;
    
    function ZahlAlsStringKartenfeldPositiv is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => KartenDatentypen.KartenfeldPositiv);
 
