@@ -12,6 +12,7 @@ with Eingabe;
 with RueckgabeMenues;
 with NachGrafiktask;
 with InteraktionAuswahl;
+with Vergleiche;
 with ViewsSFML;
 with GrafikEinstellungenSFML;
 
@@ -106,26 +107,23 @@ package body AuswahlMenuesEinfach is
    is begin
       
       -- Das mal überall und in einer universelleren Version einbauen. äöü
-      -- Wie bekomme ich das ohne großen Abweichungen um Grafiktask unter? äöü
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                                                  point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
                                                                  view         => ViewsSFML.MenüviewAccess);
       
       PositionSchleife:
       for PositionSchleifenwert in AnfangExtern .. EndeExtern loop
-         
-         if
-           Mausposition.y in InteraktionAuswahl.PositionenMenüeinträge (WelchesMenüExtern, PositionSchleifenwert).top
-           .. InteraktionAuswahl.PositionenMenüeinträge (WelchesMenüExtern, PositionSchleifenwert).top + InteraktionAuswahl.PositionenMenüeinträge (WelchesMenüExtern, PositionSchleifenwert).height
-           and
-             Mausposition.x in InteraktionAuswahl.PositionenMenüeinträge (WelchesMenüExtern, PositionSchleifenwert).left
-           .. InteraktionAuswahl.PositionenMenüeinträge (WelchesMenüExtern, PositionSchleifenwert).left + InteraktionAuswahl.PositionenMenüeinträge (WelchesMenüExtern, PositionSchleifenwert).width
-         then
-            return PositionSchleifenwert;
+                  
+         case
+           Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
+                                       TextboxExtern      => InteraktionAuswahl.PositionenMenüeinträge (WelchesMenüExtern, PositionSchleifenwert))
+         is
+            when True =>
+               return PositionSchleifenwert;
             
-         else
-            null;
-         end if;
+            when False =>
+               null;
+         end case;
          
       end loop PositionSchleife;
       

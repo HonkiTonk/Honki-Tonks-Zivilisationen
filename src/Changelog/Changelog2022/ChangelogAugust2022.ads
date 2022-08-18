@@ -84,17 +84,22 @@ package ChangelogAugust2022 is
    
    
 
-   -- Version 0.03. => 0.03. (19.08.2022):
+   -- Version 0.03.1455 => 0.03. (19.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.1370 => 0.03. (18.08.2022):
+   -- Version 0.03.1380 => 0.03.1455 (18.08.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Externe Verzeichnisstruktur überarbeitet.
+   -- Sprachauswahl überarbeitet und an neues Viewsystem angepasst.
+   -- Es ist jetzt wieder möglich mit dem Mausrad durch die Ebenen zu scrollen.
+   -- Viewsystem generell überarbeitet.
+   -- Forschungsmenü in das Viewsystem eingebaut.
+   -- Neues Forschungsmenü fertiggestellt.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet/optimiert.
    
    
 

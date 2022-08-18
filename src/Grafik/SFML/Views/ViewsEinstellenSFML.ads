@@ -47,6 +47,27 @@ package ViewsEinstellenSFML is
                 and
                   ViewflächeAuflösungAnpassen'Result.y > 0.00
                );
+      
+   function ViewflächeVariabelAnpassen
+     (ViewflächeExtern : in Sf.System.Vector2.sfVector2f;
+      VerhältnisExtern : in Sf.System.Vector2.sfVector2f)
+      return Sf.System.Vector2.sfVector2f
+     with
+       Pre => (
+                 ViewflächeExtern.x > 0.00
+               and
+                 ViewflächeExtern.y > 0.00
+               and
+                 VerhältnisExtern.x > 0.00
+               and
+                 VerhältnisExtern.y > 0.00
+              ),
+         
+       Post => (
+                  ViewflächeVariabelAnpassen'Result.x > 0.00
+                and
+                  ViewflächeVariabelAnpassen'Result.y > 0.00
+               );
    
 private
    

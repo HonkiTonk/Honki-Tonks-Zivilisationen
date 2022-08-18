@@ -150,23 +150,17 @@ package body TextaccesseSchriftgroesseSetzenSFML is
       ForschungstextSchleife:
       for ForschungstextSchleifenwert in TextaccessVariablen.ForschungsmenüAccessArray'Range loop
          
-         case
-           ForschungstextSchleifenwert
-         is
-            when TextaccessVariablen.ForschungsmenüAccessArray'First =>
-               Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.ForschungsmenüAccess (ForschungstextSchleifenwert),
-                                                  size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeÜberschrift);
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.ForschungsmenüAccess (ForschungstextSchleifenwert),
+                                            size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
                
-            when others =>
-               Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.ForschungsmenüAccess (ForschungstextSchleifenwert),
-                                                  size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
-               
-               Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.ForschungsmenüZusatztextAccess (ForschungstextSchleifenwert),
-                                                  size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
-         end case;
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.ForschungsmenüZusatztextAccess (ForschungstextSchleifenwert),
+                                            size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
          
       end loop ForschungstextSchleife;
-         
+      
+      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
+                                         size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
+      
    end Forschungsmenü;
       
       

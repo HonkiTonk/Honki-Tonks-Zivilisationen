@@ -8,14 +8,11 @@ private with Sf.System.Vector2;
 private with TastenbelegungDatentypen;
 
 package AuswahlSprache is
-   
-   MehrereSeiten : Boolean;
-
-   AktuelleAuswahl : Positive;
-   Ende : Positive;
       
    type AktuelleSprachenArray is array (1 .. 11) of Unbounded_Wide_Wide_String;
    AktuelleSprachen : AktuelleSprachenArray;
+   
+   
 
    function AuswahlSprache
      return Unbounded_Wide_Wide_String
@@ -28,8 +25,12 @@ private
 
    SchriftartFestgelegt : Boolean := False;
    SchriftgrößeFestgelegt : Boolean := False;
+   MehrereSeiten : Boolean;
+
+   Ende : Positive;
       
    ZehnerReihe : Natural;
+   AktuelleAuswahl : Natural;
    
    StartPositionYAchse : constant Float := 10.00;
    Zeile : Float;
@@ -42,9 +43,11 @@ private
    Mausposition : Sf.System.Vector2.sfVector2f;
    
    procedure SprachenListeFestlegen;
-   procedure MausAuswahl;
    
    
+   
+   function MausAuswahl
+     return Natural;
    
    function AuswahlSpracheSFML
      return Unbounded_Wide_Wide_String

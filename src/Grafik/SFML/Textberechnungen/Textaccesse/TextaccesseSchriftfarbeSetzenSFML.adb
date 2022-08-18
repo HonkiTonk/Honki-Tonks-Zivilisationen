@@ -150,26 +150,20 @@ package body TextaccesseSchriftfarbeSetzenSFML is
       ForschungenSchleife:
       for ForschungSchleifenwert in TextaccessVariablen.ForschungsmenüAccessArray'Range loop
          
-         case
-           ForschungSchleifenwert
-         is
-            when TextaccessVariablen.ForschungsmenüAccessArray'First =>
-               Sf.Graphics.Text.setColor (text  => TextaccessVariablen.ForschungsmenüAccess (ForschungSchleifenwert),
-                                          color => TexteinstellungenSFML.Schriftfarben.FarbeÜberschrift);
-               
-            when others =>
-               Sf.Graphics.Text.setColor (text  => TextaccessVariablen.ForschungsmenüAccess (ForschungSchleifenwert),
-                                          color => TexteinstellungenSFML.Schriftfarben.FarbeStandardText);
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.ForschungsmenüAccess (ForschungSchleifenwert),
+                                    color => TexteinstellungenSFML.Schriftfarben.FarbeStandardText);
          
-               Sf.Graphics.Text.setColor (text  => TextaccessVariablen.ForschungsmenüAccess (ForschungSchleifenwert),
-                                          color => TexteinstellungenSFML.Schriftfarben.FarbeStandardText);
-         end case;
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.ForschungsmenüAccess (ForschungSchleifenwert),
+                                    color => TexteinstellungenSFML.Schriftfarben.FarbeStandardText);
          
       end loop ForschungenSchleife;
       
+      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
+                                 color => TexteinstellungenSFML.Schriftfarben.FarbeStandardText);
+      
    end Forschungsmenü;
-      
-      
+   
+   
    
    procedure Sprachauswahl
    is begin

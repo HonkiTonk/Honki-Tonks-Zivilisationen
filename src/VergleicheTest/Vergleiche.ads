@@ -1,6 +1,9 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with Sf.System.Vector2;
+with Sf.Graphics.Rect;
+
 with KartenDatentypen; use KartenDatentypen;
 with KartenRecords;
 
@@ -32,5 +35,10 @@ package Vergleiche is
                and
                  KoordinatenZweiExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
               );
+   
+   function Auswahlposition
+     (MauspositionExtern : in Sf.System.Vector2.sfVector2f;
+      TextboxExtern : in Sf.Graphics.Rect.sfFloatRect)
+      return Boolean;
 
 end Vergleiche;

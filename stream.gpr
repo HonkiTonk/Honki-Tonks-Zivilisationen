@@ -1,4 +1,4 @@
-with "../SFML Binding/asfml.gpr";
+with "asfml.gpr";
 
 project Stream is
 
@@ -31,6 +31,10 @@ project Stream is
    package Prove is
       for Proof_Switches ("ada") use ("-j4", "--proof-warnings");
    end Prove;
+
+   package Linker is
+      for Switches ("ada") use ("-s");
+   end Linker;
 
 end Stream;
 

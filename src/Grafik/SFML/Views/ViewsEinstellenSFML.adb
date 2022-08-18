@@ -67,5 +67,35 @@ package body ViewsEinstellenSFML is
       return Viewfläche;
       
    end ViewflächeAuflösungAnpassen;
+   
+   
+   
+   function ViewflächeVariabelAnpassen
+     (ViewflächeExtern : in Sf.System.Vector2.sfVector2f;
+      VerhältnisExtern : in Sf.System.Vector2.sfVector2f)
+      return Sf.System.Vector2.sfVector2f
+   is begin
+      
+      if
+        Viewfläche.x < GrafikEinstellungenSFML.AktuelleFensterAuflösung.x * VerhältnisExtern.x
+      then
+         Viewfläche.x := GrafikEinstellungenSFML.AktuelleFensterAuflösung.x * VerhältnisExtern.x;
+         
+      else
+         Viewfläche.x := ViewflächeExtern.x;
+      end if;
+      
+      if
+        Viewfläche.y < GrafikEinstellungenSFML.AktuelleFensterAuflösung.y * VerhältnisExtern.y
+      then
+         Viewfläche.y := GrafikEinstellungenSFML.AktuelleFensterAuflösung.y * VerhältnisExtern.y;
+         
+      else
+         Viewfläche.y := ViewflächeExtern.y;
+      end if;
+      
+      return Viewfläche;
+      
+   end ViewflächeVariabelAnpassen;
 
 end ViewsEinstellenSFML;

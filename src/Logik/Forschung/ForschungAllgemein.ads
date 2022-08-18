@@ -12,8 +12,6 @@ with ForschungKonstanten;
 
 package ForschungAllgemein is
 
-   AktuelleAuswahl : ForschungenDatentypen.ForschungIDMitNullWert := ForschungKonstanten.LeerForschungAnforderung;
-
    procedure Forschung
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
@@ -54,6 +52,7 @@ package ForschungAllgemein is
 
 private
 
+   AktuelleAuswahl : ForschungenDatentypen.ForschungIDMitNullWert := ForschungKonstanten.LeerForschungAnforderung;
    WasErforschtWerdenSoll : ForschungenDatentypen.ForschungIDMitNullWert;
    AktuellesForschungsprojekt : ForschungenDatentypen.ForschungIDMitNullWert;
    GewählteForschung : ForschungenDatentypen.ForschungIDMitNullWert;

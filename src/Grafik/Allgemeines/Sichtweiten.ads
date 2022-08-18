@@ -8,12 +8,12 @@ package Sichtweiten is
    procedure SichtweiteBewegungsfeldFestlegen;
    
    procedure ZoomstufeÄndern
-     (HöherTieferExtern : in Boolean);
+     (ÄnderungExtern : in KartenDatentypen.Kartenfeld);
    
    
    
    function SichtweiteLesen
-      return KartenDatentypen.KartenfeldPositiv;
+     return KartenDatentypen.KartenfeldPositiv;
    
    function BewegungsfeldLesen
       return KartenDatentypen.KartenfeldPositiv;
@@ -21,6 +21,7 @@ package Sichtweiten is
 private
    
    MaximaleZoomstufe : constant KartenDatentypen.KartenfeldPositiv := 8;
+   StandardZoomstufe : constant KartenDatentypen.KartenfeldPositiv := 4;
    AktuelleZoomstufe : KartenDatentypen.KartenfeldPositiv := 4;
 
    --  SichtweitenTerminalStandard : constant SichtweitenArray := (1 => (0, 6, 8),

@@ -16,6 +16,7 @@ with EinheitenModifizieren;
 with NachGrafiktask;
 with NachLogiktask;
 with InteraktionAuswahl;
+with Vergleiche;
 
 package body InDerStadtBauen is
 
@@ -203,6 +204,7 @@ package body InDerStadtBauen is
      return StadtRecords.BauprojektRecord
    is begin
       
+      -- Hier zuerst auf den Gebäudeview anpassen und danach auf den Einheitenview! äöü
       Mausposition := NachLogiktask.Mausposition;
       
       GebäudeSchleife:
@@ -213,11 +215,8 @@ package body InDerStadtBauen is
          is
             when True =>
                if
-                 Mausposition.y in InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert).top
-                 .. InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert).top + InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert).height
-                 and
-                   Mausposition.x in InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert).left
-                 .. InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert).left + InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert).width
+                 True = Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
+                                                    TextboxExtern      => InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert))
                then
                   return (GebäudeSchleifenwert, 0);
          
@@ -230,8 +229,9 @@ package body InDerStadtBauen is
          end case;
          
       end loop GebäudeSchleife;
-      
-      
+            
+      -- Hier auf den Einheitenview! äöü
+      Mausposition := NachLogiktask.Mausposition;
       
       EinheitenSchleife:
       for EinheitenSchleifenwert in EinheitenDatentypen.EinheitenID'Range loop
@@ -241,11 +241,8 @@ package body InDerStadtBauen is
          is
             when True =>
                if
-                 Mausposition.y in InteraktionAuswahl.PositionenEinheitenBauen (EinheitenSchleifenwert).top
-                 .. InteraktionAuswahl.PositionenEinheitenBauen (EinheitenSchleifenwert).top + InteraktionAuswahl.PositionenEinheitenBauen (EinheitenSchleifenwert).height
-                 and
-                   Mausposition.x in InteraktionAuswahl.PositionenEinheitenBauen (EinheitenSchleifenwert).left
-                 .. InteraktionAuswahl.PositionenEinheitenBauen (EinheitenSchleifenwert).left + InteraktionAuswahl.PositionenEinheitenBauen (EinheitenSchleifenwert).width
+                 True = Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
+                                                    TextboxExtern      => InteraktionAuswahl.PositionenEinheitenBauen (EinheitenSchleifenwert))
                then
                   return (0, EinheitenSchleifenwert);
          

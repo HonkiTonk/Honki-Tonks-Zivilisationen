@@ -1,15 +1,23 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with Sf;
+with Sf.Graphics.RenderWindow;
+
 with GlobaleTexte;
 with TextKonstanten;
 with GrafikDatentypen;
 with OptionenVariablen;
+with InteraktionAuswahl;
+with SystemKonstanten;
 
 with Eingabe;
 with Fehler;
 with NachGrafiktask;
 with NachLogiktask;
+with Vergleiche;
+with ViewsSFML;
+with GrafikEinstellungenSFML;
 
 package body AuswahlSprache is
 
@@ -21,6 +29,8 @@ package body AuswahlSprache is
       MehrereSeiten := False;
       
       SprachenListeFestlegen;
+      
+      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Sprache_Enum;
             
       case
         OptionenVariablen.NutzerEinstellungen.Anzeigeart
@@ -36,11 +46,10 @@ package body AuswahlSprache is
    
    
    
+   -- Kann diese Prozedur nicht in den Grafiktask verschoben werden? Irgendwie. äöü
    procedure SprachenListeFestlegen
    is begin
-      
-      AktuelleAuswahl := AktuelleSprachenArray'First;
-      
+            
       if
         ZehnerReihe * 10 < GlobaleTexte.SprachenEinlesenArray'Last
       then
@@ -102,6 +111,8 @@ package body AuswahlSprache is
            and
              GlobaleTexte.SprachenEinlesen (SprachenSchleifenwert) = TextKonstanten.LeerUnboundedString
          then
+            NachGrafiktask.Endauswahl := Ende;
+            NachGrafiktask.MehrereSeiten := MehrereSeiten;
             return;
             
          elsif
@@ -119,6 +130,9 @@ package body AuswahlSprache is
       AktuelleSprachen (Ende) := MehrSprachen;
       MehrereSeiten := True;
       
+      NachGrafiktask.Endauswahl := Ende;
+      NachGrafiktask.MehrereSeiten := MehrereSeiten;
+      
    end SprachenListeFestlegen;
    
    
@@ -126,9 +140,9 @@ package body AuswahlSprache is
    function AuswahlSpracheTerminal
      return Unbounded_Wide_Wide_String
    is begin
-                  
-      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Sprache_Enum;
       
+      AktuelleAuswahl := AktuelleSprachenArray'First;
+            
       AuswahlTerminalSchleife:
       loop
          
@@ -179,38 +193,22 @@ package body AuswahlSprache is
      return Unbounded_Wide_Wide_String
    is begin
       
-      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Sprache_Enum;
-      
       AuswahlSchleife:
       loop
             
-         MausAuswahl;
+         AktuelleAuswahl := MausAuswahl;
+         NachGrafiktask.AktuelleAuswahl := AktuelleAuswahl;
             
          case
            Eingabe.Tastenwert
          is
-            when TastenbelegungDatentypen.Oben_Enum | TastenbelegungDatentypen.Ebene_Hoch_Enum =>
-               if
-                 AktuelleAuswahl = AktuelleSprachen'First
-               then
-                  AktuelleAuswahl := Ende;
-                  
-               else
-                  AktuelleAuswahl := AktuelleAuswahl - 1;
-               end if;
-
-            when TastenbelegungDatentypen.Unten_Enum | TastenbelegungDatentypen.Ebene_Runter_Enum =>
-               if
-                 AktuelleAuswahl = Ende
-               then
-                  AktuelleAuswahl := AktuelleSprachen'First;
-                  
-               else
-                  AktuelleAuswahl := AktuelleAuswahl + 1;
-               end if;
-                              
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if
+                 AktuelleAuswahl = SystemKonstanten.LeerAuswahl
+               then
+                  null;
+                  
+               elsif
                  AktuelleSprachen (AktuelleAuswahl) = MehrSprachen
                then
                   SprachenListeFestlegen;
@@ -232,36 +230,31 @@ package body AuswahlSprache is
    
    
    
-   -- Auch mal in einen View umarbeiten. äöü
-   procedure MausAuswahl
+   function MausAuswahl
+     return Natural
    is begin
       
-      TextPositionMaus := StartPositionYAchse;
-      Mausposition := NachLogiktask.Mausposition;
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                                                 point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
+                                                                 view         => ViewsSFML.MenüviewAccess);
       
       MausZeigerSchleife:
-      for ZeileSchleifenwert in AktuelleSprachen'First .. Ende loop
-                  
-         if
-           AktuelleSprachen (ZeileSchleifenwert) = MehrSprachen
-         then
-            TextPositionMaus := TextPositionMaus + 15.00;
+      for PositionSchleifenwert in AktuelleSprachen'First .. Ende loop
+         
+         case
+           Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
+                                       TextboxExtern      => InteraktionAuswahl.PositionenSprachauswahl (PositionSchleifenwert))
+         is
+            when True =>
+               return PositionSchleifenwert;
             
-         else
-            null;
-         end if;
-         
-         if
-           Mausposition.y in TextPositionMaus .. TextPositionMaus
-         then
-            AktuelleAuswahl := ZeileSchleifenwert;
-            return;
-         
-         else
-            TextPositionMaus := TextPositionMaus + 1.00;
-         end if;
+            when False =>
+               null;
+         end case;
          
       end loop MausZeigerSchleife;
+      
+      return SystemKonstanten.LeerAuswahl;
       
    end MausAuswahl;
    

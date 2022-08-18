@@ -8,7 +8,6 @@ with Sf.Graphics.Text;
 with TextaccessVariablen;
 with GlobaleTexte;
 with TextnummernKonstanten;
-with ForschungKonstanten;
 with ForschungenDatentypen;
 with SonstigesKonstanten;
 
@@ -127,25 +126,17 @@ package body TextaccesseTextSetzenSFML is
    
    procedure Forschungsmenü
    is begin
-      
-      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüAccess (ForschungKonstanten.LeerForschung),
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Frage (TextnummernKonstanten.FrageForschungsprojekt)));
-      
+            
       ForschungenSchleife:
       for ForschungSchleifenwert in ForschungenDatentypen.ForschungID'Range loop
          
          Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüAccess (ForschungSchleifenwert),
                                             str  => To_Wide_Wide_String (Source => GlobaleTexte.Forschungen (2 * Positive (ForschungSchleifenwert) - 1)));
          
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüZusatztextAccess (ForschungSchleifenwert),
+                                            str  => To_Wide_Wide_String (Source => GlobaleTexte.Forschungen (2 * Positive (ForschungSchleifenwert))));
+         
       end loop ForschungenSchleife;
-      
-      ForschungenZusatztextSchleife:
-      for ForschungZusatztextSchleifenwert in TextaccessVariablen.ForschungsmenüZusatztextAccessArray'Range loop
-         
-         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüZusatztextAccess (ForschungZusatztextSchleifenwert),
-                                            str  => To_Wide_Wide_String (Source => GlobaleTexte.Forschungen (2 * Positive (ForschungZusatztextSchleifenwert))));
-         
-      end loop ForschungenZusatztextSchleife;
       
    end Forschungsmenü;
       

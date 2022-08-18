@@ -6,9 +6,8 @@ with Sf.Graphics.View;
 
 package ViewsSFML is
 
-
-   type ViewsArray is array (1 .. 5) of Sf.Graphics.sfView_Ptr;
-   Views : ViewsArray := (others => null);
+   type ViewsArray is array (Positive range <>) of Sf.Graphics.sfView_Ptr;
+   Views : constant ViewsArray (1 .. 5) := (others => null);
 
    StandardviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
 
@@ -20,5 +19,8 @@ package ViewsSFML is
    BauForschungsviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
 
    ZusatztextviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
+
+   ForschungsviewAccesse : constant ViewsArray (1 .. 5) := (others => Sf.Graphics.View.create);
+   BauviewAccesse : constant ViewsArray (1 .. 6) := (others => Sf.Graphics.View.create);
 
 end ViewsSFML;

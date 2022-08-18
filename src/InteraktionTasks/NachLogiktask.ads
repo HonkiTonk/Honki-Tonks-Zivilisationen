@@ -24,6 +24,4 @@ package NachLogiktask is
    Mausposition : Sf.System.Vector2.sfVector2f;
    -- Eingabesystemwerte
    
-   
-   
 end NachLogiktask;

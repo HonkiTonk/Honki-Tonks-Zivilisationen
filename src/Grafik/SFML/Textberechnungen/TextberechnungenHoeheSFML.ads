@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with Sf.Graphics; use Sf.Graphics;
+
 -- Hier mal noch Textanfang einbauen? äöü
 package TextberechnungenHoeheSFML is
 
@@ -10,6 +12,14 @@ package TextberechnungenHoeheSFML is
        Post => (
                   HalbeBildschirmhöhe'Result > 0.00
                );
+   
+   function HalbeHöheBerechnen
+     (TextAccessExtern : in Sf.Graphics.sfText_Ptr)
+      return Float
+     with
+       Pre => (
+                 TextAccessExtern /= null
+              );
    
    function KleinerZeilenabstand
      return Float

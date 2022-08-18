@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with Sf.Graphics.Text;
+
 with GrafikEinstellungenSFML;
 
 package body TextberechnungenHoeheSFML is
@@ -12,6 +14,17 @@ package body TextberechnungenHoeheSFML is
       return GrafikEinstellungenSFML.AktuelleFensterAuflösung.y / 2.00;
       
    end HalbeBildschirmhöhe;
+   
+   
+   
+   function HalbeHöheBerechnen
+     (TextAccessExtern : in Sf.Graphics.sfText_Ptr)
+      return Float
+   is begin
+      
+      return Sf.Graphics.Text.getGlobalBounds (text => TextAccessExtern).height / 2.00;
+      
+   end HalbeHöheBerechnen;
    
    
    

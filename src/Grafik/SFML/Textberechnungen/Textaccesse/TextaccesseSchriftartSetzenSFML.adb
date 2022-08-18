@@ -148,25 +148,20 @@ package body TextaccesseSchriftartSetzenSFML is
       
       ForschungenSchleife:
       for ForschungSchleifenwert in TextaccessVariablen.ForschungsmenüAccessArray'Range loop
-            
+         
          Sf.Graphics.Text.setFont (text => TextaccessVariablen.ForschungsmenüAccess (ForschungSchleifenwert),
                                    font => TexteinstellungenSFML.SchriftartAccess);
-         
-         case
-           ForschungSchleifenwert
-         is
-            when TextaccessVariablen.ForschungsmenüAccessArray'First =>
-               null;
-               
-            when others =>
-               Sf.Graphics.Text.setFont (text => TextaccessVariablen.ForschungsmenüZusatztextAccess (ForschungSchleifenwert),
-                                         font => TexteinstellungenSFML.SchriftartAccess);
-         end case;
             
+         Sf.Graphics.Text.setFont (text => TextaccessVariablen.ForschungsmenüZusatztextAccess (ForschungSchleifenwert),
+                                   font => TexteinstellungenSFML.SchriftartAccess);
+         
       end loop ForschungenSchleife;
       
-   end Forschungsmenü;
+      Sf.Graphics.Text.setFont (text => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
+                                font => TexteinstellungenSFML.SchriftartAccess);
       
+   end Forschungsmenü;
+   
       
    
    procedure Sprachauswahl

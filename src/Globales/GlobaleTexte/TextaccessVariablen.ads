@@ -62,11 +62,13 @@ package TextaccessVariablen is
    
    
    -- Forschungsmenü
-   type ForschungsmenüAccessArray is array (ForschungenDatentypen.ForschungIDMitNullWert'Range) of Sf.Graphics.sfText_Ptr;
+   type ForschungsmenüAccessArray is array (ForschungenDatentypen.ForschungID'Range) of Sf.Graphics.sfText_Ptr;
    ForschungsmenüAccess : constant ForschungsmenüAccessArray := (others => Sf.Graphics.Text.create);
    
-   type ForschungsmenüZusatztextAccessArray is array (ForschungenDatentypen.ForschungID'First .. ForschungsmenüAccessArray'Last) of Sf.Graphics.sfText_Ptr;
+   type ForschungsmenüZusatztextAccessArray is array (ForschungsmenüAccessArray'Range) of Sf.Graphics.sfText_Ptr;
    ForschungsmenüZusatztextAccess : constant ForschungsmenüZusatztextAccessArray := (others => Sf.Graphics.Text.create);
+   
+   ForschungsmenüErmöglichtAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
    -- Forschungsmenü
    
    

@@ -9,6 +9,7 @@ with Sf.Window.Keyboard; use Sf.Window.Keyboard;
 with Sf.Window.Mouse;
 with Sf.Graphics.RenderWindow;
 
+with KartenDatentypen; use KartenDatentypen;
 with SystemRecordKonstanten;
 with GrafikDatentypen;
 
@@ -45,11 +46,6 @@ package body EingabeSystemeSFML is
                NachGrafiktask.FensterVerändert := GrafikDatentypen.Fenster_Verändert_Enum;
                   
             when Sf.Window.Event.sfEvtMouseMoved =>
-               -- Das bei jedem Aufruf setzen? äöü
-               -- Wie kriege ich die Berechnung im Grafiktask unter? CoordsToPixel scheint zu zu großen Rundungfehlern zu führen bei sehr kleinen Auflösungen. äöü
-               -- NachLogiktask.Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-               --                                                                         point        => (Nutzereingabe.mouseMove.x, Nutzereingabe.mouseMove.y),
-               --                                                                         view         => ViewsSFML.MenüviewAccess);
                NachLogiktask.Mausposition := (Float (Nutzereingabe.mouseMove.x), Float (Nutzereingabe.mouseMove.y));
                
             when others =>
@@ -69,10 +65,10 @@ package body EingabeSystemeSFML is
                if
                  Nutzereingabe.mouseWheelScroll.eventDelta < 0.00
                then
-                  Sichtweiten.ZoomstufeÄndern (HöherTieferExtern => True);
+                  Sichtweiten.ZoomstufeÄndern (ÄnderungExtern => 1);
                   
                else
-                  Sichtweiten.ZoomstufeÄndern (HöherTieferExtern => False);
+                  Sichtweiten.ZoomstufeÄndern (ÄnderungExtern => -1);
                end if;
                   
             when Sf.Window.Event.sfEvtMouseButtonPressed =>

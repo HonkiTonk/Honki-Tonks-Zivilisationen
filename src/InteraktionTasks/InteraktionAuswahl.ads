@@ -19,6 +19,10 @@ package InteraktionAuswahl is
    type PositionenMenüeinträgeArray is array (MenueDatentypen.Welches_Menü_Vorhanden_Enum'Range, 1 .. SystemKonstanten.LängstesMenü) of Sf.Graphics.Rect.sfFloatRect;
    PositionenMenüeinträge : PositionenMenüeinträgeArray := (others => (others => (0.00, 0.00, 0.00, 0.00)));
 
+   -- Das später bei den Menüeinträgen rainbasteln? äöü
+   type PositionenSprachauswahlArray is array (1 .. 11) of Sf.Graphics.Rect.sfFloatRect;
+   PositionenSprachauswahl : PositionenSprachauswahlArray := (others => (0.00, 0.00, 0.00, 0.00));
+
 
 
    type PositionenForschungArray is array (ForschungenDatentypen.ForschungID'Range) of Sf.Graphics.Rect.sfFloatRect;

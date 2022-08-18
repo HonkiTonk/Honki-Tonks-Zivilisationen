@@ -2,8 +2,11 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
+with TastenbelegungDatentypen;
 
 with BerechnungenKarteSFML;
+with BewegungCursor;
+with NachGrafiktask;
 
 package body Sichtweiten is
    
@@ -19,28 +22,31 @@ package body Sichtweiten is
    
    -- Eventuell noch von der Kartengröße abhängig machen, damit bei kleinen Karten keine Probleme auftreten. äöü
    procedure ZoomstufeÄndern
-     (HöherTieferExtern : in Boolean)
+     (ÄnderungExtern : in KartenDatentypen.Kartenfeld)
    is begin
       
+      -- Eine Möglichkeit einbauen das abzustellen. äöü
       if
-        HöherTieferExtern
-        and
-          AktuelleZoomstufe < MaximaleZoomstufe
+        AktuelleZoomstufe + ÄnderungExtern > MaximaleZoomstufe
       then
-         AktuelleZoomstufe := AktuelleZoomstufe + 1;
+         BewegungCursor.BewegungCursorRichtung (KarteExtern    => True,
+                                                RichtungExtern => TastenbelegungDatentypen.Ebene_Hoch_Enum,
+                                                RasseExtern    => NachGrafiktask.AktuelleRasse);
+         AktuelleZoomstufe := StandardZoomstufe;
          
       elsif
-        HöherTieferExtern = False
-        and
-          AktuelleZoomstufe > KartenDatentypen.KartenfeldPositiv'First
+          AktuelleZoomstufe + ÄnderungExtern < KartenDatentypen.KartenfeldPositiv'First
       then
-         AktuelleZoomstufe := AktuelleZoomstufe - 1;
+         BewegungCursor.BewegungCursorRichtung (KarteExtern    => True,
+                                                RichtungExtern => TastenbelegungDatentypen.Ebene_Runter_Enum,
+                                                RasseExtern    => NachGrafiktask.AktuelleRasse);
+         AktuelleZoomstufe := StandardZoomstufe;
          
       else
-         null;
+         AktuelleZoomstufe := AktuelleZoomstufe + ÄnderungExtern;
       end if;
       
-      SichtweiteBewegungsfeldFestlegen;
+      BerechnungenKarteSFML.KartenfelderAbmessungBerechnen;
       
    end ZoomstufeÄndern;
    

@@ -3,6 +3,8 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Sf.Graphics.Text;
 
+with TextKonstanten;
+
 with GrafikEinstellungenSFML;
 with Warnung;
 
@@ -83,7 +85,7 @@ package body TextberechnungenBreiteSFML is
       return Float
    is begin
       
-      NeueTextbreite := Sf.Graphics.Text.getGlobalBounds (text => TextAccessExtern).width;
+      NeueTextbreite := TextKonstanten.TextbreiteZusatzwert + Sf.Graphics.Text.getGlobalBounds (text => TextAccessExtern).width;
       
       if
         NeueTextbreite > TextbreiteExtern

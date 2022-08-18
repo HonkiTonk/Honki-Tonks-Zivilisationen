@@ -16,12 +16,12 @@ with SpielDatentypen;
 with TextaccessVariablen;
 with SystemKonstanten;
 with TextKonstanten;
+with InteraktionAuswahl;
 
 with GrafikEinstellungenSFML;
 with TextberechnungenBreiteSFML;
 with AuswahlMenuesStringsSetzen;
 with AuswahlMenuesZusatztextSFML;
-with InteraktionAuswahl;
 with KartengeneratorVariablen;
 with TextberechnungenHoeheSFML;
 with TexteinstellungenSFML;
@@ -340,7 +340,8 @@ package body AuswahlMenuesEinfachSFML is
          
          InteraktionAuswahl.PositionenMenüeinträge (WelchesMenüExtern, PositionSchleifenwert - 1)
            := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, PositionSchleifenwert));
-            
+         
+         -- Das mal Rausschieben? äöü
          if
            NeueTextbreite > AktuelleTextbreite
          then
