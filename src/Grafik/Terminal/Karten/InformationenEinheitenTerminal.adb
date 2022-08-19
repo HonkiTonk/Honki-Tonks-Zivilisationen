@@ -11,7 +11,7 @@ with StadtKonstanten;
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
 
-with EinheitenBeschreibungen;
+with EinheitenbeschreibungenSFML;
 with StadtInformationenTerminal;
 with KampfwerteEinheitErmitteln;
 with DebugmenueTerminal;
@@ -69,7 +69,7 @@ package body InformationenEinheitenTerminal is
          when others =>
             EinheitNummer := LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       end case;
-      PlatzhalterText := EinheitenBeschreibungen.BeschreibungKurz (IDExtern => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer)));
+      PlatzhalterText := EinheitenbeschreibungenSFML.BeschreibungKurz (IDExtern => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer)));
       New_Line;
       
       return (EinheitRasseNummerExtern.Rasse, EinheitNummer);
@@ -167,7 +167,7 @@ package body InformationenEinheitenTerminal is
       --                                          AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
       --                                          AbstandMitteExtern     => GlobaleTexte.Leer,
       --                                          AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      PlatzhalterText := EinheitenBeschreibungen.Beschäftigung (LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      PlatzhalterText := EinheitenbeschreibungenSFML.Beschäftigung (LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       
    end Beschäftigung;
    

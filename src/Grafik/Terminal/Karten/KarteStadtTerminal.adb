@@ -20,7 +20,7 @@ with LeseStadtGebaut;
 with Kartenkoordinatenberechnungssystem;
 with Karten;
 with StadtInformationenTerminal;
-with GebaeudeAllgemein;
+with GebaeudebeschreibungenSFML;
 with KartenAllgemein;
 with GrafischeAnzeigeTerminal;
 with FarbgebungTerminal;
@@ -78,7 +78,7 @@ package body KarteStadtTerminal is
                                                  WelchesGebäudeExtern  => StadtDatentypen.GebäudeID (SpielVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenStadt.XAchse + Aufschlag * 12))
               = True
             then
-               Put_Line (Item => GebaeudeAllgemein.BeschreibungKurz (IDExtern => StadtDatentypen.GebäudeID (SpielVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenStadt.XAchse + Aufschlag * 12)));
+               Put_Line (Item => GebaeudebeschreibungenSFML.BeschreibungKurz (IDExtern => StadtDatentypen.GebäudeID (SpielVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenStadt.XAchse + Aufschlag * 12)));
             
             else
                null;

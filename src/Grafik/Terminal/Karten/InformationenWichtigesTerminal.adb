@@ -6,7 +6,7 @@ with Ada.Integer_Wide_Wide_Text_IO;
 
 with LeseWichtiges;
 
-with ForschungAllgemein;
+with ForschungsbeschreibungenSFML;
 
 package body InformationenWichtigesTerminal is
    
@@ -93,12 +93,12 @@ package body InformationenWichtigesTerminal is
     --                                            TextDateiExtern        => GlobaleTexte.Zeug,
      --                                           ÜberschriftZeileExtern => 0,
      --                                           ErsteZeileExtern       => 38,
-     --                                           LetzteZeileExtern      => 38,
+    --                                           LetzteZeileExtern      => 38,
     --                                            AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-      --                                          AbstandMitteExtern     => GlobaleTexte.Leer,
-     --                                           AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      Put_Line (Item => ForschungAllgemein.Beschreibung (IDExtern    => LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern),
-                                                         RasseExtern => RasseExtern));
+    --                                          AbstandMitteExtern     => GlobaleTexte.Leer,
+    --                                           AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
+      Put_Line (Item => ForschungsbeschreibungenSFML.BeschreibungKurz (IDExtern    => LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern),
+                                                             RasseExtern => RasseExtern));
                 
    end Forschungsprojekt;
    

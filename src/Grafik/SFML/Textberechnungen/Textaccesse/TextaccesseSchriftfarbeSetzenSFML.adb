@@ -14,7 +14,7 @@ package body TextaccesseSchriftfarbeSetzenSFML is
       
       Allgemeines;
       MenüsEinfach;
-      ZusatztextRassenmenü;
+      Rassen;
       ZusatztextKartengröße;
       Baumenü;
       Forschungsmenü;
@@ -43,6 +43,9 @@ package body TextaccesseSchriftfarbeSetzenSFML is
       Sf.Graphics.Text.setColor (text => TextaccessVariablen.VersionsnummerAccess,
                                  color => TexteinstellungenSFML.Schriftfarben.FarbeSonstigerText);
       
+      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.ZeilenumbruchAccess,
+                                color => TexteinstellungenSFML.Schriftfarben.FarbeSonstigerText);
+      
    end Allgemeines;
    
    
@@ -62,21 +65,24 @@ package body TextaccesseSchriftfarbeSetzenSFML is
       end loop MenüsEinfachAußenSchleife;
       
    end MenüsEinfach;
-      
-      
    
-   procedure ZusatztextRassenmenü
+   
+   
+   procedure Rassen
    is begin
       
       ZusatztextRassenmenüSchleife:
-      for RasseSchleifenwert in TextaccessVariablen.ZusatztextRassenAccessArray'Range loop
+      for RasseSchleifenwert in TextaccessVariablen.RassenbeschreibungAccessArray'Range loop
          
-         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.ZusatztextRassenAccess (RasseSchleifenwert),
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.RassennamenAccess (RasseSchleifenwert),
+                                    color => TexteinstellungenSFML.Schriftfarben.FarbeStandardText);
+         
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.RassenbeschreibungAccess (RasseSchleifenwert),
                                     color => TexteinstellungenSFML.Schriftfarben.FarbeStandardText);
          
       end loop ZusatztextRassenmenüSchleife;
       
-   end ZusatztextRassenmenü;
+   end Rassen;
       
       
    

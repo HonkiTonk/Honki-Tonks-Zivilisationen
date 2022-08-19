@@ -9,7 +9,7 @@ private
 
    procedure Allgemeines;
    procedure MenüsEinfach;
-   procedure ZusatztextRassenmenü;
+   procedure Rassen;
    procedure ZusatztextKartengröße;
    procedure Baumenü;
    procedure Forschungsmenü;

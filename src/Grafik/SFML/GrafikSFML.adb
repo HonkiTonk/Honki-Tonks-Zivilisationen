@@ -173,10 +173,12 @@ package body GrafikSFML is
             KartenaufteilungSFML.Stadtkarte (StadtRasseNummerExtern => (NachGrafiktask.AktuelleRasse, NachGrafiktask.AktuelleStadt));
                
          when GrafikDatentypen.Grafik_Forschung_Enum =>
-            ForschungAnzeigeSFML.ForschungAnzeige (RasseExtern => NachGrafiktask.AktuelleRasse);
+            ForschungAnzeigeSFML.ForschungAnzeige (RasseExtern           => NachGrafiktask.AktuelleRasse,
+                                                   AktuelleAuswahlExtern => NachGrafiktask.AktuelleAuswahl);
             
          when GrafikDatentypen.Grafik_Bauen_Enum =>
-            BauAuswahlAnzeigeSFML.BauAuswahlAnzeige (RasseExtern => NachGrafiktask.AktuelleRasse);
+            BauAuswahlAnzeigeSFML.BauAuswahlAnzeige (StadtRasseNummerExtern => (NachGrafiktask.AktuelleRasse, NachGrafiktask.AktuelleStadt),
+                                                     AktuelleAuswahlExtern  => NachGrafiktask.AktuelleBauauswahl);
          
          when GrafikDatentypen.Grafik_Ende_Enum =>
             return False;

@@ -11,6 +11,8 @@ with TextnummernKonstanten;
 with ForschungenDatentypen;
 with SonstigesKonstanten;
 
+with RassenbeschreibungenSFML;
+
 package body TextaccesseTextSetzenSFML is
 
    procedure TextSetzen
@@ -18,7 +20,7 @@ package body TextaccesseTextSetzenSFML is
       
       Allgemeines;
       MenüsEinfach;
-      ZusatztextRassenmenü;
+      Rassen;
       ZusatztextKartengröße;
       Baumenü;
       Forschungsmenü;
@@ -57,12 +59,22 @@ package body TextaccesseTextSetzenSFML is
       
       
    
-   procedure ZusatztextRassenmenü
+   procedure Rassen
    is begin
       
-      null;
+      -- Bei sowas immer die Beschreibungen benutzen? äöü
+      ZusatztextRassenmenüSchleife:
+      for RasseSchleifenwert in TextaccessVariablen.RassenbeschreibungAccessArray'Range loop
+         
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.RassennamenAccess (RasseSchleifenwert),
+                                            str  => RassenbeschreibungenSFML.BeschreibungKurz (RasseExtern => RasseSchleifenwert));
+         
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.RassenbeschreibungAccess (RasseSchleifenwert),
+                                            str  => RassenbeschreibungenSFML.BeschreibungLang (RasseExtern => RasseSchleifenwert));
+         
+      end loop ZusatztextRassenmenüSchleife;
       
-   end ZusatztextRassenmenü;
+   end Rassen;
       
       
    
@@ -86,7 +98,7 @@ package body TextaccesseTextSetzenSFML is
          is
             when TextaccessVariablen.GebäudetextAccessArray'First =>
                Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.GebäudetextAccess (GebäudetextSchleifenwert),
-                                                  str  => To_Wide_Wide_String (Source => GlobaleTexte.Frage (TextnummernKonstanten.FrageBauprojekt)));
+                                                  str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextnummernKonstanten.ZeugGebäude)));
                
             when others =>
                Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.GebäudetextAccess (GebäudetextSchleifenwert),

@@ -21,7 +21,7 @@ package body GebaeudeBauenTerminal is
      (StadtRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
-      Put_Line (Item => GebaeudeAllgemein.BeschreibungLang (IDExtern => StadtDatentypen.GebäudeIDMitNullwert (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer - StadtKonstanten.GebäudeAufschlag)));
+      Put_Line (Item => GebaeudebeschreibungenSFML.BeschreibungLang (IDExtern => StadtDatentypen.GebäudeIDMitNullwert (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer - StadtKonstanten.GebäudeAufschlag)));
       New_Line;
       PreisGebäude (RasseExtern => StadtRasseNummerExtern.Rasse);
       BauzeitGebäude (StadtRasseNummerExtern => StadtRasseNummerExtern);

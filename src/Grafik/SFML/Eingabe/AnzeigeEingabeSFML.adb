@@ -14,7 +14,7 @@ with GrafikDatentypen;
 with EingabeSFML;
 with GrafikEinstellungenSFML;
 with ObjekteZeichnenSFML;
-with EinheitenBeschreibungen;
+with EinheitenbeschreibungenSFML;
 with LeseEinheitenGebaut;
 with LeseStadtGebaut;
 with TextaccessVariablen;
@@ -64,6 +64,9 @@ package body AnzeigeEingabeSFML is
    procedure AnzeigeGanzeZahl
      (FrageExtern : in ZahlenDatentypen.EigenesNatural)
    is begin
+      
+     -- Viewfläche := ViewsEinstellenSFML.ViewflächeAuflösungAnpassen (ViewflächeExtern => Viewfläche);
+     -- Viewfläche := ViewsEinstellenSFML.ViewflächeAuflösungAnpassen (ViewflächeExtern => Viewfläche);
       
       ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.ZusatztextviewAccess,
                                           GrößeExtern          => Viewfläche,
@@ -196,15 +199,16 @@ package body AnzeigeEingabeSFML is
               WelcheAuswahl.StadtEinheit
             is
                when True =>
-                  Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
-                                                     str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextnummernKonstanten.ZeugStadt))
-                                                     & To_Wide_Wide_String (Source => LeseStadtGebaut.Name
-                                                                            (StadtRasseNummerExtern => (RasseExtern, StadtDatentypen.MaximaleStädteMitNullWert (WelcheAuswahl.MöglicheAuswahlen (0))))));
+                  Text := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugStadt)
+                    & LeseStadtGebaut.Name (StadtRasseNummerExtern => (RasseExtern, StadtDatentypen.MaximaleStädteMitNullWert (WelcheAuswahl.MöglicheAuswahlen (0))));
                   
                when False =>
-                  Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
-                                                     str  => EinheitenBeschreibungen.BeschreibungKurz (IDExtern => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, WelcheAuswahl.MöglicheAuswahlen (0)))));
+                  Text := To_Unbounded_Wide_Wide_String (Source => EinheitenbeschreibungenSFML.BeschreibungKurz (IDExtern => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern,
+                                                                                                                                                                                  WelcheAuswahl.MöglicheAuswahlen (0)))));
             end case;
+            
+            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
+                                               str  => To_Wide_Wide_String (Source => Text));
             
             InteraktionAuswahl.PositionenEinheitStadt (AuswahlSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert));
             
@@ -216,7 +220,7 @@ package body AnzeigeEingabeSFML is
                
             else
                Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
-                                                  str  => EinheitenBeschreibungen.BeschreibungKurz
+                                                  str  => EinheitenbeschreibungenSFML.BeschreibungKurz
                                                     (IDExtern => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, WelcheAuswahl.MöglicheAuswahlen (AuswahlSchleifenwert)))));
             
                InteraktionAuswahl.PositionenEinheitStadt (AuswahlSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert));

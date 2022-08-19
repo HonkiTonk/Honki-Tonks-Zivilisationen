@@ -14,7 +14,7 @@ package body TextaccesseSchriftgroesseSetzenSFML is
       
       Allgemeines;
       MenüsEinfach;
-      ZusatztextRassenmenü;
+      Rassen;
       ZusatztextKartengröße;
       Baumenü;
       Forschungsmenü;
@@ -43,6 +43,9 @@ package body TextaccesseSchriftgroesseSetzenSFML is
       Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.VersionsnummerAccess,
                                          size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeKlein);
       
+      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.ZeilenumbruchAccess,
+                                         size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeKlein);
+      
    end Allgemeines;
    
    
@@ -65,18 +68,21 @@ package body TextaccesseSchriftgroesseSetzenSFML is
       
       
    
-   procedure ZusatztextRassenmenü
+   procedure Rassen
    is begin
       
       ZusatztextRassenmenüSchleife:
-      for RasseSchleifenwert in TextaccessVariablen.ZusatztextRassenAccessArray'Range loop
+      for RasseSchleifenwert in TextaccessVariablen.RassenbeschreibungAccessArray'Range loop
          
-         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.ZusatztextRassenAccess (RasseSchleifenwert),
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.RassennamenAccess (RasseSchleifenwert),
+                                            size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
+         
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.RassenbeschreibungAccess (RasseSchleifenwert),
                                             size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
          
       end loop ZusatztextRassenmenüSchleife;
       
-   end ZusatztextRassenmenü;
+   end Rassen;
       
       
    

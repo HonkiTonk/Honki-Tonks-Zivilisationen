@@ -1,8 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
-
 with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
 with SpielVariablen;
@@ -30,16 +28,8 @@ package GebaeudeAllgemein is
                and
                  SpielVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
               );
-   
-   
 
-   function BeschreibungKurz
-     (IDExtern : in StadtDatentypen.GebäudeIDMitNullwert)
-      return Wide_Wide_String;
    
-   function BeschreibungLang
-     (IDExtern : in StadtDatentypen.GebäudeIDMitNullwert)
-      return Wide_Wide_String;
    
    function GebäudeAnforderungenErfüllt
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
@@ -53,11 +43,7 @@ package GebaeudeAllgemein is
               );
    
 private
-   
-   AktuellerText : Positive;
-   
-   BeschreibungText : Unbounded_Wide_Wide_String;
-   
+      
    procedure PermanenteKostenDurchGebäudeÄndern
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       IDExtern : in StadtDatentypen.GebäudeID;

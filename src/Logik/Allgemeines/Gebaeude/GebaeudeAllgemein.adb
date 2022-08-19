@@ -3,9 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with ForschungenDatentypen; use ForschungenDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
-with GlobaleTexte;
 with StadtKonstanten;
-with TextKonstanten;
 
 with SchreibeWichtiges;
 with SchreibeStadtGebaut;
@@ -17,53 +15,6 @@ with StadtProduktion;
 with ForschungAllgemein;
 
 package body GebaeudeAllgemein is
-
-   -- Um die Aufrufe der ganzen Beschreibungen mal ein wenig zu reduzieren die Nullprüfung vor den Aufruf verlegen (überall?). äöü
-   function BeschreibungKurz
-     (IDExtern : in StadtDatentypen.GebäudeIDMitNullwert)
-     return Wide_Wide_String
-   is begin
-      
-      case
-        IDExtern
-      is
-         when StadtDatentypen.GebäudeIDMitNullwert'First =>
-            BeschreibungText := TextKonstanten.LeerUnboundedString;
-            
-         when others =>
-            AktuellerText := 2 * Positive (IDExtern) - 1;
-            
-            BeschreibungText := GlobaleTexte.Gebäude (AktuellerText);
-      end case;
-      
-      return To_Wide_Wide_String (Source => BeschreibungText);
-      
-   end BeschreibungKurz;
-   
-   
-   
-   function BeschreibungLang
-     (IDExtern : in StadtDatentypen.GebäudeIDMitNullwert)
-      return Wide_Wide_String
-   is begin
-      
-      case
-        IDExtern
-      is
-         when StadtDatentypen.GebäudeIDMitNullwert'First =>
-            BeschreibungText := TextKonstanten.LeerUnboundedString;
-            
-         when others =>
-            AktuellerText := 2 * Positive (IDExtern);
-            
-            BeschreibungText := GlobaleTexte.Gebäude (AktuellerText);
-      end case;
-      
-      return To_Wide_Wide_String (Source => BeschreibungText);
-      
-   end BeschreibungLang;
-   
-   
 
    procedure GebäudeProduktionBeenden
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;

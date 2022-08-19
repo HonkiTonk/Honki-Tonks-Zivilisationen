@@ -15,7 +15,7 @@ package body TextaccesseSchriftartSetzenSFML is
       -- Ein paar der Sachen zusammenfassen? Oder doch lieber nach Dateien/Bereich getrennt lassen? äöü
       Allgemeines;
       MenüsEinfach;
-      ZusatztextRassenmenü;
+      Rassen;
       ZusatztextKartengröße;
       Baumenü;
       Forschungsmenü;
@@ -44,6 +44,9 @@ package body TextaccesseSchriftartSetzenSFML is
       Sf.Graphics.Text.setFont (text => TextaccessVariablen.VersionsnummerAccess,
                                 font => TexteinstellungenSFML.SchriftartAccess);
       
+      Sf.Graphics.Text.setFont (text => TextaccessVariablen.ZeilenumbruchAccess,
+                                font => TexteinstellungenSFML.SchriftartAccess);
+      
    end Allgemeines;
    
    
@@ -66,18 +69,21 @@ package body TextaccesseSchriftartSetzenSFML is
       
       
    
-   procedure ZusatztextRassenmenü
+   procedure Rassen
    is begin
       
       ZusatztextRassenmenüSchleife:
-      for RasseSchleifenwert in TextaccessVariablen.ZusatztextRassenAccessArray'Range loop
+      for RasseSchleifenwert in TextaccessVariablen.RassenbeschreibungAccessArray'Range loop
          
-         Sf.Graphics.Text.setFont (text => TextaccessVariablen.ZusatztextRassenAccess (RasseSchleifenwert),
+         Sf.Graphics.Text.setFont (text => TextaccessVariablen.RassennamenAccess (RasseSchleifenwert),
+                                   font => TexteinstellungenSFML.SchriftartAccess);
+         
+         Sf.Graphics.Text.setFont (text => TextaccessVariablen.RassenbeschreibungAccess (RasseSchleifenwert),
                                    font => TexteinstellungenSFML.SchriftartAccess);
          
       end loop ZusatztextRassenmenüSchleife;
       
-   end ZusatztextRassenmenü;
+   end Rassen;
       
       
    

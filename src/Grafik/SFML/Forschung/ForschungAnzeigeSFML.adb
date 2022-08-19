@@ -12,6 +12,7 @@ with GlobaleTexte;
 with TextnummernKonstanten;
 with EinheitenDatentypen;
 with StadtDatentypen;
+with TextaccessVariablen;
 
 with LeseForschungenDatenbank;
 with LeseEinheitenDatenbank;
@@ -20,111 +21,67 @@ with LeseWichtiges;
 
 with GrafikEinstellungenSFML;
 with TextberechnungenBreiteSFML;
-with NachGrafiktask;
 with InteraktionAuswahl;
-with TextaccessVariablen;
-with Fehler;
 with TextberechnungenHoeheSFML;
 with HintergrundSFML;
 with TexteinstellungenSFML;
 with ViewsEinstellenSFML;
-with ForschungAllgemein;
-with EinheitenBeschreibungen;
-with GebaeudeAllgemein;
+with ForschungsbeschreibungenSFML;
+with EinheitenbeschreibungenSFML;
+with GebaeudebeschreibungenSFML;
+with UeberschriftviewSFML;
+with BeschreibungenZeilenumbruchSFML;
 
 package body ForschungAnzeigeSFML is
 
    procedure ForschungAnzeige
-     (RasseExtern : in RassenDatentypen.Rassen_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      AktuelleAuswahlExtern : in Natural)
    is begin
       
-      case
-        RasseExtern
-      is
-         when RassenDatentypen.Keine_Rasse_Enum =>
-            -- Da die Rasse schon auf der Weltkarte festgelegt wird, sollte dieser Fall niemals eintreten können. Beachten dass die Rasse zwischen den Zügen notwendig aber nicht festgelegt ist.
-            Fehler.GrafikFehler (FehlermeldungExtern => "GrafikSFML.AnzeigeAuswahl - Forschungsmenü ohne Rasse aufgerufen.");
-                     
-         when others =>
-            null;
-      end case;
+      UeberschriftviewSFML.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => GlobaleTexte.Frage (TextnummernKonstanten.FrageForschungsprojekt)),
+                                         HintergrundExtern => GrafikDatentypen.Forschung_Hintergrund_Enum);
+            
+      AktuelleAuswahl := ForschungenDatentypen.ForschungIDMitNullWert (AktuelleAuswahlExtern);
       
-      ViewflächenSchleife:
-      for ViewflächenSchleifenwert in ViewflächenArray'Range loop
-         
-         null;
-         -- Viewfläche (ViewflächenSchleifenwert) := ViewsEinstellenSFML.ViewflächeAuflösungAnpassen (ViewflächeExtern => Viewfläche (ViewflächenSchleifenwert));
-         -- Viewfläche (ViewflächenSchleifenwert) := ViewsEinstellenSFML.ViewflächeAuflösungAnpassen (ViewflächeExtern => Viewfläche (ViewflächenSchleifenwert));
-         
-      end loop ViewflächenSchleife;
-      
-      Überschrift;
-      WelcherZusatztext := Auswahlmöglichkeiten;
-      Beschreibung (ZusatztextExtern => WelcherZusatztext);
-      Ermöglicht (ZusatztextExtern => WelcherZusatztext,
-                   RasseExtern      => RasseExtern);
-      Aktuell (RasseExtern => RasseExtern);
+      Auswahlmöglichkeiten (AuswahlExtern    => AktuelleAuswahl,
+                             ViewnummerExtern => 1);
+      Beschreibung (ZusatztextExtern => AktuelleAuswahl,
+                    ViewnummerExtern => 2,
+                    RasseExtern      => RasseExtern);
+      Ermöglicht (ZusatztextExtern => AktuelleAuswahl,
+                   RasseExtern      => RasseExtern,
+                   ViewnummerExtern => 3);
+      Aktuell (RasseExtern      => RasseExtern,
+               ViewnummerExtern => 4);
       
    end ForschungAnzeige;
    
    
    
-   procedure Überschrift
-   is begin
-            
-      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.ForschungsviewAccesse (1),
-                                          GrößeExtern          => Viewfläche (1),
-                                          AnzeigebereichExtern => Anzeigebereich (1));
-      
-      HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Forschung_Hintergrund_Enum,
-                                        AbmessungenExtern => Viewfläche (1));
-      
-      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ÜberschriftAccess,
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Frage (TextnummernKonstanten.FrageForschungsprojekt)));
-      
-      TextPosition.x := Viewfläche (1).x / 2.00 - TextberechnungenBreiteSFML.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.ÜberschriftAccess);
-      TextPosition.y := TextKonstanten.StartpositionText.y;
-      
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ÜberschriftAccess,
-                                    position => TextPosition);
-
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                         text         => TextaccessVariablen.ÜberschriftAccess);
-
-      Viewfläche (1) := (TextKonstanten.TextbreiteZusatzwert + Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.ÜberschriftAccess).width,
-                          TextPosition.y + TextKonstanten.TexthöheZusatzwert + Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.ÜberschriftAccess).height);
-      
-   end Überschrift;
-   
-   
-   
-   function Auswahlmöglichkeiten
-     return ForschungenDatentypen.ForschungIDMitNullWert
+   procedure Auswahlmöglichkeiten
+     (AuswahlExtern : in ForschungenDatentypen.ForschungIDMitNullWert;
+      ViewnummerExtern : in Positive)
    is begin
       
-      Viewfläche (2) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (2),
-                                                                          VerhältnisExtern => (0.50, 1.00));
-      Viewfläche (2) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (2),
-                                                                          VerhältnisExtern => (0.50, 1.00));
+      Viewfläche (ViewnummerExtern) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
+                                                                                         VerhältnisExtern => (0.50, 1.00));
+      Viewfläche (ViewnummerExtern) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
+                                                                                         VerhältnisExtern => (0.50, 1.00));
       
-      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.ForschungsviewAccesse (2),
-                                          GrößeExtern          => Viewfläche (2),
-                                          -- Für den Anzeigebereich später ein konstantes Array festlegen.
-                                          AnzeigebereichExtern => Anzeigebereich (2));
+      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.ForschungsviewAccesse (ViewnummerExtern),
+                                          GrößeExtern          => Viewfläche (ViewnummerExtern),
+                                          AnzeigebereichExtern => Anzeigebereich (ViewnummerExtern));
       
       HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Forschung_Hintergrund_Enum,
-                                        AbmessungenExtern => Viewfläche (2));
+                                        AbmessungenExtern => Viewfläche (ViewnummerExtern));
       
       TextPosition := TextKonstanten.StartpositionText;
       TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
-      -- Darf nicht auch 0.00 gesetzt werden, da es sonst zu Abstürzen kommt wenn alle technologien erforscht wurden.äöü
+      -- Darf nicht auch 0.00 gesetzt werden, da es sonst zu Abstürzen kommt wenn alle Technologien erforscht wurden.äöü
       -- Später eine bessere Lösung bauen. äöü
       AktuelleTextbreite := 0.01;
-      
-      -- Die aktuelle Auswahl auch immer mitübergeben? Auch in anderen Menüs? äöü
-      AktuelleAuswahl := ForschungenDatentypen.ForschungIDNichtMöglich (NachGrafiktask.AktuelleAuswahl);
-      Zusatztext := ForschungKonstanten.LeerForschung;
-      
+            
       AnzeigeSchleife:
       for ForschungSchleifenwert in ForschungenDatentypen.ForschungID'Range loop
          
@@ -133,9 +90,8 @@ package body ForschungAnzeigeSFML is
          is
             when True =>
                if
-                 AktuelleAuswahl = ForschungSchleifenwert
+                 AuswahlExtern = ForschungSchleifenwert
                then
-                  Zusatztext := ForschungSchleifenwert;
                   Farbe := TexteinstellungenSFML.Schriftfarben.FarbeAusgewähltText;
             
                else
@@ -163,30 +119,29 @@ package body ForschungAnzeigeSFML is
          
       end loop AnzeigeSchleife;
       
-      Viewfläche (2) := (AktuelleTextbreite, TextPosition.y);
-      
-      return Zusatztext;
+      Viewfläche (ViewnummerExtern) := (AktuelleTextbreite, TextPosition.y);
       
    end Auswahlmöglichkeiten;
    
    
    
    procedure Beschreibung
-     (ZusatztextExtern : in ForschungenDatentypen.ForschungIDMitNullWert)
+     (ZusatztextExtern : in ForschungenDatentypen.ForschungIDMitNullWert;
+      ViewnummerExtern : in Positive;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      Viewfläche (3) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (3),
-                                                                          VerhältnisExtern => (0.50, 0.50));
-      Viewfläche (3) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (3),
-                                                                          VerhältnisExtern => (0.50, 0.50));
+      Viewfläche (ViewnummerExtern) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
+                                                                                         VerhältnisExtern => (0.50, 0.50));
+      Viewfläche (ViewnummerExtern) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
+                                                                                         VerhältnisExtern => (0.50, 0.50));
       
-      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.ForschungsviewAccesse (3),
-                                          GrößeExtern          => Viewfläche (3),
-                                          -- Für den Anzeigebereich später ein konstantes Array festlegen.
-                                          AnzeigebereichExtern => Anzeigebereich (3));
+      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.ForschungsviewAccesse (ViewnummerExtern),
+                                          GrößeExtern          => Viewfläche (ViewnummerExtern),
+                                          AnzeigebereichExtern => Anzeigebereich (ViewnummerExtern));
       
       HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Forschung_Hintergrund_Enum,
-                                        AbmessungenExtern => Viewfläche (3));
+                                        AbmessungenExtern => Viewfläche (ViewnummerExtern));
       
       case
         ZusatztextExtern
@@ -197,15 +152,25 @@ package body ForschungAnzeigeSFML is
          when others =>
             TextPosition := TextKonstanten.StartpositionText;
             TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
+            
             Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüZusatztextAccess (ZusatztextExtern),
                                           position => TextPosition);
-            
-            Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                               text         => TextaccessVariablen.ForschungsmenüZusatztextAccess (ZusatztextExtern));
-            
-            Viewfläche (3) := (Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.ForschungsmenüZusatztextAccess (ZusatztextExtern)).width + TextKonstanten.TextbreiteZusatzwert,
-                                TextPosition.y + TextKonstanten.TexthöheZusatzwert + Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.ForschungsmenüZusatztextAccess (ZusatztextExtern)).height);
       end case;
+            
+      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüZusatztextAccess (ZusatztextExtern),
+                                         str  => BeschreibungenZeilenumbruchSFML.ZeilenumbruchBerechnen (TextExtern => ForschungsbeschreibungenSFML.BeschreibungLang (IDExtern    => ZusatztextExtern,
+                                                                                                                                                                      RasseExtern => RasseExtern)));
+      
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                         text         => TextaccessVariablen.ForschungsmenüZusatztextAccess (ZusatztextExtern));
+      
+      AktuelleTextbreite := 0.01;
+      AktuelleTextbreite := TextberechnungenBreiteSFML.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ForschungsmenüZusatztextAccess (ZusatztextExtern),
+                                                                                TextbreiteExtern => AktuelleTextbreite);
+      
+      TextPosition.y := TextPosition.y + Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.ForschungsmenüZusatztextAccess (ZusatztextExtern)).height + TextberechnungenHoeheSFML.Zeilenabstand;
+      
+      Viewfläche (ViewnummerExtern) := (AktuelleTextbreite, TextPosition.y);
               
    end Beschreibung;
    
@@ -213,21 +178,22 @@ package body ForschungAnzeigeSFML is
    
    procedure Ermöglicht
      (ZusatztextExtern : in ForschungenDatentypen.ForschungIDMitNullWert;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      ViewnummerExtern : in Positive)
    is begin
       
       -- Sieht auch ohne Anpassung ganz gut aus? äöü
-      Viewfläche (4) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (4),
-                                                                          VerhältnisExtern => (0.50, 0.50));
-      Viewfläche (4) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (4),
-                                                                          VerhältnisExtern => (0.50, 0.50));
+      Viewfläche (ViewnummerExtern) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
+                                                                                         VerhältnisExtern => (0.50, 0.50));
+      Viewfläche (ViewnummerExtern) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
+                                                                                         VerhältnisExtern => (0.50, 0.50));
       
-      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.ForschungsviewAccesse (4),
-                                          GrößeExtern          => Viewfläche (4),
-                                          AnzeigebereichExtern => Anzeigebereich (4));
+      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.ForschungsviewAccesse (ViewnummerExtern),
+                                          GrößeExtern          => Viewfläche (ViewnummerExtern),
+                                          AnzeigebereichExtern => Anzeigebereich (ViewnummerExtern));
       
       HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Forschung_Hintergrund_Enum,
-                                        AbmessungenExtern => Viewfläche (4));
+                                        AbmessungenExtern => Viewfläche (ViewnummerExtern));
       
       case
         ZusatztextExtern
@@ -268,8 +234,8 @@ package body ForschungAnzeigeSFML is
                Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                              position => TextPosition);
                Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
-                                                  str  => ForschungAllgemein.Beschreibung (IDExtern    => TechnologieSchleifenwert,
-                                                                                           RasseExtern => RasseExtern));
+                                                  str  => ForschungsbeschreibungenSFML.BeschreibungKurz (IDExtern    => TechnologieSchleifenwert,
+                                                                                               RasseExtern => RasseExtern));
                
                Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                                   text         => TextaccessVariablen.ForschungsmenüErmöglichtAccess);
@@ -297,7 +263,7 @@ package body ForschungAnzeigeSFML is
             Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                           position => TextPosition);
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
-                                               str  => EinheitenBeschreibungen.BeschreibungKurz (IDExtern => EinheitenSchleifenwert));
+                                               str  => EinheitenbeschreibungenSFML.BeschreibungKurz (IDExtern => EinheitenSchleifenwert));
                
             Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                                text         => TextaccessVariablen.ForschungsmenüErmöglichtAccess);
@@ -324,7 +290,7 @@ package body ForschungAnzeigeSFML is
             Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                           position => TextPosition);
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
-                                               str  => GebaeudeAllgemein.BeschreibungKurz (IDExtern => GebäudeSchleifenwert));
+                                               str  => GebaeudebeschreibungenSFML.BeschreibungKurz (IDExtern => GebäudeSchleifenwert));
             
             Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                                text         => TextaccessVariablen.ForschungsmenüErmöglichtAccess);
@@ -341,29 +307,29 @@ package body ForschungAnzeigeSFML is
          
       TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
-      Viewfläche (4) := (AktuelleTextbreite, TextPosition.y);
+      Viewfläche (ViewnummerExtern) := (AktuelleTextbreite, TextPosition.y);
       
    end Ermöglicht;
    
    
    
    procedure Aktuell
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      ViewnummerExtern : in Positive)
    is begin
       
       -- Sieht auch ohne Anpassung ganz gut aus.
-      -- Viewfläche (5) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (5),
+      -- Viewfläche (ViewnummerExtern) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
       --                                                                     VerhältnisExtern => (0.10, 0.10));
-      --  Viewfläche (5) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (5),
+      --  Viewfläche (ViewnummerExtern) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
       --                                                                      VerhältnisExtern => (0.10, 0.10));
       
-      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.ForschungsviewAccesse (5),
-                                          GrößeExtern          => Viewfläche (5),
-                                          -- Für den Anzeigebereich später ein konstantes Array festlegen.
-                                          AnzeigebereichExtern => Anzeigebereich (5));
+      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.ForschungsviewAccesse (ViewnummerExtern),
+                                          GrößeExtern          => Viewfläche (ViewnummerExtern),
+                                          AnzeigebereichExtern => Anzeigebereich (ViewnummerExtern));
       
       HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Forschung_Hintergrund_Enum,
-                                        AbmessungenExtern => Viewfläche (5));
+                                        AbmessungenExtern => Viewfläche (ViewnummerExtern));
       
       TextPosition := TextKonstanten.StartpositionText;
       AktuelleTextbreite := 0.01;
@@ -377,14 +343,14 @@ package body ForschungAnzeigeSFML is
             Text := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt) & " " & GlobaleTexte.Zeug (TextnummernKonstanten.ZeugKeines);
             
          when others =>
-            Text := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt) & " " & ForschungAllgemein.Beschreibung (IDExtern    => AktuellesForschungsprojekt,
-                                                                                                                                      RasseExtern => RasseExtern);
+            Text := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt) & " " & ForschungsbeschreibungenSFML.BeschreibungKurz (IDExtern    => AktuellesForschungsprojekt,
+                                                                                                                                          RasseExtern => RasseExtern);
       end case;
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                          str  => To_Wide_Wide_String (Source => Text));
       
-      TextPosition.x := Viewfläche (5).x / 2.00 - TextberechnungenBreiteSFML.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess);
+      TextPosition.x := Viewfläche (ViewnummerExtern).x / 2.00 - TextberechnungenBreiteSFML.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess);
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                     position => TextPosition);
@@ -401,7 +367,7 @@ package body ForschungAnzeigeSFML is
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                          str  => To_Wide_Wide_String (Source => Text));
       
-      TextPosition.x := Viewfläche (5).x / 2.00 - TextberechnungenBreiteSFML.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess);
+      TextPosition.x := Viewfläche (ViewnummerExtern).x / 2.00 - TextberechnungenBreiteSFML.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess);
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                     position => TextPosition);
@@ -413,7 +379,7 @@ package body ForschungAnzeigeSFML is
                                                                                 TextbreiteExtern => AktuelleTextbreite);
       TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
             
-      Viewfläche (5) := (AktuelleTextbreite, TextPosition.y);
+      Viewfläche (ViewnummerExtern) := (AktuelleTextbreite, TextPosition.y);
       
    end Aktuell;
 

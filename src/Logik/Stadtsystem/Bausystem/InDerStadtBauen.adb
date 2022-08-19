@@ -1,11 +1,15 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with Sf;
+with Sf.Graphics.RenderWindow;
+
 with GrafikDatentypen; use GrafikDatentypen;
 with StadtRecords; use StadtRecords;
 with StadtKonstanten;
 with TastenbelegungDatentypen;
 with OptionenVariablen;
+with ViewsSFML;
 
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
@@ -17,6 +21,7 @@ with NachGrafiktask;
 with NachLogiktask;
 with InteraktionAuswahl;
 with Vergleiche;
+with GrafikEinstellungenSFML;
 
 package body InDerStadtBauen is
 
@@ -165,6 +170,7 @@ package body InDerStadtBauen is
       loop
          
          AktuelleAuswahl := MausAuswahl;
+         NachGrafiktask.AktuelleBauauswahl := AktuelleAuswahl;
          
          case
            Eingabe.Tastenwert
@@ -204,8 +210,9 @@ package body InDerStadtBauen is
      return StadtRecords.BauprojektRecord
    is begin
       
-      -- Hier zuerst auf den Gebäudeview anpassen und danach auf den Einheitenview! äöü
-      Mausposition := NachLogiktask.Mausposition;
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                                                 point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
+                                                                 view         => ViewsSFML.BauviewAccesse (1));
       
       GebäudeSchleife:
       for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
@@ -230,8 +237,9 @@ package body InDerStadtBauen is
          
       end loop GebäudeSchleife;
             
-      -- Hier auf den Einheitenview! äöü
-      Mausposition := NachLogiktask.Mausposition;
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                                                 point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
+                                                                 view         => ViewsSFML.BauviewAccesse (2));
       
       EinheitenSchleife:
       for EinheitenSchleifenwert in EinheitenDatentypen.EinheitenID'Range loop

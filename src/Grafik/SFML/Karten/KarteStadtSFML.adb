@@ -36,9 +36,6 @@ package body KarteStadtSFML is
       
       StadtInformationenSFML.Stadtinformationen (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
-      -- Diese Sachen später entfernen, wenn ich die Views besser unter Kontrolle haben. äöü
-      ViewsEinstellenSFML.Standardview;
-      
    end StadtkarteAnzeigen;
    
    

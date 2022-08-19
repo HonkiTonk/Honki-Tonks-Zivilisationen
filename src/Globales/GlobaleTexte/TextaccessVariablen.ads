@@ -18,9 +18,12 @@ package TextaccessVariablen is
    -- Allgemeines
    ÜberschriftAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
    VersionsnummerAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
+   
+   ZeilenumbruchAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
    -- Allgemeines
 
    -- MenüsEinfach
+   -- Später entfernen! äöü
    Überschrift : constant Positive := 1;
    Versionsnummer : constant Positive := 1;
    
@@ -32,8 +35,11 @@ package TextaccessVariablen is
    
    
    -- ZusatztextRassenmenü
-   type ZusatztextRassenAccessArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of Sf.Graphics.sfText_Ptr;
-   ZusatztextRassenAccess : constant ZusatztextRassenAccessArray := (others => Sf.Graphics.Text.create);
+   type RassennamenAccessArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of Sf.Graphics.sfText_Ptr;
+   RassennamenAccess : constant RassennamenAccessArray := (others => Sf.Graphics.Text.create);
+   
+   type RassenbeschreibungAccessArray is array (RassennamenAccessArray'Range) of Sf.Graphics.sfText_Ptr;
+   RassenbeschreibungAccess : constant RassenbeschreibungAccessArray := (others => Sf.Graphics.Text.create);
    -- ZusatztextRassenmenü
    
    

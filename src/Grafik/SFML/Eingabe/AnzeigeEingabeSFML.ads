@@ -35,6 +35,7 @@ private
    
    AktuellerText : Unbounded_Wide_Wide_String;
    AktuellerWert : Unbounded_Wide_Wide_String;
+   Text : Unbounded_Wide_Wide_String;
    
    WelcheAuswahl : AuswahlStadtEinheit.AuswahlRecord;
    

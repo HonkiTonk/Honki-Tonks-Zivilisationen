@@ -13,7 +13,7 @@ with LeseStadtGebaut;
 with LeseWichtiges;
 
 with Karten;
-with ForschungAllgemein;
+with ForschungsbeschreibungenSFML;
 
 package body DebugmenueTerminal is
 
@@ -29,24 +29,24 @@ package body DebugmenueTerminal is
          -- Hier nicht mehr direkt darauf zugreifen sondern so wie in allen anderen Menüs.
          -- EingabeSystemeSFML.TastenEingabe;
          
-       --  case
-       --    EingabeSystemeSFML.TastaturTaste
-       --  is
-            -- Volle Informationen (unabhängig von der Rasse)
-       --     when Sf.Window.Keyboard.sfKeyI =>
-               Informationen;
+         --  case
+         --    EingabeSystemeSFML.TastaturTaste
+         --  is
+         -- Volle Informationen (unabhängig von der Rasse)
+         --     when Sf.Window.Keyboard.sfKeyI =>
+         Informationen;
                
-       --     when Sf.Window.Keyboard.sfKeyG =>
-               DebugSieg := not DebugSieg;
+         --     when Sf.Window.Keyboard.sfKeyG =>
+         DebugSieg := not DebugSieg;
                
-       --     when Sf.Window.Keyboard.sfKeyM =>
-               SchreibeWichtiges.Geldmenge (RasseExtern         => RasseExtern,
-                                            GeldZugewinnExtern  => ZahlenDatentypen.EigenerInteger'Last,
-                                           RechnenSetzenExtern => False);
+         --     when Sf.Window.Keyboard.sfKeyM =>
+         SchreibeWichtiges.Geldmenge (RasseExtern         => RasseExtern,
+                                      GeldZugewinnExtern  => ZahlenDatentypen.EigenerInteger'Last,
+                                      RechnenSetzenExtern => False);
                
-       --     when others =>
-       --        return;
-       --  end case;
+         --     when others =>
+         --        return;
+         --  end case;
          
          -- Karte hier nur Anzeigen wenn Terminal aktiv ist? Oder kann die Terminal auch wie die SFML ausgelagert werden?
          -- Karte.AnzeigeKarte (RasseExtern => RasseExtern);
@@ -123,8 +123,8 @@ package body DebugmenueTerminal is
       Put (Item => "AufgabeEins: " & LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)'Wide_Wide_Image);
       Put_Line (Item => "     AufgabeZwei: " & LeseEinheitenGebaut.BeschäftigungNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern)'Wide_Wide_Image);
       Put_Line (Item => "Aktuelles Forschungsprojekt:");
-      Put_Line (Item => ForschungAllgemein.Beschreibung (IDExtern    => LeseWichtiges.Forschungsprojekt (RasseExtern => EinheitRasseNummerExtern.Rasse),
-                                                         RasseExtern => EinheitRasseNummerExtern.Rasse));
+      Put_Line (Item => ForschungsbeschreibungenSFML.BeschreibungKurz (IDExtern    => LeseWichtiges.Forschungsprojekt (RasseExtern => EinheitRasseNummerExtern.Rasse),
+                                                             RasseExtern => EinheitRasseNummerExtern.Rasse));
       New_Line;
       
    end KarteInfosEinheiten;
@@ -186,8 +186,8 @@ package body DebugmenueTerminal is
       Put_Line (Item => "Aktuelle Rasse: " & StadtRasseNummerExtern.Rasse'Wide_Wide_Image);
       Put_Line (Item => "KIAufgabe: " & LeseStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image);
       Put_Line (Item => "Aktuelles Forschungsprojekt:");
-      Put_Line (Item => ForschungAllgemein.Beschreibung (IDExtern    => LeseWichtiges.Forschungsprojekt (RasseExtern => StadtRasseNummerExtern.Rasse),
-                                                         RasseExtern => StadtRasseNummerExtern.Rasse));
+      Put_Line (Item => ForschungsbeschreibungenSFML.BeschreibungKurz (IDExtern    => LeseWichtiges.Forschungsprojekt (RasseExtern => StadtRasseNummerExtern.Rasse),
+                                                             RasseExtern => StadtRasseNummerExtern.Rasse));
       New_Line;
       
    end KarteStadtInfos;

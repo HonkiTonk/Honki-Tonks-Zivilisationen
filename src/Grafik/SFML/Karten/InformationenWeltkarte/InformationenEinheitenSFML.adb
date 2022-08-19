@@ -16,7 +16,7 @@ with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
 with LeseStadtGebaut;
 
-with EinheitenBeschreibungen;
+with EinheitenbeschreibungenSFML;
 with KampfwerteEinheitErmitteln;
 with GrafikEinstellungenSFML;
 with TextberechnungenHoeheSFML;
@@ -46,7 +46,7 @@ package body InformationenEinheitenSFML is
             null;
       end case;
       
-      FestzulegenderText (1) := To_Unbounded_Wide_Wide_String (Source => EinheitenBeschreibungen.BeschreibungKurz (IDExtern => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummer)));
+      FestzulegenderText (1) := To_Unbounded_Wide_Wide_String (Source => EinheitenbeschreibungenSFML.BeschreibungKurz (IDExtern => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummer)));
       FestzulegenderText (2) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugLebenspunkte) & " " & LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummer)'Wide_Wide_Image
         & TextKonstanten.Trennzeichen & ZahlAlsStringLebenspunkte (ZahlExtern => LeseEinheitenDatenbank.MaximaleLebenspunkte (RasseExtern => EinheitRasseNummer.Rasse,
                                                                                                                               IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummer)));
@@ -65,7 +65,7 @@ package body InformationenEinheitenSFML is
            & TextKonstanten.Trennzeichen & ZahlAlsStringKampfwerte (ZahlExtern => LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => EinheitRasseNummer.Rasse,
                                                                                                                               IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummer)));
          FestzulegenderText (5) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugBeschäftigung) & " "
-           & EinheitenBeschreibungen.Beschäftigung (LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummer));
+           & EinheitenbeschreibungenSFML.Beschäftigung (LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummer));
          FestzulegenderText (6) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugBeschäftigungszeit) & LeseEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummer)'Wide_Wide_Image;
          FestzulegenderText (7) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugAngriff) 
            & LeseEinheitenDatenbank.Angriff (RasseExtern => EinheitRasseNummer.Rasse,
@@ -188,7 +188,7 @@ package body InformationenEinheitenSFML is
          then
             Beladen := True;
             Ladungstext := Ladungstext & TextKonstanten.UmbruchAbstand
-              & EinheitenBeschreibungen.BeschreibungKurz (IDExtern => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, Ladungsnummer)));
+              & EinheitenbeschreibungenSFML.BeschreibungKurz (IDExtern => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, Ladungsnummer)));
             
          else
             null;

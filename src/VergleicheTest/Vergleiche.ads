@@ -39,6 +39,16 @@ package Vergleiche is
    function Auswahlposition
      (MauspositionExtern : in Sf.System.Vector2.sfVector2f;
       TextboxExtern : in Sf.Graphics.Rect.sfFloatRect)
-      return Boolean;
+      return Boolean
+     with
+       Pre => (
+                 TextboxExtern.left >= 0.00
+               and
+                 TextboxExtern.top >= 0.00
+               and
+                 TextboxExtern.width >= 0.00
+               and
+                 TextboxExtern.height >= 0.00
+              );
 
 end Vergleiche;

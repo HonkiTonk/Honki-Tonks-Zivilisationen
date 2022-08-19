@@ -13,6 +13,7 @@ with StadtDatentypen;
 with ZahlenDatentypen;
 with SystemDatentypen;
 with SystemKonstanten;
+with StadtRecords;
 
 -- Variablen mal nach Kategorien in Records sortieren.
 package NachGrafiktask is
@@ -56,5 +57,7 @@ package NachGrafiktask is
    Eingabe : SystemDatentypen.Welche_Eingabe_Enum := SystemDatentypen.Keine_Eingabe_Enum;
    
    AktuelleAuswahl : Natural := SystemKonstanten.LeerAuswahl;
+   
+   AktuelleBauauswahl : StadtRecords.BauprojektRecord := (0, 0);
 
 end NachGrafiktask;

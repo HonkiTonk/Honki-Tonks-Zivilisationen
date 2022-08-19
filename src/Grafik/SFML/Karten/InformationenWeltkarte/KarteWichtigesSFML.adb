@@ -10,7 +10,7 @@ with TextnummernKonstanten;
 
 with LeseWichtiges;
 
-with ForschungAllgemein;
+with ForschungsbeschreibungenSFML;
 with GrafikEinstellungenSFML;
 with TextberechnungenHoeheSFML;
 
@@ -34,8 +34,9 @@ package body KarteWichtigesSFML is
       
       FestzulegenderText (3) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugAktuelleGeldmenge) & LeseWichtiges.Geldmenge (RasseExtern => RasseExtern)'Wide_Wide_Image;
       FestzulegenderText (4) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugAktuellerGeldzuwachs) & " " & ZahlAlsStringKostenLager (ZahlExtern => LeseWichtiges.GeldZugewinnProRunde (RasseExtern => RasseExtern));
-      FestzulegenderText (5) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt) & " " & ForschungAllgemein.Beschreibung (IDExtern    => LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern),
-                                                                                                                                           RasseExtern => RasseExtern);
+      FestzulegenderText (5) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt) & " "
+        & ForschungsbeschreibungenSFML.BeschreibungKurz (IDExtern    => LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern),
+                                               RasseExtern => RasseExtern);
       FestzulegenderText (6) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugVerbleibendeForschungszeit) & LeseWichtiges.VerbleibendeForschungszeit (RasseExtern => RasseExtern)'Wide_Wide_Image;
       FestzulegenderText (7) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugAktuelleForschungsmenge) & LeseWichtiges.Forschungsmenge (RasseExtern => RasseExtern)'Wide_Wide_Image;
       FestzulegenderText (8) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugAktuellerForschungsgewinn) & LeseWichtiges.GesamteForschungsrate (RasseExtern => RasseExtern)'Wide_Wide_Image;

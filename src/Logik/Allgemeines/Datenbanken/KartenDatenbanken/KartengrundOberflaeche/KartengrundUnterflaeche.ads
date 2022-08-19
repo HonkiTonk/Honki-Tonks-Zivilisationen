@@ -237,9 +237,9 @@ package KartengrundUnterflaeche is
                                       
                                                                                  KartengrundDatentypen.Gestein_Enum =>
                                                                                    (
-                                                                                    Passierbarkeit => (EinheitenDatentypen.Planeteninneres_Enum => True,
-                                                                                                       others                                   => False),
-                                                                    
+                                                                                    Passierbarkeit => (EinheitenDatentypen.Unterirdisch_Enum => True,
+                                                                                                       others                                => False),
+                                                                                    
                                                                                     Bewertung => 
                                                                                       (
                                                                                        RassenDatentypen.Menschen_Enum         => 5,

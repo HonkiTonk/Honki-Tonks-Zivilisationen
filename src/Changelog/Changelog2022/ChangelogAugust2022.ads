@@ -77,17 +77,23 @@ package ChangelogAugust2022 is
    
    
 
-   -- Version 0.03. => 0.03. (20.08.2022):
+   -- Version 0.03.1540 => 0.03. (20.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.1455 => 0.03. (19.08.2022):
+   -- Version 0.03.1455 => 0.03.1540 (19.08.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Baumenü in das Viewsystem eingebaut.
+   -- Forschungsmenü überarbeitet.
+   -- Neues Baumenü fertiggestellt.
+   -- Code zusammengefasst.
+   -- Unnötigen Code gelöscht.
+   -- Fehler behoben der verhinderte das unterirdische Einheiten sich auf Gestein bewegen konnten.
+   -- Interne Strukturen überarbeitet.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet/entfernt.
    
    
 

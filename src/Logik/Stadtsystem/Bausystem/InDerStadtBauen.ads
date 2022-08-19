@@ -13,8 +13,6 @@ private with KartenRecords;
 
 package InDerStadtBauen is
 
-   AktuelleAuswahl : StadtRecords.BauprojektRecord := (0, 0);
-
    procedure Bauen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
      with
@@ -35,6 +33,7 @@ private
 
    Zeilenabstand : Float;
 
+   AktuelleAuswahl : StadtRecords.BauprojektRecord := (0, 0);
    AktuellesBauprojekt : StadtRecords.BauprojektRecord;
    NeuesBauprojekt : StadtRecords.BauprojektRecord;
    GewähltesBauprojekt : StadtRecords.BauprojektRecord;

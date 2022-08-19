@@ -1,8 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
-
 private with Sf.System.Vector2;
 
 with RassenDatentypen; use RassenDatentypen;
@@ -32,15 +30,6 @@ package ForschungAllgemein is
                  SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
 
-   function Beschreibung
-     (IDExtern : in ForschungenDatentypen.ForschungIDMitNullWert;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return Wide_Wide_String
-     with
-       Pre => (
-                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
-              );
-
    function TechnologieVorhanden
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       TechnologieExtern : in ForschungenDatentypen.ForschungIDNichtMöglich)
@@ -58,8 +47,6 @@ private
    GewählteForschung : ForschungenDatentypen.ForschungIDMitNullWert;
 
    AktuelleForschung : Positive;
-
-   BeschreibungText : Unbounded_Wide_Wide_String;
 
    Mausposition : Sf.System.Vector2.sfVector2f;
 

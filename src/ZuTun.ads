@@ -1,15 +1,14 @@
 -- Womit ich aufgehört habe:
 
--- Mehr Zeug über die Interaktionsdatei durchführen.
--- Mehr Textanzeigezeug überarbeiten.
--- Eventuell die Bau/Forschungsmenüs umlagern.
+-- Die Fragen im Spiel entsprechend an die Views anpassen.
+-- Zusatztext für die Rassen anzeigbar machen.
 
 
 
 -- Aktuell höchste Priorität:
 
 -- KI überarbeiten (Funktioniert inzwischen Minimal, später weiter verbessern).
--- Grafiken überarbeiten (Angefangen die Textanzeige zu überarbeiten).
+-- Grafiken überarbeiten (Angefangen die Textanzeige in Views umzuwandeln. Angefangen die Menüs in Views umzuwandeln. Angefangen neue Texturen zu erstellen.).
 -- Einfache Musik/Sounds einbauen.
 -- Forschungen/Einheiten/Gebäude für zweite Rasse einbauen.
 -- Herausfinden wie man eine Windowsversion ohne GPL Zwang kompiliert.
@@ -26,4 +25,5 @@
 
 -- Erinnerungen:
 
+-- In die Beschreibungen später auch Umwandlungen für die Werte, Kosten, nötige Zeit usw. einbauen?
 --

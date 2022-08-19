@@ -12,7 +12,7 @@ with StadtKonstanten;
 with LeseEinheitenDatenbank;
 with LeseStadtGebaut;
 
-with EinheitenBeschreibungen;
+with EinheitenbeschreibungenSFML;
 with Anzeige;
 
 package body EinheitBauenTerminal is
@@ -21,7 +21,7 @@ package body EinheitBauenTerminal is
      (StadtRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
-      Put_Line (Item => EinheitenBeschreibungen.BeschreibungLang (IDExtern => EinheitenDatentypen.EinheitenIDMitNullWert (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer
+      Put_Line (Item => EinheitenbeschreibungenSFML.BeschreibungLang (IDExtern => EinheitenDatentypen.EinheitenIDMitNullWert (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer
                                                                   - EinheitenKonstanten.EinheitAufschlag)));
       
       New_Line;

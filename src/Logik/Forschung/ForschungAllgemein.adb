@@ -6,8 +6,6 @@ with Sf.Graphics.RenderWindow;
 
 with ForschungenDatentypen; use ForschungenDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
-with GlobaleTexte;
-with TextnummernKonstanten;
 with TastenbelegungDatentypen;
 with GrafikDatentypen;
 with SystemDatentypen;
@@ -30,41 +28,6 @@ with ViewsSFML;
 with KIForschung;
 
 package body ForschungAllgemein is
-
-   -- Sollten Beschreibungen nicht eher im Grafiktask sein? äöü
-   function Beschreibung
-     (IDExtern : in ForschungenDatentypen.ForschungIDMitNullWert;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return Wide_Wide_String
-   is begin
-      
-      -- RasseExtern wird später benötigt wenn es verschiedene Forschungsbäume gibt.
-      if
-        RasseExtern = RassenDatentypen.Menschen_Enum
-      then
-         null;
-
-      else
-         null;
-      end if;
-      
-      case
-        IDExtern
-      is
-         when ForschungKonstanten.LeerForschungAnforderung =>
-            BeschreibungText := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugKeines);
-            
-         when others =>
-            AktuelleForschung := 2 * Positive (IDExtern) - 1;
-               
-            BeschreibungText := GlobaleTexte.Forschungen (AktuelleForschung);
-      end case;
-
-      return To_Wide_Wide_String (Source => BeschreibungText);
-      
-   end Beschreibung;
-   
-   
    
    function TechnologieVorhanden
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
@@ -203,7 +166,7 @@ package body ForschungAllgemein is
       
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                                                  point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
-                                                                 view         => ViewsSFML.ForschungsviewAccesse (2));
+                                                                 view         => ViewsSFML.ForschungsviewAccesse (1));
             
       MausZeigerSchleife:
       for ForschungSchleifenwert in InteraktionAuswahl.MöglicheForschungenArray'Range loop
