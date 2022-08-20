@@ -70,17 +70,19 @@ package ChangelogAugust2022 is
    
    
 
-   -- Version 0.03. => 0.03. (21.08.2022):
+   -- Version 0.03.1580 => 0.03. (21.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.1540 => 0.03. (20.08.2022):
+   -- Version 0.03.1540 => 0.03.1580 (20.08.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Text- und Zahleneingabe in das Viewsystem eingebaut.
+   -- Einheit/Transporter/Stadtauswahl in das Viewsystem eingebaut.
+   -- Einige fehlerhafte Darstellungen aufgrund des neuen Viewsystems korrigiert.
+   -- Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    
 

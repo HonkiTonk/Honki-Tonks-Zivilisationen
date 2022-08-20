@@ -10,20 +10,7 @@ with EinheitenRecords;
 with SpielVariablen;
 
 package AuswahlStadtEinheit is
-      
-   AktuelleAuswahl : Integer;
    
-   type MöglicheAuswahlenArray is array (0 .. EinheitenRecords.TransporterArray'Last) of EinheitenDatentypen.MaximaleEinheitenMitNullWert;
-   
-   type AuswahlRecord is record
-      
-      StadtEinheit : Boolean;
-      MöglicheAuswahlen : MöglicheAuswahlenArray;
-      
-   end record;
-   
-   WelcheAuswahl : AuswahlRecord;
-
    function AuswahlStadtEinheit
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       StadtNummerExtern : in StadtDatentypen.MaximaleStädteMitNullWert;
@@ -39,6 +26,10 @@ package AuswahlStadtEinheit is
               );
    
 private
+         
+   AktuelleAuswahl : Integer;
+   
+   WelcheAuswahl : EinheitenRecords.AuswahlRecord;
    
    Mausposition : Sf.System.Vector2.sfVector2f;
       

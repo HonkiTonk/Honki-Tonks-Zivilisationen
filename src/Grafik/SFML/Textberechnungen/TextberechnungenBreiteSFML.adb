@@ -16,24 +16,13 @@ package body TextberechnungenBreiteSFML is
       return Float
    is begin
       
-      Position := ViewbreiteExtern / 2.00 - HalbeBreiteBerechnen (TextAccessExtern => TextAccessExtern);
-      
-      if
-        Position in 0.00 .. GrafikEinstellungenSFML.AktuelleFensterAuflösung.x
-      then
-         null;
-         
-      else
-         -- Später in ein Fehler.GrafikStopp umbauen? äöü
-         Warnung.GrafikWarnung (WarnmeldungExtern => "TextberechnungenBreiteSFML.MittelpositionBerechnen - Textposition außerhalb des Fensters.");
-      end if;
-      
-      return Position;
+      return ViewbreiteExtern / 2.00 - HalbeBreiteBerechnen (TextAccessExtern => TextAccessExtern);
       
    end MittelpositionBerechnen;
    
    
    
+   -- Wird aktuell noch von Kartenform benötigt, danach kann das weg. äöü
    function ViertelpositionBerechnen
      (TextAccessExtern : in Sf.Graphics.sfText_Ptr;
       LinksRechtsExtern : in Boolean)

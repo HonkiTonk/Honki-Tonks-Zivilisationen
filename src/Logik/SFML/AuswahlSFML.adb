@@ -1,14 +1,19 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with Sf.Graphics.RenderWindow;
+
 with SystemDatentypen;
 with SystemKonstanten;
 with TastenbelegungDatentypen;
+with ViewsSFML;
 
 with NachLogiktask;
 with Eingabe;
 with InteraktionAuswahl;
 with NachGrafiktask;
+with GrafikEinstellungenSFML;
+with Vergleiche;
 
 package body AuswahlSFML is
 
@@ -65,28 +70,27 @@ package body AuswahlSFML is
    
    
    
-   -- Allgemeineres System für die ganzen MausAuswahlen bauen. äöü
    function MausAuswahl
      return Natural
    is begin
       
-      Mausposition := NachLogiktask.Mausposition;
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                                                 point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
+                                                                 view         => ViewsSFML.ZusatztextviewAccess);
       
       PositionSchleife:
       for PositionSchleifenwert in InteraktionAuswahl.PositionenJaNeinArray'Range loop
          
-         if
-           Mausposition.y in InteraktionAuswahl.PositionenJaNein (PositionSchleifenwert).top
-           .. InteraktionAuswahl.PositionenJaNein (PositionSchleifenwert).top + InteraktionAuswahl.PositionenJaNein (PositionSchleifenwert).height
-           and
-             Mausposition.x in InteraktionAuswahl.PositionenJaNein (PositionSchleifenwert).left
-           .. InteraktionAuswahl.PositionenJaNein (PositionSchleifenwert).left + InteraktionAuswahl.PositionenJaNein (PositionSchleifenwert).width
-         then
-            return PositionSchleifenwert;
+         case
+           Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
+                                       TextboxExtern      => InteraktionAuswahl.PositionenJaNein (PositionSchleifenwert))
+         is
+            when True =>
+               return PositionSchleifenwert;
             
-         else
-            null;
-         end if;
+            when False =>
+               null;
+         end case;
          
       end loop PositionSchleife;
       

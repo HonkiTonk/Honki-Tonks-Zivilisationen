@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with Sf.Graphics.RenderWindow;
-with Sf.Graphics.Color;
 with Sf.Graphics.Text;
 
 with EinheitenDatentypen; use EinheitenDatentypen;
@@ -10,14 +9,14 @@ with StadtDatentypen;
 with GlobaleTexte;
 with TextnummernKonstanten;
 with GrafikDatentypen;
+with ViewsSFML;
+with TextaccessVariablen;
 
 with EingabeSFML;
 with GrafikEinstellungenSFML;
-with ObjekteZeichnenSFML;
 with EinheitenbeschreibungenSFML;
 with LeseEinheitenGebaut;
 with LeseStadtGebaut;
-with TextaccessVariablen;
 with TextberechnungenHoeheSFML;
 with InteraktionAuswahl;
 with TextberechnungenBreiteSFML;
@@ -25,7 +24,7 @@ with NachLogiktask;
 with TexteinstellungenSFML;
 with ViewsEinstellenSFML;
 with HintergrundSFML;
-with ViewsSFML;
+with NachGrafiktask;
 
 package body AnzeigeEingabeSFML is
    
@@ -65,21 +64,28 @@ package body AnzeigeEingabeSFML is
      (FrageExtern : in ZahlenDatentypen.EigenesNatural)
    is begin
       
-     -- Viewfläche := ViewsEinstellenSFML.ViewflächeAuflösungAnpassen (ViewflächeExtern => Viewfläche);
-     -- Viewfläche := ViewsEinstellenSFML.ViewflächeAuflösungAnpassen (ViewflächeExtern => Viewfläche);
+      Viewfläche := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
+                                                                      VerhältnisExtern => (0.25, 0.20));
+      Viewfläche := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
+                                                                      VerhältnisExtern => (0.25, 0.20));
       
       ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.ZusatztextviewAccess,
                                           GrößeExtern          => Viewfläche,
-                                          AnzeigebereichExtern => (0.25, 0.10, 0.50, 0.20));
+                                          AnzeigebereichExtern => (0.25, 0.45, 0.50, 0.10));
+      
       HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum,
                                         AbmessungenExtern => Viewfläche);
-      
-      Textposition := Startposition;
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.AnzeigeZahlTexteingabeAccess (TextaccessVariablen.AnzeigeZahlTexteingabeAccessArray'First),
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.Frage (FrageExtern)));
       
-      Textbreite := Startposition.x + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.AnzeigeZahlTexteingabeAccess (TextaccessVariablen.AnzeigeZahlTexteingabeAccessArray'First)).width + Startposition.x;
+      Textposition.y := TextKonstanten.StartpositionText.y;
+      Textposition.x := Viewfläche.x / 2.00
+        - TextberechnungenBreiteSFML.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.AnzeigeZahlTexteingabeAccess (TextaccessVariablen.AnzeigeZahlTexteingabeAccessArray'First));
+      
+      Textbreite := 0.01;
+      Textbreite := TextberechnungenBreiteSFML.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.AnzeigeZahlTexteingabeAccess (TextaccessVariablen.AnzeigeZahlTexteingabeAccessArray'First),
+                                                                        TextbreiteExtern => Textbreite);
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.AnzeigeZahlTexteingabeAccess (TextaccessVariablen.AnzeigeZahlTexteingabeAccessArray'First),
                                     position => Textposition);
@@ -99,25 +105,16 @@ package body AnzeigeEingabeSFML is
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.AnzeigeZahlTexteingabeAccess (TextaccessVariablen.AnzeigeZahlTexteingabeAccessArray'Last),
                                          str  => To_Wide_Wide_String (Source => AktuellerText));
       
+      Textbreite := TextberechnungenBreiteSFML.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.AnzeigeZahlTexteingabeAccess (TextaccessVariablen.AnzeigeZahlTexteingabeAccessArray'First),
+                                                                        TextbreiteExtern => Textbreite);
+      
+      Textposition.x := Viewfläche.x / 2.00
+        - TextberechnungenBreiteSFML.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.AnzeigeZahlTexteingabeAccess (TextaccessVariablen.AnzeigeZahlTexteingabeAccessArray'Last));
+      
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.AnzeigeZahlTexteingabeAccess (TextaccessVariablen.AnzeigeZahlTexteingabeAccessArray'Last),
-                                    position =>
-                                      (Viewfläche.x / 2.00
-                                       - TextberechnungenBreiteSFML.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.AnzeigeZahlTexteingabeAccess (TextaccessVariablen.AnzeigeZahlTexteingabeAccessArray'Last)),
-                                       Textposition.y));
+                                    position => Textposition);
       
       Textposition.y := Textposition.y + TextberechnungenHoeheSFML.Zeilenabstand;
-      Textposition.x := Startposition.x + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.AnzeigeZahlTexteingabeAccess (TextaccessVariablen.AnzeigeZahlTexteingabeAccessArray'Last)).width + Startposition.x;
-      
-      if
-        Textbreite > Textposition.x
-      then
-         Textposition.x := Textbreite;
-         
-      else
-         null;
-      end if;
-      
-      Viewfläche := Textposition;
       
       ZahlenanzeigeSchleife:
       for ZahlenanzeigeSchleifenwert in TextaccessVariablen.AnzeigeZahlTexteingabeAccessArray'Range loop
@@ -126,38 +123,58 @@ package body AnzeigeEingabeSFML is
                                             text         => TextaccessVariablen.AnzeigeZahlTexteingabeAccess (ZahlenanzeigeSchleifenwert));
          
       end loop ZahlenanzeigeSchleife;
+      
+      Viewfläche := (Textbreite, Textposition.y);
       
    end AnzeigeGanzeZahl;
    
    
    
+   -- Hier zwei Views einbauen, damit bei langen Texteingaben es nicht zu merkwürdigen Skalierungen bei der Frage kommt. äöü
    procedure AnzeigeText
      (FrageExtern : in ZahlenDatentypen.EigenesNatural)
    is begin
       
+      Viewfläche := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
+                                                                      VerhältnisExtern => (0.25, 0.20));
+      Viewfläche := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
+                                                                      VerhältnisExtern => (0.25, 0.20));
+      
+      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.ZusatztextviewAccess,
+                                          GrößeExtern          => Viewfläche,
+                                          AnzeigebereichExtern => (0.25, 0.45, 0.50, 0.10));
+      
+      HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum,
+                                        AbmessungenExtern => Viewfläche);
+      
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.AnzeigeZahlTexteingabeAccess (TextaccessVariablen.AnzeigeZahlTexteingabeAccessArray'First),
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.Frage (FrageExtern)));
       
-      Textbreite := Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.AnzeigeZahlTexteingabeAccess (TextaccessVariablen.AnzeigeZahlTexteingabeAccessArray'First)).width;
+      Textposition.y := TextKonstanten.StartpositionText.y;
+      Textposition.x := Viewfläche.x / 2.00
+        - TextberechnungenBreiteSFML.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.AnzeigeZahlTexteingabeAccess (TextaccessVariablen.AnzeigeZahlTexteingabeAccessArray'First));
+      
+      Textbreite := 0.01;
+      Textbreite := TextberechnungenBreiteSFML.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.AnzeigeZahlTexteingabeAccess (TextaccessVariablen.AnzeigeZahlTexteingabeAccessArray'First),
+                                                                        TextbreiteExtern => Textbreite);
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.AnzeigeZahlTexteingabeAccess (TextaccessVariablen.AnzeigeZahlTexteingabeAccessArray'First),
-                                    position => ((GrafikEinstellungenSFML.AktuelleFensterAuflösung.x / 2.00 - Textbreite / 2.00), 100.00));
+                                    position => Textposition);
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.AnzeigeZahlTexteingabeAccess (TextaccessVariablen.AnzeigeZahlTexteingabeAccessArray'Last),
                                          str  => To_Wide_Wide_String (Source => NachLogiktask.EingegebenerText.EingegebenerText));
       
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.AnzeigeZahlTexteingabeAccess (TextaccessVariablen.AnzeigeZahlTexteingabeAccessArray'Last),
-                                    position => ((GrafikEinstellungenSFML.AktuelleFensterAuflösung.x / 2.00
-                                                 - Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.AnzeigeZahlTexteingabeAccess (TextaccessVariablen.AnzeigeZahlTexteingabeAccessArray'Last)).width / 2.00),
-                                                 150.00));
+      Textbreite := TextberechnungenBreiteSFML.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.AnzeigeZahlTexteingabeAccess (TextaccessVariablen.AnzeigeZahlTexteingabeAccessArray'Last),
+                                                                        TextbreiteExtern => Textbreite);
       
-      ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => (Textbreite + 20.00, 100.00),
-                                            PositionExtern       => (Sf.Graphics.Text.getPosition (text => TextaccessVariablen.AnzeigeZahlTexteingabeAccess (TextaccessVariablen.AnzeigeZahlTexteingabeAccessArray'First)).x
-                                                                     - 10.00,
-                                                                     Sf.Graphics.Text.getPosition (text => TextaccessVariablen.AnzeigeZahlTexteingabeAccess (TextaccessVariablen.AnzeigeZahlTexteingabeAccessArray'First)).y
-                                                                     - 10.00),
-                                            FarbeExtern          => Sf.Graphics.Color.sfBlack,
-                                            RechteckAccessExtern => RechteckAccess);
+      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.Großerzeilenabstand;
+      Textposition.x := Viewfläche.x / 2.00
+        - TextberechnungenBreiteSFML.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.AnzeigeZahlTexteingabeAccess (TextaccessVariablen.AnzeigeZahlTexteingabeAccessArray'Last));
+      
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.AnzeigeZahlTexteingabeAccess (TextaccessVariablen.AnzeigeZahlTexteingabeAccessArray'Last),
+                                    position => Textposition);
+      
+      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.Zeilenabstand;
       
       ZahlenanzeigeSchleife:
       for ZahlenanzeigeSchleifenwert in TextaccessVariablen.AnzeigeZahlTexteingabeAccessArray'Range loop
@@ -166,6 +183,8 @@ package body AnzeigeEingabeSFML is
                                             text         => TextaccessVariablen.AnzeigeZahlTexteingabeAccess (ZahlenanzeigeSchleifenwert));
          
       end loop ZahlenanzeigeSchleife;
+      
+      Viewfläche := (Textbreite, Textposition.y);
       
    end AnzeigeText;
    
@@ -182,13 +201,25 @@ package body AnzeigeEingabeSFML is
             return;
             
          when others =>
-            null;
-      end case;
-            
-      AktuelleAuswahl := AuswahlStadtEinheit.AktuelleAuswahl;
-      WelcheAuswahl := AuswahlStadtEinheit.WelcheAuswahl;
-      Textposition := (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x / 2.00, GrafikEinstellungenSFML.AktuelleFensterAuflösung.y / 2.00);
+            Viewfläche := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
+                                                                            VerhältnisExtern => (0.25, 0.20));
+            Viewfläche := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
+                                                                            VerhältnisExtern => (0.25, 0.20));
       
+            ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.ZusatztextviewAccess,
+                                                GrößeExtern          => Viewfläche,
+                                                AnzeigebereichExtern => (0.25, 0.45, 0.50, 0.10));
+      
+            HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum,
+                                              AbmessungenExtern => Viewfläche);
+      end case;
+      
+      AktuelleAuswahl := NachGrafiktask.AktuelleAuswahl;
+      WelcheAuswahl := NachGrafiktask.WelcheAuswahl;
+      
+      Textposition.y := TextKonstanten.StartpositionText.y;
+      Textbreite := 0.01;
+            
       AuswahlSchleife:
       for AuswahlSchleifenwert in WelcheAuswahl.MöglicheAuswahlen'Range loop
          
@@ -209,7 +240,7 @@ package body AnzeigeEingabeSFML is
             
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
                                                str  => To_Wide_Wide_String (Source => Text));
-            
+                        
             InteraktionAuswahl.PositionenEinheitStadt (AuswahlSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert));
             
          else
@@ -222,6 +253,9 @@ package body AnzeigeEingabeSFML is
                Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
                                                   str  => EinheitenbeschreibungenSFML.BeschreibungKurz
                                                     (IDExtern => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, WelcheAuswahl.MöglicheAuswahlen (AuswahlSchleifenwert)))));
+               
+               Textbreite := TextberechnungenBreiteSFML.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
+                                                                                 TextbreiteExtern => Textbreite);
             
                InteraktionAuswahl.PositionenEinheitStadt (AuswahlSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert));
             end if;
@@ -236,24 +270,32 @@ package body AnzeigeEingabeSFML is
             if
               AktuelleAuswahl = Natural (AuswahlSchleifenwert)
             then
-               Sf.Graphics.Text.setColor (text  => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
-                                          color => TexteinstellungenSFML.Schriftfarben.FarbeAusgewähltText);
+               Farbe := TexteinstellungenSFML.Schriftfarben.FarbeAusgewähltText;
          
             else
-               Sf.Graphics.Text.setColor (text  => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
-                                          color => TexteinstellungenSFML.Schriftfarben.FarbeStandardText);
+               Farbe := TexteinstellungenSFML.Schriftfarben.FarbeStandardText;
             end if;
             
+            Sf.Graphics.Text.setColor (text  => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
+                                       color => Farbe);
+            
+            Textposition.x := Viewfläche.x / 2.00 - TextberechnungenBreiteSFML.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert));
+            
             Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
-                                          position => (Textposition.x - Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert)).width / 2.00, Textposition.y));
+                                          position => Textposition);
             
             Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                                text         => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert));
+            
+            Textbreite := TextberechnungenBreiteSFML.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
+                                                                              TextbreiteExtern => Textbreite);
             
             Textposition.y := Textposition.y + TextberechnungenHoeheSFML.Zeilenabstand;
          end if;
          
       end loop AuswahlSchleife;
+      
+      Viewfläche := (Textbreite, Textposition.x);
             
    end AnzeigeEinheitenStadt;
    
@@ -263,51 +305,56 @@ package body AnzeigeEingabeSFML is
      (FrageExtern : in ZahlenDatentypen.EigenesNatural)
    is begin
       
-      case
-        FrageExtern
-      is
-         when 0 =>
-            return;
+      Viewfläche := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
+                                                                      VerhältnisExtern => (0.25, 0.20));
+      Viewfläche := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
+                                                                      VerhältnisExtern => (0.25, 0.20));
+      
+      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.ZusatztextviewAccess,
+                                          GrößeExtern          => Viewfläche,
+                                          AnzeigebereichExtern => (0.25, 0.45, 0.50, 0.10));
+      
+      HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum,
+                                        AbmessungenExtern => Viewfläche);
             
-         when others =>
-            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.JaNeinAccess (1),
-                                               str  => To_Wide_Wide_String (Source => GlobaleTexte.Frage (FrageExtern)));
-      end case;
+      Textbreite := 0.01;
+      Textposition.y := TextKonstanten.StartpositionText.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
-      Textposition := (TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.JaNeinAccess (1),
-                                                                           ViewbreiteExtern => GrafikEinstellungenSFML.AktuelleFensterAuflösung.x),
-                       TextberechnungenHoeheSFML.HalbeBildschirmhöhe);
+      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.JaNeinAccess (1),
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Frage (FrageExtern)));
       
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.JaNeinAccess (1),
-                                    position => Textposition);
-      
-      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.GroßerZeilenabstand;
-      Textposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.JaNeinAccess (2),
-                                                                            ViewbreiteExtern => GrafikEinstellungenSFML.AktuelleFensterAuflösung.x);
-      
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.JaNeinAccess (2),
-                                    position => Textposition);
-      
-      InteraktionAuswahl.PositionenJaNein (1) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.JaNeinAccess (2));
-      
-      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.Zeilenabstand;
-      Textposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.JaNeinAccess (3),
-                                                                            ViewbreiteExtern => GrafikEinstellungenSFML.AktuelleFensterAuflösung.x);
-      
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.JaNeinAccess (3),
-                                    position => Textposition);
-      
-      InteraktionAuswahl.PositionenJaNein (2) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.JaNeinAccess (3));
-      
-      -- Das ganze Draw Zeug mal auslagern? äöü
-      -- Bringt es wahrscheinlich nicht wirklich, da ich ja dann immer noch die Schleife hier habe. äöü
-      TextAnzeigenSchleife:
-      for TextAnzeigenSchleifenwert in TextaccessVariablen.JaNeinAccessArray'Range loop
+      TextSchleife:
+      for TextSchleifenwert in TextaccessVariablen.JaNeinAccessArray'Range loop
+         
+         Textposition.x := Viewfläche.x / 2.00 - TextberechnungenBreiteSFML.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.JaNeinAccess (TextSchleifenwert));
+         
+         Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.JaNeinAccess (TextSchleifenwert),
+                                       position => Textposition);
+         
+         Textbreite := TextberechnungenBreiteSFML.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.JaNeinAccess (TextSchleifenwert),
+                                                                           TextbreiteExtern => Textbreite);
+         
+         Textposition.y := Textposition.y + TextberechnungenHoeheSFML.GroßerZeilenabstand;
+         
+         case
+           TextSchleifenwert
+         is
+            when TextaccessVariablen.JaNeinAccessArray'First =>
+               Textposition.y := Textposition.y + TextberechnungenHoeheSFML.Zeilenabstand;
+               
+            when others =>
+               InteraktionAuswahl.PositionenJaNein (TextSchleifenwert - 1) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.JaNeinAccess (TextSchleifenwert));
+         end case;
          
          Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                            text         => TextaccessVariablen.JaNeinAccess (TextAnzeigenSchleifenwert));
+                                            text         => TextaccessVariablen.JaNeinAccess (TextSchleifenwert));
          
-      end loop TextAnzeigenSchleife;
+      end loop TextSchleife;
+      
+      Textposition.y := Textposition.y - TextberechnungenHoeheSFML.GroßerZeilenabstand;
+      Textposition.y := Textposition.y - TextberechnungenHoeheSFML.Zeilenabstand;
+            
+      Viewfläche := (Textbreite, Textposition.x);
       
    end AnzeigeJaNein;
 

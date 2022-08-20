@@ -80,5 +80,16 @@ package EinheitenRecords is
       Meldungen : EinheitMeldungenArray;
       
    end record;
+   
+   
+   
+   type MöglicheAuswahlenArray is array (0 .. TransporterArray'Last) of EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   
+   type AuswahlRecord is record
+      
+      StadtEinheit : Boolean;
+      MöglicheAuswahlen : MöglicheAuswahlenArray;
+      
+   end record;
 
 end EinheitenRecords;

@@ -37,7 +37,6 @@ private
 
    PositionVersionsnummer : Float;
    AktuelleTextbreite : Float;
-   NeueTextbreite : Float;
 
    Farbe : Sf.Graphics.Color.sfColor;
 

@@ -180,12 +180,12 @@ package body SpieleinstellungenKarten is
    -- Bei Zufall auch zurück? äöü
    procedure KartengrößeWählen
    is begin
-      
+            
       KartengrößeSchleife:
       loop
          
          KartengrößeAuswahl := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Kartengröße_Menü_Enum);
-         
+                  
          case
            KartengrößeAuswahl
          is

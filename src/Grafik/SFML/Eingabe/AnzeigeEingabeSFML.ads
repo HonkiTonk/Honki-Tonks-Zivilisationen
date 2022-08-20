@@ -5,6 +5,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 private with Sf.Graphics;
 private with Sf.Graphics.RectangleShape;
+private with Sf.Graphics.Color;
 private with Sf.System.Vector2;
 
 with RassenDatentypen;
@@ -13,8 +14,8 @@ with SystemDatentypen;
 
 private with EinheitenRecords;
 private with StadtRecords;
+private with TextKonstanten;
 
-private with AuswahlStadtEinheit;
 private with UmwandlungenAdaNachEigenes;
 
 package AnzeigeEingabeSFML is
@@ -37,15 +38,16 @@ private
    AktuellerWert : Unbounded_Wide_Wide_String;
    Text : Unbounded_Wide_Wide_String;
    
-   WelcheAuswahl : AuswahlStadtEinheit.AuswahlRecord;
+   WelcheAuswahl : EinheitenRecords.AuswahlRecord;
    
    StadtRasseNummer : StadtRecords.RasseStadtnummerRecord;
    
    EinheitRasseNummer : EinheitenRecords.RasseEinheitnummerRecord;
    
-   Startposition : constant Sf.System.Vector2.sfVector2f := (5.00, 5.00);
-   Viewfläche : Sf.System.Vector2.sfVector2f := Startposition;
+   Viewfläche : Sf.System.Vector2.sfVector2f := TextKonstanten.StartpositionText;
    Textposition : Sf.System.Vector2.sfVector2f;
+   
+   Farbe : Sf.Graphics.Color.sfColor;
    
    RechteckAccess : constant Sf.Graphics.sfRectangleShape_Ptr := Sf.Graphics.RectangleShape.create;
 

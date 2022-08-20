@@ -1,9 +1,13 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with Sf;
+with Sf.Graphics.RenderWindow;
+
 with EinheitenDatentypen; use EinheitenDatentypen;
 with TastenbelegungDatentypen;
 with SystemDatentypen;
+with ViewsSFML;
 
 with LeseEinheitenGebaut;
 
@@ -11,6 +15,8 @@ with NachLogiktask;
 with NachGrafiktask;
 with Eingabe;
 with InteraktionAuswahl;
+with Vergleiche;
+with GrafikEinstellungenSFML;
 
 package body AuswahlStadtEinheit is
 
@@ -45,14 +51,17 @@ package body AuswahlStadtEinheit is
       end if;
       
       AktuelleAuswahl := 0;
+      NachGrafiktask.AktuelleAuswahl := AktuelleAuswahl;
+      NachGrafiktask.WelcheAuswahl := WelcheAuswahl;
       
-      InteraktionAuswahl.PositionenEinheitStadt := (others => (0.00, 0.00, 0.00, 0.00));
+      -- InteraktionAuswahl.PositionenEinheitStadt := (others => (0.00, 0.00, 0.00, 0.00));
       NachGrafiktask.Eingabe := SystemDatentypen.Einheit_Auswahl_Enum;
       
       AuswahlSchleife:
       loop
          
          AktuelleAuswahl := MausAuswahl;
+         NachGrafiktask.AktuelleAuswahl := AktuelleAuswahl;
          
          case
            Eingabe.Tastenwert
@@ -89,23 +98,23 @@ package body AuswahlStadtEinheit is
      return Integer
    is begin
       
-      Mausposition := NachLogiktask.Mausposition;
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                                                 point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
+                                                                 view         => ViewsSFML.ZusatztextviewAccess);
       
       AuswahlSchleife:
       for AuswahlSchleifenwert in WelcheAuswahl.MöglicheAuswahlen'Range loop
          
-         if
-           Mausposition.y in InteraktionAuswahl.PositionenEinheitStadt (AuswahlSchleifenwert).top
-           .. InteraktionAuswahl.PositionenEinheitStadt (AuswahlSchleifenwert).top + InteraktionAuswahl.PositionenEinheitStadt (AuswahlSchleifenwert).height
-           and
-             Mausposition.x in InteraktionAuswahl.PositionenEinheitStadt (AuswahlSchleifenwert).left
-           .. InteraktionAuswahl.PositionenEinheitStadt (AuswahlSchleifenwert).left + InteraktionAuswahl.PositionenEinheitStadt (AuswahlSchleifenwert).width
-         then
-            return Natural (AuswahlSchleifenwert);
-         
-         else
-            null;
-         end if;
+         case
+           Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
+                                       TextboxExtern      => InteraktionAuswahl.PositionenEinheitStadt (AuswahlSchleifenwert))
+         is
+            when True =>
+               return Natural (AuswahlSchleifenwert);
+               
+            when False =>
+               null;
+         end case;
          
       end loop AuswahlSchleife;
               

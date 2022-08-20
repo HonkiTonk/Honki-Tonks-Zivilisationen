@@ -336,21 +336,12 @@ package body AuswahlMenuesEinfachSFML is
          Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, PositionSchleifenwert),
                                        position => Rechenwert);
 
-         NeueTextbreite := TextKonstanten.TextbreiteZusatzwert + Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, PositionSchleifenwert)).width;
+         AktuelleTextbreite := TextberechnungenBreiteSFML.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, PositionSchleifenwert),
+                                                                                   TextbreiteExtern => AktuelleTextbreite);
          
          InteraktionAuswahl.PositionenMenüeinträge (WelchesMenüExtern, PositionSchleifenwert - 1)
            := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, PositionSchleifenwert));
          
-         -- Das mal Rausschieben? äöü
-         if
-           NeueTextbreite > AktuelleTextbreite
-         then
-            AktuelleTextbreite := NeueTextbreite;
-
-         else
-            null;
-         end if;
-
          Rechenwert.y := Rechenwert.y + TextberechnungenHoeheSFML.Zeilenabstand;
          
       end loop PositionenSchleife;
