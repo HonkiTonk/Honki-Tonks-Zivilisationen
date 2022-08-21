@@ -41,7 +41,7 @@ package body TextaccesseSchriftgroesseSetzenSFML is
                                          size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeÜberschrift);
       
       Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.VersionsnummerAccess,
-                                         size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeKlein);
+                                         size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeÜberschrift);
       
       Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.ZeilenumbruchAccess,
                                          size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeKlein);

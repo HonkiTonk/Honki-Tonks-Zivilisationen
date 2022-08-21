@@ -3,28 +3,30 @@ pragma Warnings (Off, "*array aggregate*");
 
 with GrafikDatentypen;
 with GrafikKonstanten;
+with ViewsSFML;
 
 with AuswahlMenuesEinfachSFML;
 with AuswahlMenueKartenformSFML;
 with AuswahlMenueSteuerungSFML;
-with Fehler;
 with ViewsEinstellenSFML;
 with HintergrundSFML;
-with ViewsSFML;
+with UeberschriftviewSFML;
 
 package body AuswahlMenuesSFML is
 
    procedure AuswahlMenüsAufteilung
-     (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Enum)
+     (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum)
    is begin
       
-      -- Irgendwann mal herausfinden warum ich das zweimal aufrufen muss um das richtige Ergebnis zu bekommen. äöü
-      Viewfläche := ViewsEinstellenSFML.ViewflächeAuflösungAnpassen (ViewflächeExtern => Viewfläche);
+      UeberschriftviewSFML.ÜberschriftErmitteln (WelchesMenüExtern => WelchesMenüExtern);
+      
+      -- Mal herausfinden warum ich das zweimal aufrufen muss um das richtige Ergebnis zu bekommen. äöü
+      -- Viewfläche := ViewsEinstellenSFML.ViewflächeAuflösungAnpassen (ViewflächeExtern => Viewfläche);
       Viewfläche := ViewsEinstellenSFML.ViewflächeAuflösungAnpassen (ViewflächeExtern => Viewfläche);
       
       ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.MenüviewAccess,
                                           GrößeExtern          => Viewfläche,
-                                          AnzeigebereichExtern => GrafikKonstanten.StandardAnzeigebereich);
+                                          AnzeigebereichExtern => GrafikKonstanten.Menübereich);
       
       HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum,
                                         AbmessungenExtern => Viewfläche);
@@ -32,9 +34,6 @@ package body AuswahlMenuesSFML is
       case
         WelchesMenüExtern
       is
-         when MenueDatentypen.Leer_Menü_Enum =>
-            Fehler.GrafikFehler (FehlermeldungExtern => "AuswahlMenuesSFML.AuswahlMenüsAufteilung - Kein Menü ausgewählt.");
-            
          when MenueDatentypen.Menü_Einfach_Enum =>
             Viewfläche := AuswahlMenuesEinfachSFML.AuswahlMenüsEinfach (WelchesMenüExtern => WelchesMenüExtern,
                                                                           ViewflächeExtern  => Viewfläche);
@@ -48,6 +47,8 @@ package body AuswahlMenuesSFML is
          when MenueDatentypen.Steuerung_Menü_Enum =>
             Viewfläche := AuswahlMenueSteuerungSFML.AuswahlMenüSteuerung (ViewflächeExtern => Viewfläche);
       end case;
+      
+      UeberschriftviewSFML.Versionsnummer (HintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum);
       
    end AuswahlMenüsAufteilung;
 

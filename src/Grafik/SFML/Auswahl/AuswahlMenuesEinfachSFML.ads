@@ -60,10 +60,6 @@ private
      (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum;
       AktuelleAuswahlExtern : in Natural);
 
-   procedure TextFestlegen
-     (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum;
-      TextbereichExtern : in Positive);
-
 
 
    function Textbearbeitung

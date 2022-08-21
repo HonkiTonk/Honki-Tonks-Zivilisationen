@@ -16,7 +16,6 @@ with EingabeSFML;
 with GrafikEinstellungenSFML;
 with EinheitenbeschreibungenSFML;
 with LeseEinheitenGebaut;
-with LeseStadtGebaut;
 with TextberechnungenHoeheSFML;
 with InteraktionAuswahl;
 with TextberechnungenBreiteSFML;
@@ -230,8 +229,7 @@ package body AnzeigeEingabeSFML is
               WelcheAuswahl.StadtEinheit
             is
                when True =>
-                  Text := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugStadt)
-                    & LeseStadtGebaut.Name (StadtRasseNummerExtern => (RasseExtern, StadtDatentypen.MaximaleStädteMitNullWert (WelcheAuswahl.MöglicheAuswahlen (0))));
+                  Text := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugStadt);
                   
                when False =>
                   Text := To_Unbounded_Wide_Wide_String (Source => EinheitenbeschreibungenSFML.BeschreibungKurz (IDExtern => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern,

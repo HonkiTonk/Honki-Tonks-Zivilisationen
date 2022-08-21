@@ -63,17 +63,17 @@ package ChangelogAugust2022 is
    
    
 
-   -- Version 0.03. => 0.03. (22.08.2022):
+   -- Version 0.03.1595 => 0.03. (22.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.1580 => 0.03. (21.08.2022):
+   -- Version 0.03.1580 => 0.03.1595 (21.08.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter am Menüsystem gebaut.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 

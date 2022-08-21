@@ -10,7 +10,6 @@ with Sf.Graphics.Text;
 with RassenDatentypen; use RassenDatentypen;
 with MenueDatentypen; use MenueDatentypen;
 with KartenDatentypen; use KartenDatentypen;
-with SonstigesKonstanten;
 with SpielVariablen;
 with SpielDatentypen;
 with TextaccessVariablen;
@@ -25,7 +24,6 @@ with AuswahlMenuesZusatztextSFML;
 with KartengeneratorVariablen;
 with TextberechnungenHoeheSFML;
 with TexteinstellungenSFML;
-with AllgemeineTextanzeigeSFML;
 with NachGrafiktask;
 
 package body AuswahlMenuesEinfachSFML is
@@ -42,16 +40,6 @@ package body AuswahlMenuesEinfachSFML is
                                                        TextbereichExtern => Ende,
                                                        ViewflächeExtern  => ViewflächeExtern);
       
-      AllgemeineTextanzeigeSFML.Überschrift;
-      
-      TextSchleife:
-      for TextSchleifenwert in StartpunktTextschleifen .. Ende loop
-         
-         Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                            text         => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, TextSchleifenwert));
-         
-      end loop TextSchleife;
-      
       case
         WelchesMenüExtern
       is
@@ -65,9 +53,8 @@ package body AuswahlMenuesEinfachSFML is
             null;
       end case;
       
-      AktuelleAuswahlRückgabewert.Textposition := AllgemeineTextanzeigeSFML.Versionsnummer (ViewflächeExtern           => ViewflächeExtern,
-                                                                                             AktuelleTextpositionExtern => AktuelleAuswahlRückgabewert.Textposition);
-            
+      AktuelleAuswahlRückgabewert.Textposition.y := AktuelleAuswahlRückgabewert.Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
+                  
       return AktuelleAuswahlRückgabewert.Textposition;
       
    end AuswahlMenüsEinfach;
@@ -84,9 +71,6 @@ package body AuswahlMenuesEinfachSFML is
       
       SchriftfarbenFestlegen (WelchesMenüExtern => WelchesMenüExtern,
                               TextbereichExtern => TextbereichExtern);
-      
-      TextFestlegen (WelchesMenüExtern => WelchesMenüExtern,
-                     TextbereichExtern => TextbereichExtern);
       
       case
         WelchesMenüExtern
@@ -273,37 +257,6 @@ package body AuswahlMenuesEinfachSFML is
    
    
    
-   procedure TextFestlegen
-     (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum;
-      TextbereichExtern : in Positive)
-   is begin
-      
-      case
-        WelchesMenüExtern
-      is
-         when MenueDatentypen.Menü_Ohne_Überschrift_Enum'Range =>
-            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ÜberschriftAccess,
-                                               str  => SonstigesKonstanten.Spielname);
-            
-         when MenueDatentypen.Menü_Mit_Überschrift_Enum'Range | MenueDatentypen.Menü_Zusatztext_Einfach_Enum'Range =>
-            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ÜberschriftAccess,
-                                               str  => AuswahlMenuesStringsSetzen.AuswahlMenüStringSetzen (WelcheZeileExtern => 1,
-                                                                                                            WelchesMenüExtern => WelchesMenüExtern));
-      end case;
-      
-      TextSchleife:
-      for TextSchleifenwert in StartpunktTextschleifen .. TextbereichExtern loop
-                  
-         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, TextSchleifenwert),
-                                            str  => AuswahlMenuesStringsSetzen.AuswahlMenüStringSetzen (WelcheZeileExtern => TextSchleifenwert,
-                                                                                                         WelchesMenüExtern => WelchesMenüExtern));
-         
-      end loop TextSchleife;
-      
-   end TextFestlegen;
-   
-   
-   
    function TextpositionFestlegen
      (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum;
       TextbereichExtern : in Positive;
@@ -311,18 +264,16 @@ package body AuswahlMenuesEinfachSFML is
       return Sf.System.Vector2.sfVector2f
    is begin
       
-      Rechenwert.y := TextKonstanten.StartpositionText.y;
-      Rechenwert.x := ViewflächeExtern.x / 2.00 - TextberechnungenBreiteSFML.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.ÜberschriftAccess);
-
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ÜberschriftAccess,
-                                    position => Rechenwert);
-
-      AktuelleTextbreite := TextKonstanten.TextbreiteZusatzwert + Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.ÜberschriftAccess).width;
-      Rechenwert.y := Rechenwert.y + TextberechnungenHoeheSFML.Überschriftabstand;
+      Rechenwert.y := TextKonstanten.StartpositionText.y + TextberechnungenHoeheSFML.Zeilenabstand;
+      AktuelleTextbreite := 0.01;
 
       PositionenSchleife:
       for PositionSchleifenwert in StartpunktTextschleifen .. TextbereichExtern loop
 
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, PositionSchleifenwert),
+                                            str  => AuswahlMenuesStringsSetzen.AuswahlMenüStringSetzen (WelcheZeileExtern => PositionSchleifenwert,
+                                                                                                         WelchesMenüExtern => WelchesMenüExtern));
+         
          case
            WelchesMenüExtern
          is
@@ -343,6 +294,9 @@ package body AuswahlMenuesEinfachSFML is
            := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, PositionSchleifenwert));
          
          Rechenwert.y := Rechenwert.y + TextberechnungenHoeheSFML.Zeilenabstand;
+         
+         Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                            text         => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, PositionSchleifenwert));
          
       end loop PositionenSchleife;
 
