@@ -53,8 +53,9 @@ package body AuswahlMenuesEinfachSFML is
             null;
       end case;
       
+      -- Das hier möglicherweise nach AuswahlMenuesSFML verschieben, damit bei anderen Varianten das auch aufgerechnet wird?
       AktuelleAuswahlRückgabewert.Textposition.y := AktuelleAuswahlRückgabewert.Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
-                  
+                        
       return AktuelleAuswahlRückgabewert.Textposition;
       
    end AuswahlMenüsEinfach;

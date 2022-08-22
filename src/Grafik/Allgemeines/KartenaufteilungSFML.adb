@@ -7,12 +7,14 @@ with OptionenVariablen;
 with StadtKonstanten;
 
 with KarteStadtTerminal;
-with KarteStadtSFML;
+with StadtkarteSFML;
 with CursorPlatzierenSFML;
 with CursorAltPlatzieren;
 with KarteTerminal;
-with KarteSFML;
+with WeltkarteSFML;
 with Fehler;
+with KarteInformationenSFML;
+with StadtInformationenSFML;
 
 -- Hier muss eventuell auch einiges noch in die NachTasks verschoben bzw. überarbeitet werden. äöü
 -- Ist die Cursorplatzierung überhaupt noch wirklich in Logik oder nur noch in Grafik? äöü
@@ -42,7 +44,8 @@ package body KartenaufteilungSFML is
             KarteTerminal.AnzeigeKarteTerminal (RasseExtern => EinheitRasseNummerExtern.Rasse);
             
          when GrafikDatentypen.Grafik_SFML_Enum =>
-            KarteSFML.KarteAnzeigen (RasseEinheitExtern => EinheitRasseNummerExtern);
+            WeltkarteSFML.Weltkarte (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            KarteInformationenSFML.KarteInformationenSFML (RasseExtern => EinheitRasseNummerExtern.Rasse);
       end case;
 
    end Weltkarte;
@@ -71,7 +74,8 @@ package body KartenaufteilungSFML is
             KarteStadtTerminal.AnzeigeStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
             
          when GrafikDatentypen.Grafik_SFML_Enum =>
-            KarteStadtSFML.StadtkarteAnzeigen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+            StadtkarteSFML.Stadtkarte (StadtRasseNummerExtern => StadtRasseNummerExtern);
+            StadtInformationenSFML.Stadtinformationen (StadtRasseNummerExtern => StadtRasseNummerExtern);
       end case;
       
    end Stadtkarte;

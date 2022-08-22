@@ -34,7 +34,7 @@ package body ViewsEinstellenSFML is
    is begin
       
       if
-        Viewfläche.x < GrafikEinstellungenSFML.AktuelleFensterAuflösung.x
+        ViewflächeExtern.x < GrafikEinstellungenSFML.AktuelleFensterAuflösung.x
       then
          Viewfläche.x := GrafikEinstellungenSFML.AktuelleFensterAuflösung.x;
          
@@ -43,7 +43,7 @@ package body ViewsEinstellenSFML is
       end if;
       
       if
-        Viewfläche.y < GrafikEinstellungenSFML.AktuelleFensterAuflösung.y
+        ViewflächeExtern.y < GrafikEinstellungenSFML.AktuelleFensterAuflösung.y
       then
          Viewfläche.y := GrafikEinstellungenSFML.AktuelleFensterAuflösung.y;
          
@@ -64,7 +64,7 @@ package body ViewsEinstellenSFML is
    is begin
       
       if
-        Viewfläche.x < GrafikEinstellungenSFML.AktuelleFensterAuflösung.x * VerhältnisExtern.x
+        ViewflächeExtern.x < GrafikEinstellungenSFML.AktuelleFensterAuflösung.x * VerhältnisExtern.x
       then
          Viewfläche.x := GrafikEinstellungenSFML.AktuelleFensterAuflösung.x * VerhältnisExtern.x;
          
@@ -73,7 +73,7 @@ package body ViewsEinstellenSFML is
       end if;
       
       if
-        Viewfläche.y < GrafikEinstellungenSFML.AktuelleFensterAuflösung.y * VerhältnisExtern.y
+        ViewflächeExtern.y < GrafikEinstellungenSFML.AktuelleFensterAuflösung.y * VerhältnisExtern.y
       then
          Viewfläche.y := GrafikEinstellungenSFML.AktuelleFensterAuflösung.y * VerhältnisExtern.y;
          

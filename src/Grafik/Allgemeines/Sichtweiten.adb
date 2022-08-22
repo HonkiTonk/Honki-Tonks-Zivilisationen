@@ -26,13 +26,14 @@ package body Sichtweiten is
    is begin
       
       -- Eine Möglichkeit einbauen das abzustellen. äöü
+      -- Eine Möglichkeit einbauen um direkt zu Standardzoomstufe zu springen und nicht zur Kleinsten?
       if
         AktuelleZoomstufe + ÄnderungExtern > MaximaleZoomstufe
       then
          BewegungCursor.BewegungCursorRichtung (KarteExtern    => True,
                                                 RichtungExtern => TastenbelegungDatentypen.Ebene_Hoch_Enum,
                                                 RasseExtern    => NachGrafiktask.AktuelleRasse);
-         AktuelleZoomstufe := StandardZoomstufe;
+         AktuelleZoomstufe := KartenDatentypen.KartenfeldPositiv'First;
          
       elsif
           AktuelleZoomstufe + ÄnderungExtern < KartenDatentypen.KartenfeldPositiv'First
@@ -40,7 +41,7 @@ package body Sichtweiten is
          BewegungCursor.BewegungCursorRichtung (KarteExtern    => True,
                                                 RichtungExtern => TastenbelegungDatentypen.Ebene_Runter_Enum,
                                                 RasseExtern    => NachGrafiktask.AktuelleRasse);
-         AktuelleZoomstufe := StandardZoomstufe;
+         AktuelleZoomstufe := MaximaleZoomstufe;
          
       else
          AktuelleZoomstufe := AktuelleZoomstufe + ÄnderungExtern;

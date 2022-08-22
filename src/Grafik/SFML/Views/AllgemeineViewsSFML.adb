@@ -17,12 +17,15 @@ with GrafikEinstellungenSFML;
 with AuswahlMenuesStringsSetzen;
 with TextberechnungenHoeheSFML;
 
-package body UeberschriftviewSFML is
+package body AllgemeineViewsSFML is
       
    procedure Überschrift
      (ÜberschriftExtern : in Wide_Wide_String;
       HintergrundExtern : in GrafikDatentypen.Hintergrund_Texturen_Enum)
    is begin
+      
+      Viewfläche (Überschrift_Enum) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (Überschrift_Enum),
+                                                                                            VerhältnisExtern => (1.00, 0.10));
       
       ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.ÜberschriftviewAccess,
                                           GrößeExtern          => Viewfläche (Überschrift_Enum),
@@ -42,9 +45,11 @@ package body UeberschriftviewSFML is
 
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                          text         => TextaccessVariablen.ÜberschriftAccess);
+      
+      Textbreite := TextberechnungenBreiteSFML.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ÜberschriftAccess,
+                                                                        TextbreiteExtern => 0.00);
 
-      Viewfläche (Überschrift_Enum) := (TextKonstanten.TextbreiteZusatzwert + Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.ÜberschriftAccess).width,
-                                          TextPosition.y + TextKonstanten.TexthöheZusatzwert + Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.ÜberschriftAccess).height);
+      Viewfläche (Überschrift_Enum) := (Textbreite, TextPosition.y + TextKonstanten.TexthöheZusatzwert + Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.ÜberschriftAccess).height);
          
    end Überschrift;
    
@@ -81,10 +86,8 @@ package body UeberschriftviewSFML is
       
       Viewfläche (Versionsnummer_Enum) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (Versionsnummer_Enum),
                                                                                             VerhältnisExtern => (0.05, 0.05));
-      Viewfläche (Versionsnummer_Enum) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (Versionsnummer_Enum),
-                                                                                            VerhältnisExtern => (0.05, 0.05));
       
-      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.ÜberschriftviewAccess,
+      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.VersionsnummerviewAccess,
                                           GrößeExtern          => Viewfläche (Versionsnummer_Enum),
                                           AnzeigebereichExtern => GrafikKonstanten.Versionsbereich);
       
@@ -99,10 +102,48 @@ package body UeberschriftviewSFML is
 
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                          text         => TextaccessVariablen.VersionsnummerAccess);
+      
+      Textbreite := TextberechnungenBreiteSFML.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.VersionsnummerAccess,
+                                                                        TextbreiteExtern => 0.00);
 
-      Viewfläche (Versionsnummer_Enum) := (TextKonstanten.TextbreiteZusatzwert + Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.VersionsnummerAccess).width,
-                                            TextPosition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand + Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.VersionsnummerAccess).height);
+      Viewfläche (Versionsnummer_Enum) := (Textbreite, TextPosition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand + Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.VersionsnummerAccess).height);
       
    end Versionsnummer;
+   
+   
+   
+   procedure Frage
+     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Texturen_Enum;
+      FrageExtern : in Wide_Wide_String)
+   is begin
+      
+      Viewfläche (Frage_Enum) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (Frage_Enum),
+                                                                                   VerhältnisExtern => (0.50, 0.05));
+      
+      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.FragenviewAccesse (1),
+                                          GrößeExtern          => Viewfläche (Frage_Enum),
+                                          AnzeigebereichExtern => GrafikKonstanten.Fragenbereich);
+      
+      HintergrundSFML.MenüHintergrund (HintergrundExtern => HintergrundExtern,
+                                        AbmessungenExtern => Viewfläche (Frage_Enum));
+      
+      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ÜberschriftAccess,
+                                         str  => FrageExtern);
+      
+      TextPosition.x := Viewfläche (Frage_Enum).x / 2.00 - TextberechnungenBreiteSFML.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.ÜberschriftAccess);
+      TextPosition.y := TextKonstanten.StartpositionText.y;
+      
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ÜberschriftAccess,
+                                    position => TextPosition);
 
-end UeberschriftviewSFML;
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                         text         => TextaccessVariablen.ÜberschriftAccess);
+      
+      Textbreite := TextberechnungenBreiteSFML.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ÜberschriftAccess,
+                                                                        TextbreiteExtern => 0.00);
+
+      Viewfläche (Frage_Enum) := (Textbreite, TextPosition.y + TextKonstanten.TexthöheZusatzwert + Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.ÜberschriftAccess).height);
+      
+   end Frage;
+
+end AllgemeineViewsSFML;

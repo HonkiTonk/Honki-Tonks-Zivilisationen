@@ -55,5 +55,24 @@ package TextberechnungenHoeheSFML is
        Post => (
                   ÜberschriftabstandGroß'Result > 0.00
                );
+   
+   function NeueTexthöheErmitteln
+     (TextAccessExtern : in Sf.Graphics.sfText_Ptr;
+      TexthöheExtern : in Float)
+      return Float
+     with
+       Pre => (
+                 TextAccessExtern /= null
+               and
+                 TexthöheExtern >= 0.00
+              ),
+         
+       Post => (
+                  NeueTexthöheErmitteln'Result >= 0.00
+               );
+   
+private
+   
+   NeueTexthöhe : Float;
 
 end TextberechnungenHoeheSFML;

@@ -239,10 +239,10 @@ package body TextaccesseTextSetzenSFML is
    is begin
       
       AnzeigeEingabeSchleife:
-      for AnzeigeEingabeSchleifenwert in TextaccessVariablen.JaNeinAccessArray'First + 1 .. TextaccessVariablen.JaNeinAccessArray'Last loop
+      for AnzeigeEingabeSchleifenwert in TextaccessVariablen.JaNeinAccessArray'Range loop
          
          Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.JaNeinAccess (AnzeigeEingabeSchleifenwert),
-                                            str  => To_Wide_Wide_String (Source => GlobaleTexte.JaNein (AnzeigeEingabeSchleifenwert - 1)));
+                                            str  => To_Wide_Wide_String (Source => GlobaleTexte.JaNein (AnzeigeEingabeSchleifenwert)));
          
       end loop AnzeigeEingabeSchleife;
          

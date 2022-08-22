@@ -25,7 +25,6 @@ package body TextaccesseSchriftgroesseSetzenSFML is
       KarteWichtiges;
       KarteAllgemeines;
       Karte;
-      Zahleneingabe;
       EinheitStadtAuswahl;
       AnzeigeEingabe;
       Ladezeiten;
@@ -45,6 +44,9 @@ package body TextaccesseSchriftgroesseSetzenSFML is
       
       Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.ZeilenumbruchAccess,
                                          size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeKlein);
+      
+      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.TextAccess,
+                                         size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
       
    end Allgemeines;
    
@@ -268,22 +270,9 @@ package body TextaccesseSchriftgroesseSetzenSFML is
    is begin
       
       Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.KarteAccess,
-                                         size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
-      
-   end Karte;
-   
-   
-   
-   procedure Zahleneingabe
-   is begin
-      
-      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.AnzeigeZahlTexteingabeAccess (TextaccessVariablen.AnzeigeZahlTexteingabeAccessArray'First),
                                          size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeÜberschrift);
       
-      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.AnzeigeZahlTexteingabeAccess (TextaccessVariablen.AnzeigeZahlTexteingabeAccessArray'Last),
-                                         size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
-      
-   end Zahleneingabe;
+   end Karte;
    
    
    
@@ -305,11 +294,8 @@ package body TextaccesseSchriftgroesseSetzenSFML is
    procedure AnzeigeEingabe
    is begin
       
-      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.JaNeinAccess (TextaccessVariablen.JaNeinAccessArray'First),
-                                         size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeÜberschrift);
-      
       AnzeigeEingabeSchleife:
-      for AnzeigeEingabeSchleifenwert in TextaccessVariablen.JaNeinAccessArray'First + 1 .. TextaccessVariablen.JaNeinAccessArray'Last loop
+      for AnzeigeEingabeSchleifenwert in TextaccessVariablen.JaNeinAccessArray'Range loop
          
          Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.JaNeinAccess (AnzeigeEingabeSchleifenwert),
                                             size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);

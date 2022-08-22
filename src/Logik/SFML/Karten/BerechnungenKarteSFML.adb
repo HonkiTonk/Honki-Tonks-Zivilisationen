@@ -11,7 +11,7 @@ package body BerechnungenKarteSFML is
    procedure KartenfelderAbmessungBerechnen
    is begin
       
-      FensterKarte := (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x * AusschnittKarte, GrafikEinstellungenSFML.AktuelleFensterAuflösung.y);
+      FensterKarte := (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x, GrafikEinstellungenSFML.AktuelleFensterAuflösung.y);
       FensterAnzeige := (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x, GrafikEinstellungenSFML.AktuelleFensterAuflösung.y);
                   
       KartenfelderAbmessung.x := FensterKarte.x / Float (2 * Sichtweiten.SichtweiteLesen + 1);
@@ -24,7 +24,7 @@ package body BerechnungenKarteSFML is
    procedure StadtfelderAbmessungBerechnen
    is begin
       
-      StadtKarte := (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x * AusschnittStadtKarte, GrafikEinstellungenSFML.AktuelleFensterAuflösung.y);
+      StadtKarte := (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x, GrafikEinstellungenSFML.AktuelleFensterAuflösung.y);
       StadtAnzeige := (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x, GrafikEinstellungenSFML.AktuelleFensterAuflösung.y);
       
       StadtfelderAbmessung.x := StadtKarte.x / Float (KartenDatentypen.Stadtfeld'Last);

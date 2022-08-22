@@ -3,6 +3,8 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Sf.Graphics.Text;
 
+with TextKonstanten;
+
 with GrafikEinstellungenSFML;
 
 package body TextberechnungenHoeheSFML is
@@ -75,5 +77,26 @@ package body TextberechnungenHoeheSFML is
       return 180.00; -- 5.00 * Float (TexteinstellungenSFML.Schriftgrößen.SchriftgrößeÜberschrift);
       
    end ÜberschriftabstandGroß;
+   
+   
+   
+   function NeueTexthöheErmitteln
+     (TextAccessExtern : in Sf.Graphics.sfText_Ptr;
+      TexthöheExtern : in Float)
+      return Float
+   is begin
+      
+      NeueTexthöhe := TextKonstanten.TexthöheZusatzwert + Sf.Graphics.Text.getGlobalBounds (text => TextAccessExtern).height;
+      
+      if
+        NeueTexthöhe > TexthöheExtern
+      then
+         return NeueTexthöhe;
+           
+      else
+         return TexthöheExtern;
+      end if;
+      
+   end NeueTexthöheErmitteln;
    
 end TextberechnungenHoeheSFML;

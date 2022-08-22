@@ -10,15 +10,15 @@ with GrafikKonstanten;
 with GrafikDatentypen;
 with TextKonstanten;
 with InteraktionAuswahl;
+with TextaccessVariablen;
+with ViewsSFML;
 
 with GrafikEinstellungenSFML;
 with TextberechnungenBreiteSFML;
-with TextaccessVariablen;
 with TextberechnungenHoeheSFML;
 with TexteinstellungenSFML;
 with NachGrafiktask;
 with ViewsEinstellenSFML;
-with ViewsSFML;
 with HintergrundSFML;
 
 package body AnzeigeSprachauswahlSFML is
@@ -27,11 +27,10 @@ package body AnzeigeSprachauswahlSFML is
    is begin
       
       Viewfläche := ViewsEinstellenSFML.ViewflächeAuflösungAnpassen (ViewflächeExtern => Viewfläche);
-      Viewfläche := ViewsEinstellenSFML.ViewflächeAuflösungAnpassen (ViewflächeExtern => Viewfläche);
       
       ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.MenüviewAccess,
                                           GrößeExtern          => Viewfläche,
-                                          AnzeigebereichExtern => GrafikKonstanten.StandardAnzeigebereich);
+                                          AnzeigebereichExtern => GrafikKonstanten.Sprachenbereich);
       
       HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum,
                                         AbmessungenExtern => Viewfläche);

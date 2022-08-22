@@ -29,7 +29,7 @@ with ViewsEinstellenSFML;
 with ForschungsbeschreibungenSFML;
 with EinheitenbeschreibungenSFML;
 with GebaeudebeschreibungenSFML;
-with UeberschriftviewSFML;
+with AllgemeineViewsSFML;
 with BeschreibungenZeilenumbruchSFML;
 
 package body ForschungAnzeigeSFML is
@@ -39,7 +39,7 @@ package body ForschungAnzeigeSFML is
       AktuelleAuswahlExtern : in Natural)
    is begin
       
-      UeberschriftviewSFML.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => GlobaleTexte.Frage (TextnummernKonstanten.FrageForschungsprojekt)),
+      AllgemeineViewsSFML.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => GlobaleTexte.Frage (TextnummernKonstanten.FrageForschungsprojekt)),
                                          HintergrundExtern => GrafikDatentypen.Forschung_Hintergrund_Enum);
             
       AktuelleAuswahl := ForschungenDatentypen.ForschungIDMitNullWert (AktuelleAuswahlExtern);
@@ -64,8 +64,6 @@ package body ForschungAnzeigeSFML is
       ViewnummerExtern : in Positive)
    is begin
       
-      Viewfläche (ViewnummerExtern) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
-                                                                                         VerhältnisExtern => (0.50, 1.00));
       Viewfläche (ViewnummerExtern) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
                                                                                          VerhältnisExtern => (0.50, 1.00));
       
@@ -133,8 +131,6 @@ package body ForschungAnzeigeSFML is
       
       Viewfläche (ViewnummerExtern) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
                                                                                          VerhältnisExtern => (0.50, 0.50));
-      Viewfläche (ViewnummerExtern) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
-                                                                                         VerhältnisExtern => (0.50, 0.50));
       
       ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.ForschungsviewAccesse (ViewnummerExtern),
                                           GrößeExtern          => Viewfläche (ViewnummerExtern),
@@ -183,8 +179,6 @@ package body ForschungAnzeigeSFML is
    is begin
       
       -- Sieht auch ohne Anpassung ganz gut aus? äöü
-      Viewfläche (ViewnummerExtern) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
-                                                                                         VerhältnisExtern => (0.50, 0.50));
       Viewfläche (ViewnummerExtern) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
                                                                                          VerhältnisExtern => (0.50, 0.50));
       
@@ -321,8 +315,6 @@ package body ForschungAnzeigeSFML is
       -- Sieht auch ohne Anpassung ganz gut aus.
       -- Viewfläche (ViewnummerExtern) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
       --                                                                     VerhältnisExtern => (0.10, 0.10));
-      --  Viewfläche (ViewnummerExtern) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
-      --                                                                      VerhältnisExtern => (0.10, 0.10));
       
       ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.ForschungsviewAccesse (ViewnummerExtern),
                                           GrößeExtern          => Viewfläche (ViewnummerExtern),

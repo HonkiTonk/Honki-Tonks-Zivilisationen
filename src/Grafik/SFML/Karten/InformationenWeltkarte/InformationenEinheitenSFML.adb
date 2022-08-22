@@ -8,9 +8,11 @@ with Sf.Graphics.Text;
 with EinheitenDatentypen; use EinheitenDatentypen;
 with GlobaleTexte;
 with EinheitenKonstanten;
-with TextKonstanten;
 with StadtKonstanten;
 with TextnummernKonstanten;
+with ViewsSFML;
+with GrafikKonstanten;
+with GrafikDatentypen;
 
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
@@ -20,18 +22,48 @@ with EinheitenbeschreibungenSFML;
 with KampfwerteEinheitErmitteln;
 with GrafikEinstellungenSFML;
 with TextberechnungenHoeheSFML;
+with ViewsEinstellenSFML;
+with HintergrundSFML;
+with TextberechnungenBreiteSFML;
 
 package body InformationenEinheitenSFML is
-
-   function Einheiten
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      TextpositionExtern : in Sf.System.Vector2.sfVector2f)
-      return Sf.System.Vector2.sfVector2f
+   
+   procedure Leer
+     (AnzeigebereichExtern : in Positive)
    is begin
       
-      Textposition := TextpositionExtern;
-      TextbreiteAktuell := 0.00;
+      -- Diese Bereiche sicherheitshalber auch von außen hineingeben? äöü
+      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.SeitenleisteWeltkarteAccesse (4),
+                                          GrößeExtern          => Viewfläche,
+                                          AnzeigebereichExtern => GrafikKonstanten.SeitenleisteWeltkartenbereich (AnzeigebereichExtern));
+      
+      HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Seitenleiste_Hintergrund_Enum,
+                                        AbmessungenExtern => Viewfläche);
+      
+   end Leer;
+   
+   
+
+   procedure Einheiten
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      StadtVorhandenExtern : in Boolean)
+   is begin
+      
+      case
+        StadtVorhandenExtern
+      is
+         when True =>
+            Leer (AnzeigebereichExtern => 4);
+            
+         when False =>
+            Leer (AnzeigebereichExtern => 4);
+            Leer (AnzeigebereichExtern => 3);
+      end case;
+      
+      Textposition := TextKonstanten.StartpositionText;
+      AktuelleYPosition := Textposition.y;
+      Textbreite := 0.00;
       EinheitRasseNummer.Rasse := EinheitRasseNummerExtern.Rasse;
       -- Diese Zuweisung ist wichtig weil die gefundene Einheit eventuell auf einem Transporter ist.
       EinheitRasseNummer.Nummer := LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -78,9 +110,9 @@ package body InformationenEinheitenSFML is
                                                                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummer)));
          FestzulegenderText (10) := Heimatstadt (EinheitRasseNummerExtern => EinheitRasseNummer);
          FestzulegenderText (11) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugGegenschlagskraftFeld) & KampfwerteEinheitErmitteln.AktuelleVerteidigungEinheit (EinheitRasseNummerExtern => EinheitRasseNummer,
-                                                                                                                                                           AngreiferExtern          => False)'Wide_Wide_Image;
+                                                                                                                                                                  AngreiferExtern          => False)'Wide_Wide_Image;
          FestzulegenderText (12) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugGegenschlagskraft) & KampfwerteEinheitErmitteln.AktuellerAngriffEinheit (EinheitRasseNummerExtern => EinheitRasseNummer,
-                                                                                                                                                   AngreiferExtern          => False)'Wide_Wide_Image;
+                                                                                                                                                          AngreiferExtern          => False)'Wide_Wide_Image;
          FestzulegenderText (13) := Ladung (EinheitRasseNummerExtern => EinheitRasseNummer);
          
          VolleInformation := True;
@@ -91,45 +123,46 @@ package body InformationenEinheitenSFML is
             
       TextSchleife:
       for TextSchleifenwert in TextaccessVariablen.EinheitenInformationenAccessArray'Range loop
-         
+                  
          if
            VolleInformation = False
            and
              TextSchleifenwert > 2
          then
-            exit TextSchleife;
+            null;
             
          else
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),
                                                str  => To_Wide_Wide_String (Source => FestzulegenderText (TextSchleifenwert)));
             Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),
-                                          position => Textposition);
+                                          position => (Textposition.x, AktuelleYPosition));
             
             Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                                text         => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert));
          
-            TextbreiteNeu := Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert)).width + 2.00 * TextpositionExtern.x;
-         
-            if
-              TextbreiteAktuell < TextbreiteNeu
-            then
-               TextbreiteAktuell := TextbreiteNeu;
+            Textbreite := TextberechnungenBreiteSFML.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),
+                                                                              TextbreiteExtern => Textbreite);
             
-            else
-               null;
-            end if;
+            AktuelleYPosition := AktuelleYPosition + TextberechnungenHoeheSFML.Zeilenabstand;
+            
+            case
+              TextSchleifenwert
+            is
+               when TextaccessVariablen.EinheitenInformationenAccessArray'Last =>
+                  Textposition.y := Textposition.y + Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert)).height;
+                  
+               when others =>
+                  null;
+            end case;
          end if;
-      
-         Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
+         
+         Textposition.y := Textposition.y + TextberechnungenHoeheSFML.Zeilenabstand;
          
       end loop TextSchleife;
       
-      Textposition.x := TextbreiteAktuell;
-      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
+      Viewfläche := (Textbreite, Textposition.y);
       
       Debuginformationen (EinheitRasseNummerExtern => EinheitRasseNummer);
-      
-      return Textposition;
       
    end Einheiten;
    
@@ -156,7 +189,6 @@ package body InformationenEinheitenSFML is
    
    
    
-   -- Das hier überall/öfter einbauen? äöü
    function Ladung
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Unbounded_Wide_Wide_String
@@ -170,12 +202,12 @@ package body InformationenEinheitenSFML is
       is
          when EinheitenKonstanten.LeerKannTransportieren =>
             return TextKonstanten.LeerUnboundedString;
-               
+            
          when others =>
             Beladen := False;
             Ladungstext := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugAktuelleLadung);
       end case;
-                  
+                        
       LadungSchleife:
       for LadungSchleifenwert in EinheitenRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                                                                                         IDExtern    => IDEinheit) loop
@@ -187,6 +219,7 @@ package body InformationenEinheitenSFML is
            Ladungsnummer /= EinheitenKonstanten.LeerTransportiert
          then
             Beladen := True;
+            -- Das hier überall/öfter einbauen? äöü
             Ladungstext := Ladungstext & TextKonstanten.UmbruchAbstand
               & EinheitenbeschreibungenSFML.BeschreibungKurz (IDExtern => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, Ladungsnummer)));
             

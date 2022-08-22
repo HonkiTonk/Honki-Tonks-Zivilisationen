@@ -22,7 +22,7 @@ private
    
    MaximaleZoomstufe : constant KartenDatentypen.KartenfeldPositiv := 8;
    StandardZoomstufe : constant KartenDatentypen.KartenfeldPositiv := 4;
-   AktuelleZoomstufe : KartenDatentypen.KartenfeldPositiv := 4;
+   AktuelleZoomstufe : KartenDatentypen.KartenfeldPositiv := StandardZoomstufe;
 
    --  SichtweitenTerminalStandard : constant SichtweitenArray := (1 => (0, 6, 8),
    --                                                             2 => (0, 6, 16),

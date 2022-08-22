@@ -1,6 +1,5 @@
 -- Womit ich aufgehört habe:
 
--- Die Fragen im Spiel entsprechend an die Views anpassen.
 -- Zusatztext für die Rassen anzeigbar machen.
 
 

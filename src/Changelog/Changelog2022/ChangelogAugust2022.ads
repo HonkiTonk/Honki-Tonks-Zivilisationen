@@ -56,23 +56,29 @@ package ChangelogAugust2022 is
    
    
 
-   -- Version 0.03. => 0.03. (23.08.2022):
+   -- Version 0.03.1680 => 0.03. (23.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.1595 => 0.03. (22.08.2022):
+   -- Version 0.03.1595 => 0.03.1680 (22.08.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehler im Viewsystem behoben der zu fehlerhaften Anzeigen und Skalierungen führte.
+   -- Weiter am neuen Menüsystem gebaut.
+   -- Text-, Zahlen- und JaNeineingabe überarbeitet.
+   -- Karten- und Seitenleistenskalierung erfolgt jetzt durch die Viewskalierung.
+   -- Unnötigen Code gelöscht.
+   -- Weltkartenseitenleiste in verschiedene Views aufgeteilt.
+   -- Verschiedene Fehler in den Seitenleisten- und Eingabenviews korrigiert.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst/erweitert.
    
    
 
    -- Version 0.03.1580 => 0.03.1595 (21.08.2022):
    
-   -- Weiter am Menüsystem gebaut.
+   -- Weiter am neuen Menüsystem gebaut.
    -- Kommentare und Kleinigkeiten korrigiert.
    
    

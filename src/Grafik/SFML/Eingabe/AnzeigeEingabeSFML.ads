@@ -4,7 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 private with Sf.Graphics;
-private with Sf.Graphics.RectangleShape;
 private with Sf.Graphics.Color;
 private with Sf.System.Vector2;
 
@@ -21,21 +20,19 @@ private with UmwandlungenAdaNachEigenes;
 package AnzeigeEingabeSFML is
    
    procedure Fragenaufteilung
-     (FrageExtern : in ZahlenDatentypen.EigenesNatural;
+     (FrageExtern : in ZahlenDatentypen.EigenesPositive;
       EingabeExtern : in SystemDatentypen.Eingaben_Fragen_Enum);
    
    -- Später KORREKTEN Contract einfügen. äöü
    procedure AnzeigeEinheitenStadt
-     (RasseExtern : in RassenDatentypen.Rassen_Enum);
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
    
 private
-         
+   
    AktuelleAuswahl : Integer;
    
    Textbreite : Float;
    
-   AktuellerText : Unbounded_Wide_Wide_String;
-   AktuellerWert : Unbounded_Wide_Wide_String;
    Text : Unbounded_Wide_Wide_String;
    
    WelcheAuswahl : EinheitenRecords.AuswahlRecord;
@@ -48,17 +45,10 @@ private
    Textposition : Sf.System.Vector2.sfVector2f;
    
    Farbe : Sf.Graphics.Color.sfColor;
-   
-   RechteckAccess : constant Sf.Graphics.sfRectangleShape_Ptr := Sf.Graphics.RectangleShape.create;
 
-   procedure AnzeigeGanzeZahl
-     (FrageExtern : in ZahlenDatentypen.EigenesNatural);
-   
-   procedure AnzeigeText
-     (FrageExtern : in ZahlenDatentypen.EigenesNatural);
-   
-   procedure AnzeigeJaNein
-     (FrageExtern : in ZahlenDatentypen.EigenesNatural);
+   procedure AnzeigeGanzeZahl;
+   procedure AnzeigeText;
+   procedure AnzeigeJaNein;
    
    
    

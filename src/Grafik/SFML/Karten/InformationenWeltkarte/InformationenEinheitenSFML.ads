@@ -14,16 +14,19 @@ private with ProduktionDatentypen;
 private with KampfDatentypen;
 private with TextaccessVariablen;
 private with StadtDatentypen;
+private with TextKonstanten;
 
 private with UmwandlungenAdaNachEigenes;
 
 package InformationenEinheitenSFML is
+   
+   procedure Leer
+     (AnzeigebereichExtern : in Positive);
 
-   function Einheiten
+   procedure Einheiten
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      TextpositionExtern : in Sf.System.Vector2.sfVector2f)
-      return Sf.System.Vector2.sfVector2f
+      StadtVorhandenExtern : in Boolean)
      with
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -32,6 +35,7 @@ package InformationenEinheitenSFML is
                and
                  SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
+   
    
 private
    
@@ -44,13 +48,14 @@ private
    
    Ladungsnummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    
-   TextbreiteAktuell : Float;
-   TextbreiteNeu : Float;
+   Textbreite : Float;
+   AktuelleYPosition : Float;
       
    Ladungstext : Unbounded_Wide_Wide_String;
       
    EinheitRasseNummer : EinheitenRecords.RasseEinheitnummerRecord;
    
+   Viewfläche : Sf.System.Vector2.sfVector2f := TextKonstanten.StartpositionText;
    Textposition : Sf.System.Vector2.sfVector2f;
    
    type FestzulegenderTextArray is array (TextaccessVariablen.EinheitenInformationenAccessArray'Range) of Unbounded_Wide_Wide_String;

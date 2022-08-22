@@ -19,6 +19,8 @@ package TextaccessVariablen is
    ÜberschriftAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
    VersionsnummerAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
    
+   TextAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
+   
    ZeilenumbruchAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
    -- Allgemeines
 
@@ -95,7 +97,7 @@ package TextaccessVariablen is
    
    
    -- StadtInformationen
-   type StadtInformationenAccessArray is array (1 .. 13) of Sf.Graphics.sfText_Ptr;
+   type StadtInformationenAccessArray is array (1 .. 12) of Sf.Graphics.sfText_Ptr;
    StadtInformationenAccess : constant StadtInformationenAccessArray := (others => Sf.Graphics.Text.create);
    -- StadtInformationen
    
@@ -129,13 +131,10 @@ package TextaccessVariablen is
    
    
    -- AnzeigeEingabe
-   type AnzeigeZahlTexteingabeAccessArray is array (1 .. 2) of Sf.Graphics.sfText_Ptr;
-   AnzeigeZahlTexteingabeAccess : constant AnzeigeZahlTexteingabeAccessArray := (others => Sf.Graphics.Text.create);
-   
    type AnzeigeEinheitStadtAccessArray is array (InteraktionAuswahl.PositionenEinheitStadtArray'Range) of Sf.Graphics.sfText_Ptr;
    AnzeigeEinheitStadtAccess : constant AnzeigeEinheitStadtAccessArray := (others => Sf.Graphics.Text.create);
    
-   type JaNeinAccessArray is array (1 .. 3) of Sf.Graphics.sfText_Ptr;
+   type JaNeinAccessArray is array (InteraktionAuswahl.PositionenJaNeinArray'Range) of Sf.Graphics.sfText_Ptr;
    JaNeinAccess : constant JaNeinAccessArray := (others => Sf.Graphics.Text.create);
    -- AnzeigeEingabe
    

@@ -118,6 +118,7 @@ package body BewegungEinheitenSFML is
    
    
    
+   -- Muss noch korrekt an das neue Viewsystem angepasst werden. äöü
    function BefehleMaus
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean

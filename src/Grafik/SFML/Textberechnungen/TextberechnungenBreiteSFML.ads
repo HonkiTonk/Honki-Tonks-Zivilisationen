@@ -39,7 +39,11 @@ package TextberechnungenBreiteSFML is
      with
        Pre => (
                  TextAccessExtern /= null
-              );
+              ),
+         
+       Post => (
+                  HalbeBreiteBerechnen'Result >= 0.00
+               );
    
    function NeueTextbreiteErmitteln
      (TextAccessExtern : in Sf.Graphics.sfText_Ptr;
@@ -48,7 +52,13 @@ package TextberechnungenBreiteSFML is
      with
        Pre => (
                  TextAccessExtern /= null
-              );
+               and
+                 TextbreiteExtern >= 0.00
+              ),
+         
+       Post => (
+                  NeueTextbreiteErmitteln'Result >= 0.00
+               );
    
 private
    

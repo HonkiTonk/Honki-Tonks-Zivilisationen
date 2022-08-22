@@ -6,7 +6,10 @@ with Sf.Graphics.RenderWindow;
 
 with GrafikEinstellungenSFML;
 with TexturenSetzenSkalierenSFML;
+with Warnung;
 
+-- Später die Funktionen durch Prozeduren austauschen die Prüfung auf TexturAccessExtern in einen Contract schieben. äöü
+-- Skalierungen auch an das neue Viewsystem anpassen? äöü
 package body KartenspritesZeichnenSFML is
    
    function SpriteGezeichnetKartenfeld
@@ -26,6 +29,7 @@ package body KartenspritesZeichnenSFML is
          return True;
          
       else
+         Warnung.GrafikWarnung (WarnmeldungExtern => "KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld - TexturAccessExtern = null");
          return False;
       end if;
       
@@ -50,6 +54,7 @@ package body KartenspritesZeichnenSFML is
          return True;
          
       else
+         Warnung.GrafikWarnung (WarnmeldungExtern => "KartenspritesZeichnenSFML.SpriteGezeichnetStadtfeld - TexturAccessExtern = null");
          return False;
       end if;
       
@@ -74,6 +79,7 @@ package body KartenspritesZeichnenSFML is
          return True;
          
       else
+         Warnung.GrafikWarnung (WarnmeldungExtern => "KartenspritesZeichnenSFML.SpriteGezeichnetStadtgrund - TexturAccessExtern = null");
          return False;
       end if;
       

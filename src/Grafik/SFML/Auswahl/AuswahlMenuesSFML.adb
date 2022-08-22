@@ -10,7 +10,7 @@ with AuswahlMenueKartenformSFML;
 with AuswahlMenueSteuerungSFML;
 with ViewsEinstellenSFML;
 with HintergrundSFML;
-with UeberschriftviewSFML;
+with AllgemeineViewsSFML;
 
 package body AuswahlMenuesSFML is
 
@@ -18,10 +18,8 @@ package body AuswahlMenuesSFML is
      (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum)
    is begin
       
-      UeberschriftviewSFML.ÜberschriftErmitteln (WelchesMenüExtern => WelchesMenüExtern);
+      AllgemeineViewsSFML.ÜberschriftErmitteln (WelchesMenüExtern => WelchesMenüExtern);
       
-      -- Mal herausfinden warum ich das zweimal aufrufen muss um das richtige Ergebnis zu bekommen. äöü
-      -- Viewfläche := ViewsEinstellenSFML.ViewflächeAuflösungAnpassen (ViewflächeExtern => Viewfläche);
       Viewfläche := ViewsEinstellenSFML.ViewflächeAuflösungAnpassen (ViewflächeExtern => Viewfläche);
       
       ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.MenüviewAccess,
@@ -48,7 +46,7 @@ package body AuswahlMenuesSFML is
             Viewfläche := AuswahlMenueSteuerungSFML.AuswahlMenüSteuerung (ViewflächeExtern => Viewfläche);
       end case;
       
-      UeberschriftviewSFML.Versionsnummer (HintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum);
+      AllgemeineViewsSFML.Versionsnummer (HintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum);
       
    end AuswahlMenüsAufteilung;
 

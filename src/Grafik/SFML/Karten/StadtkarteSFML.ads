@@ -20,9 +20,9 @@ private with KartenDatentypen;
 
 private with Karten;
 
-package KarteStadtSFML is
+package StadtkarteSFML is
 
-   procedure StadtkarteAnzeigen
+   procedure Stadtkarte
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
      with
        Pre => (
@@ -69,15 +69,6 @@ private
 
    PolygonAccess : constant Sf.Graphics.sfCircleShape_Ptr := Sf.Graphics.CircleShape.create;
 
-   procedure AnzeigeStadt
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-     with
-       Pre => (
-                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
-               and
-                 SpielVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
-              );
-
    procedure GrafischeDarstellung
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
      with
@@ -85,16 +76,6 @@ private
                  StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
                and
                  SpielVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
-              );
-
-   procedure MauszeigerAnzeigen
-     (YAchseExtern : in KartenDatentypen.Stadtfeld;
-      XAchseExtern : in KartenDatentypen.Stadtfeld;
-      PositionExtern : in Sf.System.Vector2.sfVector2f;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-     with
-       Pre => (
-                 SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
               );
 
    procedure DarstellungGebäude
@@ -196,4 +177,4 @@ private
                  KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Karteneinstellungen.Kartengröße.XAchse
               );
 
-end KarteStadtSFML;
+end StadtkarteSFML;

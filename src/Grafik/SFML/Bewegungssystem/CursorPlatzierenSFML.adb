@@ -1,13 +1,17 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with Sf.Graphics.RenderWindow;
+
 with KartenDatentypen; use KartenDatentypen;
 with KartenKonstanten;
+with ViewsSFML;
 
 with NachLogiktask;
 with BerechnungenKarteSFML;
 with Kartenkoordinatenberechnungssystem;
 with Karten;
+with GrafikEinstellungenSFML;
 
 package body CursorPlatzierenSFML is
    
@@ -18,7 +22,9 @@ package body CursorPlatzierenSFML is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      Mausposition := NachLogiktask.Mausposition;
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                                                 point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
+                                                                 view         => ViewsSFML.KartenviewAccess);
       
       if
         Mausposition.y in 0.00 .. BerechnungenKarteSFML.FensterKarte.y
@@ -80,21 +86,21 @@ package body CursorPlatzierenSFML is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      Mausposition := NachLogiktask.Mausposition;
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                                                 point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
+                                                                 view         => ViewsSFML.KartenviewAccess);
       
       if
         Mausposition.y in 0.00 .. BerechnungenKarteSFML.StadtKarte.y
         and
           Mausposition.x in 0.00 .. BerechnungenKarteSFML.StadtKarte.x
       then
-         null;
+         BerechnungenKarteSFML.StadtfelderAbmessungBerechnen;
+         YMultiplikator := 0.00;
          
       else
          return;
       end if;
-      
-      BerechnungenKarteSFML.StadtfelderAbmessungBerechnen;
-      YMultiplikator := 0.00;
       
       YAchseSchleife:
       for YAchseSchleifenwert in Karten.StadtkarteArray'Range (1) loop

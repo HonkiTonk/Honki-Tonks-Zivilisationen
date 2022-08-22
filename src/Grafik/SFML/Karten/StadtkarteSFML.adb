@@ -18,35 +18,24 @@ with FarbgebungSFML;
 with BerechnungenKarteSFML;
 with ObjekteZeichnenSFML;
 with Kartenkoordinatenberechnungssystem;
-with StadtInformationenSFML;
 with GrafikEinstellungenSFML;
 with EingeleseneTexturenSFML;
 with KartenspritesZeichnenSFML;
-with Warnung;
 with ViewsEinstellenSFML;
 with ViewsSFML;
 
-package body KarteStadtSFML is
-   
-   procedure StadtkarteAnzeigen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-   is begin
-      
-      AnzeigeStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
-      
-      StadtInformationenSFML.Stadtinformationen (StadtRasseNummerExtern => StadtRasseNummerExtern);
-      
-   end StadtkarteAnzeigen;
-   
-   
+package body StadtkarteSFML is
 
-   procedure AnzeigeStadt
+   -- Die Darstellung des Stadtbereichs in einen eigenen View. äöü
+   -- Die Darstellung der Informationen und Gebäude auch in eigene Views? äöü
+   -- Das ganze auch etwas hübscher aufbereiten, ist ja kein Terminal mehr.
+   procedure Stadtkarte
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.KartenviewAccess,
                                           GrößeExtern          => (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x, GrafikEinstellungenSFML.AktuelleFensterAuflösung.y),
-                                          AnzeigebereichExtern => GrafikKonstanten.StandardAnzeigebereich);
+                                          AnzeigebereichExtern => GrafikKonstanten.KarteAnzeigebereich);
       
       Stadtumgebungsgröße := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern);
       InformationenStadtAufrufen := False;
@@ -72,22 +61,9 @@ package body KarteStadtSFML is
                                  StadtRasseNummerExtern => StadtRasseNummerExtern);
             
             DarstellungGebäude (YAchseExtern           => YAchseSchleifenwert,
-                                 XAchseExtern          => XAchseSchleifenwert,
-                                 PositionExtern        => GrafikPosition,
+                                 XAchseExtern           => XAchseSchleifenwert,
+                                 PositionExtern         => GrafikPosition,
                                  StadtRasseNummerExtern => StadtRasseNummerExtern);
-            
-            case
-              SpielVariablen.Debug.Allgemeines
-            is
-               when True =>
-                  MauszeigerAnzeigen (YAchseExtern   => YAchseSchleifenwert,
-                                      XAchseExtern   => XAchseSchleifenwert,
-                                      PositionExtern => GrafikPosition,
-                                      RasseExtern    => StadtRasseNummerExtern.Rasse);
-                  
-               when False =>
-                  null;
-            end case;
             
             XMultiplikator := XMultiplikator + 1.00;
             
@@ -97,7 +73,7 @@ package body KarteStadtSFML is
          
       end loop YAchseSchleife;
       
-   end AnzeigeStadt;
+   end Stadtkarte;
    
    
    
@@ -120,40 +96,10 @@ package body KarteStadtSFML is
                                                   PositionExtern       => AnfangGrafikPosition,
                                                   FarbeExtern          => FarbgebungSFML.FarbeKartenfeldErmitteln (GrundExtern => Kartenfeld),
                                                   RechteckAccessExtern => RechteckAccess);
-         
-            Warnung.GrafikWarnung (WarnmeldungExtern => "KarteStadtSFML.GrafischeDarstellung - Nullsprite: " & StadtRasseNummerExtern.Rasse'Wide_Wide_Image & " - " & StadtRasseNummerExtern.Nummer'Wide_Wide_Image);
       end case;
       
-      -- HintergrundSFML.SeitenleisteHintergrund;
-      
    end GrafischeDarstellung;
-   
-   
-   
-   procedure MauszeigerAnzeigen
-     (YAchseExtern : in KartenDatentypen.Stadtfeld;
-      XAchseExtern : in KartenDatentypen.Stadtfeld;
-      PositionExtern : in Sf.System.Vector2.sfVector2f;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-   is begin
-            
-      if
-        SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenStadt.YAchse = YAchseExtern
-        and
-          SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenStadt.XAchse = XAchseExtern
-      then
-         ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.StadtfelderAbmessung.x / 2.00,
-                                              PositionExtern      => PositionExtern,
-                                              AnzahlEckenExtern   => 3,
-                                              FarbeExtern         => Sf.Graphics.Color.sfRed,
-                                              PolygonAccessExtern => PolygonAccess);
-               
-      else
-         null;
-      end if;
       
-   end MauszeigerAnzeigen;
-   
    
    
    procedure DarstellungUmgebung
@@ -163,7 +109,8 @@ package body KarteStadtSFML is
       StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
-      -- Diese Werte sollte man mal in Konstanten schieben.
+      -- Diese Werte sollte man mal in Konstanten schieben. äöü
+      -- Wenn ich das als eigenen View behandle dann brauch ich die Konstanten so gar nicht mehr. äöü
       if
         YAchseExtern < Karten.Stadtkarte'First (1) + 7
         and
@@ -330,8 +277,6 @@ package body KarteStadtSFML is
                                                   PositionExtern       => PositionExtern,
                                                   FarbeExtern          => FarbgebungSFML.FarbeKartenfeldErmitteln (GrundExtern => Kartenfeld),
                                                   RechteckAccessExtern => RechteckAccess);
-            
-            Warnung.GrafikWarnung (WarnmeldungExtern => "KarteStadtSFML.KartenfeldZeichnen - Sprite fehlt: " & Kartenfeld'Wide_Wide_Image);
       end case;
       
    end KartenfeldZeichnen;
@@ -362,8 +307,6 @@ package body KarteStadtSFML is
                                                PositionExtern       => (PositionExtern.x, PositionExtern.y + 0.40 * BerechnungenKarteSFML.StadtfelderAbmessung.y),
                                                FarbeExtern          => Sf.Graphics.Color.sfBlue,
                                                RechteckAccessExtern => RechteckAccess);
-         
-         Warnung.GrafikWarnung (WarnmeldungExtern => "KarteStadtSFML.FlussZeichnen - Sprite fehlt: " & KartenfeldFluss'Wide_Wide_Image);
       end if;
       
    end FlussZeichnen;
@@ -394,8 +337,6 @@ package body KarteStadtSFML is
                                             PositionExtern    => PositionExtern,
                                             FarbeExtern       => Sf.Graphics.Color.sfBlack,
                                             KreisAccessExtern => KreisAccess);
-         
-         Warnung.GrafikWarnung (WarnmeldungExtern => "KarteStadtSFML.RessourceZeichnen - Sprite fehlt: " & KartenfeldRessource'Wide_Wide_Image);
       end if;
       
    end RessourceZeichnen;
@@ -426,8 +367,6 @@ package body KarteStadtSFML is
                                                PositionExtern       => (PositionExtern.x, PositionExtern.y + 0.80 * BerechnungenKarteSFML.StadtfelderAbmessung.y),
                                                FarbeExtern          => Sf.Graphics.Color.sfRed,
                                                RechteckAccessExtern => RechteckAccess);
-         
-         Warnung.GrafikWarnung (WarnmeldungExtern => "KarteStadtSFML.WegZeichnen - Sprite fehlt: " & Wegfeld'Wide_Wide_Image);
       end if;
    
    end WegZeichnen;
@@ -458,8 +397,6 @@ package body KarteStadtSFML is
                                                PositionExtern       => PositionExtern,
                                                FarbeExtern          => Sf.Graphics.Color.sfCyan,
                                                RechteckAccessExtern => RechteckAccess);
-            
-         Warnung.GrafikWarnung (WarnmeldungExtern => "KarteStadtSFML.VerbesserungZeichnen - Sprite fehlt: " & Verbesserungsfeld'Wide_Wide_Image);
       end if;
       
    end VerbesserungZeichnen;
@@ -517,10 +454,8 @@ package body KarteStadtSFML is
                                               AnzahlEckenExtern   => 3,
                                               FarbeExtern         => Sf.Graphics.Color.sfMagenta,
                                               PolygonAccessExtern => PolygonAccess);
-            
-         Warnung.GrafikWarnung (WarnmeldungExtern => "KarteStadtSFML.DarstellungGebäude - Sprite fehlt: " & StadtRasseNummerExtern.Rasse'Wide_Wide_Image & " - " & GebäudeID'Wide_Wide_Image);
       end if;
       
    end DarstellungGebäude;
 
-end KarteStadtSFML;
+end StadtkarteSFML;

@@ -3,8 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 with StadtKonstanten;
 with EinheitenKonstanten;
-with EinheitenDatentypen;
-with GrafikKonstanten;
 
 with LeseKarten;
 
@@ -15,11 +13,6 @@ with InformationenEinheitenSFML;
 with KarteWichtigesSFML;
 with KarteAllgemeinesSFML;
 with Vergleiche;
-with HintergrundSFML;
-with ViewsSFML;
-with ViewsEinstellenSFML;
-with TextaccessVariablen;
-with TextberechnungenHoeheSFML;
 
 package body KarteInformationenSFML is
 
@@ -37,21 +30,8 @@ package body KarteInformationenSFML is
             return;
             
          when False =>
-            -- Das nicht über die Textposition regeln, da es bei nicht sichtbaren Feldern unschön skaliert.
-            Viewfläche.y := StartpunktText.y + Float ((TextaccessVariablen.KarteWichtigesAccessArray'Last + TextaccessVariablen.KarteAllgemeinesAccessArray'Last + TextaccessVariablen.StadtInformationenAccessArray'Last
-                                                       + TextaccessVariablen.EinheitenInformationenAccessArray'Last + Natural (EinheitenDatentypen.Transportplätze'Last)
-                                                       -- Sollte ich später nach EinheitInformationen noch mehr hinzufügen, oder später Dinge entfernen, dann muss die 4 erhöht/gesenkt werden!
-                                                       + 6)) * TextberechnungenHoeheSFML.KleinerZeilenabstand;
-            
-            ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.SeitenleisteKartenviewAccess,
-                                                GrößeExtern          => Viewfläche,
-                                                AnzeigebereichExtern => GrafikKonstanten.SeitenleisteAnzeigebereich);
-            HintergrundSFML.SeitenleisteHintergrund (AbmessungenExtern => Viewfläche);
-      
-            Textposition := KarteWichtigesSFML.WichtigesInformationen (RasseExtern        => RasseExtern,
-                                                                       TextpositionExtern => StartpunktText,
-                                                                       KoordinatenExtern  => AktuelleKoordinaten);
-            BreiteText := Textposition.x;
+            KarteWichtigesSFML.WichtigesInformationen (RasseExtern        => RasseExtern,
+                                                       KoordinatenExtern  => AktuelleKoordinaten);
       end case;
       
       case
@@ -59,100 +39,47 @@ package body KarteInformationenSFML is
                              RasseExtern       => RasseExtern)
       is
          when True =>
-            Textposition := KarteAllgemeinesSFML.AllgemeineInformationen (RasseExtern        => RasseExtern,
-                                                                          TextpositionExtern => (StartpunktText.x, Textposition.y));
+            KarteAllgemeinesSFML.AllgemeineInformationen (RasseExtern => RasseExtern);
             
-            if
-              Textposition.x > BreiteText
-            then
-               BreiteText := Textposition.x;
-               
-            else
-               null;
-            end if;
             
-            Textposition := StadtInformationen (RasseExtern        => RasseExtern,
-                                                TextpositionExtern => (StartpunktText.x, Textposition.y),
-                                                KoordinatenExtern  => AktuelleKoordinaten);
-            
-            if
-              Textposition.x > BreiteText
-            then
-               BreiteText := Textposition.x;
-               
-            else
-               null;
-            end if;
-              
-            Textposition := EinheitInformationen (RasseExtern        => RasseExtern,
-                                                  TextpositionExtern => (StartpunktText.x, Textposition.y),
-                                                  KoordinatenExtern  => AktuelleKoordinaten);
-            
-            if
-              Textposition.x > BreiteText
-            then
-               BreiteText := Textposition.x;
-               
-            else
-               null;
-            end if;
-
-         when False =>
-            null;
-      end case;
+                        
+            StadtRasseNummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => AktuelleKoordinaten);
       
-      Viewfläche.x := BreiteText;
+            case
+              StadtRasseNummer.Nummer
+            is
+               when StadtKonstanten.LeerNummer =>
+                  StadtInformationenSFML.Leer;
+                  StadtVorhanden := False;
+            
+               when others =>
+                  StadtInformationenSFML.Stadt (RasseExtern            => RasseExtern,
+                                                StadtRasseNummerExtern => StadtRasseNummer);
+                  StadtVorhanden := True;
+            end case;
+            
+            
+            
+            EinheitRasseNummer := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => AktuelleKoordinaten);
+      
+            case
+              EinheitRasseNummer.Nummer
+            is
+               when EinheitenKonstanten.LeerNummer =>
+                  InformationenEinheitenSFML.Leer (AnzeigebereichExtern => 4);
+            
+               when others =>
+                  InformationenEinheitenSFML.Einheiten (RasseExtern              => RasseExtern,
+                                                        EinheitRasseNummerExtern => EinheitRasseNummer,
+                                                        StadtVorhandenExtern     => StadtVorhanden);
+            end case;
+            
+         when False =>
+            KarteAllgemeinesSFML.Leer;
+            StadtInformationenSFML.Leer;
+            InformationenEinheitenSFML.Leer (AnzeigebereichExtern => 4);
+      end case;
       
    end KarteInformationenSFML;
-   
-   
-   
-   function StadtInformationen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      TextpositionExtern : in Sf.System.Vector2.sfVector2f;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return Sf.System.Vector2.sfVector2f
-   is begin
-      
-      StadtRasseNummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
-      
-      case
-        StadtRasseNummer.Nummer
-      is
-         when StadtKonstanten.LeerNummer =>
-            return TextpositionExtern;
-            
-         when others =>
-            return StadtInformationenSFML.Stadt (RasseExtern            => RasseExtern,
-                                                 StadtRasseNummerExtern => StadtRasseNummer,
-                                                 AnzeigeAnfangenExtern  => TextpositionExtern);
-      end case;
-      
-   end StadtInformationen;
-   
-   
-   
-   function EinheitInformationen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      TextpositionExtern : in Sf.System.Vector2.sfVector2f;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return Sf.System.Vector2.sfVector2f
-   is begin
-      
-      EinheitRasseNummer := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
-      
-      case
-        EinheitRasseNummer.Nummer
-      is
-         when EinheitenKonstanten.LeerNummer =>
-            return TextpositionExtern;
-            
-         when others =>
-            return InformationenEinheitenSFML.Einheiten (RasseExtern              => RasseExtern,
-                                                         EinheitRasseNummerExtern => EinheitRasseNummer,
-                                                         TextpositionExtern       => TextpositionExtern);
-      end case;
-      
-   end EinheitInformationen;
 
 end KarteInformationenSFML;

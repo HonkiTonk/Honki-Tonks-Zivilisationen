@@ -13,7 +13,6 @@ with InteraktionAuswahl;
 with BeschreibungenZeilenumbruchSFML;
 with RassenbeschreibungenSFML;
 
--- Muss alles noch einmal ein wenig besser geschrieben sein. äöü
 package body AnzeigeZusatztextRassenmenueSFML is
 
    procedure AnzeigeZusatztextRassenmenü

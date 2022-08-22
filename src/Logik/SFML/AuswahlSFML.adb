@@ -29,6 +29,7 @@ package body AuswahlSFML is
       loop
       
          AktuelleAuswahl := MausAuswahl;
+         NachGrafiktask.AktuelleAuswahl := AktuelleAuswahl;
       
          case
            Eingabe.Tastenwert
@@ -76,7 +77,7 @@ package body AuswahlSFML is
       
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                                                  point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
-                                                                 view         => ViewsSFML.ZusatztextviewAccess);
+                                                                 view         => ViewsSFML.FragenviewAccesse (2));
       
       PositionSchleife:
       for PositionSchleifenwert in InteraktionAuswahl.PositionenJaNeinArray'Range loop

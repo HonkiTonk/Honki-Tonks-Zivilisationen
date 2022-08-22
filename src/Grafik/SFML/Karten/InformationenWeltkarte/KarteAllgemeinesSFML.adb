@@ -7,6 +7,9 @@ with Sf.Graphics.Text;
 
 with KartenRecords; use KartenRecords;
 with KartengrundDatentypen; use KartengrundDatentypen;
+with ViewsSFML;
+with GrafikKonstanten;
+with GrafikDatentypen;
 
 with LeseKarten;
 
@@ -14,19 +17,43 @@ with GrafikEinstellungenSFML;
 with KartenAllgemein;
 with AufgabenAllgemein;
 with TextberechnungenHoeheSFML;
+with ViewsEinstellenSFML;
+with HintergrundSFML;
+with TextberechnungenBreiteSFML;
 
 package body KarteAllgemeinesSFML is
-
-   function AllgemeineInformationen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      TextpositionExtern : in Sf.System.Vector2.sfVector2f)
-      return Sf.System.Vector2.sfVector2f
+   
+   procedure Leer
    is begin
       
-      Textposition := TextpositionExtern;
-      TextbreiteAktuell := 0.00;
+      -- Diese Bereiche sicherheitshalber auch von außen hineingeben? äöü
+      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.SeitenleisteWeltkarteAccesse (2),
+                                          GrößeExtern          => Viewfläche,
+                                          AnzeigebereichExtern => GrafikKonstanten.SeitenleisteWeltkartenbereich (2));
+      
+      HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Seitenleiste_Hintergrund_Enum,
+                                        AbmessungenExtern => Viewfläche);
+      
+   end Leer;
+   
+   
+
+   procedure AllgemeineInformationen
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+   is begin
+      
+      Viewfläche := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
+                                                                      VerhältnisExtern => (0.15, 0.05));
+      
+      Leer;
+      
+      Textbreite := 0.00;
+      Textposition := TextKonstanten.StartpositionText;
+      RealeYPosition := Textposition.y;
+      
       AktuelleKoordinaten := SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell;
       VorhandenerGrund := LeseKarten.VorhandenerGrund (KoordinatenExtern => AktuelleKoordinaten);
+      
       TextAnzeigen (1) := True;
       
       if
@@ -118,34 +145,25 @@ package body KarteAllgemeinesSFML is
          is
             when True =>
                Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteAllgemeinesAccess (TextSchleifenwert),
-                                             position => Textposition);
+                                             position => (Textposition.x, RealeYPosition));
                
                Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                                   text         => TextaccessVariablen.KarteAllgemeinesAccess (TextSchleifenwert));
          
-               TextbreiteNeu := Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteAllgemeinesAccess (TextSchleifenwert)).width + 2.00 * TextpositionExtern.x;
-         
-               if
-                 TextbreiteAktuell < TextbreiteNeu
-               then
-                  TextbreiteAktuell := TextbreiteNeu;
-            
-               else
-                  null;
-               end if;
+               Textbreite := TextberechnungenBreiteSFML.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.KarteAllgemeinesAccess (TextSchleifenwert),
+                                                                                 TextbreiteExtern => Textbreite);
                
-               Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
+               RealeYPosition := RealeYPosition + TextberechnungenHoeheSFML.Zeilenabstand;
                
             when False =>
                null;
          end case;
          
+         Textposition.y := Textposition.y + TextberechnungenHoeheSFML.Zeilenabstand;
+         
       end loop TextSchleife;
-      
-      Textposition.x := TextbreiteAktuell;
-      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
-      
-      return Textposition;
+            
+      Viewfläche := (Textbreite, Textposition.y);
 
    end AllgemeineInformationen;
 

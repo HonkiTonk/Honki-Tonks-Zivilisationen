@@ -7,24 +7,39 @@ with Sf.Graphics.Text;
 
 with GlobaleTexte;
 with TextnummernKonstanten;
+with ViewsSFML;
+with GrafikKonstanten;
+with GrafikDatentypen;
 
 with LeseWichtiges;
 
 with ForschungsbeschreibungenSFML;
 with GrafikEinstellungenSFML;
 with TextberechnungenHoeheSFML;
+with TextberechnungenBreiteSFML;
+with HintergrundSFML;
+with ViewsEinstellenSFML;
 
 package body KarteWichtigesSFML is
 
-   function WichtigesInformationen
+   procedure WichtigesInformationen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      TextpositionExtern : in Sf.System.Vector2.sfVector2f;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return Sf.System.Vector2.sfVector2f
    is begin
       
-      Textposition := TextpositionExtern;
-      TextbreiteAktuell := 0.00;
+      Viewfläche := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
+                                                                    VerhältnisExtern => (0.15, 0.05));
+      
+      -- Diese Bereiche sicherheitshalber auch von außen hineingeben? äöü
+      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.SeitenleisteWeltkarteAccesse (1),
+                                          GrößeExtern          => Viewfläche,
+                                          AnzeigebereichExtern => GrafikKonstanten.SeitenleisteWeltkartenbereich (1));
+      
+      HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Seitenleiste_Hintergrund_Enum,
+                                        AbmessungenExtern => Viewfläche);
+      
+      Textbreite := 0.00;
+      Textposition := TextKonstanten.StartpositionText;
       
       FestzulegenderText (1) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugAktuellePosition) & " " & ZahlAlsStringEbeneVorhanden (ZahlExtern => KoordinatenExtern.EAchse) & "," & KoordinatenExtern.YAchse'Wide_Wide_Image
         & "," & KoordinatenExtern.XAchse'Wide_Wide_Image;
@@ -36,7 +51,7 @@ package body KarteWichtigesSFML is
       FestzulegenderText (4) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugAktuellerGeldzuwachs) & " " & ZahlAlsStringKostenLager (ZahlExtern => LeseWichtiges.GeldZugewinnProRunde (RasseExtern => RasseExtern));
       FestzulegenderText (5) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt) & " "
         & ForschungsbeschreibungenSFML.BeschreibungKurz (IDExtern    => LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern),
-                                               RasseExtern => RasseExtern);
+                                                         RasseExtern => RasseExtern);
       FestzulegenderText (6) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugVerbleibendeForschungszeit) & LeseWichtiges.VerbleibendeForschungszeit (RasseExtern => RasseExtern)'Wide_Wide_Image;
       FestzulegenderText (7) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugAktuelleForschungsmenge) & LeseWichtiges.Forschungsmenge (RasseExtern => RasseExtern)'Wide_Wide_Image;
       FestzulegenderText (8) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugAktuellerForschungsgewinn) & LeseWichtiges.GesamteForschungsrate (RasseExtern => RasseExtern)'Wide_Wide_Image;
@@ -49,30 +64,19 @@ package body KarteWichtigesSFML is
          
          Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteWichtigesAccess (TextSchleifenwert),
                                        position => Textposition);
+                  
+         Textbreite := TextberechnungenBreiteSFML.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.KarteWichtigesAccess (TextSchleifenwert),
+                                                                           TextbreiteExtern => Textbreite);
+         
+         Textposition.y := Textposition.y + TextberechnungenHoeheSFML.Zeilenabstand;
          
          Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                             text         => TextaccessVariablen.KarteWichtigesAccess (TextSchleifenwert));
          
-         TextbreiteNeu := Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteWichtigesAccess (TextSchleifenwert)).width + 2.00 * TextpositionExtern.x;
-         
-         if
-           TextbreiteAktuell < TextbreiteNeu
-         then
-            TextbreiteAktuell := TextbreiteNeu;
-            
-         else
-            null;
-         end if;
-         
-         Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
-         
       end loop TextSchleife;
       
-      Textposition.x := TextbreiteAktuell;
-      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
-      
-      return Textposition;
-      
+      Viewfläche := (Textbreite, Textposition.y);
+            
    end WichtigesInformationen;
 
 end KarteWichtigesSFML;

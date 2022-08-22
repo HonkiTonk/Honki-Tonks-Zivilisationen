@@ -21,7 +21,7 @@ with EinheitenbeschreibungenSFML;
 with HintergrundSFML;
 with TexteinstellungenSFML;
 with ViewsEinstellenSFML;
-with UeberschriftviewSFML;
+with AllgemeineViewsSFML;
 with BeschreibungenZeilenumbruchSFML;
 
 package body BauAuswahlAnzeigeSFML is
@@ -31,7 +31,7 @@ package body BauAuswahlAnzeigeSFML is
       AktuelleAuswahlExtern : in StadtRecords.BauprojektRecord)
    is begin
       
-      UeberschriftviewSFML.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => GlobaleTexte.Frage (TextnummernKonstanten.FrageBauprojekt)),
+      AllgemeineViewsSFML.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => GlobaleTexte.Frage (TextnummernKonstanten.FrageBauprojekt)),
                                          HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum);
       
       Gebäude (AuswahlExtern    => AktuelleAuswahlExtern.Gebäude,
@@ -54,8 +54,6 @@ package body BauAuswahlAnzeigeSFML is
       ViewnummerExtern : in Positive)
    is begin
       
-      Viewfläche (ViewnummerExtern) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
-                                                                                         VerhältnisExtern => (0.50, 1.00));
       Viewfläche (ViewnummerExtern) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
                                                                                          VerhältnisExtern => (0.50, 1.00));
       
@@ -138,8 +136,6 @@ package body BauAuswahlAnzeigeSFML is
       ViewnummerExtern : in Positive)
    is begin
       
-      Viewfläche (ViewnummerExtern) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
-                                                                                         VerhältnisExtern => (0.50, 1.00));
       Viewfläche (ViewnummerExtern) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
                                                                                          VerhältnisExtern => (0.50, 1.00));
       
@@ -236,8 +232,6 @@ package body BauAuswahlAnzeigeSFML is
          when others =>
             Viewfläche (ViewnummerExtern) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
                                                                                                VerhältnisExtern => (0.50, 1.00));
-            Viewfläche (ViewnummerExtern) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
-                                                                                               VerhältnisExtern => (0.50, 1.00));
       
             ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.BauviewAccesse (ViewnummerExtern),
                                                 GrößeExtern          => Viewfläche (ViewnummerExtern),
@@ -288,8 +282,6 @@ package body BauAuswahlAnzeigeSFML is
          when others =>
             Viewfläche (ViewnummerExtern) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
                                                                                                VerhältnisExtern => (0.50, 1.00));
-            Viewfläche (ViewnummerExtern) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
-                                                                                               VerhältnisExtern => (0.50, 1.00));
       
             ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.BauviewAccesse (ViewnummerExtern),
                                                 GrößeExtern          => Viewfläche (ViewnummerExtern),
@@ -330,9 +322,7 @@ package body BauAuswahlAnzeigeSFML is
       
       -- Sieht auch ohne Anpassung ganz gut aus.
       -- Viewfläche (ViewnummerExtern) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
-      --                                                                     VerhältnisExtern => (0.10, 0.10));
-      --  Viewfläche (ViewnummerExtern) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
-      --                                                                      VerhältnisExtern => (0.10, 0.10));
+      --                                                                                    VerhältnisExtern => (0.10, 0.10));
       
       ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.BauviewAccesse (ViewnummerExtern),
                                           GrößeExtern          => Viewfläche (ViewnummerExtern),

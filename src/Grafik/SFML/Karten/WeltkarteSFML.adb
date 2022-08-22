@@ -6,18 +6,18 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Sf.Graphics;
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Text;
+with Sf.Graphics.Color;
 
 with KartenRecords; use KartenRecords;
 with EinheitenDatentypen; use EinheitenDatentypen;
 with KartengrundDatentypen; use KartengrundDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
-with StadtDatentypen; use StadtDatentypen;
 with EinheitenKonstanten;
 with KartenKonstanten;
-with StadtKonstanten;
 with TextaccessVariablen;
 with ZeitKonstanten;
 with GrafikKonstanten;
+with ViewsSFML;
 
 with LeseKarten;
 with LeseEinheitenGebaut;
@@ -26,7 +26,6 @@ with LeseStadtGebaut;
 with Kartenkoordinatenberechnungssystem;
 with EinheitSuchen;
 with StadtSuchen;
-with KarteInformationenSFML;
 with BerechnungenKarteSFML;
 with ObjekteZeichnenSFML;
 with GrafikEinstellungenSFML;
@@ -34,41 +33,27 @@ with EingeleseneTexturenSFML;
 with KartenspritesZeichnenSFML;
 with FarbgebungSFML;
 with TextberechnungenBreiteSFML;
-with Warnung;
 with RasseneinstellungenSFML;
 with ViewsEinstellenSFML;
-with ViewsSFML;
+with TextberechnungenHoeheSFML;
 
-package body KarteSFML is
+package body WeltkarteSFML is
    
-   procedure KarteAnzeigen
-     (RasseEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-   is begin
-      
-      Sichtbarkeit (RasseEinheitExtern => RasseEinheitExtern);
-      
-      -- Die Einheit auch mitübergeben? Wäre das hier überhaupt sinnvoll? Müsste ja gehen und je nach Belegung der Einheit den Check auf eine Einheit durchführen oder nicht. äöü
-      KarteInformationenSFML.KarteInformationenSFML (RasseExtern => RasseEinheitExtern.Rasse);
-      
-   end KarteAnzeigen;
-   
-   
-
-   procedure Sichtbarkeit
-     (RasseEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+   procedure Weltkarte
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.KartenviewAccess,
                                           GrößeExtern          => (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x, GrafikEinstellungenSFML.AktuelleFensterAuflösung.y),
-                                          AnzeigebereichExtern => GrafikKonstanten.StandardAnzeigebereich);
+                                          AnzeigebereichExtern => GrafikKonstanten.KarteAnzeigebereich);
       
       -- Nimmt aktuell das ganze Fenster ein, weil mit den aktuellen Berechnungn nichts mehr rechts gezeichnet wird, fällt aber aktuell nicht auf weil die Leiste das verdeckt. äöü
       -- Später mal anpassen? äöü
-        
-      SichtbereichAnfangEnde := BerechnungenKarteSFML.SichtbereichKarteBerechnen (RasseExtern => RasseEinheitExtern.Rasse);
+      
+      SichtbereichAnfangEnde := BerechnungenKarteSFML.SichtbereichKarteBerechnen (RasseExtern => EinheitRasseNummerExtern.Rasse);
       
       YMultiplikator := 0.00;
-      CursorKoordinatenAlt := SpielVariablen.CursorImSpiel (RasseEinheitExtern.Rasse).KoordinatenAlt;
+      CursorKoordinatenAlt := SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt;
             
       YAchseSchleife:
       for YAchseSchleifenwert in SichtbereichAnfangEnde (1) .. SichtbereichAnfangEnde (2) loop
@@ -82,10 +67,6 @@ package body KarteSFML is
                                                                                                  ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                                                  LogikGrafikExtern => False);
             
-            -- Die Position durchzureichen bedeutet auch gleichzeitig den aktuellen Multiplikator mit durchzureichen!
-            Position.x := XMultiplikator * BerechnungenKarteSFML.KartenfelderAbmessung.x;
-            Position.y := YMultiplikator * BerechnungenKarteSFML.KartenfelderAbmessung.y;
-            
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse
             then
@@ -93,10 +74,14 @@ package body KarteSFML is
                
             elsif
               True = LeseKarten.Sichtbar (KoordinatenExtern => KartenWert,
-                                          RasseExtern       => RasseEinheitExtern.Rasse)
+                                          RasseExtern       => EinheitRasseNummerExtern.Rasse)
             then
+               -- Die Position durchzureichen bedeutet auch gleichzeitig den aktuellen Multiplikator mit durchzureichen!
+               Position.x := XMultiplikator * BerechnungenKarteSFML.KartenfelderAbmessung.x;
+               Position.y := YMultiplikator * BerechnungenKarteSFML.KartenfelderAbmessung.y;
+               
                IstSichtbar (KoordinatenExtern  => KartenWert,
-                            RasseEinheitExtern => RasseEinheitExtern,
+                            RasseEinheitExtern => EinheitRasseNummerExtern,
                             PositionExtern     => Position);
                
             else
@@ -110,50 +95,8 @@ package body KarteSFML is
          YMultiplikator := YMultiplikator + 1.00;
          
       end loop YAchseSchleife;
-      
-      YMultiplikator := 0.00;
             
-      YAchseStadtnameSchleife:
-      for YAchseStadtnameSchleifenwert in SichtbereichAnfangEnde (1) .. SichtbereichAnfangEnde (2) loop
-         
-         XMultiplikator := 0.00;
-         
-         XAchseStadtnameSchleife:
-         for XAchseStadtnameSchleifenwert in SichtbereichAnfangEnde (3) .. SichtbereichAnfangEnde (4) loop
-            
-            KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => CursorKoordinatenAlt,
-                                                                                                 ÄnderungExtern    => (0, YAchseStadtnameSchleifenwert, XAchseStadtnameSchleifenwert),
-                                                                                                 LogikGrafikExtern => False);
-            
-            -- Die Position durchzureichen bedeutet auch gleichzeitig den aktuellen Multiplikator mit durchzureichen!
-            Position.x := XMultiplikator * BerechnungenKarteSFML.KartenfelderAbmessung.x;
-            Position.y := YMultiplikator * BerechnungenKarteSFML.KartenfelderAbmessung.y;
-            
-            if
-              KartenWert.XAchse = KartenKonstanten.LeerXAchse
-            then
-               null;
-               
-            elsif
-              True = LeseKarten.Sichtbar (KoordinatenExtern => KartenWert,
-                                          RasseExtern       => RasseEinheitExtern.Rasse)
-            then
-               StadtnameAnzeigen (KoordinatenExtern => KartenWert,
-                                  PositionExtern    => Position);
-               
-            else
-               null;
-            end if;
-            
-            XMultiplikator := XMultiplikator + 1.00;
-                          
-         end loop XAchseStadtnameSchleife;
-         
-         YMultiplikator := YMultiplikator + 1.00;
-         
-      end loop YAchseStadtnameSchleife;
-      
-   end Sichtbarkeit;
+   end Weltkarte;
    
    
    
@@ -162,44 +105,8 @@ package body KarteSFML is
       RasseEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
-      
-      -- Über den Kartenfeldern kommen die Kartenressourcen.
-      -- Über den Kartenressourcen kommen die Kartenverbesserungen (Städte sind jetzt Teil der Verbesserungen).
-      -- Über die Städte kommen die nicht Transporteinheiten.
-      -- Über den nicht Transporteinheiten kommen die Transporteinheiten.
-      -- Über den Transporteinheiten kommt der Cursor.
-      
-      AnzeigeLandschaft (KoordinatenExtern => KoordinatenExtern,
-                         PositionExtern    => PositionExtern);
             
-      AnzeigeEinheit (KoordinatenExtern  => KoordinatenExtern,
-                      RasseEinheitExtern => RasseEinheitExtern,
-                      PositionExtern     => PositionExtern);
-      
-      AnzeigeFeldbesitzer (KoordinatenExtern => KoordinatenExtern,
-                           PositionExtern    => PositionExtern);
-            
-      case
-        SpielVariablen.Debug.Allgemeines
-      is
-         when True =>
-            AnzeigeCursor (KoordinatenExtern => KoordinatenExtern,
-                           RasseExtern       => RasseEinheitExtern.Rasse,
-                           PositionExtern    => PositionExtern);
-            
-         when False =>
-            null;
-      end case;
-                  
-   end IstSichtbar;
-   
-   
-   
-   procedure AnzeigeLandschaft
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      PositionExtern : in Sf.System.Vector2.sfVector2f)
-   is begin
-      
+      -- Landschaft
       KartenfeldZeichnen (KoordinatenExtern => KoordinatenExtern,
                           PositionExtern    => PositionExtern);
       
@@ -214,8 +121,18 @@ package body KarteSFML is
       
       VerbesserungZeichnen (KoordinatenExtern => KoordinatenExtern,
                             PositionExtern    => PositionExtern);
+      -- Landschaft
       
-   end AnzeigeLandschaft;
+      
+      
+      AnzeigeEinheit (KoordinatenExtern  => KoordinatenExtern,
+                      RasseEinheitExtern => RasseEinheitExtern,
+                      PositionExtern     => PositionExtern);
+      
+      AnzeigeFeldbesitzer (KoordinatenExtern => KoordinatenExtern,
+                           PositionExtern    => PositionExtern);
+                  
+   end IstSichtbar;
    
    
    
@@ -224,7 +141,6 @@ package body KarteSFML is
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
-      -- Noch die Grafiken anpassen damit diese Anzeige hier auch Sinn ergibt. äöü
       AktuellerKartengrund := LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern);
       BasisKartengrund := LeseKarten.BasisGrund (KoordinatenExtern => KoordinatenExtern);
       
@@ -378,7 +294,6 @@ package body KarteSFML is
    
    
    
-   -- Verbesserung und Stadt zeichnen zusammenführen, müsste mit dem neuen System gehen. äöü
    procedure VerbesserungZeichnen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
@@ -391,6 +306,10 @@ package body KarteSFML is
       is
          when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum =>
             return;
+            
+         when KartenVerbesserungDatentypen.Karten_Verbesserung_Städte_Enum =>
+            StadtnameAnzeigen (KoordinatenExtern => KoordinatenExtern,
+                               PositionExtern    => PositionExtern);
             
          when others =>
             null;
@@ -495,7 +414,6 @@ package body KarteSFML is
                                                  AnzahlEckenExtern   => 4,
                                                  FarbeExtern         => RasseneinstellungenSFML.RassenFarbenRahmen (EinheitRasseNummer.Rasse),
                                                  PolygonAccessExtern => PolygonAccess);
-            Warnung.GrafikWarnung (WarnmeldungExtern => "KarteSFML.AnzeigeEinheit - Sprite fehlt: " & RasseEinheitExtern.Rasse'Wide_Wide_Image & " - " & EinheitID'Wide_Wide_Image);
          end if;
       end if;
       
@@ -621,62 +539,22 @@ package body KarteSFML is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
-      
-      KartenWertStadtname := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                    ÄnderungExtern    => (0, -1, 0),
-                                                                                                    LogikGrafikExtern => False);
-      
-      case
-        KartenWertStadtname.XAchse
-      is
-         when KartenKonstanten.LeerXAchse =>
-            return;
             
-         when others =>
-            StadtRasseNummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => KartenWertStadtname);
-            
-            if
-              StadtRasseNummer.Nummer = StadtKonstanten.LeerNummer
-            then
-               return;
-               
-            else
-               null;
-            end if;
-      end case;
+      StadtRasseNummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
       
-      -- Wenn ich das ganze als View anlege, die Städtenamen da rein schreibe und den dann am Schluss anzeige, müsste das nicht gehen? äöü
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAccess,
                                          str  => To_Wide_Wide_String (Source => LeseStadtGebaut.Name (StadtRasseNummerExtern => StadtRasseNummer)));
+      
+      Textposition.x := PositionExtern.x - TextberechnungenBreiteSFML.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.KarteAccess) + 0.50 * BerechnungenKarteSFML.KartenfelderAbmessung.x;
+      Textposition.y := PositionExtern.y - TextberechnungenHoeheSFML.Zeilenabstand;
+      
+      -- Später noch einen Rahmen um den Namen bauen?
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteAccess,
-                                    position => (PositionExtern.x - TextberechnungenBreiteSFML.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.KarteAccess), PositionExtern.y));
+                                    position => Textposition);
       
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                          text         => TextaccessVariablen.KarteAccess);
       
    end StadtnameAnzeigen;
-   
-   
-   
-   procedure AnzeigeCursor
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      PositionExtern : in Sf.System.Vector2.sfVector2f)
-   is begin
-      
-      if
-        KoordinatenExtern = SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell
-      then
-         ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00,
-                                              PositionExtern      => PositionExtern,
-                                              AnzahlEckenExtern   => 3,
-                                              FarbeExtern         => Sf.Graphics.Color.sfRed,
-                                              PolygonAccessExtern => PolygonAccess);
-         
-      else
-         null;
-      end if;
-      
-   end AnzeigeCursor;
 
-end KarteSFML;
+end WeltkarteSFML;

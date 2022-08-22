@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with Sf.System.Vector2;
+private with Sf.System.Vector2;
 
 with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
@@ -12,6 +12,7 @@ with KartenRecords;
 
 private with TextaccessVariablen;
 private with ProduktionDatentypen;
+private with TextKonstanten;
 
 with Karten;
 
@@ -19,35 +20,23 @@ private with UmwandlungenAdaNachEigenes;
 
 package KarteWichtigesSFML is
 
-   function WichtigesInformationen
+   procedure WichtigesInformationen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      TextpositionExtern : in Sf.System.Vector2.sfVector2f;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return Sf.System.Vector2.sfVector2f
      with
        Pre => (
                  SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
                and
-                 TextpositionExtern.x > 0.00
-               and
-                 TextpositionExtern.y > 0.00
-               and
                  KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
                and
                  KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
-              ),
-   
-       Post => (
-                  WichtigesInformationen'Result.x > 0.00
-                and
-                  WichtigesInformationen'Result.y > 0.00
-               );
+              );
    
 private
    
-   TextbreiteAktuell : Float;
-   TextbreiteNeu : Float;
+   Textbreite : Float;
       
+   Viewfläche : Sf.System.Vector2.sfVector2f := TextKonstanten.StartpositionText;
    Textposition : Sf.System.Vector2.sfVector2f;
    
    -- Das ohne Grenze mal irgendwo Global anlegen? äöü

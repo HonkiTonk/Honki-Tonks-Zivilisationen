@@ -8,6 +8,7 @@ with Sf.System.Vector2;
 with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
 with StadtRecords;
+with TextKonstanten;
 
 private with ProduktionDatentypen;
 private with TextaccessVariablen;
@@ -25,13 +26,11 @@ package StadtInformationenSFML is
                  StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
               );
    
-   
+   procedure Leer;
      
-   function Stadt
+   procedure Stadt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
-      AnzeigeAnfangenExtern : in Sf.System.Vector2.sfVector2f)
-      return Sf.System.Vector2.sfVector2f
+      StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
      with
        Pre => (
                  SpielVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
@@ -39,35 +38,35 @@ package StadtInformationenSFML is
                  SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
                and
                  StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
-              ),
-   
-       Post => (
-                  Stadt'Result.y > 0.00
-                and
-                  Stadt'Result.x > 0.00
-               );
+              );
    
 private
    
    VolleInformation : Boolean;
    MausInformationen : Boolean;
    
-   Stadtart : Positive;
-   
-   TextbreiteAktuell : Float;
-   TextbreiteNeu : Float;
-      
+   Textbreite : Float;
+   AktuelleYPosition : Float;
+   Textskalierung : Float;
+         
    Text : Unbounded_Wide_Wide_String;
    
    Bauprojekt : StadtRecords.BauprojektRecord;
    
-   StartpunktText : constant Sf.System.Vector2.sfVector2f := (5.00, 5.00);
-   Viewfläche : Sf.System.Vector2.sfVector2f := StartpunktText;
+   Viewfläche : Sf.System.Vector2.sfVector2f := TextKonstanten.StartpositionText;
    Textposition : Sf.System.Vector2.sfVector2f;
-   TextpositionStadt : Sf.System.Vector2.sfVector2f;
-   
+      
    type FestzulegenderTextArray is array (TextaccessVariablen.StadtInformationenAccessArray'Range) of Unbounded_Wide_Wide_String;
    FestzulegenderText : FestzulegenderTextArray;
+   
+   procedure Stadtname
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     with
+       Pre => (
+                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+               and
+                 SpielVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+              );
    
    procedure Debuginformationen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
