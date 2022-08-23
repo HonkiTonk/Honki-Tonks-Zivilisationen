@@ -49,6 +49,7 @@ private
    
    Zahlen : Sf.Window.Keyboard.sfKeyCode;
    Taste : Sf.Window.Keyboard.sfKeyCode;
+   Zwischenspeicher : Sf.Window.Keyboard.sfKeyCode;
    
    EingegebeneZahl : SystemRecords.ZahlenEingabeRecord;
    

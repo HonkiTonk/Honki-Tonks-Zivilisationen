@@ -19,6 +19,7 @@ with NachLogiktask;
 
 package body EingabeSFML is
    
+   -- Zahleneingabe über eine eigene Version von Texteingabe regeln? äöü
    function GanzeZahl
      (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
       ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger;
@@ -167,8 +168,7 @@ package body EingabeSFML is
       case
         ZeichenExtern
       is
-         when Sf.Window.Keyboard.sfKeyNum0 | Sf.Window.Keyboard.sfKeyNum1 | Sf.Window.Keyboard.sfKeyNum2 | Sf.Window.Keyboard.sfKeyNum3 | Sf.Window.Keyboard.sfKeyNum4 | Sf.Window.Keyboard.sfKeyNum5
-            | Sf.Window.Keyboard.sfKeyNum6 | Sf.Window.Keyboard.sfKeyNum7 | Sf.Window.Keyboard.sfKeyNum8 | Sf.Window.Keyboard.sfKeyNum9 =>
+         when Sf.Window.Keyboard.sfKeyNum0 .. Sf.Window.Keyboard.sfKeyNum9 | Sf.Window.Keyboard.sfKeyNumpad0 .. Sf.Window.Keyboard.sfKeyNumpad9 =>
             return Zahl_Hinzufügen;
             
          when Sf.Window.Keyboard.sfKeyEscape =>
@@ -205,7 +205,16 @@ package body EingabeSFML is
 
       end loop ZahlenNachLinksVerschiebenSchleife;
       
-      ZahlenString (ZahlenString'Last) := EingabeZahlenUmwandeln (EingegebeneZahlExtern);
+      if
+        EingegebeneZahlExtern > Sf.Window.Keyboard.sfKeyNum9
+      then
+         Zwischenspeicher := EingegebeneZahlExtern - (Sf.Window.Keyboard.sfKeyNumpad0 - Sf.Window.Keyboard.sfKeyNum0);
+         
+      else
+         Zwischenspeicher := EingegebeneZahlExtern;
+      end if;
+      
+      ZahlenString (ZahlenString'Last) := EingabeZahlenUmwandeln (Zwischenspeicher);
       
       if
         ZahlenString (1) /= '0'

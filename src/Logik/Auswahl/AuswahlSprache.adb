@@ -16,7 +16,7 @@ with Fehler;
 with NachGrafiktask;
 with NachLogiktask;
 with Vergleiche;
-with ViewsSFML;
+with Views;
 with GrafikEinstellungenSFML;
 
 package body AuswahlSprache is
@@ -236,7 +236,7 @@ package body AuswahlSprache is
       
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                                                  point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
-                                                                 view         => ViewsSFML.MenüviewAccess);
+                                                                 view         => Views.MenüviewAccess);
       
       MausZeigerSchleife:
       for PositionSchleifenwert in AktuelleSprachen'First .. Ende loop

@@ -7,8 +7,8 @@ with Sf.Graphics.Text;
 
 with GlobaleTexte;
 with TextnummernKonstanten;
-with ViewsSFML;
-with GrafikKonstanten;
+with Views;
+with GrafikRecordKonstanten;
 with GrafikDatentypen;
 
 with LeseWichtiges;
@@ -31,9 +31,9 @@ package body KarteWichtigesSFML is
                                                                     VerhältnisExtern => (0.15, 0.05));
       
       -- Diese Bereiche sicherheitshalber auch von außen hineingeben? äöü
-      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.SeitenleisteWeltkarteAccesse (1),
+      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => Views.SeitenleisteWeltkarteAccesse (1),
                                           GrößeExtern          => Viewfläche,
-                                          AnzeigebereichExtern => GrafikKonstanten.SeitenleisteWeltkartenbereich (1));
+                                          AnzeigebereichExtern => GrafikRecordKonstanten.SeitenleisteWeltkartenbereich (1));
       
       HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Seitenleiste_Hintergrund_Enum,
                                         AbmessungenExtern => Viewfläche);
@@ -57,7 +57,7 @@ package body KarteWichtigesSFML is
       FestzulegenderText (8) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugAktuellerForschungsgewinn) & LeseWichtiges.GesamteForschungsrate (RasseExtern => RasseExtern)'Wide_Wide_Image;
             
       TextSchleife:
-      for TextSchleifenwert in TextaccessVariablen.KarteWichtigesAccessArray'Range loop
+      for TextSchleifenwert in TextaccessVariablen.KarteWichtigesAccess'Range loop
          
          Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteWichtigesAccess (TextSchleifenwert),
                                             str  => To_Wide_Wide_String (Source => FestzulegenderText (TextSchleifenwert)));

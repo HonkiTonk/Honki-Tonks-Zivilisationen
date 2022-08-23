@@ -1,17 +1,16 @@
 Spielwelt wird generiert
-Generiere Allgemeines
-Generiere Küstenwasser
-Generiere Landschaft
-Generiere Unterfläche
-Generiere Flüsse
-Generiere Ressourcen
-Bewerte Kartenfelder
-Platziere Rassen
-KI Rechnet
-Rassennameplatzhalter
-Berechne Einheiten
-Berechne Städte
-Berechne Forschung
-Berechne Diplomatie
+Generiere Allgemeines:
+Generiere Küstenwasser:
+Generiere Landschaft:
+Generiere Unterfläche:
+Generiere Flüsse:
+Generiere Ressourcen:
+Bewerte Kartenfelder:
+Platziere Rassen:
+rechnet
+Berechne Einheiten:
+Berechne Städte:
+Berechne Forschung:
+Berechne Diplomatie:
 Berechnungen zwischen den Runden
 Speichern/Laden

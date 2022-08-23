@@ -56,11 +56,11 @@ package body TextaccesseSchriftfarbeSetzenSFML is
    is begin
       
       MenüsEinfachAußenSchleife:
-      for AußenSchleifenwert in TextaccessVariablen.MenüsEinfachSFMLAccessArray'Range (1) loop
+      for AußenSchleifenwert in TextaccessVariablen.MenüsAccessArray'Range (1) loop
          MenüsEinfachInnenSchleife:
-         for InnenSchleifenwert in TextaccessVariablen.MenüsEinfachSFMLAccessArray'Range (2) loop
+         for InnenSchleifenwert in TextaccessVariablen.MenüsAccessArray'Range (2) loop
       
-            Sf.Graphics.Text.setColor (text  => TextaccessVariablen.MenüsEinfachSFMLAccess (AußenSchleifenwert, InnenSchleifenwert),
+            Sf.Graphics.Text.setColor (text  => TextaccessVariablen.MenüsSFMLAccess (AußenSchleifenwert, InnenSchleifenwert),
                                        color => TexteinstellungenSFML.Schriftfarben.FarbeStandardText);
             
          end loop MenüsEinfachInnenSchleife;
@@ -92,7 +92,7 @@ package body TextaccesseSchriftfarbeSetzenSFML is
    is begin
       
       ZusatztextKartengrößeSchleife:
-      for ZusatztextSchleifenwert in TextaccessVariablen.ZusatztextKartengrößeAccessArray'Range loop
+      for ZusatztextSchleifenwert in TextaccessVariablen.ZusatztextKartengrößeAccess'Range loop
          
          Sf.Graphics.Text.setColor (text  => TextaccessVariablen.ZusatztextKartengrößeAccess (ZusatztextSchleifenwert),
                                     color => TexteinstellungenSFML.Schriftfarben.FarbeStandardText);
@@ -191,11 +191,11 @@ package body TextaccesseSchriftfarbeSetzenSFML is
    procedure Kartenformauswahl
    is begin
       
-      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KartenformauswahlAccess (TextaccessVariablen.KartenformauswahlAccessArray'First),
+      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KartenformauswahlAccess (TextaccessVariablen.KartenformauswahlAccess'First),
                                  color => TexteinstellungenSFML.Schriftfarben.FarbeÜberschrift);
       
       SchriftfarbeSchleife:
-      for SchriftfarbeSchleifenwert in TextaccessVariablen.KartenformauswahlAccessArray'First + 1 .. TextaccessVariablen.KartenformauswahlAccessArray'Last - 1 loop
+      for SchriftfarbeSchleifenwert in TextaccessVariablen.KartenformauswahlAccess'First + 1 .. TextaccessVariablen.KartenformauswahlAccess'Last - 1 loop
          
          case
            SchriftfarbeSchleifenwert
@@ -211,7 +211,7 @@ package body TextaccesseSchriftfarbeSetzenSFML is
          
       end loop SchriftfarbeSchleife;
       
-      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KartenformauswahlAccess (TextaccessVariablen.KartenformauswahlAccessArray'Last),
+      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KartenformauswahlAccess (TextaccessVariablen.KartenformauswahlAccess'Last),
                                  color => TexteinstellungenSFML.Schriftfarben.FarbeSonstigerText);
       
    end Kartenformauswahl;
@@ -222,7 +222,7 @@ package body TextaccesseSchriftfarbeSetzenSFML is
    is begin
       
       StadtInformationenSchleife:
-      for StadtInformationenSchleifenwert in TextaccessVariablen.StadtInformationenAccessArray'Range loop
+      for StadtInformationenSchleifenwert in TextaccessVariablen.StadtInformationenAccess'Range loop
          
          Sf.Graphics.Text.setColor (text  => TextaccessVariablen.StadtInformationenAccess (StadtInformationenSchleifenwert),
                                     color => TexteinstellungenSFML.Schriftfarben.FarbeStandardText);
@@ -237,7 +237,7 @@ package body TextaccesseSchriftfarbeSetzenSFML is
    is begin
       
       EinheitenInformationenSchleife:
-      for EinheitenInformationenSchleifenwert in TextaccessVariablen.EinheitenInformationenAccessArray'Range loop
+      for EinheitenInformationenSchleifenwert in TextaccessVariablen.EinheitenInformationenAccess'Range loop
          
          Sf.Graphics.Text.setColor (text  => TextaccessVariablen.EinheitenInformationenAccess (EinheitenInformationenSchleifenwert),
                                     color => TexteinstellungenSFML.Schriftfarben.FarbeStandardText);
@@ -252,7 +252,7 @@ package body TextaccesseSchriftfarbeSetzenSFML is
    is begin
       
       KarteWichtigesSchleife:
-      for KarteWichtigesSchleifenwert in TextaccessVariablen.KarteWichtigesAccessArray'Range loop
+      for KarteWichtigesSchleifenwert in TextaccessVariablen.KarteWichtigesAccess'Range loop
          
          Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KarteWichtigesAccess (KarteWichtigesSchleifenwert),
                                     color => TexteinstellungenSFML.Schriftfarben.FarbeStandardText);
@@ -267,7 +267,7 @@ package body TextaccesseSchriftfarbeSetzenSFML is
    is begin
       
       KarteAllgemeinesSchleife:
-      for KarteAllgemeinesSchleifenwert in TextaccessVariablen.KarteAllgemeinesAccessArray'Range loop
+      for KarteAllgemeinesSchleifenwert in TextaccessVariablen.KarteAllgemeinesAccess'Range loop
          
          Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KarteAllgemeinesAccess (KarteAllgemeinesSchleifenwert),
                                     color => TexteinstellungenSFML.Schriftfarben.FarbeStandardText);
@@ -320,12 +320,9 @@ package body TextaccesseSchriftfarbeSetzenSFML is
    
    procedure Ladezeiten
    is begin
-      
-      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.LadezeitenAccess (TextaccessVariablen.LadezeitenAccessArray'First),
-                                 color => TexteinstellungenSFML.Schriftfarben.FarbeÜberschrift);
-      
+            
       LadezeitenSpielweltSchleife:
-      for LadezeitenSpielweltSchleifenwert in TextaccessVariablen.LadezeitenAccessArray'First + 1 .. TextaccessVariablen.LadezeitenAccessArray'Last loop
+      for LadezeitenSpielweltSchleifenwert in TextaccessVariablen.LadezeitenAccess'Range loop
          
          Sf.Graphics.Text.setColor (text  => TextaccessVariablen.LadezeitenAccess (LadezeitenSpielweltSchleifenwert),
                                     color => TexteinstellungenSFML.Schriftfarben.FarbeStandardText);
@@ -333,12 +330,9 @@ package body TextaccesseSchriftfarbeSetzenSFML is
       end loop LadezeitenSpielweltSchleife;
       
       
-      
-      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KIZeitenAccess (TextaccessVariablen.KIZeitenAccessArray'First),
-                                 color => TexteinstellungenSFML.Schriftfarben.FarbeÜberschrift);
-      
+            
       KIZeitenSchleife:
-      for KIZeitenSchleifenwert in TextaccessVariablen.KIZeitenAccessArray'First + 1 .. TextaccessVariablen.KIZeitenAccessArray'Last loop
+      for KIZeitenSchleifenwert in TextaccessVariablen.KIZeitenAccess'Range loop
          
          Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KIZeitenAccess (KIZeitenSchleifenwert),
                                     color => TexteinstellungenSFML.Schriftfarben.FarbeStandardText);
@@ -346,19 +340,13 @@ package body TextaccesseSchriftfarbeSetzenSFML is
       end loop KIZeitenSchleife;
       
       
-      
-      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.RundenendeAccess (TextaccessVariablen.RundenendeAccessArray'First),
-                                 color => TexteinstellungenSFML.Schriftfarben.FarbeÜberschrift);
-         
-      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.RundenendeAccess (TextaccessVariablen.RundenendeAccessArray'Last),
+               
+      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.RundenendeAccess (1),
                                  color => TexteinstellungenSFML.Schriftfarben.FarbeStandardText);
       
       
-      
-      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SpeichernLadenAccess (TextaccessVariablen.SpeichernLadenAccessArray'First),
-                                 color => TexteinstellungenSFML.Schriftfarben.FarbeÜberschrift);
-         
-      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SpeichernLadenAccess (TextaccessVariablen.SpeichernLadenAccessArray'Last),
+               
+      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SpeichernLadenAccess (1),
                                  color => TexteinstellungenSFML.Schriftfarben.FarbeStandardText);
       
    end Ladezeiten;

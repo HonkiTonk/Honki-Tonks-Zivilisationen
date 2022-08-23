@@ -23,7 +23,7 @@ with NachGrafiktask;
 with NachLogiktask;
 with Vergleiche;
 with GrafikEinstellungenSFML;
-with ViewsSFML;
+with Views;
 
 with KIForschung;
 
@@ -166,7 +166,7 @@ package body ForschungAllgemein is
       
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                                                  point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
-                                                                 view         => ViewsSFML.ForschungsviewAccesse (1));
+                                                                 view         => Views.ForschungsviewAccesse (1));
             
       MausZeigerSchleife:
       for ForschungSchleifenwert in InteraktionAuswahl.MöglicheForschungenArray'Range loop

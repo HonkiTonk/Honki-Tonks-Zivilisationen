@@ -10,8 +10,8 @@ with ProduktionDatentypen; use ProduktionDatentypen;
 with StadtDatentypen; use StadtDatentypen;
 with GlobaleTexte;
 with TextnummernKonstanten;
-with GrafikKonstanten;
-with ViewsSFML;
+with GrafikRecordKonstanten;
+with Views;
 with GrafikDatentypen;
 
 with LeseStadtGebaut;
@@ -68,9 +68,9 @@ package body StadtInformationenSFML is
    is begin
       
       -- Diese Bereiche sicherheitshalber auch von außen hineingeben? äöü
-      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.SeitenleisteWeltkarteAccesse (3),
+      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => Views.SeitenleisteWeltkarteAccesse (3),
                                           GrößeExtern          => Viewfläche,
-                                          AnzeigebereichExtern => GrafikKonstanten.SeitenleisteWeltkartenbereich (3));
+                                          AnzeigebereichExtern => GrafikRecordKonstanten.SeitenleisteWeltkartenbereich (3));
       
       HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Seitenleiste_Hintergrund_Enum,
                                         AbmessungenExtern => Viewfläche);
@@ -127,7 +127,7 @@ package body StadtInformationenSFML is
       end if;
       
       TextSchleife:
-      for TextSchleifenwert in TextaccessVariablen.StadtInformationenAccessArray'Range loop
+      for TextSchleifenwert in TextaccessVariablen.StadtInformationenAccess'Range loop
          
          if
            VolleInformation = False

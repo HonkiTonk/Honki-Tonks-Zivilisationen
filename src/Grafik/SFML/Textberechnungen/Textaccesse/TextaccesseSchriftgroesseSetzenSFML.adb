@@ -56,11 +56,11 @@ package body TextaccesseSchriftgroesseSetzenSFML is
    is begin
       
       MenüsEinfachAußenSchleife:
-      for AußenSchleifenwert in TextaccessVariablen.MenüsEinfachSFMLAccessArray'Range (1) loop
+      for AußenSchleifenwert in TextaccessVariablen.MenüsAccessArray'Range (1) loop
          MenüsEinfachInnenSchleife:
-         for InnenSchleifenwert in TextaccessVariablen.MenüsEinfachSFMLAccessArray'Range (2) loop
+         for InnenSchleifenwert in TextaccessVariablen.MenüsAccessArray'Range (2) loop
             
-            Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.MenüsEinfachSFMLAccess (AußenSchleifenwert, InnenSchleifenwert),
+            Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.MenüsSFMLAccess (AußenSchleifenwert, InnenSchleifenwert),
                                                size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
             
          end loop MenüsEinfachInnenSchleife;
@@ -92,7 +92,7 @@ package body TextaccesseSchriftgroesseSetzenSFML is
    is begin
       
       ZusatztextKartengrößeSchleife:
-      for ZusatztextSchleifenwert in TextaccessVariablen.ZusatztextKartengrößeAccessArray'Range loop
+      for ZusatztextSchleifenwert in TextaccessVariablen.ZusatztextKartengrößeAccess'Range loop
          
          Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.ZusatztextKartengrößeAccess (ZusatztextSchleifenwert),
                                             size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
@@ -186,18 +186,18 @@ package body TextaccesseSchriftgroesseSetzenSFML is
    procedure Kartenformauswahl
    is begin
       
-      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.KartenformauswahlAccess (TextaccessVariablen.KartenformauswahlAccessArray'First),
+      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.KartenformauswahlAccess (TextaccessVariablen.KartenformauswahlAccess'First),
                                          size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeÜberschrift);
       
       SchriftgrößeSchleife:
-      for SchriftgrößeSchleifenwert in TextaccessVariablen.KartenformauswahlAccessArray'First + 1 .. TextaccessVariablen.KartenformauswahlAccessArray'Last - 1 loop
+      for SchriftgrößeSchleifenwert in TextaccessVariablen.KartenformauswahlAccess'First + 1 .. TextaccessVariablen.KartenformauswahlAccess'Last - 1 loop
          
          Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.KartenformauswahlAccess (SchriftgrößeSchleifenwert),
                                             size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
          
       end loop SchriftgrößeSchleife;
       
-      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.KartenformauswahlAccess (TextaccessVariablen.KartenformauswahlAccessArray'Last),
+      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.KartenformauswahlAccess (TextaccessVariablen.KartenformauswahlAccess'Last),
                                          size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeKlein);
       
    end Kartenformauswahl;
@@ -208,7 +208,7 @@ package body TextaccesseSchriftgroesseSetzenSFML is
    is begin
       
       StadtInformationenSchleife:
-      for StadtInformationenSchleifenwert in TextaccessVariablen.StadtInformationenAccessArray'Range loop
+      for StadtInformationenSchleifenwert in TextaccessVariablen.StadtInformationenAccess'Range loop
                   
          Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.StadtInformationenAccess (StadtInformationenSchleifenwert),
                                             size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
@@ -223,7 +223,7 @@ package body TextaccesseSchriftgroesseSetzenSFML is
    is begin
       
       EinheitenInformationenSchleife:
-      for EinheitenInformationenSchleifenwert in TextaccessVariablen.EinheitenInformationenAccessArray'Range loop
+      for EinheitenInformationenSchleifenwert in TextaccessVariablen.EinheitenInformationenAccess'Range loop
                   
          Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.EinheitenInformationenAccess (EinheitenInformationenSchleifenwert),
                                             size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
@@ -238,7 +238,7 @@ package body TextaccesseSchriftgroesseSetzenSFML is
    is begin
       
       KarteWichtigesSchleife:
-      for KarteWichtigesSchleifenwert in TextaccessVariablen.KarteWichtigesAccessArray'Range loop
+      for KarteWichtigesSchleifenwert in TextaccessVariablen.KarteWichtigesAccess'Range loop
          
          
          Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.KarteWichtigesAccess (KarteWichtigesSchleifenwert),
@@ -254,7 +254,7 @@ package body TextaccesseSchriftgroesseSetzenSFML is
    is begin
       
       KarteAllgemeinesSchleife:
-      for KarteAllgemeinesSchleifenwert in TextaccessVariablen.KarteAllgemeinesAccessArray'Range loop
+      for KarteAllgemeinesSchleifenwert in TextaccessVariablen.KarteAllgemeinesAccess'Range loop
          
          
          Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.KarteAllgemeinesAccess (KarteAllgemeinesSchleifenwert),
@@ -308,12 +308,9 @@ package body TextaccesseSchriftgroesseSetzenSFML is
    
    procedure Ladezeiten
    is begin
-      
-      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.LadezeitenAccess (TextaccessVariablen.LadezeitenAccessArray'First),
-                                         size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeÜberschrift);
-      
+            
       LadezeitenSpielweltSchleife:
-      for LadezeitenSpielweltSchleifenwert in TextaccessVariablen.LadezeitenAccessArray'First + 1 .. TextaccessVariablen.LadezeitenAccessArray'Last loop
+      for LadezeitenSpielweltSchleifenwert in TextaccessVariablen.LadezeitenAccess'Range loop
                   
          Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.LadezeitenAccess (LadezeitenSpielweltSchleifenwert),
                                             size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
@@ -322,31 +319,22 @@ package body TextaccesseSchriftgroesseSetzenSFML is
       
       
       
-      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.KIZeitenAccess (TextaccessVariablen.KIZeitenAccessArray'First),
-                                         size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeÜberschrift);
-      
       KIZeitenSchleife:
-      for KIZeitenSchleifenwert in TextaccessVariablen.KIZeitenAccessArray'First + 1 .. TextaccessVariablen.KIZeitenAccessArray'Last loop
+      for KIZeitenSchleifenwert in TextaccessVariablen.KIZeitenAccess'Range loop
          
          Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.KIZeitenAccess (KIZeitenSchleifenwert),
                                             size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
          
       end loop KIZeitenSchleife;
                
-      
-      
-      Sf.Graphics.Text.setCharacterSize (text  => TextaccessVariablen.RundenendeAccess (TextaccessVariablen.RundenendeAccessArray'First),
-                                         size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeÜberschrift);
+            
          
-      Sf.Graphics.Text.setCharacterSize (text  => TextaccessVariablen.RundenendeAccess (TextaccessVariablen.RundenendeAccessArray'Last),
+      Sf.Graphics.Text.setCharacterSize (text  => TextaccessVariablen.RundenendeAccess (1),
                                          size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
       
       
-      
-      Sf.Graphics.Text.setCharacterSize (text  => TextaccessVariablen.SpeichernLadenAccess (TextaccessVariablen.SpeichernLadenAccessArray'First),
-                                         size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeÜberschrift);
-         
-      Sf.Graphics.Text.setCharacterSize (text  => TextaccessVariablen.SpeichernLadenAccess (TextaccessVariablen.SpeichernLadenAccessArray'Last),
+               
+      Sf.Graphics.Text.setCharacterSize (text  => TextaccessVariablen.SpeichernLadenAccess (1),
                                          size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
       
    end Ladezeiten;

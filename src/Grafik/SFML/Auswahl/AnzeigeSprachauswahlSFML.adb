@@ -6,12 +6,12 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Text;
 
-with GrafikKonstanten;
+with GrafikRecordKonstanten;
 with GrafikDatentypen;
 with TextKonstanten;
 with InteraktionAuswahl;
 with TextaccessVariablen;
-with ViewsSFML;
+with Views;
 
 with GrafikEinstellungenSFML;
 with TextberechnungenBreiteSFML;
@@ -20,6 +20,7 @@ with TexteinstellungenSFML;
 with NachGrafiktask;
 with ViewsEinstellenSFML;
 with HintergrundSFML;
+with AllgemeineViewsSFML;
 
 package body AnzeigeSprachauswahlSFML is
    
@@ -28,9 +29,9 @@ package body AnzeigeSprachauswahlSFML is
       
       Viewfläche := ViewsEinstellenSFML.ViewflächeAuflösungAnpassen (ViewflächeExtern => Viewfläche);
       
-      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.MenüviewAccess,
+      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => Views.MenüviewAccess,
                                           GrößeExtern          => Viewfläche,
-                                          AnzeigebereichExtern => GrafikKonstanten.Sprachenbereich);
+                                          AnzeigebereichExtern => GrafikRecordKonstanten.Sprachenbereich);
       
       HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum,
                                         AbmessungenExtern => Viewfläche);
@@ -83,7 +84,8 @@ package body AnzeigeSprachauswahlSFML is
             Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SprachauswahlAccess,
                                        color => AktuelleTextFarbe);
             
-            Textposition.x := Viewfläche.x / 2.00 - TextberechnungenBreiteSFML.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.SprachauswahlAccess);
+            Textposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.SprachauswahlAccess,
+                                                                                  ViewbreiteExtern => Viewfläche.x);
             
             Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.SprachauswahlAccess,
                                           position => Textposition);
@@ -144,7 +146,7 @@ package body AnzeigeSprachauswahlSFML is
                                                       object       => PfeilAccess);
             
          else
-            null;
+            NeueTextbreite := 0.00;
          end if;
          
          Textposition.y := Textposition.y + TextberechnungenHoeheSFML.Zeilenabstand;
@@ -159,6 +161,10 @@ package body AnzeigeSprachauswahlSFML is
          end if;
          
       end loop AnzeigeSchleife;
+      
+      -- Funktioniert aktuell nur nach Einlesen/Setzen aller Texte/Textaccesse und zeigt deswegen nur bei einem späteren Sprachwechsel die Versionsnummer an.
+      -- So lassen oder anpassen? äöü
+      AllgemeineViewsSFML.Versionsnummer (HintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum);
       
       Viewfläche := (AktuelleTextbreite, Textposition.y);
       

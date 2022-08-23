@@ -14,10 +14,10 @@ package MenueDatentypen is
                                Kartenart_Menü_Enum, Kartenressourcen_Menü_Enum, Schwierigkeitsgrad_Menü_Enum, Kartentemperatur_Menü_Enum,
                                
                                -- Einfache Auswahl.
-                               Kartengröße_Menü_Enum, Rassen_Menü_Enum, Kartenpole_Menü_Enum,
-                                
-                               -- Komplexe Auswahl.
-                               Kartenform_Menü_Enum,
+                               Kartengröße_Menü_Enum, Kartenpole_Menü_Enum,
+                               
+                               -- Doppelte Auswahl.
+                               Rassen_Menü_Enum, Kartenform_Menü_Enum,
                                
                                -- Unsortiert.
                                Steuerung_Menü_Enum
@@ -26,11 +26,9 @@ package MenueDatentypen is
    subtype Welches_Menü_Vorhanden_Enum is Welches_Menü_Enum range Haupt_Menü_Enum .. Welches_Menü_Enum'Last;
    
    subtype Menü_Einfach_Enum is Welches_Menü_Vorhanden_Enum range Haupt_Menü_Enum .. Kartenpole_Menü_Enum;
+   subtype Menü_Doppelt_Enum is Welches_Menü_Vorhanden_Enum range Rassen_Menü_Enum .. Kartenform_Menü_Enum;
    
    subtype Menü_Ohne_Überschrift_Enum is Menü_Einfach_Enum range Haupt_Menü_Enum .. Spiel_Menü_Enum;
-   
-   subtype Menü_Mit_Überschrift_Enum is Menü_Einfach_Enum range Optionen_Menü_Enum .. Kartentemperatur_Menü_Enum;
-   subtype Menü_Einstellung_Anzeigen_Enum is Menü_Einfach_Enum range Kartenart_Menü_Enum .. Rassen_Menü_Enum;
    
    subtype Menü_Zusatztext_Enum is Welches_Menü_Vorhanden_Enum range Kartengröße_Menü_Enum .. Kartenform_Menü_Enum;
    subtype Menü_Zusatztext_Einfach_Enum is Menü_Zusatztext_Enum range Kartengröße_Menü_Enum .. Kartenpole_Menü_Enum;

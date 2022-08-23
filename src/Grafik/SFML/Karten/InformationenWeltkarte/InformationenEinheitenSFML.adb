@@ -10,8 +10,8 @@ with GlobaleTexte;
 with EinheitenKonstanten;
 with StadtKonstanten;
 with TextnummernKonstanten;
-with ViewsSFML;
-with GrafikKonstanten;
+with Views;
+with GrafikRecordKonstanten;
 with GrafikDatentypen;
 
 with LeseEinheitenGebaut;
@@ -33,9 +33,9 @@ package body InformationenEinheitenSFML is
    is begin
       
       -- Diese Bereiche sicherheitshalber auch von außen hineingeben? äöü
-      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.SeitenleisteWeltkarteAccesse (4),
+      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => Views.SeitenleisteWeltkarteAccesse (4),
                                           GrößeExtern          => Viewfläche,
-                                          AnzeigebereichExtern => GrafikKonstanten.SeitenleisteWeltkartenbereich (AnzeigebereichExtern));
+                                          AnzeigebereichExtern => GrafikRecordKonstanten.SeitenleisteWeltkartenbereich (AnzeigebereichExtern));
       
       HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Seitenleiste_Hintergrund_Enum,
                                         AbmessungenExtern => Viewfläche);
@@ -122,7 +122,7 @@ package body InformationenEinheitenSFML is
       end if;
             
       TextSchleife:
-      for TextSchleifenwert in TextaccessVariablen.EinheitenInformationenAccessArray'Range loop
+      for TextSchleifenwert in TextaccessVariablen.EinheitenInformationenAccess'Range loop
                   
          if
            VolleInformation = False
@@ -148,7 +148,7 @@ package body InformationenEinheitenSFML is
             case
               TextSchleifenwert
             is
-               when TextaccessVariablen.EinheitenInformationenAccessArray'Last =>
+               when TextaccessVariablen.EinheitenInformationenAccess'Last =>
                   Textposition.y := Textposition.y + Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert)).height;
                   
                when others =>

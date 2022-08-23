@@ -16,8 +16,8 @@ with EinheitenKonstanten;
 with KartenKonstanten;
 with TextaccessVariablen;
 with ZeitKonstanten;
-with GrafikKonstanten;
-with ViewsSFML;
+with GrafikRecordKonstanten;
+with Views;
 
 with LeseKarten;
 with LeseEinheitenGebaut;
@@ -43,9 +43,9 @@ package body WeltkarteSFML is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
-      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.KartenviewAccess,
+      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => Views.KartenviewAccess,
                                           GrößeExtern          => (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x, GrafikEinstellungenSFML.AktuelleFensterAuflösung.y),
-                                          AnzeigebereichExtern => GrafikKonstanten.KarteAnzeigebereich);
+                                          AnzeigebereichExtern => GrafikRecordKonstanten.KarteAnzeigebereich);
       
       -- Nimmt aktuell das ganze Fenster ein, weil mit den aktuellen Berechnungn nichts mehr rechts gezeichnet wird, fällt aber aktuell nicht auf weil die Leiste das verdeckt. äöü
       -- Später mal anpassen? äöü
@@ -548,7 +548,7 @@ package body WeltkarteSFML is
       Textposition.x := PositionExtern.x - TextberechnungenBreiteSFML.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.KarteAccess) + 0.50 * BerechnungenKarteSFML.KartenfelderAbmessung.x;
       Textposition.y := PositionExtern.y - TextberechnungenHoeheSFML.Zeilenabstand;
       
-      -- Später noch einen Rahmen um den Namen bauen?
+      -- Später noch einen Rahmen um den Namen bauen? äöü
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteAccess,
                                     position => Textposition);
       

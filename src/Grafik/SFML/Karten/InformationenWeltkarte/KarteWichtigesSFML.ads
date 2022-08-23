@@ -40,7 +40,7 @@ private
    Textposition : Sf.System.Vector2.sfVector2f;
    
    -- Das ohne Grenze mal irgendwo Global anlegen? äöü
-   type FestzulegenderTextArray is array (TextaccessVariablen.KarteWichtigesAccessArray'Range) of Unbounded_Wide_Wide_String;
+   type FestzulegenderTextArray is array (TextaccessVariablen.KarteWichtigesAccess'Range) of Unbounded_Wide_Wide_String;
    FestzulegenderText : FestzulegenderTextArray;
 
    

@@ -90,7 +90,7 @@ package body Spieleinstellungen is
                   exit SpielEinstellungenSchleife;
 
                when RueckgabeDatentypen.Hauptmenü_Beenden_Enum'Range =>
-                  return RueckgabeDatentypen.Hauptmenü_Enum;
+                  return Auswahl;
 
                when others =>
                   null;

@@ -13,6 +13,7 @@ with TextnummernKonstanten;
 with EinheitenDatentypen;
 with StadtDatentypen;
 with TextaccessVariablen;
+with Views;
 
 with LeseForschungenDatenbank;
 with LeseEinheitenDatenbank;
@@ -40,7 +41,7 @@ package body ForschungAnzeigeSFML is
    is begin
       
       AllgemeineViewsSFML.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => GlobaleTexte.Frage (TextnummernKonstanten.FrageForschungsprojekt)),
-                                         HintergrundExtern => GrafikDatentypen.Forschung_Hintergrund_Enum);
+                                        HintergrundExtern => GrafikDatentypen.Forschung_Hintergrund_Enum);
             
       AktuelleAuswahl := ForschungenDatentypen.ForschungIDMitNullWert (AktuelleAuswahlExtern);
       
@@ -67,18 +68,16 @@ package body ForschungAnzeigeSFML is
       Viewfläche (ViewnummerExtern) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
                                                                                          VerhältnisExtern => (0.50, 1.00));
       
-      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.ForschungsviewAccesse (ViewnummerExtern),
+      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => Views.ForschungsviewAccesse (ViewnummerExtern),
                                           GrößeExtern          => Viewfläche (ViewnummerExtern),
-                                          AnzeigebereichExtern => Anzeigebereich (ViewnummerExtern));
+                                          AnzeigebereichExtern => GrafikRecordKonstanten.Forschungsbereich (ViewnummerExtern));
       
       HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Forschung_Hintergrund_Enum,
                                         AbmessungenExtern => Viewfläche (ViewnummerExtern));
       
-      TextPosition := TextKonstanten.StartpositionText;
-      TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
-      -- Darf nicht auch 0.00 gesetzt werden, da es sonst zu Abstürzen kommt wenn alle Technologien erforscht wurden.äöü
-      -- Später eine bessere Lösung bauen. äöü
-      AktuelleTextbreite := 0.01;
+      Textposition := TextKonstanten.StartpositionText;
+      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
+      AktuelleTextbreite := TextKonstanten.LeerTextbreite;
             
       AnzeigeSchleife:
       for ForschungSchleifenwert in ForschungenDatentypen.ForschungID'Range loop
@@ -99,12 +98,12 @@ package body ForschungAnzeigeSFML is
                Sf.Graphics.Text.setColor (text  => TextaccessVariablen.ForschungsmenüAccess (ForschungSchleifenwert),
                                           color => Farbe);
                Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüAccess (ForschungSchleifenwert),
-                                             position => TextPosition);
+                                             position => Textposition);
                
                AktuelleTextbreite := TextberechnungenBreiteSFML.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ForschungsmenüAccess (ForschungSchleifenwert),
                                                                                          TextbreiteExtern => AktuelleTextbreite);
          
-               TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.Zeilenabstand;
+               Textposition.y := Textposition.y + TextberechnungenHoeheSFML.Zeilenabstand;
                
                InteraktionAuswahl.PositionenForschung (ForschungSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.ForschungsmenüAccess (ForschungSchleifenwert));
                
@@ -117,7 +116,7 @@ package body ForschungAnzeigeSFML is
          
       end loop AnzeigeSchleife;
       
-      Viewfläche (ViewnummerExtern) := (AktuelleTextbreite, TextPosition.y);
+      Viewfläche (ViewnummerExtern) := (AktuelleTextbreite, Textposition.y);
       
    end Auswahlmöglichkeiten;
    
@@ -132,9 +131,9 @@ package body ForschungAnzeigeSFML is
       Viewfläche (ViewnummerExtern) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
                                                                                          VerhältnisExtern => (0.50, 0.50));
       
-      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.ForschungsviewAccesse (ViewnummerExtern),
+      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => Views.ForschungsviewAccesse (ViewnummerExtern),
                                           GrößeExtern          => Viewfläche (ViewnummerExtern),
-                                          AnzeigebereichExtern => Anzeigebereich (ViewnummerExtern));
+                                          AnzeigebereichExtern => GrafikRecordKonstanten.Forschungsbereich (ViewnummerExtern));
       
       HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Forschung_Hintergrund_Enum,
                                         AbmessungenExtern => Viewfläche (ViewnummerExtern));
@@ -146,27 +145,28 @@ package body ForschungAnzeigeSFML is
             return;
             
          when others =>
-            TextPosition := TextKonstanten.StartpositionText;
-            TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
+            Textposition := TextKonstanten.StartpositionText;
+            Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
             
             Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüZusatztextAccess (ZusatztextExtern),
-                                          position => TextPosition);
+                                          position => Textposition);
       end case;
             
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüZusatztextAccess (ZusatztextExtern),
-                                         str  => BeschreibungenZeilenumbruchSFML.ZeilenumbruchBerechnen (TextExtern => ForschungsbeschreibungenSFML.BeschreibungLang (IDExtern    => ZusatztextExtern,
-                                                                                                                                                                      RasseExtern => RasseExtern)));
+                                         str  => BeschreibungenZeilenumbruchSFML.ZeilenumbruchBerechnen (TextExtern   => ForschungsbeschreibungenSFML.BeschreibungLang (IDExtern    => ZusatztextExtern,
+                                                                                                                                                                        RasseExtern => RasseExtern),
+                                                                                                         BreiteExtern => GrafikRecordKonstanten.Forschungsbereich (ViewnummerExtern).width));
       
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                          text         => TextaccessVariablen.ForschungsmenüZusatztextAccess (ZusatztextExtern));
       
-      AktuelleTextbreite := 0.01;
+      AktuelleTextbreite := TextKonstanten.LeerTextbreite;
       AktuelleTextbreite := TextberechnungenBreiteSFML.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ForschungsmenüZusatztextAccess (ZusatztextExtern),
                                                                                 TextbreiteExtern => AktuelleTextbreite);
       
-      TextPosition.y := TextPosition.y + Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.ForschungsmenüZusatztextAccess (ZusatztextExtern)).height + TextberechnungenHoeheSFML.Zeilenabstand;
+      Textposition.y := Textposition.y + Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.ForschungsmenüZusatztextAccess (ZusatztextExtern)).height + TextberechnungenHoeheSFML.Zeilenabstand;
       
-      Viewfläche (ViewnummerExtern) := (AktuelleTextbreite, TextPosition.y);
+      Viewfläche (ViewnummerExtern) := (AktuelleTextbreite, Textposition.y);
               
    end Beschreibung;
    
@@ -182,9 +182,9 @@ package body ForschungAnzeigeSFML is
       Viewfläche (ViewnummerExtern) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
                                                                                          VerhältnisExtern => (0.50, 0.50));
       
-      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.ForschungsviewAccesse (ViewnummerExtern),
+      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => Views.ForschungsviewAccesse (ViewnummerExtern),
                                           GrößeExtern          => Viewfläche (ViewnummerExtern),
-                                          AnzeigebereichExtern => Anzeigebereich (ViewnummerExtern));
+                                          AnzeigebereichExtern => GrafikRecordKonstanten.Forschungsbereich (ViewnummerExtern));
       
       HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Forschung_Hintergrund_Enum,
                                         AbmessungenExtern => Viewfläche (ViewnummerExtern));
@@ -196,20 +196,20 @@ package body ForschungAnzeigeSFML is
             return;
             
          when others =>
-            TextPosition := TextKonstanten.StartpositionText;
-            TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
-            AktuelleTextbreite := 0.01;
+            Textposition := TextKonstanten.StartpositionText;
+            Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
+            AktuelleTextbreite := TextKonstanten.LeerTextbreite;
       end case;
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
-                                    position => TextPosition);
+                                    position => Textposition);
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextnummernKonstanten.ZeugWirdBenötigt)));
                
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                          text         => TextaccessVariablen.ForschungsmenüErmöglichtAccess);
          
-      TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
+      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       AktuelleTextbreite := TextberechnungenBreiteSFML.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                                                                 TextbreiteExtern => AktuelleTextbreite);
       
@@ -226,15 +226,15 @@ package body ForschungAnzeigeSFML is
               Forschungswert = ZusatztextExtern
             then
                Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
-                                             position => TextPosition);
+                                             position => Textposition);
                Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                                   str  => ForschungsbeschreibungenSFML.BeschreibungKurz (IDExtern    => TechnologieSchleifenwert,
-                                                                                               RasseExtern => RasseExtern));
+                                                                                                         RasseExtern => RasseExtern));
                
                Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                                   text         => TextaccessVariablen.ForschungsmenüErmöglichtAccess);
          
-               TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
+               Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
                AktuelleTextbreite := TextberechnungenBreiteSFML.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                                                                          TextbreiteExtern => AktuelleTextbreite);
                   
@@ -245,7 +245,7 @@ package body ForschungAnzeigeSFML is
          end loop TechnologienSchleife;
       end loop ErmöglichtSchleife;
       
-      TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
+      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
          
       EinheitenSchleife:
       for EinheitenSchleifenwert in EinheitenDatentypen.EinheitenID'Range loop
@@ -255,14 +255,14 @@ package body ForschungAnzeigeSFML is
                                                                     IDExtern    => EinheitenSchleifenwert)
          then
             Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
-                                          position => TextPosition);
+                                          position => Textposition);
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                                str  => EinheitenbeschreibungenSFML.BeschreibungKurz (IDExtern => EinheitenSchleifenwert));
                
             Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                                text         => TextaccessVariablen.ForschungsmenüErmöglichtAccess);
             
-            TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
+            Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
             AktuelleTextbreite := TextberechnungenBreiteSFML.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                                                                       TextbreiteExtern => AktuelleTextbreite);
                
@@ -272,7 +272,7 @@ package body ForschungAnzeigeSFML is
                
       end loop EinheitenSchleife;
          
-      TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
+      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
          
       GebäudeSchleife:
       for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
@@ -282,14 +282,14 @@ package body ForschungAnzeigeSFML is
                                                                    IDExtern    => GebäudeSchleifenwert)
          then
             Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
-                                          position => TextPosition);
+                                          position => Textposition);
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                                str  => GebaeudebeschreibungenSFML.BeschreibungKurz (IDExtern => GebäudeSchleifenwert));
             
             Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                                text         => TextaccessVariablen.ForschungsmenüErmöglichtAccess);
          
-            TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
+            Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
             AktuelleTextbreite := TextberechnungenBreiteSFML.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                                                                       TextbreiteExtern => AktuelleTextbreite);
                
@@ -299,9 +299,9 @@ package body ForschungAnzeigeSFML is
             
       end loop GebäudeSchleife;
          
-      TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
+      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
-      Viewfläche (ViewnummerExtern) := (AktuelleTextbreite, TextPosition.y);
+      Viewfläche (ViewnummerExtern) := (AktuelleTextbreite, Textposition.y);
       
    end Ermöglicht;
    
@@ -316,15 +316,15 @@ package body ForschungAnzeigeSFML is
       -- Viewfläche (ViewnummerExtern) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
       --                                                                     VerhältnisExtern => (0.10, 0.10));
       
-      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.ForschungsviewAccesse (ViewnummerExtern),
+      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => Views.ForschungsviewAccesse (ViewnummerExtern),
                                           GrößeExtern          => Viewfläche (ViewnummerExtern),
-                                          AnzeigebereichExtern => Anzeigebereich (ViewnummerExtern));
+                                          AnzeigebereichExtern => GrafikRecordKonstanten.Forschungsbereich (ViewnummerExtern));
       
       HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Forschung_Hintergrund_Enum,
                                         AbmessungenExtern => Viewfläche (ViewnummerExtern));
       
-      TextPosition := TextKonstanten.StartpositionText;
-      AktuelleTextbreite := 0.01;
+      Textposition := TextKonstanten.StartpositionText;
+      AktuelleTextbreite := TextKonstanten.LeerTextbreite;
       
       AktuellesForschungsprojekt := LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern);
       
@@ -336,42 +336,44 @@ package body ForschungAnzeigeSFML is
             
          when others =>
             Text := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt) & " " & ForschungsbeschreibungenSFML.BeschreibungKurz (IDExtern    => AktuellesForschungsprojekt,
-                                                                                                                                          RasseExtern => RasseExtern);
+                                                                                                                                                    RasseExtern => RasseExtern);
       end case;
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                          str  => To_Wide_Wide_String (Source => Text));
       
-      TextPosition.x := Viewfläche (ViewnummerExtern).x / 2.00 - TextberechnungenBreiteSFML.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess);
+      Textposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
+                                                                            ViewbreiteExtern => Viewfläche (ViewnummerExtern).x);
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
-                                    position => TextPosition);
+                                    position => Textposition);
       
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                          text         => TextaccessVariablen.ForschungsmenüErmöglichtAccess);
       
       AktuelleTextbreite := TextberechnungenBreiteSFML.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                                                                 TextbreiteExtern => AktuelleTextbreite);
-      TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
+      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
       Text := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugVerbleibendeForschungszeit) & LeseWichtiges.VerbleibendeForschungszeit (RasseExtern => RasseExtern)'Wide_Wide_Image;
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                          str  => To_Wide_Wide_String (Source => Text));
       
-      TextPosition.x := Viewfläche (ViewnummerExtern).x / 2.00 - TextberechnungenBreiteSFML.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess);
+      Textposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
+                                                                            ViewbreiteExtern => Viewfläche (ViewnummerExtern).x);
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
-                                    position => TextPosition);
+                                    position => Textposition);
       
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                          text         => TextaccessVariablen.ForschungsmenüErmöglichtAccess);
       
       AktuelleTextbreite := TextberechnungenBreiteSFML.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                                                                 TextbreiteExtern => AktuelleTextbreite);
-      TextPosition.y := TextPosition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
+      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
             
-      Viewfläche (ViewnummerExtern) := (AktuelleTextbreite, TextPosition.y);
+      Viewfläche (ViewnummerExtern) := (AktuelleTextbreite, Textposition.y);
       
    end Aktuell;
 

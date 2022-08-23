@@ -56,7 +56,7 @@ private
    Viewfläche : Sf.System.Vector2.sfVector2f := TextKonstanten.StartpositionText;
    Textposition : Sf.System.Vector2.sfVector2f;
       
-   type FestzulegenderTextArray is array (TextaccessVariablen.StadtInformationenAccessArray'Range) of Unbounded_Wide_Wide_String;
+   type FestzulegenderTextArray is array (TextaccessVariablen.StadtInformationenAccess'Range) of Unbounded_Wide_Wide_String;
    FestzulegenderText : FestzulegenderTextArray;
    
    procedure Stadtname

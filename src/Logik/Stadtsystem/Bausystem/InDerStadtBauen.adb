@@ -9,7 +9,7 @@ with StadtRecords; use StadtRecords;
 with StadtKonstanten;
 with TastenbelegungDatentypen;
 with OptionenVariablen;
-with ViewsSFML;
+with Views;
 
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
@@ -212,7 +212,7 @@ package body InDerStadtBauen is
       
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                                                  point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
-                                                                 view         => ViewsSFML.BauviewAccesse (1));
+                                                                 view         => Views.BauviewAccesse (1));
       
       GebäudeSchleife:
       for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
@@ -239,7 +239,7 @@ package body InDerStadtBauen is
             
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                                                  point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
-                                                                 view         => ViewsSFML.BauviewAccesse (2));
+                                                                 view         => Views.BauviewAccesse (2));
       
       EinheitenSchleife:
       for EinheitenSchleifenwert in EinheitenDatentypen.EinheitenID'Range loop

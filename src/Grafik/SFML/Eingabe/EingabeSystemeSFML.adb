@@ -87,6 +87,7 @@ package body EingabeSystemeSFML is
    
    
    
+   -- Zahleneingabe über eine eigene Version von Texteingabe regeln? äöü
    procedure TextEingeben
    is begin
       

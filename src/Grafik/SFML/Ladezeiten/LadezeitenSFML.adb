@@ -1,22 +1,22 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
-
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Text;
 
 with GlobaleTexte;
 with TextKonstanten;
+with Views;
 
 with HintergrundSFML;
 with GrafikEinstellungenSFML;
 with TextberechnungenHoeheSFML;
 with TextaccessVariablen;
 with Ladezeiten;
-with RassenAllgemein;
+with RassenbeschreibungenSFML;
 with TextberechnungenBreiteSFML;
-with Fehler;
+with ViewsEinstellenSFML;
+with AllgemeineViewsSFML;
 
 package body LadezeitenSFML is
    
@@ -25,213 +25,199 @@ package body LadezeitenSFML is
       RasseExtern : in RassenDatentypen.Rassen_Enum)
    is begin
       
-      HintergrundSFML.StandardHintergrund (HintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum);
-      
       case
         WelcheLadeanzeigeExtern
       is
          when GrafikDatentypen.Grafik_Generierungszeit_Enum =>
-            SpielweltErstellen;
+            Text := GlobaleTexte.Ladezeit (1);
             
          when GrafikDatentypen.Grafik_KI_Rechenzeit_Enum =>
-            if
-              RasseExtern = RassenDatentypen.Keine_Rasse_Enum
-            then
-               Fehler.GrafikFehler (FehlermeldungExtern => "LadezeitenSFML.LadezeitenSFML - Keine Rasse gewählt.");
-               
-            else
-               KIRechnet (RasseExtern => RasseExtern);
-            end if;
+            Text := RassenbeschreibungenSFML.BeschreibungKurz (RasseExtern => RasseExtern) & " " & GlobaleTexte.Ladezeit (10);
             
          when GrafikDatentypen.Grafik_Rundenende_Enum =>
-            Rundenende;
+            Text := GlobaleTexte.Ladezeit (15);
             
          when GrafikDatentypen.Grafik_Speichern_Laden_Enum =>
-            SpeichernLaden;
+            Text := GlobaleTexte.Ladezeit (16);
       end case;
       
-   end LadezeitenSFML;
+      AllgemeineViewsSFML.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => Text),
+                                        HintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum);
       
+      Viewfläche := ViewsEinstellenSFML.ViewflächeAuflösungAnpassen (ViewflächeExtern => Viewfläche);
+      
+      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => Views.LadeviewAccess,
+                                          GrößeExtern          => Viewfläche,
+                                          AnzeigebereichExtern => GrafikRecordKonstanten.Ladebereich);
+      
+      HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum,
+                                        AbmessungenExtern => Viewfläche);
+            
+      case
+        WelcheLadeanzeigeExtern
+      is
+         when GrafikDatentypen.Grafik_Generierungszeit_Enum =>
+            Viewfläche := SpielweltErstellen;
+            
+         when GrafikDatentypen.Grafik_KI_Rechenzeit_Enum =>
+            Viewfläche := KIRechnet;
+            
+         when GrafikDatentypen.Grafik_Rundenende_Enum =>
+            Viewfläche := Rundenende;
+            
+         when GrafikDatentypen.Grafik_Speichern_Laden_Enum =>
+            Viewfläche := SpeichernLaden;
+      end case;
+      
+      Viewfläche.y := Viewfläche.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
+      
+   end LadezeitenSFML;
+   
    
 
-   procedure SpielweltErstellen
+   function SpielweltErstellen
+     return Sf.System.Vector2.sfVector2f
    is begin
-            
+      
+      Textbreite := 0.00;
       WelcheZeit := TextaccessVariablen.LadezeitenAccess'First;
-      AktuelleTextposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
-                                                                                    ViewbreiteExtern => GrafikEinstellungenSFML.AktuelleFensterAuflösung.x);
-      AktuelleTextposition.y := AnfangspositionText;
-      
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
-                                    position => AktuelleTextposition);
-      
-      AktuelleTextposition.y := AktuelleTextposition.y + TextberechnungenHoeheSFML.Überschriftabstand;
-            
+      Textposition.y := TextberechnungenHoeheSFML.Zeilenabstand;
+                     
       SpielweltErstellenSchleife:
       for SpielweltErstellenSchleifenwert in LadezeitenDatentypen.Spielwelt_Erstellen_Enum'Range loop
-         
-         WelcheZeit := WelcheZeit + 1;
-         
+                  
          case
            Ladezeiten.FortschrittSpielwelt (SpielweltErstellenSchleifenwert)
          is
             when 0 =>
-               Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
-                                                  str  => To_Wide_Wide_String (Source => GlobaleTexte.Ladezeit (WelcheZeit)));
+               Text := GlobaleTexte.Ladezeit (WelcheZeit);
             
             when others =>
-               Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
-                                                  str  => To_Wide_Wide_String (Source => GlobaleTexte.Ladezeit (WelcheZeit)) & TextKonstanten.StandardAbstand
-                                                  & To_Wide_Wide_String (Source => ZahlAlsStringLadefortschritt (ZahlExtern => Ladezeiten.FortschrittSpielwelt (SpielweltErstellenSchleifenwert))) & "/" & "100");
+               Text := GlobaleTexte.Ladezeit (WelcheZeit) & TextKonstanten.StandardAbstand & ZahlAlsStringLadefortschritt (ZahlExtern => Ladezeiten.FortschrittSpielwelt (SpielweltErstellenSchleifenwert)) & "/" & "100";
          end case;
-                                                 
-         AktuelleTextposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
-                                                                                       ViewbreiteExtern => GrafikEinstellungenSFML.AktuelleFensterAuflösung.x);
-            
-         Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
-                                       position => AktuelleTextposition);
          
-         AktuelleTextposition.y := AktuelleTextposition.y + TextberechnungenHoeheSFML.Zeilenabstand;
-               
-      end loop SpielweltErstellenSchleife;
-      
-      TextanzeigeSchleife:
-      for TextanzeigeSchleifenwert in TextaccessVariablen.LadezeitenAccessArray'Range loop
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
+                                            str  => To_Wide_Wide_String (Text));
+                                                 
+         Textposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
+                                                                               ViewbreiteExtern => GrafikEinstellungenSFML.AktuelleFensterAuflösung.x);
+         Textbreite := TextberechnungenBreiteSFML.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
+                                                                           TextbreiteExtern => Textbreite);
+         
+         Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
+                                       position => Textposition);
+         
+         Textposition.y := Textposition.y + TextberechnungenHoeheSFML.Zeilenabstand;
          
          Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                            text         => TextaccessVariablen.LadezeitenAccess (TextanzeigeSchleifenwert));
+                                            text         => TextaccessVariablen.LadezeitenAccess (WelcheZeit));
          
-      end loop TextanzeigeSchleife;
+         WelcheZeit := WelcheZeit + 1;
+         
+      end loop SpielweltErstellenSchleife;
+      
+      return (Textbreite, Textposition.y);
                         
    end SpielweltErstellen;
    
    
    
-   procedure KIRechnet
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+   function KIRechnet
+      return Sf.System.Vector2.sfVector2f
    is begin
-            
+      
+      Textbreite := 0.00;
+      Textposition.y := TextberechnungenHoeheSFML.Zeilenabstand;
       WelcheZeit := TextaccessVariablen.KIZeitenAccess'First;
-      AktuelleTextposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
-                                                                                    ViewbreiteExtern => GrafikEinstellungenSFML.AktuelleFensterAuflösung.x);
-      AktuelleTextposition.y := AnfangspositionText;
-      
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
-                                    position => (AktuelleTextposition));
-      
-      AktuelleTextposition.y := AktuelleTextposition.y + TextberechnungenHoeheSFML.Überschriftabstand;
-      
-      WelcheZeit := WelcheZeit + 1;
-      
-      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
-                                         str  => RassenAllgemein.Rassenname (RasseExtern => RasseExtern));
-                                                 
-      AktuelleTextposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
-                                                                                    ViewbreiteExtern => GrafikEinstellungenSFML.AktuelleFensterAuflösung.x);
-            
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
-                                    position => AktuelleTextposition);
       
       KIRechnetSchleife:
       for KIRechnetSchleifenwert in LadezeitenDatentypen.KI_Rechnet_Enum'Range loop
-         
-         AktuelleTextposition.y := AktuelleTextposition.y + TextberechnungenHoeheSFML.Zeilenabstand;
-         WelcheZeit := WelcheZeit + 1;
-         
+                  
          case
            Ladezeiten.FortschrittKI (KIRechnetSchleifenwert)
          is
             when 0 =>
-               Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
-                                                  str  => To_Wide_Wide_String (Source => GlobaleTexte.Ladezeit (WelcheZeit)));
+               Text := GlobaleTexte.Ladezeit (WelcheZeit);
             
             when others =>
-               Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
-                                                  str  => To_Wide_Wide_String (Source => GlobaleTexte.Ladezeit (WelcheZeit)) & TextKonstanten.StandardAbstand
-                                                  & To_Wide_Wide_String (Source => ZahlAlsStringLadefortschritt (ZahlExtern => Ladezeiten.FortschrittKI (KIRechnetSchleifenwert))) & "/" & "100");
+               Text := GlobaleTexte.Ladezeit (WelcheZeit) & TextKonstanten.StandardAbstand & ZahlAlsStringLadefortschritt (ZahlExtern => Ladezeiten.FortschrittKI (KIRechnetSchleifenwert)) & "/" & "100";
          end case;
          
-         AktuelleTextposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
-                                                                                       ViewbreiteExtern => GrafikEinstellungenSFML.AktuelleFensterAuflösung.x);
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
+                                            str  => To_Wide_Wide_String (Source => Text));
+         
+         Textposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
+                                                                               ViewbreiteExtern => GrafikEinstellungenSFML.AktuelleFensterAuflösung.x);
+         Textbreite := TextberechnungenBreiteSFML.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
+                                                                           TextbreiteExtern => Textbreite);
+         
+         Textposition.y := Textposition.y + TextberechnungenHoeheSFML.Zeilenabstand;
             
          Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
-                                       position => AktuelleTextposition);
+                                       position => Textposition);
+         
+         Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                            text         => TextaccessVariablen.KIZeitenAccess (WelcheZeit));
+         
+         WelcheZeit := WelcheZeit + 1;
          
       end loop KIRechnetSchleife;
       
-      TextanzeigeSchleife:
-      for TextanzeigeSchleifenwert in TextaccessVariablen.KIZeitenAccessArray'Range loop
-         
-         Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                            text         => TextaccessVariablen.KIZeitenAccess (TextanzeigeSchleifenwert));
-         
-      end loop TextanzeigeSchleife;
+      return (Textbreite, Textposition.y);
       
    end KIRechnet;
    
    
    
-   procedure Rundenende
+   function Rundenende
+     return Sf.System.Vector2.sfVector2f
    is begin
-                  
-      AktuelleTextposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.RundenendeAccess (TextaccessVariablen.RundenendeAccess'First),
-                                                                                    ViewbreiteExtern => GrafikEinstellungenSFML.AktuelleFensterAuflösung.x);
-      AktuelleTextposition.y := AnfangspositionText;
       
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.RundenendeAccess (TextaccessVariablen.RundenendeAccess'First),
-                                    position => (AktuelleTextposition));
+      Textposition.y := TextberechnungenHoeheSFML.Zeilenabstand;
       
-      AktuelleTextposition.y := AktuelleTextposition.y + TextberechnungenHoeheSFML.Überschriftabstand;
-      
-      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.RundenendeAccess (TextaccessVariablen.RundenendeAccess'Last),
+      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.RundenendeAccess (1),
                                          str  => To_Wide_Wide_String (Source => ZahlAlsStringLadefortschritt (ZahlExtern => Ladezeiten.FortschrittRundenende)) & "/" & "100");
                                                  
-      AktuelleTextposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.RundenendeAccess (TextaccessVariablen.RundenendeAccess'Last),
-                                                                                    ViewbreiteExtern => GrafikEinstellungenSFML.AktuelleFensterAuflösung.x);
+      Textposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.RundenendeAccess (1),
+                                                                            ViewbreiteExtern => GrafikEinstellungenSFML.AktuelleFensterAuflösung.x);
+      Textbreite := TextberechnungenBreiteSFML.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.RundenendeAccess (1),
+                                                                        TextbreiteExtern => 0.00);
             
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.RundenendeAccess (TextaccessVariablen.RundenendeAccess'Last),
-                                    position => AktuelleTextposition);
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.RundenendeAccess (1),
+                                    position => Textposition);
       
-      TextanzeigeSchleife:
-      for TextanzeigeSchleifenwert in TextaccessVariablen.RundenendeAccessArray'Range loop
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                         text         => TextaccessVariablen.RundenendeAccess (1));
          
-         Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                            text         => TextaccessVariablen.RundenendeAccess (TextanzeigeSchleifenwert));
-         
-      end loop TextanzeigeSchleife;
+      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.Zeilenabstand;
+      
+      return (Textbreite, Textposition.y);
       
    end Rundenende;
    
    
    
-   procedure SpeichernLaden
+   function SpeichernLaden
+     return Sf.System.Vector2.sfVector2f
    is begin
-                  
-      AktuelleTextposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.SpeichernLadenAccess (TextaccessVariablen.SpeichernLadenAccess'First),
-                                                                                    ViewbreiteExtern => GrafikEinstellungenSFML.AktuelleFensterAuflösung.x);
-      AktuelleTextposition.y := AnfangspositionText;
       
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.SpeichernLadenAccess (TextaccessVariablen.SpeichernLadenAccess'First),
-                                    position => (AktuelleTextposition));
+      Textposition.y := TextberechnungenHoeheSFML.Zeilenabstand;
       
-      AktuelleTextposition.y := AktuelleTextposition.y + TextberechnungenHoeheSFML.Überschriftabstand;
-      
-      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.SpeichernLadenAccess (TextaccessVariablen.SpeichernLadenAccess'Last),
+      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.SpeichernLadenAccess (1),
                                          str  => To_Wide_Wide_String (Source => ZahlAlsStringLadefortschritt (ZahlExtern => Ladezeiten.FortschrittSpeichernLaden)) & "/" & "100");
                                                  
-      AktuelleTextposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.SpeichernLadenAccess (TextaccessVariablen.SpeichernLadenAccess'Last),
-                                                                                    ViewbreiteExtern => GrafikEinstellungenSFML.AktuelleFensterAuflösung.x);
+      Textposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.SpeichernLadenAccess (1),
+                                                                            ViewbreiteExtern => GrafikEinstellungenSFML.AktuelleFensterAuflösung.x);
+      Textbreite := TextberechnungenBreiteSFML.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.RundenendeAccess (1),
+                                                                        TextbreiteExtern => 0.00);
             
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.SpeichernLadenAccess (TextaccessVariablen.SpeichernLadenAccess'Last),
-                                    position => AktuelleTextposition);
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.SpeichernLadenAccess (1),
+                                    position => Textposition);
+               
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                         text         => TextaccessVariablen.SpeichernLadenAccess (1));
       
-      TextanzeigeSchleife:
-      for TextanzeigeSchleifenwert in TextaccessVariablen.RundenendeAccessArray'Range loop
-         
-         Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                            text         => TextaccessVariablen.SpeichernLadenAccess (TextanzeigeSchleifenwert));
-         
-      end loop TextanzeigeSchleife;
+      return (Textbreite, Textposition.y);
       
    end SpeichernLaden;
 

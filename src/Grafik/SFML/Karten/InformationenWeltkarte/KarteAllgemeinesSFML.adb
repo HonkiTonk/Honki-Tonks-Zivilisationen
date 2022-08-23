@@ -7,8 +7,8 @@ with Sf.Graphics.Text;
 
 with KartenRecords; use KartenRecords;
 with KartengrundDatentypen; use KartengrundDatentypen;
-with ViewsSFML;
-with GrafikKonstanten;
+with Views;
+with GrafikRecordKonstanten;
 with GrafikDatentypen;
 
 with LeseKarten;
@@ -27,9 +27,9 @@ package body KarteAllgemeinesSFML is
    is begin
       
       -- Diese Bereiche sicherheitshalber auch von außen hineingeben? äöü
-      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.SeitenleisteWeltkarteAccesse (2),
+      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => Views.SeitenleisteWeltkarteAccesse (2),
                                           GrößeExtern          => Viewfläche,
-                                          AnzeigebereichExtern => GrafikKonstanten.SeitenleisteWeltkartenbereich (2));
+                                          AnzeigebereichExtern => GrafikRecordKonstanten.SeitenleisteWeltkartenbereich (2));
       
       HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Seitenleiste_Hintergrund_Enum,
                                         AbmessungenExtern => Viewfläche);
@@ -138,7 +138,7 @@ package body KarteAllgemeinesSFML is
       end case;
                
       TextSchleife:
-      for TextSchleifenwert in TextaccessVariablen.KarteAllgemeinesAccessArray'Range loop
+      for TextSchleifenwert in TextaccessVariablen.KarteAllgemeinesAccess'Range loop
          
          case
            TextAnzeigen (TextSchleifenwert)

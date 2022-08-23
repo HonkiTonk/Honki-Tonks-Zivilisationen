@@ -225,6 +225,11 @@ package body RueckgabeMenues is
         AktuelleAuswahlExtern = AnfangExtern + 3
       then
          return RueckgabeDatentypen.Sonstiges_Enum;
+         
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 4
+      then
+         return RueckgabeDatentypen.Zurück_Enum;
                     
       else
          return HauptmenüEnde (EndeExtern            => EndeExtern,
@@ -520,6 +525,11 @@ package body RueckgabeMenues is
         AktuelleAuswahlExtern = AnfangExtern + 6
       then
          return RueckgabeDatentypen.Zufall_Enum;
+         
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 7
+      then
+         return RueckgabeDatentypen.Standard_Enum;
                     
       else
          return Fertig (EndeExtern            => EndeExtern,

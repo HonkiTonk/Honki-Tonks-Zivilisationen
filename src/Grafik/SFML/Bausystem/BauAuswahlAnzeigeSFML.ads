@@ -13,7 +13,7 @@ with EinheitenDatentypen; use EinheitenDatentypen;
 with SpielVariablen;
 with StadtRecords;
 
-private with ViewsSFML;
+private with GrafikRecordKonstanten;
 
 package BauAuswahlAnzeigeSFML is
 
@@ -38,23 +38,14 @@ private
    Text : Unbounded_Wide_Wide_String;
    AktuellesBauprojekt : StadtRecords.BauprojektRecord;
 
-   TextPosition : Sf.System.Vector2.sfVector2f;
+   Textposition : Sf.System.Vector2.sfVector2f;
 
    Farbe : Sf.Graphics.Color.sfColor;
 
-   type ViewflächenArray is array (ViewsSFML.BauviewAccesse'Range) of Sf.System.Vector2.sfVector2f;
+   type ViewflächenArray is array (GrafikRecordKonstanten.Baumenübereich'Range) of Sf.System.Vector2.sfVector2f;
    Viewfläche : ViewflächenArray := (others => (5.00, 5.00));
 
    KeineAnzeige : constant Sf.Graphics.Rect.sfFloatRect := (0.00, 0.00, 0.00, 0.00);
-
-   type AnzeigebereichArray is array (ViewflächenArray'Range) of Sf.Graphics.Rect.sfFloatRect;
-   Anzeigebereich : constant AnzeigebereichArray := (
-                                                     1 => (0.00, 0.10, 0.50, 0.80),
-                                                     2 => (0.50, 0.10, 0.50, 0.80),
-                                                     3 => (0.50, 0.10, 0.50, 0.80),
-                                                     4 => (0.00, 0.10, 0.50, 0.80),
-                                                     5 => (0.00, 0.90, 1.00, 0.10)
-                                                    );
 
    procedure Gebäude
      (AuswahlExtern : in StadtDatentypen.GebäudeIDMitNullwert;

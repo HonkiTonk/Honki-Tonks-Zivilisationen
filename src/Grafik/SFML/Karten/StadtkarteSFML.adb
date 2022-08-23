@@ -9,7 +9,7 @@ with KartengrundDatentypen; use KartengrundDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with StadtDatentypen; use StadtDatentypen;
 with KartenKonstanten;
-with GrafikKonstanten;
+with GrafikRecordKonstanten;
 
 with LeseKarten;
 with LeseStadtGebaut;
@@ -22,7 +22,7 @@ with GrafikEinstellungenSFML;
 with EingeleseneTexturenSFML;
 with KartenspritesZeichnenSFML;
 with ViewsEinstellenSFML;
-with ViewsSFML;
+with Views;
 
 package body StadtkarteSFML is
 
@@ -33,9 +33,9 @@ package body StadtkarteSFML is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
-      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.KartenviewAccess,
+      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => Views.KartenviewAccess,
                                           GrößeExtern          => (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x, GrafikEinstellungenSFML.AktuelleFensterAuflösung.y),
-                                          AnzeigebereichExtern => GrafikKonstanten.KarteAnzeigebereich);
+                                          AnzeigebereichExtern => GrafikRecordKonstanten.KarteAnzeigebereich);
       
       Stadtumgebungsgröße := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern);
       InformationenStadtAufrufen := False;

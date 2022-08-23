@@ -5,9 +5,8 @@ with MenueDatentypen;
 
 package SystemKonstanten is
 
+   -- Das mit der 0 funktioniert so auch nicht mehr, überarbeiten. äöü
    LeerAuswahl : constant Natural := 0;
-
-   LängstesMenü : constant Positive := 21;
 
    type EndeMenüArray is array (MenueDatentypen.Welches_Menü_Vorhanden_Enum'Range) of Positive;
    EndeMenü : constant EndeMenüArray := (
@@ -16,7 +15,7 @@ package SystemKonstanten is
                                            MenueDatentypen.Spiel_Menü_Enum              => 7,
 
                                            -- Einfache Auswahl und kein Zusatztext.
-                                           MenueDatentypen.Optionen_Menü_Enum           => 7,
+                                           MenueDatentypen.Optionen_Menü_Enum           => 8,
                                            MenueDatentypen.Einstellungen_Menü_Enum      => 12,
                                            MenueDatentypen.Editoren_Menü_Enum           => 9,
                                            MenueDatentypen.Sonstiges_Menü_Enum          => 7,
@@ -35,11 +34,13 @@ package SystemKonstanten is
                                            MenueDatentypen.Kartenpole_Menü_Enum         => 8,
 
                                            -- Komplexe Auswahl.
-                                           MenueDatentypen.Kartenform_Menü_Enum         => 13,
+                                           MenueDatentypen.Kartenform_Menü_Enum         => 14,
 
                                            -- Unsortiert.
                                            MenueDatentypen.Steuerung_Menü_Enum          => 46
                                           );
+
+   LängstesMenü : constant Positive := EndeMenü (MenueDatentypen.Steuerung_Menü_Enum);
 
    type EndeAbzugArray is array (EndeMenüArray'Range) of Positive;
    EndeAbzugGrafik : constant EndeAbzugArray := (
@@ -67,7 +68,7 @@ package SystemKonstanten is
                                                  MenueDatentypen.Kartenpole_Menü_Enum         => EndeMenü (MenueDatentypen.Kartenpole_Menü_Enum),
 
                                                  -- Komplexe Auswahl.
-                                                 MenueDatentypen.Kartenform_Menü_Enum         => EndeMenü (MenueDatentypen.Kartenform_Menü_Enum),
+                                                 MenueDatentypen.Kartenform_Menü_Enum         => EndeMenü (MenueDatentypen.Kartenform_Menü_Enum) - 4,
 
                                                  -- Unsortiert.
                                                  MenueDatentypen.Steuerung_Menü_Enum          => EndeMenü (MenueDatentypen.Steuerung_Menü_Enum)

@@ -49,17 +49,25 @@ package ChangelogAugust2022 is
    
    
 
-   -- Version 0.03. => 0.03. (24.08.2022):
+   -- Version 0.03.1785 => 0.03. (24.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.1680 => 0.03. (23.08.2022):
+   -- Version 0.03.1680 => 0.03.1785 (23.08.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Debian GNAT 12.1.0-8 auf Debian GNAT 12.2.0-1 aktualisiert.
+   -- Fehler im Menüsystem korrigiert, welche dafür sorgten dass man inkorrekterweise im Hauptmenü landete.
+   -- Unnötige Code gelöscht.
+   -- Code zusammengefasst.
+   -- Rassenmenü in das neue Viewsystem eingebaut.
+   -- Einige Programmteile optimiert.
+   -- Kartenformmenü in das neue Viewsystem eingebaut.
+   -- Ladezeitenanzeige in das neue Viewsystem eingebaut.
+   -- Fehler behoben der die Zahleneingabe mit dem NumPad verhinderte.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst/verbessert/erweitert.
    
    
 

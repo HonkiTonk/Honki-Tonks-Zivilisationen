@@ -20,5 +20,6 @@ package TextKonstanten is
    
    TextbreiteZusatzwert : constant Float := StartpositionText.x * 5.00;
    TexthöheZusatzwert : constant Float := StartpositionText.y * 3.00;
+   LeerTextbreite : constant Float := 0.00;
 
 end TextKonstanten;

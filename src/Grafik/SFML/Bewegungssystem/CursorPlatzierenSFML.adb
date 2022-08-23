@@ -5,7 +5,7 @@ with Sf.Graphics.RenderWindow;
 
 with KartenDatentypen; use KartenDatentypen;
 with KartenKonstanten;
-with ViewsSFML;
+with Views;
 
 with NachLogiktask;
 with BerechnungenKarteSFML;
@@ -24,7 +24,7 @@ package body CursorPlatzierenSFML is
       
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                                                  point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
-                                                                 view         => ViewsSFML.KartenviewAccess);
+                                                                 view         => Views.KartenviewAccess);
       
       if
         Mausposition.y in 0.00 .. BerechnungenKarteSFML.FensterKarte.y
@@ -88,7 +88,7 @@ package body CursorPlatzierenSFML is
       
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                                                  point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
-                                                                 view         => ViewsSFML.KartenviewAccess);
+                                                                 view         => Views.KartenviewAccess);
       
       if
         Mausposition.y in 0.00 .. BerechnungenKarteSFML.StadtKarte.y

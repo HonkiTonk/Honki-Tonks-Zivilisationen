@@ -2,48 +2,35 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with GrafikDatentypen;
-with GrafikKonstanten;
-with ViewsSFML;
 
 with AuswahlMenuesEinfachSFML;
-with AuswahlMenueKartenformSFML;
+-- with AuswahlMenueKartenformSFML;
 with AuswahlMenueSteuerungSFML;
-with ViewsEinstellenSFML;
-with HintergrundSFML;
 with AllgemeineViewsSFML;
+with AuswahlMenueDoppeltSFML;
 
 package body AuswahlMenuesSFML is
 
    procedure AuswahlMenüsAufteilung
-     (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum)
+     (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum;
+      AktuelleAuswahlExtern : in Integer)
    is begin
       
       AllgemeineViewsSFML.ÜberschriftErmitteln (WelchesMenüExtern => WelchesMenüExtern);
       
-      Viewfläche := ViewsEinstellenSFML.ViewflächeAuflösungAnpassen (ViewflächeExtern => Viewfläche);
-      
-      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.MenüviewAccess,
-                                          GrößeExtern          => Viewfläche,
-                                          AnzeigebereichExtern => GrafikKonstanten.Menübereich);
-      
-      HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum,
-                                        AbmessungenExtern => Viewfläche);
-      
       case
         WelchesMenüExtern
       is
-         when MenueDatentypen.Menü_Einfach_Enum =>
-            Viewfläche := AuswahlMenuesEinfachSFML.AuswahlMenüsEinfach (WelchesMenüExtern => WelchesMenüExtern,
-                                                                          ViewflächeExtern  => Viewfläche);
+         when MenueDatentypen.Menü_Einfach_Enum'Range =>
+            AuswahlMenuesEinfachSFML.AuswahlMenüsEinfach (WelchesMenüExtern     => WelchesMenüExtern,
+                                                           AktuelleAuswahlExtern => AktuelleAuswahlExtern);
             
-         when MenueDatentypen.Kartenform_Menü_Enum =>
-            Viewfläche := AuswahlMenueKartenformSFML.AuswahlMenüKartenform (ViewflächeExtern => Viewfläche);
-            
-            -- when MenueDatentypen.Rassen_Menü_Enum =>
-            -- Gibt es da noch eine Lösung die in die anderen Menüs mit rein passt. Vor allem wegen dem Zusatztext scheint das problematisch. äöü
+         when MenueDatentypen.Menü_Doppelt_Enum =>
+            AuswahlMenueDoppeltSFML.AuswahlMenüDoppelt (WelchesMenüExtern     => WelchesMenüExtern,
+                                                         AktuelleAuswahlExtern => AktuelleAuswahlExtern);
             
          when MenueDatentypen.Steuerung_Menü_Enum =>
-            Viewfläche := AuswahlMenueSteuerungSFML.AuswahlMenüSteuerung (ViewflächeExtern => Viewfläche);
+            AuswahlMenueSteuerungSFML.AuswahlMenüSteuerung;
       end case;
       
       AllgemeineViewsSFML.Versionsnummer (HintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum);

@@ -30,6 +30,7 @@ package body GrafikSFML is
    is begin
       
       -- Das Setzen der Schriftart kann scheinbar erst nach dem Erzeugen eines Fensters stattfinden.
+      -- Oder habe ich zu dem Zeitpunkt den Font noch nicht eingelesen? Mal nachprüfen. äöü
       GrafikStartEndeSFML.FensterErzeugen;
                   
       GrafikSchleife:
@@ -161,7 +162,8 @@ package body GrafikSFML is
                                            RasseExtern             => NachGrafiktask.KIRechnet);
          
          when GrafikDatentypen.Grafik_Menüs_Enum =>
-            AuswahlMenuesSFML.AuswahlMenüsAufteilung (WelchesMenüExtern => NachGrafiktask.AktuellesMenü);
+            AuswahlMenuesSFML.AuswahlMenüsAufteilung (WelchesMenüExtern     => NachGrafiktask.AktuellesMenü,
+                                                      AktuelleAuswahlExtern => NachGrafiktask.AktuelleAuswahl);
                
          when GrafikDatentypen.Editoren_Anzeigen_Enum'Range =>
             AnzeigeEditoren;

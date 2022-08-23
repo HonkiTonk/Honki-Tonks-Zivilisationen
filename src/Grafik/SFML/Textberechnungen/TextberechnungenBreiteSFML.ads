@@ -13,24 +13,11 @@ package TextberechnungenBreiteSFML is
        Pre => (
                  TextAccessExtern /= null
                and
-                 ViewbreiteExtern > 0.00
+                 ViewbreiteExtern >= 0.00
               ),
    
        Post => (
-                  MittelpositionBerechnen'Result > 0.00
-               );
-
-   function ViertelpositionBerechnen
-     (TextAccessExtern : in Sf.Graphics.sfText_Ptr;
-      LinksRechtsExtern : in Boolean)
-      return Float
-     with
-       Pre => (
-                 TextAccessExtern /= null
-              ),
-   
-       Post => (
-                  ViertelpositionBerechnen'Result > 0.00
+                  MittelpositionBerechnen'Result >= 0.00
                );
    
    function HalbeBreiteBerechnen
@@ -62,7 +49,6 @@ package TextberechnungenBreiteSFML is
    
 private
    
-   Position : Float;
    NeueTextbreite : Float;
 
 end TextberechnungenBreiteSFML;

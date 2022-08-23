@@ -5,33 +5,45 @@ with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Text;
 
 with RassenDatentypen; use RassenDatentypen;
-with MenueDatentypen;
 with TextaccessVariablen;
+with TextKonstanten;
 
 with GrafikEinstellungenSFML;
-with InteraktionAuswahl;
 with BeschreibungenZeilenumbruchSFML;
 with RassenbeschreibungenSFML;
+with TextberechnungenBreiteSFML;
+with TextberechnungenHoeheSFML;
 
 package body AnzeigeZusatztextRassenmenueSFML is
 
-   procedure AnzeigeZusatztextRassenmenü
-     (AktuelleAuswahlExtern : in Positive)
+   -- Hier dann später noch mehr Informationen über die Rassen einbauen? äöü
+   function AnzeigeZusatztextRassenmenü
+     (AktuelleAuswahlExtern : in Positive;
+      AnzeigebereichbreiteExtern : in Float)
+      return Sf.System.Vector2.sfVector2f
    is begin
       
-      RasseAnzeigen := RassenDatentypen.Rassen_Verwendet_Enum'Val (AktuelleAuswahlExtern);
-            
-      PositionHintergrund := ((GrafikEinstellungenSFML.AktuelleFensterAuflösung.x + GrafikEinstellungenSFML.AktuelleFensterAuflösung.x / 100.00) / 2.00,
-                              InteraktionAuswahl.PositionenMenüeinträge (MenueDatentypen.Rassen_Menü_Enum, 1).top);
+      Textposition.y := TextberechnungenHoeheSFML.Zeilenabstand;
+      Textposition.x := TextKonstanten.StartpositionText.x;
       
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.RassenbeschreibungAccess (RasseAnzeigen),
-                                    position => (PositionHintergrund.x + AnfangsabstandExtratext, PositionHintergrund.y));
+      RasseAnzeigen := RassenDatentypen.Rassen_Verwendet_Enum'Val (AktuelleAuswahlExtern);
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.RassenbeschreibungAccess (RasseAnzeigen),
-                                         str  => BeschreibungenZeilenumbruchSFML.ZeilenumbruchBerechnen (TextExtern => RassenbeschreibungenSFML.BeschreibungLang (RasseExtern => RasseAnzeigen)));
+                                         str  => BeschreibungenZeilenumbruchSFML.ZeilenumbruchBerechnen (TextExtern   => RassenbeschreibungenSFML.BeschreibungLang (RasseExtern => RasseAnzeigen),
+                                                                                                         BreiteExtern => AnzeigebereichbreiteExtern));
+      
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.RassenbeschreibungAccess (RasseAnzeigen),
+                                    position => Textposition);
       
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                          text         => TextaccessVariablen.RassenbeschreibungAccess (RasseAnzeigen));
+      
+      Textposition.x := TextberechnungenBreiteSFML.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.RassenbeschreibungAccess (RasseAnzeigen),
+                                                                            TextbreiteExtern => 0.00);
+      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.Zeilenabstand + TextberechnungenHoeheSFML.NeueTexthöheErmitteln (TextAccessExtern => TextaccessVariablen.RassenbeschreibungAccess (RasseAnzeigen),
+                                                                                                                                     TexthöheExtern  => 0.00);
+      
+      return Textposition;
       
    end AnzeigeZusatztextRassenmenü;
 

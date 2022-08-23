@@ -13,7 +13,7 @@ with RueckgabeMenues;
 with NachGrafiktask;
 with InteraktionAuswahl;
 with Vergleiche;
-with ViewsSFML;
+with Views;
 with GrafikEinstellungenSFML;
 
 package body AuswahlMenuesEinfach is
@@ -34,11 +34,12 @@ package body AuswahlMenuesEinfach is
                               AnfangExtern      => Anfang,
                               EndeExtern        => Ende);
    
-     -- case
-     --   Ausgewählt
-     --  is
-     --     when SystemKonstanten.LeerAuswahl =>
-     --       RückgabeWert := RueckgabeDatentypen.Zurück_Enum;
+      -- Rechte Maustaste mal irgendwie als zurück/abbruch einbauen? äöü
+      -- case
+      --   Ausgewählt
+      --  is
+      --     when SystemKonstanten.LeerAuswahl =>
+      --       RückgabeWert := RueckgabeDatentypen.Zurück_Enum;
             
       --    when others =>
       RückgabeWert := RueckgabeMenues.RückgabeMenüs (AnfangExtern          => Anfang,
@@ -103,10 +104,9 @@ package body AuswahlMenuesEinfach is
       return Natural
    is begin
       
-      -- Das mal überall und in einer universelleren Version einbauen. äöü
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                                                  point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
-                                                                 view         => ViewsSFML.MenüviewAccess);
+                                                                 view         => Views.MenüviewAccess);
       
       PositionSchleife:
       for PositionSchleifenwert in AnfangExtern .. EndeExtern loop

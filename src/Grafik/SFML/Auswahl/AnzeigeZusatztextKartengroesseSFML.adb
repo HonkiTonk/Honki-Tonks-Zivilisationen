@@ -66,8 +66,6 @@ package body AnzeigeZusatztextKartengroesseSFML is
       is
          when 0 =>
             null;
-          --  Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ZusatztextKartengrößeAccess (2),
-          --                                     str  => "LL");
             
          when others =>
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ZusatztextKartengrößeAccess (2),
@@ -90,42 +88,29 @@ package body AnzeigeZusatztextKartengroesseSFML is
       return Sf.System.Vector2.sfVector2f
    is begin
       
-      AktuelleTextbreite := TextpositionExtern.x;
       Textposition.y := TextpositionExtern.y + TextberechnungenHoeheSFML.Zeilenabstand;
-      Textposition.x := ViewflächeExtern.x / 2.00 - TextberechnungenBreiteSFML.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.ZusatztextKartengrößeAccess (1));
+      Textposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.ZusatztextKartengrößeAccess (1),
+                                                                            ViewbreiteExtern => ViewflächeExtern.x);
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ZusatztextKartengrößeAccess (1),
                                     position => Textposition);
       
-      NeueTextbreite := TextKonstanten.TextbreiteZusatzwert + Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.ZusatztextKartengrößeAccess (1)).width;
+      Textbreite := TextberechnungenBreiteSFML.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ZusatztextKartengrößeAccess (1),
+                                                                        TextbreiteExtern => TextpositionExtern.x);
       
-      if
-        NeueTextbreite > AktuelleTextbreite
-      then
-         AktuelleTextbreite := NeueTextbreite;
-         
-      else
-         null;
-      end if;
-      
-      Textposition.x := ViewflächeExtern.x / 2.00 - TextberechnungenBreiteSFML.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.ZusatztextKartengrößeAccess (2));
+      Textposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.ZusatztextKartengrößeAccess (2),
+                                                                            ViewbreiteExtern => ViewflächeExtern.x);
       Textposition.y := Textposition.y + TextberechnungenHoeheSFML.Zeilenabstand;
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ZusatztextKartengrößeAccess (2),
                                     position => Textposition);
       
-      NeueTextbreite := TextKonstanten.TextbreiteZusatzwert + Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.ZusatztextKartengrößeAccess (2)).width;
+      Textbreite := TextberechnungenBreiteSFML.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ZusatztextKartengrößeAccess (1),
+                                                                        TextbreiteExtern => Textbreite);
       
-      if
-        NeueTextbreite > AktuelleTextbreite
-      then
-         AktuelleTextbreite := NeueTextbreite;
-         
-      else
-         null;
-      end if;
+      Textposition.y := Textposition.y + TextberechnungenHoeheSFML.Zeilenabstand;
       
-      return (AktuelleTextbreite, Textposition.y);
+      return (Textbreite, Textposition.y);
       
    end PositionFestlegen;
 

@@ -58,7 +58,7 @@ private
    Viewfläche : Sf.System.Vector2.sfVector2f := TextKonstanten.StartpositionText;
    Textposition : Sf.System.Vector2.sfVector2f;
    
-   type FestzulegenderTextArray is array (TextaccessVariablen.EinheitenInformationenAccessArray'Range) of Unbounded_Wide_Wide_String;
+   type FestzulegenderTextArray is array (TextaccessVariablen.EinheitenInformationenAccess'Range) of Unbounded_Wide_Wide_String;
    FestzulegenderText : FestzulegenderTextArray;
    
    procedure Debuginformationen

@@ -9,8 +9,8 @@ with StadtDatentypen;
 with GlobaleTexte;
 with TextnummernKonstanten;
 with GrafikDatentypen;
-with ViewsSFML;
-with GrafikKonstanten;
+with Views;
+with GrafikRecordKonstanten;
 with TextaccessVariablen;
 
 with EingabeSFML;
@@ -60,9 +60,9 @@ package body AnzeigeEingabeSFML is
       Viewfläche := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
                                                                       VerhältnisExtern => (0.50, 0.05));
       
-      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.FragenviewAccesse (2),
+      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => Views.FragenviewAccesse (2),
                                           GrößeExtern          => Viewfläche,
-                                          AnzeigebereichExtern => GrafikKonstanten.Eingabebereich);
+                                          AnzeigebereichExtern => GrafikRecordKonstanten.Eingabebereich);
       
       HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Seitenleiste_Hintergrund_Enum,
                                         AbmessungenExtern => Viewfläche);
@@ -84,7 +84,8 @@ package body AnzeigeEingabeSFML is
                                                                         TextbreiteExtern => 0.00);
       
       Textposition.y := TextKonstanten.StartpositionText.y;
-      Textposition.x := Viewfläche.x / 2.00 - TextberechnungenBreiteSFML.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.TextAccess);
+      Textposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.TextAccess,
+                                                                            ViewbreiteExtern => Viewfläche.x);
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.TextAccess,
                                     position => Textposition);
@@ -105,9 +106,9 @@ package body AnzeigeEingabeSFML is
       Viewfläche := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
                                                                       VerhältnisExtern => (0.50, 0.05));
       
-      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.FragenviewAccesse (2),
+      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => Views.FragenviewAccesse (2),
                                           GrößeExtern          => Viewfläche,
-                                          AnzeigebereichExtern => GrafikKonstanten.Eingabebereich);
+                                          AnzeigebereichExtern => GrafikRecordKonstanten.Eingabebereich);
       
       HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Seitenleiste_Hintergrund_Enum,
                                         AbmessungenExtern => Viewfläche);
@@ -120,7 +121,8 @@ package body AnzeigeEingabeSFML is
       Textbreite := TextberechnungenBreiteSFML.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.TextAccess,
                                                                         TextbreiteExtern => 0.00);
       
-      Textposition.x := Viewfläche.x / 2.00 - TextberechnungenBreiteSFML.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.TextAccess);
+      Textposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.TextAccess,
+                                                                            ViewbreiteExtern => Viewfläche.x);
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.TextAccess,
                                     position => Textposition);
@@ -140,9 +142,9 @@ package body AnzeigeEingabeSFML is
       Viewfläche := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
                                                                       VerhältnisExtern => (0.50, 0.10));
       
-      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.FragenviewAccesse (2),
+      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => Views.FragenviewAccesse (2),
                                           GrößeExtern          => Viewfläche,
-                                          AnzeigebereichExtern => GrafikKonstanten.JaNeinBereich);
+                                          AnzeigebereichExtern => GrafikRecordKonstanten.JaNeinBereich);
       
       HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Seitenleiste_Hintergrund_Enum,
                                         AbmessungenExtern => Viewfläche);
@@ -167,7 +169,8 @@ package body AnzeigeEingabeSFML is
          Sf.Graphics.Text.setColor (text  => TextaccessVariablen.JaNeinAccess (TextSchleifenwert),
                                     color => Farbe);
          
-         Textposition.x := Viewfläche.x / 2.00 - TextberechnungenBreiteSFML.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.JaNeinAccess (TextSchleifenwert));
+         Textposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.JaNeinAccess (TextSchleifenwert),
+                                                                               ViewbreiteExtern => Viewfläche.x);
          
          Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.JaNeinAccess (TextSchleifenwert),
                                        position => Textposition);
@@ -199,7 +202,7 @@ package body AnzeigeEingabeSFML is
       Viewfläche := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
                                                                       VerhältnisExtern => (0.25, 0.20));
       
-      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => ViewsSFML.ZusatztextviewAccess,
+      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => Views.ZusatztextviewAccess,
                                           GrößeExtern          => Viewfläche,
                                           AnzeigebereichExtern => (0.25, 0.45, 0.50, 0.10));
       
@@ -270,7 +273,8 @@ package body AnzeigeEingabeSFML is
             Sf.Graphics.Text.setColor (text  => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
                                        color => Farbe);
             
-            Textposition.x := Viewfläche.x / 2.00 - TextberechnungenBreiteSFML.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert));
+            Textposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
+                                                                                  ViewbreiteExtern => Viewfläche.x);
             
             Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
                                           position => Textposition);

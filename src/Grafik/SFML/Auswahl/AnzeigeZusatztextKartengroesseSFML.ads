@@ -18,8 +18,7 @@ package AnzeigeZusatztextKartengroesseSFML is
    
 private
    
-   AktuelleTextbreite : Float;
-   NeueTextbreite : Float;
+   Textbreite : Float;
    
    Rückgabewert : Sf.System.Vector2.sfVector2f;
    Textposition : Sf.System.Vector2.sfVector2f;

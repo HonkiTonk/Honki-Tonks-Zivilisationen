@@ -42,7 +42,7 @@ private
    Viewfläche : Sf.System.Vector2.sfVector2f := TextKonstanten.StartpositionText;
    Textposition : Sf.System.Vector2.sfVector2f;
    
-   type TextAnzeigenArray is array (TextaccessVariablen.KarteAllgemeinesAccessArray'Range) of Boolean;
+   type TextAnzeigenArray is array (TextaccessVariablen.KarteAllgemeinesAccess'Range) of Boolean;
    TextAnzeigen : TextAnzeigenArray;
    
 end KarteAllgemeinesSFML;

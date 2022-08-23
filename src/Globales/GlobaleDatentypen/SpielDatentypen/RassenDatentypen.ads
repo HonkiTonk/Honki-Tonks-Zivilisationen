@@ -30,5 +30,8 @@ package RassenDatentypen is
    subtype Spieler_Belegt_Enum is Spieler_Enum range Mensch_Spieler_Enum .. KI_Spieler_Enum;
    
    type RassenImSpielArray is array (Rassen_Verwendet_Enum'Range) of Spieler_Enum;
+   
+   subtype Rassennummern is Natural range Rassen_Enum'Pos (Rassen_Enum'First) .. Rassen_Enum'Pos (Rassen_Enum'Last);
+   subtype RassennummernVorhanden is Rassennummern range Rassen_Enum'Pos (Rassen_Verwendet_Enum'First) .. Rassennummern'Last;
 
 end RassenDatentypen;

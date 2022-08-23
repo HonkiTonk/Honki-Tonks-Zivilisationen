@@ -31,13 +31,6 @@ package body SpieleinstellungenKarten is
            KartenpoleAuswahl
          is
             when RueckgabeDatentypen.Nordpol_Enum =>
-               if
-                 KartengeneratorVariablen.Kartenparameter.Kartenpole.Nordpol = KartenDatentypen.Kartenpol_Vorhanden_Enum
-               then
-                  KartengeneratorVariablen.Kartenparameter.Kartenpole.Nordpol := KartenDatentypen.Kartenpol_Nicht_Vorhanden_Enum;
-                  KartengeneratorVariablen.Polgrößen (KartenDatentypen.Norden_Enum) := 0;
-                  
-               else
                   EingegebeneEisdicke := Polgrößen (YAchseXAchseExtern => True);
                   
                   case
@@ -51,16 +44,8 @@ package body SpieleinstellungenKarten is
                   end case;
                   
                   KartengeneratorVariablen.Polgrößen (KartenDatentypen.Norden_Enum) := EingegebeneEisdicke;
-               end if;
                
             when RueckgabeDatentypen.Südpol_Enum =>
-               if
-                 KartengeneratorVariablen.Kartenparameter.Kartenpole.Südpol = KartenDatentypen.Kartenpol_Vorhanden_Enum
-               then
-                  KartengeneratorVariablen.Kartenparameter.Kartenpole.Südpol := KartenDatentypen.Kartenpol_Nicht_Vorhanden_Enum;
-                  KartengeneratorVariablen.Polgrößen (KartenDatentypen.Süden_Enum) := 0;
-                  
-               else
                   EingegebeneEisdicke := Polgrößen (YAchseXAchseExtern => True);
                   
                   case
@@ -74,16 +59,8 @@ package body SpieleinstellungenKarten is
                   end case;
                   
                   KartengeneratorVariablen.Polgrößen (KartenDatentypen.Süden_Enum) := EingegebeneEisdicke;
-               end if;
                
             when RueckgabeDatentypen.Westpol_Enum =>
-               if
-                 KartengeneratorVariablen.Kartenparameter.Kartenpole.Westpol = KartenDatentypen.Kartenpol_Vorhanden_Enum
-               then
-                  KartengeneratorVariablen.Kartenparameter.Kartenpole.Westpol := KartenDatentypen.Kartenpol_Nicht_Vorhanden_Enum;
-                  KartengeneratorVariablen.Polgrößen (KartenDatentypen.Westen_Enum) := 0;
-                  
-               else
                   EingegebeneEisdicke := Polgrößen (YAchseXAchseExtern => False);
                   
                   case
@@ -97,16 +74,8 @@ package body SpieleinstellungenKarten is
                   end case;
                   
                   KartengeneratorVariablen.Polgrößen (KartenDatentypen.Westen_Enum) := EingegebeneEisdicke;
-               end if;
                
             when RueckgabeDatentypen.Ostpol_Enum =>
-               if
-                 KartengeneratorVariablen.Kartenparameter.Kartenpole.Ostpol = KartenDatentypen.Kartenpol_Vorhanden_Enum
-               then
-                  KartengeneratorVariablen.Kartenparameter.Kartenpole.Ostpol := KartenDatentypen.Kartenpol_Nicht_Vorhanden_Enum;
-                  KartengeneratorVariablen.Polgrößen (KartenDatentypen.Osten_Enum) := 0;
-                  
-               else
                   EingegebeneEisdicke := Polgrößen (YAchseXAchseExtern => False);
                   
                   case
@@ -120,7 +89,6 @@ package body SpieleinstellungenKarten is
                   end case;
                   
                   KartengeneratorVariablen.Polgrößen (KartenDatentypen.Osten_Enum) := EingegebeneEisdicke;
-               end if;
                
             when RueckgabeDatentypen.Kartenpole_Zufall_Enum =>
                ZufallsgeneratorenSpieleinstellungen.ZufälligePole;
@@ -393,6 +361,9 @@ package body SpieleinstellungenKarten is
                
             when RueckgabeDatentypen.Zufall_Enum =>
                ZufallsgeneratorenSpieleinstellungen.ZufälligeKartenform;
+               
+            when RueckgabeDatentypen.Standard_Enum =>
+               KartengeneratorVariablen.Kartenparameter.Kartenform := KartenRecordKonstanten.KartenformStandard;
                
             when RueckgabeDatentypen.Fertig_Enum =>
                return;

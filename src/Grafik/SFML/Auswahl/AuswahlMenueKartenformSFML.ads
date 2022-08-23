@@ -1,73 +1,48 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Sf.System.Vector2;
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-private with KartenDatentypen;
-private with TextaccessVariablen;
+with Sf.System.Vector2;
+with Sf.Graphics.Color;
+
+with MenueDatentypen;
 
 package AuswahlMenueKartenformSFML is
 
    function AuswahlMenüKartenform
-     (ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
-      return Sf.System.Vector2.sfVector2f;
+     (WelchesMenüExtern : in MenueDatentypen.Menü_Doppelt_Enum;
+      ViewflächeExtern : in Sf.System.Vector2.sfVector2f;
+      AktuelleAuswahlExtern : in Natural)
+      return Sf.System.Vector2.sfVector2f
+     with
+       Post => (
+                  AuswahlMenüKartenform'Result.x >= 0.00
+                and
+                  AuswahlMenüKartenform'Result.y >= 0.00
+               );
 
 private
 
-   AktuelleAuswahl : Natural;
-   AktuelleAuswahlRückgabewert : Natural;
+   Textarrayanpassung : constant Positive := 2;
+   WelcherZusatztext : Positive;
 
-   Überschrift : constant Positive := TextaccessVariablen.Überschrift;
-   Versionsnummer : constant Positive := TextaccessVariablen.Versionsnummer;
+   Textbreite : Float;
+
+   Zusatztext : Unbounded_Wide_Wide_String;
 
    Textposition : Sf.System.Vector2.sfVector2f;
 
-   type SchleifenanpassungArray is array (2 .. 7) of Positive;
-   Schleifenanpassung : constant SchleifenanpassungArray := (
-                                                             2 => 10,
-                                                             3 => 12,
-                                                             4 => 14,
-                                                             5 => 18,
-                                                             6 => 22,
-                                                             7 => 26
-                                                            );
+   Farbe : Sf.Graphics.Color.sfColor;
 
-   type WelcheFormArray is array (KartenDatentypen.Kartenform_Enum'Range) of Positive;
-   WelcheFormEins : constant WelcheFormArray := (
-                                                 KartenDatentypen.Karte_E_Kein_Übergang_Enum                   => 10,
-                                                 KartenDatentypen.Karte_E_Übergang_Enum                        => 11,
-                                                 KartenDatentypen.Karte_Y_Kein_Übergang_Enum                   => 14,
-                                                 KartenDatentypen.Karte_Y_Übergang_Enum                        => 15,
-                                                 KartenDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum => 16,
-                                                 KartenDatentypen.Karte_Y_Verschobener_Übergang_Enum           => 17,
-                                                 KartenDatentypen.Karte_X_Kein_Übergang_Enum                   => 22,
-                                                 KartenDatentypen.Karte_X_Übergang_Enum                        => 23,
-                                                 KartenDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum => 24,
-                                                 KartenDatentypen.Karte_X_Verschobener_Übergang_Enum           => 25
-                                                );
-
-   WelcheFormZwei : constant WelcheFormArray := (
-                                                 KartenDatentypen.Karte_E_Kein_Übergang_Enum                   => 12,
-                                                 KartenDatentypen.Karte_E_Übergang_Enum                        => 13,
-                                                 KartenDatentypen.Karte_Y_Kein_Übergang_Enum                   => 18,
-                                                 KartenDatentypen.Karte_Y_Übergang_Enum                        => 19,
-                                                 KartenDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum => 20,
-                                                 KartenDatentypen.Karte_Y_Verschobener_Übergang_Enum           => 21,
-                                                 KartenDatentypen.Karte_X_Kein_Übergang_Enum                   => 26,
-                                                 KartenDatentypen.Karte_X_Übergang_Enum                        => 27,
-                                                 KartenDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum => 28,
-                                                 KartenDatentypen.Karte_X_Verschobener_Übergang_Enum           => 29
-                                                );
-
-   procedure FarbeAktuelleAuswahlFestlegen
-     (AktuelleAuswahlExtern : in Natural);
-
-   procedure TextEinlesen;
-   procedure SchriftpositionFestlegen;
+   procedure FarbenFestlegen
+     (AktuellerTextExtern : in Positive;
+      AktuelleAuswahlExtern : in Natural);
 
 
 
-   function Textbearbeitung
-     return Natural;
+   function TextEinlesen
+     (SchleifenwertExtern : in Positive)
+      return Wide_Wide_String;
 
 end AuswahlMenueKartenformSFML;

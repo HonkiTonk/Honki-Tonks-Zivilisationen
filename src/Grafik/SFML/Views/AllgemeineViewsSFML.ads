@@ -6,6 +6,8 @@ private with Sf.System.Vector2;
 with GrafikDatentypen;
 with MenueDatentypen;
 
+private with GrafikRecordKonstanten;
+
 package AllgemeineViewsSFML is
    
    procedure Überschrift
@@ -29,8 +31,8 @@ private
    Textbreite : Float;
    
    type ViewflächenArray is array (Flächen_Enum'Range) of Sf.System.Vector2.sfVector2f;
-   Viewfläche : ViewflächenArray := (others => (5.00, 5.00));
+   Viewfläche : ViewflächenArray := (others => GrafikRecordKonstanten.StartgrößeView);
    
-   TextPosition : Sf.System.Vector2.sfVector2f;
+   Textposition : Sf.System.Vector2.sfVector2f;
 
 end AllgemeineViewsSFML;

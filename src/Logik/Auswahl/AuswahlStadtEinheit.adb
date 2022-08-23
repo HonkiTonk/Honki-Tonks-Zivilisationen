@@ -7,7 +7,7 @@ with Sf.Graphics.RenderWindow;
 with EinheitenDatentypen; use EinheitenDatentypen;
 with TastenbelegungDatentypen;
 with SystemDatentypen;
-with ViewsSFML;
+with Views;
 
 with LeseEinheitenGebaut;
 
@@ -100,7 +100,7 @@ package body AuswahlStadtEinheit is
       
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                                                  point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
-                                                                 view         => ViewsSFML.ZusatztextviewAccess);
+                                                                 view         => Views.ZusatztextviewAccess);
       
       AuswahlSchleife:
       for AuswahlSchleifenwert in WelcheAuswahl.MöglicheAuswahlen'Range loop

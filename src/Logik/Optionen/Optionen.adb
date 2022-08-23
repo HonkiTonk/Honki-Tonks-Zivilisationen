@@ -36,7 +36,7 @@ package body Optionen is
             when RueckgabeDatentypen.Sonstiges_Enum =>
                RückgabeWert := OptionenSonstiges.Sonstiges;
                
-            when RueckgabeDatentypen.Spiel_Beenden_Enum | RueckgabeDatentypen.Hauptmenü_Enum =>
+            when RueckgabeDatentypen.Spiel_Beenden_Enum | RueckgabeDatentypen.Hauptmenü_Enum | RueckgabeDatentypen.Zurück_Enum =>
                return AuswahlWert;
                
             when others =>

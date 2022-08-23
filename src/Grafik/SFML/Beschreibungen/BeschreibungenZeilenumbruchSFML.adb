@@ -12,41 +12,39 @@ with GrafikEinstellungenSFML;
 
 package body BeschreibungenZeilenumbruchSFML is
 
+   -- Hierfür noch einen schnelleren Weg finden. äöü
    function ZeilenumbruchBerechnen
-     (TextExtern : in Wide_Wide_String)
+     (TextExtern : in Wide_Wide_String;
+      BreiteExtern : in Float)
       return Wide_Wide_String
    is begin
       
-      AktuellerTextbereichZwei := TextKonstanten.LeerUnboundedString;
+      NeuerText := TextKonstanten.LeerUnboundedString;
       
-      -- Den Multiplikator mitübergeben? äöü
-      -- Wäre vielleicht sinnvoll bei unterschiedlichen Menüarten. äöü
-      BreiteTextfeld := GrafikEinstellungenSFML.AktuelleFensterAuflösung.x * 0.50 - 2.00 * TextKonstanten.StartpositionText.x;
+      BreiteTextfeld := GrafikEinstellungenSFML.AktuelleFensterAuflösung.x * BreiteExtern - TextKonstanten.TextbreiteZusatzwert;
       SchleifenAnfang := 1;
       SchleifenEnde := TextExtern'Last;
       
       ZeilenumbruchSchleife:
       loop
          
-         AktuellerTextbereichEins := TextKonstanten.LeerUnboundedString;
          Zwischenwert := -1;
       
          TextbereichSchleife:
          for TextbereichSchleifenwert in SchleifenAnfang .. SchleifenEnde loop
-         
-            AktuellerTextbereichEins := AktuellerTextbereichEins & TextExtern (TextbereichSchleifenwert);
-            
+                     
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ZeilenumbruchAccess,
-                                               str  => To_Wide_Wide_String (Source => AktuellerTextbereichEins));
+                                               str  => TextExtern (SchleifenAnfang .. TextbereichSchleifenwert));
             
-            if
-              TextExtern (TextbereichSchleifenwert) = Ada.Characters.Wide_Wide_Latin_1.Space
-            then
-               Zwischenwert := TextbereichSchleifenwert;
+            case
+              TextExtern (TextbereichSchleifenwert)
+            is
+               when Ada.Characters.Wide_Wide_Latin_1.Space =>
+                  Zwischenwert := TextbereichSchleifenwert;
                
-            else
-               null;
-            end if;
+               when others =>
+                  null;
+            end case;
          
             if
               Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.ZeilenumbruchAccess).width >= BreiteTextfeld
@@ -55,11 +53,11 @@ package body BeschreibungenZeilenumbruchSFML is
                  Zwischenwert
                is
                   when -1 =>
-                     AktuellerTextbereichZwei := AktuellerTextbereichZwei & AktuellerTextbereichEins & Ada.Characters.Wide_Wide_Latin_1.LF;
+                     NeuerText := NeuerText & TextExtern (SchleifenAnfang .. TextbereichSchleifenwert) & Ada.Characters.Wide_Wide_Latin_1.LF;
                      SchleifenAnfang := TextbereichSchleifenwert + 1;
                      
                   when others =>
-                     AktuellerTextbereichZwei := AktuellerTextbereichZwei & TextExtern (SchleifenAnfang .. Zwischenwert - 1) & Ada.Characters.Wide_Wide_Latin_1.LF;
+                     NeuerText := NeuerText & TextExtern (SchleifenAnfang .. Zwischenwert - 1) & Ada.Characters.Wide_Wide_Latin_1.LF;
                      SchleifenAnfang := Zwischenwert + 1;
                end case;
                
@@ -68,7 +66,7 @@ package body BeschreibungenZeilenumbruchSFML is
             elsif
               TextbereichSchleifenwert >= SchleifenEnde
             then
-               AktuellerTextbereichZwei := AktuellerTextbereichZwei & AktuellerTextbereichEins;
+               NeuerText := NeuerText & TextExtern (SchleifenAnfang .. TextbereichSchleifenwert);
                exit ZeilenumbruchSchleife;
             
             else
@@ -78,7 +76,7 @@ package body BeschreibungenZeilenumbruchSFML is
          end loop TextbereichSchleife;
       end loop ZeilenumbruchSchleife;
       
-      return To_Wide_Wide_String (Source => AktuellerTextbereichZwei);
+      return To_Wide_Wide_String (Source => NeuerText);
       
    end ZeilenumbruchBerechnen;
 

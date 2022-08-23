@@ -253,23 +253,7 @@ package body TextaccesseTextSetzenSFML is
    procedure Ladezeiten
    is begin
       
-      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.LadezeitenAccess (TextaccessVariablen.LadezeitenAccess'First),
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Ladezeit (TextaccessVariablen.LadezeitenAccess'First)));
-      
-      
-            
-      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KIZeitenAccess (TextaccessVariablen.KIZeitenAccessArray'First),
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Ladezeit (TextaccessVariablen.KIZeitenAccessArray'First)));
-      
-      
-      
-      Sf.Graphics.Text.setUnicodeString (text  => TextaccessVariablen.RundenendeAccess (TextaccessVariablen.RundenendeAccessArray'First),
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Ladezeit (16)));
-      
-      
-      
-      Sf.Graphics.Text.setUnicodeString (text  => TextaccessVariablen.SpeichernLadenAccess (TextaccessVariablen.SpeichernLadenAccessArray'First),
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Ladezeit (17)));
+      null;
       
    end Ladezeiten;
 
