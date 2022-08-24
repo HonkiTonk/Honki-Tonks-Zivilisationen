@@ -8,6 +8,7 @@ with StadtDatentypen; use StadtDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
 with KartenRecordKonstanten;
+with TextnummernKonstanten;
 
 with SchreibeEinheitenGebaut;
 with SchreibeStadtGebaut;
@@ -20,8 +21,27 @@ with LeseStadtGebaut;
 with Kartenkoordinatenberechnungssystem;
 with RasseEntfernen;
 with Wachstum;
+with Auswahlaufteilungen;
 
 package body StadtEntfernen is
+   
+   procedure StadtAbreißen
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+   is begin
+         
+      case
+        Auswahlaufteilungen.AuswahlJaNein (FrageZeileExtern => TextnummernKonstanten.FrageStadtAbreißen)
+      is
+         when True =>
+            StadtEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+            
+         when False =>
+            null;
+      end case;
+      
+   end StadtAbreißen;
+   
+   
 
    procedure StadtEntfernen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)

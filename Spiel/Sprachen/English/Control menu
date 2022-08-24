@@ -1,44 +1,28 @@
 Controls
-Move north
-Move west
-Move south
-Move east
-Move norhtwest
-Move northeast
-Move southwest
-Move southeast
-Level up
-Level down
-Choose button
-Exit button
-Build stuff
+Build city/Buildingmenu
 Research
-Research tree
 Show next city
 Show next unit with movement points
 Show next unit
 Show next unit with no movement points
 Next city with notification
 Next unit with notification
-Build road
-Build a mine
-Build a farm
-Build a fortress
-Reforest forest
+Build/Upgrade road
+Build/Upgrade mine
+Build/Upgrade farm
+Build/Upgrade fortress
+Reforest
 Clearing / draining
 Heal unity
 Entrench unit
 Suspend the unit
-Dissolve unity
+Dissolve
 Plunder
-Information
 Diplomacy
 Go to coordinates
 Rename city
-Demolish the city
 Search for a city by name
 End round
-Cheat menu
 Save on computer
 Restore
 Back

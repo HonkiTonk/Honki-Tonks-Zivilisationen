@@ -33,6 +33,11 @@ package GrafikRecordKonstanten is
                                                             2 => (0.25, Überschriftbereich.height, 0.75, 1.00 - Überschriftbereich.height)
                                                            );
    
+   Steuerungbereich : constant BereicheArray (Views.SteuerungviewAccesse'Range) := (
+                                                                                    1 => (0.00, Überschriftbereich.height, 0.66, 1.00 - Überschriftbereich.height),
+                                                                                    2 => (0.66, Überschriftbereich.height, 0.35, 1.00 - Überschriftbereich.height)
+                                                                                   );
+   
    SeitenleisteWeltkartenbereich : constant BereicheArray (Views.SeitenleisteWeltkarteAccesse'Range) := (
                                                                                                          1 => (KarteAnzeigebereich.width, 0.00, 1.00 - KarteAnzeigebereich.width, 0.20),
                                                                                                          2 => (KarteAnzeigebereich.width, 0.20, 1.00 - KarteAnzeigebereich.width, 0.10),

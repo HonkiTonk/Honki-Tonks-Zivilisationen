@@ -9,7 +9,6 @@ with Sf.Window.Cursor;
 with Sf.Window.Window;
 with Sf.Graphics.Color;
 
-with GrafikDatentypen;
 with ZahlenDatentypen;
 
 package SystemRecords is
@@ -20,8 +19,6 @@ package SystemRecords is
       
       AnzahlAutosave : ZahlenDatentypen.EigenesNatural;
       RundenBisAutosave : ZahlenDatentypen.EigenesPositive;
-      
-      Anzeigeart : GrafikDatentypen.Anzeige_Art_Enum;
       
    end record;
    
@@ -92,5 +89,15 @@ package SystemRecords is
       Sieg : Boolean;
       
    end record;
+   
+   
+   
+   -- Das hier vielleicht lieber in ein Array umwandeln? äöü
+   type MehrfacheAuswahlRecord is record
       
+      AuswahlEins : Integer;
+      AuswahlZwei : Integer;
+      
+   end record;
+            
 end SystemRecords;

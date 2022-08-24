@@ -13,7 +13,7 @@ with LeseEinheitenGebaut;
 
 with NachLogiktask;
 with NachGrafiktask;
-with Eingabe;
+with EingabeSFML;
 with InteraktionAuswahl;
 with Vergleiche;
 with GrafikEinstellungenSFML;
@@ -51,7 +51,7 @@ package body AuswahlStadtEinheit is
       end if;
       
       AktuelleAuswahl := 0;
-      NachGrafiktask.AktuelleAuswahl := AktuelleAuswahl;
+      NachGrafiktask.AktuelleAuswahl.AuswahlEins := AktuelleAuswahl;
       NachGrafiktask.WelcheAuswahl := WelcheAuswahl;
       
       -- InteraktionAuswahl.PositionenEinheitStadt := (others => (0.00, 0.00, 0.00, 0.00));
@@ -61,10 +61,10 @@ package body AuswahlStadtEinheit is
       loop
          
          AktuelleAuswahl := MausAuswahl;
-         NachGrafiktask.AktuelleAuswahl := AktuelleAuswahl;
+         NachGrafiktask.AktuelleAuswahl.AuswahlEins := AktuelleAuswahl;
          
          case
-           Eingabe.Tastenwert
+           EingabeSFML.Tastenwert
          is               
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if

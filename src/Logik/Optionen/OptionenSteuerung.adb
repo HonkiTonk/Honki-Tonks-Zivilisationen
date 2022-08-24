@@ -2,19 +2,14 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
-with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 
 with Sf.Window.Keyboard; use Sf.Window.Keyboard;
 
 with TastenbelegungDatentypen; use TastenbelegungDatentypen;
-with GrafikDatentypen;
-with OptionenVariablen;
 with MenueDatentypen;
 
-with Eingabe;
-with AuswahlMenues;
+with Auswahlaufteilungen;
 with SchreibenTastatur;
-with EingabeTerminal;
 with EingabeSFML;
 with Fehler;
 with RueckgabeMenues;
@@ -28,7 +23,7 @@ package body OptionenSteuerung is
       BelegungSchleife:
       loop
                   
-         AuswahlWert := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Steuerung_Menü_Enum);
+         AuswahlWert := Auswahlaufteilungen.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Steuerung_Menü_Enum);
          
          case
            AuswahlWert
@@ -37,14 +32,12 @@ package body OptionenSteuerung is
                SchreibenTastatur.TastenbelegungSchreiben;
                
             when RueckgabeDatentypen.Wiederherstellen_Enum =>
-               Eingabe.StandardTastenbelegungLaden;
+               EingabeSFML.StandardTastenbelegungLaden;
+               -- Das Schreiben rauswerfen oder durch zusätzliche Abfrage erweitern? äöü
                SchreibenTastatur.TastenbelegungSchreiben;
             
             when RueckgabeDatentypen.Zurück_Beenden_Enum'Range =>
                return AuswahlWert;
-               
-            when RueckgabeDatentypen.Eingabe_Enum =>
-               AlteTasteEntfernen;
                      
             when others =>
                Fehler.LogikFehler (FehlermeldungExtern => "OptionenSteuerung.SteuerungBelegen - Falsche Menüauswahl.");
@@ -53,75 +46,7 @@ package body OptionenSteuerung is
       end loop BelegungSchleife;
       
    end SteuerungBelegen;
-   
-   
-   
-   procedure AlteTasteEntfernen
-   is begin
       
-      case
-        OptionenVariablen.NutzerEinstellungen.Anzeigeart
-      is
-         when GrafikDatentypen.Grafik_Terminal_Enum =>
-            AlteTasteEntfernenTerminal;
-            
-         when GrafikDatentypen.Grafik_SFML_Enum =>
-            AlteTasteEntfernenSFML;
-      end case;
-      
-   end AlteTasteEntfernen;
-   
-   
-   
-   procedure AlteTasteEntfernenTerminal
-   is begin
-      
-      -- TextAnzeigeTerminal.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-      --                                          TextDateiExtern        => GlobaleTexte.Zeug,
-      --                                          ÜberschriftZeileExtern => 0,
-      --                                          ErsteZeileExtern       => 46,
-      --                                          LetzteZeileExtern      => 46,
-      --                                          AbstandAnfangExtern    => GlobaleTexte.Leer,
-      --                                          AbstandMitteExtern     => GlobaleTexte.Leer,
-       --                                         AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
-               
-      NeueAuswahl := TastenbelegungDatentypen.Tastenbelegung_Enum'Val (1);
-               
-      Put_Line (Item => EingabeTerminal.Tastenbelegung (1, NeueAuswahl) & "    " & EingabeTerminal.Tastenbelegung (2, NeueAuswahl));
-               
-      -- TextAnzeigeTerminal.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-      --                                          TextDateiExtern        => GlobaleTexte.Fragen,
-      --                                          ÜberschriftZeileExtern => 0,
-      --                                          ErsteZeileExtern       => 29,
-      --                                          LetzteZeileExtern      => 29,
-      --                                          AbstandAnfangExtern    => GlobaleTexte.Leer,
-      --                                          AbstandMitteExtern     => GlobaleTexte.Leer,
-      --                                          AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
-      
-      NeueTasteTerminal := EingabeTerminal.TastenEingabe;
-      
-      BelegungFeldSchleife:
-      for BelegungFeldSchleifenwert in EingabeTerminal.TastenbelegungArray'Range (1) loop
-         BelegungPositionSchleife:
-         for BelegungPositionSchleifenwert in EingabeTerminal.TastenbelegungArray'Range (2) loop
-            
-            if
-              EingabeTerminal.Tastenbelegung (BelegungFeldSchleifenwert, BelegungPositionSchleifenwert) = NeueTasteTerminal
-              and
-                BelegungPositionSchleifenwert /= NeueAuswahl
-            then
-               EingabeTerminal.Tastenbelegung (BelegungFeldSchleifenwert, BelegungPositionSchleifenwert) := NUL;
-               exit BelegungFeldSchleife;
-               
-            else
-               null;
-            end if;
-            
-         end loop BelegungPositionSchleife;
-      end loop BelegungFeldSchleife;
-      
-   end AlteTasteEntfernenTerminal;
-   
    
    
    procedure AlteTasteEntfernenSFML
@@ -153,103 +78,57 @@ package body OptionenSteuerung is
          
       end loop NeueTasteSchleife;
                
-      BelegungFeldSchleife:
-      for BelegungFeldSchleifenwert in EingabeSFML.TastenbelegungArray'Range (1) loop
-         BelegungPositionSchleife:
-         for BelegungPositionSchleifenwert in EingabeSFML.TastenbelegungArray'Range (2) loop
+     -- BelegungFeldSchleife:
+    --  for BelegungFeldSchleifenwert in EingabeSFML.TastenbelegungArray'Range (1) loop
+    --     BelegungPositionSchleife:
+    --     for BelegungPositionSchleifenwert in EingabeSFML.TastenbelegungArray'Range (2) loop
             
-            if
-              EingabeSFML.Tastenbelegung (BelegungFeldSchleifenwert, BelegungPositionSchleifenwert) = NeueTasteSFML
-              and
-                BelegungPositionSchleifenwert /= NeueAuswahl
-            then
-               EingabeSFML.Tastenbelegung (BelegungFeldSchleifenwert, BelegungPositionSchleifenwert) := Sf.Window.Keyboard.sfKeyUnknown;
+     --       if
+     --         EingabeSFML.Tastenbelegung (BelegungFeldSchleifenwert, BelegungPositionSchleifenwert) = NeueTasteSFML
+      --        and
+    --            BelegungPositionSchleifenwert /= NeueAuswahl
+    --        then
+    --           EingabeSFML.Tastenbelegung (BelegungFeldSchleifenwert, BelegungPositionSchleifenwert) := Sf.Window.Keyboard.sfKeyUnknown;
                
-            else
-               null;
-            end if;
+     --       else
+     --          null;
+     --       end if;
             
-         end loop BelegungPositionSchleife;
-      end loop BelegungFeldSchleife;
+     --    end loop BelegungPositionSchleife;
+   --   end loop BelegungFeldSchleife;
       
-      NeueTasteFestlegen;
+      NeueTasteFestlegenSFML;
       
    end AlteTasteEntfernenSFML;
-   
-   
-   
-   procedure NeueTasteFestlegen
-   is begin
-      
-      case
-        OptionenVariablen.NutzerEinstellungen.Anzeigeart
-      is
-         when GrafikDatentypen.Grafik_Terminal_Enum =>
-            AlteTasteEntfernenTerminal;
-            
-         when GrafikDatentypen.Grafik_SFML_Enum =>
-            NeueTasteFestlegenSFML;
-      end case;
-      
-   end NeueTasteFestlegen;
-   
-   
-   
-   procedure NeueTasteFestlegenTerminal
-   is begin
-      
-      NeueAuswahl := TastenbelegungDatentypen.Tastenbelegung_Enum'Val (1);
-         
-      if
-        EingabeTerminal.Tastenbelegung (1, NeueAuswahl) = NeueTasteTerminal
-        or
-          EingabeTerminal.Tastenbelegung (2, NeueAuswahl) = NeueTasteTerminal
-      then
-         null;
-            
-      elsif
-        EingabeTerminal.Tastenbelegung (1, NeueAuswahl) = NUL
-      then
-         EingabeTerminal.Tastenbelegung (1, NeueAuswahl) := NeueTasteTerminal;
-            
-      elsif
-        EingabeTerminal.Tastenbelegung (2, NeueAuswahl) = NUL
-      then
-         EingabeTerminal.Tastenbelegung (2, NeueAuswahl) := NeueTasteTerminal;
-            
-      else
-         EingabeTerminal.Tastenbelegung (2, NeueAuswahl) := EingabeTerminal.Tastenbelegung (1, NeueAuswahl);
-         EingabeTerminal.Tastenbelegung (1, NeueAuswahl) := NeueTasteTerminal;
-      end if;
-      
-   end NeueTasteFestlegenTerminal;
    
    
    
    procedure NeueTasteFestlegenSFML
    is begin
          
-      if
-        EingabeSFML.Tastenbelegung (1, NeueAuswahl) = NeueTasteSFML
-        or
-          EingabeSFML.Tastenbelegung (2, NeueAuswahl) = NeueTasteSFML
-      then
-         null;
+    --  if
+    --    EingabeSFML.Tastenbelegung (Boolean'First, NeueAuswahl) = NeueTasteSFML
+    --    or
+   --       EingabeSFML.Tastenbelegung (Boolean'Last, NeueAuswahl) = NeueTasteSFML
+    --  then
+    --     null;
             
-      elsif
-        EingabeSFML.Tastenbelegung (1, NeueAuswahl) = Sf.Window.Keyboard.sfKeyUnknown
-      then
-         EingabeSFML.Tastenbelegung (1, NeueAuswahl) := NeueTasteSFML;
+   --   elsif
+   --     EingabeSFML.Tastenbelegung (Boolean'First, NeueAuswahl) = Sf.Window.Keyboard.sfKeyUnknown
+   --   then
+   --      EingabeSFML.Tastenbelegung (Boolean'First, NeueAuswahl) := NeueTasteSFML;
             
-      elsif
-        EingabeSFML.Tastenbelegung (2, NeueAuswahl) = Sf.Window.Keyboard.sfKeyUnknown
-      then
-         EingabeSFML.Tastenbelegung (2, NeueAuswahl) := NeueTasteSFML;
+   --   elsif
+   --     EingabeSFML.Tastenbelegung (Boolean'Last, NeueAuswahl) = Sf.Window.Keyboard.sfKeyUnknown
+   --   then
+    --     EingabeSFML.Tastenbelegung (Boolean'Last, NeueAuswahl) := NeueTasteSFML;
             
-      else
-         EingabeSFML.Tastenbelegung (2, NeueAuswahl) := EingabeSFML.Tastenbelegung (1, NeueAuswahl);
-         EingabeSFML.Tastenbelegung (1, NeueAuswahl) := NeueTasteSFML;
-      end if;
+    --  else
+    --     EingabeSFML.Tastenbelegung (Boolean'Last, NeueAuswahl) := EingabeSFML.Tastenbelegung (Boolean'First, NeueAuswahl);
+    --     EingabeSFML.Tastenbelegung (Boolean'First, NeueAuswahl) := NeueTasteSFML;
+    --  end if;
+    
+      null;
       
    end NeueTasteFestlegenSFML;
 

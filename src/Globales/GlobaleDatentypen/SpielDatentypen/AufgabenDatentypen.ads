@@ -7,13 +7,13 @@ package AufgabenDatentypen is
                                     Leer_Aufgabe_Enum,
                                     
                                     -- Einheitenbefehle Verbesserungen
-                                    -- -- Wege
+                                    -- Wege
                                     Straße_Bauen_Enum, Schiene_Bauen_Enum, Tunnel_Bauen_Enum,
                                     
-                                    -- -- Gebäude
+                                    -- Gebäude
                                     Mine_Bauen_Enum, Farm_Bauen_Enum, Festung_Bauen_Enum,
                                     
-                                    -- -- Gelände
+                                    -- Gelände
                                     Wald_Aufforsten_Enum, Roden_Trockenlegen_Enum,
                                     
                                     -- Einheitenbefehle allgemein

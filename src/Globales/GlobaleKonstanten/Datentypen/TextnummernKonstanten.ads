@@ -72,6 +72,9 @@ package TextnummernKonstanten is
    ZeugPermanenterAngriffsbonus : constant Positive := 67;
    ZeugGebäude : constant Positive := 68;
    ZeugEinheiten : constant Positive := 69;
+   ZeugLeer : constant Positive := 70;
+   ZeugJa : constant Positive := 71;
+   ZeugNein : constant Positive := 72;
    
    
    

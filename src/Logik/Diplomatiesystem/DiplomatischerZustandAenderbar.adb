@@ -19,8 +19,6 @@ package body DiplomatischerZustandAenderbar is
       if
         NeuerStatusExtern = SpielVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern).AktuellerZustand
       then
-         -- TextAnzeigeTerminal.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
-         --                                                  TextZeileExtern => 22);
          return False;
          
       else
@@ -68,9 +66,6 @@ package body DiplomatischerZustandAenderbar is
    
    procedure EsHerrschtKrieg
    is begin
-      
-      -- TextAnzeigeTerminal.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
-      --                                                  TextZeileExtern => 23);
       
       null;
       
@@ -138,8 +133,6 @@ package body DiplomatischerZustandAenderbar is
       if        
         AktuellerStatus = SystemDatentypen.Nichtangriffspakt_Enum
       then
-         -- TextAnzeigeTerminal.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
-         --                                                  TextZeileExtern => 24);
          return False;
          
       elsif

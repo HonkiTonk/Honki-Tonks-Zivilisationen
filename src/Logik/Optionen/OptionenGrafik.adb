@@ -8,8 +8,8 @@ with MenueDatentypen;
 
 with NachGrafiktask;
 with NachLogiktask;
-with AuswahlMenues;
-with Eingabe;
+with Auswahlaufteilungen;
+with EingabeSFML;
 with GrafikEinstellungenSFML;
 with SchreibenEinstellungen;
 with Fehler;
@@ -23,7 +23,7 @@ package body OptionenGrafik is
       GrafikSchleife:
       loop
          
-         AuswahlWert := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Grafik_Menü_Enum);
+         AuswahlWert := Auswahlaufteilungen.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Grafik_Menü_Enum);
          
          case
            AuswahlWert
@@ -31,7 +31,6 @@ package body OptionenGrafik is
             when RueckgabeDatentypen.Auflösung_Ändern_Enum =>
                AuflösungÄndern;
             
-               -- Brauche ich diese Option überhaupt?
             when RueckgabeDatentypen.Vollbild_Fenster_Enum =>
                VollbildFenster;
                
@@ -60,9 +59,9 @@ package body OptionenGrafik is
    procedure AuflösungÄndern
    is begin
       
-      EingabeAuflösung := Eingabe.GanzeZahl (ZeileExtern         => TextnummernKonstanten.FrageAuflösungsbreite,
-                                              ZahlenMinimumExtern => 320,
-                                              ZahlenMaximumExtern => ZahlenDatentypen.EigenerInteger'Last);
+      EingabeAuflösung := EingabeSFML.GanzeZahl (ZahlenMinimumExtern => 320,
+                                                  ZahlenMaximumExtern => ZahlenDatentypen.EigenerInteger'Last,
+                                                  WelcheFrageExtern   => TextnummernKonstanten.FrageAuflösungsbreite);
       
       if
         EingabeAuflösung.EingabeAbbruch
@@ -73,9 +72,9 @@ package body OptionenGrafik is
          return;
       end if;
       
-      EingabeAuflösung := Eingabe.GanzeZahl (ZeileExtern         => TextnummernKonstanten.FrageAuflösungshöhe,
-                                              ZahlenMinimumExtern => 240,
-                                              ZahlenMaximumExtern => ZahlenDatentypen.EigenerInteger'Last);
+      EingabeAuflösung := EingabeSFML.GanzeZahl (ZahlenMinimumExtern => 240,
+                                                  ZahlenMaximumExtern => ZahlenDatentypen.EigenerInteger'Last,
+                                                  WelcheFrageExtern   => TextnummernKonstanten.FrageAuflösungshöhe);
       
       if
         EingabeAuflösung.EingabeAbbruch
@@ -107,9 +106,9 @@ package body OptionenGrafik is
    procedure BildrateÄndern
    is begin
       
-      EingabeBildrate := Eingabe.GanzeZahl (ZeileExtern         => TextnummernKonstanten.FrageBildrate,
-                                            ZahlenMinimumExtern => 0,
-                                            ZahlenMaximumExtern => ZahlenDatentypen.EigenerInteger'Last);
+      EingabeBildrate := EingabeSFML.GanzeZahl (ZahlenMinimumExtern => 0,
+                                                ZahlenMaximumExtern => ZahlenDatentypen.EigenerInteger'Last,
+                                                WelcheFrageExtern   => TextnummernKonstanten.FrageBildrate);
       
       if
         EingabeBildrate.EingabeAbbruch
@@ -117,12 +116,10 @@ package body OptionenGrafik is
          return;
          
       else
-         null;
+         GrafikEinstellungenSFML.FensterEinstellungen.Bildrate := Sf.sfUint32 (EingabeBildrate.EingegebeneZahl);
+         NachGrafiktask.FensterVerändert := GrafikDatentypen.Bildrate_Ändern_Enum;
       end if;
-      
-      GrafikEinstellungenSFML.FensterEinstellungen.Bildrate := Sf.sfUint32 (EingabeBildrate.EingegebeneZahl);
-      NachGrafiktask.FensterVerändert := GrafikDatentypen.Bildrate_Ändern_Enum;
-      
+            
       NeueBildrateAbwartenSchleife:
       while NachGrafiktask.FensterVerändert = GrafikDatentypen.Bildrate_Ändern_Enum loop
          

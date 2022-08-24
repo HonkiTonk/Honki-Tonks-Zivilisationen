@@ -9,14 +9,13 @@ with ProduktionDatentypen; use ProduktionDatentypen;
 with TastenbelegungDatentypen;
 with GrafikDatentypen;
 with SystemDatentypen;
-with OptionenVariablen;
 with InteraktionAuswahl;
 
 with SchreibeWichtiges;
 with LeseForschungenDatenbank;
 with LeseWichtiges;
 
-with Eingabe;
+with EingabeSFML;
 with StadtWerteFestlegen;
 with StadtUmgebungsbereichFestlegen;
 with NachGrafiktask;
@@ -101,16 +100,7 @@ package body ForschungAllgemein is
                   
       end loop ForschungSchleife;
       
-      case
-        OptionenVariablen.NutzerEinstellungen.Anzeigeart
-      is
-         when GrafikDatentypen.Grafik_Terminal_Enum =>
-            return 0;
-            -- return ForschungAuswahlTerminal;
-            
-         when GrafikDatentypen.Grafik_SFML_Enum =>
-            return ForschungAuswahlSFML;
-      end case;
+      return ForschungAuswahlSFML;
 
    end AuswahlForschung;
    
@@ -126,10 +116,10 @@ package body ForschungAllgemein is
       loop
          
          AktuelleAuswahl := MausAuswahl;
-         NachGrafiktask.AktuelleAuswahl := Natural (AktuelleAuswahl);
+         NachGrafiktask.AktuelleAuswahl.AuswahlEins := Natural (AktuelleAuswahl);
          
          case
-           Eingabe.Tastenwert
+           EingabeSFML.Tastenwert
          is
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if

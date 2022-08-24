@@ -15,12 +15,14 @@ package NachLogiktask is
    MausRad : Float;
 
    TastaturTaste : Sf.Window.Keyboard.sfKeyCode;
+   Zeicheneingabe : Wide_Wide_Character;
 
    MausTaste : Sf.Window.Mouse.sfMouseButton;
 
    EingegebenerText : SystemRecords.TextEingabeRecord;
    
    -- Diesen Wert hier immer im Grafiktask neu festlegen lassen, da die Verwendung der A/SFML Funktion im Logiktask zu Abstürzen führen kann.
+   -- Ist das überhaupt krorekt oder lag das Problem woanders? äöü
    Mausposition : Sf.System.Vector2.sfVector2f;
    -- Eingabesystemwerte
    

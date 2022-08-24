@@ -42,17 +42,24 @@ package ChangelogAugust2022 is
    
    
 
-   -- Version 0.03. => 0.03. (25.08.2022):
+   -- Version 0.03.7000 => 0.03. (25.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.1785 => 0.03. (24.08.2022):
+   -- Version 0.03.1785 => 0.03.7000 (24.08.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Versionsnummerberechnung erneut angepasst.
+   -- Angefangen das Steuerungsmenü in das neue Viewsystem einzubauen.
+   -- Unnötigen Code gelöscht.
+   -- Terminalcode vollständig entfernt.
+   -- Code zusammengefasst.
+   -- GeheZu wieder eingebaut.
+   -- Interne Struktur überarbeitet.
+   -- Möglichkeit zur Doppelbelegung entfernt.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst/optimiert.
    
    
 

@@ -29,35 +29,31 @@ package GlobaleTexte is
    
    type TexteArray is array (Positive range <>) of Unbounded_Wide_Wide_String;
    
-   -- Einfache Auswahl, keine Überschrift und kein Zusatztext.
-   -- + 1 beim Hauptmenü, da dort noch auf Wiedersehen eingebaut ist wegen der Terminal.
+   -- Einfache Menüs.
+   -- Ohne Überschrift.
    Hauptmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Haupt_Menü_Enum)) := (others => FehlenderText);
    Spielmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Spiel_Menü_Enum)) := (others => FehlenderText);
                                
-   -- Einfache Auswahl und kein Zusatztext.
+   -- Mit Überschrift.
    Optionsmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Optionen_Menü_Enum)) := (others => FehlenderText);
    Einstellungsmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Einstellungen_Menü_Enum)) := (others => FehlenderText);
    Editoren : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Editoren_Menü_Enum)) := (others => FehlenderText);
    Sonstigesmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Sonstiges_Menü_Enum)) := (others => FehlenderText);
    Debugmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Debug_Menü_Enum)) := (others => FehlenderText);
-                               
-   -- Einfache Auswahl.
+   Grafikmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Grafik_Menü_Enum)) := (others => FehlenderText);
    Kartengröße : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Kartengröße_Menü_Enum)) := (others => FehlenderText);
    Kartenart : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Kartenart_Menü_Enum)) := (others => FehlenderText);
    Kartentemperatur : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Kartentemperatur_Menü_Enum)) := (others => FehlenderText);
-   Rassenauswahl : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Rassen_Menü_Enum)) := (others => FehlenderText);
    Schwierigkeitsgrad : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Schwierigkeitsgrad_Menü_Enum)) := (others => FehlenderText);
    Ressourcenmenge : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Kartenressourcen_Menü_Enum)) := (others => FehlenderText);
-                                
-   -- Komplexe Auswahl.
    Kartenpole : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Kartenpole_Menü_Enum)) := (others => FehlenderText);
+   Soundmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Sound_Menü_Enum)) := (others => FehlenderText);
+                               
+   -- Doppelte Menüs.
+   Rassenauswahl : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Rassen_Menü_Enum)) := (others => FehlenderText);
    Kartenform : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Kartenform_Menü_Enum)) := (others => FehlenderText);
    
-   
-   
-   -- Unsortiert.
-   Grafikmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Grafik_Menü_Enum)) := (others => FehlenderText);
-   Soundmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Sound_Menü_Enum)) := (others => FehlenderText);
+   -- Steuerungsmenü.
    Steuerungmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Steuerung_Menü_Enum)) := (others => FehlenderText);
    
    
@@ -91,7 +87,7 @@ package GlobaleTexte is
    Fehlermeldung : TexteArray (1 .. 20) := (others => FehlenderText);
    Ladezeit : TexteArray (1 .. 16) := (others => FehlenderText);
    Frage : TexteArray (1 .. 45) := (others => FehlenderText);
-   Zeug : TexteArray (1 .. 69) := (others => FehlenderText);
+   Zeug : TexteArray (1 .. 72) := (others => FehlenderText);
    
    type ZweidimensionaleTexteArray is array (RassenDatentypen.Rassen_Verwendet_Enum range <>, ZahlenDatentypen.EigenesPositive range <>) of Unbounded_Wide_Wide_String;
    StädtenamenKI : ZweidimensionaleTexteArray (RassenDatentypen.Rassen_Verwendet_Enum'Range, 1 .. 3) := (others => (others => FehlenderText));

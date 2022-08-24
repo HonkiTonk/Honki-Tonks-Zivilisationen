@@ -10,7 +10,7 @@ with KartenVerbesserungDatentypen;
 with LeseStadtGebaut;
 with LeseKarten;
   
-with Eingabe;
+with EingabeSFML;
 
 package body StadtSuchen is
 
@@ -129,7 +129,7 @@ package body StadtSuchen is
      return StadtRecords.RasseStadtnummerRecord
    is begin
       
-      StadtName := Eingabe.StadtName;
+      StadtName := EingabeSFML.StadtName;
       
       case
         StadtName.ErfolgreichAbbruch

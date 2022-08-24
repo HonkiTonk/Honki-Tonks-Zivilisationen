@@ -8,13 +8,12 @@ with GrafikDatentypen; use GrafikDatentypen;
 with StadtRecords; use StadtRecords;
 with StadtKonstanten;
 with TastenbelegungDatentypen;
-with OptionenVariablen;
 with Views;
 
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
 
-with Eingabe;
+with EingabeSFML;
 with GebaeudeAllgemein;
 with EinheitenModifizieren;
 with NachGrafiktask;
@@ -68,14 +67,8 @@ package body InDerStadtBauen is
       then
          return StadtKonstanten.LeerBauprojekt;
          
-      elsif
-        OptionenVariablen.NutzerEinstellungen.Anzeigeart = GrafikDatentypen.Grafik_SFML_Enum
-      then
-         return AuswahlBauprojektSFML;
-         
       else
-         return (0, 0);
-         -- return AuswahlBauprojektTerminal;
+         return AuswahlBauprojektSFML;
       end if;
       
    end BauobjektAuswählen;
@@ -173,7 +166,7 @@ package body InDerStadtBauen is
          NachGrafiktask.AktuelleBauauswahl := AktuelleAuswahl;
          
          case
-           Eingabe.Tastenwert
+           EingabeSFML.Tastenwert
          is               
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if

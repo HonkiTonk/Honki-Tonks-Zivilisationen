@@ -7,7 +7,7 @@ with KartenKonstanten;
 
 with LeseEinheitenGebaut;
 
-with Eingabe;
+with EingabeSFML;
 with EinheitenModifizieren;
 with StadtBauen;
 with Aufgaben;
@@ -31,7 +31,7 @@ package body BewegungEinheitenSFML is
          
          case
            EinheitBefehle (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                           BefehlExtern             => Eingabe.Tastenwert)
+                           BefehlExtern             => EingabeSFML.Tastenwert)
          is
             when True =>
                null;
@@ -85,12 +85,10 @@ package body BewegungEinheitenSFML is
          return BefehleMaus (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
       else
-         null;
+         return PositionÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                 ÄnderungExtern           => Änderung);
       end if;
-      
-      return PositionÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                              ÄnderungExtern           => Änderung);
-      
+            
    end EinheitBefehle;
    
    
@@ -162,7 +160,7 @@ package body BewegungEinheitenSFML is
       EingabeSchleife:
       loop
          
-         BefehlMaus := Eingabe.Tastenwert;
+         BefehlMaus := EingabeSFML.Tastenwert;
          
          case
            BefehlMaus
@@ -171,14 +169,12 @@ package body BewegungEinheitenSFML is
                return False;
                
             when TastenbelegungDatentypen.Ebene_Hoch_Enum =>
-               BewegungCursor.BewegungCursorRichtung (KarteExtern    => True,
-                                                      RichtungExtern => BefehlMaus,
-                                                      RasseExtern    => EinheitRasseNummerExtern.Rasse);
+               BewegungCursor.CursorbewegungBerechnen (RichtungExtern => BefehlMaus,
+                                                       RasseExtern    => EinheitRasseNummerExtern.Rasse);
                
             when TastenbelegungDatentypen.Ebene_Runter_Enum =>
-               BewegungCursor.BewegungCursorRichtung (KarteExtern    => True,
-                                                      RichtungExtern => BefehlMaus,
-                                                      RasseExtern    => EinheitRasseNummerExtern.Rasse);
+               BewegungCursor.CursorbewegungBerechnen (RichtungExtern => BefehlMaus,
+                                                       RasseExtern    => EinheitRasseNummerExtern.Rasse);
                
             when TastenbelegungDatentypen.Auswählen_Enum =>
                return EinheitBewegenMaus (EinheitRasseNummerExtern => EinheitRasseNummerExtern);

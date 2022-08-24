@@ -7,11 +7,11 @@ with Sf.Graphics.RenderWindow;
 with GlobaleTexte;
 with TextKonstanten;
 with GrafikDatentypen;
-with OptionenVariablen;
 with InteraktionAuswahl;
 with SystemKonstanten;
+with TastenbelegungDatentypen;
 
-with Eingabe;
+with EingabeSFML;
 with Fehler;
 with NachGrafiktask;
 with NachLogiktask;
@@ -32,15 +32,7 @@ package body AuswahlSprache is
       
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Sprache_Enum;
             
-      case
-        OptionenVariablen.NutzerEinstellungen.Anzeigeart
-      is
-         when GrafikDatentypen.Grafik_Terminal_Enum =>
-            return AuswahlSpracheTerminal;
-            
-         when GrafikDatentypen.Grafik_SFML_Enum =>
-            return AuswahlSpracheSFML;
-      end case;
+      return AuswahlSpracheSFML;
       
    end AuswahlSprache;
    
@@ -127,65 +119,12 @@ package body AuswahlSprache is
       end loop MehrSprachenVorhandenSchleife;
       
       Ende := Ende + 1;
-      AktuelleSprachen (Ende) := MehrSprachen;
       MehrereSeiten := True;
       
       NachGrafiktask.Endauswahl := Ende;
       NachGrafiktask.MehrereSeiten := MehrereSeiten;
       
    end SprachenListeFestlegen;
-   
-   
-   
-   function AuswahlSpracheTerminal
-     return Unbounded_Wide_Wide_String
-   is begin
-      
-      AktuelleAuswahl := AktuelleSprachenArray'First;
-            
-      AuswahlTerminalSchleife:
-      loop
-         
-         case
-           Eingabe.Tastenwert
-         is
-            when TastenbelegungDatentypen.Oben_Enum | TastenbelegungDatentypen.Ebene_Hoch_Enum =>
-               if
-                 AktuelleAuswahl = AktuelleSprachen'First
-               then
-                  AktuelleAuswahl := Ende;
-                  
-               else
-                  AktuelleAuswahl := AktuelleAuswahl - 1;
-               end if;
-
-            when TastenbelegungDatentypen.Unten_Enum | TastenbelegungDatentypen.Ebene_Runter_Enum =>
-               if
-                 AktuelleAuswahl = Ende
-               then
-                  AktuelleAuswahl := AktuelleSprachen'First;
-                  
-               else
-                  AktuelleAuswahl := AktuelleAuswahl + 1;
-               end if;
-                              
-            when TastenbelegungDatentypen.Auswählen_Enum =>
-               if
-                 AktuelleSprachen (AktuelleAuswahl) = MehrSprachen
-               then
-                  SprachenListeFestlegen;
-                  
-               else
-                  return AktuelleSprachen (AktuelleAuswahl);
-               end if;
-                     
-            when others =>
-               null;
-         end case;
-               
-      end loop AuswahlTerminalSchleife;
-      
-   end AuswahlSpracheTerminal;
    
    
    
@@ -197,10 +136,10 @@ package body AuswahlSprache is
       loop
             
          AktuelleAuswahl := MausAuswahl;
-         NachGrafiktask.AktuelleAuswahl := AktuelleAuswahl;
+         NachGrafiktask.AktuelleAuswahl.AuswahlEins := AktuelleAuswahl;
             
          case
-           Eingabe.Tastenwert
+           EingabeSFML.Tastenwert
          is
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if
@@ -209,7 +148,7 @@ package body AuswahlSprache is
                   null;
                   
                elsif
-                 AktuelleSprachen (AktuelleAuswahl) = MehrSprachen
+                 AktuelleAuswahl = AktuelleSprachenArray'Last
                then
                   SprachenListeFestlegen;
                   

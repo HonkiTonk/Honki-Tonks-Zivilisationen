@@ -5,10 +5,9 @@ with Sf;
 with Sf.Graphics.RenderWindow;
 
 with TastenbelegungDatentypen;
-with GrafikDatentypen;
 
 with NachLogiktask;
-with Eingabe;
+with EingabeSFML;
 with RueckgabeMenues;
 with NachGrafiktask;
 with InteraktionAuswahl;
@@ -18,16 +17,11 @@ with GrafikEinstellungenSFML;
 
 package body AuswahlMenuesEinfach is
 
-   -- Das ganze noch einmal unabhängiger schreiben, damit man es zu Not auch auslagern kann und Überschreibungen nicht vorkommen können. äöü
-   -- Dabei auch mal das Menüanzeigesystem überarbeiten, das ausgeklammerte wird vermutlich nicht mehr benötigt und führt bei Nutzereingaben nur zu ungeeigneter Eingabeanzeige. äöü
    function AuswahlMenüsEinfach
      (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
-      NachGrafiktask.AktuellesMenü := WelchesMenüExtern;
-      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Menüs_Enum;
-                 
       Ende := SystemKonstanten.EndeAbzugGrafik (WelchesMenüExtern) - 1;
       
       Ausgewählt := Auswahl (WelchesMenüExtern => WelchesMenüExtern,
@@ -67,10 +61,10 @@ package body AuswahlMenuesEinfach is
          AktuelleAuswahl := MausAuswahl (WelchesMenüExtern => WelchesMenüExtern,
                                          AnfangExtern      => AnfangExtern,
                                          EndeExtern        => EndeExtern);
-         NachGrafiktask.AktuelleAuswahl := AktuelleAuswahl;
+         NachGrafiktask.AktuelleAuswahl.AuswahlEins := AktuelleAuswahl;
          
          case
-           Eingabe.Tastenwert
+           EingabeSFML.Tastenwert
          is
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if
@@ -79,7 +73,7 @@ package body AuswahlMenuesEinfach is
                   null;
                   
                else
-                  NachGrafiktask.AktuelleAuswahl := SystemKonstanten.LeerAuswahl;
+                  NachGrafiktask.AktuelleAuswahl.AuswahlEins := SystemKonstanten.LeerAuswahl;
                   return AktuelleAuswahl;
                end if;
                

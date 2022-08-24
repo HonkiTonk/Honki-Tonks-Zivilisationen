@@ -34,6 +34,8 @@ package TextaccessVariablen is
    -- Die ganzen Arrays mal so anpassen wie das MenüsAccessArray, bzw. soweit wie das möglich ist.
    type MenüsAccessArray is array (InteraktionAuswahl.PositionenMenüeinträgeArray'Range (1), InteraktionAuswahl.PositionenMenüeinträgeArray'Range (2)) of Sf.Graphics.sfText_Ptr;
    MenüsSFMLAccess : constant MenüsAccessArray := (others => (others => Sf.Graphics.Text.create));
+   
+   SteuerungSFMLAccess : constant TextaccessArray (1 .. SystemKonstanten.LängstesMenü) := (others => Sf.Graphics.Text.create);
    -- Menüs
    
    
@@ -128,7 +130,7 @@ package TextaccessVariablen is
    type AnzeigeEinheitStadtAccessArray is array (InteraktionAuswahl.PositionenEinheitStadtArray'Range) of Sf.Graphics.sfText_Ptr;
    AnzeigeEinheitStadtAccess : constant AnzeigeEinheitStadtAccessArray := (others => Sf.Graphics.Text.create);
    
-   type JaNeinAccessArray is array (InteraktionAuswahl.PositionenJaNeinArray'Range) of Sf.Graphics.sfText_Ptr;
+   type JaNeinAccessArray is array (InteraktionAuswahl.PositionenJaNein'Range) of Sf.Graphics.sfText_Ptr;
    JaNeinAccess : constant JaNeinAccessArray := (others => Sf.Graphics.Text.create);
    -- AnzeigeEingabe
    

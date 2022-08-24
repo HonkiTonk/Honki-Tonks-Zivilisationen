@@ -11,71 +11,30 @@ private with KartenRecords;
 
 package BewegungCursor is
 
-   procedure BewegungCursorRichtung
-     (KarteExtern : in Boolean;
-      RichtungExtern : in TastenbelegungDatentypen.Tastenbelegung_Bewegung_Enum;
+   procedure CursorbewegungBerechnen
+     (RichtungExtern : in TastenbelegungDatentypen.Tastenbelegung_Bewegung_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
                  SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
               );
      
-   procedure GeheZuCursor
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-     with
-       Pre => (
-                 SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
-              );
+   procedure GeheZu;
 
 private
 
    KoordinatenPunkt : SystemRecords.ZahlenEingabeRecord;
 
-   Position : KartenRecords.AchsenKartenfeldNaturalRecord;
+   NeueKoordinate : KartenRecords.AchsenKartenfeldNaturalRecord;
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    
-   Änderung : KartenRecords.AchsenKartenfeldRecord;
+   Änderung : KartenDatentypen.Ebene;
    
-   type RichtungArray is array (TastenbelegungDatentypen.Tastenbelegung_Bewegung_Enum'Range) of KartenRecords.AchsenKartenfeldRecord;
+   type RichtungArray is array (TastenbelegungDatentypen.Tastenbelegung_Bewegung_Enum'Range) of KartenDatentypen.Ebene;
    Richtung : constant RichtungArray := (
-                                         TastenbelegungDatentypen.Oben_Enum         => (0, -1, 0),
-                                         TastenbelegungDatentypen.Links_Enum        => (0, 0, -1),
-                                         TastenbelegungDatentypen.Unten_Enum        => (0, 1, 0),
-                                         TastenbelegungDatentypen.Rechts_Enum       => (0, 0, 1),
-                                         TastenbelegungDatentypen.Links_Oben_Enum   => (0, -1, -1),
-                                         TastenbelegungDatentypen.Rechts_Oben_Enum  => (0, -1, 1),
-                                         TastenbelegungDatentypen.Links_Unten_Enum  => (0, 1, -1),
-                                         TastenbelegungDatentypen.Rechts_Unten_Enum => (0, 1, 1),
-                                         TastenbelegungDatentypen.Ebene_Hoch_Enum   => (1, 0, 0),
-                                         TastenbelegungDatentypen.Ebene_Runter_Enum => (-1, 0, 0)
+                                         TastenbelegungDatentypen.Ebene_Hoch_Enum   => 1,
+                                         TastenbelegungDatentypen.Ebene_Runter_Enum => -1,
+                                         others                                     => (-3)
                                         );
    
-   procedure BewegungCursorBerechnen
-     (ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-     with
-       Pre => (
-               (ÄnderungExtern.EAchse /= 0
-               or
-                 ÄnderungExtern.YAchse /= 0
-               or
-                 ÄnderungExtern.XAchse /= 0)
-               and
-                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
-              );
-
-   procedure BewegungCursorBerechnenStadt
-     (ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-     with
-       Pre => (
-               (ÄnderungExtern.EAchse /= 0
-               or
-                 ÄnderungExtern.YAchse /= 0
-               or
-                 ÄnderungExtern.XAchse /= 0)
-               and
-                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
-              );
-
 end BewegungCursor;

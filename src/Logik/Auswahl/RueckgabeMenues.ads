@@ -104,7 +104,8 @@ private
       return RueckgabeDatentypen.Rückgabe_Werte_Enum;
             
    function SteuerungMenü
-     (EndeExtern : in Positive;
+     (AnfangExtern : in Positive;
+      EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum;
    

@@ -6,7 +6,7 @@ with GlobaleTexte;
 package GrafikDatentypen is
 
    type Grafik_Aktuelle_Darstellung_Enum is (
-                                             Grafik_Terminal_Enum, Grafik_SFML_Enum, Grafik_Intro_Enum,
+                                             Grafik_Start_Enum, Grafik_Intro_Enum,
                                              Grafik_Pause_Enum,
                                              Grafik_Generierungszeit_Enum, Grafik_KI_Rechenzeit_Enum, Grafik_Rundenende_Enum, Grafik_Speichern_Laden_Enum,
                                              Grafik_Menüs_Enum, Grafik_Sprache_Enum,
@@ -17,7 +17,6 @@ package GrafikDatentypen is
                                             );
    
    subtype Ladezeiten_Enum is Grafik_Aktuelle_Darstellung_Enum range Grafik_Generierungszeit_Enum .. Grafik_Speichern_Laden_Enum;
-   subtype Anzeige_Art_Enum is Grafik_Aktuelle_Darstellung_Enum range Grafik_Terminal_Enum .. Grafik_SFML_Enum;
    subtype Editoren_Anzeigen_Enum is Grafik_Aktuelle_Darstellung_Enum range Grafik_Editoren_Enum .. Grafik_Editoren_Enum;
    
    type Hintergrund_Texturen_Enum is (

@@ -5,6 +5,6 @@ with TonDatentypen;
 
 package NachMusiktask is
 
-   AktuelleMusik : TonDatentypen.Musik_Aktuelle_Auswahl_Enum := TonDatentypen.Musik_SFML_Enum;
+   AktuelleMusik : TonDatentypen.Musik_Aktuelle_Auswahl_Enum := TonDatentypen.Musik_Pause_Enum;
    
 end NachMusiktask;

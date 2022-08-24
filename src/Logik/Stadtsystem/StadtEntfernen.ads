@@ -8,6 +8,15 @@ with StadtRecords;
 private with KartenRecords;
 
 package StadtEntfernen is
+   
+   procedure StadtAbreißen
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     with
+       Pre => (
+                 SpielVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
+               and
+                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+              );
 
    procedure StadtEntfernen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)

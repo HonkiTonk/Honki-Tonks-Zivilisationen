@@ -18,6 +18,7 @@
 -- Sonstiges:
 
 -- Diese ganze Aufteilung zwischen AufgabenDatentypen, TastenbelegungDatentypen und KartenVerbesserungDatentypen muss mal verbessert werden.
+-- Brauche ich überhaupt zwei mögliche Tasten bei der Tastenbelegung?
 
 
 
@@ -25,4 +26,5 @@
 -- Erinnerungen:
 
 -- In die Beschreibungen später auch Umwandlungen für die Werte, Kosten, nötige Zeit usw. einbauen?
+-- Für das Schreiben/Lesen von Dateien die nicht über 0-Dateien geregelt werden auch mal konstante Strings anlegen und überall einbauen.
 --

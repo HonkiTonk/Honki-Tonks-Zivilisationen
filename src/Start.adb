@@ -8,9 +8,9 @@ with Ada.Text_IO;
 with Systemchecks;
 
 with StartLogik;
-with StartGrafik;
-with StartMusik;
-with StartSound;
+with GrafikSFML;
+with MusikSFML;
+with SoundSFML;
 
 with NachGrafiktask;
 with MeldungSchreiben;
@@ -66,7 +66,7 @@ is
       TaskID (Task_Grafik_Enum) := Current_Task;
 
       TasksLaufen (Task_Grafik_Enum) := True;
-      StartGrafik.StartGrafik;
+      GrafikSFML.GrafikSFML;
       TasksLaufen (Task_Grafik_Enum) := False;
 
    exception
@@ -87,7 +87,7 @@ is
       TaskID (Task_Musik_Enum) := Current_Task;
 
       TasksLaufen (Task_Musik_Enum) := True;
-      StartMusik.StartMusik;
+      MusikSFML.MusikSFML;
       TasksLaufen (Task_Musik_Enum) := False;
 
    exception
@@ -108,7 +108,7 @@ is
       TaskID (Task_Sound_Enum) := Current_Task;
 
       TasksLaufen (Task_Sound_Enum) := True;
-      StartSound.StartSound;
+      SoundSFML.SoundSFML;
       TasksLaufen (Task_Sound_Enum) := False;
 
    exception

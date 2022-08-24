@@ -14,7 +14,10 @@ with ZahlenDatentypen;
 with SystemDatentypen;
 with SystemKonstanten;
 with StadtRecords;
+with SystemRecords;
 with EinheitenRecords;
+with KartenRecords;
+with KartenRecordKonstanten;
 
 -- Variablen mal nach Kategorien in Records sortieren.
 package NachGrafiktask is
@@ -27,6 +30,8 @@ package NachGrafiktask is
    
    Endauswahl : Natural;
    -- Wird für Spielstart benötigt.
+   
+   AktuelleDarstellung : GrafikDatentypen.Grafik_Aktuelle_Darstellung_Enum := GrafikDatentypen.Grafik_Start_Enum;
    
    FensterGeschlossen : Boolean := False;
    NameSpielstand : Boolean := False;
@@ -42,8 +47,6 @@ package NachGrafiktask is
    
    FensterVerändert : GrafikDatentypen.Fenster_Ändern_Enum;
    
-   AktuelleDarstellung : GrafikDatentypen.Grafik_Aktuelle_Darstellung_Enum := GrafikDatentypen.Grafik_SFML_Enum;
-   
    -- Später erweitern mit nur Schriftgröße setzen, nur Schriftfarbe setzen, usw.. äöü
    AccesseSetzen : Boolean := False;
    
@@ -57,10 +60,12 @@ package NachGrafiktask is
    
    Eingabe : SystemDatentypen.Welche_Eingabe_Enum := SystemDatentypen.Keine_Eingabe_Enum;
    
-   AktuelleAuswahl : Integer := SystemKonstanten.LeerAuswahl;
+   AktuelleAuswahl : SystemRecords.MehrfacheAuswahlRecord := (SystemKonstanten.LeerAuswahl, SystemKonstanten.LeerAuswahl);
    
    WelcheAuswahl : EinheitenRecords.AuswahlRecord := (False, (others => 0));
    
    AktuelleBauauswahl : StadtRecords.BauprojektRecord := (0, 0);
+   
+   GeheZu : KartenRecords.AchsenKartenfeldNaturalRecord := KartenRecordKonstanten.LeerKoordinate;
 
 end NachGrafiktask;

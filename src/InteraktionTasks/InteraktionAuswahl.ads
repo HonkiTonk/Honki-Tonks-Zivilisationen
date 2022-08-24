@@ -8,17 +8,27 @@ with SystemKonstanten;
 with EinheitenDatentypen;
 with StadtDatentypen;
 with ForschungenDatentypen;
+with TastenbelegungDatentypen;
 
 package InteraktionAuswahl is
 
-   -- Muss nicht identisch mit dem längsten Menü sein, sondern immer nur der Länge der maximalen Auswahlmöglichkeiten entsprechen.
-   -- Der Einfachheit halber aber auf LängstesMenü stehen lassen.
-   type PositionenMenüeinträgeArray is array (MenueDatentypen.Welches_Menü_Vorhanden_Enum'Range, 1 .. SystemKonstanten.LängstesMenü) of Sf.Graphics.Rect.sfFloatRect;
+   type PositionenMenüeinträgeArray is array (MenueDatentypen.Welches_Menü_Vorhanden_Enum'Range, 1 .. SystemKonstanten.ZweitlängstesMenü) of Sf.Graphics.Rect.sfFloatRect;
    PositionenMenüeinträge : PositionenMenüeinträgeArray := (others => (others => (0.00, 0.00, 0.00, 0.00)));
 
-   -- Das später bei den Menüeinträgen rainbasteln? äöü
-   type PositionenSprachauswahlArray is array (1 .. 11) of Sf.Graphics.Rect.sfFloatRect;
-   PositionenSprachauswahl : PositionenSprachauswahlArray := (others => (0.00, 0.00, 0.00, 0.00));
+   type PositionenArray is array (Positive range <>) of Sf.Graphics.Rect.sfFloatRect;
+
+
+
+   PositionenSteuerung : PositionenArray (SystemKonstanten.EndeAbzugGrafik (MenueDatentypen.Steuerung_Menü_Enum) + 1 .. SystemKonstanten.LängstesMenü) := (others => (0.00, 0.00, 0.00, 0.00));
+
+   type PositionenSteuerungbelegungArray is array (TastenbelegungDatentypen.Tastenbelegung_Auswählbar_Enum'Range) of Sf.Graphics.Rect.sfFloatRect;
+   PositionenSteuerungbelegung : PositionenSteuerungbelegungArray := (others => (0.00, 0.00, 0.00, 0.00));
+
+
+
+   -- Das später bei den Menüeinträgen reinbasteln? äöü
+   -- Sollte funktionieren. äöü
+   PositionenSprachauswahl : PositionenArray (1 .. 11) := (others => (0.00, 0.00, 0.00, 0.00));
 
 
 
@@ -47,7 +57,6 @@ package InteraktionAuswahl is
    type PositionenEinheitStadtArray is array (EinheitenDatentypen.Transportplätze'Range) of Sf.Graphics.Rect.sfFloatRect;
    PositionenEinheitStadt : PositionenEinheitStadtArray := (others => (0.00, 0.00, 0.00, 0.00));
 
-   type PositionenJaNeinArray is array (1 .. 2) of Sf.Graphics.Rect.sfFloatRect;
-   PositionenJaNein : PositionenJaNeinArray := (others => (0.00, 0.00, 0.00, 0.00));
+   PositionenJaNein : PositionenArray (1 .. 2) := (others => (0.00, 0.00, 0.00, 0.00));
 
 end InteraktionAuswahl;

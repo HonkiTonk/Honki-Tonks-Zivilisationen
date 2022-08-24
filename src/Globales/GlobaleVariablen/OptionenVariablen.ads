@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with SystemRecords;
-with GrafikDatentypen;
 with TextKonstanten;
 
 package OptionenVariablen is
@@ -11,8 +10,7 @@ package OptionenVariablen is
    NutzerEinstellungen : SystemRecords.NutzerEinstellungenRecord := (
                                                                      Sprache           => TextKonstanten.LeerUnboundedString,
                                                                      AnzahlAutosave    => 10,
-                                                                     RundenBisAutosave => 10,
-                                                                     Anzeigeart        => GrafikDatentypen.Grafik_SFML_Enum
+                                                                     RundenBisAutosave => 10
                                                                     );
    
    -- Die weiteren Einstellungen auch in den NutzerEinstellungenRecord einbauen.

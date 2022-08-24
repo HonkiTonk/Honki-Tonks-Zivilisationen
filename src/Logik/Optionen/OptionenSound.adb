@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with MenueDatentypen;
 
-with AuswahlMenues;
+with Auswahlaufteilungen;
 with Fehler;
 
 package body OptionenSound is
@@ -15,7 +15,7 @@ package body OptionenSound is
       SoundSchleife:
       loop
          
-         AuswahlWert := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Sound_Menü_Enum);
+         AuswahlWert := Auswahlaufteilungen.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Sound_Menü_Enum);
          
          case
            AuswahlWert

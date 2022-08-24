@@ -10,8 +10,8 @@ with EinlesenSprache;
 with EinlesenText;
 
 with AuswahlSprache;
-with Eingabe;
-with AuswahlMenues;
+with EingabeSFML;
+with Auswahlaufteilungen;
 with Fehler;
 with NachGrafiktask;
 
@@ -24,7 +24,7 @@ package body OptionenSonstiges is
       SonstigesSchleife:
       loop
 
-         AuswahlWert := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Sonstiges_Menü_Enum);
+         AuswahlWert := Auswahlaufteilungen.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Sonstiges_Menü_Enum);
 
          case
            AuswahlWert
@@ -55,9 +55,9 @@ package body OptionenSonstiges is
    procedure AnzahlAutomatischerSpielstände
    is begin
       
-      EingegebeneZahl := Eingabe.GanzeZahl (ZeileExtern         => 2,
-                                            ZahlenMinimumExtern => 0,
-                                            ZahlenMaximumExtern => 999_999_999);
+      EingegebeneZahl := EingabeSFML.GanzeZahl (ZahlenMinimumExtern => 0,
+                                                ZahlenMaximumExtern => 999_999_999,
+                                                WelcheFrageExtern   => 2);
       case
         EingegebeneZahl.EingabeAbbruch
       is
@@ -75,9 +75,9 @@ package body OptionenSonstiges is
    procedure RundenBisAutospeichern
    is begin
       
-      EingegebeneZahl := Eingabe.GanzeZahl (ZeileExtern         => 3,
-                                            ZahlenMinimumExtern => 0,
-                                            ZahlenMaximumExtern => 999_999_999);
+      EingegebeneZahl := EingabeSFML.GanzeZahl (ZahlenMinimumExtern => 0,
+                                                ZahlenMaximumExtern => 999_999_999,
+                                                WelcheFrageExtern   => 3);
 
       case
         EingegebeneZahl.EingabeAbbruch

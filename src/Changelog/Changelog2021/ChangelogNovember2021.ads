@@ -4,8 +4,8 @@ package ChangelogNovember2021 is
    
    -- ASFML auf Version 2.5.2 aktualisiert.
    -- Code vereinfacht.
-   -- ASML Kartenversion zeigt jetzt auch Informationen über Städte an.
-   -- ASML Kartenversion zeigt jetzt auch Informationen über Einheiten an.
+   -- SFML Kartenversion zeigt jetzt auch Informationen über Städte an.
+   -- SFML Kartenversion zeigt jetzt auch Informationen über Einheiten an.
    -- Korrekturen an den Textdateien.
    -- Einige Access ist nicht null Prüfungen eingebaut.
    -- Angefangen die Forschungsauswahl an das neue System anzupassen.

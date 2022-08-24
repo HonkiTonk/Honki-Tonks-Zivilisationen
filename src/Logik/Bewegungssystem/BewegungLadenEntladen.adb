@@ -53,9 +53,6 @@ package body BewegungLadenEntladen is
             
             TransporterladungVerschieben (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern),
                                           NeueKoordinatenExtern    => NeueKoordinaten);
-            
-            -- Das hier sollte, wenn überhaupt, nur für die Terminalversion eine Rolle spielen.
-            -- SpielVariablen.CursorImSpiel (TransporterExtern.Rasse).KoordinatenAktuell := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern));
       end case;
       
    end TransporterBeladen;

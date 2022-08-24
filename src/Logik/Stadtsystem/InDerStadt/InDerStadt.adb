@@ -7,8 +7,7 @@ with GrafikDatentypen;
 with SchreibeStadtGebaut;
 
 with InDerStadtBauen;
-with BewegungCursor;
-with Eingabe;
+with EingabeSFML;
 with EinwohnerZuweisenEntfernen;
 with GebaeudeVerkaufen;
 with NachGrafiktask;
@@ -26,17 +25,12 @@ package body InDerStadt is
          
          NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Stadtkarte_Enum;
          
-         Befehl := Eingabe.Tastenwert;
+         Befehl := EingabeSFML.Tastenwert;
          
          case
            Befehl
          is
-            when TastenbelegungDatentypen.Tastenbelegung_Bewegung_Stadt_Enum'Range =>
-               BewegungCursor.BewegungCursorRichtung (KarteExtern    => False,
-                                                      RichtungExtern => Befehl,
-                                                      RasseExtern    => StadtRasseNummerExtern.Rasse);
-
-               -- Einwohner von Feld entfernen/zuweisen
+            -- Einwohner von Feld entfernen/zuweisen
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if
                  WasIstAusgewählt (StadtRasseNummerExtern => StadtRasseNummerExtern) = True
@@ -55,7 +49,7 @@ package body InDerStadt is
                GebaeudeVerkaufen.GebäudeVerkaufen (StadtRasseNummerExtern => StadtRasseNummerExtern);
 
             when TastenbelegungDatentypen.Stadt_Umbenennen_Enum =>
-               NeuerName := Eingabe.StadtName;
+               NeuerName := EingabeSFML.StadtName;
                
                if
                  NeuerName.ErfolgreichAbbruch = True

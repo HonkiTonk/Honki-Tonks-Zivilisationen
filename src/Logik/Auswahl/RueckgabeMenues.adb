@@ -82,7 +82,8 @@ package body RueckgabeMenues is
                                AktuelleAuswahlExtern => AktuelleAuswahlExtern);
             
          when MenueDatentypen.Steuerung_Menü_Enum =>
-            return SteuerungMenü (EndeExtern            => EndeExtern,
+            return SteuerungMenü (AnfangExtern          => AnfangExtern,
+                                   EndeExtern            => EndeExtern,
                                    AktuelleAuswahlExtern => AktuelleAuswahlExtern);
             
          when MenueDatentypen.Sonstiges_Menü_Enum =>
@@ -839,39 +840,25 @@ package body RueckgabeMenues is
    
    
    function SteuerungMenü
-     (EndeExtern : in Positive;
+     (AnfangExtern : in Positive;
+      EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       if
-        AktuelleAuswahlExtern = EndeExtern - 4
+        AktuelleAuswahlExtern = AnfangExtern
       then
          return RueckgabeDatentypen.Speichern_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = EndeExtern - 3
+        AktuelleAuswahlExtern = AnfangExtern + 1
       then
          return RueckgabeDatentypen.Wiederherstellen_Enum;
-                    
-      elsif
-        AktuelleAuswahlExtern = EndeExtern - 2
-      then
-         return RueckgabeDatentypen.Zurück_Enum;
-                    
-      elsif
-        AktuelleAuswahlExtern = EndeExtern - 1
-      then
-         return RueckgabeDatentypen.Hauptmenü_Enum;
-                    
-      elsif
-        AktuelleAuswahlExtern = EndeExtern
-      then
-         return RueckgabeDatentypen.Spiel_Beenden_Enum;
-                    
+         
       else
-         UmbelegungNummer := AktuelleAuswahlExtern;
-         return RueckgabeDatentypen.Eingabe_Enum;
+         return ZurückHauptmenüEnde (EndeExtern            => EndeExtern,
+                                       AktuelleAuswahlExtern => AktuelleAuswahlExtern);
       end if;
       
    end SteuerungMenü;

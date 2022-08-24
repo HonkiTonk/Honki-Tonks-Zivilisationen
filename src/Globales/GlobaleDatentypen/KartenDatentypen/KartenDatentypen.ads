@@ -81,8 +81,7 @@ package KartenDatentypen is
    pragma Ordered (Kartentemperatur_Enum);
    
    
-                                
-   -- Neue Kartenressorucen immer vor Überfluss einfügen um Anpassungen in KartenDatentypen zu vermeiden.
+   
    type Kartenressourcen_Enum is (
                                   Kartenressourcen_Arm_Enum, Kartenressourcen_Wenig_Enum, Kartenressourcen_Mittel_Enum, Kartenressourcen_Viel_Enum, Kartenressourcen_Überfluss_Enum
                                  );
