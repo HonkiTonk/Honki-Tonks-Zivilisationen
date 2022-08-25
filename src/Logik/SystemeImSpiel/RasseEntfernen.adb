@@ -4,11 +4,13 @@ pragma Warnings (Off, "*array aggregate*");
 with WichtigesRecordKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
+with KartenVerbesserungDatentypen;
 
 with SchreibeStadtGebaut;
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
 with LeseStadtGebaut;
+with SchreibeKarten;
 
 with KartenfelderBewerten;
 with Ladezeiten;
@@ -26,11 +28,20 @@ package body RasseEntfernen is
          
       end loop EinheitenSchleife;
       
-      -- Der Teil ist auf jeden Fall nicht mehr korrekt, mal an das neue kartenplatzierungssystem anpassen. äöü
       StadtSchleife:
       for StadtSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Städtegrenze loop
          
-         SchreibeStadtGebaut.Nullsetzung (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert));
+         case
+           LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert))
+         is
+            when StadtKonstanten.LeerID =>
+               null;
+               
+            when others =>
+               SchreibeKarten.Verbesserung (KoordinatenExtern  => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert)),
+                                            VerbesserungExtern => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum);
+               SchreibeStadtGebaut.Nullsetzung (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert));
+         end case;
          
       end loop StadtSchleife;
             

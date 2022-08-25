@@ -21,7 +21,7 @@ with Karten;
 with Ladezeiten;
 with SpeichernLadenAllgemein;
 with NachGrafiktask;
-with Auswahlaufteilungen;
+with AuswahlSFML;
 
 -- Bei Änderungen am Speichersystem auch immer das Ladesystem anpassen!
 package body Speichern is
@@ -282,7 +282,7 @@ package body Speichern is
                   null;
                   
                elsif
-                 Auswahlaufteilungen.AuswahlJaNein (FrageZeileExtern => TextnummernKonstanten.FrageSpielstandÜberschreiben) = True
+                 AuswahlSFML.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageSpielstandÜberschreiben) = True
                then
                   null;
             

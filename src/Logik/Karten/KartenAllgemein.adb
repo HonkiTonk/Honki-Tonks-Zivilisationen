@@ -13,16 +13,14 @@ with LeseKarten;
 with LeseKartenDatenbanken;
 with LeseVerbesserungenDatenbank;
 
+-- Später die Beschreibungen noch um RasseExtern erweitern damit jede Rasse ihren eigenen Text haben kann? äöü
 package body KartenAllgemein is
    
    function BeschreibungBasisgrund
      (KartenGrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
       return Wide_Wide_String
    is begin
-      
-      -- Die Zwischenrechnungen mal drin lassen, für den Fall dass ich die Beschreibungen rassenspezifisch machen will. Könnte dann eine komplexere Rechnung werden.
-      
-      -- Mal überall drüber schauen ob die 'Pos Angaben bei den Beschreibungen angepasst werden können. äöü
+            
       GrundAktuell := 2 * KartengrundDatentypen.Kartengrund_Vorhanden_Enum'Pos (KartenGrundExtern) - 1;
    
       return To_Wide_Wide_String (Source => GlobaleTexte.Kartenfelder (GrundAktuell));
@@ -31,13 +29,11 @@ package body KartenAllgemein is
    
 
 
-   -- Später die Beschreibungen noch um RasseExtern erweitern damit jede Rasse ihren eigenen Text haben kann? äöü
    function BeschreibungZusatzgrund
      (KartenGrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
       return Wide_Wide_String
    is begin
       
-      -- Die Zwischenrechnungen mal drin lassen, für den Fall dass ich die Beschreibungen rassenspezifisch machen will. Könnte dann eine komplexere Rechnung werden.
       ZusatzAktuell := 2 * KartengrundDatentypen.Kartengrund_Vorhanden_Enum'Pos (KartenGrundExtern) - 1;
    
       return To_Wide_Wide_String (Source => GlobaleTexte.Kartenfelder (ZusatzAktuell));

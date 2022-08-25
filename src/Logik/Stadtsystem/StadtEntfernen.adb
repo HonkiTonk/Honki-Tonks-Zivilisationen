@@ -21,7 +21,7 @@ with LeseStadtGebaut;
 with Kartenkoordinatenberechnungssystem;
 with RasseEntfernen;
 with Wachstum;
-with Auswahlaufteilungen;
+with AuswahlSFML;
 
 package body StadtEntfernen is
    
@@ -30,7 +30,7 @@ package body StadtEntfernen is
    is begin
          
       case
-        Auswahlaufteilungen.AuswahlJaNein (FrageZeileExtern => TextnummernKonstanten.FrageStadtAbreißen)
+        AuswahlSFML.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageStadtAbreißen)
       is
          when True =>
             StadtEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern);

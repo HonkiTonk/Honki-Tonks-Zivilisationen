@@ -19,8 +19,9 @@ with ZwischenDenRunden;
 with Fehler;
 with NachGrafiktask;
 with BefehleSFML;
-with Auswahlaufteilungen;
+with AuswahlSFML;
 with SpielerVorhanden;
+with Auswahlaufteilungen;
 
 with KI;
 
@@ -200,7 +201,7 @@ package body ImSpiel is
             if
               SpielerVorhanden.MenschlicheSpieler (RasseExtern => RasseExtern) = True
               and then
-                Auswahlaufteilungen.AuswahlJaNein (FrageZeileExtern => TextnummernKonstanten.FrageKIEinsetzen) = True
+                AuswahlSFML.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageKIEinsetzen) = True
             then
                RasseEntfernen.RasseAufKISetzen (RasseExtern => RasseExtern);
                
@@ -279,6 +280,8 @@ package body ImSpiel is
                   
                elsif
                  RückgabeSpielmenü = RueckgabeDatentypen.Start_Weiter_Enum
+                 or
+                   RückgabeSpielmenü = RueckgabeDatentypen.Zurück_Enum
                then
                   null;
                   
@@ -340,7 +343,7 @@ package body ImSpiel is
                   null;
                end if;
                
-            when RueckgabeDatentypen.Hauptmenü_Beenden_Enum'Range | RueckgabeDatentypen.Start_Weiter_Enum =>
+            when RueckgabeDatentypen.Hauptmenü_Beenden_Enum'Range | RueckgabeDatentypen.Start_Weiter_Enum | RueckgabeDatentypen.Zurück_Enum =>
                return AuswahlSpielmenü;
                   
             when others =>

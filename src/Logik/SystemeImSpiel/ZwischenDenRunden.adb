@@ -26,7 +26,7 @@ with Ladezeiten;
 with Speichern;
 with VerbesserungFertiggestellt;
 with NachGrafiktask;
-with Auswahlaufteilungen;
+with AuswahlSFML;
 
 package body ZwischenDenRunden is
 
@@ -107,7 +107,7 @@ package body ZwischenDenRunden is
                null;
             
             elsif
-              Auswahlaufteilungen.AuswahlJaNein (FrageZeileExtern => TextnummernKonstanten.FrageGewonnenWeiterspielen) = True
+              AuswahlSFML.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageGewonnenWeiterspielen) = True
             then
                SpielVariablen.Allgemeines.Weiterspielen := True;
                                  

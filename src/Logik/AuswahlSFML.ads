@@ -5,7 +5,7 @@ private with Sf.System.Vector2;
 
 package AuswahlSFML is
 
-   function AuswahlJaNeinSFML
+   function JaNein
      (FrageZeileExtern : in Positive)
       return Boolean;
 

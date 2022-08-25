@@ -5,7 +5,6 @@ with Sf;
 with Sf.Graphics.Sprite;
 
 with BerechnungenKarteSFML;
-with GrafikEinstellungenSFML;
 
 package body TexturenSetzenSkalierenSFML is
    
@@ -75,51 +74,6 @@ package body TexturenSetzenSkalierenSFML is
       return SkalierungKartenfeld;
       
    end TexturenSetzenSkalierenGesamteStadtkarte;
-   
-   
-   
-   function TexturenSetzenSkalierenGesamtesBild
-     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
-      TextureAccessExtern : in Sf.Graphics.sfTexture_Ptr)
-      return Sf.System.Vector2.sfVector2f
-   is begin
-      
-      Sf.Graphics.Sprite.setTexture (sprite    => SpriteAccessExtern,
-                                     texture   => TextureAccessExtern,
-                                     resetRect => Sf.sfTrue);
-      
-      -- Sollte geprüft werden ob die Texturebreite/höhe /= 0 ist? äöü
-      GrößeTextur := (Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).width, Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).height);
-      
-      SkalierungBild.x := GrafikEinstellungenSFML.AktuelleFensterAuflösung.x / GrößeTextur.x;
-      SkalierungBild.y := GrafikEinstellungenSFML.AktuelleFensterAuflösung.y / GrößeTextur.y;
-      
-      return SkalierungBild;
-      
-   end TexturenSetzenSkalierenGesamtesBild;
-   
-   
-   
-   function TexturenSetzenSkalierenTeilBild
-     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
-      TextureAccessExtern : in Sf.Graphics.sfTexture_Ptr;
-      VerhältnisExtern : in Sf.System.Vector2.sfVector2f)
-      return Sf.System.Vector2.sfVector2f
-   is begin
-      
-      Sf.Graphics.Sprite.setTexture (sprite    => SpriteAccessExtern,
-                                     texture   => TextureAccessExtern,
-                                     resetRect => Sf.sfTrue);
-      
-      -- Sollte geprüft werden ob die Texturebreite/höhe /= 0 ist? äöü
-      GrößeTextur := (Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).width, Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).height);
-      
-      SkalierungBild.x := GrafikEinstellungenSFML.AktuelleFensterAuflösung.x * VerhältnisExtern.x / GrößeTextur.x;
-      SkalierungBild.y := GrafikEinstellungenSFML.AktuelleFensterAuflösung.y * VerhältnisExtern.y / GrößeTextur.y;
-      
-      return SkalierungBild;
-      
-   end TexturenSetzenSkalierenTeilBild;
    
    
    

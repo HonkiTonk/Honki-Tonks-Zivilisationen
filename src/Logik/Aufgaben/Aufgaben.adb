@@ -15,7 +15,6 @@ with LeseEinheitenDatenbank;
 with LeseKarten;
 
 with ForschungAllgemein;
-with Auswahlaufteilungen;
 with AufgabenAllgemein;
 with AufgabeEinheitWeg;
 with AufgabeEinheitMine;
@@ -26,10 +25,10 @@ with AufgabeEinheitWald;
 with AufgabeEinheitHeilen;
 with AufgabeEinheitPluendern;
 with AufgabeEinheitVerbessern;
-with AufgabeEinheitAussetzen;
 with AufgabeEinheitVerschanzen;
 with AufgabeEinheitAufloesen;
 with UmwandlungenVerschiedeneDatentypen;
+with AuswahlSFML;
 
 package body Aufgaben is
    
@@ -88,7 +87,7 @@ package body Aufgaben is
           SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.KI_Spieler_Enum
       then
          case
-           Auswahlaufteilungen.AuswahlJaNein (FrageZeileExtern => TextnummernKonstanten.FrageBeschäftigungAbbrechen)
+           AuswahlSFML.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageBeschäftigungAbbrechen)
          is
             when True =>
                null;
@@ -174,7 +173,7 @@ package body Aufgaben is
                and
                  VerbesserungExtern /= KartenVerbesserungDatentypen.Leer_Verbesserung_Enum)
               and then
-                Auswahlaufteilungen.AuswahlJaNein (FrageZeileExtern => TextnummernKonstanten.FrageLandverbesserungErsetzen) = False
+                AuswahlSFML.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageLandverbesserungErsetzen) = False
             then
                return False;
                
@@ -241,9 +240,6 @@ package body Aufgaben is
             
          when TastenbelegungDatentypen.Verschanzen_Enum =>
             return AufgabeEinheitVerschanzen.Verschanzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-         
-         when TastenbelegungDatentypen.Runde_Aussetzen_Enum =>
-            return AufgabeEinheitAussetzen.RundeAussetzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
          when TastenbelegungDatentypen.Auflösen_Enum =>
             return AufgabeEinheitAufloesen.EinheitAuflösen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);

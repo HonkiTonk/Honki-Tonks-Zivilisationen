@@ -24,6 +24,7 @@ with KIDatentypen; use KIDatentypen;
 
 package body EinheitenModifizieren is
 
+   -- Wäre es sinnvoll sowas zu parallelisieren? äöü
    procedure HeilungBewegungspunkteNeueRundeErmitteln
    is begin
       
@@ -40,14 +41,15 @@ package body EinheitenModifizieren is
                EinheitenSchleife:
                for EinheitNummerSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (RasseSchleifenwert).Einheitengrenze loop
                               
-                  if
-                    LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseSchleifenwert, EinheitNummerSchleifenwert)) = EinheitenKonstanten.LeerID
-                  then
-                     null;
+                  case
+                    LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseSchleifenwert, EinheitNummerSchleifenwert))
+                  is
+                     when EinheitenKonstanten.LeerID =>
+                        null;
                   
-                  else
-                     HeilungBewegungspunkteNeueRundeSetzen (EinheitRasseNummerExtern => (RasseSchleifenwert, EinheitNummerSchleifenwert));
-                  end if;
+                     when others =>
+                        HeilungBewegungspunkteNeueRundeSetzen (EinheitRasseNummerExtern => (RasseSchleifenwert, EinheitNummerSchleifenwert));
+                  end case;
             
                end loop EinheitenSchleife;
          end case;
@@ -64,6 +66,30 @@ package body EinheitenModifizieren is
       
       AktuelleBeschäftigung := LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       KIBeschäftigung := LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+
+      if
+        AktuelleBeschäftigung = AufgabenDatentypen.Heilen_Enum
+        or
+          AktuelleBeschäftigung = AufgabenDatentypen.Verschanzen_Enum
+      then
+         SchreibeEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                               LebenspunkteExtern       => Heilungsrate,
+                                               RechnenSetzenExtern      => 1);
+         
+      elsif
+        AktuelleBeschäftigung = AufgabenDatentypen.Leer_Aufgabe_Enum
+        and
+          LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = LeseEinheitenDatenbank.MaximaleBewegungspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                                                                                                       IDExtern    => LeseEinheitenGebaut.ID
+                                                                                                                                                         (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
+      then
+         SchreibeEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                               LebenspunkteExtern       => Heilungsrate / 2,
+                                               RechnenSetzenExtern      => 1);
+         
+      else
+         null;
+      end if;
       
       case
         AktuelleBeschäftigung
@@ -80,21 +106,6 @@ package body EinheitenModifizieren is
                                                      BewegungspunkteExtern    => EinheitenKonstanten.LeerBewegungspunkte,
                                                      RechnenSetzenExtern      => 0);
       end case;
-
-      if
-        AktuelleBeschäftigung = AufgabenDatentypen.Heilen_Enum
-        or
-          AktuelleBeschäftigung = AufgabenDatentypen.Verschanzen_Enum
-          or
-            KIBeschäftigung = KIDatentypen.Tut_Nichts_Enum
-      then
-         SchreibeEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                               LebenspunkteExtern       => Heilungsrate,
-                                               RechnenSetzenExtern      => 1);
-         
-      else
-         null;
-      end if;
       
       case
         KIBeschäftigung
@@ -109,10 +120,8 @@ package body EinheitenModifizieren is
       
    end HeilungBewegungspunkteNeueRundeSetzen;
    
+      
    
-   
-   
-   -- VorzeichenWechselExtern mal in einen Boolean umschreiben? äöü
    procedure PermanenteKostenÄndern
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       VorzeichenWechselExtern : in KartenDatentypen.UmgebungsbereichEins)
@@ -134,10 +143,9 @@ package body EinheitenModifizieren is
       for PermanenteKostenSchleifenwert in StadtRecords.PermanenteKostenArray'Range loop
          
          if
-           LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => EinheitRasseNummerExtern.Rasse,
-                                                    IDExtern           => AktuelleID,
-                                                    WelcheKostenExtern => PermanenteKostenSchleifenwert)
-           <= 0
+           0 > LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => EinheitRasseNummerExtern.Rasse,
+                                                        IDExtern           => AktuelleID,
+                                                        WelcheKostenExtern => PermanenteKostenSchleifenwert)
          then
             null;
             

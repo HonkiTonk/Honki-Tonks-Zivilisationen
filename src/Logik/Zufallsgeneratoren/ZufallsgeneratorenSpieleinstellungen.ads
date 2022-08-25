@@ -44,6 +44,8 @@ private
    
    RasseImSpiel : RassenDatentypen.Spieler_Enum;
    
+   Poldicke : KartenDatentypen.KartenfeldNatural;
+   
    package ZufälligeVordefinierteKartengrößeWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => RueckgabeDatentypen.Kartengrößen_Standard_Enum);
    package ZufälligeKartengrößeWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.KartenfeldPositiv);
    package ZufälligeKartenartWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.Kartenart_Enum);
@@ -52,9 +54,12 @@ private
    package ZufälligeRassenbelegungWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => RassenDatentypen.Spieler_Enum);
    package ZufälligenSchwierigkeitsgradWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => SpielDatentypen.Schwierigkeitsgrad_Enum);
    package ZufälligeRasseWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => RassenDatentypen.Rassen_Verwendet_Enum);
+   
    package ZufälligerEAchsenÜbergangWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.Kartenform_E_Einstellbar_Enum);
    package ZufälligerYAchsenÜbergangWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.Kartenform_Y_Einstellbar_Enum);
    package ZufälligerXAchsenÜbergangWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.Kartenform_X_Einstellbar_Enum);
+   
+   package ZufälligePolgrößenWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.KartenfeldNatural);
 
    ZufälligeVordefinierteKartengrößeGewählt : ZufälligeVordefinierteKartengrößeWählen.Generator;
    ZufälligeKartengrößeGewählt : ZufälligeKartengrößeWählen.Generator;
@@ -64,8 +69,11 @@ private
    ZufälligeRassenbelegungGewählt : ZufälligeRassenbelegungWählen.Generator;
    ZufälligerSchwierigkeitsgradGewählt : ZufälligenSchwierigkeitsgradWählen.Generator;
    ZufälligeRasseGewählt : ZufälligeRasseWählen.Generator;
+   
    ZufälligerEAchsenÜbergangGewählt : ZufälligerEAchsenÜbergangWählen.Generator;
    ZufälligerYAchsenÜbergangGewählt : ZufälligerYAchsenÜbergangWählen.Generator;
    ZufälligerXAchsenÜbergangGewählt : ZufälligerXAchsenÜbergangWählen.Generator;
+   
+   ZufälligePolgrößeGewählt : ZufälligePolgrößenWählen.Generator;
 
 end ZufallsgeneratorenSpieleinstellungen;

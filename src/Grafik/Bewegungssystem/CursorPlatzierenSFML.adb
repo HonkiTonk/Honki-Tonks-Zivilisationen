@@ -16,9 +16,7 @@ with NachGrafiktask;
 
 package body CursorPlatzierenSFML is
    
-   -- Kann man dieses Paket nicht auch aus Logik heraus aufrufen dank dem neuen System? Ist das nach all den Änderungen überhaupt noch relevant? äöü
-   -- Gibt eventuell Probleme in der grafischen Darstellung wenn die Koordinaten in der Logik geändert werden, die Grafik aber noch mit den alten Koordinaten angefangen hat zu rechnen.
-   -- Eventuell später auf Logik umbauen? Man könnte im Grafikteil die aktuellen CursorKoordinaten ja immer mitgeben oder kann es dadurch zu Problemen kommen? Möglicherweise.
+   -- Das hier noch vollständig an das neue Viewsystem anpassen. äöü
    procedure CursorPlatzierenKarteSFML
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin

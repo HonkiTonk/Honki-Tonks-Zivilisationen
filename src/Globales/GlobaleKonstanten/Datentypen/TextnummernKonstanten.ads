@@ -75,6 +75,7 @@ package TextnummernKonstanten is
    ZeugLeer : constant Positive := 70;
    ZeugJa : constant Positive := 71;
    ZeugNein : constant Positive := 72;
+   ZeugMit : constant Positive := 73;
    
    
    

@@ -16,7 +16,7 @@ with TextberechnungenHoeheSFML;
 
 package body AnzeigeZusatztextRassenmenueSFML is
 
-   -- Hier dann später noch mehr Informationen über die Rassen einbauen? äöü
+   -- Hier dann später noch mehr Informationen über die Rassen einbauen. äöü
    function AnzeigeZusatztextRassenmenü
      (AktuelleAuswahlExtern : in Positive;
       AnzeigebereichbreiteExtern : in Float)

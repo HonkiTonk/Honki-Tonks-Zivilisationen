@@ -43,15 +43,8 @@ package body SpieleinstellungenRasseSpieler is
             when RueckgabeDatentypen.Zufall_Enum =>
                ZufallsgeneratorenSpieleinstellungen.ZufälligeRassenbelegung;
                
-            when RueckgabeDatentypen.Fertig_Enum =>
-               if
-                 EineRasseBelegt = True
-               then
-                  return;
-                  
-               else
-                  null;
-               end if;
+            when RueckgabeDatentypen.Fertig_Enum | RueckgabeDatentypen.Zurück_Enum =>
+               return;
                
             when others =>
                Fehler.LogikFehler (FehlermeldungExtern => "SpielEinstellungenRasseSpieler.RassenWählen - Falsche Menüauswahl.");
@@ -164,7 +157,7 @@ package body SpieleinstellungenRasseSpieler is
                                     
                   case
                     StartpunktPrüfen (RasseExtern  => RasseSchleifenwert,
-                                      NotAusExtern => NotAusSchleifenwert)
+                                       NotAusExtern => NotAusSchleifenwert)
                   is
                      when True =>
                         exit StartwerteFestlegenSchleife;
@@ -209,24 +202,34 @@ package body SpieleinstellungenRasseSpieler is
       return Boolean
    is begin
       
-      GezogeneWerte := ZufallsgeneratorenStartkoordinaten.Startkoordinaten (RasseExtern => RasseExtern);
+      GezogeneKoordinate := ZufallsgeneratorenStartkoordinaten.Startkoordinaten (RasseExtern => RasseExtern);
       
+      -- Das ganze hier in einen if-Block verschmelzen? äöü
       case
-        LeseKarten.AktuellerGrund (KoordinatenExtern => GezogeneWerte)
+        LeseKarten.AktuellerGrund (KoordinatenExtern => GezogeneKoordinate)
       is
          when KartengrundDatentypen.Eis_Enum | KartengrundDatentypen.Untereis_Enum =>
             return False;
             
          when others =>
-            null;
+            if
+              True = BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern           => RasseExtern,
+                                                                            IDExtern              => 1,
+                                                                            NeueKoordinatenExtern => GezogeneKoordinate)
+            then
+               null;
+               
+            else
+               return False;
+            end if;
       end case;
       
       case
-        EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => GezogeneWerte).Nummer
+        EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => GezogeneKoordinate).Nummer
       is
          when EinheitenKonstanten.LeerNummer =>
-            StartKoordinaten (1) := GezogeneWerte;
-            StartKoordinaten (2) := ZusatzfeldBestimmen (KoordinatenExtern => GezogeneWerte,
+            StartKoordinaten (1) := GezogeneKoordinate;
+            StartKoordinaten (2) := ZusatzfeldBestimmen (KoordinatenExtern => GezogeneKoordinate,
                                                          RasseExtern       => RasseExtern,
                                                          NotAusExtern      => NotAusExtern);
             

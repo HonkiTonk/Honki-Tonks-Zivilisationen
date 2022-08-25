@@ -50,7 +50,6 @@ package body AuswahlMenuesEinfachSFML is
    
    
    
-   -- TextbereichEnde später mal in TextendeExtern oder sowas umbenennen. äöü
    function Textbearbeitung
      (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum;
       ViewflächeExtern : in Sf.System.Vector2.sfVector2f;
@@ -80,7 +79,6 @@ package body AuswahlMenuesEinfachSFML is
    
    
    
-   -- Hier noch TextbereichExtern einbauen und TextbereichExtern mal in Ende/EndeExtern umbenennen. äöü
    procedure FarbeFestlegen
      (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum;
       AktuelleAuswahlExtern : in Natural;

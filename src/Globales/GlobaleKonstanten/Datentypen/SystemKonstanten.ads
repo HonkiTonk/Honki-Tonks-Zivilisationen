@@ -35,7 +35,7 @@ package SystemKonstanten is
                                            MenueDatentypen.Kartenform_Menü_Enum         => 14,
 
                                            -- Steuerungsmenü.
-                                           MenueDatentypen.Steuerung_Menü_Enum          => 30
+                                           MenueDatentypen.Steuerung_Menü_Enum          => 31
                                           );
 
    -- Theoretich kann man hier noch -1 machen um die Überschrift abzuziehen, wird in den Positionen/Textaccessen nicht mehr benötigt. äöü
@@ -63,7 +63,7 @@ package SystemKonstanten is
                                                  MenueDatentypen.Kartentemperatur_Menü_Enum   => EndeMenü (MenueDatentypen.Kartentemperatur_Menü_Enum),
                                                  MenueDatentypen.Kartenressourcen_Menü_Enum   => EndeMenü (MenueDatentypen.Kartenressourcen_Menü_Enum),
                                                  MenueDatentypen.Schwierigkeitsgrad_Menü_Enum => EndeMenü (MenueDatentypen.Schwierigkeitsgrad_Menü_Enum),
-                                                 MenueDatentypen.Kartengröße_Menü_Enum        => 14,
+                                                 MenueDatentypen.Kartengröße_Menü_Enum        => EndeMenü (MenueDatentypen.Kartengröße_Menü_Enum) - 2,
                                                  MenueDatentypen.Kartenpole_Menü_Enum         => EndeMenü (MenueDatentypen.Kartenpole_Menü_Enum),
 
                                                  -- Doppelte Menüs.

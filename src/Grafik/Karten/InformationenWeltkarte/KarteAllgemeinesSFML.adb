@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics;
 with Sf.Graphics.Text;
@@ -10,6 +12,8 @@ with KartengrundDatentypen; use KartengrundDatentypen;
 with Views;
 with GrafikRecordKonstanten;
 with GrafikDatentypen;
+with GlobaleTexte;
+with TextnummernKonstanten;
 
 with LeseKarten;
 
@@ -63,14 +67,14 @@ package body KarteAllgemeinesSFML is
                                             str  => KartenAllgemein.BeschreibungBasisgrund (KartenGrundExtern => VorhandenerGrund.AktuellerGrund));
          
       else
-         -- Für " - " mal ein einzulesendes Wort einbauen? äöü
          Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (1),
-                                            str  => KartenAllgemein.BeschreibungBasisgrund (KartenGrundExtern => VorhandenerGrund.BasisGrund) & " - "
+                                            str  => KartenAllgemein.BeschreibungBasisgrund (KartenGrundExtern => VorhandenerGrund.BasisGrund) & " "
+                                            &  To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextnummernKonstanten.ZeugMit)) & " "
                                             & KartenAllgemein.BeschreibungZusatzgrund (KartenGrundExtern => VorhandenerGrund.AktuellerGrund));
       end if;
       
-      
       -- Eventuell auch mehr Wörter zusammenfassen? äöü
+      -- Z.B. Ressourcen und Flüsse, Verbesserungen und Straßen. äöü
       KartenRessource := LeseKarten.Ressource (KoordinatenExtern => AktuelleKoordinaten);
       
       case

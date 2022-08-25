@@ -233,6 +233,11 @@ package body KartengeneratorStandard is
             
          when False =>
             if
+              LeseKarten.BasisGrund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern)) /= KartengrundDatentypen.Leer_Grund_Enum
+            then
+               null;
+               
+            elsif
               BeliebigerLandwert in WahrscheinlichkeitWasser.Anfangswert .. WahrscheinlichkeitWasser.Endwert
             then
                SchreibeKarten.GleicherGrund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),

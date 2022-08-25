@@ -2,13 +2,12 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
-with ProduktionDatentypen; use ProduktionDatentypen;
+with KampfDatentypen; use KampfDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 with StadtRecords;
 
 private with KampfRecords;
-private with KampfDatentypen;
 
 package KampfsystemStadt is
 
@@ -31,67 +30,23 @@ package KampfsystemStadt is
    
 private
    
-   GesundheitStadt : ProduktionDatentypen.Feldproduktion;
-   AngerichteterSchaden : ProduktionDatentypen.Feldproduktion;
+   WelcherFall : KampfDatentypen.Kampf_Unterschiede_Enum;
+   
+   GesundheitStadt : KampfDatentypen.Kampfwerte;
+   AngerichteterSchaden : KampfDatentypen.Kampfwerte;
    
    Kampfglück : Float;
    
    KampfwerteVerteidiger : KampfRecords.KampfwerteRecord;
    KampfwerteAngreifer : KampfRecords.KampfwerteRecord;
    
-   -- Die Werte gelten immer aus Sicht des Angreifers
-   -- Mal auslagern und mit KampfsystemEinheiten zusammenführen. äöü
-   type Kampf_Unterschiede_Enum is (
-                                    Gleich_Enum, Stärker_Enum, Extrem_Stärker_Enum, Schwächer_Enum, Extrem_Schwächer_Enum
-                                   );
-
-   WelcherFall : Kampf_Unterschiede_Enum;
-
-   type SchadenAngerichtetArray is array (Kampf_Unterschiede_Enum'Range, ProduktionDatentypen.Feldproduktion (1) .. 3) of Float;
-   SchadenAngerichtet : constant SchadenAngerichtetArray := (
-                                                             Gleich_Enum =>
-                                                               (
-                                                                1 => 0.40,
-                                                                2 => 0.75,
-                                                                3 => 0.90
-                                                               ),
-                                                             
-                                                             Stärker_Enum =>
-                                                               (
-                                                                1 => 0.30,
-                                                                2 => 0.65,
-                                                                3 => 0.80
-                                                               ),
-                                                             
-                                                             Extrem_Stärker_Enum =>
-                                                               (
-                                                                1 => 0.20,
-                                                                2 => 0.50,
-                                                                3 => 0.70
-                                                               ),
-                                                             
-                                                             Schwächer_Enum =>
-                                                               (
-                                                                1 => 0.55,
-                                                                2 => 0.85,
-                                                                3 => 0.95
-                                                               ),
-                                                             
-                                                             Extrem_Schwächer_Enum =>
-                                                               (
-                                                                1 => 0.70,
-                                                                2 => 0.90,
-                                                                3 => 0.98
-                                                               )
-                                                            );
-   
    
    
    function SchadenStadtBerechnen
      (AngriffExtern : in KampfDatentypen.Kampfwerte;
       VerteidigungExtern : in KampfDatentypen.Kampfwerte;
-      StadtgesundheitExtern : in ProduktionDatentypen.Feldproduktion)
-      return ProduktionDatentypen.Feldproduktion
+      StadtgesundheitExtern : in KampfDatentypen.Kampfwerte)
+      return KampfDatentypen.Kampfwerte
      with
        Pre => (
                  StadtgesundheitExtern > 0

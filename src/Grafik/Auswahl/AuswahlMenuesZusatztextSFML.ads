@@ -27,7 +27,6 @@ package AuswahlMenuesZusatztextSFML is
 
 private
 
-   -- Das mal auslagern, damit es auch in den Untermenüs verwendet werden kann? äöü
    AnzahlKartengrößen : constant Positive := 9;
    MaximaleKartenformen : constant Positive := 10;
 

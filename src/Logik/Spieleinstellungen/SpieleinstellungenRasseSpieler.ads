@@ -34,7 +34,7 @@ private
    RasseMenschSchnellstart : RassenDatentypen.Rassen_Verwendet_Enum;
    RasseKISchnellstart : RassenDatentypen.Rassen_Verwendet_Enum;
    
-   GezogeneWerte : KartenRecords.AchsenKartenfeldNaturalRecord;
+   GezogeneKoordinate : KartenRecords.AchsenKartenfeldNaturalRecord;
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    Zusatzkoordinate : KartenRecords.AchsenKartenfeldNaturalRecord;
       

@@ -20,7 +20,7 @@ package EinheitenMenschen is
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 0,
                                                                                  Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
-                                                                                                             others                            => False),
+                                                                                                             others                         => False),
                                                                                  MaximaleLebenspunkte    => 3,
                                                                                  MaximaleBewegungspunkte => 3.00,
                                                                                  WirdVerbessertZu        => 0,
@@ -332,9 +332,9 @@ package EinheitenMenschen is
                                                                                  Reichweite              => 2,
                                                                                  Angriff                 => 3,
                                                                                  Verteidigung            => 1,
-                                                                                 KannTransportieren      => EinheitenDatentypen.Klein_Transport_Enum,
+                                                                                 KannTransportieren      => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                  KannTransportiertWerden => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                                 Transportkapazität      => 0
+                                                                                 Transportkapazität      => 5
                                                                                 ),
                                                
                                                                                 -- Motorschiff
@@ -356,9 +356,9 @@ package EinheitenMenschen is
                                                                                  Reichweite              => 2,
                                                                                  Angriff                 => 3,
                                                                                  Verteidigung            => 1,
-                                                                                 KannTransportieren      => EinheitenDatentypen.Klein_Transport_Enum,
+                                                                                 KannTransportieren      => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                  KannTransportiertWerden => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                                 Transportkapazität      => 0
+                                                                                 Transportkapazität      => 5
                                                                                 ),
                                                
                                                                                 -- U-Boot

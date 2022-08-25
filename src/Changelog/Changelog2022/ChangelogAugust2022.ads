@@ -35,17 +35,27 @@ package ChangelogAugust2022 is
    
    
 
-   -- Version 0.03. => 0.03. (26.08.2022):
+   -- Version 0.03.7200 => 0.03. (26.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.7000 => 0.03. (25.08.2022):
+   -- Version 0.03.7000 => 0.03.7200 (25.08.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Das Steuerungsmenü in das neue Viewsystem eingebaut.
+   -- Tastenbelegung ist jetzt wieder frei wählbar.
+   -- Menüsystem überarbeitet, Maustaste rechts ist jetzt (fast) immer zurück.
+   -- Neue Grafiken erstellt.
+   -- Alles Menüs basieren jetzt auf Views und skalieren halbwegs brauchbar.
+   -- Neue Hügel- und Gebirgegrafiken erstellt.
+   -- Doppelten Code zusammengefasst.
+   -- Unnötigen Code gelöscht.
+   -- Teile der zu Überarbeitenliste angefangen abzuarbeiten.
+   -- Kartenpoldicke kann jetzt zufällig bestimmt werden.
+   -- Fehler im Kartengenerator behoben, welcher dafür sorgte das bei kleinen Kartengrößen fast kein Land gesetzt wurde.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst/optimiert.
    
    
 

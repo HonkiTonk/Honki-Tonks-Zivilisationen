@@ -8,7 +8,7 @@ with LeseKarten;
 with SchreibeKarten;
 with SchreibeWichtiges;
 
-with Auswahlaufteilungen;
+with AuswahlSFML;
 
 package body AufgabeEinheitPluendern is
 
@@ -43,7 +43,7 @@ package body AufgabeEinheitPluendern is
             
          when others =>
             if
-              Auswahlaufteilungen.AuswahlJaNein (FrageZeileExtern => TextnummernKonstanten.FrageLandverbesserungPlündern) = True
+              AuswahlSFML.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageLandverbesserungPlündern) = True
             then
                null;
                      

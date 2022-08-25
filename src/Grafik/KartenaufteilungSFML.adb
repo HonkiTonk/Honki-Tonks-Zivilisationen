@@ -12,8 +12,6 @@ with Fehler;
 with KarteInformationenSFML;
 with StadtInformationenSFML;
 
--- Hier muss eventuell auch einiges noch in die NachTasks verschoben bzw. überarbeitet werden. äöü
--- Ist die Cursorplatzierung überhaupt noch wirklich in Logik oder nur noch in Grafik? äöü
 package body KartenaufteilungSFML is
    
    procedure Weltkarte

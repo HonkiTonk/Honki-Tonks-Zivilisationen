@@ -1,13 +1,17 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with Sf.Window.Keyboard; use Sf.Window.Keyboard;
 with Sf.Graphics.RenderWindow;
 
+with TastenbelegungDatentypen; use TastenbelegungDatentypen;
 with InteraktionAuswahl;
 with Views;
-with TastenbelegungDatentypen;
 with MenueDatentypen;
 with SystemKonstanten;
+with SystemDatentypen;
+with TextnummernKonstanten;
+with TastenbelegungVariablen;
 
 with NachGrafiktask;
 with GrafikEinstellungenSFML;
@@ -44,8 +48,7 @@ package body AuswahlSteuerungsmenue is
                elsif
                  AktuelleAuswahl.AuswahlZwei /= SystemKonstanten.LeerAuswahl
                then
-                  -- Hier Befehle einbauen.
-                  null;
+                  TasteBelegen (AuswahlExtern => AktuelleAuswahl.AuswahlZwei);
                   
                else
                   null;
@@ -115,5 +118,49 @@ package body AuswahlSteuerungsmenue is
       return (SystemKonstanten.LeerAuswahl, SystemKonstanten.LeerAuswahl);
       
    end MausAuswahl;
+   
+   
+   
+   procedure TasteBelegen
+     (AuswahlExtern : in Positive)
+   is begin
+      
+      NachGrafiktask.AnzeigeFrage := TextnummernKonstanten.FrageNeueTaste;
+      NachGrafiktask.Eingabe := SystemDatentypen.Zeichen_Eingabe_Enum;
+      
+      NeueTaste := EingabeSFML.TastenbelegungAnpassen;
+      
+      NachGrafiktask.Eingabe := SystemDatentypen.Keine_Eingabe_Enum;
+      
+      case
+        NeueTaste
+      is
+         when Sf.Window.Keyboard.sfKeyUnknown =>
+            return;
+            
+         when others =>
+            null;
+      end case;
+      
+      TastaturSchleife:
+      for TastaturSchleifenwert in TastenbelegungVariablen.TastenbelegungArray'Range loop
+         
+         if
+           TastaturSchleifenwert = TastenbelegungDatentypen.Tastenbelegung_Enum'Val (AuswahlExtern)
+         then
+            TastenbelegungVariablen.Tastenbelegung (TastaturSchleifenwert) := NeueTaste;
+            
+         elsif
+           TastenbelegungVariablen.Tastenbelegung (TastaturSchleifenwert) = NeueTaste
+         then
+            TastenbelegungVariablen.Tastenbelegung (TastaturSchleifenwert) := Sf.Window.Keyboard.sfKeyUnknown;
+            
+         else
+            null;
+         end if;
+         
+      end loop TastaturSchleife;
+            
+   end TasteBelegen;
 
 end AuswahlSteuerungsmenue;

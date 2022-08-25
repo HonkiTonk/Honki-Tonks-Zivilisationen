@@ -20,7 +20,9 @@ private
    Ende : Positive;
 
    AktuelleAuswahl : Natural := SystemKonstanten.LeerAuswahl;
-   Ausgewählt : Natural;
+
+   RechteMaustaste : constant Integer := -2;
+   Ausgewählt : Integer;
 
    Eins : Float;
    Zwei : Float;
@@ -33,7 +35,7 @@ private
      (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum;
       AnfangExtern : in Positive;
       EndeExtern : in Positive)
-      return Natural
+      return Integer
      with
        Pre => (
                  AnfangExtern <= EndeExtern

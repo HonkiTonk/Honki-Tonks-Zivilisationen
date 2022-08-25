@@ -30,8 +30,8 @@ with EinheitenModifizieren;
 with AufgabenAllgemein;
 with BewegungEinheitenSFML;
 with AuswahlStadtEinheit;
-with Auswahlaufteilungen;
 with NachGrafiktask;
+with AuswahlSFML;
 
 -- Hier auch mal überarbeiten, vor allem die Prozeduren weiter unten. äöü
 package body BefehleSFML is
@@ -47,9 +47,11 @@ package body BefehleSFML is
       case
         Befehl
       is
+         -- Die folgenden Befehl ist so sinnfrei, entweder ganz entfernen oder anpassen wie GeheZu. äöü
          when TastenbelegungDatentypen.Tastenbelegung_Bewegung_Enum'Range =>
-            BewegungCursor.CursorbewegungBerechnen (RichtungExtern => Befehl,
-                                                    RasseExtern    => RasseExtern);
+            null;
+            -- BewegungCursor.CursorbewegungBerechnen (RichtungExtern => Befehl,
+            --                                         RasseExtern    => RasseExtern);
             
          when TastenbelegungDatentypen.Auswählen_Enum =>
             AuswahlEinheitStadt (RasseExtern => RasseExtern);
@@ -64,7 +66,7 @@ package body BefehleSFML is
             ForschungAllgemein.Forschung (RasseExtern => RasseExtern);
             
             -- Die folgenden vier Befehle scheinen gar nicht mehr zu funktionieren. äöü
-            -- So anpassen wie GeheZu
+            -- So anpassen wie GeheZu. äöü
          when TastenbelegungDatentypen.Nächste_Stadt_Enum =>
             NaechstesObjekt.NächsteStadt (RasseExtern => RasseExtern);
             
@@ -297,7 +299,7 @@ package body BefehleSFML is
       if
         LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= EinheitenKonstanten.LeerBeschäftigung
         and then
-          Auswahlaufteilungen.AuswahlJaNein (FrageZeileExtern => TextnummernKonstanten.FrageBeschäftigungAbbrechen) = True
+          AuswahlSFML.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageBeschäftigungAbbrechen) = True
       then
          AufgabenAllgemein.Nullsetzung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          BewegungEinheitenSFML.BewegungEinheitenRichtung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);

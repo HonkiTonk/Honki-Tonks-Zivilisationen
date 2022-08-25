@@ -108,7 +108,7 @@ package body OptionenSonstiges is
    procedure SpracheWechseln
    is begin
       
-      -- Das hier mit dem Einlesen.Einlesen zusammenführen? Geht das überhaupt sinnvoll?
+      -- Das hier mit dem Einlesen.Einlesen zusammenführen? Geht das überhaupt sinnvoll? äöü
       case
         EinlesenSprache.EinlesenSprache
       is

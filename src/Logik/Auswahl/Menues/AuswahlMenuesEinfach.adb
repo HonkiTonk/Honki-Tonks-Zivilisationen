@@ -28,31 +28,30 @@ package body AuswahlMenuesEinfach is
                               AnfangExtern      => Anfang,
                               EndeExtern        => Ende);
    
-      -- Rechte Maustaste mal irgendwie als zurück/abbruch einbauen? äöü
-      -- case
-      --   Ausgewählt
-      --  is
-      --     when SystemKonstanten.LeerAuswahl =>
-      --       RückgabeWert := RueckgabeDatentypen.Zurück_Enum;
+      case
+        Ausgewählt
+      is
+         when RechteMaustaste =>
+            RückgabeWert := RueckgabeDatentypen.Zurück_Enum;
             
-      --    when others =>
-      RückgabeWert := RueckgabeMenues.RückgabeMenüs (AnfangExtern          => Anfang,
-                                                        EndeExtern            => Ende,
-                                                        AktuelleAuswahlExtern => Ausgewählt,
-                                                        WelchesMenüExtern     => WelchesMenüExtern);
-      -- end case;
+         when others =>
+            RückgabeWert := RueckgabeMenues.RückgabeMenüs (AnfangExtern          => Anfang,
+                                                              EndeExtern            => Ende,
+                                                              AktuelleAuswahlExtern => Ausgewählt,
+                                                              WelchesMenüExtern     => WelchesMenüExtern);
+      end case;
       
       return RückgabeWert;
       
    end AuswahlMenüsEinfach;
 
-      
+   
    
    function Auswahl
      (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum;
       AnfangExtern : in Positive;
       EndeExtern : in Positive)
-      return Natural
+      return Integer
    is begin
       
       AuswahlSchleife:
@@ -77,10 +76,9 @@ package body AuswahlMenuesEinfach is
                   return AktuelleAuswahl;
                end if;
                
-               -- Später noch ordentlich einbauen, hängt aber einiges an Menüs dran. äöü
-               --  when TastenbelegungDatentypen.Menü_Zurück_Enum =>
-               --     return SystemKonstanten.LeerAuswahl;
-            
+            when TastenbelegungDatentypen.Menü_Zurück_Enum =>
+               return RechteMaustaste;
+               
             when others =>
                null;
          end case;

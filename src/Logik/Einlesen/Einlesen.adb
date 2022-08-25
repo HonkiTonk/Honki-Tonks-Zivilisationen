@@ -17,7 +17,6 @@ with EinlesenSounds;
 
 package body Einlesen is
 
-   -- Die Ladezeiten beim Starten einfach weglassen? äöü
    procedure EinlesenOhneAnzeige
    is begin
       
@@ -31,7 +30,7 @@ package body Einlesen is
    
    
    
-   -- Die Anzeige wird nur für das Einlesen des Textes benötigt, später mal anpassen?
+   -- Die Anzeige wird nur für das Einlesen des Textes benötigt, später mal anpassen? äöü
    procedure EinlesenMitAnzeige
    is begin
       

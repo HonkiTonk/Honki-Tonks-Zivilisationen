@@ -6,10 +6,6 @@ with RueckgabeDatentypen;
 
 package RueckgabeMenues is
    
-   -- Schlechte Lösung für die Umbelegung der Steuerung, später was besseres bauen. äöü
-   UmbelegungNummer : Positive;
-   -- Schlechte Lösung für die Umbelegung der Steuerung, später was besseres bauen. äöü
-   
    function RückgabeMenüs
      (AnfangExtern : in Positive;
       EndeExtern : in Positive;

@@ -13,8 +13,10 @@ with InteraktionAuswahl;
 with MenueDatentypen;
 with TastenbelegungDatentypen;
 with TextKonstanten;
-with TextnummernKonstanten;
+with TastenbelegungKonstanten;
 with GlobaleTexte;
+with TextnummernKonstanten;
+with TastenbelegungVariablen;
 
 with ViewsEinstellenSFML;
 with HintergrundSFML;
@@ -22,7 +24,6 @@ with TextberechnungenHoeheSFML;
 with TextberechnungenBreiteSFML;
 with GrafikEinstellungenSFML;
 with TexteinstellungenSFML;
-with EingabeSFML;
 
 package body AuswahlMenueSteuerungSFML is
 
@@ -45,6 +46,8 @@ package body AuswahlMenueSteuerungSFML is
       ViewflächeText.y := ViewflächeText.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
       
+      ViewflächeText := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => ViewflächeText,
+                                                                          VerhältnisExtern => (0.10, 0.70));
       
       ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => Views.SteuerungviewAccesse (2),
                                           GrößeExtern          => ViewflächeText,
@@ -121,12 +124,12 @@ package body AuswahlMenueSteuerungSFML is
       
       Textposition.y := 0.00;
       Textposition.x := TextKonstanten.StartpositionText.x;
-      Textbreite := 0.00;
       
       PositionenSchleife:
       for PositionSchleifenwert in TastenbelegungDatentypen.Tastenbelegung_Auswählbar_Enum'Range loop
          
-         AktuelleBelegung := EingabeSFML.Tastenbelegung (PositionSchleifenwert);
+         -- Das mal mit der Ermittlung der neuen Taste in EingabeSFML zusammenführen. äöü
+         AktuelleBelegung := TastenbelegungVariablen.Tastenbelegung (PositionSchleifenwert);
          
          case
            AktuelleBelegung
@@ -134,14 +137,8 @@ package body AuswahlMenueSteuerungSFML is
             when Sf.Window.Keyboard.sfKeyUnknown =>
                Text := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugLeer);
                
-            when Sf.Window.Keyboard.sfKeyA .. Sf.Window.Keyboard.sfKeyZ =>
-               Text := TextKonstanten.LeerUnboundedString & Wide_Wide_Character'Val (AktuelleBelegung + 65);
-               
-            when Sf.Window.Keyboard.sfKeyNum0 .. Sf.Window.Keyboard.sfKeyNum9 =>
-               Text := TextKonstanten.LeerUnboundedString & Wide_Wide_Character'Val (AktuelleBelegung + 22);
-               
-            when Sf.Window.Keyboard.sfKeySpace =>
-               Text := TextKonstanten.LeerUnboundedString & "Space";
+            when Sf.Window.Keyboard.sfKeyA .. Sf.Window.Keyboard.sfKeyCount =>
+               Text := TastenbelegungKonstanten.Tastennamen (AktuelleBelegung);
                
             when others =>
                Text := TextKonstanten.LeerUnboundedString & Wide_Wide_Character'Val (191);
@@ -152,9 +149,6 @@ package body AuswahlMenueSteuerungSFML is
          
          Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.TextAccess,
                                        position => Textposition);
-
-         Textbreite := TextberechnungenBreiteSFML.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.TextAccess,
-                                                                           TextbreiteExtern => Textbreite);
          
          FarbeFestlegen (AuswahlExtern    => AuswahlExtern,
                          TextnummerExtern => TastenbelegungDatentypen.Tastenbelegung_Enum'Pos (PositionSchleifenwert),

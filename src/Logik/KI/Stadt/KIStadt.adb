@@ -191,9 +191,8 @@ package body KIStadt is
                      null;
                      
                   elsif
-                    DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                       FremdeRasseExtern => FremdeEinheit.Rasse)
-                    /= SystemDatentypen.Krieg_Enum
+                    SystemDatentypen.Krieg_Enum /= DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => StadtRasseNummerExtern.Rasse,
+                                                                                                      FremdeRasseExtern => FremdeEinheit.Rasse)
                   then
                      null;
                      
@@ -235,9 +234,8 @@ package body KIStadt is
             null;
             
          elsif
-           EinheitenModifizieren.EinheitAnforderungenErfüllt (StadtRasseNummerExtern => StadtRasseNummerExtern,
+          True = EinheitenModifizieren.EinheitAnforderungenErfüllt (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                                IDExtern               => EinheitenSchleifenwert)
-           = True
          then
             NotfallEinheitBauen (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                  EinheitIDExtern        => EinheitenSchleifenwert);
@@ -266,14 +264,12 @@ package body KIStadt is
       elsif
         LeseEinheitenDatenbank.Angriff (RasseExtern => StadtRasseNummerExtern.Rasse,
                                         IDExtern    => NotfallEinheit)
-        +
-        LeseEinheitenDatenbank.Verteidigung (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                             IDExtern    => NotfallEinheit)
+        + LeseEinheitenDatenbank.Verteidigung (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                               IDExtern    => NotfallEinheit)
         < LeseEinheitenDatenbank.Angriff (RasseExtern => StadtRasseNummerExtern.Rasse,
                                           IDExtern    => EinheitIDExtern)
-        +
-        LeseEinheitenDatenbank.Verteidigung (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                             IDExtern    => EinheitIDExtern)
+        + LeseEinheitenDatenbank.Verteidigung (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                               IDExtern    => EinheitIDExtern)
       then
          NotfallEinheit := EinheitIDExtern;
          

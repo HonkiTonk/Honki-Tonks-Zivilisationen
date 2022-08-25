@@ -48,6 +48,9 @@ package body AnzeigeEingabeSFML is
             
          when SystemDatentypen.Ja_Nein_Enum =>
             AnzeigeJaNein;
+            
+         when SystemDatentypen.Zeichen_Eingabe_Enum =>
+            null;
       end case;
       
    end Fragenaufteilung;
@@ -152,7 +155,7 @@ package body AnzeigeEingabeSFML is
       Textbreite := 0.00;
       Textposition.y := TextKonstanten.StartpositionText.y;
       
-      AktuelleAuswahl := NachGrafiktask.AktuelleAuswahl.AuswahlEins;
+      AktuelleAuswahl := NachGrafiktask.AktuelleAuswahl.AuswahlZwei;
       
       TextSchleife:
       for TextSchleifenwert in TextaccessVariablen.JaNeinAccessArray'Range loop

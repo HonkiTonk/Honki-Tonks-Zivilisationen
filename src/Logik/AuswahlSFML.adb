@@ -17,7 +17,7 @@ with Vergleiche;
 
 package body AuswahlSFML is
 
-   function AuswahlJaNeinSFML
+   function JaNein
      (FrageZeileExtern : in Positive)
       return Boolean
    is begin
@@ -29,7 +29,7 @@ package body AuswahlSFML is
       loop
       
          AktuelleAuswahl := MausAuswahl;
-         NachGrafiktask.AktuelleAuswahl.AuswahlEins := AktuelleAuswahl;
+         NachGrafiktask.AktuelleAuswahl.AuswahlZwei := AktuelleAuswahl;
       
          case
            EingabeSFML.Tastenwert
@@ -67,7 +67,7 @@ package body AuswahlSFML is
             return False;
       end case;
       
-   end AuswahlJaNeinSFML;
+   end JaNein;
    
    
    

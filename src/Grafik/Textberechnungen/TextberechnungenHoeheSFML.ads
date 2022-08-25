@@ -3,7 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Sf.Graphics; use Sf.Graphics;
 
--- Hier mal noch Textanfang einbauen? äöü
 package TextberechnungenHoeheSFML is
 
    function HalbeBildschirmhöhe

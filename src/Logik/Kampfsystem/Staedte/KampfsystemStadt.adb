@@ -3,11 +3,12 @@ pragma Warnings (Off, "*array aggregate*");
 
 with EinheitenDatentypen; use EinheitenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
-with KampfDatentypen; use KampfDatentypen;
+with ProduktionDatentypen; use ProduktionDatentypen;
 with EinheitenKonstanten;
 with StadtKonstanten;
 with SystemDatentypen;
 with StadtDatentypen;
+with KampfKonstanten;
 
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
@@ -40,8 +41,8 @@ package body KampfsystemStadt is
                                                                                          AngreiferExtern          => True);
       
       -- Arbeiter nur halb anrechnen?
-      GesundheitStadt := ProduktionDatentypen.Stadtproduktion (LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => VerteidigendeStadtRasseNummerExtern,
-                                                                                                  EinwohnerArbeiterExtern => True));
+      GesundheitStadt := KampfDatentypen.Kampfwerte (LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => VerteidigendeStadtRasseNummerExtern,
+                                                                                        EinwohnerArbeiterExtern => True));
       
       return Kampf (AngreifendeEinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern,
                     VerteidigendeStadtRasseNummerExtern => VerteidigendeStadtRasseNummerExtern);
@@ -154,8 +155,8 @@ package body KampfsystemStadt is
    function SchadenStadtBerechnen
      (AngriffExtern : in KampfDatentypen.Kampfwerte;
       VerteidigungExtern : in KampfDatentypen.Kampfwerte;
-      StadtgesundheitExtern : in ProduktionDatentypen.Feldproduktion)
-      return ProduktionDatentypen.Feldproduktion
+      StadtgesundheitExtern : in KampfDatentypen.Kampfwerte)
+      return KampfDatentypen.Kampfwerte
    is begin
       
       -- Bei Extremfällen AngerichteterSchaden schon vorher einen Wert geben?
@@ -189,10 +190,10 @@ package body KampfsystemStadt is
       AngerichteterSchaden := 0;
       
       AngerichteterSchadenSchleife:
-      for AngerichteterSchadenSchleifenwert in reverse SchadenAngerichtetArray'Range (2) loop
+      for AngerichteterSchadenSchleifenwert in reverse KampfKonstanten.SchadenAngerichtetArray'Range (2) loop
          
          if
-           Kampfglück >= SchadenAngerichtet (WelcherFall, AngerichteterSchadenSchleifenwert)
+           Kampfglück >= KampfKonstanten.SchadenAngerichtet (WelcherFall, AngerichteterSchadenSchleifenwert)
          then
             AngerichteterSchaden := AngerichteterSchaden + AngerichteterSchadenSchleifenwert;
             exit AngerichteterSchadenSchleife;
@@ -204,7 +205,7 @@ package body KampfsystemStadt is
       end loop AngerichteterSchadenSchleife;
       
       if
-        StadtgesundheitExtern - AngerichteterSchaden < ProduktionDatentypen.Feldproduktion'First
+        StadtgesundheitExtern - AngerichteterSchaden < KampfDatentypen.Kampfwerte'First
       then
          return 0;
          

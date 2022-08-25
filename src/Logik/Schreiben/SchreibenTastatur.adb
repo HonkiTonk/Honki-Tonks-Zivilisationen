@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Directories; use Ada.Directories;
 
-with EingabeSFML;
+with TastenbelegungVariablen;
 
 package body SchreibenTastatur is
 
@@ -24,8 +24,8 @@ package body SchreibenTastatur is
                     Name => "Tastenbelegung");
       end case;
       
-      EingabeSFML.TastenbelegungArray'Write (Stream (File => TastenbelegungSpeichern),
-                                             EingabeSFML.Tastenbelegung);
+      TastenbelegungVariablen.TastenbelegungArray'Write (Stream (File => TastenbelegungSpeichern),
+                                                         TastenbelegungVariablen.Tastenbelegung);
       
       Close (File => TastenbelegungSpeichern);
       

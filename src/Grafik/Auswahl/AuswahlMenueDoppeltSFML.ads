@@ -25,7 +25,6 @@ private
    
    Textposition : Sf.System.Vector2.sfVector2f;
    
-   -- Mal eine eigene Konstante für die Viewflächen anlegen. äöü
    type ViewflächenArray is array (GrafikRecordKonstanten.MenüDoppelbereich'Range) of Sf.System.Vector2.sfVector2f;
    Viewfläche : ViewflächenArray := (others => TextKonstanten.StartpositionText);
    

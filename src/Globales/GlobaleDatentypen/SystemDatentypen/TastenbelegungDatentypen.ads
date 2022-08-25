@@ -3,13 +3,11 @@ pragma Warnings (Off, "*array aggregate*");
 
 package TastenbelegungDatentypen is
 
-   -- Raus- und reinzoomen einbauen. äöü
    type Tastenbelegung_Enum is (
                                 Leer_Tastenbelegung_Enum,
                                 
                                 -- Bewegungz
-                                Oben_Enum, Links_Enum, Unten_Enum, Rechts_Enum, Links_Oben_Enum, Rechts_Oben_Enum, Links_Unten_Enum, Rechts_Unten_Enum, Ebene_Hoch_Enum, Ebene_Runter_Enum,
-                                Auswählen_Enum, Menü_Zurück_Enum,
+                                Oben_Enum, Links_Enum, Unten_Enum, Rechts_Enum, Links_Oben_Enum, Rechts_Oben_Enum, Links_Unten_Enum, Rechts_Unten_Enum, Ebene_Hoch_Enum, Ebene_Runter_Enum, Menü_Zurück_Enum,
                                 
                                 -- Ab hier auswählbar.
                                 Bauen_Enum, Forschung_Enum,
@@ -22,7 +20,7 @@ package TastenbelegungDatentypen is
                                 Wald_Aufforsten_Enum, Roden_Trockenlegen_Enum,
                                 
                                 -- Einheitenbefehle allgemein
-                                Heilen_Enum, Verschanzen_Enum, Runde_Aussetzen_Enum, Plündern_Enum, Auflösen_Enum, Einheit_Verbessern_Enum, Heimatstadt_Ändern_Enum,
+                                Heilen_Enum, Verschanzen_Enum, Plündern_Enum, Auflösen_Enum, Einheit_Verbessern_Enum, Heimatstadt_Ändern_Enum,
                                 
                                 -- Sonstiges
                                 Diplomatie_Enum, Gehe_Zu_Enum,
@@ -32,7 +30,7 @@ package TastenbelegungDatentypen is
                                 
                                 Runde_Beenden_Enum,
                                 
-                                Debugmenü_Enum
+                                Debugmenü_Enum, Auswählen_Enum
                                );
 
    subtype Tastenbelegung_Verwendet_Enum is Tastenbelegung_Enum range Oben_Enum .. Tastenbelegung_Enum'Last;

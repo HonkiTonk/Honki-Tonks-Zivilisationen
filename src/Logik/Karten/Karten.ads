@@ -8,7 +8,7 @@ with ZahlenDatentypen;
 
 package Karten is
 
-   -- Muss gesetzt werden da sonst im aktuellen Problem die Berechnung der Sichweite durch den Grafiktask nicht funktioniert.
+   -- Muss gesetzt werden da sonst im aktuellen System die Berechnung der Sichweite durch den Grafiktask nicht funktioniert!
    Karteneinstellungen : KartenRecords.PermanenteKartenparameterRecord := KartenRecordKonstanten.Standardkartenparameter;
 
    -- Später die Anzahl der Ebenen auch vom Nutzer einstellbar machen? äöü

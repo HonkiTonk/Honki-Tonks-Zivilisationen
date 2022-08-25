@@ -6,9 +6,13 @@ package KartenDatentypen is
    type Kartenfeld is range -1_000 .. 1_000;
    subtype KartenfeldNatural is Kartenfeld range 0 .. Kartenfeld'Last;
    subtype KartenfeldPositiv is KartenfeldNatural range 1 .. KartenfeldNatural'Last;
+   
    subtype Stadtfeld is KartenfeldPositiv range KartenfeldPositiv'First .. 20;
+   
    subtype SichtweiteNatural is KartenfeldNatural range KartenfeldNatural'First .. 10;
+   -- Dafür auch mal einen subtype für die Einheitensichtweite einbauen? äöü
    subtype Sichtweite is SichtweiteNatural range 1 .. SichtweiteNatural'Last;
+   
    -- Noch Umgebungsbereich von 0 .. X einbauen? äöü
    subtype UmgebungsbereichDrei is Kartenfeld range -3 .. 3;
    subtype UmgebungsbereichZwei is UmgebungsbereichDrei range -2 .. 2;

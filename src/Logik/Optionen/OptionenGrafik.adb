@@ -43,7 +43,7 @@ package body OptionenGrafik is
             when RueckgabeDatentypen.Speichern_Enum =>
                EinstellungenSpeichern;
                
-            when RueckgabeDatentypen.Zurück_Enum | RueckgabeDatentypen.Spiel_Beenden_Enum | RueckgabeDatentypen.Hauptmenü_Enum =>
+            when RueckgabeDatentypen.Zurück_Beenden_Enum'Range =>
                return AuswahlWert;
                
             when others =>

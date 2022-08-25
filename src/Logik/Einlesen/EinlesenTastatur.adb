@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Directories; use Ada.Directories;
 
-with EingabeSFML;
+with TastenbelegungVariablen;
 
 package body EinlesenTastatur is
 
@@ -19,12 +19,12 @@ package body EinlesenTastatur is
                   Name => "Tastenbelegung");
 
          when False =>
-            EingabeSFML.StandardTastenbelegungLaden;
+            TastenbelegungVariablen.StandardTastenbelegungLaden;
             return;
       end case;
       
-      EingabeSFML.TastenbelegungArray'Read (Stream (File => TastenbelegungLaden),
-                                            EingabeSFML.Tastenbelegung);
+      TastenbelegungVariablen.TastenbelegungArray'Read (Stream (File => TastenbelegungLaden),
+                                                        TastenbelegungVariablen.Tastenbelegung);
       
       Close (File => TastenbelegungLaden);
       

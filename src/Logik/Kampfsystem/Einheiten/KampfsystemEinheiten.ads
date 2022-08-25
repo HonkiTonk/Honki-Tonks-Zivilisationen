@@ -7,7 +7,6 @@ with SpielVariablen;
 with KampfDatentypen;
 
 private with KampfRecords;
-private with StadtDatentypen;
 
 package KampfsystemEinheiten is
 
@@ -41,58 +40,14 @@ package KampfsystemEinheiten is
 
 private
 
-   AngerichteterSchaden : StadtDatentypen.MaximaleStädteMitNullWert;
+   WelcherFall : KampfDatentypen.Kampf_Unterschiede_Enum;
 
-   KampfwerteVerteidiger : KampfRecords.KampfwerteRecord;
-   KampfwerteAngreifer : KampfRecords.KampfwerteRecord;
+   AngerichteterSchaden : KampfDatentypen.Kampfwerte;
 
    Kampfglück : Float;
 
-   -- Die Werte gelten immer aus Sicht des Angreifers
-   -- Mal auslagern und mit KampfsystemStadt zusammenführen. äöü
-   type Kampf_Unterschiede_Enum is (
-                                    Gleich_Enum, Stärker_Enum, Extrem_Stärker_Enum, Schwächer_Enum, Extrem_Schwächer_Enum
-                                   );
-
-   WelcherFall : Kampf_Unterschiede_Enum;
-
-   type SchadenAngerichtetArray is array (Kampf_Unterschiede_Enum'Range, StadtDatentypen.MaximaleStädte'First .. 3) of Float;
-   SchadenAngerichtet : constant SchadenAngerichtetArray := (
-                                                             Gleich_Enum =>
-                                                               (
-                                                                1 => 0.40,
-                                                                2 => 0.75,
-                                                                3 => 0.90
-                                                               ),
-
-                                                             Stärker_Enum =>
-                                                               (
-                                                                1 => 0.30,
-                                                                2 => 0.65,
-                                                                3 => 0.80
-                                                               ),
-
-                                                             Extrem_Stärker_Enum =>
-                                                               (
-                                                                1 => 0.20,
-                                                                2 => 0.50,
-                                                                3 => 0.70
-                                                               ),
-
-                                                             Schwächer_Enum =>
-                                                               (
-                                                                1 => 0.55,
-                                                                2 => 0.85,
-                                                                3 => 0.95
-                                                               ),
-
-                                                             Extrem_Schwächer_Enum =>
-                                                               (
-                                                                1 => 0.70,
-                                                                2 => 0.90,
-                                                                3 => 0.98
-                                                               )
-                                                            );
+   KampfwerteVerteidiger : KampfRecords.KampfwerteRecord;
+   KampfwerteAngreifer : KampfRecords.KampfwerteRecord;
 
    function Kampf
      (VerteidigerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

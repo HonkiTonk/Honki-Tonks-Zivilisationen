@@ -4,8 +4,8 @@ pragma Warnings (Off, "*array aggregate*");
 with EinheitenDatentypen; use EinheitenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
 with KampfDatentypen; use KampfDatentypen;
-with StadtDatentypen; use StadtDatentypen;
 with EinheitenKonstanten;
+with KampfKonstanten;
 
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
@@ -129,10 +129,10 @@ package body KampfsystemEinheiten is
       AngerichteterSchaden := 0;
       
       AngerichteterSchadenSchleife:
-      for AngerichteterSchadenSchleifenwert in reverse SchadenAngerichtetArray'Range (2) loop
+      for AngerichteterSchadenSchleifenwert in reverse KampfKonstanten.SchadenAngerichtetArray'Range (2) loop
          
          if
-           Kampfglück >= SchadenAngerichtet (WelcherFall, AngerichteterSchadenSchleifenwert)
+           Kampfglück >= KampfKonstanten.SchadenAngerichtet (WelcherFall, AngerichteterSchadenSchleifenwert)
          then
             AngerichteterSchaden := AngerichteterSchaden + AngerichteterSchadenSchleifenwert;
             exit AngerichteterSchadenSchleife;

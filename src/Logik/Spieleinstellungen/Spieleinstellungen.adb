@@ -89,7 +89,7 @@ package body Spieleinstellungen is
                   
                   exit SpielEinstellungenSchleife;
 
-               when RueckgabeDatentypen.Hauptmenü_Beenden_Enum'Range =>
+               when RueckgabeDatentypen.Zurück_Beenden_Enum'Range =>
                   return Auswahl;
 
                when others =>

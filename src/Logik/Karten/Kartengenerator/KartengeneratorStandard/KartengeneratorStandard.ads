@@ -34,7 +34,7 @@ private
    end record;
    
    -- Später Nutzereinstellbar machen. äöü
-   WahrscheinlichkeitLandmasse : constant WahrscheinlichkeitenRecord := (25, 80);
+   WahrscheinlichkeitLandmasse : constant WahrscheinlichkeitenRecord := (20, 80);
    WahrscheinlichkeitLandInLandmasse : constant WahrscheinlichkeitenRecord := (0, 90);
    WahrscheinlichkeitWasser : constant WahrscheinlichkeitenRecord := (0, 95);
 

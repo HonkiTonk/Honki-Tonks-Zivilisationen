@@ -6,7 +6,7 @@ with WichtigesKonstanten;
 with ZahlenDatentypen;
 with TextnummernKonstanten;
 
-with Auswahlaufteilungen;
+with AuswahlSFML;
 
 package body DiplomatischerZustand is
 
@@ -123,7 +123,7 @@ package body DiplomatischerZustand is
                return False;
               
             elsif
-              Auswahlaufteilungen.AuswahlJaNein (FrageZeileExtern => TextnummernKonstanten.FrageKriegErklären) = True
+              AuswahlSFML.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageKriegErklären) = True
             then
                DiplomatischenStatusÄndern (RasseEinsExtern   => EigeneRasseExtern,
                                             RasseZweiExtern   => GegnerischeRasseExtern,

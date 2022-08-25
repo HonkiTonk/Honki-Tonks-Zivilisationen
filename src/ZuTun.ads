@@ -7,7 +7,7 @@
 -- Aktuell höchste Priorität:
 
 -- KI überarbeiten (Funktioniert inzwischen Minimal, später weiter verbessern).
--- Grafiken überarbeiten (Angefangen die Textanzeige in Views umzuwandeln. Sie Menüs in Views umgewandelt. Angefangen neue Texturen zu erstellen.).
+-- Grafiken überarbeiten (Menüs und Textanzeigen in Views umgebaut. Angefangen neue Texturen zu erstellen.).
 -- Einfache Musik/Sounds einbauen.
 -- Forschungen/Einheiten/Gebäude für zweite Rasse einbauen.
 -- Herausfinden wie man eine Windowsversion ohne GPL Zwang kompiliert.
@@ -18,7 +18,7 @@
 -- Sonstiges:
 
 -- Diese ganze Aufteilung zwischen AufgabenDatentypen, TastenbelegungDatentypen und KartenVerbesserungDatentypen muss mal verbessert werden.
--- Brauche ich überhaupt zwei mögliche Tasten bei der Tastenbelegung?
+-- Liste beim Speichern/Laden anlegen, ähnlich wie bei der Sprachauswahl.
 
 
 

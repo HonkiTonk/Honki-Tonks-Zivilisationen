@@ -20,7 +20,7 @@ package body OptionenSound is
          case
            AuswahlWert
          is  
-            when RueckgabeDatentypen.Zurück_Enum | RueckgabeDatentypen.Spiel_Beenden_Enum | RueckgabeDatentypen.Hauptmenü_Enum =>
+            when RueckgabeDatentypen.Zurück_Beenden_Enum'Range =>
                return AuswahlWert;
                
             when others =>

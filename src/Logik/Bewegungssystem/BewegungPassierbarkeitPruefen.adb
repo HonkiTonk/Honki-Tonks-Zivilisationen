@@ -129,40 +129,21 @@ package body BewegungPassierbarkeitPruefen is
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is begin
-      
-      -- Prüfung war für Zeug wie Sperre gedacht, entfernen? äöü
+                     
+      -- Funktioniert akutell nicht richtig, beheben oder entfernen? äöü
+      --  elsif
+      --    LeseKarten.Weg (KoordinatenExtern => NeueKoordinatenExtern) /= KartenVerbesserungDatentypen.Leer_Weg_Enum
+      --    and then
+      --       KartenAllgemein.PassierbarWeg (KoordinatenExtern    => NeueKoordinatenExtern,
+      --                                      PassierbarkeitExtern => UmgebungExtern)
+      --    = False
+      --   then
+      --     null;
+         
+      -- Warum kommt die Prüfung hier noch einmal?
       if
-        LeseKarten.Verbesserung (KoordinatenExtern => NeueKoordinatenExtern) /= KartenVerbesserungDatentypen.Leer_Verbesserung_Enum
-        and
-          False = KartenAllgemein.PassierbarVerbesserung (KoordinatenExtern    => NeueKoordinatenExtern,
-                                                          PassierbarkeitExtern => UmgebungExtern)
-      then
-         null;
-         
-         -- Funktioniert akutell nicht richtig, beheben oder entfernen? äöü
-    --  elsif
-    --    LeseKarten.Weg (KoordinatenExtern => NeueKoordinatenExtern) /= KartenVerbesserungDatentypen.Leer_Weg_Enum
-    --    and then
-   --       KartenAllgemein.PassierbarWeg (KoordinatenExtern    => NeueKoordinatenExtern,
-   --                                      PassierbarkeitExtern => UmgebungExtern)
-    --    = False
-   --   then
-    --     null;
-         
-         -- Warum kommt die Prüfung hier noch einmal?
-      elsif
-        LeseKarten.Verbesserung (KoordinatenExtern => NeueKoordinatenExtern) /= KartenVerbesserungDatentypen.Leer_Verbesserung_Enum
-        and then
-          KartenAllgemein.PassierbarVerbesserung (KoordinatenExtern    => NeueKoordinatenExtern,
-                                                  PassierbarkeitExtern => UmgebungExtern)
-        = False
-      then
-         null;
-         
-      elsif
-        KartenAllgemein.PassierbarGrund (KoordinatenExtern    => NeueKoordinatenExtern,
-                                         PassierbarkeitExtern => UmgebungExtern)
-        = False
+        False = KartenAllgemein.PassierbarGrund (KoordinatenExtern    => NeueKoordinatenExtern,
+                                                 PassierbarkeitExtern => UmgebungExtern)
       then
          null;
                   
@@ -322,10 +303,9 @@ package body BewegungPassierbarkeitPruefen is
                null;
                   
             elsif
-              BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern           => StadtRasseNummerExtern.Rasse,
-                                                                     IDExtern              => EinheitenIDExtern,
-                                                                     NeueKoordinatenExtern => KartenWert)
-              = False
+              False = BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern           => StadtRasseNummerExtern.Rasse,
+                                                                             IDExtern              => EinheitenIDExtern,
+                                                                             NeueKoordinatenExtern => KartenWert)
             then
                null;
                   

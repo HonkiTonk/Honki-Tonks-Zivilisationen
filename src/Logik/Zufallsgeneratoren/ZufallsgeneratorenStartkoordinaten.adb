@@ -1,12 +1,6 @@
 pragma SPARK_Mode (Off);
 pragma Warnings (Off, "*array aggregate*");
 
-with KartengrundDatentypen; use KartengrundDatentypen;
-
-with LeseKarten;
-
-with BewegungPassierbarkeitPruefen;
-
 package body ZufallsgeneratorenStartkoordinaten is
 
    function Startkoordinaten
@@ -18,41 +12,23 @@ package body ZufallsgeneratorenStartkoordinaten is
         RasseExtern
       is
          when RassenDatentypen.Rassen_Unterirdisch_Enum'Range =>
-            EAchse := -1;
+            Startkoordinate.EAchse := -1;
             
          when RassenDatentypen.Rassen_Überirdisch_Enum'Range =>
-            EAchse := 0;
+            Startkoordinate.EAchse := 0;
       end case;
       
       KartenpunktWählen.Reset (Gen => KartenpunktGewählt);
+         
+      Startkoordinate.YAchse := KartenpunktWählen.Random (Gen   => KartenpunktGewählt,
+                                                           First => KartenDatentypen.KartenfeldPositiv'First,
+                                                           Last  => Karten.Karteneinstellungen.Kartengröße.YAchse);
       
-      PositionBestimmenSchleife:
-      loop
+      Startkoordinate.XAchse := KartenpunktWählen.Random (Gen   => KartenpunktGewählt,
+                                                           First => KartenDatentypen.KartenfeldPositiv'First,
+                                                           Last  => Karten.Karteneinstellungen.Kartengröße.XAchse);
          
-         YAchse := KartenpunktWählen.Random (Gen   => KartenpunktGewählt,
-                                              First => KartenDatentypen.KartenfeldPositiv'First,
-                                              Last  => Karten.Karteneinstellungen.Kartengröße.YAchse);
-      
-         XAchse := KartenpunktWählen.Random (Gen   => KartenpunktGewählt,
-                                              First => KartenDatentypen.KartenfeldPositiv'First,
-                                              Last  => Karten.Karteneinstellungen.Kartengröße.XAchse);
-         
-         -- Diese Prüfungen hier mal verbessern/nach SpieleinstellungenRasseSpieler verschieben. äöü
-         if
-           BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern           => RasseExtern,
-                                                                  IDExtern              => 1,
-                                                                  NeueKoordinatenExtern => (EAchse, YAchse, XAchse))
-             = True
-           and
-             LeseKarten.AktuellerGrund (KoordinatenExtern => (EAchse, YAchse, XAchse)) /= KartengrundDatentypen.Eis_Enum
-         then
-            return (EAchse, YAchse, XAchse);
-               
-         else
-            null;
-         end if;
-         
-      end loop PositionBestimmenSchleife;
+      return Startkoordinate;
       
    end Startkoordinaten;
 

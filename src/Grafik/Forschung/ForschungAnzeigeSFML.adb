@@ -178,7 +178,7 @@ package body ForschungAnzeigeSFML is
       ViewnummerExtern : in Positive)
    is begin
       
-      -- Sieht auch ohne Anpassung ganz gut aus? äöü
+      -- Sieht auch ohne Anpassung ganz gut aus?
       Viewfläche (ViewnummerExtern) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
                                                                                          VerhältnisExtern => (0.50, 0.50));
       

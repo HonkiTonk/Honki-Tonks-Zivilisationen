@@ -3,7 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 with GrafikDatentypen;
 
-with AuswahlSFML;
 with AuswahlMenuesEinfach;
 with AuswahlSteuerungsmenue;
 with NachGrafiktask;
@@ -29,16 +28,5 @@ package body Auswahlaufteilungen is
       end case;
       
    end AuswahlMenüsAufteilung;
-   
-   
-   
-   function AuswahlJaNein
-     (FrageZeileExtern : in Positive)
-      return Boolean
-   is begin
-      
-      return AuswahlSFML.AuswahlJaNeinSFML (FrageZeileExtern => FrageZeileExtern);
-      
-   end AuswahlJaNein;
    
 end Auswahlaufteilungen;

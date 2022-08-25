@@ -22,7 +22,6 @@ package UmwandlungenVerschiedeneDatentypen is
      (RückgabeExtern : in RueckgabeDatentypen.Rassen_Verwendet_Enum)
       return RassenDatentypen.Rassen_Verwendet_Enum;
    
-   -- Namen wieder Kürzen äöü.
    function KartenartrückgabeNachKartenart
      (RückgabeExtern : in RueckgabeDatentypen.Kartenart_Enum)
       return KartenDatentypen.Kartenart_Enum;

@@ -28,7 +28,7 @@ package body SpieleinstellungenSonstiges is
             when RueckgabeDatentypen.Zufall_Enum =>
                SpielVariablen.Allgemeines.Schwierigkeitsgrad := ZufallsgeneratorenSpieleinstellungen.ZufälligerSchwiewrigkeitsgrad;
                
-            when RueckgabeDatentypen.Fertig_Enum =>
+            when RueckgabeDatentypen.Fertig_Enum | RueckgabeDatentypen.Zurück_Enum =>
                return;
                
             when others =>

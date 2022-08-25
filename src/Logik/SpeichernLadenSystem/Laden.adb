@@ -16,7 +16,7 @@ with GrafikDatentypen;
 
 with Karten;
 with Ladezeiten;
-with Auswahlaufteilungen;
+with AuswahlSFML;
 with SpeichernLadenAllgemein;
 with NachGrafiktask;
 
@@ -62,7 +62,7 @@ package body Laden is
          
       else
          case
-           Auswahlaufteilungen.AuswahlJaNein (FrageZeileExtern => TextnummernKonstanten.FrageLadeFalscheVersion)
+           AuswahlSFML.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageLadeFalscheVersion)
          is
             when True =>
                null;

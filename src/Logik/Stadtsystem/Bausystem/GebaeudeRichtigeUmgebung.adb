@@ -64,29 +64,28 @@ package body GebaeudeRichtigeUmgebung is
                null;
                         
             elsif
-              LeseKarten.BestimmteStadtBelegtGrund (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                    KoordinatenExtern      => KartenWert)
-              = False
+              False = LeseKarten.BestimmteStadtBelegtGrund (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                            KoordinatenExtern      => KartenWert)
             then
                null;
                   
             elsif
-              -- An neues Mehrfachumgebung möglich anpassen. äöü
-              -- Noch um Umgebungsverbesserung erweitern?
+              -- An neue Mehrfachumgebung möglich anpassen. äöü
+              -- Noch um Umgebungsverbesserung erweitern? äöü
               LeseKarten.AktuellerGrund (KoordinatenExtern => KartenWert) = LeseGebaeudeDatenbank.GrundBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                                                         IDExtern    => GebäudeIDExtern)
+                                                                                                                  IDExtern    => GebäudeIDExtern)
               or
-                LeseGebaeudeDatenbank.FlussBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                      IDExtern    => GebäudeIDExtern)
-              = False
-            -- LeseKarten.Fluss (KoordinatenExtern => KartenWert) = LeseGebaeudeDatenbank.UmgebungBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
-            --                                                                                               IDExtern    => GebäudeIDExtern)
+                False = LeseGebaeudeDatenbank.FlussBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                              IDExtern    => GebäudeIDExtern)
+              -- or
+              -- LeseKarten.Fluss (KoordinatenExtern => KartenWert) = LeseGebaeudeDatenbank.FlussBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
+              --                                                                                            IDExtern    => GebäudeIDExtern)
               or
                 LeseKarten.Ressource (KoordinatenExtern => KartenWert) = LeseGebaeudeDatenbank.RessourceBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
                                                                                                                    IDExtern    => GebäudeIDExtern)
             then
                return True;
-                  
+               
             else
                null;
             end if;

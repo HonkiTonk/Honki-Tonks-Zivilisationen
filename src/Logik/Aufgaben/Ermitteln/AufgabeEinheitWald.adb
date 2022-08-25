@@ -12,7 +12,7 @@ with LeseKarten;
 
 with AufgabeEinheitRoden;
 with Fehler;
-with Auswahlaufteilungen;
+with AuswahlSFML;
 with AufgabenArbeitszeitWald;
 with Grenzpruefungen;
 
@@ -49,7 +49,7 @@ package body AufgabeEinheitWald is
           SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
       then
          case
-           Auswahlaufteilungen.AuswahlJaNein (FrageZeileExtern => TextnummernKonstanten.FrageLandverbesserungErsetzen)
+           AuswahlSFML.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageLandverbesserungErsetzen)
          is
             when True =>
                null;

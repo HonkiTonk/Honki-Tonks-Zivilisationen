@@ -1,8 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
--- with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
-
 with KartenRecordKonstanten;
 
 with KartenkoordinateEAchseBerechnen;
@@ -42,8 +40,6 @@ package body Kartenkoordinatenberechnungssystem is
         ÄnderungExtern.EAchse
       is
          when KartenKonstanten.LeerEAchseÄnderung =>
-            -- Hier mal herausfinden warum das gerne mal falsch ist. äöü
-            -- Put_Line (KoordinatenExtern.EAchse'Wide_Wide_Image);
             NeueKoordinate (LogikGrafikExtern, KoordinatenExtern.EAchse).EAchse := KoordinatenExtern.EAchse;
             
          when others =>

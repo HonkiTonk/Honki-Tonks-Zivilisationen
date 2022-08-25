@@ -30,13 +30,7 @@ package ZufallsgeneratorenStartkoordinaten is
 
 private
    
-   EAchse : KartenDatentypen.EbeneVorhanden;
-   
-   YAchse : KartenDatentypen.KartenfeldPositiv;
-   XAchse : KartenDatentypen.KartenfeldPositiv;
-   
-   -- Generatoren für Positionsbestimmung bei Spielstart, in Abhängigkeit der Kartengröße, da gibt es doch bestimmt eine bessere Lösung für
-   ZufallsPunktKarte : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Startkoordinate : KartenRecords.AchsenKartenfeldNaturalRecord;
 
    package KartenpunktWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.KartenfeldPositiv);
 

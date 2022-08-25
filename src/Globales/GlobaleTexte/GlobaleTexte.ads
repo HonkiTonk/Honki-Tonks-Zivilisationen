@@ -87,7 +87,7 @@ package GlobaleTexte is
    Fehlermeldung : TexteArray (1 .. 20) := (others => FehlenderText);
    Ladezeit : TexteArray (1 .. 16) := (others => FehlenderText);
    Frage : TexteArray (1 .. 45) := (others => FehlenderText);
-   Zeug : TexteArray (1 .. 72) := (others => FehlenderText);
+   Zeug : TexteArray (1 .. 73) := (others => FehlenderText);
    
    type ZweidimensionaleTexteArray is array (RassenDatentypen.Rassen_Verwendet_Enum range <>, ZahlenDatentypen.EigenesPositive range <>) of Unbounded_Wide_Wide_String;
    StädtenamenKI : ZweidimensionaleTexteArray (RassenDatentypen.Rassen_Verwendet_Enum'Range, 1 .. 3) := (others => (others => FehlenderText));

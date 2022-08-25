@@ -3,7 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 package body GrenzpruefungenAllgemein is
 
-   -- Das Später in die GRenzprüfungen schieben und diese dadurch ersetzen. äöü
    -- Nachdem ich herausgefunden habe wie man verschiedene generic Zahlentypen einbaut. äöü
    function Grenzprüfung
      (AktuellerWertExtern : in Zahlenwert;

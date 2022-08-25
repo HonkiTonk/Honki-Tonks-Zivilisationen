@@ -47,9 +47,6 @@ package body WeltkarteSFML is
                                           GrößeExtern          => (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x, GrafikEinstellungenSFML.AktuelleFensterAuflösung.y),
                                           AnzeigebereichExtern => GrafikRecordKonstanten.KarteAnzeigebereich);
       
-      -- Nimmt aktuell das ganze Fenster ein, weil mit den aktuellen Berechnungn nichts mehr rechts gezeichnet wird, fällt aber aktuell nicht auf weil die Leiste das verdeckt. äöü
-      -- Später mal anpassen? äöü
-      
       SichtbereichAnfangEnde := BerechnungenKarteSFML.SichtbereichKarteBerechnen (RasseExtern => EinheitRasseNummerExtern.Rasse);
       
       YMultiplikator := 0.00;
@@ -166,7 +163,6 @@ package body WeltkarteSFML is
          end case;
       end if;
       
-      -- Kan man das auch noch an anderen Stellen (Dateien) verwenden? Wahrscheinlich ja. äöü
       case
         KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld (SpriteAccesExtern  => SpriteAccess,
                                                               TexturAccessExtern => EingeleseneTexturenSFML.KartenfelderAccess (AktuellerKartengrund),
@@ -548,7 +544,7 @@ package body WeltkarteSFML is
       Textposition.x := PositionExtern.x - TextberechnungenBreiteSFML.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.KarteAccess) + 0.50 * BerechnungenKarteSFML.KartenfelderAbmessung.x;
       Textposition.y := PositionExtern.y - TextberechnungenHoeheSFML.Zeilenabstand;
       
-      -- Später noch einen Rahmen um den Namen bauen? äöü
+      -- Später noch einen Rahmen um den Namen bauen. äöü
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteAccess,
                                     position => Textposition);
       

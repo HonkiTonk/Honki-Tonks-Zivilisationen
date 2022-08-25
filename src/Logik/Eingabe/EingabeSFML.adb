@@ -12,6 +12,7 @@ with GlobaleTexte;
 with TextnummernKonstanten;
 with SystemDatentypen;
 with SystemRecordKonstanten;
+with TastenbelegungVariablen;
 
 with Fehler;
 with NachGrafiktask;
@@ -19,7 +20,7 @@ with NachLogiktask;
 
 package body EingabeSFML is
    
-   -- Zahleneingabe über eine eigene Version von Texteingabe regeln? äöü
+   -- Neue Version ähnlich der Texteingabe bauen. äöü
    function GanzeZahl
      (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
       ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger;
@@ -33,7 +34,6 @@ package body EingabeSFML is
          Fehler.LogikFehler (FehlermeldungExtern => "EingabeSFML.GanzeZahl - Frage außerhalb des Fragenbereichs.");
          
       else
-         -- Wegen der grafischen Anzeige festgelegt.
          NachGrafiktask.AnzeigeFrage := WelcheFrageExtern;
          AktuellerWert := 0;
          EingegebeneZahl.EingegebeneZahl := AktuellerWert;
@@ -367,6 +367,48 @@ package body EingabeSFML is
    
    
    
+   function TastenbelegungAnpassen
+     return Sf.Window.Keyboard.sfKeyCode
+   is begin
+      
+      TasteneingabeSchleife:
+      loop
+         
+         EingabeAbwarten;
+      
+         case
+           -- Maustaste mal als lokale Variable anlegen. äöü
+           NachLogiktask.MausTaste
+         is
+            when Sf.Window.Mouse.sfMouseRight =>
+               return Sf.Window.Keyboard.sfKeyUnknown;
+            
+            when others =>
+               Taste := NachLogiktask.TastaturTaste;
+         end case;
+      
+         case
+           Taste
+         is
+            when Sf.Window.Keyboard.sfKeyNumpad0 .. Sf.Window.Keyboard.sfKeyNumpad9 | Sf.Window.Keyboard.sfKeyAdd .. Sf.Window.Keyboard.sfKeySubtract =>
+               null;
+            
+            when Sf.Window.Keyboard.sfKeyEscape =>
+               return Sf.Window.Keyboard.sfKeyUnknown;
+               
+            when Sf.Window.Keyboard.sfKeyUnknown =>
+               null;
+               
+            when others =>
+               return Taste;
+         end case;
+         
+      end loop TasteneingabeSchleife;
+      
+   end TastenbelegungAnpassen;
+   
+   
+   
    procedure EingabeAbwarten
    is begin
       
@@ -409,10 +451,10 @@ package body EingabeSFML is
       end if;
       
       BelegungSchleife:
-      for BelegungSchleifenwert in TastenbelegungArray'Range loop
+      for BelegungSchleifenwert in TastenbelegungVariablen.TastenbelegungArray'Range loop
             
          if
-           Tastenbelegung (BelegungSchleifenwert) = Taste
+           TastenbelegungVariablen.Tastenbelegung (BelegungSchleifenwert) = Taste
          then
             return BelegungSchleifenwert;
                
@@ -425,14 +467,5 @@ package body EingabeSFML is
       return TastenbelegungDatentypen.Leer_Tastenbelegung_Enum;
       
    end Tastenwert;
-   
-   
-   
-   procedure StandardTastenbelegungLaden
-   is begin
-      
-      Tastenbelegung := TastenbelegungStandard;
-      
-   end StandardTastenbelegungLaden;
    
 end EingabeSFML;

@@ -2,9 +2,12 @@ pragma SPARK_Mode (Off);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
+with KartenDatentypen; use KartenDatentypen;
 with SpielVariablen;
 
 with KartengeneratorVariablen;
+with Karten;
+with Kartentest;
 
 package body ZufallsgeneratorenSpieleinstellungen is
    
@@ -26,7 +29,7 @@ package body ZufallsgeneratorenSpieleinstellungen is
       ZufälligeKartengrößeWählen.Reset (Gen => ZufälligeKartengrößeGewählt);
       
       return (ZufälligeKartengrößeWählen.Random (Gen   => ZufälligeKartengrößeGewählt,
-                                                 First => 20,
+                                                     First => 20,
                                                      Last  => KartenDatentypen.KartenfeldPositiv'Last),
               
               ZufälligeKartengrößeWählen.Random (Gen   => ZufälligeKartengrößeGewählt,
@@ -51,7 +54,6 @@ package body ZufallsgeneratorenSpieleinstellungen is
    procedure ZufälligeKartenform
    is begin
       
-      -- In drei Teile aufteilen damit man jede Achsen einzeln zufällig zuweisen kann? äöü
       ZufälligerEAchsenÜbergangWählen.Reset (Gen => ZufälligerEAchsenÜbergangGewählt);
       ZufälligerYAchsenÜbergangWählen.Reset (Gen => ZufälligerYAchsenÜbergangGewählt);
       ZufälligerXAchsenÜbergangWählen.Reset (Gen => ZufälligerXAchsenÜbergangGewählt);
@@ -175,7 +177,39 @@ package body ZufallsgeneratorenSpieleinstellungen is
    procedure ZufälligePole
    is begin
       
-      null;
+      -- Die Pole mal in ein Array basteln? äöü
+      ZufälligePolgrößenWählen.Reset (Gen => ZufälligePolgrößeGewählt);
+      
+      
+      KartengeneratorVariablen.Polgrößen (KartenDatentypen.Norden_Enum) := ZufälligePolgrößenWählen.Random (Gen   => ZufälligePolgrößeGewählt,
+                                                                                                                  First => 0,
+                                                                                                                  Last  => Karten.Karteneinstellungen.Kartengröße.YAchse / 2);
+      
+      KartengeneratorVariablen.Kartenparameter.Kartenpole.Nordpol := Kartentest.KartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablen.Polgrößen (KartenDatentypen.Norden_Enum));
+      
+      
+      
+      KartengeneratorVariablen.Polgrößen (KartenDatentypen.Süden_Enum) := ZufälligePolgrößenWählen.Random (Gen   => ZufälligePolgrößeGewählt,
+                                                                                                                  First => 0,
+                                                                                                                  Last  => Karten.Karteneinstellungen.Kartengröße.YAchse / 2);
+      
+      KartengeneratorVariablen.Kartenparameter.Kartenpole.Südpol := Kartentest.KartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablen.Polgrößen (KartenDatentypen.Süden_Enum));
+            
+      
+      
+      KartengeneratorVariablen.Polgrößen (KartenDatentypen.Westen_Enum) := ZufälligePolgrößenWählen.Random (Gen   => ZufälligePolgrößeGewählt,
+                                                                                                                  First => 0,
+                                                                                                                  Last  => Karten.Karteneinstellungen.Kartengröße.YAchse / 2);
+      
+      KartengeneratorVariablen.Kartenparameter.Kartenpole.Westpol := Kartentest.KartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablen.Polgrößen (KartenDatentypen.Westen_Enum));
+      
+      
+      
+      KartengeneratorVariablen.Polgrößen (KartenDatentypen.Osten_Enum) := ZufälligePolgrößenWählen.Random (Gen   => ZufälligePolgrößeGewählt,
+                                                                                                                 First => 0,
+                                                                                                                 Last  => Karten.Karteneinstellungen.Kartengröße.YAchse / 2);
+      
+      KartengeneratorVariablen.Kartenparameter.Kartenpole.Ostpol := Kartentest.KartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablen.Polgrößen (KartenDatentypen.Osten_Enum));
       
    end ZufälligePole;
 
