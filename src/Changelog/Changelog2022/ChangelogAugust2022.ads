@@ -38,7 +38,7 @@ package ChangelogAugust2022 is
    -- Version 0.03.7200 => 0.03.7400 (26.08.2022):
    
    -- Einheitenlisten überarbeitet.
-   -- Angefangen das Diplomatiemenü als SFML Version einzubauen.
+   -- Das Diplomatiemenü als SFML Version eingebaut.
    -- Eigene Datentypen für das Diplomatiesystem angelegt und entsprechend angepasst.
    -- Unnötigen Code gelöscht.
    -- Interne Struktur überarbeitet.
