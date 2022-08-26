@@ -1,8 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-private with Sf.System.Vector2;
-
 with RassenDatentypen; use RassenDatentypen;
 with StadtDatentypen; use StadtDatentypen;
 with EinheitenDatentypen; use EinheitenDatentypen;
@@ -38,8 +36,6 @@ private
    NeuesBauprojekt : StadtRecords.BauprojektRecord;
    GewähltesBauprojekt : StadtRecords.BauprojektRecord;
 
-   Mausposition : Sf.System.Vector2.sfVector2f;
-
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
 
    function MöglicheGebäudeErmitteln
@@ -73,15 +69,6 @@ private
                and
                  SpielVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
               );
-
-   function MausAuswahl
-     return StadtRecords.BauprojektRecord
-     with
-       Post => (
-                (if MausAuswahl'Result.Gebäude /= 0 then MausAuswahl'Result.Einheit = 0)
-                and
-                  (if MausAuswahl'Result.Einheit /= 0 then MausAuswahl'Result.Gebäude = 0)
-               );
 
    function AuswahlBauprojektSFML
      return StadtRecords.BauprojektRecord

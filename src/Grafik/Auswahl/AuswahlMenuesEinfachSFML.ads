@@ -6,7 +6,7 @@ private with Sf.Graphics.Color;
 
 with MenueDatentypen;
 
-private with TextKonstanten;
+private with GrafikRecordKonstanten;
 
 package AuswahlMenuesEinfachSFML is
 
@@ -21,9 +21,9 @@ private
    AktuelleEinstellung : Natural;
 
    Textbreite : Float;
+   Viewbreite : Float;
 
-   -- Für die Viewfläche mal einen eigenen Wert in den GrafikRecordKonstanten anlegen?
-   Viewfläche : Sf.System.Vector2.sfVector2f := TextKonstanten.StartpositionText;
+   Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartgrößeView;
    Textposition : Sf.System.Vector2.sfVector2f;
    Rechenwert : Sf.System.Vector2.sfVector2f;
 
@@ -36,28 +36,16 @@ private
 
 
 
-   function Textbearbeitung
+   function Textdarstellung
      (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum;
       ViewflächeExtern : in Sf.System.Vector2.sfVector2f;
       AktuelleAuswahlExtern : in Integer)
       return Sf.System.Vector2.sfVector2f
      with
        Post => (
-                  Textbearbeitung'Result.x >= 0.00
+                  Textdarstellung'Result.x >= 0.00
                 and
-                  Textbearbeitung'Result.y >= 0.00
-               );
-
-   function TextpositionFestlegen
-     (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum;
-      ViewflächeExtern : in Sf.System.Vector2.sfVector2f;
-      AktuelleAuswahlExtern : in Integer)
-      return Sf.System.Vector2.sfVector2f
-     with
-       Post => (
-                  TextpositionFestlegen'Result.x > 0.00
-                and
-                  TextpositionFestlegen'Result.y > 0.00
+                  Textdarstellung'Result.y >= 0.00
                );
 
 end AuswahlMenuesEinfachSFML;

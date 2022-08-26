@@ -3,10 +3,10 @@ pragma Warnings (Off, "*array aggregate*");
 
 with StadtDatentypen;
 with EinheitenDatentypen;
-with SystemDatentypen;
 with ForschungenDatentypen;
 with ProduktionDatentypen;
 with ZahlenDatentypen;
+with DiplomatieDatentypen;
 
 package WichtigesKonstanten is
    
@@ -38,12 +38,9 @@ package WichtigesKonstanten is
 
    
    
-   LeerAktuellerZustand : constant SystemDatentypen.Status_Untereinander_Enum := SystemDatentypen.Unbekannt_Enum;
-   LeerAktuelleSympathieBewertung : constant ProduktionDatentypen.Feldproduktion := 0;
+   LeerAktuellerZustand : constant DiplomatieDatentypen.Status_Untereinander_Enum := DiplomatieDatentypen.Unbekannt_Enum;
+   LeerAktuelleSympathieBewertung : constant DiplomatieDatentypen.Meinung := 0;
    LeerZeitSeitLetzterÄnderung : constant ZahlenDatentypen.EigenesNatural := ZahlenDatentypen.EigenesNatural'First;
-
-   
-   
    DiplomatischerStatusÄnderungszeit : constant Positive := 10;
 
 end WichtigesKonstanten;

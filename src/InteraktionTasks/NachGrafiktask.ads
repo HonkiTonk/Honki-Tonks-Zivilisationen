@@ -40,6 +40,7 @@ package NachGrafiktask is
    
    KIRechnet : RassenDatentypen.Rassen_Enum := RassenDatentypen.Keine_Rasse_Enum;
    AktuelleRasse : RassenDatentypen.Rassen_Enum := EinheitenKonstanten.LeerRasse;
+   KontaktierteRasse : RassenDatentypen.Rassen_Enum := EinheitenKonstanten.LeerRasse;
    
    AktuelleEinheit : EinheitenDatentypen.MaximaleEinheitenMitNullWert := EinheitenKonstanten.LeerNummer;
    

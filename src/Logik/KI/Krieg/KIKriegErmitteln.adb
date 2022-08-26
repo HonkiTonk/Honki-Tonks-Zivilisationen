@@ -1,8 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemDatentypen; use SystemDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
+with DiplomatieDatentypen; use DiplomatieDatentypen;
 with EinheitenKonstanten;
 
 with DiplomatischerZustand;
@@ -25,9 +25,8 @@ package body KIKriegErmitteln is
             null;
             
          elsif
-           DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => RasseExtern,
-                                                              FremdeRasseExtern => RasseSchleifenwert)
-           = SystemDatentypen.Krieg_Enum
+           DiplomatieDatentypen.Krieg_Enum = DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => RasseExtern,
+                                                                                                FremdeRasseExtern => RasseSchleifenwert)
          then
             return True;
                   

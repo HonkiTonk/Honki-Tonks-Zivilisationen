@@ -6,6 +6,7 @@ with RassenDatentypen;
 with AnzeigeZusatztextRassenmenueSFML;
 with AnzeigeZusatztextKartengroesseSFML;
 with AnzeigeZusatztextKartenformSFML;
+with ZusatztextDiplomatieSFML;
 
 package body AuswahlMenuesZusatztextSFML is
 
@@ -14,11 +15,11 @@ package body AuswahlMenuesZusatztextSFML is
      (WelchesMenüExtern : in MenueDatentypen.Menü_Zusatztext_Enum;
       AktuelleAuswahlExtern : in Natural;
       ViewflächeExtern : in Sf.System.Vector2.sfVector2f;
-      TextpositionExtern : in Sf.System.Vector2.sfVector2f;
+      RealeViewbreiteExtern : in Float;
       AnzeigebereichbreiteExtern : in Float)
       return Sf.System.Vector2.sfVector2f
    is begin
-            
+      
       case
         WelchesMenüExtern
       is
@@ -45,7 +46,11 @@ package body AuswahlMenuesZusatztextSFML is
             
             return AnzeigeZusatztextKartengroesseSFML.AnzeigeZusatztextKartengröße (AktuelleAuswahlExtern => AktuelleAuswahl,
                                                                                       ViewflächeExtern      => ViewflächeExtern,
-                                                                                      TextpositionExtern    => TextpositionExtern);
+                                                                                      RealeViewbreiteExtern => RealeViewbreiteExtern);
+            
+         when MenueDatentypen.Diplomatie_Menü_Enum =>
+            return ZusatztextDiplomatieSFML.ZusatztextDiplomatie (ViewflächeExtern      => ViewflächeExtern,
+                                                                  RealeViewbreiteExtern => RealeViewbreiteExtern);
             
          when MenueDatentypen.Kartenform_Menü_Enum =>
             if
@@ -62,7 +67,7 @@ package body AuswahlMenuesZusatztextSFML is
             null;
       end case;
       
-      return TextpositionExtern;
+      return ViewflächeExtern;
       
    end MenüsZusatztextAufteilung;
 

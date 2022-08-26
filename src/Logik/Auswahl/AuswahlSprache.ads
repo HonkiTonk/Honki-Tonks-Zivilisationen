@@ -7,6 +7,7 @@ private with Sf.System.Vector2;
 
 package AuswahlSprache is
       
+   -- Das auch mal in irgendwas globaleres verschieben. äöü
    type AktuelleSprachenArray is array (1 .. 11) of Unbounded_Wide_Wide_String;
    AktuelleSprachen : AktuelleSprachenArray;
    

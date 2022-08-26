@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with ProduktionDatentypen; use ProduktionDatentypen;
+with DiplomatieDatentypen; use DiplomatieDatentypen;
 with WichtigesKonstanten;
 with ZahlenDatentypen;
 with TextnummernKonstanten;
@@ -13,7 +13,7 @@ package body DiplomatischerZustand is
    procedure DiplomatischenStatusÄndern
      (RasseEinsExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       RasseZweiExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      NeuerStatusExtern : in SystemDatentypen.Status_Untereinander_Enum)
+      NeuerStatusExtern : in DiplomatieDatentypen.Status_Untereinander_Enum)
    is begin
       
       SpielVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern).AktuellerZustand := NeuerStatusExtern;
@@ -21,24 +21,22 @@ package body DiplomatischerZustand is
       
       SpielVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern).ZeitSeitLetzterÄnderung := 0;
       SpielVariablen.Diplomatie (RasseZweiExtern, RasseEinsExtern).ZeitSeitLetzterÄnderung := 0;
-      
-      -- Ausgeklammert weil die -30 noch definiert waren über ProduktionDatentypen.Feldproduktion. Später eigene Datentypen dafür erstellen. äöü
-      
-      -- case
-      --   NeuerStatusExtern
-      -- is
-      --    when SystemDatentypen.Krieg_Enum =>
-      --       SympathieÄndern (EigeneRasseExtern => RasseEinsExtern,
-      --                         FremdeRasseExtern => RasseZweiExtern,
-      --                         ÄnderungExtern   => -30);
-      --       SympathieÄndern (EigeneRasseExtern => RasseZweiExtern,
-      --                         FremdeRasseExtern => RasseEinsExtern,
-      --                         ÄnderungExtern   => -30);
             
-      --    when others =>
-      --       null;
-      --  end case;
+      case
+        NeuerStatusExtern
+      is
+         when DiplomatieDatentypen.Krieg_Enum =>
+            SympathieÄndern (EigeneRasseExtern => RasseEinsExtern,
+                              FremdeRasseExtern => RasseZweiExtern,
+                              ÄnderungExtern   => -30);
+            SympathieÄndern (EigeneRasseExtern => RasseZweiExtern,
+                              FremdeRasseExtern => RasseEinsExtern,
+                              ÄnderungExtern   => -30);
             
+         when others =>
+            null;
+      end case;
+      
    end DiplomatischenStatusÄndern;
 
 
@@ -46,7 +44,7 @@ package body DiplomatischerZustand is
    function DiplomatischenStatusPrüfen
      (EigeneRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       FremdeRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return SystemDatentypen.Status_Untereinander_Enum
+      return DiplomatieDatentypen.Status_Untereinander_Enum
    is begin
       
       return SpielVariablen.Diplomatie (EigeneRasseExtern, FremdeRasseExtern).AktuellerZustand;
@@ -70,7 +68,7 @@ package body DiplomatischerZustand is
    function AktuelleSympathie
      (EigeneRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       FremdeRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.Feldproduktion
+      return DiplomatieDatentypen.Meinung
    is begin
       
       return SpielVariablen.Diplomatie (EigeneRasseExtern, FremdeRasseExtern).AktuelleSympathieBewertung;
@@ -82,21 +80,20 @@ package body DiplomatischerZustand is
    procedure SympathieÄndern
      (EigeneRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       FremdeRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      ÄnderungExtern : in ProduktionDatentypen.Feldproduktion)
+      ÄnderungExtern : in DiplomatieDatentypen.Meinung)
    is begin
       
       if
         SpielVariablen.Diplomatie (EigeneRasseExtern, FremdeRasseExtern).AktuelleSympathieBewertung + ÄnderungExtern > SympathieGrenzen (DiplomatischenStatusPrüfen (EigeneRasseExtern => EigeneRasseExtern,
-                                                                                                                                                                         FremdeRasseExtern => FremdeRasseExtern))
+                                                                                                                                                                       FremdeRasseExtern => FremdeRasseExtern))
       then
          SpielVariablen.Diplomatie (EigeneRasseExtern, FremdeRasseExtern).AktuelleSympathieBewertung := SympathieGrenzen (DiplomatischenStatusPrüfen (EigeneRasseExtern => EigeneRasseExtern,
-                                                                                                                                                         FremdeRasseExtern => FremdeRasseExtern));
+                                                                                                                                                       FremdeRasseExtern => FremdeRasseExtern));
          
-         -- Ausgeklammert wegen der Änderung an den ProduktionDatentypen. äöü
-     -- elsif
-     --   SpielVariablen.Diplomatie (EigeneRasseExtern, FremdeRasseExtern).AktuelleSympathieBewertung + ÄnderungExtern < ProduktionDatentypen.Feldproduktion'First
-     -- then
-     --    SpielVariablen.Diplomatie (EigeneRasseExtern, FremdeRasseExtern).AktuelleSympathieBewertung := ProduktionDatentypen.Feldproduktion'First;
+      elsif
+        SpielVariablen.Diplomatie (EigeneRasseExtern, FremdeRasseExtern).AktuelleSympathieBewertung + ÄnderungExtern < DiplomatieDatentypen.Meinung'First
+      then
+         SpielVariablen.Diplomatie (EigeneRasseExtern, FremdeRasseExtern).AktuelleSympathieBewertung := DiplomatieDatentypen.Meinung'First;
                                                                                                                             
       else
          SpielVariablen.Diplomatie (EigeneRasseExtern, FremdeRasseExtern).AktuelleSympathieBewertung := SpielVariablen.Diplomatie (EigeneRasseExtern, FremdeRasseExtern).AktuelleSympathieBewertung + ÄnderungExtern;
@@ -116,7 +113,7 @@ package body DiplomatischerZustand is
         DiplomatischenStatusPrüfen (EigeneRasseExtern => EigeneRasseExtern,
                                      FremdeRasseExtern => GegnerischeRasseExtern)
       is
-         when SystemDatentypen.Neutral_Enum =>
+         when DiplomatieDatentypen.Neutral_Enum =>
             if
               SpielVariablen.Diplomatie (EigeneRasseExtern, GegnerischeRasseExtern).ZeitSeitLetzterÄnderung < WichtigesKonstanten.DiplomatischerStatusÄnderungszeit
             then
@@ -127,14 +124,14 @@ package body DiplomatischerZustand is
             then
                DiplomatischenStatusÄndern (RasseEinsExtern   => EigeneRasseExtern,
                                             RasseZweiExtern   => GegnerischeRasseExtern,
-                                            NeuerStatusExtern => SystemDatentypen.Krieg_Enum);
+                                            NeuerStatusExtern => DiplomatieDatentypen.Krieg_Enum);
                return True;
                   
             else
                return False;
             end if;
                   
-         when SystemDatentypen.Krieg_Enum =>
+         when DiplomatieDatentypen.Krieg_Enum =>
             return True;
 
          when others =>
@@ -157,8 +154,7 @@ package body DiplomatischerZustand is
             null;
                      
          when others =>
-            SpielVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern).ZeitSeitLetzterÄnderung
-              := SpielVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern).ZeitSeitLetzterÄnderung + 1;
+            SpielVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern).ZeitSeitLetzterÄnderung := SpielVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern).ZeitSeitLetzterÄnderung + 1;
       end case;
       
    end VergangeneZeitÄndern;

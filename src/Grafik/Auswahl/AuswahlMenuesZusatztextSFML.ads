@@ -11,7 +11,7 @@ package AuswahlMenuesZusatztextSFML is
      (WelchesMenüExtern : in MenueDatentypen.Menü_Zusatztext_Enum;
       AktuelleAuswahlExtern : in Natural;
       ViewflächeExtern : in Sf.System.Vector2.sfVector2f;
-      TextpositionExtern : in Sf.System.Vector2.sfVector2f;
+      RealeViewbreiteExtern : in Float;
       AnzeigebereichbreiteExtern : in Float)
       return Sf.System.Vector2.sfVector2f
      with

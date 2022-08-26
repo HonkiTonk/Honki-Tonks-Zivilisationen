@@ -19,8 +19,8 @@ package GlobaleTexte is
    
    -- Gibt es einen Weg die Anzahl der Elemente eines Enum subtypes zu erfahren ohne sie selbst zu berechnen? äöü
    RassenAnzahlBeschreibung : constant Positive := NameBeschreibungMultiplikator * 18;
-      
-   -- type Welcher_Abstand_Enum is (Leer, Kleiner_Abstand, Großer_Abstand, Neue_Zeile);
+   
+   
    
    type SprachenEinlesenArray is array (1 .. 100) of Unbounded_Wide_Wide_String;
    SprachenEinlesen : SprachenEinlesenArray;
@@ -46,6 +46,7 @@ package GlobaleTexte is
    Kartentemperatur : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Kartentemperatur_Menü_Enum)) := (others => FehlenderText);
    Schwierigkeitsgrad : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Schwierigkeitsgrad_Menü_Enum)) := (others => FehlenderText);
    Ressourcenmenge : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Kartenressourcen_Menü_Enum)) := (others => FehlenderText);
+   Diplomatiemenü : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Diplomatie_Menü_Enum)) := (others => FehlenderText);
    Kartenpole : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Kartenpole_Menü_Enum)) := (others => FehlenderText);
    Soundmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Sound_Menü_Enum)) := (others => FehlenderText);
                                
@@ -78,7 +79,6 @@ package GlobaleTexte is
    Beschäftigungen : TexteArray (1 .. NameBeschreibungMultiplikator * 11) := (others => FehlenderText);
    AllgemeineInformationen : TexteArray (1 .. 16) := (others => FehlenderText);
    Würdigung : TexteArray (1 .. 1) := (others => FehlenderText);
-   Diplomatiemenü : TexteArray (1 .. 7) := (others => FehlenderText);
    DiplomatieKI : TexteArray (1 .. 3) := (others => FehlenderText);
    Endmeldungen : TexteArray (1 .. 3) := (others => FehlenderText);
    Handelsmenü : TexteArray (1 .. 10) := (others => FehlenderText);
@@ -87,7 +87,7 @@ package GlobaleTexte is
    Fehlermeldung : TexteArray (1 .. 20) := (others => FehlenderText);
    Ladezeit : TexteArray (1 .. 16) := (others => FehlenderText);
    Frage : TexteArray (1 .. 45) := (others => FehlenderText);
-   Zeug : TexteArray (1 .. 73) := (others => FehlenderText);
+   Zeug : TexteArray (1 .. 76) := (others => FehlenderText);
    
    type ZweidimensionaleTexteArray is array (RassenDatentypen.Rassen_Verwendet_Enum range <>, ZahlenDatentypen.EigenesPositive range <>) of Unbounded_Wide_Wide_String;
    StädtenamenKI : ZweidimensionaleTexteArray (RassenDatentypen.Rassen_Verwendet_Enum'Range, 1 .. 3) := (others => (others => FehlenderText));

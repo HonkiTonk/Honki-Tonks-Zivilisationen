@@ -36,7 +36,7 @@ package body AllesAufAnfangSetzen is
       SpielVariablen.EinheitenGebaut := (others => (others => EinheitenRecordKonstanten.LeerEinheit));
       SpielVariablen.StadtGebaut := (others => (others => StadtRecordKonstanten.LeerStadt));
       SpielVariablen.Wichtiges := (others => WichtigesRecordKonstanten.LeerWichtigesZeug);
-      SpielVariablen.Diplomatie := (others => (others => WichtigesRecordKonstanten.LeerDiplomatie));
+      SpielVariablen.Diplomatie := (others => (others => WichtigesRecordKonstanten.StartDiplomatie));
       SpielVariablen.Allgemeines.Rundenanzahl := Positive'First;
       SpielVariablen.CursorImSpiel := (others => WichtigesRecordKonstanten.LeerCursor);
       SpielVariablen.Allgemeines.IronmanName := TextKonstanten.LeerUnboundedString;

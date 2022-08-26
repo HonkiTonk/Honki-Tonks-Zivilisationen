@@ -22,6 +22,7 @@ with EingabeSystemeSFML;
 with TextaccesseAllesSetzenSFML;
 with LadezeitenSFML;
 with KartenaufteilungSFML;
+with DiplomatieauswahlGrafik;
 
 package body GrafikSFML is
    
@@ -184,6 +185,9 @@ package body GrafikSFML is
          when GrafikDatentypen.Grafik_Bauen_Enum =>
             BauAuswahlAnzeigeSFML.BauAuswahlAnzeige (StadtRasseNummerExtern => (NachGrafiktask.AktuelleRasse, NachGrafiktask.AktuelleStadt),
                                                      AktuelleAuswahlExtern  => NachGrafiktask.AktuelleBauauswahl);
+            
+         when GrafikDatentypen.Grafik_Diplomatie_Enum =>
+            DiplomatieauswahlGrafik.Diplomatieauswahl (AuswahlExtern => NachGrafiktask.AktuelleAuswahl.AuswahlEins);
          
          when GrafikDatentypen.Grafik_Ende_Enum =>
             return False;

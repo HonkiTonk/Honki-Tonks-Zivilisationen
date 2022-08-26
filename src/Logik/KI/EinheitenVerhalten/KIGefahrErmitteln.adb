@@ -3,9 +3,9 @@ pragma Warnings (Off, "*array aggregate*");
 
 with EinheitenDatentypen; use EinheitenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
+with DiplomatieDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
-with SystemDatentypen;
 
 with KIDatentypen;
 
@@ -121,7 +121,7 @@ package body KIGefahrErmitteln is
         DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
                                                            FremdeRasseExtern => AndereEinheitExtern.Rasse)
       is
-         when SystemDatentypen.Krieg_Enum =>
+         when DiplomatieDatentypen.Krieg_Enum =>
             null;
             
          when others =>

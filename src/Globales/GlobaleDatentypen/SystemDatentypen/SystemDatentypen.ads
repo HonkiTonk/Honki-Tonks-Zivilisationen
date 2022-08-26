@@ -42,15 +42,4 @@ package SystemDatentypen is
    type StaatsformenArray is array (1 .. 5) of Staatsform_Enum;
    -- Sonstiges
 
-
-
-   -- Hier auch mal Sachen rausverschieben. äöü
-   -- Für Diplomatie
-   type Status_Untereinander_Enum is (
-                                      Unbekannt_Enum, Neutral_Enum, Nichtangriffspakt_Enum, Krieg_Enum
-                                     );
-   
-   subtype Status_Untereinander_Bekannt_Enum is Status_Untereinander_Enum range Neutral_Enum .. Status_Untereinander_Enum'Last;
-   -- Für Diplomatie
-
 end SystemDatentypen;

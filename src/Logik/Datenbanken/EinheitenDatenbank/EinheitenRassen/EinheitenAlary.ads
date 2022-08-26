@@ -3,9 +3,10 @@ pragma Warnings (Off, "*array aggregate*");
 
 with EinheitenDatentypen;
 with EinheitenRecordKonstanten;
-with EinheitenRecords;
 
 with DatenbankRecords;
+
+with DebugmenueSFML;
 
 -- Es muss darauf geachtet werden dass KannTransportieren immer kleiner ist als KannTransportiertWerden.
 package EinheitenAlary is
@@ -20,7 +21,7 @@ package EinheitenAlary is
                                                                               PermanenteKosten        => (others => 0),
                                                                               Anforderungen           => 0,
                                                                               Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
-                                                                                                          others                            => False),
+                                                                                                          others                         => False),
                                                                               MaximaleLebenspunkte    => 3,
                                                                               MaximaleBewegungspunkte => 3.00,
                                                                               WirdVerbessertZu        => 0,
@@ -43,7 +44,7 @@ package EinheitenAlary is
                                                                               PermanenteKosten        => (others => 0),
                                                                               Anforderungen           => 0,
                                                                               Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
-                                                                                                          others                            => False),
+                                                                                                          others                         => False),
                                                                               MaximaleLebenspunkte    => 5,
                                                                               MaximaleBewegungspunkte => 3.00,
                                                                               WirdVerbessertZu        => 5,
@@ -66,7 +67,7 @@ package EinheitenAlary is
                                                                               PermanenteKosten        => (others => 0),
                                                                               Anforderungen           => 1,
                                                                               Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
-                                                                                                          others                            => False),
+                                                                                                          others                         => False),
                                                                               MaximaleLebenspunkte    => 5,
                                                                               MaximaleBewegungspunkte => 3.00,
                                                                               WirdVerbessertZu        => 8,
@@ -88,9 +89,8 @@ package EinheitenAlary is
                                                                               PreisRessourcen         => 20,
                                                                               PermanenteKosten        => (others => 0),
                                                                               Anforderungen           => 7,
-                                                                              Passierbarkeit          => (EinheitenDatentypen.Wasser_Enum       => True,
-                                                                                                          EinheitenDatentypen.Küstenwasser_Enum => True,
-                                                                                                          others                                   => False),
+                                                                              Passierbarkeit          => (EinheitenDatentypen.Küstenwasser_Enum => True,
+                                                                                                          others                                => False),
                                                                               MaximaleLebenspunkte    => 5,
                                                                               MaximaleBewegungspunkte => 3.00,
                                                                               WirdVerbessertZu        => 10,
@@ -99,9 +99,9 @@ package EinheitenAlary is
                                                                               Reichweite              => 2,
                                                                               Angriff                 => 3,
                                                                               Verteidigung            => 1,
-                                                                              KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                              KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                              Transportkapazität      => 0
+                                                                              KannTransportieren      => EinheitenDatentypen.Klein_Transport_Enum,
+                                                                              KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
+                                                                              Transportkapazität      => 1
                                                                              ),
                                                
                                                                              -- Bronzekämpfer
@@ -113,7 +113,7 @@ package EinheitenAlary is
                                                                               PermanenteKosten        => (others => 0),
                                                                               Anforderungen           => 10,
                                                                               Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
-                                                                                                          others                            => False),
+                                                                                                          others                         => False),
                                                                               MaximaleLebenspunkte    => 5,
                                                                               MaximaleBewegungspunkte => 3.00,
                                                                               WirdVerbessertZu        => 6,
@@ -136,7 +136,7 @@ package EinheitenAlary is
                                                                               PermanenteKosten        => (others => 0),
                                                                               Anforderungen           => 13,
                                                                               Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
-                                                                                                          others                            => False),
+                                                                                                          others                         => False),
                                                                               MaximaleLebenspunkte    => 5,
                                                                               MaximaleBewegungspunkte => 3.00,
                                                                               WirdVerbessertZu        => 12,
@@ -159,7 +159,7 @@ package EinheitenAlary is
                                                                               PermanenteKosten        => (others => 0),
                                                                               Anforderungen           => 5,
                                                                               Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
-                                                                                                          others                            => False),
+                                                                                                          others                         => False),
                                                                               MaximaleLebenspunkte    => 5,
                                                                               MaximaleBewegungspunkte => 3.00,
                                                                               WirdVerbessertZu        => 17,
@@ -182,7 +182,7 @@ package EinheitenAlary is
                                                                               PermanenteKosten        => (others => 0),
                                                                               Anforderungen           => 11,
                                                                               Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
-                                                                                                          others                            => False),
+                                                                                                          others                         => False),
                                                                               MaximaleLebenspunkte    => 5,
                                                                               MaximaleBewegungspunkte => 3.00,
                                                                               WirdVerbessertZu        => 9,
@@ -205,7 +205,7 @@ package EinheitenAlary is
                                                                               PermanenteKosten        => (others => 0),
                                                                               Anforderungen           => 12,
                                                                               Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
-                                                                                                          others                            => False),
+                                                                                                          others                         => False),
                                                                               MaximaleLebenspunkte    => 5,
                                                                               MaximaleBewegungspunkte => 3.00,
                                                                               WirdVerbessertZu        => 13,
@@ -229,7 +229,7 @@ package EinheitenAlary is
                                                                               Anforderungen           => 14,
                                                                               Passierbarkeit          => (EinheitenDatentypen.Wasser_Enum       => True,
                                                                                                           EinheitenDatentypen.Küstenwasser_Enum => True,
-                                                                                                          others                                   => False),
+                                                                                                          others                                => False),
                                                                               MaximaleLebenspunkte    => 5,
                                                                               MaximaleBewegungspunkte => 3.00,
                                                                               WirdVerbessertZu        => 11,
@@ -238,9 +238,9 @@ package EinheitenAlary is
                                                                               Reichweite              => 2,
                                                                               Angriff                 => 3,
                                                                               Verteidigung            => 1,
-                                                                              KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                              KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                              Transportkapazität      => 0
+                                                                              KannTransportieren      => EinheitenDatentypen.Klein_Transport_Enum,
+                                                                              KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
+                                                                              Transportkapazität      => 2
                                                                              ),
                                                
                                                                              -- Großes Segelschiff
@@ -253,7 +253,7 @@ package EinheitenAlary is
                                                                               Anforderungen           => 23,
                                                                               Passierbarkeit          => (EinheitenDatentypen.Wasser_Enum       => True,
                                                                                                           EinheitenDatentypen.Küstenwasser_Enum => True,
-                                                                                                          others                                   => False),
+                                                                                                          others                                => False),
                                                                               MaximaleLebenspunkte    => 5,
                                                                               MaximaleBewegungspunkte => 3.00,
                                                                               WirdVerbessertZu        => 14,
@@ -262,9 +262,9 @@ package EinheitenAlary is
                                                                               Reichweite              => 2,
                                                                               Angriff                 => 3,
                                                                               Verteidigung            => 1,
-                                                                              KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                              KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                              Transportkapazität      => 0
+                                                                              KannTransportieren      => EinheitenDatentypen.Mittel_Transport_Enum,
+                                                                              KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
+                                                                              Transportkapazität      => 4
                                                                              ),
                                                
                                                                              -- Gewehrkämpfer
@@ -276,7 +276,7 @@ package EinheitenAlary is
                                                                               PermanenteKosten        => (others => 0),
                                                                               Anforderungen           => 28,
                                                                               Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
-                                                                                                          others                            => False),
+                                                                                                          others                         => False),
                                                                               MaximaleLebenspunkte    => 5,
                                                                               MaximaleBewegungspunkte => 3.00,
                                                                               WirdVerbessertZu        => 44,
@@ -299,7 +299,7 @@ package EinheitenAlary is
                                                                               PermanenteKosten        => (others => 0),
                                                                               Anforderungen           => 34,
                                                                               Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
-                                                                                                          others                            => False),
+                                                                                                          others                         => False),
                                                                               MaximaleLebenspunkte    => 5,
                                                                               MaximaleBewegungspunkte => 3.00,
                                                                               WirdVerbessertZu        => 40,
@@ -309,7 +309,7 @@ package EinheitenAlary is
                                                                               Angriff                 => 3,
                                                                               Verteidigung            => 1,
                                                                               KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                              KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
+                                                                              KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                               Transportkapazität      => 0
                                                                              ),
                                                
@@ -323,7 +323,7 @@ package EinheitenAlary is
                                                                               Anforderungen           => 31,
                                                                               Passierbarkeit          => (EinheitenDatentypen.Wasser_Enum       => True,
                                                                                                           EinheitenDatentypen.Küstenwasser_Enum => True,
-                                                                                                          others                                   => False),
+                                                                                                          others                                => False),
                                                                               MaximaleLebenspunkte    => 5,
                                                                               MaximaleBewegungspunkte => 3.00,
                                                                               WirdVerbessertZu        => 15,
@@ -332,9 +332,9 @@ package EinheitenAlary is
                                                                               Reichweite              => 2,
                                                                               Angriff                 => 3,
                                                                               Verteidigung            => 1,
-                                                                              KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                              KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                              Transportkapazität      => 0
+                                                                              KannTransportieren      => EinheitenDatentypen.Mittel_Transport_Enum,
+                                                                              KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
+                                                                              Transportkapazität      => 4
                                                                              ),
                                                
                                                                              -- Motorschiff
@@ -347,7 +347,7 @@ package EinheitenAlary is
                                                                               Anforderungen           => 38,
                                                                               Passierbarkeit          => (EinheitenDatentypen.Wasser_Enum       => True,
                                                                                                           EinheitenDatentypen.Küstenwasser_Enum => True,
-                                                                                                          others                                   => False),
+                                                                                                          others                                => False),
                                                                               MaximaleLebenspunkte    => 5,
                                                                               MaximaleBewegungspunkte => 3.00,
                                                                               WirdVerbessertZu        => 42,
@@ -356,9 +356,9 @@ package EinheitenAlary is
                                                                               Reichweite              => 2,
                                                                               Angriff                 => 3,
                                                                               Verteidigung            => 1,
-                                                                              KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                              KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                              Transportkapazität      => 0
+                                                                              KannTransportieren      => EinheitenDatentypen.Mittel_Transport_Enum,
+                                                                              KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
+                                                                              Transportkapazität      => 4
                                                                              ),
                                                
                                                                              -- U-Boot
@@ -373,7 +373,7 @@ package EinheitenAlary is
                                                                                                           EinheitenDatentypen.Küstenwasser_Enum      => True,
                                                                                                           EinheitenDatentypen.Unterwasser_Enum       => True,
                                                                                                           EinheitenDatentypen.Unterküstenwasser_Enum => True,
-                                                                                                          others                                        => False),
+                                                                                                          others                                     => False),
                                                                               MaximaleLebenspunkte    => 5,
                                                                               MaximaleBewegungspunkte => 3.00,
                                                                               WirdVerbessertZu        => 42,
@@ -382,9 +382,9 @@ package EinheitenAlary is
                                                                               Reichweite              => 2,
                                                                               Angriff                 => 3,
                                                                               Verteidigung            => 1,
-                                                                              KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                              KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                              Transportkapazität      => 0
+                                                                              KannTransportieren      => EinheitenDatentypen.Klein_Transport_Enum,
+                                                                              KannTransportiertWerden => EinheitenDatentypen.Kein_Transport_Enum,
+                                                                              Transportkapazität      => 2
                                                                              ),
                                                
                                                                              -- Gepanzerter Wagen
@@ -396,7 +396,7 @@ package EinheitenAlary is
                                                                               PermanenteKosten        => (others => 0),
                                                                               Anforderungen           => 40,
                                                                               Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
-                                                                                                          others                            => False),
+                                                                                                          others                         => False),
                                                                               MaximaleLebenspunkte    => 5,
                                                                               MaximaleBewegungspunkte => 3.00,
                                                                               WirdVerbessertZu        => 18,
@@ -406,7 +406,7 @@ package EinheitenAlary is
                                                                               Angriff                 => 3,
                                                                               Verteidigung            => 1,
                                                                               KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                              KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
+                                                                              KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                               Transportkapazität      => 0
                                                                              ),
                                                
@@ -419,7 +419,7 @@ package EinheitenAlary is
                                                                               PermanenteKosten        => (others => 0),
                                                                               Anforderungen           => 42,
                                                                               Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
-                                                                                                          others                            => False),
+                                                                                                          others                         => False),
                                                                               MaximaleLebenspunkte    => 5,
                                                                               MaximaleBewegungspunkte => 3.00,
                                                                               WirdVerbessertZu        => 35,
@@ -429,7 +429,7 @@ package EinheitenAlary is
                                                                               Angriff                 => 3,
                                                                               Verteidigung            => 1,
                                                                               KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                              KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
+                                                                              KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                               Transportkapazität      => 0
                                                                              ),
                                                
@@ -442,7 +442,7 @@ package EinheitenAlary is
                                                                               PermanenteKosten        => (others => 0),
                                                                               Anforderungen           => 41,
                                                                               Passierbarkeit          => (EinheitenDatentypen.Luft_Enum => True,
-                                                                                                          others                           => False),
+                                                                                                          others                        => False),
                                                                               MaximaleLebenspunkte    => 5,
                                                                               MaximaleBewegungspunkte => 3.00,
                                                                               WirdVerbessertZu        => 22,
@@ -452,7 +452,7 @@ package EinheitenAlary is
                                                                               Angriff                 => 3,
                                                                               Verteidigung            => 1,
                                                                               KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                              KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
+                                                                              KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                               Transportkapazität      => 0
                                                                              ),
                                                
@@ -465,7 +465,7 @@ package EinheitenAlary is
                                                                               PermanenteKosten        => (others => 0),
                                                                               Anforderungen           => 41,
                                                                               Passierbarkeit          => (EinheitenDatentypen.Luft_Enum => True,
-                                                                                                          others                           => False),
+                                                                                                          others                        => False),
                                                                               MaximaleLebenspunkte    => 5,
                                                                               MaximaleBewegungspunkte => 3.00,
                                                                               WirdVerbessertZu        => 23,
@@ -475,7 +475,7 @@ package EinheitenAlary is
                                                                               Angriff                 => 3,
                                                                               Verteidigung            => 1,
                                                                               KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                              KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
+                                                                              KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                               Transportkapazität      => 0
                                                                              ),
                                                
@@ -489,7 +489,7 @@ package EinheitenAlary is
                                                                               Anforderungen           => 46,
                                                                               Passierbarkeit          => (EinheitenDatentypen.Luft_Enum     => True,
                                                                                                           EinheitenDatentypen.Weltraum_Enum => True,
-                                                                                                          others                               => False),
+                                                                                                          others                            => False),
                                                                               MaximaleLebenspunkte    => 5,
                                                                               MaximaleBewegungspunkte => 3.00,
                                                                               WirdVerbessertZu        => 0,
@@ -499,7 +499,7 @@ package EinheitenAlary is
                                                                               Angriff                 => 3,
                                                                               Verteidigung            => 1,
                                                                               KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                              KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
+                                                                              KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                               Transportkapazität      => 0
                                                                              ),
                                                
@@ -512,7 +512,7 @@ package EinheitenAlary is
                                                                               PermanenteKosten        => (others => 0),
                                                                               Anforderungen           => 51,
                                                                               Passierbarkeit          => (EinheitenDatentypen.Luft_Enum => True,
-                                                                                                          others                           => False),
+                                                                                                          others                        => False),
                                                                               MaximaleLebenspunkte    => 5,
                                                                               MaximaleBewegungspunkte => 3.00,
                                                                               WirdVerbessertZu        => 38,
@@ -522,7 +522,7 @@ package EinheitenAlary is
                                                                               Angriff                 => 3,
                                                                               Verteidigung            => 1,
                                                                               KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                              KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
+                                                                              KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                               Transportkapazität      => 0
                                                                              ),
                                                
@@ -535,7 +535,7 @@ package EinheitenAlary is
                                                                               PermanenteKosten        => (others => 0),
                                                                               Anforderungen           => 51,
                                                                               Passierbarkeit          => (EinheitenDatentypen.Luft_Enum => True,
-                                                                                                          others                           => False),
+                                                                                                          others                        => False),
                                                                               MaximaleLebenspunkte    => 5,
                                                                               MaximaleBewegungspunkte => 3.00,
                                                                               WirdVerbessertZu        => 39,
@@ -545,7 +545,7 @@ package EinheitenAlary is
                                                                               Angriff                 => 3,
                                                                               Verteidigung            => 1,
                                                                               KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                              KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
+                                                                              KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                               Transportkapazität      => 0
                                                                              ),
                                                
@@ -558,7 +558,7 @@ package EinheitenAlary is
                                                                               PermanenteKosten        => (others => 0),
                                                                               Anforderungen           => 45,
                                                                               Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
-                                                                                                          others                            => False),
+                                                                                                          others                         => False),
                                                                               MaximaleLebenspunkte    => 5,
                                                                               MaximaleBewegungspunkte => 3.00,
                                                                               WirdVerbessertZu        => 0,
@@ -568,7 +568,7 @@ package EinheitenAlary is
                                                                               Angriff                 => 3,
                                                                               Verteidigung            => 1,
                                                                               KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                              KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
+                                                                              KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                               Transportkapazität      => 0
                                                                              ),
                                                
@@ -581,7 +581,7 @@ package EinheitenAlary is
                                                                               PermanenteKosten        => (others => 0),
                                                                               Anforderungen           => 49,
                                                                               Passierbarkeit          => (EinheitenDatentypen.Luft_Enum => True,
-                                                                                                          others                           => False),
+                                                                                                          others                        => False),
                                                                               MaximaleLebenspunkte    => 5,
                                                                               MaximaleBewegungspunkte => 3.00,
                                                                               WirdVerbessertZu        => 0,
@@ -604,7 +604,7 @@ package EinheitenAlary is
                                                                               PermanenteKosten        => (others => 0),
                                                                               Anforderungen           => 56,
                                                                               Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
-                                                                                                          others                            => False),
+                                                                                                          others                         => False),
                                                                               MaximaleLebenspunkte    => 5,
                                                                               MaximaleBewegungspunkte => 3.00,
                                                                               WirdVerbessertZu        => 28,
@@ -629,7 +629,7 @@ package EinheitenAlary is
                                                                               Passierbarkeit          => (EinheitenDatentypen.Boden_Enum        => True,
                                                                                                           EinheitenDatentypen.Wasser_Enum       => True,
                                                                                                           EinheitenDatentypen.Küstenwasser_Enum => True,
-                                                                                                          others                                   => False),
+                                                                                                          others                                => False),
                                                                               MaximaleLebenspunkte    => 5,
                                                                               MaximaleBewegungspunkte => 3.00,
                                                                               WirdVerbessertZu        => 0,
@@ -639,7 +639,7 @@ package EinheitenAlary is
                                                                               Angriff                 => 3,
                                                                               Verteidigung            => 1,
                                                                               KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                              KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
+                                                                              KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                               Transportkapazität      => 0
                                                                              ),
                                                
@@ -652,7 +652,7 @@ package EinheitenAlary is
                                                                               PermanenteKosten        => (others => 0),
                                                                               Anforderungen           => 57,
                                                                               Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
-                                                                                                          others                            => False),
+                                                                                                          others                         => False),
                                                                               MaximaleLebenspunkte    => 5,
                                                                               MaximaleBewegungspunkte => 3.00,
                                                                               WirdVerbessertZu        => 33,
@@ -680,7 +680,7 @@ package EinheitenAlary is
                                                                                                           EinheitenDatentypen.Unterwasser_Enum       => True,
                                                                                                           EinheitenDatentypen.Unterküstenwasser_Enum => True,
                                                                                                           EinheitenDatentypen.Unterirdisch_Enum      => True,
-                                                                                                          others                                        => False),
+                                                                                                          others                                     => False),
                                                                               MaximaleLebenspunkte    => 5,
                                                                               MaximaleBewegungspunkte => 3.00,
                                                                               WirdVerbessertZu        => 0,
@@ -690,20 +690,20 @@ package EinheitenAlary is
                                                                               Angriff                 => 3,
                                                                               Verteidigung            => 1,
                                                                               KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                              KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
+                                                                              KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                               Transportkapazität      => 0
                                                                              ),
                                                
                                                                              -- PZB20
                                                                            30 =>
                                                                              (
-                                                                              EinheitArt              => EinheitenDatentypen.Sonstiges_Enum,
+                                                                              EinheitArt              => EinheitenDatentypen.PZB_Enum,
                                                                               PreisGeld               => 25,
                                                                               PreisRessourcen         => 20,
                                                                               PermanenteKosten        => (others => 0),
                                                                               Anforderungen           => 63,
                                                                               Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
-                                                                                                          others                            => False),
+                                                                                                          others                         => False),
                                                                               MaximaleLebenspunkte    => 5,
                                                                               MaximaleBewegungspunkte => 3.00,
                                                                               WirdVerbessertZu        => 0,
@@ -713,20 +713,20 @@ package EinheitenAlary is
                                                                               Angriff                 => 3,
                                                                               Verteidigung            => 1,
                                                                               KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                              KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
+                                                                              KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
                                                                               Transportkapazität      => 0
                                                                              ),
                                                
                                                                              -- PZB40
                                                                            31 =>
                                                                              (
-                                                                              EinheitArt              => EinheitenDatentypen.Sonstiges_Enum,
+                                                                              EinheitArt              => EinheitenDatentypen.PZB_Enum,
                                                                               PreisGeld               => 25,
                                                                               PreisRessourcen         => 20,
                                                                               PermanenteKosten        => (others => 0),
                                                                               Anforderungen           => 66,
                                                                               Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
-                                                                                                          others                            => False),
+                                                                                                          others                         => False),
                                                                               MaximaleLebenspunkte    => 5,
                                                                               MaximaleBewegungspunkte => 3.00,
                                                                               WirdVerbessertZu        => 0,
@@ -736,20 +736,20 @@ package EinheitenAlary is
                                                                               Angriff                 => 3,
                                                                               Verteidigung            => 1,
                                                                               KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                              KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
+                                                                              KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
                                                                               Transportkapazität      => 0
                                                                              ),
                                                
                                                                              -- PZB100
                                                                            32 =>
                                                                              (
-                                                                              EinheitArt              => EinheitenDatentypen.Sonstiges_Enum,
+                                                                              EinheitArt              => EinheitenDatentypen.PZB_Enum,
                                                                               PreisGeld               => 25,
                                                                               PreisRessourcen         => 20,
                                                                               PermanenteKosten        => (others => 0),
                                                                               Anforderungen           => 66,
                                                                               Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
-                                                                                                          others                            => False),
+                                                                                                          others                         => False),
                                                                               MaximaleLebenspunkte    => 5,
                                                                               MaximaleBewegungspunkte => 3.00,
                                                                               WirdVerbessertZu        => 0,
@@ -759,7 +759,7 @@ package EinheitenAlary is
                                                                               Angriff                 => 3,
                                                                               Verteidigung            => 1,
                                                                               KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                              KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
+                                                                              KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
                                                                               Transportkapazität      => 0
                                                                              ),
                                                
@@ -772,7 +772,7 @@ package EinheitenAlary is
                                                                               PermanenteKosten        => (others => 0),
                                                                               Anforderungen           => 68,
                                                                               Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
-                                                                                                          others                            => False),
+                                                                                                          others                         => False),
                                                                               MaximaleLebenspunkte    => 5,
                                                                               MaximaleBewegungspunkte => 3.00,
                                                                               WirdVerbessertZu        => 34,
@@ -795,7 +795,7 @@ package EinheitenAlary is
                                                                               PermanenteKosten        => (others => 0),
                                                                               Anforderungen           => 74,
                                                                               Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
-                                                                                                          others                            => False),
+                                                                                                          others                         => False),
                                                                               MaximaleLebenspunkte    => 5,
                                                                               MaximaleBewegungspunkte => 3.00,
                                                                               WirdVerbessertZu        => 0,
@@ -820,7 +820,7 @@ package EinheitenAlary is
                                                                               Passierbarkeit          => (EinheitenDatentypen.Boden_Enum        => True,
                                                                                                           EinheitenDatentypen.Wasser_Enum       => True,
                                                                                                           EinheitenDatentypen.Küstenwasser_Enum => True,
-                                                                                                          others                                   => False),
+                                                                                                          others                                => False),
                                                                               MaximaleLebenspunkte    => 5,
                                                                               MaximaleBewegungspunkte => 3.00,
                                                                               WirdVerbessertZu        => 0,
@@ -830,7 +830,7 @@ package EinheitenAlary is
                                                                               Angriff                 => 3,
                                                                               Verteidigung            => 1,
                                                                               KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                              KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
+                                                                              KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                               Transportkapazität      => 0
                                                                              ),
                                                
@@ -850,7 +850,7 @@ package EinheitenAlary is
                                                                                                           EinheitenDatentypen.Unterirdisch_Enum      => True,
                                                                                                           EinheitenDatentypen.Lava_Enum              => True,
                                                                                                           EinheitenDatentypen.Planeteninneres_Enum   => True,
-                                                                                                          others                                        => False),
+                                                                                                          others                                     => False),
                                                                               MaximaleLebenspunkte    => 5,
                                                                               MaximaleBewegungspunkte => 3.00,
                                                                               WirdVerbessertZu        => 0,
@@ -860,7 +860,7 @@ package EinheitenAlary is
                                                                               Angriff                 => 3,
                                                                               Verteidigung            => 1,
                                                                               KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                              KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
+                                                                              KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                               Transportkapazität      => 0
                                                                              ),
                                                
@@ -877,7 +877,7 @@ package EinheitenAlary is
                                                                                                           EinheitenDatentypen.Küstenwasser_Enum => True,
                                                                                                           EinheitenDatentypen.Luft_Enum         => True,
                                                                                                           EinheitenDatentypen.Weltraum_Enum     => True,
-                                                                                                          others                                   => False),
+                                                                                                          others                                => False),
                                                                               MaximaleLebenspunkte    => 5,
                                                                               MaximaleBewegungspunkte => 3.00,
                                                                               WirdVerbessertZu        => 0,
@@ -887,7 +887,7 @@ package EinheitenAlary is
                                                                               Angriff                 => 3,
                                                                               Verteidigung            => 1,
                                                                               KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                              KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
+                                                                              KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                               Transportkapazität      => 0
                                                                              ),
                                                
@@ -901,7 +901,7 @@ package EinheitenAlary is
                                                                               Anforderungen           => 74,
                                                                               Passierbarkeit          => (EinheitenDatentypen.Luft_Enum     => True,
                                                                                                           EinheitenDatentypen.Weltraum_Enum => True,
-                                                                                                          others                               => False),
+                                                                                                          others                            => False),
                                                                               MaximaleLebenspunkte    => 5,
                                                                               MaximaleBewegungspunkte => 3.00,
                                                                               WirdVerbessertZu        => 0,
@@ -911,7 +911,7 @@ package EinheitenAlary is
                                                                               Angriff                 => 3,
                                                                               Verteidigung            => 1,
                                                                               KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                              KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
+                                                                              KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                               Transportkapazität      => 0
                                                                              ),
                                                
@@ -925,7 +925,7 @@ package EinheitenAlary is
                                                                               Anforderungen           => 74,
                                                                               Passierbarkeit          => (EinheitenDatentypen.Luft_Enum     => True,
                                                                                                           EinheitenDatentypen.Weltraum_Enum => True,
-                                                                                                          others                               => False),
+                                                                                                          others                            => False),
                                                                               MaximaleLebenspunkte    => 5,
                                                                               MaximaleBewegungspunkte => 3.00,
                                                                               WirdVerbessertZu        => 0,
@@ -935,7 +935,7 @@ package EinheitenAlary is
                                                                               Angriff                 => 3,
                                                                               Verteidigung            => 1,
                                                                               KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                              KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
+                                                                              KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                               Transportkapazität      => 0
                                                                              ),
                                                
@@ -948,7 +948,7 @@ package EinheitenAlary is
                                                                               PermanenteKosten        => (others => 0),
                                                                               Anforderungen           => 42,
                                                                               Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
-                                                                                                          others                            => False),
+                                                                                                          others                         => False),
                                                                               MaximaleLebenspunkte    => 5,
                                                                               MaximaleBewegungspunkte => 3.00,
                                                                               WirdVerbessertZu        => 41,
@@ -958,7 +958,7 @@ package EinheitenAlary is
                                                                               Angriff                 => 3,
                                                                               Verteidigung            => 1,
                                                                               KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                              KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
+                                                                              KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                               Transportkapazität      => 0
                                                                              ),
                                                
@@ -973,7 +973,7 @@ package EinheitenAlary is
                                                                               Passierbarkeit          => (EinheitenDatentypen.Boden_Enum        => True,
                                                                                                           EinheitenDatentypen.Wasser_Enum       => True,
                                                                                                           EinheitenDatentypen.Küstenwasser_Enum => True,
-                                                                                                          others                                   => False),
+                                                                                                          others                                => False),
                                                                               MaximaleLebenspunkte    => 5,
                                                                               MaximaleBewegungspunkte => 3.00,
                                                                               WirdVerbessertZu        => 0,
@@ -983,7 +983,7 @@ package EinheitenAlary is
                                                                               Angriff                 => 3,
                                                                               Verteidigung            => 1,
                                                                               KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                              KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
+                                                                              KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                               Transportkapazität      => 0
                                                                              ),
                                                
@@ -1001,7 +1001,7 @@ package EinheitenAlary is
                                                                                                           EinheitenDatentypen.Unterwasser_Enum       => True,
                                                                                                           EinheitenDatentypen.Unterküstenwasser_Enum => True,
                                                                                                           EinheitenDatentypen.Unterirdisch_Enum      => True,
-                                                                                                          others                                        => False),
+                                                                                                          others                                     => False),
                                                                               MaximaleLebenspunkte    => 5,
                                                                               MaximaleBewegungspunkte => 3.00,
                                                                               WirdVerbessertZu        => 43,
@@ -1010,9 +1010,9 @@ package EinheitenAlary is
                                                                               Reichweite              => 2,
                                                                               Angriff                 => 3,
                                                                               Verteidigung            => 1,
-                                                                              KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                              KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                              Transportkapazität      => 0
+                                                                              KannTransportieren      => EinheitenDatentypen.Groß_Transport_Enum,
+                                                                              KannTransportiertWerden => EinheitenDatentypen.Kein_Transport_Enum,
+                                                                              Transportkapazität      => 4
                                                                              ),
                                                
                                                                              -- Kerngräber
@@ -1031,7 +1031,7 @@ package EinheitenAlary is
                                                                                                           EinheitenDatentypen.Unterirdisch_Enum      => True,
                                                                                                           EinheitenDatentypen.Lava_Enum              => True,
                                                                                                           EinheitenDatentypen.Planeteninneres_Enum   => True,
-                                                                                                          others                                        => False),
+                                                                                                          others                                     => False),
                                                                               MaximaleLebenspunkte    => 5,
                                                                               MaximaleBewegungspunkte => 3.00,
                                                                               WirdVerbessertZu        => 0,
@@ -1040,9 +1040,9 @@ package EinheitenAlary is
                                                                               Reichweite              => 2,
                                                                               Angriff                 => 3,
                                                                               Verteidigung            => 1,
-                                                                              KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                              KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                              Transportkapazität      => 0
+                                                                              KannTransportieren      => EinheitenDatentypen.Klein_Transport_Enum,
+                                                                              KannTransportiertWerden => EinheitenDatentypen.Kein_Transport_Enum,
+                                                                              Transportkapazität      => 1
                                                                              ),
                                                
                                                                              -- Moderne Infanterie
@@ -1054,7 +1054,7 @@ package EinheitenAlary is
                                                                               PermanenteKosten        => (others => 0),
                                                                               Anforderungen           => 40,
                                                                               Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
-                                                                                                          others                            => False),
+                                                                                                          others                         => False),
                                                                               MaximaleLebenspunkte    => 5,
                                                                               MaximaleBewegungspunkte => 3.00,
                                                                               WirdVerbessertZu        => 26,
@@ -1067,28 +1067,8 @@ package EinheitenAlary is
                                                                               KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                               Transportkapazität      => 0
                                                                              ),
-                                               
-                                                                             -- Alleskönner
-                                                                           45 =>
-                                                                             (
-                                                                              EinheitArt              => EinheitenDatentypen.Cheat_Enum,
-                                                                              PreisGeld               => 1,
-                                                                              PreisRessourcen         => 1,
-                                                                              PermanenteKosten        => (others => 0),
-                                                                              Anforderungen           => 0,
-                                                                              Passierbarkeit          => (others => True),
-                                                                              MaximaleLebenspunkte    => 100,
-                                                                              MaximaleBewegungspunkte => 100.00,
-                                                                              WirdVerbessertZu        => 0,
-                                                                              Beförderungsgrenze      => 1,
-                                                                              MaximalerRang           => 100,
-                                                                              Reichweite              => 100,
-                                                                              Angriff                 => 100,
-                                                                              Verteidigung            => 100,
-                                                                              KannTransportieren      => EinheitenDatentypen.Gigantisch_Transport_Enum,
-                                                                              KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                              Transportkapazität      => EinheitenRecords.TransporterArray'Last
-                                                                             ),
+                                                                              
+                                                                           DatenbankRecords.EinheitenlisteArray'Last => DebugmenueSFML.Alleskönner,
                                                                
                                                                            others => EinheitenRecordKonstanten.LeerEinheitListe
                                                                           );

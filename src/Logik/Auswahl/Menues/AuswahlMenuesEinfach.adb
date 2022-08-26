@@ -1,19 +1,12 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Sf;
-with Sf.Graphics.RenderWindow;
-
 with TastenbelegungDatentypen;
 
-with NachLogiktask;
 with EingabeSFML;
 with RueckgabeMenues;
 with NachGrafiktask;
-with InteraktionAuswahl;
-with Vergleiche;
-with Views;
-with GrafikEinstellungenSFML;
+with Mausauswahl;
 
 package body AuswahlMenuesEinfach is
 
@@ -57,9 +50,9 @@ package body AuswahlMenuesEinfach is
       AuswahlSchleife:
       loop
       
-         AktuelleAuswahl := MausAuswahl (WelchesMenüExtern => WelchesMenüExtern,
-                                         AnfangExtern      => AnfangExtern,
-                                         EndeExtern        => EndeExtern);
+         AktuelleAuswahl := Mausauswahl.Menüs (WelchesMenüExtern => WelchesMenüExtern,
+                                                AnfangExtern      => AnfangExtern,
+                                                EndeExtern        => EndeExtern);
          NachGrafiktask.AktuelleAuswahl.AuswahlEins := AktuelleAuswahl;
          
          case
@@ -86,38 +79,5 @@ package body AuswahlMenuesEinfach is
       end loop AuswahlSchleife;
       
    end Auswahl;
-   
-         
-   
-   function MausAuswahl
-     (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum;
-      AnfangExtern : in Positive;
-      EndeExtern : in Positive)
-      return Natural
-   is begin
-      
-      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                                                 point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
-                                                                 view         => Views.MenüviewAccess);
-      
-      PositionSchleife:
-      for PositionSchleifenwert in AnfangExtern .. EndeExtern loop
-                  
-         case
-           Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                       TextboxExtern      => InteraktionAuswahl.PositionenMenüeinträge (WelchesMenüExtern, PositionSchleifenwert))
-         is
-            when True =>
-               return PositionSchleifenwert;
-            
-            when False =>
-               null;
-         end case;
-         
-      end loop PositionSchleife;
-      
-      return SystemKonstanten.LeerAuswahl;
-      
-   end MausAuswahl;
    
 end AuswahlMenuesEinfach;

@@ -60,6 +60,12 @@ package WichtigesRecordKonstanten is
                                                                ZeitSeitLetzterÄnderung    => WichtigesKonstanten.LeerZeitSeitLetzterÄnderung
                                                               );
    
+   StartDiplomatie : constant SpielRecords.DiplomatieRecord := (
+                                                                AktuellerZustand           => WichtigesKonstanten.LeerAktuellerZustand,
+                                                                AktuelleSympathieBewertung => WichtigesKonstanten.LeerAktuelleSympathieBewertung,
+                                                                ZeitSeitLetzterÄnderung    => WichtigesKonstanten.DiplomatischerStatusÄnderungszeit
+                                                               );
+   
    -- Wird noch nicht verwendet. Wird das jemals sinnvoll sein? äöü
    LeerRassenListe : constant DatenbankRecords.RassenlisteRecord := (
                                                                      Aggressivität       => 0,

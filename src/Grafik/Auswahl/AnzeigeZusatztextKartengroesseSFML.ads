@@ -13,8 +13,22 @@ package AnzeigeZusatztextKartengroesseSFML is
    function AnzeigeZusatztextKartengröße
      (AktuelleAuswahlExtern : in Natural;
       ViewflächeExtern : in Sf.System.Vector2.sfVector2f;
-      TextpositionExtern : in Sf.System.Vector2.sfVector2f)
-      return Sf.System.Vector2.sfVector2f;
+      RealeViewbreiteExtern : in Float)
+      return Sf.System.Vector2.sfVector2f
+     with
+       Pre => (
+                 ViewflächeExtern.x >= 0.00
+               and
+                 ViewflächeExtern.y >= 0.00
+               and
+                 RealeViewbreiteExtern >= 0.00
+              ),
+         
+       Post => (
+                  AnzeigeZusatztextKartengröße'Result.x >= 0.00
+                and
+                  AnzeigeZusatztextKartengröße'Result.y >= 0.00
+               );
    
 private
    
@@ -43,8 +57,22 @@ private
    
    function PositionFestlegen
      (ViewflächeExtern : in Sf.System.Vector2.sfVector2f;
-      TextpositionExtern : in Sf.System.Vector2.sfVector2f)
-      return Sf.System.Vector2.sfVector2f;
+      RealeViewbreiteExtern : in Float)
+      return Sf.System.Vector2.sfVector2f
+     with
+       Pre => (
+                 ViewflächeExtern.x >= 0.00
+               and
+                 ViewflächeExtern.y >= 0.00
+               and
+                 RealeViewbreiteExtern >= 0.00
+              ),
+         
+       Post => (
+                  PositionFestlegen'Result.x >= 0.00
+                and
+                  PositionFestlegen'Result.y >= 0.00
+               );
    
    function ZahlAlsStringKartenfeldPositiv is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => KartenDatentypen.KartenfeldPositiv);
 

@@ -52,6 +52,8 @@ package TextaccessVariablen is
    
    -- ZusatztextKartengröße
    ZusatztextKartengrößeAccess : constant TextaccessArray (1 .. 2) := (others => Sf.Graphics.Text.create);
+   
+   ZusatztextDiplomatieAccess : constant TextaccessArray (1 .. 2) := (others => Sf.Graphics.Text.create);
    -- ZusatztextKartengröße
    
    

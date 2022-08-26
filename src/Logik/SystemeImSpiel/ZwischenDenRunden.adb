@@ -5,6 +5,7 @@ with Ada.Calendar; use Ada.Calendar;
 
 with RassenDatentypen; use RassenDatentypen;
 with SystemDatentypen; use SystemDatentypen;
+with DiplomatieDatentypen; use DiplomatieDatentypen;
 with StadtKonstanten;
 with SpielVariablen;
 with TextnummernKonstanten;
@@ -151,7 +152,7 @@ package body ZwischenDenRunden is
          for RasseZweiSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
             
             if
-              SpielVariablen.Diplomatie (RasseEinsSchleifenwert, RasseZweiSchleifenwert).AktuellerZustand = SystemDatentypen.Unbekannt_Enum
+              SpielVariablen.Diplomatie (RasseEinsSchleifenwert, RasseZweiSchleifenwert).AktuellerZustand = DiplomatieDatentypen.Unbekannt_Enum
               or
                 RasseEinsSchleifenwert = RasseZweiSchleifenwert
                 or

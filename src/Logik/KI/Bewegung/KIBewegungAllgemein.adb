@@ -1,9 +1,9 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with DiplomatieDatentypen; use DiplomatieDatentypen;
 with EinheitenDatentypen;
 with EinheitenKonstanten;
-with SystemDatentypen; use SystemDatentypen;
 
 with KIKonstanten;
 
@@ -69,18 +69,16 @@ package body KIBewegungAllgemein is
       if
         BlockierendeEinheit = EinheitenKonstanten.LeerRasse
         and then
-          DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                             FremdeRasseExtern => BlockierendeStadt)
-        /= SystemDatentypen.Krieg_Enum
+          DiplomatieDatentypen.Krieg_Enum /= DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                                                FremdeRasseExtern => BlockierendeStadt)
       then
          return KIKonstanten.KeineBewegung;
          
       elsif
         BlockierendeStadt = EinheitenKonstanten.LeerRasse
         and then
-          DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                             FremdeRasseExtern => BlockierendeEinheit)
-        /= SystemDatentypen.Krieg_Enum
+          DiplomatieDatentypen.Krieg_Enum /= DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                                                FremdeRasseExtern => BlockierendeEinheit)
       then
          return KIKonstanten.KeineBewegung;
          

@@ -50,7 +50,7 @@ private
                                                              TastenbelegungDatentypen.Heilen_Enum                         => Sf.Window.Keyboard.sfKeyH,
                                                              TastenbelegungDatentypen.Verschanzen_Enum                    => Sf.Window.Keyboard.sfKeyV,
                                                              TastenbelegungDatentypen.Plündern_Enum                       => Sf.Window.Keyboard.sfKeyJ,
-                                                             TastenbelegungDatentypen.Auflösen_Enum                       => Sf.Window.Keyboard.sfKeyD,
+                                                             TastenbelegungDatentypen.Auflösen_Enum                       => Sf.Window.Keyboard.sfKeyK,
                                                              TastenbelegungDatentypen.Einheit_Verbessern_Enum             => Sf.Window.Keyboard.sfKeyA,
                                                              TastenbelegungDatentypen.Heimatstadt_Ändern_Enum             => Sf.Window.Keyboard.sfKeyC,
 

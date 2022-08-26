@@ -28,6 +28,7 @@ package SystemKonstanten is
                                            MenueDatentypen.Kartenressourcen_Menü_Enum   => 8,
                                            MenueDatentypen.Schwierigkeitsgrad_Menü_Enum => 6,
                                            MenueDatentypen.Kartengröße_Menü_Enum        => 16,
+                                           MenueDatentypen.Diplomatie_Menü_Enum         => 10,
                                            MenueDatentypen.Kartenpole_Menü_Enum         => 8,
 
                                            -- Doppelte Menüs.
@@ -64,6 +65,7 @@ package SystemKonstanten is
                                                  MenueDatentypen.Kartenressourcen_Menü_Enum   => EndeMenü (MenueDatentypen.Kartenressourcen_Menü_Enum),
                                                  MenueDatentypen.Schwierigkeitsgrad_Menü_Enum => EndeMenü (MenueDatentypen.Schwierigkeitsgrad_Menü_Enum),
                                                  MenueDatentypen.Kartengröße_Menü_Enum        => EndeMenü (MenueDatentypen.Kartengröße_Menü_Enum) - 2,
+                                                 MenueDatentypen.Diplomatie_Menü_Enum         => EndeMenü (MenueDatentypen.Diplomatie_Menü_Enum) - 2,
                                                  MenueDatentypen.Kartenpole_Menü_Enum         => EndeMenü (MenueDatentypen.Kartenpole_Menü_Enum),
 
                                                  -- Doppelte Menüs.

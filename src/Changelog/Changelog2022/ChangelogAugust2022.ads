@@ -28,17 +28,26 @@ package ChangelogAugust2022 is
    
    
 
-   -- Version 0.03. => 0.03. (27.08.2022):
+   -- Version 0.03.7400 => 0.03. (27.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.7200 => 0.03. (26.08.2022):
+   -- Version 0.03.7200 => 0.03.7400 (26.08.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Einheitenlisten überarbeitet.
+   -- Angefangen das Diplomatiemenü als SFML Version einzubauen.
+   -- Eigene Datentypen für das Diplomatiesystem angelegt und entsprechend angepasst.
+   -- Unnötigen Code gelöscht.
+   -- Interne Struktur überarbeitet.
+   -- Menüsysteme leicht überarbeitet.
+   -- Versehentlich die Performance optimiert.
+   -- Das alte Diplomatiesystem wieder eingebaut und modernisiert.
+   -- Das alte Handelssystem wieder eingebaut, aktuell funktioniert nur Karten tauschen.
+   -- Es ist jetzt vom Start an möglich den diplomatischen Zustand zu ändern.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst/optimiert.
    
    
 

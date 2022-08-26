@@ -18,6 +18,7 @@ with InteraktionAuswahl;
 with Vergleiche;
 with GrafikEinstellungenSFML;
 
+-- Kann man das so umbauen dass es wie die restlichen Mausauswahlen eine 0 als Leerauswahl zurück gibt? äöü
 package body AuswahlStadtEinheit is
 
    function AuswahlStadtEinheit

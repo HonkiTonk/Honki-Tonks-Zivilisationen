@@ -22,6 +22,7 @@ private
    Zusatzbereich : constant Positive := 2;
    
    Textbreite : Float;
+   Viewbreite : Float;
    
    Textposition : Sf.System.Vector2.sfVector2f;
    

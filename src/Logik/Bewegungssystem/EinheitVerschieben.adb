@@ -3,10 +3,10 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with EinheitenDatentypen; use EinheitenDatentypen;
-with GlobaleVariablen;
 with KartenKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
+with DiplomatieDatentypen;
 
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
@@ -14,8 +14,8 @@ with LeseStadtGebaut;
 with LeseKarten;
 
 with EinheitSuchen;
-with KartePositionPruefen;
 with BewegungPassierbarkeitPruefen;
+with Kartenkoordinatenberechnungssystem;
 
 package body EinheitVerschieben is
    
@@ -27,8 +27,8 @@ package body EinheitVerschieben is
       case
         SpielVariablen.Diplomatie (RasseExtern, KontaktierteRasseExtern).AktuellerZustand
       is
-         when SystemDatentypen.Nichtangriffspakt_Enum | SystemDatentypen.Neutral_Enum =>
-            EinheitNummer := 0;
+         when DiplomatieDatentypen.Nichtangriffspakt_Enum | DiplomatieDatentypen.Neutral_Enum =>
+            null;
             
          when others =>
             return;
@@ -55,33 +55,36 @@ package body EinheitVerschieben is
    
    
    procedure EinheitenErmitteln
-     (StadtRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       KontaktierteRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
+      
+      Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      EinheitNummer := EinheitenKonstanten.LeerNummer;
       
       YAchseSchleife:
       for YAchseSchleifenwert in -LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) .. LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) loop
          XAchseSchleife:
          for XAchseSchleifenwert in -LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) .. LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) loop
                
-            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                        ÄnderungExtern   => (LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern).EAchse, YAchseSchleifenwert, XAchseSchleifenwert));
+            Kartenwert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Stadtkoordinaten,
+                                                                                                 ÄnderungExtern    => (Stadtkoordinaten.EAchse, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                 LogikGrafikExtern => True);
                      
             if
-              KartenWert.XAchse = KartenKonstanten.LeerXAchse
+              Kartenwert.XAchse = KartenKonstanten.LeerXAchse
             then
                null;
                
             elsif
-              LeseKarten.BelegterGrund (RasseExtern       => StadtRasseNummerExtern.Rasse,
-                                        KoordinatenExtern => KartenWert)
-              = False
+              False = LeseKarten.BelegterGrund (RasseExtern       => StadtRasseNummerExtern.Rasse,
+                                                KoordinatenExtern => Kartenwert)
             then
                null;
-                  
+                                                                                                 
             else
                EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => KontaktierteRasseExtern,
-                                                                                KoordinatenExtern => KartenWert);
+                                                                                KoordinatenExtern => Kartenwert);
             end if;
                
             case
@@ -103,12 +106,13 @@ package body EinheitVerschieben is
    
 
    procedure EinheitVerschieben
-     (RasseLandExtern : in RueckgabeDatentypen.Rassen_Verwendet_Enum;
+     (RasseLandExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       UmgebungPrüfen := KartenDatentypen.Sichtweite'First;
       BereitsGeprüft := UmgebungPrüfen - 1;
+      Einheitenkoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       BereichSchleife:
       loop
@@ -117,11 +121,12 @@ package body EinheitVerschieben is
             XAchseSchleife:
             for XAchseSchleifenwert in -UmgebungPrüfen .. UmgebungPrüfen loop
                      
-               KartenWertVerschieben := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                                      ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert));
+               KartenwertVerschieben := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Einheitenkoordinaten,
+                                                                                                               ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                               LogikGrafikExtern => True);
             
                if
-                 KartenWertVerschieben.XAchse = KartenKonstanten.LeerXAchse
+                 KartenwertVerschieben.XAchse = KartenKonstanten.LeerXAchse
                then
                   null;
                
@@ -133,18 +138,16 @@ package body EinheitVerschieben is
                   null;
             
                elsif
-                 LeseKarten.BelegterGrund (RasseExtern       => RasseLandExtern,
-                                           KoordinatenExtern => KartenWertVerschieben)
-                 = False
+                 False = LeseKarten.BelegterGrund (RasseExtern       => RasseLandExtern,
+                                                   KoordinatenExtern => KartenwertVerschieben)
                  and
-                   BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                              NeuePositionExtern       => KartenWertVerschieben)
-                 = True
+                   True = BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                     NeueKoordinatenExtern    => KartenwertVerschieben)
                  and
-                   EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWertVerschieben).Platznummer = EinheitenKonstanten.LeerNummer
+                   EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenwertVerschieben).Nummer = EinheitenKonstanten.LeerNummer
                then
-                  SchreibeEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    PositionExtern           => KartenWertVerschieben);
+                  SchreibeEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                       KoordinatenExtern        => KartenwertVerschieben);
                   return;
                   
                else

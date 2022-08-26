@@ -59,7 +59,8 @@ package body AuswahlMenueDoppeltSFML is
 
       
       Viewfläche (Zusatzbereich) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (Zusatzbereich),
-                                                                                    VerhältnisExtern => (1.00, 1.00));
+                                                                                      VerhältnisExtern => (1.00, 1.00));
+      Viewbreite := Viewfläche (Zusatzbereich).x;
       
       ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => Views.ZusatztextviewAccess,
                                           GrößeExtern          => Viewfläche (Zusatzbereich),
@@ -69,9 +70,9 @@ package body AuswahlMenueDoppeltSFML is
                                         AbmessungenExtern => Viewfläche (Zusatzbereich));
       
       Viewfläche (Zusatzbereich) := AuswahlMenuesZusatztextSFML.MenüsZusatztextAufteilung (WelchesMenüExtern          => WelchesMenüExtern,
-                                                                                           AktuelleAuswahlExtern      => AktuelleAuswahlExtern,
-                                                                                           ViewflächeExtern           => Viewfläche (Zusatzbereich),
-                                                                                           TextpositionExtern         => TextKonstanten.StartpositionText,
+                                                                                             AktuelleAuswahlExtern      => AktuelleAuswahlExtern,
+                                                                                             ViewflächeExtern           => Viewfläche (Zusatzbereich),
+                                                                                             RealeViewbreiteExtern      => Viewbreite,
                                                                                              AnzeigebereichbreiteExtern => GrafikRecordKonstanten.MenüDoppelbereich (Zusatzbereich).width);
       
       Viewfläche (Zusatzbereich).y := Viewfläche (Zusatzbereich).y + TextberechnungenHoeheSFML.KleinerZeilenabstand;

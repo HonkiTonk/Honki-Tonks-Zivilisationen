@@ -1,8 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-private with Sf.System.Vector2;
-
 with MenueDatentypen;
 with RueckgabeDatentypen;
 
@@ -29,23 +27,13 @@ private
 
    RückgabeWert : RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
-   Mausposition : Sf.System.Vector2.sfVector2f;
+
 
    function Auswahl
      (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum;
       AnfangExtern : in Positive;
       EndeExtern : in Positive)
       return Integer
-     with
-       Pre => (
-                 AnfangExtern <= EndeExtern
-              );
-
-   function MausAuswahl
-     (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum;
-      AnfangExtern : in Positive;
-      EndeExtern : in Positive)
-      return Natural
      with
        Pre => (
                  AnfangExtern <= EndeExtern

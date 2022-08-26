@@ -8,6 +8,7 @@ with Ada.Calendar; use Ada.Calendar;
 with MenueDatentypen;
 with ZahlenDatentypen;
 with GlobaleTexte;
+with SystemDatentypen;
 
 with SchreibeKarten;
 with SchreibeWichtiges;
@@ -86,14 +87,14 @@ package body DebugmenueSFML is
          end loop YAchseSchleife;
       end loop EbeneSchleife;
       
-      DiplomatischenStatusÄndern (NeuerStatusExtern => SystemDatentypen.Neutral_Enum);
+      DiplomatischenStatusÄndern (NeuerStatusExtern => DiplomatieDatentypen.Neutral_Enum);
       
    end KarteAufdecken;
    
    
    
    procedure DiplomatischenStatusÄndern
-     (NeuerStatusExtern : in SystemDatentypen.Status_Untereinander_Enum)
+     (NeuerStatusExtern : in DiplomatieDatentypen.Status_Untereinander_Enum)
    is begin
       
       RassenErsteSchleife:
@@ -101,7 +102,16 @@ package body DebugmenueSFML is
          RassenZweiteSchleife:
          for RasseZweiSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
             
-            SpielVariablen.Diplomatie (RasseEinsSchleifenwert, RasseZweiSchleifenwert).AktuellerZustand := NeuerStatusExtern;
+            if
+              SpielVariablen.RassenImSpiel (RasseEinsSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
+              or
+                SpielVariablen.RassenImSpiel (RasseZweiSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
+            then
+               null;
+               
+            else
+               SpielVariablen.Diplomatie (RasseEinsSchleifenwert, RasseZweiSchleifenwert).AktuellerZustand := NeuerStatusExtern;
+            end if;
             
          end loop RassenZweiteSchleife;
       end loop RassenErsteSchleife;

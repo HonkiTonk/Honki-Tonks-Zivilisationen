@@ -1,9 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Sf;
-with Sf.Graphics.RenderWindow;
-
 with ForschungenDatentypen; use ForschungenDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
 with TastenbelegungDatentypen;
@@ -19,10 +16,7 @@ with EingabeSFML;
 with StadtWerteFestlegen;
 with StadtUmgebungsbereichFestlegen;
 with NachGrafiktask;
-with NachLogiktask;
-with Vergleiche;
-with GrafikEinstellungenSFML;
-with Views;
+with Mausauswahl;
 
 with KIForschung;
 
@@ -113,7 +107,7 @@ package body ForschungAllgemein is
       AuswahlSchleife:
       loop
          
-         AktuelleAuswahl := MausAuswahl;
+         AktuelleAuswahl := Mausauswahl.Forschungsmenü;
          NachGrafiktask.AktuelleAuswahl.AuswahlEins := Natural (AktuelleAuswahl);
          
          case
@@ -145,43 +139,6 @@ package body ForschungAllgemein is
       return GewählteForschung;
       
    end ForschungAuswahlSFML;
-   
-   
-   
-   function MausAuswahl
-      return ForschungenDatentypen.ForschungIDMitNullWert
-   is begin
-      
-      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                                                 point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
-                                                                 view         => Views.ForschungsviewAccesse (1));
-            
-      MausZeigerSchleife:
-      for ForschungSchleifenwert in InteraktionAuswahl.MöglicheForschungenArray'Range loop
-         
-         case
-           InteraktionAuswahl.MöglicheForschungen (ForschungSchleifenwert)
-         is
-            when True =>
-               if
-                 True = Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                                    TextboxExtern      => InteraktionAuswahl.PositionenForschung (ForschungSchleifenwert))
-               then
-                  return ForschungSchleifenwert;
-         
-               else
-                  null;
-               end if;
-
-            when False =>
-               null;
-         end case;
-         
-      end loop MausZeigerSchleife;
-      
-      return ForschungKonstanten.LeerForschungAnforderung;
-      
-   end MausAuswahl;
 
 
 

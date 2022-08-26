@@ -20,7 +20,7 @@ package body EinheitenAllgemeines is
          when EinheitenDatentypen.Einheitenart_Kampf_Enum'Range =>
             return True;
             
-         when EinheitenDatentypen.Arbeiter_Enum | EinheitenDatentypen.Sonstiges_Enum | EinheitenDatentypen.Cheat_Enum =>
+         when EinheitenDatentypen.Arbeiter_Enum | EinheitenDatentypen.PZB_Enum | EinheitenDatentypen.Cheat_Enum =>
             return False;
       end case;
       

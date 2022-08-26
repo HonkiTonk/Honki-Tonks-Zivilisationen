@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-private with Sf.System.Vector2;
 private with Sf.Window.Keyboard;
 
 with RueckgabeDatentypen;
@@ -23,15 +22,8 @@ private
    NeueTaste : Sf.Window.Keyboard.sfKeyCode;
 
    AktuelleAuswahl : SystemRecords.MehrfacheAuswahlRecord;
-   
-   Mausposition : Sf.System.Vector2.sfVector2f;
-   
+      
    procedure TasteBelegen
      (AuswahlExtern : in Positive);
-   
-   
-
-   function MausAuswahl
-     return SystemRecords.MehrfacheAuswahlRecord;
    
 end AuswahlSteuerungsmenue;

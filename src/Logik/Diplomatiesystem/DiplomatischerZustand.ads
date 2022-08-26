@@ -1,24 +1,23 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemDatentypen; use SystemDatentypen;
 with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
-with ProduktionDatentypen;
+with DiplomatieDatentypen;
 
 package DiplomatischerZustand is
 
-   type SympathieGrenzenArray is array (SystemDatentypen.Status_Untereinander_Bekannt_Enum'Range) of ProduktionDatentypen.Feldproduktion;
+   type SympathieGrenzenArray is array (DiplomatieDatentypen.Status_Untereinander_Bekannt_Enum'Range) of DiplomatieDatentypen.Meinung;
    SympathieGrenzen : constant SympathieGrenzenArray := (
-                                                         SystemDatentypen.Neutral_Enum           => 50,
-                                                         SystemDatentypen.Nichtangriffspakt_Enum => ProduktionDatentypen.Feldproduktion'Last,
-                                                         SystemDatentypen.Krieg_Enum             => 0
+                                                         DiplomatieDatentypen.Neutral_Enum           => 50,
+                                                         DiplomatieDatentypen.Nichtangriffspakt_Enum => DiplomatieDatentypen.Meinung'Last,
+                                                         DiplomatieDatentypen.Krieg_Enum             => 0
                                                         );
 
    procedure DiplomatischenStatusÄndern
      (RasseEinsExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       RasseZweiExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      NeuerStatusExtern : in SystemDatentypen.Status_Untereinander_Enum)
+      NeuerStatusExtern : in DiplomatieDatentypen.Status_Untereinander_Enum)
      with
        Pre => (
                  RasseEinsExtern /= RasseZweiExtern
@@ -31,7 +30,7 @@ package DiplomatischerZustand is
    procedure SympathieÄndern
      (EigeneRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       FremdeRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      ÄnderungExtern : in ProduktionDatentypen.Feldproduktion)
+      ÄnderungExtern : in DiplomatieDatentypen.Meinung)
      with
        Pre => (
                  EigeneRasseExtern /= FremdeRasseExtern
@@ -71,7 +70,7 @@ package DiplomatischerZustand is
    function DiplomatischenStatusPrüfen
      (EigeneRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       FremdeRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return SystemDatentypen.Status_Untereinander_Enum
+      return DiplomatieDatentypen.Status_Untereinander_Enum
      with
        Pre => (
                  EigeneRasseExtern /= FremdeRasseExtern
@@ -97,7 +96,7 @@ package DiplomatischerZustand is
    function AktuelleSympathie
      (EigeneRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       FremdeRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return ProduktionDatentypen.Feldproduktion
+      return DiplomatieDatentypen.Meinung
      with
        Pre => (
                  EigeneRasseExtern /= FremdeRasseExtern

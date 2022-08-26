@@ -2,11 +2,9 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with Sf.Window.Keyboard; use Sf.Window.Keyboard;
-with Sf.Graphics.RenderWindow;
 
 with TastenbelegungDatentypen; use TastenbelegungDatentypen;
 with InteraktionAuswahl;
-with Views;
 with MenueDatentypen;
 with SystemKonstanten;
 with SystemDatentypen;
@@ -14,11 +12,9 @@ with TextnummernKonstanten;
 with TastenbelegungVariablen;
 
 with NachGrafiktask;
-with GrafikEinstellungenSFML;
 with EingabeSFML;
-with Vergleiche;
-with NachLogiktask;
 with RueckgabeMenues;
+with Mausauswahl;
 
 package body AuswahlSteuerungsmenue is
       
@@ -29,7 +25,7 @@ package body AuswahlSteuerungsmenue is
       AuswahlSchleife:
       loop
          
-         AktuelleAuswahl := MausAuswahl;
+         AktuelleAuswahl := Mausauswahl.Steuerung;
          NachGrafiktask.AktuelleAuswahl := AktuelleAuswahl;
          
          case
@@ -66,58 +62,6 @@ package body AuswahlSteuerungsmenue is
       return Rückgabewert;
       
    end Auswahl;
-   
-         
-   
-   function MausAuswahl
-     return SystemRecords.MehrfacheAuswahlRecord
-   is begin
-      
-      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                                                 point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
-                                                                 view         => Views.SteuerungviewAccesse (1));
-      
-      BefehleSchleife:
-      for BefehleSchleifenwert in InteraktionAuswahl.PositionenSteuerung'Range loop
-         
-         case
-           Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                       TextboxExtern      => InteraktionAuswahl.PositionenSteuerung (BefehleSchleifenwert))
-         is
-            when True =>
-               return (BefehleSchleifenwert, 0);
-               
-            when False =>
-               null;
-         end case;
-         
-      end loop BefehleSchleife;
-      
-      
-      
-      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                                                 point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
-                                                                 view         => Views.SteuerungviewAccesse (2));
-         
-      PositionSchleife:
-      for PositionSchleifenwert in TastenbelegungDatentypen.Tastenbelegung_Auswählbar_Enum'Range loop
-                  
-         case
-           Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                       TextboxExtern      => InteraktionAuswahl.PositionenSteuerungbelegung (PositionSchleifenwert))
-         is
-            when True =>
-               return (0, TastenbelegungDatentypen.Tastenbelegung_Verwendet_Enum'Pos (PositionSchleifenwert));
-               
-            when False =>
-               null;
-         end case;
-         
-      end loop PositionSchleife;
-      
-      return (SystemKonstanten.LeerAuswahl, SystemKonstanten.LeerAuswahl);
-      
-   end MausAuswahl;
    
    
    

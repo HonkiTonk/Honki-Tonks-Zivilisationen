@@ -3,9 +3,9 @@ pragma Warnings (Off, "*array aggregate*");
 
 with EinheitenDatentypen; use EinheitenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
-with SystemDatentypen; use SystemDatentypen;
 with KampfDatentypen; use KampfDatentypen;
 with StadtDatentypen; use StadtDatentypen;
+with DiplomatieDatentypen; use DiplomatieDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
 
@@ -191,8 +191,8 @@ package body KIStadt is
                      null;
                      
                   elsif
-                    SystemDatentypen.Krieg_Enum /= DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                                                      FremdeRasseExtern => FremdeEinheit.Rasse)
+                    DiplomatieDatentypen.Krieg_Enum /= DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => StadtRasseNummerExtern.Rasse,
+                                                                                                          FremdeRasseExtern => FremdeEinheit.Rasse)
                   then
                      null;
                      

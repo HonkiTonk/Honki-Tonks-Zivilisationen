@@ -105,6 +105,11 @@ package body RueckgabeMenues is
             return Debugmenü (AnfangExtern          => AnfangExtern,
                                EndeExtern            => EndeExtern,
                                AktuelleAuswahlExtern => AktuelleAuswahlExtern);
+            
+         when MenueDatentypen.Diplomatie_Menü_Enum =>
+            return Diplomatiemenü (AnfangExtern          => AnfangExtern,
+                                    EndeExtern            => EndeExtern,
+                                    AktuelleAuswahlExtern => AktuelleAuswahlExtern);
       end case;
       
    end RückgabeMenüs;
@@ -987,6 +992,47 @@ package body RueckgabeMenues is
       end if;
       
    end Debugmenü;
+   
+   
+   
+   function Diplomatiemenü
+     (AnfangExtern : in Positive;
+      EndeExtern : in Positive;
+      AktuelleAuswahlExtern : in Positive)
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum
+   is begin
+
+      if
+        AktuelleAuswahlExtern = AnfangExtern
+      then
+         return RueckgabeDatentypen.Kartenart_Zufall_Enum;
+                    
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 1
+      then
+         return RueckgabeDatentypen.Keine_Rasse_Enum;
+                    
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 2
+      then
+         return RueckgabeDatentypen.Schwierigkeitsgrad_Leicht_Enum;
+                    
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 3
+      then
+         return RueckgabeDatentypen.Schwierigkeitsgrad_Mittel_Enum;
+                    
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 4
+      then
+         return RueckgabeDatentypen.Schwierigkeitsgrad_Schwer_Enum;
+         
+      else
+         return HauptmenüEnde (EndeExtern            => EndeExtern,
+                                AktuelleAuswahlExtern => AktuelleAuswahlExtern);
+      end if;
+
+   end Diplomatiemenü;
    
    
    

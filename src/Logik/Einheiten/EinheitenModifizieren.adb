@@ -221,24 +221,14 @@ package body EinheitenModifizieren is
    is begin
       
       if
+        EinheitenDatentypen.Cheat_Enum = LeseEinheitenDatenbank.EinheitArt (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                                            IDExtern    => IDExtern)
+      then
+         return SpielVariablen.Debug.VolleInformation;
+         
+      elsif
         False = BewegungPassierbarkeitPruefen.RichtigeUmgebungVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                                          EinheitenIDExtern      => IDExtern)
-      then
-         return False;
-         
-      elsif
-        SpielVariablen.Debug.VolleInformation = False
-        and
-          EinheitenDatentypen.Cheat_Enum = LeseEinheitenDatenbank.EinheitArt (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                              IDExtern    => IDExtern)
-      then
-         return False;
-         
-      elsif
-        SpielVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
-        and
-          EinheitenDatentypen.Cheat_Enum = LeseEinheitenDatenbank.EinheitArt (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                              IDExtern    => IDExtern)
       then
          return False;
          

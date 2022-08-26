@@ -1,8 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-private with Sf.System.Vector2;
-
 with RassenDatentypen; use RassenDatentypen;
 with ForschungenDatentypen;
 with SpielVariablen;
@@ -48,8 +46,6 @@ private
 
    AktuelleForschung : Positive;
 
-   Mausposition : Sf.System.Vector2.sfVector2f;
-
    procedure FortschrittMensch
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
@@ -65,9 +61,6 @@ private
               );
 
 
-
-   function MausAuswahl
-     return ForschungenDatentypen.ForschungIDMitNullWert;
 
    function AuswahlForschung
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

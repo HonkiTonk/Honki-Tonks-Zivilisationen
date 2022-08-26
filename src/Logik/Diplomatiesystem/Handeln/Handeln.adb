@@ -1,18 +1,14 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitenDatentypen; use EinheitenDatentypen;
-with GlobaleTexte;
-with SystemKonstanten;
+with DiplomatieDatentypen; use DiplomatieDatentypen;
 
 with SchreibeWichtiges;
 with LeseWichtiges;
 with LeseKarten;
 
-with Auswahl;
 with Sichtbarkeit;
 with KennenLernen;
-with Eingabe;
 with DiplomatischerZustand;
 with Karten;
 
@@ -27,7 +23,7 @@ package body Handeln is
       case
         SpielVariablen.Diplomatie (RasseExtern, KontaktierteRasseExtern).AktuellerZustand
       is
-         when SystemDatentypen.Krieg_Enum =>
+         when DiplomatieDatentypen.Krieg_Enum =>
             return 1;
             
          when others =>
@@ -48,11 +44,11 @@ package body Handeln is
       HandelSchleife:
       loop
          
-         AuswahlHandeln := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Handeln,
-                                            TextDateiExtern   => GlobaleTexte.Handeln,
-                                            FrageZeileExtern  => 1,
-                                            ErsteZeileExtern  => 2,
-                                            LetzteZeileExtern => 10);
+         --  AuswahlHandeln := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Handeln,
+         --                                     TextDateiExtern   => GlobaleTexte.Handeln,
+         --                                     FrageZeileExtern  => 1,
+         --                                     ErsteZeileExtern  => 2,
+         --                                    LetzteZeileExtern => 10);
       
          case
            AuswahlHandeln
@@ -97,7 +93,8 @@ package body Handeln is
                GeldVerlangen (RasseExtern             => RasseExtern,
                               KontaktierteRasseExtern => KontaktierteRasseExtern);
                
-            when RueckgabeDatentypen.Zurück_Enum =>
+               --   when RueckgabeDatentypen.Zurück_Enum =>
+            when 9 =>
                return 1;
                
             when others =>
@@ -118,10 +115,10 @@ package body Handeln is
       if
         LeseWichtiges.Geldmenge (RasseExtern => RasseExtern) >= Positive'First
       then
-         Geldmenge := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Handeln,
-                                         ZeileExtern         => 11,
-                                         ZahlenMinimumExtern => 0,
-                                         ZahlenMaximumExtern => LeseWichtiges.Geldmenge (RasseExtern => RasseExtern));
+         --      Geldmenge := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Handeln,
+         --                                     ZeileExtern         => 11,
+         --                                      ZahlenMinimumExtern => 0,
+         --                                      ZahlenMaximumExtern => LeseWichtiges.Geldmenge (RasseExtern => RasseExtern));
                
          SchreibeWichtiges.Geldmenge (RasseExtern         => RasseExtern,
                                       GeldZugewinnExtern  => -Geldmenge,
@@ -131,18 +128,18 @@ package body Handeln is
                                       GeldZugewinnExtern  => Geldmenge,
                                       RechnenSetzenExtern => True);
                   
-         if
-           Geldmenge / 25 > Integer (ProduktionDatentypen.Feldproduktion'Last)
-         then
-            DiplomatischerZustand.SympathieÄndern (EigeneRasseExtern => KontaktierteRasseExtern,
-                                                    FremdeRasseExtern => RasseExtern,
-                                                    ÄnderungExtern    => ProduktionDatentypen.Feldproduktion'Last);
+         -- if
+         --    Geldmenge / 25 > Integer (ProduktionDatentypen.Feldproduktion'Last)
+         --  then
+         DiplomatischerZustand.SympathieÄndern (EigeneRasseExtern => KontaktierteRasseExtern,
+                                                 FremdeRasseExtern => RasseExtern,
+                                                 ÄnderungExtern    => DiplomatieDatentypen.Meinung'Last);
                      
-         else
-            DiplomatischerZustand.SympathieÄndern (EigeneRasseExtern => KontaktierteRasseExtern,
-                                                    FremdeRasseExtern => RasseExtern,
-                                                    ÄnderungExtern    => ProduktionDatentypen.Feldproduktion (Geldmenge / 25));
-         end if;
+         --  else
+         DiplomatischerZustand.SympathieÄndern (EigeneRasseExtern => KontaktierteRasseExtern,
+                                                 FremdeRasseExtern => RasseExtern,
+                                                 ÄnderungExtern    => DiplomatieDatentypen.Meinung (Geldmenge / 25));
+         --   end if;
                   
       else
          null;
@@ -160,10 +157,10 @@ package body Handeln is
       if
         LeseWichtiges.Geldmenge (RasseExtern => KontaktierteRasseExtern) >= Positive'First
       then
-         Geldmenge := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Handeln,
-                                         ZeileExtern         => 12,
-                                         ZahlenMinimumExtern => 0,
-                                         ZahlenMaximumExtern => LeseWichtiges.Geldmenge (RasseExtern => KontaktierteRasseExtern));
+         --  Geldmenge := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Handeln,
+         --                                  ZeileExtern         => 12,
+         --                                  ZahlenMinimumExtern => 0,
+         --                                  ZahlenMaximumExtern => LeseWichtiges.Geldmenge (RasseExtern => KontaktierteRasseExtern));
                
          SchreibeWichtiges.Geldmenge (RasseExtern         => RasseExtern,
                                       GeldZugewinnExtern  => Geldmenge,
@@ -173,18 +170,18 @@ package body Handeln is
                                       GeldZugewinnExtern  => -Geldmenge,
                                       RechnenSetzenExtern => True);
                   
-         if
-           Geldmenge / 25 > Integer (ProduktionDatentypen.Feldproduktion'Last)
-         then
-            DiplomatischerZustand.SympathieÄndern (EigeneRasseExtern => KontaktierteRasseExtern,
-                                                    FremdeRasseExtern => RasseExtern,
-                                                    ÄnderungExtern    => -ProduktionDatentypen.Feldproduktion'Last);
+         --  if
+         --    Geldmenge / 25 > Integer (ProduktionDatentypen.Feldproduktion'Last)
+         --  then
+         --   DiplomatischerZustand.SympathieÄndern (EigeneRasseExtern => KontaktierteRasseExtern,
+         --                                          FremdeRasseExtern => RasseExtern,
+         --                                         ÄnderungExtern    => -DiplomatieDatentypen.Meinung'Last);
                      
-         else
-            DiplomatischerZustand.SympathieÄndern (EigeneRasseExtern => KontaktierteRasseExtern,
-                                                    FremdeRasseExtern => RasseExtern,
-                                                    ÄnderungExtern    => -ProduktionDatentypen.Feldproduktion (Geldmenge / 25));
-         end if;
+         --  else
+         --  DiplomatischerZustand.SympathieÄndern (EigeneRasseExtern => KontaktierteRasseExtern,
+         --                                        FremdeRasseExtern => RasseExtern,
+         --                                      ÄnderungExtern    => -DiplomatieDatentypen.Meinung (Geldmenge / 25));
+         --  end if;
                   
       else
          null;
@@ -200,16 +197,16 @@ package body Handeln is
    is begin
       
       RassenZweiSchleife:
-      for RasseZweiSchleifenwert in RueckgabeDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseZweiSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
                
          if
            RasseZweiSchleifenwert = RasseExtern
            or
              RasseZweiSchleifenwert = KontaktierteRasseExtern
              or
-               SpielVariablen.Diplomatie (RasseExtern, RasseZweiSchleifenwert).AktuellerZustand = SystemDatentypen.Unbekannt_Enum
+               SpielVariablen.Diplomatie (RasseExtern, RasseZweiSchleifenwert).AktuellerZustand = DiplomatieDatentypen.Unbekannt_Enum
            or
-             SpielVariablen.Diplomatie (KontaktierteRasseExtern, RasseZweiSchleifenwert).AktuellerZustand /= SystemDatentypen.Unbekannt_Enum
+             SpielVariablen.Diplomatie (KontaktierteRasseExtern, RasseZweiSchleifenwert).AktuellerZustand /= DiplomatieDatentypen.Unbekannt_Enum
          then
             null;
                   
@@ -230,16 +227,16 @@ package body Handeln is
    is begin
       
       RassenEinsSchleife:
-      for RasseEinsSchleifenwert in RueckgabeDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseEinsSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
                
          if
            RasseEinsSchleifenwert = RasseExtern
            or
              RasseEinsSchleifenwert = KontaktierteRasseExtern
              or
-               SpielVariablen.Diplomatie (KontaktierteRasseExtern, RasseEinsSchleifenwert).AktuellerZustand = SystemDatentypen.Unbekannt_Enum
+               SpielVariablen.Diplomatie (KontaktierteRasseExtern, RasseEinsSchleifenwert).AktuellerZustand = DiplomatieDatentypen.Unbekannt_Enum
            or
-             SpielVariablen.Diplomatie (RasseExtern, RasseEinsSchleifenwert).AktuellerZustand /= SystemDatentypen.Unbekannt_Enum
+             SpielVariablen.Diplomatie (RasseExtern, RasseEinsSchleifenwert).AktuellerZustand /= DiplomatieDatentypen.Unbekannt_Enum
          then
             null;
                   
@@ -269,25 +266,23 @@ package body Handeln is
    
    
    procedure SichtbarkeitKaufen
-     (RasseEinsExtern : in RueckgabeDatentypen.Rassen_Verwendet_Enum;
-      RasseZweiExtern : in RueckgabeDatentypen.Rassen_Verwendet_Enum)
+     (RasseEinsExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      RasseZweiExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
      
       EAchseEinsSchleife:
       for EAchseEinsSchleifenwert in Karten.WeltkarteArray'Range (1) loop
          YAchseEinsSchleife:
-         for YAchseEinsSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
+         for YAchseEinsSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Karteneinstellungen.Kartengröße.YAchse loop
             XAchseEinsSchleife:
-            for XAchseEinsSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
+            for XAchseEinsSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Karteneinstellungen.Kartengröße.XAchse loop
 
                if
-                 LeseKarten.Sichtbar (KoordinatenExtern => (EAchseEinsSchleifenwert, YAchseEinsSchleifenwert, XAchseEinsSchleifenwert),
-                                      RasseExtern       => RasseEinsExtern)
-                 = False
+                 False = LeseKarten.Sichtbar (KoordinatenExtern => (EAchseEinsSchleifenwert, YAchseEinsSchleifenwert, XAchseEinsSchleifenwert),
+                                              RasseExtern       => RasseEinsExtern)
                  and
-                   LeseKarten.Sichtbar (KoordinatenExtern => (EAchseEinsSchleifenwert, YAchseEinsSchleifenwert, XAchseEinsSchleifenwert),
-                                        RasseExtern       => RasseZweiExtern)
-                 = True
+                   True = LeseKarten.Sichtbar (KoordinatenExtern => (EAchseEinsSchleifenwert, YAchseEinsSchleifenwert, XAchseEinsSchleifenwert),
+                                               RasseExtern       => RasseZweiExtern)
                then
                   Sichtbarkeit.SichtbarkeitSetzen (RasseExtern       => RasseEinsExtern,
                                                    KoordinatenExtern => (EAchseEinsSchleifenwert, YAchseEinsSchleifenwert, XAchseEinsSchleifenwert));
@@ -305,25 +300,23 @@ package body Handeln is
 
 
    procedure SichtbarkeitVerkaufen
-     (RasseEinsExtern : in RueckgabeDatentypen.Rassen_Verwendet_Enum;
-      RasseZweiExtern : in RueckgabeDatentypen.Rassen_Verwendet_Enum)
+     (RasseEinsExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      RasseZweiExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
   
       EAchseZweiSchleife:
       for EAchseZweiSchleifenwert in Karten.WeltkarteArray'Range (1) loop
          YAchseZweiSchleife:
-         for YAchseZweiSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
+         for YAchseZweiSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Karteneinstellungen.Kartengröße.YAchse loop
             XAchseZweiSchleife:
-            for XAchseZweiSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
+            for XAchseZweiSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Karteneinstellungen.Kartengröße.XAchse loop
 
                if
-                 LeseKarten.Sichtbar (KoordinatenExtern => (EAchseZweiSchleifenwert, YAchseZweiSchleifenwert, XAchseZweiSchleifenwert),
-                                      RasseExtern       => RasseZweiExtern)
-                 = False
+                 False = LeseKarten.Sichtbar (KoordinatenExtern => (EAchseZweiSchleifenwert, YAchseZweiSchleifenwert, XAchseZweiSchleifenwert),
+                                              RasseExtern       => RasseZweiExtern)
                  and
-                   LeseKarten.Sichtbar (KoordinatenExtern => (EAchseZweiSchleifenwert, YAchseZweiSchleifenwert, XAchseZweiSchleifenwert),
-                                        RasseExtern       => RasseEinsExtern)
-                 = True
+                   True = LeseKarten.Sichtbar (KoordinatenExtern => (EAchseZweiSchleifenwert, YAchseZweiSchleifenwert, XAchseZweiSchleifenwert),
+                                               RasseExtern       => RasseEinsExtern)
                then
                   Sichtbarkeit.SichtbarkeitSetzen (RasseExtern       => RasseZweiExtern,
                                                    KoordinatenExtern => (EAchseZweiSchleifenwert, YAchseZweiSchleifenwert, XAchseZweiSchleifenwert));
@@ -341,8 +334,8 @@ package body Handeln is
    
    
    procedure SichtbarkeitTauschen
-     (RasseEinsExtern : in RueckgabeDatentypen.Rassen_Verwendet_Enum;
-      RasseZweiExtern : in RueckgabeDatentypen.Rassen_Verwendet_Enum)
+     (RasseEinsExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      RasseZweiExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       SichtbarkeitKaufen (RasseEinsExtern => RasseEinsExtern,

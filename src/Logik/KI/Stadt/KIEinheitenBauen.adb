@@ -139,7 +139,7 @@ package body KIEinheitenBauen is
          when EinheitenDatentypen.Beides_Enum =>
             null;
             
-         when EinheitenDatentypen.Sonstiges_Enum =>
+         when EinheitenDatentypen.PZB_Enum =>
             null;
             
          when EinheitenDatentypen.Cheat_Enum =>

@@ -1,12 +1,14 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with RassenDatentypen; use RassenDatentypen;
+with SpielVariablen;
 with EinheitenRecords;
 
-private with SystemDatentypen;
 private with KartenRecords;
 private with KartenDatentypen;
 private with EinheitenDatentypen;
+private with StadtRecords;
 
 package EinheitVerschieben is
 
@@ -21,7 +23,7 @@ package EinheitVerschieben is
               );
    
    procedure EinheitVerschieben
-     (RasseLandExtern : in RueckgabeDatentypen.Rassen_Verwendet_Enum;
+     (RasseLandExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre => (
@@ -39,11 +41,13 @@ private
    
    EinheitNummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    
-   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
-   KartenWertVerschieben : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Kartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   KartenwertVerschieben : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Stadtkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Einheitenkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    procedure EinheitenErmitteln
-     (StadtRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       KontaktierteRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (

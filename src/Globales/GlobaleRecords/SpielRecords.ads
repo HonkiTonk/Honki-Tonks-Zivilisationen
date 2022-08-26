@@ -5,12 +5,12 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with StadtDatentypen;
 with EinheitenDatentypen;
-with SystemDatentypen;
 with ForschungenDatentypen;
 with ProduktionDatentypen;
 with ZahlenDatentypen;
 with RassenDatentypen;
 with SpielDatentypen;
+with DiplomatieDatentypen;
 
 package SpielRecords is
    
@@ -51,8 +51,8 @@ package SpielRecords is
    
    type DiplomatieRecord is record
       
-      AktuellerZustand : SystemDatentypen.Status_Untereinander_Enum;
-      AktuelleSympathieBewertung : ProduktionDatentypen.Feldproduktion;
+      AktuellerZustand : DiplomatieDatentypen.Status_Untereinander_Enum;
+      AktuelleSympathieBewertung : DiplomatieDatentypen.Meinung;
       ZeitSeitLetzterÄnderung : ZahlenDatentypen.EigenesNatural;
       
    end record;

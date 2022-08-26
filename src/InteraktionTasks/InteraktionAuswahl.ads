@@ -9,6 +9,7 @@ with EinheitenDatentypen;
 with StadtDatentypen;
 with ForschungenDatentypen;
 with TastenbelegungDatentypen;
+with RassenDatentypen;
 
 package InteraktionAuswahl is
 
@@ -26,8 +27,6 @@ package InteraktionAuswahl is
 
 
 
-   -- Das später bei den Menüeinträgen reinbasteln? äöü
-   -- Sollte funktionieren. äöü
    PositionenSprachauswahl : PositionenArray (1 .. 11) := (others => (0.00, 0.00, 0.00, 0.00));
 
 
@@ -58,5 +57,13 @@ package InteraktionAuswahl is
    PositionenEinheitStadt : PositionenEinheitStadtArray := (others => (0.00, 0.00, 0.00, 0.00));
 
    PositionenJaNein : PositionenArray (1 .. 2) := (others => (0.00, 0.00, 0.00, 0.00));
+
+
+
+   type PositionenDiplomatieRasseArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of Sf.Graphics.Rect.sfFloatRect;
+   PositionenDiplomatieRasse : PositionenDiplomatieRasseArray := (others => (0.00, 0.00, 0.00, 0.00));
+
+   type RassenMöglicheArray is array (PositionenDiplomatieRasseArray'Range) of Boolean;
+   RassenMöglich : RassenMöglicheArray := (others => False);
 
 end InteraktionAuswahl;

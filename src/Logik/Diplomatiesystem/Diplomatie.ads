@@ -17,35 +17,21 @@ package Diplomatie is
 
 private
 
-   KriegJetzt : Boolean;
+   KontaktierteRasse : RassenDatentypen.Rassen_Verwendet_Enum;
 
-   DiplomatischeAktion : Integer;
-   StatusAuswahl : Integer;
-   WelcheRasse : Integer;
+   AktionAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
-   procedure DiplomatieMenü
+   Auswahl : Natural;
+
+   procedure Rassenprüfungen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
-                 SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
 
-
-
-   function DiplomatischenStatusÄndern
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      KontaktierteRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return RueckgabeDatentypen.Rückgabe_Werte_Enum
-     with
-       Pre => (
-                 SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
-               and
-                 SpielVariablen.RassenImSpiel (KontaktierteRasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
-              );
-
-   function AndereRassenVorhanden
+   procedure Diplomatie
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return Boolean
      with
        Pre => (
                  SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum

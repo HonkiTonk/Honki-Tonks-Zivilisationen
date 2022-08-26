@@ -1,25 +1,23 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemDatentypen; use SystemDatentypen;
-with ProduktionDatentypen; use ProduktionDatentypen;
+with DiplomatieDatentypen; use DiplomatieDatentypen;
 with WichtigesKonstanten;
 
 with DiplomatischerZustand;
 
 package body DiplomatischerZustandAenderbar is
 
-   function StatusÄnderbarkeitPrüfen
+   procedure StatusÄnderbarkeitPrüfen
      (RasseEinsExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       RasseZweiExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      NeuerStatusExtern : in SystemDatentypen.Status_Untereinander_Bekannt_Enum)
-      return Boolean
+      NeuerStatusExtern : in DiplomatieDatentypen.Status_Untereinander_Bekannt_Enum)
    is begin
       
       if
         NeuerStatusExtern = SpielVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern).AktuellerZustand
       then
-         return False;
+         return;
          
       else
          AktuellerStatus := DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => RasseEinsExtern,
@@ -28,7 +26,7 @@ package body DiplomatischerZustandAenderbar is
          ZeitSeitÄnderung := DiplomatischerZustand.DiplomatischerStatusLetzteÄnderung (EigeneRasseExtern => RasseEinsExtern,
                                                                                          FremdeRasseExtern => RasseZweiExtern);
          
-         -- Die Sympathiewerte einer Rasse zu einer Anderen müssen nur Zwei zu Eins berückstichtigt werden, da Eins ja was von Zwei will.
+         -- Die Sympathiewerte einer Rasse zu einer Anderen müssen nur Zwei zu Eins berücksichtigt werden, da Eins ja was von Zwei will.
          SympathieZweiZuEins := DiplomatischerZustand.AktuelleSympathie (EigeneRasseExtern => RasseZweiExtern,
                                                                          FremdeRasseExtern => RasseEinsExtern);
       end if;
@@ -36,13 +34,13 @@ package body DiplomatischerZustandAenderbar is
       case
         NeuerStatusExtern
       is
-         when SystemDatentypen.Neutral_Enum =>
+         when DiplomatieDatentypen.Neutral_Enum =>
             ÄnderungMöglich := NeutralMöglich;
                         
-         when SystemDatentypen.Nichtangriffspakt_Enum =>
+         when DiplomatieDatentypen.Nichtangriffspakt_Enum =>
             ÄnderungMöglich := NichtangriffspaktMöglich;
                         
-         when SystemDatentypen.Krieg_Enum =>
+         when DiplomatieDatentypen.Krieg_Enum =>
             ÄnderungMöglich := KriegMöglich;
       end case;
       
@@ -58,18 +56,7 @@ package body DiplomatischerZustandAenderbar is
             null;
       end case;
       
-      return ÄnderungMöglich;
-      
    end StatusÄnderbarkeitPrüfen;
-   
-   
-   
-   procedure EsHerrschtKrieg
-   is begin
-      
-      null;
-      
-   end EsHerrschtKrieg;
    
    
    
@@ -78,14 +65,14 @@ package body DiplomatischerZustandAenderbar is
    is begin
       
       if
-        AktuellerStatus = SystemDatentypen.Nichtangriffspakt_Enum
+        AktuellerStatus = DiplomatieDatentypen.Nichtangriffspakt_Enum
         and
           ZeitSeitÄnderung >= WichtigesKonstanten.DiplomatischerStatusÄnderungszeit
       then
          return True;
          
       elsif
-        AktuellerStatus = SystemDatentypen.Krieg_Enum
+        AktuellerStatus = DiplomatieDatentypen.Krieg_Enum
         and
           ZeitSeitÄnderung >= 10
           and
@@ -106,13 +93,12 @@ package body DiplomatischerZustandAenderbar is
    is begin
       
       if
-        AktuellerStatus = SystemDatentypen.Krieg_Enum
+        AktuellerStatus = DiplomatieDatentypen.Krieg_Enum
       then
-         EsHerrschtKrieg;
          return False;
          
       elsif
-        AktuellerStatus = SystemDatentypen.Neutral_Enum
+        AktuellerStatus = DiplomatieDatentypen.Neutral_Enum
         and
           SympathieZweiZuEins >= DiplomatischerZustand.SympathieGrenzen (AktuellerStatus) - 10
       then
@@ -131,12 +117,12 @@ package body DiplomatischerZustandAenderbar is
    is begin
       
       if        
-        AktuellerStatus = SystemDatentypen.Nichtangriffspakt_Enum
+        AktuellerStatus = DiplomatieDatentypen.Nichtangriffspakt_Enum
       then
          return False;
          
       elsif
-        AktuellerStatus = SystemDatentypen.Neutral_Enum
+        AktuellerStatus = DiplomatieDatentypen.Neutral_Enum
         and
           ZeitSeitÄnderung >= WichtigesKonstanten.DiplomatischerStatusÄnderungszeit
       then

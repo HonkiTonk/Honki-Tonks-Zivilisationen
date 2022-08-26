@@ -27,9 +27,15 @@ package EinheitenDatentypen is
    subtype Passierbarkeit_Fliegen_Enum is Passierbarkeit_Vorhanden_Enum range Luft_Enum .. Weltraum_Enum;
 
    type Einheitart_Enum is (
-                             Leer_Einheitart_Enum,
+                            Leer_Einheitart_Enum,
                              
-                             Arbeiter_Enum, Nahkämpfer_Enum, Fernkämpfer_Enum, Beides_Enum, Sonstiges_Enum, Cheat_Enum
+                            Arbeiter_Enum,
+                            
+                            Nahkämpfer_Enum, Fernkämpfer_Enum, Beides_Enum,
+                            
+                            PZB_Enum,
+                            
+                            Cheat_Enum
                            );
    
    subtype Einheitart_Vorhanden_Enum is Einheitart_Enum range Arbeiter_Enum .. Einheitart_Enum'Last;

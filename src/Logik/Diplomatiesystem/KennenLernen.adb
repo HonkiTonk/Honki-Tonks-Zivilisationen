@@ -1,8 +1,9 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with DiplomatieDatentypen;
+
 with DiplomatischerZustand;
-with SystemDatentypen;
 
 with KIDiplomatie;
 
@@ -17,10 +18,10 @@ package body KennenLernen is
         DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => EigeneRasseExtern,
                                                            FremdeRasseExtern => FremdeRasseExtern)
       is
-         when SystemDatentypen.Unbekannt_Enum =>
+         when DiplomatieDatentypen.Unbekannt_Enum =>
             DiplomatischerZustand.DiplomatischenStatusÄndern (RasseEinsExtern   => EigeneRasseExtern,
                                                                RasseZweiExtern   => FremdeRasseExtern,
-                                                               NeuerStatusExtern => SystemDatentypen.Neutral_Enum);
+                                                               NeuerStatusExtern => DiplomatieDatentypen.Neutral_Enum);
                
          when others =>
             return;

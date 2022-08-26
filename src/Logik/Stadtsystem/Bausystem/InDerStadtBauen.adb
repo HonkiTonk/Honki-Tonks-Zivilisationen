@@ -1,14 +1,10 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Sf;
-with Sf.Graphics.RenderWindow;
-
 with GrafikDatentypen; use GrafikDatentypen;
 with StadtRecords; use StadtRecords;
 with StadtKonstanten;
 with TastenbelegungDatentypen;
-with Views;
 
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
@@ -17,10 +13,8 @@ with EingabeSFML;
 with GebaeudeAllgemein;
 with EinheitenModifizieren;
 with NachGrafiktask;
-with NachLogiktask;
 with InteraktionAuswahl;
-with Vergleiche;
-with GrafikEinstellungenSFML;
+with Mausauswahl;
 
 package body InDerStadtBauen is
 
@@ -162,7 +156,7 @@ package body InDerStadtBauen is
       AuswahlSchleife:
       loop
          
-         AktuelleAuswahl := MausAuswahl;
+         AktuelleAuswahl := Mausauswahl.Baumenü;
          NachGrafiktask.AktuelleBauauswahl := AktuelleAuswahl;
          
          case
@@ -196,69 +190,5 @@ package body InDerStadtBauen is
       return GewähltesBauprojekt;
       
    end AuswahlBauprojektSFML;
-   
-   
-   
-   function MausAuswahl
-     return StadtRecords.BauprojektRecord
-   is begin
-      
-      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                                                 point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
-                                                                 view         => Views.BauviewAccesse (1));
-      
-      GebäudeSchleife:
-      for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
-         
-         case
-           InteraktionAuswahl.MöglicheGebäude (GebäudeSchleifenwert)
-         is
-            when True =>
-               if
-                 True = Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                                    TextboxExtern      => InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert))
-               then
-                  return (GebäudeSchleifenwert, 0);
-         
-               else
-                  null;
-               end if;
-
-            when others =>
-               null;
-         end case;
-         
-      end loop GebäudeSchleife;
-            
-      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                                                 point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
-                                                                 view         => Views.BauviewAccesse (2));
-      
-      EinheitenSchleife:
-      for EinheitenSchleifenwert in EinheitenDatentypen.EinheitenID'Range loop
-         
-         case
-           InteraktionAuswahl.MöglicheEinheiten (EinheitenSchleifenwert)
-         is
-            when True =>
-               if
-                 True = Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                                    TextboxExtern      => InteraktionAuswahl.PositionenEinheitenBauen (EinheitenSchleifenwert))
-               then
-                  return (0, EinheitenSchleifenwert);
-         
-               else
-                  null;
-               end if;
-
-            when others =>
-               null;
-         end case;
-               
-      end loop EinheitenSchleife;
-      
-      return (0, 0);
-      
-   end MausAuswahl;
 
 end InDerStadtBauen;

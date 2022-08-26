@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with EinheitenDatentypen; use EinheitenDatentypen;
-with SystemDatentypen; use SystemDatentypen;
+with DiplomatieDatentypen; use DiplomatieDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
@@ -58,10 +58,9 @@ package body EinheitInUmgebung is
                         
             when others =>
                if
-                 EinheitFinden (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert)),
-                                UmgebungExtern    => LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert)) + 1,
-                                RasseExtern       => RasseExtern)
-                 = True
+                 True = EinheitFinden (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert)),
+                                       UmgebungExtern    => LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert)) + 1,
+                                       RasseExtern       => RasseExtern)
                then
                   StadtMeldungenSetzen.StadtMeldungSetzenEreignis (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert),
                                                                    EreignisExtern         => StadtDatentypen.Fremde_Einheit_Nahe_Stadt_Enum);
@@ -92,10 +91,9 @@ package body EinheitInUmgebung is
                         
             when others =>
                if
-                 EinheitFinden (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (RasseExtern, EinheitSchleifenwert)),
-                                UmgebungExtern    => 3,
-                                RasseExtern       => RasseExtern)
-                 = True
+                 True = EinheitFinden (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (RasseExtern, EinheitSchleifenwert)),
+                                       UmgebungExtern    => 3,
+                                       RasseExtern       => RasseExtern)
                then
                   EinheitenMeldungenSetzen.EinheitMeldungSetzenEreignis (EinheitRasseNummerExtern => (RasseExtern, EinheitSchleifenwert),
                                                                          EreignisExtern           => EinheitenDatentypen.Fremde_Einheit_Nahe_Enum);
@@ -133,9 +131,8 @@ package body EinheitInUmgebung is
                null;
                
             elsif
-              LeseKarten.Sichtbar (KoordinatenExtern => KartenWert,
-                                   RasseExtern       => RasseExtern)
-              = False
+              False = LeseKarten.Sichtbar (KoordinatenExtern => KartenWert,
+                                           RasseExtern       => RasseExtern)
             then
                null;
                
@@ -149,9 +146,8 @@ package body EinheitInUmgebung is
                   null;
                     
                elsif
-                 DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => RasseExtern,
-                                                                    FremdeRasseExtern => AndereEinheit.Rasse)
-                 = SystemDatentypen.Nichtangriffspakt_Enum
+                 DiplomatieDatentypen.Nichtangriffspakt_Enum = DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => RasseExtern,
+                                                                                                                  FremdeRasseExtern => AndereEinheit.Rasse)
                then
                   null;
                   

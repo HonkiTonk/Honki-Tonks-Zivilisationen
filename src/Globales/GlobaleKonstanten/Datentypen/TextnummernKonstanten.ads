@@ -76,6 +76,9 @@ package TextnummernKonstanten is
    ZeugJa : constant Positive := 71;
    ZeugNein : constant Positive := 72;
    ZeugMit : constant Positive := 73;
+   ZeugFrieden : constant Positive := 74;
+   ZeugNichtangriffspakt : constant Positive := 75;
+   ZeugKrieg : constant Positive := 76;
    
    
    

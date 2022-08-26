@@ -39,12 +39,9 @@ package body EinheitenErzeugenEntfernen is
             SchreibeWichtiges.AnzahlKämpfer (RasseExtern     => StadtRasseNummerExtern.Rasse,
                                               PlusMinusExtern => True);
             
-         when EinheitenDatentypen.Sonstiges_Enum =>
+         when others =>
             SchreibeWichtiges.AnzahlSonstiges (RasseExtern     => StadtRasseNummerExtern.Rasse,
                                                PlusMinusExtern => True);
-            
-         when others =>
-            null;
       end case;
       
       EinheitenModifizieren.PermanenteKostenÄndern (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern),
@@ -117,12 +114,9 @@ package body EinheitenErzeugenEntfernen is
             SchreibeWichtiges.AnzahlKämpfer (RasseExtern     => EinheitRasseNummerExtern.Rasse,
                                               PlusMinusExtern => False);
             
-         when EinheitenDatentypen.Sonstiges_Enum =>
+         when others =>
             SchreibeWichtiges.AnzahlSonstiges (RasseExtern     => EinheitRasseNummerExtern.Rasse,
                                                PlusMinusExtern => False);
-            
-         when others =>
-            null;
       end case;
 
       SchreibeEinheitenGebaut.Nullsetzung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);

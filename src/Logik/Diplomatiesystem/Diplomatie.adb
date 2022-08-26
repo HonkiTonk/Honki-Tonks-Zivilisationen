@@ -1,9 +1,21 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemDatentypen; use SystemDatentypen;
+with DiplomatieDatentypen; use DiplomatieDatentypen;
+with InteraktionAuswahl;
+with GrafikDatentypen;
+with SystemKonstanten;
+with TastenbelegungDatentypen;
+with MenueDatentypen;
 
+with NachGrafiktask;
+with EingabeSFML;
+with Mausauswahl;
+with Auswahlaufteilungen;
+with Fehler;
 with DiplomatischerZustandAenderbar;
+with EinheitVerschieben;
+with Handeln;
 
 package body Diplomatie is
    
@@ -11,23 +23,15 @@ package body Diplomatie is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      case
-        AndereRassenVorhanden (RasseExtern => RasseExtern)
-      is
-         when True =>
-            DiplomatieMenü (RasseExtern => RasseExtern);
-            
-         when False =>
-            null;
-      end case;
+      Rassenprüfungen (RasseExtern => RasseExtern);
+      Diplomatie (RasseExtern => RasseExtern);
       
    end DiplomatieMöglich;
    
    
    
-   function AndereRassenVorhanden
+   procedure Rassenprüfungen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return Boolean
    is begin
       
       RassenSchleife:
@@ -38,152 +42,106 @@ package body Diplomatie is
            or
              SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Leer_Spieler_Enum
            or
-             SpielVariablen.Diplomatie (RasseExtern, RassenSchleifenwert).AktuellerZustand = SystemDatentypen.Unbekannt_Enum
+             SpielVariablen.Diplomatie (RasseExtern, RassenSchleifenwert).AktuellerZustand = DiplomatieDatentypen.Unbekannt_Enum
          then
-            null;
+            InteraktionAuswahl.RassenMöglich (RassenSchleifenwert) := False;
             
          else
-            return True;
+            InteraktionAuswahl.RassenMöglich (RassenSchleifenwert) := True;
          end if;
          
       end loop RassenSchleife;
       
-      return False;
-      
-   end AndereRassenVorhanden;
+   end Rassenprüfungen;
    
    
-
-   procedure DiplomatieMenü
+   
+   procedure Diplomatie
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       DiplomatieSchleife:
       loop
-         WelcheRasseSchleife:
-         loop
          
-            -- WelcheRasse := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Diplomatie,
-            --                                TextDateiExtern   => GlobaleTexte.Rassen_Beschreibung_Kurz,
-            --                                FrageZeileExtern  => 2,
-             --                               ErsteZeileExtern  => 1,
-            --                                LetzteZeileExtern => 19);
-            
-           -- case
-          --    WelcheRasse
-          --  is
-          --     when RueckgabeDatentypen.Zurück_Enum =>
-           --       return;
-                  
-           --    when others =>
-          --        null;
-          --  end case;
-            
-            if
-              RassenDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse) = RasseExtern
-              or
-                SpielVariablen.RassenImSpiel (RassenDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse)) = RassenDatentypen.Leer_Spieler_Enum
-                or
-                  SpielVariablen.Diplomatie (RasseExtern, RassenDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse)).AktuellerZustand = SystemDatentypen.Unbekannt_Enum
-            then
-               -- Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
-               --                                     TextZeileExtern => 21);
-               null;
-            
-            else
-               exit WelcheRasseSchleife;
-            end if;
-            
-         end loop WelcheRasseSchleife;
-            
-         DiplomatischeAktionSchleife:
+         NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Diplomatie_Enum;
+         
+         RassenauswahlSchleife:
          loop
-            -- DiplomatischeAktion := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Diplomatie,
-            --                                        TextDateiExtern   => GlobaleTexte.Diplomatie,
-            --                                        FrageZeileExtern  => 1,
-            --                                        ErsteZeileExtern  => 3,
-            --                                        LetzteZeileExtern => 7);
             
-         --   case
-         --     DiplomatischeAktion
-          --  is
-          --     when 1 =>
-          --        DiplomatischeAktion := DiplomatischenStatusÄndern (RasseExtern             => RasseExtern,
-          --                                                            KontaktierteRasseExtern => RueckgabeDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse));
+            Auswahl := Mausauswahl.RassenauswahlDiplomatie;
+            NachGrafiktask.AktuelleAuswahl.AuswahlEins := Auswahl;
+                        
+            case
+              EingabeSFML.Tastenwert
+            is
+               when TastenbelegungDatentypen.Auswählen_Enum =>
+                  if
+                    Auswahl = SystemKonstanten.LeerAuswahl
+                  then
+                     null;
                   
-           --    when 2 =>
-           --       DiplomatischeAktion := Handeln.Handelsmenü (RasseExtern             => RasseExtern,
-            --                                                   KontaktierteRasseExtern => RueckgabeDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse));
-                  
-            --   when 3 =>
-             --     EinheitVerschieben.VonEigenemLandWerfen (RasseExtern             => RasseExtern,
-             --                                              KontaktierteRasseExtern => RueckgabeDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse));
-                  
-             --  when RueckgabeDatentypen.Zurück_Enum =>
-             --     exit DiplomatischeAktionSchleife;
-                  
-            --   when others =>
-            --      return;
-          --  end case;
+                  else
+                     KontaktierteRasse := RassenDatentypen.Rassen_Verwendet_Enum'Val (Auswahl);
+                     NachGrafiktask.KontaktierteRasse := KontaktierteRasse;
+                     exit RassenauswahlSchleife;
+                  end if;
+               
+               when TastenbelegungDatentypen.Menü_Zurück_Enum =>
+                  return;
+               
+               when others =>
+                  null;
+            end case;
             
-          --  case
-          --    DiplomatischeAktion
-          --  is
-          --     when RueckgabeDatentypen.Zurück_Enum =>
+         end loop RassenauswahlSchleife;
+         
+         
+         
+         DiplomatieBetreibenSchleife:
+         loop
+            
+            AktionAuswahl := Auswahlaufteilungen.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Diplomatie_Menü_Enum);
+            
+            case
+              AktionAuswahl
+            is
+               when RueckgabeDatentypen.Kartenart_Zufall_Enum =>
+                  Handeln.SichtbarkeitTauschen (RasseEinsExtern => RasseExtern,
+                                                RasseZweiExtern => KontaktierteRasse);
+                  
+               when RueckgabeDatentypen.Keine_Rasse_Enum =>
+                  EinheitVerschieben.VonEigenemLandWerfen (RasseExtern             => RasseExtern,
+                                                           KontaktierteRasseExtern => KontaktierteRasse);
+                  
+               when RueckgabeDatentypen.Schwierigkeitsgrad_Leicht_Enum =>
+                  DiplomatischerZustandAenderbar.StatusÄnderbarkeitPrüfen (RasseEinsExtern   => RasseExtern,
+                                                                             RasseZweiExtern   => KontaktierteRasse,
+                                                                             NeuerStatusExtern => DiplomatieDatentypen.Nichtangriffspakt_Enum);
+                  
+               when RueckgabeDatentypen.Schwierigkeitsgrad_Mittel_Enum =>
+                  DiplomatischerZustandAenderbar.StatusÄnderbarkeitPrüfen (RasseEinsExtern   => RasseExtern,
+                                                                             RasseZweiExtern   => KontaktierteRasse,
+                                                                             NeuerStatusExtern => DiplomatieDatentypen.Neutral_Enum);
+                  
+               when RueckgabeDatentypen.Schwierigkeitsgrad_Schwer_Enum =>
+                  DiplomatischerZustandAenderbar.StatusÄnderbarkeitPrüfen (RasseEinsExtern   => RasseExtern,
+                                                                             RasseZweiExtern   => KontaktierteRasse,
+                                                                             NeuerStatusExtern => DiplomatieDatentypen.Krieg_Enum);
+                  
+               when RueckgabeDatentypen.Hauptmenü_Enum | RueckgabeDatentypen.Zurück_Enum =>
+                  exit DiplomatieBetreibenSchleife;
+                  
+               when RueckgabeDatentypen.Spiel_Beenden_Enum =>
                   return;
                   
-          --     when others =>
-          --        null;
-          --  end case;
+               when others =>
+                  Fehler.LogikFehler (FehlermeldungExtern => "Diplomatie.Diplomatie - Ungültiger Rückgabewert.");
+            end case;
+            
+         end loop DiplomatieBetreibenSchleife;
          
-         end loop DiplomatischeAktionSchleife;
       end loop DiplomatieSchleife;
       
-   end DiplomatieMenü;
-   
-   
-   
-   -- Später abfragen für Menschen und KI für die jeweiligen Möglichkeiten einbauen.
-   function DiplomatischenStatusÄndern
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      KontaktierteRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return RueckgabeDatentypen.Rückgabe_Werte_Enum
-   is begin
-      
-      -- StatusAuswahl := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Diplomatie,
-      --                                  TextDateiExtern   => GlobaleTexte.Diplomatie,
-      --                                  FrageZeileExtern  => 3,
-      --                                  ErsteZeileExtern  => 9,
-      --                                  LetzteZeileExtern => 12);
-            
-      case
-        StatusAuswahl
-      is
-         when 1 .. 2 =>
-            KriegJetzt := DiplomatischerZustandAenderbar.StatusÄnderbarkeitPrüfen (RasseEinsExtern   => RasseExtern,
-                                                                                     RasseZweiExtern   => KontaktierteRasseExtern,
-                                                                                     NeuerStatusExtern => SystemDatentypen.Status_Untereinander_Enum'Val (StatusAuswahl));
-            return RueckgabeDatentypen.Start_Weiter_Enum;
-            
-            -- Ist dazu da um im Kriegsfall sofort das Diplomatiemenü zu schließen.
-         when 3 =>
-            KriegJetzt := DiplomatischerZustandAenderbar.StatusÄnderbarkeitPrüfen (RasseEinsExtern   => RasseExtern,
-                                                                                     RasseZweiExtern   => KontaktierteRasseExtern,
-                                                                                     NeuerStatusExtern => SystemDatentypen.Status_Untereinander_Enum'Val (StatusAuswahl));
-            if
-              KriegJetzt
-            then
-               return RueckgabeDatentypen.Zurück_Enum;
-               
-            else
-               return RueckgabeDatentypen.Start_Weiter_Enum;
-            end if;
-            
-         when others =>
-            -- Start_Weiter_Enum ist hier nur weil ich das Leer_Enum aus den Rückgabe_Werte_Enum entfernt habe.
-            return RueckgabeDatentypen.Start_Weiter_Enum;
-      end case;
-      
-   end DiplomatischenStatusÄndern;
+   end Diplomatie;
 
 end Diplomatie;

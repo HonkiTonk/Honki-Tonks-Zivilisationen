@@ -1,19 +1,13 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Sf.Graphics.RenderWindow;
-
 with SystemDatentypen;
 with SystemKonstanten;
 with TastenbelegungDatentypen;
-with Views;
 
-with NachLogiktask;
 with EingabeSFML;
-with InteraktionAuswahl;
 with NachGrafiktask;
-with GrafikEinstellungenSFML;
-with Vergleiche;
+with Mausauswahl;
 
 package body AuswahlSFML is
 
@@ -28,7 +22,7 @@ package body AuswahlSFML is
       AuswahlSchleife:
       loop
       
-         AktuelleAuswahl := MausAuswahl;
+         AktuelleAuswahl := Mausauswahl.JaNein;
          NachGrafiktask.AktuelleAuswahl.AuswahlZwei := AktuelleAuswahl;
       
          case
@@ -68,35 +62,5 @@ package body AuswahlSFML is
       end case;
       
    end JaNein;
-   
-   
-   
-   function MausAuswahl
-     return Natural
-   is begin
-      
-      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                                                 point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
-                                                                 view         => Views.FragenviewAccesse (2));
-      
-      PositionSchleife:
-      for PositionSchleifenwert in InteraktionAuswahl.PositionenJaNein'Range loop
-         
-         case
-           Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                       TextboxExtern      => InteraktionAuswahl.PositionenJaNein (PositionSchleifenwert))
-         is
-            when True =>
-               return PositionSchleifenwert;
-            
-            when False =>
-               null;
-         end case;
-         
-      end loop PositionSchleife;
-      
-      return SystemKonstanten.LeerAuswahl;
-      
-   end MausAuswahl;
 
 end AuswahlSFML;

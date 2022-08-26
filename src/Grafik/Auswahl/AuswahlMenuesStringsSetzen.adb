@@ -67,6 +67,9 @@ package body AuswahlMenuesStringsSetzen is
             
          when MenueDatentypen.Debug_Menü_Enum =>
             AktuellerText := GlobaleTexte.Debugmenü (WelcheZeileExtern);
+            
+         when MenueDatentypen.Diplomatie_Menü_Enum =>
+            AktuellerText := GlobaleTexte.Diplomatiemenü (WelcheZeileExtern);
       end case;
             
       return To_Wide_Wide_String (Source => AktuellerText);

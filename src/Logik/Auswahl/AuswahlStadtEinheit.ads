@@ -32,6 +32,8 @@ private
    WelcheAuswahl : EinheitenRecords.AuswahlRecord;
    
    Mausposition : Sf.System.Vector2.sfVector2f;
+   
+   
       
    function MausAuswahl
      return Integer;

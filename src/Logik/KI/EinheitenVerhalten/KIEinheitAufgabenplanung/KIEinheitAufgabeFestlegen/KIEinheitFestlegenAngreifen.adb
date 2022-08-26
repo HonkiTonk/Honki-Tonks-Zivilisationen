@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemDatentypen; use SystemDatentypen;
+with DiplomatieDatentypen; use DiplomatieDatentypen;
 with EinheitenKonstanten;
 with KartenKonstanten;
 
@@ -87,9 +87,8 @@ package body KIEinheitFestlegenAngreifen is
             null;
             
          elsif
-           DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => RasseExtern,
-                                                              FremdeRasseExtern => RasseSchleifenwert)
-           = SystemDatentypen.Krieg_Enum
+           DiplomatieDatentypen.Krieg_Enum = DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => RasseExtern,
+                                                                                                FremdeRasseExtern => RasseSchleifenwert)
          then
             -- Es sollte auch noch Prüfungen auf die Stärke der feindlichen Rassen erfolgen. äöü
             Ziel := RasseSchleifenwert;

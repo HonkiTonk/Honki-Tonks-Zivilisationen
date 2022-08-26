@@ -2,18 +2,15 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
-with SystemDatentypen;
+with DiplomatieDatentypen;
 with SpielVariablen;
-
-private with ProduktionDatentypen;
 
 package DiplomatischerZustandAenderbar is
 
-   function StatusÄnderbarkeitPrüfen
+   procedure StatusÄnderbarkeitPrüfen
      (RasseEinsExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       RasseZweiExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      NeuerStatusExtern : in SystemDatentypen.Status_Untereinander_Bekannt_Enum)
-      return Boolean
+      NeuerStatusExtern : in DiplomatieDatentypen.Status_Untereinander_Bekannt_Enum)
      with
        Pre => (
                  RasseEinsExtern /= RasseZweiExtern
@@ -27,14 +24,12 @@ private
    
    ÄnderungMöglich : Boolean;
    
-   AktuellerStatus : SystemDatentypen.Status_Untereinander_Bekannt_Enum;
+   AktuellerStatus : DiplomatieDatentypen.Status_Untereinander_Bekannt_Enum;
    
-   SympathieZweiZuEins : ProduktionDatentypen.Feldproduktion;
-   SympathieÄnderung : ProduktionDatentypen.Feldproduktion;
+   SympathieZweiZuEins : DiplomatieDatentypen.Meinung;
+   SympathieÄnderung : DiplomatieDatentypen.Meinung;
    
    ZeitSeitÄnderung : Natural;
-   
-   procedure EsHerrschtKrieg;
    
    
    

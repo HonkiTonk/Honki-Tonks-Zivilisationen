@@ -12,7 +12,7 @@ package GrafikDatentypen is
                                              Grafik_Menüs_Enum, Grafik_Sprache_Enum,
                                              Grafik_Editoren_Enum,
                                              Grafik_Weltkarte_Enum, Grafik_Stadtkarte_Enum, Grafik_Forschung_Enum, Grafik_Bauen_Enum,
-                                             -- Grafik_Handeln, In die Menüs schieben? äöü
+                                             Grafik_Diplomatie_Enum,
                                              Grafik_Ende_Enum
                                             );
    
