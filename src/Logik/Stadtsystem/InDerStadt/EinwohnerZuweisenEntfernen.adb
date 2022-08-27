@@ -91,6 +91,7 @@ package body EinwohnerZuweisenEntfernen is
                                                    YKoordinateExtern      => YAchseExtern,
                                                    XKoordinateExtern      => XAchseExtern,
                                                    BelegenEntfernenExtern => False);
+      
       SchreibeStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                              EinwohnerArbeiterExtern => False,
                                              WachsenSchrumpfenExtern => False);
@@ -119,13 +120,11 @@ package body EinwohnerZuweisenEntfernen is
             if
               LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                                  EinwohnerArbeiterExtern => False)
-              <
-              LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
-                                                 EinwohnerArbeiterExtern => True)
+              < LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+                                                   EinwohnerArbeiterExtern => True)
               and
-                LeseKarten.BestimmteStadtBelegtGrund (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                      KoordinatenExtern      => KartenWert)
-              = True
+                True = LeseKarten.BestimmteStadtBelegtGrund (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                             KoordinatenExtern      => KartenWert)
             then
                SchreibeStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                             YKoordinateExtern      => YAchseExtern,

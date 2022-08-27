@@ -19,11 +19,11 @@ package body InDerStadt is
    is begin
       
       NachGrafiktask.AktuelleStadt := StadtRasseNummerExtern.Nummer;
+      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Stadtkarte_Enum;
       
       StadtSchleife:
       loop
          
-         NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Stadtkarte_Enum;
          
          Befehl := EingabeSFML.Tastenwert;
          
@@ -38,7 +38,7 @@ package body InDerStadt is
                   null;
                   
                else
-                  return;
+                  exit StadtSchleife;
                end if;
                
             when TastenbelegungDatentypen.Bauen_Enum =>

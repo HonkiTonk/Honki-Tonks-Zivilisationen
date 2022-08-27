@@ -13,6 +13,7 @@ with SpielDatentypen;
 with EinheitenRecords;
 with TextnummernKonstanten;
 with GrafikDatentypen;
+with TextKonstanten;
 
 with Karten;
 with Ladezeiten;
@@ -50,7 +51,7 @@ package body Laden is
       
       Open (File => DateiLaden,
             Mode => In_File,
-            Name => "Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => NameSpielstand.EingegebenerText)));
+            Name => TextKonstanten.Spielstand & Encode (Item => To_Wide_Wide_String (Source => NameSpielstand.EingegebenerText)));
 
       Wide_Wide_String'Read (Stream (File => DateiLaden),
                              VersionsnummerPrüfung);

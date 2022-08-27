@@ -42,6 +42,8 @@ package body InDerStadtBauen is
                                          ÄndernSetzenExtern     => False);
       end if;
       
+      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Stadtkarte_Enum;
+      
    end Bauen;
 
 
@@ -184,8 +186,6 @@ package body InDerStadtBauen is
          end case;
          
       end loop AuswahlSchleife;
-      
-      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
       
       return GewähltesBauprojekt;
       

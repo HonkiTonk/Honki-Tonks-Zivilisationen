@@ -40,9 +40,7 @@ package body KarteInformationenSFML is
       is
          when True =>
             KarteAllgemeinesSFML.AllgemeineInformationen (RasseExtern => RasseExtern);
-            
-            
-                        
+                                    
             StadtRasseNummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => AktuelleKoordinaten);
       
             case
@@ -57,8 +55,6 @@ package body KarteInformationenSFML is
                                                 StadtRasseNummerExtern => StadtRasseNummer);
                   StadtVorhanden := True;
             end case;
-            
-            
             
             EinheitRasseNummer := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => AktuelleKoordinaten);
       

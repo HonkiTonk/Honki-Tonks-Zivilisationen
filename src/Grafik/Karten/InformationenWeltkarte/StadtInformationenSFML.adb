@@ -19,13 +19,14 @@ with LeseStadtGebaut;
 with KampfwerteStadtErmitteln;
 with GrafikEinstellungenSFML;
 with TextberechnungenHoeheSFML;
-with BerechnungenKarteSFML;
+with Vergleiche;
 with HintergrundSFML;
 with ViewsEinstellenSFML;
 with NachLogiktask;
 with GebaeudebeschreibungenSFML;
 with EinheitenbeschreibungenSFML;
 with TextberechnungenBreiteSFML;
+with BerechnungenKarteSFML;
 
 package body StadtInformationenSFML is
    
@@ -33,20 +34,24 @@ package body StadtInformationenSFML is
    procedure Stadtinformationen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
-            
+      
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                                                 point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
+                                                                 view         => Views.KartenviewAccess);
+      
+      case
+        Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
+                                    TextboxExtern      => BerechnungenKarteSFML.StadtKarte)
+      is
+         when True =>
+            MausInformationen := True;
+         
+         when False =>
+            MausInformationen := False;
+      end case;
+      
       Stadt (RasseExtern            => StadtRasseNummerExtern.Rasse,
              StadtRasseNummerExtern => StadtRasseNummerExtern);
-      
-      if
-        NachLogiktask.Mausposition.x in 0.00 .. BerechnungenKarteSFML.StadtKarte.x
-        and
-          NachLogiktask.Mausposition.y in 0.00 .. BerechnungenKarteSFML.StadtKarte.y
-      then
-         MausInformationen := True;
-         
-      else
-         MausInformationen := False;
-      end if;
       
       -- Werden die Mausinformationen in der SFML Version überhaupt benötigt?
       case

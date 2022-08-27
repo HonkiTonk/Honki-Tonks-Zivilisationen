@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Directories; use Ada.Directories;
 
 with TastenbelegungVariablen;
+with TextKonstanten;
 
 package body SchreibenTastatur is
 
@@ -11,17 +12,17 @@ package body SchreibenTastatur is
    is begin
       
       case
-        Exists (Name => "Tastenbelegung")
+        Exists (Name => TextKonstanten.Tastenbelegung)
       is
          when True =>
             Open (File => TastenbelegungSpeichern,
                   Mode => Out_File,
-                  Name => "Tastenbelegung");
+                  Name => TextKonstanten.Tastenbelegung);
             
          when False =>
             Create (File => TastenbelegungSpeichern,
                     Mode => Out_File,
-                    Name => "Tastenbelegung");
+                    Name => TextKonstanten.Tastenbelegung);
       end case;
       
       TastenbelegungVariablen.TastenbelegungArray'Write (Stream (File => TastenbelegungSpeichern),

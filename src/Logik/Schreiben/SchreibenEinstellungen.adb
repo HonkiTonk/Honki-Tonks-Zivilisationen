@@ -5,6 +5,7 @@ with Ada.Directories; use Ada.Directories;
 
 with OptionenVariablen;
 with SystemRecords;
+with TextKonstanten;
 
 with GrafikEinstellungenSFML;
 with TexteinstellungenSFML;
@@ -16,17 +17,17 @@ package body SchreibenEinstellungen is
    is begin
       
       case
-        Exists (Name => "Einstellungen")
+        Exists (Name => TextKonstanten.Einstellungen)
       is
          when True =>
             Open (File => DateiEinstellungenSchreiben,
                   Mode => Out_File,
-                  Name => "Einstellungen");
+                  Name => TextKonstanten.Einstellungen);
 
          when False =>
             Create (File => DateiEinstellungenSchreiben,
                     Mode => Out_File,
-                    Name => "Einstellungen");
+                    Name => TextKonstanten.Einstellungen);
       end case;
          
       SystemRecords.NutzerEinstellungenRecord'Write (Stream (File => DateiEinstellungenSchreiben),

@@ -1,28 +1,23 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-private with Sf.Graphics;
-private with Sf.Graphics.RectangleShape;
-private with Sf.Graphics.CircleShape;
-private with Sf.System.Vector2;
-private with Sf.Graphics.Color;
-private with Sf.Graphics.Sprite;
+with Sf.System.Vector2;
+with Sf.Graphics.Color;
 
 with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
 with StadtRecords;
 
-private with StadtDatentypen;
-private with KartenRecords;
 private with KartengrundDatentypen;
 private with KartenVerbesserungDatentypen;
-private with KartenDatentypen;
+private with KartenRecords;
+private with GrafikRecordKonstanten;
 
 private with Karten;
 
-package StadtkarteSFML is
+package StadtumgebungGrafik is
 
-   procedure Stadtkarte
+   procedure Stadtumgebung
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
      with
        Pre => (
@@ -30,82 +25,34 @@ package StadtkarteSFML is
                and
                  SpielVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
               );
-
+   
 private
-
-   InformationenStadtAufrufen : Boolean;
+   
    FeldBewirtschaftet : Boolean;
 
-   Stadtumgebungsgröße : KartenDatentypen.Stadtfeld;
-
-   GebäudeID : StadtDatentypen.GebäudeID;
-
-   YAchsenabstraktion : KartenDatentypen.Kartenfeld;
-
    Kartenfeld : KartengrundDatentypen.Kartengrund_Enum;
+   
    KartenfeldRessource : KartengrundDatentypen.Kartenressourcen_Enum;
+   
    KartenfeldFluss : KartengrundDatentypen.Kartenfluss_Enum;
+   
+   Wegfeld : KartenVerbesserungDatentypen.Karten_Weg_Enum;
 
    Stadtfeld : KartenVerbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
-   Wegfeld : KartenVerbesserungDatentypen.Karten_Weg_Enum;
    Verbesserungsfeld : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
-
-   YMultiplikator : Float;
-   XMultiplikator : Float;
-
-   AktuelleFarbe : Sf.Graphics.Color.sfColor;
-
-   AnfangGrafikPosition : constant Sf.System.Vector2.sfVector2f := (0.00, 0.00);
-   GrafikPosition : Sf.System.Vector2.sfVector2f;
+   
+   Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartgrößeView;
 
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Stadtkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
 
-   SpriteAccess : constant Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;
-
-   RechteckAccess : constant Sf.Graphics.sfRectangleShape_Ptr := Sf.Graphics.RectangleShape.create;
-   RechteckRahmenAccess : constant Sf.Graphics.sfRectangleShape_Ptr := Sf.Graphics.RectangleShape.create;
-
-   KreisAccess : constant Sf.Graphics.sfCircleShape_Ptr := Sf.Graphics.CircleShape.create;
-
-   PolygonAccess : constant Sf.Graphics.sfCircleShape_Ptr := Sf.Graphics.CircleShape.create;
-
-   procedure GrafischeDarstellung
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-     with
-       Pre => (
-                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
-               and
-                 SpielVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
-              );
-
-   procedure DarstellungGebäude
-     (YAchseExtern : in KartenDatentypen.Stadtfeld;
-      XAchseExtern : in KartenDatentypen.Stadtfeld;
-      PositionExtern : in Sf.System.Vector2.sfVector2f;
-      StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-     with
-       Pre => (
-                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
-               and
-                 SpielVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
-              );
-
+   Farbe : Sf.Graphics.Color.sfColor;
+   
    procedure DarstellungUmgebung
-     (YAchseExtern : in KartenDatentypen.Stadtfeld;
-      XAchseExtern : in KartenDatentypen.Stadtfeld;
-      PositionExtern : in Sf.System.Vector2.sfVector2f;
-      StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-     with
-       Pre => (
-                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
-               and
-                 SpielVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
-              );
-
-   procedure DarstellungUmgebungErweitert
      (KarteKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
-      StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+      StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      BewirtschaftetExtern : in Boolean)
      with
        Pre => (
                  StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -177,4 +124,4 @@ private
                  KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Karteneinstellungen.Kartengröße.XAchse
               );
 
-end StadtkarteSFML;
+end StadtumgebungGrafik;

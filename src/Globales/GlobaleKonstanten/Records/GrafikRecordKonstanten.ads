@@ -15,7 +15,6 @@ package GrafikRecordKonstanten is
    Sprachenbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.00, 0.00, 1.00, 1.00);
    
    KarteAnzeigebereich : constant Sf.Graphics.Rect.sfFloatRect := (0.00, 0.00, 0.80, 1.00);
-   SeitenleisteAnzeigebereich : constant Sf.Graphics.Rect.sfFloatRect := (0.80, 0.00, 0.20, 1.00);
    
    Überschriftbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.00, 0.00, 1.00, 0.10);
    Versionsbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.35, 0.95, 0.30, 0.05);
@@ -26,6 +25,9 @@ package GrafikRecordKonstanten is
    Eingabebereich : constant Sf.Graphics.Rect.sfFloatRect := (Fragenbereich.left, Fragenbereich.top + Fragenbereich.height, Fragenbereich.width, Fragenbereich.height);
    JaNeinBereich : constant Sf.Graphics.Rect.sfFloatRect := (Fragenbereich.left, Fragenbereich.top + Fragenbereich.height, Fragenbereich.width, 2.00 * Fragenbereich.height);
    
+   SeitenleisteGesamtbereich : constant Sf.Graphics.Rect.sfFloatRect := (KarteAnzeigebereich.width, 0.00, 1.00 - KarteAnzeigebereich.width, 1.00);
+   StadtfensterBereich : constant Sf.Graphics.Rect.sfFloatRect := (KarteAnzeigebereich.width - 0.25, 0.00, 0.25, 0.25);
+      
    type BereicheArray is array (Positive range <>) of Sf.Graphics.Rect.sfFloatRect;
    
    MenüDoppelbereich : constant BereicheArray (1 .. 2) := (
@@ -39,10 +41,10 @@ package GrafikRecordKonstanten is
                                                                                    );
    
    SeitenleisteWeltkartenbereich : constant BereicheArray (Views.SeitenleisteWeltkarteAccesse'Range) := (
-                                                                                                         1 => (KarteAnzeigebereich.width, 0.00, 1.00 - KarteAnzeigebereich.width, 0.20),
-                                                                                                         2 => (KarteAnzeigebereich.width, 0.20, 1.00 - KarteAnzeigebereich.width, 0.10),
-                                                                                                         3 => (KarteAnzeigebereich.width, 0.30, 1.00 - KarteAnzeigebereich.width, 0.35),
-                                                                                                         4 => (KarteAnzeigebereich.width, 0.65, 1.00 - KarteAnzeigebereich.width, 0.35)
+                                                                                                         1 => (SeitenleisteGesamtbereich.left, SeitenleisteGesamtbereich.top, SeitenleisteGesamtbereich.width, 0.20),
+                                                                                                         2 => (SeitenleisteGesamtbereich.left, 0.20, SeitenleisteGesamtbereich.width, 0.10),
+                                                                                                         3 => (SeitenleisteGesamtbereich.left, 0.30, SeitenleisteGesamtbereich.width, 0.35),
+                                                                                                         4 => (SeitenleisteGesamtbereich.left, 0.65, SeitenleisteGesamtbereich.width, 0.35)
                                                                                                         );
       
    Forschungsbereich : constant BereicheArray (Views.ForschungsviewAccesse'Range) := (

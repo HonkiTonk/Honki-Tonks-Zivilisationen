@@ -2,24 +2,18 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with Sf.System.Vector2;
+with Sf.Graphics.Rect;
 
-with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen;
-with SpielVariablen;
-
-private with KartenRecords;
 
 package BerechnungenKarteSFML is
    
    -- Das hier über eine Funktion abrufen? äöü
-   FensterKarte : Sf.System.Vector2.sfVector2f;
-   FensterAnzeige : Sf.System.Vector2.sfVector2f;
-   
-   StadtKarte : Sf.System.Vector2.sfVector2f;
-   StadtAnzeige : Sf.System.Vector2.sfVector2f;
-   
    KartenfelderAbmessung : Sf.System.Vector2.sfVector2f;
    StadtfelderAbmessung : Sf.System.Vector2.sfVector2f;
+   
+   FensterKarte : Sf.Graphics.Rect.sfFloatRect;
+   StadtKarte : Sf.Graphics.Rect.sfFloatRect;
    
    procedure KartenfelderAbmessungBerechnen;
    procedure StadtfelderAbmessungBerechnen;
@@ -27,12 +21,7 @@ package BerechnungenKarteSFML is
    
    
    function SichtbereichKarteBerechnen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenDatentypen.SichtbereichAnfangEndeArray
-     with
-       Pre => (
-                 SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
-              );
+      return KartenDatentypen.SichtbereichAnfangEndeArray;
    
 private
    
@@ -40,10 +29,5 @@ private
    YSichtEnde : KartenDatentypen.KartenfeldPositiv;
    XSichtAnfang : KartenDatentypen.Kartenfeld;
    XSichtEnde : KartenDatentypen.KartenfeldPositiv;
-   
-   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
-   
-   AusschnittKarte : constant Float := 0.80;
-   AusschnittStadtKarte : constant Float := 0.80;
 
 end BerechnungenKarteSFML;

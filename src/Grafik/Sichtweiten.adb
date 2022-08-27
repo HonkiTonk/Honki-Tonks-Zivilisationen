@@ -20,6 +20,15 @@ package body Sichtweiten is
    
    
    
+   procedure StandardZoom
+   is begin
+      
+      AktuelleZoomstufe := StandardZoomstufe;
+      
+   end StandardZoom;
+   
+   
+   
    -- Eventuell noch von der Kartengröße abhängig machen, damit bei kleinen Karten keine Probleme auftreten. äöü
    procedure ZoomstufeÄndern
      (ÄnderungExtern : in KartenDatentypen.Kartenfeld)

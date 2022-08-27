@@ -11,6 +11,7 @@ with VerbesserungenDatenbank;
 with RassenDatenbank;
 with KartenflussDatenbank;
 with KartenressourcenDatenbank;
+with TextKonstanten;
 
 package body SchreibenDatenbanken is
    
@@ -32,17 +33,17 @@ package body SchreibenDatenbanken is
    is begin
       
       case
-        Exists (Name => "Datenbanken/EinheitenDatenbank")
+        Exists (Name => TextKonstanten.EinheitenDatenbank)
       is
          when True =>
             Open (File => DatenbankSpeichern,
                   Mode => Out_File,
-                  Name => "Datenbanken/EinheitenDatenbank");
+                  Name => TextKonstanten.EinheitenDatenbank);
             
          when False =>
             Create (File => DatenbankSpeichern,
                     Mode => Out_File,
-                    Name => "Datenbanken/EinheitenDatenbank");
+                    Name => TextKonstanten.EinheitenDatenbank);
       end case;
       
       EinheitenDatenbank.EinheitenlisteArray'Write (Stream (File => DatenbankSpeichern),
@@ -58,17 +59,17 @@ package body SchreibenDatenbanken is
    is begin
       
       case
-        Exists (Name => "Datenbanken/ForschungenDatenbank")
+        Exists (Name => TextKonstanten.ForschungenDatenbank)
       is
          when True =>
             Open (File => DatenbankSpeichern,
                   Mode => Out_File,
-                  Name => "Datenbanken/ForschungenDatenbank");
+                  Name => TextKonstanten.ForschungenDatenbank);
             
          when False =>
             Create (File => DatenbankSpeichern,
                     Mode => Out_File,
-                    Name => "Datenbanken/ForschungenDatenbank");
+                    Name => TextKonstanten.ForschungenDatenbank);
       end case;
       
       ForschungenDatenbank.ForschungslisteArray'Write (Stream (File => DatenbankSpeichern),
@@ -84,17 +85,17 @@ package body SchreibenDatenbanken is
    is begin
       
       case
-        Exists (Name => "Datenbanken/GebaeudeDatenbank")
+        Exists (Name => TextKonstanten.GebaeudeDatenbank)
       is
          when True =>
             Open (File => DatenbankSpeichern,
                   Mode => Out_File,
-                  Name => "Datenbanken/GebaeudeDatenbank");
+                  Name => TextKonstanten.GebaeudeDatenbank);
             
          when False =>
             Create (File => DatenbankSpeichern,
                     Mode => Out_File,
-                    Name => "Datenbanken/GebaeudeDatenbank");
+                    Name => TextKonstanten.GebaeudeDatenbank);
       end case;
       
       GebaeudeDatenbank.GebäudelisteArray'Write (Stream (File => DatenbankSpeichern),
@@ -110,17 +111,17 @@ package body SchreibenDatenbanken is
    is begin
       
       case
-        Exists (Name => "Datenbanken/KartenGrundDatenbank")
+        Exists (Name => TextKonstanten.KartenGrundDatenbank)
       is
          when True =>
             Open (File => DatenbankSpeichern,
                   Mode => Out_File,
-                  Name => "Datenbanken/KartenGrundDatenbank");
+                  Name => TextKonstanten.KartenGrundDatenbank);
             
          when False =>
             Create (File => DatenbankSpeichern,
                     Mode => Out_File,
-                    Name => "Datenbanken/KartenGrundDatenbank");
+                    Name => TextKonstanten.KartenGrundDatenbank);
       end case;
       
       KartengrundDatenbank.KartengrundlisteArray'Write (Stream (File => DatenbankSpeichern),
@@ -131,17 +132,17 @@ package body SchreibenDatenbanken is
       
       
       case
-        Exists (Name => "Datenbanken/KartenFlussDatenbank")
+        Exists (Name => TextKonstanten.KartenFlussDatenbank)
       is
          when True =>
             Open (File => DatenbankSpeichern,
                   Mode => Out_File,
-                  Name => "Datenbanken/KartenFlussDatenbank");
+                  Name => TextKonstanten.KartenFlussDatenbank);
             
          when False =>
             Create (File => DatenbankSpeichern,
                     Mode => Out_File,
-                    Name => "Datenbanken/KartenFlussDatenbank");
+                    Name => TextKonstanten.KartenFlussDatenbank);
       end case;
       
       KartenflussDatenbank.KartenflusslisteArray'Write (Stream (File => DatenbankSpeichern),
@@ -152,17 +153,17 @@ package body SchreibenDatenbanken is
       
       
       case
-        Exists (Name => "Datenbanken/KartenRessourcenDatenbank")
+        Exists (Name => TextKonstanten.KartenRessourcenDatenbank)
       is
          when True =>
             Open (File => DatenbankSpeichern,
                   Mode => Out_File,
-                  Name => "Datenbanken/KartenRessourcenDatenbank");
+                  Name => TextKonstanten.KartenRessourcenDatenbank);
             
          when False =>
             Create (File => DatenbankSpeichern,
                     Mode => Out_File,
-                    Name => "Datenbanken/KartenRessourcenDatenbank");
+                    Name => TextKonstanten.KartenRessourcenDatenbank);
       end case;
       
       KartenressourcenDatenbank.KartenressourcenListeArray'Write (Stream (File => DatenbankSpeichern),
@@ -178,17 +179,17 @@ package body SchreibenDatenbanken is
    is begin
       
       case
-        Exists (Name => "Datenbanken/VerbesserungenDatenbank")
+        Exists (Name => TextKonstanten.VerbesserungenDatenbank)
       is
          when True =>
             Open (File => DatenbankSpeichern,
                   Mode => Out_File,
-                  Name => "Datenbanken/VerbesserungenDatenbank");
+                  Name => TextKonstanten.VerbesserungenDatenbank);
             
          when False =>
             Create (File => DatenbankSpeichern,
                     Mode => Out_File,
-                    Name => "Datenbanken/VerbesserungenDatenbank");
+                    Name => TextKonstanten.VerbesserungenDatenbank);
       end case;
       
       VerbesserungenDatenbank.VerbesserungenlisteArray'Write (Stream (File => DatenbankSpeichern),
@@ -199,17 +200,17 @@ package body SchreibenDatenbanken is
       
       
       case
-        Exists (Name => "Datenbanken/WegeDatenbank")
+        Exists (Name => TextKonstanten.WegeDatenbank)
       is
          when True =>
             Open (File => DatenbankSpeichern,
                   Mode => Out_File,
-                  Name => "Datenbanken/WegeDatenbank");
+                  Name => TextKonstanten.WegeDatenbank);
             
          when False =>
             Create (File => DatenbankSpeichern,
                     Mode => Out_File,
-                    Name => "Datenbanken/WegeDatenbank");
+                    Name => TextKonstanten.WegeDatenbank);
       end case;
       
       VerbesserungenDatenbank.WegelisteArray'Write (Stream (File => DatenbankSpeichern),
@@ -225,17 +226,17 @@ package body SchreibenDatenbanken is
    is begin
       
       case
-        Exists (Name => "Datenbanken/RassenDatenbank")
+        Exists (Name => TextKonstanten.RassenDatenbank)
       is
          when True =>
             Open (File => DatenbankSpeichern,
                   Mode => Out_File,
-                  Name => "Datenbanken/RassenDatenbank");
+                  Name => TextKonstanten.RassenDatenbank);
             
          when False =>
             Create (File => DatenbankSpeichern,
                     Mode => Out_File,
-                    Name => "Datenbanken/RassenDatenbank");
+                    Name => TextKonstanten.RassenDatenbank);
       end case;
       
       RassenDatenbank.RassenlisteArray'Write (Stream (File => DatenbankSpeichern),

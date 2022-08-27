@@ -10,6 +10,8 @@ package Sichtweiten is
    procedure ZoomstufeÄndern
      (ÄnderungExtern : in KartenDatentypen.Kartenfeld);
    
+   procedure StandardZoom;
+   
    
    
    function SichtweiteLesen

@@ -21,11 +21,11 @@ package SystemDatentypen is
    subtype Eingaben_Fragen_Enum is Eingaben_Vorhanden_Enum range Zahlen_Eingabe_Enum .. Ja_Nein_Enum;
    
    -- Das dann mal überall einbauen und die KartenDatentypen.UmgebungsbereichEins/Boolean Varianten rauswerfen. äöü
-   type Rechenoperation_Enum is (
-                                 Minus_Enum, Plus_Enum, Setzen_Enum 
-                                );
+   type Erweiterter_Boolean_Enum is (
+                                     False_Enum, Neutral_Enum, True_Enum 
+                                    );
    
-   subtype Rechenoperation_Vereinfacht_Enum is Rechenoperation_Enum range Plus_Enum .. Setzen_Enum;
+   subtype Erweiterter_Boolean_Vereinfacht_Enum is Erweiterter_Boolean_Enum range Neutral_Enum .. True_Enum;
    
    -- Hier den Schwierigkeitsgrad_Enum einbauen? äöü
    -- Wichtige Werte

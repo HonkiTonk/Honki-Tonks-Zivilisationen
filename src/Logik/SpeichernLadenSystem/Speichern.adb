@@ -56,7 +56,7 @@ package body Speichern is
       
       Create (File => DateiSpeichern,
               Mode => Out_File,
-              Name => "Spielstand/" & Encode (Item => (To_Wide_Wide_String (Source => NameSpielstand.EingegebenerText))));
+              Name => TextKonstanten.Spielstand & Encode (Item => (To_Wide_Wide_String (Source => NameSpielstand.EingegebenerText))));
       
       Allgemeines (DateiSpeichernExtern => DateiSpeichern);
       FortschrittErhöhen (AutospeichernExtern => AutospeichernExtern);

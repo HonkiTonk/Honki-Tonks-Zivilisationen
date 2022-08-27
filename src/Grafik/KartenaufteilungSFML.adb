@@ -11,6 +11,7 @@ with WeltkarteSFML;
 with Fehler;
 with KarteInformationenSFML;
 with StadtInformationenSFML;
+with StadtumgebungGrafik;
 
 package body KartenaufteilungSFML is
    
@@ -51,6 +52,7 @@ package body KartenaufteilungSFML is
          CursorPlatzierenSFML.CursorPlatzierenStadtSFML (RasseExtern => StadtRasseNummerExtern.Rasse);
       
          StadtkarteSFML.Stadtkarte (StadtRasseNummerExtern => StadtRasseNummerExtern);
+         StadtumgebungGrafik.Stadtumgebung (StadtRasseNummerExtern => StadtRasseNummerExtern);
          StadtInformationenSFML.Stadtinformationen (StadtRasseNummerExtern => StadtRasseNummerExtern);
       end if;
       

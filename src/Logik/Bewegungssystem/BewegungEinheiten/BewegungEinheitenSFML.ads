@@ -1,8 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-private with Sf.System.Vector2;
-
 with KartenRecords; use KartenRecords;
 with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
@@ -26,10 +24,8 @@ private
    
    NullWert : Boolean;
    BewegungNochMöglich : Boolean;
-   
+      
    BefehlMaus : TastenbelegungDatentypen.Tastenbelegung_Enum;
-   
-   Mausposition : Sf.System.Vector2.sfVector2f;
       
    Änderung : KartenRecords.AchsenKartenfeldRecord;
    KeineÄnderung : constant KartenRecords.AchsenKartenfeldRecord := (0, 0, 0);
@@ -102,7 +98,7 @@ private
                  SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
               );
    
-   function MausInAnzeige
+   function MausInBefehle
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
      with

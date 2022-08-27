@@ -13,6 +13,7 @@ with ForschungKonstanten;
 with NachLogiktask;
 with Vergleiche;
 with GrafikEinstellungenSFML;
+with BerechnungenKarteSFML;
 
 package body Mausauswahl is
 
@@ -266,5 +267,47 @@ package body Mausauswahl is
       return (SystemKonstanten.LeerAuswahl, SystemKonstanten.LeerAuswahl);
       
    end Steuerung;
+   
+   
+   
+   function Einheitenbewegung
+     return Boolean
+   is begin
+      
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                                                 point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
+                                                                 view         => Views.KartenviewAccess);
+      
+      return Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
+                                         TextboxExtern      => BerechnungenKarteSFML.FensterKarte);
+      
+   end Einheitenbewegung;
+   
+   
+   
+   -- Später so anpassen dass die Mausposition nicht in der Seitenleiste abgefragt wird sondern in Befehlsknöpfen. äöü
+   function Einheitenbefehle
+     return Boolean
+   is begin
+      
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                                                 point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
+                                                                 view         => Views.BefehlsviewAccess);
+         
+      case
+        Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
+                                    -- Hier später die Befehleknöopfe einbauen.
+                                    TextboxExtern      => (0.00, 0.00, 0.00, 0.00))
+      is
+         when True =>
+            return True;
+            
+         when False =>
+            null;
+      end case;
+      
+      return False;
+      
+   end Einheitenbefehle;
 
 end Mausauswahl;

@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Sf.Graphics.Sprite;
 with Sf.Graphics.RenderWindow;
 
 with GrafikEinstellungenSFML;
@@ -13,8 +12,7 @@ with Warnung;
 package body KartenspritesZeichnenSFML is
    
    function SpriteGezeichnetKartenfeld
-     (SpriteAccesExtern : in Sf.Graphics.sfSprite_Ptr;
-      TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
+     (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
       return Boolean
    is begin
@@ -22,9 +20,9 @@ package body KartenspritesZeichnenSFML is
       if
         TexturAccessExtern /= null
       then
-         KartenspritesZeichnenSFML.SpriteZeichnen (SpriteAccesExtern => SpriteAccesExtern,
+         KartenspritesZeichnenSFML.SpriteZeichnen (SpriteAccesExtern => SpriteAccess,
                                                    PositionExtern    => PositionExtern,
-                                                   SkalierungExtern  => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenWeltkarte (SpriteAccessExtern  => SpriteAccesExtern,
+                                                   SkalierungExtern  => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenWeltkarte (SpriteAccessExtern  => SpriteAccess,
                                                                                                                                       TextureAccessExtern => TexturAccessExtern));
          return True;
          
@@ -38,8 +36,7 @@ package body KartenspritesZeichnenSFML is
    
    
    function SpriteGezeichnetStadtfeld
-     (SpriteAccesExtern : in Sf.Graphics.sfSprite_Ptr;
-      TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
+     (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
       return Boolean
    is begin
@@ -47,9 +44,9 @@ package body KartenspritesZeichnenSFML is
       if
         TexturAccessExtern /= null
       then
-         SpriteZeichnen (SpriteAccesExtern => SpriteAccesExtern,
+         SpriteZeichnen (SpriteAccesExtern => SpriteAccess,
                          PositionExtern    => PositionExtern,
-                         SkalierungExtern  => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenStadtkarte (SpriteAccessExtern  => SpriteAccesExtern,
+                         SkalierungExtern  => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenStadtkarte (SpriteAccessExtern  => SpriteAccess,
                                                                                                              TextureAccessExtern => TexturAccessExtern));
          return True;
          
@@ -63,8 +60,7 @@ package body KartenspritesZeichnenSFML is
    
    
    function SpriteGezeichnetStadtgrund
-     (SpriteAccesExtern : in Sf.Graphics.sfSprite_Ptr;
-      TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
+     (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
       return Boolean
    is begin
@@ -72,9 +68,9 @@ package body KartenspritesZeichnenSFML is
       if
         TexturAccessExtern /= null
       then
-         SpriteZeichnen (SpriteAccesExtern => SpriteAccesExtern,
+         SpriteZeichnen (SpriteAccesExtern => SpriteAccess,
                          PositionExtern    => PositionExtern,
-                         SkalierungExtern  => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenGesamteStadtkarte (SpriteAccessExtern  => SpriteAccesExtern,
+                         SkalierungExtern  => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenGesamteStadtkarte (SpriteAccessExtern  => SpriteAccess,
                                                                                                                     TextureAccessExtern => TexturAccessExtern));
          return True;
          

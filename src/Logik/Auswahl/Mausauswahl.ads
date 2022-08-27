@@ -40,6 +40,12 @@ package Mausauswahl is
    function Steuerung
      return SystemRecords.MehrfacheAuswahlRecord;
    
+   function Einheitenbewegung
+     return Boolean;
+   
+   function Einheitenbefehle
+     return Boolean;
+   
 private
    
    Mausposition : Sf.System.Vector2.sfVector2f;

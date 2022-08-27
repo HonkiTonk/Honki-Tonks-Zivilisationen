@@ -21,20 +21,25 @@ package ChangelogAugust2022 is
    
    
 
-   -- Version 0.03. => 0.03. (28.08.2022):
+   -- Version 0.03.7510 => 0.03. (28.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.7400 => 0.03. (27.08.2022):
+   -- Version 0.03.7400 => 0.03.7510 (27.08.2022):
    
    -- Fontdatei gegen eine andere Version ausgetauscht und entsprechende Lizensierung hinzugefügt.
    -- gpr Datei für dynamische Linkung hinzugefügt.
    -- Einige Beispielbilder hinzugefügt und ein wenig Werbung gemacht.
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Mauszeigerpositionierung und Kartenberechnungen überarbeitet.
+   -- Berechnung der aktuellen Zeigerposition optimeirt.
+   -- Es wird jetzt auf der Weltkarte an den Rändern kein schwarzer Rahmen mehr angezeigt.
+   -- Stadtfenster in Viewsystem eingebaut.
+   -- Fehler behoben der dafür sorgte dass die Bildplatzierung nicht auf den eigenen Starteinheiten war.
+   -- Angefangen die Verzeichnisnamen in konstante Strings auszulagern.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    
 

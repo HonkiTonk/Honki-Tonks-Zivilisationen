@@ -1,8 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Sf;
-
 with KartenKonstanten;
 
 with LeseEinheitenGebaut;
@@ -12,10 +10,9 @@ with EinheitenModifizieren;
 with StadtBauen;
 with Aufgaben;
 with BewegungEinheiten;
-with NachLogiktask;
-with BerechnungenKarteSFML;
 with Kartenkoordinatenberechnungssystem;
 with BewegungCursor;
+with Mausauswahl;
 
 -- Das hier mal umbenennen, man kann hier ja inzwischen wesentlich mehr machen als nur die Einheit bewegen.
 package body BewegungEinheitenSFML is
@@ -116,38 +113,23 @@ package body BewegungEinheitenSFML is
    
    
    
-   -- Muss noch korrekt an das neue Viewsystem angepasst werden. äöü
    function BefehleMaus
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
-      
-      Mausposition := NachLogiktask.Mausposition;
-      
-      MausSchleife:
-      loop
-         
-         if
-           Mausposition.x in 0.00 .. BerechnungenKarteSFML.FensterKarte.x
-           and
-             Mausposition.y in 0.00 .. BerechnungenKarteSFML.FensterKarte.y
-         then
+            
+      case
+        Mausauswahl.Einheitenbewegung
+      is
+         when True =>
             return MausInKarte (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-         
-         elsif
-           Mausposition.x in BerechnungenKarteSFML.FensterKarte.x .. BerechnungenKarteSFML.FensterAnzeige.x
-           and
-             Mausposition.y in BerechnungenKarteSFML.FensterKarte.y .. BerechnungenKarteSFML.FensterAnzeige.y
-         then
-            return MausInAnzeige (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-         
-         else
-            -- Die Schleife entfernen und immer True zurückgeben, wenn der Mauszeiger außerhalb des Fensters ist?
-            null;
-         end if;
-         
-      end loop MausSchleife;
-      
+            
+         when False =>
+            return False;
+      end case;
+            
+      -- return MausInBefehle (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+                  
    end BefehleMaus;
    
    
@@ -236,7 +218,7 @@ package body BewegungEinheitenSFML is
    
    
    
-   function MausInAnzeige
+   function MausInBefehle
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
@@ -253,6 +235,6 @@ package body BewegungEinheitenSFML is
       
       return True;
       
-   end MausInAnzeige;
+   end MausInBefehle;
 
 end BewegungEinheitenSFML;

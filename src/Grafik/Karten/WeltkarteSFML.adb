@@ -47,7 +47,7 @@ package body WeltkarteSFML is
                                           GrößeExtern          => (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x, GrafikEinstellungenSFML.AktuelleFensterAuflösung.y),
                                           AnzeigebereichExtern => GrafikRecordKonstanten.KarteAnzeigebereich);
       
-      SichtbereichAnfangEnde := BerechnungenKarteSFML.SichtbereichKarteBerechnen (RasseExtern => EinheitRasseNummerExtern.Rasse);
+      SichtbereichAnfangEnde := BerechnungenKarteSFML.SichtbereichKarteBerechnen;
       
       YMultiplikator := 0.00;
       CursorKoordinatenAlt := SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt;
@@ -148,8 +148,7 @@ package body WeltkarteSFML is
          
       else
          case
-           KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld (SpriteAccesExtern  => SpriteAccess,
-                                                                 TexturAccessExtern => EingeleseneTexturenSFML.KartenfelderAccess (BasisKartengrund),
+           KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld (TexturAccessExtern => EingeleseneTexturenSFML.KartenfelderAccess (BasisKartengrund),
                                                                  PositionExtern     => PositionExtern)
          is
             when True =>
@@ -158,14 +157,12 @@ package body WeltkarteSFML is
             when False =>
                ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => BerechnungenKarteSFML.KartenfelderAbmessung,
                                                      PositionExtern       => PositionExtern,
-                                                     FarbeExtern          => FarbgebungSFML.FarbeKartenfeldErmitteln (GrundExtern => BasisKartengrund),
-                                                     RechteckAccessExtern => RechteckAccess);
+                                                     FarbeExtern          => FarbgebungSFML.FarbeKartenfeldErmitteln (GrundExtern => BasisKartengrund));
          end case;
       end if;
       
       case
-        KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld (SpriteAccesExtern  => SpriteAccess,
-                                                              TexturAccessExtern => EingeleseneTexturenSFML.KartenfelderAccess (AktuellerKartengrund),
+        KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld (TexturAccessExtern => EingeleseneTexturenSFML.KartenfelderAccess (AktuellerKartengrund),
                                                               PositionExtern     => PositionExtern)
       is
          when True =>
@@ -174,8 +171,7 @@ package body WeltkarteSFML is
          when False =>
             ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => BerechnungenKarteSFML.KartenfelderAbmessung,
                                                   PositionExtern       => PositionExtern,
-                                                  FarbeExtern          => FarbgebungSFML.FarbeKartenfeldErmitteln (GrundExtern => AktuellerKartengrund),
-                                                  RechteckAccessExtern => RechteckAccess);
+                                                  FarbeExtern          => FarbgebungSFML.FarbeKartenfeldErmitteln (GrundExtern => AktuellerKartengrund));
       end case;
       
    end KartenfeldZeichnen;
@@ -200,8 +196,7 @@ package body WeltkarteSFML is
       end case;
       
       case
-        KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld (SpriteAccesExtern  => SpriteAccess,
-                                                              TexturAccessExtern => EingeleseneTexturenSFML.KartenflussAccess (KartenfeldFluss),
+        KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld (TexturAccessExtern => EingeleseneTexturenSFML.KartenflussAccess (KartenfeldFluss),
                                                               PositionExtern     => PositionExtern)
       is
          when True =>
@@ -210,8 +205,7 @@ package body WeltkarteSFML is
          when False =>
             ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => (BerechnungenKarteSFML.KartenfelderAbmessung.x, BerechnungenKarteSFML.KartenfelderAbmessung.y / 5.00),
                                                   PositionExtern       => (PositionExtern.x, PositionExtern.y + 0.40 * BerechnungenKarteSFML.KartenfelderAbmessung.y),
-                                                  FarbeExtern          => FarbgebungSFML.FarbeFlussErmitteln (FlussExtern => KartenfeldFluss),
-                                                  RechteckAccessExtern => RechteckAccess);
+                                                  FarbeExtern          => FarbgebungSFML.FarbeFlussErmitteln (FlussExtern => KartenfeldFluss));
       end case;
       
    end FlussZeichnen;
@@ -236,8 +230,7 @@ package body WeltkarteSFML is
       end case;
       
       case
-        KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld (SpriteAccesExtern  => SpriteAccess,
-                                                              TexturAccessExtern => EingeleseneTexturenSFML.KartenressourceAccess (KartenfeldRessource),
+        KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld (TexturAccessExtern => EingeleseneTexturenSFML.KartenressourceAccess (KartenfeldRessource),
                                                               PositionExtern     => PositionExtern)
       is
          when True =>
@@ -246,8 +239,7 @@ package body WeltkarteSFML is
          when False =>
             ObjekteZeichnenSFML.KreisZeichnen (RadiusExtern      => BerechnungenKarteSFML.KartenfelderAbmessung.x / 3.00,
                                                PositionExtern    => PositionExtern,
-                                               FarbeExtern       => Sf.Graphics.Color.sfBlack,
-                                               KreisAccessExtern => KreisAccess);
+                                               FarbeExtern       => Sf.Graphics.Color.sfBlack);
       end case;
       
    end RessourceZeichnen;
@@ -272,8 +264,7 @@ package body WeltkarteSFML is
       end case;
       
       case
-        KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld (SpriteAccesExtern  => SpriteAccess,
-                                                              TexturAccessExtern => EingeleseneTexturenSFML.WegeAccess (Wegfeld),
+        KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld (TexturAccessExtern => EingeleseneTexturenSFML.WegeAccess (Wegfeld),
                                                               PositionExtern     => PositionExtern)
       is
          when True =>
@@ -282,8 +273,7 @@ package body WeltkarteSFML is
          when False =>
             ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => (BerechnungenKarteSFML.KartenfelderAbmessung.x, BerechnungenKarteSFML.KartenfelderAbmessung.y / 2.00),
                                                   PositionExtern       => (PositionExtern.x, PositionExtern.y + 0.80 * BerechnungenKarteSFML.KartenfelderAbmessung.y),
-                                                  FarbeExtern          => Sf.Graphics.Color.sfRed,
-                                                  RechteckAccessExtern => RechteckAccess);
+                                                  FarbeExtern          => Sf.Graphics.Color.sfRed);
       end case;
       
    end WegZeichnen;
@@ -312,8 +302,7 @@ package body WeltkarteSFML is
       end case;
       
       case
-        KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld (SpriteAccesExtern  => SpriteAccess,
-                                                              TexturAccessExtern => EingeleseneTexturenSFML.VerbesserungenAccess (Verbesserungsfeld),
+        KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld (TexturAccessExtern => EingeleseneTexturenSFML.VerbesserungenAccess (Verbesserungsfeld),
                                                               PositionExtern     => PositionExtern)
       is
          when True =>
@@ -322,8 +311,7 @@ package body WeltkarteSFML is
          when False =>
             ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => (BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00, BerechnungenKarteSFML.KartenfelderAbmessung.y / 2.00),
                                                   PositionExtern       => PositionExtern,
-                                                  FarbeExtern          => Sf.Graphics.Color.sfCyan,
-                                                  RechteckAccessExtern => RechteckAccess);
+                                                  FarbeExtern          => Sf.Graphics.Color.sfCyan);
       end case;
       
    end VerbesserungZeichnen;
@@ -378,8 +366,7 @@ package body WeltkarteSFML is
          is
             when True =>
                if
-                 True = KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld (SpriteAccesExtern  => SpriteAccess,
-                                                                              TexturAccessExtern => EingeleseneTexturenSFML.EinheitenAccess (RasseEinheitExtern.Rasse, EinheitID),
+                 True = KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld (TexturAccessExtern => EingeleseneTexturenSFML.EinheitenAccess (RasseEinheitExtern.Rasse, EinheitID),
                                                                               PositionExtern     => PositionExtern)
                then
                   null;
@@ -388,8 +375,7 @@ package body WeltkarteSFML is
                   ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.80,
                                                        PositionExtern      => PositionExtern,
                                                        AnzahlEckenExtern   => 4,
-                                                       FarbeExtern         => RasseneinstellungenSFML.RassenFarbenRahmen (EinheitRasseNummer.Rasse),
-                                                       PolygonAccessExtern => PolygonAccess);
+                                                       FarbeExtern         => RasseneinstellungenSFML.RassenFarbenRahmen (EinheitRasseNummer.Rasse));
                end if;
                
             when False =>
@@ -398,8 +384,7 @@ package body WeltkarteSFML is
          
       else
          if
-           True = KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld (SpriteAccesExtern  => SpriteAccess,
-                                                                        TexturAccessExtern => EingeleseneTexturenSFML.EinheitenAccess (RasseEinheitExtern.Rasse, EinheitID),
+           True = KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld (TexturAccessExtern => EingeleseneTexturenSFML.EinheitenAccess (RasseEinheitExtern.Rasse, EinheitID),
                                                                         PositionExtern     => PositionExtern)
          then
             null;
@@ -408,8 +393,7 @@ package body WeltkarteSFML is
             ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.80,
                                                  PositionExtern      => PositionExtern,
                                                  AnzahlEckenExtern   => 4,
-                                                 FarbeExtern         => RasseneinstellungenSFML.RassenFarbenRahmen (EinheitRasseNummer.Rasse),
-                                                 PolygonAccessExtern => PolygonAccess);
+                                                 FarbeExtern         => RasseneinstellungenSFML.RassenFarbenRahmen (EinheitRasseNummer.Rasse));
          end if;
       end if;
       

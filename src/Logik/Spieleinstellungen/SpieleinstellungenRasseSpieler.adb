@@ -365,7 +365,7 @@ package body SpieleinstellungenRasseSpieler is
                                                   IDExtern               => 2,
                                                   StadtRasseNummerExtern => (RasseExtern, 0));
       
-      SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell := StartkoordinateEinsExtern;
+      SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell := (StartkoordinateEinsExtern.EAchse, Karten.Karteneinstellungen.Kartengröße.YAchse / 2, Karten.Karteneinstellungen.Kartengröße.XAchse / 2);
       SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt := StartkoordinateEinsExtern;
       
    end StartpunktFestlegen;

@@ -27,12 +27,14 @@ package CursorPlatzierenSFML is
    
 private
    
-   SichtbereichAnfangEnde : KartenDatentypen.SichtbereichAnfangEndeArray;
-   
    YMultiplikator : Float;
    XMultiplikator : Float;
    
+   Kartenänderung : KartenRecords.YXAchsenKartenfeldRecord;
+   
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   
+   SichtbereichAnfangEnde : KartenDatentypen.SichtbereichAnfangEndeArray;
    
    Mausposition : Sf.System.Vector2.sfVector2f;
 

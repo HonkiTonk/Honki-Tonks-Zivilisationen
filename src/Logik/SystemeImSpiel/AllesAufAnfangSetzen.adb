@@ -12,6 +12,7 @@ with EinheitenRecordKonstanten;
 
 with Karten;
 with KartengeneratorVariablen;
+with Sichtweiten;
 
 package body AllesAufAnfangSetzen is
 
@@ -49,6 +50,8 @@ package body AllesAufAnfangSetzen is
       Karten.Karteneinstellungen := KartenRecordKonstanten.Standardkartenparameter;
       Karten.Weltkarte := (others => (others => (others => KartenRecordKonstanten.LeerWeltkarte)));
       Karten.Stadtkarte := (others => (others => (0)));
+      
+      Sichtweiten.StandardZoom;
       
    end AllesAufAnfangSetzen;
 

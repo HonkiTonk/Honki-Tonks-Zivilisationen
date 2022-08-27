@@ -66,7 +66,7 @@ package body TexturenSetzenSkalierenSFML is
       
       -- Sollte geprüft werden ob die Texturebreite/höhe /= 0 ist? äöü
       GrößeTextur := (Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).width, Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).height);
-      StadtAbmessung := BerechnungenKarteSFML.StadtKarte;
+      StadtAbmessung := (BerechnungenKarteSFML.StadtKarte.width, BerechnungenKarteSFML.StadtKarte.height);
       
       SkalierungKartenfeld.x := StadtAbmessung.x / GrößeTextur.x;
       SkalierungKartenfeld.y := StadtAbmessung.y / GrößeTextur.y;
