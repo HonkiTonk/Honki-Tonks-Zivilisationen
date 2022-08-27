@@ -32,6 +32,7 @@ package ChangelogAugust2022 is
    
    -- Fontdatei gegen eine andere Version ausgetauscht und entsprechende Lizensierung hinzugefügt.
    -- gpr Datei für dynamische Linkung hinzugefügt.
+   -- Einige Beispielbilder hinzugefügt und ein wenig Werbung gemacht.
    -- 
    -- Kleinigkeiten korrigiert.
    
