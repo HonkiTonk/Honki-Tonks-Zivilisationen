@@ -18,7 +18,7 @@ package body TexteinstellungenSFML is
    procedure SchriftartFestlegen
    is begin
       
-      TexteinstellungenSFML.SchriftartAccess := Sf.Graphics.Font.createFromFile (filename => "Sprachen/Schriftart/FreeSans.ttf");
+      TexteinstellungenSFML.SchriftartAccess := Sf.Graphics.Font.createFromFile (filename => "Sprachen/Schriftart/FreeSans.otf");
       
    end SchriftartFestlegen;
 

@@ -30,6 +30,7 @@ package ChangelogAugust2022 is
 
    -- Version 0.03.7400 => 0.03. (27.08.2022):
    
+   -- Fontdatei gegen eine andere Version ausgetauscht und entsprechende Lizensierung hinzugefügt.
    -- 
    -- Kleinigkeiten korrigiert.
    
