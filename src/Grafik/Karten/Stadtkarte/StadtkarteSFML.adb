@@ -29,7 +29,7 @@ package body StadtkarteSFML is
       
       ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => Views.KartenviewAccess,
                                           GrößeExtern          => (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x, GrafikEinstellungenSFML.AktuelleFensterAuflösung.y),
-                                          AnzeigebereichExtern => GrafikRecordKonstanten.KarteAnzeigebereich);
+                                          AnzeigebereichExtern => GrafikRecordKonstanten.StadtkarteAnzeigebereich);
       
       InformationenStadtAufrufen := False;
       

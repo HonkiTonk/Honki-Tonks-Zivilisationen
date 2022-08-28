@@ -20,6 +20,7 @@ with StadtProduktion;
 with Sichtbarkeit;
 with EinheitenErzeugenEntfernen;
 with Fehler;
+with Wegeplatzierungssystem;
 
 package body StadtBauen is
 
@@ -206,28 +207,49 @@ package body StadtBauen is
       SchreibeWichtiges.VerbleibendeForschungszeit (RasseExtern => StadtRasseNummerExtern.Rasse);
       Sichtbarkeit.SichtbarkeitsprüfungFürStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
-      case
-        StadtRasseNummerExtern.Rasse
-      is
-         when RassenDatentypen.Keine_Rasse_Enum =>
-            Fehler.LogikFehler (FehlermeldungExtern => "StadtBauen.StadtEintragen - Keine Rasse baut eine Stadt.");
-            
-         when RassenDatentypen.Rassen_Überirdisch_Enum'Range =>
-            SchreibeKarten.Weg (KoordinatenExtern => KoordinatenExtern,
-                                WegExtern         => KartenVerbesserungDatentypen.Straße_Einzeln_Enum);
-            
-         when RassenDatentypen.Rassen_Erde_Enum'Range =>
-            SchreibeKarten.Weg (KoordinatenExtern => KoordinatenExtern,
-                                WegExtern         => KartenVerbesserungDatentypen.Tunnel_Einzeln_Enum);
-            
-         when RassenDatentypen.Rassen_Wasser_Enum'Range =>
-            null;
-      end case;
+      WegAnlegen (KoordinatenExtern => KoordinatenExtern,
+                  RasseExtern       => StadtRasseNummerExtern.Rasse);
       
       SchreibeKarten.Verbesserung (KoordinatenExtern  => KoordinatenExtern,
                                    VerbesserungExtern => Stadtart);
       
    end StadtEintragen;
+   
+   
+   
+   -- Diese Prüfung mal erweitern und auch an anderen Stellen dann verwenden? äöü
+   procedure WegAnlegen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+   is begin
+      
+      case
+        KoordinatenExtern.EAchse
+      is
+         when KartenDatentypen.EbeneLuft'Range =>
+            return;
+            
+         when others =>
+            null;
+      end case;
+      
+      case
+        RasseExtern
+      is
+         when RassenDatentypen.Rassen_Überirdisch_Enum'Range =>
+            WelcherWeg := AufgabenDatentypen.Straße_Bauen_Enum;
+            
+         when RassenDatentypen.Rassen_Erde_Enum'Range =>
+            WelcherWeg := AufgabenDatentypen.Tunnel_Bauen_Enum;
+            
+         when others =>
+            return;
+      end case;
+      
+      Wegeplatzierungssystem.Wegplatzierung (KoordinatenExtern => KoordinatenExtern,
+                                             WegartExtern      => WelcherWeg);
+            
+   end WegAnlegen;
    
 
 

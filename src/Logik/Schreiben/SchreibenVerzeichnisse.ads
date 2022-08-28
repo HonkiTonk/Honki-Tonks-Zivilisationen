@@ -7,8 +7,6 @@ package SchreibenVerzeichnisse is
 
 private
 
-   procedure SchreibeGrafikVerzeichnisse;
-   procedure SchreibeAudioVerzeichnisse;
    procedure SchreibeSonstigeVerzeichnisse;
 
 end SchreibenVerzeichnisse;

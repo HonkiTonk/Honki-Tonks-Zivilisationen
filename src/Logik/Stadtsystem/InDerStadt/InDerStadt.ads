@@ -25,9 +25,8 @@ private
 
    NeuerName : SystemRecords.TextEingabeRecord;
 
-   function WasIstAusgewählt
+   procedure WasIstAusgewählt
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return Boolean
      with
        Pre => (
                  StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze

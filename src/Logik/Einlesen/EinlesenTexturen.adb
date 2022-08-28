@@ -31,7 +31,7 @@ package body EinlesenTexturen is
    is begin
       
       case
-        Exists (Name => "Grafik/Hintergrund/0")
+        Exists (Name => TextKonstanten.Grafik & TextKonstanten.Hintergrund & TextKonstanten.NullDatei)
       is
          when False =>
             Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenHintergrund - 0-Datei fehlt.");
@@ -42,7 +42,7 @@ package body EinlesenTexturen is
             
             Open (File => DateiTextEinlesen,
                   Mode => In_File,
-                  Name => "Grafik/Hintergrund/0");
+                  Name => TextKonstanten.Grafik & TextKonstanten.Hintergrund & TextKonstanten.NullDatei);
       end case;
       
       DateipfadeEinlesenSchleife:
@@ -92,7 +92,7 @@ package body EinlesenTexturen is
    is begin
       
       case
-        Exists (Name => "Grafik/Kartenfelder/0")
+        Exists (Name => TextKonstanten.Grafik & TextKonstanten.Kartenfelder & TextKonstanten.NullDatei)
       is
          when False =>
             Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenKartenfelder - 0-Datei fehlt.");
@@ -103,7 +103,7 @@ package body EinlesenTexturen is
             
             Open (File => DateiTextEinlesen,
                   Mode => In_File,
-                  Name => "Grafik/Kartenfelder/0");
+                  Name => TextKonstanten.Grafik & TextKonstanten.Kartenfelder & TextKonstanten.NullDatei);
       end case;
       
       DateipfadeEinlesenSchleife:
@@ -153,7 +153,7 @@ package body EinlesenTexturen is
    is begin
       
       case
-        Exists (Name => "Grafik/Kartenfluss/0")
+        Exists (Name => TextKonstanten.Grafik & TextKonstanten.Kartenfluss & TextKonstanten.NullDatei)
       is
          when False =>
             Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenKartenflüsse - 0-Datei fehlt.");
@@ -164,7 +164,7 @@ package body EinlesenTexturen is
             
             Open (File => DateiTextEinlesen,
                   Mode => In_File,
-                  Name => "Grafik/Kartenfluss/0");
+                  Name => TextKonstanten.Grafik & TextKonstanten.Kartenfluss & TextKonstanten.NullDatei);
       end case;
       
       DateipfadeEinlesenSchleife:
@@ -214,7 +214,7 @@ package body EinlesenTexturen is
    is begin
       
       case
-        Exists (Name => "Grafik/Kartenressourcen/0")
+        Exists (Name => TextKonstanten.Grafik & TextKonstanten.Kartenressourcen & TextKonstanten.NullDatei)
       is
          when False =>
             Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenKartenressourcen - 0-Datei fehlt.");
@@ -225,7 +225,7 @@ package body EinlesenTexturen is
             
             Open (File => DateiTextEinlesen,
                   Mode => In_File,
-                  Name => "Grafik/Kartenressourcen/0");
+                  Name => TextKonstanten.Grafik & TextKonstanten.Kartenressourcen & TextKonstanten.NullDatei);
       end case;
       
       DateipfadeEinlesenSchleife:
@@ -275,7 +275,7 @@ package body EinlesenTexturen is
    is begin
       
       case
-        Exists (Name => "Grafik/Verbesserungen/0")
+        Exists (Name => TextKonstanten.Grafik & TextKonstanten.Kartenverbesserungen & TextKonstanten.NullDatei)
       is
          when False =>
             Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenVerbesserungen - 0-Datei fehlt.");
@@ -286,7 +286,7 @@ package body EinlesenTexturen is
             
             Open (File => DateiTextEinlesen,
                   Mode => In_File,
-                  Name => "Grafik/Verbesserungen/0");
+                  Name => TextKonstanten.Grafik & TextKonstanten.Kartenverbesserungen & TextKonstanten.NullDatei);
       end case;
       
       DateipfadeEinlesenSchleife:
@@ -336,7 +336,7 @@ package body EinlesenTexturen is
    is begin
       
       case
-        Exists (Name => "Grafik/Wege/0")
+        Exists (Name => TextKonstanten.Grafik & TextKonstanten.Kartenwege & TextKonstanten.NullDatei)
       is
          when False =>
             Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenWege - 0-Datei fehlt.");
@@ -347,7 +347,7 @@ package body EinlesenTexturen is
             
             Open (File => DateiTextEinlesen,
                   Mode => In_File,
-                  Name => "Grafik/Wege/0");
+                  Name => TextKonstanten.Grafik & TextKonstanten.Kartenwege & TextKonstanten.NullDatei);
       end case;
       
       DateipfadeEinlesenSchleife:
@@ -397,7 +397,7 @@ package body EinlesenTexturen is
    is begin
       
       case
-        Exists (Name => "Grafik/Einheiten/0")
+        Exists (Name => TextKonstanten.Grafik & "/Einheiten" & TextKonstanten.NullDatei)
       is
          when False =>
             Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenEinheiten - 0-Datei fehlt.");
@@ -408,7 +408,7 @@ package body EinlesenTexturen is
             
             Open (File => DateiTextEinlesen,
                   Mode => In_File,
-                  Name => "Grafik/Einheiten/0");
+                  Name => TextKonstanten.Grafik & "/Einheiten" & TextKonstanten.NullDatei);
       end case;
       
       RassenEinsSchleife:
@@ -464,7 +464,7 @@ package body EinlesenTexturen is
    is begin
       
       case
-        Exists (Name => "Grafik/Bauwerke/0")
+        Exists (Name => TextKonstanten.Grafik & "/Bauwerke" & TextKonstanten.NullDatei)
       is
          when False =>
             Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenGebäude - 0-Datei fehlt.");
@@ -475,7 +475,7 @@ package body EinlesenTexturen is
             
             Open (File => DateiTextEinlesen,
                   Mode => In_File,
-                  Name => "Grafik/Bauwerke/0");
+                  Name => TextKonstanten.Grafik & "/Bauwerke" & TextKonstanten.NullDatei);
       end case;
       
       RassenEinsSchleife:

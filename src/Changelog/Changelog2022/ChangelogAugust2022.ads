@@ -14,17 +14,23 @@ package ChangelogAugust2022 is
    
    
 
-   -- Version 0.03. => 0.03. (29.08.2022):
+   -- Version 0.03.7600 => 0.03. (29.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.7510 => 0.03. (28.08.2022):
+   -- Version 0.03.7510 => 0.03.7600 (28.08.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Städte im Himmel/Orbit legen beim Bau jetzt keine Straße mehr an und von der Stadt angelegte Straßen werden jetzt korrekt mit regulären Straßen verbunden.
+   -- Alle Verzeichnissnamen in konstante Strings ausgelagert.
+   -- Das Platzieren und Entfernen von Arbeitern auf Stadtfeldern an das neue Viewsystem angepasst.
+   -- Unnötigen Code gelöscht.
+   -- Der Himmelsgrund ist jetzt leicht durchsichtig und ermöglicht es einem die Umgebung darunter zu erkennen.
+   -- Interne Struktur überarbeitet.
+   -- Neues Beispielbild erstellt.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 
@@ -34,7 +40,7 @@ package ChangelogAugust2022 is
    -- gpr Datei für dynamische Linkung hinzugefügt.
    -- Einige Beispielbilder hinzugefügt und ein wenig Werbung gemacht.
    -- Mauszeigerpositionierung und Kartenberechnungen überarbeitet.
-   -- Berechnung der aktuellen Zeigerposition optimeirt.
+   -- Berechnung der aktuellen Zeigerposition optimiert.
    -- Es wird jetzt auf der Weltkarte an den Rändern kein schwarzer Rahmen mehr angezeigt.
    -- Stadtfenster in Viewsystem eingebaut.
    -- Fehler behoben der dafür sorgte dass die Bildplatzierung nicht auf den eigenen Starteinheiten war.

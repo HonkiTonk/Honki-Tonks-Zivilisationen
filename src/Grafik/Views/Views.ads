@@ -19,7 +19,7 @@ package Views is
    KartenviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
    BefehlsviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
 
-   StadtfensterviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
+   StadtumgebungviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
 
    type ViewsArray is array (Positive range <>) of Sf.Graphics.sfView_Ptr;
 

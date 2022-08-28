@@ -3,84 +3,27 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Calendar; use Ada.Calendar;
 
-private with Sf.System.Vector2;
+with Sf.System.Vector2;
+
 private with Sf.Graphics.RectangleShape;
 private with Sf.Graphics.CircleShape;
 private with Sf.Graphics.Sprite;
 
-with KartenDatentypen; use KartenDatentypen;
 with RassenDatentypen; use RassenDatentypen;
-with SpielVariablen;
+with KartenDatentypen; use KartenDatentypen;
+with KartengrundDatentypen;
+with KartenVerbesserungDatentypen;
+with EinheitenDatentypen;
+with KartenRecords;
 with EinheitenRecords;
+with SpielVariablen;
+with StadtRecords;
 
-private with KartengrundDatentypen;
-private with KartenVerbesserungDatentypen;
-private with StadtRecords;
-private with EinheitenDatentypen;
-private with KartenRecords;
+with Karten;
 
-private with Karten;
-
-package WeltkarteSFML is
+package WeltkarteZeichnenGrafik is
    
-   procedure Weltkarte
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-     with
-       Pre => (
-                 SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
-              );
-   
-private
-   
-   AusgewählteEinheitAnzeigen : Boolean := True;
-   
-   AktuelleRasse : RassenDatentypen.Rassen_Enum;
-   
-   YSichtAnfang : KartenDatentypen.Kartenfeld;
-   YSichtEnde : KartenDatentypen.Kartenfeld;
-   XSichtAnfang : KartenDatentypen.Kartenfeld;
-   XSichtEnde : KartenDatentypen.Kartenfeld;
-   
-   SichtbereichAnfangEnde : KartenDatentypen.SichtbereichAnfangEndeArray;
-   
-   AktuellerKartengrund : KartengrundDatentypen.Kartengrund_Enum;
-   BasisKartengrund : KartengrundDatentypen.Kartengrund_Enum;
-   KartenfeldFluss : KartengrundDatentypen.Kartenfluss_Enum;
-   KartenfeldRessource : KartengrundDatentypen.Kartenressourcen_Enum;
-   
-   Stadtart : KartenVerbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
-   Wegfeld : KartenVerbesserungDatentypen.Karten_Weg_Enum;
-   Verbesserungsfeld : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
-   
-   EinheitID : EinheitenDatentypen.EinheitenID;
-   
-   DickeRahmen : constant Float := 5.00;
-   YMultiplikator : Float;
-   XMultiplikator : Float;
-   
-   StartzeitBlinkintervall : Time := Clock;
-         
-   StadtRasseNummer : StadtRecords.RasseStadtnummerRecord;
-   
-   EinheitRasseNummer : EinheitenRecords.RasseEinheitnummerRecord;
-      
-   Position : Sf.System.Vector2.sfVector2f;
-   Textposition : Sf.System.Vector2.sfVector2f;
-   
-   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
-   KartenWertRahmen : KartenRecords.AchsenKartenfeldNaturalRecord;
-   KartenWertStadtname : KartenRecords.AchsenKartenfeldNaturalRecord;
-   CursorKoordinatenAlt : KartenRecords.AchsenKartenfeldNaturalRecord;
-      
-   SpriteAccess : constant Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;
-
-   RechteckAccess : constant Sf.Graphics.sfRectangleShape_Ptr := Sf.Graphics.RectangleShape.create;
-   RechteckBelegtesFeldAccess : constant Sf.Graphics.sfRectangleShape_Ptr := Sf.Graphics.RectangleShape.create;
-   RechteckRahmenAccess : constant Sf.Graphics.sfRectangleShape_Ptr := Sf.Graphics.RectangleShape.create;
-
-   KreisAccess : constant Sf.Graphics.sfCircleShape_Ptr := Sf.Graphics.CircleShape.create;
-   PolygonAccess : constant Sf.Graphics.sfCircleShape_Ptr := Sf.Graphics.CircleShape.create;
-   
+   -- Das hier mal in irgendwas Globales verschieben. äöü
    type Umgebung_Enum is (Norden, Westen, Osten, Süden);
    
    type UmgebungArray is array (Umgebung_Enum'Range) of KartenRecords.AchsenKartenfeldRecord;
@@ -90,20 +33,6 @@ private
                                          Osten  => (0, 0, 1),
                                          Süden  => (0, 1, 0)
                                         );
-   
-   -- Hier die Benennung von RasseEinheitExtern auf EinheitRasseNummerExtern umschreiben. äöü
-   procedure IstSichtbar
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      PositionExtern : in Sf.System.Vector2.sfVector2f)
-     with
-       Pre => (
-                 SpielVariablen.RassenImSpiel (RasseEinheitExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
-               and
-                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-               and
-                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
-              );
 
    procedure AnzeigeEinheit
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
@@ -153,7 +82,8 @@ private
    
    procedure KartenfeldZeichnen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      PositionExtern : in Sf.System.Vector2.sfVector2f)
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      DurchsichtigExtern : in Boolean)
      with
        Pre => (
                  KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
@@ -210,5 +140,43 @@ private
                and
                  KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
               );
+   
+private
+   
+   AusgewählteEinheitAnzeigen : Boolean := True;
+   
+   AktuelleRasse : RassenDatentypen.Rassen_Enum;
+   
+   AktuellerKartengrund : KartengrundDatentypen.Kartengrund_Enum;
+   BasisKartengrund : KartengrundDatentypen.Kartengrund_Enum;
+   KartenfeldFluss : KartengrundDatentypen.Kartenfluss_Enum;
+   KartenfeldRessource : KartengrundDatentypen.Kartenressourcen_Enum;
+   
+   Stadtart : KartenVerbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
+   Wegfeld : KartenVerbesserungDatentypen.Karten_Weg_Enum;
+   Verbesserungsfeld : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
+   
+   EinheitID : EinheitenDatentypen.EinheitenID;
+   
+   DickeRahmen : constant Float := 5.00;
+         
+   StadtRasseNummer : StadtRecords.RasseStadtnummerRecord;
+   
+   EinheitRasseNummer : EinheitenRecords.RasseEinheitnummerRecord;
+   
+   Textposition : Sf.System.Vector2.sfVector2f;
+   
+   KartenWertRahmen : KartenRecords.AchsenKartenfeldNaturalRecord;
+   
+   StartzeitBlinkintervall : Time := Clock;
+      
+   SpriteAccess : constant Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;
 
-end WeltkarteSFML;
+   RechteckAccess : constant Sf.Graphics.sfRectangleShape_Ptr := Sf.Graphics.RectangleShape.create;
+   RechteckBelegtesFeldAccess : constant Sf.Graphics.sfRectangleShape_Ptr := Sf.Graphics.RectangleShape.create;
+   RechteckRahmenAccess : constant Sf.Graphics.sfRectangleShape_Ptr := Sf.Graphics.RectangleShape.create;
+
+   KreisAccess : constant Sf.Graphics.sfCircleShape_Ptr := Sf.Graphics.CircleShape.create;
+   PolygonAccess : constant Sf.Graphics.sfCircleShape_Ptr := Sf.Graphics.CircleShape.create;
+
+end WeltkarteZeichnenGrafik;

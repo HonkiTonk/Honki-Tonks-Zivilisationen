@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+private with Sf.System.Vector2;
+
 with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
 with StadtRecords;
@@ -10,8 +12,9 @@ private with KartenDatentypen;
 
 package EinwohnerZuweisenEntfernen is
 
-   procedure EinwohnerZuweisenEntfernen
+   function EinwohnerZuweisenEntfernen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+      return Boolean
      with
        Pre => (
                  StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -20,12 +23,12 @@ package EinwohnerZuweisenEntfernen is
               );
    
 private
+      
+   Stadtfeld : KartenRecords.YXAchsenKartenfeldRecord;
    
-   NutzbarerBereich : KartenDatentypen.Kartenfeld;
-   RelativeCursorPositionY : KartenDatentypen.Kartenfeld;
-   RelativeCursorPositionX : KartenDatentypen.Kartenfeld;
+   Mausposition : Sf.System.Vector2.sfVector2f;
    
-   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Kartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    procedure EinwohnerBelegungÄndern
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;

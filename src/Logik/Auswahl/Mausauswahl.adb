@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with Sf.Graphics.RenderWindow;
+with Sf.Graphics.View;
 
 with Views;
 with InteraktionAuswahl;
@@ -309,5 +310,28 @@ package body Mausauswahl is
       return False;
       
    end Einheitenbefehle;
+   
+   
+   
+   function Stadtumgebung
+     return Sf.System.Vector2.sfVector2f
+   is begin
+      
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                                                 point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
+                                                                 view         => Views.StadtumgebungviewAccess);
+      
+      case
+        Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
+                                    TextboxExtern      => (0.00, 0.00, Sf.Graphics.View.getSize (view => Views.StadtumgebungviewAccess).x, Sf.Graphics.View.getSize (view => Views.StadtumgebungviewAccess).y))
+      is
+         when False =>
+            return (-1.00, -1.00);
+            
+         when True =>
+            return Mausposition;
+      end case;
+            
+   end Stadtumgebung;
 
 end Mausauswahl;

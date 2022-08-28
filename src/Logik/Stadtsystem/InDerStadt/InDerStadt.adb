@@ -24,7 +24,6 @@ package body InDerStadt is
       StadtSchleife:
       loop
          
-         
          Befehl := EingabeSFML.Tastenwert;
          
          case
@@ -32,14 +31,7 @@ package body InDerStadt is
          is
             -- Einwohner von Feld entfernen/zuweisen
             when TastenbelegungDatentypen.Auswählen_Enum =>
-               if
-                 WasIstAusgewählt (StadtRasseNummerExtern => StadtRasseNummerExtern) = True
-               then
-                  null;
-                  
-               else
-                  exit StadtSchleife;
-               end if;
+               WasIstAusgewählt (StadtRasseNummerExtern => StadtRasseNummerExtern);
                
             when TastenbelegungDatentypen.Bauen_Enum =>
                InDerStadtBauen.Bauen (StadtRasseNummerExtern => StadtRasseNummerExtern);
@@ -77,18 +69,19 @@ package body InDerStadt is
    
    
    
-   function WasIstAusgewählt
+   procedure WasIstAusgewählt
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return Boolean
    is begin
-      
-      -- Hier dann prüfen wo der Mauszeiger ist und entsprechend die Auswahl gestalten.
-      -- Daran denken dass das auch für weitere Einstellungen gilt und nicht nur für die Zuweisung von Bürgern.
-      
-      EinwohnerZuweisenEntfernen.EinwohnerZuweisenEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern);
-      
-      return True;
-      
+            
+      if
+        EinwohnerZuweisenEntfernen.EinwohnerZuweisenEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern) = True
+      then
+         null;
+         
+      else
+         null;
+      end if;
+            
    end WasIstAusgewählt;
 
 end InDerStadt;

@@ -51,7 +51,7 @@ package body Laden is
       
       Open (File => DateiLaden,
             Mode => In_File,
-            Name => TextKonstanten.Spielstand & Encode (Item => To_Wide_Wide_String (Source => NameSpielstand.EingegebenerText)));
+            Name => TextKonstanten.SpielstandStrich & Encode (Item => To_Wide_Wide_String (Source => NameSpielstand.EingegebenerText)));
 
       Wide_Wide_String'Read (Stream (File => DateiLaden),
                              VersionsnummerPrüfung);

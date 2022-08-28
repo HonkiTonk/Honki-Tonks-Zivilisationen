@@ -5,12 +5,14 @@ with Sf.Graphics; use Sf.Graphics;
 with Sf.System.Vector2;
 
 private with Sf.Graphics.Sprite;
+private with Sf.Graphics.Color;
 
 package KartenspritesZeichnenSFML is
 
    function SpriteGezeichnetKartenfeld
      (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
-      PositionExtern : in Sf.System.Vector2.sfVector2f)
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      DurchsichtigExtern : in Boolean)
       return Boolean
      with
        Pre => (
@@ -43,12 +45,15 @@ package KartenspritesZeichnenSFML is
 
 private
 
+   Farbe : Sf.Graphics.Color.sfColor;
+
    SpriteAccess : constant Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;
 
    procedure SpriteZeichnen
      (SpriteAccesExtern : in Sf.Graphics.sfSprite_Ptr;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
-      SkalierungExtern : in Sf.System.Vector2.sfVector2f)
+      SkalierungExtern : in Sf.System.Vector2.sfVector2f;
+      DurchsichtigExtern : in Boolean)
      with
        Pre => (
                  SpriteAccesExtern /= null

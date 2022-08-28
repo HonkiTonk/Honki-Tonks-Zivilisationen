@@ -26,9 +26,9 @@ package body StadtumgebungGrafik is
       
       Viewfläche := (7.00 * BerechnungenKarteSFML.StadtfelderAbmessung.x, 7.00 * BerechnungenKarteSFML.StadtfelderAbmessung.y);
       
-      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => Views.StadtfensterviewAccess,
+      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => Views.StadtumgebungviewAccess,
                                           GrößeExtern          => Viewfläche,
-                                          AnzeigebereichExtern => GrafikRecordKonstanten.StadtfensterBereich);
+                                          AnzeigebereichExtern => GrafikRecordKonstanten.StadtumgebungBereich);
             
       Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
       

@@ -19,14 +19,14 @@ package body EinlesenText is
    is begin
             
       case
-        Exists (Name => "Sprachen/" & Encode (Item => To_Wide_Wide_String (Source => OptionenVariablen.NutzerEinstellungen.Sprache)) & "/0")
+        Exists (Name => TextKonstanten.SprachenStrich & Encode (Item => To_Wide_Wide_String (Source => OptionenVariablen.NutzerEinstellungen.Sprache)) & TextKonstanten.NullDatei)
       is
          when True =>
             TextdateienEinlesen := (others => TextKonstanten.LeerUnboundedString);
             
             Open (File => DateiTextEinlesen,
                   Mode => In_File,
-                  Name => "Sprachen/" & Encode (Item => To_Wide_Wide_String (Source => OptionenVariablen.NutzerEinstellungen.Sprache)) & "/0");
+                  Name => TextKonstanten.SprachenStrich & Encode (Item => To_Wide_Wide_String (Source => OptionenVariablen.NutzerEinstellungen.Sprache)) & TextKonstanten.NullDatei);
 
          when False =>
             Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.EinlesenDateien - 0-Datei fehlt.");

@@ -3,6 +3,8 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Directories; use Ada.Directories;
 
+with TextKonstanten;
+
 with EinheitenDatenbank;
 with ForschungenDatenbank;
 with GebaeudeDatenbank;
@@ -32,12 +34,12 @@ package body EinlesenDatenbanken is
    is begin
       
       case
-        Exists (Name => "Datenbanken/EinheitenDatenbank")
+        Exists (Name => TextKonstanten.EinheitenDatenbank)
       is
          when True =>
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
-                  Name => "Datenbanken/EinheitenDatenbank");
+                  Name => TextKonstanten.EinheitenDatenbank);
 
          when False =>
             EinheitenDatenbank.StandardEinheitenDatenbankLaden;
@@ -57,12 +59,12 @@ package body EinlesenDatenbanken is
    is begin
       
       case
-        Exists (Name => "Datenbanken/ForschungenDatenbank")
+        Exists (Name => TextKonstanten.ForschungenDatenbank)
       is
          when True =>
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
-                  Name => "Datenbanken/ForschungenDatenbank");
+                  Name => TextKonstanten.ForschungenDatenbank);
 
          when False =>
             ForschungenDatenbank.StandardForschungenDatenbankLaden;
@@ -82,12 +84,12 @@ package body EinlesenDatenbanken is
    is begin
       
       case
-        Exists (Name => "Datenbanken/GebaeudeDatenbank")
+        Exists (Name => TextKonstanten.GebaeudeDatenbank)
       is
          when True =>
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
-                  Name => "Datenbanken/GebaeudeDatenbank");
+                  Name => TextKonstanten.GebaeudeDatenbank);
 
          when False =>
             GebaeudeDatenbank.StandardGebaeudeDatenbankLaden;
@@ -107,12 +109,12 @@ package body EinlesenDatenbanken is
    is begin
       
       case
-        Exists (Name => "Datenbanken/KartenGrundDatenbank")
+        Exists (Name => TextKonstanten.KartenGrundDatenbank)
       is
          when True =>
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
-                  Name => "Datenbanken/KartenGrundDatenbank");
+                  Name => TextKonstanten.KartenGrundDatenbank);
 
          when False =>
             KartengrundDatenbank.StandardKartengrundDatenbankLaden;
@@ -127,12 +129,12 @@ package body EinlesenDatenbanken is
       
       
       case
-        Exists (Name => "Datenbanken/KartenFlussDatenbank")
+        Exists (Name => TextKonstanten.KartenFlussDatenbank)
       is
          when True =>
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
-                  Name => "Datenbanken/KartenFlussDatenbank");
+                  Name => TextKonstanten.KartenFlussDatenbank);
 
          when False =>
             KartenflussDatenbank.StandardKartenflussDatenbankLaden;
@@ -147,12 +149,12 @@ package body EinlesenDatenbanken is
       
       
       case
-        Exists (Name => "Datenbanken/KartenRessourcenDatenbank")
+        Exists (Name => TextKonstanten.KartenRessourcenDatenbank)
       is
          when True =>
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
-                  Name => "Datenbanken/KartenRessourcenDatenbank");
+                  Name => TextKonstanten.KartenRessourcenDatenbank);
 
          when False =>
             KartenressourcenDatenbank.StandardKartenressourcenDatenbankLaden;
@@ -172,12 +174,12 @@ package body EinlesenDatenbanken is
    is begin
       
       case
-        Exists (Name => "Datenbanken/VerbesserungenDatenbank")
+        Exists (Name => TextKonstanten.VerbesserungenDatenbank)
       is
          when True =>
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
-                  Name => "Datenbanken/VerbesserungenDatenbank");
+                  Name => TextKonstanten.WegeDatenbank);
 
          when False =>
             VerbesserungenDatenbank.StandardVerbesserungenDatenbankLaden;
@@ -192,12 +194,12 @@ package body EinlesenDatenbanken is
       
       
       case
-        Exists (Name => "Datenbanken/WegeDatenbank")
+        Exists (Name => TextKonstanten.WegeDatenbank)
       is
          when True =>
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
-                  Name => "Datenbanken/WegeDatenbank");
+                  Name => TextKonstanten.WegeDatenbank);
 
          when False =>
             VerbesserungenDatenbank.StandardWegeDatenbankLaden;
@@ -217,12 +219,12 @@ package body EinlesenDatenbanken is
    is begin
       
       case
-        Exists (Name => "Datenbanken/RassenDatenbank")
+        Exists (Name => TextKonstanten.RassenDatenbank)
       is
          when True =>
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
-                  Name => "Datenbanken/RassenDatenbank");
+                  Name => TextKonstanten.RassenDatenbank);
 
          when False =>
             RassenDatenbank.StandardRassenDatenbankLaden;

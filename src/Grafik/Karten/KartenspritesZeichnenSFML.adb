@@ -13,17 +13,19 @@ package body KartenspritesZeichnenSFML is
    
    function SpriteGezeichnetKartenfeld
      (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
-      PositionExtern : in Sf.System.Vector2.sfVector2f)
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      DurchsichtigExtern : in Boolean)
       return Boolean
    is begin
       
       if
         TexturAccessExtern /= null
       then
-         KartenspritesZeichnenSFML.SpriteZeichnen (SpriteAccesExtern => SpriteAccess,
-                                                   PositionExtern    => PositionExtern,
-                                                   SkalierungExtern  => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenWeltkarte (SpriteAccessExtern  => SpriteAccess,
-                                                                                                                                      TextureAccessExtern => TexturAccessExtern));
+         KartenspritesZeichnenSFML.SpriteZeichnen (SpriteAccesExtern  => SpriteAccess,
+                                                   PositionExtern     => PositionExtern,
+                                                   SkalierungExtern   => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenWeltkarte (SpriteAccessExtern  => SpriteAccess,
+                                                                                                                                       TextureAccessExtern => TexturAccessExtern),
+                                                   DurchsichtigExtern => DurchsichtigExtern);
          return True;
          
       else
@@ -47,7 +49,8 @@ package body KartenspritesZeichnenSFML is
          SpriteZeichnen (SpriteAccesExtern => SpriteAccess,
                          PositionExtern    => PositionExtern,
                          SkalierungExtern  => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenStadtkarte (SpriteAccessExtern  => SpriteAccess,
-                                                                                                             TextureAccessExtern => TexturAccessExtern));
+                                                                                                             TextureAccessExtern => TexturAccessExtern),
+                         DurchsichtigExtern => False);
          return True;
          
       else
@@ -71,7 +74,8 @@ package body KartenspritesZeichnenSFML is
          SpriteZeichnen (SpriteAccesExtern => SpriteAccess,
                          PositionExtern    => PositionExtern,
                          SkalierungExtern  => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenGesamteStadtkarte (SpriteAccessExtern  => SpriteAccess,
-                                                                                                                    TextureAccessExtern => TexturAccessExtern));
+                                                                                                                    TextureAccessExtern => TexturAccessExtern),
+                         DurchsichtigExtern => False);
          return True;
          
       else
@@ -86,13 +90,29 @@ package body KartenspritesZeichnenSFML is
    procedure SpriteZeichnen
      (SpriteAccesExtern : in Sf.Graphics.sfSprite_Ptr;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
-      SkalierungExtern : in Sf.System.Vector2.sfVector2f)
+      SkalierungExtern : in Sf.System.Vector2.sfVector2f;
+      DurchsichtigExtern : in Boolean)
    is begin
 
       Sf.Graphics.Sprite.setPosition (sprite   => SpriteAccesExtern,
                                       position => PositionExtern);
       Sf.Graphics.Sprite.scale (sprite  => SpriteAccesExtern,
                                 factors => SkalierungExtern);
+              
+     Farbe := Sf.Graphics.Sprite.getColor (sprite => SpriteAccesExtern);
+      
+      case
+        DurchsichtigExtern
+      is
+         when True =>
+            Farbe.a := 240;
+            
+         when False =>
+            Farbe.a := 255;
+      end case;
+      
+      Sf.Graphics.Sprite.setColor (sprite => SpriteAccesExtern,
+                                   color  => Farbe);
          
       Sf.Graphics.RenderWindow.drawSprite (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                            object       => SpriteAccesExtern);

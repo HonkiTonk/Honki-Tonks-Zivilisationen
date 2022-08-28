@@ -15,7 +15,7 @@ package body EinlesenSprache is
       GlobaleTexte.SprachenEinlesen := (others => TextKonstanten.LeerUnboundedString);
       
       Start_Search (Search    => Suche,
-                    Directory => "Sprachen",
+                    Directory => TextKonstanten.Sprachen,
                     Pattern   => "");
 
       VerzeichnisAußenSchleife:
@@ -29,7 +29,7 @@ package body EinlesenSprache is
            or
              Simple_Name (Directory_Entry => Verzeichnis) = ".."
            or
-             Simple_Name (Directory_Entry => Verzeichnis) = "Schriftart"
+             Simple_Name (Directory_Entry => Verzeichnis) = TextKonstanten.Schriftart
          then
             null;
                   

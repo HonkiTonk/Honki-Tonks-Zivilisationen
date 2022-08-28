@@ -3,144 +3,47 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with Sf.Graphics;
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Text;
 with Sf.Graphics.Color;
 
-with KartenRecords; use KartenRecords;
 with EinheitenDatentypen; use EinheitenDatentypen;
 with KartengrundDatentypen; use KartengrundDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with EinheitenKonstanten;
-with KartenKonstanten;
 with TextaccessVariablen;
 with ZeitKonstanten;
-with GrafikRecordKonstanten;
-with Views;
+with KartenKonstanten;
 
-with LeseKarten;
 with LeseEinheitenGebaut;
+with LeseKarten;
 with LeseStadtGebaut;
 
-with Kartenkoordinatenberechnungssystem;
 with EinheitSuchen;
 with StadtSuchen;
-with BerechnungenKarteSFML;
 with ObjekteZeichnenSFML;
-with GrafikEinstellungenSFML;
 with EingeleseneTexturenSFML;
 with KartenspritesZeichnenSFML;
 with FarbgebungSFML;
 with TextberechnungenBreiteSFML;
 with RasseneinstellungenSFML;
-with ViewsEinstellenSFML;
 with TextberechnungenHoeheSFML;
+with BerechnungenKarteSFML;
+with Kartenkoordinatenberechnungssystem;
+with GrafikEinstellungenSFML;
 
-package body WeltkarteSFML is
-   
-   procedure Weltkarte
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-   is begin
-      
-      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => Views.KartenviewAccess,
-                                          GrößeExtern          => (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x, GrafikEinstellungenSFML.AktuelleFensterAuflösung.y),
-                                          AnzeigebereichExtern => GrafikRecordKonstanten.KarteAnzeigebereich);
-      
-      SichtbereichAnfangEnde := BerechnungenKarteSFML.SichtbereichKarteBerechnen;
-      
-      YMultiplikator := 0.00;
-      CursorKoordinatenAlt := SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt;
-            
-      YAchseSchleife:
-      for YAchseSchleifenwert in SichtbereichAnfangEnde (1) .. SichtbereichAnfangEnde (2) loop
-         
-         XMultiplikator := 0.00;
-         
-         XAchseSchleife:
-         for XAchseSchleifenwert in SichtbereichAnfangEnde (3) .. SichtbereichAnfangEnde (4) loop
-            
-            KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => CursorKoordinatenAlt,
-                                                                                                 ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                 LogikGrafikExtern => False);
-            
-            if
-              KartenWert.XAchse = KartenKonstanten.LeerXAchse
-            then
-               null;
-               
-            elsif
-              True = LeseKarten.Sichtbar (KoordinatenExtern => KartenWert,
-                                          RasseExtern       => EinheitRasseNummerExtern.Rasse)
-            then
-               -- Die Position durchzureichen bedeutet auch gleichzeitig den aktuellen Multiplikator mit durchzureichen!
-               Position.x := XMultiplikator * BerechnungenKarteSFML.KartenfelderAbmessung.x;
-               Position.y := YMultiplikator * BerechnungenKarteSFML.KartenfelderAbmessung.y;
-               
-               IstSichtbar (KoordinatenExtern  => KartenWert,
-                            RasseEinheitExtern => EinheitRasseNummerExtern,
-                            PositionExtern     => Position);
-               
-            else
-               null;
-            end if;
-            
-            XMultiplikator := XMultiplikator + 1.00;
-                          
-         end loop XAchseSchleife;
-         
-         YMultiplikator := YMultiplikator + 1.00;
-         
-      end loop YAchseSchleife;
-            
-   end Weltkarte;
-   
-   
-   
-   procedure IstSichtbar
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      PositionExtern : in Sf.System.Vector2.sfVector2f)
-   is begin
-            
-      -- Landschaft
-      KartenfeldZeichnen (KoordinatenExtern => KoordinatenExtern,
-                          PositionExtern    => PositionExtern);
-      
-      RessourceZeichnen (KoordinatenExtern => KoordinatenExtern,
-                         PositionExtern    => PositionExtern);
-      
-      FlussZeichnen (KoordinatenExtern => KoordinatenExtern,
-                     PositionExtern    => PositionExtern);
-      
-      WegZeichnen (KoordinatenExtern => KoordinatenExtern,
-                   PositionExtern    => PositionExtern);
-      
-      VerbesserungZeichnen (KoordinatenExtern => KoordinatenExtern,
-                            PositionExtern    => PositionExtern);
-      -- Landschaft
-      
-      
-      
-      AnzeigeEinheit (KoordinatenExtern  => KoordinatenExtern,
-                      RasseEinheitExtern => RasseEinheitExtern,
-                      PositionExtern     => PositionExtern);
-      
-      AnzeigeFeldbesitzer (KoordinatenExtern => KoordinatenExtern,
-                           PositionExtern    => PositionExtern);
-                  
-   end IstSichtbar;
-   
-   
-   
+package body WeltkarteZeichnenGrafik is
+
    procedure KartenfeldZeichnen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      PositionExtern : in Sf.System.Vector2.sfVector2f)
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      DurchsichtigExtern : in Boolean)
    is begin
       
       AktuellerKartengrund := LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern);
       BasisKartengrund := LeseKarten.BasisGrund (KoordinatenExtern => KoordinatenExtern);
       
+      -- Den aktuellen Grund auch durchsichtig gestalten wenn er nicht dem Basisgrund entspricht, um den Grund darunter sichtbar zu machen? äöü
       if
         AktuellerKartengrund = BasisKartengrund
       then
@@ -149,7 +52,8 @@ package body WeltkarteSFML is
       else
          case
            KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld (TexturAccessExtern => EingeleseneTexturenSFML.KartenfelderAccess (BasisKartengrund),
-                                                                 PositionExtern     => PositionExtern)
+                                                                 PositionExtern     => PositionExtern,
+                                                                 DurchsichtigExtern => DurchsichtigExtern)
          is
             when True =>
                null;
@@ -163,7 +67,8 @@ package body WeltkarteSFML is
       
       case
         KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld (TexturAccessExtern => EingeleseneTexturenSFML.KartenfelderAccess (AktuellerKartengrund),
-                                                              PositionExtern     => PositionExtern)
+                                                              PositionExtern     => PositionExtern,
+                                                              DurchsichtigExtern => DurchsichtigExtern)
       is
          when True =>
             null;
@@ -197,7 +102,8 @@ package body WeltkarteSFML is
       
       case
         KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld (TexturAccessExtern => EingeleseneTexturenSFML.KartenflussAccess (KartenfeldFluss),
-                                                              PositionExtern     => PositionExtern)
+                                                              PositionExtern     => PositionExtern,
+                                                              DurchsichtigExtern => False)
       is
          when True =>
             null;
@@ -231,7 +137,8 @@ package body WeltkarteSFML is
       
       case
         KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld (TexturAccessExtern => EingeleseneTexturenSFML.KartenressourceAccess (KartenfeldRessource),
-                                                              PositionExtern     => PositionExtern)
+                                                              PositionExtern     => PositionExtern,
+                                                              DurchsichtigExtern => False)
       is
          when True =>
             null;
@@ -265,7 +172,8 @@ package body WeltkarteSFML is
       
       case
         KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld (TexturAccessExtern => EingeleseneTexturenSFML.WegeAccess (Wegfeld),
-                                                              PositionExtern     => PositionExtern)
+                                                              PositionExtern     => PositionExtern,
+                                                              DurchsichtigExtern => False)
       is
          when True =>
             null;
@@ -303,7 +211,8 @@ package body WeltkarteSFML is
       
       case
         KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld (TexturAccessExtern => EingeleseneTexturenSFML.VerbesserungenAccess (Verbesserungsfeld),
-                                                              PositionExtern     => PositionExtern)
+                                                              PositionExtern     => PositionExtern,
+                                                              DurchsichtigExtern => False)
       is
          when True =>
             null;
@@ -367,7 +276,8 @@ package body WeltkarteSFML is
             when True =>
                if
                  True = KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld (TexturAccessExtern => EingeleseneTexturenSFML.EinheitenAccess (RasseEinheitExtern.Rasse, EinheitID),
-                                                                              PositionExtern     => PositionExtern)
+                                                                              PositionExtern     => PositionExtern,
+                                                                              DurchsichtigExtern => False)
                then
                   null;
                   
@@ -385,7 +295,8 @@ package body WeltkarteSFML is
       else
          if
            True = KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld (TexturAccessExtern => EingeleseneTexturenSFML.EinheitenAccess (RasseEinheitExtern.Rasse, EinheitID),
-                                                                        PositionExtern     => PositionExtern)
+                                                                        PositionExtern     => PositionExtern,
+                                                                        DurchsichtigExtern => False)
          then
             null;
             
@@ -537,4 +448,4 @@ package body WeltkarteSFML is
       
    end StadtnameAnzeigen;
 
-end WeltkarteSFML;
+end WeltkarteZeichnenGrafik;

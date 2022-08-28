@@ -13,6 +13,7 @@ private with StadtDatentypen;
 private with SystemRecords;
 private with StadtRecords;
 private with ZahlenDatentypen;
+private with AufgabenDatentypen;
 
 private with Karten;
 
@@ -32,6 +33,8 @@ private
 
    Stadtart : KartenVerbesserungDatentypen.Karten_Verbesserung_Städte_Enum;
 
+   WelcherWeg : AufgabenDatentypen.Einheitenbefehle_Wege_Enum;
+
    StadtNummer : StadtDatentypen.MaximaleStädteMitNullWert;
 
    StadtName : SystemRecords.TextEingabeRecord;
@@ -47,6 +50,18 @@ private
                  StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
                and
                  SpielVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+               and
+                 KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Karteneinstellungen.Kartengröße.XAchse
+              );
+
+   procedure WegAnlegen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre => (
+                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
                and
                  KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Karteneinstellungen.Kartengröße.YAchse
                and

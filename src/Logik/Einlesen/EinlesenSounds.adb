@@ -6,6 +6,7 @@ with Ada.Directories; use Ada.Directories;
 with Sf.Audio.SoundBuffer;
 
 with RassenDatentypen;
+with TextKonstanten;
 
 with EingeleseneSounds;
 
@@ -15,7 +16,7 @@ package body EinlesenSounds is
    is begin
       
       case
-        Exists (Name => "Audio/Sound/Test.flac")
+        Exists (Name => TextKonstanten.Audio & TextKonstanten.Sound & "/Test.flac")
       is
          when False =>
             return;

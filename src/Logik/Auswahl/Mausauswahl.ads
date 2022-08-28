@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-private with Sf.System.Vector2;
+with Sf.System.Vector2;
 
 with StadtDatentypen; use StadtDatentypen;
 with EinheitenDatentypen; use EinheitenDatentypen;
@@ -45,6 +45,9 @@ package Mausauswahl is
    
    function Einheitenbefehle
      return Boolean;
+   
+   function Stadtumgebung
+     return Sf.System.Vector2.sfVector2f;
    
 private
    
