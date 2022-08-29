@@ -93,5 +93,25 @@ package body ObjekteZeichnenSFML is
                                                    object       => RahmenAccess);
       
    end RahmenZeichnen;
+   
+   
+   
+   procedure RahmenteilZeichnen
+     (PositionExtern : in Sf.System.Vector2.sfVector2f;
+      FarbeExtern : in Sf.Graphics.Color.sfColor;
+      GrößeExtern : in Sf.System.Vector2.sfVector2f)
+   is begin
+      
+      Sf.Graphics.RectangleShape.setFillColor (shape => RahmenteilAccess,
+                                               color => FarbeExtern);
+      Sf.Graphics.RectangleShape.setSize (shape => RahmenteilAccess,
+                                          size  => GrößeExtern);
+      Sf.Graphics.RectangleShape.setPosition (shape    => RahmenteilAccess,
+                                              position => PositionExtern);
+            
+      Sf.Graphics.RenderWindow.drawRectangleShape (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                                   object       => RahmenteilAccess);
+      
+   end RahmenteilZeichnen;
 
 end ObjekteZeichnenSFML;

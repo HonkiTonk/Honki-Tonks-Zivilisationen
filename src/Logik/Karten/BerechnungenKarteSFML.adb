@@ -32,9 +32,6 @@ package body BerechnungenKarteSFML is
    
    
    
-   -- Mal eine bessere Lösung finden. äöü
-   -- Die Aktuelle zeigt den schwarzen Rahmen an. äöü
-   -- Die Ausgeklammerte crasht aber wenn es nur einen Übergang in der jeweiligen Achse gibt. äöü
    function SichtbereichKarteBerechnen
       return KartenDatentypen.SichtbereichAnfangEndeArray
    is begin

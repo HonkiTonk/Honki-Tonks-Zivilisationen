@@ -54,6 +54,16 @@ package body StadtSuchen is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return StadtRecords.RasseStadtnummerRecord
    is begin
+      
+      case
+        LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern)
+      is
+         when KartenVerbesserungDatentypen.Karten_Verbesserung_Städte_Enum'Range =>
+            null;
+            
+         when others =>
+            return StadtKonstanten.LeerRasseNummer;
+      end case;
 
       RasseSchleife:
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
@@ -91,6 +101,16 @@ package body StadtSuchen is
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return StadtRecords.RasseStadtnummerRecord
    is begin
+      
+      case
+        LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern)
+      is
+         when KartenVerbesserungDatentypen.Karten_Verbesserung_Städte_Enum'Range =>
+            null;
+            
+         when others =>
+            return StadtKonstanten.LeerRasseNummer;
+      end case;
 
       RasseSchleife:
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop

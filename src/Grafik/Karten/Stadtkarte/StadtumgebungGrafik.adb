@@ -81,8 +81,7 @@ package body StadtumgebungGrafik is
             
          end loop XAchseSchleife;
          
-         Viewfläche.x := 0.00;
-         Viewfläche.y := Viewfläche.y + BerechnungenKarteSFML.StadtfelderAbmessung.y;
+         Viewfläche := (0.00, Viewfläche.y + BerechnungenKarteSFML.StadtfelderAbmessung.y);
          
       end loop YAchseSchleife;
       

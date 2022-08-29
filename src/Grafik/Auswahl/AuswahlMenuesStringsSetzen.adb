@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with GlobaleTexte;
+with Menuetexte;
 
 package body AuswahlMenuesStringsSetzen is
    
@@ -15,88 +15,65 @@ package body AuswahlMenuesStringsSetzen is
         WelchesMenüExtern
       is
          when MenueDatentypen.Haupt_Menü_Enum =>
-            AktuellerText := GlobaleTexte.Hauptmenü (WelcheZeileExtern);
+            AktuellerText := Menuetexte.Hauptmenü (WelcheZeileExtern);
             
          when MenueDatentypen.Spiel_Menü_Enum =>
-            AktuellerText := GlobaleTexte.Spielmenü (WelcheZeileExtern);
+            AktuellerText := Menuetexte.Spielmenü (WelcheZeileExtern);
             
          when MenueDatentypen.Optionen_Menü_Enum =>
-            AktuellerText := GlobaleTexte.Optionsmenü (WelcheZeileExtern);
+            AktuellerText := Menuetexte.Optionsmenü (WelcheZeileExtern);
             
          when MenueDatentypen.Kartenpole_Menü_Enum =>
-            AktuellerText := GlobaleTexte.Kartenpole (WelcheZeileExtern);
+            AktuellerText := Menuetexte.Kartenpole (WelcheZeileExtern);
             
          when MenueDatentypen.Kartengröße_Menü_Enum =>
-            AktuellerText := GlobaleTexte.Kartengröße (WelcheZeileExtern);
+            AktuellerText := Menuetexte.Kartengröße (WelcheZeileExtern);
             
          when MenueDatentypen.Kartenart_Menü_Enum =>
-            AktuellerText := GlobaleTexte.Kartenart (WelcheZeileExtern);
+            AktuellerText := Menuetexte.Kartenart (WelcheZeileExtern);
             
          when MenueDatentypen.Kartenform_Menü_Enum =>
-            AktuellerText := GlobaleTexte.Kartenform (WelcheZeileExtern);
+            AktuellerText := Menuetexte.Kartenform (WelcheZeileExtern);
             
          when MenueDatentypen.Kartentemperatur_Menü_Enum =>
-            AktuellerText := GlobaleTexte.Kartentemperatur (WelcheZeileExtern);
+            AktuellerText := Menuetexte.Kartentemperatur (WelcheZeileExtern);
             
          when MenueDatentypen.Kartenressourcen_Menü_Enum =>
-            AktuellerText := GlobaleTexte.Ressourcenmenge (WelcheZeileExtern);
+            AktuellerText := Menuetexte.Ressourcenmenge (WelcheZeileExtern);
             
          when MenueDatentypen.Schwierigkeitsgrad_Menü_Enum =>
-            AktuellerText := GlobaleTexte.Schwierigkeitsgrad (WelcheZeileExtern);
+            AktuellerText := Menuetexte.Schwierigkeitsgrad (WelcheZeileExtern);
                         
          when MenueDatentypen.Rassen_Menü_Enum =>
-            AktuellerText := GlobaleTexte.Rassenauswahl (WelcheZeileExtern);
+            AktuellerText := Menuetexte.Rassenauswahl (WelcheZeileExtern);
             
          when MenueDatentypen.Grafik_Menü_Enum =>
-            AktuellerText := GlobaleTexte.Grafikmenü (WelcheZeileExtern);
+            AktuellerText := Menuetexte.Grafikmenü (WelcheZeileExtern);
             
          when MenueDatentypen.Sound_Menü_Enum =>
-            AktuellerText := GlobaleTexte.Soundmenü (WelcheZeileExtern);
+            AktuellerText := Menuetexte.Soundmenü (WelcheZeileExtern);
             
          when MenueDatentypen.Sonstiges_Menü_Enum =>
-            AktuellerText := GlobaleTexte.Sonstigesmenü (WelcheZeileExtern);
+            AktuellerText := Menuetexte.Sonstigesmenü (WelcheZeileExtern);
             
          when MenueDatentypen.Steuerung_Menü_Enum =>
-            AktuellerText := GlobaleTexte.Steuerungmenü (WelcheZeileExtern);
+            AktuellerText := Menuetexte.Steuerungmenü (WelcheZeileExtern);
             
          when MenueDatentypen.Editoren_Menü_Enum =>
-            AktuellerText := GlobaleTexte.Editoren (WelcheZeileExtern);
+            AktuellerText := Menuetexte.Editoren (WelcheZeileExtern);
             
          when MenueDatentypen.Einstellungen_Menü_Enum =>
-            AktuellerText := GlobaleTexte.Einstellungsmenü (WelcheZeileExtern);
+            AktuellerText := Menuetexte.Einstellungsmenü (WelcheZeileExtern);
             
          when MenueDatentypen.Debug_Menü_Enum =>
-            AktuellerText := GlobaleTexte.Debugmenü (WelcheZeileExtern);
+            AktuellerText := Menuetexte.Debugmenü (WelcheZeileExtern);
             
          when MenueDatentypen.Diplomatie_Menü_Enum =>
-            AktuellerText := GlobaleTexte.Diplomatiemenü (WelcheZeileExtern);
+            AktuellerText := Menuetexte.Diplomatiemenü (WelcheZeileExtern);
       end case;
             
       return To_Wide_Wide_String (Source => AktuellerText);
       
    end AuswahlMenüStringSetzen;
-   
-   
-   
-   -- Wird benötigt da der Zusatztext der Rassen nicht in der gleichen Datei wie die Rassenauswahl ist.
-   function AuswahlMenüZusatztextStringSetzen
-     (WelcheZeileExtern : in Positive;
-      WelchesMenüExtern : in MenueDatentypen.Menü_Zusatztext_Enum)
-      return Wide_Wide_String
-   is begin
-      
-      case
-        WelchesMenüExtern
-      is
-         when MenueDatentypen.Rassen_Menü_Enum =>
-            AktuellerText := GlobaleTexte.Rassen (WelcheZeileExtern);
-            
-         when others =>
-            null;
-      end case;
-            
-      return To_Wide_Wide_String (Source => AktuellerText);
-      
-   end AuswahlMenüZusatztextStringSetzen;
 
 end AuswahlMenuesStringsSetzen;

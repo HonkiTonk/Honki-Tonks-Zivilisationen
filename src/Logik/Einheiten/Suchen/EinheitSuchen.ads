@@ -55,5 +55,16 @@ package EinheitSuchen is
 private
    
    EinheitNummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   EinheitnummerTransporter : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   
+   
+   
+   function TransporterverschachtelungDurchgehen
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return EinheitenDatentypen.MaximaleEinheiten
+     with
+       Pre => (
+                 SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+              );
    
 end EinheitSuchen;

@@ -12,11 +12,6 @@ package AuswahlMenuesStringsSetzen is
       WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum)
       return Wide_Wide_String;
    
-   function AuswahlMenüZusatztextStringSetzen
-     (WelcheZeileExtern : in Positive;
-      WelchesMenüExtern : in MenueDatentypen.Menü_Zusatztext_Enum)
-      return Wide_Wide_String;
-   
 private
    
    AktuellerText : Unbounded_Wide_Wide_String;

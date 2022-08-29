@@ -71,10 +71,26 @@ package ObjekteZeichnenSFML is
                  RahmendickeExtern > 0.00
               );
    
+   procedure RahmenteilZeichnen
+     (PositionExtern : in Sf.System.Vector2.sfVector2f;
+      FarbeExtern : in Sf.Graphics.Color.sfColor;
+      GrößeExtern : in Sf.System.Vector2.sfVector2f)
+     with
+       Pre => (
+                 PositionExtern.x >= 0.00
+               and
+                 PositionExtern.y >= 0.00
+               and
+                 GrößeExtern.x > 0.00
+               and
+                 GrößeExtern.y > 0.00
+              );
+   
 private
    
    RechteckAccess : constant Sf.Graphics.sfRectangleShape_Ptr := Sf.Graphics.RectangleShape.create;
    RahmenAccess : constant Sf.Graphics.sfRectangleShape_Ptr := Sf.Graphics.RectangleShape.create;
+   RahmenteilAccess : constant Sf.Graphics.sfRectangleShape_Ptr := Sf.Graphics.RectangleShape.create;
    
    KreisAccess : constant Sf.Graphics.sfCircleShape_Ptr := Sf.Graphics.CircleShape.create;
    

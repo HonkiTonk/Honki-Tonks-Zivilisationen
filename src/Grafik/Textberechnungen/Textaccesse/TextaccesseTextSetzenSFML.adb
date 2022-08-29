@@ -8,10 +8,13 @@ with Sf.Graphics.Text;
 with TextaccessVariablen;
 with GlobaleTexte;
 with TextnummernKonstanten;
-with ForschungenDatentypen;
 with SonstigesKonstanten;
+with Menuetexte;
 
 with RassenbeschreibungenSFML;
+with ForschungsbeschreibungenSFML;
+with EinheitenbeschreibungenSFML;
+with GebaeudebeschreibungenSFML;
 
 package body TextaccesseTextSetzenSFML is
 
@@ -22,8 +25,6 @@ package body TextaccesseTextSetzenSFML is
       Menüs;
       Rassen;
       ZusatztextKartengröße;
-      Baumenü;
-      Forschungsmenü;
       Sprachauswahl;
       Kartenformauswahl;
       StadtInformationen;
@@ -57,7 +58,7 @@ package body TextaccesseTextSetzenSFML is
       for SteuerungSchleifenwert in TextaccessVariablen.SteuerungSFMLAccess'Range loop
          
          Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.SteuerungSFMLAccess (SteuerungSchleifenwert),
-                                            str  => To_Wide_Wide_String (Source => GlobaleTexte.Steuerungmenü (SteuerungSchleifenwert)));
+                                            str  => To_Wide_Wide_String (Source => Menuetexte.Steuerungmenü (SteuerungSchleifenwert)));
          
       end loop SteuerungSchleife;
       
@@ -68,9 +69,8 @@ package body TextaccesseTextSetzenSFML is
    procedure Rassen
    is begin
       
-      -- Bei sowas immer die Beschreibungen benutzen? äöü
-      ZusatztextRassenmenüSchleife:
-      for RasseSchleifenwert in TextaccessVariablen.RassenbeschreibungAccessArray'Range loop
+      RassenSchleife:
+      for RasseSchleifenwert in TextaccessVariablen.RassennamenAccess'Range loop
          
          Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.RassennamenAccess (RasseSchleifenwert),
                                             str  => RassenbeschreibungenSFML.BeschreibungKurz (RasseExtern => RasseSchleifenwert));
@@ -78,7 +78,69 @@ package body TextaccesseTextSetzenSFML is
          Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.RassenbeschreibungAccess (RasseSchleifenwert),
                                             str  => RassenbeschreibungenSFML.BeschreibungLang (RasseExtern => RasseSchleifenwert));
          
-      end loop ZusatztextRassenmenüSchleife;
+         
+         
+         GebäudetextSchleife:
+         for GebäudetextSchleifenwert in TextaccessVariablen.GebäudetextAccessArray'Range (2) loop
+         
+            case
+              GebäudetextSchleifenwert
+            is
+               when TextaccessVariablen.GebäudetextAccessArray'First (2) =>
+                  Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.GebäudetextAccess (RasseSchleifenwert, GebäudetextSchleifenwert),
+                                                     str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextnummernKonstanten.ZeugGebäude)));
+               
+               when others =>
+                  Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.GebäudetextAccess (RasseSchleifenwert, GebäudetextSchleifenwert),
+                                                     str  => GebaeudebeschreibungenSFML.BeschreibungKurz (IDExtern    => GebäudetextSchleifenwert,
+                                                                                                          RasseExtern => RasseSchleifenwert));
+         
+                  Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.GebäudezusatztextAccess (RasseSchleifenwert, GebäudetextSchleifenwert),
+                                                     str  => GebaeudebeschreibungenSFML.BeschreibungLang (IDExtern    => GebäudetextSchleifenwert,
+                                                                                                          RasseExtern => RasseSchleifenwert));
+            end case;
+            
+         end loop GebäudetextSchleife;
+      
+      
+      
+         EinheitentextSchleife:
+         for EinheitentextSchleifenwert in TextaccessVariablen.EinheitentextAccessArray'Range (2) loop
+         
+            case
+              EinheitentextSchleifenwert
+            is
+               when TextaccessVariablen.EinheitentextAccessArray'First (2) =>
+                  Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitentextAccess (RasseSchleifenwert, EinheitentextSchleifenwert),
+                                                     str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextnummernKonstanten.ZeugEinheiten)));
+               
+               when others =>
+                  Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitentextAccess (RasseSchleifenwert, EinheitentextSchleifenwert),
+                                                     str  => EinheitenbeschreibungenSFML.BeschreibungKurz (IDExtern    => EinheitentextSchleifenwert,
+                                                                                                           RasseExtern => RasseSchleifenwert));
+         
+                  Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitenzusatztextAccess (RasseSchleifenwert, EinheitentextSchleifenwert),
+                                                     str  => EinheitenbeschreibungenSFML.BeschreibungLang (IDExtern    => EinheitentextSchleifenwert,
+                                                                                                           RasseExtern => RasseSchleifenwert));
+            end case;
+         
+         end loop EinheitentextSchleife;
+         
+         
+         
+         ForschungenSchleife:
+         for ForschungSchleifenwert in TextaccessVariablen.ForschungsmenüAccessArray'Range (2) loop
+         
+            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüAccess (RasseSchleifenwert, ForschungSchleifenwert),
+                                               str  => ForschungsbeschreibungenSFML.BeschreibungKurz (IDExtern    => ForschungSchleifenwert,
+                                                                                                      RasseExtern => RasseSchleifenwert));
+         
+            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüZusatztextAccess (RasseSchleifenwert, ForschungSchleifenwert),
+                                               str  => ForschungsbeschreibungenSFML.BeschreibungLang (IDExtern    => ForschungSchleifenwert,
+                                                                                                      RasseExtern => RasseSchleifenwert));
+         
+         end loop ForschungenSchleife;
+      end loop RassenSchleife;
       
    end Rassen;
       
@@ -90,73 +152,6 @@ package body TextaccesseTextSetzenSFML is
       null;
       
    end ZusatztextKartengröße;
-      
-      
-   
-   procedure Baumenü
-   is begin
-      
-      GebäudetextSchleife:
-      for GebäudetextSchleifenwert in TextaccessVariablen.GebäudetextAccessArray'Range loop
-         
-         case
-           GebäudetextSchleifenwert
-         is
-            when TextaccessVariablen.GebäudetextAccessArray'First =>
-               Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.GebäudetextAccess (GebäudetextSchleifenwert),
-                                                  str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextnummernKonstanten.ZeugGebäude)));
-               
-            when others =>
-               Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.GebäudetextAccess (GebäudetextSchleifenwert),
-                                                  str  => To_Wide_Wide_String (Source => GlobaleTexte.Gebäude (2 * Positive (GebäudetextSchleifenwert) - 1)));
-         
-               Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.GebäudezusatztextAccess (GebäudetextSchleifenwert),
-                                                  str  => To_Wide_Wide_String (Source => GlobaleTexte.Gebäude (2 * Positive (GebäudetextSchleifenwert))));
-         end case;
-            
-      end loop GebäudetextSchleife;
-      
-      
-      
-      EinheitentextSchleife:
-      for EinheitentextSchleifenwert in TextaccessVariablen.EinheitentextAccessArray'Range loop
-         
-         case
-           EinheitentextSchleifenwert
-         is
-            when TextaccessVariablen.EinheitentextAccessArray'First =>
-               Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitentextAccess (EinheitentextSchleifenwert),
-                                                  str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextnummernKonstanten.ZeugEinheiten)));
-               
-            when others =>
-               Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitentextAccess (EinheitentextSchleifenwert),
-                                                  str  => To_Wide_Wide_String (Source => GlobaleTexte.Einheiten (2 * Positive (EinheitentextSchleifenwert) - 1)));
-         
-               Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitenzusatztextAccess (EinheitentextSchleifenwert),
-                                                  str  => To_Wide_Wide_String (Source => GlobaleTexte.Einheiten (2 * Positive (EinheitentextSchleifenwert))));
-         end case;
-         
-      end loop EinheitentextSchleife;
-      
-   end Baumenü;
-      
-      
-   
-   procedure Forschungsmenü
-   is begin
-            
-      ForschungenSchleife:
-      for ForschungSchleifenwert in ForschungenDatentypen.ForschungID'Range loop
-         
-         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüAccess (ForschungSchleifenwert),
-                                            str  => To_Wide_Wide_String (Source => GlobaleTexte.Forschungen (2 * Positive (ForschungSchleifenwert) - 1)));
-         
-         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüZusatztextAccess (ForschungSchleifenwert),
-                                            str  => To_Wide_Wide_String (Source => GlobaleTexte.Forschungen (2 * Positive (ForschungSchleifenwert))));
-         
-      end loop ForschungenSchleife;
-      
-   end Forschungsmenü;
       
       
    

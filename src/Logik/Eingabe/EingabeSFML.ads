@@ -43,8 +43,7 @@ private
    
    ZahlenStringLeer : constant Wide_Wide_String (1 .. 10) := "0000000000";
    ZahlenString : Wide_Wide_String (1 .. 10);
-   
-   
+      
    Zahlen : Sf.Window.Keyboard.sfKeyCode;
    Taste : Sf.Window.Keyboard.sfKeyCode;
    Zwischenspeicher : Sf.Window.Keyboard.sfKeyCode;

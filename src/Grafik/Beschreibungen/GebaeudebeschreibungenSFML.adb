@@ -1,48 +1,31 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with GlobaleTexte;
-with TextKonstanten;
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+
+with Rassentexte;
 
 package body GebaeudebeschreibungenSFML is
 
    function BeschreibungKurz
-     (IDExtern : in StadtDatentypen.GebäudeIDMitNullwert)
+     (IDExtern : in StadtDatentypen.GebäudeID;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Wide_Wide_String
    is begin
       
-      case
-        IDExtern
-      is
-         when StadtDatentypen.GebäudeIDMitNullwert'First =>
-            BeschreibungText := TextKonstanten.LeerUnboundedString;
-            
-         when others =>
-            BeschreibungText := GlobaleTexte.Gebäude (2 * Positive (IDExtern) - 1);
-      end case;
-      
-      return To_Wide_Wide_String (Source => BeschreibungText);
+      return To_Wide_Wide_String (Source => Rassentexte.Gebäude (RasseExtern, IDExtern, 1));
       
    end BeschreibungKurz;
    
    
    
    function BeschreibungLang
-     (IDExtern : in StadtDatentypen.GebäudeIDMitNullwert)
+     (IDExtern : in StadtDatentypen.GebäudeID;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Wide_Wide_String
    is begin
       
-      case
-        IDExtern
-      is
-         when StadtDatentypen.GebäudeIDMitNullwert'First =>
-            BeschreibungText := TextKonstanten.LeerUnboundedString;
-            
-         when others =>
-            BeschreibungText := GlobaleTexte.Gebäude (2 * Positive (IDExtern));
-      end case;
-      
-      return To_Wide_Wide_String (Source => BeschreibungText);
+      return To_Wide_Wide_String (Source => Rassentexte.Gebäude (RasseExtern, IDExtern, 2));
       
    end BeschreibungLang;
 

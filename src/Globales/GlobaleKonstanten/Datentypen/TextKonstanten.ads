@@ -7,10 +7,11 @@ with Ada.Characters.Wide_Wide_Latin_1;
 with Sf.System.Vector2;
 
 package TextKonstanten is
+
+   FehlenderText : constant Unbounded_Wide_Wide_String := To_Unbounded_Wide_Wide_String (Source => " |ÄÖÜ Hier wurde kein Text eingelesen ÜÖÄ| ");
    
    LeerString : constant Wide_Wide_String := "";
    LeerUnboundedString : constant Unbounded_Wide_Wide_String := To_Unbounded_Wide_Wide_String (Source => LeerString);
-   LeerZeichen : constant Wide_Wide_Character := ' ';
    Trennzeichen : constant Wide_Wide_String (1 .. 1) := "/";
    StandardAbstand : constant Wide_Wide_String (1 .. 4) := "    ";
    UmbruchAbstand : constant Wide_Wide_String (1 .. 5) := Ada.Characters.Wide_Wide_Latin_1.LF & StandardAbstand;
@@ -51,6 +52,9 @@ package TextKonstanten is
    Kartenressourcen : constant String (1 .. 17) := "/Kartenressourcen";
    Kartenverbesserungen : constant String (1 .. 15) := "/Verbesserungen";
    Kartenwege : constant String (1 .. 5) := "/Wege";
+   Einheiten : constant String (1 .. 10) := "/Einheiten";
+   Bauwerke : constant String (1 .. 9) := "/Bauwerke";
+   Rassen : constant String (1 .. 7) := "/Rassen";
    
    
    

@@ -43,7 +43,7 @@ package body AuswahlSprache is
    is begin
             
       if
-        ZehnerReihe * 10 < GlobaleTexte.SprachenEinlesenArray'Last
+        ZehnerReihe * 10 < GlobaleTexte.SprachenEinlesen'Last
       then
          ZehnerReihe := ZehnerReihe + 1;
          
@@ -66,19 +66,19 @@ package body AuswahlSprache is
       for EndeSchleifenwert in ZehnerReihe * 10 - 9 .. ZehnerReihe * 10 loop
          
          if
-           EndeSchleifenwert > GlobaleTexte.SprachenEinlesenArray'Last
+           EndeSchleifenwert > GlobaleTexte.SprachenEinlesen'Last
          then
             exit EndeBestimmenSchleife;
             
          elsif
-           EndeSchleifenwert = GlobaleTexte.SprachenEinlesenArray'First
+           EndeSchleifenwert = GlobaleTexte.SprachenEinlesen'First
            and
              GlobaleTexte.SprachenEinlesen (EndeSchleifenwert) = TextKonstanten.LeerUnboundedString
          then
             Fehler.LogikFehler (FehlermeldungExtern => "AuswahlSprache.SprachenListeFestlegen - Keine Sprachen vorhanden.");
             
          elsif
-           EndeSchleifenwert > GlobaleTexte.SprachenEinlesenArray'Last
+           EndeSchleifenwert > GlobaleTexte.SprachenEinlesen'Last
          then
             exit EndeBestimmenSchleife;
            
@@ -96,7 +96,7 @@ package body AuswahlSprache is
       end loop EndeBestimmenSchleife;
       
       MehrSprachenVorhandenSchleife:
-      for SprachenSchleifenwert in GlobaleTexte.SprachenEinlesenArray'Range loop
+      for SprachenSchleifenwert in GlobaleTexte.SprachenEinlesen'Range loop
          
          if
            SprachenSchleifenwert <= AktuelleSprachenArray'Last

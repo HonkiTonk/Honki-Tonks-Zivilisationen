@@ -49,19 +49,39 @@ private
 
    procedure Gebäude
      (AuswahlExtern : in StadtDatentypen.GebäudeIDMitNullwert;
-      ViewnummerExtern : in Positive);
+      ViewnummerExtern : in Positive;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre => (
+                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+              );
 
    procedure Einheiten
      (AuswahlExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
-      ViewnummerExtern : in Positive);
+      ViewnummerExtern : in Positive;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre => (
+                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+              );
 
    procedure InformationenGebäude
      (AuswahlExtern : in StadtDatentypen.GebäudeIDMitNullwert;
-      ViewnummerExtern : in Positive);
+      ViewnummerExtern : in Positive;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre => (
+                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+              );
 
    procedure InformationenEinheiten
      (AuswahlExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
-      ViewnummerExtern : in Positive);
+      ViewnummerExtern : in Positive;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre => (
+                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+              );
 
    procedure Aktuell
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;

@@ -17,19 +17,14 @@ package body EinheitSuchen is
       
       EinheitSchleife:
       for EinheitNummerSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Einheitengrenze loop
-         
+                  
          if
            LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerSchleifenwert)) /= KoordinatenExtern
          then
             null;
-               
-         elsif
-           LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerSchleifenwert)) = EinheitenKonstanten.LeerWirdTransportiert
-         then
-            return EinheitNummerSchleifenwert;
-                  
+            
          else
-            return LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerSchleifenwert));
+            return TransporterverschachtelungDurchgehen (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerSchleifenwert));
          end if;
          
       end loop EinheitSchleife;
@@ -114,5 +109,26 @@ package body EinheitSuchen is
       return EinheitenKonstanten.LeerRasseNummer;
       
    end KoordinatenEinheitOhneSpezielleRasseSuchen;
+   
+   
+   
+   function TransporterverschachtelungDurchgehen
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return EinheitenDatentypen.MaximaleEinheiten
+   is begin
+      
+      EinheitnummerTransporter := LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            
+      case
+        EinheitnummerTransporter
+      is
+         when EinheitenKonstanten.LeerWirdTransportiert =>
+            return EinheitRasseNummerExtern.Nummer;
+                  
+         when others =>
+            return TransporterverschachtelungDurchgehen (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitnummerTransporter));
+      end case;
+      
+   end TransporterverschachtelungDurchgehen;
 
 end EinheitSuchen;

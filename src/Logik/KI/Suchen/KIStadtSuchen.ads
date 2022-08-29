@@ -49,8 +49,13 @@ private
 
    AktuelleStadt : StadtDatentypen.MaximaleStädteMitNullWert;
    GefundeneStadt : StadtDatentypen.MaximaleStädteMitNullWert;
+
    Entfernung : Positive;
    EntfernungNeu : Positive;
+
+   Stadtkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+
+
 
    function StadtSuchen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;

@@ -3,7 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 with ForschungKonstanten;
 with AufgabenDatentypen;
-with TextKonstanten;
 with RassenDatentypen;
 with ForschungenDatentypen;
 with ProduktionDatentypen;
@@ -35,7 +34,6 @@ package EinheitenKonstanten is
    
    
    
-   LeerEinheitenGrafik : constant Wide_Wide_Character := TextKonstanten.LeerZeichen;
    LeerEinheitArt : constant EinheitenDatentypen.Einheitart_Enum := EinheitenDatentypen.Arbeiter_Enum;
    LeerPreisGeld : constant ProduktionDatentypen.Produktion := 0;
    LeerPreisRessourcen : constant ProduktionDatentypen.Produktion := 0;

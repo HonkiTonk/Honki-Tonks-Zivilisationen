@@ -52,7 +52,7 @@ package body TransporterSuchen is
                                                                            IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => TransporterExtern));
 
       TransporterSchleife:
-      for  TransporterPlatzSchleifenwert in  EinheitenRecords.TransporterArray'First .. Transporterkapazität loop
+      for TransporterPlatzSchleifenwert in EinheitenRecords.TransporterArray'First .. Transporterkapazität loop
          
          if
            LadungExtern = LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,

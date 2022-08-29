@@ -35,7 +35,7 @@ package body EinlesenSprache is
                   
          else
             VerzeichnisInnenSchleife:
-            for SpracheSchleifenwert in GlobaleTexte.SprachenEinlesenArray'Range loop
+            for SpracheSchleifenwert in GlobaleTexte.SprachenEinlesen'Range loop
                if
                  GlobaleTexte.SprachenEinlesen (SpracheSchleifenwert) /= TextKonstanten.LeerUnboundedString
                then
@@ -70,7 +70,7 @@ package body EinlesenSprache is
    is begin
             
       SortierSchleife:
-      for PositionSchleifenwert in GlobaleTexte.SprachenEinlesenArray'First + 1 .. GlobaleTexte.SprachenEinlesenArray'Last loop
+      for PositionSchleifenwert in GlobaleTexte.SprachenEinlesen'First + 1 .. GlobaleTexte.SprachenEinlesen'Last loop
          
          if
            GlobaleTexte.SprachenEinlesen (PositionSchleifenwert) = TextKonstanten.LeerUnboundedString
@@ -83,7 +83,7 @@ package body EinlesenSprache is
             loop
                
                if
-                 PositionSchleifenwert - SchleifenAbzug > GlobaleTexte.SprachenEinlesenArray'First
+                 PositionSchleifenwert - SchleifenAbzug > GlobaleTexte.SprachenEinlesen'First
                  and then
                    GlobaleTexte.SprachenEinlesen (PositionSchleifenwert) < GlobaleTexte.SprachenEinlesen (PositionSchleifenwert - SchleifenAbzug - 1)
                then

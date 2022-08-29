@@ -5,10 +5,6 @@ with Ada.Calendar; use Ada.Calendar;
 
 with Sf.System.Vector2;
 
-private with Sf.Graphics.RectangleShape;
-private with Sf.Graphics.CircleShape;
-private with Sf.Graphics.Sprite;
-
 with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
 with KartengrundDatentypen;
@@ -83,7 +79,7 @@ package WeltkarteZeichnenGrafik is
    procedure KartenfeldZeichnen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
-      DurchsichtigExtern : in Boolean)
+      DurchsichtigkeitExtern : in Sf.sfUint8)
      with
        Pre => (
                  KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
@@ -123,6 +119,7 @@ package WeltkarteZeichnenGrafik is
    
    procedure VerbesserungZeichnen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      EbeneExtern : in KartenDatentypen.EbeneVorhanden;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre => (
@@ -165,18 +162,11 @@ private
    EinheitRasseNummer : EinheitenRecords.RasseEinheitnummerRecord;
    
    Textposition : Sf.System.Vector2.sfVector2f;
+   Rahmenposition : Sf.System.Vector2.sfVector2f;
+   Rahmengröße : Sf.System.Vector2.sfVector2f;
    
    KartenWertRahmen : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    StartzeitBlinkintervall : Time := Clock;
-      
-   SpriteAccess : constant Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;
-
-   RechteckAccess : constant Sf.Graphics.sfRectangleShape_Ptr := Sf.Graphics.RectangleShape.create;
-   RechteckBelegtesFeldAccess : constant Sf.Graphics.sfRectangleShape_Ptr := Sf.Graphics.RectangleShape.create;
-   RechteckRahmenAccess : constant Sf.Graphics.sfRectangleShape_Ptr := Sf.Graphics.RectangleShape.create;
-
-   KreisAccess : constant Sf.Graphics.sfCircleShape_Ptr := Sf.Graphics.CircleShape.create;
-   PolygonAccess : constant Sf.Graphics.sfCircleShape_Ptr := Sf.Graphics.CircleShape.create;
-
+   
 end WeltkarteZeichnenGrafik;

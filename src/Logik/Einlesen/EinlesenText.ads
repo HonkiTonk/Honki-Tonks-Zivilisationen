@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+private with Ada.Wide_Wide_Text_IO;
 
 private with GlobaleTexte;
 private with ZahlenDatentypen;
@@ -14,9 +14,9 @@ private
       
    AktuelleZeile : ZahlenDatentypen.EigenesPositive;
       
-   TextdateienEinlesen : GlobaleTexte.TexteArray (1 .. 41);
+   TextdateienEinlesen : GlobaleTexte.TexteArray (1 .. 36);
 
-   DateiTextEinlesen : File_Type;
+   DateiTextEinlesen : Ada.Wide_Wide_Text_IO.File_Type;
    
    procedure EinlesenTexte;
    procedure Hauptmenü;
@@ -33,14 +33,9 @@ private
    procedure Schwierigkeitsgrad;
    procedure Kartenform;
    procedure Ressourcenmenge;
-   procedure Rassen;
    procedure Kartenfelder;
-   procedure Einheiten;
    procedure Verbesserungen;
-   procedure Gebäude;
-   procedure Forschungen;
    procedure Beschäftigungen;
-   procedure StädtenamenKI;
    procedure Debugmenü;
    procedure AllgemeineInformationen;
    procedure Würdigung;

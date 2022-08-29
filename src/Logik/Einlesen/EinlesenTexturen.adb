@@ -397,7 +397,7 @@ package body EinlesenTexturen is
    is begin
       
       case
-        Exists (Name => TextKonstanten.Grafik & "/Einheiten" & TextKonstanten.NullDatei)
+        Exists (Name => TextKonstanten.Grafik & TextKonstanten.Einheiten & TextKonstanten.NullDatei)
       is
          when False =>
             Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenEinheiten - 0-Datei fehlt.");
@@ -408,7 +408,7 @@ package body EinlesenTexturen is
             
             Open (File => DateiTextEinlesen,
                   Mode => In_File,
-                  Name => TextKonstanten.Grafik & "/Einheiten" & TextKonstanten.NullDatei);
+                  Name => TextKonstanten.Grafik & TextKonstanten.Einheiten & TextKonstanten.NullDatei);
       end case;
       
       RassenEinsSchleife:
@@ -464,7 +464,7 @@ package body EinlesenTexturen is
    is begin
       
       case
-        Exists (Name => TextKonstanten.Grafik & "/Bauwerke" & TextKonstanten.NullDatei)
+        Exists (Name => TextKonstanten.Grafik & TextKonstanten.Bauwerke & TextKonstanten.NullDatei)
       is
          when False =>
             Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenGebäude - 0-Datei fehlt.");
@@ -475,7 +475,7 @@ package body EinlesenTexturen is
             
             Open (File => DateiTextEinlesen,
                   Mode => In_File,
-                  Name => TextKonstanten.Grafik & "/Bauwerke" & TextKonstanten.NullDatei);
+                  Name => TextKonstanten.Grafik & TextKonstanten.Bauwerke & TextKonstanten.NullDatei);
       end case;
       
       RassenEinsSchleife:

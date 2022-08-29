@@ -11,6 +11,7 @@ with GlobaleTexte;
 with TextnummernKonstanten;
 with SpielVariablen;
 with DiplomatieDatentypen;
+with Menuetexte;
 
 with TextberechnungenHoeheSFML;
 with TextberechnungenBreiteSFML;
@@ -81,10 +82,10 @@ package body ZusatztextDiplomatieSFML is
                Fehler.GrafikFehler (FehlermeldungExtern => "ZusatztextDiplomatieSFML.TextSetzen - Kontakt ist unbekannt.");
          end case;
          
-         Text := GlobaleTexte.Diplomatiemenü (TextnummerExtern) & " " & GlobaleTexte.Zeug (Zustandnummer);
+         Text := Menuetexte.Diplomatiemenü (TextnummerExtern) & " " & GlobaleTexte.Zeug (Zustandnummer);
          
       else
-         Text := GlobaleTexte.Diplomatiemenü (TextnummerExtern) & " " & SpielVariablen.Diplomatie (NachGrafiktask.AktuelleRasse, NachGrafiktask.KontaktierteRasse).AktuelleSympathieBewertung'Wide_Wide_Image;
+         Text := Menuetexte.Diplomatiemenü (TextnummerExtern) & " " & SpielVariablen.Diplomatie (NachGrafiktask.AktuelleRasse, NachGrafiktask.KontaktierteRasse).AktuelleSympathieBewertung'Wide_Wide_Image;
       end if;
       
       return To_Wide_Wide_String (Source => Text);

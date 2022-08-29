@@ -4,26 +4,29 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with GlobaleTexte;
+with Rassentexte;
 
 package body EinheitenbeschreibungenSFML is
 
    function BeschreibungKurz
-     (IDExtern : in EinheitenDatentypen.EinheitenID)
+     (IDExtern : in EinheitenDatentypen.EinheitenID;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Wide_Wide_String
    is begin
           
-      return To_Wide_Wide_String (Source => GlobaleTexte.Einheiten (2 * Positive (IDExtern) - 1));
+      return To_Wide_Wide_String (Source => Rassentexte.Einheiten (RasseExtern, IDExtern, 1));
          
    end BeschreibungKurz;
    
    
    
    function BeschreibungLang
-     (IDExtern : in EinheitenDatentypen.EinheitenID)
+     (IDExtern : in EinheitenDatentypen.EinheitenID;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Wide_Wide_String
    is begin
       
-      return To_Wide_Wide_String (Source => GlobaleTexte.Einheiten (2 * Positive (IDExtern)));
+      return To_Wide_Wide_String (Source => Rassentexte.Einheiten (RasseExtern, IDExtern, 2));
       
    end BeschreibungLang;
    

@@ -54,42 +54,36 @@ package body UmgebungErreichbarTesten is
                   null;
                   
                elsif
-                 LeseKarten.BelegterGrund (RasseExtern       => RasseExtern,
-                                           KoordinatenExtern => KartenWert)
-                 = True
+                 True = LeseKarten.BelegterGrund (RasseExtern       => RasseExtern,
+                                                  KoordinatenExtern => KartenWert)
                  and
                    EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Nummer = EinheitenKonstanten.LeerNummer
                  and
-                   BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern           => RasseExtern,
-                                                                          IDExtern              => IDExtern,
-                                                                          NeueKoordinatenExtern => KartenWert)
-                 = True
+                   True = BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern           => RasseExtern,
+                                                                                 IDExtern              => IDExtern,
+                                                                                 NeueKoordinatenExtern => KartenWert)
                  and
-                   NochErreichbar (AktuelleKoordinatenExtern => KartenWert,
-                                   RasseExtern               => RasseExtern,
-                                   IDExtern                  => IDExtern)
-                 = True
+                   True = NochErreichbar (AktuelleKoordinatenExtern => KartenWert,
+                                          RasseExtern               => RasseExtern,
+                                          IDExtern                  => IDExtern)
                  and
                    GefundeneFelder < NotwendigeFelderExtern
                then
                   GefundeneFelder := GefundeneFelder + 1;
                   
                elsif
-                 LeseKarten.BelegterGrund (RasseExtern       => RasseExtern,
-                                           KoordinatenExtern => KartenWert)
-                 = True
+                 True = LeseKarten.BelegterGrund (RasseExtern       => RasseExtern,
+                                                  KoordinatenExtern => KartenWert)
                  and
                    EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Nummer = EinheitenKonstanten.LeerNummer
                  and
-                   BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern           => RasseExtern,
-                                                                          IDExtern              => IDExtern,
-                                                                          NeueKoordinatenExtern => KartenWert)
-                 = True
+                   True = BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern           => RasseExtern,
+                                                                                 IDExtern              => IDExtern,
+                                                                                 NeueKoordinatenExtern => KartenWert)
                  and
-                   NochErreichbar (AktuelleKoordinatenExtern => KartenWert,
-                                   RasseExtern               => RasseExtern,
-                                   IDExtern                  => IDExtern)
-                 = True
+                   True = NochErreichbar (AktuelleKoordinatenExtern => KartenWert,
+                                          RasseExtern               => RasseExtern,
+                                          IDExtern                  => IDExtern)
                then
                   return KartenWert;
                               
@@ -142,14 +136,12 @@ package body UmgebungErreichbarTesten is
                null;
                
             elsif
-              LeseKarten.BelegterGrund (RasseExtern       => RasseExtern,
-                                        KoordinatenExtern => KartenWertZwei)
-              = True
+              True = LeseKarten.BelegterGrund (RasseExtern       => RasseExtern,
+                                               KoordinatenExtern => KartenWertZwei)
               and
-                BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern           => RasseExtern,
-                                                                       IDExtern              => IDExtern,
-                                                                       NeueKoordinatenExtern => KartenWertZwei)
-              = True
+                True = BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern           => RasseExtern,
+                                                                              IDExtern              => IDExtern,
+                                                                              NeueKoordinatenExtern => KartenWertZwei)
             then
                return True;
                

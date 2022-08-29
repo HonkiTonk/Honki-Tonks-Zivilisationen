@@ -3,15 +3,18 @@ pragma Warnings (Off, "*array aggregate*");
 
 with EinheitenDatentypen;
 with AufgabenDatentypen;
+with RassenDatentypen;
 
 package EinheitenbeschreibungenSFML is
    
    function BeschreibungKurz
-     (IDExtern : in EinheitenDatentypen.EinheitenID)
+     (IDExtern : in EinheitenDatentypen.EinheitenID;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Wide_Wide_String;
    
    function BeschreibungLang
-     (IDExtern : in EinheitenDatentypen.EinheitenID)
+     (IDExtern : in EinheitenDatentypen.EinheitenID;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Wide_Wide_String;
    
    function Beschäftigung

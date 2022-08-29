@@ -42,7 +42,12 @@ private
    
    procedure Auswahlmöglichkeiten
      (AuswahlExtern : in ForschungenDatentypen.ForschungIDMitNullWert;
-      ViewnummerExtern : in Positive);
+      ViewnummerExtern : in Positive;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre => (
+                 SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+              );
    
    procedure Beschreibung
      (ZusatztextExtern : in ForschungenDatentypen.ForschungIDMitNullWert;

@@ -1,9 +1,12 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+
+with Rassentexte;
+with ForschungKonstanten;
 with GlobaleTexte;
 with TextnummernKonstanten;
-with ForschungKonstanten;
 
 package body ForschungsbeschreibungenSFML is
 
@@ -13,59 +16,27 @@ package body ForschungsbeschreibungenSFML is
       return Wide_Wide_String
    is begin
       
-      -- RasseExtern wird später benötigt wenn es verschiedene Forschungsbäume gibt.
-      if
-        RasseExtern = RassenDatentypen.Menschen_Enum
-      then
-         null;
-
-      else
-         null;
-      end if;
-      
       case
         IDExtern
       is
          when ForschungKonstanten.LeerForschungAnforderung =>
-            BeschreibungText := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugKeines);
+            return To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextnummernKonstanten.ZeugKeines));
             
          when others =>
-            BeschreibungText := GlobaleTexte.Forschungen (2 * Positive (IDExtern) - 1);
+            return To_Wide_Wide_String (Source => Rassentexte.Forschungen (RasseExtern, IDExtern, 1));
       end case;
-
-      return To_Wide_Wide_String (Source => BeschreibungText);
       
    end BeschreibungKurz;
    
    
    
    function BeschreibungLang
-     (IDExtern : in ForschungenDatentypen.ForschungIDMitNullWert;
+     (IDExtern : in ForschungenDatentypen.ForschungID;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Wide_Wide_String
    is begin
       
-      -- RasseExtern wird später benötigt wenn es verschiedene Forschungsbäume gibt.
-      if
-        RasseExtern = RassenDatentypen.Menschen_Enum
-      then
-         null;
-
-      else
-         null;
-      end if;
-      
-      case
-        IDExtern
-      is
-         when ForschungKonstanten.LeerForschungAnforderung =>
-            BeschreibungText := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugKeines);
-            
-         when others =>
-            BeschreibungText := GlobaleTexte.Forschungen (2 * Positive (IDExtern));
-      end case;
-
-      return To_Wide_Wide_String (Source => BeschreibungText);
+      return To_Wide_Wide_String (Source => Rassentexte.Forschungen (RasseExtern, IDExtern, 2));
       
    end BeschreibungLang;
 

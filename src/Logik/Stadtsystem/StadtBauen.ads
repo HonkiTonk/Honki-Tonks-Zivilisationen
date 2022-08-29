@@ -12,7 +12,6 @@ private with KartenRecords;
 private with StadtDatentypen;
 private with SystemRecords;
 private with StadtRecords;
-private with ZahlenDatentypen;
 private with AufgabenDatentypen;
 
 private with Karten;
@@ -39,8 +38,8 @@ private
 
    StadtName : SystemRecords.TextEingabeRecord;
 
-   type StadtnameVordefiniertArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of ZahlenDatentypen.EigenesPositive;
-   StadtnameVordefiniert : StadtnameVordefiniertArray := (others => ZahlenDatentypen.EigenesPositive'First);
+   type StandardStadtnameArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of StadtDatentypen.MaximaleStädte;
+   StandardStadtname : StandardStadtnameArray := (others => StadtDatentypen.MaximaleStädte'First);
 
    procedure StadtEintragen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;

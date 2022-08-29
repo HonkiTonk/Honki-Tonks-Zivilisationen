@@ -70,13 +70,11 @@ package body KISonstigesSuchen is
                null;
                
             elsif
-              LeseKarten.BelegterGrund (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                        KoordinatenExtern => KartenWert)
-              = True
+              True = LeseKarten.BelegterGrund (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                               KoordinatenExtern => KartenWert)
               and
-                BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                           NeueKoordinatenExtern    => KartenWert)
-              = True
+                True = BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                  NeueKoordinatenExtern    => KartenWert)
             then
                return KartenWert;
                      

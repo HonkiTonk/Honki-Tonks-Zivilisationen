@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with Sf.Graphics; use Sf.Graphics;
+with Sf;
 with Sf.System.Vector2;
 
 private with Sf.Graphics.Sprite;
@@ -12,7 +13,7 @@ package KartenspritesZeichnenSFML is
    function SpriteGezeichnetKartenfeld
      (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
-      DurchsichtigExtern : in Boolean)
+      DurchsichtigkeitExtern : in Sf.sfUint8)
       return Boolean
      with
        Pre => (
@@ -53,7 +54,7 @@ private
      (SpriteAccesExtern : in Sf.Graphics.sfSprite_Ptr;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       SkalierungExtern : in Sf.System.Vector2.sfVector2f;
-      DurchsichtigExtern : in Boolean)
+      DurchsichtigkeitExtern : in Sf.sfUint8)
      with
        Pre => (
                  SpriteAccesExtern /= null

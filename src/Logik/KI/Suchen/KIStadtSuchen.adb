@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitenDatentypen; use EinheitenDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with StadtDatentypen; use StadtDatentypen;
 with EinheitenKonstanten;
@@ -56,6 +55,7 @@ package body KIStadtSuchen is
            AktuelleStadt = StadtDatentypen.MaximaleStädteMitNullWert'First
          then
             AktuelleStadt := StadtSchleifenwert;
+            
             Entfernung := Positive (abs (AnfangKoordinatenExtern.EAchse - SpielVariablen.StadtGebaut (RasseExtern, AktuelleStadt).KoordinatenAktuell.EAchse))
               + Positive (abs (AnfangKoordinatenExtern.YAchse - SpielVariablen.StadtGebaut (RasseExtern, AktuelleStadt).KoordinatenAktuell.YAchse))
               + Positive (abs (AnfangKoordinatenExtern.XAchse - SpielVariablen.StadtGebaut (RasseExtern, AktuelleStadt).KoordinatenAktuell.XAchse));
@@ -64,6 +64,7 @@ package body KIStadtSuchen is
             EntfernungNeu := Positive (abs (AnfangKoordinatenExtern.EAchse - SpielVariablen.StadtGebaut (RasseExtern, StadtSchleifenwert).KoordinatenAktuell.EAchse))
               + Positive (abs (AnfangKoordinatenExtern.YAchse - SpielVariablen.StadtGebaut (RasseExtern, StadtSchleifenwert).KoordinatenAktuell.YAchse))
               + Positive (abs (AnfangKoordinatenExtern.XAchse - SpielVariablen.StadtGebaut (RasseExtern, StadtSchleifenwert).KoordinatenAktuell.XAchse));
+            
             if
               Entfernung > EntfernungNeu
             then
@@ -95,15 +96,19 @@ package body KIStadtSuchen is
          then
             null;
                
-         elsif
-           EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => FeindlicheRasseExtern,
-                                                           KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (FeindlicheRasseExtern, StadtNummerSchleifenwert)))
-           = EinheitenKonstanten.LeerNummer
-         then
-            return LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (FeindlicheRasseExtern, StadtNummerSchleifenwert));
-                  
          else
-            null;
+            Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (FeindlicheRasseExtern, StadtNummerSchleifenwert));
+                                                             
+            case
+              EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => FeindlicheRasseExtern,
+                                                              KoordinatenExtern => Stadtkoordinaten)
+            is
+               when EinheitenKonstanten.LeerNummer =>
+                  return Stadtkoordinaten;
+                  
+               when others =>
+                  null;
+            end case;
          end if;
          
       end loop StadtSchleife;

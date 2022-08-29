@@ -51,7 +51,6 @@ package StadtKonstanten is
    MaximaleBauzeit : constant ProduktionDatentypen.Produktion := ProduktionDatentypen.Produktion'Last;
    
    LeerGebäudeID : constant StadtDatentypen.GebäudeIDMitNullwert := 0;
-   LeerGebäudeGrafik : constant Wide_Wide_Character := TextKonstanten.LeerZeichen;
    LeerPreisGeld : constant ProduktionDatentypen.Produktion := 0;
    LeerPreisRessourcen : constant ProduktionDatentypen.Produktion := 0;
    LeerAnforderungen : constant ForschungenDatentypen.ForschungIDNichtMöglich := ForschungKonstanten.ForschungUnmöglich;

@@ -11,8 +11,6 @@ private
    procedure Menüs;
    procedure Rassen;
    procedure ZusatztextKartengröße;
-   procedure Baumenü;
-   procedure Forschungsmenü;
    procedure Sprachauswahl;
    procedure Kartenformauswahl;
    procedure StadtInformationen;

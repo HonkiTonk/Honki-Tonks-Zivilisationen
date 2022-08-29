@@ -8,6 +8,7 @@ with OptionenVariablen;
 with SchreibenEinstellungen;
 with EinlesenSprache;
 with EinlesenText;
+with EinlesenRassentexte;
 
 with AuswahlSprache;
 with EingabeSFML;
@@ -123,6 +124,7 @@ package body OptionenSonstiges is
             else
                OptionenVariablen.NutzerEinstellungen.Sprache := GewählteSprache;
                EinlesenText.EinlesenDateien;
+               EinlesenRassentexte.RassentexteEinlesen;
                NachGrafiktask.AccesseSetzen := True;
             end if;
             

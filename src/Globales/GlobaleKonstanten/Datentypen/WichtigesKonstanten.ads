@@ -10,10 +10,6 @@ with DiplomatieDatentypen;
 
 package WichtigesKonstanten is
    
-   LeerCursorGrafik : constant Wide_Wide_Character := '©';
-   
-   
-   
    LeerGeldmenge : constant ZahlenDatentypen.EigenesNatural := ZahlenDatentypen.EigenesNatural'First;
    LeerGeldZugewinnProRunde : constant ProduktionDatentypen.Produktion := 0;
    LeerGesamteForschungsrate : constant ProduktionDatentypen.Produktion := 0;

@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with EinheitenDatentypen; use EinheitenDatentypen;
 with StadtDatentypen; use StadtDatentypen;
 with KartenDatentypen; use KartenDatentypen;
-with GlobaleTexte;
+with Rassentexte;
 
 with SchreibeStadtGebaut;
 with SchreibeWichtiges;
@@ -284,16 +284,16 @@ package body StadtBauen is
       return Unbounded_Wide_Wide_String
    is begin
       
-      StadtName.EingegebenerText := GlobaleTexte.StädtenamenKI (RasseExtern, StadtnameVordefiniert (RasseExtern));
+      StadtName.EingegebenerText := Rassentexte.Städtenamen (RasseExtern, StandardStadtname (RasseExtern));
       
       case
-        StadtnameVordefiniert (RasseExtern)
+        StandardStadtname (RasseExtern)
       is
-         when GlobaleTexte.StädtenamenKI'Last (2) =>
-            StadtnameVordefiniert (RasseExtern) := ZahlenDatentypen.EigenesPositive'First;
+         when StadtDatentypen.MaximaleStädte'Last =>
+            StandardStadtname (RasseExtern) := StadtDatentypen.MaximaleStädte'First;
             
          when others =>
-            StadtnameVordefiniert (RasseExtern) := StadtnameVordefiniert (RasseExtern) + 1;
+            StandardStadtname (RasseExtern) := StandardStadtname (RasseExtern) + 1;
       end case;
       
       return StadtName.EingegebenerText;

@@ -7,17 +7,28 @@ package ChangelogAugust2022 is
    
    
 
-   -- Version 0.03. => 0.03. (30.08.2022):
+   -- Version 0.03.7745 => 0.03. (30.08.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.7600 => 0.03. (29.08.2022):
+   -- Version 0.03.7600 => 0.03.7745 (29.08.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- EinheitSuchen so geändert dass die Verschachtelung von Transportern jetzt berücksichtigt wird.
+   -- Man kann jetzt auch durch das Oberflächenwasser leicht den Meeresgrund erkennen.
+   -- Optimierungen vorgenommen.
+   -- Angefangen die Standardbibliothek nicht mehr mit use zu nutzen.
+   -- Interne Struktur überarbeitet.
+   -- Änderungen an den Spieltexten vorgenommen.
+   -- Textdateien neu aufgeteilt
+   -- Das Texteinlesesystem an die neue Textdateienaufteilung anzupassen.
+   -- Jede Rasse hat jetzt ihre eigenen Textdateien für NameBeschreibung, Städtenamen, Forschungen, Einheiten und Gebäude.
+   -- Alle Textaccesse an das neue Rassentextsystem angepasst.
+   -- Unnötigen/Veralteten Code gelöscht.
+   -- Code zusammengeführt.
+   -- contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst/optimiert.
    
    
 

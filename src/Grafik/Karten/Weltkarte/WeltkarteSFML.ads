@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+private with Sf;
 private with Sf.System.Vector2;
 
 with KartenDatentypen; use KartenDatentypen;
@@ -23,12 +24,12 @@ package WeltkarteSFML is
    
 private
    
-   SichtbereichAnfangEnde : KartenDatentypen.SichtbereichAnfangEndeArray;
+   Transparents : Sf.sfUint8;
    
-   YMultiplikator : Float;
-   XMultiplikator : Float;
+   SichtbereichAnfangEnde : KartenDatentypen.SichtbereichAnfangEndeArray;
       
    Position : Sf.System.Vector2.sfVector2f;
+   Feldposition : Sf.System.Vector2.sfVector2f;
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    CursorKoordinatenAlt : KartenRecords.AchsenKartenfeldNaturalRecord;

@@ -78,7 +78,8 @@ package body InformationenEinheitenSFML is
             null;
       end case;
       
-      FestzulegenderText (1) := To_Unbounded_Wide_Wide_String (Source => EinheitenbeschreibungenSFML.BeschreibungKurz (IDExtern => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummer)));
+      FestzulegenderText (1) := To_Unbounded_Wide_Wide_String (Source => EinheitenbeschreibungenSFML.BeschreibungKurz (IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummer),
+                                                                                                                       RasseExtern => EinheitRasseNummer.Rasse));
       FestzulegenderText (2) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugLebenspunkte) & " " & LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummer)'Wide_Wide_Image
         & TextKonstanten.Trennzeichen & ZahlAlsStringLebenspunkte (ZahlExtern => LeseEinheitenDatenbank.MaximaleLebenspunkte (RasseExtern => EinheitRasseNummer.Rasse,
                                                                                                                               IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummer)));
@@ -221,7 +222,8 @@ package body InformationenEinheitenSFML is
             Beladen := True;
             -- Das hier überall/öfter einbauen? äöü
             Ladungstext := Ladungstext & TextKonstanten.UmbruchAbstand
-              & EinheitenbeschreibungenSFML.BeschreibungKurz (IDExtern => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, Ladungsnummer)));
+              & EinheitenbeschreibungenSFML.BeschreibungKurz (IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, Ladungsnummer)),
+                                                              RasseExtern => EinheitRasseNummerExtern.Rasse);
             
          else
             null;

@@ -3,7 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with KartenRecords;
-with TextKonstanten;
 with ProduktionDatentypen;
 with KampfDatentypen;
 with RueckgabeDatentypen;
@@ -25,7 +24,6 @@ package KartenKonstanten is
    HimmelKonstante : constant KartenDatentypen.EbeneVorhanden := 1;
    WeltraumKonstante : constant KartenDatentypen.EbeneVorhanden := 2;
    
-   LeerKartenGrafik : constant Wide_Wide_Character := TextKonstanten.LeerZeichen;
    LeerPassierbarkeit : constant Boolean := False;
       
    LeerBewertung : constant KartenDatentypen.Einzelbewertung := 0;
@@ -34,9 +32,7 @@ package KartenKonstanten is
    
    LeerSichtbar : constant Boolean := False;
    LeerFelderwertung : constant KartenDatentypen.GesamteFeldbewertung := 0;
-   
-   LeerVerbesserungGrafik : constant Wide_Wide_Character := TextKonstanten.LeerZeichen;
-      
+         
    LeerVerbesserungBewertung : constant KartenDatentypen.Einzelbewertung := 0;
    LeerVerbesserungWirtschaft : constant ProduktionDatentypen.Einzelproduktion := 0;
    LeerVerbesserungKampf : constant KampfDatentypen.Kampfwerte := KampfDatentypen.Kampfwerte'First;

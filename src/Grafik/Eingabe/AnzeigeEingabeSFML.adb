@@ -231,8 +231,9 @@ package body AnzeigeEingabeSFML is
                   Text := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugStadt);
                   
                when False =>
-                  Text := To_Unbounded_Wide_Wide_String (Source => EinheitenbeschreibungenSFML.BeschreibungKurz (IDExtern => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern,
-                                                                                                                                                                                  WelcheAuswahl.MöglicheAuswahlen (0)))));
+                  Text := To_Unbounded_Wide_Wide_String (Source => EinheitenbeschreibungenSFML.BeschreibungKurz (IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern,
+                                                                                                                                                                                     WelcheAuswahl.MöglicheAuswahlen (0))),
+                                                                                                                 RasseExtern => RasseExtern));
             end case;
             
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
@@ -249,11 +250,12 @@ package body AnzeigeEingabeSFML is
             else
                Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
                                                   str  => EinheitenbeschreibungenSFML.BeschreibungKurz
-                                                    (IDExtern => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, WelcheAuswahl.MöglicheAuswahlen (AuswahlSchleifenwert)))));
+                                                    (IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, WelcheAuswahl.MöglicheAuswahlen (AuswahlSchleifenwert))),
+                                                     RasseExtern => RasseExtern));
                
                Textbreite := TextberechnungenBreiteSFML.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
                                                                                  TextbreiteExtern => Textbreite);
-            
+               
                InteraktionAuswahl.PositionenEinheitStadt (AuswahlSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert));
             end if;
          end if;

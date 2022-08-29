@@ -10,7 +10,7 @@ with SystemKonstanten;
 with TextaccessVariablen;
 with TextKonstanten;
 with InteraktionAuswahl;
-with GlobaleTexte;
+with Menuetexte;
 
 with GrafikEinstellungenSFML;
 with TextberechnungenBreiteSFML;
@@ -114,7 +114,7 @@ package body AuswahlMenueKartenformSFML is
                WelcherZusatztext := 12;
             end if;
 
-            Zusatztext := " - " & GlobaleTexte.Kartenform (WelcherZusatztext);
+            Zusatztext := " - " & Menuetexte.Kartenform (WelcherZusatztext);
 
          when 4 =>
             if
@@ -201,7 +201,7 @@ package body AuswahlMenueKartenformSFML is
                                                                         WelchesMenüExtern => MenueDatentypen.Kartenform_Menü_Enum);
       end case;
 
-      Zusatztext := " - " & GlobaleTexte.Kartenform (WelcherZusatztext);
+      Zusatztext := " - " & Menuetexte.Kartenform (WelcherZusatztext);
       
       return AuswahlMenuesStringsSetzen.AuswahlMenüStringSetzen (WelcheZeileExtern => SchleifenwertExtern,
                                                                   WelchesMenüExtern => MenueDatentypen.Kartenform_Menü_Enum)

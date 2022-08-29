@@ -35,9 +35,8 @@ package body KIEinheitSuchen is
                null;
                
             elsif
-              LeseKarten.Sichtbar (KoordinatenExtern => KartenWert,
-                                   RasseExtern       => EinheitRasseNummerExtern.Rasse)
-              = False
+              False = LeseKarten.Sichtbar (KoordinatenExtern => KartenWert,
+                                           RasseExtern       => EinheitRasseNummerExtern.Rasse)
             then
                null;
                   

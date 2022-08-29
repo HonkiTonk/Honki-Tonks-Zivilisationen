@@ -15,7 +15,6 @@ package NachLogiktask is
    MausRad : Float;
 
    TastaturTaste : Sf.Window.Keyboard.sfKeyCode;
-   Zeicheneingabe : Wide_Wide_Character;
 
    MausTaste : Sf.Window.Mouse.sfMouseButton;
 

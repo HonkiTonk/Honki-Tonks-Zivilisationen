@@ -8,7 +8,6 @@ with TextKonstanten;
 with TextaccessVariablen;
 with Views;
 with SonstigesKonstanten;
-with GrafikKonstanten;
 
 with TextberechnungenBreiteSFML;
 with ViewsEinstellenSFML;

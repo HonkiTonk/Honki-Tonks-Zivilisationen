@@ -20,7 +20,7 @@ package StadtDatentypen is
 
    -- Für Stadt
    type MaximaleStädteMitNullWert is range 0 .. 100;
-   subtype MaximaleStädte is MaximaleStädteMitNullWert range 1 .. 100;
+   subtype MaximaleStädte is MaximaleStädteMitNullWert range 1 .. MaximaleStädteMitNullWert'Last;
 
    type Stadt_Meldung_Art_Enum is (
                                    Produktion_Fertig_Enum, Hungersnot_Enum, Einheit_In_Stadtnähe_Enum

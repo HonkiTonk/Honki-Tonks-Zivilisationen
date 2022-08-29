@@ -14,6 +14,7 @@ with EinlesenTexturen;
 with Fehler;
 with EinlesenMusik;
 with EinlesenSounds;
+with EinlesenRassentexte;
 
 package body Einlesen is
 
@@ -69,6 +70,7 @@ package body Einlesen is
       end if;
       
       EinlesenText.EinlesenDateien;
+      EinlesenRassentexte.RassentexteEinlesen;
       
    end EinlesenMitAnzeige;
 
