@@ -7,7 +7,7 @@ with Sf.Graphics.RenderWindow;
 with TextaccessVariablen;
 with SystemKonstanten;
 with MenueDatentypen;
-with GlobaleTexte;
+with Meldungstexte;
 with TextnummernKonstanten;
 with SpielVariablen;
 with DiplomatieDatentypen;
@@ -82,7 +82,7 @@ package body ZusatztextDiplomatieSFML is
                Fehler.GrafikFehler (FehlermeldungExtern => "ZusatztextDiplomatieSFML.TextSetzen - Kontakt ist unbekannt.");
          end case;
          
-         Text := Menuetexte.Diplomatiemenü (TextnummerExtern) & " " & GlobaleTexte.Zeug (Zustandnummer);
+         Text := Menuetexte.Diplomatiemenü (TextnummerExtern) & " " & Meldungstexte.Zeug (Zustandnummer);
          
       else
          Text := Menuetexte.Diplomatiemenü (TextnummerExtern) & " " & SpielVariablen.Diplomatie (NachGrafiktask.AktuelleRasse, NachGrafiktask.KontaktierteRasse).AktuelleSympathieBewertung'Wide_Wide_Image;

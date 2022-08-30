@@ -3,11 +3,13 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 with Ada.Directories; use Ada.Directories;
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with OptionenVariablen;
 with TextKonstanten;
 with Menuetexte;
+with Kartentexte;
+with GlobaleTexte;
+with Meldungstexte;
 
 with Warnung;
 with EinlesenAllgemein;
@@ -535,7 +537,7 @@ package body EinlesenText is
    is begin
       
       KartenfelderSchleife:
-      for WelcheZeileSchleifenwert in GlobaleTexte.Kartenfelder'Range loop
+      for WelcheZeileSchleifenwert in Kartentexte.Kartenfelder'Range loop
          
          case
            EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
@@ -545,7 +547,7 @@ package body EinlesenText is
                Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Kartenfelder -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
                
             when False =>
-               GlobaleTexte.Kartenfelder (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Ada.Wide_Wide_Text_IO.Get_Line (File => DateiTextEinlesen));
+               Kartentexte.Kartenfelder (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Ada.Wide_Wide_Text_IO.Get_Line (File => DateiTextEinlesen));
          end case;
          
       end loop KartenfelderSchleife;
@@ -558,7 +560,7 @@ package body EinlesenText is
    is begin
       
       VerbesserungenSchleife:
-      for WelcheZeileSchleifenwert in GlobaleTexte.Verbesserungen'Range loop
+      for WelcheZeileSchleifenwert in Kartentexte.Verbesserungen'Range loop
          
          case
            EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
@@ -568,7 +570,7 @@ package body EinlesenText is
                Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Verbesserungen -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
                
             when False =>
-               GlobaleTexte.Verbesserungen (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Ada.Wide_Wide_Text_IO.Get_Line (File => DateiTextEinlesen));
+               Kartentexte.Verbesserungen (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Ada.Wide_Wide_Text_IO.Get_Line (File => DateiTextEinlesen));
          end case;
          
       end loop VerbesserungenSchleife;
@@ -811,7 +813,7 @@ package body EinlesenText is
    is begin
       
       FehlermeldungSchleife:
-      for WelcheZeileSchleifenwert in GlobaleTexte.Fehlermeldung'Range loop
+      for WelcheZeileSchleifenwert in Meldungstexte.Meldung'Range loop
          
          case
            EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
@@ -821,7 +823,7 @@ package body EinlesenText is
                Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Fehlermeldung -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
                
             when False =>
-               GlobaleTexte.Fehlermeldung (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Ada.Wide_Wide_Text_IO.Get_Line (File => DateiTextEinlesen));
+               Meldungstexte.Meldung (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Ada.Wide_Wide_Text_IO.Get_Line (File => DateiTextEinlesen));
          end case;
          
       end loop FehlermeldungSchleife;
@@ -857,7 +859,7 @@ package body EinlesenText is
    is begin
       
       FrageSchleife:
-      for WelcheZeileSchleifenwert in GlobaleTexte.Frage'Range loop
+      for WelcheZeileSchleifenwert in Meldungstexte.Frage'Range loop
          
          case
            EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
@@ -867,7 +869,7 @@ package body EinlesenText is
                Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Frage -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
                
             when False =>
-               GlobaleTexte.Frage (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Ada.Wide_Wide_Text_IO.Get_Line (File => DateiTextEinlesen));
+               Meldungstexte.Frage (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Ada.Wide_Wide_Text_IO.Get_Line (File => DateiTextEinlesen));
          end case;
          
       end loop FrageSchleife;
@@ -880,7 +882,7 @@ package body EinlesenText is
    is begin
       
       ZeugSachenSchleife:
-      for WelcheZeileSchleifenwert in GlobaleTexte.Zeug'Range loop
+      for WelcheZeileSchleifenwert in Meldungstexte.Zeug'Range loop
          
          case
            EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
@@ -890,7 +892,7 @@ package body EinlesenText is
                Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.ZeugSachen -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
                
             when False =>
-               GlobaleTexte.Zeug (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Ada.Wide_Wide_Text_IO.Get_Line (File => DateiTextEinlesen));
+               Meldungstexte.Zeug (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Ada.Wide_Wide_Text_IO.Get_Line (File => DateiTextEinlesen));
          end case;
          
       end loop ZeugSachenSchleife;
@@ -926,7 +928,7 @@ package body EinlesenText is
    is begin
       
       WegeSchleife:
-      for WelcheZeileSchleifenwert in GlobaleTexte.Wege'Range loop
+      for WelcheZeileSchleifenwert in Kartentexte.Wege'Range loop
          
          case
            EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
@@ -936,7 +938,7 @@ package body EinlesenText is
                Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Wege -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
                
             when False =>
-               GlobaleTexte.Wege (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Ada.Wide_Wide_Text_IO.Get_Line (File => DateiTextEinlesen));
+               Kartentexte.Wege (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Ada.Wide_Wide_Text_IO.Get_Line (File => DateiTextEinlesen));
          end case;
          
       end loop WegeSchleife;
@@ -949,7 +951,7 @@ package body EinlesenText is
    is begin
       
       WegeSchleife:
-      for WelcheZeileSchleifenwert in GlobaleTexte.Kartenflüsse'Range loop
+      for WelcheZeileSchleifenwert in Kartentexte.Kartenflüsse'Range loop
          
          case
            EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
@@ -959,7 +961,7 @@ package body EinlesenText is
                Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Kartenflüsse -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
                
             when False =>
-               GlobaleTexte.Kartenflüsse (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Ada.Wide_Wide_Text_IO.Get_Line (File => DateiTextEinlesen));
+               Kartentexte.Kartenflüsse (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Ada.Wide_Wide_Text_IO.Get_Line (File => DateiTextEinlesen));
          end case;
          
       end loop WegeSchleife;
@@ -972,7 +974,7 @@ package body EinlesenText is
    is begin
       
       WegeSchleife:
-      for WelcheZeileSchleifenwert in GlobaleTexte.Kartenressourcen'Range loop
+      for WelcheZeileSchleifenwert in Kartentexte.Kartenressourcen'Range loop
          
          case
            EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
@@ -982,7 +984,7 @@ package body EinlesenText is
                Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Kartenressourcen -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
                
             when False =>
-               GlobaleTexte.Kartenressourcen (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Ada.Wide_Wide_Text_IO.Get_Line (File => DateiTextEinlesen));
+               Kartentexte.Kartenressourcen (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Ada.Wide_Wide_Text_IO.Get_Line (File => DateiTextEinlesen));
          end case;
          
       end loop WegeSchleife;

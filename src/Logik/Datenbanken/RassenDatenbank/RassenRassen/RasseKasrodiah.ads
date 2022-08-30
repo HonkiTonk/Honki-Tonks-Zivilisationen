@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemDatentypen;
+with RassenDatentypen;
 
 with DatenbankRecords;
 
@@ -16,11 +16,11 @@ package RasseKasrodiah is
                                                                          Bewirtschaftung     => 0,
                                                                          GültigeStaatsformen =>
                                                                            (
-                                                                            SystemDatentypen.Anarchie_Enum,
-                                                                            SystemDatentypen.Demokratie_Enum,
-                                                                            SystemDatentypen.Anarchie_Enum,
-                                                                            SystemDatentypen.Anarchie_Enum,
-                                                                            SystemDatentypen.Anarchie_Enum
+                                                                            RassenDatentypen.Anarchie_Enum,
+                                                                            RassenDatentypen.Demokratie_Enum,
+                                                                            RassenDatentypen.Anarchie_Enum,
+                                                                            RassenDatentypen.Anarchie_Enum,
+                                                                            RassenDatentypen.Anarchie_Enum
                                                                            )
                                                                         );
 

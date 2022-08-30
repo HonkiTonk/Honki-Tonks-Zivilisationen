@@ -7,10 +7,14 @@ package ChangelogAugust2022 is
    
    
 
-   -- Version 0.03.7745 => 0.03. (30.08.2022):
+   -- Version 0.03.7745 => 0.03.7790 (30.08.2022):
    
+   -- Neues Beispielbild erstellt.
+   -- Einige Verbrauchstests durchgeführt.
+   -- Interne Struktur überarbeitet.
+   -- Meldesystem als SFML- un Viewversion eingebaut.
    -- 
-   -- Kleinigkeiten korrigiert.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert.
    
    
 
@@ -28,7 +32,7 @@ package ChangelogAugust2022 is
    -- Alle Textaccesse an das neue Rassentextsystem angepasst.
    -- Unnötigen/Veralteten Code gelöscht.
    -- Code zusammengeführt.
-   -- contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst/optimiert.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst/optimiert.
    
    
 

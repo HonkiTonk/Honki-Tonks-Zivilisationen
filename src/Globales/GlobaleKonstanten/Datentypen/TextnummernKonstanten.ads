@@ -128,5 +128,23 @@ package TextnummernKonstanten is
    FrageMaximalerBreitenabstand : constant Positive := 44;
    FrageKIEinsetzen : constant Positive := 45;
    FrageKIAlleine : constant Positive := 46;
+   
+   
+   
+   MeldungVerbesserung : constant Positive := 1;
+   MeldungBefehl : constant Positive := 2;
+   MeldungVerbesserungExistiert : constant Positive := 3;
+   MeldungLebens : constant Positive := 4;
+   MeldungStadtnähe : constant Positive := 5;
+   MeldungStädtemaximum : constant Positive := 6;
+   MeldungBewegungspunkte : constant Positive := 7;
+   MeldungSpielstandLaden : constant Positive := 8;
+   MeldungSpielstandSpeichern : constant Positive := 9;
+   MeldungEinheitUngebaut : constant Positive := 10;
+   MeldungVerbesserungTechnologie : constant Positive := 11;
+   MeldungEinheitenmaximum : constant Positive := 12;
+   MeldungStatus : constant Positive := 13;
+   MeldungImKrieg : constant Positive := 14;
+   MeldungNichtangriffspakt : constant Positive := 15;
 
 end TextnummernKonstanten;

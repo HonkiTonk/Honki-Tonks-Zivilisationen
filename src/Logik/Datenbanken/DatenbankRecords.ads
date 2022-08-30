@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemDatentypen;
 with StadtDatentypen;
 with EinheitenDatentypen;
 with KartenDatentypen;
@@ -144,7 +143,7 @@ package DatenbankRecords is
       Wirtschaft : StadtDatentypen.MaximaleStädteMitNullWert;
       Bewirtschaftung : StadtDatentypen.MaximaleStädteMitNullWert;
       
-      GültigeStaatsformen : SystemDatentypen.StaatsformenArray;
+      GültigeStaatsformen : RassenDatentypen.StaatsformenArray;
       -- Besondere Eigenschaften hinzufügen, als Enum? oder was Anderes?
       
    end record;

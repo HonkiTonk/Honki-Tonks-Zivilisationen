@@ -24,7 +24,7 @@ package body LadezeitenSFML is
      (WelcheLadeanzeigeExtern : in GrafikDatentypen.Ladezeiten_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Enum)
    is begin
-      
+            
       case
         WelcheLadeanzeigeExtern
       is
@@ -57,16 +57,16 @@ package body LadezeitenSFML is
         WelcheLadeanzeigeExtern
       is
          when GrafikDatentypen.Grafik_Generierungszeit_Enum =>
-            Viewfläche := SpielweltErstellen;
+            Viewfläche := SpielweltErstellen (ViewflächeExtern => Viewfläche);
             
          when GrafikDatentypen.Grafik_KI_Rechenzeit_Enum =>
-            Viewfläche := KIRechnet;
+            Viewfläche := KIRechnet (ViewflächeExtern => Viewfläche);
             
          when GrafikDatentypen.Grafik_Rundenende_Enum =>
-            Viewfläche := Rundenende;
+            Viewfläche := Rundenende (ViewflächeExtern => Viewfläche);
             
          when GrafikDatentypen.Grafik_Speichern_Laden_Enum =>
-            Viewfläche := SpeichernLaden;
+            Viewfläche := SpeichernLaden (ViewflächeExtern => Viewfläche);
       end case;
       
       Viewfläche.y := Viewfläche.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
@@ -75,8 +75,11 @@ package body LadezeitenSFML is
    
    
 
+   -- Die ViewflächeExtern.y wird nicht benötigt, nur den x-Wert hineingeben als Float? äöü
+   -- Gilt auch bei en anderen Funktionen. äöü
    function SpielweltErstellen
-     return Sf.System.Vector2.sfVector2f
+     (ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
+      return Sf.System.Vector2.sfVector2f
    is begin
       
       Textbreite := 0.00;
@@ -100,7 +103,7 @@ package body LadezeitenSFML is
                                             str  => To_Wide_Wide_String (Text));
                                                  
          Textposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
-                                                                               ViewbreiteExtern => GrafikEinstellungenSFML.AktuelleFensterAuflösung.x);
+                                                                               ViewbreiteExtern => ViewflächeExtern.x);
          Textbreite := TextberechnungenBreiteSFML.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
                                                                            TextbreiteExtern => Textbreite);
          
@@ -123,6 +126,7 @@ package body LadezeitenSFML is
    
    
    function KIRechnet
+     (ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
       return Sf.System.Vector2.sfVector2f
    is begin
       
@@ -147,7 +151,7 @@ package body LadezeitenSFML is
                                             str  => To_Wide_Wide_String (Source => Text));
          
          Textposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
-                                                                               ViewbreiteExtern => GrafikEinstellungenSFML.AktuelleFensterAuflösung.x);
+                                                                               ViewbreiteExtern => ViewflächeExtern.x);
          Textbreite := TextberechnungenBreiteSFML.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
                                                                            TextbreiteExtern => Textbreite);
          
@@ -170,6 +174,7 @@ package body LadezeitenSFML is
    
    
    function Rundenende
+     (ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
      return Sf.System.Vector2.sfVector2f
    is begin
       
@@ -179,7 +184,7 @@ package body LadezeitenSFML is
                                          str  => To_Wide_Wide_String (Source => ZahlAlsStringLadefortschritt (ZahlExtern => Ladezeiten.FortschrittRundenende)) & "/" & "100");
                                                  
       Textposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.RundenendeAccess (1),
-                                                                            ViewbreiteExtern => GrafikEinstellungenSFML.AktuelleFensterAuflösung.x);
+                                                                            ViewbreiteExtern => ViewflächeExtern.x);
       Textbreite := TextberechnungenBreiteSFML.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.RundenendeAccess (1),
                                                                         TextbreiteExtern => 0.00);
             
@@ -198,7 +203,8 @@ package body LadezeitenSFML is
    
    
    function SpeichernLaden
-     return Sf.System.Vector2.sfVector2f
+     (ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
+      return Sf.System.Vector2.sfVector2f
    is begin
       
       Textposition.y := TextberechnungenHoeheSFML.Zeilenabstand;
@@ -207,7 +213,7 @@ package body LadezeitenSFML is
                                          str  => To_Wide_Wide_String (Source => ZahlAlsStringLadefortschritt (ZahlExtern => Ladezeiten.FortschrittSpeichernLaden)) & "/" & "100");
                                                  
       Textposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.SpeichernLadenAccess (1),
-                                                                            ViewbreiteExtern => GrafikEinstellungenSFML.AktuelleFensterAuflösung.x);
+                                                                            ViewbreiteExtern => ViewflächeExtern.x);
       Textbreite := TextberechnungenBreiteSFML.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.RundenendeAccess (1),
                                                                         TextbreiteExtern => 0.00);
             

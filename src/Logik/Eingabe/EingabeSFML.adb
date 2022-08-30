@@ -8,7 +8,7 @@ with Sf.Window.Keyboard; use Sf.Window.Keyboard;
 with Sf.Window.Mouse; use Sf.Window.Mouse;
 with Sf;
 
-with GlobaleTexte;
+with Meldungstexte;
 with TextnummernKonstanten;
 with SystemDatentypen;
 with SystemRecordKonstanten;
@@ -29,7 +29,7 @@ package body EingabeSFML is
    is begin
             
       if
-        WelcheFrageExtern > GlobaleTexte.Frage'Last
+        WelcheFrageExtern > Meldungstexte.Frage'Last
       then
          Fehler.LogikFehler (FehlermeldungExtern => "EingabeSFML.GanzeZahl - Frage außerhalb des Fragenbereichs.");
          

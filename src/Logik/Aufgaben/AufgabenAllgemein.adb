@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with GlobaleTexte;
+with Kartentexte;
 with EinheitenKonstanten;
 
 with SchreibeEinheitenGebaut;
@@ -15,7 +15,7 @@ package body AufgabenAllgemein is
       
       AktuelleVerbesserung := 2 * KartenVerbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum'Pos (KartenVerbesserungExtern) - 1;
                
-      BeschreibungText := GlobaleTexte.Verbesserungen (AktuelleVerbesserung);
+      BeschreibungText := Kartentexte.Verbesserungen (AktuelleVerbesserung);
       
       return To_Wide_Wide_String (Source => BeschreibungText);
       
@@ -30,7 +30,7 @@ package body AufgabenAllgemein is
       
       AktuellerWeg := 2 * KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Pos (KartenWegExtern) - 1;
                
-      BeschreibungText := GlobaleTexte.Wege (AktuellerWeg);
+      BeschreibungText := Kartentexte.Wege (AktuellerWeg);
       
       return To_Wide_Wide_String (Source => BeschreibungText);
       

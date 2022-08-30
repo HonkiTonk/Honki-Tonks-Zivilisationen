@@ -1,9 +1,9 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 private with Ada.Wide_Wide_Text_IO;
 
-private with GlobaleTexte;
 private with ZahlenDatentypen;
 
 package EinlesenText is
@@ -13,10 +13,11 @@ package EinlesenText is
 private
       
    AktuelleZeile : ZahlenDatentypen.EigenesPositive;
-      
-   TextdateienEinlesen : GlobaleTexte.TexteArray (1 .. 36);
 
    DateiTextEinlesen : Ada.Wide_Wide_Text_IO.File_Type;
+      
+   type TextdateienEinlesenArray is array (1 .. 36) of Unbounded_Wide_Wide_String;
+   TextdateienEinlesen : TextdateienEinlesenArray;
    
    procedure EinlesenTexte;
    procedure Hauptmenü;

@@ -14,7 +14,7 @@ with MenueDatentypen;
 with TastenbelegungDatentypen;
 with TextKonstanten;
 with TastenbelegungKonstanten;
-with GlobaleTexte;
+with Meldungstexte;
 with TextnummernKonstanten;
 with TastenbelegungVariablen;
 
@@ -135,7 +135,7 @@ package body AuswahlMenueSteuerungSFML is
            AktuelleBelegung
          is
             when Sf.Window.Keyboard.sfKeyUnknown =>
-               Text := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugLeer);
+               Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugLeer);
                
             when Sf.Window.Keyboard.sfKeyA .. Sf.Window.Keyboard.sfKeyCount =>
                Text := TastenbelegungKonstanten.Tastennamen (AktuelleBelegung);

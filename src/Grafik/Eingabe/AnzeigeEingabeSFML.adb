@@ -6,7 +6,7 @@ with Sf.Graphics.Text;
 
 with EinheitenDatentypen; use EinheitenDatentypen;
 with StadtDatentypen;
-with GlobaleTexte;
+with Meldungstexte;
 with TextnummernKonstanten;
 with GrafikDatentypen;
 with Views;
@@ -35,7 +35,7 @@ package body AnzeigeEingabeSFML is
    is begin
       
       AllgemeineViewsSFML.Frage (HintergrundExtern => GrafikDatentypen.Seitenleiste_Hintergrund_Enum,
-                                 FrageExtern       => To_Wide_Wide_String (Source => GlobaleTexte.Frage (FrageExtern)));
+                                 FrageExtern       => To_Wide_Wide_String (Source => Meldungstexte.Frage (FrageExtern)));
       
       case
         EingabeExtern
@@ -228,7 +228,7 @@ package body AnzeigeEingabeSFML is
               WelcheAuswahl.StadtEinheit
             is
                when True =>
-                  Text := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugStadt);
+                  Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugStadt);
                   
                when False =>
                   Text := To_Unbounded_Wide_Wide_String (Source => EinheitenbeschreibungenSFML.BeschreibungKurz (IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern,

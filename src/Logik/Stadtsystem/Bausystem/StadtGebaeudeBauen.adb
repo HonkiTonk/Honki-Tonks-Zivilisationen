@@ -26,7 +26,7 @@ package body StadtGebaeudeBauen is
                                                BeschäftigungExtern   => KIDatentypen.Keine_Aufgabe_Enum);
                
       else
-         -- Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Zeug,
+         -- Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => Meldungstexte.Zeug,
          --                                      TextZeileExtern => 29);
          null;
       end if;

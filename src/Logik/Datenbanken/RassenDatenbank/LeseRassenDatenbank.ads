@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
-with SystemDatentypen;
 with SpielVariablen;
 with StadtDatentypen;
 
@@ -58,7 +57,7 @@ package LeseRassenDatenbank is
    
    function RassenGültigeStaatsform
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      StaatsformExtern : SystemDatentypen.Staatsform_Enum)
+      StaatsformExtern : RassenDatentypen.Staatsform_Enum)
       return Boolean
      with
        Pre => (

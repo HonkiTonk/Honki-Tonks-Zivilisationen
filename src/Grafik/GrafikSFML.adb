@@ -23,6 +23,7 @@ with TextaccesseAllesSetzenSFML;
 with LadezeitenSFML;
 with KartenaufteilungSFML;
 with DiplomatieauswahlGrafik;
+with AnzeigeSpielmeldungenSFML;
 
 package body GrafikSFML is
    
@@ -246,7 +247,7 @@ package body GrafikSFML is
          NachGrafiktask.Spielmeldung := 0;
          
       else
-         null;
+         AnzeigeSpielmeldungenSFML.Spielmeldung (MeldungExtern => NachGrafiktask.Spielmeldung);
       end if;
             
    end AnzeigeSpielmeldungen;

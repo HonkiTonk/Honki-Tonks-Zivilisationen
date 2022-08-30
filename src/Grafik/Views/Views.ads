@@ -16,6 +16,8 @@ package Views is
 
    LadeviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
 
+   MeldungssviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
+
    KartenviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
    BefehlsviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
 

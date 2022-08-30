@@ -57,9 +57,8 @@ package body CursorPlatzierenSFML is
    
    
    
-   -- Kann theoretisch komplett entfernt werden, nur die Umgebungsanzeige basiert noch darauf. äöü
-   -- Nach der Überarbeitung der Umgebungsanzeige einfach löschen und nicht optimieren. äöü
-   -- Danach brauche ich wahrscheinlich auch die Stadtcursor/Stadtkoordinaten Sachen alle nicht mehr? äöü
+   -- Kann theoretisch komplett entfernt werden, nach einer völligen Überarbeitung des Stadtsystems. äöü
+   -- Danach brauche ich wahrscheinlich auch die Stadtcursorkoordinaten Sachen alle nicht mehr? äöü
    procedure CursorPlatzierenStadtSFML
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin

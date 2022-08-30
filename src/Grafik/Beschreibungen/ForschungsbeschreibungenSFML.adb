@@ -5,7 +5,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with Rassentexte;
 with ForschungKonstanten;
-with GlobaleTexte;
+with Meldungstexte;
 with TextnummernKonstanten;
 
 package body ForschungsbeschreibungenSFML is
@@ -20,7 +20,7 @@ package body ForschungsbeschreibungenSFML is
         IDExtern
       is
          when ForschungKonstanten.LeerForschungAnforderung =>
-            return To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextnummernKonstanten.ZeugKeines));
+            return To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugKeines));
             
          when others =>
             return To_Wide_Wide_String (Source => Rassentexte.Forschungen (RasseExtern, IDExtern, 1));

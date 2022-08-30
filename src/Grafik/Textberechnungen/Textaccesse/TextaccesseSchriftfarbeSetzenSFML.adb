@@ -46,6 +46,9 @@ package body TextaccesseSchriftfarbeSetzenSFML is
       Sf.Graphics.Text.setColor (text  => TextaccessVariablen.TextAccess,
                                  color => TexteinstellungenSFML.Schriftfarben.FarbeStandardText);
       
+      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.Spielmeldung,
+                                 color => TexteinstellungenSFML.Schriftfarben.FarbeStandardText);
+      
    end Allgemeines;
    
    

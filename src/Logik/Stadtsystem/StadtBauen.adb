@@ -125,7 +125,7 @@ package body StadtBauen is
          return False;
          
       else
-         -- Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
+         -- Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => Meldungstexte.Meldungen,
          --                                      TextZeileExtern => 6);
          return False;
       end if;
@@ -151,7 +151,7 @@ package body StadtBauen is
               SpielVariablen.RassenImSpiel (RasseExtern)
             is
                when RassenDatentypen.Mensch_Spieler_Enum =>
-                  -- Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
+                  -- Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => Meldungstexte.Meldungen,
                   --                                       TextZeileExtern => 7);
                   null;
                

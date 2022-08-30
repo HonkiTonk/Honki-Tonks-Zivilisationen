@@ -8,7 +8,7 @@ with ForschungenDatentypen; use ForschungenDatentypen;
 with ForschungKonstanten;
 with GrafikDatentypen;
 with TextKonstanten;
-with GlobaleTexte;
+with Meldungstexte;
 with TextnummernKonstanten;
 with EinheitenDatentypen;
 with StadtDatentypen;
@@ -40,7 +40,7 @@ package body ForschungAnzeigeSFML is
       AktuelleAuswahlExtern : in Natural)
    is begin
       
-      AllgemeineViewsSFML.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => GlobaleTexte.Frage (TextnummernKonstanten.FrageForschungsprojekt)),
+      AllgemeineViewsSFML.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => Meldungstexte.Frage (TextnummernKonstanten.FrageForschungsprojekt)),
                                         HintergrundExtern => GrafikDatentypen.Forschung_Hintergrund_Enum);
             
       AktuelleAuswahl := ForschungenDatentypen.ForschungIDMitNullWert (AktuelleAuswahlExtern);
@@ -206,7 +206,7 @@ package body ForschungAnzeigeSFML is
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                     position => Textposition);
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextnummernKonstanten.ZeugWirdBenötigt)));
+                                         str  => To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugWirdBenötigt)));
                
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                          text         => TextaccessVariablen.ForschungsmenüErmöglichtAccess);
@@ -336,10 +336,10 @@ package body ForschungAnzeigeSFML is
         AktuellesForschungsprojekt
       is
          when ForschungKonstanten.LeerForschung =>
-            Text := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt) & " " & GlobaleTexte.Zeug (TextnummernKonstanten.ZeugKeines);
+            Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt) & " " & Meldungstexte.Zeug (TextnummernKonstanten.ZeugKeines);
             
          when others =>
-            Text := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt) & " " & ForschungsbeschreibungenSFML.BeschreibungKurz (IDExtern    => AktuellesForschungsprojekt,
+            Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt) & " " & ForschungsbeschreibungenSFML.BeschreibungKurz (IDExtern    => AktuellesForschungsprojekt,
                                                                                                                                                     RasseExtern => RasseExtern);
       end case;
       
@@ -359,7 +359,7 @@ package body ForschungAnzeigeSFML is
                                                                                 TextbreiteExtern => AktuelleTextbreite);
       Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
-      Text := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugVerbleibendeForschungszeit) & LeseWichtiges.VerbleibendeForschungszeit (RasseExtern => RasseExtern)'Wide_Wide_Image;
+      Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugVerbleibendeForschungszeit) & LeseWichtiges.VerbleibendeForschungszeit (RasseExtern => RasseExtern)'Wide_Wide_Image;
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                          str  => To_Wide_Wide_String (Source => Text));

@@ -25,7 +25,7 @@ package body KI is
       StädteDurchgehen (RasseExtern => RasseExtern);
       KIForschung.Forschung (RasseExtern => RasseExtern);
       KIDiplomatie.Diplomatie (RasseExtern => RasseExtern);
-      
+            
    end KI;
    
    

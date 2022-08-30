@@ -39,8 +39,8 @@ package NachGrafiktask is
    AktuellesMenü : MenueDatentypen.Welches_Menü_Enum := MenueDatentypen.Leer_Menü_Enum;
    
    KIRechnet : RassenDatentypen.Rassen_Enum := RassenDatentypen.Keine_Rasse_Enum;
-   AktuelleRasse : RassenDatentypen.Rassen_Enum := EinheitenKonstanten.LeerRasse;
-   KontaktierteRasse : RassenDatentypen.Rassen_Enum := EinheitenKonstanten.LeerRasse;
+   AktuelleRasse : RassenDatentypen.Rassen_Enum := RassenDatentypen.Keine_Rasse_Enum;
+   KontaktierteRasse : RassenDatentypen.Rassen_Enum := RassenDatentypen.Keine_Rasse_Enum;
    
    AktuelleEinheit : EinheitenDatentypen.MaximaleEinheitenMitNullWert := EinheitenKonstanten.LeerNummer;
    
@@ -51,7 +51,7 @@ package NachGrafiktask is
    -- Später erweitern mit nur Schriftgröße setzen, nur Schriftfarbe setzen, usw.. äöü
    AccesseSetzen : Boolean := False;
    
-   Spielmeldung : GrafikDatentypen.Spielmeldungen;
+   Spielmeldung : SystemDatentypen.Spielmeldungen;
    StartzeitSpielmeldung : Time;
 
    TastenEingabe : Boolean := False;

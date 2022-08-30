@@ -32,6 +32,7 @@ with BewegungEinheitenSFML;
 with AuswahlStadtEinheit;
 with NachGrafiktask;
 with AuswahlSFML;
+-- with MeldungFestlegenLogik;
 
 -- Hier auch mal überarbeiten, vor allem die Prozeduren weiter unten. äöü
 package body BefehleSFML is
@@ -355,18 +356,21 @@ package body BefehleSFML is
                      
       EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
                                                                        KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
-      if
-        EinheitNummer = EinheitenKonstanten.LeerNummer
-      then
-         return;
+      
+      case
+        EinheitNummer
+      is
+         when EinheitenKonstanten.LeerNummer =>
+            return;
                   
-      else
-         null;
-      end if;
+         when others =>
+            null;
+      end case;
             
       if
         LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer)) = EinheitenKonstanten.LeerBewegungspunkte
       then
+         -- MeldungFestlegenLogik.MeldungFestlegen (MeldungExtern => 1);
          AufgabeDurchführen := False;
                      
       else

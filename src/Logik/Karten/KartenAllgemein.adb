@@ -6,7 +6,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with ProduktionDatentypen; use ProduktionDatentypen;
 with KampfDatentypen; use KampfDatentypen;
 with KartengrundDatentypen; use KartengrundDatentypen;
-with GlobaleTexte;
+with Kartentexte;
 with KartenKonstanten;
 
 with LeseKarten;
@@ -23,7 +23,7 @@ package body KartenAllgemein is
             
       GrundAktuell := 2 * KartengrundDatentypen.Kartengrund_Vorhanden_Enum'Pos (KartenGrundExtern) - 1;
    
-      return To_Wide_Wide_String (Source => GlobaleTexte.Kartenfelder (GrundAktuell));
+      return To_Wide_Wide_String (Source => Kartentexte.Kartenfelder (GrundAktuell));
       
    end BeschreibungBasisgrund;
    
@@ -36,7 +36,7 @@ package body KartenAllgemein is
       
       ZusatzAktuell := 2 * KartengrundDatentypen.Kartengrund_Vorhanden_Enum'Pos (KartenGrundExtern) - 1;
    
-      return To_Wide_Wide_String (Source => GlobaleTexte.Kartenfelder (ZusatzAktuell));
+      return To_Wide_Wide_String (Source => Kartentexte.Kartenfelder (ZusatzAktuell));
       
    end BeschreibungZusatzgrund;
    
@@ -49,7 +49,7 @@ package body KartenAllgemein is
             
       FlussAktuell := 2 * KartengrundDatentypen.Kartenfluss_Vorhanden_Enum'Pos (KartenFlussExtern) - 1;
       
-      return To_Wide_Wide_String (Source => GlobaleTexte.Kartenflüsse (FlussAktuell));
+      return To_Wide_Wide_String (Source => Kartentexte.Kartenflüsse (FlussAktuell));
       
    end BeschreibungFluss;
    
@@ -62,7 +62,7 @@ package body KartenAllgemein is
       
       RessourceAktuell := 2 * KartengrundDatentypen.Kartenressourcen_Vorhanden_Enum'Pos (KartenRessourceExtern) - 1;
    
-      return To_Wide_Wide_String (Source => GlobaleTexte.Kartenressourcen (RessourceAktuell));
+      return To_Wide_Wide_String (Source => Kartentexte.Kartenressourcen (RessourceAktuell));
       
    end BeschreibungRessource;
    

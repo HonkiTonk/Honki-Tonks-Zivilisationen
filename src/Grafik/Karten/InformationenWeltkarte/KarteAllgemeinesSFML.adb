@@ -12,7 +12,7 @@ with KartengrundDatentypen; use KartengrundDatentypen;
 with Views;
 with GrafikRecordKonstanten;
 with GrafikDatentypen;
-with GlobaleTexte;
+with Meldungstexte;
 with TextnummernKonstanten;
 
 with LeseKarten;
@@ -69,7 +69,7 @@ package body KarteAllgemeinesSFML is
       else
          Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (1),
                                             str  => KartenAllgemein.BeschreibungBasisgrund (KartenGrundExtern => VorhandenerGrund.BasisGrund) & " "
-                                            &  To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextnummernKonstanten.ZeugMit)) & " "
+                                            &  To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugMit)) & " "
                                             & KartenAllgemein.BeschreibungZusatzgrund (KartenGrundExtern => VorhandenerGrund.AktuellerGrund));
       end if;
       

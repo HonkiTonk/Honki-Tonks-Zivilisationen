@@ -17,6 +17,7 @@ package ZeitKonstanten is
    -- Intervalle durch Nutzer einstellen lassen? äöü
    Blinkintervall : constant Duration := 0.50;
    
+   -- Das hier vom Nutzer einstellbar machen. äöü
    AnzeigezeitSpielmeldungen : constant Duration := 2.00;
 
 end ZeitKonstanten;

@@ -40,11 +40,11 @@ package TextaccessVariablen is
    
    
    
-   -- ZusatztextKartengröße
+   -- Zusatztexte
    ZusatztextKartengrößeAccess : constant TextaccessArray (1 .. 2) := (others => Sf.Graphics.Text.create);
    
    ZusatztextDiplomatieAccess : constant TextaccessArray (1 .. 2) := (others => Sf.Graphics.Text.create);
-   -- ZusatztextKartengröße
+   -- Zusatztexte
    
    
    
@@ -131,6 +131,8 @@ package TextaccessVariablen is
    
    type JaNeinAccessArray is array (InteraktionAuswahl.PositionenJaNein'Range) of Sf.Graphics.sfText_Ptr;
    JaNeinAccess : constant JaNeinAccessArray := (others => Sf.Graphics.Text.create);
+   
+   Spielmeldung : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
    -- AnzeigeEingabe
    
    

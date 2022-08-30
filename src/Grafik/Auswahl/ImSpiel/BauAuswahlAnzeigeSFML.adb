@@ -6,7 +6,7 @@ with Sf.Graphics.Text;
 
 with TextKonstanten;
 with GrafikDatentypen;
-with GlobaleTexte;
+with Meldungstexte;
 with TextnummernKonstanten;
 with TextaccessVariablen;
 with Views;
@@ -32,7 +32,7 @@ package body BauAuswahlAnzeigeSFML is
       AktuelleAuswahlExtern : in StadtRecords.BauprojektRecord)
    is begin
       
-      AllgemeineViewsSFML.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => GlobaleTexte.Frage (TextnummernKonstanten.FrageBauprojekt)),
+      AllgemeineViewsSFML.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => Meldungstexte.Frage (TextnummernKonstanten.FrageBauprojekt)),
                                         HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum);
       
       Gebäude (AuswahlExtern    => AktuelleAuswahlExtern.Gebäude,
@@ -351,18 +351,18 @@ package body BauAuswahlAnzeigeSFML is
       if
         AktuellesBauprojekt.Gebäude /= 0
       then
-         Text := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & " " & GebaeudebeschreibungenSFML.BeschreibungKurz (IDExtern    => AktuellesBauprojekt.Gebäude,
+         Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & " " & GebaeudebeschreibungenSFML.BeschreibungKurz (IDExtern    => AktuellesBauprojekt.Gebäude,
                                                                                                                                RasseExtern => StadtRasseNummerExtern.Rasse);
          
       elsif
         AktuellesBauprojekt.Einheit /= 0
       then
-         Text := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & " " & EinheitenbeschreibungenSFML.BeschreibungKurz (IDExtern    => AktuellesBauprojekt.Einheit,
+         Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & " " & EinheitenbeschreibungenSFML.BeschreibungKurz (IDExtern    => AktuellesBauprojekt.Einheit,
                                                                                                                                 RasseExtern => StadtRasseNummerExtern.Rasse);
          
             
       else
-         Text := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & " " & GlobaleTexte.Zeug (TextnummernKonstanten.ZeugKeines);
+         Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & " " & Meldungstexte.Zeug (TextnummernKonstanten.ZeugKeines);
       end if;
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
@@ -381,7 +381,7 @@ package body BauAuswahlAnzeigeSFML is
                                                                                 TextbreiteExtern => AktuelleTextbreite);
       Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
       
-      Text := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugVerbleibendeBauzeit) & LeseStadtGebaut.Bauzeit (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
+      Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugVerbleibendeBauzeit) & LeseStadtGebaut.Bauzeit (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                          str  => To_Wide_Wide_String (Source => Text));

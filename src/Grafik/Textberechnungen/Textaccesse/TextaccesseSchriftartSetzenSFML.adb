@@ -47,6 +47,9 @@ package body TextaccesseSchriftartSetzenSFML is
       Sf.Graphics.Text.setFont (text => TextaccessVariablen.TextAccess,
                                 font => TexteinstellungenSFML.SchriftartAccess);
       
+      Sf.Graphics.Text.setFont (text => TextaccessVariablen.Spielmeldung,
+                                font => TexteinstellungenSFML.SchriftartAccess);
+      
    end Allgemeines;
    
    

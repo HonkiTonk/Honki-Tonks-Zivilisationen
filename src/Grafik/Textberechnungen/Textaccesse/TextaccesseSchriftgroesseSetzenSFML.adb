@@ -46,6 +46,9 @@ package body TextaccesseSchriftgroesseSetzenSFML is
       Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.TextAccess,
                                          size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
       
+      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.Spielmeldung,
+                                         size => TexteinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
+      
    end Allgemeines;
    
    

@@ -8,7 +8,7 @@ with Sf.Graphics.Text;
 with EinheitenDatentypen; use EinheitenDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
 with StadtDatentypen; use StadtDatentypen;
-with GlobaleTexte;
+with Meldungstexte;
 with TextnummernKonstanten;
 with GrafikRecordKonstanten;
 with Views;
@@ -101,7 +101,7 @@ package body StadtInformationenSFML is
       Stadtname (StadtRasseNummerExtern => StadtRasseNummerExtern);
       Textbreite := 0.00;
       
-      FestzulegenderText (1) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugEinwohner) & LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+      FestzulegenderText (1) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugEinwohner) & LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                                                                                                              EinwohnerArbeiterExtern => True)'Wide_Wide_Image;
       
       -- Volle Stadtinformationen, nur sichtbar wenn eigene Stadt oder durch Debug.
@@ -110,20 +110,20 @@ package body StadtInformationenSFML is
         or
           SpielVariablen.Debug.VolleInformation
       then
-         FestzulegenderText (2) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel) & LeseStadtGebaut.Nahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
-         FestzulegenderText (3) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugNahrungsproduktion) & " "
+         FestzulegenderText (2) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel) & LeseStadtGebaut.Nahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
+         FestzulegenderText (3) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugNahrungsproduktion) & " "
            & ZahlAlsStringGesamtproduktionStadt (ZahlExtern => LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern));
-         FestzulegenderText (4) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugRessourcenproduktion) & " "
+         FestzulegenderText (4) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugRessourcenproduktion) & " "
            & ZahlAlsStringGesamtproduktionStadt (ZahlExtern => LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern));
-         FestzulegenderText (5) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugGeldproduktion) & " " &
+         FestzulegenderText (5) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugGeldproduktion) & " " &
            ZahlAlsStringGesamtproduktionStadt (ZahlExtern => LeseStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern));
-         FestzulegenderText (6) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugWissensproduktion) & LeseStadtGebaut.Forschungsrate (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
-         FestzulegenderText (7) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugVerteidigung) & KampfwerteStadtErmitteln.AktuelleVerteidigungStadt (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
-         FestzulegenderText (8) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugAngriff) & KampfwerteStadtErmitteln.AktuellerAngriffStadt (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
-         FestzulegenderText (9) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugKorruption) & LeseStadtGebaut.Korruption (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
-         FestzulegenderText (10) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugVerfügbareArbeiter) & LeseStadtGebaut.Arbeitslose (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
+         FestzulegenderText (6) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugWissensproduktion) & LeseStadtGebaut.Forschungsrate (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
+         FestzulegenderText (7) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugVerteidigung) & KampfwerteStadtErmitteln.AktuelleVerteidigungStadt (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
+         FestzulegenderText (8) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugAngriff) & KampfwerteStadtErmitteln.AktuellerAngriffStadt (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
+         FestzulegenderText (9) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugKorruption) & LeseStadtGebaut.Korruption (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
+         FestzulegenderText (10) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugVerfügbareArbeiter) & LeseStadtGebaut.Arbeitslose (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
          FestzulegenderText (11) := AktuellesBauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern);
-         FestzulegenderText (12) := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugVerbleibendeBauzeit) & LeseStadtGebaut.Bauzeit (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
+         FestzulegenderText (12) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugVerbleibendeBauzeit) & LeseStadtGebaut.Bauzeit (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
                                  
          VolleInformation := True;
 
@@ -228,10 +228,10 @@ package body StadtInformationenSFML is
                                                                                                         RasseExtern => StadtRasseNummerExtern.Rasse));
       
       else
-         Text := GlobaleTexte.Zeug (TextnummernKonstanten.ZeugKeines);
+         Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugKeines);
       end if;
       
-      return GlobaleTexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & TextKonstanten.UmbruchAbstand & Text;
+      return Meldungstexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & TextKonstanten.UmbruchAbstand & Text;
       
    end AktuellesBauprojekt;
    

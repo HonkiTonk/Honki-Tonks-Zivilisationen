@@ -24,6 +24,7 @@ package GrafikRecordKonstanten is
    Fragenbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.25, 0.45, 0.50, 0.05);
    Eingabebereich : constant Sf.Graphics.Rect.sfFloatRect := (Fragenbereich.left, Fragenbereich.top + Fragenbereich.height, Fragenbereich.width, Fragenbereich.height);
    JaNeinBereich : constant Sf.Graphics.Rect.sfFloatRect := (Fragenbereich.left, Fragenbereich.top + Fragenbereich.height, Fragenbereich.width, 2.00 * Fragenbereich.height);
+   Meldungsbereich : constant Sf.Graphics.Rect.sfFloatRect := Fragenbereich;
    
    SeitenleisteGesamtbereich : constant Sf.Graphics.Rect.sfFloatRect := (KarteAnzeigebereich.width, 0.00, 1.00 - KarteAnzeigebereich.width, 1.00);
    

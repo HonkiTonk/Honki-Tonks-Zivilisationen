@@ -1,8 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with GlobaleTexte;
-
 package GrafikDatentypen is
 
    type Grafik_Aktuelle_Darstellung_Enum is (
@@ -34,8 +32,5 @@ package GrafikDatentypen is
                                 );
    
    subtype Fenster_Wurde_Verändert_Enum is Fenster_Ändern_Enum range Fenster_Verändert_Enum .. Modus_Verändert_Enum;
-   
-   type Spielmeldungen is range 0 .. GlobaleTexte.Fehlermeldung'Last;
-   subtype SpielmeldungenVorhanden is Spielmeldungen range 1 .. Spielmeldungen'Last;
 
 end GrafikDatentypen;

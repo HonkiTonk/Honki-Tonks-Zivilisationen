@@ -33,5 +33,13 @@ package RassenDatentypen is
    
    subtype Rassennummern is Natural range Rassen_Enum'Pos (Rassen_Enum'First) .. Rassen_Enum'Pos (Rassen_Enum'Last);
    subtype RassennummernVorhanden is Rassennummern range Rassen_Enum'Pos (Rassen_Verwendet_Enum'First) .. Rassennummern'Last;
+   
+   -- Soll ich das so überhaupt einbauen? Oder mir was besseres überlegen? äöü
+   type Staatsform_Enum is (
+                            Anarchie_Enum,
+                            Demokratie_Enum
+                           );
+
+   type StaatsformenArray is array (1 .. 5) of Staatsform_Enum;
 
 end RassenDatentypen;

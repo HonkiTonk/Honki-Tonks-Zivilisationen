@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with Meldungstexte;
+
 package SystemDatentypen is
 
    -- Wichtige Werte
@@ -27,19 +29,13 @@ package SystemDatentypen is
    
    subtype Erweiterter_Boolean_Vereinfacht_Enum is Erweiterter_Boolean_Enum range Neutral_Enum .. True_Enum;
    
+   
+   
    -- Hier den Schwierigkeitsgrad_Enum einbauen? äöü
-   -- Wichtige Werte
    
-    
    
-   -- Alles ab hier sollte woanders hin, oder? äöü
-   -- Sonstiges
-   type Staatsform_Enum is (
-                            Anarchie_Enum,
-                            Demokratie_Enum
-                           );
-
-   type StaatsformenArray is array (1 .. 5) of Staatsform_Enum;
-   -- Sonstiges
+   
+   subtype Spielmeldungen is Natural range 0 .. Meldungstexte.Meldung'Last;
+   subtype SpielmeldungenVorhanden is Spielmeldungen range 1 .. Spielmeldungen'Last;
 
 end SystemDatentypen;

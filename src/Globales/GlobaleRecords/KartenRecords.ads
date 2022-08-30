@@ -75,8 +75,6 @@ package KartenRecords is
    
    
    
-   -- Die Bewertung rauswerfen und entsprechend die Einheiten beim Bauen einer Stadt alles Bewerten lassen?
-   -- Felderbelegung stattdessen einbauen?
    type FelderwertungArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of KartenDatentypen.GesamteFeldbewertung;
    type SichtbarkeitArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of Boolean;
    
@@ -184,7 +182,7 @@ package KartenRecords is
    
    
    
-   -- Später überall einbauen wo es sinnvoll ist. äöü
+   -- Nicht zu einem tagged Record machen und in KartenRecord verwenden, erhöht sonst den Speicherverbrauch deutlich!
    type KartengrundRecord is record
       
       BasisGrund : KartengrundDatentypen.Kartengrund_Enum;

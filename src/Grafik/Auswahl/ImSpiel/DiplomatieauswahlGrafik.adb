@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Text;
 
-with GlobaleTexte;
+with Meldungstexte;
 with GrafikDatentypen;
 with TextnummernKonstanten;
 with Views;
@@ -33,7 +33,7 @@ package body DiplomatieauswahlGrafik is
      (AuswahlExtern : in Natural)
    is begin
       
-      AllgemeineViewsSFML.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => GlobaleTexte.Frage (TextnummernKonstanten.FrageRasseDiplomatie)),
+      AllgemeineViewsSFML.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => Meldungstexte.Frage (TextnummernKonstanten.FrageRasseDiplomatie)),
                                         HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum);
       
       Viewfläche := ViewsEinstellenSFML.ViewflächeAuflösungAnpassen (ViewflächeExtern => Viewfläche);
@@ -90,13 +90,13 @@ package body DiplomatieauswahlGrafik is
                  SpielVariablen.Diplomatie (NachGrafiktask.AktuelleRasse, RassenDatentypen.Rassen_Enum'Val (PositionSchleifenwert)).AktuellerZustand
                is
                   when DiplomatieDatentypen.Neutral_Enum =>
-                     Text := Text & GlobaleTexte.Zeug (TextnummernKonstanten.ZeugFrieden);
+                     Text := Text & Meldungstexte.Zeug (TextnummernKonstanten.ZeugFrieden);
                      
                   when DiplomatieDatentypen.Nichtangriffspakt_Enum =>
-                     Text := Text & GlobaleTexte.Zeug (TextnummernKonstanten.ZeugNichtangriffspakt);
+                     Text := Text & Meldungstexte.Zeug (TextnummernKonstanten.ZeugNichtangriffspakt);
                
                   when DiplomatieDatentypen.Krieg_Enum =>
-                     Text := Text & GlobaleTexte.Zeug (TextnummernKonstanten.ZeugKrieg);
+                     Text := Text & Meldungstexte.Zeug (TextnummernKonstanten.ZeugKrieg);
                
                   when DiplomatieDatentypen.Unbekannt_Enum =>
                      Fehler.GrafikFehler (FehlermeldungExtern => "DiplomatieauswahlGrafik.Textdarstellung - Kontakt ist unbekannt.");

@@ -1,8 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemDatentypen; use SystemDatentypen;
-
 with RassenDatenbank;
 
 package body LeseRassenDatenbank is
@@ -75,12 +73,12 @@ package body LeseRassenDatenbank is
    
    function RassenGültigeStaatsform
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      StaatsformExtern : SystemDatentypen.Staatsform_Enum)
+      StaatsformExtern : RassenDatentypen.Staatsform_Enum)
       return Boolean
    is begin
             
       StaatsformenSchleife:
-      for StaatsformSchleifenwert in SystemDatentypen.StaatsformenArray'Range loop
+      for StaatsformSchleifenwert in RassenDatentypen.StaatsformenArray'Range loop
          
          if
            RassenDatenbank.Rassenliste (RasseExtern).GültigeStaatsformen (StaatsformSchleifenwert) = StaatsformExtern

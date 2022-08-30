@@ -5,10 +5,10 @@ with KartenRecords;
 with KartenRecordKonstanten;
 with SpielRecords;
 with WichtigesKonstanten;
-with SystemDatentypen;
 with EinheitenKonstanten;
 with SpielDatentypen;
 with TextKonstanten;
+with RassenDatentypen;
 
 with DatenbankRecords;
 
@@ -76,11 +76,11 @@ package WichtigesRecordKonstanten is
                                                                      Bewirtschaftung     => 0,
                                                                      GültigeStaatsformen =>
                                                                        (
-                                                                        SystemDatentypen.Anarchie_Enum,
-                                                                        SystemDatentypen.Anarchie_Enum,
-                                                                        SystemDatentypen.Anarchie_Enum,
-                                                                        SystemDatentypen.Anarchie_Enum,
-                                                                        SystemDatentypen.Anarchie_Enum
+                                                                        RassenDatentypen.Anarchie_Enum,
+                                                                        RassenDatentypen.Anarchie_Enum,
+                                                                        RassenDatentypen.Anarchie_Enum,
+                                                                        RassenDatentypen.Anarchie_Enum,
+                                                                        RassenDatentypen.Anarchie_Enum
                                                                        )
                                                                     );
    

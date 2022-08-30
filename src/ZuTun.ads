@@ -7,7 +7,7 @@
 -- Aktuell höchste Priorität:
 
 -- KI überarbeiten (Funktioniert inzwischen Minimal, später weiter verbessern).
--- Grafiken überarbeiten (Menüs und Textanzeigen in Views umgebaut. Angefangen neue Texturen zu erstellen.).
+-- Grafiken überarbeiten (Menüs und Textanzeigen in Views umgebaut. Angefangen neue Texturen zu erstellen. Angefangen das Stadtsystem zu überarbeiten).
 -- Einfache Musik/Sounds einbauen.
 -- Forschungen/Einheiten/Gebäude für zweite Rasse einbauen.
 -- Herausfinden wie man eine Windowsversion ohne GPL Zwang kompiliert.
@@ -27,5 +27,4 @@
 -- Erinnerungen:
 
 -- In die Beschreibungen später auch Umwandlungen für die Werte, Kosten, nötige Zeit usw. einbauen?
--- Für das Schreiben/Lesen von Dateien die nicht über 0-Dateien geregelt werden auch mal konstante Strings anlegen und überall einbauen.
 --

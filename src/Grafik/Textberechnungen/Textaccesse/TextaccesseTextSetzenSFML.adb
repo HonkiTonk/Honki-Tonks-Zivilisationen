@@ -6,7 +6,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Sf.Graphics.Text;
 
 with TextaccessVariablen;
-with GlobaleTexte;
+with Meldungstexte;
 with TextnummernKonstanten;
 with SonstigesKonstanten;
 with Menuetexte;
@@ -88,7 +88,7 @@ package body TextaccesseTextSetzenSFML is
             is
                when TextaccessVariablen.GebäudetextAccessArray'First (2) =>
                   Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.GebäudetextAccess (RasseSchleifenwert, GebäudetextSchleifenwert),
-                                                     str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextnummernKonstanten.ZeugGebäude)));
+                                                     str  => To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugGebäude)));
                
                when others =>
                   Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.GebäudetextAccess (RasseSchleifenwert, GebäudetextSchleifenwert),
@@ -112,7 +112,7 @@ package body TextaccesseTextSetzenSFML is
             is
                when TextaccessVariablen.EinheitentextAccessArray'First (2) =>
                   Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitentextAccess (RasseSchleifenwert, EinheitentextSchleifenwert),
-                                                     str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextnummernKonstanten.ZeugEinheiten)));
+                                                     str  => To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugEinheiten)));
                
                when others =>
                   Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitentextAccess (RasseSchleifenwert, EinheitentextSchleifenwert),
@@ -243,7 +243,7 @@ package body TextaccesseTextSetzenSFML is
       for AnzeigeEingabeSchleifenwert in TextaccessVariablen.JaNeinAccessArray'Range loop
          
          Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.JaNeinAccess (AnzeigeEingabeSchleifenwert),
-                                            str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextnummernKonstanten.ZeugJa + AnzeigeEingabeSchleifenwert - TextaccessVariablen.JaNeinAccessArray'First)));
+                                            str  => To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugJa + AnzeigeEingabeSchleifenwert - TextaccessVariablen.JaNeinAccessArray'First)));
          
       end loop AnzeigeEingabeSchleife;
          
