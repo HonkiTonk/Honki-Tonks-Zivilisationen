@@ -189,21 +189,21 @@ package ChangelogSeptember2022 is
    
    
 
-   -- Version 0.0. => 0.0. (03.09.2022):
+   -- Version 0.03. => 0.0. (03.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (02.09.2022):
+   -- Version 0.03. => 0.03. (02.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (01.09.2022):
+   -- Version 0.03.7935 => 0.03. (01.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.

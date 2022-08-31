@@ -32,7 +32,7 @@ with BewegungEinheitenSFML;
 with AuswahlStadtEinheit;
 with NachGrafiktask;
 with AuswahlSFML;
--- with MeldungFestlegenLogik;
+with EinheitenSpielmeldungenLogik;
 
 -- Hier auch mal überarbeiten, vor allem die Prozeduren weiter unten. äöü
 package body BefehleSFML is
@@ -131,7 +131,6 @@ package body BefehleSFML is
    
    
    
-   -- Irgendwas scheint hier noch nicht richtig zu funktionieren? äöü
    procedure WasWirdEntfernt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
@@ -304,15 +303,22 @@ package body BefehleSFML is
       then
          AufgabenAllgemein.Nullsetzung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          BewegungEinheitenSFML.BewegungEinheitenRichtung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-         
-      elsif
-        LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerBewegungspunkte
-      then
-         null;
+         NachGrafiktask.AktuelleEinheit := EinheitenKonstanten.LeerNummer;
+         return;
          
       else
-         BewegungEinheitenSFML.BewegungEinheitenRichtung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         null;
       end if;
+      
+      case
+        EinheitenSpielmeldungenLogik.BewegungspunkteMeldung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+      is
+         when True =>
+            BewegungEinheitenSFML.BewegungEinheitenRichtung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            
+         when False =>
+            null;
+      end case;
       
       NachGrafiktask.AktuelleEinheit := EinheitenKonstanten.LeerNummer;
       
@@ -336,14 +342,15 @@ package body BefehleSFML is
             null;
       end case;
       
-      if
-        LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer)) > EinheitenKonstanten.LeerBewegungspunkte
-      then
-         StadtErfolgreichGebaut := StadtBauen.StadtBauen (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer));
-                     
-      else
-         null;
-      end if;
+      case
+        EinheitenSpielmeldungenLogik.BewegungspunkteMeldung (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer))
+      is
+         when True =>
+            LeerRückgabewert := StadtBauen.StadtBauen (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer));
+            
+         when False =>
+            null;
+      end case;
       
    end BaueStadt;
    
@@ -366,18 +373,18 @@ package body BefehleSFML is
          when others =>
             null;
       end case;
+      
+      case
+        EinheitenSpielmeldungenLogik.BewegungspunkteMeldung (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer))
+      is
+         when True =>
+            LeerRückgabewert := Aufgaben.Aufgabe (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer),
+                                                   BefehlExtern             => BefehlExtern,
+                                                   KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer)));
             
-      if
-        LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer)) = EinheitenKonstanten.LeerBewegungspunkte
-      then
-         -- MeldungFestlegenLogik.MeldungFestlegen (MeldungExtern => 1);
-         AufgabeDurchführen := False;
-                     
-      else
-         AufgabeDurchführen := Aufgaben.Aufgabe (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer),
-                                                  BefehlExtern             => BefehlExtern,
-                                                  KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer)));
-      end if;
+         when False =>
+            null;
+      end case;
       
    end EinheitBefehle;
    
@@ -387,7 +394,6 @@ package body BefehleSFML is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      -- StadtSuchen mal überall das neue Speichersystem anpassen. äöü
       StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
                                                                  KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
       
@@ -397,7 +403,7 @@ package body BefehleSFML is
          null;
          
       else
-         NeuerName := EingabeSFML.StadtName;
+         NeuerName := EingabeSFML.StadtName (StadtRasseNummerExtern => (RasseExtern, StadtNummer));
          
          case
            NeuerName.ErfolgreichAbbruch

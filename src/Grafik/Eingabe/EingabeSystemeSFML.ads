@@ -7,6 +7,7 @@ package EingabeSystemeSFML is
 
    procedure TastenEingabe;
    procedure TextEingeben;
+   procedure FensterAnpassen;
 
 private
 
@@ -18,6 +19,7 @@ private
 
    Nutzereingabe : Sf.Window.Event.sfEvent;
    TextEingegeben : Sf.Window.Event.sfEvent;
+   Fensteranpassung : Sf.Window.Event.sfEvent;
 
    procedure TextPrüfen
      (UnicodeNummerExtern : in Sf.sfUint32);

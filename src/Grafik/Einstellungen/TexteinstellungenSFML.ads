@@ -23,9 +23,9 @@ package TexteinstellungenSFML is
 private
    
    SchriftgrößenStandard : constant SystemRecords.SchriftgrößenRecord := (
-                                                                              SchriftgrößeÜberschrift => 36,
-                                                                              SchriftgrößeStandard    => 24,
-                                                                              SchriftgrößeKlein       => 16
+                                                                              SchriftgrößeÜberschrift => 30,
+                                                                              SchriftgrößeStandard    => 20,
+                                                                              SchriftgrößeKlein       => 10
                                                                              );
    
    SchriftfarbenStandard : constant SystemRecords.SchriftfarbenRecord := (

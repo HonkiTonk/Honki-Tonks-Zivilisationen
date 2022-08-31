@@ -111,6 +111,14 @@ package KartenDatentypen is
    
    type GesamteFeldbewertung is range 0 .. 1_250;
    subtype Einzelbewertung is GesamteFeldbewertung range 0 .. 10;
+   
+   type Bewertung_Enum is (
+                           Null_Enum, Eins_Enum, Zwei_Enum, Drei_Enum, Vier_Enum, Fünf_Enum, Sechs_Enum, Sieben_Enum, Acht_Enum, Neun_Enum, Zehn_Enum
+                          );
+   pragma Ordered (Bewertung_Enum);
+   
+   -- Hier dann entsprechende Unterteilungen hinsichtlich der Qualität einbauen. äöü
+   -- subtype  is Bewertung_Enum range  .. ;
 
    type Wirtschaft_Enum is (
                             Nahrung, Produktion, Geld, Forschung

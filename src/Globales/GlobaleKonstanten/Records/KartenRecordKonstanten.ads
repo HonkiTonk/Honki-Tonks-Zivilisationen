@@ -47,15 +47,14 @@ package KartenRecordKonstanten is
                                                                                );
 
    LeerWeltkarte : constant KartenRecords.KartenRecord := (
-                                                           AktuellerGrund          => KartengrundDatentypen.Leer_Grund_Enum,
-                                                           BasisGrund              => KartengrundDatentypen.Leer_Grund_Enum,
+                                                           Grund                   => (KartengrundDatentypen.Leer_Grund_Enum, KartengrundDatentypen.Leer_Grund_Enum),
                                                            Sichtbar                => (others => KartenKonstanten.LeerSichtbar),
                                                            Fluss                   => KartengrundDatentypen.Leer_Fluss_Enum,
                                                            Ressource               => KartengrundDatentypen.Leer_Ressource_Enum,
                                                            Weg                     => KartenVerbesserungDatentypen.Leer_Weg_Enum,
                                                            Verbesserung            => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum,
                                                            DurchStadtBelegterGrund => LeerDurchStadtBelegterGrund,
-                                                           Felderwertung           => (others => KartenKonstanten.LeerFelderwertung)
+                                                           Felderwertung           => (others => KartenKonstanten.LeerFeldwertung)
                                                           );
 
    KartenformStandard : constant KartenRecords.KartenformRecord := (

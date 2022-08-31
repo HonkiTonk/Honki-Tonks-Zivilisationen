@@ -42,7 +42,7 @@ package body LadezeitenSFML is
       end case;
       
       AllgemeineViewsSFML.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => Text),
-                                        HintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum);
+                                        HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum);
       
       Viewfläche := ViewsEinstellenSFML.ViewflächeAuflösungAnpassen (ViewflächeExtern => Viewfläche);
       
@@ -50,8 +50,8 @@ package body LadezeitenSFML is
                                           GrößeExtern          => Viewfläche,
                                           AnzeigebereichExtern => GrafikRecordKonstanten.Ladebereich);
       
-      HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum,
-                                        AbmessungenExtern => Viewfläche);
+      HintergrundSFML.Hintergrund (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
+                                   AbmessungenExtern => Viewfläche);
             
       case
         WelcheLadeanzeigeExtern
@@ -96,7 +96,8 @@ package body LadezeitenSFML is
                Text := GlobaleTexte.Ladezeit (WelcheZeit);
             
             when others =>
-               Text := GlobaleTexte.Ladezeit (WelcheZeit) & TextKonstanten.StandardAbstand & ZahlAlsStringLadefortschritt (ZahlExtern => Ladezeiten.FortschrittSpielwelt (SpielweltErstellenSchleifenwert)) & "/" & "100";
+               Text := GlobaleTexte.Ladezeit (WelcheZeit) & TextKonstanten.StandardAbstand & ZahlAlsStringLadefortschritt (ZahlExtern => Ladezeiten.FortschrittSpielwelt (SpielweltErstellenSchleifenwert))
+                 & TextKonstanten.Trennzeichen & "100";
          end case;
          
          Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
@@ -144,7 +145,8 @@ package body LadezeitenSFML is
                Text := GlobaleTexte.Ladezeit (WelcheZeit);
             
             when others =>
-               Text := GlobaleTexte.Ladezeit (WelcheZeit) & TextKonstanten.StandardAbstand & ZahlAlsStringLadefortschritt (ZahlExtern => Ladezeiten.FortschrittKI (KIRechnetSchleifenwert)) & "/" & "100";
+               Text := GlobaleTexte.Ladezeit (WelcheZeit) & TextKonstanten.StandardAbstand & ZahlAlsStringLadefortschritt (ZahlExtern => Ladezeiten.FortschrittKI (KIRechnetSchleifenwert))
+                 & TextKonstanten.Trennzeichen & "100";
          end case;
          
          Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
@@ -175,13 +177,13 @@ package body LadezeitenSFML is
    
    function Rundenende
      (ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
-     return Sf.System.Vector2.sfVector2f
+      return Sf.System.Vector2.sfVector2f
    is begin
       
       Textposition.y := TextberechnungenHoeheSFML.Zeilenabstand;
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.RundenendeAccess (1),
-                                         str  => To_Wide_Wide_String (Source => ZahlAlsStringLadefortschritt (ZahlExtern => Ladezeiten.FortschrittRundenende)) & "/" & "100");
+                                         str  => To_Wide_Wide_String (Source => ZahlAlsStringLadefortschritt (ZahlExtern => Ladezeiten.FortschrittRundenende)) & TextKonstanten.Trennzeichen & "100");
                                                  
       Textposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.RundenendeAccess (1),
                                                                             ViewbreiteExtern => ViewflächeExtern.x);
@@ -210,7 +212,7 @@ package body LadezeitenSFML is
       Textposition.y := TextberechnungenHoeheSFML.Zeilenabstand;
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.SpeichernLadenAccess (1),
-                                         str  => To_Wide_Wide_String (Source => ZahlAlsStringLadefortschritt (ZahlExtern => Ladezeiten.FortschrittSpeichernLaden)) & "/" & "100");
+                                         str  => To_Wide_Wide_String (Source => ZahlAlsStringLadefortschritt (ZahlExtern => Ladezeiten.FortschrittSpeichernLaden)) & TextKonstanten.Trennzeichen & "100");
                                                  
       Textposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.SpeichernLadenAccess (1),
                                                                             ViewbreiteExtern => ViewflächeExtern.x);

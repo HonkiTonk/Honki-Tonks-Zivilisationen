@@ -10,7 +10,7 @@ package body SchreibeKarten is
       GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
    is begin
       
-      Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).AktuellerGrund := GrundExtern;
+      Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund.AktuellerGrund := GrundExtern;
       
    end AktuellerGrund;
    
@@ -28,7 +28,7 @@ package body SchreibeKarten is
             Fehler.LogikFehler (FehlermeldungExtern => "SchreibeKarten.BasisGrund - Zusatzgrund auf Basisgrund geschrieben.");
             
          when others =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).BasisGrund := GrundExtern;
+            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund.BasisGrund := GrundExtern;
       end case;
       
    end BasisGrund;
@@ -40,10 +40,7 @@ package body SchreibeKarten is
       GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
    is begin
       
-      BasisGrund (KoordinatenExtern => KoordinatenExtern,
-                  GrundExtern       => GrundExtern);
-      
-      Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).AktuellerGrund := GrundExtern;
+      Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund := (GrundExtern, GrundExtern);
       
    end GleicherGrund;
    
@@ -55,10 +52,7 @@ package body SchreibeKarten is
       AktuellerGrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
    is begin
       
-      BasisGrund (KoordinatenExtern => KoordinatenExtern,
-                  GrundExtern       => BasisgrundExtern);
-      
-      Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).AktuellerGrund := AktuellerGrundExtern;
+      Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund := (BasisgrundExtern, AktuellerGrundExtern);
       
    end UnterschiedlicherGrund;
    
@@ -137,7 +131,9 @@ package body SchreibeKarten is
       BewertungExtern : in KartenDatentypen.GesamteFeldbewertung)
    is begin
       
-      Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Felderwertung (RasseExtern) := BewertungExtern;
+      Bewertungwert := BewertungExtern / 125;
+      
+      Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Felderwertung (RasseExtern) := KartenDatentypen.Bewertung_Enum'Val (Bewertungwert);
       
    end Bewertung;
 end SchreibeKarten;

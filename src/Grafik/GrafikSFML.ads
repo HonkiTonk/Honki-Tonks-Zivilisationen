@@ -8,10 +8,11 @@ package GrafikSFML is
 private
 
    procedure AnzeigeEingaben;
-   procedure AnzeigeEditoren;
    procedure GrafikanpassungenVorFensterleerung;
    procedure Eingaben;
    procedure AnzeigeSpielmeldungen;
+
+
 
    function AnzeigeAuswahl
      return Boolean;

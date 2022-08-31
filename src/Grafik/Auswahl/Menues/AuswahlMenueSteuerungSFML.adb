@@ -38,7 +38,7 @@ package body AuswahlMenueSteuerungSFML is
                                           GrößeExtern          => ViewflächeText,
                                           AnzeigebereichExtern => GrafikRecordKonstanten.Steuerungbereich (1));
       
-      HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum,
+      HintergrundSFML.Hintergrund (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
                                         AbmessungenExtern => ViewflächeText);
                   
       ViewflächeText := BefehleAnzeigen (AuswahlExtern => AuswahlExtern.AuswahlEins);
@@ -53,7 +53,7 @@ package body AuswahlMenueSteuerungSFML is
                                           GrößeExtern          => ViewflächeText,
                                           AnzeigebereichExtern => GrafikRecordKonstanten.Steuerungbereich (2));
       
-      HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum,
+      HintergrundSFML.Hintergrund (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
                                         AbmessungenExtern => ViewflächeText);
       
       BelegungAnzeigen (AuswahlExtern => AuswahlExtern.AuswahlZwei);

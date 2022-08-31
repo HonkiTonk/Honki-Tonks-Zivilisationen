@@ -13,7 +13,7 @@ package KIKartenfeldbewertungModifizieren is
    function BewertungStadtBauen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenDatentypen.GesamteFeldbewertung
+      return KartenDatentypen.Bewertung_Enum
      with
        Pre => (
                  SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.KI_Spieler_Enum

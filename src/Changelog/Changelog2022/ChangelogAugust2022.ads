@@ -1,19 +1,27 @@
 package ChangelogAugust2022 is
 
-   -- Version 0.03. => 0.03. (31.08.2022):
+   -- Version 0.03.7800 => 0.03.7935 (31.08.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehler behoben der bei Ladebildschirmen zu fehlerhafter Skalierung führte.
+   -- Rassenspezifische Standardstadtnamen werden jetzt beim Bauen einer Stadt vorgeschlagen.
+   -- Einige Spielmeldungen eingebaut.
+   -- Unnötigen Code gelöscht.
+   -- Durchsichtige Hintergründe eingebaut.
+   -- Hintergründe und Textpositionierung überarbeitet.
+   -- Neue Beispielbilder erstellt.
+   -- Schriftgröße für bessere Skalierung angepasst.
+   -- Speicherverbrauch und Spielstandgrößte deutlich reduziert.
+   -- Felderwertung angefange zu überarbeiten.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst/optimiert.
    
    
 
-   -- Version 0.03.7745 => 0.03.7790 (30.08.2022):
+   -- Version 0.03.7745 => 0.03.7800 (30.08.2022):
    
    -- Neues Beispielbild erstellt.
    -- Einige Verbrauchstests durchgeführt.
    -- Interne Struktur überarbeitet.
    -- Meldesystem als SFML- un Viewversion eingebaut.
-   -- 
    -- Contracts, Kommentare und Kleinigkeiten korrigiert.
    
    

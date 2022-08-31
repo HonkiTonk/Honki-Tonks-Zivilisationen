@@ -31,8 +31,8 @@ package body AnzeigeSpielmeldungenSFML is
                                           GrößeExtern          => Viewfläche,
                                           AnzeigebereichExtern => GrafikRecordKonstanten.Meldungsbereich);
       
-      HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Seitenleiste_Hintergrund_Enum,
-                                        AbmessungenExtern => Viewfläche);
+      HintergrundSFML.Hintergrund (HintergrundExtern => GrafikDatentypen.Meldung_Hintergrund_Enum,
+                                   AbmessungenExtern => Viewfläche);
       
       Textposition.y := TextKonstanten.StartpositionText.y;
       

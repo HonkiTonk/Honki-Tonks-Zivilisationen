@@ -128,5 +128,9 @@ package SchreibeKarten is
                and
                  KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
               );
+   
+private
+   
+   Bewertungwert : KartenDatentypen.GesamteFeldbewertung;
 
 end SchreibeKarten;

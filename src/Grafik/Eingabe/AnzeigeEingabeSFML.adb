@@ -34,7 +34,7 @@ package body AnzeigeEingabeSFML is
       EingabeExtern : in SystemDatentypen.Eingaben_Fragen_Enum)
    is begin
       
-      AllgemeineViewsSFML.Frage (HintergrundExtern => GrafikDatentypen.Seitenleiste_Hintergrund_Enum,
+      AllgemeineViewsSFML.Frage (HintergrundExtern => GrafikDatentypen.Auswahl_Hintergrund_Enum,
                                  FrageExtern       => To_Wide_Wide_String (Source => Meldungstexte.Frage (FrageExtern)));
       
       case
@@ -67,8 +67,8 @@ package body AnzeigeEingabeSFML is
                                           GrößeExtern          => Viewfläche,
                                           AnzeigebereichExtern => GrafikRecordKonstanten.Eingabebereich);
       
-      HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Seitenleiste_Hintergrund_Enum,
-                                        AbmessungenExtern => Viewfläche);
+      HintergrundSFML.Hintergrund (HintergrundExtern => GrafikDatentypen.Auswahl_Hintergrund_Enum,
+                                   AbmessungenExtern => Viewfläche);
       
       case
         EingabeSFML.WelchesVorzeichen
@@ -113,8 +113,8 @@ package body AnzeigeEingabeSFML is
                                           GrößeExtern          => Viewfläche,
                                           AnzeigebereichExtern => GrafikRecordKonstanten.Eingabebereich);
       
-      HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Seitenleiste_Hintergrund_Enum,
-                                        AbmessungenExtern => Viewfläche);
+      HintergrundSFML.Hintergrund (HintergrundExtern => GrafikDatentypen.Auswahl_Hintergrund_Enum,
+                                   AbmessungenExtern => Viewfläche);
       
       Textposition.y := TextKonstanten.StartpositionText.y;
       
@@ -149,8 +149,8 @@ package body AnzeigeEingabeSFML is
                                           GrößeExtern          => Viewfläche,
                                           AnzeigebereichExtern => GrafikRecordKonstanten.JaNeinBereich);
       
-      HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Seitenleiste_Hintergrund_Enum,
-                                        AbmessungenExtern => Viewfläche);
+      HintergrundSFML.Hintergrund (HintergrundExtern => GrafikDatentypen.Auswahl_Hintergrund_Enum,
+                                   AbmessungenExtern => Viewfläche);
             
       Textbreite := 0.00;
       Textposition.y := TextKonstanten.StartpositionText.y;
@@ -201,7 +201,6 @@ package body AnzeigeEingabeSFML is
    is begin
       
       -- Hier auch noch eine Frage einbauen? äöü
-      
       Viewfläche := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
                                                                       VerhältnisExtern => (0.25, 0.20));
       
@@ -209,8 +208,8 @@ package body AnzeigeEingabeSFML is
                                           GrößeExtern          => Viewfläche,
                                           AnzeigebereichExtern => (0.25, 0.45, 0.50, 0.10));
       
-      HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum,
-                                        AbmessungenExtern => Viewfläche);
+      HintergrundSFML.Hintergrund (HintergrundExtern => GrafikDatentypen.Auswahl_Hintergrund_Enum,
+                                   AbmessungenExtern => Viewfläche);
       
       AktuelleAuswahl := NachGrafiktask.AktuelleAuswahl.AuswahlEins;
       WelcheAuswahl := NachGrafiktask.WelcheAuswahl;

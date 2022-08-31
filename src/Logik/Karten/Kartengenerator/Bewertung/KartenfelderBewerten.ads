@@ -4,7 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
 
-private with ZahlenDatentypen;
 private with KartenDatentypen;
 
 package KartenfelderBewerten is
@@ -18,7 +17,8 @@ package KartenfelderBewerten is
 
 private
 
-   type MultiplikatorArray is array (KartenDatentypen.EbenePlanet'Range) of ZahlenDatentypen.EigenesPositive;
-   Multiplikator : MultiplikatorArray;
+   Oberflächenteiler : KartenDatentypen.KartenfeldPositiv;
+   Unterflächenteiler : KartenDatentypen.KartenfeldPositiv;
+   Kernflächenteiler : KartenDatentypen.KartenfeldPositiv;
 
 end KartenfelderBewerten;

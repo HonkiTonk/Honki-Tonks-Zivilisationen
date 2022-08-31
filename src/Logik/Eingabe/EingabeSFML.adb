@@ -13,6 +13,7 @@ with TextnummernKonstanten;
 with SystemDatentypen;
 with SystemRecordKonstanten;
 with TastenbelegungVariablen;
+with Rassentexte;
 
 with Fehler;
 with NachGrafiktask;
@@ -299,10 +300,12 @@ package body EingabeSFML is
    
    
    function StadtName
-     return SystemRecords.TextEingabeRecord
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+      return SystemRecords.TextEingabeRecord
    is begin
       
-      -- Diese Funktion wird auch beim Suchen nach einer Stadt benutzt, Frage universeller gestalten oder eine entsprechende Prüfung welcher Fall vorliegt.
+      NachLogiktask.EingegebenerText.EingegebenerText := Rassentexte.Städtenamen (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer);
+      
       return NameEingeben (WelcheFrageExtern => TextnummernKonstanten.FrageStadtname);
       
    end StadtName;
@@ -316,7 +319,15 @@ package body EingabeSFML is
       
       NachGrafiktask.AnzeigeFrage := WelcheFrageExtern;
       
-      NachLogiktask.EingegebenerText := SystemRecordKonstanten.LeerTexteingabe;
+      case
+        WelcheFrageExtern
+      is
+         when TextnummernKonstanten.FrageStadtname =>
+            null;
+            
+         when others =>
+            NachLogiktask.EingegebenerText := SystemRecordKonstanten.LeerTexteingabe;
+      end case;
       
       NachGrafiktask.Eingabe := SystemDatentypen.Text_Eingabe_Enum;
       

@@ -34,12 +34,15 @@ private
    
    
    function NeutralMöglich
-     return Boolean;
+     (AktuellerStatusExtern : in DiplomatieDatentypen.Status_Untereinander_Bekannt_Enum)
+      return Boolean;
    
    function NichtangriffspaktMöglich
-     return Boolean;
+     (AktuellerStatusExtern : in DiplomatieDatentypen.Status_Untereinander_Bekannt_Enum)
+      return Boolean;
    
    function KriegMöglich
-     return Boolean;
+     (AktuellerStatusExtern : in DiplomatieDatentypen.Status_Untereinander_Bekannt_Enum)
+      return Boolean;
 
 end DiplomatischerZustandAenderbar;

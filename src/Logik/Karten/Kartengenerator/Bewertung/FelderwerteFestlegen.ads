@@ -18,7 +18,7 @@ package FelderwerteFestlegen is
                  KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
               );
    
-   procedure KartenfelderBewertenKleineSchleife
+   procedure KartenfeldBewerten
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Enum)
      with
@@ -39,6 +39,11 @@ private
    
    type BewertungArray is array (KartenDatentypen.EbeneVorhanden'Range) of KartenDatentypen.GesamteFeldbewertung;
    Bewertung : BewertungArray;
+   
+   type GesamtbewertungArray is array (KartenDatentypen.EbeneVorhanden'Range, RassenDatentypen.Rassen_Verwendet_Enum'Range) of KartenDatentypen.GesamteFeldbewertung;
+   Gesamtbewertung : GesamtbewertungArray;
+   
+   Bewertungswert : KartenDatentypen.GesamteFeldbewertung;
    
    procedure BewertungSelbst
      (KoordinatenFeldExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;

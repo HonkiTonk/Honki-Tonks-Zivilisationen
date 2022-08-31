@@ -17,13 +17,7 @@ package GrafikDatentypen is
    subtype Ladezeiten_Enum is Grafik_Aktuelle_Darstellung_Enum range Grafik_Generierungszeit_Enum .. Grafik_Speichern_Laden_Enum;
    subtype Editoren_Anzeigen_Enum is Grafik_Aktuelle_Darstellung_Enum range Grafik_Editoren_Enum .. Grafik_Editoren_Enum;
    
-   type Hintergrund_Texturen_Enum is (
-                                      Standard_Hintergrund_Enum,
-                                      Zusatz_Hintergrund_Enum,
-                                      Seitenleiste_Hintergrund_Enum,
-                                      Bauen_Hintergrund_Enum,
-                                      Forschung_Hintergrund_Enum
-                                     );
+   
    
    type Fenster_Ändern_Enum is (
                                  Keine_Änderung_Enum,
@@ -32,5 +26,16 @@ package GrafikDatentypen is
                                 );
    
    subtype Fenster_Wurde_Verändert_Enum is Fenster_Ändern_Enum range Fenster_Verändert_Enum .. Modus_Verändert_Enum;
+   
+   
+   
+   type Hintergrund_Enum is (
+                             Seitenleiste_Hintergrund_Enum, Bauen_Hintergrund_Enum, Forschung_Hintergrund_Enum, Menü_Hintergrund_Enum,
+                             
+                             Auswahl_Hintergrund_Enum, Meldung_Hintergrund_Enum
+                            );
+   
+   subtype Hintergrund_Undurchsichtig_Enum is Hintergrund_Enum range Hintergrund_Enum'First .. Menü_Hintergrund_Enum;
+   subtype Hintergrund_Durchsichtig_Enum is Hintergrund_Enum range Auswahl_Hintergrund_Enum .. Hintergrund_Enum'Last;
 
 end GrafikDatentypen;

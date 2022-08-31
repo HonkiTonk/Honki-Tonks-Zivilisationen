@@ -143,9 +143,9 @@ package body Spieleinstellungen is
             Warnung.LogikWarnung (WarnmeldungExtern => "SpielEinstellungen.AutomatischeEinstellungen - Keine Rassenplatzierung möglich.");
             return RueckgabeDatentypen.Spielmenü_Enum;
       end case;
-         
-      Ladezeiten.SpielweltErstellen (LadezeitenDatentypen.Platziere_Rassen_Enum, SystemDatentypen.Endwert_Enum) := Clock;
       
+      Ladezeiten.SpielweltErstellen (LadezeitenDatentypen.Platziere_Rassen_Enum, SystemDatentypen.Endwert_Enum) := Clock;
+            
       return ImSpiel.ImSpiel;
       
    end AutomatischeEinstellungen;

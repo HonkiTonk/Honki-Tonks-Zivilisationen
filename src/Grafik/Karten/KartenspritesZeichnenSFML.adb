@@ -24,7 +24,7 @@ package body KartenspritesZeichnenSFML is
          KartenspritesZeichnenSFML.SpriteZeichnen (SpriteAccesExtern      => SpriteAccess,
                                                    PositionExtern         => PositionExtern,
                                                    SkalierungExtern       => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenWeltkarte (SpriteAccessExtern  => SpriteAccess,
-                                                                                                                                       TextureAccessExtern => TexturAccessExtern),
+                                                                                                                                           TextureAccessExtern => TexturAccessExtern),
                                                    DurchsichtigkeitExtern => DurchsichtigkeitExtern);
          return True;
          
@@ -49,7 +49,7 @@ package body KartenspritesZeichnenSFML is
          SpriteZeichnen (SpriteAccesExtern      => SpriteAccess,
                          PositionExtern         => PositionExtern,
                          SkalierungExtern       => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenStadtkarte (SpriteAccessExtern  => SpriteAccess,
-                                                                                                             TextureAccessExtern => TexturAccessExtern),
+                                                                                                                  TextureAccessExtern => TexturAccessExtern),
                          DurchsichtigkeitExtern => Sf.sfUint8'Last);
          return True;
          
@@ -74,7 +74,7 @@ package body KartenspritesZeichnenSFML is
          SpriteZeichnen (SpriteAccesExtern      => SpriteAccess,
                          PositionExtern         => PositionExtern,
                          SkalierungExtern       => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenGesamteStadtkarte (SpriteAccessExtern  => SpriteAccess,
-                                                                                                                    TextureAccessExtern => TexturAccessExtern),
+                                                                                                                         TextureAccessExtern => TexturAccessExtern),
                          DurchsichtigkeitExtern => Sf.sfUint8'Last);
          return True;
          
@@ -100,6 +100,7 @@ package body KartenspritesZeichnenSFML is
                                 factors => SkalierungExtern);
       
       Farbe := Sf.Graphics.Sprite.getColor (sprite => SpriteAccesExtern);
+      
       Farbe.a := DurchsichtigkeitExtern;
       
       Sf.Graphics.Sprite.setColor (sprite => SpriteAccesExtern,

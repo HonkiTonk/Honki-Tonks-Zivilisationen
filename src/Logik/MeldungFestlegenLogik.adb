@@ -16,5 +16,24 @@ package body MeldungFestlegenLogik is
       NachGrafiktask.Spielmeldung := MeldungExtern;
       
    end MeldungFestlegen;
+   
+   
+   
+   procedure SpielermeldungFestlegen
+     (MeldungExtern : in Positive;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+   is begin
+      
+      case
+        SpielVariablen.RassenImSpiel (RasseExtern)
+      is
+         when RassenDatentypen.Mensch_Spieler_Enum =>
+            MeldungFestlegen (MeldungExtern => MeldungExtern);
+            
+         when others =>
+            null;
+      end case;
+      
+   end SpielermeldungFestlegen;
 
 end MeldungFestlegenLogik;

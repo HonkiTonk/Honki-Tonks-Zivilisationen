@@ -12,16 +12,16 @@ package AllgemeineViewsSFML is
    
    procedure Überschrift
      (ÜberschriftExtern : in Wide_Wide_String;
-      HintergrundExtern : in GrafikDatentypen.Hintergrund_Texturen_Enum);
+      HintergrundExtern : in GrafikDatentypen.Hintergrund_Enum);
    
    procedure ÜberschriftErmitteln
      (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum);
    
    procedure Versionsnummer
-     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Texturen_Enum);
+     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Enum);
    
    procedure Frage
-     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Texturen_Enum;
+     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Enum;
       FrageExtern : in Wide_Wide_String);
    
 private

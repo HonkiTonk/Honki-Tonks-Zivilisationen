@@ -43,7 +43,7 @@ private
    Farbe : Sf.Graphics.Color.sfColor;
 
    type ViewflächenArray is array (GrafikRecordKonstanten.Baumenübereich'Range) of Sf.System.Vector2.sfVector2f;
-   Viewfläche : ViewflächenArray := (others => (5.00, 5.00));
+   Viewfläche : ViewflächenArray := (others => GrafikRecordKonstanten.StartgrößeView);
 
    KeineAnzeige : constant Sf.Graphics.Rect.sfFloatRect := (0.00, 0.00, 0.00, 0.00);
 

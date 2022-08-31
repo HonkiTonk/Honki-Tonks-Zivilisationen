@@ -3,8 +3,10 @@ pragma Warnings (Off, "*array aggregate*");
 
 with DiplomatieDatentypen; use DiplomatieDatentypen;
 with WichtigesKonstanten;
+with TextnummernKonstanten;
 
 with DiplomatischerZustand;
+with MeldungFestlegenLogik;
 
 package body DiplomatischerZustandAenderbar is
 
@@ -17,6 +19,7 @@ package body DiplomatischerZustandAenderbar is
       if
         NeuerStatusExtern = SpielVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern).AktuellerZustand
       then
+         MeldungFestlegenLogik.MeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungStatus);
          return;
          
       else
@@ -35,13 +38,13 @@ package body DiplomatischerZustandAenderbar is
         NeuerStatusExtern
       is
          when DiplomatieDatentypen.Neutral_Enum =>
-            ÄnderungMöglich := NeutralMöglich;
+            ÄnderungMöglich := NeutralMöglich (AktuellerStatusExtern => AktuellerStatus);
                         
          when DiplomatieDatentypen.Nichtangriffspakt_Enum =>
-            ÄnderungMöglich := NichtangriffspaktMöglich;
+            ÄnderungMöglich := NichtangriffspaktMöglich (AktuellerStatusExtern => AktuellerStatus);
                         
          when DiplomatieDatentypen.Krieg_Enum =>
-            ÄnderungMöglich := KriegMöglich;
+            ÄnderungMöglich := KriegMöglich (AktuellerStatusExtern => AktuellerStatus);
       end case;
       
       case
@@ -61,22 +64,23 @@ package body DiplomatischerZustandAenderbar is
    
    
    function NeutralMöglich
-     return Boolean
+     (AktuellerStatusExtern : in DiplomatieDatentypen.Status_Untereinander_Bekannt_Enum)
+      return Boolean
    is begin
       
       if
-        AktuellerStatus = DiplomatieDatentypen.Nichtangriffspakt_Enum
+        AktuellerStatusExtern = DiplomatieDatentypen.Nichtangriffspakt_Enum
         and
           ZeitSeitÄnderung >= WichtigesKonstanten.DiplomatischerStatusÄnderungszeit
       then
          return True;
          
       elsif
-        AktuellerStatus = DiplomatieDatentypen.Krieg_Enum
+        AktuellerStatusExtern = DiplomatieDatentypen.Krieg_Enum
         and
           ZeitSeitÄnderung >= 10
           and
-            SympathieZweiZuEins >= DiplomatischerZustand.SympathieGrenzen (AktuellerStatus) - 20
+            SympathieZweiZuEins >= DiplomatischerZustand.SympathieGrenzen (AktuellerStatusExtern) - 20
       then
          return True;
          
@@ -89,18 +93,20 @@ package body DiplomatischerZustandAenderbar is
    
    
    function NichtangriffspaktMöglich
-     return Boolean
+     (AktuellerStatusExtern : in DiplomatieDatentypen.Status_Untereinander_Bekannt_Enum)
+      return Boolean
    is begin
       
       if
-        AktuellerStatus = DiplomatieDatentypen.Krieg_Enum
+        AktuellerStatusExtern = DiplomatieDatentypen.Krieg_Enum
       then
+         MeldungFestlegenLogik.MeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungImKrieg);
          return False;
          
       elsif
-        AktuellerStatus = DiplomatieDatentypen.Neutral_Enum
+        AktuellerStatusExtern = DiplomatieDatentypen.Neutral_Enum
         and
-          SympathieZweiZuEins >= DiplomatischerZustand.SympathieGrenzen (AktuellerStatus) - 10
+          SympathieZweiZuEins >= DiplomatischerZustand.SympathieGrenzen (AktuellerStatusExtern) - 10
       then
          return True;
          
@@ -113,16 +119,18 @@ package body DiplomatischerZustandAenderbar is
    
    
    function KriegMöglich
-     return Boolean
+     (AktuellerStatusExtern : in DiplomatieDatentypen.Status_Untereinander_Bekannt_Enum)
+      return Boolean
    is begin
       
       if        
-        AktuellerStatus = DiplomatieDatentypen.Nichtangriffspakt_Enum
+        AktuellerStatusExtern = DiplomatieDatentypen.Nichtangriffspakt_Enum
       then
+         MeldungFestlegenLogik.MeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungNichtangriffspakt);
          return False;
          
       elsif
-        AktuellerStatus = DiplomatieDatentypen.Neutral_Enum
+        AktuellerStatusExtern = DiplomatieDatentypen.Neutral_Enum
         and
           ZeitSeitÄnderung >= WichtigesKonstanten.DiplomatischerStatusÄnderungszeit
       then

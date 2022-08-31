@@ -5,33 +5,26 @@ with Sf.Graphics;
 with Sf.System.Vector2;
 
 private with Sf.Graphics.Sprite;
+private with Sf.Graphics.Color;
 
 with GrafikDatentypen;
 
 package HintergrundSFML is
 
-   procedure SeitenleisteHintergrund
-     (AbmessungenExtern : in Sf.System.Vector2.sfVector2f)
-     with
-       Pre => (
-                 AbmessungenExtern.x > 0.00
-               and
-                 AbmessungenExtern.y > 0.00
-              );
-
-   procedure MenüHintergrund
-     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Texturen_Enum;
+   procedure Hintergrund
+     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Enum;
       AbmessungenExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre => (
-                 AbmessungenExtern.x > 0.00
+                 AbmessungenExtern.x >= 0.00
                and
-                 AbmessungenExtern.y > 0.00
+                 AbmessungenExtern.y >= 0.00
               );
 
 private
 
-   SeitenleistespriteAccess : constant Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;
-   MenüspriteAccess : constant Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;
+   HintergrundSpriteAccess : constant Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;
+
+   Farbe : Sf.Graphics.Color.sfColor;
 
 end HintergrundSFML;

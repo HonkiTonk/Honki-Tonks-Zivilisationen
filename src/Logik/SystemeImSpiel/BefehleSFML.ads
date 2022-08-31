@@ -25,8 +25,7 @@ package BefehleSFML is
 private
 
    Transportiert : Boolean;
-   AufgabeDurchführen : Boolean;
-   StadtErfolgreichGebaut : Boolean;
+   LeerRückgabewert : Boolean;
       
    Befehl : TastenbelegungDatentypen.Tastenbelegung_Enum;
 

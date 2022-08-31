@@ -28,15 +28,15 @@ package body KarteWichtigesSFML is
    is begin
       
       Viewfläche := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
-                                                                    VerhältnisExtern => (0.15, 0.05));
+                                                                      VerhältnisExtern => (0.15, 0.05));
       
       -- Diese Bereiche sicherheitshalber auch von außen hineingeben? äöü
       ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => Views.SeitenleisteWeltkarteAccesse (1),
                                           GrößeExtern          => Viewfläche,
                                           AnzeigebereichExtern => GrafikRecordKonstanten.SeitenleisteWeltkartenbereich (1));
       
-      HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Seitenleiste_Hintergrund_Enum,
-                                        AbmessungenExtern => Viewfläche);
+      HintergrundSFML.Hintergrund (HintergrundExtern => GrafikDatentypen.Seitenleiste_Hintergrund_Enum,
+                                   AbmessungenExtern => Viewfläche);
       
       Textbreite := 0.00;
       Textposition := TextKonstanten.StartpositionText;

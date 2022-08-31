@@ -59,10 +59,10 @@ package TextKonstanten is
    
    
    -- Überall entsprechend einbauen. äöü
-   StartpositionText : constant Sf.System.Vector2.sfVector2f := (5.00, 5.00);
+   StartpositionText : constant Sf.System.Vector2.sfVector2f := (12.00, 10.00);
    
-   TextbreiteZusatzwert : constant Float := StartpositionText.x * 5.00;
-   TexthöheZusatzwert : constant Float := StartpositionText.y * 3.00;
+   TextbreiteZusatzwert : constant Float := StartpositionText.x * 2.00;
+   TexthöheZusatzwert : constant Float := StartpositionText.y;
    LeerTextbreite : constant Float := 0.00;
 
 end TextKonstanten;

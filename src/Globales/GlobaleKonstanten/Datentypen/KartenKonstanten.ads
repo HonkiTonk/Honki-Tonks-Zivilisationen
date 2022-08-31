@@ -27,6 +27,7 @@ package KartenKonstanten is
    LeerPassierbarkeit : constant Boolean := False;
       
    LeerBewertung : constant KartenDatentypen.Einzelbewertung := 0;
+   LeerFeldwertung : constant KartenDatentypen.Bewertung_Enum := KartenDatentypen.Null_Enum;
    LeerWirtschaft : constant ProduktionDatentypen.Einzelproduktion := 0;
    LeerKampf : constant KampfDatentypen.Kampfwerte := KampfDatentypen.Kampfwerte'First;
    

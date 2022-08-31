@@ -34,7 +34,7 @@ package body AuswahlMenuesSFML is
             AuswahlMenueSteuerungSFML.AuswahlMenüSteuerung (AuswahlExtern => AktuelleAuswahlExtern);
       end case;
       
-      AllgemeineViewsSFML.Versionsnummer (HintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum);
+      AllgemeineViewsSFML.Versionsnummer (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum);
       
    end AuswahlMenüsAufteilung;
 

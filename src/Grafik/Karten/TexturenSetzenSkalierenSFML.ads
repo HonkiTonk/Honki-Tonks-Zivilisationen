@@ -4,6 +4,8 @@ pragma Warnings (Off, "*array aggregate*");
 with Sf.Graphics; use Sf.Graphics;
 with Sf.System.Vector2;
 
+private with Sf.Graphics.Rect;
+
 package TexturenSetzenSkalierenSFML is
 
    function TexturenSetzenSkalierenWeltkarte
@@ -80,9 +82,10 @@ private
    SkalierungKartenfeld : Sf.System.Vector2.sfVector2f;
    SkalierungBild : Sf.System.Vector2.sfVector2f;
    
-   GrößeTextur : Sf.System.Vector2.sfVector2f;
    KartenfelderAbmessung : Sf.System.Vector2.sfVector2f;
    StadtfelderAbmessung : Sf.System.Vector2.sfVector2f;
    StadtAbmessung : Sf.System.Vector2.sfVector2f;
+   
+   Rechteck : Sf.Graphics.Rect.sfFloatRect;
 
 end TexturenSetzenSkalierenSFML;

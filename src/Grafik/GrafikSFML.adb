@@ -24,12 +24,14 @@ with LadezeitenSFML;
 with KartenaufteilungSFML;
 with DiplomatieauswahlGrafik;
 with AnzeigeSpielmeldungenSFML;
+with EditorenGrafik;
+-- with Systemchecks;
 
 package body GrafikSFML is
    
    procedure GrafikSFML
    is begin
-      
+            
       GrafikStartenSchleife:
       while NachGrafiktask.ErzeugeFenster = False loop
 
@@ -40,16 +42,12 @@ package body GrafikSFML is
       -- Das Setzen der Schriftart kann scheinbar erst nach dem Erzeugen eines Fensters stattfinden.
       -- Oder habe ich zu dem Zeitpunkt den Font noch nicht eingelesen? Mal nachprüfen. äöü
       GrafikStartEndeSFML.FensterErzeugen;
-                  
+      
+      -- Systemchecks.Größenprüfung;
+      
       GrafikSchleife:
       loop
-         
-         GrafikanpassungenVorFensterleerung;
-         
-         GrafikStartEndeSFML.FensterLeeren;
-         
-         Eingaben;
-         
+                  
          case
            NachGrafiktask.FensterGeschlossen
          is
@@ -57,7 +55,9 @@ package body GrafikSFML is
                exit GrafikSchleife;
                
             when False =>
-               null;
+               GrafikanpassungenVorFensterleerung;
+               GrafikStartEndeSFML.FensterLeeren;
+               Eingaben;
          end case;
          
          case
@@ -91,7 +91,7 @@ package body GrafikSFML is
          when False =>
             null;
       end case;
-         
+               
       case
         NachGrafiktask.FensterVerändert
       is
@@ -148,8 +148,8 @@ package body GrafikSFML is
         NachGrafiktask.AktuelleDarstellung
       is
          when GrafikDatentypen.Grafik_Start_Enum =>
-            NachLogiktask.Warten := False;
             NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
+            NachLogiktask.Warten := False;
             
          when GrafikDatentypen.Grafik_Sprache_Enum =>
             AnzeigeSprachauswahlSFML.AnzeigeSprache;
@@ -165,13 +165,15 @@ package body GrafikSFML is
          when GrafikDatentypen.Ladezeiten_Enum'Range =>
             LadezeitenSFML.LadezeitenSFML (WelcheLadeanzeigeExtern => NachGrafiktask.AktuelleDarstellung,
                                            RasseExtern             => NachGrafiktask.KIRechnet);
+            -- Diese Prüfung kann nicht rausgezogen werden, da er mit dem aktuellen System sonst Tasteneingaben nicht mehr korrekt erkennt.
+            EingabeSystemeSFML.FensterAnpassen;
          
          when GrafikDatentypen.Grafik_Menüs_Enum =>
             AuswahlMenuesSFML.AuswahlMenüsAufteilung (WelchesMenüExtern     => NachGrafiktask.AktuellesMenü,
-                                                      AktuelleAuswahlExtern => NachGrafiktask.AktuelleAuswahl);
+                                                       AktuelleAuswahlExtern => NachGrafiktask.AktuelleAuswahl);
                
          when GrafikDatentypen.Editoren_Anzeigen_Enum'Range =>
-            AnzeigeEditoren;
+            EditorenGrafik.Editoren;
                
          when GrafikDatentypen.Grafik_Weltkarte_Enum =>
             KartenaufteilungSFML.Weltkarte (EinheitRasseNummerExtern => (NachGrafiktask.AktuelleRasse, NachGrafiktask.AktuelleEinheit));
@@ -194,37 +196,13 @@ package body GrafikSFML is
             return False;
       end case;
       
-      AnzeigeEingaben;
+      -- Hier die Eingabe/Spielmeldung mitübergeben damit sie leichter verschiebbar sind? äöü
       AnzeigeSpielmeldungen;
+      AnzeigeEingaben;
       
       return True;
       
    end AnzeigeAuswahl;
-   
-   
-   
-   procedure AnzeigeEingaben
-   is begin
-      
-      case
-        NachGrafiktask.Eingabe
-      is
-         when SystemDatentypen.Eingaben_Fragen_Enum'Range =>
-            AnzeigeEingabeSFML.Fragenaufteilung (FrageExtern   => NachGrafiktask.AnzeigeFrage,
-                                                 EingabeExtern => NachGrafiktask.Eingabe);
-            
-         when SystemDatentypen.Einheit_Auswahl_Enum =>
-            AnzeigeEingabeSFML.AnzeigeEinheitenStadt (RasseExtern => NachGrafiktask.AktuelleRasse);
-            
-            -- Wenn ich das Baumenü/Forschungsmenü hierher verschiebe, dann könnte ich das Neusetzen vermeiden und diese Setzsachen in eine Prozedur auslagern. äöü
-            -- Dann könnte ich auch ein durchsichtiges Fenster für die Menüs erstellen. äöü
-            -- Könnte Probleme mit den anderen Möglichkeiten erzeugen, genauer prüfen vor dem Umbau. äöü
-               
-         when SystemDatentypen.Keine_Eingabe_Enum =>
-            null;
-      end case;
-      
-   end AnzeigeEingaben;
    
    
    
@@ -254,11 +232,27 @@ package body GrafikSFML is
    
    
    
-   procedure AnzeigeEditoren
+   procedure AnzeigeEingaben
    is begin
       
-      null;
+      case
+        NachGrafiktask.Eingabe
+      is
+         when SystemDatentypen.Eingaben_Fragen_Enum'Range =>
+            AnzeigeEingabeSFML.Fragenaufteilung (FrageExtern   => NachGrafiktask.AnzeigeFrage,
+                                                 EingabeExtern => NachGrafiktask.Eingabe);
+            
+         when SystemDatentypen.Einheit_Auswahl_Enum =>
+            AnzeigeEingabeSFML.AnzeigeEinheitenStadt (RasseExtern => NachGrafiktask.AktuelleRasse);
+            
+            -- Wenn ich das Baumenü/Forschungsmenü hierher verschiebe, dann könnte ich das Neusetzen vermeiden und diese Setzsachen in eine Prozedur auslagern. äöü
+            -- Dann könnte ich auch ein durchsichtiges Fenster für die Menüs erstellen. äöü
+            -- Könnte Probleme mit den anderen Möglichkeiten erzeugen, genauer prüfen vor dem Umbau. äöü
+               
+         when SystemDatentypen.Keine_Eingabe_Enum =>
+            null;
+      end case;
       
-   end AnzeigeEditoren;
+   end AnzeigeEingaben;
 
 end GrafikSFML;

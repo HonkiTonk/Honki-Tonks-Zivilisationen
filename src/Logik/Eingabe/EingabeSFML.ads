@@ -3,9 +3,12 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Sf.Window.Keyboard;
 
+with RassenDatentypen; use RassenDatentypen;
+with SpielVariablen;
 with ZahlenDatentypen;
 with SystemRecords;
 with TastenbelegungDatentypen;
+with StadtRecords;
 
 package EingabeSFML is
    
@@ -15,6 +18,7 @@ package EingabeSFML is
    
    
 
+   -- Das hier mal überarbeiten! äöü
    function GanzeZahl
      (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
       ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger;
@@ -26,7 +30,14 @@ package EingabeSFML is
               );
    
    function StadtName
-     return SystemRecords.TextEingabeRecord;
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+      return SystemRecords.TextEingabeRecord
+     with
+       Pre => (
+                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+               and
+                 SpielVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
+              );
 
    function SpielstandName
      return SystemRecords.TextEingabeRecord;

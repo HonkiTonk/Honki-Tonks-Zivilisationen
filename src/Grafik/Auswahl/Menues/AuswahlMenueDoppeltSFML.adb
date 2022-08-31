@@ -37,7 +37,7 @@ package body AuswahlMenueDoppeltSFML is
                                           GrößeExtern          => Viewfläche (Auswahlbereich),
                                           AnzeigebereichExtern => GrafikRecordKonstanten.MenüDoppelbereich (Auswahlbereich));
       
-      HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum,
+      HintergrundSFML.Hintergrund (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
                                         AbmessungenExtern => Viewfläche (Auswahlbereich));
       
       case
@@ -66,7 +66,7 @@ package body AuswahlMenueDoppeltSFML is
                                           GrößeExtern          => Viewfläche (Zusatzbereich),
                                           AnzeigebereichExtern => GrafikRecordKonstanten.MenüDoppelbereich (Zusatzbereich));
       
-      HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum,
+      HintergrundSFML.Hintergrund (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
                                         AbmessungenExtern => Viewfläche (Zusatzbereich));
       
       Viewfläche (Zusatzbereich) := AuswahlMenuesZusatztextSFML.MenüsZusatztextAufteilung (WelchesMenüExtern          => WelchesMenüExtern,

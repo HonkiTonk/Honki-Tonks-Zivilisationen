@@ -74,7 +74,7 @@ package body ForschungAnzeigeSFML is
                                           GrößeExtern          => Viewfläche (ViewnummerExtern),
                                           AnzeigebereichExtern => GrafikRecordKonstanten.Forschungsbereich (ViewnummerExtern));
       
-      HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Forschung_Hintergrund_Enum,
+      HintergrundSFML.Hintergrund (HintergrundExtern => GrafikDatentypen.Forschung_Hintergrund_Enum,
                                         AbmessungenExtern => Viewfläche (ViewnummerExtern));
       
       Textposition := TextKonstanten.StartpositionText;
@@ -137,7 +137,7 @@ package body ForschungAnzeigeSFML is
                                           GrößeExtern          => Viewfläche (ViewnummerExtern),
                                           AnzeigebereichExtern => GrafikRecordKonstanten.Forschungsbereich (ViewnummerExtern));
       
-      HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Forschung_Hintergrund_Enum,
+      HintergrundSFML.Hintergrund (HintergrundExtern => GrafikDatentypen.Forschung_Hintergrund_Enum,
                                         AbmessungenExtern => Viewfläche (ViewnummerExtern));
       
       case
@@ -188,7 +188,7 @@ package body ForschungAnzeigeSFML is
                                           GrößeExtern          => Viewfläche (ViewnummerExtern),
                                           AnzeigebereichExtern => GrafikRecordKonstanten.Forschungsbereich (ViewnummerExtern));
       
-      HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Forschung_Hintergrund_Enum,
+      HintergrundSFML.Hintergrund (HintergrundExtern => GrafikDatentypen.Forschung_Hintergrund_Enum,
                                         AbmessungenExtern => Viewfläche (ViewnummerExtern));
       
       case
@@ -324,7 +324,7 @@ package body ForschungAnzeigeSFML is
                                           GrößeExtern          => Viewfläche (ViewnummerExtern),
                                           AnzeigebereichExtern => GrafikRecordKonstanten.Forschungsbereich (ViewnummerExtern));
       
-      HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Forschung_Hintergrund_Enum,
+      HintergrundSFML.Hintergrund (HintergrundExtern => GrafikDatentypen.Forschung_Hintergrund_Enum,
                                         AbmessungenExtern => Viewfläche (ViewnummerExtern));
       
       Textposition := TextKonstanten.StartpositionText;

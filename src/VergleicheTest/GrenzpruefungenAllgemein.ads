@@ -21,5 +21,16 @@ package GrenzpruefungenAllgemein is
        Post => (
                   GrenzprüfungNullwert'Result >= 0
                );
+   
+   generic type ZahlPositive is range <>;
+      
+   function GrenzprüfungPositive
+     (AktuellerWertExtern : in ZahlPositive;
+      ÄnderungExtern : in ZahlPositive)
+      return ZahlPositive
+     with
+       Post => (
+                  GrenzprüfungNullwert'Result >= 1
+               );
 
 end GrenzpruefungenAllgemein;

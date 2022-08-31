@@ -18,7 +18,7 @@ package EingeleseneTexturenSFML is
    -- Eventuell nach Bereiche aufteilen, damit dass hier nicht zu unübersichtlich wird? äöü
    -- Wenn dann in die gleichen Bereiche wie in EinlesenTexturen. äöü
 
-   type HintergrundAccessArray is array (GrafikDatentypen.Hintergrund_Texturen_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
+   type HintergrundAccessArray is array (GrafikDatentypen.Hintergrund_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
    HintergrundAccess : HintergrundAccessArray := (others => null);
 
    type KartenfelderAccessArray is array (KartengrundDatenbank.KartengrundlisteArray'Range) of Sf.Graphics.sfTexture_Ptr;

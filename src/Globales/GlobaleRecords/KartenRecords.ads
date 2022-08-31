@@ -75,7 +75,8 @@ package KartenRecords is
    
    
    
-   type FelderwertungArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of KartenDatentypen.GesamteFeldbewertung;
+   -- Die Felderwertung bläht den Record so enorm auf, mal eine bessere Lösung finden. äöü
+   type FelderwertungArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of KartenDatentypen.Bewertung_Enum;
    type SichtbarkeitArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of Boolean;
    
    type BelegterGrundRecord is record
@@ -85,10 +86,16 @@ package KartenRecords is
       
    end record;
    
+   type KartengrundRecord is record
+      
+      BasisGrund : KartengrundDatentypen.Kartengrund_Enum;
+      AktuellerGrund : KartengrundDatentypen.Kartengrund_Enum;
+      
+   end record;
+   
    type KartenRecord is record
 
-      AktuellerGrund : KartengrundDatentypen.Kartengrund_Enum;
-      BasisGrund : KartengrundDatentypen.Kartengrund_Enum;
+      Grund : KartengrundRecord;
       Sichtbar : SichtbarkeitArray;
       
       Fluss : KartengrundDatentypen.Kartenfluss_Enum;
@@ -178,16 +185,6 @@ package KartenRecords is
       Kartenressourcen : KartenDatentypen.Kartenressourcen_Enum;
       Kartenpole : KartenpoleRecord;
             
-   end record;
-   
-   
-   
-   -- Nicht zu einem tagged Record machen und in KartenRecord verwenden, erhöht sonst den Speicherverbrauch deutlich!
-   type KartengrundRecord is record
-      
-      BasisGrund : KartengrundDatentypen.Kartengrund_Enum;
-      AktuellerGrund : KartengrundDatentypen.Kartengrund_Enum;
-      
    end record;
    
 end KartenRecords;

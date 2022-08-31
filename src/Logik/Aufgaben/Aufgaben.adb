@@ -29,6 +29,7 @@ with AufgabeEinheitVerschanzen;
 with AufgabeEinheitAufloesen;
 with UmwandlungenVerschiedeneDatentypen;
 with AuswahlSFML;
+with MeldungFestlegenLogik;
 
 package body Aufgaben is
    
@@ -116,12 +117,14 @@ package body Aufgaben is
       VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Enum)
       return Boolean
    is begin
-              
+      
       if
         BefehlExtern in TastenbelegungDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range
         and
           EinheitartExtern /= EinheitenDatentypen.Arbeiter_Enum
       then
+         MeldungFestlegenLogik.SpielermeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungBefehl,
+                                                        RasseExtern   => RasseExtern);
          return False;
          
       elsif
@@ -129,6 +132,8 @@ package body Aufgaben is
         and
           EinheitartExtern = EinheitenDatentypen.Arbeiter_Enum
       then
+         MeldungFestlegenLogik.SpielermeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungBefehl,
+                                                        RasseExtern   => RasseExtern);
          return False;
          
       else
@@ -143,6 +148,8 @@ package body Aufgaben is
               False = ForschungAllgemein.TechnologieVorhanden (RasseExtern       => RasseExtern,
                                                                TechnologieExtern => ForschungKonstanten.TechnologieVerbesserung (RasseExtern, BefehlExtern))
             then
+               MeldungFestlegenLogik.SpielermeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungVerbesserungTechnologie,
+                                                              RasseExtern   => RasseExtern);
                return False;
                
             else
@@ -161,11 +168,15 @@ package body Aufgaben is
             if
               VerbesserungExtern in KartenVerbesserungDatentypen.Karten_Verbesserung_Städte_Enum'Range
             then
+               MeldungFestlegenLogik.SpielermeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungVerbesserung,
+                                                              RasseExtern   => RasseExtern);
                return False;
                
             elsif
               VerbesserungExtern = UmwandlungenVerschiedeneDatentypen.TastenbelegungNachKartenverbesserung (TasteExtern => BefehlExtern)
             then
+               MeldungFestlegenLogik.SpielermeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungVerbesserungExistiert,
+                                                              RasseExtern   => RasseExtern);
                return False;
                
             elsif

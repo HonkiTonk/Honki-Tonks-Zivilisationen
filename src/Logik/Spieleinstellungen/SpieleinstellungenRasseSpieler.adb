@@ -170,13 +170,7 @@ package body SpieleinstellungenRasseSpieler is
                     NotAusSchleifenwert
                   is
                      when ZahlenDatentypen.NotAus'Last =>
-                        -- Neue Meldung durch den Grafiktask anzeigen lassen. äöü
-                        -- Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => Meldungstexte.Meldungen,
-                        --                                      TextZeileExtern => 16);
-                        -- Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Rassen_Beschreibung_Kurz,
-                        --                                      TextZeileExtern => RueckgabeDatentypen.Rassen_Verwendet_Enum'Pos (RasseSchleifenwert));
-                        -- Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => Meldungstexte.Meldungen,
-                        --                                      TextZeileExtern => 17);
+                        -- Hier wieder eine Meldung einbauen für den Fall dass die Rasse nicht platziert werden konnte? äöü
                         SpielVariablen.RassenImSpiel (RasseSchleifenwert) := RassenDatentypen.Leer_Spieler_Enum;
                         
                      when others =>

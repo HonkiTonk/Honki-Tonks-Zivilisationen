@@ -18,12 +18,11 @@ package body TexturenSetzenSkalierenSFML is
                                      texture   => TextureAccessExtern,
                                      resetRect => Sf.sfTrue);
       
-      -- Sollte geprüft werden ob die Texturebreite/höhe /= 0 ist? äöü
-      GrößeTextur := (Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).width, Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).height);
+      Rechteck := Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern); 
       KartenfelderAbmessung := BerechnungenKarteSFML.KartenfelderAbmessung;
       
-      SkalierungKartenfeld.x := KartenfelderAbmessung.x / GrößeTextur.x;
-      SkalierungKartenfeld.y := KartenfelderAbmessung.y / GrößeTextur.y;
+      SkalierungKartenfeld.x := KartenfelderAbmessung.x / Rechteck.width;
+      SkalierungKartenfeld.y := KartenfelderAbmessung.y / Rechteck.height;
       
       return SkalierungKartenfeld;
       
@@ -41,12 +40,11 @@ package body TexturenSetzenSkalierenSFML is
                                      texture   => TextureAccessExtern,
                                      resetRect => Sf.sfTrue);
       
-      -- Sollte geprüft werden ob die Texturebreite/höhe /= 0 ist? äöü
-      GrößeTextur := (Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).width, Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).height);
+      Rechteck := Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern); 
       StadtfelderAbmessung := BerechnungenKarteSFML.StadtfelderAbmessung;
       
-      SkalierungKartenfeld.x := StadtfelderAbmessung.x / GrößeTextur.x;
-      SkalierungKartenfeld.y := StadtfelderAbmessung.y / GrößeTextur.y;
+      SkalierungKartenfeld.x := StadtfelderAbmessung.x / Rechteck.width;
+      SkalierungKartenfeld.y := StadtfelderAbmessung.y / Rechteck.height;
       
       return SkalierungKartenfeld;
       
@@ -64,12 +62,11 @@ package body TexturenSetzenSkalierenSFML is
                                      texture   => TextureAccessExtern,
                                      resetRect => Sf.sfTrue);
       
-      -- Sollte geprüft werden ob die Texturebreite/höhe /= 0 ist? äöü
-      GrößeTextur := (Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).width, Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).height);
+      Rechteck := Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern); 
       StadtAbmessung := (BerechnungenKarteSFML.StadtKarte.width, BerechnungenKarteSFML.StadtKarte.height);
       
-      SkalierungKartenfeld.x := StadtAbmessung.x / GrößeTextur.x;
-      SkalierungKartenfeld.y := StadtAbmessung.y / GrößeTextur.y;
+      SkalierungKartenfeld.x := StadtAbmessung.x / Rechteck.width;
+      SkalierungKartenfeld.y := StadtAbmessung.y / Rechteck.height;
       
       return SkalierungKartenfeld;
       
@@ -88,11 +85,10 @@ package body TexturenSetzenSkalierenSFML is
                                      texture   => TextureAccessExtern,
                                      resetRect => Sf.sfTrue);
       
-      -- Sollte geprüft werden ob die Texturebreite/höhe /= 0 ist? äöü
-      GrößeTextur := (Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).width, Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).height);
+      Rechteck := Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern); 
       
-      SkalierungBild.x := GrößeExtern.x / GrößeTextur.x;
-      SkalierungBild.y := GrößeExtern.y / GrößeTextur.y;
+      SkalierungBild.x := GrößeExtern.x / Rechteck.width;
+      SkalierungBild.y := GrößeExtern.y / Rechteck.height;
       
       return SkalierungBild;
       

@@ -225,6 +225,8 @@ package body KartenAllgemein is
    
    
    
+   -- Das hier muss auch nochmal überarbeitet werden. äöü
+   -- Vermutlich das meiste hier? äöü
    function GrundBewertung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

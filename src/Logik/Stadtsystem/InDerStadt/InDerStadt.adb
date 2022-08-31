@@ -41,7 +41,7 @@ package body InDerStadt is
                GebaeudeVerkaufen.GebäudeVerkaufen (StadtRasseNummerExtern => StadtRasseNummerExtern);
 
             when TastenbelegungDatentypen.Stadt_Umbenennen_Enum =>
-               NeuerName := EingabeSFML.StadtName;
+               NeuerName := EingabeSFML.StadtName (StadtRasseNummerExtern => StadtRasseNummerExtern);
                
                if
                  NeuerName.ErfolgreichAbbruch = True

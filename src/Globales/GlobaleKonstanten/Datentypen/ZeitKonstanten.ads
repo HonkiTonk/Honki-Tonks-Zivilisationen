@@ -2,8 +2,6 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 package ZeitKonstanten is
-
-   -- Hier später auch Konstanten für die Ladezeiten reinwerfen.
    
    -- Wird das so überhaupt benötigt?
    WartezeitLogik : constant Duration := 0.20;

@@ -37,7 +37,7 @@ package body AuswahlMenuesEinfachSFML is
                                           GrößeExtern          => Viewfläche,
                                           AnzeigebereichExtern => GrafikRecordKonstanten.MenüEinfachbereich);
       
-      HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum,
+      HintergrundSFML.Hintergrund (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
                                         AbmessungenExtern => Viewfläche);
                   
       Viewfläche := Textdarstellung (WelchesMenüExtern     => WelchesMenüExtern,

@@ -1,8 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
-
 with RassenDatentypen; use RassenDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with EinheitenRecords;
@@ -68,14 +66,6 @@ private
               );
 
 
-
-   function StandardStadtNamen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return Unbounded_Wide_Wide_String
-     with
-       Pre => (
-                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
-              );
 
    function StadtBaubar
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

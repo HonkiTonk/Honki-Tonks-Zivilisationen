@@ -20,18 +20,18 @@ package body AllgemeineViewsSFML is
       
    procedure Überschrift
      (ÜberschriftExtern : in Wide_Wide_String;
-      HintergrundExtern : in GrafikDatentypen.Hintergrund_Texturen_Enum)
+      HintergrundExtern : in GrafikDatentypen.Hintergrund_Enum)
    is begin
       
       Viewfläche (Überschrift_Enum) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (Überschrift_Enum),
-                                                                                            VerhältnisExtern => (1.00, 0.10));
+                                                                                          VerhältnisExtern => (1.00, 0.10));
       
       ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => Views.ÜberschriftviewAccess,
                                           GrößeExtern          => Viewfläche (Überschrift_Enum),
                                           AnzeigebereichExtern => GrafikRecordKonstanten.Überschriftbereich);
       
-      HintergrundSFML.MenüHintergrund (HintergrundExtern => HintergrundExtern,
-                                        AbmessungenExtern => Viewfläche (Überschrift_Enum));
+      HintergrundSFML.Hintergrund (HintergrundExtern => HintergrundExtern,
+                                                 AbmessungenExtern => Viewfläche (Überschrift_Enum));
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ÜberschriftAccess,
                                          str  => ÜberschriftExtern);
@@ -64,12 +64,12 @@ package body AllgemeineViewsSFML is
       is
          when MenueDatentypen.Menü_Ohne_Überschrift_Enum'Range =>
             Überschrift (ÜberschriftExtern => SonstigesKonstanten.Spielname,
-                          HintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum);
+                          HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum);
             
          when others =>
             Überschrift (ÜberschriftExtern => AuswahlMenuesStringsSetzen.AuswahlMenüStringSetzen (WelcheZeileExtern => 1,
                                                                                                      WelchesMenüExtern => WelchesMenüExtern),
-                          HintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum);
+                          HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum);
       end case;
             
    end ÜberschriftErmitteln;
@@ -77,7 +77,7 @@ package body AllgemeineViewsSFML is
    
    
    procedure Versionsnummer
-     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Texturen_Enum)
+     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Enum)
    is begin
       
       Viewfläche (Versionsnummer_Enum) := ViewsEinstellenSFML.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (Versionsnummer_Enum),
@@ -87,8 +87,8 @@ package body AllgemeineViewsSFML is
                                           GrößeExtern          => Viewfläche (Versionsnummer_Enum),
                                           AnzeigebereichExtern => GrafikRecordKonstanten.Versionsbereich);
       
-      HintergrundSFML.MenüHintergrund (HintergrundExtern => HintergrundExtern,
-                                        AbmessungenExtern => Viewfläche (Versionsnummer_Enum));
+      HintergrundSFML.Hintergrund (HintergrundExtern => HintergrundExtern,
+                                                 AbmessungenExtern => Viewfläche (Versionsnummer_Enum));
       
       Textposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.VersionsnummerAccess,
                                                                             ViewbreiteExtern => Viewfläche (Versionsnummer_Enum).x);
@@ -110,7 +110,7 @@ package body AllgemeineViewsSFML is
    
    
    procedure Frage
-     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Texturen_Enum;
+     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Enum;
       FrageExtern : in Wide_Wide_String)
    is begin
       
@@ -121,8 +121,8 @@ package body AllgemeineViewsSFML is
                                           GrößeExtern          => Viewfläche (Frage_Enum),
                                           AnzeigebereichExtern => GrafikRecordKonstanten.Fragenbereich);
       
-      HintergrundSFML.MenüHintergrund (HintergrundExtern => HintergrundExtern,
-                                        AbmessungenExtern => Viewfläche (Frage_Enum));
+      HintergrundSFML.Hintergrund (HintergrundExtern => HintergrundExtern,
+                                   AbmessungenExtern => Viewfläche (Frage_Enum));
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ÜberschriftAccess,
                                          str  => FrageExtern);

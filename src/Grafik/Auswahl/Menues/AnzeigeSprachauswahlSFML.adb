@@ -33,7 +33,7 @@ package body AnzeigeSprachauswahlSFML is
                                           GrößeExtern          => Viewfläche,
                                           AnzeigebereichExtern => GrafikRecordKonstanten.Sprachenbereich);
       
-      HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum,
+      HintergrundSFML.Hintergrund (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
                                         AbmessungenExtern => Viewfläche);
       
       case
@@ -164,7 +164,7 @@ package body AnzeigeSprachauswahlSFML is
       
       -- Funktioniert aktuell nur nach Einlesen/Setzen aller Texte/Textaccesse und zeigt deswegen nur bei einem späteren Sprachwechsel die Versionsnummer an.
       -- So lassen oder anpassen? äöü
-      AllgemeineViewsSFML.Versionsnummer (HintergrundExtern => GrafikDatentypen.Standard_Hintergrund_Enum);
+      AllgemeineViewsSFML.Versionsnummer (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum);
       
       Viewfläche := (AktuelleTextbreite, Textposition.y);
       

@@ -10,7 +10,7 @@ with KartenVerbesserungDatentypen;
 with LeseStadtGebaut;
 with LeseKarten;
   
-with EingabeSFML;
+-- with EingabeSFML;
 
 package body StadtSuchen is
 
@@ -145,11 +145,12 @@ package body StadtSuchen is
    
 
    
+   -- Bei Überarbeitung dieser Funktion die Nameneingabe wieder einbauen. äöü
    function StadtNachNamenSuchen
      return StadtRecords.RasseStadtnummerRecord
    is begin
       
-      StadtName := EingabeSFML.StadtName;
+      -- StadtName := EingabeSFML.StadtName;
       
       case
         StadtName.ErfolgreichAbbruch

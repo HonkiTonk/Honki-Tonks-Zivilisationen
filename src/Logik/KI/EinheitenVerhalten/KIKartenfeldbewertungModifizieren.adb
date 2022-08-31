@@ -18,7 +18,7 @@ package body KIKartenfeldbewertungModifizieren is
    function BewertungStadtBauen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenDatentypen.GesamteFeldbewertung
+      return KartenDatentypen.Bewertung_Enum
    is begin
       
       BewertungKartenfeld := KIKonstanten.KartenfeldBewertungStadtBauenMinimum (RasseExtern);
@@ -72,7 +72,7 @@ package body KIKartenfeldbewertungModifizieren is
       end loop YAchseSchleife;
       -- end loop EAchseSchleife;
          
-      return BewertungKartenfeld;
+      return KartenDatentypen.Bewertung_Enum'Val (BewertungKartenfeld / 125);
       
    end BewertungStadtBauen;
 

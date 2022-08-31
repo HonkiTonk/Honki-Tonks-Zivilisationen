@@ -49,5 +49,29 @@ package body GrenzpruefungenAllgemein is
       end if;
       
    end GrenzprüfungNullwert;
+   
+   
+   
+   function GrenzprüfungPositive
+     (AktuellerWertExtern : in ZahlPositive;
+      ÄnderungExtern : in ZahlPositive)
+      return ZahlPositive
+   is begin
+      
+      if
+        AktuellerWertExtern + ÄnderungExtern >= ZahlPositive'Last
+      then
+         return ZahlNullwert'Last;
+         
+      elsif
+        AktuellerWertExtern + ÄnderungExtern <= 1
+      then
+         return 1;
+         
+      else
+         return AktuellerWertExtern + ÄnderungExtern;
+      end if;
+      
+   end GrenzprüfungPositive;
 
 end GrenzpruefungenAllgemein;

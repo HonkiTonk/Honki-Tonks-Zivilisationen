@@ -67,8 +67,8 @@ package body BauAuswahlAnzeigeSFML is
                                           GrößeExtern          => Viewfläche (ViewnummerExtern),
                                           AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewnummerExtern));
       
-      HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
-                                        AbmessungenExtern => Viewfläche (ViewnummerExtern));
+      HintergrundSFML.Hintergrund (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
+                                   AbmessungenExtern => Viewfläche (ViewnummerExtern));
       
       Textposition := TextKonstanten.StartpositionText;
       Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
@@ -150,8 +150,8 @@ package body BauAuswahlAnzeigeSFML is
                                           GrößeExtern          => Viewfläche (ViewnummerExtern),
                                           AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewnummerExtern));
       
-      HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
-                                        AbmessungenExtern => Viewfläche (ViewnummerExtern));
+      HintergrundSFML.Hintergrund (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
+                                   AbmessungenExtern => Viewfläche (ViewnummerExtern));
       
       Textposition := TextKonstanten.StartpositionText;
       Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
@@ -244,8 +244,8 @@ package body BauAuswahlAnzeigeSFML is
                                                 GrößeExtern          => Viewfläche (ViewnummerExtern),
                                                 AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewnummerExtern));
       
-            HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
-                                              AbmessungenExtern => Viewfläche (ViewnummerExtern));
+            HintergrundSFML.Hintergrund (HintergrundExtern => GrafikDatentypen.Meldung_Hintergrund_Enum,
+                                         AbmessungenExtern => Viewfläche (ViewnummerExtern));
       
             Textposition := TextKonstanten.StartpositionText;
             Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
@@ -297,8 +297,8 @@ package body BauAuswahlAnzeigeSFML is
                                                 GrößeExtern          => Viewfläche (ViewnummerExtern),
                                                 AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewnummerExtern));
       
-            HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
-                                              AbmessungenExtern => Viewfläche (ViewnummerExtern));
+            HintergrundSFML.Hintergrund (HintergrundExtern => GrafikDatentypen.Meldung_Hintergrund_Enum,
+                                         AbmessungenExtern => Viewfläche (ViewnummerExtern));
             
             Textposition := TextKonstanten.StartpositionText;
             Textposition.y := Textposition.y + TextberechnungenHoeheSFML.KleinerZeilenabstand;
@@ -340,8 +340,8 @@ package body BauAuswahlAnzeigeSFML is
                                           GrößeExtern          => Viewfläche (ViewnummerExtern),
                                           AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewnummerExtern));
       
-      HintergrundSFML.MenüHintergrund (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
-                                        AbmessungenExtern => Viewfläche (ViewnummerExtern));
+      HintergrundSFML.Hintergrund (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
+                                   AbmessungenExtern => Viewfläche (ViewnummerExtern));
       
       Textposition := TextKonstanten.StartpositionText;
       AktuelleTextbreite := TextKonstanten.LeerTextbreite;
@@ -352,13 +352,13 @@ package body BauAuswahlAnzeigeSFML is
         AktuellesBauprojekt.Gebäude /= 0
       then
          Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & " " & GebaeudebeschreibungenSFML.BeschreibungKurz (IDExtern    => AktuellesBauprojekt.Gebäude,
-                                                                                                                               RasseExtern => StadtRasseNummerExtern.Rasse);
+                                                                                                                                RasseExtern => StadtRasseNummerExtern.Rasse);
          
       elsif
         AktuellesBauprojekt.Einheit /= 0
       then
          Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & " " & EinheitenbeschreibungenSFML.BeschreibungKurz (IDExtern    => AktuellesBauprojekt.Einheit,
-                                                                                                                                RasseExtern => StadtRasseNummerExtern.Rasse);
+                                                                                                                                 RasseExtern => StadtRasseNummerExtern.Rasse);
          
             
       else

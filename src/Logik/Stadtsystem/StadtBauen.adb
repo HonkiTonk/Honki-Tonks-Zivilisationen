@@ -1,16 +1,15 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitenDatentypen; use EinheitenDatentypen;
 with StadtDatentypen; use StadtDatentypen;
 with KartenDatentypen; use KartenDatentypen;
 with Rassentexte;
+with TextnummernKonstanten;
 
 with SchreibeStadtGebaut;
 with SchreibeWichtiges;
 with LeseKarten;
 with LeseEinheitenGebaut;
-with LeseEinheitenDatenbank;
 with LeseStadtGebaut;
 with SchreibeKarten;
 
@@ -21,6 +20,8 @@ with Sichtbarkeit;
 with EinheitenErzeugenEntfernen;
 with Fehler;
 with Wegeplatzierungssystem;
+with EinheitenSpielmeldungenLogik;
+with MeldungFestlegenLogik;
 
 package body StadtBauen is
 
@@ -33,13 +34,11 @@ package body StadtBauen is
         StadtBaubar (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       is
          when True =>
-            null;
+            StadtNummer := StadtnummerErmitteln (RasseExtern => EinheitRasseNummerExtern.Rasse);
             
          when False =>
             return False;
       end case;
-
-      StadtNummer := StadtnummerErmitteln (RasseExtern => EinheitRasseNummerExtern.Rasse);
       
       case
         StadtNummer
@@ -51,15 +50,14 @@ package body StadtBauen is
             null;
       end case;
       
-      -- Anpassen damit man bei Namen abbrechen kann. Eigenes System bauen um Städte ohne Namen zu ermöglichen oder einfach einen Namen ab sofort vorraussetzen?
       case
         SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse)
       is
          when RassenDatentypen.KI_Spieler_Enum =>
-            StadtName.EingegebenerText := StandardStadtNamen (RasseExtern => EinheitRasseNummerExtern.Rasse);
+            StadtName.EingegebenerText := Rassentexte.Städtenamen (EinheitRasseNummerExtern.Rasse, StadtNummer);
                   
          when RassenDatentypen.Mensch_Spieler_Enum =>
-            StadtName := EingabeSFML.StadtName;
+            StadtName := EingabeSFML.StadtName (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer));
             
             if
               StadtName.ErfolgreichAbbruch = False
@@ -92,6 +90,16 @@ package body StadtBauen is
       return Boolean
    is begin
       
+      case
+        EinheitenSpielmeldungenLogik.ArbeiteraufgabeMeldung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+      is
+         when True =>
+            null;
+         
+         when False =>
+            return False;
+      end case;
+      
       if
         EinheitRasseNummerExtern.Rasse = RassenDatentypen.Ekropa_Enum
         and
@@ -102,18 +110,7 @@ package body StadtBauen is
       else
          null;
       end if;
-      
-      case
-        LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
-      is
-         when EinheitenDatentypen.Arbeiter_Enum =>
-            null;
-         
-         when others =>
-            return False;
-      end case;
-      
+                  
       if
         LeseKarten.BelegterGrundLeer (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = True
       then
@@ -125,8 +122,7 @@ package body StadtBauen is
          return False;
          
       else
-         -- Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => Meldungstexte.Meldungen,
-         --                                      TextZeileExtern => 6);
+         -- Hier später eine Meldung einbauen. äöü
          return False;
       end if;
       
@@ -142,33 +138,27 @@ package body StadtBauen is
       StadtSchleife:
       for StadtNummerSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Städtegrenze loop
          
-         if
-           StadtNummerSchleifenwert = SpielVariablen.Grenzen (RasseExtern).Städtegrenze
-           and
-             LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtNummerSchleifenwert)) /= KartenVerbesserungDatentypen.Leer_Verbesserung_Enum
-         then
-            case
-              SpielVariablen.RassenImSpiel (RasseExtern)
-            is
-               when RassenDatentypen.Mensch_Spieler_Enum =>
-                  -- Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => Meldungstexte.Meldungen,
-                  --                                       TextZeileExtern => 7);
-                  null;
+         case
+           LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtNummerSchleifenwert))
+         is
+            when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum =>
+               return StadtNummerSchleifenwert;
                
-               when others =>
-                  null;
-            end case;
-
-         elsif
-           LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtNummerSchleifenwert)) /= KartenVerbesserungDatentypen.Leer_Verbesserung_Enum
-         then
-            null;
-            
-         else
-            return StadtNummerSchleifenwert;
-         end if;
+            when others =>
+               null;
+         end case;
          
       end loop StadtSchleife;
+      
+      case
+        SpielVariablen.RassenImSpiel (RasseExtern)
+      is
+         when RassenDatentypen.Mensch_Spieler_Enum =>
+            MeldungFestlegenLogik.MeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungStädtemaximum);
+            
+         when others =>
+            null;
+      end case;
       
       return StadtDatentypen.MaximaleStädteMitNullWert'First;
       
@@ -181,7 +171,7 @@ package body StadtBauen is
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
       
-      -- Auch mal vollständig nach SchreibeStadt auslagern. äöü
+      -- Auch mal vollständig nach SchreibeStadt auslagern? äöü
       SchreibeStadtGebaut.Nullsetzung (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
       Stadtart := HauptstadtPrüfen (RasseExtern => StadtRasseNummerExtern.Rasse);
@@ -277,27 +267,4 @@ package body StadtBauen is
       
    end HauptstadtPrüfen;
    
-   
-   
-   function StandardStadtNamen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return Unbounded_Wide_Wide_String
-   is begin
-      
-      StadtName.EingegebenerText := Rassentexte.Städtenamen (RasseExtern, StandardStadtname (RasseExtern));
-      
-      case
-        StandardStadtname (RasseExtern)
-      is
-         when StadtDatentypen.MaximaleStädte'Last =>
-            StandardStadtname (RasseExtern) := StadtDatentypen.MaximaleStädte'First;
-            
-         when others =>
-            StandardStadtname (RasseExtern) := StandardStadtname (RasseExtern) + 1;
-      end case;
-      
-      return StadtName.EingegebenerText;
-      
-   end StandardStadtNamen;
-
 end StadtBauen;
