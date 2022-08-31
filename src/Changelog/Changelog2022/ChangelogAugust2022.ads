@@ -10,8 +10,8 @@ package ChangelogAugust2022 is
    -- Hintergründe und Textpositionierung überarbeitet.
    -- Neue Beispielbilder erstellt.
    -- Schriftgröße für bessere Skalierung angepasst.
-   -- Speicherverbrauch und Spielstandgrößte deutlich reduziert.
-   -- Felderwertung angefange zu überarbeiten.
+   -- Speicherverbrauch und Spielstandgröße deutlich reduziert.
+   -- Felderwertung angefangen zu überarbeiten.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst/optimiert.
    
    
