@@ -133,79 +133,83 @@ package ChangelogSeptember2022 is
    
    
 
-   -- Version 0.0. => 0.0. (11.09.2022):
+   -- Version 0.03. => 0.0. (11.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (10.09.2022):
+   -- Version 0.03. => 0.03. (10.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (09.09.2022):
+   -- Version 0.03. => 0.03. (09.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (08.09.2022):
+   -- Version 0.03. => 0.03. (08.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (07.09.2022):
+   -- Version 0.03. => 0.03. (07.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (06.09.2022):
+   -- Version 0.03. => 0.03. (06.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (05.09.2022):
+   -- Version 0.03. => 0.03. (05.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (04.09.2022):
+   -- Version 0.03. => 0.03. (04.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03. => 0.0. (03.09.2022):
+   -- Version 0.03. => 0.03. (03.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03. => 0.03. (02.09.2022):
+   -- Version 0.03.8000 => 0.03. (02.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.7935 => 0.03. (01.09.2022):
+   -- Version 0.03.7935 => 0.03.8000 (01.09.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Felderbewertung optimiert.
+   -- Kartenkoordinatenberechnungssystem optimiert.
+   -- Versucht die Einheitenkoordinaten in den WeltkarteRecord zu basteln.
+   -- Interne Struktur überarbeitet.
+   -- Erneut angefangen die Einheitenkoordinaten in den WeltkarteRecord zu basteln.
+   -- Kommentare und Kleinigkeiten korrigiert/entfernt.
 
 end ChangelogSeptember2022;

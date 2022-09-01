@@ -3,8 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with ProduktionDatentypen; use ProduktionDatentypen;
-with KampfDatentypen; use KampfDatentypen;
 with KartengrundDatentypen; use KartengrundDatentypen;
 with Kartentexte;
 with KartenKonstanten;

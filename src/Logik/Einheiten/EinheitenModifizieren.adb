@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with AufgabenDatentypen; use AufgabenDatentypen;
-with ForschungenDatentypen; use ForschungenDatentypen;
 with EinheitenDatentypen; use EinheitenDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
 with StadtDatentypen; use StadtDatentypen;

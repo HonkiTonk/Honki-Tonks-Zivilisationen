@@ -3,7 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with AufgabenDatentypen; use AufgabenDatentypen;
-with ForschungenDatentypen; use ForschungenDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
 with EinheitenRecordKonstanten;
 with ForschungKonstanten;

@@ -58,7 +58,7 @@ package body KIForschung is
          end case;
          
          if
-           ZahlenDatentypen.EigenesPositive (ForschungSchleifenwert) >= Multiplikator * ZahlenDatentypen.EigenesPositive (ForschungenDatenbank.ForschungslisteArray'Last (2)) * 2
+           ZahlenDatentypen.EigenesPositive (ForschungSchleifenwert) >= Multiplikator * ZahlenDatentypen.EigenesPositive (ForschungenDatenbank.ForschungslisteArray'Last (2)) / 2
          then
             Ladezeiten.FortschrittKISchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Berechne_Forschung_Enum);
             Multiplikator := Multiplikator + 1;
@@ -98,7 +98,7 @@ package body KIForschung is
          end if;
          
          if
-           ZahlenDatentypen.EigenesPositive (BewertungSchleifenwert) >= Multiplikator * ZahlenDatentypen.EigenesPositive (ForschungenDatenbank.ForschungslisteArray'Last (2)) * 2
+           ZahlenDatentypen.EigenesPositive (BewertungSchleifenwert) >= Multiplikator * ZahlenDatentypen.EigenesPositive (ForschungenDatenbank.ForschungslisteArray'Last (2)) / 2
          then
             Ladezeiten.FortschrittKISchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Berechne_Forschung_Enum);
             Multiplikator := Multiplikator + 1;

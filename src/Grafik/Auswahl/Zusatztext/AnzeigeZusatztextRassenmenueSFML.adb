@@ -4,7 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Text;
 
-with RassenDatentypen; use RassenDatentypen;
 with TextaccessVariablen;
 with TextKonstanten;
 

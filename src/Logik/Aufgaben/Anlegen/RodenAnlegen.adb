@@ -1,8 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with KartengrundDatentypen; use KartengrundDatentypen;
-
 with SchreibeKarten;
 with LeseKarten;
 

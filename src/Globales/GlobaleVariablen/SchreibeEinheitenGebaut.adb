@@ -3,7 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 with EinheitenDatentypen; use EinheitenDatentypen;
 with KampfDatentypen; use KampfDatentypen;
-with StadtDatentypen; use StadtDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
 with EinheitenKonstanten;
 with KartenRecordKonstanten;

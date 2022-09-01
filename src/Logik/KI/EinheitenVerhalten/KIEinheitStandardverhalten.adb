@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 -- with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
-with KIDatentypen; use KIDatentypen;
+with KIDatentypen;
 with KIKonstanten;
 
 with KIEinheitHandlungen;

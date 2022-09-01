@@ -14,6 +14,7 @@ with EinheitenRecords;
 with TextnummernKonstanten;
 with GrafikDatentypen;
 with TextKonstanten;
+with WeltkarteRecords;
 
 with Karten;
 with Ladezeiten;
@@ -145,7 +146,7 @@ package body Laden is
             XAchseSchleife:
             for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Karteneinstellungen.Kartengröße.XAchse loop
 
-               KartenRecords.KartenRecord'Read (Stream (File => DateiLadenExtern),
+               WeltkarteRecords.WeltkarteRecord'Read (Stream (File => DateiLadenExtern),
                                                 Karten.Weltkarte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
                
             end loop XAchseSchleife;

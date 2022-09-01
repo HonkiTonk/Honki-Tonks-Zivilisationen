@@ -25,19 +25,6 @@ package body Kartenkoordinatenberechnungssystem is
       -- Nein, da auch der Kartengenerator Teil der Logik ist, wenn dann bräuchte man drei Teile, eventuell auch mehr. äöü
       -- Wobei, man könnte auch beim Kartengenerator dann einfach False statt True übergeben. Die Grafik sollte zu diesem Zeitpunkt ja nicht auf die Berechnungen zugreifen. äöü
       
-      if
-        ÄnderungExtern.EAchse = KartenKonstanten.LeerEAchseÄnderung
-        and
-          ÄnderungExtern.YAchse = KartenKonstanten.LeerYAchseÄnderung
-          and
-            ÄnderungExtern.XAchse = KartenKonstanten.LeerXAchseÄnderung
-      then
-         return KoordinatenExtern;
-         
-      else
-         null;
-      end if;
-      
       case
         ÄnderungExtern.EAchse
       is
@@ -58,34 +45,50 @@ package body Kartenkoordinatenberechnungssystem is
             end if;
       end case;
       
-      NeueKoordinate (LogikGrafikExtern, KoordinatenExtern.EAchse).YAchse := KartenkoordinateYAchseBerechnen.KartenkoordinateYAchseBerechnen (YAchseExtern         => KoordinatenExtern.YAchse,
-                                                                                                                                              ÄnderungYAchseExtern => ÄnderungExtern.YAchse,
-                                                                                                                                              ArrayPositionExtern  => KoordinatenExtern.EAchse,
-                                                                                                                                              LogikGrafikExtern    => LogikGrafikExtern);
-      
       case
-        NeueKoordinate (LogikGrafikExtern, KoordinatenExtern.EAchse).YAchse
+        ÄnderungExtern.YAchse
       is
-         when KartenKonstanten.LeerYAchse =>
-            return KartenRecordKonstanten.LeerKoordinate;
+         when KartenKonstanten.LeerYAchseÄnderung =>
+            NeueKoordinate (LogikGrafikExtern, KoordinatenExtern.EAchse).YAchse := KoordinatenExtern.YAchse;
+            KartenkoordinateYAchseBerechnen.WelcheVerschiebungYAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartenDatentypen.Karte_Y_Kein_Übergang_Enum;
             
          when others =>
-            null;
+            NeueKoordinate (LogikGrafikExtern, KoordinatenExtern.EAchse).YAchse := KartenkoordinateYAchseBerechnen.KartenkoordinateYAchseBerechnen (YAchseExtern         => KoordinatenExtern.YAchse,
+                                                                                                                                                    ÄnderungYAchseExtern => ÄnderungExtern.YAchse,
+                                                                                                                                                    ArrayPositionExtern  => KoordinatenExtern.EAchse,
+                                                                                                                                                    LogikGrafikExtern    => LogikGrafikExtern);
+      
+            if
+              NeueKoordinate (LogikGrafikExtern, KoordinatenExtern.EAchse).YAchse = KartenKonstanten.LeerYAchse
+            then
+               return KartenRecordKonstanten.LeerKoordinate;
+            
+            else
+               null;
+            end if;
       end case;
-      
-      NeueKoordinate (LogikGrafikExtern, KoordinatenExtern.EAchse).XAchse := KartenkoordinateXAchseBerechnen.KartenkoordinateXAchseBerechnen (XAchseExtern         => KoordinatenExtern.XAchse,
-                                                                                                                                              ÄnderungXAchseExtern => ÄnderungExtern.XAchse,
-                                                                                                                                              ArrayPositionExtern  => KoordinatenExtern.EAchse,
-                                                                                                                                              LogikGrafikExtern    => LogikGrafikExtern);
-      
+            
       case
-        NeueKoordinate (LogikGrafikExtern, KoordinatenExtern.EAchse).XAchse
+        ÄnderungExtern.XAchse
       is
-         when KartenKonstanten.LeerXAchse =>
-            return KartenRecordKonstanten.LeerKoordinate;
+         when KartenKonstanten.LeerXAchseÄnderung =>
+            NeueKoordinate (LogikGrafikExtern, KoordinatenExtern.EAchse).XAchse := KoordinatenExtern.XAchse;
+            KartenkoordinateXAchseBerechnen.WelcheVerschiebungXAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartenDatentypen.Karte_X_Kein_Übergang_Enum;
             
          when others =>
-            null;
+            NeueKoordinate (LogikGrafikExtern, KoordinatenExtern.EAchse).XAchse := KartenkoordinateXAchseBerechnen.KartenkoordinateXAchseBerechnen (XAchseExtern         => KoordinatenExtern.XAchse,
+                                                                                                                                                    ÄnderungXAchseExtern => ÄnderungExtern.XAchse,
+                                                                                                                                                    ArrayPositionExtern  => KoordinatenExtern.EAchse,
+                                                                                                                                                    LogikGrafikExtern    => LogikGrafikExtern);
+            
+            if
+              NeueKoordinate (LogikGrafikExtern, KoordinatenExtern.EAchse).XAchse = KartenKonstanten.LeerXAchse
+            then
+               return KartenRecordKonstanten.LeerKoordinate;
+                  
+            else
+               null;
+            end if;
       end case;
       
       case

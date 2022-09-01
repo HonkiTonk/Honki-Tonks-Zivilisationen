@@ -9,6 +9,7 @@ with RassenDatentypen;
 with SpielVariablen;
 with KartenRecordKonstanten;
 with EinheitenRecordKonstanten;
+with WeltkarteRecords;
 
 with Karten;
 with KartengeneratorVariablen;
@@ -48,7 +49,7 @@ package body AllesAufAnfangSetzen is
       SpielVariablen.Debug := (others => False);
       
       Karten.Karteneinstellungen := KartenRecordKonstanten.Standardkartenparameter;
-      Karten.Weltkarte := (others => (others => (others => KartenRecordKonstanten.LeerWeltkarte)));
+      Karten.Weltkarte := (others => (others => (others => WeltkarteRecords.LeerWeltkarte)));
       Karten.Stadtkarte := (others => (others => (0)));
       
       Sichtweiten.StandardZoom;

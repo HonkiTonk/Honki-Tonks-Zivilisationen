@@ -2,11 +2,12 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
-with KartengrundDatentypen; use KartengrundDatentypen;
 with RassenDatentypen; use RassenDatentypen;
 with KartenVerbesserungDatentypen;
+with KartengrundDatentypen;
 with SpielVariablen;
 with KartenRecords;
+with EinheitenRecords;
 
 with Karten;
 
@@ -124,6 +125,16 @@ package SchreibeKarten is
        Pre => (
                  SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
                and
+                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+              );
+   
+   procedure Einheit
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     with
+       Pre => (
                  KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
                and
                  KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse

@@ -1,8 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with ForschungenDatentypen; use ForschungenDatentypen;
-
 with EinheitenKonstanten;
 
 with LeseEinheitenDatenbank;
@@ -11,9 +9,6 @@ with LeseEinheitenGebaut;
 with ForschungAllgemein;
 
 with KIDatentypen; use KIDatentypen;
-
--- with KIKriegErmitteln;
--- with KIGefahrErmitteln;
 
 package body KIEinheitAufgabeModernisieren is
 

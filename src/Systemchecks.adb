@@ -11,10 +11,10 @@ package body Systemchecks is
    is begin
       
       New_Line;
-      Put_Line (Item => "Bits:" & Integer (KartenRecords.KartenRecord'Size * 5_000_000)'Wide_Wide_Image);
-      Put_Line (Item => "Bytes:" & Integer (KartenRecords.KartenRecord'Size * 5_000_000 / ByteTeiler)'Wide_Wide_Image);
-      Put_Line (Item => "Kilobytes:" & Integer (KartenRecords.KartenRecord'Size * 5_000_000 / KilobyteTeiler)'Wide_Wide_Image);
-      Put_Line (Item => "Megabytes:" & Integer (KartenRecords.KartenRecord'Size * 5_000_000 / MegabyteTeiler)'Wide_Wide_Image);
+      Put_Line (Item => "Bits:" & Integer (WeltkarteRecords.WeltkarteRecord'Size * 5_000_000)'Wide_Wide_Image);
+      Put_Line (Item => "Bytes:" & Integer (WeltkarteRecords.WeltkarteRecord'Size * 5_000_000 / ByteTeiler)'Wide_Wide_Image);
+      Put_Line (Item => "Kilobytes:" & Integer (WeltkarteRecords.WeltkarteRecord'Size * 5_000_000 / KilobyteTeiler)'Wide_Wide_Image);
+      Put_Line (Item => "Megabytes:" & Integer (WeltkarteRecords.WeltkarteRecord'Size * 5_000_000 / MegabyteTeiler)'Wide_Wide_Image);
       
    end Größenprüfung;
 

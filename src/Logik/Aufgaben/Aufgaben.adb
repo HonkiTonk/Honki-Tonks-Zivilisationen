@@ -4,7 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 with EinheitenDatentypen; use EinheitenDatentypen;
 with TastenbelegungDatentypen; use TastenbelegungDatentypen;
 with AufgabenDatentypen; use AufgabenDatentypen;
-with ForschungenDatentypen; use ForschungenDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with EinheitenKonstanten;
 with ForschungKonstanten;

@@ -1,8 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with ProduktionDatentypen; use ProduktionDatentypen;
-
 package body LeseWichtiges is
 
    function Geldmenge

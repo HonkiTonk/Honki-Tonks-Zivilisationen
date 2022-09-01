@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with KartenDatentypen; use KartenDatentypen;
 with StadtDatentypen; use StadtDatentypen;
 with StadtKonstanten;
 
@@ -190,5 +189,16 @@ package body LeseKarten is
       return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund.RasseBelegt;
       
    end RasseBelegtGrund;
+   
+   
+   
+   function Einheit
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      return EinheitenRecords.RasseEinheitnummerRecord
+   is begin
+      
+      return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Einheit;
+      
+   end Einheit;
 
 end LeseKarten;

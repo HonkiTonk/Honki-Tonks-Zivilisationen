@@ -5,6 +5,9 @@ with KartenDatentypen; use KartenDatentypen;
 with RassenDatentypen;
 with KartenRecords;
 
+private with KartengrundDatentypen;
+private with KartenVerbesserungDatentypen;
+
 with Karten;
 
 package FelderwerteFestlegen is
@@ -29,6 +32,18 @@ package FelderwerteFestlegen is
               );
    
 private
+   
+   type FlussArray is array (KartenDatentypen.EbeneVorhanden'Range) of KartengrundDatentypen.Kartenfluss_Enum;
+   Fluss : FlussArray;
+   
+   type RessourcenArray is array (KartenDatentypen.EbeneVorhanden'Range) of KartengrundDatentypen.Kartenressourcen_Enum;
+   Ressource : RessourcenArray;
+   
+   type WegeArray is array (KartenDatentypen.EbeneVorhanden'Range) of KartenVerbesserungDatentypen.Karten_Weg_Enum;
+   Weg : WegeArray;
+   
+   type VerbesserungenArray is array (KartenDatentypen.EbeneVorhanden'Range) of KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
+   Verbesserung : VerbesserungenArray;
       
    type KartenwertArray is array (KartenDatentypen.EbeneVorhanden'Range) of KartenRecords.AchsenKartenfeldNaturalRecord;
    KartenWertEins : KartenwertArray;

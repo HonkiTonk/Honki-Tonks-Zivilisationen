@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitenDatentypen; use EinheitenDatentypen;
 with KampfDatentypen; use KampfDatentypen;
 with StadtKonstanten;
 with AufgabenDatentypen;

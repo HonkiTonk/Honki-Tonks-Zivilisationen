@@ -13,7 +13,7 @@ project Stream is
    end Naming;
 
    package Compiler is
-      for Switches ("ada") use ("-gnatW8", "-fstack-check", "-gnato", "-gnatf", "-gnat2020", "-gnatVacdefimoprst", 
+      for Switches ("ada") use ("-gnatW8", "-gnatf", "-gnat2020", "-gnato", "-fstack-check", "-gnatVacdefimoprst", 
          "-gnatw.a.b.c.d.f.g.h.i.j.k.l.m.n.o.p.q.r.s.t.v.w.x.zcdghiklmopqrtuvwxyz_c_re.u_pajf", "-gnatyACOSadefhiklnprsxM222L8");
    end Compiler;
 

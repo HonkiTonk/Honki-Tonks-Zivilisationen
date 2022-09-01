@@ -4,7 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 with StadtDatentypen;
 with KartenDatentypen;
 with KartengrundDatentypen;
-with KartenVerbesserungDatentypen;
 with RassenDatentypen;
 
 package KartenRecords is
@@ -93,24 +92,8 @@ package KartenRecords is
       
    end record;
    
-   type KartenRecord is record
-
-      Grund : KartengrundRecord;
-      Sichtbar : SichtbarkeitArray;
       
-      Fluss : KartengrundDatentypen.Kartenfluss_Enum;
-      Ressource : KartengrundDatentypen.Kartenressourcen_Enum;
       
-      Weg : KartenVerbesserungDatentypen.Karten_Weg_Enum;
-      Verbesserung : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
-      
-      DurchStadtBelegterGrund : BelegterGrundRecord;
-      Felderwertung : FelderwertungArray;
-
-   end record;
-   
-   
-   
    type CursorRecord is record
       
       KoordinatenAktuell : AchsenKartenfeldNaturalRecord;

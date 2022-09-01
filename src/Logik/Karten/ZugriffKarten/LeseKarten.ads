@@ -8,6 +8,7 @@ with KartengrundDatentypen;
 with KartenVerbesserungDatentypen;
 with SpielVariablen;
 with StadtRecords;
+with EinheitenRecords;
 
 with Karten;
 
@@ -154,5 +155,9 @@ package LeseKarten is
                and
                  KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Karteneinstellungen.Kartengröße.XAchse
               );
+   
+   function Einheit
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      return EinheitenRecords.RasseEinheitnummerRecord;
 
 end LeseKarten;

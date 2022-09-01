@@ -136,4 +136,16 @@ package body SchreibeKarten is
       Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Felderwertung (RasseExtern) := KartenDatentypen.Bewertung_Enum'Val (Bewertungwert);
       
    end Bewertung;
+   
+   
+   
+   procedure Einheit
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+   is begin
+      
+      Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Einheit := EinheitRasseNummerExtern;
+      
+   end Einheit;
+   
 end SchreibeKarten;

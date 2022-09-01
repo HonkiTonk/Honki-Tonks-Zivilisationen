@@ -5,6 +5,7 @@ with KartenRecords;
 with KartenDatentypen;
 with KartenRecordKonstanten;
 with ZahlenDatentypen;
+with WeltkarteRecords;
 
 package Karten is
 
@@ -12,8 +13,8 @@ package Karten is
    Karteneinstellungen : KartenRecords.PermanenteKartenparameterRecord := KartenRecordKonstanten.Standardkartenparameter;
 
    -- Später die Anzahl der Ebenen auch vom Nutzer einstellbar machen? äöü
-   type WeltkarteArray is array (KartenDatentypen.EbeneVorhanden'Range, KartenDatentypen.KartenfeldPositiv'Range, KartenDatentypen.KartenfeldPositiv'Range) of KartenRecords.KartenRecord;
-   Weltkarte : WeltkarteArray := (others => (others => (others => KartenRecordKonstanten.LeerWeltkarte)));
+   type WeltkarteArray is array (KartenDatentypen.EbeneVorhanden'Range, KartenDatentypen.KartenfeldPositiv'Range, KartenDatentypen.KartenfeldPositiv'Range) of WeltkarteRecords.WeltkarteRecord;
+   Weltkarte : WeltkarteArray := (others => (others => (others => WeltkarteRecords.LeerWeltkarte)));
 
    type StadtkarteArray is array (KartenDatentypen.Stadtfeld'Range, KartenDatentypen.Stadtfeld'Range) of ZahlenDatentypen.EigenerInteger;
    Stadtkarte : StadtkarteArray := (others => (others => (0)));

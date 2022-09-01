@@ -4,8 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 with KartenDatentypen;
 with KartenRecords;
 with KartenKonstanten;
-with KartengrundDatentypen;
-with KartenVerbesserungDatentypen;
 with StadtDatentypen;
 with RassenDatentypen;
 
@@ -45,17 +43,6 @@ package KartenRecordKonstanten is
                                                                                 RasseBelegt => RassenDatentypen.Keine_Rasse_Enum,
                                                                                 StadtBelegt => StadtDatentypen.MaximaleStädteMitNullWert'First
                                                                                );
-
-   LeerWeltkarte : constant KartenRecords.KartenRecord := (
-                                                           Grund                   => (KartengrundDatentypen.Leer_Grund_Enum, KartengrundDatentypen.Leer_Grund_Enum),
-                                                           Sichtbar                => (others => KartenKonstanten.LeerSichtbar),
-                                                           Fluss                   => KartengrundDatentypen.Leer_Fluss_Enum,
-                                                           Ressource               => KartengrundDatentypen.Leer_Ressource_Enum,
-                                                           Weg                     => KartenVerbesserungDatentypen.Leer_Weg_Enum,
-                                                           Verbesserung            => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum,
-                                                           DurchStadtBelegterGrund => LeerDurchStadtBelegterGrund,
-                                                           Felderwertung           => (others => KartenKonstanten.LeerFeldwertung)
-                                                          );
 
    KartenformStandard : constant KartenRecords.KartenformRecord := (
                                                                     EAchseOben   => KartenDatentypen.Karte_E_Kein_Übergang_Enum,

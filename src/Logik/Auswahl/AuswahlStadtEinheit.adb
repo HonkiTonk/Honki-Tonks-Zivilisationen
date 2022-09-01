@@ -4,7 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 with Sf;
 with Sf.Graphics.RenderWindow;
 
-with EinheitenDatentypen; use EinheitenDatentypen;
 with TastenbelegungDatentypen;
 with SystemDatentypen;
 with Views;

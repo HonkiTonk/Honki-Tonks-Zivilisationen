@@ -16,6 +16,7 @@ with OptionenVariablen;
 with EinheitenRecords;
 with GrafikDatentypen;
 with TextnummernKonstanten;
+with WeltkarteRecords;
 
 with Karten;
 with Ladezeiten;
@@ -153,8 +154,8 @@ package body Speichern is
             XAchseSchleife:
             for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Karteneinstellungen.Kartengröße.XAchse loop
 
-               KartenRecords.KartenRecord'Write (Stream (File => DateiSpeichernExtern),
-                                                 Karten.Weltkarte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
+               WeltkarteRecords.WeltkarteRecord'Write (Stream (File => DateiSpeichernExtern),
+                                                       Karten.Weltkarte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
                
             end loop XAchseSchleife;
          end loop YAchseSchleife;
