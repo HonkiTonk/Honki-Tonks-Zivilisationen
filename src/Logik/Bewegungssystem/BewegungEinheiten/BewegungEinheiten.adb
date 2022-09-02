@@ -46,7 +46,8 @@ package body BewegungEinheiten is
       FeldPassierbar := BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                                    NeueKoordinatenExtern       => NeuePosition);
       
-      EinheitAufFeld := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => NeuePosition);
+      EinheitAufFeld := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => NeuePosition,
+                                                                         LogikGrafikExtern => True);
       StadtAufFeld := StadtSuchen.KoordinatenStadtOhneSpezielleRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
                                                                             KoordinatenExtern => NeuePosition);
       BewegungDurchführen := False;
@@ -61,9 +62,8 @@ package body BewegungEinheiten is
       elsif
         EinheitAufFeld.Rasse = EinheitRasseNummerExtern.Rasse
         and then
-          EinheitenTransporter.KannTransportiertWerden (LadungExtern      => EinheitRasseNummerExtern,
-                                                        TransporterExtern => EinheitAufFeld)
-        = False
+          False = EinheitenTransporter.KannTransportiertWerden (LadungExtern      => EinheitRasseNummerExtern,
+                                                                TransporterExtern => EinheitAufFeld)
       then
          return True;
          
@@ -85,9 +85,8 @@ package body BewegungEinheiten is
          if
            FeldPassierbar
            and
-             (FremderAufFeld (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                              FremdeEinheitExtern      => EinheitAufFeld)
-              = True)
+             (True = FremderAufFeld (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                     FremdeEinheitExtern      => EinheitAufFeld))
          then
             BewegungDurchführen := True;
             
@@ -171,9 +170,8 @@ package body BewegungEinheiten is
       end case;
       
       if
-        KampfsystemEinheiten.KampfsystemNahkampf (AngreiferExtern    => EinheitRasseNummerExtern,
-                                                  VerteidigerExtern => FremdeEinheitExtern)
-        = True
+        True = KampfsystemEinheiten.KampfsystemNahkampf (AngreiferExtern    => EinheitRasseNummerExtern,
+                                                         VerteidigerExtern => FremdeEinheitExtern)
       then
          case
            EinheitAufFeld.Nummer

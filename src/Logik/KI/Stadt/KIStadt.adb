@@ -183,7 +183,8 @@ package body KIStadt is
                   
                when others =>
                   FremdeEinheit := EinheitSuchen.KoordinatenEinheitOhneSpezielleRasseSuchen (RasseExtern       => StadtRasseNummerExtern.Rasse,
-                                                                                             KoordinatenExtern => KartenWert);
+                                                                                             KoordinatenExtern => KartenWert,
+                                                                                             LogikGrafikExtern => True);
                   
                   if
                     FremdeEinheit.Nummer = EinheitenKonstanten.LeerNummer

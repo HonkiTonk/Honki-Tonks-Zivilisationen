@@ -9,6 +9,8 @@ with KartenRecordKonstanten;
 with EinheitenRecordKonstanten;
 
 with LeseEinheitenDatenbank;
+with LeseEinheitenGebaut;
+with SchreibeKarten;
 
 package body SchreibeEinheitenGebaut is
 
@@ -28,7 +30,21 @@ package body SchreibeEinheitenGebaut is
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
       
+      case
+        LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern).EAchse
+      is
+         when KartenKonstanten.LeerEAchse =>
+            null;
+            
+         when others =>
+            SchreibeKarten.EinheitEntfernen (KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                             EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      end case;
+      
       SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KoordinatenAktuell := KoordinatenExtern;
+      
+      SchreibeKarten.EinheitSchreiben (KoordinatenExtern        => KoordinatenExtern,
+                                       EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
    end Koordinaten;
    
@@ -412,6 +428,9 @@ package body SchreibeEinheitenGebaut is
    procedure Nullsetzung
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
+      
+      SchreibeKarten.EinheitEntfernen (KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                       EinheitRasseNummerExtern => EinheitRasseNummerExtern);
                                            
       SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer) := EinheitenRecordKonstanten.LeerEinheit;
       

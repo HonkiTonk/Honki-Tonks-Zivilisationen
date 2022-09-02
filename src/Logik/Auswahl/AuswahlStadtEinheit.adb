@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+
 with Sf;
 with Sf.Graphics.RenderWindow;
 
@@ -46,15 +48,20 @@ package body AuswahlStadtEinheit is
             
             WelcheAuswahl.MöglicheAuswahlen (WirdTransportiertSchleifenwert) := LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerExtern),
                                                                                                                     PlatzExtern              => WirdTransportiertSchleifenwert);
-              
+            
+            Put_Line (LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerExtern),
+                                                         PlatzExtern              => WirdTransportiertSchleifenwert)'Wide_Wide_Image);
+            
          end loop TransporterSchleife;
       end if;
       
+      New_Line (2);
+      
       AktuelleAuswahl := 0;
+      InteraktionAuswahl.PositionenEinheitStadt := (others => (0.00, 0.00, 0.00, 0.00));
       NachGrafiktask.AktuelleAuswahl.AuswahlEins := AktuelleAuswahl;
       NachGrafiktask.WelcheAuswahl := WelcheAuswahl;
       
-      -- InteraktionAuswahl.PositionenEinheitStadt := (others => (0.00, 0.00, 0.00, 0.00));
       NachGrafiktask.Eingabe := SystemDatentypen.Einheit_Auswahl_Enum;
       
       AuswahlSchleife:

@@ -3,6 +3,8 @@ pragma Warnings (Off, "*array aggregate*");
 
 with StadtDatentypen; use StadtDatentypen;
 with StadtKonstanten;
+with KartenKonstanten;
+with EinheitenKonstanten;
 
 with Fehler;
 
@@ -197,7 +199,15 @@ package body LeseKarten is
       return EinheitenRecords.RasseEinheitnummerRecord
    is begin
       
-      return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Einheit;
+      case
+        KoordinatenExtern.EAchse
+      is
+         when KartenKonstanten.LeerEAchse =>
+            return EinheitenKonstanten.LeerRasseNummer;
+            
+         when others =>
+            return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Einheit;
+      end case;
       
    end Einheit;
 

@@ -68,7 +68,8 @@ package body StadtEinheitenBauen is
    is begin
       
       if
-        EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern)).Nummer = EinheitenKonstanten.LeerNummer
+        EinheitenKonstanten.LeerNummer = EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
+                                                                                          LogikGrafikExtern => True).Nummer
       then
          KartenWert := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
          

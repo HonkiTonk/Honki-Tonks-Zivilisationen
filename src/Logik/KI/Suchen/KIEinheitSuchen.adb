@@ -42,7 +42,8 @@ package body KIEinheitSuchen is
                   
             else
                FeindlicheEinheit := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => FeindExtern,
-                                                                                    KoordinatenExtern => KartenWert);
+                                                                                    KoordinatenExtern => KartenWert,
+                                                                                    LogikGrafikExtern => True);
                case
                  FeindlicheEinheit
                is

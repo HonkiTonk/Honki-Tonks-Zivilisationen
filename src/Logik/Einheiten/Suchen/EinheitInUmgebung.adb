@@ -138,7 +138,8 @@ package body EinheitInUmgebung is
                
             else
                AndereEinheit := EinheitSuchen.KoordinatenEinheitOhneSpezielleRasseSuchen (RasseExtern       => RasseExtern,
-                                                                                          KoordinatenExtern => KartenWert);
+                                                                                          KoordinatenExtern => KartenWert,
+                                                                                          LogikGrafikExtern => True);
                
                if
                  AndereEinheit.Nummer = EinheitenKonstanten.LeerNummer

@@ -70,14 +70,14 @@ package body KIGefahrErmitteln is
                null;
                
             elsif
-              LeseKarten.Sichtbar (KoordinatenExtern => KartenWert,
-                                   RasseExtern       => EinheitRasseNummerExtern.Rasse)
-              = False
+              False = LeseKarten.Sichtbar (KoordinatenExtern => KartenWert,
+                                           RasseExtern       => EinheitRasseNummerExtern.Rasse)
             then
                null;
                   
             else
-               EinheitUnzugeordnet := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert);
+               EinheitUnzugeordnet := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert,
+                                                                                       LogikGrafikExtern => True);
                   
                case
                  ReaktionErfoderlich (EinheitRasseNummerExtern => EinheitRasseNummerExtern,

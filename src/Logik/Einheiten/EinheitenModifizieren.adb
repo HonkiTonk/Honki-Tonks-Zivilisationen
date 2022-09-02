@@ -175,7 +175,8 @@ package body EinheitenModifizieren is
       is
          when EinheitenKonstanten.LeerNummer =>
             EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                                             KoordinatenExtern => SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAktuell);
+                                                                             KoordinatenExtern => SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAktuell,
+                                                                             LogikGrafikExtern => True);
             
          when others =>
             EinheitNummer := EinheitRasseNummerExtern.Nummer;

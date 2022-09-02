@@ -242,7 +242,8 @@ package body WeltkarteZeichnenGrafik is
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
-      EinheitRasseNummer := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
+      EinheitRasseNummer := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern,
+                                                                             LogikGrafikExtern => False);
       
       case
         EinheitRasseNummer.Nummer
@@ -257,7 +258,10 @@ package body WeltkarteZeichnenGrafik is
       if
         EinheitRasseNummer.Rasse = RasseEinheitExtern.Rasse
         and
-          EinheitRasseNummer.Nummer = RasseEinheitExtern.Nummer
+          (EinheitRasseNummer.Nummer = RasseEinheitExtern.Nummer
+           or
+             True = EinheitSuchen.TransporterladungSuchen (TransporterExtern   => EinheitRasseNummer,
+                                                           LadungsnummerExtern => RasseEinheitExtern.Nummer))
       then
          if
            Clock - StartzeitBlinkintervall > ZeitKonstanten.Blinkintervall

@@ -1,6 +1,13 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with EinheitenDatentypen; use EinheitenDatentypen;
+with EinheitenRecords; use EinheitenRecords;
+with EinheitenKonstanten;
+with KartenKonstanten;
+
+with LeseKarten;
+
 with Fehler;
 
 package body SchreibeKarten is
@@ -139,13 +146,52 @@ package body SchreibeKarten is
    
    
    
-   procedure Einheit
+   procedure EinheitSchreiben
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
-      Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Einheit := EinheitRasseNummerExtern;
+      if
+        KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse
+      then
+         null;
+         
+      elsif
+        LeseKarten.Einheit (KoordinatenExtern => KoordinatenExtern) /= EinheitenKonstanten.LeerRasseNummer
+      then
+         null;
+         
+      else
+         Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Einheit := EinheitRasseNummerExtern;
+      end if;
       
-   end Einheit;
+   end EinheitSchreiben;
+   
+   
+   
+   procedure EinheitEntfernen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+   is begin
+      
+      if
+        EinheitRasseNummerExtern.Rasse = EinheitenKonstanten.LeerRasse
+        or
+          EinheitRasseNummerExtern.Nummer = EinheitenKonstanten.LeerNummer
+          or
+            KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse
+      then
+         null;
+         
+      elsif
+        LeseKarten.Einheit (KoordinatenExtern => KoordinatenExtern) /= EinheitRasseNummerExtern
+      then
+         null;
+         
+      else
+         Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Einheit := EinheitenKonstanten.LeerRasseNummer;
+      end if;
+      
+   end EinheitEntfernen;
    
 end SchreibeKarten;

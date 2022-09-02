@@ -14,7 +14,8 @@ package EinheitSuchen is
 
    function KoordinatenEinheitMitRasseSuchen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      LogikGrafikExtern : in Boolean)
       return EinheitenDatentypen.MaximaleEinheitenMitNullWert
      with
        Pre => (
@@ -30,7 +31,8 @@ package EinheitSuchen is
                );
 
    function KoordinatenEinheitOhneRasseSuchen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      LogikGrafikExtern : in Boolean)
       return EinheitenRecords.RasseEinheitnummerRecord
      with
        Pre => (
@@ -41,7 +43,8 @@ package EinheitSuchen is
 
    function KoordinatenEinheitOhneSpezielleRasseSuchen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      LogikGrafikExtern : in Boolean)
       return EinheitenRecords.RasseEinheitnummerRecord
      with
        Pre => (
@@ -52,16 +55,27 @@ package EinheitSuchen is
                  SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
+   function TransporterladungSuchen
+     (TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      LadungsnummerExtern : in EinheitenDatentypen.MaximaleEinheitenMitNullWert)
+      return Boolean;
+   
 private
    
-   EinheitNummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
-   EinheitnummerTransporter : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   Transporterkapazität : EinheitenDatentypen.Transportplätze;
+   
+   type TransporternummerArray is array (Boolean'Range) of EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   Transporternummer : TransporternummerArray;
+   
+   type EinheitArray is array (Boolean'Range) of EinheitenRecords.RasseEinheitnummerRecord;
+   Einheit : EinheitArray;
    
    
    
    function TransporterverschachtelungDurchgehen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return EinheitenDatentypen.MaximaleEinheiten
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      LogikGrafikExtern : in Boolean)
+      return EinheitenRecords.RasseEinheitnummerRecord
      with
        Pre => (
                  SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum

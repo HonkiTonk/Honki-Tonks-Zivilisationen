@@ -31,16 +31,16 @@ package body KIEinheitAufgabeBewachen is
                
             when others =>
                EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                                                KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert)));
+                                                                                KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert)),
+                                                                                LogikGrafikExtern => True);
          end case;
          
          if
            EinheitNummer = EinheitenKonstanten.LeerNummer
            and
-             KIAufgabenVerteilt.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Stadt_Bewachen_Enum,
-                                                    RasseExtern           => EinheitRasseNummerExtern.Rasse,
-                                                    ZielKoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert)))
-           = False
+             False = KIAufgabenVerteilt.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Stadt_Bewachen_Enum,
+                                                            RasseExtern           => EinheitRasseNummerExtern.Rasse,
+                                                            ZielKoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert)))
          then
             return KIDatentypen.AufgabenWichtigkeitKlein'Last;
                

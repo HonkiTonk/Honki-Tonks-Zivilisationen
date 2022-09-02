@@ -189,17 +189,23 @@ package ChangelogSeptember2022 is
    
    
 
-   -- Version 0.03. => 0.03. (03.09.2022):
+   -- Version 0.03.8090 => 0.03. (03.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.8000 => 0.03. (02.09.2022):
+   -- Version 0.03.8000 => 0.03.8090 (02.09.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Einheitenkoordinaten werden jetzt für die am tiefsten verschachtelte Einheit auf der Weltkarte gespeichert um die Grafikanzeige auch bei vielen Einheiten noch schnell erfolgen zu lassen.
+   -- Fehler im Bewegungssystem korrigiert, welcher dafür sorgen konnte dass die Ladung, aber nicht der Transporter auf die Zielkoordinaten verschoben wurde.
+   -- Fehler bei der Auswahl von Einheiten in einem Transporter behoben, welcher zu Abstürzen führen konnt.
+   -- Fehler behoben der verhinderte dass die Zoomeinstellungen korrekt zurückgesetzt wurden.
+   -- Unnötigen Code gelöscht.
+   -- Scrollverzögerung eingebaut.
+   -- Das Scrollsystem in das neue Viewsystem eingebaut.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    
 

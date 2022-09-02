@@ -56,7 +56,8 @@ package body KarteInformationenSFML is
                   StadtVorhanden := True;
             end case;
             
-            EinheitRasseNummer := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => AktuelleKoordinaten);
+            EinheitRasseNummer := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => AktuelleKoordinaten,
+                                                                                   LogikGrafikExtern => False);
       
             case
               EinheitRasseNummer.Nummer

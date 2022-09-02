@@ -52,7 +52,7 @@ package body AllesAufAnfangSetzen is
       Karten.Weltkarte := (others => (others => (others => WeltkarteRecords.LeerWeltkarte)));
       Karten.Stadtkarte := (others => (others => (0)));
       
-      Sichtweiten.StandardZoom;
+      Sichtweiten.StandardSichtweiten;
       
    end AllesAufAnfangSetzen;
 

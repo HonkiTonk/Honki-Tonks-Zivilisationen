@@ -27,6 +27,8 @@ package BewegungBerechnen is
               );
    
 private
+   
+   LadungVerschieben : Boolean;
       
    KleinerAbzug : constant EinheitenDatentypen.VorhandeneBewegungspunkte := 1.00;
    MittlererAbzug : constant EinheitenDatentypen.VorhandeneBewegungspunkte := 2.00;

@@ -219,7 +219,8 @@ package body SpieleinstellungenRasseSpieler is
       end case;
       
       case
-        EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => GezogeneKoordinate).Nummer
+        EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => GezogeneKoordinate,
+                                                         LogikGrafikExtern => True).Nummer
       is
          when EinheitenKonstanten.LeerNummer =>
             StartKoordinaten (1) := GezogeneKoordinate;
@@ -286,10 +287,9 @@ package body SpieleinstellungenRasseSpieler is
                null;
                                     
             elsif
-              BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern           => RasseExtern,
-                                                                     IDExtern              => 2,
-                                                                     NeueKoordinatenExtern => KartenWert)
-              = False
+              False = BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern           => RasseExtern,
+                                                                             IDExtern              => 2,
+                                                                             NeueKoordinatenExtern => KartenWert)
             then
                null;
                
@@ -297,7 +297,8 @@ package body SpieleinstellungenRasseSpieler is
               FreieFelder = 0
             then
                case
-                 EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Nummer
+                 EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert,
+                                                                  LogikGrafikExtern => True).Nummer
                is
                   when EinheitenKonstanten.LeerNummer =>
                      Zusatzkoordinate := KartenWert;

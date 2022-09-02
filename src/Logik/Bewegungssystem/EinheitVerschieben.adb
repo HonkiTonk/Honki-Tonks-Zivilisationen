@@ -84,7 +84,8 @@ package body EinheitVerschieben is
                                                                                                  
             else
                EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => KontaktierteRasseExtern,
-                                                                                KoordinatenExtern => Kartenwert);
+                                                                                KoordinatenExtern => Kartenwert,
+                                                                                LogikGrafikExtern => True);
             end if;
                
             case
@@ -144,7 +145,8 @@ package body EinheitVerschieben is
                    True = BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                                      NeueKoordinatenExtern    => KartenwertVerschieben)
                  and
-                   EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenwertVerschieben).Nummer = EinheitenKonstanten.LeerNummer
+                   EinheitenKonstanten.LeerNummer = EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenwertVerschieben,
+                                                                                                     LogikGrafikExtern => True).Nummer
                then
                   SchreibeEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                        KoordinatenExtern        => KartenwertVerschieben);

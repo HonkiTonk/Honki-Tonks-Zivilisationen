@@ -25,7 +25,8 @@ package body KIEinheitAllgemeinePruefungen is
       return Boolean
    is begin
       
-      EinheitAufFeld := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
+      EinheitAufFeld := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern,
+                                                                         LogikGrafikExtern => True);
       
       if
         EinheitAufFeld.Nummer /= EinheitenKonstanten.LeerNummer
@@ -35,23 +36,20 @@ package body KIEinheitAllgemeinePruefungen is
          return False;
       
       elsif
-        BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                   NeueKoordinatenExtern    => KoordinatenExtern)
-        = False
+        False = BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                           NeueKoordinatenExtern    => KoordinatenExtern)
       then
          return False;
          
       elsif
-        AktuellUnpassierbar (KoordinatenExtern => KoordinatenExtern,
-                             RasseExtern       => EinheitRasseNummerExtern.Rasse)
-        = True
+        True = AktuellUnpassierbar (KoordinatenExtern => KoordinatenExtern,
+                                    RasseExtern       => EinheitRasseNummerExtern.Rasse)
       then
          return False;
                   
       elsif
-        LeseKarten.Sichtbar (KoordinatenExtern => KoordinatenExtern,
-                             RasseExtern       => EinheitRasseNummerExtern.Rasse)
-        = False
+        False = LeseKarten.Sichtbar (KoordinatenExtern => KoordinatenExtern,
+                                     RasseExtern       => EinheitRasseNummerExtern.Rasse)
       then
          return False;
          

@@ -811,7 +811,8 @@ package body Sichtbarkeit is
       end case;
       
       FremdeEinheit := EinheitSuchen.KoordinatenEinheitOhneSpezielleRasseSuchen (RasseExtern       => RasseExtern,
-                                                                                 KoordinatenExtern => KoordinatenExtern);
+                                                                                 KoordinatenExtern => KoordinatenExtern,
+                                                                                 LogikGrafikExtern => True);
       
       case
         FremdeEinheit.Rasse

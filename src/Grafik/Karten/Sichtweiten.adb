@@ -20,12 +20,13 @@ package body Sichtweiten is
    
    
    
-   procedure StandardZoom
+   procedure StandardSichtweiten
    is begin
       
       AktuelleZoomstufe := StandardZoomstufe;
+      SichtweiteBewegungsfeldFestlegen;
       
-   end StandardZoom;
+   end StandardSichtweiten;
    
    
    
@@ -44,7 +45,7 @@ package body Sichtweiten is
          AktuelleZoomstufe := KartenDatentypen.KartenfeldPositiv'First;
          
       elsif
-        AktuelleZoomstufe + ÄnderungExtern < KartenDatentypen.KartenfeldPositiv'First
+        AktuelleZoomstufe + ÄnderungExtern < MinimaleZoomstufe
       then
          BewegungCursor.CursorbewegungBerechnen (RichtungExtern => TastenbelegungDatentypen.Ebene_Runter_Enum,
                                                  RasseExtern    => NachGrafiktask.AktuelleRasse);

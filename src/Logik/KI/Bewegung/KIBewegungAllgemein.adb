@@ -22,7 +22,8 @@ package body KIBewegungAllgemein is
       return KIDatentypen.Bewegung_Enum
    is begin
       
-      BlockierendeEinheit := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => FeldKoordinatenExtern).Rasse;
+      BlockierendeEinheit := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => FeldKoordinatenExtern,
+                                                                              LogikGrafikExtern => True).Rasse;
       BlockierendeStadt := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => FeldKoordinatenExtern).Rasse;
       
       if

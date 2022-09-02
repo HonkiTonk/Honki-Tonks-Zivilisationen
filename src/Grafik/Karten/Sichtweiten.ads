@@ -10,7 +10,7 @@ package Sichtweiten is
    procedure ZoomstufeÄndern
      (ÄnderungExtern : in KartenDatentypen.Kartenfeld);
    
-   procedure StandardZoom;
+   procedure StandardSichtweiten;
    
    
    
@@ -22,9 +22,10 @@ package Sichtweiten is
    
 private
    
-   -- Eventuell die zoomstufen so anpassen, dass die YAchse ein wenig kleiner ist als die XAchse, wegen der Seitenleiste. äöü
-   MaximaleZoomstufe : constant KartenDatentypen.KartenfeldPositiv := 8;
+   -- Eventuell die Zoomstufen so anpassen, dass die YAchse ein wenig kleiner ist als die XAchse, wegen der Seitenleiste. äöü
+   MaximaleZoomstufe : constant KartenDatentypen.KartenfeldPositiv := 10;
    StandardZoomstufe : constant KartenDatentypen.KartenfeldPositiv := 4;
+   MinimaleZoomstufe : KartenDatentypen.KartenfeldPositiv := KartenDatentypen.KartenfeldPositiv'First;
    AktuelleZoomstufe : KartenDatentypen.KartenfeldPositiv := StandardZoomstufe;
 
 end Sichtweiten;

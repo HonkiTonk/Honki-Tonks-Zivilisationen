@@ -101,7 +101,8 @@ package body KIStadtSuchen is
                                                              
             case
               EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => FeindlicheRasseExtern,
-                                                              KoordinatenExtern => Stadtkoordinaten)
+                                                              KoordinatenExtern => Stadtkoordinaten,
+                                                              LogikGrafikExtern => True)
             is
                when EinheitenKonstanten.LeerNummer =>
                   return Stadtkoordinaten;

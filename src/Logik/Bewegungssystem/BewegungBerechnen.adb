@@ -24,11 +24,13 @@ package body BewegungBerechnen is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
+      
+      LadungVerschieben := False;
 
       -- Immer berücksichtigen dass in BewegungssystemEinheiten.BewegungPrüfen bereits geprüft wird ob der Transporter die Einheit transportieren kann und ein freier Platz vorhanden ist.
       if
         EinheitenKonstanten.LeerKannTransportieren = LeseEinheitenDatenbank.KannTransportieren (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                   IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
+                                                                                                IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       then
          null;
          
@@ -36,8 +38,10 @@ package body BewegungBerechnen is
         StadtKonstanten.LeerNummer = StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
                                                                                  KoordinatenExtern => NeueKoordinatenExtern)
       then
-         BewegungLadenEntladen.TransporterladungVerschieben (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                             NeueKoordinatenExtern    => NeueKoordinatenExtern);
+         -- Die Ladungsverschiebung muss mit dem neuen Karten/Einheitenkoordinatensystem immer am Schluss erfolgen.
+         -- Theoretisch hätte das auch immer im alten System passieren müssen, um zu verhidnern dass die Ladung verschoben wird ohne dass das Schiff verschoben werden kann.
+         -- Kam nur nie zu einem Problem weil es keinen Bewegungsabzug für Schiffe gab.
+         LadungVerschieben := True;
 
       else
          case
@@ -94,6 +98,18 @@ package body BewegungBerechnen is
       
       SchreibeEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                            KoordinatenExtern        => NeueKoordinatenExtern);
+      
+      case
+        LadungVerschieben
+      is
+         when True =>
+            BewegungLadenEntladen.TransporterladungVerschieben (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                NeueKoordinatenExtern    => NeueKoordinatenExtern);
+            
+         when False =>
+            null;
+      end case;
+      
       NachBewegung (NeueKoordinatenExtern    => NeueKoordinatenExtern,
                     EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
@@ -139,7 +155,7 @@ package body BewegungBerechnen is
    function AbzugDurchBewegung
      (NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-         return EinheitenDatentypen.BewegungFloat
+      return EinheitenDatentypen.BewegungFloat
    is begin
       
       Welchen_Bonus := StraßeUndFlussPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,

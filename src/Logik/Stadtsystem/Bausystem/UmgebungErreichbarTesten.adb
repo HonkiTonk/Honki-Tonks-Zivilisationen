@@ -57,7 +57,8 @@ package body UmgebungErreichbarTesten is
                  True = LeseKarten.BelegterGrund (RasseExtern       => RasseExtern,
                                                   KoordinatenExtern => KartenWert)
                  and
-                   EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Nummer = EinheitenKonstanten.LeerNummer
+                   EinheitenKonstanten.LeerNummer = EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert,
+                                                                                                     LogikGrafikExtern => True).Nummer
                  and
                    True = BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern           => RasseExtern,
                                                                                  IDExtern              => IDExtern,
@@ -75,7 +76,8 @@ package body UmgebungErreichbarTesten is
                  True = LeseKarten.BelegterGrund (RasseExtern       => RasseExtern,
                                                   KoordinatenExtern => KartenWert)
                  and
-                   EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Nummer = EinheitenKonstanten.LeerNummer
+                   EinheitenKonstanten.LeerNummer = EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert,
+                                                                                                     LogikGrafikExtern => True).Nummer
                  and
                    True = BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern           => RasseExtern,
                                                                                  IDExtern              => IDExtern,

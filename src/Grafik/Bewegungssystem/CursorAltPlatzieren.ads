@@ -1,6 +1,10 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with Ada.Calendar;
+
+with Sf.System.Vector2;
+
 with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
 with SpielVariablen;
@@ -19,9 +23,15 @@ package CursorAltPlatzieren is
               );
    
 private
+      
+   Scrollzeit : Ada.Calendar.Time := Ada.Calendar.Clock;
+   
+   Mausposition : Sf.System.Vector2.sfVector2f;
    
    Kartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
    KartenwertKoordinatenberechnung : KartenRecords.AchsenKartenfeldNaturalRecord;
+   
+   Koordinatenänderung : KartenRecords.AchsenKartenfeldRecord;
 
    procedure AlteYAchseFestlegenSFML
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
@@ -45,6 +55,14 @@ private
               );
    
    
+   
+   function AlteYAchseFestlegen
+     (MausachseExtern : in Float)
+      return KartenDatentypen.UmgebungsbereichEins;
+   
+   function AlteXAchseFestlegen
+     (MausachseExtern : in Float)
+      return KartenDatentypen.UmgebungsbereichEins;
    
    function Koordinatenberechnung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)

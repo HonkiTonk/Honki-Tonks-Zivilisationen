@@ -17,5 +17,8 @@ package ZeitKonstanten is
    
    -- Das hier vom Nutzer einstellbar machen. äöü
    AnzeigezeitSpielmeldungen : constant Duration := 2.00;
+   
+   -- Das hier vom Nutzer einstellbar machen. äöü
+   Scrollverzögerung : Duration := 0.02;
 
 end ZeitKonstanten;
