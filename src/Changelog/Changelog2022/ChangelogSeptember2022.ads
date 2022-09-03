@@ -182,17 +182,21 @@ package ChangelogSeptember2022 is
    
    
 
-   -- Version 0.03. => 0.03. (04.09.2022):
+   -- Version 0.03.8160 => 0.03. (04.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.8090 => 0.03. (03.09.2022):
+   -- Version 0.03.8090 => 0.03.8160 (03.09.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Das Scrollsystem überarbeitet, es sollte jetzt immer der Kartenform entsprechend funktionieren.
+   -- Kartenanzeige wird bei Spielstart und beim Zoomen entsprechend der aktuellen Koordinaten und der Kartenform angepasst.
+   -- Debug wieder aktiviert damit die Contracts wieder funktionieren.
+   -- Fehler behoben die durch die reatkivierten Contracts sichtbar wurden.
+   -- Angefangen die Ladezeitenfortschritte zu überarbeiten.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 

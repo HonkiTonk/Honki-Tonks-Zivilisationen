@@ -4,7 +4,8 @@ pragma Warnings (Off, "*array aggregate*");
 with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
 
-private with ZahlenDatentypen;
+private with EinheitenDatentypen;
+private with StadtDatentypen;
 
 package KI is
 
@@ -17,7 +18,9 @@ package KI is
 
 private
 
-   Multiplikator : ZahlenDatentypen.EigenesPositive;
+   Städtezeitwert : StadtDatentypen.MaximaleStädte;
+
+   Einheitenzeitwert : EinheitenDatentypen.MaximaleEinheiten;
 
    procedure EinheitenDurchgehen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

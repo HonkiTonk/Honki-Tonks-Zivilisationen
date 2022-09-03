@@ -18,10 +18,19 @@ package BewegungCursor is
        Pre => (
                  SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
               );
+   
+   procedure ZoomanpassungCursor
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre => (
+                 SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+              );
      
    procedure GeheZu;
 
 private
+   
+   AktuelleSichtweite : KartenDatentypen.KartenfeldPositiv;
 
    KoordinatenPunkt : SystemRecords.ZahlenEingabeRecord;
 

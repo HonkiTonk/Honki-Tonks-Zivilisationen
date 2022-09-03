@@ -32,20 +32,6 @@ private
    KartenwertKoordinatenberechnung : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    Koordinatenänderung : KartenRecords.AchsenKartenfeldRecord;
-
-   procedure AlteYAchseFestlegenSFML
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-     with
-       Pre => (
-                 SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
-              );
-
-   procedure AlteXAchseFestlegenSFML
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-     with
-       Pre => (
-                 SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
-              );
    
    procedure GeheZuFestlegung
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
@@ -57,12 +43,22 @@ private
    
    
    function AlteYAchseFestlegen
-     (MausachseExtern : in Float)
-      return KartenDatentypen.UmgebungsbereichEins;
+     (MausachseExtern : in Float;
+      YAchseAlt : in KartenDatentypen.KartenfeldPositiv)
+      return KartenDatentypen.UmgebungsbereichEins
+     with
+       Pre => (
+                 YAchseAlt <= Karten.Karteneinstellungen.Kartengröße.YAchse
+              );
    
    function AlteXAchseFestlegen
-     (MausachseExtern : in Float)
-      return KartenDatentypen.UmgebungsbereichEins;
+     (MausachseExtern : in Float;
+      XAchseAlt : in KartenDatentypen.KartenfeldPositiv)
+      return KartenDatentypen.UmgebungsbereichEins
+     with
+       Pre => (
+                 XAchseAlt <= Karten.Karteneinstellungen.Kartengröße.XAchse
+              );
    
    function Koordinatenberechnung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)

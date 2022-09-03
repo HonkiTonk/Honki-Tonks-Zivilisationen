@@ -4,7 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
 
-private with ZahlenDatentypen;
 private with ForschungenDatentypen;
 
 private with ForschungenDatenbank;
@@ -22,11 +21,11 @@ package KIForschung is
    
 private
    
+   Zeitwert : ForschungenDatentypen.ForschungID;
+   
    WelchesProjekt : ForschungenDatentypen.ForschungIDMitNullWert;
    
    Bewertung : KIDatentypen.AufgabenWichtigkeitKlein;
-   
-   Multiplikator : ZahlenDatentypen.EigenesPositive;
    
    type MöglicheForschungenArray is array (ForschungenDatenbank.ForschungslisteArray'Range (2)) of KIDatentypen.AufgabenWichtigkeitKlein;
    MöglicheForschungen : MöglicheForschungenArray;

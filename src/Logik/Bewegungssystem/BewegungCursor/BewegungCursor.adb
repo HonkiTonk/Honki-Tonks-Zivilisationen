@@ -6,6 +6,7 @@ with TextnummernKonstanten;
 with Karten;
 with EingabeSFML;
 with NachGrafiktask;
+with Sichtweiten;
 
 package body BewegungCursor is
    
@@ -44,6 +45,72 @@ package body BewegungCursor is
       end case;
       
    end CursorbewegungBerechnen;
+   
+   
+   
+   -- Eventuell später noch erweitern damit auch bei anderen Einstellungen die Verschiebung korrekter ist. äöü
+   -- Gilt auch für die Anpassung in CursorAltPlatzieren. äöü
+   procedure ZoomanpassungCursor
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+   is begin
+      
+      AktuelleSichtweite := Sichtweiten.SichtweiteLesen;
+        
+      if
+        2 * AktuelleSichtweite >= Karten.Karteneinstellungen.Kartengröße.YAchse
+        and
+          Karten.Karteneinstellungen.Kartenform.YAchseNorden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
+          and
+            Karten.Karteneinstellungen.Kartenform.YAchseSüden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
+      then
+         SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse := Karten.Karteneinstellungen.Kartengröße.YAchse / 2;
+         
+      elsif
+        SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse <= Karten.WeltkarteArray'First (2) + AktuelleSichtweite
+        and
+          Karten.Karteneinstellungen.Kartenform.YAchseNorden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
+      then
+         SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse := Karten.WeltkarteArray'First (2) + AktuelleSichtweite;
+         
+      elsif
+        SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse >= Karten.Karteneinstellungen.Kartengröße.YAchse - AktuelleSichtweite
+        and
+          Karten.Karteneinstellungen.Kartenform.YAchseSüden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
+      then
+         SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse := Karten.Karteneinstellungen.Kartengröße.YAchse - AktuelleSichtweite;
+         
+      else
+         null;
+      end if;
+      
+      if
+        2 * AktuelleSichtweite >= Karten.Karteneinstellungen.Kartengröße.XAchse
+        and
+          Karten.Karteneinstellungen.Kartenform.XAchseWesten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
+          and
+            Karten.Karteneinstellungen.Kartenform.XAchseOsten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
+      then
+         SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse := Karten.Karteneinstellungen.Kartengröße.XAchse / 2;
+      
+      elsif
+        SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse <= Karten.WeltkarteArray'First (3) + AktuelleSichtweite
+        and
+          Karten.Karteneinstellungen.Kartenform.XAchseWesten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
+      then
+         SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse := Karten.WeltkarteArray'First (3) + AktuelleSichtweite;
+         
+      elsif
+        SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse >= Karten.Karteneinstellungen.Kartengröße.XAchse - AktuelleSichtweite
+        and
+          Karten.Karteneinstellungen.Kartenform.XAchseOsten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
+      then
+         SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse := Karten.Karteneinstellungen.Kartengröße.XAchse - AktuelleSichtweite;
+         
+      else
+         null;
+      end if;
+      
+   end ZoomanpassungCursor;
 
 
 

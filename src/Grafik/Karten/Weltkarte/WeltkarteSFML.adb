@@ -14,6 +14,7 @@ with BerechnungenKarteSFML;
 with GrafikEinstellungenSFML;
 with ViewsEinstellenSFML;
 with WeltkarteZeichnenGrafik;
+with Sichtweiten;
 
 package body WeltkarteSFML is
    
@@ -25,7 +26,7 @@ package body WeltkarteSFML is
                                           GrößeExtern          => (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x, GrafikEinstellungenSFML.AktuelleFensterAuflösung.y),
                                           AnzeigebereichExtern => GrafikRecordKonstanten.KarteAnzeigebereich);
       
-      SichtbereichAnfangEnde := BerechnungenKarteSFML.SichtbereichKarteBerechnen;
+      SichtbereichAnfangEnde := Sichtweiten.SichtbereichKarteBerechnen;
       
       CursorKoordinatenAlt := SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt;
       Feldposition := (0.00, 0.00);

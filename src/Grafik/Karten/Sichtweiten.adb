@@ -30,7 +30,6 @@ package body Sichtweiten is
    
    
    
-   -- Eventuell noch von der Kartengröße abhängig machen, damit bei kleinen Karten keine Probleme auftreten. äöü
    procedure ZoomstufeÄndern
      (ÄnderungExtern : in KartenDatentypen.Kartenfeld)
    is begin
@@ -56,6 +55,7 @@ package body Sichtweiten is
       end if;
       
       BerechnungenKarteSFML.KartenfelderAbmessungBerechnen;
+      BewegungCursor.ZoomanpassungCursor (RasseExtern => NachGrafiktask.AktuelleRasse);
       
    end ZoomstufeÄndern;
    
@@ -78,5 +78,20 @@ package body Sichtweiten is
       return AktuelleZoomstufe * 2 - 1;
       
    end BewegungsfeldLesen;
+   
+   
+   
+   function SichtbereichKarteBerechnen
+     return KartenDatentypen.SichtbereichAnfangEndeArray
+   is begin
+      
+      YSichtAnfang := -Sichtweiten.SichtweiteLesen;
+      YSichtEnde := Sichtweiten.SichtweiteLesen;
+      XSichtAnfang := -Sichtweiten.SichtweiteLesen;
+      XSichtEnde := Sichtweiten.SichtweiteLesen;
+      
+      return (YSichtAnfang, YSichtEnde, XSichtAnfang, XSichtEnde);
+      
+   end SichtbereichKarteBerechnen;
 
 end Sichtweiten;

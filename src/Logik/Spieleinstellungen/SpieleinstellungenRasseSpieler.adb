@@ -23,6 +23,7 @@ with Auswahlaufteilungen;
 with Fehler;
 with Ladezeiten;
 with UmwandlungenVerschiedeneDatentypen;
+with BewegungCursor;
 
 package body SpieleinstellungenRasseSpieler is
    
@@ -360,9 +361,18 @@ package body SpieleinstellungenRasseSpieler is
                                                   IDExtern               => 2,
                                                   StadtRasseNummerExtern => (RasseExtern, 0));
       
-      SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell := (StartkoordinateEinsExtern.EAchse, Karten.Karteneinstellungen.Kartengröße.YAchse / 2, Karten.Karteneinstellungen.Kartengröße.XAchse / 2);
-      SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt := StartkoordinateEinsExtern;
-      
+      case
+        SpielVariablen.RassenImSpiel (RasseExtern)
+      is
+         when RassenDatentypen.Mensch_Spieler_Enum =>
+            SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell := (StartkoordinateEinsExtern.EAchse, Karten.Karteneinstellungen.Kartengröße.YAchse / 2, Karten.Karteneinstellungen.Kartengröße.XAchse / 2);
+            SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt := StartkoordinateEinsExtern;
+            BewegungCursor.ZoomanpassungCursor (RasseExtern => RasseExtern);
+            
+         when others =>
+            null;
+      end case;
+            
    end StartpunktFestlegen;
 
 end SpieleinstellungenRasseSpieler;

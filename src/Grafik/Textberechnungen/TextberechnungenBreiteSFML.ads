@@ -14,11 +14,7 @@ package TextberechnungenBreiteSFML is
                  TextAccessExtern /= null
                and
                  ViewbreiteExtern >= 0.00
-              ),
-   
-       Post => (
-                  MittelpositionBerechnen'Result >= 0.00
-               );
+              );
    
    function HalbeBreiteBerechnen
      (TextAccessExtern : in Sf.Graphics.sfText_Ptr)

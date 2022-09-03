@@ -20,5 +20,6 @@ package ZeitKonstanten is
    
    -- Das hier vom Nutzer einstellbar machen. äöü
    Scrollverzögerung : Duration := 0.02;
+   ScrollverzögernMinimalzoom : Duration := 0.05;
 
 end ZeitKonstanten;

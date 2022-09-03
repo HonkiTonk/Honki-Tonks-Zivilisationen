@@ -28,41 +28,51 @@ package body CursorAltPlatzieren is
         NachGrafiktask.GeheZu.EAchse
       is
          when KartenKonstanten.LeerEAchse =>
+            if
+              Ada.Calendar.Clock - Scrollzeit > ZeitKonstanten.ScrollverzögernMinimalzoom
+              and
+                Sichtweiten.SichtweiteLesen <= 4
+            then
+               null;
+                
+            elsif
+              Ada.Calendar.Clock - Scrollzeit > ZeitKonstanten.Scrollverzögerung
+              and
+                Sichtweiten.SichtweiteLesen > 4
+            then
+               null;
+                     
+            else
+               return;
+            end if;
+            
+            Scrollzeit := Clock;
             Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                                                        point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
                                                                        view         => Views.KartenviewAccess);
-              
+            
+            -- Die EAchse später auch noch über eine Funktion die Änderung ermitteln oder einfach so lassen? äöü
             SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.EAchse := SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.EAchse;
             
             Koordinatenänderung.EAchse := 0;
-            Koordinatenänderung.YAchse := AlteYAchseFestlegen (MausachseExtern => Mausposition.y);
+            Koordinatenänderung.YAchse := AlteYAchseFestlegen (MausachseExtern => Mausposition.y,
+                                                                YAchseAlt       => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse);
             
-            Koordinatenänderung.XAchse := AlteXAchseFestlegen (MausachseExtern => Mausposition.x);
-            
-            -- AlteYAchseFestlegenSFML (RasseExtern => RasseExtern);
-            -- AlteXAchseFestlegenSFML (RasseExtern => RasseExtern);
+            Koordinatenänderung.XAchse := AlteXAchseFestlegen (MausachseExtern => Mausposition.x,
+                                                                XAchseAlt       => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse);
            
             Kartenwert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
                                                                                                  ÄnderungExtern    => Koordinatenänderung,
                                                                                                  LogikGrafikExtern => False);
             
-            case
-              Kartenwert.EAchse
-            is
-               when KartenKonstanten.LeerEAchse =>
-                  null;
+            if
+              Kartenwert.EAchse = KartenKonstanten.LeerEAchse
+            then
+               null;
                   
-               when others =>
-                  if
-                    Ada.Calendar.Clock - Scrollzeit > ZeitKonstanten.Scrollverzögerung
-                  then
-                     SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt := Kartenwert;
-                     Scrollzeit := Clock;
-                     
-                  else
-                     null;
-                  end if;
-            end case;
+            else
+               SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt := Kartenwert;
+            end if;
                   
          when others =>
             GeheZuFestlegung (RasseExtern => RasseExtern);
@@ -72,23 +82,44 @@ package body CursorAltPlatzieren is
    
    
    
+   -- Eventuell später noch erweitern damit auch bei anderen Einstellungen die Verschiebung korrekter ist. äöü
+   -- Gilt auch für die Anpassung in BewegungCursor. äöü
    function AlteYAchseFestlegen
-     (MausachseExtern : in Float)
+     (MausachseExtern : in Float;
+      YAchseAlt : in KartenDatentypen.KartenfeldPositiv)
       return KartenDatentypen.UmgebungsbereichEins
    is begin
-      
+         
       -- 0.001 sind dafür da, damit man beim Verlassen des Fensters nicht mehr weiterscrollt.
-      -- Dafür später eine bessere Lösung finden. äöü
+      -- Dafür später eine bessere Lösung finden? äöü
       if
         MausachseExtern in 0.001 .. BerechnungenKarteSFML.KartenfelderAbmessung.y / 2.00
       then
-         return -1;
+         if
+           YAchseAlt <= Karten.WeltkarteArray'First (2) + Sichtweiten.SichtweiteLesen
+           and
+             Karten.Karteneinstellungen.Kartenform.YAchseNorden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
+         then
+            return 0;
+            
+         else
+            return -1;
+         end if;
          
       elsif
         MausachseExtern in Sf.Graphics.View.getSize (view => Views.KartenviewAccess).y - BerechnungenKarteSFML.KartenfelderAbmessung.y / 2.00 .. Sf.Graphics.View.getSize (view => Views.KartenviewAccess).y - 0.001
       then
-         return 1;
+         if
+           YAchseAlt >= Karten.Karteneinstellungen.Kartengröße.YAchse - Sichtweiten.SichtweiteLesen
+           and
+             Karten.Karteneinstellungen.Kartenform.YAchseSüden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
+         then
+            return 0;
          
+         else
+            return 1;
+         end if;
+      
       else
          return 0;
       end if;
@@ -97,191 +128,47 @@ package body CursorAltPlatzieren is
    
    
    
-   -- Das Festlegen stattdessen auf Basis der Mauszeigerposition festlegen? äöü
-   procedure AlteYAchseFestlegenSFML
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-   is begin
-      
-      if
-        SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse = SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.YAchse
-      then
-         return;
-         
-      else
-         Kartenwert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
-                                                                                              ÄnderungExtern    => (0, Sichtweiten.BewegungsfeldLesen + 1, 0),
-                                                                                              LogikGrafikExtern => False);
-      end if;
-      
-      if
-        Kartenwert.YAchse = KartenKonstanten.LeerYAchse
-      then
-         null;
-         
-      elsif
-        Mausposition.y < Sf.Graphics.View.getCenter (view => Views.KartenviewAccess).y
-      then
-         null;
-         
-      else
-         if
-           Kartenwert.YAchse = SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.YAchse
-           and
-             Ada.Calendar.Clock - Scrollzeit > ZeitKonstanten.Scrollverzögerung
-             and
-               (Kartenwert.YAchse + 1 <= Karten.Karteneinstellungen.Kartengröße.YAchse
-                or
-                  Karten.Karteneinstellungen.Kartenform.YAchseSüden /= KartenDatentypen.Karte_Y_Kein_Übergang_Enum)
-         then
-            Scrollzeit := Clock;
-            SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse
-              := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
-                                                                                        ÄnderungExtern    => (0, 1, 0),
-                                                                                        LogikGrafikExtern => False).YAchse;
-            return;
-               
-         else
-            null;
-         end if;
-      end if;
-      
-      Kartenwert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
-                                                                                           ÄnderungExtern    => (0, -Sichtweiten.BewegungsfeldLesen - 1, 0),
-                                                                                           LogikGrafikExtern => False);
-      
-      case
-        Kartenwert.YAchse
-      is
-         when KartenKonstanten.LeerYAchse =>
-            null;
-            
-         when others =>
-            if
-              Kartenwert.YAchse = SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.YAchse
-              and
-                Ada.Calendar.Clock - Scrollzeit > ZeitKonstanten.Scrollverzögerung
-                and
-                  (Kartenwert.YAchse - 1 >= Karten.WeltkarteArray'First (2)
-                   or
-                     Karten.Karteneinstellungen.Kartenform.YAchseNorden /= KartenDatentypen.Karte_Y_Kein_Übergang_Enum)
-            then
-               Scrollzeit := Clock;
-               SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse
-                 := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
-                                                                                           ÄnderungExtern    => (0, -1, 0),
-                                                                                           LogikGrafikExtern => False).YAchse;
-               
-            else
-               null;
-            end if;
-      end case;
-      
-   end AlteYAchseFestlegenSFML;
-   
-   
-   
    function AlteXAchseFestlegen
-     (MausachseExtern : in Float)
+     (MausachseExtern : in Float;
+      XAchseAlt : in KartenDatentypen.KartenfeldPositiv)
       return KartenDatentypen.UmgebungsbereichEins
    is begin
       
+      -- 0.001 sind dafür da, damit man beim Verlassen des Fensters nicht mehr weiterscrollt.
+      -- Dafür später eine bessere Lösung finden? äöü
       if
         MausachseExtern in 0.001 .. BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00
       then
-         return -1;
+         if
+           XAchseAlt <= Karten.WeltkarteArray'First (3) + Sichtweiten.SichtweiteLesen
+           and
+             Karten.Karteneinstellungen.Kartenform.XAchseWesten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
+         then
+            return 0;
+            
+         else
+            return -1;
+         end if;
          
       elsif
         MausachseExtern in Sf.Graphics.View.getSize (view => Views.KartenviewAccess).x - BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00 .. Sf.Graphics.View.getSize (view => Views.KartenviewAccess).x
       then
-         return 1;
+         if
+           XAchseAlt >= Karten.Karteneinstellungen.Kartengröße.XAchse - Sichtweiten.SichtweiteLesen
+           and
+             Karten.Karteneinstellungen.Kartenform.XAchseOsten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
+         then
+            return 0;
+         
+         else
+            return 1;
+         end if;
          
       else
          return 0;
       end if;
       
    end AlteXAchseFestlegen;
-   
-   
-   
-   procedure AlteXAchseFestlegenSFML
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-   is begin
-      
-      if
-        SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse = SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.XAchse
-      then
-         return;
-         
-      else
-         Kartenwert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
-                                                                                              ÄnderungExtern    => (0, 0, Sichtweiten.BewegungsfeldLesen + 1),
-                                                                                              LogikGrafikExtern => False);
-      end if;
-      
-      if
-        Kartenwert.XAchse = KartenKonstanten.LeerXAchse
-      then
-         null;
-         
-      elsif
-        Mausposition.x < Sf.Graphics.View.getCenter (view => Views.KartenviewAccess).x
-      then
-         null;
-         
-      else
-         if
-           Kartenwert.XAchse = SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.XAchse
-           and
-             Ada.Calendar.Clock - Scrollzeit > ZeitKonstanten.Scrollverzögerung
-             and
-               (Kartenwert.XAchse + 1 <= Karten.Karteneinstellungen.Kartengröße.XAchse
-                or
-                  Karten.Karteneinstellungen.Kartenform.XAchseOsten /= KartenDatentypen.Karte_X_Kein_Übergang_Enum)
-         then
-            Scrollzeit := Clock;
-            SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse
-              := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
-                                                                                        ÄnderungExtern    => (0, 0, 1),
-                                                                                        LogikGrafikExtern => False).XAchse;
-            return;
-               
-         else
-            null;
-         end if;
-      end if;
-      
-      Kartenwert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
-                                                                                           ÄnderungExtern    => (0, 0, -Sichtweiten.BewegungsfeldLesen - 1),
-                                                                                           LogikGrafikExtern => False);
-      
-      case
-        Kartenwert.XAchse
-      is
-         when KartenKonstanten.LeerXAchse =>
-            null;
-            
-         when others =>
-            if
-              Kartenwert.XAchse = SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.XAchse
-              and
-                Ada.Calendar.Clock - Scrollzeit > ZeitKonstanten.Scrollverzögerung
-                and
-                  (Kartenwert.XAchse - 1 >= Karten.WeltkarteArray'First (3)
-                   or
-                     Karten.Karteneinstellungen.Kartenform.XAchseWesten /= KartenDatentypen.Karte_X_Kein_Übergang_Enum)
-            then
-               Scrollzeit := Clock;
-               SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse
-                 := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
-                                                                                           ÄnderungExtern    => (0, 0, -1),
-                                                                                           LogikGrafikExtern => False).XAchse;
-               
-            else
-               null;
-            end if;
-      end case;
-   
-   end AlteXAchseFestlegenSFML;
    
    
    

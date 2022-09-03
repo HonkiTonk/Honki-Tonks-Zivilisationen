@@ -15,17 +15,17 @@ package ViewsEinstellenSFML is
        Pre => (
                  ViewExtern /= null
                and
-                 GrößeExtern.x /= 0.00
+                 GrößeExtern.x >= 0.00
                and
-                 GrößeExtern.y /= 0.00
+                 GrößeExtern.y >= 0.00
                and
                  AnzeigebereichExtern.left >= 0.00
                and
                  AnzeigebereichExtern.top >= 0.00
                and
-                 AnzeigebereichExtern.width > 0.00
+                 AnzeigebereichExtern.width >= 0.00
                and
-                 AnzeigebereichExtern.height > 0.00
+                 AnzeigebereichExtern.height >= 0.00
               );
    
    
@@ -35,15 +35,15 @@ package ViewsEinstellenSFML is
       return Sf.System.Vector2.sfVector2f
      with
        Pre => (
-                 ViewflächeExtern.x > 0.00
+                 ViewflächeExtern.x >= 0.00
                and
-                 ViewflächeExtern.y > 0.00
+                 ViewflächeExtern.y >= 0.00
               ),
          
        Post => (
-                  ViewflächeAuflösungAnpassen'Result.x > 0.00
+                  ViewflächeAuflösungAnpassen'Result.x >= 0.00
                 and
-                  ViewflächeAuflösungAnpassen'Result.y > 0.00
+                  ViewflächeAuflösungAnpassen'Result.y >= 0.00
                );
       
    function ViewflächeVariabelAnpassen
@@ -52,19 +52,19 @@ package ViewsEinstellenSFML is
       return Sf.System.Vector2.sfVector2f
      with
        Pre => (
-                 ViewflächeExtern.x > 0.00
+                 ViewflächeExtern.x >= 0.00
                and
-                 ViewflächeExtern.y > 0.00
+                 ViewflächeExtern.y >= 0.00
                and
-                 VerhältnisExtern.x > 0.00
+                 VerhältnisExtern.x >= 0.00
                and
-                 VerhältnisExtern.y > 0.00
+                 VerhältnisExtern.y >= 0.00
               ),
          
        Post => (
-                  ViewflächeVariabelAnpassen'Result.x > 0.00
+                  ViewflächeVariabelAnpassen'Result.x >= 0.00
                 and
-                  ViewflächeVariabelAnpassen'Result.y > 0.00
+                  ViewflächeVariabelAnpassen'Result.y >= 0.00
                );
    
 private

@@ -41,7 +41,7 @@ package body KIForschung is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      Multiplikator := 1;
+      Zeitwert := 2;
       
       ForschungenSchleife:
       for ForschungSchleifenwert in ForschungenDatenbank.ForschungslisteArray'Range (2) loop
@@ -57,20 +57,19 @@ package body KIForschung is
                MöglicheForschungen (ForschungSchleifenwert) := 0;
          end case;
          
-         if
-           ZahlenDatentypen.EigenesPositive (ForschungSchleifenwert) >= Multiplikator * ZahlenDatentypen.EigenesPositive (ForschungenDatenbank.ForschungslisteArray'Last (2)) / 2
-         then
-            Ladezeiten.FortschrittKISchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Berechne_Forschung_Enum);
-            Multiplikator := Multiplikator + 1;
+         case
+           ForschungSchleifenwert mod Zeitwert
+         is
+            when 0 =>
+               Ladezeiten.FortschrittKISchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Berechne_Forschung_Enum);
                
-         else
-            null;
-         end if;
+            when others =>
+               null;
+         end case;
                
       end loop ForschungenSchleife;
       
       WelchesProjekt := ForschungenDatentypen.ForschungIDMitNullWert'First;
-      Multiplikator := 1;
       
       BewertungSchleife:
       for BewertungSchleifenwert in ForschungenDatenbank.ForschungslisteArray'Range (2) loop
@@ -97,15 +96,15 @@ package body KIForschung is
             null;
          end if;
          
-         if
-           ZahlenDatentypen.EigenesPositive (BewertungSchleifenwert) >= Multiplikator * ZahlenDatentypen.EigenesPositive (ForschungenDatenbank.ForschungslisteArray'Last (2)) / 2
-         then
-            Ladezeiten.FortschrittKISchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Berechne_Forschung_Enum);
-            Multiplikator := Multiplikator + 1;
+         case
+           BewertungSchleifenwert mod Zeitwert
+         is
+            when 0 =>
+               Ladezeiten.FortschrittKISchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Berechne_Forschung_Enum);
                
-         else
-            null;
-         end if;
+            when others =>
+               null;
+         end case;
                  
       end loop BewertungSchleife;
       

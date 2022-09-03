@@ -29,20 +29,5 @@ package body BerechnungenKarteSFML is
       StadtfelderAbmessung.y := StadtKarte.height / Float (KartenDatentypen.Stadtfeld'Last);
       
    end StadtfelderAbmessungBerechnen;
-   
-   
-   
-   function SichtbereichKarteBerechnen
-      return KartenDatentypen.SichtbereichAnfangEndeArray
-   is begin
-      
-      YSichtAnfang := -Sichtweiten.SichtweiteLesen;
-      YSichtEnde := Sichtweiten.SichtweiteLesen;
-      XSichtAnfang := -Sichtweiten.SichtweiteLesen;
-      XSichtEnde := Sichtweiten.SichtweiteLesen;
-      
-      return (YSichtAnfang, YSichtEnde, XSichtAnfang, XSichtEnde);
-      
-   end SichtbereichKarteBerechnen;
 
 end BerechnungenKarteSFML;

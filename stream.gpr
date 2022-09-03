@@ -13,8 +13,8 @@ project Stream is
    end Naming;
 
    package Compiler is
-      for Switches ("ada") use ("-gnatW8", "-gnatf", "-gnat2020", "-gnato", "-fstack-check", "-gnatVacdefimoprst", 
-         "-gnatw.a.b.c.d.f.g.h.i.j.k.l.m.n.o.p.q.r.s.t.v.w.x.zcdghiklmopqrtuvwxyz_c_re.u_pajf", "-gnatyACOSadefhiklnprsxM222L8");
+      for Switches ("ada") use ("-gnatW8", "-gnatf", "-gnat2020", "-gnato", "-fstack-check", "-g", "-gnata", "-gnatVacdefimoprst", 
+         "-gnatw.a.b.c.d.f.g.h.i.j.k.l.m.n.o.p.q.r.s.t.v.w.x.zcdghiklmopqrtuvwxyz_c_re.u_pajf", "-gnatyACOSadefhiklnprsxM222L7");
    end Compiler;
 
    package Builder is
@@ -29,7 +29,7 @@ project Stream is
    end Pretty_Printer;
 
    package Prove is
-      for Proof_Switches ("ada") use ("-j4", "--proof-warnings");
+      for Proof_Switches ("ada") use ("-j4", "--proof-warnings", "--codepeer=on");
    end Prove;
 
    package Linker is

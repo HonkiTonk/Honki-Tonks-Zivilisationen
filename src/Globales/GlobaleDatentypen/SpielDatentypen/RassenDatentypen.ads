@@ -19,6 +19,7 @@ package RassenDatentypen is
    subtype Rassen_Wasser_Enum is Rassen_Unterirdisch_Enum range Tesorahn_Enum .. Tesorahn_Enum;
    subtype Rassen_Erde_Enum is Rassen_Unterirdisch_Enum range Talbidahr_Enum .. Talbidahr_Enum;
 
+   -- Für die einzelnen Enumteile noch subtypen anlegen, damit ich in den ads Dateien das in den Contracts verwenden kann und dadurch das use RassenDatentypen rausbekomme? äöü
    type Spieler_Enum is (
                          Leer_Spieler_Enum,
                          

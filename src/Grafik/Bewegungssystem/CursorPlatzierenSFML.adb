@@ -14,6 +14,7 @@ with Karten;
 with GrafikEinstellungenSFML;
 with NachGrafiktask;
 with Vergleiche;
+with Sichtweiten;
 
 package body CursorPlatzierenSFML is
    
@@ -34,7 +35,7 @@ package body CursorPlatzierenSFML is
             return;
       end case;
             
-      SichtbereichAnfangEnde := BerechnungenKarteSFML.SichtbereichKarteBerechnen;
+      SichtbereichAnfangEnde := Sichtweiten.SichtbereichKarteBerechnen;
       Kartenänderung.YAchse := SichtbereichAnfangEnde (1) + KartenDatentypen.Kartenfeld (Float'Floor (Mausposition.y / BerechnungenKarteSFML.KartenfelderAbmessung.y));
       Kartenänderung.XAchse := SichtbereichAnfangEnde (3) + KartenDatentypen.Kartenfeld (Float'Floor (Mausposition.x / BerechnungenKarteSFML.KartenfelderAbmessung.x));
       

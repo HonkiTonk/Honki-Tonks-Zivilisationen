@@ -220,7 +220,7 @@ package body GrafikSFML is
       end case;
       
       if
-        Clock - NachGrafiktask.StartzeitSpielmeldung > ZeitKonstanten.AnzeigezeitSpielmeldungen
+        Ada.Calendar.Clock - NachGrafiktask.StartzeitSpielmeldung > ZeitKonstanten.AnzeigezeitSpielmeldungen
       then
          NachGrafiktask.Spielmeldung := 0;
          
