@@ -21,7 +21,7 @@ package KIForschung is
    
 private
    
-   Zeitwert : ForschungenDatentypen.ForschungID;
+   ForschungMöglich : Boolean;
    
    WelchesProjekt : ForschungenDatentypen.ForschungIDMitNullWert;
    

@@ -82,7 +82,7 @@ package TextnummernKonstanten is
    
    
    
-   FrageWievieleSpieler : constant Positive := 1;
+   FrageWievieleAutospielstände : constant Positive := 1;
    FrageRasseÜbernehmen : constant Positive := 2;
    FrageBeschäftigungAbbrechen : constant Positive := 3;
    FrageLandverbesserungErsetzen : constant Positive := 4;

@@ -8,6 +8,7 @@ with MenueDatentypen;
 with KartenRecordKonstanten;
 with TextnummernKonstanten;
 with KartenKonstanten;
+with KartengeneratorRecordKonstanten;
 
 with Karten;
 with EingabeSFML;
@@ -52,8 +53,8 @@ package body SpieleinstellungenKarten is
                
             when RueckgabeDatentypen.Standard_Enum =>
                KartengeneratorVariablen.Kartenparameter.Kartenpole := KartenRecordKonstanten.KartenpoleStandard;
-               KartengeneratorVariablen.Polgrößen := KartenRecordKonstanten.Eisrand;
-               KartengeneratorVariablen.Eisschild := KartenRecordKonstanten.Eisschild;
+               KartengeneratorVariablen.Polgrößen := KartengeneratorRecordKonstanten.Eisrand;
+               KartengeneratorVariablen.Eisschild := KartengeneratorRecordKonstanten.Eisschild;
                
             when RueckgabeDatentypen.Fertig_Enum | RueckgabeDatentypen.Zurück_Enum =>
                return;
@@ -295,8 +296,8 @@ package body SpieleinstellungenKarten is
    is begin
 
       KartengeneratorVariablen.Kartenparameter.Kartenart := KartenKonstanten.StandardKartenart;
-      KartengeneratorVariablen.Landgrößen := KartenRecordKonstanten.Inselgröße;
-      KartengeneratorVariablen.Abstände := KartenRecordKonstanten.Inselabstand;
+      KartengeneratorVariablen.Landgrößen := KartengeneratorRecordKonstanten.Inselgröße;
+      KartengeneratorVariablen.Abstände := KartengeneratorRecordKonstanten.Inselabstand;
 
    end KartenartStandard;
    

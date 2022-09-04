@@ -1,13 +1,9 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Ada.Calendar; use Ada.Calendar;
-
 with RassenDatentypen;
-with SystemDatentypen;
 with MenueDatentypen;
 with GrafikDatentypen;
-with LadezeitenDatentypen;
 
 with ImSpiel;
 with Kartengenerator;
@@ -129,8 +125,6 @@ package body Spieleinstellungen is
       Karten.Karteneinstellungen.Kartenform := KartengeneratorVariablen.Kartenparameter.Kartenform;
       Kartengenerator.Kartengenerator;
       
-      Ladezeiten.SpielweltErstellen (LadezeitenDatentypen.Platziere_Rassen_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
-      
       SpieleinstellungenRasseSpieler.StartwerteErmitteln;
       
       case
@@ -143,8 +137,6 @@ package body Spieleinstellungen is
             Warnung.LogikWarnung (WarnmeldungExtern => "SpielEinstellungen.AutomatischeEinstellungen - Keine Rassenplatzierung möglich.");
             return RueckgabeDatentypen.Spielmenü_Enum;
       end case;
-      
-      Ladezeiten.SpielweltErstellen (LadezeitenDatentypen.Platziere_Rassen_Enum, SystemDatentypen.Endwert_Enum) := Clock;
             
       return ImSpiel.ImSpiel;
       

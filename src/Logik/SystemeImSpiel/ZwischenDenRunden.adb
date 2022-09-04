@@ -1,10 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Ada.Calendar; use Ada.Calendar;
-
 with RassenDatentypen; use RassenDatentypen;
-with SystemDatentypen; use SystemDatentypen;
 with DiplomatieDatentypen; use DiplomatieDatentypen;
 with StadtKonstanten;
 with SpielVariablen;
@@ -40,7 +37,6 @@ package body ZwischenDenRunden is
       is
          when True =>
             Ladezeiten.RundenendeNullsetzen;
-            Ladezeiten.RundenendeZeit (SystemDatentypen.Anfangswert_Enum) := Clock;
             NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Rundenende_Enum;
             
          when False =>
@@ -86,7 +82,6 @@ package body ZwischenDenRunden is
       Ladezeiten.RundenendeMaximum;
       
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
-      Ladezeiten.RundenendeZeit (SystemDatentypen.Endwert_Enum) := Clock;
       
       return True;
       

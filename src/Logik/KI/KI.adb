@@ -36,14 +36,17 @@ package body KI is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      if
-        SpielVariablen.Grenzen (RasseExtern).Einheitengrenze / 100 < 1
-      then
-         Einheitenzeitwert := 1;
-         
-      else
-         Einheitenzeitwert := SpielVariablen.Grenzen (RasseExtern).Einheitengrenze / 100;
-      end if;
+      Einheitenzeitwert := SpielVariablen.Grenzen (RasseExtern).Einheitengrenze / 100;
+      
+      case
+        Einheitenzeitwert
+      is
+         when 0 =>
+            Einheitenzeitwert := 1;
+            
+         when others =>
+            null;
+      end case;
       
       EinheitenSchleife:
       for EinheitenSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Einheitengrenze loop
@@ -80,14 +83,17 @@ package body KI is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      if
-        SpielVariablen.Grenzen (RasseExtern).Städtegrenze / 100 < 1
-      then
-         Städtezeitwert := 1;
-         
-      else
-         Städtezeitwert := SpielVariablen.Grenzen (RasseExtern).Städtegrenze / 100;
-      end if;
+      Städtezeitwert := SpielVariablen.Grenzen (RasseExtern).Städtegrenze / 100;
+      
+      case
+        Städtezeitwert
+      is
+         when 0 =>
+            Städtezeitwert := 1;
+            
+         when others =>
+            null;
+      end case;
       
       StadtSchleife:
       for StadtSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Städtegrenze loop

@@ -78,7 +78,7 @@ package body StadtInformationenSFML is
                                           AnzeigebereichExtern => GrafikRecordKonstanten.SeitenleisteWeltkartenbereich (3));
       
       HintergrundSFML.Hintergrund (HintergrundExtern => GrafikDatentypen.Seitenleiste_Hintergrund_Enum,
-                                        AbmessungenExtern => Viewfläche);
+                                   AbmessungenExtern => Viewfläche);
       
    end Leer;
    
@@ -102,7 +102,7 @@ package body StadtInformationenSFML is
       Textbreite := 0.00;
       
       FestzulegenderText (1) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugEinwohner) & LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
-                                                                                                                             EinwohnerArbeiterExtern => True)'Wide_Wide_Image;
+                                                                                                                              EinwohnerArbeiterExtern => True)'Wide_Wide_Image;
       
       -- Volle Stadtinformationen, nur sichtbar wenn eigene Stadt oder durch Debug.
       if

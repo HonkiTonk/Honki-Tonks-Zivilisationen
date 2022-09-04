@@ -1,14 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
-with Ada.Calendar; use Ada.Calendar;
-
 with MenueDatentypen;
 with ZahlenDatentypen;
-with GlobaleTexte;
-with SystemDatentypen;
 
 with SchreibeKarten;
 with SchreibeWichtiges;
@@ -16,7 +10,6 @@ with SchreibeWichtiges;
 with Auswahlaufteilungen;
 with Fehler;
 with Karten;
-with Ladezeiten;
 
 package body DebugmenueSFML is
 
@@ -123,93 +116,8 @@ package body DebugmenueSFML is
    procedure LadezeitenAnzegien
    is begin
       
-      Put_Line ("Generierungszeit der Spielwelt:");
-      Gesamtzeit := 0.00;
-      WelcherText := 2;
-      
-      LadezeitenSpielweltSchleife:
-      for LadezeitenSpielweltSchleifenwert in Ladezeiten.SpielweltErstellenArray'Range (1) loop
-         
-         Put (To_Wide_Wide_String (Source => GlobaleTexte.Ladezeit (WelcherText)) & ": ");
-         
-         Zwischenzeit
-           := Float (Ladezeiten.SpielweltErstellen (LadezeitenSpielweltSchleifenwert, SystemDatentypen.Endwert_Enum) - Ladezeiten.SpielweltErstellen (LadezeitenSpielweltSchleifenwert, SystemDatentypen.Anfangswert_Enum));
-         
-         AnzeigeFloat.Put (Item => Zwischenzeit,
-                           Fore => 1,
-                           Aft  => 6,
-                           Exp  => 0);
-         New_Line;
-         
-         Gesamtzeit := Gesamtzeit + Zwischenzeit;
-         WelcherText := WelcherText + 1;
-         
-      end loop LadezeitenSpielweltSchleife;
-      
-      Put ("Gesamtzeit: ");
-      AnzeigeFloat.Put (Item => Gesamtzeit,
-                        Fore => 1,
-                        Aft  => 6,
-                        Exp  => 0);
-      
-      New_Line;
-      New_Line;
-      
-      Put_Line ("Rechenzeit der KI:");
-      Gesamtzeit := 0.00;
-      
-      KIZeitenSchleife:
-      for KIZeitenSchleifenwert in Ladezeiten.KIZeitenArray'Range (1) loop
-         
-         
-         case
-           SpielVariablen.RassenImSpiel (KIZeitenSchleifenwert)
-         is
-            when RassenDatentypen.KI_Spieler_Enum =>
-               Put (KIZeitenSchleifenwert'Wide_Wide_Image & ": ");
-         
-               Zwischenzeit := Float (Ladezeiten.KIZeiten (KIZeitenSchleifenwert, SystemDatentypen.Endwert_Enum) - Ladezeiten.KIZeiten (KIZeitenSchleifenwert, SystemDatentypen.Anfangswert_Enum));
-         
-               AnzeigeFloat.Put (Item => Zwischenzeit,
-                                 Fore => 1,
-                                 Aft  => 6,
-                                 Exp  => 0);
-               New_Line;
-         
-               Gesamtzeit := Gesamtzeit + Zwischenzeit;
-               
-            when others =>
-               null;
-         end case;
-         
-      end loop KIZeitenSchleife;
-      
-      Put ("Gesamtzeit: ");
-      AnzeigeFloat.Put (Item => Gesamtzeit,
-                        Fore => 1,
-                        Aft  => 6,
-                        Exp  => 0);
-      
-      New_Line;
-      New_Line;
-      
-      Put ("Rundenende: ");
-      AnzeigeFloat.Put (Item => Float (Ladezeiten.RundenendeZeit (SystemDatentypen.Endwert_Enum) - Ladezeiten.RundenendeZeit (SystemDatentypen.Anfangswert_Enum)),
-                        Fore => 1,
-                        Aft  => 6,
-                        Exp  => 0);
-      
-      New_Line;
-      New_Line;
-      
-      Put ("Speichern/Laden: ");
-      AnzeigeFloat.Put (Item => Float (Ladezeiten.SpeichernLaden (SystemDatentypen.Endwert_Enum) - Ladezeiten.SpeichernLaden (SystemDatentypen.Anfangswert_Enum)),
-                        Fore => 1,
-                        Aft  => 6,
-                        Exp  => 0);
-      
-      New_Line;
-      New_Line;
+      -- Hier einfach die zu prüfende Zeit einbauen, wenn es jemals einen Grund gibt die Zeit irgendwo zu messen.
+      null;
            
    end LadezeitenAnzegien;
 

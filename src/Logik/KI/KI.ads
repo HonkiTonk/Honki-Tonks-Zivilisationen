@@ -18,9 +18,9 @@ package KI is
 
 private
 
-   Städtezeitwert : StadtDatentypen.MaximaleStädte;
+   Städtezeitwert : StadtDatentypen.MaximaleStädteMitNullWert;
 
-   Einheitenzeitwert : EinheitenDatentypen.MaximaleEinheiten;
+   Einheitenzeitwert : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
 
    procedure EinheitenDurchgehen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

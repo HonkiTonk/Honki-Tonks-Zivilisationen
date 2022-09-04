@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with TextKonstanten;
 with MenueDatentypen;
 with OptionenVariablen;
+with TextnummernKonstanten;
 
 with SchreibenEinstellungen;
 with EinlesenSprache;
@@ -58,7 +59,7 @@ package body OptionenSonstiges is
       
       EingegebeneZahl := EingabeSFML.GanzeZahl (ZahlenMinimumExtern => 0,
                                                 ZahlenMaximumExtern => 999_999_999,
-                                                WelcheFrageExtern   => 2);
+                                                WelcheFrageExtern   => TextnummernKonstanten.FrageWievieleAutospielstände);
       case
         EingegebeneZahl.EingabeAbbruch
       is
@@ -78,7 +79,7 @@ package body OptionenSonstiges is
       
       EingegebeneZahl := EingabeSFML.GanzeZahl (ZahlenMinimumExtern => 0,
                                                 ZahlenMaximumExtern => 999_999_999,
-                                                WelcheFrageExtern   => 3);
+                                                WelcheFrageExtern   => TextnummernKonstanten.FrageRundenAutomatischSpeichern);
 
       case
         EingegebeneZahl.EingabeAbbruch

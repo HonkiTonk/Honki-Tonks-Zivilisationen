@@ -15,6 +15,7 @@ package body KIDiplomatie is
         RasseExtern
       is
          when RassenDatentypen.Ekropa_Enum =>
+            Ladezeiten.FortschrittKIMaximum (WelcheBerechnungenExtern => LadezeitenDatentypen.Berechne_Diplomatie_Enum);
             return;
             
          when others =>

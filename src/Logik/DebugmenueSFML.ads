@@ -1,8 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-private with Ada.Wide_Wide_Text_IO;
-
 with ForschungenDatentypen; use ForschungenDatentypen;
 with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
@@ -49,9 +47,6 @@ private
 
    WelcherText : Positive;
 
-   Zwischenzeit : Float;
-   Gesamtzeit : Float;
-
    procedure KarteAufdecken
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
@@ -63,7 +58,5 @@ private
      (NeuerStatusExtern : in DiplomatieDatentypen.Status_Untereinander_Enum);
 
    procedure LadezeitenAnzegien;
-
-   package AnzeigeFloat is new Ada.Wide_Wide_Text_IO.Float_IO (Float);
 
 end DebugmenueSFML;

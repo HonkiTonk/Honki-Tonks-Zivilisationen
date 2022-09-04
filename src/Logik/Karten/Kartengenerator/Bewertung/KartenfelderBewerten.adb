@@ -8,6 +8,7 @@ with FelderwerteFestlegen;
 with Karten;
 with Ladezeiten;
 
+-- Den Aufbau hier an die Berechnungen der Ressourcenaufbau anpassen.
 package body KartenfelderBewerten is
 
    -- Leerwert heineingeben um für alle Rassen die Werte zu berechnen, anderer Wert um für eine bestimmte Rasse die Werte zu berechnen.

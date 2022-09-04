@@ -175,17 +175,20 @@ package ChangelogSeptember2022 is
    
    
 
-   -- Version 0.03. => 0.03. (05.09.2022):
+   -- Version 0.03.8215 => 0.03. (05.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.8160 => 0.03. (04.09.2022):
+   -- Version 0.03.8160 => 0.03.8215 (04.09.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Portierbarkeits- und Leistungstest durchgeführt.
+   -- Die Ladezeitenberechnungen leicht überarbeitet.
+   -- Angefangen den Kartengenerator erneut zu überarbeiten.
+   -- Angefangen eine Anzeige für die erfolgreich erforschte Technologie einzubauen.
+   -- Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 

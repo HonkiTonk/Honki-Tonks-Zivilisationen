@@ -1,10 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Ada.Calendar; use Ada.Calendar;
-
 with RueckgabeDatentypen; use RueckgabeDatentypen;
-with SystemDatentypen;
 with EinheitenKonstanten;
 with GrafikDatentypen;
 with MenueDatentypen;
@@ -33,10 +30,7 @@ package body ImSpiel is
             
       SpielSchleife:
       loop
-         
-         -- Wird hier Nullgesetzt damit die Zeiten für das Debugmenü auch alle vorhanden und korrekt sind.
-         Ladezeiten.KINullsetzenZeit;
-         
+                  
          RassenSchleife:
          for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
             
@@ -165,7 +159,6 @@ package body ImSpiel is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      -- Bringt noch Warnmeldungen bei Forschung. äöü
       Ladezeiten.KINullsetzenFortschritt;
       
       -- Mal was einbauen damit man die KI sieht bei ihren Bewegungen? Wenn dann bei Debug an, sonst würde man ja auch nicht sichtbare KIs sehen. äöü
@@ -173,13 +166,10 @@ package body ImSpiel is
       -- NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Weltkarte_Enum;
       
       NachGrafiktask.KIRechnet := RasseExtern;
-      -- Wo wird das wieder auf Leer gesetzt? äöü
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_KI_Rechenzeit_Enum;
-      Ladezeiten.KIZeiten (RasseExtern, SystemDatentypen.Anfangswert_Enum) := Clock;
       
       KI.KI (RasseExtern => RasseExtern);
       
-      Ladezeiten.KIZeiten (RasseExtern, SystemDatentypen.Endwert_Enum) := Clock;
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
       NachGrafiktask.KIRechnet := RassenDatentypen.Keine_Rasse_Enum;
       

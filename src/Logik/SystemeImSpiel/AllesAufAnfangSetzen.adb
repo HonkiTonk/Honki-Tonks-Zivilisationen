@@ -10,6 +10,7 @@ with SpielVariablen;
 with KartenRecordKonstanten;
 with EinheitenRecordKonstanten;
 with WeltkarteRecords;
+with KartengeneratorRecordKonstanten;
 
 with Karten;
 with KartengeneratorVariablen;
@@ -29,10 +30,10 @@ package body AllesAufAnfangSetzen is
             
          when False =>
             KartengeneratorVariablen.Kartenparameter := KartenRecordKonstanten.Standardkartengeneratorparameter;
-            KartengeneratorVariablen.Polgrößen := KartenRecordKonstanten.Eisrand;
-            KartengeneratorVariablen.Eisschild := KartenRecordKonstanten.Eisschild;
-            KartengeneratorVariablen.Landgrößen := KartenRecordKonstanten.Kontinentgröße;
-            KartengeneratorVariablen.Abstände := KartenRecordKonstanten.Kontinentabstand;
+            KartengeneratorVariablen.Polgrößen := KartengeneratorRecordKonstanten.Eisrand;
+            KartengeneratorVariablen.Eisschild := KartengeneratorRecordKonstanten.Eisschild;
+            KartengeneratorVariablen.Landgrößen := KartengeneratorRecordKonstanten.Kontinentgröße;
+            KartengeneratorVariablen.Abstände := KartengeneratorRecordKonstanten.Kontinentabstand;
       end case;
       
       SpielVariablen.EinheitenGebaut := (others => (others => EinheitenRecordKonstanten.LeerEinheit));

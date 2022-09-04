@@ -10,7 +10,6 @@ package body Ladezeiten is
    procedure SpielweltNullsetzen
    is begin
       
-      SpielweltErstellen := (others => (others => Clock));
       FortschrittSpielwelt := (others => 0);
       
    end SpielweltNullsetzen;
@@ -26,19 +25,9 @@ package body Ladezeiten is
    
    
    
-   procedure KINullsetzenZeit
-   is begin
-            
-      KIZeiten := (others => (others => Clock));
-      
-   end KINullsetzenZeit;
-   
-   
-   
    procedure RundenendeNullsetzen
    is begin
       
-      RundenendeZeit := (others => Clock);
       FortschrittRundenende := 0;
       
    end RundenendeNullsetzen;
@@ -48,7 +37,6 @@ package body Ladezeiten is
    procedure SpeichernLadenNullsetzen
    is begin
       
-      SpeichernLaden := (others => Clock);
       FortschrittSpeichernLaden := 0;
       
    end SpeichernLadenNullsetzen;

@@ -2,10 +2,8 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
-with Ada.Calendar; use Ada.Calendar;
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with SystemDatentypen;
 with KartenRecords;
 with StadtRecords;
 with SpielRecords;
@@ -76,7 +74,6 @@ package body Laden is
       end if;
       
       Ladezeiten.SpeichernLadenNullsetzen;
-      Ladezeiten.SpeichernLaden (SystemDatentypen.Anfangswert_Enum) := Clock;
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Speichern_Laden_Enum;
       
       Allgemeines (DateiLadenExtern => DateiLaden);
@@ -92,7 +89,6 @@ package body Laden is
       
       Ladezeiten.SpeichernLadenMaximum;
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
-      Ladezeiten.SpeichernLaden (SystemDatentypen.Endwert_Enum) := Clock;
 
       return True;
       

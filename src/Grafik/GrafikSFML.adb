@@ -25,6 +25,7 @@ with KartenaufteilungSFML;
 with DiplomatieauswahlGrafik;
 with AnzeigeSpielmeldungenSFML;
 with EditorenGrafik;
+with ForschungserfolgGrafik;
 -- with Systemchecks;
 
 package body GrafikSFML is
@@ -185,13 +186,17 @@ package body GrafikSFML is
             ForschungAnzeigeSFML.ForschungAnzeige (RasseExtern           => NachGrafiktask.AktuelleRasse,
                                                    AktuelleAuswahlExtern => NachGrafiktask.AktuelleAuswahl.AuswahlEins);
             
+         when GrafikDatentypen.Grafik_Forschung_Efolgreich_Enum =>
+            ForschungserfolgGrafik.Forschungserfolg (RasseExtern   => NachGrafiktask.AktuelleRasse,
+                                                     AuswahlExtern => NachGrafiktask.AktuelleAuswahl.AuswahlEins);
+            
          when GrafikDatentypen.Grafik_Bauen_Enum =>
             BauAuswahlAnzeigeSFML.BauAuswahlAnzeige (StadtRasseNummerExtern => (NachGrafiktask.AktuelleRasse, NachGrafiktask.AktuelleStadt),
                                                      AktuelleAuswahlExtern  => NachGrafiktask.AktuelleBauauswahl);
             
          when GrafikDatentypen.Grafik_Diplomatie_Enum =>
             DiplomatieauswahlGrafik.Diplomatieauswahl (AuswahlExtern => NachGrafiktask.AktuelleAuswahl.AuswahlEins);
-         
+            
          when GrafikDatentypen.Grafik_Ende_Enum =>
             return False;
       end case;

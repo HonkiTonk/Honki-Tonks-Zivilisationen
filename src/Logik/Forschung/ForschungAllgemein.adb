@@ -18,10 +18,10 @@ with StadtUmgebungsbereichFestlegen;
 with NachGrafiktask;
 with Mausauswahl;
 
-with KIForschung;
-
+-- Auch mal überarbeiten? äöü
 package body ForschungAllgemein is
    
+   -- Mal mit der Schleife weiter unten zusammenführen. äöü
    function TechnologieVorhanden
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       TechnologieExtern : in ForschungenDatentypen.ForschungIDNichtMöglich)
@@ -73,23 +73,13 @@ package body ForschungAllgemein is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return ForschungenDatentypen.ForschungIDMitNullWert
    is begin
-      
-      InteraktionAuswahl.MöglicheForschungen := (others => False);
 
       ForschungSchleife:
       for ForschungenSchleifenwert in ForschungenDatentypen.ForschungID loop
          
-         case
-           ForschungAnforderungErfüllt (RasseExtern       => RasseExtern,
-                                         ForschungIDExtern => ForschungenSchleifenwert)
-         is
-            when True =>
-               InteraktionAuswahl.MöglicheForschungen (ForschungenSchleifenwert) := True;
-                  
-            when False =>
-               null;
-         end case;
-                  
+         InteraktionAuswahl.MöglicheForschungen (ForschungenSchleifenwert) := ForschungAnforderungErfüllt (RasseExtern       => RasseExtern,
+                                                                                                             ForschungIDExtern => ForschungenSchleifenwert);
+         
       end loop ForschungSchleife;
       
       return ForschungAuswahlSFML;
@@ -156,6 +146,7 @@ package body ForschungAllgemein is
                
             when RassenDatentypen.Mensch_Spieler_Enum =>
                FortschrittMensch (RasseExtern => RasseSchleifenwert);
+               NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Rundenende_Enum;
                
             when RassenDatentypen.KI_Spieler_Enum =>
                FortschrittKI (RasseExtern => RasseSchleifenwert);
@@ -167,7 +158,8 @@ package body ForschungAllgemein is
    
    
    
-   -- Die beiden Forschrittprozeduren zusammenführen? Sinnvoll oder könnte es bei Erweiterungen kompliziert werden?
+   -- Die beiden Forschrittprozeduren zusammenführen? Sinnvoll oder könnte es bei Erweiterungen kompliziert werden? äöü
+   -- Soltle recht einfach gehen, benötigt nur eine weitere Prüfung ob das ein Mensch ist. äöü
    procedure FortschrittMensch
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
@@ -175,7 +167,7 @@ package body ForschungAllgemein is
       AktuellesForschungsprojekt := LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern);
       
       if
-        AktuellesForschungsprojekt = ForschungenDatentypen.ForschungIDMitNullWert'First
+        AktuellesForschungsprojekt = ForschungKonstanten.LeerForschung
       then
          null;
          
@@ -183,7 +175,6 @@ package body ForschungAllgemein is
         LeseWichtiges.Forschungsmenge (RasseExtern => RasseExtern) >= LeseForschungenDatenbank.PreisForschung (RasseExtern => RasseExtern,
                                                                                                                IDExtern    => AktuellesForschungsprojekt)
       then
-         SchreibeWichtiges.Erforscht (RasseExtern => RasseExtern);
          if
            AktuellesForschungsprojekt = StadtUmgebungsbereichFestlegen.TechnologieUmgebungsgröße (RasseExtern, SystemDatentypen.Anfangswert_Enum)
            or
@@ -195,16 +186,65 @@ package body ForschungAllgemein is
             null;
          end if;
          
-         NachGrafiktask.AktuelleRasse := RasseExtern;
-         SchreibeWichtiges.Forschungsprojekt (RasseExtern       => RasseExtern,
-                                              ForschungIDExtern => AuswahlForschung (RasseExtern => RasseExtern));
-         NachGrafiktask.AktuelleRasse := RassenDatentypen.Keine_Rasse_Enum;
+         Forschungserfolg (RasseExtern => RasseExtern);
             
       else
          SchreibeWichtiges.VerbleibendeForschungszeit (RasseExtern => RasseExtern);
       end if;
       
    end FortschrittMensch;
+   
+   
+   
+   procedure Forschungserfolg
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+   is begin
+      
+      NachGrafiktask.AktuelleRasse := RasseExtern;
+      Auswahl := 1;
+      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Forschung_Efolgreich_Enum;
+      
+      ErfolgSchleife:
+      loop
+         
+         NachGrafiktask.AktuelleAuswahl.AuswahlEins := Auswahl;
+         
+         case
+           EingabeSFML.Tastenwert
+         is
+            when TastenbelegungDatentypen.Auswählen_Enum =>
+               if
+                 Auswahl = 1
+               then
+                  Auswahl := 2;
+                  
+               else
+                  exit ErfolgSchleife;
+               end if;
+               
+            when TastenbelegungDatentypen.Menü_Zurück_Enum =>
+               if
+                 Auswahl = 2
+               then
+                  Auswahl := 1;
+                  
+               else
+                  exit ErfolgSchleife;
+               end if;
+               
+            when others =>
+               null;
+         end case;
+         
+      end loop ErfolgSchleife;
+      
+      SchreibeWichtiges.Erforscht (RasseExtern => RasseExtern);
+      SchreibeWichtiges.Forschungsprojekt (RasseExtern       => RasseExtern,
+                                           ForschungIDExtern => AuswahlForschung (RasseExtern => RasseExtern));
+      
+      NachGrafiktask.AktuelleRasse := RassenDatentypen.Keine_Rasse_Enum;
+      
+   end Forschungserfolg;
    
    
    
@@ -215,15 +255,16 @@ package body ForschungAllgemein is
       AktuellesForschungsprojekt := LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern);
       
       if
-        AktuellesForschungsprojekt = ForschungenDatentypen.ForschungIDMitNullWert'First
+        AktuellesForschungsprojekt = ForschungKonstanten.LeerForschung
       then
-         KIForschung.Forschung (RasseExtern => RasseExtern);
+         null;
          
       elsif
         LeseWichtiges.Forschungsmenge (RasseExtern => RasseExtern) >= LeseForschungenDatenbank.PreisForschung (RasseExtern => RasseExtern,
                                                                                                                IDExtern    => AktuellesForschungsprojekt)
       then
          SchreibeWichtiges.Erforscht (RasseExtern => RasseExtern);
+         
          if
            AktuellesForschungsprojekt = StadtUmgebungsbereichFestlegen.TechnologieUmgebungsgröße (RasseExtern, SystemDatentypen.Anfangswert_Enum)
            or
@@ -234,10 +275,9 @@ package body ForschungAllgemein is
          else
             null;
          end if;
+         
          SchreibeWichtiges.Forschungsprojekt (RasseExtern       => RasseExtern,
-                                              ForschungIDExtern => 0);
-         KIForschung.Forschung (RasseExtern => RasseExtern);
-         StadtWerteFestlegen.StadtUmgebungGrößeFestlegenTechnologie (RasseExtern => RasseExtern);
+                                              ForschungIDExtern => ForschungKonstanten.LeerForschung);
             
       else
          null;
@@ -267,28 +307,26 @@ package body ForschungAllgemein is
       AnforderungSchleife:
       for AnforderungSchleifenwert in ForschungenDatentypen.AnforderungForschungArray'Range loop
             
+         Forschungsanforderungen := LeseForschungenDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
+                                                                                   IDExtern                => ForschungIDExtern,
+                                                                                   WelcheAnforderungExtern => AnforderungSchleifenwert);
+         
          if
-           ForschungKonstanten.LeerForschungAnforderung = LeseForschungenDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
-                                                                                                         IDExtern                => ForschungIDExtern,
-                                                                                                         WelcheAnforderungExtern => AnforderungSchleifenwert)
+           Forschungsanforderungen = ForschungKonstanten.LeerForschungAnforderung
          then
             null;
             
          elsif
-           ForschungKonstanten.ForschungUnmöglich = LeseForschungenDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
-                                                                                                    IDExtern                => ForschungIDExtern,
-                                                                                                    WelcheAnforderungExtern => AnforderungSchleifenwert)
+           Forschungsanforderungen = ForschungKonstanten.ForschungUnmöglich
          then
             return False;
                   
          elsif
            True = LeseWichtiges.Erforscht (RasseExtern             => RasseExtern,
-                                           WelcheTechnologieExtern => LeseForschungenDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
-                                                                                                                     IDExtern                => ForschungIDExtern,
-                                                                                                                     WelcheAnforderungExtern => AnforderungSchleifenwert))
+                                           WelcheTechnologieExtern => Forschungsanforderungen)
          then
             null;
-                  
+            
          else
             return False;
          end if;

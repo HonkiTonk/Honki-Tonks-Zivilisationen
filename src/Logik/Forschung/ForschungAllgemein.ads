@@ -44,7 +44,10 @@ private
    AktuellesForschungsprojekt : ForschungenDatentypen.ForschungIDMitNullWert;
    GewählteForschung : ForschungenDatentypen.ForschungIDMitNullWert;
 
+   Forschungsanforderungen : ForschungenDatentypen.ForschungIDNichtMöglich;
+
    AktuelleForschung : Positive;
+   Auswahl : Positive;
 
    procedure FortschrittMensch
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
@@ -54,6 +57,13 @@ private
               );
 
    procedure FortschrittKI
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre => (
+                 SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.KI_Spieler_Enum
+              );
+
+   procedure Forschungserfolg
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
