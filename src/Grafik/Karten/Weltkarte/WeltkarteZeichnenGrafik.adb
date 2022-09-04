@@ -9,7 +9,7 @@ with Sf.Graphics.Color;
 
 with EinheitenDatentypen; use EinheitenDatentypen;
 with KartengrundDatentypen; use KartengrundDatentypen;
-with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
+with KartenverbesserungDatentypen; use KartenverbesserungDatentypen;
 with EinheitenKonstanten;
 with TextaccessVariablen;
 with ZeitKonstanten;
@@ -22,16 +22,16 @@ with LeseStadtGebaut;
 
 with EinheitSuchen;
 with StadtSuchen;
-with ObjekteZeichnenSFML;
-with EingeleseneTexturenSFML;
-with KartenspritesZeichnenSFML;
-with FarbgebungSFML;
-with TextberechnungenBreiteSFML;
-with RasseneinstellungenSFML;
-with TextberechnungenHoeheSFML;
+with ObjekteZeichnenGrafik;
+with EingeleseneTexturenGrafik;
+with KartenspritesZeichnenGrafik;
+with FarbgebungGrafik;
+with TextberechnungenBreiteGrafik;
+with RasseneinstellungenGrafik;
+with TextberechnungenHoeheGrafik;
 with BerechnungenKarteSFML;
 with Kartenkoordinatenberechnungssystem;
-with GrafikEinstellungenSFML;
+with EinstellungenGrafik;
 
 package body WeltkarteZeichnenGrafik is
 
@@ -52,7 +52,7 @@ package body WeltkarteZeichnenGrafik is
          
       else
          case
-           KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld (TexturAccessExtern     => EingeleseneTexturenSFML.KartenfelderAccess (BasisKartengrund),
+           KartenspritesZeichnenGrafik.SpriteGezeichnetKartenfeld (TexturAccessExtern     => EingeleseneTexturenGrafik.KartenfelderAccess (BasisKartengrund),
                                                                  PositionExtern         => PositionExtern,
                                                                  DurchsichtigkeitExtern => DurchsichtigkeitExtern)
          is
@@ -60,14 +60,14 @@ package body WeltkarteZeichnenGrafik is
                null;
             
             when False =>
-               ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern => BerechnungenKarteSFML.KartenfelderAbmessung,
+               ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => BerechnungenKarteSFML.KartenfelderAbmessung,
                                                      PositionExtern  => PositionExtern,
-                                                     FarbeExtern     => FarbgebungSFML.FarbeKartenfeldErmitteln (GrundExtern => BasisKartengrund));
+                                                     FarbeExtern     => FarbgebungGrafik.FarbeKartenfeldErmitteln (GrundExtern => BasisKartengrund));
          end case;
       end if;
       
       case
-        KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld (TexturAccessExtern     => EingeleseneTexturenSFML.KartenfelderAccess (AktuellerKartengrund),
+        KartenspritesZeichnenGrafik.SpriteGezeichnetKartenfeld (TexturAccessExtern     => EingeleseneTexturenGrafik.KartenfelderAccess (AktuellerKartengrund),
                                                               PositionExtern         => PositionExtern,
                                                               DurchsichtigkeitExtern => DurchsichtigkeitExtern)
       is
@@ -75,9 +75,9 @@ package body WeltkarteZeichnenGrafik is
             null;
             
          when False =>
-            ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern => BerechnungenKarteSFML.KartenfelderAbmessung,
+            ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => BerechnungenKarteSFML.KartenfelderAbmessung,
                                                   PositionExtern  => PositionExtern,
-                                                  FarbeExtern     => FarbgebungSFML.FarbeKartenfeldErmitteln (GrundExtern => AktuellerKartengrund));
+                                                  FarbeExtern     => FarbgebungGrafik.FarbeKartenfeldErmitteln (GrundExtern => AktuellerKartengrund));
       end case;
       
    end KartenfeldZeichnen;
@@ -102,7 +102,7 @@ package body WeltkarteZeichnenGrafik is
       end case;
       
       case
-        KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld (TexturAccessExtern     => EingeleseneTexturenSFML.KartenflussAccess (KartenfeldFluss),
+        KartenspritesZeichnenGrafik.SpriteGezeichnetKartenfeld (TexturAccessExtern     => EingeleseneTexturenGrafik.KartenflussAccess (KartenfeldFluss),
                                                               PositionExtern         => PositionExtern,
                                                               DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig)
       is
@@ -110,9 +110,9 @@ package body WeltkarteZeichnenGrafik is
             null;
             
          when False =>
-            ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern => (BerechnungenKarteSFML.KartenfelderAbmessung.x, BerechnungenKarteSFML.KartenfelderAbmessung.y / 5.00),
+            ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => (BerechnungenKarteSFML.KartenfelderAbmessung.x, BerechnungenKarteSFML.KartenfelderAbmessung.y / 5.00),
                                                   PositionExtern  => (PositionExtern.x, PositionExtern.y + 0.40 * BerechnungenKarteSFML.KartenfelderAbmessung.y),
-                                                  FarbeExtern     => FarbgebungSFML.FarbeFlussErmitteln (FlussExtern => KartenfeldFluss));
+                                                  FarbeExtern     => FarbgebungGrafik.FarbeFlussErmitteln (FlussExtern => KartenfeldFluss));
       end case;
       
    end FlussZeichnen;
@@ -137,7 +137,7 @@ package body WeltkarteZeichnenGrafik is
       end case;
       
       case
-        KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld (TexturAccessExtern     => EingeleseneTexturenSFML.KartenressourceAccess (KartenfeldRessource),
+        KartenspritesZeichnenGrafik.SpriteGezeichnetKartenfeld (TexturAccessExtern     => EingeleseneTexturenGrafik.KartenressourceAccess (KartenfeldRessource),
                                                               PositionExtern         => PositionExtern,
                                                               DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig)
       is
@@ -145,7 +145,7 @@ package body WeltkarteZeichnenGrafik is
             null;
             
          when False =>
-            ObjekteZeichnenSFML.KreisZeichnen (RadiusExtern   => BerechnungenKarteSFML.KartenfelderAbmessung.x / 3.00,
+            ObjekteZeichnenGrafik.KreisZeichnen (RadiusExtern   => BerechnungenKarteSFML.KartenfelderAbmessung.x / 3.00,
                                                PositionExtern => PositionExtern,
                                                FarbeExtern    => Sf.Graphics.Color.sfBlack);
       end case;
@@ -164,7 +164,7 @@ package body WeltkarteZeichnenGrafik is
       case
         Wegfeld
       is
-         when KartenVerbesserungDatentypen.Leer_Weg_Enum =>
+         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
             return;
             
          when others =>
@@ -172,7 +172,7 @@ package body WeltkarteZeichnenGrafik is
       end case;
       
       case
-        KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld (TexturAccessExtern     => EingeleseneTexturenSFML.WegeAccess (Wegfeld),
+        KartenspritesZeichnenGrafik.SpriteGezeichnetKartenfeld (TexturAccessExtern     => EingeleseneTexturenGrafik.WegeAccess (Wegfeld),
                                                               PositionExtern         => PositionExtern,
                                                               DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig)
       is
@@ -180,7 +180,7 @@ package body WeltkarteZeichnenGrafik is
             null;
             
          when False =>
-            ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern => (BerechnungenKarteSFML.KartenfelderAbmessung.x, BerechnungenKarteSFML.KartenfelderAbmessung.y / 2.00),
+            ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => (BerechnungenKarteSFML.KartenfelderAbmessung.x, BerechnungenKarteSFML.KartenfelderAbmessung.y / 2.00),
                                                   PositionExtern  => (PositionExtern.x, PositionExtern.y + 0.80 * BerechnungenKarteSFML.KartenfelderAbmessung.y),
                                                   FarbeExtern     => Sf.Graphics.Color.sfRed);
       end case;
@@ -200,10 +200,10 @@ package body WeltkarteZeichnenGrafik is
       case
         Verbesserungsfeld
       is
-         when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum =>
+         when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
             return;
             
-         when KartenVerbesserungDatentypen.Karten_Verbesserung_Städte_Enum =>
+         when KartenverbesserungDatentypen.Karten_Verbesserung_Städte_Enum =>
             if
               KoordinatenExtern.EAchse = EbeneExtern
             then
@@ -219,7 +219,7 @@ package body WeltkarteZeichnenGrafik is
       end case;
       
       case
-        KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld (TexturAccessExtern     => EingeleseneTexturenSFML.VerbesserungenAccess (Verbesserungsfeld),
+        KartenspritesZeichnenGrafik.SpriteGezeichnetKartenfeld (TexturAccessExtern     => EingeleseneTexturenGrafik.VerbesserungenAccess (Verbesserungsfeld),
                                                               PositionExtern         => PositionExtern,
                                                               DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig)
       is
@@ -227,7 +227,7 @@ package body WeltkarteZeichnenGrafik is
             null;
             
          when False =>
-            ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern => (BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00, BerechnungenKarteSFML.KartenfelderAbmessung.y / 2.00),
+            ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => (BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00, BerechnungenKarteSFML.KartenfelderAbmessung.y / 2.00),
                                                   PositionExtern  => PositionExtern,
                                                   FarbeExtern     => Sf.Graphics.Color.sfCyan);
       end case;
@@ -288,7 +288,7 @@ package body WeltkarteZeichnenGrafik is
       end if;
       
       case
-        KartenspritesZeichnenSFML.SpriteGezeichnetKartenfeld (TexturAccessExtern     => EingeleseneTexturenSFML.EinheitenAccess (RasseEinheitExtern.Rasse, EinheitID),
+        KartenspritesZeichnenGrafik.SpriteGezeichnetKartenfeld (TexturAccessExtern     => EingeleseneTexturenGrafik.EinheitenAccess (RasseEinheitExtern.Rasse, EinheitID),
                                                               PositionExtern         => PositionExtern,
                                                               DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig)
       is
@@ -296,10 +296,10 @@ package body WeltkarteZeichnenGrafik is
             null;
             
          when others =>
-            ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern      => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.80,
+            ObjekteZeichnenGrafik.PolygonZeichnen (RadiusExtern      => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.80,
                                                  PositionExtern    => PositionExtern,
                                                  AnzahlEckenExtern => 4,
-                                                 FarbeExtern       => RasseneinstellungenSFML.RassenFarbenRahmen (EinheitRasseNummer.Rasse));
+                                                 FarbeExtern       => RasseneinstellungenGrafik.RassenfarbenRahmen (EinheitRasseNummer.Rasse));
       end case;
       
    end AnzeigeEinheit;
@@ -335,8 +335,8 @@ package body WeltkarteZeichnenGrafik is
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      ObjekteZeichnenSFML.RahmenteilZeichnen (PositionExtern => PositionExtern,
-                                              FarbeExtern    => RasseneinstellungenSFML.RassenFarben (RasseExtern),
+      ObjekteZeichnenGrafik.RahmenteilZeichnen (PositionExtern => PositionExtern,
+                                              FarbeExtern    => RasseneinstellungenGrafik.Rassenfarben (RasseExtern),
                                               GrößeExtern    => BerechnungenKarteSFML.KartenfelderAbmessung);
       
       UmgebungSchleife:
@@ -396,8 +396,8 @@ package body WeltkarteZeichnenGrafik is
             Rahmenposition := (PositionExtern.x, PositionExtern.y + BerechnungenKarteSFML.KartenfelderAbmessung.y - DickeRahmen);
       end case;
       
-      ObjekteZeichnenSFML.RahmenteilZeichnen (PositionExtern => Rahmenposition,
-                                              FarbeExtern    => RasseneinstellungenSFML.RassenFarbenRahmen (RasseExtern),
+      ObjekteZeichnenGrafik.RahmenteilZeichnen (PositionExtern => Rahmenposition,
+                                              FarbeExtern    => RasseneinstellungenGrafik.RassenfarbenRahmen (RasseExtern),
                                               GrößeExtern    => Rahmengröße);
       
    end RahmenZeichnen;
@@ -414,14 +414,14 @@ package body WeltkarteZeichnenGrafik is
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAccess,
                                          str  => To_Wide_Wide_String (Source => LeseStadtGebaut.Name (StadtRasseNummerExtern => StadtRasseNummer)));
       
-      Textposition.x := PositionExtern.x - TextberechnungenBreiteSFML.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.KarteAccess) + 0.50 * BerechnungenKarteSFML.KartenfelderAbmessung.x;
-      Textposition.y := PositionExtern.y - TextberechnungenHoeheSFML.Zeilenabstand;
+      Textposition.x := PositionExtern.x - TextberechnungenBreiteGrafik.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.KarteAccess) + 0.50 * BerechnungenKarteSFML.KartenfelderAbmessung.x;
+      Textposition.y := PositionExtern.y - TextberechnungenHoeheGrafik.Zeilenabstand;
       
       -- Später noch einen Rahmen um den Namen bauen. äöü
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteAccess,
                                     position => Textposition);
       
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
                                          text         => TextaccessVariablen.KarteAccess);
       
    end StadtnameAnzeigen;

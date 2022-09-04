@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartengrundDatentypen; use KartengrundDatentypen;
-with KartenVerbesserungDatentypen;
+with KartenverbesserungDatentypen;
 
 with SchreibeKarten;
 with LeseKarten;
@@ -34,9 +34,9 @@ package body WaldAnlegen is
       case
         LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern)
       is
-         when KartenVerbesserungDatentypen.Karten_Verbesserung_Gebilde_Friedlich_Enum'Range =>
+         when KartenverbesserungDatentypen.Karten_Verbesserung_Gebilde_Friedlich_Enum'Range =>
             SchreibeKarten.Verbesserung (KoordinatenExtern     => KoordinatenExtern,
-                                         VerbesserungExtern    => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum);
+                                         VerbesserungExtern    => KartenverbesserungDatentypen.Leer_Verbesserung_Enum);
             
          when others =>
             null;

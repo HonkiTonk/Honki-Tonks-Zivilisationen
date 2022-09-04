@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with RassenDatentypen; use RassenDatentypen;
-with KartenVerbesserungDatentypen;
+with KartenverbesserungDatentypen;
 with KartengrundDatentypen;
 with SpielVariablen;
 with KartenRecords;
@@ -79,7 +79,7 @@ package SchreibeKarten is
 
    procedure Weg
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Enum)
+      WegExtern : in KartenverbesserungDatentypen.Karten_Weg_Enum)
      with
        Pre => (
                  KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
@@ -89,7 +89,7 @@ package SchreibeKarten is
 
    procedure Verbesserung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Enum)
+      VerbesserungExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Enum)
      with
        Pre => (
                  KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse

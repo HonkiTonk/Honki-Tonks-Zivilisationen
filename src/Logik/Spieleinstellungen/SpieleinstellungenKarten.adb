@@ -11,7 +11,7 @@ with KartenKonstanten;
 with KartengeneratorRecordKonstanten;
 
 with Karten;
-with EingabeSFML;
+with EingabeLogik;
 with ZufallsgeneratorenSpieleinstellungen;
 with Auswahlaufteilungen;
 with Fehler;
@@ -85,7 +85,7 @@ package body SpieleinstellungenKarten is
             MaximaleEisdicke := Karten.Karteneinstellungen.Kartengröße.XAchse / 2;
       end case;
 
-      BenutzerdefinierteGröße := EingabeSFML.GanzeZahl (ZahlenMinimumExtern => 0,
+      BenutzerdefinierteGröße := EingabeLogik.GanzeZahl (ZahlenMinimumExtern => 0,
                                                           ZahlenMaximumExtern => Positive (MaximaleEisdicke),
                                                           WelcheFrageExtern   => TextnummernKonstanten.FrageEisschicht);
       
@@ -144,7 +144,7 @@ package body SpieleinstellungenKarten is
      return KartenRecords.YXAchsenKartenfeldPositivRecord
    is begin
             
-      BenutzerdefinierteGröße := EingabeSFML.GanzeZahl (ZahlenMinimumExtern => 20,
+      BenutzerdefinierteGröße := EingabeLogik.GanzeZahl (ZahlenMinimumExtern => 20,
                                                           ZahlenMaximumExtern => Positive (KartenDatentypen.KartenfeldPositiv'Last),
                                                           WelcheFrageExtern   => TextnummernKonstanten.FrageYAchsengrößeEingeben);
       case
@@ -159,7 +159,7 @@ package body SpieleinstellungenKarten is
       
       YAchse := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße.EingegebeneZahl);
       
-      BenutzerdefinierteGröße := EingabeSFML.GanzeZahl (ZahlenMinimumExtern => 20,
+      BenutzerdefinierteGröße := EingabeLogik.GanzeZahl (ZahlenMinimumExtern => 20,
                                                           ZahlenMaximumExtern => Positive (KartenDatentypen.KartenfeldPositiv'Last),
                                                           WelcheFrageExtern   => TextnummernKonstanten.FrageXAchsengrößeEingeben);
       
@@ -224,7 +224,7 @@ package body SpieleinstellungenKarten is
    procedure KartenartNutzerdefinition
    is begin
       
-      BenutzerdefinierteKartenart := EingabeSFML.GanzeZahl (ZahlenMinimumExtern => 1,
+      BenutzerdefinierteKartenart := EingabeLogik.GanzeZahl (ZahlenMinimumExtern => 1,
                                                             ZahlenMaximumExtern => Positive (Karten.Karteneinstellungen.Kartengröße.YAchse / 2),
                                                             WelcheFrageExtern   => TextnummernKonstanten.FrageMinimaleLandhöhe);
       
@@ -240,7 +240,7 @@ package body SpieleinstellungenKarten is
             ZwischenwertKartenart := BenutzerdefinierteKartenart.EingegebeneZahl;
       end case;
             
-      BenutzerdefinierteKartenart := EingabeSFML.GanzeZahl (ZahlenMinimumExtern => ZwischenwertKartenart,
+      BenutzerdefinierteKartenart := EingabeLogik.GanzeZahl (ZahlenMinimumExtern => ZwischenwertKartenart,
                                                             ZahlenMaximumExtern => Positive (Karten.Karteneinstellungen.Kartengröße.YAchse / 2),
                                                             WelcheFrageExtern   => TextnummernKonstanten.FrageMaximaleLandhöhe);
       
@@ -257,7 +257,7 @@ package body SpieleinstellungenKarten is
       
       
       
-      BenutzerdefinierteKartenart := EingabeSFML.GanzeZahl (ZahlenMinimumExtern => 1,
+      BenutzerdefinierteKartenart := EingabeLogik.GanzeZahl (ZahlenMinimumExtern => 1,
                                                             ZahlenMaximumExtern => Positive (Karten.Karteneinstellungen.Kartengröße.XAchse / 2),
                                                             WelcheFrageExtern   => TextnummernKonstanten.FrageMinimaleLandbreite);
       
@@ -273,7 +273,7 @@ package body SpieleinstellungenKarten is
             ZwischenwertKartenart := BenutzerdefinierteKartenart.EingegebeneZahl;
       end case;
             
-      BenutzerdefinierteKartenart := EingabeSFML.GanzeZahl (ZahlenMinimumExtern => ZwischenwertKartenart,
+      BenutzerdefinierteKartenart := EingabeLogik.GanzeZahl (ZahlenMinimumExtern => ZwischenwertKartenart,
                                                             ZahlenMaximumExtern => Positive (Karten.Karteneinstellungen.Kartengröße.XAchse / 2),
                                                             WelcheFrageExtern   => TextnummernKonstanten.FrageMaximaleLandbreite);
       

@@ -5,7 +5,7 @@ with RassenDatentypen; use RassenDatentypen;
 with KartenRecords;
 with KartenDatentypen;
 with KartengrundDatentypen;
-with KartenVerbesserungDatentypen;
+with KartenverbesserungDatentypen;
 with SpielVariablen;
 with StadtRecords;
 with EinheitenRecords;
@@ -69,7 +69,7 @@ package LeseKarten is
 
    function Weg
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return KartenVerbesserungDatentypen.Karten_Weg_Enum
+      return KartenverbesserungDatentypen.Karten_Weg_Enum
      with
        Pre => (
                  KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Karteneinstellungen.Kartengröße.YAchse
@@ -79,7 +79,7 @@ package LeseKarten is
 
    function Verbesserung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return KartenVerbesserungDatentypen.Karten_Verbesserung_Enum
+      return KartenverbesserungDatentypen.Karten_Verbesserung_Enum
      with
        Pre => (
                  KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Karteneinstellungen.Kartengröße.YAchse

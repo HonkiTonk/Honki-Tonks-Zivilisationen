@@ -14,7 +14,7 @@ with LeseStadtGebaut;
 with SchreibeKarten;
 
 with StadtWerteFestlegen;
-with EingabeSFML;
+with EingabeLogik;
 with StadtProduktion;
 with Sichtbarkeit;
 with EinheitenErzeugenEntfernen;
@@ -57,7 +57,7 @@ package body StadtBauen is
             StadtName.EingegebenerText := Rassentexte.Städtenamen (EinheitRasseNummerExtern.Rasse, StadtNummer);
                   
          when RassenDatentypen.Mensch_Spieler_Enum =>
-            StadtName := EingabeSFML.StadtName (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer));
+            StadtName := EingabeLogik.StadtName (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer));
             
             if
               StadtName.ErfolgreichAbbruch = False
@@ -141,7 +141,7 @@ package body StadtBauen is
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtNummerSchleifenwert))
          is
-            when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum =>
+            when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
                return StadtNummerSchleifenwert;
                
             when others =>
@@ -245,7 +245,7 @@ package body StadtBauen is
 
    function HauptstadtPrüfen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenVerbesserungDatentypen.Karten_Verbesserung_Städte_Enum
+      return KartenverbesserungDatentypen.Karten_Verbesserung_Städte_Enum
    is begin
       
       HauptsstadtSchleife:
@@ -254,8 +254,8 @@ package body StadtBauen is
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, HauptstadtSchleifenwert))
          is
-            when KartenVerbesserungDatentypen.Hauptstadt_Enum =>
-               return KartenVerbesserungDatentypen.Stadt_Enum;
+            when KartenverbesserungDatentypen.Hauptstadt_Enum =>
+               return KartenverbesserungDatentypen.Stadt_Enum;
                
             when others =>
                null;
@@ -263,7 +263,7 @@ package body StadtBauen is
          
       end loop HauptsstadtSchleife;
       
-      return KartenVerbesserungDatentypen.Hauptstadt_Enum;
+      return KartenverbesserungDatentypen.Hauptstadt_Enum;
       
    end HauptstadtPrüfen;
    

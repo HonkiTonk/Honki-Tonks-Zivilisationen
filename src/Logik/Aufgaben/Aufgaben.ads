@@ -9,7 +9,7 @@ with TastenbelegungDatentypen;
 with KartenRecords;
 
 private with EinheitenDatentypen;
-private with KartenVerbesserungDatentypen;
+private with KartenverbesserungDatentypen;
 
 with Karten;
 
@@ -70,7 +70,7 @@ private
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       EinheitartExtern : in EinheitenDatentypen.Einheitart_Vorhanden_Enum;
       BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum;
-      VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Enum)
+      VerbesserungExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Enum)
       return Boolean
      with
        Pre => (

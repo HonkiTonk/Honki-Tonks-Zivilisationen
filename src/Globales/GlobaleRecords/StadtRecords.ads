@@ -9,7 +9,7 @@ with EinheitenDatentypen;
 with ProduktionDatentypen;
 with KartenDatentypen;
 with KartenRecords;
-with KartenVerbesserungDatentypen;
+with KartenverbesserungDatentypen;
 
 with KIDatentypen;
 
@@ -55,7 +55,7 @@ package StadtRecords is
 
    type StadtGebautRecord is record
       
-      ID : KartenVerbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
+      ID : KartenverbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
       KoordinatenAktuell : KartenRecords.AchsenKartenfeldNaturalRecord;
       EinwohnerArbeiter : EinwohnerArbeiterArray;
       

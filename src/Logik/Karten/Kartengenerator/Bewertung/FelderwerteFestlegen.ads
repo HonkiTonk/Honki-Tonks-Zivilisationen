@@ -6,7 +6,7 @@ with RassenDatentypen;
 with KartenRecords;
 
 private with KartengrundDatentypen;
-private with KartenVerbesserungDatentypen;
+private with KartenverbesserungDatentypen;
 
 with Karten;
 
@@ -39,10 +39,10 @@ private
    type RessourcenArray is array (KartenDatentypen.EbeneVorhanden'Range) of KartengrundDatentypen.Kartenressourcen_Enum;
    Ressource : RessourcenArray;
    
-   type WegeArray is array (KartenDatentypen.EbeneVorhanden'Range) of KartenVerbesserungDatentypen.Karten_Weg_Enum;
+   type WegeArray is array (KartenDatentypen.EbeneVorhanden'Range) of KartenverbesserungDatentypen.Karten_Weg_Enum;
    Weg : WegeArray;
    
-   type VerbesserungenArray is array (KartenDatentypen.EbeneVorhanden'Range) of KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
+   type VerbesserungenArray is array (KartenDatentypen.EbeneVorhanden'Range) of KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
    Verbesserung : VerbesserungenArray;
       
    type KartenwertArray is array (KartenDatentypen.EbeneVorhanden'Range) of KartenRecords.AchsenKartenfeldNaturalRecord;

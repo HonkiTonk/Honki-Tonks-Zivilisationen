@@ -74,12 +74,12 @@ package body EinlesenTexturen is
            Exists (Name => Encode (Item => To_Wide_Wide_String (Source => HintergrundEinlesen (TexturenZuweisenSchleifenwert))))
          is
             when True =>
-               EingeleseneTexturenSFML.HintergrundAccess (TexturenZuweisenSchleifenwert)
+               EingeleseneTexturenGrafik.HintergrundAccess (TexturenZuweisenSchleifenwert)
                  := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => HintergrundEinlesen (TexturenZuweisenSchleifenwert))));
                   
             when False =>
                Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenHintergrund - " & To_Wide_Wide_String (Source => HintergrundEinlesen (TexturenZuweisenSchleifenwert)) & " fehlt.");
-               EingeleseneTexturenSFML.HintergrundAccess (TexturenZuweisenSchleifenwert) := null;
+               EingeleseneTexturenGrafik.HintergrundAccess (TexturenZuweisenSchleifenwert) := null;
          end case;
          
       end loop TexturenZuweisenSchleife;
@@ -135,12 +135,12 @@ package body EinlesenTexturen is
            Exists (Name => Encode (Item => To_Wide_Wide_String (Source => KartenfelderEinlesen (TexturenZuweisenSchleifenwert))))
          is
             when True =>
-               EingeleseneTexturenSFML.KartenfelderAccess (TexturenZuweisenSchleifenwert)
+               EingeleseneTexturenGrafik.KartenfelderAccess (TexturenZuweisenSchleifenwert)
                  := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => KartenfelderEinlesen (TexturenZuweisenSchleifenwert))));
                   
             when False =>
                Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenKartenfelder - " & To_Wide_Wide_String (Source => KartenfelderEinlesen (TexturenZuweisenSchleifenwert)) & " fehlt.");
-               EingeleseneTexturenSFML.KartenfelderAccess (TexturenZuweisenSchleifenwert) := null;
+               EingeleseneTexturenGrafik.KartenfelderAccess (TexturenZuweisenSchleifenwert) := null;
          end case;
          
       end loop TexturenZuweisenSchleife;
@@ -196,12 +196,12 @@ package body EinlesenTexturen is
            Exists (Name => Encode (Item => To_Wide_Wide_String (Source => KartenflüsseEinlesen (TexturenZuweisenSchleifenwert))))
          is
             when True =>
-               EingeleseneTexturenSFML.KartenflussAccess (TexturenZuweisenSchleifenwert)
+               EingeleseneTexturenGrafik.KartenflussAccess (TexturenZuweisenSchleifenwert)
                  := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => KartenflüsseEinlesen (TexturenZuweisenSchleifenwert))));
                   
             when False =>
                Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenKartenflüsse - " & To_Wide_Wide_String (Source => KartenflüsseEinlesen (TexturenZuweisenSchleifenwert)) & " fehlt.");
-               EingeleseneTexturenSFML.KartenflussAccess (TexturenZuweisenSchleifenwert) := null;
+               EingeleseneTexturenGrafik.KartenflussAccess (TexturenZuweisenSchleifenwert) := null;
          end case;
          
       end loop TexturenZuweisenSchleife;
@@ -257,12 +257,12 @@ package body EinlesenTexturen is
            Exists (Name => Encode (Item => To_Wide_Wide_String (Source => KartenressourcenEinlesen (TexturenZuweisenSchleifenwert))))
          is
             when True =>
-               EingeleseneTexturenSFML.KartenressourceAccess (TexturenZuweisenSchleifenwert)
+               EingeleseneTexturenGrafik.KartenressourceAccess (TexturenZuweisenSchleifenwert)
                  := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => KartenressourcenEinlesen (TexturenZuweisenSchleifenwert))));
                   
             when False =>
                Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenKartenressourcen - " & To_Wide_Wide_String (Source => KartenressourcenEinlesen (TexturenZuweisenSchleifenwert)) & " fehlt.");
-               EingeleseneTexturenSFML.KartenressourceAccess (TexturenZuweisenSchleifenwert) := null;
+               EingeleseneTexturenGrafik.KartenressourceAccess (TexturenZuweisenSchleifenwert) := null;
          end case;
          
       end loop TexturenZuweisenSchleife;
@@ -318,12 +318,12 @@ package body EinlesenTexturen is
            Exists (Name => Encode (Item => To_Wide_Wide_String (Source => VerbesserungenEinlesen (TexturenZuweisenSchleifenwert))))
          is
             when True =>
-               EingeleseneTexturenSFML.VerbesserungenAccess (TexturenZuweisenSchleifenwert)
+               EingeleseneTexturenGrafik.VerbesserungenAccess (TexturenZuweisenSchleifenwert)
                  := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => VerbesserungenEinlesen (TexturenZuweisenSchleifenwert))));
                   
             when False =>
                Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenVerbesserungen - " & To_Wide_Wide_String (Source => VerbesserungenEinlesen (TexturenZuweisenSchleifenwert)) & " fehlt.");
-               EingeleseneTexturenSFML.VerbesserungenAccess (TexturenZuweisenSchleifenwert) := null;
+               EingeleseneTexturenGrafik.VerbesserungenAccess (TexturenZuweisenSchleifenwert) := null;
          end case;
          
       end loop TexturenZuweisenSchleife;
@@ -379,12 +379,12 @@ package body EinlesenTexturen is
            Exists (Name => Encode (Item => To_Wide_Wide_String (Source => WegeEinlesen (TexturenZuweisenSchleifenwert))))
          is
             when True =>
-               EingeleseneTexturenSFML.WegeAccess (TexturenZuweisenSchleifenwert)
+               EingeleseneTexturenGrafik.WegeAccess (TexturenZuweisenSchleifenwert)
                  := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => WegeEinlesen (TexturenZuweisenSchleifenwert))));
                   
             when False =>
                Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenWege - " & To_Wide_Wide_String (Source => WegeEinlesen (TexturenZuweisenSchleifenwert)) & " fehlt.");
-               EingeleseneTexturenSFML.WegeAccess (TexturenZuweisenSchleifenwert) := null;
+               EingeleseneTexturenGrafik.WegeAccess (TexturenZuweisenSchleifenwert) := null;
          end case;
          
       end loop TexturenZuweisenSchleife;
@@ -445,12 +445,12 @@ package body EinlesenTexturen is
               Exists (Name => Encode (Item => To_Wide_Wide_String (Source => EinheitenEinlesen (RasseSchleifenwert, TexturenZuweisenSchleifenwert))))
             is
                when True =>
-                  EingeleseneTexturenSFML.EinheitenAccess (RasseSchleifenwert, TexturenZuweisenSchleifenwert)
+                  EingeleseneTexturenGrafik.EinheitenAccess (RasseSchleifenwert, TexturenZuweisenSchleifenwert)
                     := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => EinheitenEinlesen (RasseSchleifenwert, TexturenZuweisenSchleifenwert))));
                   
                when False =>
                   Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenEinheiten - " & To_Wide_Wide_String (Source => EinheitenEinlesen (RasseSchleifenwert, TexturenZuweisenSchleifenwert)) & " fehlt.");
-                  EingeleseneTexturenSFML.EinheitenAccess (RasseSchleifenwert, TexturenZuweisenSchleifenwert) := null;
+                  EingeleseneTexturenGrafik.EinheitenAccess (RasseSchleifenwert, TexturenZuweisenSchleifenwert) := null;
             end case;
          
          end loop TexturenZuweisenSchleife;
@@ -512,12 +512,12 @@ package body EinlesenTexturen is
               Exists (Name => Encode (Item => To_Wide_Wide_String (Source => GebäudeEinlesen (RasseSchleifenwert, TexturenZuweisenSchleifenwert))))
             is
                when True =>
-                  EingeleseneTexturenSFML.GebäudeAccess (RasseSchleifenwert, TexturenZuweisenSchleifenwert)
+                  EingeleseneTexturenGrafik.GebäudeAccess (RasseSchleifenwert, TexturenZuweisenSchleifenwert)
                     := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => GebäudeEinlesen (RasseSchleifenwert, TexturenZuweisenSchleifenwert))));
                   
                when False =>
                   Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenGebäude - " & To_Wide_Wide_String (Source => GebäudeEinlesen (RasseSchleifenwert, TexturenZuweisenSchleifenwert)) & " fehlt.");
-                  EingeleseneTexturenSFML.GebäudeAccess (RasseSchleifenwert, TexturenZuweisenSchleifenwert) := null;
+                  EingeleseneTexturenGrafik.GebäudeAccess (RasseSchleifenwert, TexturenZuweisenSchleifenwert) := null;
             end case;
          
          end loop TexturenZuweisenSchleife;

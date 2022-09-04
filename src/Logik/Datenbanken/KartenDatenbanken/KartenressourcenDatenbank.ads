@@ -9,14 +9,14 @@ with DatenbankRecords;
 
 package KartenressourcenDatenbank is
    
-   type KartenressourcenListeArray is array (KartengrundDatentypen.Kartenressourcen_Vorhanden_Enum'Range) of DatenbankRecords.KartenlisteRecord;
-   KartenressourcenListe : KartenressourcenListeArray;
+   type KartenressourcenlisteArray is array (KartengrundDatentypen.Kartenressourcen_Vorhanden_Enum'Range) of DatenbankRecords.KartenlisteRecord;
+   Kartenressourcenliste : KartenressourcenlisteArray;
    
    procedure StandardKartenressourcenDatenbankLaden;
    
 private
 
-   KartenressourcenListeStandard : constant KartenressourcenListeArray := (
+   KartenressourcenlisteStandard : constant KartenressourcenlisteArray := (
                                                                            KartengrundDatentypen.Kohle_Enum =>
                                                                              (
                                                                               Bewertung  =>

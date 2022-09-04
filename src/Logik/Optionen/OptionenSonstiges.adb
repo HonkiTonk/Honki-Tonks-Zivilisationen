@@ -12,7 +12,7 @@ with EinlesenText;
 with EinlesenRassentexte;
 
 with AuswahlSprache;
-with EingabeSFML;
+with EingabeLogik;
 with Auswahlaufteilungen;
 with Fehler;
 with NachGrafiktask;
@@ -57,7 +57,7 @@ package body OptionenSonstiges is
    procedure AnzahlAutomatischerSpielstände
    is begin
       
-      EingegebeneZahl := EingabeSFML.GanzeZahl (ZahlenMinimumExtern => 0,
+      EingegebeneZahl := EingabeLogik.GanzeZahl (ZahlenMinimumExtern => 0,
                                                 ZahlenMaximumExtern => 999_999_999,
                                                 WelcheFrageExtern   => TextnummernKonstanten.FrageWievieleAutospielstände);
       case
@@ -77,7 +77,7 @@ package body OptionenSonstiges is
    procedure RundenBisAutospeichern
    is begin
       
-      EingegebeneZahl := EingabeSFML.GanzeZahl (ZahlenMinimumExtern => 0,
+      EingegebeneZahl := EingabeLogik.GanzeZahl (ZahlenMinimumExtern => 0,
                                                 ZahlenMaximumExtern => 999_999_999,
                                                 WelcheFrageExtern   => TextnummernKonstanten.FrageRundenAutomatischSpeichern);
 

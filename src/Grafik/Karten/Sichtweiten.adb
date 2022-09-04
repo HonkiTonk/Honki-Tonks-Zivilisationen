@@ -85,10 +85,10 @@ package body Sichtweiten is
      return KartenDatentypen.SichtbereichAnfangEndeArray
    is begin
       
-      YSichtAnfang := -Sichtweiten.SichtweiteLesen;
-      YSichtEnde := Sichtweiten.SichtweiteLesen;
-      XSichtAnfang := -Sichtweiten.SichtweiteLesen;
-      XSichtEnde := Sichtweiten.SichtweiteLesen;
+      YSichtAnfang := -SichtweiteLesen;
+      YSichtEnde := SichtweiteLesen;
+      XSichtAnfang := -SichtweiteLesen;
+      XSichtEnde := SichtweiteLesen;
       
       return (YSichtAnfang, YSichtEnde, XSichtAnfang, XSichtEnde);
       

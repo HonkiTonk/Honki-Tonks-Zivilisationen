@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
+with KartenverbesserungDatentypen; use KartenverbesserungDatentypen;
 with AufgabenDatentypen; use AufgabenDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
 with EinheitenRecordKonstanten;
@@ -101,7 +101,7 @@ package body AufgabeEinheitWeg is
    
    function OberflächeLand
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Enum;
+      WegExtern : in KartenverbesserungDatentypen.Karten_Weg_Enum;
       GrundExtern : in KartenRecords.KartengrundRecord)
       return EinheitenRecords.ArbeitRecord
    is begin
@@ -109,7 +109,7 @@ package body AufgabeEinheitWeg is
       case
         WegExtern
       is
-         when KartenVerbesserungDatentypen.Karten_Straße_Enum'Range | KartenVerbesserungDatentypen.Leer_Weg_Enum =>
+         when KartenverbesserungDatentypen.Karten_Straße_Enum'Range | KartenverbesserungDatentypen.Leer_Weg_Enum =>
             if
               True = ForschungAllgemein.TechnologieVorhanden (RasseExtern       => RasseExtern,
                                                               TechnologieExtern => ForschungKonstanten.TechnologischeVoraussetzung (RasseExtern, WelcheWegart (WegExtern)))
@@ -145,7 +145,7 @@ package body AufgabeEinheitWeg is
      
    function OberflächeWasser
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Enum;
+      WegExtern : in KartenverbesserungDatentypen.Karten_Weg_Enum;
       GrundExtern : in KartenRecords.KartengrundRecord)
       return EinheitenRecords.ArbeitRecord
    is begin
@@ -164,7 +164,7 @@ package body AufgabeEinheitWeg is
       case
         WegExtern
       is
-         when KartenVerbesserungDatentypen.Karten_Straße_Enum'Range | KartenVerbesserungDatentypen.Leer_Weg_Enum =>
+         when KartenverbesserungDatentypen.Karten_Straße_Enum'Range | KartenverbesserungDatentypen.Leer_Weg_Enum =>
             if
               True = ForschungAllgemein.TechnologieVorhanden (RasseExtern       => RasseExtern,
                                                               TechnologieExtern => ForschungKonstanten.TechnologischeVoraussetzung (RasseExtern, WelcheWegart (WegExtern)))
@@ -200,7 +200,7 @@ package body AufgabeEinheitWeg is
      
    function UnterflächeLand
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Enum;
+      WegExtern : in KartenverbesserungDatentypen.Karten_Weg_Enum;
       GrundExtern : in KartenRecords.KartengrundRecord)
       return EinheitenRecords.ArbeitRecord
    is begin
@@ -208,7 +208,7 @@ package body AufgabeEinheitWeg is
       case
         WegExtern
       is
-         when KartenVerbesserungDatentypen.Karten_Straße_Enum'Range | KartenVerbesserungDatentypen.Leer_Weg_Enum =>
+         when KartenverbesserungDatentypen.Karten_Straße_Enum'Range | KartenverbesserungDatentypen.Leer_Weg_Enum =>
             if
               True = ForschungAllgemein.TechnologieVorhanden (RasseExtern       => RasseExtern,
                                                               TechnologieExtern => ForschungKonstanten.TechnologischeVoraussetzung (RasseExtern, WelcheWegart (WegExtern)))
@@ -245,7 +245,7 @@ package body AufgabeEinheitWeg is
    -- Das ist doch ein wenig sinnfrei, oder? äöü
    function UnterflächeWasser
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Enum;
+      WegExtern : in KartenverbesserungDatentypen.Karten_Weg_Enum;
       GrundExtern : in KartenRecords.KartengrundRecord)
       return EinheitenRecords.ArbeitRecord
    is begin
@@ -253,7 +253,7 @@ package body AufgabeEinheitWeg is
       case
         WegExtern
       is
-         when KartenVerbesserungDatentypen.Karten_Straße_Enum'Range | KartenVerbesserungDatentypen.Leer_Weg_Enum =>
+         when KartenverbesserungDatentypen.Karten_Straße_Enum'Range | KartenverbesserungDatentypen.Leer_Weg_Enum =>
             if
               True = ForschungAllgemein.TechnologieVorhanden (RasseExtern       => RasseExtern,
                                                               TechnologieExtern => ForschungKonstanten.TechnologischeVoraussetzung (RasseExtern, WelcheWegart (WegExtern)))

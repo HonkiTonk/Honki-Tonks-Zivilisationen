@@ -6,7 +6,7 @@ with RassenDatentypen; use RassenDatentypen;
 private with EinheitenRecords;
 private with SpielVariablen;
 private with AufgabenDatentypen;
-private with KartenVerbesserungDatentypen;
+private with KartenverbesserungDatentypen;
 private with KartenRecords;
 
 package VerbesserungFertiggestellt is
@@ -19,11 +19,11 @@ private
    
    Koordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    
-   type VerbesserungArray is array (AufgabenDatentypen.Einheitenbefehle_Gebilde_Enum'Range) of KartenVerbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum;
+   type VerbesserungArray is array (AufgabenDatentypen.Einheitenbefehle_Gebilde_Enum'Range) of KartenverbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum;
    Verbesserung : constant VerbesserungArray := (
-                                                 AufgabenDatentypen.Mine_Bauen_Enum    => KartenVerbesserungDatentypen.Mine_Enum,
-                                                 AufgabenDatentypen.Farm_Bauen_Enum    => KartenVerbesserungDatentypen.Farm_Enum,
-                                                 AufgabenDatentypen.Festung_Bauen_Enum => KartenVerbesserungDatentypen.Festung_Enum
+                                                 AufgabenDatentypen.Mine_Bauen_Enum    => KartenverbesserungDatentypen.Mine_Enum,
+                                                 AufgabenDatentypen.Farm_Bauen_Enum    => KartenverbesserungDatentypen.Farm_Enum,
+                                                 AufgabenDatentypen.Festung_Bauen_Enum => KartenverbesserungDatentypen.Festung_Enum
                                                 );
    
    procedure VerbesserungFertiggestelltPrüfen

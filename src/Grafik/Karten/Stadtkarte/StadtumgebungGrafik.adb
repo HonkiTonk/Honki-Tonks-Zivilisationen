@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with KartengrundDatentypen; use KartengrundDatentypen;
-with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
+with KartenverbesserungDatentypen; use KartenverbesserungDatentypen;
 with KartenKonstanten;
 with Views;
 
@@ -11,12 +11,12 @@ with LeseStadtGebaut;
 with LeseKarten;
 
 with Kartenkoordinatenberechnungssystem;
-with ViewsEinstellenSFML;
+with ViewsEinstellenGrafik;
 with BerechnungenKarteSFML;
-with ObjekteZeichnenSFML;
-with KartenspritesZeichnenSFML;
-with EingeleseneTexturenSFML;
-with FarbgebungSFML;
+with ObjekteZeichnenGrafik;
+with KartenspritesZeichnenGrafik;
+with EingeleseneTexturenGrafik;
+with FarbgebungGrafik;
 
 package body StadtumgebungGrafik is
 
@@ -26,7 +26,7 @@ package body StadtumgebungGrafik is
       
       Viewfläche := (7.00 * BerechnungenKarteSFML.StadtfelderAbmessung.x, 7.00 * BerechnungenKarteSFML.StadtfelderAbmessung.y);
       
-      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => Views.StadtumgebungviewAccess,
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.StadtumgebungviewAccess,
                                           GrößeExtern          => Viewfläche,
                                           AnzeigebereichExtern => GrafikRecordKonstanten.StadtumgebungBereich);
             
@@ -46,7 +46,7 @@ package body StadtumgebungGrafik is
             if
               KartenWert.EAchse = KartenKonstanten.LeerEAchse
             then
-               ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => BerechnungenKarteSFML.StadtfelderAbmessung,
+               ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern      => BerechnungenKarteSFML.StadtfelderAbmessung,
                                                      PositionExtern       => Viewfläche,
                                                      FarbeExtern          => Sf.Graphics.Color.sfBlack);
                
@@ -54,7 +54,7 @@ package body StadtumgebungGrafik is
               False = LeseKarten.Sichtbar (KoordinatenExtern => KartenWert,
                                            RasseExtern       => StadtRasseNummerExtern.Rasse)
             then
-               ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => BerechnungenKarteSFML.StadtfelderAbmessung,
+               ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern      => BerechnungenKarteSFML.StadtfelderAbmessung,
                                                      PositionExtern       => Viewfläche,
                                                      FarbeExtern          => Sf.Graphics.Color.sfBlack);
                
@@ -113,7 +113,7 @@ package body StadtumgebungGrafik is
                Farbe := Sf.Graphics.Color.sfBlack;
             end if;
             
-            ObjekteZeichnenSFML.RahmenZeichnen (PositionExtern    => (PositionExtern.x + 3.00, PositionExtern.y + 3.00),
+            ObjekteZeichnenGrafik.RahmenZeichnen (PositionExtern    => (PositionExtern.x + 3.00, PositionExtern.y + 3.00),
                                                 FarbeExtern       => Farbe,
                                                 GrößeExtern       => (BerechnungenKarteSFML.StadtfelderAbmessung.x - 6.00, BerechnungenKarteSFML.StadtfelderAbmessung.y - 6.00),
                                                 RahmendickeExtern => 3.00);
@@ -158,16 +158,16 @@ package body StadtumgebungGrafik is
       Kartenfeld := LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern);
       
       case
-        KartenspritesZeichnenSFML.SpriteGezeichnetStadtfeld (TexturAccessExtern => EingeleseneTexturenSFML.KartenfelderAccess (Kartenfeld),
+        KartenspritesZeichnenGrafik.SpriteGezeichnetStadtfeld (TexturAccessExtern => EingeleseneTexturenGrafik.KartenfelderAccess (Kartenfeld),
                                                              PositionExtern     => PositionExtern)
       is
          when True =>
             null;
             
          when False =>
-            ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => BerechnungenKarteSFML.StadtfelderAbmessung,
+            ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern      => BerechnungenKarteSFML.StadtfelderAbmessung,
                                                   PositionExtern       => PositionExtern,
-                                                  FarbeExtern          => FarbgebungSFML.FarbeKartenfeldErmitteln (GrundExtern => Kartenfeld));
+                                                  FarbeExtern          => FarbgebungGrafik.FarbeKartenfeldErmitteln (GrundExtern => Kartenfeld));
       end case;
       
    end KartenfeldZeichnen;
@@ -187,13 +187,13 @@ package body StadtumgebungGrafik is
          null;
          
       elsif
-        True = KartenspritesZeichnenSFML.SpriteGezeichnetStadtfeld (TexturAccessExtern => EingeleseneTexturenSFML.KartenflussAccess (KartenfeldFluss),
+        True = KartenspritesZeichnenGrafik.SpriteGezeichnetStadtfeld (TexturAccessExtern => EingeleseneTexturenGrafik.KartenflussAccess (KartenfeldFluss),
                                                                     PositionExtern     => PositionExtern)
       then
          null;
             
       else
-         ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => (BerechnungenKarteSFML.StadtfelderAbmessung.x, BerechnungenKarteSFML.StadtfelderAbmessung.y / 5.00),
+         ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern      => (BerechnungenKarteSFML.StadtfelderAbmessung.x, BerechnungenKarteSFML.StadtfelderAbmessung.y / 5.00),
                                                PositionExtern       => (PositionExtern.x, PositionExtern.y + 0.40 * BerechnungenKarteSFML.StadtfelderAbmessung.y),
                                                FarbeExtern          => Sf.Graphics.Color.sfBlue);
       end if;
@@ -215,13 +215,13 @@ package body StadtumgebungGrafik is
          null;
          
       elsif
-        True = KartenspritesZeichnenSFML.SpriteGezeichnetStadtfeld (TexturAccessExtern => EingeleseneTexturenSFML.KartenressourceAccess (KartenfeldRessource),
+        True = KartenspritesZeichnenGrafik.SpriteGezeichnetStadtfeld (TexturAccessExtern => EingeleseneTexturenGrafik.KartenressourceAccess (KartenfeldRessource),
                                                                     PositionExtern     => PositionExtern)
       then
          null;
          
       else
-         ObjekteZeichnenSFML.KreisZeichnen (RadiusExtern      => BerechnungenKarteSFML.StadtfelderAbmessung.x / 3.00,
+         ObjekteZeichnenGrafik.KreisZeichnen (RadiusExtern      => BerechnungenKarteSFML.StadtfelderAbmessung.x / 3.00,
                                             PositionExtern    => PositionExtern,
                                             FarbeExtern       => Sf.Graphics.Color.sfBlack);
       end if;
@@ -238,18 +238,18 @@ package body StadtumgebungGrafik is
       Wegfeld := LeseKarten.Weg (KoordinatenExtern => KoordinatenExtern);
       
       if
-        Wegfeld = KartenVerbesserungDatentypen.Leer_Weg_Enum
+        Wegfeld = KartenverbesserungDatentypen.Leer_Weg_Enum
       then
          null;
          
       elsif
-        True = KartenspritesZeichnenSFML.SpriteGezeichnetStadtfeld (TexturAccessExtern => EingeleseneTexturenSFML.WegeAccess (Wegfeld),
+        True = KartenspritesZeichnenGrafik.SpriteGezeichnetStadtfeld (TexturAccessExtern => EingeleseneTexturenGrafik.WegeAccess (Wegfeld),
                                                                     PositionExtern     => PositionExtern)
       then
          null;
             
       else
-         ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => (BerechnungenKarteSFML.StadtfelderAbmessung.x, BerechnungenKarteSFML.StadtfelderAbmessung.y / 2.00),
+         ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern      => (BerechnungenKarteSFML.StadtfelderAbmessung.x, BerechnungenKarteSFML.StadtfelderAbmessung.y / 2.00),
                                                PositionExtern       => (PositionExtern.x, PositionExtern.y + 0.80 * BerechnungenKarteSFML.StadtfelderAbmessung.y),
                                                FarbeExtern          => Sf.Graphics.Color.sfRed);
       end if;
@@ -266,18 +266,18 @@ package body StadtumgebungGrafik is
       Verbesserungsfeld := LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern);
       
       if
-        Verbesserungsfeld = KartenVerbesserungDatentypen.Leer_Verbesserung_Enum
+        Verbesserungsfeld = KartenverbesserungDatentypen.Leer_Verbesserung_Enum
       then
          null;
          
       elsif
-        True = KartenspritesZeichnenSFML.SpriteGezeichnetStadtfeld (TexturAccessExtern => EingeleseneTexturenSFML.VerbesserungenAccess (Verbesserungsfeld),
+        True = KartenspritesZeichnenGrafik.SpriteGezeichnetStadtfeld (TexturAccessExtern => EingeleseneTexturenGrafik.VerbesserungenAccess (Verbesserungsfeld),
                                                                     PositionExtern     => PositionExtern)
       then
          null;
             
       else
-         ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => (BerechnungenKarteSFML.StadtfelderAbmessung.x / 2.00, BerechnungenKarteSFML.StadtfelderAbmessung.y / 2.00),
+         ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern      => (BerechnungenKarteSFML.StadtfelderAbmessung.x / 2.00, BerechnungenKarteSFML.StadtfelderAbmessung.y / 2.00),
                                                PositionExtern       => PositionExtern,
                                                FarbeExtern          => Sf.Graphics.Color.sfCyan);
       end if;

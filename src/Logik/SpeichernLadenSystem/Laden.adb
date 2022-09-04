@@ -15,8 +15,8 @@ with TextKonstanten;
 with WeltkarteRecords;
 
 with Karten;
-with Ladezeiten;
-with AuswahlSFML;
+with LadezeitenLogik;
+with AuswahlLogik;
 with SpeichernLadenAllgemein;
 with NachGrafiktask;
 
@@ -62,7 +62,7 @@ package body Laden is
          
       else
          case
-           AuswahlSFML.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageLadeFalscheVersion)
+           AuswahlLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageLadeFalscheVersion)
          is
             when True =>
                null;
@@ -73,21 +73,21 @@ package body Laden is
          end case;
       end if;
       
-      Ladezeiten.SpeichernLadenNullsetzen;
+      LadezeitenLogik.SpeichernLadenNullsetzen;
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Speichern_Laden_Enum;
       
       Allgemeines (DateiLadenExtern => DateiLaden);
-      Ladezeiten.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
+      LadezeitenLogik.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
       
       KarteLaden (DateiLadenExtern => DateiLaden);
-      Ladezeiten.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
+      LadezeitenLogik.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
       
       RassenwerteLaden (DateiLadenExtern => DateiLaden);
-      Ladezeiten.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
+      LadezeitenLogik.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
       
       Close (File => DateiLaden);
       
-      Ladezeiten.SpeichernLadenMaximum;
+      LadezeitenLogik.SpeichernLadenMaximum;
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
 
       return True;

@@ -163,7 +163,7 @@ package body FelderwerteFestlegen is
             case
               Weg (KoordinatenFeldExtern.EAchse)
             is
-               when KartenVerbesserungDatentypen.Leer_Weg_Enum =>
+               when KartenverbesserungDatentypen.Leer_Weg_Enum =>
                   null;
             
                when others =>
@@ -177,7 +177,7 @@ package body FelderwerteFestlegen is
             case
               Verbesserung (KoordinatenFeldExtern.EAchse)
             is
-               when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum =>
+               when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
                   null;
             
                when others =>

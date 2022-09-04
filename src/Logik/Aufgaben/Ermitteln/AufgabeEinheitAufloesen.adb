@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with TextnummernKonstanten;
 
 with EinheitenErzeugenEntfernen;
-with AuswahlSFML;
+with AuswahlLogik;
 
 package body AufgabeEinheitAufloesen is
 
@@ -21,7 +21,7 @@ package body AufgabeEinheitAufloesen is
             
          when others =>
             if
-              AuswahlSFML.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageEinheitAuflösen) = True
+              AuswahlLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageEinheitAuflösen) = True
             then
                EinheitenErzeugenEntfernen.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          

@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
-with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
+with KartenverbesserungDatentypen; use KartenverbesserungDatentypen;
 with StadtDatentypen; use StadtDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
@@ -20,7 +20,7 @@ with LeseStadtGebaut;
 with Kartenkoordinatenberechnungssystem;
 with RasseEntfernen;
 with Wachstum;
-with AuswahlSFML;
+with AuswahlLogik;
 
 package body StadtEntfernen is
    
@@ -29,7 +29,7 @@ package body StadtEntfernen is
    is begin
          
       case
-        AuswahlSFML.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageStadtAbreißen)
+        AuswahlLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageStadtAbreißen)
       is
          when True =>
             StadtEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern);
@@ -50,7 +50,7 @@ package body StadtEntfernen is
       HeimatstädteEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern);
       NeueHauptstadtSetzen (StadtRasseNummerExtern => StadtRasseNummerExtern);
       SchreibeKarten.Verbesserung (KoordinatenExtern  => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                   VerbesserungExtern => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum);
+                                   VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum);
       SchreibeStadtGebaut.Nullsetzung (StadtRasseNummerExtern => StadtRasseNummerExtern);
       Wachstum.WachstumWichtiges (RasseExtern => StadtRasseNummerExtern.Rasse);
       SchreibeWichtiges.AnzahlStädte (RasseExtern     => StadtRasseNummerExtern.Rasse,
@@ -128,7 +128,7 @@ package body StadtEntfernen is
       case
         LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern)
       is
-         when KartenVerbesserungDatentypen.Hauptstadt_Enum =>
+         when KartenverbesserungDatentypen.Hauptstadt_Enum =>
             null;
             
          when others =>
@@ -139,7 +139,7 @@ package body StadtEntfernen is
       for StadtSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze loop
          
          if
-           LeseStadtGebaut.ID (StadtRasseNummerExtern => (StadtRasseNummerExtern.Rasse, StadtSchleifenwert)) = KartenVerbesserungDatentypen.Leer_Verbesserung_Enum
+           LeseStadtGebaut.ID (StadtRasseNummerExtern => (StadtRasseNummerExtern.Rasse, StadtSchleifenwert)) = KartenverbesserungDatentypen.Leer_Verbesserung_Enum
            or
              StadtSchleifenwert = StadtRasseNummerExtern.Nummer
          then
@@ -147,7 +147,7 @@ package body StadtEntfernen is
             
          else
             SchreibeStadtGebaut.ID (StadtRasseNummerExtern => (StadtRasseNummerExtern.Rasse, StadtSchleifenwert),
-                                    IDExtern               => KartenVerbesserungDatentypen.Hauptstadt_Enum);
+                                    IDExtern               => KartenverbesserungDatentypen.Hauptstadt_Enum);
             return;
          end if;
          

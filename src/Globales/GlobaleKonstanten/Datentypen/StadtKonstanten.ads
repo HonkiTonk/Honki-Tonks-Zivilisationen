@@ -8,7 +8,7 @@ with ForschungKonstanten;
 with StadtDatentypen;
 with KartenDatentypen;
 with KartengrundDatentypen;
-with KartenVerbesserungDatentypen;
+with KartenverbesserungDatentypen;
 with TextKonstanten;
 with RassenDatentypen;
 with ForschungenDatentypen;
@@ -24,7 +24,7 @@ package StadtKonstanten is
    LeerNummer : constant StadtDatentypen.MaximaleStädteMitNullWert := StadtDatentypen.MaximaleStädteMitNullWert'First;
    LeerRasseNummer : constant StadtRecords.RasseStadtnummerRecord := (LeerRasse, LeerNummer);
    
-   LeerID : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum := KartenVerbesserungDatentypen.Leer_Verbesserung_Enum;
+   LeerID : constant KartenverbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum := KartenverbesserungDatentypen.Leer_Verbesserung_Enum;
    LeerEinwohner : constant ProduktionDatentypen.Einwohner := 0;
    LeerArbeiter : constant ProduktionDatentypen.Einwohner := 0;
    LeerEinwohnerArbeiter : constant StadtRecords.EinwohnerArbeiterArray := (LeerEinwohner, LeerArbeiter);

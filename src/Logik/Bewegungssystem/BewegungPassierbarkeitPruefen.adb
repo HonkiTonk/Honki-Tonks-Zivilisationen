@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with EinheitenDatentypen; use EinheitenDatentypen;
-with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
+with KartenverbesserungDatentypen; use KartenverbesserungDatentypen;
 with StadtDatentypen; use StadtDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
@@ -107,7 +107,7 @@ package body BewegungPassierbarkeitPruefen is
          return True;
                   
       elsif
-        LeseKarten.Weg (KoordinatenExtern => NeueKoordinatenExtern) /= KartenVerbesserungDatentypen.Leer_Weg_Enum
+        LeseKarten.Weg (KoordinatenExtern => NeueKoordinatenExtern) /= KartenverbesserungDatentypen.Leer_Weg_Enum
         and then
           False = LeseVerbesserungenDatenbank.PassierbarkeitWeg (WegExtern            => LeseKarten.Weg (KoordinatenExtern => NeueKoordinatenExtern),
                                                                  WelcheUmgebungExtern => UmgebungExtern)
@@ -132,7 +132,7 @@ package body BewegungPassierbarkeitPruefen is
                      
       -- Funktioniert akutell nicht richtig, beheben oder entfernen? äöü
       --  elsif
-      --    LeseKarten.Weg (KoordinatenExtern => NeueKoordinatenExtern) /= KartenVerbesserungDatentypen.Leer_Weg_Enum
+      --    LeseKarten.Weg (KoordinatenExtern => NeueKoordinatenExtern) /= KartenverbesserungDatentypen.Leer_Weg_Enum
       --    and then
       --       KartenAllgemein.PassierbarWeg (KoordinatenExtern    => NeueKoordinatenExtern,
       --                                      PassierbarkeitExtern => UmgebungExtern)

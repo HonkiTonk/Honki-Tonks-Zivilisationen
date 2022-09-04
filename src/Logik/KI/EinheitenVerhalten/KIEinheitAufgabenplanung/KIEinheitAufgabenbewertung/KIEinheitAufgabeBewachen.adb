@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with EinheitenDatentypen; use EinheitenDatentypen;
 with EinheitenKonstanten;
-with KartenVerbesserungDatentypen;
+with KartenverbesserungDatentypen;
 
 with LeseStadtGebaut;
 
@@ -26,7 +26,7 @@ package body KIEinheitAufgabeBewachen is
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert))
          is
-            when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum =>
+            when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
                null;
                
             when others =>

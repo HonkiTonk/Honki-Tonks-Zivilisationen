@@ -11,7 +11,7 @@ with SpieleinstellungenKarten;
 with SpieleinstellungenRasseSpieler;
 with SpieleinstellungenSonstiges;
 with Warnung;
-with Ladezeiten;
+with LadezeitenLogik;
 with Auswahlaufteilungen;
 with NachGrafiktask;
 with AllesAufAnfangSetzen;
@@ -117,7 +117,7 @@ package body Spieleinstellungen is
    is begin
       
       -- Nullsetzen der Ladezeiten und das Wechseln der Grafikanzeige kombinieren? äöü
-      Ladezeiten.SpielweltNullsetzen;
+      LadezeitenLogik.SpielweltNullsetzen;
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Generierungszeit_Enum;
 
       -- Wird benötigt, da sonst die wichtigen Kartenwerte nicht gespeichert/geladen werden können. Sicherheitshalber immer vor Aufruf des Kartengenerators setzen.

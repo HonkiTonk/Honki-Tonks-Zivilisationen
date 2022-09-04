@@ -49,7 +49,7 @@ package body LeseKartenDatenbanken is
       return KartenDatentypen.Einzelbewertung
    is begin
       
-      return KartenressourcenDatenbank.KartenressourcenListe (RessourceExtern).Bewertung (RasseExtern);
+      return KartenressourcenDatenbank.Kartenressourcenliste (RessourceExtern).Bewertung (RasseExtern);
       
    end BewertungRessource;
    
@@ -88,7 +88,7 @@ package body LeseKartenDatenbanken is
       return ProduktionDatentypen.Einzelproduktion
    is begin
       
-      return KartenressourcenDatenbank.KartenressourcenListe (RessourceExtern).Wirtschaft (RasseExtern, WirtschaftArtExtern);
+      return KartenressourcenDatenbank.Kartenressourcenliste (RessourceExtern).Wirtschaft (RasseExtern, WirtschaftArtExtern);
       
    end WirtschaftRessourcen;
    
@@ -127,7 +127,7 @@ package body LeseKartenDatenbanken is
       return KampfDatentypen.KampfwerteAllgemein
    is begin
       
-      return KartenressourcenDatenbank.KartenressourcenListe (RessourceExtern).Kampf (RasseExtern, KampfArtExtern);
+      return KartenressourcenDatenbank.Kartenressourcenliste (RessourceExtern).Kampf (RasseExtern, KampfArtExtern);
       
    end KampfRessource;
 

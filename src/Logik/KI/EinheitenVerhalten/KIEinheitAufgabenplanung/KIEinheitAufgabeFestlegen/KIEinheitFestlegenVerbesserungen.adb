@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
+with KartenverbesserungDatentypen; use KartenverbesserungDatentypen;
 with KartengrundDatentypen; use KartengrundDatentypen;
 with KartenRecordKonstanten;
 with KartenKonstanten;
@@ -61,7 +61,7 @@ package body KIEinheitFestlegenVerbesserungen is
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert))
          is
-            when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum =>
+            when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
                null;
                
             when others =>
@@ -168,7 +168,7 @@ package body KIEinheitFestlegenVerbesserungen is
          return False;
          
       elsif
-        LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern) = KartenVerbesserungDatentypen.Leer_Verbesserung_Enum
+        LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern) = KartenverbesserungDatentypen.Leer_Verbesserung_Enum
       then
          WelcheVerbesserung := VerbesserungAnlegbar (KoordinatenExtern        => KoordinatenExtern,
                                                      EinheitRasseNummerExtern => EinheitRasseNummerExtern);

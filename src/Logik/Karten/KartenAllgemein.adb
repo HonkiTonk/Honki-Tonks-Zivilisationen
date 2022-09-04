@@ -427,7 +427,7 @@ package body KartenAllgemein is
       case
         KartenWeg
       is
-         when KartenVerbesserungDatentypen.Leer_Weg_Enum =>
+         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
             return 0;
             
          when others =>
@@ -451,7 +451,7 @@ package body KartenAllgemein is
       case
         KartenWeg
       is
-         when KartenVerbesserungDatentypen.Leer_Weg_Enum =>
+         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
             return 0;
             
          when others =>
@@ -475,7 +475,7 @@ package body KartenAllgemein is
       case
         KartenWeg
       is
-         when KartenVerbesserungDatentypen.Leer_Weg_Enum =>
+         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
             return 0;
             
          when others =>
@@ -499,7 +499,7 @@ package body KartenAllgemein is
       case
         KartenWeg
       is
-         when KartenVerbesserungDatentypen.Leer_Weg_Enum =>
+         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
             return 0;
             
          when others =>
@@ -523,7 +523,7 @@ package body KartenAllgemein is
       case
         KartenWeg
       is
-         when KartenVerbesserungDatentypen.Leer_Weg_Enum =>
+         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
             return 0;
             
          when others =>
@@ -547,7 +547,7 @@ package body KartenAllgemein is
       case
         KartenWeg
       is
-         when KartenVerbesserungDatentypen.Leer_Weg_Enum =>
+         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
             return 0;
             
          when others =>
@@ -571,7 +571,7 @@ package body KartenAllgemein is
       case
         KartenWeg
       is
-         when KartenVerbesserungDatentypen.Leer_Weg_Enum =>
+         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
             return 0;
             
          when others =>
@@ -594,7 +594,7 @@ package body KartenAllgemein is
       case
         KartenVerbesserung
       is
-         when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum =>
+         when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
             return 0;
             
          when others =>
@@ -618,7 +618,7 @@ package body KartenAllgemein is
       case
         KartenVerbesserung
       is
-         when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum =>
+         when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
             return 0;
             
          when others =>
@@ -642,7 +642,7 @@ package body KartenAllgemein is
       case
         KartenVerbesserung
       is
-         when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum =>
+         when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
             return 0;
             
          when others =>
@@ -666,7 +666,7 @@ package body KartenAllgemein is
       case
         KartenVerbesserung
       is
-         when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum =>
+         when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
             return 0;
             
          when others =>
@@ -690,7 +690,7 @@ package body KartenAllgemein is
       case
         KartenVerbesserung
       is
-         when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum =>
+         when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
             return 0;
             
          when others =>
@@ -714,7 +714,7 @@ package body KartenAllgemein is
       case
         KartenVerbesserung
       is
-         when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum =>
+         when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
             return 0;
             
          when others =>
@@ -738,7 +738,7 @@ package body KartenAllgemein is
       case
         KartenVerbesserung
       is
-         when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum =>
+         when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
             return 0;
             
          when others =>
@@ -945,7 +945,7 @@ package body KartenAllgemein is
       case
         KartenVerbesserung
       is
-         when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum =>
+         when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
             return True;
             
          when others =>
@@ -968,7 +968,7 @@ package body KartenAllgemein is
       case
         KartenWeg
       is
-         when KartenVerbesserungDatentypen.Leer_Weg_Enum =>
+         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
             return True;
             
          when others =>

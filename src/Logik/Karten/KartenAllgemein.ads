@@ -9,7 +9,7 @@ with KartengrundDatentypen;
 with ProduktionDatentypen;
 with KampfDatentypen;
 
-private with KartenVerbesserungDatentypen;
+private with KartenverbesserungDatentypen;
 
 with Karten;
 
@@ -453,8 +453,8 @@ private
 
    KartenFluss : KartengrundDatentypen.Kartenfluss_Enum;
    KartenRessource : KartengrundDatentypen.Kartenressourcen_Enum;
-   KartenWeg : KartenVerbesserungDatentypen.Karten_Weg_Enum;
-   KartenVerbesserung : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
+   KartenWeg : KartenverbesserungDatentypen.Karten_Weg_Enum;
+   KartenVerbesserung : KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
 
    Basisgrund : KartengrundDatentypen.Kartengrund_Enum;
    Zusatzgrund : KartengrundDatentypen.Kartengrund_Enum;

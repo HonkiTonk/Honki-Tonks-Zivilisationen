@@ -11,7 +11,7 @@ with Kartenkoordinatenberechnungssystem;
 with ZufallsgeneratorenKarten;
 with KartengeneratorVariablen;
 with Flussplatzierungssystem;
-with Ladezeiten;
+with LadezeitenLogik;
 
 package body KartengeneratorFluss is
    
@@ -20,7 +20,7 @@ package body KartengeneratorFluss is
       
       Multiplikator := (others => 1);
       GenerierungFlüsse;
-      Ladezeiten.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Flüsse_Enum);
+      LadezeitenLogik.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Flüsse_Enum);
       
    end AufteilungFlussgenerierung;
    
@@ -86,7 +86,7 @@ package body KartengeneratorFluss is
          if
            ZahlenDatentypen.EigenesPositive (YAchseSchleifenwert) >= Multiplikator (EbeneExtern) * ZahlenDatentypen.EigenesPositive (KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse) / 33
          then
-            Ladezeiten.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Flüsse_Enum);
+            LadezeitenLogik.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Flüsse_Enum);
             Multiplikator (EbeneExtern) := Multiplikator (EbeneExtern) + 1;
                
          else

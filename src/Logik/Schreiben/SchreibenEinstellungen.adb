@@ -7,9 +7,9 @@ with OptionenVariablen;
 with SystemRecords;
 with TextKonstanten;
 
-with GrafikEinstellungenSFML;
-with TexteinstellungenSFML;
-with RasseneinstellungenSFML;
+with EinstellungenGrafik;
+with TexteinstellungenGrafik;
+with RasseneinstellungenGrafik;
 
 package body SchreibenEinstellungen is
 
@@ -34,15 +34,15 @@ package body SchreibenEinstellungen is
                                                      OptionenVariablen.NutzerEinstellungen);
       
       SystemRecords.FensterRecord'Write (Stream (File => DateiEinstellungenSchreiben),
-                                         GrafikEinstellungenSFML.FensterEinstellungen);
+                                         EinstellungenGrafik.FensterEinstellungen);
       SystemRecords.SchriftgrößenRecord'Write (Stream (File => DateiEinstellungenSchreiben),
-                                                 TexteinstellungenSFML.Schriftgrößen);
+                                                 TexteinstellungenGrafik.Schriftgrößen);
       SystemRecords.SchriftfarbenRecord'Write (Stream (File => DateiEinstellungenSchreiben),
-                                               TexteinstellungenSFML.Schriftfarben);
-      RasseneinstellungenSFML.RassenFarbenArray'Write (Stream (File => DateiEinstellungenSchreiben),
-                                                       RasseneinstellungenSFML.RassenFarben);
-      RasseneinstellungenSFML.RassenFarbenArray'Write (Stream (File => DateiEinstellungenSchreiben),
-                                                       RasseneinstellungenSFML.RassenFarbenRahmen);
+                                               TexteinstellungenGrafik.Schriftfarben);
+      RasseneinstellungenGrafik.RassenFarbenArray'Write (Stream (File => DateiEinstellungenSchreiben),
+                                                       RasseneinstellungenGrafik.Rassenfarben);
+      RasseneinstellungenGrafik.RassenFarbenArray'Write (Stream (File => DateiEinstellungenSchreiben),
+                                                       RasseneinstellungenGrafik.RassenfarbenRahmen);
       
       Close (File => DateiEinstellungenSchreiben);
       

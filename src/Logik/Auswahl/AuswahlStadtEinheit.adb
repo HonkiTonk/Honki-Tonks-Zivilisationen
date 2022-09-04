@@ -14,10 +14,10 @@ with LeseEinheitenGebaut;
 
 with NachLogiktask;
 with NachGrafiktask;
-with EingabeSFML;
+with EingabeLogik;
 with InteraktionAuswahl;
 with Vergleiche;
-with GrafikEinstellungenSFML;
+with EinstellungenGrafik;
 
 -- Kann man das so umbauen dass es wie die restlichen Mausauswahlen eine 0 als Leerauswahl zurück gibt? äöü
 package body AuswahlStadtEinheit is
@@ -71,7 +71,7 @@ package body AuswahlStadtEinheit is
          NachGrafiktask.AktuelleAuswahl.AuswahlEins := AktuelleAuswahl;
          
          case
-           EingabeSFML.Tastenwert
+           EingabeLogik.Tastenwert
          is               
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if
@@ -105,7 +105,7 @@ package body AuswahlStadtEinheit is
      return Integer
    is begin
       
-      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
                                                                  point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
                                                                  view         => Views.ZusatztextviewAccess);
       

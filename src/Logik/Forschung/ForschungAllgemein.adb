@@ -12,7 +12,7 @@ with SchreibeWichtiges;
 with LeseForschungenDatenbank;
 with LeseWichtiges;
 
-with EingabeSFML;
+with EingabeLogik;
 with StadtWerteFestlegen;
 with StadtUmgebungsbereichFestlegen;
 with NachGrafiktask;
@@ -82,13 +82,13 @@ package body ForschungAllgemein is
          
       end loop ForschungSchleife;
       
-      return ForschungAuswahlSFML;
+      return ForschungAuswahlLogik;
 
    end AuswahlForschung;
    
    
    
-   function ForschungAuswahlSFML
+   function ForschungAuswahlLogik
      return ForschungenDatentypen.ForschungIDMitNullWert
    is begin
       
@@ -101,7 +101,7 @@ package body ForschungAllgemein is
          NachGrafiktask.AktuelleAuswahl.AuswahlEins := Natural (AktuelleAuswahl);
          
          case
-           EingabeSFML.Tastenwert
+           EingabeLogik.Tastenwert
          is
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if
@@ -128,7 +128,7 @@ package body ForschungAllgemein is
       
       return GewählteForschung;
       
-   end ForschungAuswahlSFML;
+   end ForschungAuswahlLogik;
 
 
 
@@ -210,7 +210,7 @@ package body ForschungAllgemein is
          NachGrafiktask.AktuelleAuswahl.AuswahlEins := Auswahl;
          
          case
-           EingabeSFML.Tastenwert
+           EingabeLogik.Tastenwert
          is
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if

@@ -9,7 +9,7 @@ with SchreibeKarten;
 with LeseKarten;
 
 with Kartenkoordinatenberechnungssystem;
-with Ladezeiten;
+with LadezeitenLogik;
 
 package body KartengeneratorKueste is
 
@@ -38,7 +38,7 @@ package body KartengeneratorKueste is
          if
            ZahlenDatentypen.EigenesPositive (YAchseSchleifenwert) >= Multiplikator * ZahlenDatentypen.EigenesPositive (Karten.Karteneinstellungen.Kartengröße.YAchse) / 100
          then
-            Ladezeiten.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Küstenwasser_Enum);
+            LadezeitenLogik.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Küstenwasser_Enum);
             Multiplikator := Multiplikator + 1;
                
          else

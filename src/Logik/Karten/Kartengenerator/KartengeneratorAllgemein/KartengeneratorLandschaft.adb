@@ -11,7 +11,7 @@ with LeseKarten;
 with ZufallsgeneratorenKarten;
 with Kartenkoordinatenberechnungssystem;
 with KartengeneratorVariablen;
-with Ladezeiten;
+with LadezeitenLogik;
 
 package body KartengeneratorLandschaft is
 
@@ -50,7 +50,7 @@ package body KartengeneratorLandschaft is
          if
            ZahlenDatentypen.EigenesPositive (YAchseSchleifenwert) >= Multiplikator * ZahlenDatentypen.EigenesPositive (KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse) / 100
          then
-            Ladezeiten.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Landschaft_Enum);
+            LadezeitenLogik.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Landschaft_Enum);
             Multiplikator := Multiplikator + 1;
                
          else

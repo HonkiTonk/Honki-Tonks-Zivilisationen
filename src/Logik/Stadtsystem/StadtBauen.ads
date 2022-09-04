@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
-with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
+with KartenverbesserungDatentypen; use KartenverbesserungDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 
@@ -28,7 +28,7 @@ package StadtBauen is
 
 private
 
-   Stadtart : KartenVerbesserungDatentypen.Karten_Verbesserung_Städte_Enum;
+   Stadtart : KartenverbesserungDatentypen.Karten_Verbesserung_Städte_Enum;
 
    WelcherWeg : AufgabenDatentypen.Einheitenbefehle_Wege_Enum;
 
@@ -91,14 +91,14 @@ private
 
    function HauptstadtPrüfen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenVerbesserungDatentypen.Karten_Verbesserung_Städte_Enum
+      return KartenverbesserungDatentypen.Karten_Verbesserung_Städte_Enum
      with
        Pre => (
                  SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               ),
 
        Post => (
-                  HauptstadtPrüfen'Result /= KartenVerbesserungDatentypen.Leer_Verbesserung_Enum
+                  HauptstadtPrüfen'Result /= KartenverbesserungDatentypen.Leer_Verbesserung_Enum
                );
 
 end StadtBauen;

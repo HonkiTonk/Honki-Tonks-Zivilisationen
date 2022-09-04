@@ -8,7 +8,7 @@ with Sf.System.Vector2;
 with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
 with KartengrundDatentypen;
-with KartenVerbesserungDatentypen;
+with KartenverbesserungDatentypen;
 with EinheitenDatentypen;
 with KartenRecords;
 with EinheitenRecords;
@@ -149,9 +149,9 @@ private
    KartenfeldFluss : KartengrundDatentypen.Kartenfluss_Enum;
    KartenfeldRessource : KartengrundDatentypen.Kartenressourcen_Enum;
    
-   Stadtart : KartenVerbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
-   Wegfeld : KartenVerbesserungDatentypen.Karten_Weg_Enum;
-   Verbesserungsfeld : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
+   Stadtart : KartenverbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
+   Wegfeld : KartenverbesserungDatentypen.Karten_Weg_Enum;
+   Verbesserungsfeld : KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
    
    EinheitID : EinheitenDatentypen.EinheitenID;
    

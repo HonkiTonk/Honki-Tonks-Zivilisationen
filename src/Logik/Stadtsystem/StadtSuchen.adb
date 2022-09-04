@@ -5,12 +5,12 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with KartenRecords; use KartenRecords;
 with StadtKonstanten;
-with KartenVerbesserungDatentypen;
+with KartenverbesserungDatentypen;
 
 with LeseStadtGebaut;
 with LeseKarten;
   
--- with EingabeSFML;
+-- with EingabeLogik;
 
 package body StadtSuchen is
 
@@ -23,7 +23,7 @@ package body StadtSuchen is
       case
         LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern)
       is
-         when KartenVerbesserungDatentypen.Karten_Verbesserung_Städte_Enum'Range =>
+         when KartenverbesserungDatentypen.Karten_Verbesserung_Städte_Enum'Range =>
             null;
             
          when others =>
@@ -58,7 +58,7 @@ package body StadtSuchen is
       case
         LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern)
       is
-         when KartenVerbesserungDatentypen.Karten_Verbesserung_Städte_Enum'Range =>
+         when KartenverbesserungDatentypen.Karten_Verbesserung_Städte_Enum'Range =>
             null;
             
          when others =>
@@ -105,7 +105,7 @@ package body StadtSuchen is
       case
         LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern)
       is
-         when KartenVerbesserungDatentypen.Karten_Verbesserung_Städte_Enum'Range =>
+         when KartenverbesserungDatentypen.Karten_Verbesserung_Städte_Enum'Range =>
             null;
             
          when others =>
@@ -150,7 +150,7 @@ package body StadtSuchen is
      return StadtRecords.RasseStadtnummerRecord
    is begin
       
-      -- StadtName := EingabeSFML.StadtName;
+      -- StadtName := EingabeLogik.StadtName;
       
       case
         StadtName.ErfolgreichAbbruch

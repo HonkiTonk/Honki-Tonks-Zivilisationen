@@ -80,7 +80,7 @@ private
                  SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
               );
 
-   function ForschungAuswahlSFML
+   function ForschungAuswahlLogik
      return ForschungenDatentypen.ForschungIDMitNullWert;
 
 end ForschungAllgemein;

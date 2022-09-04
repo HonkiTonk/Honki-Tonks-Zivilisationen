@@ -21,7 +21,7 @@ with BewegungPassierbarkeitPruefen;
 with EinheitenErzeugenEntfernen;
 with Auswahlaufteilungen;
 with Fehler;
-with Ladezeiten;
+with LadezeitenLogik;
 with UmwandlungenVerschiedeneDatentypen;
 with BewegungCursor;
 
@@ -181,11 +181,11 @@ package body SpieleinstellungenRasseSpieler is
                end loop StartwerteFestlegenSchleife;
          end case;
          
-         Ladezeiten.FortschrittSpielwelt (LadezeitenDatentypen.Platziere_Rassen_Enum) := RassenDatentypen.Rassen_Verwendet_Enum'Pos (RasseSchleifenwert) * 5;
+         LadezeitenLogik.FortschrittSpielwelt (LadezeitenDatentypen.Platziere_Rassen_Enum) := RassenDatentypen.Rassen_Verwendet_Enum'Pos (RasseSchleifenwert) * 5;
          
       end loop SpieleranzahlWerteFestlegen;
       
-      Ladezeiten.FortschrittSpielweltMaximum (WelcheBerechnungenExtern => LadezeitenDatentypen.Platziere_Rassen_Enum);
+      LadezeitenLogik.FortschrittSpielweltMaximum (WelcheBerechnungenExtern => LadezeitenDatentypen.Platziere_Rassen_Enum);
       
    end StartwerteErmitteln;
 

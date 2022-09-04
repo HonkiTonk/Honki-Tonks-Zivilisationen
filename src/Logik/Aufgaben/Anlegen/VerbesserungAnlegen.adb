@@ -14,13 +14,13 @@ package body VerbesserungAnlegen is
         VerbesserungExtern
       is
          when AufgabenDatentypen.Mine_Bauen_Enum =>
-            WelcheVerbesserung := KartenVerbesserungDatentypen.Mine_Enum;
+            WelcheVerbesserung := KartenverbesserungDatentypen.Mine_Enum;
             
          when AufgabenDatentypen.Farm_Bauen_Enum =>
-            WelcheVerbesserung := KartenVerbesserungDatentypen.Farm_Enum;
+            WelcheVerbesserung := KartenverbesserungDatentypen.Farm_Enum;
             
          when AufgabenDatentypen.Festung_Bauen_Enum =>
-            WelcheVerbesserung := KartenVerbesserungDatentypen.Festung_Enum;
+            WelcheVerbesserung := KartenverbesserungDatentypen.Festung_Enum;
       end case;
       
       SchreibeKarten.Verbesserung (KoordinatenExtern  => KoordinatenExtern,

@@ -7,7 +7,7 @@ with GrafikDatentypen;
 with SchreibeStadtGebaut;
 
 with InDerStadtBauen;
-with EingabeSFML;
+with EingabeLogik;
 with EinwohnerZuweisenEntfernen;
 with GebaeudeVerkaufen;
 with NachGrafiktask;
@@ -24,7 +24,7 @@ package body InDerStadt is
       StadtSchleife:
       loop
          
-         Befehl := EingabeSFML.Tastenwert;
+         Befehl := EingabeLogik.Tastenwert;
          
          case
            Befehl
@@ -41,7 +41,7 @@ package body InDerStadt is
                GebaeudeVerkaufen.GebäudeVerkaufen (StadtRasseNummerExtern => StadtRasseNummerExtern);
 
             when TastenbelegungDatentypen.Stadt_Umbenennen_Enum =>
-               NeuerName := EingabeSFML.StadtName (StadtRasseNummerExtern => StadtRasseNummerExtern);
+               NeuerName := EingabeLogik.StadtName (StadtRasseNummerExtern => StadtRasseNummerExtern);
                
                if
                  NeuerName.ErfolgreichAbbruch = True

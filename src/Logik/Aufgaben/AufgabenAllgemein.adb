@@ -9,11 +9,11 @@ with SchreibeEinheitenGebaut;
 package body AufgabenAllgemein is
 
    function BeschreibungVerbesserung
-     (KartenVerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum)
+     (KartenVerbesserungExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum)
       return Wide_Wide_String
    is begin
       
-      AktuelleVerbesserung := 2 * KartenVerbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum'Pos (KartenVerbesserungExtern) - 1;
+      AktuelleVerbesserung := 2 * KartenverbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum'Pos (KartenVerbesserungExtern) - 1;
                
       BeschreibungText := Kartentexte.Verbesserungen (AktuelleVerbesserung);
       
@@ -24,11 +24,11 @@ package body AufgabenAllgemein is
    
 
    function BeschreibungWeg
-     (KartenWegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum)
+     (KartenWegExtern : in KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum)
       return Wide_Wide_String
    is begin
       
-      AktuellerWeg := 2 * KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Pos (KartenWegExtern) - 1;
+      AktuellerWeg := 2 * KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Pos (KartenWegExtern) - 1;
                
       BeschreibungText := Kartentexte.Wege (AktuellerWeg);
       

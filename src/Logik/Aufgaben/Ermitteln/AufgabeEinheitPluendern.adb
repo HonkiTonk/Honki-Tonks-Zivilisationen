@@ -1,14 +1,14 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
+with KartenverbesserungDatentypen; use KartenverbesserungDatentypen;
 with TextnummernKonstanten;
 
 with LeseKarten;
 with SchreibeKarten;
 with SchreibeWichtiges;
 
-with AuswahlSFML;
+with AuswahlLogik;
 
 package body AufgabeEinheitPluendern is
 
@@ -20,9 +20,9 @@ package body AufgabeEinheitPluendern is
    is begin
             
       if
-        LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern) = KartenVerbesserungDatentypen.Leer_Verbesserung_Enum
+        LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern) = KartenverbesserungDatentypen.Leer_Verbesserung_Enum
         and
-          LeseKarten.Weg (KoordinatenExtern => KoordinatenExtern) = KartenVerbesserungDatentypen.Leer_Weg_Enum
+          LeseKarten.Weg (KoordinatenExtern => KoordinatenExtern) = KartenverbesserungDatentypen.Leer_Weg_Enum
       then
          return False;
          
@@ -43,7 +43,7 @@ package body AufgabeEinheitPluendern is
             
          when others =>
             if
-              AuswahlSFML.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageLandverbesserungPlündern) = True
+              AuswahlLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageLandverbesserungPlündern) = True
             then
                null;
                      
@@ -55,12 +55,12 @@ package body AufgabeEinheitPluendern is
       case
         LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern)
       is
-         when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum =>
+         when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
             null;
             
          when others =>
             SchreibeKarten.Verbesserung (KoordinatenExtern  => KoordinatenExtern,
-                                         VerbesserungExtern => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum);
+                                         VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum);
             SchreibeWichtiges.Geldmenge (RasseExtern         => EinheitRasseNummerExtern.Rasse,
                                          GeldZugewinnExtern  => 10,
                                          RechnenSetzenExtern => True);
@@ -69,12 +69,12 @@ package body AufgabeEinheitPluendern is
       case
         LeseKarten.Weg (KoordinatenExtern => KoordinatenExtern)
       is
-         when KartenVerbesserungDatentypen.Leer_Weg_Enum =>
+         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
             null;
             
          when others =>
             SchreibeKarten.Weg (KoordinatenExtern => KoordinatenExtern,
-                                WegExtern         => KartenVerbesserungDatentypen.Leer_Weg_Enum);
+                                WegExtern         => KartenverbesserungDatentypen.Leer_Weg_Enum);
             SchreibeWichtiges.Geldmenge (RasseExtern         => EinheitRasseNummerExtern.Rasse,
                                          GeldZugewinnExtern  => 5,
                                          RechnenSetzenExtern => True);

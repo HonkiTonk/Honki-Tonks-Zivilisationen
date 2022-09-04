@@ -5,7 +5,7 @@ with KartenDatentypen; use KartenDatentypen;
 with KartenRecords;
 with AufgabenDatentypen;
 
-private with KartenVerbesserungDatentypen;
+private with KartenverbesserungDatentypen;
 
 with Karten;
 
@@ -23,6 +23,6 @@ package VerbesserungAnlegen is
 
 private
 
-   WelcheVerbesserung : KartenVerbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum;
+   WelcheVerbesserung : KartenverbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum;
 
 end VerbesserungAnlegen;

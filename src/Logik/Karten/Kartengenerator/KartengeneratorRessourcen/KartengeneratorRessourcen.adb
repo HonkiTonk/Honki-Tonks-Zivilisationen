@@ -12,7 +12,7 @@ with KartengeneratorRessourcenOberflaecheLand;
 with KartengeneratorRessourcenOberflaecheWasser;
 with KartengeneratorRessourcenUnterflaecheLand;
 with KartengeneratorRessourcenUnterflaecheWasser;
-with Ladezeiten;
+with LadezeitenLogik;
 
 package body KartengeneratorRessourcen is
    
@@ -21,7 +21,7 @@ package body KartengeneratorRessourcen is
       
       Multiplikator := (others => 1);
       GenerierungRessourcen;
-      Ladezeiten.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Ressourcen_Enum);
+      LadezeitenLogik.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Ressourcen_Enum);
       
    end AufteilungRessourcengenerierung;
    
@@ -102,7 +102,7 @@ package body KartengeneratorRessourcen is
          if
            ZahlenDatentypen.EigenesPositive (YAchseSchleifenwert) >= Multiplikator (EbeneExtern) * ZahlenDatentypen.EigenesPositive (KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse) / 33
          then
-            Ladezeiten.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Ressourcen_Enum);
+            LadezeitenLogik.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Ressourcen_Enum);
             Multiplikator (EbeneExtern) := Multiplikator (EbeneExtern) + 1;
                
          else

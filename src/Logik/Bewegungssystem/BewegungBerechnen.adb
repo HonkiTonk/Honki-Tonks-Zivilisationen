@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with StadtDatentypen; use StadtDatentypen;
 with EinheitenKonstanten;
 with KartengrundDatentypen;
-with KartenVerbesserungDatentypen;
+with KartenverbesserungDatentypen;
 with StadtKonstanten;
 
 with SchreibeEinheitenGebaut;
@@ -212,13 +212,13 @@ package body BewegungBerechnen is
          case
            LeseKarten.Weg (KoordinatenExtern => NeueKoordinatenExtern)
          is
-            when KartenVerbesserungDatentypen.Karten_Straße_Enum'Range =>
+            when KartenverbesserungDatentypen.Karten_Straße_Enum'Range =>
                return Straße_Fluss_Enum;
                
-            when KartenVerbesserungDatentypen.Karten_Schiene_Enum'Range =>
+            when KartenverbesserungDatentypen.Karten_Schiene_Enum'Range =>
                return Schiene_Enum;
                
-            when KartenVerbesserungDatentypen.Karten_Tunnel_Enum =>
+            when KartenverbesserungDatentypen.Karten_Tunnel_Enum =>
                return Straße_Fluss_Enum;
                   
             when others =>

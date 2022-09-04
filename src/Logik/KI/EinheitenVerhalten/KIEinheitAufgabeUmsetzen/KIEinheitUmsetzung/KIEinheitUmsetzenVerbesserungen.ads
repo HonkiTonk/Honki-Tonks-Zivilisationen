@@ -8,7 +8,7 @@ with SpielVariablen;
 private with KartenRecords;
 private with TastenbelegungDatentypen;
 private with AufgabenDatentypen;
-private with KartenVerbesserungDatentypen;
+private with KartenverbesserungDatentypen;
 
 package KIEinheitUmsetzenVerbesserungen is
 
@@ -26,7 +26,7 @@ private
    
    WelcheVerbesserung : AufgabenDatentypen.Einheiten_Aufgabe_Vorhanden_Enum;
    
-   VorhandeneVerbesserung : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
+   VorhandeneVerbesserung : KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
    
    Befehl : TastenbelegungDatentypen.Tastenbelegung_Enum;
    

@@ -6,7 +6,7 @@ package body KartenressourcenDatenbank is
    procedure StandardKartenressourcenDatenbankLaden
    is begin
       
-      KartenressourcenListe := KartenressourcenListeStandard;
+      Kartenressourcenliste := KartenressourcenlisteStandard;
       
    end StandardKartenressourcenDatenbankLaden;
 

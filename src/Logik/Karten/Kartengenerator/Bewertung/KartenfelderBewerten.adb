@@ -6,7 +6,7 @@ with LadezeitenDatentypen;
 
 with FelderwerteFestlegen;
 with Karten;
-with Ladezeiten;
+with LadezeitenLogik;
 
 -- Den Aufbau hier an die Berechnungen der Ressourcenaufbau anpassen.
 package body KartenfelderBewerten is
@@ -39,7 +39,7 @@ package body KartenfelderBewerten is
               YAchseUnterwasserSchleifenwert mod Unterflächenteiler
             is
                when 0 =>
-                  Ladezeiten.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Bewerte_Kartenfelder_Enum);
+                  LadezeitenLogik.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Bewerte_Kartenfelder_Enum);
                
                when others =>
                   null;
@@ -70,7 +70,7 @@ package body KartenfelderBewerten is
               YAchseInneresSchleifenwert mod Kernflächenteiler
             is
                when 0 =>
-                  Ladezeiten.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Bewerte_Kartenfelder_Enum);
+                  LadezeitenLogik.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Bewerte_Kartenfelder_Enum);
                
                when others =>
                   null;
@@ -98,7 +98,7 @@ package body KartenfelderBewerten is
            YAchseSchleifenwert mod Oberflächenteiler
          is
             when 0 =>
-               Ladezeiten.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Bewerte_Kartenfelder_Enum);
+               LadezeitenLogik.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Bewerte_Kartenfelder_Enum);
                
             when others =>
                null;
@@ -106,7 +106,7 @@ package body KartenfelderBewerten is
          
       end loop YAchseSchleife;
       
-      Ladezeiten.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Bewerte_Kartenfelder_Enum);
+      LadezeitenLogik.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Bewerte_Kartenfelder_Enum);
    
    end KartenfelderBewerten;
 

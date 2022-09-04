@@ -9,7 +9,7 @@ with TastenbelegungDatentypen;
 with MenueDatentypen;
 
 with NachGrafiktask;
-with EingabeSFML;
+with EingabeLogik;
 with Mausauswahl;
 with Auswahlaufteilungen;
 with Fehler;
@@ -72,7 +72,7 @@ package body Diplomatie is
             NachGrafiktask.AktuelleAuswahl.AuswahlEins := Auswahl;
                         
             case
-              EingabeSFML.Tastenwert
+              EingabeLogik.Tastenwert
             is
                when TastenbelegungDatentypen.Auswählen_Enum =>
                   if

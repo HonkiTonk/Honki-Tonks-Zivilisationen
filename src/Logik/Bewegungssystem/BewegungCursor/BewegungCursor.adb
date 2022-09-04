@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with TextnummernKonstanten;
 
 with Karten;
-with EingabeSFML;
+with EingabeLogik;
 with NachGrafiktask;
 with Sichtweiten;
 
@@ -49,7 +49,7 @@ package body BewegungCursor is
    
    
    -- Eventuell später noch erweitern damit auch bei anderen Einstellungen die Verschiebung korrekter ist. äöü
-   -- Gilt auch für die Anpassung in CursorAltPlatzieren. äöü
+   -- Gilt auch für die Anpassung in CursorplatzierungAltGrafik. äöü
    procedure ZoomanpassungCursor
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
@@ -117,7 +117,7 @@ package body BewegungCursor is
    procedure GeheZu
    is begin
       
-      KoordinatenPunkt := EingabeSFML.GanzeZahl (ZahlenMinimumExtern => Integer (Karten.Weltkarte'First (1)),
+      KoordinatenPunkt := EingabeLogik.GanzeZahl (ZahlenMinimumExtern => Integer (Karten.Weltkarte'First (1)),
                                                  ZahlenMaximumExtern => Integer (Karten.Weltkarte'Last (1)),
                                                  WelcheFrageExtern   => TextnummernKonstanten.FrageWelcheEbene);
       
@@ -129,7 +129,7 @@ package body BewegungCursor is
          
          when True =>
             NeueKoordinate.EAchse := KartenDatentypen.EbeneVorhanden (KoordinatenPunkt.EingegebeneZahl);
-            KoordinatenPunkt := EingabeSFML.GanzeZahl (ZahlenMinimumExtern => Positive (Karten.Weltkarte'First (2)),
+            KoordinatenPunkt := EingabeLogik.GanzeZahl (ZahlenMinimumExtern => Positive (Karten.Weltkarte'First (2)),
                                                        ZahlenMaximumExtern => Positive (Karten.Karteneinstellungen.Kartengröße.YAchse),
                                                        WelcheFrageExtern   => TextnummernKonstanten.FrageWelcheYPosition);
       end case;
@@ -142,7 +142,7 @@ package body BewegungCursor is
          
          when True =>
             NeueKoordinate.YAchse := KartenDatentypen.KartenfeldPositiv (KoordinatenPunkt.EingegebeneZahl);
-            KoordinatenPunkt := EingabeSFML.GanzeZahl (ZahlenMinimumExtern => Positive (Karten.Weltkarte'First (3)),
+            KoordinatenPunkt := EingabeLogik.GanzeZahl (ZahlenMinimumExtern => Positive (Karten.Weltkarte'First (3)),
                                                        ZahlenMaximumExtern => Positive (Karten.Karteneinstellungen.Kartengröße.XAchse),
                                                        WelcheFrageExtern   => TextnummernKonstanten.FrageWelcheXPosition);
       end case;

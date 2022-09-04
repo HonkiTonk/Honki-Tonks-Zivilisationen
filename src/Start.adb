@@ -6,14 +6,14 @@ with Ada.Exceptions; use Ada.Exceptions;
 with Ada.Text_IO;
 
 with StartLogik;
-with GrafikSFML;
-with MusikSFML;
-with SoundSFML;
+with Grafik;
+with Musik;
+with Sound;
 
 with NachGrafiktask;
 with MeldungSchreiben;
-with SoundStartEndeSFML;
-with MusikStartEndeSFML;
+with StartEndeSound;
+with StartEndeMusik;
 
 procedure Start
 is
@@ -32,12 +32,12 @@ is
    type TaskIDArray is array (Tasks_Enum'Range) of Task_Id;
    TaskID : TaskIDArray;
 
-   task Logik;
-   task Grafik;
-   task Musik;
-   task Sound;
+   task LogikTask;
+   task GrafikTask;
+   task MusikTask;
+   task SoundTask;
 
-   task body Logik
+   task body LogikTask
    is begin
 
       TaskID (Task_Logik_Enum) := Current_Task;
@@ -54,17 +54,17 @@ is
          MeldungSchreiben.MeldungSchreibenASCII (MeldungExtern => Exception_Information (StandardAdaFehler));
          UnerwarteterFehler := True;
 
-   end Logik;
+   end LogikTask;
 
 
 
-   task body Grafik
+   task body GrafikTask
    is begin
 
       TaskID (Task_Grafik_Enum) := Current_Task;
 
       TasksLaufen (Task_Grafik_Enum) := True;
-      GrafikSFML.GrafikSFML;
+      Grafik.Grafik;
       TasksLaufen (Task_Grafik_Enum) := False;
 
    exception
@@ -75,17 +75,17 @@ is
          MeldungSchreiben.MeldungSchreibenASCII (MeldungExtern => Exception_Information (StandardAdaFehler));
          UnerwarteterFehler := True;
 
-   end Grafik;
+   end GrafikTask;
 
 
 
-   task body Musik
+   task body MusikTask
    is begin
 
       TaskID (Task_Musik_Enum) := Current_Task;
 
       TasksLaufen (Task_Musik_Enum) := True;
-      MusikSFML.MusikSFML;
+      Musik.Musik;
       TasksLaufen (Task_Musik_Enum) := False;
 
    exception
@@ -96,17 +96,17 @@ is
          MeldungSchreiben.MeldungSchreibenASCII (MeldungExtern => Exception_Information (StandardAdaFehler));
          UnerwarteterFehler := True;
 
-   end Musik;
+   end MusikTask;
 
 
 
-   task body Sound
+   task body SoundTask
    is begin
 
       TaskID (Task_Sound_Enum) := Current_Task;
 
       TasksLaufen (Task_Sound_Enum) := True;
-      SoundSFML.SoundSFML;
+      Sound.Sound;
       TasksLaufen (Task_Sound_Enum) := False;
 
    exception
@@ -117,7 +117,7 @@ is
          MeldungSchreiben.MeldungSchreibenASCII (MeldungExtern => Exception_Information (StandardAdaFehler));
          UnerwarteterFehler := True;
 
-   end Sound;
+   end SoundTask;
 
 begin
 
@@ -175,10 +175,10 @@ begin
             Abort_Task (T => TaskID (Task_Logik_Enum));
             Abort_Task (T => TaskID (Task_Musik_Enum));
             Abort_Task (T => TaskID (Task_Sound_Enum));
-            SoundStartEndeSFML.SoundStoppen;
-            SoundStartEndeSFML.SoundEntfernen;
-            MusikStartEndeSFML.MusikStoppen;
-            MusikStartEndeSFML.MusikEntfernen;
+            StartEndeSound.Stoppen;
+            StartEndeSound.Entfernen;
+            StartEndeMusik.Stoppen;
+            StartEndeMusik.Entfernen;
             TasksLaufen := (others => False);
 
          when False =>

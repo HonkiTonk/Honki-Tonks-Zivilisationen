@@ -6,7 +6,7 @@ with VerbesserungenDatenbank;
 package body LeseVerbesserungenDatenbank is
 
    function PassierbarkeitVerbesserung
-     (VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum;
+     (VerbesserungExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum;
       WelcheUmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Vorhanden_Enum)
       return Boolean
    is begin
@@ -18,7 +18,7 @@ package body LeseVerbesserungenDatenbank is
    
 
    function PassierbarkeitWeg
-     (WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum;
+     (WegExtern : in KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum;
       WelcheUmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Vorhanden_Enum)
       return Boolean
    is begin
@@ -30,7 +30,7 @@ package body LeseVerbesserungenDatenbank is
    
    
    function BewertungVerbesserung
-     (VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum;
+     (VerbesserungExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KartenDatentypen.Einzelbewertung
    is begin
@@ -42,7 +42,7 @@ package body LeseVerbesserungenDatenbank is
    
    
    function BewertungWeg
-     (WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum;
+     (WegExtern : in KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KartenDatentypen.Einzelbewertung
    is begin
@@ -54,7 +54,7 @@ package body LeseVerbesserungenDatenbank is
       
    
    function WirtschaftVerbesserung
-     (VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum;
+     (VerbesserungExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       WelcherWertExtern : in KartenDatentypen.Wirtschaft_Enum)
       return ProduktionDatentypen.Einzelproduktion
@@ -67,7 +67,7 @@ package body LeseVerbesserungenDatenbank is
       
    
    function WirtschaftWeg
-     (WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum;
+     (WegExtern : in KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       WelcherWertExtern : in KartenDatentypen.Wirtschaft_Enum)
       return ProduktionDatentypen.Einzelproduktion
@@ -80,7 +80,7 @@ package body LeseVerbesserungenDatenbank is
       
    
    function KampfVerbesserung
-     (VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum;
+     (VerbesserungExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       WelcherWertExtern : in KartenDatentypen.Kampf_Enum)
       return KampfDatentypen.KampfwerteAllgemein
@@ -93,7 +93,7 @@ package body LeseVerbesserungenDatenbank is
       
    
    function KampfWeg
-     (WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum;
+     (WegExtern : in KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       WelcherWertExtern : in KartenDatentypen.Kampf_Enum)
       return KampfDatentypen.KampfwerteAllgemein

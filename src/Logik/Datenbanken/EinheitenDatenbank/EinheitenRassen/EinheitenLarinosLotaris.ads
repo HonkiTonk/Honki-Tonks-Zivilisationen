@@ -6,7 +6,7 @@ with EinheitenRecordKonstanten;
 
 with DatenbankRecords;
 
-with DebugmenueSFML;
+with DebugmenueLogik;
 
 -- Es muss darauf geachtet werden dass KannTransportieren immer kleiner ist als KannTransportiertWerden.
 package EinheitenLarinosLotaris is
@@ -1068,7 +1068,7 @@ package EinheitenLarinosLotaris is
                                                                                        Transportkapazität      => 0
                                                                                       ),
                                                                               
-                                                                                    DatenbankRecords.EinheitenlisteArray'Last => DebugmenueSFML.Alleskönner,
+                                                                                    DatenbankRecords.EinheitenlisteArray'Last => DebugmenueLogik.Alleskönner,
                                                                
                                                                                     others => EinheitenRecordKonstanten.LeerEinheitListe
                                                                                    );

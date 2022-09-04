@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenRecords;
 with KartengrundDatentypen;
-with KartenVerbesserungDatentypen;
+with KartenverbesserungDatentypen;
 with KartenKonstanten;
 with KartenRecordKonstanten;
 with EinheitenRecords;
@@ -19,8 +19,8 @@ package WeltkarteRecords is
       Fluss : KartengrundDatentypen.Kartenfluss_Enum;
       Ressource : KartengrundDatentypen.Kartenressourcen_Enum;
       
-      Weg : KartenVerbesserungDatentypen.Karten_Weg_Enum;
-      Verbesserung : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
+      Weg : KartenverbesserungDatentypen.Karten_Weg_Enum;
+      Verbesserung : KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
       
       Einheit : EinheitenRecords.RasseEinheitnummerRecord;
       
@@ -36,8 +36,8 @@ package WeltkarteRecords is
                                                 Sichtbar                => (others => KartenKonstanten.LeerSichtbar),
                                                 Fluss                   => KartengrundDatentypen.Leer_Fluss_Enum,
                                                 Ressource               => KartengrundDatentypen.Leer_Ressource_Enum,
-                                                Weg                     => KartenVerbesserungDatentypen.Leer_Weg_Enum,
-                                                Verbesserung            => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum,
+                                                Weg                     => KartenverbesserungDatentypen.Leer_Weg_Enum,
+                                                Verbesserung            => KartenverbesserungDatentypen.Leer_Verbesserung_Enum,
                                                 Einheit                 => EinheitenKonstanten.LeerRasseNummer,
                                                 DurchStadtBelegterGrund => KartenRecordKonstanten.LeerDurchStadtBelegterGrund,
                                                 Felderwertung           => (others => KartenKonstanten.LeerFeldwertung)

@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with TastenbelegungDatentypen;
-with KartenVerbesserungDatentypen;
+with KartenverbesserungDatentypen;
 with RueckgabeDatentypen;
 with RassenDatentypen;
 with KartenDatentypen;
@@ -12,10 +12,10 @@ package UmwandlungenVerschiedeneDatentypen is
 
    function TastenbelegungNachKartenverbesserung
      (TasteExtern : in TastenbelegungDatentypen.Tastenbelegung_Konstruktionen_Enum)
-      return KartenVerbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum;
+      return KartenverbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum;
    
    function KartenverbesserungNachTastenbelegung
-     (VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum)
+     (VerbesserungExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum)
       return TastenbelegungDatentypen.Tastenbelegung_Konstruktionen_Enum;
    
    function RückgabeNachRasse
@@ -40,18 +40,18 @@ package UmwandlungenVerschiedeneDatentypen is
    
 private
    
-   type TastenbelegungKartenverbesserungArray is array (TastenbelegungDatentypen.Tastenbelegung_Konstruktionen_Enum'Range) of KartenVerbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum;
+   type TastenbelegungKartenverbesserungArray is array (TastenbelegungDatentypen.Tastenbelegung_Konstruktionen_Enum'Range) of KartenverbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum;
    TastenbelegungKartenverbesserung : constant TastenbelegungKartenverbesserungArray := (
-                                                                                         TastenbelegungDatentypen.Mine_Bauen_Enum    => KartenVerbesserungDatentypen.Mine_Enum,
-                                                                                         TastenbelegungDatentypen.Farm_Bauen_Enum    => KartenVerbesserungDatentypen.Farm_Enum,
-                                                                                         TastenbelegungDatentypen.Festung_Bauen_Enum => KartenVerbesserungDatentypen.Festung_Enum
+                                                                                         TastenbelegungDatentypen.Mine_Bauen_Enum    => KartenverbesserungDatentypen.Mine_Enum,
+                                                                                         TastenbelegungDatentypen.Farm_Bauen_Enum    => KartenverbesserungDatentypen.Farm_Enum,
+                                                                                         TastenbelegungDatentypen.Festung_Bauen_Enum => KartenverbesserungDatentypen.Festung_Enum
                                                                                         );
    
-   type KartenverbesserungTastenbelegungArray is array (KartenVerbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum'Range) of TastenbelegungDatentypen.Tastenbelegung_Konstruktionen_Enum;
+   type KartenverbesserungTastenbelegungArray is array (KartenverbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum'Range) of TastenbelegungDatentypen.Tastenbelegung_Konstruktionen_Enum;
    KartenverbesserungTastenbelegung : constant KartenverbesserungTastenbelegungArray := (
-                                                                                         KartenVerbesserungDatentypen.Mine_Enum    => TastenbelegungDatentypen.Mine_Bauen_Enum,
-                                                                                         KartenVerbesserungDatentypen.Farm_Enum    => TastenbelegungDatentypen.Farm_Bauen_Enum,
-                                                                                         KartenVerbesserungDatentypen.Festung_Enum => TastenbelegungDatentypen.Festung_Bauen_Enum
+                                                                                         KartenverbesserungDatentypen.Mine_Enum    => TastenbelegungDatentypen.Mine_Bauen_Enum,
+                                                                                         KartenverbesserungDatentypen.Farm_Enum    => TastenbelegungDatentypen.Farm_Bauen_Enum,
+                                                                                         KartenverbesserungDatentypen.Festung_Enum => TastenbelegungDatentypen.Festung_Bauen_Enum
                                                                                         );
    
    type RückgabeRasseArray is array (RueckgabeDatentypen.Rassen_Verwendet_Enum'Range) of RassenDatentypen.Rassen_Verwendet_Enum;

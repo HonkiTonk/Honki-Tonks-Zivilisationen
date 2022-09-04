@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Directories; use Ada.Directories;
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 
-with EingabeSFML;
+with EingabeLogik;
 with NachGrafiktask;
 
 package body SpeichernLadenAllgemein is
@@ -14,10 +14,10 @@ package body SpeichernLadenAllgemein is
    is begin
      
       NachGrafiktask.NameSpielstand := True;
-      SpielstandName := EingabeSFML.SpielstandName;
+      SpielstandName := EingabeLogik.SpielstandName;
       NachGrafiktask.NameSpielstand := False;
       
-      -- Es wird hier keine Prüfung benötigt ob die Namenslänge > 0 ist, da dies schon in EingabeSFML.SpielstandName geprüft wird.
+      -- Es wird hier keine Prüfung benötigt ob die Namenslänge > 0 ist, da dies schon in EingabeLogik.SpielstandName geprüft wird.
       return SpielstandName;
             
    end SpielstandNameErmitteln;

@@ -6,7 +6,7 @@ with LadezeitenDatentypen;
 with SchreibeKarten;
 
 with ZufallsgeneratorenKarten;
-with Ladezeiten;
+with LadezeitenLogik;
 
 package body KartengeneratorPlaneteninneres is
 
@@ -42,7 +42,7 @@ package body KartengeneratorPlaneteninneres is
          if
            ZahlenDatentypen.EigenesPositive (YAchseSchleifenwert) >= Multiplikator * ZahlenDatentypen.EigenesPositive (Karten.Karteneinstellungen.Kartengröße.YAchse) / 25
          then
-            Ladezeiten.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Allgemeines_Enum);
+            LadezeitenLogik.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Allgemeines_Enum);
             Multiplikator := Multiplikator + 1;
                
          else

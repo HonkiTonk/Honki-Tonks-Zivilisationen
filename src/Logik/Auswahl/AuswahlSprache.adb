@@ -11,13 +11,13 @@ with InteraktionAuswahl;
 with SystemKonstanten;
 with TastenbelegungDatentypen;
 
-with EingabeSFML;
+with EingabeLogik;
 with Fehler;
 with NachGrafiktask;
 with NachLogiktask;
 with Vergleiche;
 with Views;
-with GrafikEinstellungenSFML;
+with EinstellungenGrafik;
 
 package body AuswahlSprache is
 
@@ -139,7 +139,7 @@ package body AuswahlSprache is
          NachGrafiktask.AktuelleAuswahl.AuswahlEins := AktuelleAuswahl;
             
          case
-           EingabeSFML.Tastenwert
+           EingabeLogik.Tastenwert
          is
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if
@@ -173,7 +173,7 @@ package body AuswahlSprache is
      return Natural
    is begin
       
-      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
                                                                  point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
                                                                  view         => Views.MenüviewAccess);
       

@@ -9,7 +9,7 @@ with SpielVariablen;
 with StadtRecords;
 
 private with KartengrundDatentypen;
-private with KartenVerbesserungDatentypen;
+private with KartenverbesserungDatentypen;
 private with KartenRecords;
 private with GrafikRecordKonstanten;
 
@@ -36,10 +36,10 @@ private
    
    KartenfeldFluss : KartengrundDatentypen.Kartenfluss_Enum;
    
-   Wegfeld : KartenVerbesserungDatentypen.Karten_Weg_Enum;
+   Wegfeld : KartenverbesserungDatentypen.Karten_Weg_Enum;
 
-   Stadtfeld : KartenVerbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
-   Verbesserungsfeld : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
+   Stadtfeld : KartenverbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
+   Verbesserungsfeld : KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
    
    Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartgrößeView;
 

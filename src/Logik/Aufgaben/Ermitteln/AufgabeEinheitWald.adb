@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
+with KartenverbesserungDatentypen; use KartenverbesserungDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
 with EinheitenRecordKonstanten;
 with TextnummernKonstanten;
@@ -12,7 +12,7 @@ with LeseKarten;
 
 with AufgabeEinheitRoden;
 with Fehler;
-with AuswahlSFML;
+with AuswahlLogik;
 with AufgabenArbeitszeitWald;
 with Grenzpruefungen;
 
@@ -42,14 +42,14 @@ package body AufgabeEinheitWald is
       -- Mehr Prüfungen einbauen, beispielweise keinen Wald auf Eis erlauben. Gilt für alle Aufgaben. äöü
       -- Kann jetzt über die Arbeitszeit geregelt werden. äöü
       if
-        (VorhandeneVerbesserung = KartenVerbesserungDatentypen.Farm_Enum
+        (VorhandeneVerbesserung = KartenverbesserungDatentypen.Farm_Enum
          or
-           VorhandeneVerbesserung = KartenVerbesserungDatentypen.Mine_Enum)
+           VorhandeneVerbesserung = KartenverbesserungDatentypen.Mine_Enum)
         and
           SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
       then
          case
-           AuswahlSFML.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageLandverbesserungErsetzen)
+           AuswahlLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageLandverbesserungErsetzen)
          is
             when True =>
                null;

@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with LadezeitenDatentypen;
 
-with Ladezeiten;
+with LadezeitenLogik;
 
 package body KIDiplomatie is
    
@@ -15,15 +15,15 @@ package body KIDiplomatie is
         RasseExtern
       is
          when RassenDatentypen.Ekropa_Enum =>
-            Ladezeiten.FortschrittKIMaximum (WelcheBerechnungenExtern => LadezeitenDatentypen.Berechne_Diplomatie_Enum);
+            LadezeitenLogik.FortschrittKIMaximum (WelcheBerechnungenExtern => LadezeitenDatentypen.Berechne_Diplomatie_Enum);
             return;
             
          when others =>
             null;
       end case;
       
-      Ladezeiten.FortschrittKISchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Berechne_Diplomatie_Enum);
-      Ladezeiten.FortschrittKIMaximum (WelcheBerechnungenExtern => LadezeitenDatentypen.Berechne_Diplomatie_Enum);
+      LadezeitenLogik.FortschrittKISchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Berechne_Diplomatie_Enum);
+      LadezeitenLogik.FortschrittKIMaximum (WelcheBerechnungenExtern => LadezeitenDatentypen.Berechne_Diplomatie_Enum);
             
    end Diplomatie;
    

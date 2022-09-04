@@ -9,7 +9,7 @@ with SpielVariablen;
 with KartenRecords;
 
 private with AufgabenDatentypen;
-private with KartenVerbesserungDatentypen;
+private with KartenverbesserungDatentypen;
 private with ProduktionDatentypen;
 
 with Karten;
@@ -36,7 +36,7 @@ private
 
    VorarbeitNötig : Boolean;
 
-   VorhandeneVerbesserung : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
+   VorhandeneVerbesserung : KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
 
    WelcheArbeit : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
 

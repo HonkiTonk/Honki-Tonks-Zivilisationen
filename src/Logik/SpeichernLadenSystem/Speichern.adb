@@ -17,10 +17,10 @@ with TextnummernKonstanten;
 with WeltkarteRecords;
 
 with Karten;
-with Ladezeiten;
+with LadezeitenLogik;
 with SpeichernLadenAllgemein;
 with NachGrafiktask;
-with AuswahlSFML;
+with AuswahlLogik;
 
 -- Bei Änderungen am Speichersystem auch immer das Ladesystem anpassen!
 package body Speichern is
@@ -48,7 +48,7 @@ package body Speichern is
             null;
             
          when False =>
-            Ladezeiten.SpeichernLadenNullsetzen;
+            LadezeitenLogik.SpeichernLadenNullsetzen;
             NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Speichern_Laden_Enum;
       end case;
       
@@ -75,7 +75,7 @@ package body Speichern is
             null;
             
          when False =>
-            Ladezeiten.SpeichernLadenMaximum;
+            LadezeitenLogik.SpeichernLadenMaximum;
             NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
       end case;
    
@@ -91,7 +91,7 @@ package body Speichern is
         AutospeichernExtern
       is
          when False =>
-            Ladezeiten.SpeichernLadenSchreiben (SpeichernLadenExtern => True);
+            LadezeitenLogik.SpeichernLadenSchreiben (SpeichernLadenExtern => True);
             
          when True =>
             null;
@@ -279,7 +279,7 @@ package body Speichern is
                   null;
                   
                elsif
-                 AuswahlSFML.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageSpielstandÜberschreiben) = True
+                 AuswahlLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageSpielstandÜberschreiben) = True
                then
                   null;
             

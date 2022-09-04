@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
+with KartenverbesserungDatentypen; use KartenverbesserungDatentypen;
 
 with LeseKarten;
 with LeseEinheitenGebaut;
@@ -31,7 +31,7 @@ package body KIEinheitUmsetzenVerbesserungen is
       end if;
       
       -- Aufgaben muss dringend überarbeitet werden. äöü
-      -- Diese ganze Aufteilung zwischen AufgabenDatentypen, TastenbelegungDatentypen und KartenVerbesserungDatentypen muss mal verbessert werden. äöü
+      -- Diese ganze Aufteilung zwischen AufgabenDatentypen, TastenbelegungDatentypen und KartenverbesserungDatentypen muss mal verbessert werden. äöü
       case
         WelcheVerbesserung
       is
@@ -39,7 +39,7 @@ package body KIEinheitUmsetzenVerbesserungen is
             Befehl := TastenbelegungDatentypen.Mine_Bauen_Enum;
             
             if
-              VorhandeneVerbesserung = KartenVerbesserungDatentypen.Mine_Enum
+              VorhandeneVerbesserung = KartenverbesserungDatentypen.Mine_Enum
             then
                return False;
                
@@ -58,7 +58,7 @@ package body KIEinheitUmsetzenVerbesserungen is
             Befehl := TastenbelegungDatentypen.Farm_Bauen_Enum;
             
             if
-              VorhandeneVerbesserung = KartenVerbesserungDatentypen.Farm_Enum
+              VorhandeneVerbesserung = KartenverbesserungDatentypen.Farm_Enum
             then
                return False;
                
@@ -77,7 +77,7 @@ package body KIEinheitUmsetzenVerbesserungen is
             Befehl := TastenbelegungDatentypen.Festung_Bauen_Enum;
             
             if
-              VorhandeneVerbesserung = KartenVerbesserungDatentypen.Festung_Enum
+              VorhandeneVerbesserung = KartenverbesserungDatentypen.Festung_Enum
             then
                return False;
                

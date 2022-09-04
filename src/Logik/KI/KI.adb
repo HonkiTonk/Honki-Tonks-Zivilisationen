@@ -4,13 +4,13 @@ pragma Warnings (Off, "*array aggregate*");
 with EinheitenDatentypen; use EinheitenDatentypen;
 with StadtDatentypen; use StadtDatentypen;
 with EinheitenKonstanten;
-with KartenVerbesserungDatentypen;
+with KartenverbesserungDatentypen;
 with LadezeitenDatentypen;
 
 with LeseEinheitenGebaut;
 with LeseStadtGebaut;
 
-with Ladezeiten;
+with LadezeitenLogik;
 
 with KIStadt;
 with KIForschung;
@@ -65,7 +65,7 @@ package body KI is
            EinheitenSchleifenwert mod Einheitenzeitwert
          is
             when 0 =>
-               Ladezeiten.FortschrittKISchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Berechne_Einheiten_Enum);
+               LadezeitenLogik.FortschrittKISchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Berechne_Einheiten_Enum);
                
             when others =>
                null;
@@ -73,7 +73,7 @@ package body KI is
             
       end loop EinheitenSchleife;
       
-      Ladezeiten.FortschrittKIMaximum (WelcheBerechnungenExtern => LadezeitenDatentypen.Berechne_Einheiten_Enum);
+      LadezeitenLogik.FortschrittKIMaximum (WelcheBerechnungenExtern => LadezeitenDatentypen.Berechne_Einheiten_Enum);
       
    end EinheitenDurchgehen;
    
@@ -101,7 +101,7 @@ package body KI is
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert))
          is
-            when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum =>
+            when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
                null;
                
             when others =>
@@ -112,7 +112,7 @@ package body KI is
            StadtSchleifenwert mod Städtezeitwert
          is
             when 0 =>
-               Ladezeiten.FortschrittKISchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Berechne_Städte_Enum);
+               LadezeitenLogik.FortschrittKISchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Berechne_Städte_Enum);
                
             when others =>
                null;
@@ -120,7 +120,7 @@ package body KI is
          
       end loop StadtSchleife;
       
-      Ladezeiten.FortschrittKIMaximum (WelcheBerechnungenExtern => LadezeitenDatentypen.Berechne_Städte_Enum);
+      LadezeitenLogik.FortschrittKIMaximum (WelcheBerechnungenExtern => LadezeitenDatentypen.Berechne_Städte_Enum);
       
    end StädteDurchgehen;
 

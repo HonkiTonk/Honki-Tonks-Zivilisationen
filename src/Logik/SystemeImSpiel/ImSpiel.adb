@@ -8,15 +8,15 @@ with MenueDatentypen;
 with TextnummernKonstanten;
 
 with Optionen;
-with Ladezeiten;
+with LadezeitenLogik;
 with Speichern;
 with Laden;
 with RasseEntfernen;
 with ZwischenDenRunden;
 with Fehler;
 with NachGrafiktask;
-with BefehleSFML;
-with AuswahlSFML;
+with BefehleLogik;
+with AuswahlLogik;
 with SpielerVorhanden;
 with Auswahlaufteilungen;
 
@@ -159,7 +159,7 @@ package body ImSpiel is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      Ladezeiten.KINullsetzenFortschritt;
+      LadezeitenLogik.KINullsetzenFortschritt;
       
       -- Mal was einbauen damit man die KI sieht bei ihren Bewegungen? Wenn dann bei Debug an, sonst würde man ja auch nicht sichtbare KIs sehen. äöü
       -- NachGrafiktask.AktuelleRasseEinheit.Rasse := RasseExtern;
@@ -191,7 +191,7 @@ package body ImSpiel is
             if
               SpielerVorhanden.MenschlicheSpieler (RasseExtern => RasseExtern) = True
               and then
-                AuswahlSFML.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageKIEinsetzen) = True
+                AuswahlLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageKIEinsetzen) = True
             then
                RasseEntfernen.RasseAufKISetzen (RasseExtern => RasseExtern);
                
@@ -228,7 +228,7 @@ package body ImSpiel is
            SpielVariablen.RassenImSpiel (RasseExtern)
          is
             when RassenDatentypen.Mensch_Spieler_Enum =>
-               AktuellerBefehlSpieler := BefehleSFML.Befehle (RasseExtern => RasseExtern);
+               AktuellerBefehlSpieler := BefehleLogik.Befehle (RasseExtern => RasseExtern);
                
             when others =>
                RückgabeMenschAmZug := RueckgabeDatentypen.Hauptmenü_Enum;

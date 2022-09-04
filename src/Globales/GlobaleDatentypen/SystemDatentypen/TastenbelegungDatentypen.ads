@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 package TastenbelegungDatentypen is
 
-   -- Bauen zu den Einheitenbefehlen schieben um in BefehleSFML Prozeduren zusammenzuführen? äöü
+   -- Bauen zu den Einheitenbefehlen schieben um in BefehleLogik Prozeduren zusammenzuführen? äöü
    type Tastenbelegung_Enum is (
                                 Leer_Tastenbelegung_Enum,
                                 

@@ -11,7 +11,7 @@ with SchreibeWichtiges;
 with LeseWichtiges;
 
 with ForschungAllgemein;
-with Ladezeiten;
+with LadezeitenLogik;
 
 package body KIForschung is
 
@@ -29,7 +29,7 @@ package body KIForschung is
             null;
       end case;
       
-      Ladezeiten.FortschrittKIMaximum (WelcheBerechnungenExtern => LadezeitenDatentypen.Berechne_Forschung_Enum);
+      LadezeitenLogik.FortschrittKIMaximum (WelcheBerechnungenExtern => LadezeitenDatentypen.Berechne_Forschung_Enum);
       
    end Forschung;
    
@@ -72,7 +72,7 @@ package body KIForschung is
                null;
          end case;
          
-         Ladezeiten.FortschrittKISchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Berechne_Forschung_Enum);
+         LadezeitenLogik.FortschrittKISchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Berechne_Forschung_Enum);
                
       end loop ForschungenSchleife;
       

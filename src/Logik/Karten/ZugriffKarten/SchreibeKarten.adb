@@ -90,7 +90,7 @@ package body SchreibeKarten is
    
    procedure Weg
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Enum)
+      WegExtern : in KartenverbesserungDatentypen.Karten_Weg_Enum)
    is begin
       
       Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Weg := WegExtern;
@@ -101,7 +101,7 @@ package body SchreibeKarten is
    
    procedure Verbesserung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Enum)
+      VerbesserungExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Enum)
    is begin
       
       Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Verbesserung := VerbesserungExtern;

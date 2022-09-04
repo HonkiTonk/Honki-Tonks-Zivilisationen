@@ -70,7 +70,7 @@ package body LeseKarten is
    
    function Weg
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return KartenVerbesserungDatentypen.Karten_Weg_Enum
+      return KartenverbesserungDatentypen.Karten_Weg_Enum
    is begin
       
       return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Weg;
@@ -81,7 +81,7 @@ package body LeseKarten is
    
    function Verbesserung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return KartenVerbesserungDatentypen.Karten_Verbesserung_Enum
+      return KartenverbesserungDatentypen.Karten_Verbesserung_Enum
    is begin
       
       return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Verbesserung;

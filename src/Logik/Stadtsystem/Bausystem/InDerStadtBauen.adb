@@ -9,7 +9,7 @@ with TastenbelegungDatentypen;
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
 
-with EingabeSFML;
+with EingabeLogik;
 with GebaeudeAllgemein;
 with EinheitenModifizieren;
 with NachGrafiktask;
@@ -162,7 +162,7 @@ package body InDerStadtBauen is
          NachGrafiktask.AktuelleBauauswahl := AktuelleAuswahl;
          
          case
-           EingabeSFML.Tastenwert
+           EingabeLogik.Tastenwert
          is               
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if

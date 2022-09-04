@@ -161,8 +161,8 @@ package body EinlesenDatenbanken is
             return;
       end case;
       
-      KartenressourcenDatenbank.KartenressourcenListeArray'Read (Stream (File => DatenbankEinlesen),
-                                                       KartenressourcenDatenbank.KartenressourcenListe);
+      KartenressourcenDatenbank.KartenressourcenlisteArray'Read (Stream (File => DatenbankEinlesen),
+                                                       KartenressourcenDatenbank.Kartenressourcenliste);
       
       Close (File => DatenbankEinlesen);
       

@@ -166,8 +166,8 @@ package body SchreibenDatenbanken is
                     Name => TextKonstanten.KartenRessourcenDatenbank);
       end case;
       
-      KartenressourcenDatenbank.KartenressourcenListeArray'Write (Stream (File => DatenbankSpeichern),
-                                                        KartenressourcenDatenbank.KartenressourcenListe);
+      KartenressourcenDatenbank.KartenressourcenlisteArray'Write (Stream (File => DatenbankSpeichern),
+                                                        KartenressourcenDatenbank.Kartenressourcenliste);
       
       Close (File => DatenbankSpeichern);
       

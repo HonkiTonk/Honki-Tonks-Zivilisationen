@@ -5,7 +5,7 @@ package body UmwandlungenVerschiedeneDatentypen is
 
    function TastenbelegungNachKartenverbesserung
      (TasteExtern : in TastenbelegungDatentypen.Tastenbelegung_Konstruktionen_Enum)
-      return KartenVerbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum
+      return KartenverbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum
    is begin
       
       return TastenbelegungKartenverbesserung (TasteExtern);
@@ -15,7 +15,7 @@ package body UmwandlungenVerschiedeneDatentypen is
    
    
    function KartenverbesserungNachTastenbelegung
-     (VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum)
+     (VerbesserungExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum)
       return TastenbelegungDatentypen.Tastenbelegung_Konstruktionen_Enum
    is begin
       

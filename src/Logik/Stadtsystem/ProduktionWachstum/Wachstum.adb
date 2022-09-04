@@ -7,7 +7,7 @@ with StadtDatentypen; use StadtDatentypen;
 with WichtigesKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
-with KartenVerbesserungDatentypen;
+with KartenverbesserungDatentypen;
 with SystemDatentypen;
 
 with SchreibeStadtGebaut;
@@ -44,7 +44,7 @@ package body Wachstum is
                   case
                     LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseSchleifenwert, StadtSchleifenwert))
                   is
-                     when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum =>
+                     when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
                         null;
                
                      when others =>
@@ -295,7 +295,7 @@ package body Wachstum is
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert))
          is
-            when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum =>
+            when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
                null;
                
             when others =>

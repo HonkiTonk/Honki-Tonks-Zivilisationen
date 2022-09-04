@@ -12,7 +12,7 @@ with KartengeneratorVariablen;
 with KartengeneratorErdwelt;
 with KartengeneratorWasserwelt;
 with Fehler;
-with Ladezeiten;
+with LadezeitenLogik;
 
 package body KartengeneratorUnterwasserUnterirdisch is
 
@@ -48,7 +48,7 @@ package body KartengeneratorUnterwasserUnterirdisch is
          if
            ZahlenDatentypen.EigenesPositive (YAchseSchleifenwert) >= Multiplikator * ZahlenDatentypen.EigenesPositive (KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse) / 100
          then
-            Ladezeiten.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Unterfläche_Enum);
+            LadezeitenLogik.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Unterfläche_Enum);
             Multiplikator := Multiplikator + 1;
                
          else

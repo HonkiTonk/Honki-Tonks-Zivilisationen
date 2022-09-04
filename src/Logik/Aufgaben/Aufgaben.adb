@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with EinheitenDatentypen; use EinheitenDatentypen;
 with TastenbelegungDatentypen; use TastenbelegungDatentypen;
 with AufgabenDatentypen; use AufgabenDatentypen;
-with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
+with KartenverbesserungDatentypen; use KartenverbesserungDatentypen;
 with EinheitenKonstanten;
 with ForschungKonstanten;
 with TextnummernKonstanten;
@@ -27,7 +27,7 @@ with AufgabeEinheitVerbessern;
 with AufgabeEinheitVerschanzen;
 with AufgabeEinheitAufloesen;
 with UmwandlungenVerschiedeneDatentypen;
-with AuswahlSFML;
+with AuswahlLogik;
 with MeldungFestlegenLogik;
 
 package body Aufgaben is
@@ -87,7 +87,7 @@ package body Aufgaben is
           SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.KI_Spieler_Enum
       then
          case
-           AuswahlSFML.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageBeschäftigungAbbrechen)
+           AuswahlLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageBeschäftigungAbbrechen)
          is
             when True =>
                null;
@@ -113,7 +113,7 @@ package body Aufgaben is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       EinheitartExtern : in EinheitenDatentypen.Einheitart_Vorhanden_Enum;
       BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum;
-      VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Enum)
+      VerbesserungExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Enum)
       return Boolean
    is begin
       
@@ -165,7 +165,7 @@ package body Aufgaben is
       is
          when TastenbelegungDatentypen.Tastenbelegung_Konstruktionen_Enum'Range =>
             if
-              VerbesserungExtern in KartenVerbesserungDatentypen.Karten_Verbesserung_Städte_Enum'Range
+              VerbesserungExtern in KartenverbesserungDatentypen.Karten_Verbesserung_Städte_Enum'Range
             then
                MeldungFestlegenLogik.SpielermeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungVerbesserung,
                                                               RasseExtern   => RasseExtern);
@@ -181,9 +181,9 @@ package body Aufgaben is
             elsif
               (SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
                and
-                 VerbesserungExtern /= KartenVerbesserungDatentypen.Leer_Verbesserung_Enum)
+                 VerbesserungExtern /= KartenverbesserungDatentypen.Leer_Verbesserung_Enum)
               and then
-                AuswahlSFML.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageLandverbesserungErsetzen) = False
+                AuswahlLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageLandverbesserungErsetzen) = False
             then
                return False;
                

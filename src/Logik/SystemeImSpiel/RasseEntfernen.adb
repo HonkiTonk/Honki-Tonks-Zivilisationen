@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with WichtigesRecordKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
-with KartenVerbesserungDatentypen;
+with KartenverbesserungDatentypen;
 
 with SchreibeStadtGebaut;
 with SchreibeEinheitenGebaut;
@@ -13,7 +13,7 @@ with LeseStadtGebaut;
 with SchreibeKarten;
 
 with KartenfelderBewerten;
-with Ladezeiten;
+with LadezeitenLogik;
 
 package body RasseEntfernen is
 
@@ -39,7 +39,7 @@ package body RasseEntfernen is
                
             when others =>
                SchreibeKarten.Verbesserung (KoordinatenExtern  => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert)),
-                                            VerbesserungExtern => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum);
+                                            VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum);
                SchreibeStadtGebaut.Nullsetzung (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert));
          end case;
          
@@ -107,7 +107,7 @@ package body RasseEntfernen is
    is begin
       
       SpielVariablen.RassenImSpiel (RasseExtern) := RassenDatentypen.KI_Spieler_Enum;
-      Ladezeiten.SpielweltNullsetzen;
+      LadezeitenLogik.SpielweltNullsetzen;
       KartenfelderBewerten.KartenfelderBewerten (RasseExtern => RasseExtern);
       
    end RasseAufKISetzen;

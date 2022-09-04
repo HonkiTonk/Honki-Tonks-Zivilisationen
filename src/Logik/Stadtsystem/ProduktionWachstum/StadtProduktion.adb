@@ -6,7 +6,7 @@ with ProduktionDatentypen; use ProduktionDatentypen;
 with StadtDatentypen; use StadtDatentypen;
 with EinheitenDatentypen; use EinheitenDatentypen;
 with KartenKonstanten;
-with KartenVerbesserungDatentypen;
+with KartenverbesserungDatentypen;
 
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
@@ -55,7 +55,7 @@ package body StadtProduktion is
                   case
                     LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseSchleifenwert, StadtNummerSchleifenwert))
                   is
-                     when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum =>
+                     when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
                         null;
                   
                      when others =>

@@ -10,7 +10,7 @@ with Optionen;
 with Spieleinstellungen;
 with ImSpiel;
 with Laden;
-with Wuerdigung;
+-- with WuerdigungGrafik;
 with Auswahlaufteilungen;
 with Fehler;
 with NachSoundtask;
@@ -88,7 +88,8 @@ package body Hauptmenue is
                end if;
                
             when RueckgabeDatentypen.Würdigungen_Enum =>
-               Wuerdigung.Würdigung;
+               null;
+               -- Wuerdigung.Würdigung;
                
             when RueckgabeDatentypen.Spiel_Beenden_Enum =>
                exit HauptmenüSchleife;

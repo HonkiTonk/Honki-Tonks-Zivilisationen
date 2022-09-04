@@ -6,16 +6,16 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with RassenDatentypen; use RassenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
-with KartenVerbesserungDatentypen;
+with KartenverbesserungDatentypen;
 
 package AufgabenAllgemein is
 
    function BeschreibungVerbesserung
-     (KartenVerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum)
+     (KartenVerbesserungExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum)
       return Wide_Wide_String;
 
    function BeschreibungWeg
-     (KartenWegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum)
+     (KartenWegExtern : in KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum)
       return Wide_Wide_String;
 
    procedure Nullsetzung

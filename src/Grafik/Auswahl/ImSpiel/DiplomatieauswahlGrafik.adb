@@ -16,14 +16,14 @@ with DiplomatieDatentypen;
 with SpielVariablen;
 with TextKonstanten;
 
-with AllgemeineViewsSFML;
-with HintergrundSFML;
-with ViewsEinstellenSFML;
-with TextberechnungenBreiteSFML;
-with TextberechnungenHoeheSFML;
-with GrafikEinstellungenSFML;
-with AuswahlMenuesStringsSetzen;
-with TexteinstellungenSFML;
+with AllgemeineViewsGrafik;
+with HintergrundGrafik;
+with ViewsEinstellenGrafik;
+with TextberechnungenBreiteGrafik;
+with TextberechnungenHoeheGrafik;
+with EinstellungenGrafik;
+with MenuestringsSetzenGrafik;
+with TexteinstellungenGrafik;
 with NachGrafiktask;
 with Fehler;
 
@@ -33,16 +33,16 @@ package body DiplomatieauswahlGrafik is
      (AuswahlExtern : in Natural)
    is begin
       
-      AllgemeineViewsSFML.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => Meldungstexte.Frage (TextnummernKonstanten.FrageRasseDiplomatie)),
+      AllgemeineViewsGrafik.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => Meldungstexte.Frage (TextnummernKonstanten.FrageRasseDiplomatie)),
                                         HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum);
       
-      Viewfläche := ViewsEinstellenSFML.ViewflächeAuflösungAnpassen (ViewflächeExtern => Viewfläche);
+      Viewfläche := ViewsEinstellenGrafik.ViewflächeAuflösungAnpassen (ViewflächeExtern => Viewfläche);
       
-      ViewsEinstellenSFML.ViewEinstellen (ViewExtern           => Views.MenüviewAccess,
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.MenüviewAccess,
                                           GrößeExtern          => Viewfläche,
                                           AnzeigebereichExtern => GrafikRecordKonstanten.MenüEinfachbereich);
       
-      HintergrundSFML.Hintergrund (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
+      HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
                                         AbmessungenExtern => Viewfläche);
                   
       Viewfläche := Textdarstellung (ViewflächeExtern => Viewfläche,
@@ -60,7 +60,7 @@ package body DiplomatieauswahlGrafik is
       return Sf.System.Vector2.sfVector2f
    is begin
       
-      Textposition.y := TextberechnungenHoeheSFML.Zeilenabstand;
+      Textposition.y := TextberechnungenHoeheGrafik.Zeilenabstand;
       Textbreite := 0.00;
 
       PositionenSchleife:
@@ -73,17 +73,17 @@ package body DiplomatieauswahlGrafik is
                if
                  PositionSchleifenwert = AuswahlExtern
                then
-                  Farbe := TexteinstellungenSFML.Schriftfarben.FarbeAusgewähltText;
+                  Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeAusgewähltText;
                      
                else
-                  Farbe := TexteinstellungenSFML.Schriftfarben.FarbeStandardText;
+                  Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeStandardText;
                end if;
                
                Sf.Graphics.Text.setColor (text  => TextaccessVariablen.TextAccess,
                                           color => Farbe);
                
-               Text := To_Unbounded_Wide_Wide_String (Source => AuswahlMenuesStringsSetzen.AuswahlMenüStringSetzen (WelcheZeileExtern => PositionSchleifenwert + 1,
-                                                                                                                     WelchesMenüExtern => MenueDatentypen.Rassen_Menü_Enum))
+               Text := To_Unbounded_Wide_Wide_String (Source => MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => PositionSchleifenwert + 1,
+                                                                                                             WelchesMenüExtern => MenueDatentypen.Rassen_Menü_Enum))
                  & TextKonstanten.StandardAbstand;
                
                case
@@ -105,25 +105,25 @@ package body DiplomatieauswahlGrafik is
                Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TextAccess,
                                                   str  => To_Wide_Wide_String (Source => Text));
                
-               Textposition.x := TextberechnungenBreiteSFML.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.TextAccess,
+               Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.TextAccess,
                                                                                      ViewbreiteExtern => ViewflächeExtern.x);
                
                Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.TextAccess,
                                              position => Textposition);
 
-               Textbreite := TextberechnungenBreiteSFML.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.TextAccess,
+               Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.TextAccess,
                                                                                  TextbreiteExtern => Textbreite);
                
                InteraktionAuswahl.PositionenDiplomatieRasse (RassenDatentypen.Rassen_Enum'Val (PositionSchleifenwert)) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.TextAccess);
                
-               Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+               Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
                                                   text         => TextaccessVariablen.TextAccess);
 
             when False =>
                null;
          end case;
          
-         Textposition.y := Textposition.y + TextberechnungenHoeheSFML.Zeilenabstand;
+         Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.Zeilenabstand;
          
       end loop PositionenSchleife;
 

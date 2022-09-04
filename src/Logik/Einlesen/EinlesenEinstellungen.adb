@@ -7,9 +7,9 @@ with SystemRecords;
 with OptionenVariablen;
 with TextKonstanten;
 
-with GrafikEinstellungenSFML;
-with TexteinstellungenSFML;
-with RasseneinstellungenSFML;
+with EinstellungenGrafik;
+with TexteinstellungenGrafik;
+with RasseneinstellungenGrafik;
 
 package body EinlesenEinstellungen is
 
@@ -25,7 +25,7 @@ package body EinlesenEinstellungen is
                   Name => TextKonstanten.Einstellungen);
 
          when False =>
-            GrafikEinstellungenSFML.StandardGrafikEinstellungenLaden;
+            EinstellungenGrafik.StandardeinstellungenLaden;
             return;
       end case;
          
@@ -33,15 +33,15 @@ package body EinlesenEinstellungen is
                                                     OptionenVariablen.NutzerEinstellungen);
       
       SystemRecords.FensterRecord'Read (Stream (File => DateiEinstellungenEinlesen),
-                                        GrafikEinstellungenSFML.FensterEinstellungen);
+                                        EinstellungenGrafik.FensterEinstellungen);
       SystemRecords.SchriftgrößenRecord'Read (Stream (File => DateiEinstellungenEinlesen),
-                                                TexteinstellungenSFML.Schriftgrößen);
+                                                TexteinstellungenGrafik.Schriftgrößen);
       SystemRecords.SchriftfarbenRecord'Read (Stream (File => DateiEinstellungenEinlesen),
-                                              TexteinstellungenSFML.Schriftfarben);
-      RasseneinstellungenSFML.RassenFarbenArray'Read (Stream (File => DateiEinstellungenEinlesen),
-                                                      RasseneinstellungenSFML.RassenFarben);
-      RasseneinstellungenSFML.RassenFarbenArray'Read (Stream (File => DateiEinstellungenEinlesen),
-                                                      RasseneinstellungenSFML.RassenFarbenRahmen);
+                                              TexteinstellungenGrafik.Schriftfarben);
+      RasseneinstellungenGrafik.RassenFarbenArray'Read (Stream (File => DateiEinstellungenEinlesen),
+                                                      RasseneinstellungenGrafik.Rassenfarben);
+      RasseneinstellungenGrafik.RassenFarbenArray'Read (Stream (File => DateiEinstellungenEinlesen),
+                                                      RasseneinstellungenGrafik.RassenfarbenRahmen);
 
       Close (File => DateiEinstellungenEinlesen);
       

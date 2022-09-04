@@ -1,7 +1,15 @@
 -- Womit ich aufgehört habe:
 
+-- Kartengenerator
+-- Zwischen den Runden
+-- Forschugnserfolg
+-- Spielende
+-- ForschungAllgemein
+-- Würdigung einbauen, als Grafik und Logik.
+-- BewegungCursor aufteilen (siehe auch Sichtweiten und BerechnungenKarteSFML)
+-- EingabesystemeGrafik erweitern und aufteilen
+-- AuswahlLogik erweiter oder woanders reinbasteln
 --
-
 
 
 -- Aktuell höchste Priorität:
@@ -17,7 +25,7 @@
 
 -- Sonstiges:
 
--- Diese ganze Aufteilung zwischen AufgabenDatentypen, TastenbelegungDatentypen und KartenVerbesserungDatentypen muss mal verbessert werden.
+-- Diese ganze Aufteilung zwischen AufgabenDatentypen, TastenbelegungDatentypen und KartenverbesserungDatentypen muss mal verbessert werden.
 -- Liste beim Speichern/Laden anlegen, ähnlich wie bei der Sprachauswahl.
 --
 

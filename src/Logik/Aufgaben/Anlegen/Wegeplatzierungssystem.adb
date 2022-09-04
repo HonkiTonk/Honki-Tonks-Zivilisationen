@@ -70,7 +70,7 @@ package body Wegeplatzierungssystem is
       end loop YAchseSchleife;
       
       SchreibeKarten.Weg (KoordinatenExtern => KoordinatenExtern,
-                          WegExtern         => KartenVerbesserungDatentypen.Karten_Weg_Enum'Val (Wegwert (WegLinks, WegRechts, WegOben, WegUnten) + Wegtyp (WegartExtern)));
+                          WegExtern         => KartenverbesserungDatentypen.Karten_Weg_Enum'Val (Wegwert (WegLinks, WegRechts, WegOben, WegUnten) + Wegtyp (WegartExtern)));
       
    end Wegplatzierung;
    
@@ -86,13 +86,13 @@ package body Wegeplatzierungssystem is
       case
         WelcherWeg
       is
-         when KartenVerbesserungDatentypen.Leer_Weg_Enum =>
+         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
             return False;
             
          when others =>
-            ZwischenWeg := KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Val (KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Pos (WelcherWeg) - (Wegtyp (StandardWeg (WelcherWeg))));
+            ZwischenWeg := KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Val (KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Pos (WelcherWeg) - (Wegtyp (StandardWeg (WelcherWeg))));
             SchreibeKarten.Weg (KoordinatenExtern => KoordinatenExtern,
-                                WegExtern         => KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Val (WegeLinks (ZwischenWeg) + Wegtyp (StandardWeg (WelcherWeg))));
+                                WegExtern         => KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Val (WegeLinks (ZwischenWeg) + Wegtyp (StandardWeg (WelcherWeg))));
             return True;
       end case;
       
@@ -110,13 +110,13 @@ package body Wegeplatzierungssystem is
       case
         WelcherWeg
       is
-         when KartenVerbesserungDatentypen.Leer_Weg_Enum =>
+         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
             return False;
             
          when others =>
-            ZwischenWeg := KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Val (KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Pos (WelcherWeg) - (Wegtyp (StandardWeg (WelcherWeg))));
+            ZwischenWeg := KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Val (KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Pos (WelcherWeg) - (Wegtyp (StandardWeg (WelcherWeg))));
             SchreibeKarten.Weg (KoordinatenExtern => KoordinatenExtern,
-                                WegExtern         => KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Val (WegeRechts (ZwischenWeg) + Wegtyp (StandardWeg (WelcherWeg))));
+                                WegExtern         => KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Val (WegeRechts (ZwischenWeg) + Wegtyp (StandardWeg (WelcherWeg))));
             return True;
       end case;
       
@@ -134,13 +134,13 @@ package body Wegeplatzierungssystem is
       case
         WelcherWeg
       is
-         when KartenVerbesserungDatentypen.Leer_Weg_Enum =>
+         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
             return False;
             
          when others =>
-            ZwischenWeg := KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Val (KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Pos (WelcherWeg) - (Wegtyp (StandardWeg (WelcherWeg))));
+            ZwischenWeg := KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Val (KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Pos (WelcherWeg) - (Wegtyp (StandardWeg (WelcherWeg))));
             SchreibeKarten.Weg (KoordinatenExtern => KoordinatenExtern,
-                                WegExtern         => KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Val (WegeOben (ZwischenWeg) + Wegtyp (StandardWeg (WelcherWeg))));
+                                WegExtern         => KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Val (WegeOben (ZwischenWeg) + Wegtyp (StandardWeg (WelcherWeg))));
             return True;
       end case;
       
@@ -158,13 +158,13 @@ package body Wegeplatzierungssystem is
       case
         WelcherWeg
       is
-         when KartenVerbesserungDatentypen.Leer_Weg_Enum =>
+         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
             return False;
             
          when others =>
-            ZwischenWeg := KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Val (KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Pos (WelcherWeg) - (Wegtyp (StandardWeg (WelcherWeg))));
+            ZwischenWeg := KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Val (KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Pos (WelcherWeg) - (Wegtyp (StandardWeg (WelcherWeg))));
             SchreibeKarten.Weg (KoordinatenExtern => KoordinatenExtern,
-                                WegExtern         => KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Val (WegeUnten (ZwischenWeg) + Wegtyp (StandardWeg (WelcherWeg))));
+                                WegExtern         => KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Val (WegeUnten (ZwischenWeg) + Wegtyp (StandardWeg (WelcherWeg))));
             return True;
       end case;
       

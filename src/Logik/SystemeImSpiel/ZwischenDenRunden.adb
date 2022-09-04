@@ -20,11 +20,11 @@ with StadtMeldungenSetzen;
 with EinheitenMeldungenSetzen;
 with EinheitInUmgebung;
 with EinheitenModifizieren;
-with Ladezeiten;
+with LadezeitenLogik;
 with Speichern;
 with VerbesserungFertiggestellt;
 with NachGrafiktask;
-with AuswahlSFML;
+with AuswahlLogik;
 
 package body ZwischenDenRunden is
 
@@ -36,7 +36,7 @@ package body ZwischenDenRunden is
         NachSiegWeiterspielen
       is
          when True =>
-            Ladezeiten.RundenendeNullsetzen;
+            LadezeitenLogik.RundenendeNullsetzen;
             NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Rundenende_Enum;
             
          when False =>
@@ -45,41 +45,41 @@ package body ZwischenDenRunden is
       
       -- Später in verschiedene Teilbereiche aufteilen und nicht nur einen einzelnen Berechnungsfortschritt anzeigen? äöü
       StadtMeldungenSetzen.StadtMeldungenSetzenRundenEnde;
-      Ladezeiten.RundenendeSchreiben;
+      LadezeitenLogik.RundenendeSchreiben;
       
       EinheitenMeldungenSetzen.EinheitenMeldungenSetzenRundenEnde;
-      Ladezeiten.RundenendeSchreiben;
+      LadezeitenLogik.RundenendeSchreiben;
       
       EinheitInUmgebung.EinheitInUmgebung;
-      Ladezeiten.RundenendeSchreiben;
+      LadezeitenLogik.RundenendeSchreiben;
             
       EinheitenModifizieren.HeilungBewegungspunkteNeueRundeErmitteln;
-      Ladezeiten.RundenendeSchreiben;
+      LadezeitenLogik.RundenendeSchreiben;
       
       VerbesserungFertiggestellt.VerbesserungFertiggestellt;
-      Ladezeiten.RundenendeSchreiben;
+      LadezeitenLogik.RundenendeSchreiben;
       
       Wachstum.StadtWachstum;
-      Ladezeiten.RundenendeSchreiben;
+      LadezeitenLogik.RundenendeSchreiben;
       
       StadtProduktion.StadtProduktion (StadtRasseNummerExtern => StadtKonstanten.LeerRasseNummer);
-      Ladezeiten.RundenendeSchreiben;
+      LadezeitenLogik.RundenendeSchreiben;
       
       GeldForschungMengeSetzen;
-      Ladezeiten.RundenendeSchreiben;
+      LadezeitenLogik.RundenendeSchreiben;
       
       ForschungAllgemein.ForschungFortschritt;
-      Ladezeiten.RundenendeSchreiben;
+      LadezeitenLogik.RundenendeSchreiben;
             
       RundenanzahlSetzen;
-      Ladezeiten.RundenendeSchreiben;
+      LadezeitenLogik.RundenendeSchreiben;
       
       DiplomatieÄnderung;
-      Ladezeiten.RundenendeSchreiben;
+      LadezeitenLogik.RundenendeSchreiben;
       
       -- Autospeichern muss immer nach allen Änderungen kommen, sonst werden nicht alle Änderungen gespeichert.
       Speichern.AutoSpeichern;
-      Ladezeiten.RundenendeMaximum;
+      LadezeitenLogik.RundenendeMaximum;
       
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
       
@@ -103,7 +103,7 @@ package body ZwischenDenRunden is
                null;
             
             elsif
-              AuswahlSFML.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageGewonnenWeiterspielen) = True
+              AuswahlLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageGewonnenWeiterspielen) = True
             then
                SpielVariablen.Allgemeines.Weiterspielen := True;
                                  
