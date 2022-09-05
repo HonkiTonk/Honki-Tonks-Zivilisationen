@@ -11,7 +11,7 @@ with KartenKonstanten;
 with KartengeneratorRecordKonstanten;
 
 with Karten;
-with EingabeLogik;
+with ZahleneingabeLogik;
 with ZufallsgeneratorenSpieleinstellungen;
 with Auswahlaufteilungen;
 with Fehler;
@@ -85,12 +85,12 @@ package body SpieleinstellungenKarten is
             MaximaleEisdicke := Karten.Karteneinstellungen.Kartengröße.XAchse / 2;
       end case;
 
-      BenutzerdefinierteGröße := EingabeLogik.GanzeZahl (ZahlenMinimumExtern => 0,
+      BenutzerdefinierteGröße := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => 0,
                                                           ZahlenMaximumExtern => Positive (MaximaleEisdicke),
                                                           WelcheFrageExtern   => TextnummernKonstanten.FrageEisschicht);
       
       if
-        BenutzerdefinierteGröße.EingabeAbbruch = False
+        BenutzerdefinierteGröße.ErfolgreichAbbruch = False
         or
           BenutzerdefinierteGröße.EingegebeneZahl = 0
       then
@@ -144,11 +144,11 @@ package body SpieleinstellungenKarten is
      return KartenRecords.YXAchsenKartenfeldPositivRecord
    is begin
             
-      BenutzerdefinierteGröße := EingabeLogik.GanzeZahl (ZahlenMinimumExtern => 20,
+      BenutzerdefinierteGröße := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => 20,
                                                           ZahlenMaximumExtern => Positive (KartenDatentypen.KartenfeldPositiv'Last),
                                                           WelcheFrageExtern   => TextnummernKonstanten.FrageYAchsengrößeEingeben);
       case
-        BenutzerdefinierteGröße.EingabeAbbruch
+        BenutzerdefinierteGröße.ErfolgreichAbbruch
       is
          when False =>
             return (Karten.Karteneinstellungen.Kartengröße.YAchse, Karten.Karteneinstellungen.Kartengröße.XAchse);
@@ -159,12 +159,12 @@ package body SpieleinstellungenKarten is
       
       YAchse := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße.EingegebeneZahl);
       
-      BenutzerdefinierteGröße := EingabeLogik.GanzeZahl (ZahlenMinimumExtern => 20,
+      BenutzerdefinierteGröße := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => 20,
                                                           ZahlenMaximumExtern => Positive (KartenDatentypen.KartenfeldPositiv'Last),
                                                           WelcheFrageExtern   => TextnummernKonstanten.FrageXAchsengrößeEingeben);
       
       case
-        BenutzerdefinierteGröße.EingabeAbbruch
+        BenutzerdefinierteGröße.ErfolgreichAbbruch
       is
          when False =>
             return (Karten.Karteneinstellungen.Kartengröße.YAchse, Karten.Karteneinstellungen.Kartengröße.XAchse);
@@ -224,12 +224,12 @@ package body SpieleinstellungenKarten is
    procedure KartenartNutzerdefinition
    is begin
       
-      BenutzerdefinierteKartenart := EingabeLogik.GanzeZahl (ZahlenMinimumExtern => 1,
+      BenutzerdefinierteKartenart := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => 1,
                                                             ZahlenMaximumExtern => Positive (Karten.Karteneinstellungen.Kartengröße.YAchse / 2),
                                                             WelcheFrageExtern   => TextnummernKonstanten.FrageMinimaleLandhöhe);
       
       case
-        BenutzerdefinierteKartenart.EingabeAbbruch
+        BenutzerdefinierteKartenart.ErfolgreichAbbruch
       is
          when False =>
             KartenartStandard;
@@ -240,12 +240,12 @@ package body SpieleinstellungenKarten is
             ZwischenwertKartenart := BenutzerdefinierteKartenart.EingegebeneZahl;
       end case;
             
-      BenutzerdefinierteKartenart := EingabeLogik.GanzeZahl (ZahlenMinimumExtern => ZwischenwertKartenart,
+      BenutzerdefinierteKartenart := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => ZwischenwertKartenart,
                                                             ZahlenMaximumExtern => Positive (Karten.Karteneinstellungen.Kartengröße.YAchse / 2),
                                                             WelcheFrageExtern   => TextnummernKonstanten.FrageMaximaleLandhöhe);
       
       case
-        BenutzerdefinierteKartenart.EingabeAbbruch
+        BenutzerdefinierteKartenart.ErfolgreichAbbruch
       is
          when False =>
             KartenartStandard;
@@ -257,12 +257,12 @@ package body SpieleinstellungenKarten is
       
       
       
-      BenutzerdefinierteKartenart := EingabeLogik.GanzeZahl (ZahlenMinimumExtern => 1,
+      BenutzerdefinierteKartenart := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => 1,
                                                             ZahlenMaximumExtern => Positive (Karten.Karteneinstellungen.Kartengröße.XAchse / 2),
                                                             WelcheFrageExtern   => TextnummernKonstanten.FrageMinimaleLandbreite);
       
       case
-        BenutzerdefinierteKartenart.EingabeAbbruch
+        BenutzerdefinierteKartenart.ErfolgreichAbbruch
       is
          when False =>
             KartenartStandard;
@@ -273,12 +273,12 @@ package body SpieleinstellungenKarten is
             ZwischenwertKartenart := BenutzerdefinierteKartenart.EingegebeneZahl;
       end case;
             
-      BenutzerdefinierteKartenart := EingabeLogik.GanzeZahl (ZahlenMinimumExtern => ZwischenwertKartenart,
+      BenutzerdefinierteKartenart := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => ZwischenwertKartenart,
                                                             ZahlenMaximumExtern => Positive (Karten.Karteneinstellungen.Kartengröße.XAchse / 2),
                                                             WelcheFrageExtern   => TextnummernKonstanten.FrageMaximaleLandbreite);
       
       case
-        BenutzerdefinierteKartenart.EingabeAbbruch
+        BenutzerdefinierteKartenart.ErfolgreichAbbruch
       is
          when False =>
             KartenartStandard;

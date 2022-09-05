@@ -5,7 +5,7 @@ with KartenKonstanten;
 
 with LeseEinheitenGebaut;
 
-with EingabeLogik;
+with TasteneingabeLogik;
 with EinheitenModifizieren;
 with StadtBauen;
 with Aufgaben;
@@ -28,7 +28,7 @@ package body BewegungEinheitenSFML is
          
          case
            EinheitBefehle (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                           BefehlExtern             => EingabeLogik.Tastenwert)
+                           BefehlExtern             => TasteneingabeLogik.Tastenwert)
          is
             when True =>
                null;
@@ -142,7 +142,7 @@ package body BewegungEinheitenSFML is
       EingabeSchleife:
       loop
          
-         BefehlMaus := EingabeLogik.Tastenwert;
+         BefehlMaus := TasteneingabeLogik.Tastenwert;
          
          case
            BefehlMaus

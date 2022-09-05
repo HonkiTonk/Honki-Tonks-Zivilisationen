@@ -14,7 +14,7 @@ with LeseStadtGebaut;
 with SchreibeKarten;
 
 with StadtWerteFestlegen;
-with EingabeLogik;
+with TexteingabeLogik;
 with StadtProduktion;
 with Sichtbarkeit;
 with EinheitenErzeugenEntfernen;
@@ -57,7 +57,7 @@ package body StadtBauen is
             StadtName.EingegebenerText := Rassentexte.Städtenamen (EinheitRasseNummerExtern.Rasse, StadtNummer);
                   
          when RassenDatentypen.Mensch_Spieler_Enum =>
-            StadtName := EingabeLogik.StadtName (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer));
+            StadtName := TexteingabeLogik.StadtName (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer));
             
             if
               StadtName.ErfolgreichAbbruch = False

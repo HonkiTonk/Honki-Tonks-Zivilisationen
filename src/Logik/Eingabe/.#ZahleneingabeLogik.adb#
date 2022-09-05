@@ -1,60 +1,45 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Ada.Strings.Wide_Wide_Fixed;
 
 with Sf.Window.Keyboard; use Sf.Window.Keyboard;
-with Sf.Window.Mouse; use Sf.Window.Mouse;
 with Sf;
 
-with Meldungstexte;
-with TextnummernKonstanten;
 with SystemDatentypen;
-with SystemRecordKonstanten;
-with TastenbelegungVariablen;
-with Rassentexte;
 
-with Fehler;
 with NachGrafiktask;
 with NachLogiktask;
+with EingabeAllgemeinLogik;
 
-package body EingabeLogik is
+package body ZahleneingabeLogik is
    
-   -- Neue Version ähnlich der Texteingabe bauen. äöü
-   function GanzeZahl
+   function Zahleneingabe
      (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
       ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger;
       WelcheFrageExtern : in Positive)
       return SystemRecords.ZahlenEingabeRecord
    is begin
-            
-      if
-        WelcheFrageExtern > Meldungstexte.Frage'Last
-      then
-         Fehler.LogikFehler (FehlermeldungExtern => "EingabeLogik.GanzeZahl - Frage außerhalb des Fragenbereichs.");
+      
+      NachGrafiktask.AnzeigeFrage := WelcheFrageExtern;
+      EingegebeneZahl.EingegebeneZahl := 0;
+      NachGrafiktask.EingegebeneZahl := EingegebeneZahl.EingegebeneZahl;
+      ZahlenString := ZahlenStringLeer;
+      VorzeichenAnpassen (ZahlenMinimumExtern => ZahlenMinimumExtern,
+                          ZahlenMaximumExtern => ZahlenMaximumExtern,
+                          PlusMinusExtern     => True);
          
-      else
-         NachGrafiktask.AnzeigeFrage := WelcheFrageExtern;
-         AktuellerWert := 0;
-         EingegebeneZahl.EingegebeneZahl := AktuellerWert;
-         ZahlenString := ZahlenStringLeer;
-         VorzeichenAnpassen (ZahlenMinimumExtern => ZahlenMinimumExtern,
-                             ZahlenMaximumExtern => ZahlenMaximumExtern,
-                             PlusMinusExtern     => True);
-         
-         NachGrafiktask.Eingabe := SystemDatentypen.Zahlen_Eingabe_Enum;
-      end if;
+      NachGrafiktask.Eingabe := SystemDatentypen.Zahlen_Eingabe_Enum;
                   
       case
         ZahlSchleife (ZahlenMinimumExtern => ZahlenMinimumExtern,
                       ZahlenMaximumExtern => ZahlenMaximumExtern)
       is
          when True =>
-            EingegebeneZahl.EingabeAbbruch := True;
+            EingegebeneZahl.ErfolgreichAbbruch := True;
                
          when False =>
-            EingegebeneZahl.EingabeAbbruch := False;
+            EingegebeneZahl.ErfolgreichAbbruch := False;
       end case;
       
       NachGrafiktask.Eingabe := SystemDatentypen.Keine_Eingabe_Enum;
@@ -70,7 +55,7 @@ package body EingabeLogik is
             
       return EingegebeneZahl;
       
-   end GanzeZahl;
+   end Zahleneingabe;
    
    
    
@@ -83,7 +68,9 @@ package body EingabeLogik is
       ZahlenSchleife:
       loop
          
-         EingabeAbwarten;
+         NachLogiktask.Warten := True;
+         NachGrafiktask.TastenEingabe := True;
+         EingabeAllgemeinLogik.EingabeAbwarten;
          Zahlen := NachLogiktask.TastaturTaste;
          
          case
@@ -97,9 +84,8 @@ package body EingabeLogik is
 
             when Eingabe_Fertig =>
                if
-                 MinimumMaximumSetzen (ZahlenMinimumExtern => ZahlenMinimumExtern,
-                                       ZahlenMaximumExtern => ZahlenMaximumExtern)
-                 = True
+                 True = MinimumMaximumSetzen (ZahlenMinimumExtern => ZahlenMinimumExtern,
+                                              ZahlenMaximumExtern => ZahlenMaximumExtern)
                then
                   return True;
                   
@@ -119,12 +105,13 @@ package body EingabeLogik is
                VorzeichenAnpassen (ZahlenMinimumExtern => ZahlenMinimumExtern,
                                    ZahlenMaximumExtern => ZahlenMaximumExtern,
                                    PlusMinusExtern     => False);
-                  
+               
             when Leer =>
                null;
          end case;
          
-         AktuellerWert := Natural'Wide_Wide_Value (ZahlenString);
+         NachGrafiktask.EingegebenesVorzeichen := WelchesVorzeichen;
+         NachGrafiktask.EingegebeneZahl := Natural'Wide_Wide_Value (ZahlenString);
 
       end loop ZahlenSchleife;
       
@@ -297,186 +284,4 @@ package body EingabeLogik is
       
    end MinimumMaximumSetzen;
    
-   
-   
-   function StadtName
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return SystemRecords.TextEingabeRecord
-   is begin
-      
-      NachLogiktask.EingegebenerText.EingegebenerText := Rassentexte.Städtenamen (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer);
-      
-      return NameEingeben (WelcheFrageExtern => TextnummernKonstanten.FrageStadtname);
-      
-   end StadtName;
-   
-   
-   
-   function NameEingeben
-     (WelcheFrageExtern : in Positive)
-      return SystemRecords.TextEingabeRecord
-   is begin
-      
-      NachGrafiktask.AnzeigeFrage := WelcheFrageExtern;
-      
-      case
-        WelcheFrageExtern
-      is
-         when TextnummernKonstanten.FrageStadtname =>
-            null;
-            
-         when others =>
-            NachLogiktask.EingegebenerText := SystemRecordKonstanten.LeerTexteingabe;
-      end case;
-      
-      NachGrafiktask.Eingabe := SystemDatentypen.Text_Eingabe_Enum;
-      
-      NachLogiktask.Warten := True;
-      NachGrafiktask.TextEingabe := True;
-        
-      while NachLogiktask.Warten loop
-         
-         delay 0.0002;
-         
-      end loop;
-      
-      NachGrafiktask.Eingabe := SystemDatentypen.Keine_Eingabe_Enum;
-      
-      return NachLogiktask.EingegebenerText;
-      
-   end NameEingeben;
-   
-   
-   
-   function SpielstandName
-     return SystemRecords.TextEingabeRecord
-   is begin
-      
-      Name := NameEingeben (WelcheFrageExtern => TextnummernKonstanten.FrageSpielstandname);
-      
-      case
-        Name.ErfolgreichAbbruch
-      is
-         when False =>
-            return Name;
-            
-         when True =>
-            null;
-      end case;
-
-      case
-        To_Wide_Wide_String (Source => Name.EingegebenerText)'Length
-      is
-         when 0 =>
-            return (True, To_Unbounded_Wide_Wide_String (Source => "Kein Name"));
-              
-         when others =>
-            return Name;
-      end case;
-      
-   end SpielstandName;
-   
-   
-   
-   function TastenbelegungAnpassen
-     return Sf.Window.Keyboard.sfKeyCode
-   is begin
-      
-      TasteneingabeSchleife:
-      loop
-         
-         EingabeAbwarten;
-      
-         case
-           -- Maustaste mal als lokale Variable anlegen. äöü
-           NachLogiktask.MausTaste
-         is
-            when Sf.Window.Mouse.sfMouseRight =>
-               return Sf.Window.Keyboard.sfKeyUnknown;
-            
-            when others =>
-               Taste := NachLogiktask.TastaturTaste;
-         end case;
-      
-         case
-           Taste
-         is
-            when Sf.Window.Keyboard.sfKeyNumpad0 .. Sf.Window.Keyboard.sfKeyNumpad9 | Sf.Window.Keyboard.sfKeyAdd .. Sf.Window.Keyboard.sfKeySubtract =>
-               null;
-            
-            when Sf.Window.Keyboard.sfKeyEscape =>
-               return Sf.Window.Keyboard.sfKeyUnknown;
-               
-            when Sf.Window.Keyboard.sfKeyUnknown =>
-               null;
-               
-            when others =>
-               return Taste;
-         end case;
-         
-      end loop TasteneingabeSchleife;
-      
-   end TastenbelegungAnpassen;
-   
-   
-   
-   procedure EingabeAbwarten
-   is begin
-      
-      NachLogiktask.Warten := True;
-      NachGrafiktask.TastenEingabe := True;
-        
-      while NachLogiktask.Warten loop
-         
-         delay 0.0002;
-         
-      end loop;
-      
-   end EingabeAbwarten;
-   
-   
-   
-   function Tastenwert
-     return TastenbelegungDatentypen.Tastenbelegung_Enum
-   is begin
-            
-      EingabeAbwarten;
-         
-      if
-        NachLogiktask.MausTaste = Sf.Window.Mouse.sfMouseLeft
-      then
-         return TastenbelegungDatentypen.Auswählen_Enum;
-         
-      elsif
-        NachLogiktask.MausTaste = Sf.Window.Mouse.sfMouseRight
-      then
-         return TastenbelegungDatentypen.Menü_Zurück_Enum;
-         
-      elsif
-        NachLogiktask.TastaturTaste = Sf.Window.Keyboard.sfKeyUnknown
-      then
-         return TastenbelegungDatentypen.Leer_Tastenbelegung_Enum;
-            
-      else
-         Taste := NachLogiktask.TastaturTaste;
-      end if;
-      
-      BelegungSchleife:
-      for BelegungSchleifenwert in TastenbelegungVariablen.TastenbelegungArray'Range loop
-            
-         if
-           TastenbelegungVariablen.Tastenbelegung (BelegungSchleifenwert) = Taste
-         then
-            return BelegungSchleifenwert;
-               
-         else
-            null;
-         end if;
-            
-      end loop BelegungSchleife;
-      
-      return TastenbelegungDatentypen.Leer_Tastenbelegung_Enum;
-      
-   end Tastenwert;
-   
-end EingabeLogik;
+end ZahleneingabeLogik;

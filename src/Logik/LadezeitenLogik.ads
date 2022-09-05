@@ -43,9 +43,9 @@ private
    FortschrittSchritte : constant FortschrittSchritteArray := (
                                                                1 => 1,
                                                                2 => 1,
-                                                               3 => 8,
-                                                               4 => 33,
-                                                               5 => 33
+                                                               3 => 10,
+                                                               4 => 14,
+                                                               5 => 14
                                                               );
 
 end LadezeitenLogik;

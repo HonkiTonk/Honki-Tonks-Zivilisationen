@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with TastenbelegungDatentypen;
 
-with EingabeLogik;
+with TasteneingabeLogik;
 with RueckgabeMenues;
 with NachGrafiktask;
 with Mausauswahl;
@@ -56,7 +56,7 @@ package body AuswahlMenuesEinfach is
          NachGrafiktask.AktuelleAuswahl.AuswahlEins := AktuelleAuswahl;
          
          case
-           EingabeLogik.Tastenwert
+           TasteneingabeLogik.Tastenwert
          is
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if

@@ -12,12 +12,11 @@ with SchreibeWichtiges;
 with LeseWichtiges;
 
 with Wachstum;
-with ForschungAllgemein;
+with ForschungsfortschrittLogik;
 with StadtProduktion;
 with SiegBedingungen;
 with DiplomatischerZustand;
-with StadtMeldungenSetzen;
-with EinheitenMeldungenSetzen;
+with MeldungenSetzenLogik;
 with EinheitInUmgebung;
 with EinheitenModifizieren;
 with LadezeitenLogik;
@@ -44,10 +43,7 @@ package body ZwischenDenRunden is
       end case;
       
       -- Später in verschiedene Teilbereiche aufteilen und nicht nur einen einzelnen Berechnungsfortschritt anzeigen? äöü
-      StadtMeldungenSetzen.StadtMeldungenSetzenRundenEnde;
-      LadezeitenLogik.RundenendeSchreiben;
-      
-      EinheitenMeldungenSetzen.EinheitenMeldungenSetzenRundenEnde;
+      MeldungenSetzenLogik.MeldungenRundenende;
       LadezeitenLogik.RundenendeSchreiben;
       
       EinheitInUmgebung.EinheitInUmgebung;
@@ -68,7 +64,7 @@ package body ZwischenDenRunden is
       GeldForschungMengeSetzen;
       LadezeitenLogik.RundenendeSchreiben;
       
-      ForschungAllgemein.ForschungFortschritt;
+      ForschungsfortschrittLogik.Forschungsfortschritt;
       LadezeitenLogik.RundenendeSchreiben;
             
       RundenanzahlSetzen;

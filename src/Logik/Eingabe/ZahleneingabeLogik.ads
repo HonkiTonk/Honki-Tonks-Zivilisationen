@@ -3,23 +3,13 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Sf.Window.Keyboard;
 
-with RassenDatentypen; use RassenDatentypen;
-with SpielVariablen;
 with ZahlenDatentypen;
 with SystemRecords;
-with TastenbelegungDatentypen;
-with StadtRecords;
+with Meldungstexte;
 
-package EingabeLogik is
-   
-   WelchesVorzeichen : Boolean;
-      
-   AktuellerWert : Natural;
-   
-   
+package ZahleneingabeLogik is
 
-   -- Das hier mal überarbeiten! äöü
-   function GanzeZahl
+   function Zahleneingabe
      (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
       ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger;
       WelcheFrageExtern : in Positive)
@@ -27,45 +17,26 @@ package EingabeLogik is
      with
        Pre => (
                  ZahlenMinimumExtern <= ZahlenMaximumExtern
-              );
-   
-   function StadtName
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return SystemRecords.TextEingabeRecord
-     with
-       Pre => (
-                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
                and
-                 SpielVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
+                 WelcheFrageExtern <= Meldungstexte.Frage'Last
               );
 
-   function SpielstandName
-     return SystemRecords.TextEingabeRecord;
-
-   function Tastenwert
-     return TastenbelegungDatentypen.Tastenbelegung_Enum;
-   
-   function TastenbelegungAnpassen
-     return Sf.Window.Keyboard.sfKeyCode;
-   
 private
-   
+
+   WelchesVorzeichen : Boolean;
+
    AktuelleZahl : Positive;
-   
+
    ZahlenStringLeer : constant Wide_Wide_String (1 .. 10) := "0000000000";
    ZahlenString : Wide_Wide_String (1 .. 10);
-      
+
    Zahlen : Sf.Window.Keyboard.sfKeyCode;
-   Taste : Sf.Window.Keyboard.sfKeyCode;
    Zwischenspeicher : Sf.Window.Keyboard.sfKeyCode;
-   
+
    EingegebeneZahl : SystemRecords.ZahlenEingabeRecord;
-   
-   EingegebenerName : SystemRecords.TextEingabeRecord;
-   Name : SystemRecords.TextEingabeRecord;
-   
+
    type Zahl_Prüfung_Enum is (Zahl_Hinzufügen, Eingabe_Abbrechen, Eingabe_Fertig, Zahl_Löschen, Vorzeichen_Minus, Vorzeichen_Plus, Leer);
-      
+
    type EingabeZahlenUmwandelnArray is array (Sf.Window.Keyboard.sfKeyNum0 .. Sf.Window.Keyboard.sfKeyNum9) of Wide_Wide_Character;
    EingabeZahlenUmwandeln : constant EingabeZahlenUmwandelnArray := (
                                                                      Sf.Window.Keyboard.sfKeyNum0 => '0',
@@ -79,7 +50,7 @@ private
                                                                      Sf.Window.Keyboard.sfKeyNum8 => '8',
                                                                      Sf.Window.Keyboard.sfKeyNum9 => '9'
                                                                     );
-      
+
    procedure VorzeichenAnpassen
      (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
       ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger;
@@ -93,10 +64,9 @@ private
      (EingegebeneZahlExtern : in Sf.Window.Keyboard.sfKeyCode);
 
    procedure ZahlEntfernen;
-   procedure EingabeAbwarten;
-   
-      
-   
+
+
+
    function MinimumMaximumSetzen
      (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
       ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger)
@@ -105,7 +75,7 @@ private
        Pre => (
                  ZahlenMinimumExtern <= ZahlenMaximumExtern
               );
-   
+
    function ZahlSchleife
      (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
       ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger)
@@ -114,13 +84,9 @@ private
        Pre => (
                  ZahlenMinimumExtern <= ZahlenMaximumExtern
               );
-   
+
    function GanzeZahlPrüfung
      (ZeichenExtern : in Sf.Window.Keyboard.sfKeyCode)
       return Zahl_Prüfung_Enum;
-   
-   function NameEingeben
-     (WelcheFrageExtern : in Positive)
-      return SystemRecords.TextEingabeRecord;
 
-end EingabeLogik;
+end ZahleneingabeLogik;

@@ -13,7 +13,6 @@ with Views;
 with GrafikRecordKonstanten;
 with TextaccessVariablen;
 
-with EingabeLogik;
 with EinstellungenGrafik;
 with EinheitenbeschreibungenGrafik;
 with LeseEinheitenGebaut;
@@ -61,34 +60,34 @@ package body EingabenanzeigeGrafik is
    is begin
       
       Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
-                                                                      VerhältnisExtern => (0.50, 0.05));
+                                                                        VerhältnisExtern => (0.50, 0.05));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.FragenviewAccesse (2),
-                                          GrößeExtern          => Viewfläche,
-                                          AnzeigebereichExtern => GrafikRecordKonstanten.Eingabebereich);
+                                            GrößeExtern          => Viewfläche,
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Eingabebereich);
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Auswahl_Hintergrund_Enum,
-                                   AbmessungenExtern => Viewfläche);
+                                     AbmessungenExtern => Viewfläche);
       
       case
-        EingabeLogik.WelchesVorzeichen
+        NachGrafiktask.EingegebenesVorzeichen
       is
          when False =>
-            Text := To_Unbounded_Wide_Wide_String (Source => "-") & ZahlAlsStringNatural (ZahlExtern => EingabeLogik.AktuellerWert);
+            Text := To_Unbounded_Wide_Wide_String (Source => "-") & ZahlAlsStringNatural (ZahlExtern => NachGrafiktask.EingegebeneZahl);
                               
          when True =>
-            Text := ZahlAlsStringNatural (ZahlExtern => EingabeLogik.AktuellerWert);       
+            Text := ZahlAlsStringNatural (ZahlExtern => NachGrafiktask.EingegebeneZahl);       
       end case;
                                     
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TextAccess,
                                          str  => To_Wide_Wide_String (Source => Text));
       
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.TextAccess,
-                                                                        TextbreiteExtern => 0.00);
+                                                                          TextbreiteExtern => 0.00);
       
       Textposition.y := TextKonstanten.StartpositionText.y;
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.TextAccess,
-                                                                            ViewbreiteExtern => Viewfläche.x);
+                                                                              ViewbreiteExtern => Viewfläche.x);
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.TextAccess,
                                     position => Textposition);

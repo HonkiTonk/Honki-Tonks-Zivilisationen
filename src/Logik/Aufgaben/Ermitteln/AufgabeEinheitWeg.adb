@@ -13,7 +13,7 @@ with LeseKarten;
 
 with Fehler;
 with Grenzpruefungen;
-with ForschungAllgemein;
+with ForschugnstestsLogik;
 with AufgabenArbeitszeitWeg;
 
 package body AufgabeEinheitWeg is
@@ -111,8 +111,8 @@ package body AufgabeEinheitWeg is
       is
          when KartenverbesserungDatentypen.Karten_Straße_Enum'Range | KartenverbesserungDatentypen.Leer_Weg_Enum =>
             if
-              True = ForschungAllgemein.TechnologieVorhanden (RasseExtern       => RasseExtern,
-                                                              TechnologieExtern => ForschungKonstanten.TechnologischeVoraussetzung (RasseExtern, WelcheWegart (WegExtern)))
+              True = ForschugnstestsLogik.TechnologieVorhanden (RasseExtern       => RasseExtern,
+                                                                TechnologieExtern => ForschungKonstanten.TechnologischeVoraussetzung (RasseExtern, WelcheWegart (WegExtern)))
             then
                WelcheArbeit := WelcheWegart (WegExtern);
                
@@ -166,8 +166,8 @@ package body AufgabeEinheitWeg is
       is
          when KartenverbesserungDatentypen.Karten_Straße_Enum'Range | KartenverbesserungDatentypen.Leer_Weg_Enum =>
             if
-              True = ForschungAllgemein.TechnologieVorhanden (RasseExtern       => RasseExtern,
-                                                              TechnologieExtern => ForschungKonstanten.TechnologischeVoraussetzung (RasseExtern, WelcheWegart (WegExtern)))
+              True = ForschugnstestsLogik.TechnologieVorhanden (RasseExtern       => RasseExtern,
+                                                                TechnologieExtern => ForschungKonstanten.TechnologischeVoraussetzung (RasseExtern, WelcheWegart (WegExtern)))
             then
                WelcheArbeit := WelcheWegart (WegExtern);
                
@@ -210,8 +210,8 @@ package body AufgabeEinheitWeg is
       is
          when KartenverbesserungDatentypen.Karten_Straße_Enum'Range | KartenverbesserungDatentypen.Leer_Weg_Enum =>
             if
-              True = ForschungAllgemein.TechnologieVorhanden (RasseExtern       => RasseExtern,
-                                                              TechnologieExtern => ForschungKonstanten.TechnologischeVoraussetzung (RasseExtern, WelcheWegart (WegExtern)))
+              True = ForschugnstestsLogik.TechnologieVorhanden (RasseExtern       => RasseExtern,
+                                                                TechnologieExtern => ForschungKonstanten.TechnologischeVoraussetzung (RasseExtern, WelcheWegart (WegExtern)))
             then
                WelcheArbeit := WelcheWegart (WegExtern);
                
@@ -255,8 +255,8 @@ package body AufgabeEinheitWeg is
       is
          when KartenverbesserungDatentypen.Karten_Straße_Enum'Range | KartenverbesserungDatentypen.Leer_Weg_Enum =>
             if
-              True = ForschungAllgemein.TechnologieVorhanden (RasseExtern       => RasseExtern,
-                                                              TechnologieExtern => ForschungKonstanten.TechnologischeVoraussetzung (RasseExtern, WelcheWegart (WegExtern)))
+              True = ForschugnstestsLogik.TechnologieVorhanden (RasseExtern       => RasseExtern,
+                                                                TechnologieExtern => ForschungKonstanten.TechnologischeVoraussetzung (RasseExtern, WelcheWegart (WegExtern)))
             then
                WelcheArbeit := WelcheWegart (WegExtern);
                

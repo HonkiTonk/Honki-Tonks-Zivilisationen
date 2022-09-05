@@ -18,7 +18,7 @@ with SprachauswahlGrafik;
 with EingabenanzeigeGrafik;
 with BauauswahlGrafik;
 with NachLogiktask;
-with EingabesystemeGrafik;
+with TexteingabeGrafik;
 with TextaccesseSetzenGrafik;
 with LadezeitenGrafik;
 with KartenaufteilungGrafik;
@@ -26,6 +26,7 @@ with DiplomatieauswahlGrafik;
 with SpielmeldungenGrafik;
 with EditorenGrafik;
 with ForschungserfolgGrafik;
+with TasteneingabeGrafik;
 -- with Systemchecks;
 
 package body Grafik is
@@ -121,7 +122,7 @@ package body Grafik is
         NachGrafiktask.TextEingabe
       is
          when True =>
-            EingabesystemeGrafik.TextEingeben;
+            TexteingabeGrafik.Texteingabe;
                
          when False =>
             null;
@@ -131,7 +132,7 @@ package body Grafik is
         NachGrafiktask.TastenEingabe
       is
          when True =>
-            EingabesystemeGrafik.TastenEingabe;
+            TasteneingabeGrafik.Tasteneingabe;
                
          when False =>
             null;
@@ -167,7 +168,7 @@ package body Grafik is
             LadezeitenGrafik.Ladezeiten (WelcheLadeanzeigeExtern => NachGrafiktask.AktuelleDarstellung,
                                          RasseExtern             => NachGrafiktask.KIRechnet);
             -- Diese Prüfung kann nicht rausgezogen werden, da er mit dem aktuellen System sonst Tasteneingaben nicht mehr korrekt erkennt.
-            EingabesystemeGrafik.FensterAnpassen;
+            TasteneingabeGrafik.FensterAnpassen;
          
          when GrafikDatentypen.Grafik_Menüs_Enum =>
             MenueaufteilungGrafik.Menüaufteilung (WelchesMenüExtern     => NachGrafiktask.AktuellesMenü,
@@ -184,15 +185,15 @@ package body Grafik is
                
          when GrafikDatentypen.Grafik_Forschung_Enum =>
             ForschungsauswahlGrafik.ForschungAnzeige (RasseExtern           => NachGrafiktask.AktuelleRasse,
-                                                   AktuelleAuswahlExtern => NachGrafiktask.AktuelleAuswahl.AuswahlEins);
+                                                      AktuelleAuswahlExtern => NachGrafiktask.AktuelleAuswahl.AuswahlEins);
             
-         when GrafikDatentypen.Grafik_Forschung_Efolgreich_Enum =>
+         when GrafikDatentypen.Grafik_Forschung_Erfolgreich_Enum =>
             ForschungserfolgGrafik.Forschungserfolg (RasseExtern   => NachGrafiktask.AktuelleRasse,
                                                      AuswahlExtern => NachGrafiktask.AktuelleAuswahl.AuswahlEins);
             
          when GrafikDatentypen.Grafik_Bauen_Enum =>
             BauauswahlGrafik.Bauauswahl (StadtRasseNummerExtern => (NachGrafiktask.AktuelleRasse, NachGrafiktask.AktuelleStadt),
-                                              AktuelleAuswahlExtern  => NachGrafiktask.AktuelleBauauswahl);
+                                         AktuelleAuswahlExtern  => NachGrafiktask.AktuelleBauauswahl);
             
          when GrafikDatentypen.Grafik_Diplomatie_Enum =>
             DiplomatieauswahlGrafik.Diplomatieauswahl (AuswahlExtern => NachGrafiktask.AktuelleAuswahl.AuswahlEins);
@@ -245,7 +246,7 @@ package body Grafik is
       is
          when SystemDatentypen.Eingaben_Fragen_Enum'Range =>
             EingabenanzeigeGrafik.Fragenaufteilung (FrageExtern   => NachGrafiktask.AnzeigeFrage,
-                                                 EingabeExtern => NachGrafiktask.Eingabe);
+                                                    EingabeExtern => NachGrafiktask.Eingabe);
             
          when SystemDatentypen.Einheit_Auswahl_Enum =>
             EingabenanzeigeGrafik.AnzeigeEinheitenStadt (RasseExtern => NachGrafiktask.AktuelleRasse);

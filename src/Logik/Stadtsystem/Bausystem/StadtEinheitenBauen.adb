@@ -15,7 +15,7 @@ with LeseStadtGebaut;
 
 with EinheitSuchen;
 with UmgebungErreichbarTesten;
-with StadtMeldungenSetzen;
+with MeldungenSetzenLogik;
 with EinheitenErzeugenEntfernen;
 
 package body StadtEinheitenBauen is
@@ -85,7 +85,7 @@ package body StadtEinheitenBauen is
         KartenWert.XAchse
       is
          when KartenKonstanten.LeerXAchse =>
-            StadtMeldungenSetzen.StadtMeldungSetzenEreignis (StadtRasseNummerExtern => StadtRasseNummerExtern,
+            MeldungenSetzenLogik.StadtmeldungSetzen (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                              EreignisExtern         => StadtDatentypen.Einheit_Unplatzierbar_Enum);
             
          when others =>
@@ -116,7 +116,7 @@ package body StadtEinheitenBauen is
         SpielVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse)
       is
          when RassenDatentypen.Mensch_Spieler_Enum =>
-            StadtMeldungenSetzen.StadtMeldungSetzenEreignis (StadtRasseNummerExtern => StadtRasseNummerExtern,
+            MeldungenSetzenLogik.StadtmeldungSetzen (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                              EreignisExtern         => StadtDatentypen.Produktion_Abgeschlossen_Enum);
          
          when others =>

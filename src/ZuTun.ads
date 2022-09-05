@@ -1,21 +1,17 @@
 -- Womit ich aufgehört habe:
 
 -- Kartengenerator
--- Zwischen den Runden
--- Forschugnserfolg
 -- Spielende
--- ForschungAllgemein
--- Würdigung einbauen, als Grafik und Logik.
 -- BewegungCursor aufteilen (siehe auch Sichtweiten und BerechnungenKarteSFML)
--- EingabesystemeGrafik erweitern und aufteilen
--- AuswahlLogik erweiter oder woanders reinbasteln
+-- AuswahlLogik erweitern oder woanders reinbasteln
 --
 
 
 -- Aktuell höchste Priorität:
 
 -- KI überarbeiten (Funktioniert inzwischen Minimal, später weiter verbessern).
--- Grafiken überarbeiten (Menüs und Textanzeigen in Views umgebaut. Angefangen neue Texturen zu erstellen. Angefangen das Stadtsystem zu überarbeiten. Scrollen nud Zoomen angepasst und verbessert.).
+-- Grafiken überarbeiten (Menüs und Textanzeigen in Views umgebaut. Angefangen neue Texturen zu erstellen. Angefangen das Stadtsystem zu überarbeiten. Scrollen und Zoomen angepasst und verbessert.
+--                        Forschungserfolganzeige eingabaut. Rassenspezifische Hintergrund-, Einheiten- und Gebäudegrafiken ermöglicht.).
 -- Einfache Musik/Sounds einbauen ().
 -- Forschungen/Einheiten/Gebäude für zweite Rasse einbauen ().
 -- Herausfinden wie man eine Windowsversion ohne GPL Zwang kompiliert ().

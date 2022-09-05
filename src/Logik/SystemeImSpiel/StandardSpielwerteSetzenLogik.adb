@@ -16,9 +16,9 @@ with Karten;
 with KartengeneratorVariablen;
 with Sichtweiten;
 
-package body AllesAufAnfangSetzen is
+package body StandardSpielwerteSetzenLogik is
 
-   procedure AllesAufAnfangSetzen
+   procedure StandardSpielwerteSetzenLogik
      (EinstellungenBehaltenExtern : in Boolean)
    is begin
       
@@ -55,6 +55,6 @@ package body AllesAufAnfangSetzen is
       
       Sichtweiten.StandardSichtweiten;
       
-   end AllesAufAnfangSetzen;
+   end StandardSpielwerteSetzenLogik;
 
-end AllesAufAnfangSetzen;
+end StandardSpielwerteSetzenLogik;

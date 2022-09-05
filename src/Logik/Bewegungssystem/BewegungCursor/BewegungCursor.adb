@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with TextnummernKonstanten;
 
 with Karten;
-with EingabeLogik;
+with ZahleneingabeLogik;
 with NachGrafiktask;
 with Sichtweiten;
 
@@ -117,38 +117,38 @@ package body BewegungCursor is
    procedure GeheZu
    is begin
       
-      KoordinatenPunkt := EingabeLogik.GanzeZahl (ZahlenMinimumExtern => Integer (Karten.Weltkarte'First (1)),
-                                                 ZahlenMaximumExtern => Integer (Karten.Weltkarte'Last (1)),
-                                                 WelcheFrageExtern   => TextnummernKonstanten.FrageWelcheEbene);
+      KoordinatenPunkt := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => Integer (Karten.Weltkarte'First (1)),
+                                                            ZahlenMaximumExtern => Integer (Karten.Weltkarte'Last (1)),
+                                                            WelcheFrageExtern   => TextnummernKonstanten.FrageWelcheEbene);
       
       case
-        KoordinatenPunkt.EingabeAbbruch
+        KoordinatenPunkt.ErfolgreichAbbruch
       is
          when False =>
             return;
          
          when True =>
             NeueKoordinate.EAchse := KartenDatentypen.EbeneVorhanden (KoordinatenPunkt.EingegebeneZahl);
-            KoordinatenPunkt := EingabeLogik.GanzeZahl (ZahlenMinimumExtern => Positive (Karten.Weltkarte'First (2)),
-                                                       ZahlenMaximumExtern => Positive (Karten.Karteneinstellungen.Kartengröße.YAchse),
-                                                       WelcheFrageExtern   => TextnummernKonstanten.FrageWelcheYPosition);
+            KoordinatenPunkt := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => Positive (Karten.Weltkarte'First (2)),
+                                                                  ZahlenMaximumExtern => Positive (Karten.Karteneinstellungen.Kartengröße.YAchse),
+                                                                  WelcheFrageExtern   => TextnummernKonstanten.FrageWelcheYPosition);
       end case;
       
       case
-        KoordinatenPunkt.EingabeAbbruch
+        KoordinatenPunkt.ErfolgreichAbbruch
       is
          when False =>
             return;
          
          when True =>
             NeueKoordinate.YAchse := KartenDatentypen.KartenfeldPositiv (KoordinatenPunkt.EingegebeneZahl);
-            KoordinatenPunkt := EingabeLogik.GanzeZahl (ZahlenMinimumExtern => Positive (Karten.Weltkarte'First (3)),
-                                                       ZahlenMaximumExtern => Positive (Karten.Karteneinstellungen.Kartengröße.XAchse),
-                                                       WelcheFrageExtern   => TextnummernKonstanten.FrageWelcheXPosition);
+            KoordinatenPunkt := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => Positive (Karten.Weltkarte'First (3)),
+                                                                  ZahlenMaximumExtern => Positive (Karten.Karteneinstellungen.Kartengröße.XAchse),
+                                                                  WelcheFrageExtern   => TextnummernKonstanten.FrageWelcheXPosition);
       end case;
 
       case
-        KoordinatenPunkt.EingabeAbbruch
+        KoordinatenPunkt.ErfolgreichAbbruch
       is
          when False =>
             null;

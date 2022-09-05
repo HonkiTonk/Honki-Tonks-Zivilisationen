@@ -31,7 +31,7 @@ package body SeitenleisteGrafik is
             
          when False =>
             WichtigesSeitenleisteGrafik.WichtigesInformationen (RasseExtern        => RasseExtern,
-                                                       KoordinatenExtern  => AktuelleKoordinaten);
+                                                                KoordinatenExtern  => AktuelleKoordinaten);
       end case;
       
       case
@@ -52,7 +52,7 @@ package body SeitenleisteGrafik is
             
                when others =>
                   StadtseitenleisteGrafik.Stadt (RasseExtern            => RasseExtern,
-                                                StadtRasseNummerExtern => StadtRasseNummer);
+                                                 StadtRasseNummerExtern => StadtRasseNummer);
                   StadtVorhanden := True;
             end case;
             
@@ -67,8 +67,8 @@ package body SeitenleisteGrafik is
             
                when others =>
                   EinheitenseitenleisteGrafik.Einheiten (RasseExtern              => RasseExtern,
-                                                        EinheitRasseNummerExtern => EinheitRasseNummer,
-                                                        StadtVorhandenExtern     => StadtVorhanden);
+                                                         EinheitRasseNummerExtern => EinheitRasseNummer,
+                                                         StadtVorhandenExtern     => StadtVorhanden);
             end case;
             
          when False =>

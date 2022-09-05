@@ -146,9 +146,6 @@ begin
 
    end loop TaskIDsBelegenLassenSchleife;
 
-   MeldungSchreiben.MeldungSchreiben (MeldungExtern => "     ");
-   MeldungSchreiben.MeldungSchreiben (MeldungExtern => "Start erfolgreich.");
-
    SpielLäuftSchleife:
    loop
 
@@ -194,7 +191,6 @@ begin
         and
           TasksLaufen (Task_Sound_Enum) = False
       then
-         MeldungSchreiben.MeldungSchreiben (MeldungExtern => "Erfolgreich beendet.");
          exit SpielLäuftSchleife;
 
       else

@@ -168,17 +168,23 @@ package ChangelogSeptember2022 is
    
    
 
-   -- Version 0.03. => 0.03. (06.09.2022):
+   -- Version 0.03.8335 => 0.03. (06.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.8245 => 0.03. (05.09.2022):
+   -- Version 0.03.8245 => 0.03.8335 (05.09.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Rassenspezifische Hintergrund-, Einheiten- und Gebäudetexturen sind jetzt möglich.
+   -- Forschungserfolganzeige eingebaut.
+   -- Ladezeitenanzeige leicht verbessert.
+   -- Code zusammengefasst und aufgeteilt.
+   -- Grafikteil der Eingabesysteme aufgeteilt.
+   -- Logikteil der Eingabesysteme aufgeteilt.
+   -- Zahleneingabe überarbeitet.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

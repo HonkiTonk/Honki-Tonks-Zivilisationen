@@ -6,7 +6,7 @@ with EinheitenKonstanten;
 with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;
 
-with ForschungAllgemein;
+with ForschugnstestsLogik;
 
 with KIDatentypen; use KIDatentypen;
 
@@ -31,7 +31,7 @@ package body KIEinheitAufgabeModernisieren is
       end case;
       
       case
-        ForschungAllgemein.TechnologieVorhanden (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+        ForschugnstestsLogik.TechnologieVorhanden (RasseExtern       => EinheitRasseNummerExtern.Rasse,
                                                  TechnologieExtern => LeseEinheitenDatenbank.Anforderungen (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                                                                             IDExtern    => NeueEinheitenID))
       is

@@ -21,7 +21,7 @@ with StadtEinheitenBauen;
 with StadtGebaeudeBauen;
 with StadtEntfernen;
 with Sichtbarkeit;
-with StadtMeldungenSetzen;
+with MeldungenSetzenLogik;
 
 package body Wachstum is
    
@@ -153,7 +153,7 @@ package body Wachstum is
         WachstumSchrumpfungExtern
       is
          when True =>
-            StadtMeldungenSetzen.StadtMeldungSetzenEreignis (StadtRasseNummerExtern => StadtRasseNummerExtern,
+            MeldungenSetzenLogik.StadtmeldungSetzen (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                              EreignisExtern         => StadtDatentypen.Einwohner_Wachstum_Enum);
             
             if
@@ -169,7 +169,7 @@ package body Wachstum is
             end if;
             
          when False =>
-            StadtMeldungenSetzen.StadtMeldungSetzenEreignis (StadtRasseNummerExtern => StadtRasseNummerExtern,
+            MeldungenSetzenLogik.StadtmeldungSetzen (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                              EreignisExtern         => StadtDatentypen.Einwohner_Reduktion_Enum);
             
             if

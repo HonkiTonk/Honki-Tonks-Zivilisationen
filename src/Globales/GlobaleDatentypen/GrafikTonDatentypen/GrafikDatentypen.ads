@@ -9,7 +9,7 @@ package GrafikDatentypen is
                                              Grafik_Generierungszeit_Enum, Grafik_KI_Rechenzeit_Enum, Grafik_Rundenende_Enum, Grafik_Speichern_Laden_Enum,
                                              Grafik_Menüs_Enum, Grafik_Sprache_Enum,
                                              Grafik_Editoren_Enum,
-                                             Grafik_Weltkarte_Enum, Grafik_Stadtkarte_Enum, Grafik_Forschung_Enum, Grafik_Bauen_Enum, Grafik_Forschung_Efolgreich_Enum,
+                                             Grafik_Weltkarte_Enum, Grafik_Stadtkarte_Enum, Grafik_Forschung_Enum, Grafik_Bauen_Enum, Grafik_Forschung_Erfolgreich_Enum,
                                              Grafik_Diplomatie_Enum,
                                              Grafik_Ende_Enum
                                             );
@@ -37,5 +37,11 @@ package GrafikDatentypen is
    
    subtype Hintergrund_Undurchsichtig_Enum is Hintergrund_Enum range Hintergrund_Enum'First .. Menü_Hintergrund_Enum;
    subtype Hintergrund_Durchsichtig_Enum is Hintergrund_Enum range Auswahl_Hintergrund_Enum .. Hintergrund_Enum'Last;
+   
+   
+   
+   type Rassenhintergrund_Enum is (
+                                   Forschungserfolg_Enum
+                                  );
 
 end GrafikDatentypen;

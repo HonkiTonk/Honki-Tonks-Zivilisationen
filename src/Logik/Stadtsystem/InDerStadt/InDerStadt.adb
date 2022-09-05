@@ -7,10 +7,11 @@ with GrafikDatentypen;
 with SchreibeStadtGebaut;
 
 with InDerStadtBauen;
-with EingabeLogik;
+with TasteneingabeLogik;
 with EinwohnerZuweisenEntfernen;
 with GebaeudeVerkaufen;
 with NachGrafiktask;
+with TexteingabeLogik;
 
 package body InDerStadt is
 
@@ -24,7 +25,7 @@ package body InDerStadt is
       StadtSchleife:
       loop
          
-         Befehl := EingabeLogik.Tastenwert;
+         Befehl := TasteneingabeLogik.Tastenwert;
          
          case
            Befehl
@@ -41,7 +42,7 @@ package body InDerStadt is
                GebaeudeVerkaufen.GebäudeVerkaufen (StadtRasseNummerExtern => StadtRasseNummerExtern);
 
             when TastenbelegungDatentypen.Stadt_Umbenennen_Enum =>
-               NeuerName := EingabeLogik.StadtName (StadtRasseNummerExtern => StadtRasseNummerExtern);
+               NeuerName := TexteingabeLogik.StadtName (StadtRasseNummerExtern => StadtRasseNummerExtern);
                
                if
                  NeuerName.ErfolgreichAbbruch = True

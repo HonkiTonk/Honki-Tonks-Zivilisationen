@@ -9,8 +9,7 @@ package ZeitKonstanten is
    WartezeitMusik : constant Duration := 0.20;
    WartezeitSound : constant Duration := 0.20;
 
-   -- Kleinstmögliche Zeiteinheit
-   -- WartezeitMinimal : constant Duration := 0.000000001;
+   WartezeitEingabe : constant Duration := 0.0002;
    
    -- Intervalle durch Nutzer einstellen lassen? äöü
    Blinkintervall : constant Duration := 0.50;

@@ -29,7 +29,8 @@ private
      (DateiSpeichernExtern : in File_Type);
 
    procedure Karte
-     (DateiSpeichernExtern : in File_Type);
+     (DateiSpeichernExtern : in File_Type;
+      AutospeichernExtern : in Boolean);
 
    procedure RassenwerteSpeichern
      (DateiSpeichernExtern : in File_Type);

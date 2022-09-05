@@ -13,7 +13,7 @@ with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
 with LeseKarten;
 
-with ForschungAllgemein;
+with ForschugnstestsLogik;
 with AufgabenAllgemein;
 with AufgabeEinheitWeg;
 with AufgabeEinheitMine;
@@ -144,7 +144,7 @@ package body Aufgaben is
       is
          when TastenbelegungDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range =>
             if
-              False = ForschungAllgemein.TechnologieVorhanden (RasseExtern       => RasseExtern,
+              False = ForschugnstestsLogik.TechnologieVorhanden (RasseExtern       => RasseExtern,
                                                                TechnologieExtern => ForschungKonstanten.TechnologieVerbesserung (RasseExtern, BefehlExtern))
             then
                MeldungFestlegenLogik.SpielermeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungVerbesserungTechnologie,

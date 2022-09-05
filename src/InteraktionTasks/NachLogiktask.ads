@@ -20,6 +20,8 @@ package NachLogiktask is
 
    EingegebenerText : SystemRecords.TextEingabeRecord;
    
+   EingegebeneZahl : SystemRecords.ZahlenEingabeRecord;
+   
    -- Diesen Wert hier immer im Grafiktask neu festlegen lassen, da die Verwendung der A/SFML Funktion im Logiktask zu Abstürzen führen kann.
    -- Ist das überhaupt korrekt oder lag das Problem woanders? äöü
    Mausposition : Sf.System.Vector2.sfVector2f;

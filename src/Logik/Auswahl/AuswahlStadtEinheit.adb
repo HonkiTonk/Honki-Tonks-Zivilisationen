@@ -14,7 +14,7 @@ with LeseEinheitenGebaut;
 
 with NachLogiktask;
 with NachGrafiktask;
-with EingabeLogik;
+with TasteneingabeLogik;
 with InteraktionAuswahl;
 with Vergleiche;
 with EinstellungenGrafik;
@@ -71,7 +71,7 @@ package body AuswahlStadtEinheit is
          NachGrafiktask.AktuelleAuswahl.AuswahlEins := AktuelleAuswahl;
          
          case
-           EingabeLogik.Tastenwert
+           TasteneingabeLogik.Tastenwert
          is               
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if

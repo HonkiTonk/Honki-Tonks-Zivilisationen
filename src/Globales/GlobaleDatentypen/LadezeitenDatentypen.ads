@@ -16,7 +16,7 @@ package LadezeitenDatentypen is
                            );
    
    type Rundenende_Enum is (
-                            Setze_Meldungen_Enum
+                            Meldungen_Setzen_Enum
                            );
    
    type Speichern_Laden_Enum is (

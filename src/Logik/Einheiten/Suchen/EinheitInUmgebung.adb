@@ -15,8 +15,7 @@ with LeseStadtGebaut;
 with Kartenkoordinatenberechnungssystem;
 with EinheitSuchen;
 with DiplomatischerZustand;
-with EinheitenMeldungenSetzen;
-with StadtMeldungenSetzen;
+with MeldungenSetzenLogik;
 
 package body EinheitInUmgebung is
 
@@ -62,7 +61,7 @@ package body EinheitInUmgebung is
                                        UmgebungExtern    => LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert)) + 1,
                                        RasseExtern       => RasseExtern)
                then
-                  StadtMeldungenSetzen.StadtMeldungSetzenEreignis (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert),
+                  MeldungenSetzenLogik.StadtmeldungSetzen (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert),
                                                                    EreignisExtern         => StadtDatentypen.Fremde_Einheit_Nahe_Stadt_Enum);
                            
                else
@@ -95,7 +94,7 @@ package body EinheitInUmgebung is
                                        UmgebungExtern    => 3,
                                        RasseExtern       => RasseExtern)
                then
-                  EinheitenMeldungenSetzen.EinheitMeldungSetzenEreignis (EinheitRasseNummerExtern => (RasseExtern, EinheitSchleifenwert),
+                  MeldungenSetzenLogik.EinheitmeldungSetzen (EinheitRasseNummerExtern => (RasseExtern, EinheitSchleifenwert),
                                                                          EreignisExtern           => EinheitenDatentypen.Fremde_Einheit_Nahe_Enum);
                            
                else

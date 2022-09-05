@@ -9,7 +9,7 @@ with MenueDatentypen;
 with NachGrafiktask;
 with NachLogiktask;
 with Auswahlaufteilungen;
-with EingabeLogik;
+with ZahleneingabeLogik;
 with EinstellungenGrafik;
 with SchreibenEinstellungen;
 with Fehler;
@@ -59,12 +59,12 @@ package body OptionenGrafik is
    procedure AuflösungÄndern
    is begin
       
-      EingabeAuflösung := EingabeLogik.GanzeZahl (ZahlenMinimumExtern => 320,
+      EingabeAuflösung := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => 320,
                                                   ZahlenMaximumExtern => ZahlenDatentypen.EigenerInteger'Last,
                                                   WelcheFrageExtern   => TextnummernKonstanten.FrageAuflösungsbreite);
       
       if
-        EingabeAuflösung.EingabeAbbruch
+        EingabeAuflösung.ErfolgreichAbbruch
       then
          NeueAuflösung.x := Sf.sfUint32 (EingabeAuflösung.EingegebeneZahl);
            
@@ -72,12 +72,12 @@ package body OptionenGrafik is
          return;
       end if;
       
-      EingabeAuflösung := EingabeLogik.GanzeZahl (ZahlenMinimumExtern => 240,
+      EingabeAuflösung := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => 240,
                                                   ZahlenMaximumExtern => ZahlenDatentypen.EigenerInteger'Last,
                                                   WelcheFrageExtern   => TextnummernKonstanten.FrageAuflösungshöhe);
       
       if
-        EingabeAuflösung.EingabeAbbruch
+        EingabeAuflösung.ErfolgreichAbbruch
       then
          NeueAuflösung.y := Sf.sfUint32 (EingabeAuflösung.EingegebeneZahl);
            
@@ -106,12 +106,12 @@ package body OptionenGrafik is
    procedure BildrateÄndern
    is begin
       
-      EingabeBildrate := EingabeLogik.GanzeZahl (ZahlenMinimumExtern => 0,
+      EingabeBildrate := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => 0,
                                                 ZahlenMaximumExtern => ZahlenDatentypen.EigenerInteger'Last,
                                                 WelcheFrageExtern   => TextnummernKonstanten.FrageBildrate);
       
       if
-        EingabeBildrate.EingabeAbbruch
+        EingabeBildrate.ErfolgreichAbbruch
       then
          return;
          

@@ -66,8 +66,8 @@ package SystemRecords is
    
    type ZahlenEingabeRecord is record
       
-      EingabeAbbruch : Boolean;
-      EingegebeneZahl : ZahlenDatentypen.EigenerInteger;
+      ErfolgreichAbbruch : Boolean;
+      EingegebeneZahl : ZahlenDatentypen.EigenesNatural;
       
    end record;
    

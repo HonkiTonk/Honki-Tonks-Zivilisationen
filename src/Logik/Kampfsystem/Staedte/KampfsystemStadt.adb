@@ -21,7 +21,7 @@ with KampfwerteEinheitErmitteln;
 with KampfsystemEinheiten;
 with ZufallsgeneratorenKampf;
 with StadtWerteFestlegen;
-with StadtMeldungenSetzen;
+with MeldungenSetzenLogik;
 with EinheitenErzeugenEntfernen;
 
 package body KampfsystemStadt is
@@ -79,7 +79,7 @@ package body KampfsystemStadt is
       else
          StadtWerteFestlegen.BewirtschaftbareFelderBelegen (ZuwachsOderSchwundExtern => False,
                                                             StadtRasseNummerExtern   => VerteidigendeStadtRasseNummerExtern);
-         StadtMeldungenSetzen.StadtMeldungSetzenEreignis (StadtRasseNummerExtern => VerteidigendeStadtRasseNummerExtern,
+         MeldungenSetzenLogik.StadtmeldungSetzen (StadtRasseNummerExtern => VerteidigendeStadtRasseNummerExtern,
                                                           EreignisExtern         => StadtDatentypen.Einwohner_Reduktion_Enum);
          if
            LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => VerteidigendeStadtRasseNummerExtern,

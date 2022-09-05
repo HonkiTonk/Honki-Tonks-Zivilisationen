@@ -1,9 +1,9 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-package AllesAufAnfangSetzen is
+package StandardSpielwerteSetzenLogik is
 
-   procedure AllesAufAnfangSetzen
+   procedure StandardSpielwerteSetzenLogik
      (EinstellungenBehaltenExtern : in Boolean);
 
-end AllesAufAnfangSetzen;
+end StandardSpielwerteSetzenLogik;

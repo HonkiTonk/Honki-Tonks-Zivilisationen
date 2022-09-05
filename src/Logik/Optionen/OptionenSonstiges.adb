@@ -12,7 +12,7 @@ with EinlesenText;
 with EinlesenRassentexte;
 
 with AuswahlSprache;
-with EingabeLogik;
+with ZahleneingabeLogik;
 with Auswahlaufteilungen;
 with Fehler;
 with NachGrafiktask;
@@ -57,11 +57,11 @@ package body OptionenSonstiges is
    procedure AnzahlAutomatischerSpielstände
    is begin
       
-      EingegebeneZahl := EingabeLogik.GanzeZahl (ZahlenMinimumExtern => 0,
+      EingegebeneZahl := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => 0,
                                                 ZahlenMaximumExtern => 999_999_999,
                                                 WelcheFrageExtern   => TextnummernKonstanten.FrageWievieleAutospielstände);
       case
-        EingegebeneZahl.EingabeAbbruch
+        EingegebeneZahl.ErfolgreichAbbruch
       is
          when True =>
             OptionenVariablen.NutzerEinstellungen.AnzahlAutosave := EingegebeneZahl.EingegebeneZahl;
@@ -77,12 +77,12 @@ package body OptionenSonstiges is
    procedure RundenBisAutospeichern
    is begin
       
-      EingegebeneZahl := EingabeLogik.GanzeZahl (ZahlenMinimumExtern => 0,
+      EingegebeneZahl := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => 0,
                                                 ZahlenMaximumExtern => 999_999_999,
                                                 WelcheFrageExtern   => TextnummernKonstanten.FrageRundenAutomatischSpeichern);
 
       case
-        EingegebeneZahl.EingabeAbbruch
+        EingegebeneZahl.ErfolgreichAbbruch
       is
          when True =>
             if

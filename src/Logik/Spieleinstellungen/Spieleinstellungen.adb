@@ -14,7 +14,7 @@ with Warnung;
 with LadezeitenLogik;
 with Auswahlaufteilungen;
 with NachGrafiktask;
-with AllesAufAnfangSetzen;
+with StandardSpielwerteSetzenLogik;
 with Karten;
 with KartengeneratorVariablen;
 with SpielerVorhanden;
@@ -26,7 +26,7 @@ package body Spieleinstellungen is
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
-      AllesAufAnfangSetzen.AllesAufAnfangSetzen (EinstellungenBehaltenExtern => True);
+      StandardSpielwerteSetzenLogik.StandardSpielwerteSetzenLogik (EinstellungenBehaltenExtern => True);
       
       case
         SchnellstartExtern

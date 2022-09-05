@@ -8,7 +8,7 @@ with SchreibeStadtGebaut;
 with LeseStadtGebaut;
 
 with Fehler;
-with ForschungAllgemein;
+with ForschugnstestsLogik;
 
 package body StadtUmgebungsbereichFestlegen is
 
@@ -39,16 +39,16 @@ package body StadtUmgebungsbereichFestlegen is
                                                       EinwohnerArbeiterExtern => True);
       
       if
-        True = ForschungAllgemein.TechnologieVorhanden (RasseExtern       => StadtRasseNummerExtern.Rasse,
-                                                        TechnologieExtern => TechnologieUmgebungsgröße (StadtRasseNummerExtern.Rasse, SystemDatentypen.Endwert_Enum))
+        True = ForschugnstestsLogik.TechnologieVorhanden (RasseExtern       => StadtRasseNummerExtern.Rasse,
+                                                          TechnologieExtern => TechnologieUmgebungsgröße (StadtRasseNummerExtern.Rasse, SystemDatentypen.Endwert_Enum))
         and
           Einwohner >= StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Endwert_Enum, StadtRasseNummerExtern.Rasse)
       then
          Umgebung := 3;
          
       elsif
-        True = ForschungAllgemein.TechnologieVorhanden (RasseExtern       => StadtRasseNummerExtern.Rasse,
-                                                        TechnologieExtern => TechnologieUmgebungsgröße (StadtRasseNummerExtern.Rasse, SystemDatentypen.Anfangswert_Enum))
+        True = ForschugnstestsLogik.TechnologieVorhanden (RasseExtern       => StadtRasseNummerExtern.Rasse,
+                                                          TechnologieExtern => TechnologieUmgebungsgröße (StadtRasseNummerExtern.Rasse, SystemDatentypen.Anfangswert_Enum))
         and
           Einwohner >= StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Anfangswert_Enum, StadtRasseNummerExtern.Rasse)
       then

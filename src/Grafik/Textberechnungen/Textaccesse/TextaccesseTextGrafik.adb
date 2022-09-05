@@ -93,11 +93,11 @@ package body TextaccesseTextGrafik is
                when others =>
                   Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.GebäudetextAccess (RasseSchleifenwert, GebäudetextSchleifenwert),
                                                      str  => GebaeudebeschreibungenGrafik.BeschreibungKurz (IDExtern    => GebäudetextSchleifenwert,
-                                                                                                          RasseExtern => RasseSchleifenwert));
+                                                                                                            RasseExtern => RasseSchleifenwert));
          
                   Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.GebäudezusatztextAccess (RasseSchleifenwert, GebäudetextSchleifenwert),
                                                      str  => GebaeudebeschreibungenGrafik.BeschreibungLang (IDExtern    => GebäudetextSchleifenwert,
-                                                                                                          RasseExtern => RasseSchleifenwert));
+                                                                                                            RasseExtern => RasseSchleifenwert));
             end case;
             
          end loop GebäudetextSchleife;
@@ -117,11 +117,11 @@ package body TextaccesseTextGrafik is
                when others =>
                   Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitentextAccess (RasseSchleifenwert, EinheitentextSchleifenwert),
                                                      str  => EinheitenbeschreibungenGrafik.BeschreibungKurz (IDExtern    => EinheitentextSchleifenwert,
-                                                                                                           RasseExtern => RasseSchleifenwert));
+                                                                                                             RasseExtern => RasseSchleifenwert));
          
                   Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitenzusatztextAccess (RasseSchleifenwert, EinheitentextSchleifenwert),
                                                      str  => EinheitenbeschreibungenGrafik.BeschreibungLang (IDExtern    => EinheitentextSchleifenwert,
-                                                                                                           RasseExtern => RasseSchleifenwert));
+                                                                                                             RasseExtern => RasseSchleifenwert));
             end case;
          
          end loop EinheitentextSchleife;
@@ -133,11 +133,11 @@ package body TextaccesseTextGrafik is
          
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüAccess (RasseSchleifenwert, ForschungSchleifenwert),
                                                str  => ForschungsbeschreibungenGrafik.BeschreibungKurz (IDExtern    => ForschungSchleifenwert,
-                                                                                                      RasseExtern => RasseSchleifenwert));
+                                                                                                        RasseExtern => RasseSchleifenwert));
          
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüZusatztextAccess (RasseSchleifenwert, ForschungSchleifenwert),
                                                str  => ForschungsbeschreibungenGrafik.BeschreibungLang (IDExtern    => ForschungSchleifenwert,
-                                                                                                      RasseExtern => RasseSchleifenwert));
+                                                                                                        RasseExtern => RasseSchleifenwert));
          
          end loop ForschungenSchleife;
       end loop RassenSchleife;

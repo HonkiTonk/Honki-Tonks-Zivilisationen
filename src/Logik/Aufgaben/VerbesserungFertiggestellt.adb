@@ -11,7 +11,7 @@ with KIDatentypen;
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
 
-with EinheitenMeldungenSetzen;
+with MeldungenSetzenLogik;
 with FelderwerteFestlegen;
 with AufgabenAllgemein;
 with Wegeplatzierungssystem;
@@ -77,7 +77,7 @@ package body VerbesserungFertiggestellt is
       if
         LeseEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerBeschäftigungszeit
       then
-         EinheitenMeldungenSetzen.EinheitMeldungSetzenEreignis (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+         MeldungenSetzenLogik.EinheitmeldungSetzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                 EreignisExtern           => EinheitenDatentypen.Aufgabe_Abgeschlossen_Enum);
          VerbesserungAngelegt (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          AufgabeNachfolgerVerschieben (EinheitRasseNummerExtern => EinheitRasseNummerExtern);

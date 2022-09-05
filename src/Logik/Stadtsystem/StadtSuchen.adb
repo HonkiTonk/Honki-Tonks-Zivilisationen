@@ -150,7 +150,7 @@ package body StadtSuchen is
      return StadtRecords.RasseStadtnummerRecord
    is begin
       
-      -- StadtName := EingabeLogik.StadtName;
+      -- StadtName := TexteingabeLogik.StadtName;
       
       case
         StadtName.ErfolgreichAbbruch

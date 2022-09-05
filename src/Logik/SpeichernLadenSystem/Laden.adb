@@ -80,7 +80,6 @@ package body Laden is
       LadezeitenLogik.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
       
       KarteLaden (DateiLadenExtern => DateiLaden);
-      LadezeitenLogik.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
       
       RassenwerteLaden (DateiLadenExtern => DateiLaden);
       LadezeitenLogik.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
@@ -143,10 +142,13 @@ package body Laden is
             for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Karteneinstellungen.Kartengröße.XAchse loop
 
                WeltkarteRecords.WeltkarteRecord'Read (Stream (File => DateiLadenExtern),
-                                                Karten.Weltkarte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
+                                                      Karten.Weltkarte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
                
             end loop XAchseSchleife;
          end loop YAchseSchleife;
+         
+         LadezeitenLogik.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
+         
       end loop EAchseSchleife;
       
    end KarteLaden;

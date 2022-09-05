@@ -29,7 +29,7 @@ package body ZusatztextRassenmenueGrafik is
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.RassenbeschreibungAccess (RasseAnzeigen),
                                          str  => ZeilenumbruchberechnungGrafik.ZeilenumbruchBerechnen (TextExtern   => RassenbeschreibungenGrafik.BeschreibungLang (RasseExtern => RasseAnzeigen),
-                                                                                                         BreiteExtern => AnzeigebereichbreiteExtern));
+                                                                                                       BreiteExtern => AnzeigebereichbreiteExtern));
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.RassenbeschreibungAccess (RasseAnzeigen),
                                     position => Textposition);
@@ -38,9 +38,9 @@ package body ZusatztextRassenmenueGrafik is
                                          text         => TextaccessVariablen.RassenbeschreibungAccess (RasseAnzeigen));
       
       Textposition.x := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.RassenbeschreibungAccess (RasseAnzeigen),
-                                                                            TextbreiteExtern => 0.00);
+                                                                              TextbreiteExtern => 0.00);
       Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.Zeilenabstand + TextberechnungenHoeheGrafik.NeueTexthöheErmitteln (TextAccessExtern => TextaccessVariablen.RassenbeschreibungAccess (RasseAnzeigen),
-                                                                                                                                     TexthöheExtern  => 0.00);
+                                                                                                                                         TexthöheExtern  => 0.00);
       
       return Textposition;
       

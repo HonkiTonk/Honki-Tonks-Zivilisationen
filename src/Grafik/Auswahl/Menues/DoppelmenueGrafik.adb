@@ -31,14 +31,14 @@ package body DoppelmenueGrafik is
    is begin
       
       Viewfläche (Auswahlbereich) := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (Auswahlbereich),
-                                                                                     VerhältnisExtern => (0.25, 1.00));
+                                                                                         VerhältnisExtern => (0.25, 1.00));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.MenüviewAccess,
-                                          GrößeExtern          => Viewfläche (Auswahlbereich),
-                                          AnzeigebereichExtern => GrafikRecordKonstanten.MenüDoppelbereich (Auswahlbereich));
+                                            GrößeExtern          => Viewfläche (Auswahlbereich),
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.MenüDoppelbereich (Auswahlbereich));
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
-                                        AbmessungenExtern => Viewfläche (Auswahlbereich));
+                                     AbmessungenExtern => Viewfläche (Auswahlbereich));
       
       case
         WelchesMenüExtern
@@ -59,12 +59,12 @@ package body DoppelmenueGrafik is
 
       
       Viewfläche (Zusatzbereich) := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (Zusatzbereich),
-                                                                                      VerhältnisExtern => (1.00, 1.00));
+                                                                                        VerhältnisExtern => (1.00, 1.00));
       Viewbreite := Viewfläche (Zusatzbereich).x;
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.ZusatztextviewAccess,
-                                          GrößeExtern          => Viewfläche (Zusatzbereich),
-                                          AnzeigebereichExtern => GrafikRecordKonstanten.MenüDoppelbereich (Zusatzbereich));
+                                            GrößeExtern          => Viewfläche (Zusatzbereich),
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.MenüDoppelbereich (Zusatzbereich));
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
                                      AbmessungenExtern => Viewfläche (Zusatzbereich));
@@ -103,13 +103,13 @@ package body DoppelmenueGrafik is
                                                                                                  WelchesMenüExtern => WelchesMenüExtern));
                   
          Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.MenüsSFMLAccess (WelchesMenüExtern, PositionSchleifenwert),
-                                                                               ViewbreiteExtern => ViewflächeExtern.x);
+                                                                                 ViewbreiteExtern => ViewflächeExtern.x);
          
          Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.MenüsSFMLAccess (WelchesMenüExtern, PositionSchleifenwert),
                                        position => Textposition);
 
          Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.MenüsSFMLAccess (WelchesMenüExtern, PositionSchleifenwert),
-                                                                           TextbreiteExtern => Textbreite);
+                                                                             TextbreiteExtern => Textbreite);
          
          InteraktionAuswahl.PositionenMenüeinträge (WelchesMenüExtern, PositionSchleifenwert - 1)
            := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.MenüsSFMLAccess (WelchesMenüExtern, PositionSchleifenwert));

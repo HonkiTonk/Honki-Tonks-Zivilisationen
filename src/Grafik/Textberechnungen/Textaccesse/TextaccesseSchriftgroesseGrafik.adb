@@ -101,16 +101,16 @@ package body TextaccesseSchriftgroesseGrafik is
             case
               GebäudetextSchleifenwert
             is
-            when TextaccessVariablen.GebäudetextAccessArray'First (2) =>
-               Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.GebäudetextAccess (RasseSchleifenwert, GebäudetextSchleifenwert),
-                                                  size => TexteinstellungenGrafik.Schriftgrößen.SchriftgrößeÜberschrift);
+               when TextaccessVariablen.GebäudetextAccessArray'First (2) =>
+                  Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.GebäudetextAccess (RasseSchleifenwert, GebäudetextSchleifenwert),
+                                                     size => TexteinstellungenGrafik.Schriftgrößen.SchriftgrößeÜberschrift);
                
-            when others =>
-               Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.GebäudetextAccess (RasseSchleifenwert, GebäudetextSchleifenwert),
-                                                  size => TexteinstellungenGrafik.Schriftgrößen.SchriftgrößeStandard);
+               when others =>
+                  Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.GebäudetextAccess (RasseSchleifenwert, GebäudetextSchleifenwert),
+                                                     size => TexteinstellungenGrafik.Schriftgrößen.SchriftgrößeStandard);
          
-               Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.GebäudezusatztextAccess (RasseSchleifenwert, GebäudetextSchleifenwert),
-                                                  size => TexteinstellungenGrafik.Schriftgrößen.SchriftgrößeStandard);
+                  Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.GebäudezusatztextAccess (RasseSchleifenwert, GebäudetextSchleifenwert),
+                                                     size => TexteinstellungenGrafik.Schriftgrößen.SchriftgrößeStandard);
             end case;
          
          end loop GebäudetextSchleife;

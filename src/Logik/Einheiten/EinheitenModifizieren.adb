@@ -17,7 +17,7 @@ with StadtSuchen;
 with EinheitSuchen;
 with BewegungPassierbarkeitPruefen;
 with StadtProduktion;
-with ForschungAllgemein;
+with ForschugnstestsLogik;
 
 with KIDatentypen; use KIDatentypen;
 
@@ -233,9 +233,9 @@ package body EinheitenModifizieren is
          return False;
          
       else
-         return ForschungAllgemein.TechnologieVorhanden (RasseExtern       => StadtRasseNummerExtern.Rasse,
-                                                         TechnologieExtern => LeseEinheitenDatenbank.Anforderungen (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                                                                    IDExtern    => IDExtern));
+         return ForschugnstestsLogik.TechnologieVorhanden (RasseExtern       => StadtRasseNummerExtern.Rasse,
+                                                           TechnologieExtern => LeseEinheitenDatenbank.Anforderungen (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                                                                                      IDExtern    => IDExtern));
       end if;
       
    end EinheitAnforderungenErfüllt;

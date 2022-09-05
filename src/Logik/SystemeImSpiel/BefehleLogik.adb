@@ -22,8 +22,7 @@ with DebugmenueLogik;
 with StadtBauen;
 with EinheitSuchen;
 with StadtSuchen;
-with EingabeLogik;
-with ForschungAllgemein;
+with TasteneingabeLogik;
 with StadtEntfernen;
 with TransporterSuchen;
 with EinheitenModifizieren;
@@ -33,6 +32,8 @@ with AuswahlStadtEinheit;
 with NachGrafiktask;
 with AuswahlLogik;
 with EinheitenSpielmeldungenLogik;
+with ForschungsauswahlLogik;
+with TexteingabeLogik;
 
 -- Hier auch mal überarbeiten, vor allem die Prozeduren weiter unten. äöü
 package body BefehleLogik is
@@ -43,7 +44,7 @@ package body BefehleLogik is
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
                                
-      Befehl := EingabeLogik.Tastenwert;
+      Befehl := TasteneingabeLogik.Tastenwert;
 
       case
         Befehl
@@ -64,7 +65,7 @@ package body BefehleLogik is
             BaueStadt (RasseExtern => RasseExtern);
            
          when TastenbelegungDatentypen.Forschung_Enum =>
-            ForschungAllgemein.Forschung (RasseExtern => RasseExtern);
+            ForschungsauswahlLogik.Forschung (RasseExtern => RasseExtern);
             
             -- Die folgenden vier Befehle scheinen gar nicht mehr zu funktionieren. äöü
             -- So anpassen wie GeheZu. äöü
@@ -407,7 +408,7 @@ package body BefehleLogik is
          null;
          
       else
-         NeuerName := EingabeLogik.StadtName (StadtRasseNummerExtern => (RasseExtern, StadtNummer));
+         NeuerName := TexteingabeLogik.StadtName (StadtRasseNummerExtern => (RasseExtern, StadtNummer));
          
          case
            NeuerName.ErfolgreichAbbruch

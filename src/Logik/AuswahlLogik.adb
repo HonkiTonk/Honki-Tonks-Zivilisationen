@@ -5,7 +5,7 @@ with SystemDatentypen;
 with SystemKonstanten;
 with TastenbelegungDatentypen;
 
-with EingabeLogik;
+with TasteneingabeLogik;
 with NachGrafiktask;
 with Mausauswahl;
 
@@ -26,7 +26,7 @@ package body AuswahlLogik is
          NachGrafiktask.AktuelleAuswahl.AuswahlZwei := AktuelleAuswahl;
       
          case
-           EingabeLogik.Tastenwert
+           TasteneingabeLogik.Tastenwert
          is
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if

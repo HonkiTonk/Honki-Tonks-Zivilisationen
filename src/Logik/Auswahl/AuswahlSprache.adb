@@ -11,7 +11,7 @@ with InteraktionAuswahl;
 with SystemKonstanten;
 with TastenbelegungDatentypen;
 
-with EingabeLogik;
+with TasteneingabeLogik;
 with Fehler;
 with NachGrafiktask;
 with NachLogiktask;
@@ -139,7 +139,7 @@ package body AuswahlSprache is
          NachGrafiktask.AktuelleAuswahl.AuswahlEins := AktuelleAuswahl;
             
          case
-           EingabeLogik.Tastenwert
+           TasteneingabeLogik.Tastenwert
          is
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if

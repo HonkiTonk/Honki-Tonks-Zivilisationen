@@ -11,4 +11,9 @@ package SystemRecordKonstanten is
                                                                   EingegebenerText   => TextKonstanten.LeerUnboundedString
                                                                  );
 
+   LeerZahleneingabe : constant SystemRecords.ZahlenEingabeRecord := (
+                                                                      ErfolgreichAbbruch => False,
+                                                                      EingegebeneZahl    => 0
+                                                                     );
+
 end SystemRecordKonstanten;

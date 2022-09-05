@@ -51,9 +51,9 @@ package KartengeneratorRecordKonstanten is
                                                                 );
    
    Kontinentabstand : constant KartenRecords.LandabständeRecord := (
-                                                                     MinimaleYAchse => 15,
+                                                                     MinimaleYAchse => 17,
                                                                      MaximaleYAchse => 22,
-                                                                     MinimaleXAchse => 15,
+                                                                     MinimaleXAchse => 17,
                                                                      MaximaleXAchse => 22
                                                                     );
    

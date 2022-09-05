@@ -46,7 +46,7 @@ package body KIEinheitAufgabeVerbesserungen is
          
          NötigeTechnologie := ForschungKonstanten.TechnologieVerbesserung (RasseExtern, AufgabeSchleifenwert);
          
-         -- Hier nicht die Funktion ForschungAllgemein.TechnologieVorhanden verwenden um später eine bessere Bewertung einbauen zu können. äöü
+         -- Hier nicht die Funktion ForschugnstestsLogik.TechnologieVorhanden verwenden um später eine bessere Bewertung einbauen zu können. äöü
          if
            NötigeTechnologie = ForschungKonstanten.LeerForschung
          then

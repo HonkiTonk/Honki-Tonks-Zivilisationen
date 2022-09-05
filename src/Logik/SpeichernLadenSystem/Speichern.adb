@@ -59,9 +59,8 @@ package body Speichern is
       Allgemeines (DateiSpeichernExtern => DateiSpeichern);
       FortschrittErhöhen (AutospeichernExtern => AutospeichernExtern);
       
-      Karte (DateiSpeichernExtern => DateiSpeichern);
-      -- Das hier auch noch mal überarbeiten, damit es nicht auf 33 springt und bei größeren Karten da dann länger bleibt, bis die Karte vollständig eingelesen ist. äöü
-      FortschrittErhöhen (AutospeichernExtern => AutospeichernExtern);
+      Karte (DateiSpeichernExtern => DateiSpeichern,
+             AutospeichernExtern  => AutospeichernExtern);
       
       RassenwerteSpeichern (DateiSpeichernExtern => DateiSpeichern);
       FortschrittErhöhen (AutospeichernExtern => AutospeichernExtern);
@@ -137,7 +136,8 @@ package body Speichern is
    
    
    procedure Karte
-     (DateiSpeichernExtern : in File_Type)
+     (DateiSpeichernExtern : in File_Type;
+      AutospeichernExtern : in Boolean)
    is begin
       
       KartenRecords.PermanenteKartenparameterRecord'Write (Stream (File => DateiSpeichernExtern),
@@ -155,6 +155,9 @@ package body Speichern is
                
             end loop XAchseSchleife;
          end loop YAchseSchleife;
+                  
+         FortschrittErhöhen (AutospeichernExtern => AutospeichernExtern);
+         
       end loop EAchseSchleife;
       
    end Karte;

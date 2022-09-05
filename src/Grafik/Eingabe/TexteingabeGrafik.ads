@@ -3,11 +3,9 @@ pragma Warnings (Off, "*array aggregate*");
 
 private with Sf.Window.Event;
 
-package EingabesystemeGrafik is
+package TexteingabeGrafik is
 
-   procedure TastenEingabe;
-   procedure TextEingeben;
-   procedure FensterAnpassen;
+   procedure Texteingabe;
 
 private
 
@@ -17,16 +15,11 @@ private
 
    CharacterZuText : Wide_Wide_String (1 .. 1);
 
-   Nutzereingabe : Sf.Window.Event.sfEvent;
    TextEingegeben : Sf.Window.Event.sfEvent;
-   Fensteranpassung : Sf.Window.Event.sfEvent;
-
-   procedure TextPrüfen
-     (UnicodeNummerExtern : in Sf.sfUint32);
 
    procedure ZeichenHinzufügen
      (EingegebenesZeichenExtern : in Wide_Wide_Character);
 
    procedure ZeichenEntfernen;
-
-end EingabesystemeGrafik;
+   
+end TexteingabeGrafik;

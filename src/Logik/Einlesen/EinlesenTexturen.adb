@@ -9,6 +9,7 @@ with Sf.Graphics.Texture;
 with EinlesenAllgemein;
 with Warnung;
 
+-- Das hier mal parallelisieren? Wahrscheinlich unnötig. äöü
 package body EinlesenTexturen is
    
    procedure EinlesenTexturen
@@ -20,8 +21,7 @@ package body EinlesenTexturen is
       EinlesenKartenressourcen;
       EinlesenVerbesserungen;
       EinlesenWege;
-      EinlesenEinheiten;
-      EinlesenGebäude;
+      EinlesenRassen;
       
    end EinlesenTexturen;
    
@@ -40,49 +40,48 @@ package body EinlesenTexturen is
          when True =>
             AktuelleZeile := 1;
             
-            Open (File => DateiTextEinlesen,
+            Open (File => DateiHintergrund,
                   Mode => In_File,
                   Name => TextKonstanten.Grafik & TextKonstanten.Hintergrund & TextKonstanten.NullDatei);
       end case;
       
-      DateipfadeEinlesenSchleife:
-      for DateipfadeEinlesenSchleifenwert in HintergrundEinlesenArray'Range loop
+      DateipfadeSchleife:
+      for DateipfadSchleifenwert in HintergrundEinlesenArray'Range loop
          
          case
-           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiHintergrund,
                                                     AktuelleZeileExtern => AktuelleZeile)
          is
             when True =>
                Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenHintergrund - Nicht genug Zeilen in 0-Datei.");
-               Close (File => DateiTextEinlesen);
-               HintergrundEinlesen (DateipfadeEinlesenSchleifenwert) := TextKonstanten.LeerUnboundedString;
+               Close (File => DateiHintergrund);
                return;
                
             when False =>
-               HintergrundEinlesen (DateipfadeEinlesenSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+               HintergrundEinlesen (DateipfadSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiHintergrund));
                AktuelleZeile := AktuelleZeile + 1;
          end case;
                   
-      end loop DateipfadeEinlesenSchleife;
+      end loop DateipfadeSchleife;
       
-      Close (File => DateiTextEinlesen);
+      Close (File => DateiHintergrund);
       
-      TexturenZuweisenSchleife:
-      for TexturenZuweisenSchleifenwert in HintergrundEinlesenArray'Range loop
+      TexturenSchleife:
+      for TexturSchleifenwert in HintergrundEinlesenArray'Range loop
          
          case
-           Exists (Name => Encode (Item => To_Wide_Wide_String (Source => HintergrundEinlesen (TexturenZuweisenSchleifenwert))))
+           Exists (Name => Encode (Item => To_Wide_Wide_String (Source => HintergrundEinlesen (TexturSchleifenwert))))
          is
             when True =>
-               EingeleseneTexturenGrafik.HintergrundAccess (TexturenZuweisenSchleifenwert)
-                 := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => HintergrundEinlesen (TexturenZuweisenSchleifenwert))));
+               EingeleseneTexturenGrafik.HintergrundAccess (TexturSchleifenwert)
+                 := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => HintergrundEinlesen (TexturSchleifenwert))));
                   
             when False =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenHintergrund - " & To_Wide_Wide_String (Source => HintergrundEinlesen (TexturenZuweisenSchleifenwert)) & " fehlt.");
-               EingeleseneTexturenGrafik.HintergrundAccess (TexturenZuweisenSchleifenwert) := null;
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenHintergrund - " & To_Wide_Wide_String (Source => HintergrundEinlesen (TexturSchleifenwert)) & " fehlt.");
+               EingeleseneTexturenGrafik.HintergrundAccess (TexturSchleifenwert) := null;
          end case;
          
-      end loop TexturenZuweisenSchleife;
+      end loop TexturenSchleife;
       
    end EinlesenHintergrund;
    
@@ -101,49 +100,48 @@ package body EinlesenTexturen is
          when True =>
             AktuelleZeile := 1;
             
-            Open (File => DateiTextEinlesen,
+            Open (File => DateiKartenfelder,
                   Mode => In_File,
                   Name => TextKonstanten.Grafik & TextKonstanten.Kartenfelder & TextKonstanten.NullDatei);
       end case;
       
-      DateipfadeEinlesenSchleife:
-      for DateipfadeEinlesenSchleifenwert in KartenfelderEinlesenArray'Range loop
+      DateipfadeSchleife:
+      for DateipfadSchleifenwert in KartenfelderEinlesenArray'Range loop
          
          case
-           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiKartenfelder,
                                                     AktuelleZeileExtern => AktuelleZeile)
          is
             when True =>
                Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenKartenfelder - Nicht genug Zeilen in 0-Datei.");
-               Close (File => DateiTextEinlesen);
-               KartenfelderEinlesen (DateipfadeEinlesenSchleifenwert) := TextKonstanten.LeerUnboundedString;
+               Close (File => DateiKartenfelder);
                return;
                
             when False =>
-               KartenfelderEinlesen (DateipfadeEinlesenSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+               KartenfelderEinlesen (DateipfadSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiKartenfelder));
                AktuelleZeile := AktuelleZeile + 1;
          end case;
          
-      end loop DateipfadeEinlesenSchleife;
+      end loop DateipfadeSchleife;
       
-      Close (File => DateiTextEinlesen);
+      Close (File => DateiKartenfelder);
       
-      TexturenZuweisenSchleife:
-      for TexturenZuweisenSchleifenwert in KartenfelderEinlesenArray'Range loop
+      TexturenSchleife:
+      for TexturSchleifenwert in KartenfelderEinlesenArray'Range loop
          
          case
-           Exists (Name => Encode (Item => To_Wide_Wide_String (Source => KartenfelderEinlesen (TexturenZuweisenSchleifenwert))))
+           Exists (Name => Encode (Item => To_Wide_Wide_String (Source => KartenfelderEinlesen (TexturSchleifenwert))))
          is
             when True =>
-               EingeleseneTexturenGrafik.KartenfelderAccess (TexturenZuweisenSchleifenwert)
-                 := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => KartenfelderEinlesen (TexturenZuweisenSchleifenwert))));
+               EingeleseneTexturenGrafik.KartenfelderAccess (TexturSchleifenwert)
+                 := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => KartenfelderEinlesen (TexturSchleifenwert))));
                   
             when False =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenKartenfelder - " & To_Wide_Wide_String (Source => KartenfelderEinlesen (TexturenZuweisenSchleifenwert)) & " fehlt.");
-               EingeleseneTexturenGrafik.KartenfelderAccess (TexturenZuweisenSchleifenwert) := null;
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenKartenfelder - " & To_Wide_Wide_String (Source => KartenfelderEinlesen (TexturSchleifenwert)) & " fehlt.");
+               EingeleseneTexturenGrafik.KartenfelderAccess (TexturSchleifenwert) := null;
          end case;
          
-      end loop TexturenZuweisenSchleife;
+      end loop TexturenSchleife;
       
    end EinlesenKartenfelder;
    
@@ -162,49 +160,48 @@ package body EinlesenTexturen is
          when True =>
             AktuelleZeile := 1;
             
-            Open (File => DateiTextEinlesen,
+            Open (File => DateiKartenflüsse,
                   Mode => In_File,
                   Name => TextKonstanten.Grafik & TextKonstanten.Kartenfluss & TextKonstanten.NullDatei);
       end case;
       
-      DateipfadeEinlesenSchleife:
-      for DateipfadeEinlesenSchleifenwert in KartenflüsseEinlesenArray'Range loop
+      DateipfadeSchleife:
+      for DateipfadSchleifenwert in KartenflüsseEinlesenArray'Range loop
          
          case
-           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiKartenflüsse,
                                                     AktuelleZeileExtern => AktuelleZeile)
          is
             when True =>
                Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenKartenflüsse - Nicht genug Zeilen in 0-Datei.");
-               Close (File => DateiTextEinlesen);
-               KartenflüsseEinlesen (DateipfadeEinlesenSchleifenwert) := TextKonstanten.LeerUnboundedString;
+               Close (File => DateiKartenflüsse);
                return;
                
             when False =>
-               KartenflüsseEinlesen (DateipfadeEinlesenSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+               KartenflüsseEinlesen (DateipfadSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiKartenflüsse));
                AktuelleZeile := AktuelleZeile + 1;
          end case;
                   
-      end loop DateipfadeEinlesenSchleife;
+      end loop DateipfadeSchleife;
       
-      Close (File => DateiTextEinlesen);
+      Close (File => DateiKartenflüsse);
       
-      TexturenZuweisenSchleife:
-      for TexturenZuweisenSchleifenwert in KartenflüsseEinlesenArray'Range loop
+      TexturenSchleife:
+      for TexturSchleifenwert in KartenflüsseEinlesenArray'Range loop
          
          case
-           Exists (Name => Encode (Item => To_Wide_Wide_String (Source => KartenflüsseEinlesen (TexturenZuweisenSchleifenwert))))
+           Exists (Name => Encode (Item => To_Wide_Wide_String (Source => KartenflüsseEinlesen (TexturSchleifenwert))))
          is
             when True =>
-               EingeleseneTexturenGrafik.KartenflussAccess (TexturenZuweisenSchleifenwert)
-                 := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => KartenflüsseEinlesen (TexturenZuweisenSchleifenwert))));
+               EingeleseneTexturenGrafik.KartenflussAccess (TexturSchleifenwert)
+                 := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => KartenflüsseEinlesen (TexturSchleifenwert))));
                   
             when False =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenKartenflüsse - " & To_Wide_Wide_String (Source => KartenflüsseEinlesen (TexturenZuweisenSchleifenwert)) & " fehlt.");
-               EingeleseneTexturenGrafik.KartenflussAccess (TexturenZuweisenSchleifenwert) := null;
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenKartenflüsse - " & To_Wide_Wide_String (Source => KartenflüsseEinlesen (TexturSchleifenwert)) & " fehlt.");
+               EingeleseneTexturenGrafik.KartenflussAccess (TexturSchleifenwert) := null;
          end case;
          
-      end loop TexturenZuweisenSchleife;
+      end loop TexturenSchleife;
       
    end EinlesenKartenflüsse;
    
@@ -223,49 +220,48 @@ package body EinlesenTexturen is
          when True =>
             AktuelleZeile := 1;
             
-            Open (File => DateiTextEinlesen,
+            Open (File => DateiKartenressourcen,
                   Mode => In_File,
                   Name => TextKonstanten.Grafik & TextKonstanten.Kartenressourcen & TextKonstanten.NullDatei);
       end case;
       
-      DateipfadeEinlesenSchleife:
-      for DateipfadeEinlesenSchleifenwert in KartenressourcenEinlesenArray'Range loop
+      DateipfadeSchleife:
+      for DateipfadSchleifenwert in KartenressourcenEinlesenArray'Range loop
          
          case
-           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiKartenressourcen,
                                                     AktuelleZeileExtern => AktuelleZeile)
          is
             when True =>
                Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenKartenressourcen - Nicht genug Zeilen in 0-Datei.");
-               Close (File => DateiTextEinlesen);
-               KartenressourcenEinlesen (DateipfadeEinlesenSchleifenwert) := TextKonstanten.LeerUnboundedString;
+               Close (File => DateiKartenressourcen);
                return;
                
             when False =>
-               KartenressourcenEinlesen (DateipfadeEinlesenSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+               KartenressourcenEinlesen (DateipfadSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiKartenressourcen));
                AktuelleZeile := AktuelleZeile + 1;
          end case;
          
-      end loop DateipfadeEinlesenSchleife;
+      end loop DateipfadeSchleife;
       
-      Close (File => DateiTextEinlesen);
+      Close (File => DateiKartenressourcen);
       
-      TexturenZuweisenSchleife:
-      for TexturenZuweisenSchleifenwert in KartenressourcenEinlesenArray'Range loop
+      TexturenSchleife:
+      for TexturSchleifenwert in KartenressourcenEinlesenArray'Range loop
          
          case
-           Exists (Name => Encode (Item => To_Wide_Wide_String (Source => KartenressourcenEinlesen (TexturenZuweisenSchleifenwert))))
+           Exists (Name => Encode (Item => To_Wide_Wide_String (Source => KartenressourcenEinlesen (TexturSchleifenwert))))
          is
             when True =>
-               EingeleseneTexturenGrafik.KartenressourceAccess (TexturenZuweisenSchleifenwert)
-                 := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => KartenressourcenEinlesen (TexturenZuweisenSchleifenwert))));
+               EingeleseneTexturenGrafik.KartenressourceAccess (TexturSchleifenwert)
+                 := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => KartenressourcenEinlesen (TexturSchleifenwert))));
                   
             when False =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenKartenressourcen - " & To_Wide_Wide_String (Source => KartenressourcenEinlesen (TexturenZuweisenSchleifenwert)) & " fehlt.");
-               EingeleseneTexturenGrafik.KartenressourceAccess (TexturenZuweisenSchleifenwert) := null;
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenKartenressourcen - " & To_Wide_Wide_String (Source => KartenressourcenEinlesen (TexturSchleifenwert)) & " fehlt.");
+               EingeleseneTexturenGrafik.KartenressourceAccess (TexturSchleifenwert) := null;
          end case;
          
-      end loop TexturenZuweisenSchleife;
+      end loop TexturenSchleife;
       
    end EinlesenKartenressourcen;
    
@@ -284,49 +280,48 @@ package body EinlesenTexturen is
          when True =>
             AktuelleZeile := 1;
             
-            Open (File => DateiTextEinlesen,
+            Open (File => DateiVerbesserungen,
                   Mode => In_File,
                   Name => TextKonstanten.Grafik & TextKonstanten.Kartenverbesserungen & TextKonstanten.NullDatei);
       end case;
       
-      DateipfadeEinlesenSchleife:
-      for DateipfadeEinlesenSchleifenwert in VerbesserungenEinlesenArray'Range loop
+      DateipfadeSchleife:
+      for DateipfadSchleifenwert in VerbesserungenEinlesenArray'Range loop
          
          case
-           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiVerbesserungen,
                                                     AktuelleZeileExtern => AktuelleZeile)
          is
             when True =>
                Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenVerbesserungen - Nicht genug Zeilen in 0-Datei.");
-               Close (File => DateiTextEinlesen);
-               VerbesserungenEinlesen (DateipfadeEinlesenSchleifenwert) := TextKonstanten.LeerUnboundedString;
+               Close (File => DateiVerbesserungen);
                return;
                
             when False =>
-               VerbesserungenEinlesen (DateipfadeEinlesenSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+               VerbesserungenEinlesen (DateipfadSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiVerbesserungen));
                AktuelleZeile := AktuelleZeile + 1;
          end case;
                   
-      end loop DateipfadeEinlesenSchleife;
+      end loop DateipfadeSchleife;
       
-      Close (File => DateiTextEinlesen);
+      Close (File => DateiVerbesserungen);
       
-      TexturenZuweisenSchleife:
-      for TexturenZuweisenSchleifenwert in VerbesserungenEinlesenArray'Range loop
+      TexturenSchleife:
+      for TexturSchleifenwert in VerbesserungenEinlesenArray'Range loop
          
          case
-           Exists (Name => Encode (Item => To_Wide_Wide_String (Source => VerbesserungenEinlesen (TexturenZuweisenSchleifenwert))))
+           Exists (Name => Encode (Item => To_Wide_Wide_String (Source => VerbesserungenEinlesen (TexturSchleifenwert))))
          is
             when True =>
-               EingeleseneTexturenGrafik.VerbesserungenAccess (TexturenZuweisenSchleifenwert)
-                 := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => VerbesserungenEinlesen (TexturenZuweisenSchleifenwert))));
+               EingeleseneTexturenGrafik.VerbesserungenAccess (TexturSchleifenwert)
+                 := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => VerbesserungenEinlesen (TexturSchleifenwert))));
                   
             when False =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenVerbesserungen - " & To_Wide_Wide_String (Source => VerbesserungenEinlesen (TexturenZuweisenSchleifenwert)) & " fehlt.");
-               EingeleseneTexturenGrafik.VerbesserungenAccess (TexturenZuweisenSchleifenwert) := null;
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenVerbesserungen - " & To_Wide_Wide_String (Source => VerbesserungenEinlesen (TexturSchleifenwert)) & " fehlt.");
+               EingeleseneTexturenGrafik.VerbesserungenAccess (TexturSchleifenwert) := null;
          end case;
          
-      end loop TexturenZuweisenSchleife;
+      end loop TexturenSchleife;
       
    end EinlesenVerbesserungen;
    
@@ -345,183 +340,290 @@ package body EinlesenTexturen is
          when True =>
             AktuelleZeile := 1;
             
-            Open (File => DateiTextEinlesen,
+            Open (File => DateiWege,
                   Mode => In_File,
                   Name => TextKonstanten.Grafik & TextKonstanten.Kartenwege & TextKonstanten.NullDatei);
       end case;
       
-      DateipfadeEinlesenSchleife:
-      for DateipfadeEinlesenSchleifenwert in WegeEinlesenArray'Range loop
+      DateipfadeSchleife:
+      for DateipfadSchleifenwert in WegeEinlesenArray'Range loop
          
          case
-           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiWege,
                                                     AktuelleZeileExtern => AktuelleZeile)
          is
             when True =>
                Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenWege - Nicht genug Zeilen in 0-Datei.");
-               Close (File => DateiTextEinlesen);
-               WegeEinlesen (DateipfadeEinlesenSchleifenwert) := TextKonstanten.LeerUnboundedString;
+               Close (File => DateiWege);
                return;
                
             when False =>
-               WegeEinlesen (DateipfadeEinlesenSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+               WegeEinlesen (DateipfadSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiWege));
                AktuelleZeile := AktuelleZeile + 1;
          end case;
          
-      end loop DateipfadeEinlesenSchleife;
+      end loop DateipfadeSchleife;
       
-      Close (File => DateiTextEinlesen);
+      Close (File => DateiWege);
       
-      TexturenZuweisenSchleife:
-      for TexturenZuweisenSchleifenwert in WegeEinlesenArray'Range loop
+      TexturenSchleife:
+      for TexturSchleifenwert in WegeEinlesenArray'Range loop
          
          case
-           Exists (Name => Encode (Item => To_Wide_Wide_String (Source => WegeEinlesen (TexturenZuweisenSchleifenwert))))
+           Exists (Name => Encode (Item => To_Wide_Wide_String (Source => WegeEinlesen (TexturSchleifenwert))))
          is
             when True =>
-               EingeleseneTexturenGrafik.WegeAccess (TexturenZuweisenSchleifenwert)
-                 := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => WegeEinlesen (TexturenZuweisenSchleifenwert))));
+               EingeleseneTexturenGrafik.WegeAccess (TexturSchleifenwert)
+                 := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => WegeEinlesen (TexturSchleifenwert))));
                   
             when False =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenWege - " & To_Wide_Wide_String (Source => WegeEinlesen (TexturenZuweisenSchleifenwert)) & " fehlt.");
-               EingeleseneTexturenGrafik.WegeAccess (TexturenZuweisenSchleifenwert) := null;
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenWege - " & To_Wide_Wide_String (Source => WegeEinlesen (TexturSchleifenwert)) & " fehlt.");
+               EingeleseneTexturenGrafik.WegeAccess (TexturSchleifenwert) := null;
          end case;
          
-      end loop TexturenZuweisenSchleife;
+      end loop TexturenSchleife;
       
    end EinlesenWege;
    
    
    
-   procedure EinlesenEinheiten
+   procedure EinlesenRassen
    is begin
       
       case
-        Exists (Name => TextKonstanten.Grafik & TextKonstanten.Einheiten & TextKonstanten.NullDatei)
+        Exists (Name => TextKonstanten.Grafik & TextKonstanten.Rassen & TextKonstanten.NullDatei)
+      is
+         when False =>
+            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenRassen - 0-Datei fehlt.");
+            return;
+            
+         when True =>
+            AktuelleZeile := 1;
+            
+            Open (File => DateiRassen,
+                  Mode => In_File,
+                  Name => TextKonstanten.Grafik & TextKonstanten.Rassen & TextKonstanten.NullDatei);
+      end case;
+      
+      RassenschleifeSchleife:
+      for RasseSchleifenwert in RassenEinlesenArray'Range (1) loop
+         EinzelpfadeEinlesenSchleife:
+         for EinzelpfadeEinlesenSchleifenwert in RassenEinlesenArray'Range (2) loop
+         
+            case
+              EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiRassen,
+                                                       AktuelleZeileExtern => AktuelleZeile)
+            is
+               when True =>
+                  Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenRassen - Nicht genug Zeilen in 0-Datei.");
+                  Close (File => DateiRassen);
+                  return;
+               
+               when False =>
+                  RassenEinlesen (RasseSchleifenwert, EinzelpfadeEinlesenSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiRassen));
+                  AktuelleZeile := AktuelleZeile + 1;
+            end case;
+         
+         end loop EinzelpfadeEinlesenSchleife;
+         
+         EinlesenRassenhintergrund (DateipfadExtern => To_Wide_Wide_String (Source => RassenEinlesen (RasseSchleifenwert, 1)),
+                                    RasseExtern     => RasseSchleifenwert);
+         
+         EinlesenEinheiten (DateipfadExtern => To_Wide_Wide_String (Source => RassenEinlesen (RasseSchleifenwert, 2)),
+                            RasseExtern     => RasseSchleifenwert);
+         
+         EinlesenGebäude (DateipfadExtern => To_Wide_Wide_String (Source => RassenEinlesen (RasseSchleifenwert, 3)),
+                           RasseExtern     => RasseSchleifenwert);
+         
+      end loop RassenschleifeSchleife;
+      
+      Close (File => DateiRassen);
+      
+   end EinlesenRassen;
+   
+   
+   
+   procedure EinlesenRassenhintergrund
+     (DateipfadExtern : in Wide_Wide_String;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+   is begin
+      
+      case
+        Exists (Name => Encode (Item => DateipfadExtern))
+      is
+         when False =>
+            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenRassenhintergrund - 0-Datei fehlt.");
+            return;
+            
+         when True =>
+            ZeileRassenhintergrund := 1;
+            
+            Open (File => DateiRassenhintergründe,
+                  Mode => In_File,
+                  Name => Encode (Item => DateipfadExtern));
+      end case;
+      
+      DateipfadeSchleife:
+      for DateipfadSchleifenwert in RassenhintergrundEinlesenArray'Range (2) loop
+            
+         case
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiRassenhintergründe,
+                                                    AktuelleZeileExtern => ZeileRassenhintergrund)
+         is
+            when True =>
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenRassenhintergrund - Nicht genug Zeilen in 0-Datei.");
+               Close (File => DateiRassenhintergründe);
+               return;
+               
+            when False =>
+               RassenhintergrundEinlesen (RasseExtern, DateipfadSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiRassenhintergründe));
+               ZeileRassenhintergrund := ZeileRassenhintergrund + 1;
+         end case;
+                     
+      end loop DateipfadeSchleife;
+      
+      Close (File => DateiRassenhintergründe);
+      
+      TexturenSchleife:
+      for TexturSchleifenwert in RassenhintergrundEinlesenArray'Range (2) loop
+         
+         case
+           Exists (Name => Encode (Item => To_Wide_Wide_String (Source => RassenhintergrundEinlesen (RasseExtern, TexturSchleifenwert))))
+         is
+            when True =>
+               EingeleseneTexturenGrafik.RassenhintergrundAccess (RasseExtern, TexturSchleifenwert)
+                 := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => RassenhintergrundEinlesen (RasseExtern, TexturSchleifenwert))));
+                  
+            when False =>
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenEinheiten - " & To_Wide_Wide_String (Source => RassenhintergrundEinlesen (RasseExtern, TexturSchleifenwert)) & " fehlt.");
+               EingeleseneTexturenGrafik.RassenhintergrundAccess (RasseExtern, TexturSchleifenwert) := null;
+         end case;
+         
+      end loop TexturenSchleife;
+      
+   end EinlesenRassenhintergrund;
+   
+   
+   
+   procedure EinlesenEinheiten
+     (DateipfadExtern : in Wide_Wide_String;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+   is begin
+      
+      case
+        Exists (Name => Encode (Item => DateipfadExtern))
       is
          when False =>
             Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenEinheiten - 0-Datei fehlt.");
             return;
             
          when True =>
-            AktuelleZeile := 1;
+            ZeileEinheiten := 1;
             
-            Open (File => DateiTextEinlesen,
+            Open (File => DateiEinheiten,
                   Mode => In_File,
-                  Name => TextKonstanten.Grafik & TextKonstanten.Einheiten & TextKonstanten.NullDatei);
+                  Name => Encode (Item => DateipfadExtern));
       end case;
       
-      RassenEinsSchleife:
-      for RasseSchleifenwert in EinheitenEinlesenArray'Range (1) loop
-         DateipfadeEinlesenSchleife:
-         for DateipfadeEinlesenSchleifenwert in EinheitenEinlesenArray'Range (2) loop
+      DateipfadeSchleife:
+      for DateipfadSchleifenwert in EinheitenEinlesenArray'Range (2) loop
             
-            case
-              EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
-                                                       AktuelleZeileExtern => AktuelleZeile)
-            is
-               when True =>
-                  Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenEinheiten - Nicht genug Zeilen in 0-Datei.");
-                  Close (File => DateiTextEinlesen);
-                  EinheitenEinlesen (RasseSchleifenwert, DateipfadeEinlesenSchleifenwert) := TextKonstanten.LeerUnboundedString;
-                  return;
+         case
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiEinheiten,
+                                                    AktuelleZeileExtern => ZeileEinheiten)
+         is
+            when True =>
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenEinheiten - Nicht genug Zeilen in 0-Datei.");
+               Close (File => DateiEinheiten);
+               return;
                
-               when False =>
-                  EinheitenEinlesen (RasseSchleifenwert, DateipfadeEinlesenSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
-                  AktuelleZeile := AktuelleZeile + 1;
-            end case;
+            when False =>
+               EinheitenEinlesen (RasseExtern, DateipfadSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiEinheiten));
+               ZeileEinheiten := ZeileEinheiten + 1;
+         end case;
                      
-         end loop DateipfadeEinlesenSchleife;
-      end loop RassenEinsSchleife;
+      end loop DateipfadeSchleife;
       
-      Close (File => DateiTextEinlesen);
+      Close (File => DateiEinheiten);
       
-      RassenZweiSchleife:
-      for RasseSchleifenwert in EinheitenEinlesenArray'Range (1) loop
-         TexturenZuweisenSchleife:
-         for TexturenZuweisenSchleifenwert in EinheitenEinlesenArray'Range (2) loop
+      TexturenSchleife:
+      for TexturSchleifenwert in EinheitenEinlesenArray'Range (2) loop
          
-            case
-              Exists (Name => Encode (Item => To_Wide_Wide_String (Source => EinheitenEinlesen (RasseSchleifenwert, TexturenZuweisenSchleifenwert))))
-            is
-               when True =>
-                  EingeleseneTexturenGrafik.EinheitenAccess (RasseSchleifenwert, TexturenZuweisenSchleifenwert)
-                    := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => EinheitenEinlesen (RasseSchleifenwert, TexturenZuweisenSchleifenwert))));
+         case
+           Exists (Name => Encode (Item => To_Wide_Wide_String (Source => EinheitenEinlesen (RasseExtern, TexturSchleifenwert))))
+         is
+            when True =>
+               EingeleseneTexturenGrafik.EinheitenAccess (RasseExtern, TexturSchleifenwert)
+                 := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => EinheitenEinlesen (RasseExtern, TexturSchleifenwert))));
                   
-               when False =>
-                  Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenEinheiten - " & To_Wide_Wide_String (Source => EinheitenEinlesen (RasseSchleifenwert, TexturenZuweisenSchleifenwert)) & " fehlt.");
-                  EingeleseneTexturenGrafik.EinheitenAccess (RasseSchleifenwert, TexturenZuweisenSchleifenwert) := null;
-            end case;
+            when False =>
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenEinheiten - " & To_Wide_Wide_String (Source => EinheitenEinlesen (RasseExtern, TexturSchleifenwert)) & " fehlt.");
+               EingeleseneTexturenGrafik.EinheitenAccess (RasseExtern, TexturSchleifenwert) := null;
+         end case;
          
-         end loop TexturenZuweisenSchleife;
-      end loop RassenZweiSchleife;
+      end loop TexturenSchleife;
       
    end EinlesenEinheiten;
    
    
    
    procedure EinlesenGebäude
+     (DateipfadExtern : in Wide_Wide_String;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       case
-        Exists (Name => TextKonstanten.Grafik & TextKonstanten.Bauwerke & TextKonstanten.NullDatei)
+        Exists (Name => Encode (Item => DateipfadExtern))
       is
          when False =>
             Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenGebäude - 0-Datei fehlt.");
             return;
             
          when True =>
-            AktuelleZeile := 1;
+            ZeileGebäude := 1;
             
-            Open (File => DateiTextEinlesen,
+            Open (File => DateiGebäude,
                   Mode => In_File,
-                  Name => TextKonstanten.Grafik & TextKonstanten.Bauwerke & TextKonstanten.NullDatei);
+                  Name => Encode (Item => DateipfadExtern));
       end case;
       
-      RassenEinsSchleife:
-      for RasseSchleifenwert in GebäudeEinlesenArray'Range (1) loop
-         DateipfadeEinlesenSchleife:
-         for DateipfadeEinlesenSchleifenwert in GebäudeEinlesenArray'Range (2) loop
+      DateipfadeSchleife:
+      for DateipfadSchleifenwert in GebäudeEinlesenArray'Range (2) loop
          
-            case
-              EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
-                                                       AktuelleZeileExtern => AktuelleZeile)
-            is
-               when True =>
-                  Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenGebäude - Nicht genug Zeilen in 0-Datei.");
-                  Close (File => DateiTextEinlesen);
-                  GebäudeEinlesen (RasseSchleifenwert, DateipfadeEinlesenSchleifenwert) := TextKonstanten.LeerUnboundedString;
-                  return;
+         case
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiGebäude,
+                                                    AktuelleZeileExtern => ZeileGebäude)
+         is
+            when True =>
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenGebäude - Nicht genug Zeilen in 0-Datei.");
+               Close (File => DateiGebäude);
+               return;
                
-               when False =>
-                  GebäudeEinlesen (RasseSchleifenwert, DateipfadeEinlesenSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
-                  AktuelleZeile := AktuelleZeile + 1;
-            end case;
+            when False =>
+               GebäudeEinlesen (RasseExtern, DateipfadSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiGebäude));
+               ZeileGebäude := ZeileGebäude + 1;
+         end case;
                   
-         end loop DateipfadeEinlesenSchleife;
-      end loop RassenEinsSchleife;
+      end loop DateipfadeSchleife;
       
-      Close (File => DateiTextEinlesen);
+      Close (File => DateiGebäude);
       
-      RassenZweiSchleife:
-      for RasseSchleifenwert in GebäudeEinlesenArray'Range (1) loop
-         TexturenZuweisenSchleife:
-         for TexturenZuweisenSchleifenwert in GebäudeEinlesenArray'Range (2) loop
+      TexturenSchleife:
+      for TexturSchleifenwert in GebäudeEinlesenArray'Range (2) loop
          
-            case
-              Exists (Name => Encode (Item => To_Wide_Wide_String (Source => GebäudeEinlesen (RasseSchleifenwert, TexturenZuweisenSchleifenwert))))
-            is
-               when True =>
-                  EingeleseneTexturenGrafik.GebäudeAccess (RasseSchleifenwert, TexturenZuweisenSchleifenwert)
-                    := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => GebäudeEinlesen (RasseSchleifenwert, TexturenZuweisenSchleifenwert))));
+         case
+           Exists (Name => Encode (Item => To_Wide_Wide_String (Source => GebäudeEinlesen (RasseExtern, TexturSchleifenwert))))
+         is
+            when True =>
+               EingeleseneTexturenGrafik.GebäudeAccess (RasseExtern, TexturSchleifenwert)
+                 := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => GebäudeEinlesen (RasseExtern, TexturSchleifenwert))));
                   
-               when False =>
-                  Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenGebäude - " & To_Wide_Wide_String (Source => GebäudeEinlesen (RasseSchleifenwert, TexturenZuweisenSchleifenwert)) & " fehlt.");
-                  EingeleseneTexturenGrafik.GebäudeAccess (RasseSchleifenwert, TexturenZuweisenSchleifenwert) := null;
-            end case;
+            when False =>
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenGebäude - " & To_Wide_Wide_String (Source => GebäudeEinlesen (RasseExtern, TexturSchleifenwert)) & " fehlt.");
+               EingeleseneTexturenGrafik.GebäudeAccess (RasseExtern, TexturSchleifenwert) := null;
+         end case;
          
-         end loop TexturenZuweisenSchleife;
-      end loop RassenZweiSchleife;
+      end loop TexturenSchleife;
       
    end EinlesenGebäude;
    

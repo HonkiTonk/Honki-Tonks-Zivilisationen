@@ -12,7 +12,7 @@ with TextnummernKonstanten;
 with TastenbelegungVariablen;
 
 with NachGrafiktask;
-with EingabeLogik;
+with TasteneingabeLogik;
 with RueckgabeMenues;
 with Mausauswahl;
 
@@ -29,7 +29,7 @@ package body AuswahlSteuerungsmenue is
          NachGrafiktask.AktuelleAuswahl := AktuelleAuswahl;
          
          case
-           EingabeLogik.Tastenwert
+           TasteneingabeLogik.Tastenwert
          is
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if
@@ -72,7 +72,7 @@ package body AuswahlSteuerungsmenue is
       NachGrafiktask.AnzeigeFrage := TextnummernKonstanten.FrageNeueTaste;
       NachGrafiktask.Eingabe := SystemDatentypen.Zeichen_Eingabe_Enum;
       
-      NeueTaste := EingabeLogik.TastenbelegungAnpassen;
+      NeueTaste := TasteneingabeLogik.TastenbelegungAnpassen;
       
       NachGrafiktask.Eingabe := SystemDatentypen.Keine_Eingabe_Enum;
       
