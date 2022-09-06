@@ -54,7 +54,7 @@ package body HintergrundGrafik is
    
    procedure Rassenhintergrund
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      HintergrundExtern : in GrafikDatentypen.Rassenhintergrund_Enum;
+      HintergrundExtern : in GrafikDatentypen.Rassenhintergrund_Vorhanden_Enum;
       AbmessungenExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       

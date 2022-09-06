@@ -168,10 +168,17 @@ package ChangelogSeptember2022 is
    
    
 
-   -- Version 0.03.8335 => 0.03. (06.09.2022):
+   -- Version 0.03.8335 => 0.03.8435 (06.09.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- gprbuild von Debian 2022.0.0-9 auf Debian 2023~20220801-3 aktualisiert.
+   -- Angefangen die GitHub Projektliste zu überarbeiten.
+   -- Karten- und Einheitenbewegung überarbeitet.
+   -- Einfache Abspann/Gewonnenanzeige eingebaut.
+   -- Das Menürückgabesystem leicht verbessert.
+   -- Menüanzeige und Skalierung verbessert.
+   -- Textanzeige und Skalierung der Seitenleiste verbessert.
+   -- Textanzeige und Skalierung des Forschungsmenüs verbessert.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    
 

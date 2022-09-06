@@ -62,7 +62,7 @@ package body EinheitenseitenleisteGrafik is
       end case;
       
       Textposition := TextKonstanten.StartpositionText;
-      AktuelleYPosition := Textposition.y;
+      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       Textbreite := 0.00;
       EinheitRasseNummer.Rasse := EinheitRasseNummerExtern.Rasse;
       -- Diese Zuweisung ist wichtig weil die gefundene Einheit eventuell auf einem Transporter ist.
@@ -136,28 +136,18 @@ package body EinheitenseitenleisteGrafik is
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),
                                                str  => To_Wide_Wide_String (Source => FestzulegenderText (TextSchleifenwert)));
             Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),
-                                          position => (Textposition.x, AktuelleYPosition));
+                                          position => Textposition);
             
             Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
                                                text         => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert));
          
             Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),
-                                                                              TextbreiteExtern => Textbreite);
-            
-            AktuelleYPosition := AktuelleYPosition + TextberechnungenHoeheGrafik.Zeilenabstand;
-            
-            case
-              TextSchleifenwert
-            is
-               when TextaccessVariablen.EinheitenInformationenAccess'Last =>
-                  Textposition.y := Textposition.y + Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert)).height;
-                  
-               when others =>
-                  null;
-            end case;
+                                                                                TextbreiteExtern => Textbreite);
          end if;
          
-         Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.Zeilenabstand;
+         Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                         TextAccessExtern => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),
+                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
          
       end loop TextSchleife;
       

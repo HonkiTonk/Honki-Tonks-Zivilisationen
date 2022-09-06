@@ -72,5 +72,7 @@ package NachGrafiktask is
    AktuelleBauauswahl : StadtRecords.BauprojektRecord := (0, 0);
    
    GeheZu : KartenRecords.AchsenKartenfeldNaturalRecord := KartenRecordKonstanten.LeerKoordinate;
+   
+   Abspannart : GrafikDatentypen.Rassenhintergrund_Enum := GrafikDatentypen.Leer_Hintergrund_Enum;
 
 end NachGrafiktask;

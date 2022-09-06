@@ -28,18 +28,19 @@ package body WichtigesSeitenleisteGrafik is
    is begin
       
       Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
-                                                                      VerhältnisExtern => (0.15, 0.05));
+                                                                        VerhältnisExtern => (0.15, 0.05));
       
       -- Diese Bereiche sicherheitshalber auch von außen hineingeben? äöü
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.SeitenleisteWeltkarteAccesse (1),
-                                          GrößeExtern          => Viewfläche,
-                                          AnzeigebereichExtern => GrafikRecordKonstanten.SeitenleisteWeltkartenbereich (1));
+                                            GrößeExtern          => Viewfläche,
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.SeitenleisteWeltkartenbereich (1));
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Seitenleiste_Hintergrund_Enum,
-                                   AbmessungenExtern => Viewfläche);
+                                     AbmessungenExtern => Viewfläche);
       
       Textbreite := 0.00;
       Textposition := TextKonstanten.StartpositionText;
+      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
       FestzulegenderText (1) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuellePosition) & " " & ZahlAlsStringEbeneVorhanden (ZahlExtern => KoordinatenExtern.EAchse) & "," & KoordinatenExtern.YAchse'Wide_Wide_Image
         & "," & KoordinatenExtern.XAchse'Wide_Wide_Image;
@@ -51,7 +52,7 @@ package body WichtigesSeitenleisteGrafik is
       FestzulegenderText (4) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuellerGeldzuwachs) & " " & ZahlAlsStringKostenLager (ZahlExtern => LeseWichtiges.GeldZugewinnProRunde (RasseExtern => RasseExtern));
       FestzulegenderText (5) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt) & " "
         & ForschungsbeschreibungenGrafik.BeschreibungKurz (IDExtern    => LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern),
-                                                         RasseExtern => RasseExtern);
+                                                           RasseExtern => RasseExtern);
       FestzulegenderText (6) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugVerbleibendeForschungszeit) & LeseWichtiges.VerbleibendeForschungszeit (RasseExtern => RasseExtern)'Wide_Wide_Image;
       FestzulegenderText (7) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuelleForschungsmenge) & LeseWichtiges.Forschungsmenge (RasseExtern => RasseExtern)'Wide_Wide_Image;
       FestzulegenderText (8) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuellerForschungsgewinn) & LeseWichtiges.GesamteForschungsrate (RasseExtern => RasseExtern)'Wide_Wide_Image;
@@ -66,16 +67,17 @@ package body WichtigesSeitenleisteGrafik is
                                        position => Textposition);
                   
          Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.KarteWichtigesAccess (TextSchleifenwert),
-                                                                           TextbreiteExtern => Textbreite);
-         
-         Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.Zeilenabstand;
+                                                                             TextbreiteExtern => Textbreite);
+         Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                         TextAccessExtern => TextaccessVariablen.KarteWichtigesAccess (TextSchleifenwert),
+                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
          
          Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
                                             text         => TextaccessVariablen.KarteWichtigesAccess (TextSchleifenwert));
          
       end loop TextSchleife;
       
-      Viewfläche := (Textbreite, Textposition.y);
+      Viewfläche := (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
             
    end WichtigesInformationen;
 

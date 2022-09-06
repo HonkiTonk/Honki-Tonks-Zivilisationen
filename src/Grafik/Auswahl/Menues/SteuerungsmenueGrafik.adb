@@ -32,31 +32,33 @@ package body SteuerungsmenueGrafik is
    is begin
       
       ViewflächeText := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => ViewflächeText,
-                                                                          VerhältnisExtern => (0.33, 1.00));
+                                                                            VerhältnisExtern => (0.33, 1.00));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.SteuerungviewAccesse (1),
-                                          GrößeExtern          => ViewflächeText,
-                                          AnzeigebereichExtern => GrafikRecordKonstanten.Steuerungbereich (1));
+                                            GrößeExtern          => ViewflächeText,
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Steuerungbereich (1));
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
-                                        AbmessungenExtern => ViewflächeText);
+                                     AbmessungenExtern => ViewflächeText);
                   
       ViewflächeText := BefehleAnzeigen (AuswahlExtern => AuswahlExtern.AuswahlEins);
       
       ViewflächeText.y := ViewflächeText.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       
       
-      ViewflächeText := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => ViewflächeText,
-                                                                          VerhältnisExtern => (0.10, 0.70));
+      ViewflächeBelegung := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => ViewflächeBelegung,
+                                                                            VerhältnisExtern => (0.10, 0.60));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.SteuerungviewAccesse (2),
-                                          GrößeExtern          => ViewflächeText,
-                                          AnzeigebereichExtern => GrafikRecordKonstanten.Steuerungbereich (2));
+                                            GrößeExtern          => ViewflächeText,
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Steuerungbereich (2));
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
-                                        AbmessungenExtern => ViewflächeText);
+                                     AbmessungenExtern => ViewflächeText);
       
       BelegungAnzeigen (AuswahlExtern => AuswahlExtern.AuswahlZwei);
+      
+      ViewflächeBelegung.y := ViewflächeBelegung.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       
    end Steuerungsmenü;
    
@@ -67,7 +69,7 @@ package body SteuerungsmenueGrafik is
       return Sf.System.Vector2.sfVector2f
    is begin
       
-      Textposition.y := 0.00;
+      Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
       Textposition.x := TextKonstanten.StartpositionText.x;
       Textbreite := 0.00;
       Zusatzabstand := True;
@@ -76,7 +78,7 @@ package body SteuerungsmenueGrafik is
       for PositionSchleifenwert in Textarrayanpassung .. SystemKonstanten.EndeMenü (MenueDatentypen.Steuerung_Menü_Enum) loop
 
          Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.SteuerungSFMLAccess (PositionSchleifenwert),
-                                                                           TextbreiteExtern => Textbreite);
+                                                                             TextbreiteExtern => Textbreite);
          
          if
            PositionSchleifenwert <= SystemKonstanten.EndeAbzugGrafik (MenueDatentypen.Steuerung_Menü_Enum)
@@ -95,7 +97,7 @@ package body SteuerungsmenueGrafik is
             is
                when True =>
                   Zusatzabstand := False;
-                  Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.Zeilenabstand;
+                  Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
                   
                when False =>
                   null;
@@ -105,7 +107,9 @@ package body SteuerungsmenueGrafik is
          Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.SteuerungSFMLAccess (PositionSchleifenwert),
                                        position => Textposition);
          
-         Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.Zeilenabstand;
+         Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                         TextAccessExtern => TextaccessVariablen.SteuerungSFMLAccess (PositionSchleifenwert),
+                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
          
          Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
                                             text         => TextaccessVariablen.SteuerungSFMLAccess (PositionSchleifenwert));
@@ -122,7 +126,7 @@ package body SteuerungsmenueGrafik is
      (AuswahlExtern : in Natural)
    is begin
       
-      Textposition.y := 0.00;
+      Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
       Textposition.x := TextKonstanten.StartpositionText.x;
       
       PositionenSchleife:
@@ -156,12 +160,16 @@ package body SteuerungsmenueGrafik is
          
          InteraktionAuswahl.PositionenSteuerungbelegung (PositionSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.TextAccess);
          
-         Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.Zeilenabstand;
+         Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                         TextAccessExtern => TextaccessVariablen.TextAccess,
+                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
          
          Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
                                             text         => TextaccessVariablen.TextAccess);
          
       end loop PositionenSchleife;
+      
+      ViewflächeBelegung := (Textbreite, Textposition.y);
       
    end BelegungAnzeigen;
    

@@ -85,12 +85,7 @@ package body Sichtweiten is
      return KartenDatentypen.SichtbereichAnfangEndeArray
    is begin
       
-      YSichtAnfang := -SichtweiteLesen;
-      YSichtEnde := SichtweiteLesen;
-      XSichtAnfang := -SichtweiteLesen;
-      XSichtEnde := SichtweiteLesen;
-      
-      return (YSichtAnfang, YSichtEnde, XSichtAnfang, XSichtEnde);
+      return (-SichtweiteLesen, SichtweiteLesen, -SichtweiteLesen, SichtweiteLesen);
       
    end SichtbereichKarteBerechnen;
 

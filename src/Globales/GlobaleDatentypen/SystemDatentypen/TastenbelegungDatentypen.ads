@@ -39,7 +39,9 @@ package TastenbelegungDatentypen is
    subtype Tastenbelegung_Auswählbar_Enum is Tastenbelegung_Verwendet_Enum range Bauen_Enum .. Runde_Beenden_Enum;
    
    subtype Tastenbelegung_Bewegung_Enum is Tastenbelegung_Verwendet_Enum range Oben_Enum .. Ebene_Runter_Enum;
-   subtype Tastenbelegung_Bewegung_Stadt_Enum is Tastenbelegung_Verwendet_Enum range Oben_Enum .. Rechts_Unten_Enum;
+   subtype Tastenbelegung_Bewegung_Numblock_Enum is Tastenbelegung_Bewegung_Enum range Oben_Enum .. Rechts_Unten_Enum;
+   subtype Tastenbelegung_Bewegung_Ebene_Enum is Tastenbelegung_Bewegung_Enum range Ebene_Hoch_Enum .. Ebene_Runter_Enum;
+   
    subtype Tastenbelegung_Befehle_Enum is Tastenbelegung_Verwendet_Enum range Straße_Bauen_Enum .. Einheit_Verbessern_Enum;
    subtype Tastenbelegung_Befehle_Anzeige is Tastenbelegung_Befehle_Enum range Straße_Bauen_Enum .. Verschanzen_Enum;
    subtype Tastenbelegung_Verbesserung_Befehle_Enum is Tastenbelegung_Befehle_Enum range Straße_Bauen_Enum .. Roden_Trockenlegen_Enum;

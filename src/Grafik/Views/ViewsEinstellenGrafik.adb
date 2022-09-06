@@ -66,22 +66,22 @@ package body ViewsEinstellenGrafik is
       if
         ViewflächeExtern.x < EinstellungenGrafik.AktuelleFensterAuflösung.x * VerhältnisExtern.x
       then
-         Viewfläche.x := EinstellungenGrafik.AktuelleFensterAuflösung.x * VerhältnisExtern.x;
+         ViewflächeVariabel.x := EinstellungenGrafik.AktuelleFensterAuflösung.x * VerhältnisExtern.x;
          
       else
-         Viewfläche.x := ViewflächeExtern.x;
+         ViewflächeVariabel.x := ViewflächeExtern.x;
       end if;
       
       if
         ViewflächeExtern.y < EinstellungenGrafik.AktuelleFensterAuflösung.y * VerhältnisExtern.y
       then
-         Viewfläche.y := EinstellungenGrafik.AktuelleFensterAuflösung.y * VerhältnisExtern.y;
+         ViewflächeVariabel.y := EinstellungenGrafik.AktuelleFensterAuflösung.y * VerhältnisExtern.y;
          
       else
-         Viewfläche.y := ViewflächeExtern.y;
+         ViewflächeVariabel.y := ViewflächeExtern.y;
       end if;
       
-      return Viewfläche;
+      return ViewflächeVariabel;
       
    end ViewflächeVariabelAnpassen;
 

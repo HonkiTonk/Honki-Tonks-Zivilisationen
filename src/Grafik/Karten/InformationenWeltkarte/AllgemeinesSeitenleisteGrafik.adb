@@ -32,11 +32,11 @@ package body AllgemeinesSeitenleisteGrafik is
       
       -- Diese Bereiche sicherheitshalber auch von außen hineingeben? äöü
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.SeitenleisteWeltkarteAccesse (2),
-                                          GrößeExtern          => Viewfläche,
-                                          AnzeigebereichExtern => GrafikRecordKonstanten.SeitenleisteWeltkartenbereich (2));
+                                            GrößeExtern          => Viewfläche,
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.SeitenleisteWeltkartenbereich (2));
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Seitenleiste_Hintergrund_Enum,
-                                        AbmessungenExtern => Viewfläche);
+                                     AbmessungenExtern => Viewfläche);
       
    end Leer;
    
@@ -47,12 +47,13 @@ package body AllgemeinesSeitenleisteGrafik is
    is begin
       
       Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
-                                                                      VerhältnisExtern => (0.15, 0.05));
+                                                                        VerhältnisExtern => (0.15, 0.05));
       
       Leer;
       
       Textbreite := 0.00;
       Textposition := TextKonstanten.StartpositionText;
+      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       RealeYPosition := Textposition.y;
       
       AktuelleKoordinaten := SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell;
@@ -155,15 +156,19 @@ package body AllgemeinesSeitenleisteGrafik is
                                                   text         => TextaccessVariablen.KarteAllgemeinesAccess (TextSchleifenwert));
          
                Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.KarteAllgemeinesAccess (TextSchleifenwert),
-                                                                                 TextbreiteExtern => Textbreite);
+                                                                                   TextbreiteExtern => Textbreite);
                
-               RealeYPosition := RealeYPosition + TextberechnungenHoeheGrafik.Zeilenabstand;
+               RealeYPosition := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => RealeYPosition,
+                                                                               TextAccessExtern => TextaccessVariablen.KarteAllgemeinesAccess (TextSchleifenwert),
+                                                                               ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
                
             when False =>
                null;
          end case;
          
-         Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.Zeilenabstand;
+         Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                         TextAccessExtern => TextaccessVariablen.KarteAllgemeinesAccess (TextSchleifenwert),
+                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
          
       end loop TextSchleife;
             

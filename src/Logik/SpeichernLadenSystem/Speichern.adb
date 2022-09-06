@@ -20,7 +20,7 @@ with Karten;
 with LadezeitenLogik;
 with SpeichernLadenAllgemein;
 with NachGrafiktask;
-with AuswahlLogik;
+with JaNeinLogik;
 
 -- Bei Änderungen am Speichersystem auch immer das Ladesystem anpassen!
 package body Speichern is
@@ -282,7 +282,7 @@ package body Speichern is
                   null;
                   
                elsif
-                 AuswahlLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageSpielstandÜberschreiben) = True
+                 JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageSpielstandÜberschreiben) = True
                then
                   null;
             

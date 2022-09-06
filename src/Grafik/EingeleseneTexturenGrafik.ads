@@ -37,7 +37,7 @@ package EingeleseneTexturenGrafik is
    type WegeAccessArray is array (KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
    WegeAccess : WegeAccessArray := (others => null);
 
-   type RassenhintergrundAccessArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, GrafikDatentypen.Rassenhintergrund_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
+   type RassenhintergrundAccessArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, GrafikDatentypen.Rassenhintergrund_Vorhanden_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
    RassenhintergrundAccess : RassenhintergrundAccessArray := (others => (others => null));
 
    type EinheitenAccesArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, EinheitenDatentypen.EinheitenID'Range) of Sf.Graphics.sfTexture_Ptr;

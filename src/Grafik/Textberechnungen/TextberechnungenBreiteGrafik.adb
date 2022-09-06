@@ -5,6 +5,7 @@ with Sf.Graphics.Text;
 
 with TextKonstanten;
 
+-- Hier auch Variable Abstände einbauen? äöü
 package body TextberechnungenBreiteGrafik is
 
    function MittelpositionBerechnen

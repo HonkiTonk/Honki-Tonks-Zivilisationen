@@ -30,7 +30,7 @@ package body ZusatztextKartengroesseGrafik is
       TextFestlegen (AktuelleAuswahlExtern => AktuelleAuswahlExtern);
       
       Rückgabewert := PositionFestlegen (ViewflächeExtern      => ViewflächeExtern,
-                                         RealeViewbreiteExtern => RealeViewbreiteExtern);
+                                          RealeViewbreiteExtern => RealeViewbreiteExtern);
       
       Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
                                          text         => TextaccessVariablen.ZusatztextKartengrößeAccess (1));
@@ -89,29 +89,32 @@ package body ZusatztextKartengroesseGrafik is
       return Sf.System.Vector2.sfVector2f
    is begin
       
-      Textposition.y := ViewflächeExtern.y + TextberechnungenHoeheGrafik.Zeilenabstand;
+      Textposition.y := ViewflächeExtern.y + TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.ZusatztextKartengrößeAccess (1),
-                                                                            ViewbreiteExtern => RealeViewbreiteExtern);
+                                                                              ViewbreiteExtern => RealeViewbreiteExtern);
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ZusatztextKartengrößeAccess (1),
                                     position => Textposition);
       
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ZusatztextKartengrößeAccess (1),
-                                                                        TextbreiteExtern => RealeViewbreiteExtern);
+                                                                          TextbreiteExtern => RealeViewbreiteExtern);
       
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.ZusatztextKartengrößeAccess (2),
-                                                                            ViewbreiteExtern => RealeViewbreiteExtern);
-      Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.Zeilenabstand;
+                                                                              ViewbreiteExtern => RealeViewbreiteExtern);
+      Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                      TextAccessExtern => TextaccessVariablen.ZusatztextKartengrößeAccess (1),
+                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ZusatztextKartengrößeAccess (2),
                                     position => Textposition);
       
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ZusatztextKartengrößeAccess (2),
-                                                                        TextbreiteExtern => Textbreite);
+                                                                          TextbreiteExtern => Textbreite);
+      Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                      TextAccessExtern => TextaccessVariablen.ZusatztextKartengrößeAccess (2),
+                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
       
-      Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.Zeilenabstand;
-      
-      return (Textbreite, Textposition.y);
+      return (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.Zeilenabstand);
       
    end PositionFestlegen;
 

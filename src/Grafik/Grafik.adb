@@ -27,6 +27,7 @@ with SpielmeldungenGrafik;
 with EditorenGrafik;
 with ForschungserfolgGrafik;
 with TasteneingabeGrafik;
+with AbspannGrafik;
 -- with Systemchecks;
 
 package body Grafik is
@@ -197,6 +198,9 @@ package body Grafik is
             
          when GrafikDatentypen.Grafik_Diplomatie_Enum =>
             DiplomatieauswahlGrafik.Diplomatieauswahl (AuswahlExtern => NachGrafiktask.AktuelleAuswahl.AuswahlEins);
+            
+         when GrafikDatentypen.Grafik_Abspann_Enum =>
+            AbspannGrafik.Abspann (AbspannExtern => NachGrafiktask.Abspannart);
             
          when GrafikDatentypen.Grafik_Ende_Enum =>
             return False;

@@ -1,8 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
-
 with KartenDatentypen; use KartenDatentypen;
 with MenueDatentypen;
 with KartenRecordKonstanten;
@@ -60,7 +58,6 @@ package body SpieleinstellungenKarten is
                return;
                
             when others =>
-               Put_Line (KartenpoleAuswahl'Wide_Wide_Image);
                Fehler.LogikFehler (FehlermeldungExtern => "SpielEinstellungenKarten.KartenpoleWählen - Falsche Menüauswahl.");
          end case;
          

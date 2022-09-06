@@ -59,7 +59,7 @@ package TextKonstanten is
    
    
    -- Überall entsprechend einbauen. äöü
-   StartpositionText : constant Sf.System.Vector2.sfVector2f := (12.00, 10.00);
+   StartpositionText : constant Sf.System.Vector2.sfVector2f := (12.00, 12.00);
    
    TextbreiteZusatzwert : constant Float := StartpositionText.x * 2.00;
    TexthöheZusatzwert : constant Float := StartpositionText.y;

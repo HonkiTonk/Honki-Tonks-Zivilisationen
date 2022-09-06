@@ -27,7 +27,7 @@ with AufgabeEinheitVerbessern;
 with AufgabeEinheitVerschanzen;
 with AufgabeEinheitAufloesen;
 with UmwandlungenVerschiedeneDatentypen;
-with AuswahlLogik;
+with JaNeinLogik;
 with MeldungFestlegenLogik;
 
 package body Aufgaben is
@@ -87,7 +87,7 @@ package body Aufgaben is
           SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.KI_Spieler_Enum
       then
          case
-           AuswahlLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageBeschäftigungAbbrechen)
+           JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageBeschäftigungAbbrechen)
          is
             when True =>
                null;
@@ -183,7 +183,7 @@ package body Aufgaben is
                and
                  VerbesserungExtern /= KartenverbesserungDatentypen.Leer_Verbesserung_Enum)
               and then
-                AuswahlLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageLandverbesserungErsetzen) = False
+                JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageLandverbesserungErsetzen) = False
             then
                return False;
                

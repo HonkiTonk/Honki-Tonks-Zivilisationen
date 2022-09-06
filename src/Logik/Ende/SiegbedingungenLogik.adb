@@ -7,54 +7,52 @@ with SpielVariablen;
 
 with LeseWichtiges;
 
-with Enden;
+with AbspannLogik;
+with NachGrafiktask;
 
-package body SiegBedingungen is
+package body SiegbedingungenLogik is
 
-   function SiegBedingungen
+   function Siegbedingungen
      return Boolean
    is begin
+            
+      if
+        SiegbedingungEins = True
+      then
+         Sieg := GrafikDatentypen.Gewonnen_Enum;
+      
+      elsif
+        SiegbedingungZwei = True
+      then
+         Sieg := GrafikDatentypen.Gewonnen_Enum;
+      
+      elsif
+        SiegbedingungDrei = True
+      then
+         Sieg := GrafikDatentypen.Gewonnen_Enum;
+            
+      else
+         Sieg := GrafikDatentypen.Gewonnen_Enum;
+      end if;
       
       case
-        SiegBedingungEins
-      is
-         when True =>
-            Enden.EndeEins;
+        Sieg
+      is 
+         when GrafikDatentypen.Abspann_Enum'Range =>
+            NachGrafiktask.AktuelleRasse := RassenDatentypen.Ekropa_Enum;
+            AbspannLogik.Abspann (AbspannExtern => Sieg);
+            NachGrafiktask.AktuelleRasse := RassenDatentypen.Keine_Rasse_Enum;
             return True;
             
-         when False =>
-            null;
+         when others =>
+            return False;
       end case;
       
-      case
-        SiegBedingungZwei
-      is
-         when True =>
-            Enden.EndeEins;
-            return True;
-            
-         when False =>
-            null;
-      end case;
-      
-      case
-        SiegBedingungDrei
-      is
-         when True =>
-            Enden.EndeEins;
-            return True;
-            
-         when False =>
-            null;
-      end case;
-      
-      return False;
-      
-   end SiegBedingungen;
+   end Siegbedingungen;
       
       
       
-   function SiegBedingungEins
+   function SiegbedingungEins
      return Boolean
    is begin
          
@@ -100,11 +98,11 @@ package body SiegBedingungen is
             return False;
       end case;
       
-   end SiegBedingungEins;
+   end SiegbedingungEins;
    
    
    
-   function SiegBedingungZwei
+   function SiegbedingungZwei
      return Boolean
    is begin
       
@@ -130,11 +128,11 @@ package body SiegBedingungen is
       
       return False;
       
-   end SiegBedingungZwei;
+   end SiegbedingungZwei;
    
    
    
-   function SiegBedingungDrei
+   function SiegbedingungDrei
      return Boolean
    is begin
       
@@ -149,6 +147,6 @@ package body SiegBedingungen is
             return True;
       end case;
          
-   end SiegBedingungDrei;
+   end SiegbedingungDrei;
 
-end SiegBedingungen;
+end SiegbedingungenLogik;

@@ -16,7 +16,7 @@ with ZwischenDenRunden;
 with Fehler;
 with NachGrafiktask;
 with BefehleLogik;
-with AuswahlLogik;
+with JaNeinLogik;
 with SpielerVorhanden;
 with Auswahlaufteilungen;
 
@@ -191,7 +191,7 @@ package body ImSpiel is
             if
               SpielerVorhanden.MenschlicheSpieler (RasseExtern => RasseExtern) = True
               and then
-                AuswahlLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageKIEinsetzen) = True
+                JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageKIEinsetzen) = True
             then
                RasseEntfernen.RasseAufKISetzen (RasseExtern => RasseExtern);
                

@@ -37,5 +37,15 @@ package SystemDatentypen is
    
    subtype Spielmeldungen is Natural range 0 .. Meldungstexte.Meldung'Last;
    subtype SpielmeldungenVorhanden is Spielmeldungen range 1 .. Spielmeldungen'Last;
+   
+   
+   
+   type Abspann_Enum is (
+                         Leer_Abspann_Enum,
+                         
+                         Abspann_Eins_Enum
+                        );
+   
+   subtype Abspann_Vorhanden_Enum is Abspann_Enum range Abspann_Eins_Enum .. Abspann_Enum'Last;
 
 end SystemDatentypen;

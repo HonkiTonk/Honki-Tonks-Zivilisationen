@@ -16,7 +16,7 @@ with WeltkarteRecords;
 
 with Karten;
 with LadezeitenLogik;
-with AuswahlLogik;
+with JaNeinLogik;
 with SpeichernLadenAllgemein;
 with NachGrafiktask;
 
@@ -62,7 +62,7 @@ package body Laden is
          
       else
          case
-           AuswahlLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageLadeFalscheVersion)
+           JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageLadeFalscheVersion)
          is
             when True =>
                null;

@@ -33,7 +33,6 @@ package body TasteneingabeGrafik is
            Nutzereingabe.eventType
          is
             when Sf.Window.Event.sfEvtClosed =>
-               -- Hier noch einen besseren universellen Endebefehl einbauen?
                NachGrafiktask.FensterGeschlossen := True;
                return;
                   
@@ -46,7 +45,7 @@ package body TasteneingabeGrafik is
             when others =>
                null;
          end case;
-            
+         
          -- Gäbe es einen Vorteil diesen Teil in jeweils eine eigene Prüfung umzuwandeln? Eventuell um mehrere Dinge gleichzeitig festlegen zu können?
          -- Beeinflusst das nicht auch die Auswertung in EingabeLogik? Hier einzeln durchgehen und dann in EingabeLogik die Auswertungsreihenfolge festlegen?
          case

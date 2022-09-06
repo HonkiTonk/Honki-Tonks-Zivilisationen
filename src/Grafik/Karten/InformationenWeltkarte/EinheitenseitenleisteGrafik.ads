@@ -49,7 +49,6 @@ private
    Ladungsnummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    
    Textbreite : Float;
-   AktuelleYPosition : Float;
       
    Ladungstext : Unbounded_Wide_Wide_String;
       

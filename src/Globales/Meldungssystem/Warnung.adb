@@ -11,8 +11,7 @@ package body Warnung is
      (WarnmeldungExtern : in Wide_Wide_String)
    is begin
       
-      Put_Line (Item => "Warnung.LogikWarnung:");
-      Put_Line (Item => WarnmeldungExtern);
+      Put_Line (Item => "Warnung.LogikWarnung: " & WarnmeldungExtern);
       MeldungSchreiben.MeldungSchreiben (MeldungExtern => "Logikwarnung: " & WarnmeldungExtern);
       
    end LogikWarnung;
@@ -23,8 +22,7 @@ package body Warnung is
      (WarnmeldungExtern : in Wide_Wide_String)
    is begin
       
-      Put_Line (Item => "Warnung.GrafikWarnung:");
-      Put_Line (Item => WarnmeldungExtern);
+      Put_Line (Item => "Warnung.GrafikWarnung: " & WarnmeldungExtern);
       MeldungSchreiben.MeldungSchreiben (MeldungExtern => "Grafikwarnung: " & WarnmeldungExtern);
       
    end GrafikWarnung;
@@ -35,8 +33,7 @@ package body Warnung is
      (WarnmeldungExtern : in Wide_Wide_String)
    is begin
       
-      Put_Line (Item => "Warnung.MusikWarnung:");
-      Put_Line (Item => WarnmeldungExtern);
+      Put_Line (Item => "Warnung.MusikWarnung: " & WarnmeldungExtern);
       MeldungSchreiben.MeldungSchreiben (MeldungExtern => "Musikwarnung: " & WarnmeldungExtern);
       
    end MusikWarnung;
@@ -47,8 +44,7 @@ package body Warnung is
      (WarnmeldungExtern : in Wide_Wide_String)
    is begin
       
-      Put_Line (Item => "Warnung.SoundWarnung:");
-      Put_Line (Item => WarnmeldungExtern);
+      Put_Line (Item => "Warnung.SoundWarnung: " & WarnmeldungExtern);
       MeldungSchreiben.MeldungSchreiben (MeldungExtern => "Soundwarnung: " & WarnmeldungExtern);
       
    end SoundWarnung;

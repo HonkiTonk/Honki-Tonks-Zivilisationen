@@ -9,34 +9,23 @@ with EinstellungenGrafik;
 
 package body TextberechnungenHoeheGrafik is
    
-   function HalbeBildschirmhöhe
-     return Float
-   is begin
-      
-      return EinstellungenGrafik.AktuelleFensterAuflösung.y / 2.00;
-      
-   end HalbeBildschirmhöhe;
-   
-   
-   
-   function HalbeHöheBerechnen
-     (TextAccessExtern : in Sf.Graphics.sfText_Ptr)
-      return Float
-   is begin
-      
-      return Sf.Graphics.Text.getGlobalBounds (text => TextAccessExtern).height / 2.00;
-      
-   end HalbeHöheBerechnen;
-   
-   
-   
    function KleinerZeilenabstand
      return Float
    is begin
       
-      return 28.80; -- 1.20 * Float (TexteinstellungenGrafik.Schriftgrößen.SchriftgrößeStandard);
+      return 15.00;
       
    end KleinerZeilenabstand;
+   
+   
+   
+   function KleinerZeilenabstandVariabel
+     return Float
+   is begin
+      
+      return 1.50 * EinstellungenGrafik.AktuelleFensterAuflösung.y / 100.00;
+      
+   end KleinerZeilenabstandVariabel;
    
    
    
@@ -44,39 +33,32 @@ package body TextberechnungenHoeheGrafik is
      return Float
    is begin
       
-      return 36.00; -- 1.50 * Float (TexteinstellungenGrafik.Schriftgrößen.SchriftgrößeStandard);
+      return 35.00;
       
    end Zeilenabstand;
    
    
    
-   function GroßerZeilenabstand
+   function ZeilenabstandVariabel
      return Float
    is begin
       
-      return 52.80; -- 2.20 * Float (TexteinstellungenGrafik.Schriftgrößen.SchriftgrößeStandard);
+      return 3.50 * EinstellungenGrafik.AktuelleFensterAuflösung.y / 100.00;
       
-   end GroßerZeilenabstand;
+   end ZeilenabstandVariabel;
    
    
    
-   function Überschriftabstand
-     return Float
+   function NeueTextposition
+     (PositionExtern : in Float;
+      TextAccessExtern : in Sf.Graphics.sfText_Ptr;
+      ZusatzwertExtern : in Float)
+      return Float
    is begin
       
-      return 90.00; -- 2.50 * Float (TexteinstellungenGrafik.Schriftgrößen.SchriftgrößeÜberschrift);
+      return PositionExtern + ZusatzwertExtern + Sf.Graphics.Text.getGlobalBounds (text => TextAccessExtern).height;
       
-   end Überschriftabstand;
-   
-   
-   
-   function ÜberschriftabstandGroß
-     return Float
-   is begin
-      
-      return 180.00; -- 5.00 * Float (TexteinstellungenGrafik.Schriftgrößen.SchriftgrößeÜberschrift);
-      
-   end ÜberschriftabstandGroß;
+   end NeueTextposition;
    
    
    

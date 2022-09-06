@@ -69,7 +69,7 @@ package body LadezeitenGrafik is
             Viewfläche := SpeichernLaden (ViewflächeExtern => Viewfläche);
       end case;
       
-      Viewfläche.y := Viewfläche.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
+      Viewfläche.y := Viewfläche.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
    end Ladezeiten;
    
@@ -84,7 +84,7 @@ package body LadezeitenGrafik is
       
       Textbreite := 0.00;
       WelcheZeit := TextaccessVariablen.LadezeitenAccess'First;
-      Textposition.y := TextberechnungenHoeheGrafik.Zeilenabstand;
+      Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
                      
       SpielweltErstellenSchleife:
       for SpielweltErstellenSchleifenwert in LadezeitenDatentypen.Spielwelt_Erstellen_Enum'Range loop
@@ -111,7 +111,9 @@ package body LadezeitenGrafik is
          Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
                                        position => Textposition);
          
-         Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.Zeilenabstand;
+         Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                         TextAccessExtern => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
+                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
          
          Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
                                             text         => TextaccessVariablen.LadezeitenAccess (WelcheZeit));
@@ -132,7 +134,7 @@ package body LadezeitenGrafik is
    is begin
       
       Textbreite := 0.00;
-      Textposition.y := TextberechnungenHoeheGrafik.Zeilenabstand;
+      Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
       WelcheZeit := TextaccessVariablen.KIZeitenAccess'First;
       
       KIRechnetSchleife:
@@ -157,7 +159,9 @@ package body LadezeitenGrafik is
          Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
                                                                            TextbreiteExtern => Textbreite);
          
-         Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.Zeilenabstand;
+         Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                         TextAccessExtern => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
+                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
             
          Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
                                        position => Textposition);
@@ -180,24 +184,22 @@ package body LadezeitenGrafik is
       return Sf.System.Vector2.sfVector2f
    is begin
       
-      Textposition.y := TextberechnungenHoeheGrafik.Zeilenabstand;
+      Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.RundenendeAccess (1),
                                          str  => To_Wide_Wide_String (Source => ZahlAlsStringLadefortschritt (ZahlExtern => LadezeitenLogik.FortschrittRundenende)) & TextKonstanten.Trennzeichen & "100");
                                                  
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.RundenendeAccess (1),
-                                                                            ViewbreiteExtern => ViewflächeExtern.x);
+                                                                              ViewbreiteExtern => ViewflächeExtern.x);
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.RundenendeAccess (1),
-                                                                        TextbreiteExtern => 0.00);
+                                                                          TextbreiteExtern => 0.00);
             
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.RundenendeAccess (1),
                                     position => Textposition);
       
       Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
                                          text         => TextaccessVariablen.RundenendeAccess (1));
-         
-      Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.Zeilenabstand;
-      
+               
       return (Textbreite, Textposition.y);
       
    end Rundenende;
@@ -209,7 +211,7 @@ package body LadezeitenGrafik is
       return Sf.System.Vector2.sfVector2f
    is begin
       
-      Textposition.y := TextberechnungenHoeheGrafik.Zeilenabstand;
+      Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.SpeichernLadenAccess (1),
                                          str  => To_Wide_Wide_String (Source => ZahlAlsStringLadefortschritt (ZahlExtern => LadezeitenLogik.FortschrittSpeichernLaden)) & TextKonstanten.Trennzeichen & "100");

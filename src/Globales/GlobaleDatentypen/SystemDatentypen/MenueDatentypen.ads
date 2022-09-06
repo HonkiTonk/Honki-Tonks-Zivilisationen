@@ -19,6 +19,8 @@ package MenueDatentypen is
                                
                                -- Steuerungsmneü.
                                Steuerung_Menü_Enum
+                                 
+                               -- Sprachen_Menü_Enum
                               );
    
    subtype Welches_Menü_Vorhanden_Enum is Welches_Menü_Enum range Haupt_Menü_Enum .. Welches_Menü_Enum'Last;

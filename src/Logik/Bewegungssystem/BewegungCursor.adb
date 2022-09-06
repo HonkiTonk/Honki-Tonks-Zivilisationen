@@ -11,7 +11,7 @@ with Sichtweiten;
 package body BewegungCursor is
    
    procedure CursorbewegungBerechnen
-     (RichtungExtern : in TastenbelegungDatentypen.Tastenbelegung_Bewegung_Enum;
+     (RichtungExtern : in TastenbelegungDatentypen.Tastenbelegung_Bewegung_Ebene_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       

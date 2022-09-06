@@ -25,7 +25,6 @@ private
 
    Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartgrößeView;
    Textposition : Sf.System.Vector2.sfVector2f;
-   Rechenwert : Sf.System.Vector2.sfVector2f;
 
    Farbe : Sf.Graphics.Color.sfColor;
 

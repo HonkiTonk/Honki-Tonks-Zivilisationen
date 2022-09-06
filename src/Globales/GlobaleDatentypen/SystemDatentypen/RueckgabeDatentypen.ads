@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 package RueckgabeDatentypen is
-
+   
    -- Weitere Auteilungen vornehmen, wie bei den RassenDatentypen. äöü
    type Rückgabe_Werte_Enum is (
                                  -- Allgemeines

@@ -41,7 +41,7 @@ package body ForschungsauswahlGrafik is
    is begin
       
       AllgemeineViewsGrafik.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => Meldungstexte.Frage (TextnummernKonstanten.FrageForschungsprojekt)),
-                                        HintergrundExtern => GrafikDatentypen.Forschung_Hintergrund_Enum);
+                                          HintergrundExtern => GrafikDatentypen.Forschung_Hintergrund_Enum);
             
       AktuelleAuswahl := ForschungenDatentypen.ForschungIDMitNullWert (AktuelleAuswahlExtern);
       
@@ -68,17 +68,17 @@ package body ForschungsauswahlGrafik is
    is begin
       
       Viewfläche (ViewnummerExtern) := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
-                                                                                         VerhältnisExtern => (0.50, 1.00));
+                                                                                           VerhältnisExtern => (0.50, 1.00));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.ForschungsviewAccesse (ViewnummerExtern),
-                                          GrößeExtern          => Viewfläche (ViewnummerExtern),
-                                          AnzeigebereichExtern => GrafikRecordKonstanten.Forschungsbereich (ViewnummerExtern));
+                                            GrößeExtern          => Viewfläche (ViewnummerExtern),
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Forschungsbereich (ViewnummerExtern));
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Forschung_Hintergrund_Enum,
-                                        AbmessungenExtern => Viewfläche (ViewnummerExtern));
+                                     AbmessungenExtern => Viewfläche (ViewnummerExtern));
       
       Textposition := TextKonstanten.StartpositionText;
-      Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
+      Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       AktuelleTextbreite := TextKonstanten.LeerTextbreite;
             
       AnzeigeSchleife:
@@ -103,9 +103,11 @@ package body ForschungsauswahlGrafik is
                                              position => Textposition);
                
                AktuelleTextbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ForschungsmenüAccess (RasseExtern, ForschungSchleifenwert),
-                                                                                         TextbreiteExtern => AktuelleTextbreite);
-         
-               Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.Zeilenabstand;
+                                                                                           TextbreiteExtern => AktuelleTextbreite);
+               
+               Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                               TextAccessExtern => TextaccessVariablen.ForschungsmenüAccess (RasseExtern, ForschungSchleifenwert),
+                                                                               ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
                
                InteraktionAuswahl.PositionenForschung (ForschungSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.ForschungsmenüAccess (RasseExtern, ForschungSchleifenwert));
                
@@ -131,14 +133,14 @@ package body ForschungsauswahlGrafik is
    is begin
       
       Viewfläche (ViewnummerExtern) := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
-                                                                                         VerhältnisExtern => (0.50, 0.50));
+                                                                                           VerhältnisExtern => (0.50, 0.50));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.ForschungsviewAccesse (ViewnummerExtern),
-                                          GrößeExtern          => Viewfläche (ViewnummerExtern),
-                                          AnzeigebereichExtern => GrafikRecordKonstanten.Forschungsbereich (ViewnummerExtern));
+                                            GrößeExtern          => Viewfläche (ViewnummerExtern),
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Forschungsbereich (ViewnummerExtern));
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Forschung_Hintergrund_Enum,
-                                        AbmessungenExtern => Viewfläche (ViewnummerExtern));
+                                     AbmessungenExtern => Viewfläche (ViewnummerExtern));
       
       case
         ZusatztextExtern
@@ -148,7 +150,7 @@ package body ForschungsauswahlGrafik is
             
          when others =>
             Textposition := TextKonstanten.StartpositionText;
-            Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
+            Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
             
             Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüZusatztextAccess (RasseExtern, ZusatztextExtern),
                                           position => Textposition);
@@ -157,16 +159,18 @@ package body ForschungsauswahlGrafik is
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüZusatztextAccess (RasseExtern, ZusatztextExtern),
                                          str  => ZeilenumbruchberechnungGrafik.ZeilenumbruchBerechnen (TextExtern   => ForschungsbeschreibungenGrafik.BeschreibungLang (IDExtern    => ZusatztextExtern,
                                                                                                                                                                         RasseExtern => RasseExtern),
-                                                                                                         BreiteExtern => GrafikRecordKonstanten.Forschungsbereich (ViewnummerExtern).width));
+                                                                                                       BreiteExtern => GrafikRecordKonstanten.Forschungsbereich (ViewnummerExtern).width));
       
       Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
                                          text         => TextaccessVariablen.ForschungsmenüZusatztextAccess (RasseExtern, ZusatztextExtern));
       
       AktuelleTextbreite := TextKonstanten.LeerTextbreite;
       AktuelleTextbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ForschungsmenüZusatztextAccess (RasseExtern, ZusatztextExtern),
-                                                                                TextbreiteExtern => AktuelleTextbreite);
+                                                                                  TextbreiteExtern => AktuelleTextbreite);
       
-      Textposition.y := Textposition.y + Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.ForschungsmenüZusatztextAccess (RasseExtern, ZusatztextExtern)).height + TextberechnungenHoeheGrafik.Zeilenabstand;
+      Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                      TextAccessExtern => TextaccessVariablen.ForschungsmenüZusatztextAccess (RasseExtern, ZusatztextExtern),
+                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       
       Viewfläche (ViewnummerExtern) := (AktuelleTextbreite, Textposition.y);
               
@@ -182,14 +186,14 @@ package body ForschungsauswahlGrafik is
       
       -- Sieht auch ohne Anpassung ganz gut aus?
       Viewfläche (ViewnummerExtern) := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
-                                                                                         VerhältnisExtern => (0.50, 0.50));
+                                                                                           VerhältnisExtern => (0.50, 0.50));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.ForschungsviewAccesse (ViewnummerExtern),
-                                          GrößeExtern          => Viewfläche (ViewnummerExtern),
-                                          AnzeigebereichExtern => GrafikRecordKonstanten.Forschungsbereich (ViewnummerExtern));
+                                            GrößeExtern          => Viewfläche (ViewnummerExtern),
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Forschungsbereich (ViewnummerExtern));
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Forschung_Hintergrund_Enum,
-                                        AbmessungenExtern => Viewfläche (ViewnummerExtern));
+                                     AbmessungenExtern => Viewfläche (ViewnummerExtern));
       
       case
         ZusatztextExtern
@@ -199,7 +203,7 @@ package body ForschungsauswahlGrafik is
             
          when others =>
             Textposition := TextKonstanten.StartpositionText;
-            Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
+            Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
             AktuelleTextbreite := TextKonstanten.LeerTextbreite;
       end case;
       
@@ -210,10 +214,13 @@ package body ForschungsauswahlGrafik is
                
       Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
                                          text         => TextaccessVariablen.ForschungsmenüErmöglichtAccess);
-         
-      Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
+      
+      Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                      TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
+                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+      
       AktuelleTextbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
-                                                                                TextbreiteExtern => AktuelleTextbreite);
+                                                                                  TextbreiteExtern => AktuelleTextbreite);
       
       ErmöglichtSchleife:
       for NeueForschungSchleifenwert in ForschungenDatentypen.AnforderungForschungArray'Range loop
@@ -231,14 +238,16 @@ package body ForschungsauswahlGrafik is
                                              position => Textposition);
                Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                                   str  => ForschungsbeschreibungenGrafik.BeschreibungKurz (IDExtern    => TechnologieSchleifenwert,
-                                                                                                         RasseExtern => RasseExtern));
+                                                                                                           RasseExtern => RasseExtern));
                
                Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
                                                   text         => TextaccessVariablen.ForschungsmenüErmöglichtAccess);
          
-               Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
+               Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                               TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
+                                                                               ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
                AktuelleTextbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
-                                                                                         TextbreiteExtern => AktuelleTextbreite);
+                                                                                           TextbreiteExtern => AktuelleTextbreite);
                   
             else
                null;
@@ -247,7 +256,7 @@ package body ForschungsauswahlGrafik is
          end loop TechnologienSchleife;
       end loop ErmöglichtSchleife;
       
-      Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
+      Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
          
       EinheitenSchleife:
       for EinheitenSchleifenwert in EinheitenDatentypen.EinheitenID'Range loop
@@ -260,14 +269,16 @@ package body ForschungsauswahlGrafik is
                                           position => Textposition);
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                                str  => EinheitenbeschreibungenGrafik.BeschreibungKurz (IDExtern    => EinheitenSchleifenwert,
-                                                                                                     RasseExtern => RasseExtern));
+                                                                                                       RasseExtern => RasseExtern));
                
             Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
                                                text         => TextaccessVariablen.ForschungsmenüErmöglichtAccess);
             
-            Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
+            Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                            TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
+                                                                            ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
             AktuelleTextbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
-                                                                                      TextbreiteExtern => AktuelleTextbreite);
+                                                                                        TextbreiteExtern => AktuelleTextbreite);
                
          else
             null;
@@ -275,7 +286,7 @@ package body ForschungsauswahlGrafik is
                
       end loop EinheitenSchleife;
          
-      Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
+      Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
          
       GebäudeSchleife:
       for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
@@ -288,14 +299,16 @@ package body ForschungsauswahlGrafik is
                                           position => Textposition);
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                                str  => GebaeudebeschreibungenGrafik.BeschreibungKurz (IDExtern    => GebäudeSchleifenwert,
-                                                                                                    RasseExtern => RasseExtern));
+                                                                                                      RasseExtern => RasseExtern));
             
             Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
                                                text         => TextaccessVariablen.ForschungsmenüErmöglichtAccess);
          
-            Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
+            Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                            TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
+                                                                            ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
             AktuelleTextbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
-                                                                                      TextbreiteExtern => AktuelleTextbreite);
+                                                                                        TextbreiteExtern => AktuelleTextbreite);
                
          else
             null;
@@ -303,7 +316,7 @@ package body ForschungsauswahlGrafik is
             
       end loop GebäudeSchleife;
          
-      Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
+      Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
       Viewfläche (ViewnummerExtern) := (AktuelleTextbreite, Textposition.y);
       
@@ -321,13 +334,14 @@ package body ForschungsauswahlGrafik is
       --                                                                     VerhältnisExtern => (0.10, 0.10));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.ForschungsviewAccesse (ViewnummerExtern),
-                                          GrößeExtern          => Viewfläche (ViewnummerExtern),
-                                          AnzeigebereichExtern => GrafikRecordKonstanten.Forschungsbereich (ViewnummerExtern));
+                                            GrößeExtern          => Viewfläche (ViewnummerExtern),
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Forschungsbereich (ViewnummerExtern));
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Forschung_Hintergrund_Enum,
-                                        AbmessungenExtern => Viewfläche (ViewnummerExtern));
+                                     AbmessungenExtern => Viewfläche (ViewnummerExtern));
       
       Textposition := TextKonstanten.StartpositionText;
+      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       AktuelleTextbreite := TextKonstanten.LeerTextbreite;
       
       AktuellesForschungsprojekt := LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern);
@@ -340,14 +354,14 @@ package body ForschungsauswahlGrafik is
             
          when others =>
             Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt) & " " & ForschungsbeschreibungenGrafik.BeschreibungKurz (IDExtern    => AktuellesForschungsprojekt,
-                                                                                                                                                    RasseExtern => RasseExtern);
+                                                                                                                                                       RasseExtern => RasseExtern);
       end case;
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                          str  => To_Wide_Wide_String (Source => Text));
       
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
-                                                                            ViewbreiteExtern => Viewfläche (ViewnummerExtern).x);
+                                                                              ViewbreiteExtern => Viewfläche (ViewnummerExtern).x);
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                     position => Textposition);
@@ -356,8 +370,10 @@ package body ForschungsauswahlGrafik is
                                          text         => TextaccessVariablen.ForschungsmenüErmöglichtAccess);
       
       AktuelleTextbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
-                                                                                TextbreiteExtern => AktuelleTextbreite);
-      Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
+                                                                                  TextbreiteExtern => AktuelleTextbreite);
+      Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                      TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
+                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       
       Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugVerbleibendeForschungszeit) & LeseWichtiges.VerbleibendeForschungszeit (RasseExtern => RasseExtern)'Wide_Wide_Image;
       
@@ -365,7 +381,7 @@ package body ForschungsauswahlGrafik is
                                          str  => To_Wide_Wide_String (Source => Text));
       
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
-                                                                            ViewbreiteExtern => Viewfläche (ViewnummerExtern).x);
+                                                                              ViewbreiteExtern => Viewfläche (ViewnummerExtern).x);
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                     position => Textposition);
@@ -374,8 +390,10 @@ package body ForschungsauswahlGrafik is
                                          text         => TextaccessVariablen.ForschungsmenüErmöglichtAccess);
       
       AktuelleTextbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
-                                                                                TextbreiteExtern => AktuelleTextbreite);
-      Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
+                                                                                  TextbreiteExtern => AktuelleTextbreite);
+      Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                      TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
+                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
             
       Viewfläche (ViewnummerExtern) := (AktuelleTextbreite, Textposition.y);
       

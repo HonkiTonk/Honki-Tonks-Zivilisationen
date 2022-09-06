@@ -9,7 +9,7 @@ with SpielVariablen;
 
 private with TastenbelegungDatentypen;
 
-package BewegungEinheitenSFML is
+package EinheitenkontrollsystemLogik is
 
    procedure BewegungEinheitenRichtung
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
@@ -26,11 +26,12 @@ private
    BewegungNochMöglich : Boolean;
       
    BefehlMaus : TastenbelegungDatentypen.Tastenbelegung_Enum;
-      
-   Änderung : KartenRecords.AchsenKartenfeldRecord;
-   KeineÄnderung : constant KartenRecords.AchsenKartenfeldRecord := (0, 0, 0);
-
+   
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   EinheitenKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+      
+   KeineÄnderung : constant KartenRecords.AchsenKartenfeldRecord := (0, 0, 0);
+   Änderung : KartenRecords.AchsenKartenfeldRecord;
    
    type RichtungArray is array (TastenbelegungDatentypen.Tastenbelegung_Bewegung_Enum'Range) of KartenRecords.AchsenKartenfeldRecord;
    Richtung : constant RichtungArray := (
@@ -108,4 +109,4 @@ private
                  SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
               );
 
-end BewegungEinheitenSFML;
+end EinheitenkontrollsystemLogik;

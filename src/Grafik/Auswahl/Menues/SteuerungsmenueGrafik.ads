@@ -36,6 +36,7 @@ private
    Farbe : Sf.Graphics.Color.sfColor;
    
    ViewflächeText : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartgrößeView;
+   ViewflächeBelegung : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartgrößeView;
    
    procedure FarbeFestlegen
      (AuswahlExtern : in Natural;

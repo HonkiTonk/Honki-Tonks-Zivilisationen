@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-package AuswahlLogik is
+package JaNeinLogik is
 
    function JaNein
      (FrageZeileExtern : in Positive)
@@ -11,4 +11,4 @@ private
 
    AktuelleAuswahl : Natural;
 
-end AuswahlLogik;
+end JaNeinLogik;

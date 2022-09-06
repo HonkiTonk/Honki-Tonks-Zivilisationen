@@ -34,8 +34,8 @@ package body EinfachmenueGrafik is
       Viewbreite := Viewfläche.x;
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.MenüviewAccess,
-                                          GrößeExtern          => Viewfläche,
-                                          AnzeigebereichExtern => GrafikRecordKonstanten.MenüEinfachbereich);
+                                            GrößeExtern          => Viewfläche,
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.MenüEinfachbereich);
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
                                      AbmessungenExtern => Viewfläche);
@@ -58,7 +58,7 @@ package body EinfachmenueGrafik is
             null;
       end case;
       
-      Viewfläche.y := Viewfläche.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
+     Viewfläche.y := Viewfläche.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
                               
    end Einfachmenü;
    
@@ -71,7 +71,7 @@ package body EinfachmenueGrafik is
       return Sf.System.Vector2.sfVector2f
    is begin
       
-      Rechenwert.y := TextberechnungenHoeheGrafik.Zeilenabstand;
+      Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
       Textbreite := 0.00;
 
       PositionenSchleife:
@@ -85,26 +85,28 @@ package body EinfachmenueGrafik is
                                             str  => MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => PositionSchleifenwert,
                                                                                                  WelchesMenüExtern => WelchesMenüExtern));
          
-         Rechenwert.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.MenüsSFMLAccess (WelchesMenüExtern, PositionSchleifenwert),
-                                                                             ViewbreiteExtern => ViewflächeExtern.x);
+         Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.MenüsSFMLAccess (WelchesMenüExtern, PositionSchleifenwert),
+                                                                                 ViewbreiteExtern => ViewflächeExtern.x);
          
          Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.MenüsSFMLAccess (WelchesMenüExtern, PositionSchleifenwert),
-                                       position => Rechenwert);
+                                       position => Textposition);
 
          Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.MenüsSFMLAccess (WelchesMenüExtern, PositionSchleifenwert),
-                                                                           TextbreiteExtern => Textbreite);
+                                                                             TextbreiteExtern => Textbreite);
          
          InteraktionAuswahl.PositionenMenüeinträge (WelchesMenüExtern, PositionSchleifenwert - 1)
            := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.MenüsSFMLAccess (WelchesMenüExtern, PositionSchleifenwert));
          
-         Rechenwert.y := Rechenwert.y + TextberechnungenHoeheGrafik.Zeilenabstand;
+         Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                         TextAccessExtern => TextaccessVariablen.MenüsSFMLAccess (WelchesMenüExtern, PositionSchleifenwert),
+                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
          
          Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
                                             text         => TextaccessVariablen.MenüsSFMLAccess (WelchesMenüExtern, PositionSchleifenwert));
          
       end loop PositionenSchleife;
 
-      return (Textbreite, Rechenwert.y);
+      return (Textbreite, Textposition.y);
 
    end Textdarstellung;
    

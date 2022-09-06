@@ -28,13 +28,13 @@ package body ZusatztextDiplomatieGrafik is
    is begin
       
       Textbreite := 0.00;
-      Textposition.y := ViewflächeExtern.y + TextberechnungenHoeheGrafik.Zeilenabstand;
+      Textposition.y := ViewflächeExtern.y + TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
       
       TextSchleife:
       for TextSchleifenwert in SystemKonstanten.EndeAbzugGrafik (MenueDatentypen.Diplomatie_Menü_Enum) + 1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Diplomatie_Menü_Enum) loop
          
          Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.MenüsSFMLAccess (MenueDatentypen.Diplomatie_Menü_Enum, TextSchleifenwert),
-                                                                               ViewbreiteExtern => RealeViewbreiteExtern);
+                                                                                 ViewbreiteExtern => RealeViewbreiteExtern);
       
          Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.MenüsSFMLAccess (MenueDatentypen.Diplomatie_Menü_Enum, TextSchleifenwert),
                                        position => Textposition);
@@ -43,12 +43,14 @@ package body ZusatztextDiplomatieGrafik is
                                             str  => TextSetzen (TextnummerExtern => TextSchleifenwert));
       
          Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.MenüsSFMLAccess (MenueDatentypen.Diplomatie_Menü_Enum, TextSchleifenwert),
-                                                                           TextbreiteExtern => RealeViewbreiteExtern);
+                                                                             TextbreiteExtern => RealeViewbreiteExtern);
       
          Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
                                             text         => TextaccessVariablen.MenüsSFMLAccess (MenueDatentypen.Diplomatie_Menü_Enum, TextSchleifenwert));
       
-         Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.Zeilenabstand;
+         Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                         TextAccessExtern => TextaccessVariablen.MenüsSFMLAccess (MenueDatentypen.Diplomatie_Menü_Enum, TextSchleifenwert),
+                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
          
       end loop TextSchleife;
       

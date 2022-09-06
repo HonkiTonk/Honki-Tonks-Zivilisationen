@@ -17,68 +17,55 @@ package body RueckgabeMenues is
         WelchesMenüExtern
       is
          when MenueDatentypen.Haupt_Menü_Enum =>
-            return Hauptmenü (AnfangExtern          => AnfangExtern,
-                               EndeExtern            => EndeExtern,
+            return Hauptmenü (EndeExtern            => EndeExtern,
                                AktuelleAuswahlExtern => AktuelleAuswahlExtern);
             
          when MenueDatentypen.Spiel_Menü_Enum =>
-            return Spielmenü (AnfangExtern          => AnfangExtern,
-                               EndeExtern            => EndeExtern,
+            return Spielmenü (EndeExtern            => EndeExtern,
                                AktuelleAuswahlExtern => AktuelleAuswahlExtern);
             
          when MenueDatentypen.Optionen_Menü_Enum =>
-            return Optionsmenü (AnfangExtern          => AnfangExtern,
-                                 EndeExtern            => EndeExtern,
+            return Optionsmenü (EndeExtern            => EndeExtern,
                                  AktuelleAuswahlExtern => AktuelleAuswahlExtern);
             
          when MenueDatentypen.Kartenpole_Menü_Enum =>
-            return KartenpoleAuswählen (AnfangExtern          => AnfangExtern,
-                                         EndeExtern            => EndeExtern,
+            return KartenpoleAuswählen (EndeExtern            => EndeExtern,
                                          AktuelleAuswahlExtern => AktuelleAuswahlExtern);
             
          when MenueDatentypen.Kartengröße_Menü_Enum =>
-            return KartengrößeAuswählen (AnfangExtern          => AnfangExtern,
-                                            EndeExtern            => EndeExtern,
+            return KartengrößeAuswählen (EndeExtern            => EndeExtern,
                                             AktuelleAuswahlExtern => AktuelleAuswahlExtern);
             
          when MenueDatentypen.Kartenart_Menü_Enum =>
-            return KartenartAuswählen (AnfangExtern          => AnfangExtern,
-                                        EndeExtern            => EndeExtern,
+            return KartenartAuswählen (EndeExtern            => EndeExtern,
                                         AktuelleAuswahlExtern => AktuelleAuswahlExtern);
             
          when MenueDatentypen.Kartenform_Menü_Enum =>
-            return KartenformAuswählen (AnfangExtern          => AnfangExtern,
-                                         EndeExtern            => EndeExtern,
+            return KartenformAuswählen (EndeExtern            => EndeExtern,
                                          AktuelleAuswahlExtern => AktuelleAuswahlExtern);
             
          when MenueDatentypen.Kartentemperatur_Menü_Enum =>
-            return KartentemperaturAuswählen (AnfangExtern          => AnfangExtern,
-                                               EndeExtern            => EndeExtern,
+            return KartentemperaturAuswählen (EndeExtern            => EndeExtern,
                                                AktuelleAuswahlExtern => AktuelleAuswahlExtern);
             
          when MenueDatentypen.Kartenressourcen_Menü_Enum =>
-            return KartenRessourcenAuswählen (AnfangExtern          => AnfangExtern,
-                                               EndeExtern            => EndeExtern,
+            return KartenRessourcenAuswählen (EndeExtern            => EndeExtern,
                                                AktuelleAuswahlExtern => AktuelleAuswahlExtern);
             
          when MenueDatentypen.Schwierigkeitsgrad_Menü_Enum =>
-            return SchwierigkeitsgradAuswählen (AnfangExtern          => AnfangExtern,
-                                                 EndeExtern            => EndeExtern,
+            return SchwierigkeitsgradAuswählen (EndeExtern            => EndeExtern,
                                                  AktuelleAuswahlExtern => AktuelleAuswahlExtern);
                         
          when MenueDatentypen.Rassen_Menü_Enum =>
-            return RasseAuswählen (AnfangExtern          => AnfangExtern,
-                                    EndeExtern            => EndeExtern,
+            return RasseAuswählen (EndeExtern            => EndeExtern,
                                     AktuelleAuswahlExtern => AktuelleAuswahlExtern);
             
          when MenueDatentypen.Grafik_Menü_Enum =>
-            return GrafikMenü (AnfangExtern          => AnfangExtern,
-                                EndeExtern            => EndeExtern,
+            return GrafikMenü (EndeExtern            => EndeExtern,
                                 AktuelleAuswahlExtern => AktuelleAuswahlExtern);
             
          when MenueDatentypen.Sound_Menü_Enum =>
-            return SoundMenü (AnfangExtern          => AnfangExtern,
-                               EndeExtern            => EndeExtern,
+            return SoundMenü (EndeExtern            => EndeExtern,
                                AktuelleAuswahlExtern => AktuelleAuswahlExtern);
             
          when MenueDatentypen.Steuerung_Menü_Enum =>
@@ -87,28 +74,23 @@ package body RueckgabeMenues is
                                    AktuelleAuswahlExtern => AktuelleAuswahlExtern);
             
          when MenueDatentypen.Sonstiges_Menü_Enum =>
-            return SonstigesMenü (AnfangExtern          => AnfangExtern,
-                                   EndeExtern            => EndeExtern,
+            return SonstigesMenü (EndeExtern            => EndeExtern,
                                    AktuelleAuswahlExtern => AktuelleAuswahlExtern);
                
          when MenueDatentypen.Editoren_Menü_Enum =>
-            return EditorenMenü (AnfangExtern          => AnfangExtern,
-                                  EndeExtern            => EndeExtern,
+            return EditorenMenü (EndeExtern            => EndeExtern,
                                   AktuelleAuswahlExtern => AktuelleAuswahlExtern);
             
          when MenueDatentypen.Einstellungen_Menü_Enum =>
-            return SpieleinstellungenMenü (AnfangExtern          => AnfangExtern,
-                                            EndeExtern            => EndeExtern,
+            return SpieleinstellungenMenü (EndeExtern            => EndeExtern,
                                             AktuelleAuswahlExtern => AktuelleAuswahlExtern);
             
          when MenueDatentypen.Debug_Menü_Enum =>
-            return Debugmenü (AnfangExtern          => AnfangExtern,
-                               EndeExtern            => EndeExtern,
+            return Debugmenü (EndeExtern            => EndeExtern,
                                AktuelleAuswahlExtern => AktuelleAuswahlExtern);
             
          when MenueDatentypen.Diplomatie_Menü_Enum =>
-            return Diplomatiemenü (AnfangExtern          => AnfangExtern,
-                                    EndeExtern            => EndeExtern,
+            return Diplomatiemenü (EndeExtern            => EndeExtern,
                                     AktuelleAuswahlExtern => AktuelleAuswahlExtern);
       end case;
       
@@ -118,39 +100,38 @@ package body RueckgabeMenues is
 
    -- Theoretisch müsste ZurückHauptmenüBeenden hier auch funktionieren.
    function Hauptmenü
-     (AnfangExtern : in Positive;
-      EndeExtern : in Positive;
+     (EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
             
       if
-        AktuelleAuswahlExtern = AnfangExtern
+        AktuelleAuswahlExtern = Anfang
       then
          return RueckgabeDatentypen.Start_Weiter_Enum;
          
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 1
+        AktuelleAuswahlExtern = Anfang + 1
       then
          return RueckgabeDatentypen.Schnellstart_Enum;
                   
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 2
+        AktuelleAuswahlExtern = Anfang + 2
       then
          return RueckgabeDatentypen.Laden_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 3
+        AktuelleAuswahlExtern = Anfang + 3
       then
          return RueckgabeDatentypen.Optionen_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 4
+        AktuelleAuswahlExtern = Anfang + 4
       then
          return RueckgabeDatentypen.Editoren_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 5
+        AktuelleAuswahlExtern = Anfang + 5
       then
          return RueckgabeDatentypen.Würdigungen_Enum;
                     
@@ -170,29 +151,28 @@ package body RueckgabeMenues is
    
    -- Theoretisch müsste ZurückHauptmenüBeenden hier auch funktionieren.
    function Spielmenü
-     (AnfangExtern : in Positive;
-      EndeExtern : in Positive;
+     (EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       if
-        AktuelleAuswahlExtern = AnfangExtern
+        AktuelleAuswahlExtern = Anfang
       then
          return RueckgabeDatentypen.Start_Weiter_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 1
+        AktuelleAuswahlExtern = Anfang + 1
       then
          return RueckgabeDatentypen.Speichern_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 2
+        AktuelleAuswahlExtern = Anfang + 2
       then
          return RueckgabeDatentypen.Laden_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 3
+        AktuelleAuswahlExtern = Anfang + 3
       then
          return RueckgabeDatentypen.Optionen_Enum;
                     
@@ -206,34 +186,33 @@ package body RueckgabeMenues is
    
    
    function Optionsmenü
-     (AnfangExtern : in Positive;
-      EndeExtern : in Positive;
+     (EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       if
-        AktuelleAuswahlExtern = AnfangExtern
+        AktuelleAuswahlExtern = Anfang
       then
          return RueckgabeDatentypen.Grafik_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 1
+        AktuelleAuswahlExtern = Anfang + 1
       then
          return RueckgabeDatentypen.Sound_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 2
+        AktuelleAuswahlExtern = Anfang + 2
       then
          return RueckgabeDatentypen.Steuerung_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 3
+        AktuelleAuswahlExtern = Anfang + 3
       then
          return RueckgabeDatentypen.Sonstiges_Enum;
          
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 4
+        AktuelleAuswahlExtern = Anfang + 4
       then
          return RueckgabeDatentypen.Zurück_Enum;
                     
@@ -247,70 +226,59 @@ package body RueckgabeMenues is
    
    
    function SpieleinstellungenMenü
-     (AnfangExtern : in Positive;
-      EndeExtern : in Positive;
+     (EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       if
-        AktuelleAuswahlExtern = AnfangExtern
+        AktuelleAuswahlExtern = Anfang
       then
          return RueckgabeDatentypen.Auswahl_Kartenpole_Enum;
       
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 1
+        AktuelleAuswahlExtern = Anfang + 1
       then
          return RueckgabeDatentypen.Auswahl_Kartengröße_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 2
+        AktuelleAuswahlExtern = Anfang + 2
       then
          return RueckgabeDatentypen.Auswahl_Kartenart_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 3
+        AktuelleAuswahlExtern = Anfang + 3
       then
          return RueckgabeDatentypen.Auswahl_Kartenform_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 4
+        AktuelleAuswahlExtern = Anfang + 4
       then
          return RueckgabeDatentypen.Auswahl_Kartentemperatur_Enum;
          
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 5
+        AktuelleAuswahlExtern = Anfang + 5
       then
          return RueckgabeDatentypen.Auswahl_Kartenressourcen_Enum;
          
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 6
+        AktuelleAuswahlExtern = Anfang + 6
       then
          return RueckgabeDatentypen.Auswahl_Rassen_Enum;
          
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 7
+        AktuelleAuswahlExtern = Anfang + 7
       then
          return RueckgabeDatentypen.Auswahl_Schwierigkeitsgrad_Enum;
          
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 8
+        AktuelleAuswahlExtern = Anfang + 8
       then
          return RueckgabeDatentypen.Fertig_Enum;
                     
-      elsif
-        AktuelleAuswahlExtern = EndeExtern - 1
-      then
-         return RueckgabeDatentypen.Hauptmenü_Enum;
-                    
-      elsif
-        AktuelleAuswahlExtern = EndeExtern
-      then
-         return RueckgabeDatentypen.Spiel_Beenden_Enum;
-                    
       else
-         Fehler.LogikFehler (FehlermeldungExtern => "RueckgabeMenues.SpieleinstellungenMenü - Falsche Auswahl.");
-         return RueckgabeDatentypen.Spiel_Beenden_Enum;
+         return HauptmenüEnde (EndeExtern            => EndeExtern,
+                                AktuelleAuswahlExtern => AktuelleAuswahlExtern);
       end if;
       
    end SpieleinstellungenMenü;
@@ -318,39 +286,38 @@ package body RueckgabeMenues is
    
    
    function KartenpoleAuswählen
-     (AnfangExtern : in Positive;
-      EndeExtern : in Positive;
+     (EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       if
-        AktuelleAuswahlExtern = AnfangExtern
+        AktuelleAuswahlExtern = Anfang
       then
          return RueckgabeDatentypen.Nordpol_Enum;
          
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 1
+        AktuelleAuswahlExtern = Anfang + 1
       then
          return RueckgabeDatentypen.Südpol_Enum;
          
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 2
+        AktuelleAuswahlExtern = Anfang + 2
       then
          return RueckgabeDatentypen.Westpol_Enum;
          
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 3
+        AktuelleAuswahlExtern = Anfang + 3
       then
          return RueckgabeDatentypen.Ostpol_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 4
+        AktuelleAuswahlExtern = Anfang + 4
       then
          return RueckgabeDatentypen.Kartenpole_Zufall_Enum;
          
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 5
+        AktuelleAuswahlExtern = Anfang + 5
       then
          return RueckgabeDatentypen.Standard_Enum;
                     
@@ -364,69 +331,68 @@ package body RueckgabeMenues is
    
       
    function KartengrößeAuswählen
-     (AnfangExtern : in Positive;
-      EndeExtern : in Positive;
+     (EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       if
-        AktuelleAuswahlExtern = AnfangExtern
+        AktuelleAuswahlExtern = Anfang
       then
          return RueckgabeDatentypen.Kartengröße_20_20_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 1
+        AktuelleAuswahlExtern = Anfang + 1
       then
          return RueckgabeDatentypen.Kartengröße_40_40_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 2
+        AktuelleAuswahlExtern = Anfang + 2
       then
          return RueckgabeDatentypen.Kartengröße_80_80_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 3
+        AktuelleAuswahlExtern = Anfang + 3
       then
          return RueckgabeDatentypen.Kartengröße_120_80_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 4
+        AktuelleAuswahlExtern = Anfang + 4
       then
          return RueckgabeDatentypen.Kartengröße_120_160_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 5
+        AktuelleAuswahlExtern = Anfang + 5
       then
          return RueckgabeDatentypen.Kartengröße_160_160_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 6
+        AktuelleAuswahlExtern = Anfang + 6
       then
          return RueckgabeDatentypen.Kartengröße_240_240_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 7
+        AktuelleAuswahlExtern = Anfang + 7
       then
          return RueckgabeDatentypen.Kartengröße_320_320_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 8
+        AktuelleAuswahlExtern = Anfang + 8
       then
          return RueckgabeDatentypen.Kartengröße_1000_1000_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 9
+        AktuelleAuswahlExtern = Anfang + 9
       then
          return RueckgabeDatentypen.Kartengröße_Nutzer_Enum;
          
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 10
+        AktuelleAuswahlExtern = Anfang + 10
       then
          return RueckgabeDatentypen.Zufall_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 11
+        AktuelleAuswahlExtern = Anfang + 11
       then
          return RueckgabeDatentypen.Kartengröße_Zufall_Enum;
                     
@@ -440,44 +406,43 @@ package body RueckgabeMenues is
    
    
    function KartenartAuswählen
-     (AnfangExtern : in Positive;
-      EndeExtern : in Positive;
+     (EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       if
-        AktuelleAuswahlExtern = AnfangExtern
+        AktuelleAuswahlExtern = Anfang
       then
          return RueckgabeDatentypen.Kartenart_Inseln_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 1
+        AktuelleAuswahlExtern = Anfang + 1
       then
          return RueckgabeDatentypen.Kartenart_Kontinente_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 2
+        AktuelleAuswahlExtern = Anfang + 2
       then
          return RueckgabeDatentypen.Kartenart_Pangäa_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 3
+        AktuelleAuswahlExtern = Anfang + 3
       then
          return RueckgabeDatentypen.Nutzerdefiniert_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 4
+        AktuelleAuswahlExtern = Anfang + 4
       then
          return RueckgabeDatentypen.Zufall_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 5
+        AktuelleAuswahlExtern = Anfang + 5
       then
          return RueckgabeDatentypen.Kartenart_Zufall_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 6
+        AktuelleAuswahlExtern = Anfang + 6
       then
          return RueckgabeDatentypen.Standard_Enum;
                     
@@ -491,49 +456,48 @@ package body RueckgabeMenues is
    
    
    function KartenformAuswählen
-     (AnfangExtern : in Positive;
-      EndeExtern : in Positive;
+     (EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       if
-        AktuelleAuswahlExtern = AnfangExtern
+        AktuelleAuswahlExtern = Anfang
       then
          return RueckgabeDatentypen.Kartenübergang_E_Achse_Oben_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 1
+        AktuelleAuswahlExtern = Anfang + 1
       then
          return RueckgabeDatentypen.Kartenübergang_E_Achse_Unten_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 2
+        AktuelleAuswahlExtern = Anfang + 2
       then
          return RueckgabeDatentypen.Kartenübergang_Y_Achse_Norden_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 3
+        AktuelleAuswahlExtern = Anfang + 3
       then
          return RueckgabeDatentypen.Kartenübergang_Y_Achse_Süden_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 4
+        AktuelleAuswahlExtern = Anfang + 4
       then
          return RueckgabeDatentypen.Kartenübergang_X_Achse_Westen_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 5
+        AktuelleAuswahlExtern = Anfang + 5
       then
          return RueckgabeDatentypen.Kartenübergang_X_Achse_Osten_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 6
+        AktuelleAuswahlExtern = Anfang + 6
       then
          return RueckgabeDatentypen.Zufall_Enum;
          
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 7
+        AktuelleAuswahlExtern = Anfang + 7
       then
          return RueckgabeDatentypen.Standard_Enum;
                     
@@ -547,39 +511,38 @@ package body RueckgabeMenues is
    
    
    function KartentemperaturAuswählen
-     (AnfangExtern : in Positive;
-      EndeExtern : in Positive;
+     (EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       if
-        AktuelleAuswahlExtern = AnfangExtern
+        AktuelleAuswahlExtern = Anfang
       then
          return RueckgabeDatentypen.Kartentemperatur_Kalt_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 1
+        AktuelleAuswahlExtern = Anfang + 1
       then
          return RueckgabeDatentypen.Kartentemperatur_Gemäßigt_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 2
+        AktuelleAuswahlExtern = Anfang + 2
       then
          return RueckgabeDatentypen.Kartentemperatur_Heiß_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 3
+        AktuelleAuswahlExtern = Anfang + 3
       then
          return RueckgabeDatentypen.Kartentemperatur_Eiszeit_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 4
+        AktuelleAuswahlExtern = Anfang + 4
       then
          return RueckgabeDatentypen.Kartentemperatur_Wüste_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 5
+        AktuelleAuswahlExtern = Anfang + 5
       then
          return RueckgabeDatentypen.Zufall_Enum;
                     
@@ -593,39 +556,38 @@ package body RueckgabeMenues is
    
    
    function KartenRessourcenAuswählen
-     (AnfangExtern : in Positive;
-      EndeExtern : in Positive;
+     (EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       if
-        AktuelleAuswahlExtern = AnfangExtern
+        AktuelleAuswahlExtern = Anfang
       then
          return RueckgabeDatentypen.Kartenressourcen_Arm_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 1
+        AktuelleAuswahlExtern = Anfang + 1
       then
          return RueckgabeDatentypen.Kartenressourcen_Wenig_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 2
+        AktuelleAuswahlExtern = Anfang + 2
       then
          return RueckgabeDatentypen.Kartenressourcen_Mittel_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 3
+        AktuelleAuswahlExtern = Anfang + 3
       then
          return RueckgabeDatentypen.Kartenressourcen_Viel_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 4
+        AktuelleAuswahlExtern = Anfang + 4
       then
          return RueckgabeDatentypen.Kartenressourcen_Überfluss_Enum;
          
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 5
+        AktuelleAuswahlExtern = Anfang + 5
       then
          return RueckgabeDatentypen.Zufall_Enum;
                     
@@ -639,29 +601,28 @@ package body RueckgabeMenues is
    
    
    function SchwierigkeitsgradAuswählen
-     (AnfangExtern : in Positive;
-      EndeExtern : in Positive;
+     (EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       if
-        AktuelleAuswahlExtern = AnfangExtern
+        AktuelleAuswahlExtern = Anfang
       then
          return RueckgabeDatentypen.Schwierigkeitsgrad_Leicht_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 1
+        AktuelleAuswahlExtern = Anfang + 1
       then
          return RueckgabeDatentypen.Schwierigkeitsgrad_Mittel_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 2
+        AktuelleAuswahlExtern = Anfang + 2
       then
          return RueckgabeDatentypen.Schwierigkeitsgrad_Schwer_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 3
+        AktuelleAuswahlExtern = Anfang + 3
       then
          return RueckgabeDatentypen.Zufall_Enum;
                     
@@ -675,104 +636,103 @@ package body RueckgabeMenues is
    
    
    function RasseAuswählen
-     (AnfangExtern : in Positive;
-      EndeExtern : in Positive;
+     (EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       if
-        AktuelleAuswahlExtern = AnfangExtern
+        AktuelleAuswahlExtern = Anfang
       then
          return RueckgabeDatentypen.Menschen_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 1
+        AktuelleAuswahlExtern = Anfang + 1
       then
          return RueckgabeDatentypen.Kasrodiah_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 2
+        AktuelleAuswahlExtern = Anfang + 2
       then
          return RueckgabeDatentypen.Lasupin_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 3
+        AktuelleAuswahlExtern = Anfang + 3
       then
          return RueckgabeDatentypen.Lamustra_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 4
+        AktuelleAuswahlExtern = Anfang + 4
       then
          return RueckgabeDatentypen.Manuky_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 5
+        AktuelleAuswahlExtern = Anfang + 5
       then
          return RueckgabeDatentypen.Suroka_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 6
+        AktuelleAuswahlExtern = Anfang + 6
       then
          return RueckgabeDatentypen.Pryolon_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 7
+        AktuelleAuswahlExtern = Anfang + 7
       then
          return RueckgabeDatentypen.Moru_Phisihl_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 8
+        AktuelleAuswahlExtern = Anfang + 8
       then
          return RueckgabeDatentypen.Larinos_Lotaris_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 9
+        AktuelleAuswahlExtern = Anfang + 9
       then
          return RueckgabeDatentypen.Carupex_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 10
+        AktuelleAuswahlExtern = Anfang + 10
       then
          return RueckgabeDatentypen.Alary_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 11
+        AktuelleAuswahlExtern = Anfang + 11
       then
          return RueckgabeDatentypen.Natries_Zermanis_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 12
+        AktuelleAuswahlExtern = Anfang + 12
       then
          return RueckgabeDatentypen.Tridatus_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 13
+        AktuelleAuswahlExtern = Anfang + 13
       then
          return RueckgabeDatentypen.Senelari_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 14
+        AktuelleAuswahlExtern = Anfang + 14
       then
          return RueckgabeDatentypen.Aspari_2_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 15
+        AktuelleAuswahlExtern = Anfang + 15
       then
          return RueckgabeDatentypen.Ekropa_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 16
+        AktuelleAuswahlExtern = Anfang + 16
       then
          return RueckgabeDatentypen.Tesorahn_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 17
+        AktuelleAuswahlExtern = Anfang + 17
       then
          return RueckgabeDatentypen.Talbidahr_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 18
+        AktuelleAuswahlExtern = Anfang + 18
       then
          return RueckgabeDatentypen.Zufall_Enum;
                     
@@ -786,29 +746,28 @@ package body RueckgabeMenues is
    
    
    function GrafikMenü
-     (AnfangExtern : in Positive;
-      EndeExtern : in Positive;
+     (EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       if
-        AktuelleAuswahlExtern = AnfangExtern
+        AktuelleAuswahlExtern = Anfang
       then
          return RueckgabeDatentypen.Auflösung_Ändern_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 1
+        AktuelleAuswahlExtern = Anfang + 1
       then
          return RueckgabeDatentypen.Vollbild_Fenster_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 2
+        AktuelleAuswahlExtern = Anfang + 2
       then
          return RueckgabeDatentypen.Bildrate_Ändern_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 3
+        AktuelleAuswahlExtern = Anfang + 3
       then
          return RueckgabeDatentypen.Speichern_Enum;
                     
@@ -822,14 +781,13 @@ package body RueckgabeMenues is
    
    
    function SoundMenü
-     (AnfangExtern : in Positive;
-      EndeExtern : in Positive;
+     (EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       if
-        AktuelleAuswahlExtern = AnfangExtern
+        AktuelleAuswahlExtern = Anfang
       then
          null;
          
@@ -871,24 +829,23 @@ package body RueckgabeMenues is
    
             
    function SonstigesMenü
-     (AnfangExtern : in Positive;
-      EndeExtern : in Positive;
+     (EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       if
-        AktuelleAuswahlExtern = AnfangExtern
+        AktuelleAuswahlExtern = Anfang
       then
          return RueckgabeDatentypen.Anzahl_Speicherstände_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 1
+        AktuelleAuswahlExtern = Anfang + 1
       then
          return RueckgabeDatentypen.Runden_Bis_Autospeichern_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 2
+        AktuelleAuswahlExtern = Anfang + 2
       then
          return RueckgabeDatentypen.Sprache_Enum;
                     
@@ -902,34 +859,33 @@ package body RueckgabeMenues is
    
    
    function EditorenMenü
-     (AnfangExtern : in Positive;
-      EndeExtern : in Positive;
+     (EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       if
-        AktuelleAuswahlExtern = AnfangExtern
+        AktuelleAuswahlExtern = Anfang
       then
          return RueckgabeDatentypen.Kartenfeld_Editor_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 1
+        AktuelleAuswahlExtern = Anfang + 1
       then
          return RueckgabeDatentypen.Einheiten_Editor_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 2
+        AktuelleAuswahlExtern = Anfang + 2
       then
          return RueckgabeDatentypen.Gebäude_Editor_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 3
+        AktuelleAuswahlExtern = Anfang + 3
       then
          return RueckgabeDatentypen.Forschung_Editor_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 4
+        AktuelleAuswahlExtern = Anfang + 4
       then
          return RueckgabeDatentypen.Verbesserungen_Editor_Enum;
                     
@@ -937,52 +893,49 @@ package body RueckgabeMenues is
          return ZurückHauptmenüEnde (EndeExtern            => EndeExtern,
                                        AktuelleAuswahlExtern => AktuelleAuswahlExtern);
       end if;
-      
-      -- return RueckgabeDatentypen.Editoren_Enum;
-      
+            
    end EditorenMenü;
    
    
    
    function Debugmenü
-     (AnfangExtern : in Positive;
-      EndeExtern : in Positive;
+     (EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       if
-        AktuelleAuswahlExtern = AnfangExtern
+        AktuelleAuswahlExtern = Anfang
       then
          return RueckgabeDatentypen.Menschen_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 1
+        AktuelleAuswahlExtern = Anfang + 1
       then
          return RueckgabeDatentypen.Kasrodiah_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 2
+        AktuelleAuswahlExtern = Anfang + 2
       then
          return RueckgabeDatentypen.Lasupin_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 3
+        AktuelleAuswahlExtern = Anfang + 3
       then
          return RueckgabeDatentypen.Lamustra_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 4
+        AktuelleAuswahlExtern = Anfang + 4
       then
          return RueckgabeDatentypen.Manuky_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 5
+        AktuelleAuswahlExtern = Anfang + 5
       then
          return RueckgabeDatentypen.Suroka_Enum;
          
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 6
+        AktuelleAuswahlExtern = Anfang + 6
       then
          return RueckgabeDatentypen.Pryolon_Enum;
          
@@ -996,34 +949,33 @@ package body RueckgabeMenues is
    
    
    function Diplomatiemenü
-     (AnfangExtern : in Positive;
-      EndeExtern : in Positive;
+     (EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
 
       if
-        AktuelleAuswahlExtern = AnfangExtern
+        AktuelleAuswahlExtern = Anfang
       then
          return RueckgabeDatentypen.Kartenart_Zufall_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 1
+        AktuelleAuswahlExtern = Anfang + 1
       then
          return RueckgabeDatentypen.Keine_Rasse_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 2
+        AktuelleAuswahlExtern = Anfang + 2
       then
          return RueckgabeDatentypen.Schwierigkeitsgrad_Leicht_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 3
+        AktuelleAuswahlExtern = Anfang + 3
       then
          return RueckgabeDatentypen.Schwierigkeitsgrad_Mittel_Enum;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 4
+        AktuelleAuswahlExtern = Anfang + 4
       then
          return RueckgabeDatentypen.Schwierigkeitsgrad_Schwer_Enum;
          

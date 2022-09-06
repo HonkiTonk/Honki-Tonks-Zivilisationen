@@ -25,11 +25,6 @@ package Sichtweiten is
    
 private
    
-   YSichtAnfang : KartenDatentypen.Kartenfeld;
-   YSichtEnde : KartenDatentypen.KartenfeldPositiv;
-   XSichtAnfang : KartenDatentypen.Kartenfeld;
-   XSichtEnde : KartenDatentypen.KartenfeldPositiv;
-   
    -- Eventuell die Zoomstufen so anpassen, dass die YAchse ein wenig kleiner ist als die XAchse, wegen der Seitenleiste. äöü
    MaximaleZoomstufe : constant KartenDatentypen.KartenfeldPositiv := 10;
    StandardZoomstufe : constant KartenDatentypen.KartenfeldPositiv := 4;

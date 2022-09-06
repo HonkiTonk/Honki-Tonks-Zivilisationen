@@ -12,7 +12,7 @@ private with KartenRecords;
 package BewegungCursor is
 
    procedure CursorbewegungBerechnen
-     (RichtungExtern : in TastenbelegungDatentypen.Tastenbelegung_Bewegung_Enum;
+     (RichtungExtern : in TastenbelegungDatentypen.Tastenbelegung_Bewegung_Ebene_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
@@ -39,11 +39,10 @@ private
    
    Änderung : KartenDatentypen.Ebene;
    
-   type RichtungArray is array (TastenbelegungDatentypen.Tastenbelegung_Bewegung_Enum'Range) of KartenDatentypen.Ebene;
+   type RichtungArray is array (TastenbelegungDatentypen.Tastenbelegung_Bewegung_Ebene_Enum'Range) of KartenDatentypen.Ebene;
    Richtung : constant RichtungArray := (
                                          TastenbelegungDatentypen.Ebene_Hoch_Enum   => 1,
-                                         TastenbelegungDatentypen.Ebene_Runter_Enum => -1,
-                                         others                                     => (-3)
+                                         TastenbelegungDatentypen.Ebene_Runter_Enum => -1
                                         );
    
 end BewegungCursor;

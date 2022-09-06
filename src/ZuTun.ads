@@ -1,9 +1,10 @@
 -- Womit ich aufgehört habe:
 
 -- Kartengenerator
--- Spielende
--- BewegungCursor aufteilen (siehe auch Sichtweiten und BerechnungenKarteSFML)
--- AuswahlLogik erweitern oder woanders reinbasteln
+-- Siegbedingungen und Übergaben
+-- BewegungCursor aufteilen (siehe auch Sichtweiten und BerechnungenKarteSFML), kann größtenteil raus nach vollständiger Überarbeitung der Stadtanzeige und des Stadtsystem.
+-- Skalierung für den Text fertig überarbeiten, nächste müsste Baumenü sein.
+-- Skalierung noch einmal überarbeiten, skaliert nicht richtig z. B. im Kartengrößenmenü.
 --
 
 

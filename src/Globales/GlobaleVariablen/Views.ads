@@ -25,6 +25,8 @@ package Views is
 
    ForschungserfolgviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
 
+   AbspannviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
+
    type ViewsArray is array (Positive range <>) of Sf.Graphics.sfView_Ptr;
 
    FragenviewAccesse : constant ViewsArray (1 .. 2) := (others => Sf.Graphics.View.create);

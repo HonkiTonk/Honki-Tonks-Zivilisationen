@@ -70,9 +70,8 @@ package body BewegungEinheiten is
       elsif
         EinheitAufFeld.Rasse = EinheitRasseNummerExtern.Rasse
         and then
-          EinheitenTransporter.KannTransportiertWerden (LadungExtern      => EinheitRasseNummerExtern,
-                                                        TransporterExtern => EinheitAufFeld)
-        = True
+          True = EinheitenTransporter.KannTransportiertWerden (LadungExtern      => EinheitRasseNummerExtern,
+                                                               TransporterExtern => EinheitAufFeld)
       then
          EigeneEinheitAufFeld (BewegendeEinheitExtern     => EinheitRasseNummerExtern,
                                FeldBelegendeEinheitExtern => EinheitAufFeld);
@@ -215,7 +214,7 @@ package body BewegungEinheiten is
    
    
    
-   -- Hier vielleicht später mehr einbauen? Beispielsweise Plätzetauschen?
+   -- Hier vielleicht später mehr einbauen? Beispielsweise Plätzetauschen? äöü
    procedure EigeneEinheitAufFeld
      (BewegendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       FeldBelegendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)

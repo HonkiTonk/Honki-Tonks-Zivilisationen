@@ -11,7 +11,7 @@ package body Fehler is
      (FehlermeldungExtern : in Wide_Wide_String)
    is begin
       
-      Put_Line (Item => FehlermeldungExtern);
+      Put_Line (Item => "Fehler.LogikFehler: " & FehlermeldungExtern);
       MeldungSchreiben.MeldungSchreiben (MeldungExtern => "Logikfehler: " & FehlermeldungExtern);
       
       raise LogikStopp;
@@ -24,7 +24,7 @@ package body Fehler is
      (FehlermeldungExtern : in Wide_Wide_String)
    is begin
          
-      Put_Line (Item => FehlermeldungExtern);
+      Put_Line (Item => "Fehler.GrafikFehler: " & FehlermeldungExtern);
       MeldungSchreiben.MeldungSchreiben (MeldungExtern => "Grafikfehler: " & FehlermeldungExtern);
       
       raise GrafikStopp;
@@ -37,7 +37,7 @@ package body Fehler is
      (FehlermeldungExtern : in Wide_Wide_String)
    is begin
       
-      Put_Line (Item => FehlermeldungExtern);
+      Put_Line (Item => "Fehler.MusikFehler: " & FehlermeldungExtern);
       MeldungSchreiben.MeldungSchreiben (MeldungExtern => "Musikfehler: " & FehlermeldungExtern);
       
       raise MusikStopp;
@@ -50,7 +50,7 @@ package body Fehler is
      (FehlermeldungExtern : in Wide_Wide_String)
    is begin
       
-      Put_Line (Item => FehlermeldungExtern);
+      Put_Line (Item => "Fehler.SoundFehler: " & FehlermeldungExtern);
       MeldungSchreiben.MeldungSchreiben (MeldungExtern => "Soundfehler: " & FehlermeldungExtern);
       
       raise SoundStopp;

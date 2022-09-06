@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 package GrafikDatentypen is
 
    type Grafik_Aktuelle_Darstellung_Enum is (
-                                             Grafik_Start_Enum, Grafik_Intro_Enum,
+                                             Grafik_Start_Enum, Grafik_Intro_Enum, Grafik_Abspann_Enum,
                                              Grafik_Pause_Enum,
                                              Grafik_Generierungszeit_Enum, Grafik_KI_Rechenzeit_Enum, Grafik_Rundenende_Enum, Grafik_Speichern_Laden_Enum,
                                              Grafik_Menüs_Enum, Grafik_Sprache_Enum,
@@ -40,8 +40,17 @@ package GrafikDatentypen is
    
    
    
+   -- Bei Änderungen hier muss auch immer die Reihenfolge der 0-Dateien in den Rassenhintergründen angepasst werden!
    type Rassenhintergrund_Enum is (
-                                   Forschungserfolg_Enum
+                                   Leer_Hintergrund_Enum,
+                                   
+                                   Forschungserfolg_Enum,
+                                   
+                                   Gewonnen_Enum
                                   );
+   
+   subtype Rassenhintergrund_Vorhanden_Enum is Rassenhintergrund_Enum range Forschungserfolg_Enum .. Rassenhintergrund_Enum'Last;
+   
+   subtype Abspann_Enum is Rassenhintergrund_Vorhanden_Enum range Gewonnen_Enum .. Gewonnen_Enum;
 
 end GrafikDatentypen;

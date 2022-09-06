@@ -20,7 +20,7 @@ with LeseStadtGebaut;
 with Kartenkoordinatenberechnungssystem;
 with RasseEntfernen;
 with Wachstum;
-with AuswahlLogik;
+with JaNeinLogik;
 
 package body StadtEntfernen is
    
@@ -29,7 +29,7 @@ package body StadtEntfernen is
    is begin
          
       case
-        AuswahlLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageStadtAbreißen)
+        JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageStadtAbreißen)
       is
          when True =>
             StadtEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern);

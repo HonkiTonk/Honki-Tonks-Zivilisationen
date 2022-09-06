@@ -95,7 +95,7 @@ package body StadtseitenleisteGrafik is
       Leer;
       
       Textposition := TextKonstanten.StartpositionText;
-      AktuelleYPosition := Textposition.y;
+      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
       -- Allgemeine Stadtinformationen, nur sichtbar wenn das Kartenfeld aufgedeckt ist und sich dort eine Stadt befindet.
       Stadtname (StadtRasseNummerExtern => StadtRasseNummerExtern);
@@ -145,35 +145,24 @@ package body StadtseitenleisteGrafik is
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.StadtInformationenAccess (TextSchleifenwert),
                                                str  => To_Wide_Wide_String (Source => FestzulegenderText (TextSchleifenwert)));
             Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.StadtInformationenAccess (TextSchleifenwert),
-                                          position => (Textposition.x, AktuelleYPosition));
+                                          position => Textposition);
             
             Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
                                                text         => TextaccessVariablen.StadtInformationenAccess (TextSchleifenwert));
                      
             Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.StadtInformationenAccess (TextSchleifenwert),
-                                                                              TextbreiteExtern => Textbreite);
-            
-            AktuelleYPosition := AktuelleYPosition + TextberechnungenHoeheGrafik.Zeilenabstand;
+                                                                                TextbreiteExtern => Textbreite);
          end if;
-         
-         case
-           TextSchleifenwert
-         is
-            when 11 =>
-               Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.Zeilenabstand;
-               AktuelleYPosition := AktuelleYPosition + TextberechnungenHoeheGrafik.Zeilenabstand;
-               
-            when others =>
-               null;
-         end case;
       
-         Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.Zeilenabstand;
+         Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                         TextAccessExtern => TextaccessVariablen.StadtInformationenAccess (TextSchleifenwert),
+                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
          
       end loop TextSchleife;
             
       Debuginformationen (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
-      Viewfläche := (Textbreite, Textposition.y);
+      Viewfläche := (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       
    end Stadt;
    
@@ -190,7 +179,7 @@ package body StadtseitenleisteGrafik is
       
       -- Eventuell kann man das überall einbauen und so Text deutlich besser anpassen? äöü
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.TextAccess,
-                                                                        TextbreiteExtern => Textbreite);
+                                                                          TextbreiteExtern => Textbreite);
       
       Sf.Graphics.Text.scale (text    => TextaccessVariablen.TextAccess,
                               factors => (Viewfläche.x / Textbreite, 1.00));
@@ -201,8 +190,9 @@ package body StadtseitenleisteGrafik is
       Sf.Graphics.Text.setScale (text  => TextaccessVariablen.TextAccess,
                                  scale => (1.00, 1.00));
       
-      Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.Zeilenabstand;
-      AktuelleYPosition := AktuelleYPosition + TextberechnungenHoeheGrafik.Zeilenabstand;
+      Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                      TextAccessExtern => TextaccessVariablen.TextAccess,
+                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       
    end Stadtname;
    

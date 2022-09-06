@@ -4,21 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 with Sf.Graphics; use Sf.Graphics;
 
 package TextberechnungenHoeheGrafik is
-
-   function HalbeBildschirmhöhe
-     return Float
-     with
-       Post => (
-                  HalbeBildschirmhöhe'Result > 0.00
-               );
-   
-   function HalbeHöheBerechnen
-     (TextAccessExtern : in Sf.Graphics.sfText_Ptr)
-      return Float
-     with
-       Pre => (
-                 TextAccessExtern /= null
-              );
    
    function KleinerZeilenabstand
      return Float
@@ -34,25 +19,36 @@ package TextberechnungenHoeheGrafik is
                   Zeilenabstand'Result > 0.00
                );
    
-   function GroßerZeilenabstand
+   function ZeilenabstandVariabel
      return Float
      with
        Post => (
-                  GroßerZeilenabstand'Result > 0.00
+                  ZeilenabstandVariabel'Result > 0.00
                );
    
-   function Überschriftabstand
+   function KleinerZeilenabstandVariabel
      return Float
      with
        Post => (
-                  Überschriftabstand'Result > 0.00
+                  KleinerZeilenabstandVariabel'Result > 0.00
                );
    
-   function ÜberschriftabstandGroß
-     return Float
+   function NeueTextposition
+     (PositionExtern : in Float;
+      TextAccessExtern : in Sf.Graphics.sfText_Ptr;
+      ZusatzwertExtern : in Float)
+      return Float
      with
+       Pre => (
+                 PositionExtern >= 0.00
+               and
+                 ZusatzwertExtern >= 0.00
+               and
+                 TextAccessExtern /= null
+              ),
+         
        Post => (
-                  ÜberschriftabstandGroß'Result > 0.00
+                  NeueTextposition'Result > 0.00
                );
    
    function NeueTexthöheErmitteln

@@ -14,7 +14,7 @@ with LeseWichtiges;
 with Wachstum;
 with ForschungsfortschrittLogik;
 with StadtProduktion;
-with SiegBedingungen;
+with SiegbedingungenLogik;
 with DiplomatischerZustand;
 with MeldungenSetzenLogik;
 with EinheitInUmgebung;
@@ -23,7 +23,7 @@ with LadezeitenLogik;
 with Speichern;
 with VerbesserungFertiggestellt;
 with NachGrafiktask;
-with AuswahlLogik;
+with JaNeinLogik;
 
 package body ZwischenDenRunden is
 
@@ -94,12 +94,12 @@ package body ZwischenDenRunden is
       is
          when False =>
             if
-              SiegBedingungen.SiegBedingungen = False
+              SiegbedingungenLogik.Siegbedingungen = False
             then
                null;
             
             elsif
-              AuswahlLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageGewonnenWeiterspielen) = True
+              JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageGewonnenWeiterspielen) = True
             then
                SpielVariablen.Allgemeines.Weiterspielen := True;
                                  

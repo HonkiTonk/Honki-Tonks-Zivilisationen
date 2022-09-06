@@ -8,7 +8,7 @@ with LeseKarten;
 with SchreibeKarten;
 with SchreibeWichtiges;
 
-with AuswahlLogik;
+with JaNeinLogik;
 
 package body AufgabeEinheitPluendern is
 
@@ -43,7 +43,7 @@ package body AufgabeEinheitPluendern is
             
          when others =>
             if
-              AuswahlLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageLandverbesserungPlündern) = True
+              JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageLandverbesserungPlündern) = True
             then
                null;
                      

@@ -6,7 +6,6 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Text;
 
-with GrafikRecordKonstanten;
 with GrafikDatentypen;
 with TextKonstanten;
 with InteraktionAuswahl;
@@ -30,11 +29,11 @@ package body SprachauswahlGrafik is
       Viewfläche := ViewsEinstellenGrafik.ViewflächeAuflösungAnpassen (ViewflächeExtern => Viewfläche);
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.MenüviewAccess,
-                                          GrößeExtern          => Viewfläche,
-                                          AnzeigebereichExtern => GrafikRecordKonstanten.Sprachenbereich);
+                                            GrößeExtern          => Viewfläche,
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Sprachenbereich);
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
-                                        AbmessungenExtern => Viewfläche);
+                                     AbmessungenExtern => Viewfläche);
       
       case
         Erstaufruf
@@ -54,7 +53,7 @@ package body SprachauswahlGrafik is
       Ende := NachGrafiktask.Endauswahl;
       AktuelleSprachen := AuswahlSprache.AktuelleSprachen;
       
-      Textposition := TextKonstanten.StartpositionText;
+      Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
       AktuelleTextbreite := 0.00;
       
       -- Dann einfach von 1 bis 11 loopen und entsprechend leer lassen, sollte hinhauen. äöü
@@ -85,18 +84,23 @@ package body SprachauswahlGrafik is
                                        color => AktuelleTextFarbe);
             
             Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.SprachauswahlAccess,
-                                                                                  ViewbreiteExtern => Viewfläche.x);
+                                                                                    ViewbreiteExtern => Viewfläche.x);
             
             Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.SprachauswahlAccess,
                                           position => Textposition);
             
-            NeueTextbreite := TextKonstanten.TextbreiteZusatzwert + Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SprachauswahlAccess).width;
+            NeueTextbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.SprachauswahlAccess,
+                                                                                    TextbreiteExtern => 0.00);
             
             InteraktionAuswahl.PositionenSprachauswahl (ZeileSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SprachauswahlAccess);
             
             -- Den Textteil in ein Array packen und bei leeren Zeilen einfach nichts darstellen? äöü
             Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
                                                text         => TextaccessVariablen.SprachauswahlAccess);
+            
+            Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                            TextAccessExtern => TextaccessVariablen.SprachauswahlAccess,
+                                                                            ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
                         
          elsif
            MehrereSeiten
@@ -145,11 +149,11 @@ package body SprachauswahlGrafik is
             Sf.Graphics.RenderWindow.drawConvexShape (renderWindow => EinstellungenGrafik.FensterAccess,
                                                       object       => PfeilAccess);
             
+            Textposition.y := Textposition.y + Sf.Graphics.ConvexShape.getGlobalBounds (shape => PfeilAccess).height + TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
+            
          else
             NeueTextbreite := 0.00;
          end if;
-         
-         Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.Zeilenabstand;
          
          if
            NeueTextbreite > AktuelleTextbreite
@@ -166,7 +170,7 @@ package body SprachauswahlGrafik is
       -- So lassen oder anpassen? äöü
       AllgemeineViewsGrafik.Versionsnummer (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum);
       
-      Viewfläche := (AktuelleTextbreite, Textposition.y);
+      Viewfläche := (AktuelleTextbreite, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand);
       
    end Sprachauswahl;
 

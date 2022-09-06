@@ -32,6 +32,8 @@ package GrafikRecordKonstanten is
    StadtumgebungBereich : constant Sf.Graphics.Rect.sfFloatRect := (StadtkarteAnzeigebereich.width, 0.00, 0.25, 0.25);
    
    Forschungserfolgbereich : constant Sf.Graphics.Rect.sfFloatRect := Sprachenbereich;
+   
+   Abspannbereich : constant Sf.Graphics.Rect.sfFloatRect := Sprachenbereich;
       
    type BereicheArray is array (Positive range <>) of Sf.Graphics.Rect.sfFloatRect;
    

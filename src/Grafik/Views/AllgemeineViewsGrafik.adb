@@ -4,7 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 with Sf.Graphics.Text;
 with Sf.Graphics.RenderWindow;
 
-with TextKonstanten;
 with TextaccessVariablen;
 with Views;
 with SonstigesKonstanten;
@@ -24,21 +23,21 @@ package body AllgemeineViewsGrafik is
    is begin
       
       Viewfläche (Überschrift_Enum) := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (Überschrift_Enum),
-                                                                                          VerhältnisExtern => (1.00, 0.10));
+                                                                                            VerhältnisExtern => (1.00, 0.10));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.ÜberschriftviewAccess,
-                                          GrößeExtern          => Viewfläche (Überschrift_Enum),
-                                          AnzeigebereichExtern => GrafikRecordKonstanten.Überschriftbereich);
+                                            GrößeExtern          => Viewfläche (Überschrift_Enum),
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Überschriftbereich);
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => HintergrundExtern,
-                                                 AbmessungenExtern => Viewfläche (Überschrift_Enum));
+                                     AbmessungenExtern => Viewfläche (Überschrift_Enum));
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ÜberschriftAccess,
                                          str  => ÜberschriftExtern);
       
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.ÜberschriftAccess,
-                                                                            ViewbreiteExtern => Viewfläche (Überschrift_Enum).x);
-      Textposition.y := TextKonstanten.StartpositionText.y;
+                                                                              ViewbreiteExtern => Viewfläche (Überschrift_Enum).x);
+      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ÜberschriftAccess,
                                     position => Textposition);
@@ -47,9 +46,13 @@ package body AllgemeineViewsGrafik is
                                          text         => TextaccessVariablen.ÜberschriftAccess);
       
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ÜberschriftAccess,
-                                                                        TextbreiteExtern => 0.00);
+                                                                          TextbreiteExtern => 0.00);
+      
+      Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                      TextAccessExtern => TextaccessVariablen.ÜberschriftAccess,
+                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
 
-      Viewfläche (Überschrift_Enum) := (Textbreite, Textposition.y + TextKonstanten.TexthöheZusatzwert + Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.ÜberschriftAccess).height);
+      Viewfläche (Überschrift_Enum) := (Textbreite, Textposition.y);
          
    end Überschrift;
    
@@ -81,18 +84,18 @@ package body AllgemeineViewsGrafik is
    is begin
       
       Viewfläche (Versionsnummer_Enum) := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (Versionsnummer_Enum),
-                                                                                            VerhältnisExtern => (0.05, 0.05));
+                                                                                              VerhältnisExtern => (0.05, 0.05));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.VersionsnummerviewAccess,
-                                          GrößeExtern          => Viewfläche (Versionsnummer_Enum),
-                                          AnzeigebereichExtern => GrafikRecordKonstanten.Versionsbereich);
+                                            GrößeExtern          => Viewfläche (Versionsnummer_Enum),
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Versionsbereich);
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => HintergrundExtern,
-                                                 AbmessungenExtern => Viewfläche (Versionsnummer_Enum));
+                                     AbmessungenExtern => Viewfläche (Versionsnummer_Enum));
       
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.VersionsnummerAccess,
-                                                                            ViewbreiteExtern => Viewfläche (Versionsnummer_Enum).x);
-      Textposition.y := TextKonstanten.StartpositionText.y;
+                                                                              ViewbreiteExtern => Viewfläche (Versionsnummer_Enum).x);
+      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.VersionsnummerAccess,
                                     position => Textposition);
@@ -101,9 +104,13 @@ package body AllgemeineViewsGrafik is
                                          text         => TextaccessVariablen.VersionsnummerAccess);
       
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.VersionsnummerAccess,
-                                                                        TextbreiteExtern => 0.00);
+                                                                          TextbreiteExtern => 0.00);
+      
+      Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                      TextAccessExtern => TextaccessVariablen.VersionsnummerAccess,
+                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
 
-      Viewfläche (Versionsnummer_Enum) := (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand + Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.VersionsnummerAccess).height);
+      Viewfläche (Versionsnummer_Enum) := (Textbreite, Textposition.y);
       
    end Versionsnummer;
    
@@ -115,21 +122,21 @@ package body AllgemeineViewsGrafik is
    is begin
       
       Viewfläche (Frage_Enum) := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (Frage_Enum),
-                                                                                   VerhältnisExtern => (0.50, 0.05));
+                                                                                     VerhältnisExtern => (0.50, 0.05));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.FragenviewAccesse (1),
-                                          GrößeExtern          => Viewfläche (Frage_Enum),
-                                          AnzeigebereichExtern => GrafikRecordKonstanten.Fragenbereich);
+                                            GrößeExtern          => Viewfläche (Frage_Enum),
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Fragenbereich);
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => HintergrundExtern,
-                                   AbmessungenExtern => Viewfläche (Frage_Enum));
+                                     AbmessungenExtern => Viewfläche (Frage_Enum));
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ÜberschriftAccess,
                                          str  => FrageExtern);
       
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.ÜberschriftAccess,
-                                                                            ViewbreiteExtern => Viewfläche (Frage_Enum).x);
-      Textposition.y := TextKonstanten.StartpositionText.y;
+                                                                              ViewbreiteExtern => Viewfläche (Frage_Enum).x);
+      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ÜberschriftAccess,
                                     position => Textposition);
@@ -138,9 +145,13 @@ package body AllgemeineViewsGrafik is
                                          text         => TextaccessVariablen.ÜberschriftAccess);
       
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ÜberschriftAccess,
-                                                                        TextbreiteExtern => 0.00);
+                                                                          TextbreiteExtern => 0.00);
+      
+      Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                      TextAccessExtern => TextaccessVariablen.ÜberschriftAccess,
+                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
 
-      Viewfläche (Frage_Enum) := (Textbreite, Textposition.y + TextKonstanten.TexthöheZusatzwert + Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.ÜberschriftAccess).height);
+      Viewfläche (Frage_Enum) := (Textbreite, Textposition.y);
       
    end Frage;
 

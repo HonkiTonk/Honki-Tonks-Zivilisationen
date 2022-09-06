@@ -6,6 +6,8 @@ private with Sf.Graphics.Color;
 private with Sf.Graphics.ConvexShape;
 private with Sf.System.Vector2;
 
+private with GrafikRecordKonstanten;
+
 private with AuswahlSprache;
 
 package SprachauswahlGrafik is
@@ -25,7 +27,7 @@ private
    AktuelleTextbreite : Float;
    NeueTextbreite : Float;
    
-   Viewfläche : Sf.System.Vector2.sfVector2f := (5.00, 5.00);
+   Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartgrößeView;
    Textposition : Sf.System.Vector2.sfVector2f;
       
    PfeilAccess : constant Sf.Graphics.sfConvexShape_Ptr := Sf.Graphics.ConvexShape.create;

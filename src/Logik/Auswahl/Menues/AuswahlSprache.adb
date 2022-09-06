@@ -148,7 +148,9 @@ package body AuswahlSprache is
                   null;
                   
                elsif
-                 AktuelleAuswahl = AktuelleSprachenArray'Last
+                 AktuelleAuswahl = Ende
+                 and
+                   MehrereSeiten
                then
                   SprachenListeFestlegen;
                   

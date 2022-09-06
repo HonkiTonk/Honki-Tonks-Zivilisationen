@@ -27,10 +27,10 @@ with StadtEntfernen;
 with TransporterSuchen;
 with EinheitenModifizieren;
 with AufgabenAllgemein;
-with BewegungEinheitenSFML;
+with EinheitenkontrollsystemLogik;
 with AuswahlStadtEinheit;
 with NachGrafiktask;
-with AuswahlLogik;
+with JaNeinLogik;
 with EinheitenSpielmeldungenLogik;
 with ForschungsauswahlLogik;
 with TexteingabeLogik;
@@ -49,11 +49,9 @@ package body BefehleLogik is
       case
         Befehl
       is
-         -- Die folgenden Befehl ist so sinnfrei, entweder ganz entfernen oder anpassen wie GeheZu. äöü
-         when TastenbelegungDatentypen.Tastenbelegung_Bewegung_Enum'Range =>
-            null;
-            -- BewegungCursor.CursorbewegungBerechnen (RichtungExtern => Befehl,
-            --                                         RasseExtern    => RasseExtern);
+         when TastenbelegungDatentypen.Tastenbelegung_Bewegung_Ebene_Enum'Range =>
+            BewegungCursor.CursorbewegungBerechnen (RichtungExtern => Befehl,
+                                                    RasseExtern    => RasseExtern);
             
          when TastenbelegungDatentypen.Auswählen_Enum =>
             AuswahlEinheitStadt (RasseExtern => RasseExtern);
@@ -122,7 +120,7 @@ package body BefehleLogik is
          when TastenbelegungDatentypen.Debugmenü_Enum =>
             DebugmenueLogik.Debugmenü (RasseExtern => RasseExtern);
             
-         when TastenbelegungDatentypen.Leer_Tastenbelegung_Enum =>
+         when TastenbelegungDatentypen.Leer_Tastenbelegung_Enum | TastenbelegungDatentypen.Tastenbelegung_Bewegung_Numblock_Enum'Range =>
             null;
       end case;
       
@@ -302,10 +300,10 @@ package body BefehleLogik is
       if
         LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= EinheitenKonstanten.LeerBeschäftigung
         and then
-          AuswahlLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageBeschäftigungAbbrechen) = True
+          JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageBeschäftigungAbbrechen) = True
       then
          AufgabenAllgemein.Nullsetzung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-         BewegungEinheitenSFML.BewegungEinheitenRichtung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         EinheitenkontrollsystemLogik.BewegungEinheitenRichtung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          NachGrafiktask.AktuelleEinheit := EinheitenKonstanten.LeerNummer;
          return;
          
@@ -317,7 +315,7 @@ package body BefehleLogik is
         EinheitenSpielmeldungenLogik.BewegungspunkteMeldung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       is
          when True =>
-            BewegungEinheitenSFML.BewegungEinheitenRichtung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            EinheitenkontrollsystemLogik.BewegungEinheitenRichtung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when False =>
             null;

@@ -46,7 +46,6 @@ private
    MausInformationen : Boolean;
    
    Textbreite : Float;
-   AktuelleYPosition : Float;
    Textskalierung : Float;
          
    Text : Unbounded_Wide_Wide_String;

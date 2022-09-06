@@ -11,11 +11,10 @@ with StadtBauen;
 with Aufgaben;
 with BewegungEinheiten;
 with Kartenkoordinatenberechnungssystem;
-with BewegungCursor;
 with Mausauswahl;
 
 -- Das hier mal umbenennen, man kann hier ja inzwischen wesentlich mehr machen als nur die Einheit bewegen.
-package body BewegungEinheitenSFML is
+package body EinheitenkontrollsystemLogik is
 
    procedure BewegungEinheitenRichtung
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
@@ -150,13 +149,9 @@ package body BewegungEinheitenSFML is
             when TastenbelegungDatentypen.Menü_Zurück_Enum =>
                return False;
                
-            when TastenbelegungDatentypen.Ebene_Hoch_Enum =>
-               BewegungCursor.CursorbewegungBerechnen (RichtungExtern => BefehlMaus,
-                                                       RasseExtern    => EinheitRasseNummerExtern.Rasse);
-               
-            when TastenbelegungDatentypen.Ebene_Runter_Enum =>
-               BewegungCursor.CursorbewegungBerechnen (RichtungExtern => BefehlMaus,
-                                                       RasseExtern    => EinheitRasseNummerExtern.Rasse);
+            when TastenbelegungDatentypen.Ebene_Hoch_Enum | TastenbelegungDatentypen.Ebene_Runter_Enum =>
+               return PositionÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                       ÄnderungExtern          => Richtung (BefehlMaus));
                
             when TastenbelegungDatentypen.Auswählen_Enum =>
                return EinheitBewegenMaus (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -180,6 +175,8 @@ package body BewegungEinheitenSFML is
       return Boolean
    is begin
       
+      EinheitenKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      
       EÄnderungSchleife:
       for EÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEinsEAchse'Range loop
          YÄnderungSchleife:
@@ -187,7 +184,7 @@ package body BewegungEinheitenSFML is
             XÄnderungSchleife:
             for XÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
                                           
-               KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+               KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => EinheitenKoordinaten,
                                                                                                     ÄnderungExtern    => (EÄnderungSchleifenwert, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
                                                                                                     LogikGrafikExtern => True);
                
@@ -237,4 +234,4 @@ package body BewegungEinheitenSFML is
       
    end MausInBefehle;
 
-end BewegungEinheitenSFML;
+end EinheitenkontrollsystemLogik;

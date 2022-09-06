@@ -70,5 +70,6 @@ package ViewsEinstellenGrafik is
 private
    
    Viewfläche : Sf.System.Vector2.sfVector2f;
+   ViewflächeVariabel : Sf.System.Vector2.sfVector2f;
 
 end ViewsEinstellenGrafik;

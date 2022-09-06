@@ -9,7 +9,7 @@ with TasteneingabeLogik;
 with NachGrafiktask;
 with Mausauswahl;
 
-package body AuswahlLogik is
+package body JaNeinLogik is
 
    function JaNein
      (FrageZeileExtern : in Positive)
@@ -63,4 +63,4 @@ package body AuswahlLogik is
       
    end JaNein;
 
-end AuswahlLogik;
+end JaNeinLogik;
