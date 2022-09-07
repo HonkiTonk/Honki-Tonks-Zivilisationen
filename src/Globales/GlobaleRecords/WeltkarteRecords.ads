@@ -8,6 +8,7 @@ with KartenKonstanten;
 with KartenRecordKonstanten;
 with EinheitenRecords;
 with EinheitenKonstanten;
+with StadtRecords;
 
 package WeltkarteRecords is
 
@@ -24,7 +25,7 @@ package WeltkarteRecords is
       
       Einheit : EinheitenRecords.RasseEinheitnummerRecord;
       
-      DurchStadtBelegterGrund : KartenRecords.BelegterGrundRecord;
+      DurchStadtBelegterGrund : StadtRecords.RasseStadtnummerRecord;
       Felderwertung : KartenRecords.FelderwertungArray;
 
    end record;

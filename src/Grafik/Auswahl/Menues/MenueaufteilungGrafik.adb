@@ -34,7 +34,15 @@ package body MenueaufteilungGrafik is
             SteuerungsmenueGrafik.Steuerungsmenü (AuswahlExtern => AktuelleAuswahlExtern);
       end case;
       
-      AllgemeineViewsGrafik.Versionsnummer (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum);
+      case
+        WelchesMenüExtern
+      is
+         when MenueDatentypen.Haupt_Menü_Enum =>
+            AllgemeineViewsGrafik.Versionsnummer (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum);
+            
+         when others =>
+            null;
+      end case;
       
    end Menüaufteilung;
 

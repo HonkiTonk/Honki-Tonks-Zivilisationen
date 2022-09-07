@@ -26,13 +26,10 @@ package MenueDatentypen is
    subtype Welches_Menü_Vorhanden_Enum is Welches_Menü_Enum range Haupt_Menü_Enum .. Welches_Menü_Enum'Last;
    
    subtype Menü_Einfach_Enum is Welches_Menü_Vorhanden_Enum range Haupt_Menü_Enum .. Kartenpole_Menü_Enum;
+   subtype Menü_Zusatztext_Einfach_Enum is Menü_Einfach_Enum range Kartengröße_Menü_Enum .. Kartenpole_Menü_Enum;
    subtype Menü_Doppelt_Enum is Welches_Menü_Vorhanden_Enum range Rassen_Menü_Enum .. Kartenform_Menü_Enum;
    subtype Menü_Steuerung_Enum is Welches_Menü_Vorhanden_Enum range Steuerung_Menü_Enum .. Steuerung_Menü_Enum;
    
    subtype Menü_Ohne_Überschrift_Enum is Menü_Einfach_Enum range Haupt_Menü_Enum .. Spiel_Menü_Enum;
-   
-   -- Müssten die nicht auch auflösbar/verschmelzbar sein?
-   subtype Menü_Zusatztext_Enum is Welches_Menü_Vorhanden_Enum range Kartengröße_Menü_Enum .. Kartenform_Menü_Enum;
-   subtype Menü_Zusatztext_Einfach_Enum is Menü_Zusatztext_Enum range Kartengröße_Menü_Enum .. Kartenpole_Menü_Enum;
 
 end MenueDatentypen;

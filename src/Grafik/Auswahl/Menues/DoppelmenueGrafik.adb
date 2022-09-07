@@ -54,13 +54,12 @@ package body DoppelmenueGrafik is
                                                                                    AktuelleAuswahlExtern => AktuelleAuswahlExtern);
       end case;
 
-      Viewfläche (Auswahlbereich).y := Viewfläche (Auswahlbereich).y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
+      Viewfläche (Auswahlbereich).y := Viewfläche (Auswahlbereich).y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
 
 
       
       Viewfläche (Zusatzbereich) := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (Zusatzbereich),
                                                                                         VerhältnisExtern => (1.00, 1.00));
-      Viewbreite := Viewfläche (Zusatzbereich).x;
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.ZusatztextviewAccess,
                                             GrößeExtern          => Viewfläche (Zusatzbereich),
@@ -68,14 +67,12 @@ package body DoppelmenueGrafik is
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
                                      AbmessungenExtern => Viewfläche (Zusatzbereich));
+
+      Viewfläche (Zusatzbereich) := ZusatztextaufteilungGrafik.ZusatztextDoppelmenü (WelchesMenüExtern     => WelchesMenüExtern,
+                                                                                     AktuelleAuswahlExtern => AktuelleAuswahlExtern,
+                                                                                     ViewflächeExtern      => Viewfläche (Zusatzbereich));
       
-      Viewfläche (Zusatzbereich) := ZusatztextaufteilungGrafik.Zusatztextaufteilung (WelchesMenüExtern          => WelchesMenüExtern,
-                                                                                      AktuelleAuswahlExtern      => AktuelleAuswahlExtern,
-                                                                                      ViewflächeExtern           => Viewfläche (Zusatzbereich),
-                                                                                      RealeViewbreiteExtern      => Viewbreite,
-                                                                                      AnzeigebereichbreiteExtern => GrafikRecordKonstanten.MenüDoppelbereich (Zusatzbereich).width);
-      
-      Viewfläche (Zusatzbereich).y := Viewfläche (Zusatzbereich).y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
+      Viewfläche (Zusatzbereich).y := Viewfläche (Zusatzbereich).y + TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
       
    end Doppelmenü;
    
@@ -88,11 +85,11 @@ package body DoppelmenueGrafik is
       return Sf.System.Vector2.sfVector2f
    is begin
       
-      Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
-      Textbreite := TextKonstanten.LeerTextbreite;
+      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
+      Textbreite := 0.00;
 
       PositionenSchleife:
-      for PositionSchleifenwert in Textarrayanpassung .. SystemKonstanten.EndeAbzugGrafik (WelchesMenüExtern) loop
+      for PositionSchleifenwert in SystemKonstanten.StandardArrayanpassung .. SystemKonstanten.EndeAbzugGrafik (WelchesMenüExtern) loop
       
          FarbenFestlegen (AktuellerTextExtern   => PositionSchleifenwert,
                           AktuelleAuswahlExtern => AktuelleAuswahlExtern + 1,

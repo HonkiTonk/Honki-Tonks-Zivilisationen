@@ -30,6 +30,9 @@ package GrafikDatentypen is
    
    
    type Hintergrund_Enum is (
+                             -- Das hier kann später vermutlich wieder weg? äöü
+                             Intro_Hintergrund_Enum,
+                             
                              Seitenleiste_Hintergrund_Enum, Bauen_Hintergrund_Enum, Forschung_Hintergrund_Enum, Menü_Hintergrund_Enum,
                              
                              Auswahl_Hintergrund_Enum, Meldung_Hintergrund_Enum

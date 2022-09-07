@@ -6,7 +6,7 @@ with Ada.Directories; use Ada.Directories;
 with Sf.Audio.Music;
 
 with RassenDatentypen;
-with TextKonstanten;
+with VerzeichnisKonstanten;
 
 with EingeleseneMusik;
 
@@ -16,7 +16,7 @@ package body EinlesenMusik is
    is begin
       
       case
-        Exists (Name => TextKonstanten.Audio & TextKonstanten.Musik & "Test.flac")
+        Exists (Name => VerzeichnisKonstanten.Audio & VerzeichnisKonstanten.Musik & "Test.flac")
       is
          when False =>
             return;

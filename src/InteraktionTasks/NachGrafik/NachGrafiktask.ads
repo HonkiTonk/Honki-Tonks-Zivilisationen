@@ -24,6 +24,7 @@ package NachGrafiktask is
    
    -- Wird für Spielstart benötigt.
    ErzeugeFenster : Boolean := False;
+   IntroAnzeigen : Boolean := True;
    
    -- Sprache
    MehrereSeiten : Boolean;

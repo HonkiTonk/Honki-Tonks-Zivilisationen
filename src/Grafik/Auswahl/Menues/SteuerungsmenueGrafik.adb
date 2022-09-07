@@ -23,7 +23,7 @@ with HintergrundGrafik;
 with TextberechnungenHoeheGrafik;
 with TextberechnungenBreiteGrafik;
 with EinstellungenGrafik;
-with TexteinstellungenGrafik;
+with TextfarbeGrafik;
 
 package body SteuerungsmenueGrafik is
 
@@ -32,7 +32,7 @@ package body SteuerungsmenueGrafik is
    is begin
       
       ViewflächeText := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => ViewflächeText,
-                                                                            VerhältnisExtern => (0.33, 1.00));
+                                                                            VerhältnisExtern => (0.33, 0.50));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.SteuerungviewAccesse (1),
                                             GrößeExtern          => ViewflächeText,
@@ -41,41 +41,41 @@ package body SteuerungsmenueGrafik is
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
                                      AbmessungenExtern => ViewflächeText);
                   
-      ViewflächeText := BefehleAnzeigen (AuswahlExtern => AuswahlExtern.AuswahlEins);
+      ViewflächeText := BefehleAnzeigen (AuswahlExtern => AuswahlExtern);
       
-      ViewflächeText.y := ViewflächeText.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
+      ViewflächeText.y := ViewflächeText.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
       
       ViewflächeBelegung := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => ViewflächeBelegung,
-                                                                            VerhältnisExtern => (0.10, 0.60));
+                                                                                VerhältnisExtern => (0.33, 0.50));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.SteuerungviewAccesse (2),
-                                            GrößeExtern          => ViewflächeText,
+                                            GrößeExtern          => ViewflächeBelegung,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Steuerungbereich (2));
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
-                                     AbmessungenExtern => ViewflächeText);
+                                     AbmessungenExtern => ViewflächeBelegung);
       
-      BelegungAnzeigen (AuswahlExtern => AuswahlExtern.AuswahlZwei);
+      ViewflächeBelegung := BelegungAnzeigen (AuswahlExtern => AuswahlExtern.AuswahlZwei);
       
-      ViewflächeBelegung.y := ViewflächeBelegung.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
+      ViewflächeBelegung.y := ViewflächeBelegung.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
    end Steuerungsmenü;
    
    
    
    function BefehleAnzeigen
-     (AuswahlExtern : in Natural)
+     (AuswahlExtern : in SystemRecords.MehrfacheAuswahlRecord)
       return Sf.System.Vector2.sfVector2f
    is begin
       
       Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
-      Textposition.x := TextKonstanten.StartpositionText.x;
+      Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
       Textbreite := 0.00;
       Zusatzabstand := True;
 
       PositionenSchleife:
-      for PositionSchleifenwert in Textarrayanpassung .. SystemKonstanten.EndeMenü (MenueDatentypen.Steuerung_Menü_Enum) loop
+      for PositionSchleifenwert in SystemKonstanten.StandardArrayanpassung .. SystemKonstanten.EndeMenü (MenueDatentypen.Steuerung_Menü_Enum) loop
 
          Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.SteuerungSFMLAccess (PositionSchleifenwert),
                                                                              TextbreiteExtern => Textbreite);
@@ -83,13 +83,16 @@ package body SteuerungsmenueGrafik is
          if
            PositionSchleifenwert <= SystemKonstanten.EndeAbzugGrafik (MenueDatentypen.Steuerung_Menü_Enum)
          then
-            null;
+            TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => PositionSchleifenwert,
+                                                   AuswahlExtern    => AuswahlExtern.AuswahlZwei + SystemKonstanten.StandardArrayanpassung
+                                                   - TastenbelegungDatentypen.Tastenbelegung_Auswählbar_Enum'Pos (TastenbelegungDatentypen.Tastenbelegung_Auswählbar_Enum'First),
+                                                   TextaccessExtern => TextaccessVariablen.SteuerungSFMLAccess (PositionSchleifenwert));
                
          else
-            FarbeFestlegen (AuswahlExtern    => AuswahlExtern,
-                            TextnummerExtern => PositionSchleifenwert,
-                            TextaccessExtern => TextaccessVariablen.SteuerungSFMLAccess (PositionSchleifenwert));
-         
+            TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => PositionSchleifenwert,
+                                                   AuswahlExtern    => AuswahlExtern.AuswahlEins,
+                                                   TextaccessExtern => TextaccessVariablen.SteuerungSFMLAccess (PositionSchleifenwert));
+            
             InteraktionAuswahl.PositionenSteuerung (PositionSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SteuerungSFMLAccess (PositionSchleifenwert));
             
             case
@@ -122,12 +125,14 @@ package body SteuerungsmenueGrafik is
    
    
    
-   procedure BelegungAnzeigen
+   function BelegungAnzeigen
      (AuswahlExtern : in Natural)
+      return Sf.System.Vector2.sfVector2f
    is begin
       
       Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
-      Textposition.x := TextKonstanten.StartpositionText.x;
+      Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
+      Textbreite := 0.00;
       
       PositionenSchleife:
       for PositionSchleifenwert in TastenbelegungDatentypen.Tastenbelegung_Auswählbar_Enum'Range loop
@@ -154,9 +159,12 @@ package body SteuerungsmenueGrafik is
          Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.TextAccess,
                                        position => Textposition);
          
-         FarbeFestlegen (AuswahlExtern    => AuswahlExtern,
-                         TextnummerExtern => TastenbelegungDatentypen.Tastenbelegung_Enum'Pos (PositionSchleifenwert),
-                         TextaccessExtern => TextaccessVariablen.TextAccess);
+         Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.TextAccess,
+                                                                             TextbreiteExtern => Textbreite);
+         
+         TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => TastenbelegungDatentypen.Tastenbelegung_Enum'Pos (PositionSchleifenwert),
+                                                AuswahlExtern    => AuswahlExtern,
+                                                TextaccessExtern => TextaccessVariablen.TextAccess);
          
          InteraktionAuswahl.PositionenSteuerungbelegung (PositionSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.TextAccess);
          
@@ -169,30 +177,19 @@ package body SteuerungsmenueGrafik is
          
       end loop PositionenSchleife;
       
-      ViewflächeBelegung := (Textbreite, Textposition.y);
+      Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
+      
+      ZusatzSchleife:
+      for ZusatzSchleifenwert in SystemKonstanten.EndeAbzugGrafik (MenueDatentypen.Steuerung_Menü_Enum) + 1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Steuerung_Menü_Enum) loop
+         
+         Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                         TextAccessExtern => TextaccessVariablen.SteuerungSFMLAccess (ZusatzSchleifenwert),
+                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
+         
+      end loop ZusatzSchleife;
+      
+      return (Textbreite, Textposition.y);
       
    end BelegungAnzeigen;
-   
-   
-   
-   procedure FarbeFestlegen
-     (AuswahlExtern : in Natural;
-      TextnummerExtern : in Positive;
-      TextaccessExtern : in Sf.Graphics.sfText_Ptr)
-   is begin
-      
-      if
-        AuswahlExtern = TextnummerExtern
-      then
-         Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeAusgewähltText;
-            
-      else
-         Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeStandardText;
-      end if;
-      
-      Sf.Graphics.Text.setColor (text  => TextaccessExtern,
-                                 color => Farbe);
-      
-   end FarbeFestlegen;
 
 end SteuerungsmenueGrafik;

@@ -10,7 +10,7 @@ private with KartenRecords;
 private with KartengrundDatentypen;
 private with KartenverbesserungDatentypen;
 private with TextaccessVariablen;
-private with TextKonstanten;
+private with GrafikRecordKonstanten;
 
 package AllgemeinesSeitenleisteGrafik is
    
@@ -39,7 +39,7 @@ private
 
    AktuelleKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    
-   Viewfläche : Sf.System.Vector2.sfVector2f := TextKonstanten.StartpositionText;
+   Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartgrößeView;
    Textposition : Sf.System.Vector2.sfVector2f;
    
    type TextAnzeigenArray is array (TextaccessVariablen.KarteAllgemeinesAccess'Range) of Boolean;

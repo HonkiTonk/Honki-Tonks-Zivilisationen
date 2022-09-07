@@ -34,6 +34,9 @@ package GrafikRecordKonstanten is
    Forschungserfolgbereich : constant Sf.Graphics.Rect.sfFloatRect := Sprachenbereich;
    
    Abspannbereich : constant Sf.Graphics.Rect.sfFloatRect := Sprachenbereich;
+   
+   Stadtauswahlbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.25, 0.45, 0.50, 0.10);
+   Einheitauswahlbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.25, 0.35, 0.50, 0.30);
       
    type BereicheArray is array (Positive range <>) of Sf.Graphics.Rect.sfFloatRect;
    

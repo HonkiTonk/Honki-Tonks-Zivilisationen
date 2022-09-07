@@ -4,7 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Text;
 
-with TextKonstanten;
 with GrafikDatentypen;
 with Meldungstexte;
 with TextnummernKonstanten;
@@ -20,9 +19,9 @@ with TextberechnungenHoeheGrafik;
 with GebaeudebeschreibungenGrafik;
 with EinheitenbeschreibungenGrafik;
 with HintergrundGrafik;
-with TexteinstellungenGrafik;
 with ViewsEinstellenGrafik;
 with AllgemeineViewsGrafik;
+with TextfarbeGrafik;
 with ZeilenumbruchberechnungGrafik;
 
 package body BauauswahlGrafik is
@@ -33,7 +32,7 @@ package body BauauswahlGrafik is
    is begin
       
       AllgemeineViewsGrafik.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => Meldungstexte.Frage (TextnummernKonstanten.FrageBauprojekt)),
-                                        HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum);
+                                          HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum);
       
       Gebäude (AuswahlExtern    => AktuelleAuswahlExtern.Gebäude,
                 ViewnummerExtern => 1,
@@ -61,36 +60,34 @@ package body BauauswahlGrafik is
    is begin
       
       Viewfläche (ViewnummerExtern) := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
-                                                                                         VerhältnisExtern => (0.50, 1.00));
+                                                                                           VerhältnisExtern => (0.50, 1.00));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.BauviewAccesse (ViewnummerExtern),
-                                          GrößeExtern          => Viewfläche (ViewnummerExtern),
-                                          AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewnummerExtern));
+                                            GrößeExtern          => Viewfläche (ViewnummerExtern),
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewnummerExtern));
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
-                                   AbmessungenExtern => Viewfläche (ViewnummerExtern));
+                                     AbmessungenExtern => Viewfläche (ViewnummerExtern));
       
-      Textposition := TextKonstanten.StartpositionText;
-      Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
+      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.GebäudetextAccess (RasseExtern, TextaccessVariablen.GebäudetextAccess'First (2)),
-                                                                            ViewbreiteExtern => Viewfläche (ViewnummerExtern).x);
+                                                                              ViewbreiteExtern => Viewfläche (ViewnummerExtern).x);
 
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.GebäudetextAccess (RasseExtern, TextaccessVariablen.GebäudetextAccess'First (2)),
                                     position => Textposition);
-      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.GebäudetextAccess (RasseExtern, TextaccessVariablen.GebäudetextAccess'First (2)),
-                                 color => Farbe);
-         
-      Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.Zeilenabstand;
+      TextfarbeGrafik.Standardfarbe (TextaccessExtern => TextaccessVariablen.GebäudetextAccess (RasseExtern, TextaccessVariablen.GebäudetextAccess'First (2)));
+      
+      Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                      TextAccessExtern => TextaccessVariablen.GebäudetextAccess (RasseExtern, TextaccessVariablen.GebäudetextAccess'First (2)),
+                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
                
       Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
                                          text         => TextaccessVariablen.GebäudetextAccess (RasseExtern, TextaccessVariablen.GebäudetextAccess'First (2)));
       
-      AktuelleTextbreite := TextKonstanten.LeerTextbreite;
       AktuelleTextbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.GebäudetextAccess (RasseExtern, TextaccessVariablen.GebäudetextAccess'First (2)),
-                                                                                TextbreiteExtern => AktuelleTextbreite);
-      Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
-            
+                                                                                  TextbreiteExtern => 0.00);
+      
       GebäudeSchleife:
       for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
          
@@ -98,27 +95,22 @@ package body BauauswahlGrafik is
            InteraktionAuswahl.MöglicheGebäude (GebäudeSchleifenwert)
          is
             when True =>
-               if
-                 AuswahlExtern = GebäudeSchleifenwert
-               then
-                  Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeAusgewähltText;
-            
-               else
-                  Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeStandardText;
-               end if;
+               TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => Positive (GebäudeSchleifenwert),
+                                                      AuswahlExtern    => Natural (AuswahlExtern),
+                                                      TextaccessExtern => TextaccessVariablen.GebäudetextAccess (RasseExtern, GebäudeSchleifenwert));
                
                Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.GebäudetextAccess (RasseExtern, GebäudeSchleifenwert),
-                                                                                     ViewbreiteExtern => Viewfläche (ViewnummerExtern).x);
+                                                                                       ViewbreiteExtern => Viewfläche (ViewnummerExtern).x);
 
                Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.GebäudetextAccess (RasseExtern, GebäudeSchleifenwert),
                                              position => Textposition);
-               Sf.Graphics.Text.setColor (text  => TextaccessVariablen.GebäudetextAccess (RasseExtern, GebäudeSchleifenwert),
-                                          color => Farbe);
-         
-               Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.Zeilenabstand;
+                                                                      
+               Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                               TextAccessExtern => TextaccessVariablen.GebäudetextAccess (RasseExtern, GebäudeSchleifenwert),
+                                                                               ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
                
                AktuelleTextbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.GebäudetextAccess (RasseExtern, GebäudeSchleifenwert),
-                                                                                         TextbreiteExtern => AktuelleTextbreite);
+                                                                                           TextbreiteExtern => AktuelleTextbreite);
                
                InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.GebäudetextAccess (RasseExtern, GebäudeSchleifenwert));
                
@@ -128,7 +120,7 @@ package body BauauswahlGrafik is
             when False =>
                null;
          end case;
-               
+                                                                               
       end loop GebäudeSchleife;
       
       Viewfläche (ViewnummerExtern) := (AktuelleTextbreite, Textposition.y);
@@ -144,36 +136,33 @@ package body BauauswahlGrafik is
    is begin
       
       Viewfläche (ViewnummerExtern) := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
-                                                                                         VerhältnisExtern => (0.50, 1.00));
+                                                                                           VerhältnisExtern => (0.50, 1.00));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.BauviewAccesse (ViewnummerExtern),
-                                          GrößeExtern          => Viewfläche (ViewnummerExtern),
-                                          AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewnummerExtern));
+                                            GrößeExtern          => Viewfläche (ViewnummerExtern),
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewnummerExtern));
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
-                                   AbmessungenExtern => Viewfläche (ViewnummerExtern));
+                                     AbmessungenExtern => Viewfläche (ViewnummerExtern));
       
-      Textposition := TextKonstanten.StartpositionText;
-      Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
+      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.EinheitentextAccess (RasseExtern, TextaccessVariablen.EinheitentextAccess'First (2)),
-                                                                            ViewbreiteExtern => Viewfläche (ViewnummerExtern).x);
+                                                                              ViewbreiteExtern => Viewfläche (ViewnummerExtern).x);
 
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitentextAccess (RasseExtern, TextaccessVariablen.EinheitentextAccess'First (2)),
                                     position => Textposition);
-      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.EinheitentextAccess (RasseExtern, TextaccessVariablen.EinheitentextAccess'First (2)),
-                                 color => Farbe);
+      TextfarbeGrafik.Standardfarbe (TextaccessExtern => TextaccessVariablen.EinheitentextAccess (RasseExtern, TextaccessVariablen.EinheitentextAccess'First (2)));
       
-      Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.Zeilenabstand;
+      Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                      TextAccessExtern => TextaccessVariablen.EinheitentextAccess (RasseExtern, TextaccessVariablen.EinheitentextAccess'First (2)),
+                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
                
       Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
                                          text         => TextaccessVariablen.EinheitentextAccess (RasseExtern, TextaccessVariablen.EinheitentextAccess'First (2)));
       
-      Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
-      
-      AktuelleTextbreite := TextKonstanten.LeerTextbreite;
       AktuelleTextbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.EinheitentextAccess (RasseExtern, TextaccessVariablen.EinheitentextAccess'First (2)),
-                                                                                TextbreiteExtern => AktuelleTextbreite);
+                                                                                  TextbreiteExtern => 0.00);
           
       EinheitenSchleife:
       for EinheitenSchleifenwert in EinheitenDatentypen.EinheitenID'Range loop
@@ -182,27 +171,22 @@ package body BauauswahlGrafik is
            InteraktionAuswahl.MöglicheEinheiten (EinheitenSchleifenwert)
          is
             when True =>
-               if
-                 AuswahlExtern = EinheitenSchleifenwert
-               then
-                  Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeAusgewähltText;
-            
-               else
-                  Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeStandardText;
-               end if;
+               TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => Positive (EinheitenSchleifenwert),
+                                                      AuswahlExtern    => Natural (AuswahlExtern),
+                                                      TextaccessExtern => TextaccessVariablen.EinheitentextAccess (RasseExtern, EinheitenSchleifenwert));
                
                Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.EinheitentextAccess (RasseExtern, EinheitenSchleifenwert),
-                                                                                     ViewbreiteExtern => Viewfläche (ViewnummerExtern).x);
+                                                                                       ViewbreiteExtern => Viewfläche (ViewnummerExtern).x);
 
-               Sf.Graphics.Text.setColor (text  => TextaccessVariablen.EinheitentextAccess (RasseExtern, EinheitenSchleifenwert),
-                                          color => Farbe);
                Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitentextAccess (RasseExtern, EinheitenSchleifenwert),
                                              position => Textposition);
                
-               Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.Zeilenabstand;
+               Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                               TextAccessExtern => TextaccessVariablen.EinheitentextAccess (RasseExtern, EinheitenSchleifenwert),
+                                                                               ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
                
                AktuelleTextbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.EinheitentextAccess (RasseExtern, EinheitenSchleifenwert),
-                                                                                         TextbreiteExtern => AktuelleTextbreite);
+                                                                                           TextbreiteExtern => AktuelleTextbreite);
                
                InteraktionAuswahl.PositionenEinheitenBauen (EinheitenSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.EinheitentextAccess (RasseExtern, EinheitenSchleifenwert));
                
@@ -231,44 +215,39 @@ package body BauauswahlGrafik is
         AuswahlExtern
       is
          when 0 =>
-            ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.BauviewAccesse (ViewnummerExtern),
-                                                GrößeExtern          => Viewfläche (ViewnummerExtern),
-                                                AnzeigebereichExtern => KeineAnzeige);
-            return;
+            null;
             
          when others =>
             Viewfläche (ViewnummerExtern) := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
-                                                                                               VerhältnisExtern => (0.50, 1.00));
+                                                                                                 VerhältnisExtern => (0.50, 1.00));
       
             ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.BauviewAccesse (ViewnummerExtern),
-                                                GrößeExtern          => Viewfläche (ViewnummerExtern),
-                                                AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewnummerExtern));
+                                                  GrößeExtern          => Viewfläche (ViewnummerExtern),
+                                                  AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewnummerExtern));
       
             HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Meldung_Hintergrund_Enum,
-                                         AbmessungenExtern => Viewfläche (ViewnummerExtern));
+                                           AbmessungenExtern => Viewfläche (ViewnummerExtern));
       
-            Textposition := TextKonstanten.StartpositionText;
-            Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
+            Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
+            Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
             Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.GebäudezusatztextAccess (RasseExtern, AuswahlExtern),
                                           position => Textposition);
-      end case;
             
-      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.GebäudezusatztextAccess (RasseExtern, AuswahlExtern),
-                                         str  => ZeilenumbruchberechnungGrafik.ZeilenumbruchBerechnen (TextExtern   => GebaeudebeschreibungenGrafik.BeschreibungLang (IDExtern    => AuswahlExtern,
-                                                                                                                                                                      RasseExtern => RasseExtern),
-                                                                                                         BreiteExtern => GrafikRecordKonstanten.Baumenübereich (ViewnummerExtern).width));
+            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.GebäudezusatztextAccess (RasseExtern, AuswahlExtern),
+                                               str  => ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung (TextExtern           => GebaeudebeschreibungenGrafik.BeschreibungLang (IDExtern    => AuswahlExtern,
+                                                                                                                                                                                     RasseExtern => RasseExtern),
+                                                                                                              TextfeldbreiteExtern => Viewfläche (ViewnummerExtern).x / 2.00 - Textposition.x));
          
-      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                         text         => TextaccessVariablen.GebäudezusatztextAccess (RasseExtern, AuswahlExtern));
+            Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
+                                               text         => TextaccessVariablen.GebäudezusatztextAccess (RasseExtern, AuswahlExtern));
+            
+            Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                            TextAccessExtern => TextaccessVariablen.GebäudezusatztextAccess (RasseExtern, AuswahlExtern),
+                                                                            ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
       
-      AktuelleTextbreite := TextKonstanten.LeerTextbreite;
-      AktuelleTextbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.GebäudezusatztextAccess (RasseExtern, AuswahlExtern),
-                                                                                TextbreiteExtern => AktuelleTextbreite);
-      
-      Textposition.y := Textposition.y + Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.GebäudezusatztextAccess (RasseExtern, AuswahlExtern)).height + TextberechnungenHoeheGrafik.Zeilenabstand;
-      
-      Viewfläche (ViewnummerExtern) := (AktuelleTextbreite, Textposition.y);
+            Viewfläche (ViewnummerExtern) := Textposition;
+      end case;
             
    end InformationenGebäude;
 
@@ -284,44 +263,39 @@ package body BauauswahlGrafik is
         AuswahlExtern
       is
          when 0 =>
-            ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.BauviewAccesse (ViewnummerExtern),
-                                                GrößeExtern          => Viewfläche (ViewnummerExtern),
-                                                AnzeigebereichExtern => KeineAnzeige);
-            return;
+            null;
             
          when others =>
             Viewfläche (ViewnummerExtern) := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
-                                                                                               VerhältnisExtern => (0.50, 1.00));
+                                                                                                 VerhältnisExtern => (0.50, 1.00));
       
             ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.BauviewAccesse (ViewnummerExtern),
-                                                GrößeExtern          => Viewfläche (ViewnummerExtern),
-                                                AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewnummerExtern));
+                                                  GrößeExtern          => Viewfläche (ViewnummerExtern),
+                                                  AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewnummerExtern));
       
             HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Meldung_Hintergrund_Enum,
-                                         AbmessungenExtern => Viewfläche (ViewnummerExtern));
+                                           AbmessungenExtern => Viewfläche (ViewnummerExtern));
             
-            Textposition := TextKonstanten.StartpositionText;
-            Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
+            Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
+            Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
             
             Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitenzusatztextAccess (RasseExtern, AuswahlExtern),
                                           position => Textposition);
-      end case;
-            
-      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitenzusatztextAccess (RasseExtern, AuswahlExtern),
-                                         str  => ZeilenumbruchberechnungGrafik.ZeilenumbruchBerechnen (TextExtern   => EinheitenbeschreibungenGrafik.BeschreibungLang (IDExtern    => AuswahlExtern,
-                                                                                                                                                                       RasseExtern => RasseExtern),
-                                                                                                         BreiteExtern => GrafikRecordKonstanten.Baumenübereich (ViewnummerExtern).width));
+
+            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitenzusatztextAccess (RasseExtern, AuswahlExtern),
+                                               str  => ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung (TextExtern           => EinheitenbeschreibungenGrafik.BeschreibungLang (IDExtern    => AuswahlExtern,
+                                                                                                                                                                                      RasseExtern => RasseExtern),
+                                                                                                              TextfeldbreiteExtern => Viewfläche (ViewnummerExtern).x / 2.00 - Textposition.x));
          
-      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                         text         => TextaccessVariablen.EinheitenzusatztextAccess (RasseExtern, AuswahlExtern));
+            Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
+                                               text         => TextaccessVariablen.EinheitenzusatztextAccess (RasseExtern, AuswahlExtern));
       
-      AktuelleTextbreite := TextKonstanten.LeerTextbreite;
-      AktuelleTextbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.EinheitenzusatztextAccess (RasseExtern, AuswahlExtern),
-                                                                                TextbreiteExtern => AktuelleTextbreite);
+            Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                            TextAccessExtern => TextaccessVariablen.EinheitenzusatztextAccess (RasseExtern, AuswahlExtern),
+                                                                            ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
       
-      Textposition.y := Textposition.y + Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.EinheitenzusatztextAccess (RasseExtern, AuswahlExtern)).height + TextberechnungenHoeheGrafik.Zeilenabstand;
-      
-      Viewfläche (ViewnummerExtern) := (AktuelleTextbreite, Textposition.y);
+            Viewfläche (ViewnummerExtern) := (AktuelleTextbreite, Textposition.y);
+      end case;
       
    end InformationenEinheiten;
    
@@ -337,14 +311,14 @@ package body BauauswahlGrafik is
       --                                                                                    VerhältnisExtern => (0.10, 0.10));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.BauviewAccesse (ViewnummerExtern),
-                                          GrößeExtern          => Viewfläche (ViewnummerExtern),
-                                          AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewnummerExtern));
+                                            GrößeExtern          => Viewfläche (ViewnummerExtern),
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewnummerExtern));
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
-                                   AbmessungenExtern => Viewfläche (ViewnummerExtern));
+                                     AbmessungenExtern => Viewfläche (ViewnummerExtern));
       
-      Textposition := TextKonstanten.StartpositionText;
-      AktuelleTextbreite := TextKonstanten.LeerTextbreite;
+      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
+      AktuelleTextbreite := 0.00;
       
       AktuellesBauprojekt := LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
@@ -352,13 +326,13 @@ package body BauauswahlGrafik is
         AktuellesBauprojekt.Gebäude /= 0
       then
          Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & " " & GebaeudebeschreibungenGrafik.BeschreibungKurz (IDExtern    => AktuellesBauprojekt.Gebäude,
-                                                                                                                                RasseExtern => StadtRasseNummerExtern.Rasse);
+                                                                                                                                  RasseExtern => StadtRasseNummerExtern.Rasse);
          
       elsif
         AktuellesBauprojekt.Einheit /= 0
       then
          Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & " " & EinheitenbeschreibungenGrafik.BeschreibungKurz (IDExtern    => AktuellesBauprojekt.Einheit,
-                                                                                                                                 RasseExtern => StadtRasseNummerExtern.Rasse);
+                                                                                                                                   RasseExtern => StadtRasseNummerExtern.Rasse);
          
             
       else
@@ -369,7 +343,7 @@ package body BauauswahlGrafik is
                                          str  => To_Wide_Wide_String (Source => Text));
       
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
-                                                                            ViewbreiteExtern => Viewfläche (ViewnummerExtern).x);
+                                                                              ViewbreiteExtern => Viewfläche (ViewnummerExtern).x);
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                     position => Textposition);
@@ -378,8 +352,11 @@ package body BauauswahlGrafik is
                                          text         => TextaccessVariablen.ForschungsmenüErmöglichtAccess);
       
       AktuelleTextbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
-                                                                                TextbreiteExtern => AktuelleTextbreite);
-      Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
+                                                                                  TextbreiteExtern => AktuelleTextbreite);
+      
+      Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                      TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
+                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       
       Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugVerbleibendeBauzeit) & LeseStadtGebaut.Bauzeit (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
       
@@ -387,7 +364,7 @@ package body BauauswahlGrafik is
                                          str  => To_Wide_Wide_String (Source => Text));
       
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
-                                                                            ViewbreiteExtern => Viewfläche (ViewnummerExtern).x);
+                                                                              ViewbreiteExtern => Viewfläche (ViewnummerExtern).x);
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                     position => Textposition);
@@ -396,8 +373,10 @@ package body BauauswahlGrafik is
                                          text         => TextaccessVariablen.ForschungsmenüErmöglichtAccess);
       
       AktuelleTextbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
-                                                                                TextbreiteExtern => AktuelleTextbreite);
-      Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
+                                                                                  TextbreiteExtern => AktuelleTextbreite);
+      Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                      TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
+                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
             
       Viewfläche (ViewnummerExtern) := (AktuelleTextbreite, Textposition.y);
       

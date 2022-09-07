@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Directories; use Ada.Directories;
 
 with TastenbelegungVariablen;
-with TextKonstanten;
+with VerzeichnisKonstanten;
 
 package body EinlesenTastatur is
 
@@ -12,12 +12,12 @@ package body EinlesenTastatur is
    is begin
       
       case
-        Exists (Name => TextKonstanten.Tastenbelegung)
+        Exists (Name => VerzeichnisKonstanten.Tastenbelegung)
       is
          when True =>
             Open (File => TastenbelegungLaden,
                   Mode => In_File,
-                  Name => TextKonstanten.Tastenbelegung);
+                  Name => VerzeichnisKonstanten.Tastenbelegung);
 
          when False =>
             TastenbelegungVariablen.StandardTastenbelegungLaden;

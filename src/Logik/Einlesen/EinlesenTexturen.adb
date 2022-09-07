@@ -6,6 +6,8 @@ with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wi
 
 with Sf.Graphics.Texture;
 
+with VerzeichnisKonstanten;
+
 with EinlesenAllgemein;
 with Warnung;
 
@@ -31,7 +33,7 @@ package body EinlesenTexturen is
    is begin
       
       case
-        Exists (Name => TextKonstanten.Grafik & TextKonstanten.Hintergrund & TextKonstanten.NullDatei)
+        Exists (Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Hintergrund & VerzeichnisKonstanten.NullDatei)
       is
          when False =>
             Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenHintergrund - 0-Datei fehlt.");
@@ -42,7 +44,7 @@ package body EinlesenTexturen is
             
             Open (File => DateiHintergrund,
                   Mode => In_File,
-                  Name => TextKonstanten.Grafik & TextKonstanten.Hintergrund & TextKonstanten.NullDatei);
+                  Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Hintergrund & VerzeichnisKonstanten.NullDatei);
       end case;
       
       DateipfadeSchleife:
@@ -91,7 +93,7 @@ package body EinlesenTexturen is
    is begin
       
       case
-        Exists (Name => TextKonstanten.Grafik & TextKonstanten.Kartenfelder & TextKonstanten.NullDatei)
+        Exists (Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Kartenfelder & VerzeichnisKonstanten.NullDatei)
       is
          when False =>
             Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenKartenfelder - 0-Datei fehlt.");
@@ -102,7 +104,7 @@ package body EinlesenTexturen is
             
             Open (File => DateiKartenfelder,
                   Mode => In_File,
-                  Name => TextKonstanten.Grafik & TextKonstanten.Kartenfelder & TextKonstanten.NullDatei);
+                  Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Kartenfelder & VerzeichnisKonstanten.NullDatei);
       end case;
       
       DateipfadeSchleife:
@@ -151,7 +153,7 @@ package body EinlesenTexturen is
    is begin
       
       case
-        Exists (Name => TextKonstanten.Grafik & TextKonstanten.Kartenfluss & TextKonstanten.NullDatei)
+        Exists (Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Kartenfluss & VerzeichnisKonstanten.NullDatei)
       is
          when False =>
             Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenKartenflüsse - 0-Datei fehlt.");
@@ -162,7 +164,7 @@ package body EinlesenTexturen is
             
             Open (File => DateiKartenflüsse,
                   Mode => In_File,
-                  Name => TextKonstanten.Grafik & TextKonstanten.Kartenfluss & TextKonstanten.NullDatei);
+                  Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Kartenfluss & VerzeichnisKonstanten.NullDatei);
       end case;
       
       DateipfadeSchleife:
@@ -211,7 +213,7 @@ package body EinlesenTexturen is
    is begin
       
       case
-        Exists (Name => TextKonstanten.Grafik & TextKonstanten.Kartenressourcen & TextKonstanten.NullDatei)
+        Exists (Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Kartenressourcen & VerzeichnisKonstanten.NullDatei)
       is
          when False =>
             Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenKartenressourcen - 0-Datei fehlt.");
@@ -222,7 +224,7 @@ package body EinlesenTexturen is
             
             Open (File => DateiKartenressourcen,
                   Mode => In_File,
-                  Name => TextKonstanten.Grafik & TextKonstanten.Kartenressourcen & TextKonstanten.NullDatei);
+                  Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Kartenressourcen & VerzeichnisKonstanten.NullDatei);
       end case;
       
       DateipfadeSchleife:
@@ -271,7 +273,7 @@ package body EinlesenTexturen is
    is begin
       
       case
-        Exists (Name => TextKonstanten.Grafik & TextKonstanten.Kartenverbesserungen & TextKonstanten.NullDatei)
+        Exists (Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Kartenverbesserungen & VerzeichnisKonstanten.NullDatei)
       is
          when False =>
             Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenVerbesserungen - 0-Datei fehlt.");
@@ -282,7 +284,7 @@ package body EinlesenTexturen is
             
             Open (File => DateiVerbesserungen,
                   Mode => In_File,
-                  Name => TextKonstanten.Grafik & TextKonstanten.Kartenverbesserungen & TextKonstanten.NullDatei);
+                  Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Kartenverbesserungen & VerzeichnisKonstanten.NullDatei);
       end case;
       
       DateipfadeSchleife:
@@ -331,7 +333,7 @@ package body EinlesenTexturen is
    is begin
       
       case
-        Exists (Name => TextKonstanten.Grafik & TextKonstanten.Kartenwege & TextKonstanten.NullDatei)
+        Exists (Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Kartenwege & VerzeichnisKonstanten.NullDatei)
       is
          when False =>
             Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenWege - 0-Datei fehlt.");
@@ -342,7 +344,7 @@ package body EinlesenTexturen is
             
             Open (File => DateiWege,
                   Mode => In_File,
-                  Name => TextKonstanten.Grafik & TextKonstanten.Kartenwege & TextKonstanten.NullDatei);
+                  Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Kartenwege & VerzeichnisKonstanten.NullDatei);
       end case;
       
       DateipfadeSchleife:
@@ -391,7 +393,7 @@ package body EinlesenTexturen is
    is begin
       
       case
-        Exists (Name => TextKonstanten.Grafik & TextKonstanten.Rassen & TextKonstanten.NullDatei)
+        Exists (Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Rassen & VerzeichnisKonstanten.NullDatei)
       is
          when False =>
             Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenRassen - 0-Datei fehlt.");
@@ -402,7 +404,7 @@ package body EinlesenTexturen is
             
             Open (File => DateiRassen,
                   Mode => In_File,
-                  Name => TextKonstanten.Grafik & TextKonstanten.Rassen & TextKonstanten.NullDatei);
+                  Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Rassen & VerzeichnisKonstanten.NullDatei);
       end case;
       
       RassenschleifeSchleife:

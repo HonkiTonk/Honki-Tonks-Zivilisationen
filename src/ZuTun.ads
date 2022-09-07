@@ -3,15 +3,14 @@
 -- Kartengenerator
 -- Siegbedingungen und Übergaben
 -- BewegungCursor aufteilen (siehe auch Sichtweiten und BerechnungenKarteSFML), kann größtenteil raus nach vollständiger Überarbeitung der Stadtanzeige und des Stadtsystem.
--- Skalierung für den Text fertig überarbeiten, nächste müsste Baumenü sein.
--- Skalierung noch einmal überarbeiten, skaliert nicht richtig z. B. im Kartengrößenmenü.
 --
 
 
 -- Aktuell höchste Priorität:
 
 -- KI überarbeiten (Funktioniert inzwischen Minimal, später weiter verbessern).
--- Grafiken überarbeiten (Menüs und Textanzeigen in Views umgebaut. Angefangen neue Texturen zu erstellen. Angefangen das Stadtsystem zu überarbeiten. Scrollen und Zoomen angepasst und verbessert.
+-- Grafiken überarbeiten (Menüs und Textanzeigen in Views umgebaut, Textumbruchsystem überarbeitet und variable Textabstände eingebaut. Angefangen neue Texturen zu erstellen. Angefangen das Stadtsystem zu überarbeiten.
+--                        Scrollen und Zoomen angepasst und verbessert. Spielende eingebaut. Introbild eingebaut.
 --                        Forschungserfolganzeige eingabaut. Rassenspezifische Hintergrund-, Einheiten- und Gebäudegrafiken ermöglicht.).
 -- Einfache Musik/Sounds einbauen ().
 -- Forschungen/Einheiten/Gebäude für zweite Rasse einbauen ().

@@ -15,6 +15,7 @@ with EinheitenRecords;
 with GrafikDatentypen;
 with TextnummernKonstanten;
 with WeltkarteRecords;
+with VerzeichnisKonstanten;
 
 with Karten;
 with LadezeitenLogik;
@@ -54,7 +55,7 @@ package body Speichern is
       
       Create (File => DateiSpeichern,
               Mode => Out_File,
-              Name => TextKonstanten.SpielstandStrich & Encode (Item => (To_Wide_Wide_String (Source => NameSpielstand.EingegebenerText))));
+              Name => VerzeichnisKonstanten.SpielstandStrich & Encode (Item => (To_Wide_Wide_String (Source => NameSpielstand.EingegebenerText))));
       
       Allgemeines (DateiSpeichernExtern => DateiSpeichern);
       FortschrittErhöhen (AutospeichernExtern => AutospeichernExtern);

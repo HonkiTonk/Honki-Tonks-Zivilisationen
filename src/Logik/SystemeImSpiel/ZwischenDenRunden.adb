@@ -76,9 +76,7 @@ package body ZwischenDenRunden is
       -- Autospeichern muss immer nach allen Änderungen kommen, sonst werden nicht alle Änderungen gespeichert.
       Speichern.AutoSpeichern;
       LadezeitenLogik.RundenendeMaximum;
-      
-      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
-      
+            
       return True;
       
    end BerechnungenRundenende;

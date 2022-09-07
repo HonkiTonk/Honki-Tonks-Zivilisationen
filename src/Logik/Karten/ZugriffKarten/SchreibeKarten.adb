@@ -123,7 +123,7 @@ package body SchreibeKarten is
    
    procedure BelegterGrund
      (KoordinatenExtern : KartenRecords.AchsenKartenfeldNaturalRecord;
-      BelegterGrundExtern : in KartenRecords.BelegterGrundRecord)
+      BelegterGrundExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund := BelegterGrundExtern;
@@ -157,7 +157,7 @@ package body SchreibeKarten is
          null;
          
       elsif
-        LeseKarten.Einheit (KoordinatenExtern => KoordinatenExtern) /= EinheitenKonstanten.LeerRasseNummer
+        LeseKarten.EinheitenbelegungGrund (KoordinatenExtern => KoordinatenExtern) /= EinheitenKonstanten.LeerRasseNummer
       then
          null;
          
@@ -184,7 +184,7 @@ package body SchreibeKarten is
          null;
          
       elsif
-        LeseKarten.Einheit (KoordinatenExtern => KoordinatenExtern) /= EinheitRasseNummerExtern
+        LeseKarten.EinheitenbelegungGrund (KoordinatenExtern => KoordinatenExtern) /= EinheitRasseNummerExtern
       then
          null;
          

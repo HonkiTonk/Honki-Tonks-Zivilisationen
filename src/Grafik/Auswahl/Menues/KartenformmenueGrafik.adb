@@ -8,7 +8,6 @@ with Sf.Graphics.Text;
 with KartenDatentypen; use KartenDatentypen;
 with SystemKonstanten;
 with TextaccessVariablen;
-with TextKonstanten;
 with InteraktionAuswahl;
 with Menuetexte;
 
@@ -17,7 +16,7 @@ with TextberechnungenBreiteGrafik;
 with MenuestringsSetzenGrafik;
 with KartengeneratorVariablen;
 with TextberechnungenHoeheGrafik;
-with TexteinstellungenGrafik;
+with TextfarbeGrafik;
 
 package body KartenformmenueGrafik is
 
@@ -28,20 +27,21 @@ package body KartenformmenueGrafik is
       return Sf.System.Vector2.sfVector2f
    is begin
       
-      Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
-      Textbreite := TextKonstanten.LeerTextbreite;
+      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
+      Textbreite := 0.00;
       
       PositionenSchleife:
-      for PositionSchleifenwert in Textarrayanpassung .. SystemKonstanten.EndeAbzugGrafik (WelchesMenüExtern) loop
+      for PositionSchleifenwert in SystemKonstanten.StandardArrayanpassung .. SystemKonstanten.EndeAbzugGrafik (WelchesMenüExtern) loop
       
-         FarbenFestlegen (AktuellerTextExtern   => PositionSchleifenwert,
-                          AktuelleAuswahlExtern => AktuelleAuswahlExtern + 1);
+         TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => PositionSchleifenwert,
+                                                AuswahlExtern    => AktuelleAuswahlExtern + 1,
+                                                TextaccessExtern => TextaccessVariablen.MenüsSFMLAccess (MenueDatentypen.Kartenform_Menü_Enum, PositionSchleifenwert));
 
          Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.MenüsSFMLAccess (WelchesMenüExtern, PositionSchleifenwert),
                                             str  => TextEinlesen (SchleifenwertExtern => PositionSchleifenwert));
          
          Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.MenüsSFMLAccess (WelchesMenüExtern, PositionSchleifenwert),
-                                                                               ViewbreiteExtern => ViewflächeExtern.x);
+                                                                                 ViewbreiteExtern => ViewflächeExtern.x);
          
          Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.MenüsSFMLAccess (WelchesMenüExtern, PositionSchleifenwert),
                                        position => Textposition);
@@ -54,7 +54,7 @@ package body KartenformmenueGrafik is
          
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                          TextAccessExtern => TextaccessVariablen.MenüsSFMLAccess (WelchesMenüExtern, PositionSchleifenwert),
-                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
+                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
          
          Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
                                             text         => TextaccessVariablen.MenüsSFMLAccess (WelchesMenüExtern, PositionSchleifenwert));
@@ -64,27 +64,6 @@ package body KartenformmenueGrafik is
       return (Textbreite, Textposition.y);
             
    end Kartenformmenü;
-   
-   
-   
-   procedure FarbenFestlegen
-     (AktuellerTextExtern : in Positive;
-      AktuelleAuswahlExtern : in Natural)
-   is begin
-      
-      if
-        AktuellerTextExtern = AktuelleAuswahlExtern
-      then
-         Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeAusgewähltText;
-         
-      else
-         Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeStandardText;
-      end if;
-   
-      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.MenüsSFMLAccess (MenueDatentypen.Kartenform_Menü_Enum, AktuellerTextExtern),
-                                 color => Farbe);
-      
-   end FarbenFestlegen;
    
    
    

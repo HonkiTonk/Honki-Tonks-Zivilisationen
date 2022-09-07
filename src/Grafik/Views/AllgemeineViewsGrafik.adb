@@ -37,7 +37,7 @@ package body AllgemeineViewsGrafik is
       
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.ÜberschriftAccess,
                                                                               ViewbreiteExtern => Viewfläche (Überschrift_Enum).x);
-      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
+      Textposition.y := 2.00 * TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ÜberschriftAccess,
                                     position => Textposition);
@@ -50,7 +50,7 @@ package body AllgemeineViewsGrafik is
       
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                       TextAccessExtern => TextaccessVariablen.ÜberschriftAccess,
-                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
+                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
 
       Viewfläche (Überschrift_Enum) := (Textbreite, Textposition.y);
          
@@ -149,7 +149,7 @@ package body AllgemeineViewsGrafik is
       
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                       TextAccessExtern => TextaccessVariablen.ÜberschriftAccess,
-                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
+                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
 
       Viewfläche (Frage_Enum) := (Textbreite, Textposition.y);
       

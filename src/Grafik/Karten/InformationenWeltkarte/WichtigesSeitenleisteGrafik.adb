@@ -8,7 +8,6 @@ with Sf.Graphics.Text;
 with Meldungstexte;
 with TextnummernKonstanten;
 with Views;
-with GrafikRecordKonstanten;
 with GrafikDatentypen;
 
 with LeseWichtiges;
@@ -39,7 +38,7 @@ package body WichtigesSeitenleisteGrafik is
                                      AbmessungenExtern => Viewfläche);
       
       Textbreite := 0.00;
-      Textposition := TextKonstanten.StartpositionText;
+      Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
       FestzulegenderText (1) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuellePosition) & " " & ZahlAlsStringEbeneVorhanden (ZahlExtern => KoordinatenExtern.EAchse) & "," & KoordinatenExtern.YAchse'Wide_Wide_Image

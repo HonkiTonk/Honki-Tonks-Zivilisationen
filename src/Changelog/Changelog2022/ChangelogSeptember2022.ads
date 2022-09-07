@@ -154,17 +154,30 @@ package ChangelogSeptember2022 is
    
    
 
-   -- Version 0.03. => 0.03. (08.09.2022):
+   -- Version 0.03.8600 => 0.03. (08.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03. => 0.03. (07.09.2022):
+   -- Version 0.03.8435 => 0.03.8600 (07.09.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Textanzeige und Skalierung des Baumenüs verbessert.
+   -- Textanzeige und Skalierung des Diplomatiemenüs verbessert.
+   -- Bei mehreren menschlichen Spielern wird die Rasse jetzt korrekt auf KI gesetzt oder entfernt wenn einer das Spiel verlässt.
+   -- Alle Textanzeige und -skalierungssysteme überarbeitet und an den Variablen Abstand angepasst.
+   -- Steuerungsmenü überarbeitet.
+   -- Farbfestlegung der Texte überarbeitet.
+   -- Neues Zeilenumbruchsystem eingebaut.
+   -- Versionsnummer wird jetzt nur noch im Hauptmenü angezeigt.
+   -- Variable Spaltenbreite eingebaut.
+   -- Introbild und Introabbruchmöglichkeit eingebaut.
+   -- Angefangen Befehlsknöpfe für das Stadtsystem einzubauen.
+   -- Unnötigen Code gelöscht.
+   -- Code zusammengeführt.
+   -- Performance optimiert.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst/optimiert.
    
    
 

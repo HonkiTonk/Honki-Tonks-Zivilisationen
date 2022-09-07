@@ -3,6 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with GrafikDatentypen; use GrafikDatentypen;
 with ZeitKonstanten;
+with TastenbelegungDatentypen;
 
 with SchreibenVerzeichnisse;
 with EinlesenEinstellungen;
@@ -11,6 +12,7 @@ with Hauptmenue;
 with NachGrafiktask;
 with NachLogiktask;
 with LogiktaskAnAlle;
+with TasteneingabeLogik;
 
 package body StartLogik is
 
@@ -31,7 +33,6 @@ package body StartLogik is
          
       end loop FensterVorhandenSchleife;
       
-      NachLogiktask.Warten := True;
       Einlesen.EinlesenMitAnzeige;
       NachGrafiktask.AccesseSetzen := True;
       
@@ -39,9 +40,17 @@ package body StartLogik is
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Intro_Enum;
       
       IntroSchleife:
-      while NachLogiktask.Warten loop
+      while NachLogiktask.IntroAbwarten loop
          
-         delay ZeitKonstanten.WartezeitLogik;
+         case
+           TasteneingabeLogik.Tastenwert
+         is
+            when TastenbelegungDatentypen.Menü_Zurück_Enum =>
+               NachGrafiktask.IntroAnzeigen := False;
+               
+            when others =>
+               null;
+         end case;
          
       end loop IntroSchleife;
       

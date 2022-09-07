@@ -4,6 +4,20 @@ pragma Warnings (Off, "*array aggregate*");
 with Sf.Graphics; use Sf.Graphics;
 
 package TextberechnungenBreiteGrafik is
+   
+   function KleinerSpaltenabstandVariabel
+     return Float
+     with
+       Post => (
+                  KleinerSpaltenabstandVariabel'Result >= 0.00
+               );
+   
+   function SpaltenabstandVariabel
+     return Float
+     with
+       Post => (
+                  SpaltenabstandVariabel'Result >= 0.00
+               );
 
    function MittelpositionBerechnen
      (TextAccessExtern : in Sf.Graphics.sfText_Ptr;

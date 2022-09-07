@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Directories; use Ada.Directories;
 
-with TextKonstanten;
+with VerzeichnisKonstanten;
 
 package body SchreibenVerzeichnisse is
 
@@ -20,23 +20,23 @@ package body SchreibenVerzeichnisse is
    is begin
                   
       case
-        Exists (Name => TextKonstanten.Spielstand)
+        Exists (Name => VerzeichnisKonstanten.Spielstand)
       is
          when True =>
             null;
 
          when False =>
-            Create_Directory (New_Directory => TextKonstanten.Spielstand);
+            Create_Directory (New_Directory => VerzeichnisKonstanten.Spielstand);
       end case;
       
       case
-        Exists (Name => TextKonstanten.Datenbanken)
+        Exists (Name => VerzeichnisKonstanten.Datenbanken)
       is
          when True =>
             null;
 
          when False =>
-            Create_Directory (New_Directory => TextKonstanten.Datenbanken);
+            Create_Directory (New_Directory => VerzeichnisKonstanten.Datenbanken);
       end case;
       
    end SchreibeSonstigeVerzeichnisse;

@@ -8,6 +8,7 @@ with KartengrundDatentypen;
 with SpielVariablen;
 with KartenRecords;
 with EinheitenRecords;
+with StadtRecords;
 
 with Karten;
 
@@ -109,7 +110,7 @@ package SchreibeKarten is
 
    procedure BelegterGrund
      (KoordinatenExtern : KartenRecords.AchsenKartenfeldNaturalRecord;
-      BelegterGrundExtern : in KartenRecords.BelegterGrundRecord)
+      BelegterGrundExtern : in StadtRecords.RasseStadtnummerRecord)
      with
        Pre => (
                  KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse

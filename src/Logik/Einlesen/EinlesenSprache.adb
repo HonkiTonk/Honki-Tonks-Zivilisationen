@@ -5,6 +5,7 @@ with Ada.Characters.Conversions;
 
 with GlobaleTexte;
 with TextKonstanten;
+with VerzeichnisKonstanten;
 
 package body EinlesenSprache is
 
@@ -15,7 +16,7 @@ package body EinlesenSprache is
       GlobaleTexte.SprachenEinlesen := (others => TextKonstanten.LeerUnboundedString);
       
       Start_Search (Search    => Suche,
-                    Directory => TextKonstanten.Sprachen,
+                    Directory => VerzeichnisKonstanten.Sprachen,
                     Pattern   => "");
 
       VerzeichnisAußenSchleife:
@@ -29,7 +30,7 @@ package body EinlesenSprache is
            or
              Simple_Name (Directory_Entry => Verzeichnis) = ".."
            or
-             Simple_Name (Directory_Entry => Verzeichnis) = TextKonstanten.Schriftart
+             Simple_Name (Directory_Entry => Verzeichnis) = VerzeichnisKonstanten.Schriftart
          then
             null;
                   

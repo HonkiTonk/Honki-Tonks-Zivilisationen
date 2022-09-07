@@ -7,7 +7,6 @@ with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Text;
 
 with GrafikDatentypen;
-with TextKonstanten;
 with InteraktionAuswahl;
 with TextaccessVariablen;
 with Views;
@@ -19,7 +18,6 @@ with TexteinstellungenGrafik;
 with NachGrafiktask;
 with ViewsEinstellenGrafik;
 with HintergrundGrafik;
-with AllgemeineViewsGrafik;
 
 package body SprachauswahlGrafik is
    
@@ -108,7 +106,7 @@ package body SprachauswahlGrafik is
              ZeileSchleifenwert = Ende
          then
             -- Das später wie bei der Versionsnummer regeln? Dafür dann auch mal eine universellere Lösung finden. äöü
-            Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.Zeilenabstand;
+            Textposition.y := Textposition.y + 3.00 * TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
             
             Sf.Graphics.ConvexShape.setPointCount (shape => PfeilAccess,
                                                    count => 7);
@@ -144,12 +142,12 @@ package body SprachauswahlGrafik is
             
             InteraktionAuswahl.PositionenSprachauswahl (ZeileSchleifenwert) := Sf.Graphics.ConvexShape.getGlobalBounds (shape => PfeilAccess);
             
-            NeueTextbreite := TextKonstanten.TextbreiteZusatzwert + Sf.Graphics.ConvexShape.getGlobalBounds (shape => PfeilAccess).width;
+            NeueTextbreite := TextberechnungenBreiteGrafik.SpaltenabstandVariabel + Sf.Graphics.ConvexShape.getGlobalBounds (shape => PfeilAccess).width;
             
             Sf.Graphics.RenderWindow.drawConvexShape (renderWindow => EinstellungenGrafik.FensterAccess,
                                                       object       => PfeilAccess);
             
-            Textposition.y := Textposition.y + Sf.Graphics.ConvexShape.getGlobalBounds (shape => PfeilAccess).height + TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
+            Textposition.y := Textposition.y + Sf.Graphics.ConvexShape.getGlobalBounds (shape => PfeilAccess).height + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
             
          else
             NeueTextbreite := 0.00;
@@ -165,12 +163,8 @@ package body SprachauswahlGrafik is
          end if;
          
       end loop AnzeigeSchleife;
-      
-      -- Funktioniert aktuell nur nach Einlesen/Setzen aller Texte/Textaccesse und zeigt deswegen nur bei einem späteren Sprachwechsel die Versionsnummer an.
-      -- So lassen oder anpassen? äöü
-      AllgemeineViewsGrafik.Versionsnummer (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum);
-      
-      Viewfläche := (AktuelleTextbreite, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand);
+            
+      Viewfläche := (AktuelleTextbreite, Textposition.y);
       
    end Sprachauswahl;
 

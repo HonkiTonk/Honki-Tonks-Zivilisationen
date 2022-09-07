@@ -8,21 +8,28 @@ with MenueDatentypen;
 package ZusatztextaufteilungGrafik is
 
    function Zusatztextaufteilung
-     (WelchesMenüExtern : in MenueDatentypen.Menü_Zusatztext_Enum;
+     (WelchesMenüExtern : in MenueDatentypen.Menü_Zusatztext_Einfach_Enum;
       AktuelleAuswahlExtern : in Natural;
       ViewflächeExtern : in Sf.System.Vector2.sfVector2f;
-      RealeViewbreiteExtern : in Float;
-      AnzeigebereichbreiteExtern : in Float)
+      RealeViewbreiteExtern : in Float)
       return Sf.System.Vector2.sfVector2f
      with
-       Pre => (
-                 AnzeigebereichbreiteExtern > 0.00
-              ),
-
        Post => (
-                  Zusatztextaufteilung'Result.x > 0.00
+                  Zusatztextaufteilung'Result.x >= 0.00
                 and
-                  Zusatztextaufteilung'Result.y > 0.00
+                  Zusatztextaufteilung'Result.y >= 0.00
+               );
+
+   function ZusatztextDoppelmenü
+     (WelchesMenüExtern : in MenueDatentypen.Menü_Doppelt_Enum;
+      AktuelleAuswahlExtern : in Natural;
+      ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
+      return Sf.System.Vector2.sfVector2f
+     with
+       Post => (
+                  ZusatztextDoppelmenü'Result.x >= 0.00
+                and
+                  ZusatztextDoppelmenü'Result.y >= 0.00
                );
 
 private

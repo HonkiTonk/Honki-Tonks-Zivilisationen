@@ -16,8 +16,6 @@ package EinfachmenueGrafik is
 
 private
 
-   Textarrayanpassung : constant Positive := 2;
-
    AktuelleEinstellung : Natural;
 
    Textbreite : Float;

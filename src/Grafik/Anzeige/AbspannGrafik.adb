@@ -11,6 +11,7 @@ with ViewsEinstellenGrafik;
 with HintergrundGrafik;
 with NachGrafiktask;
 with EinstellungenGrafik;
+with TextberechnungenBreiteGrafik;
 
 package body AbspannGrafik is
 
@@ -28,10 +29,12 @@ package body AbspannGrafik is
                                            HintergrundExtern => AbspannExtern,
                                            AbmessungenExtern => Viewfläche);
       
-      Textposition := (100.00, 100.00);
-      
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TextAccess,
-                                         str  => NachGrafiktask.AktuelleRasse'Wide_Wide_Image);
+                                         str  => "\o/");
+      
+      Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.TextAccess,
+                                                                              ViewbreiteExtern => Viewfläche.x);
+      Textposition.y := Viewfläche.y / 2.00;
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.TextAccess,
                                     position => Textposition);

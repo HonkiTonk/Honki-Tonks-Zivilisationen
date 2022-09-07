@@ -4,7 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with Sf.System.Vector2;
-with Sf.Graphics.Color;
 
 with MenueDatentypen;
 
@@ -24,7 +23,6 @@ package KartenformmenueGrafik is
 
 private
 
-   Textarrayanpassung : constant Positive := 2;
    WelcherZusatztext : Positive;
 
    Textbreite : Float;
@@ -32,12 +30,6 @@ private
    Zusatztext : Unbounded_Wide_Wide_String;
 
    Textposition : Sf.System.Vector2.sfVector2f;
-
-   Farbe : Sf.Graphics.Color.sfColor;
-
-   procedure FarbenFestlegen
-     (AktuellerTextExtern : in Positive;
-      AktuelleAuswahlExtern : in Natural);
 
 
 

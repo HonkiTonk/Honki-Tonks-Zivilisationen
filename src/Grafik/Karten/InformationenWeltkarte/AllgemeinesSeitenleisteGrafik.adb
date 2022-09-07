@@ -10,7 +10,6 @@ with Sf.Graphics.Text;
 with KartenRecords; use KartenRecords;
 with KartengrundDatentypen; use KartengrundDatentypen;
 with Views;
-with GrafikRecordKonstanten;
 with GrafikDatentypen;
 with Meldungstexte;
 with TextnummernKonstanten;
@@ -52,7 +51,7 @@ package body AllgemeinesSeitenleisteGrafik is
       Leer;
       
       Textbreite := 0.00;
-      Textposition := TextKonstanten.StartpositionText;
+      Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       RealeYPosition := Textposition.y;
       

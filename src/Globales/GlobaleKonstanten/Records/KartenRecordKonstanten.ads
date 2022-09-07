@@ -6,6 +6,7 @@ with KartenRecords;
 with KartenKonstanten;
 with StadtDatentypen;
 with RassenDatentypen;
+with StadtRecords;
 
 with DatenbankRecords;
 
@@ -39,10 +40,10 @@ package KartenRecordKonstanten is
                                                                                Kampf          => (others => (others => KartenKonstanten.LeerKampf))
                                                                               );
    
-   LeerDurchStadtBelegterGrund : constant KartenRecords.BelegterGrundRecord := (
-                                                                                RasseBelegt => RassenDatentypen.Keine_Rasse_Enum,
-                                                                                StadtBelegt => StadtDatentypen.MaximaleStädteMitNullWert'First
-                                                                               );
+   LeerDurchStadtBelegterGrund : constant StadtRecords.RasseStadtnummerRecord := (
+                                                                                  Rasse  => RassenDatentypen.Keine_Rasse_Enum,
+                                                                                  Nummer => StadtDatentypen.MaximaleStädteMitNullWert'First
+                                                                                 );
 
    KartenformStandard : constant KartenRecords.KartenformRecord := (
                                                                     EAchseOben   => KartenDatentypen.Karte_E_Kein_Übergang_Enum,

@@ -5,7 +5,7 @@ with Ada.Directories; use Ada.Directories;
 
 with SystemRecords;
 with OptionenVariablen;
-with TextKonstanten;
+with VerzeichnisKonstanten;
 
 with EinstellungenGrafik;
 with TexteinstellungenGrafik;
@@ -17,12 +17,12 @@ package body EinlesenEinstellungen is
    is begin
       
       case
-        Exists (Name => TextKonstanten.Einstellungen)
+        Exists (Name => VerzeichnisKonstanten.Einstellungen)
       is
          when True =>
             Open (File => DateiEinstellungenEinlesen,
                   Mode => In_File,
-                  Name => TextKonstanten.Einstellungen);
+                  Name => VerzeichnisKonstanten.Einstellungen);
 
          when False =>
             EinstellungenGrafik.StandardeinstellungenLaden;

@@ -43,7 +43,7 @@ package body EinfachmenueGrafik is
       Viewfläche := Textdarstellung (WelchesMenüExtern     => WelchesMenüExtern,
                                       ViewflächeExtern      => Viewfläche,
                                       AktuelleAuswahlExtern => AktuelleAuswahlExtern);
-            
+      
       case
         WelchesMenüExtern
       is
@@ -51,14 +51,13 @@ package body EinfachmenueGrafik is
             Viewfläche := ZusatztextaufteilungGrafik.Zusatztextaufteilung (WelchesMenüExtern          => WelchesMenüExtern,
                                                                             AktuelleAuswahlExtern      => AktuelleAuswahlExtern,
                                                                             ViewflächeExtern           => Viewfläche,
-                                                                            RealeViewbreiteExtern      => Viewbreite,
-                                                                            AnzeigebereichbreiteExtern => 1.00);
+                                                                            RealeViewbreiteExtern      => Viewbreite);
             
          when others =>
             null;
       end case;
       
-     Viewfläche.y := Viewfläche.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
+      Viewfläche.y := Viewfläche.y + TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
                               
    end Einfachmenü;
    
@@ -75,7 +74,7 @@ package body EinfachmenueGrafik is
       Textbreite := 0.00;
 
       PositionenSchleife:
-      for PositionSchleifenwert in Textarrayanpassung .. SystemKonstanten.EndeAbzugGrafik (WelchesMenüExtern) loop
+      for PositionSchleifenwert in SystemKonstanten.StandardArrayanpassung .. SystemKonstanten.EndeAbzugGrafik (WelchesMenüExtern) loop
       
          FarbeFestlegen (WelchesMenüExtern     => WelchesMenüExtern,
                          AktuelleAuswahlExtern => AktuelleAuswahlExtern + 1,
@@ -123,16 +122,16 @@ package body EinfachmenueGrafik is
         WelchesMenüExtern
       is
          when MenueDatentypen.Kartenart_Menü_Enum =>
-            AktuelleEinstellung := Textarrayanpassung + KartenDatentypen.Kartenart_Enum'Pos (KartengeneratorVariablen.Kartenparameter.Kartenart);
+            AktuelleEinstellung := SystemKonstanten.StandardArrayanpassung + KartenDatentypen.Kartenart_Enum'Pos (KartengeneratorVariablen.Kartenparameter.Kartenart);
             
          when MenueDatentypen.Kartentemperatur_Menü_Enum =>
-            AktuelleEinstellung := Textarrayanpassung + KartenDatentypen.Kartentemperatur_Enum'Pos (KartengeneratorVariablen.Kartenparameter.Kartentemperatur);
+            AktuelleEinstellung := SystemKonstanten.StandardArrayanpassung + KartenDatentypen.Kartentemperatur_Enum'Pos (KartengeneratorVariablen.Kartenparameter.Kartentemperatur);
             
          when MenueDatentypen.Kartenressourcen_Menü_Enum =>
-            AktuelleEinstellung := Textarrayanpassung + KartenDatentypen.Kartenressourcen_Enum'Pos (KartengeneratorVariablen.Kartenparameter.Kartenressourcen);
+            AktuelleEinstellung := SystemKonstanten.StandardArrayanpassung + KartenDatentypen.Kartenressourcen_Enum'Pos (KartengeneratorVariablen.Kartenparameter.Kartenressourcen);
             
          when MenueDatentypen.Schwierigkeitsgrad_Menü_Enum =>
-            AktuelleEinstellung := Textarrayanpassung + SpielDatentypen.Schwierigkeitsgrad_Enum'Pos (SpielVariablen.Allgemeines.Schwierigkeitsgrad);
+            AktuelleEinstellung := SystemKonstanten.StandardArrayanpassung + SpielDatentypen.Schwierigkeitsgrad_Enum'Pos (SpielVariablen.Allgemeines.Schwierigkeitsgrad);
             
          when others =>
             AktuelleEinstellung := 0;

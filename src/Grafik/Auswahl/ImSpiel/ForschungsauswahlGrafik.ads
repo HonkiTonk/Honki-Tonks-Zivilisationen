@@ -4,7 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 private with Sf.System.Vector2;
-private with Sf.Graphics.Color;
 
 with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
@@ -34,8 +33,6 @@ private
    Text : Unbounded_Wide_Wide_String;
    
    Textposition : Sf.System.Vector2.sfVector2f;
-   
-   Farbe : Sf.Graphics.Color.sfColor;
    
    type ViewflächenArray is array (GrafikRecordKonstanten.Forschungsbereich'Range) of Sf.System.Vector2.sfVector2f;
    Viewfläche : ViewflächenArray := (others => (5.00, 5.00));

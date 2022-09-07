@@ -23,7 +23,7 @@ with TextberechnungenBreiteGrafik;
 with TextberechnungenHoeheGrafik;
 with EinstellungenGrafik;
 with MenuestringsSetzenGrafik;
-with TexteinstellungenGrafik;
+with TextfarbeGrafik;
 with NachGrafiktask;
 with Fehler;
 
@@ -34,16 +34,16 @@ package body DiplomatieauswahlGrafik is
    is begin
       
       AllgemeineViewsGrafik.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => Meldungstexte.Frage (TextnummernKonstanten.FrageRasseDiplomatie)),
-                                        HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum);
+                                          HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum);
       
       Viewfläche := ViewsEinstellenGrafik.ViewflächeAuflösungAnpassen (ViewflächeExtern => Viewfläche);
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.MenüviewAccess,
-                                          GrößeExtern          => Viewfläche,
-                                          AnzeigebereichExtern => GrafikRecordKonstanten.MenüEinfachbereich);
+                                            GrößeExtern          => Viewfläche,
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.MenüEinfachbereich);
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
-                                        AbmessungenExtern => Viewfläche);
+                                     AbmessungenExtern => Viewfläche);
                   
       Viewfläche := Textdarstellung (ViewflächeExtern => Viewfläche,
                                       AuswahlExtern    => AuswahlExtern);
@@ -60,7 +60,7 @@ package body DiplomatieauswahlGrafik is
       return Sf.System.Vector2.sfVector2f
    is begin
       
-      Textposition.y := TextberechnungenHoeheGrafik.Zeilenabstand;
+      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       Textbreite := 0.00;
 
       PositionenSchleife:
@@ -70,17 +70,9 @@ package body DiplomatieauswahlGrafik is
            InteraktionAuswahl.RassenMöglich (RassenDatentypen.Rassen_Enum'Val (PositionSchleifenwert))
          is
             when True =>
-               if
-                 PositionSchleifenwert = AuswahlExtern
-               then
-                  Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeAusgewähltText;
-                     
-               else
-                  Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeStandardText;
-               end if;
-               
-               Sf.Graphics.Text.setColor (text  => TextaccessVariablen.TextAccess,
-                                          color => Farbe);
+               TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => PositionSchleifenwert,
+                                                      AuswahlExtern    => AuswahlExtern,
+                                                      TextaccessExtern => TextaccessVariablen.TextAccess);
                
                Text := To_Unbounded_Wide_Wide_String (Source => MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => PositionSchleifenwert + 1,
                                                                                                              WelchesMenüExtern => MenueDatentypen.Rassen_Menü_Enum))
@@ -106,13 +98,13 @@ package body DiplomatieauswahlGrafik is
                                                   str  => To_Wide_Wide_String (Source => Text));
                
                Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.TextAccess,
-                                                                                     ViewbreiteExtern => ViewflächeExtern.x);
+                                                                                       ViewbreiteExtern => ViewflächeExtern.x);
                
                Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.TextAccess,
                                              position => Textposition);
 
                Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.TextAccess,
-                                                                                 TextbreiteExtern => Textbreite);
+                                                                                   TextbreiteExtern => Textbreite);
                
                InteraktionAuswahl.PositionenDiplomatieRasse (RassenDatentypen.Rassen_Enum'Val (PositionSchleifenwert)) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.TextAccess);
                
@@ -123,11 +115,13 @@ package body DiplomatieauswahlGrafik is
                null;
          end case;
          
-         Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.Zeilenabstand;
+         Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                         TextAccessExtern => TextaccessVariablen.TextAccess,
+                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
          
       end loop PositionenSchleife;
 
-      return (Textbreite, Textposition.y);
+      return (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
 
    end Textdarstellung;
 

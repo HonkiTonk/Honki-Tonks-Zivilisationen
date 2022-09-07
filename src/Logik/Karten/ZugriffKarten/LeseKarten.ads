@@ -131,6 +131,17 @@ package LeseKarten is
                  KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Karteneinstellungen.Kartengröße.XAchse
               );
    
+   -- Hier noch korrekten Post Contract einbauen. äöü
+   function StadtbelegungGrund
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      return StadtRecords.RasseStadtnummerRecord
+     with
+       Pre => (
+                 KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Karteneinstellungen.Kartengröße.XAchse
+              );
+   
    function BestimmteStadtBelegtGrund
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
@@ -156,8 +167,14 @@ package LeseKarten is
                  KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Karteneinstellungen.Kartengröße.XAchse
               );
    
-   function Einheit
+   function EinheitenbelegungGrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return EinheitenRecords.RasseEinheitnummerRecord;
+      return EinheitenRecords.RasseEinheitnummerRecord
+     with
+       Pre => (
+                 KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Karteneinstellungen.Kartengröße.XAchse
+              );
 
 end LeseKarten;

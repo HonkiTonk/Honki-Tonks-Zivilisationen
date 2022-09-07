@@ -8,8 +8,8 @@ with Sf.System.Vector2;
 with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
 with StadtRecords;
-with TextKonstanten;
 
+private with GrafikRecordKonstanten;
 private with ProduktionDatentypen;
 private with TextaccessVariablen;
 
@@ -52,7 +52,7 @@ private
    
    Bauprojekt : StadtRecords.BauprojektRecord;
    
-   Viewfläche : Sf.System.Vector2.sfVector2f := TextKonstanten.StartpositionText;
+   Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartgrößeView;
    Textposition : Sf.System.Vector2.sfVector2f;
    Mausposition : Sf.System.Vector2.sfVector2f;
       

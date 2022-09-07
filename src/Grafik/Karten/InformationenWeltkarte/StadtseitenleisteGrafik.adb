@@ -10,7 +10,7 @@ with ProduktionDatentypen; use ProduktionDatentypen;
 with StadtDatentypen; use StadtDatentypen;
 with Meldungstexte;
 with TextnummernKonstanten;
-with GrafikRecordKonstanten;
+with TextKonstanten;
 with Views;
 with GrafikDatentypen;
 
@@ -94,7 +94,7 @@ package body StadtseitenleisteGrafik is
       
       Leer;
       
-      Textposition := TextKonstanten.StartpositionText;
+      Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
       -- Allgemeine Stadtinformationen, nur sichtbar wenn das Kartenfeld aufgedeckt ist und sich dort eine Stadt befindet.

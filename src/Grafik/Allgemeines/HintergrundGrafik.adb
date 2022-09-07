@@ -35,7 +35,7 @@ package body HintergrundGrafik is
                Farbe.a := GrafikKonstanten.Undurchsichtig;
                
             when GrafikDatentypen.Hintergrund_Durchsichtig_Enum =>
-               Farbe.a := 150;
+               Farbe.a := 200;
          end case;
          
          Sf.Graphics.Sprite.setColor (sprite => HintergrundSpriteAccess,

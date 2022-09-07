@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with StadtDatentypen;
 with KartenDatentypen;
 with KartengrundDatentypen;
 with RassenDatentypen;
@@ -77,13 +76,6 @@ package KartenRecords is
    -- Die Felderwertung bläht den Record so enorm auf, mal eine bessere Lösung finden. äöü
    type FelderwertungArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of KartenDatentypen.Bewertung_Enum;
    type SichtbarkeitArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of Boolean;
-   
-   type BelegterGrundRecord is record
-      
-      RasseBelegt : RassenDatentypen.Rassen_Enum;
-      StadtBelegt : StadtDatentypen.MaximaleStädteMitNullWert;
-      
-   end record;
    
    type KartengrundRecord is record
       

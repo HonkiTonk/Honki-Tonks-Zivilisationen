@@ -49,6 +49,9 @@ package Mausauswahl is
    function Stadtumgebung
      return Sf.System.Vector2.sfVector2f;
    
+   function Stadtbefehle
+     return Natural;
+   
 private
    
    Mausposition : Sf.System.Vector2.sfVector2f;

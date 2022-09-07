@@ -1,43 +1,86 @@
-function Textdarstellung
-  (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum;
-   ViewflächeExtern : in Sf.System.Vector2.sfVector2f;
-   AktuelleAuswahlExtern : in Integer)
-      return Sf.System.Vector2.sfVector2f
-is begin
+case
+   LeseKarten.BelegterGrund (RasseExtern       => RasseExtern,
+                              KoordinatenExtern => KoordinatenExtern)
+ is
+    when False =>
+       return StadtKonstanten.LeerNummer;
 
-   Rechenwert.y := TextberechnungenHoeheGrafik.Zeilenabstand;
-   Textbreite := 0.00;
+     when True =>
+        null;
+  end case;
 
-   PositionenSchleife:
-   for PositionSchleifenwert in Textarrayanpassung .. SystemKonstanten.EndeAbzugGrafik (WelchesMenüExtern) loop
+  StadtSchleife:
+  for StadtNummerSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Städtegrenze loop
 
-      FarbeFestlegen (WelchesMenüExtern     => WelchesMenüExtern,
-                      AktuelleAuswahlExtern => AktuelleAuswahlExtern + 1,
-                      AktuellerTextExtern   => PositionSchleifenwert);
+      if
+        LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (RasseExtern, StadtNummerSchleifenwert)) /= KoordinatenExtern
+     then
+        null;
 
-      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.MenüsSFMLAccess (WelchesMenüExtern, PositionSchleifenwert),
-                                         str  => MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => PositionSchleifenwert,
-                                                                                              WelchesMenüExtern => WelchesMenüExtern));
+    else
+       return StadtNummerSchleifenwert;
+    end if;
 
-      Rechenwert.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.MenüsSFMLAccess (WelchesMenüExtern, PositionSchleifenwert),
-                                                                            ViewbreiteExtern => ViewflächeExtern.x);
+  end loop StadtSchleife;
 
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.MenüsSFMLAccess (WelchesMenüExtern, PositionSchleifenwert),
-                                    position => Rechenwert);
+   return StadtKonstanten.LeerNummer;
 
-      Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.MenüsSFMLAccess (WelchesMenüExtern, PositionSchleifenwert),
-                                                                          TextbreiteExtern => Textbreite);
 
-      InteraktionAuswahl.PositionenMenüeinträge (WelchesMenüExtern, PositionSchleifenwert - 1)
-        := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.MenüsSFMLAccess (WelchesMenüExtern, PositionSchleifenwert));
 
-      Rechenwert.y := Rechenwert.y + TextberechnungenHoeheGrafik.Zeilenabstand;
+   RasseSchleife:
+  for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
 
-      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                         text         => TextaccessVariablen.MenüsSFMLAccess (WelchesMenüExtern, PositionSchleifenwert));
+     case
+      SpielVariablen.RassenImSpiel (RasseSchleifenwert)
+    is
+       when RassenDatentypen.Leer_Spieler_Enum =>
+         null;
 
-   end loop PositionenSchleife;
+      when others =>
+        StadtNummer := KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseSchleifenwert,
+                                                       KoordinatenExtern => KoordinatenExtern);
 
-   return (Textbreite, Rechenwert.y);
+        if
+          StadtNummer = StadtKonstanten.LeerNummer
+      then
+         null;
 
-end Textdarstellung;
+      else
+         return (RasseSchleifenwert, StadtNummer);
+     end if;
+  end case;
+
+ end loop RasseSchleife;
+
+return StadtKonstanten.LeerRasseNummer;
+
+
+
+  RasseSchleife:
+  for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
+
+    if
+      RasseExtern = RasseSchleifenwert
+      or
+        SpielVariablen.RassenImSpiel (RasseSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
+   then
+       null;
+
+    else
+       StadtNummer := KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseSchleifenwert,
+                                                     KoordinatenExtern => KoordinatenExtern);
+
+      case
+        StadtNummer
+     is
+        when StadtKonstanten.LeerNummer =>
+           null;
+
+        when others =>
+           return (RasseSchleifenwert, StadtNummer);
+     end case;
+   end if;
+
+ end loop RasseSchleife;
+
+  return StadtKonstanten.LeerRasseNummer;

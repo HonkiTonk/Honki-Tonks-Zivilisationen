@@ -5,20 +5,6 @@ with Sf.Graphics; use Sf.Graphics;
 
 package TextberechnungenHoeheGrafik is
    
-   function KleinerZeilenabstand
-     return Float
-     with
-       Post => (
-                  KleinerZeilenabstand'Result > 0.00
-               );
-   
-   function Zeilenabstand
-     return Float
-     with
-       Post => (
-                  Zeilenabstand'Result > 0.00
-               );
-   
    function ZeilenabstandVariabel
      return Float
      with
@@ -50,24 +36,5 @@ package TextberechnungenHoeheGrafik is
        Post => (
                   NeueTextposition'Result > 0.00
                );
-   
-   function NeueTexthöheErmitteln
-     (TextAccessExtern : in Sf.Graphics.sfText_Ptr;
-      TexthöheExtern : in Float)
-      return Float
-     with
-       Pre => (
-                 TextAccessExtern /= null
-               and
-                 TexthöheExtern >= 0.00
-              ),
-         
-       Post => (
-                  NeueTexthöheErmitteln'Result >= 0.00
-               );
-   
-private
-   
-   NeueTexthöhe : Float;
 
 end TextberechnungenHoeheGrafik;

@@ -5,42 +5,39 @@ with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Text;
 
 with TextaccessVariablen;
-with TextKonstanten;
 
 with EinstellungenGrafik;
 with ZeilenumbruchberechnungGrafik;
 with RassenbeschreibungenGrafik;
-with TextberechnungenBreiteGrafik;
 with TextberechnungenHoeheGrafik;
+with TextberechnungenBreiteGrafik;
 
 package body ZusatztextRassenmenueGrafik is
 
    -- Hier dann später noch mehr Informationen über die Rassen einbauen. äöü
    function ZusatztextRassenmenü
      (AktuelleAuswahlExtern : in Positive;
-      AnzeigebereichbreiteExtern : in Float)
+      ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
       return Sf.System.Vector2.sfVector2f
    is begin
-      
-      Textposition.y := TextberechnungenHoeheGrafik.Zeilenabstand;
-      Textposition.x := TextKonstanten.StartpositionText.x;
+            
+      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
+      Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
       
       RasseAnzeigen := RassenDatentypen.Rassen_Verwendet_Enum'Val (AktuelleAuswahlExtern);
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.RassenbeschreibungAccess (RasseAnzeigen),
-                                         str  => ZeilenumbruchberechnungGrafik.ZeilenumbruchBerechnen (TextExtern   => RassenbeschreibungenGrafik.BeschreibungLang (RasseExtern => RasseAnzeigen),
-                                                                                                       BreiteExtern => AnzeigebereichbreiteExtern));
-      
+                                         str  => ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung (TextExtern           => RassenbeschreibungenGrafik.BeschreibungLang (RasseExtern => RasseAnzeigen),
+                                                                                                        TextfeldbreiteExtern => (ViewflächeExtern.x / 2.00 - TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel)));
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.RassenbeschreibungAccess (RasseAnzeigen),
                                     position => Textposition);
       
       Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
                                          text         => TextaccessVariablen.RassenbeschreibungAccess (RasseAnzeigen));
       
-      Textposition.x := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.RassenbeschreibungAccess (RasseAnzeigen),
-                                                                              TextbreiteExtern => 0.00);
-      Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.Zeilenabstand + TextberechnungenHoeheGrafik.NeueTexthöheErmitteln (TextAccessExtern => TextaccessVariablen.RassenbeschreibungAccess (RasseAnzeigen),
-                                                                                                                                         TexthöheExtern  => 0.00);
+      Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                      TextAccessExtern => TextaccessVariablen.RassenbeschreibungAccess (RasseAnzeigen),
+                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
       
       return Textposition;
       

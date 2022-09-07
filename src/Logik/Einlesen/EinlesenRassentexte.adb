@@ -6,6 +6,7 @@ with Ada.Directories;
 
 with Rassentexte;
 with TextKonstanten;
+with VerzeichnisKonstanten;
 
 with OptionenVariablen;
 with EinlesenAllgemein;
@@ -20,18 +21,18 @@ package body EinlesenRassentexte is
       
       -- Diese Prüfung mal auslagern und sie dann entsprachend überall verwenden? äöü
       case
-        Ada.Directories.Exists (Name => TextKonstanten.SprachenStrich
+        Ada.Directories.Exists (Name => VerzeichnisKonstanten.SprachenStrich
                                 & Ada.Strings.UTF_Encoding.Wide_Wide_Strings.Encode (Item => Ada.Strings.Wide_Wide_Unbounded.To_Wide_Wide_String (Source => OptionenVariablen.NutzerEinstellungen.Sprache))
-                                & TextKonstanten.Rassen & TextKonstanten.NullDatei)
+                                & VerzeichnisKonstanten.Rassen & VerzeichnisKonstanten.NullDatei)
       is
          when True =>
             Hauptdatei := (others => TextKonstanten.LeerUnboundedString);
             
             Ada.Wide_Wide_Text_IO.Open (File => DateiNull,
                                         Mode => Ada.Wide_Wide_Text_IO.In_File,
-                                        Name => TextKonstanten.SprachenStrich
+                                        Name => VerzeichnisKonstanten.SprachenStrich
                                         & Ada.Strings.UTF_Encoding.Wide_Wide_Strings.Encode (Item => Ada.Strings.Wide_Wide_Unbounded.To_Wide_Wide_String (Source => OptionenVariablen.NutzerEinstellungen.Sprache))
-                                        & TextKonstanten.Rassen & TextKonstanten.NullDatei);
+                                        & VerzeichnisKonstanten.Rassen & VerzeichnisKonstanten.NullDatei);
 
          when False =>
             Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.RassentexteEinlesen - 0-Datei fehlt.");

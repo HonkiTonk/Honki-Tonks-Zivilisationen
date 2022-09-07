@@ -97,7 +97,7 @@ package body ZusatztextKartengroesseGrafik is
                                     position => Textposition);
       
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ZusatztextKartengrößeAccess (1),
-                                                                          TextbreiteExtern => RealeViewbreiteExtern);
+                                                                          TextbreiteExtern => ViewflächeExtern.x);
       
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.ZusatztextKartengrößeAccess (2),
                                                                               ViewbreiteExtern => RealeViewbreiteExtern);
@@ -114,7 +114,7 @@ package body ZusatztextKartengroesseGrafik is
                                                                       TextAccessExtern => TextaccessVariablen.ZusatztextKartengrößeAccess (2),
                                                                       ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
       
-      return (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.Zeilenabstand);
+      return (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
       
    end PositionFestlegen;
 

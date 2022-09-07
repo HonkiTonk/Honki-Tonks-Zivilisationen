@@ -120,9 +120,9 @@ package body LeseKarten is
    is begin
       
       if
-        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund.RasseBelegt = RasseExtern
+        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund.Rasse = RasseExtern
         and
-          Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund.StadtBelegt > StadtKonstanten.LeerNummer
+          Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund.Nummer > StadtKonstanten.LeerNummer
       then
          return True;
          
@@ -140,16 +140,16 @@ package body LeseKarten is
    is begin
       
       if
-        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund.RasseBelegt = StadtKonstanten.LeerRasse
+        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund.Rasse = StadtKonstanten.LeerRasse
         and
-          Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund.StadtBelegt = StadtKonstanten.LeerNummer
+          Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund.Nummer = StadtKonstanten.LeerNummer
       then
          return True;
          
       elsif
-        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund.RasseBelegt = StadtKonstanten.LeerRasse
+        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund.Rasse = StadtKonstanten.LeerRasse
         or
-          Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund.StadtBelegt = StadtKonstanten.LeerNummer
+          Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund.Nummer = StadtKonstanten.LeerNummer
       then
          Fehler.LogikFehler (FehlermeldungExtern => "LeseKarten.BelegterGrundLeer - Rasse oder Nummer falsch.");
          return True;
@@ -162,6 +162,17 @@ package body LeseKarten is
    
    
    
+   function StadtbelegungGrund
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      return StadtRecords.RasseStadtnummerRecord
+   is begin
+      
+      return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund;
+      
+   end StadtbelegungGrund;
+     
+   
+      
    function BestimmteStadtBelegtGrund
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
@@ -169,9 +180,9 @@ package body LeseKarten is
    is begin
      
       if
-        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund.RasseBelegt = StadtRasseNummerExtern.Rasse
+        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund.Rasse = StadtRasseNummerExtern.Rasse
         and
-          Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund.StadtBelegt = StadtRasseNummerExtern.Nummer
+          Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund.Nummer = StadtRasseNummerExtern.Nummer
       then
          return True;
          
@@ -188,13 +199,13 @@ package body LeseKarten is
       return RassenDatentypen.Rassen_Enum
    is begin
       
-      return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund.RasseBelegt;
+      return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund.Rasse;
       
    end RasseBelegtGrund;
    
    
    
-   function Einheit
+   function EinheitenbelegungGrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return EinheitenRecords.RasseEinheitnummerRecord
    is begin
@@ -209,6 +220,6 @@ package body LeseKarten is
             return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Einheit;
       end case;
       
-   end Einheit;
+   end EinheitenbelegungGrund;
 
 end LeseKarten;

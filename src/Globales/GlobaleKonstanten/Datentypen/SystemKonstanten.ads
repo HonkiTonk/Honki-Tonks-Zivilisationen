@@ -8,6 +8,8 @@ package SystemKonstanten is
    -- Das mit der 0 funktioniert so auch nicht mehr, überarbeiten. äöü
    LeerAuswahl : constant Natural := 0;
 
+   StandardArrayanpassung : constant Positive := 2;
+
    type EndeMenüArray is array (MenueDatentypen.Welches_Menü_Vorhanden_Enum'Range) of Positive;
    EndeMenü : constant EndeMenüArray := (
                                            -- Einfache Menüs.

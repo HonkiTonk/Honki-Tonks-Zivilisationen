@@ -64,9 +64,9 @@ package StadtSuchen is
                );
 
 private
-   
-   StadtNummer : StadtDatentypen.MaximaleStädteMitNullWert;
-   
+      
    StadtName : SystemRecords.TextEingabeRecord;
+   
+   Stadt : StadtRecords.RasseStadtnummerRecord;
 
 end StadtSuchen;

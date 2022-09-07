@@ -4,8 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 private with Sf.System.Vector2;
-private with Sf.Graphics.Rect;
-private with Sf.Graphics.Color;
 
 with RassenDatentypen; use RassenDatentypen;
 with StadtDatentypen; use StadtDatentypen;
@@ -40,12 +38,8 @@ private
 
    Textposition : Sf.System.Vector2.sfVector2f;
 
-   Farbe : Sf.Graphics.Color.sfColor;
-
    type ViewflächenArray is array (GrafikRecordKonstanten.Baumenübereich'Range) of Sf.System.Vector2.sfVector2f;
    Viewfläche : ViewflächenArray := (others => GrafikRecordKonstanten.StartgrößeView);
-
-   KeineAnzeige : constant Sf.Graphics.Rect.sfFloatRect := (0.00, 0.00, 0.00, 0.00);
 
    procedure Gebäude
      (AuswahlExtern : in StadtDatentypen.GebäudeIDMitNullwert;

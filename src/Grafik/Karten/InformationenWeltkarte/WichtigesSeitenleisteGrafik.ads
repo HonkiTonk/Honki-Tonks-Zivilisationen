@@ -12,7 +12,7 @@ with KartenRecords;
 
 private with TextaccessVariablen;
 private with ProduktionDatentypen;
-private with TextKonstanten;
+private with GrafikRecordKonstanten;
 
 with Karten;
 
@@ -36,7 +36,7 @@ private
    
    Textbreite : Float;
       
-   Viewfläche : Sf.System.Vector2.sfVector2f := TextKonstanten.StartpositionText;
+   Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartgrößeView;
    Textposition : Sf.System.Vector2.sfVector2f;
    
    -- Das ohne Grenze mal irgendwo Global anlegen? äöü

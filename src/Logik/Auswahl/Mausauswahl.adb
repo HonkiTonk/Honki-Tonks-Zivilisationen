@@ -297,7 +297,7 @@ package body Mausauswahl is
          
       case
         Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                    -- Hier später die Befehleknöopfe einbauen.
+                                    -- Hier später die Befehlsknöpfe einbauen.
                                     TextboxExtern      => (0.00, 0.00, 0.00, 0.00))
       is
          when True =>
@@ -333,5 +333,15 @@ package body Mausauswahl is
       end case;
             
    end Stadtumgebung;
-
+   
+   
+   
+   function Stadtbefehle
+     return Natural
+   is begin
+      
+      return 0;
+      
+   end Stadtbefehle;
+     
 end Mausauswahl;

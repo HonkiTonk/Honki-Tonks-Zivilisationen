@@ -9,7 +9,6 @@ private with StadtRecords;
 private with EinheitenRecords;
 private with EinheitenDatentypen;
 private with StadtDatentypen;
-private with SystemRecords;
 private with TastenbelegungDatentypen;
 
 package BefehleLogik is
@@ -37,8 +36,6 @@ private
    AusgewählteEinheit : Integer;
    
    StadtSuchenNachNamen : StadtRecords.RasseStadtnummerRecord;
-   
-   NeuerName : SystemRecords.TextEingabeRecord;
    
    procedure AuswahlEinheitStadt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

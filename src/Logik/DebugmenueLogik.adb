@@ -48,7 +48,7 @@ package body DebugmenueLogik is
             when RueckgabeDatentypen.Pryolon_Enum =>
                LadezeitenAnzegien;
                
-            when RueckgabeDatentypen.Fertig_Enum =>
+            when RueckgabeDatentypen.Fertig_Enum | RueckgabeDatentypen.Zurück_Enum =>
                return;
                   
             when others =>

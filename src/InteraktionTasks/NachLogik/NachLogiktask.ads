@@ -10,6 +10,7 @@ with SystemRecords;
 package NachLogiktask is
    
    Warten : Boolean := True;
+   IntroAbwarten : Boolean := True;
 
    -- Eingabesystemwerte
    MausRad : Float;

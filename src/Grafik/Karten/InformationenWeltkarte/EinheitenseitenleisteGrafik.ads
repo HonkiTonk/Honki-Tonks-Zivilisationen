@@ -14,7 +14,7 @@ private with ProduktionDatentypen;
 private with KampfDatentypen;
 private with TextaccessVariablen;
 private with StadtDatentypen;
-private with TextKonstanten;
+private with GrafikRecordKonstanten;
 
 private with UmwandlungenAdaNachEigenes;
 
@@ -54,7 +54,7 @@ private
       
    EinheitRasseNummer : EinheitenRecords.RasseEinheitnummerRecord;
    
-   Viewfläche : Sf.System.Vector2.sfVector2f := TextKonstanten.StartpositionText;
+   Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartgrößeView;
    Textposition : Sf.System.Vector2.sfVector2f;
    
    type FestzulegenderTextArray is array (TextaccessVariablen.EinheitenInformationenAccess'Range) of Unbounded_Wide_Wide_String;

@@ -32,7 +32,7 @@ package body SiegbedingungenLogik is
          Sieg := GrafikDatentypen.Gewonnen_Enum;
             
       else
-         Sieg := GrafikDatentypen.Gewonnen_Enum;
+         Sieg := GrafikDatentypen.Leer_Hintergrund_Enum;
       end if;
       
       case
@@ -69,16 +69,6 @@ package body SiegbedingungenLogik is
                
             when others =>
                VorhandeneRassen := VorhandeneRassen + 1;
-         end case;
-         
-         case
-           VorhandeneRassen
-         is
-            when 0 .. 1 =>
-               null;
-               
-            when others =>
-               exit RassenSchleife;
          end case;
          
       end loop RassenSchleife;

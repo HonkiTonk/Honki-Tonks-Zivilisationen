@@ -9,11 +9,13 @@ package ZusatztextRassenmenueGrafik is
 
    function ZusatztextRassenmenü
      (AktuelleAuswahlExtern : in Positive;
-      AnzeigebereichbreiteExtern : in Float)
+      ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
       return Sf.System.Vector2.sfVector2f
      with
        Pre => (
-                 AnzeigebereichbreiteExtern > 0.00
+                 ViewflächeExtern.x >= 0.00
+               and
+                 ViewflächeExtern.y >= 0.00
               ),
 
        Post => (

@@ -190,10 +190,16 @@ package body ImSpiel is
          when RueckgabeDatentypen.Spiel_Beenden_Enum | RueckgabeDatentypen.Hauptmenü_Enum =>
             if
               SpielerVorhanden.MenschlicheSpieler (RasseExtern => RasseExtern) = True
-              and then
-                JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageKIEinsetzen) = True
             then
-               RasseEntfernen.RasseAufKISetzen (RasseExtern => RasseExtern);
+               case
+                 JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageKIEinsetzen)
+               is
+                  when True =>
+                     RasseEntfernen.RasseAufKISetzen (RasseExtern => RasseExtern);
+                     
+                  when others =>
+                     RasseEntfernen.RasseEntfernen (RasseExtern => RasseExtern);
+               end case;
                
             else
                return RückgabeWert;

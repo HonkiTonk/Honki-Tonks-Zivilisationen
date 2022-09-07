@@ -10,7 +10,6 @@ with EinheitenKonstanten;
 with StadtKonstanten;
 with TextnummernKonstanten;
 
-with SchreibeStadtGebaut;
 with LeseEinheitenGebaut;
 
 with InDerStadt;
@@ -33,7 +32,7 @@ with NachGrafiktask;
 with JaNeinLogik;
 with EinheitenSpielmeldungenLogik;
 with ForschungsauswahlLogik;
-with TexteingabeLogik;
+with StadtAllgemeinLogik;
 
 -- Hier auch mal überarbeiten, vor allem die Prozeduren weiter unten. äöü
 package body BefehleLogik is
@@ -400,25 +399,15 @@ package body BefehleLogik is
       StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
                                                                  KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
       
-      if
-        StadtNummer = StadtKonstanten.LeerNummer
-      then
-         null;
+      case
+        StadtNummer
+      is
+         when StadtKonstanten.LeerNummer =>
+            null;
          
-      else
-         NeuerName := TexteingabeLogik.StadtName (StadtRasseNummerExtern => (RasseExtern, StadtNummer));
-         
-         case
-           NeuerName.ErfolgreichAbbruch
-         is
-            when False =>
-               null;
-               
-            when True =>
-               SchreibeStadtGebaut.Name (StadtRasseNummerExtern => (RasseExtern, StadtNummer),
-                                         NameExtern             => NeuerName.EingegebenerText);
-         end case;
-      end if;
+         when others =>
+            StadtAllgemeinLogik.NeuerStadtname (StadtRasseNummerExtern => (RasseExtern, StadtNummer));
+      end case;
       
    end StadtUmbenennen;
 

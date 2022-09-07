@@ -18,7 +18,7 @@ package body EinheitSuchen is
       return EinheitenDatentypen.MaximaleEinheitenMitNullWert
    is begin
       
-      Einheit (LogikGrafikExtern) := LeseKarten.Einheit (KoordinatenExtern => KoordinatenExtern);
+      Einheit (LogikGrafikExtern) := LeseKarten.EinheitenbelegungGrund (KoordinatenExtern => KoordinatenExtern);
       
       if
         Einheit (LogikGrafikExtern).Rasse /= RasseExtern
@@ -50,7 +50,7 @@ package body EinheitSuchen is
       return EinheitenRecords.RasseEinheitnummerRecord
    is begin
       
-      Einheit (LogikGrafikExtern) := LeseKarten.Einheit (KoordinatenExtern => KoordinatenExtern);
+      Einheit (LogikGrafikExtern) := LeseKarten.EinheitenbelegungGrund (KoordinatenExtern => KoordinatenExtern);
       
       if
         Einheit (LogikGrafikExtern).Rasse = EinheitenKonstanten.LeerRasse
@@ -81,7 +81,7 @@ package body EinheitSuchen is
       return EinheitenRecords.RasseEinheitnummerRecord
    is begin
       
-      Einheit (LogikGrafikExtern) := LeseKarten.Einheit (KoordinatenExtern => KoordinatenExtern);
+      Einheit (LogikGrafikExtern) := LeseKarten.EinheitenbelegungGrund (KoordinatenExtern => KoordinatenExtern);
       
       if
         Einheit (LogikGrafikExtern).Rasse = RasseExtern
@@ -130,6 +130,7 @@ package body EinheitSuchen is
    
    
    -- Prüft ob die hineingegebe Einheit geladen ist.
+   -- Benötigt keine Taskaufteilung da sie nur vom Grafiktask aufgerufen wird.
    function TransporterladungSuchen
      (TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       LadungsnummerExtern : in EinheitenDatentypen.MaximaleEinheitenMitNullWert)

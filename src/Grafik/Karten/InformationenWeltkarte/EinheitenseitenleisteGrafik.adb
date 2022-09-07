@@ -11,7 +11,7 @@ with EinheitenKonstanten;
 with StadtKonstanten;
 with TextnummernKonstanten;
 with Views;
-with GrafikRecordKonstanten;
+with TextKonstanten;
 with GrafikDatentypen;
 
 with LeseEinheitenGebaut;
@@ -34,11 +34,11 @@ package body EinheitenseitenleisteGrafik is
       
       -- Diese Bereiche sicherheitshalber auch von außen hineingeben? äöü
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.SeitenleisteWeltkarteAccesse (4),
-                                          GrößeExtern          => Viewfläche,
-                                          AnzeigebereichExtern => GrafikRecordKonstanten.SeitenleisteWeltkartenbereich (AnzeigebereichExtern));
+                                            GrößeExtern          => Viewfläche,
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.SeitenleisteWeltkartenbereich (AnzeigebereichExtern));
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Seitenleiste_Hintergrund_Enum,
-                                   AbmessungenExtern => Viewfläche);
+                                     AbmessungenExtern => Viewfläche);
       
    end Leer;
    
@@ -61,7 +61,7 @@ package body EinheitenseitenleisteGrafik is
             Leer (AnzeigebereichExtern => 3);
       end case;
       
-      Textposition := TextKonstanten.StartpositionText;
+      Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       Textbreite := 0.00;
       EinheitRasseNummer.Rasse := EinheitRasseNummerExtern.Rasse;
@@ -79,7 +79,7 @@ package body EinheitenseitenleisteGrafik is
       end case;
       
       FestzulegenderText (1) := To_Unbounded_Wide_Wide_String (Source => EinheitenbeschreibungenGrafik.BeschreibungKurz (IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummer),
-                                                                                                                       RasseExtern => EinheitRasseNummer.Rasse));
+                                                                                                                         RasseExtern => EinheitRasseNummer.Rasse));
       FestzulegenderText (2) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugLebenspunkte) & " " & LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummer)'Wide_Wide_Image
         & TextKonstanten.Trennzeichen & ZahlAlsStringLebenspunkte (ZahlExtern => LeseEinheitenDatenbank.MaximaleLebenspunkte (RasseExtern => EinheitRasseNummer.Rasse,
                                                                                                                               IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummer)));
@@ -111,9 +111,9 @@ package body EinheitenseitenleisteGrafik is
                                                                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummer)));
          FestzulegenderText (10) := Heimatstadt (EinheitRasseNummerExtern => EinheitRasseNummer);
          FestzulegenderText (11) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugGegenschlagskraftFeld) & KampfwerteEinheitErmitteln.AktuelleVerteidigungEinheit (EinheitRasseNummerExtern => EinheitRasseNummer,
-                                                                                                                                                                  AngreiferExtern          => False)'Wide_Wide_Image;
+                                                                                                                                                                   AngreiferExtern          => False)'Wide_Wide_Image;
          FestzulegenderText (12) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugGegenschlagskraft) & KampfwerteEinheitErmitteln.AktuellerAngriffEinheit (EinheitRasseNummerExtern => EinheitRasseNummer,
-                                                                                                                                                          AngreiferExtern          => False)'Wide_Wide_Image;
+                                                                                                                                                           AngreiferExtern          => False)'Wide_Wide_Image;
          FestzulegenderText (13) := Ladung (EinheitRasseNummerExtern => EinheitRasseNummer);
          
          VolleInformation := True;
@@ -141,8 +141,16 @@ package body EinheitenseitenleisteGrafik is
             Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
                                                text         => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert));
          
-            Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),
-                                                                                TextbreiteExtern => Textbreite);
+            case
+              TextSchleifenwert
+            is
+               when 10 =>
+                  null;
+                  
+               when others =>
+                  Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),
+                                                                                      TextbreiteExtern => Textbreite);
+            end case;
          end if;
          
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
@@ -213,7 +221,7 @@ package body EinheitenseitenleisteGrafik is
             -- Das hier überall/öfter einbauen? äöü
             Ladungstext := Ladungstext & TextKonstanten.UmbruchAbstand
               & EinheitenbeschreibungenGrafik.BeschreibungKurz (IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, Ladungsnummer)),
-                                                              RasseExtern => EinheitRasseNummerExtern.Rasse);
+                                                                RasseExtern => EinheitRasseNummerExtern.Rasse);
             
          else
             null;

@@ -47,6 +47,7 @@ package body Grafik is
       StartEndeGrafik.FensterErzeugen;
       
       -- Systemchecks.Größenprüfung;
+      Startzeit := Ada.Calendar.Clock;
       
       GrafikSchleife:
       loop
@@ -156,11 +157,23 @@ package body Grafik is
             
          when GrafikDatentypen.Grafik_Sprache_Enum =>
             SprachauswahlGrafik.Sprachauswahl;
+            Startzeit := Ada.Calendar.Clock;
                
          when GrafikDatentypen.Grafik_Intro_Enum =>
             IntroGrafik.Intro;
-            NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
-            NachLogiktask.Warten := False;
+            
+            -- Später eine bessere Variante dafür bauen. äöü
+            if
+              Startzeit + ZeitKonstanten.Introzeit < Ada.Calendar.Clock
+              or
+                NachGrafiktask.IntroAnzeigen = False
+            then
+               NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
+               NachLogiktask.IntroAbwarten := False;
+               
+            else
+               null;
+            end if;
             
          when GrafikDatentypen.Grafik_Pause_Enum =>
             delay ZeitKonstanten.WartezeitGrafik;
@@ -253,7 +266,8 @@ package body Grafik is
                                                     EingabeExtern => NachGrafiktask.Eingabe);
             
          when SystemDatentypen.Einheit_Auswahl_Enum =>
-            EingabenanzeigeGrafik.AnzeigeEinheitenStadt (RasseExtern => NachGrafiktask.AktuelleRasse);
+            EingabenanzeigeGrafik.AnzeigeEinheitenStadt (RasseExtern           => NachGrafiktask.AktuelleRasse,
+                                                         AktuelleAuswahlExtern => NachGrafiktask.AktuelleAuswahl.AuswahlEins);
             
             -- Wenn ich das Baumenü/Forschungsmenü hierher verschiebe, dann könnte ich das Neusetzen vermeiden und diese Setzsachen in eine Prozedur auslagern. äöü
             -- Dann könnte ich auch ein durchsichtiges Fenster für die Menüs erstellen. äöü

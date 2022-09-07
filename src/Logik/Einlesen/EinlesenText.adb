@@ -5,11 +5,12 @@ with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wi
 with Ada.Directories; use Ada.Directories;
 
 with OptionenVariablen;
-with TextKonstanten;
+with VerzeichnisKonstanten;
 with Menuetexte;
 with Kartentexte;
 with GlobaleTexte;
 with Meldungstexte;
+with TextKonstanten;
 
 with Warnung;
 with EinlesenAllgemein;
@@ -21,14 +22,14 @@ package body EinlesenText is
    is begin
             
       case
-        Exists (Name => TextKonstanten.SprachenStrich & Encode (Item => To_Wide_Wide_String (Source => OptionenVariablen.NutzerEinstellungen.Sprache)) & TextKonstanten.NullDatei)
+        Exists (Name => VerzeichnisKonstanten.SprachenStrich & Encode (Item => To_Wide_Wide_String (Source => OptionenVariablen.NutzerEinstellungen.Sprache)) & VerzeichnisKonstanten.NullDatei)
       is
          when True =>
             TextdateienEinlesen := (others => TextKonstanten.LeerUnboundedString);
             
             Ada.Wide_Wide_Text_IO.Open (File => DateiTextEinlesen,
                                         Mode => Ada.Wide_Wide_Text_IO.In_File,
-                                        Name => TextKonstanten.SprachenStrich & Encode (Item => To_Wide_Wide_String (Source => OptionenVariablen.NutzerEinstellungen.Sprache)) & TextKonstanten.NullDatei);
+                                        Name => VerzeichnisKonstanten.SprachenStrich & Encode (Item => To_Wide_Wide_String (Source => OptionenVariablen.NutzerEinstellungen.Sprache)) & VerzeichnisKonstanten.NullDatei);
 
          when False =>
             Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.EinlesenDateien - 0-Datei fehlt.");

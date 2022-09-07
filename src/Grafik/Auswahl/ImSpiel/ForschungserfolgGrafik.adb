@@ -15,7 +15,7 @@ with ViewsEinstellenGrafik;
 with TextberechnungenHoeheGrafik;
 with EinstellungenGrafik;
 with TextberechnungenBreiteGrafik;
-with TexteinstellungenGrafik;
+with TextfarbeGrafik;
 with HintergrundGrafik;
 
 package body ForschungserfolgGrafik is
@@ -54,7 +54,7 @@ package body ForschungserfolgGrafik is
             Warnung.GrafikWarnung (WarnmeldungExtern => "ForschungserfolgGrafik.Forschungserfolg - Falscher Auswahlbereich.");
       end case;
       
-      Viewfläche.y := Viewfläche.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
+      Viewfläche.y := Viewfläche.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
    end Forschungserfolg;
    
@@ -68,13 +68,12 @@ package body ForschungserfolgGrafik is
    is begin
       
       Textbreite := 0.00;
-      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstand;
+      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüAccess (RasseExtern, TechnologieExtern),
                                     position => Textposition);
       
-      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.ForschungsmenüAccess (RasseExtern, TechnologieExtern),
-                                 color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
+      TextfarbeGrafik.Standardfarbe (TextaccessExtern => TextaccessVariablen.ForschungsmenüAccess (RasseExtern, TechnologieExtern));
       
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.ForschungsmenüAccess (RasseExtern, TechnologieExtern),
                                                                               ViewbreiteExtern => ViewbreiteExtern);
@@ -99,7 +98,7 @@ package body ForschungserfolgGrafik is
    is begin
       
       Textbreite := 0.00;
-      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstand;
+      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüZusatztextAccess (RasseExtern, TechnologieExtern),
                                     position => Textposition);

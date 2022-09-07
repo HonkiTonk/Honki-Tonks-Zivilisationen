@@ -7,7 +7,6 @@ private with Sf.Graphics.Color;
 with MenueDatentypen;
 
 private with GrafikRecordKonstanten;
-private with TextKonstanten;
 
 package DoppelmenueGrafik is
 
@@ -17,17 +16,15 @@ package DoppelmenueGrafik is
    
 private
    
-   Textarrayanpassung : constant Positive := 2;
    Auswahlbereich : constant Positive := 1;
    Zusatzbereich : constant Positive := 2;
    
    Textbreite : Float;
-   Viewbreite : Float;
    
    Textposition : Sf.System.Vector2.sfVector2f;
    
    type ViewflächenArray is array (GrafikRecordKonstanten.MenüDoppelbereich'Range) of Sf.System.Vector2.sfVector2f;
-   Viewfläche : ViewflächenArray := (others => TextKonstanten.StartpositionText);
+   Viewfläche : ViewflächenArray := (others => GrafikRecordKonstanten.StartgrößeView);
    
    Farbe : Sf.Graphics.Color.sfColor;
 

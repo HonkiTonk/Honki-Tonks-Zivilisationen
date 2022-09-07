@@ -21,7 +21,7 @@ package body AbspannLogik is
          case
            TasteneingabeLogik.Tastenwert
          is
-            when TastenbelegungDatentypen.Menü_Zurück_Enum =>
+            when TastenbelegungDatentypen.Menü_Zurück_Enum | TastenbelegungDatentypen.Auswählen_Enum =>
                exit AbspannSchleife;
                
             when others =>
