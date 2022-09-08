@@ -18,18 +18,8 @@ package CursorplatzierungGrafik is
                  SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
               );
    
-   procedure Stadtkarte
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-     with
-       Pre => (
-                 SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
-              );
-   
 private
-   
-   YMultiplikator : Float;
-   XMultiplikator : Float;
-   
+      
    Kartenänderung : KartenRecords.YXAchsenKartenfeldRecord;
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;

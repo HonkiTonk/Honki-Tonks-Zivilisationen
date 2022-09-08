@@ -21,5 +21,6 @@ private
    procedure EinheitStadtAuswahl;
    procedure AnzeigeEingabe;
    procedure Ladezeiten;
+   procedure Befehle;
 
 end TextaccesseSchriftfarbeGrafik;

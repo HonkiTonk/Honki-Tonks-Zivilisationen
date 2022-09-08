@@ -6,8 +6,9 @@ with CursorplatzierungGrafik;
 with CursorplatzierungAltGrafik;
 with WeltkarteGrafik;
 with SeitenleisteGrafik;
--- with StadtseitenleisteGrafik;
+with StadtseitenleisteGrafik;
 with StadtumgebungGrafik;
+with StadtbefehleGrafik;
 
 package body KartenaufteilungGrafik is
    
@@ -17,7 +18,8 @@ package body KartenaufteilungGrafik is
       
       CursorplatzierungGrafik.Weltkarte (RasseExtern => EinheitRasseNummerExtern.Rasse);
       CursorplatzierungAltGrafik.CursorplatzierungAlt (RasseExtern => EinheitRasseNummerExtern.Rasse);
-            
+      
+      -- Von außen die Arraypositionen für die Bereiche/Views hineingeben? äöü
       WeltkarteGrafik.Weltkarte (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       SeitenleisteGrafik.SeitenleisteGrafik (RasseExtern => EinheitRasseNummerExtern.Rasse);
       
@@ -29,13 +31,11 @@ package body KartenaufteilungGrafik is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
-      CursorplatzierungGrafik.Stadtkarte (RasseExtern => StadtRasseNummerExtern.Rasse);
-      
+      -- Von außen die Arraypositionen für die Bereiche/Views hineingeben? äöü
       StadtkarteGrafik.Stadtkarte (StadtRasseNummerExtern => StadtRasseNummerExtern);
       StadtumgebungGrafik.Stadtumgebung (StadtRasseNummerExtern => StadtRasseNummerExtern);
-      -- Nach einer Überarbeitung wieder einbauen. äöü
-      -- Wenn es später überhaupt noch gebraucht wird. äöü
-      -- StadtseitenleisteGrafik.Stadtinformationen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      StadtbefehleGrafik.Stadtbefehle;
+      StadtseitenleisteGrafik.Stadtinformationen (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
    end Stadtkarte;
 

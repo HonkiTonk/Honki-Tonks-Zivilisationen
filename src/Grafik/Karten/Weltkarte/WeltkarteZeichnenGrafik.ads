@@ -29,7 +29,8 @@ package WeltkarteZeichnenGrafik is
                                          Osten  => (0, 0, 1),
                                          Süden  => (0, 1, 0)
                                         );
-
+   
+   -- Für die Possitionen noch den Pre >= 0.00 anlegen? äöü
    procedure AnzeigeEinheit
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord;

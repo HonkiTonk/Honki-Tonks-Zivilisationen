@@ -127,7 +127,7 @@ package TextnummernKonstanten is
    FrageMinimaleBreitenabstand : constant Positive := 43;
    FrageMaximalerBreitenabstand : constant Positive := 44;
    FrageKIEinsetzen : constant Positive := 45;
-   FrageKIAlleine : constant Positive := 46;
+   FrageGebäudeverkauf : constant Positive := 46;
    
    
    

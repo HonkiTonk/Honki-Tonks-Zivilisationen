@@ -24,6 +24,7 @@ with AllgemeineViewsGrafik;
 with TextfarbeGrafik;
 with ZeilenumbruchberechnungGrafik;
 
+-- Kann man das so anpassen oder Teile davon auslagern, dass eine teilweise Verschmelzung mit VerkaufsauswahlGrafik möglich wäre? äöü
 package body BauauswahlGrafik is
 
    procedure Bauauswahl
@@ -112,7 +113,7 @@ package body BauauswahlGrafik is
                AktuelleTextbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.GebäudetextAccess (RasseExtern, GebäudeSchleifenwert),
                                                                                            TextbreiteExtern => AktuelleTextbreite);
                
-               InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.GebäudetextAccess (RasseExtern, GebäudeSchleifenwert));
+               InteraktionAuswahl.PositionenMöglicheGebäude (GebäudeSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.GebäudetextAccess (RasseExtern, GebäudeSchleifenwert));
                
                Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
                                                   text         => TextaccessVariablen.GebäudetextAccess (RasseExtern, GebäudeSchleifenwert));

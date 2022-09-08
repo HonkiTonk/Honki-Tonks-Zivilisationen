@@ -21,8 +21,6 @@ package Views is
    KartenviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
    BefehlsviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
 
-   StadtumgebungviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
-
    ForschungserfolgviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
 
    AbspannviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
@@ -38,7 +36,12 @@ package Views is
    -- Ersteres könnte zu Problemen führen bei Veränderungen. äöü
    SeitenleisteWeltkarteAccesse : constant ViewsArray (1 .. 4) := (others => Sf.Graphics.View.create);
 
+   -- Später durch Enum'Range ersetzen? Bei allen Arrays? äöü
+   -- 1 = Stadtkarte, 2 = Stadtumgebung, 3 = Stadtbefehle, 4 = Stadtseitenleiste
+   StadtviewAccesse : constant ViewsArray (1 .. 4) := (others => Sf.Graphics.View.create);
+
    ForschungsviewAccesse : constant ViewsArray (1 .. 4) := (others => Sf.Graphics.View.create);
    BauviewAccesse : constant ViewsArray (1 .. 5) := (others => Sf.Graphics.View.create);
+   VerkaufsviewAccesse : constant ViewsArray (1 .. 2) := (others => Sf.Graphics.View.create);
 
 end Views;

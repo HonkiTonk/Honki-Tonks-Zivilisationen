@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+-- Das hier nochmal weiter aufteilen? äöü
 package KartenDatentypen is
 
    type Kartenfeld is range -1_000 .. 1_000;

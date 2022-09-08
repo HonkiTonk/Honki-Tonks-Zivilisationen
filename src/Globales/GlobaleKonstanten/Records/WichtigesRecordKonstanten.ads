@@ -16,8 +16,7 @@ package WichtigesRecordKonstanten is
 
    LeerCursor : constant KartenRecords.CursorRecord := (
                                                         KoordinatenAktuell => KartenRecordKonstanten.LeerKoordinate,
-                                                        KoordinatenAlt     => KartenRecordKonstanten.LeerKoordinate,
-                                                        KoordinatenStadt   => KartenRecordKonstanten.LeerStadtKoordinate
+                                                        KoordinatenAlt     => KartenRecordKonstanten.LeerKoordinate
                                                        );
    
    LeerWichtigesZeug : constant SpielRecords.WichtigesRecord := (

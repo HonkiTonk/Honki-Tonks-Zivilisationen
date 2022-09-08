@@ -6,6 +6,7 @@ with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 
 with Sf; use Sf;
 with Sf.Window.Keyboard; use Sf.Window.Keyboard;
+with Sf.Window.Mouse; use Sf.Window.Mouse;
 with Sf.Graphics.RenderWindow;
 
 with SystemRecordKonstanten;
@@ -52,6 +53,18 @@ package body TexteingabeGrafik is
                      
                elsif
                  TextEingegeben.key.code = Sf.Window.Keyboard.sfKeyEscape
+               then
+                  NachLogiktask.EingegebenerText := SystemRecordKonstanten.LeerTexteingabe;
+                  NachGrafiktask.TextEingabe := False;
+                  NachLogiktask.Warten := False;
+                  
+               else
+                  null;
+               end if;
+               
+            when Sf.Window.Event.sfEvtMouseButtonPressed =>
+               if
+                 TextEingegeben.mouseButton.button = Sf.Window.Mouse.sfMouseRight
                then
                   NachLogiktask.EingegebenerText := SystemRecordKonstanten.LeerTexteingabe;
                   NachGrafiktask.TextEingabe := False;

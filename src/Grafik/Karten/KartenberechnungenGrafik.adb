@@ -6,7 +6,7 @@ with KartenDatentypen; use KartenDatentypen;
 with Sichtweiten;
 with EinstellungenGrafik;
 
-package body BerechnungenKarteSFML is
+package body KartenberechnungenGrafik is
    
    procedure KartenfelderAbmessungBerechnen
    is begin
@@ -30,4 +30,4 @@ package body BerechnungenKarteSFML is
       
    end StadtfelderAbmessungBerechnen;
 
-end BerechnungenKarteSFML;
+end KartenberechnungenGrafik;

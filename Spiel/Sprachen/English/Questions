@@ -2,8 +2,8 @@ How many automatic saves?
 Include this race in the game?
 Cancel current employment?
 Replace Land Improvement?
-Really dissolve unity?
-Really demolish buildings?
+Really dissolve the unit?
+Really demolish the building?
 Really declare war?
 Really Loot Land Improvement?
 What should be built?
@@ -43,3 +43,4 @@ Maximum vertical distance between landmasses:
 Minimum latitude distance between landmasses:
 Maximum latitude distance between landmasses:
 Replace player with AI?
+Which building to demolish?

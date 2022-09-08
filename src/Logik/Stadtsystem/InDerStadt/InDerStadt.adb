@@ -8,7 +8,7 @@ with TastenbelegungDatentypen;
 with InDerStadtBauen;
 with TasteneingabeLogik;
 with EinwohnerZuweisenEntfernen;
-with GebaeudeVerkaufen;
+with GebaeudeVerkaufenLogik;
 with NachGrafiktask;
 with Mausauswahl;
 with StadtEntfernen;
@@ -43,7 +43,14 @@ package body InDerStadt is
                InDerStadtBauen.Bauen (StadtRasseNummerExtern => StadtRasseNummerExtern);
                
             when TastenbelegungDatentypen.Auflösen_Enum =>
-               GebaeudeVerkaufen.GebäudeVerkaufen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+               if
+                 StadtEntfernen.StadtAbreißen (StadtRasseNummerExtern => StadtRasseNummerExtern) = True
+               then
+                  exit StadtSchleife;
+                  
+               else
+                  null;
+               end if;
 
             when TastenbelegungDatentypen.Stadt_Umbenennen_Enum =>
                StadtAllgemeinLogik.NeuerStadtname (StadtRasseNummerExtern => StadtRasseNummerExtern);
@@ -82,7 +89,7 @@ package body InDerStadt is
       case
         Befehlsauswahl
       is
-         when 0 =>
+         when BefehleDatentypen.Leer_Enum =>
             null;
             
          when others =>
@@ -98,25 +105,24 @@ package body InDerStadt is
    
    function Mausbefehle
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
-      AuswahlExtern : in Positive)
+      AuswahlExtern : in BefehleDatentypen.Stadtbefehle_Vorhanden_Enum)
       return Boolean
    is begin
       
       case
         AuswahlExtern
       is
-         when 1 =>
+         when BefehleDatentypen.Bauen_Enum =>
             InDerStadtBauen.Bauen (StadtRasseNummerExtern => StadtRasseNummerExtern);
             
-         when 2 =>
-            null;
+         when BefehleDatentypen.Verkaufen_Enum =>
+            GebaeudeVerkaufenLogik.Verkaufsliste (StadtRasseNummerExtern => StadtRasseNummerExtern);
             
-         when 3 =>
+         when BefehleDatentypen.Umbenennen_Enum =>
             StadtAllgemeinLogik.NeuerStadtname (StadtRasseNummerExtern => StadtRasseNummerExtern);
             
-         when 4 =>
-            StadtEntfernen.StadtAbreißen (StadtRasseNummerExtern => StadtRasseNummerExtern);
-            return True;
+         when BefehleDatentypen.Auflösen_Enum =>
+            return StadtEntfernen.StadtAbreißen (StadtRasseNummerExtern => StadtRasseNummerExtern);
             
          when others =>
             return True;

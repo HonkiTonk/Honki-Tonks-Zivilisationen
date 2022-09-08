@@ -46,6 +46,7 @@ package body GebaeudeAllgemein is
                                    GeldZugewinnExtern  => Integer (LeseGebaeudeDatenbank.PreisGeld (RasseExtern => StadtRasseNummerExtern.Rasse,
                                                                                                     IDExtern    => WelchesGebäudeExtern)) / 2,
                                    RechnenSetzenExtern => True);
+      
       SchreibeStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern     => StadtRasseNummerExtern,
                                              WelchesGebäudeExtern      => WelchesGebäudeExtern,
                                              HinzufügenEntfernenExtern => False);
@@ -84,7 +85,7 @@ package body GebaeudeAllgemein is
    
    
    
-   -- Hier vielleicht noch Prüfungen einbauen um zu testen ob das Gebäude für diese Rasse überhaupt existiert?äöü
+   -- Hier vielleicht noch Prüfungen einbauen um zu testen ob das Gebäude für diese Rasse überhaupt existiert? äöü
    -- Dafür müsste erst einmal ein Wert vorhanden sein, eventuell Kosten verwenden? äöü
    function GebäudeAnforderungenErfüllt
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;

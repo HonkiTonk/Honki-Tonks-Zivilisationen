@@ -123,7 +123,7 @@ package body KartengeneratorWasserwelt is
       case
         GrundExtern
       is
-         when KartengrundDatentypen.Meeresgrund_Enum =>
+         when KartengrundDatentypen.Meeresgrund_Enum | KartengrundDatentypen.Küstengrund_Enum =>
             return ZusatzberechnungMeeresgrund (KoordinatenExtern => KoordinatenExtern,
                                                 GrundExtern       => WelcherGrund);
       end case;

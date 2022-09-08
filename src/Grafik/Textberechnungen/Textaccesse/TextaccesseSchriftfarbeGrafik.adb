@@ -26,6 +26,7 @@ package body TextaccesseSchriftfarbeGrafik is
       EinheitStadtAuswahl;
       AnzeigeEingabe;
       Ladezeiten;
+      Befehle;
       
    end SchriftfarbeSetzen;
    
@@ -346,5 +347,20 @@ package body TextaccesseSchriftfarbeGrafik is
                                  color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
       
    end Ladezeiten;
+   
+   
+   
+   procedure Befehle
+   is begin
+      
+      StadtbefehleSchleife:
+      for StadtbefehleSchleifenwert in TextaccessVariablen.StadtbefehleAccessArray'Range loop
+         
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.StadtbefehleAccess (StadtbefehleSchleifenwert),
+                                    color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
+         
+      end loop StadtbefehleSchleife;
+      
+   end Befehle;
 
 end TextaccesseSchriftfarbeGrafik;

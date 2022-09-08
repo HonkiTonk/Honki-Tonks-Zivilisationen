@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with Sf.Graphics.RenderWindow;
-with Sf.Graphics;
 with Sf.Graphics.Text;
 
 with EinheitenDatentypen; use EinheitenDatentypen;
@@ -12,6 +11,7 @@ with Meldungstexte;
 with TextnummernKonstanten;
 with TextKonstanten;
 with Views;
+with KartenverbesserungDatentypen;
 with GrafikDatentypen;
 
 with LeseStadtGebaut;
@@ -19,14 +19,11 @@ with LeseStadtGebaut;
 with KampfwerteStadtErmitteln;
 with EinstellungenGrafik;
 with TextberechnungenHoeheGrafik;
-with Vergleiche;
 with HintergrundGrafik;
 with ViewsEinstellenGrafik;
-with NachLogiktask;
 with GebaeudebeschreibungenGrafik;
 with EinheitenbeschreibungenGrafik;
 with TextberechnungenBreiteGrafik;
-with BerechnungenKarteSFML;
 
 package body StadtseitenleisteGrafik is
    
@@ -35,50 +32,27 @@ package body StadtseitenleisteGrafik is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
-      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
-                                                                 point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
-                                                                 view         => Views.KartenviewAccess);
-      
-      case
-        Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                    TextboxExtern      => BerechnungenKarteSFML.StadtKarte)
-      is
-         when True =>
-            MausInformationen := True;
-         
-         when False =>
-            MausInformationen := False;
-      end case;
-      
       Stadt (RasseExtern            => StadtRasseNummerExtern.Rasse,
-             StadtRasseNummerExtern => StadtRasseNummerExtern);
-      
-      -- Werden die Mausinformationen in der SFML Version überhaupt benötigt?
-      case
-        MausInformationen
-      is
-         when True =>
-            -- Hier eventuell Informationen wie den Gebäudenamen und was das Gebäude macht einbauen?
-            null;
-            
-         when False =>
-            null;
-      end case;
+             StadtRasseNummerExtern => StadtRasseNummerExtern,
+             AnzeigebereichExtern   => GrafikRecordKonstanten.Stadtbereich (4),
+             ViewExtern             => Views.StadtviewAccesse (4));
       
    end Stadtinformationen;
    
    
    
+   -- Überall die Bereiche von außen hineingeben? Dann wäre mehr wiederverwendbar, wobei natürlich die Frage ist ob mir das was bringt. äöü
    procedure Leer
+     (AnzeigebereichExtern : in Sf.Graphics.Rect.sfFloatRect;
+      ViewExtern : in Sf.Graphics.sfView_Ptr)
    is begin
       
-      -- Diese Bereiche sicherheitshalber auch von außen hineingeben? äöü
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.SeitenleisteWeltkarteAccesse (3),
-                                          GrößeExtern          => Viewfläche,
-                                          AnzeigebereichExtern => GrafikRecordKonstanten.SeitenleisteWeltkartenbereich (3));
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => ViewExtern,
+                                            GrößeExtern          => Viewfläche,
+                                            AnzeigebereichExtern => AnzeigebereichExtern);
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Seitenleiste_Hintergrund_Enum,
-                                   AbmessungenExtern => Viewfläche);
+                                     AbmessungenExtern => Viewfläche);
       
    end Leer;
    
@@ -86,20 +60,34 @@ package body StadtseitenleisteGrafik is
 
    procedure Stadt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+      StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      AnzeigebereichExtern : in Sf.Graphics.Rect.sfFloatRect;
+      ViewExtern : in Sf.Graphics.sfView_Ptr)
    is begin
                   
       Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
-                                                                      VerhältnisExtern => (0.15, 0.05));
+                                                                        VerhältnisExtern => (0.15, 0.05));
       
-      Leer;
+      Leer (AnzeigebereichExtern => AnzeigebereichExtern,
+            ViewExtern           => ViewExtern);
       
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
       -- Allgemeine Stadtinformationen, nur sichtbar wenn das Kartenfeld aufgedeckt ist und sich dort eine Stadt befindet.
+      -- Brauche ich den Stadtnamen überhaupt? Der wird ja auch drüber angezeigt. äöü
       Stadtname (StadtRasseNummerExtern => StadtRasseNummerExtern);
       Textbreite := 0.00;
+      
+      case
+        LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern)
+      is
+         when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
+            return;
+            
+         when others =>
+            null;
+      end case;
       
       FestzulegenderText (1) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugEinwohner) & LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                                                                                                               EinwohnerArbeiterExtern => True)'Wide_Wide_Image;
@@ -159,8 +147,6 @@ package body StadtseitenleisteGrafik is
                                                                          ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
          
       end loop TextSchleife;
-            
-      Debuginformationen (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
       Viewfläche := (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       
@@ -224,25 +210,5 @@ package body StadtseitenleisteGrafik is
       return Meldungstexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & TextKonstanten.UmbruchAbstand & Text;
       
    end AktuellesBauprojekt;
-   
-   
-   
-   -- Debuginformationen einfach in die Konsole ausgeben lassen.
-   procedure Debuginformationen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-   is begin
-      
-      if
-        SpielVariablen.Debug.VolleInformation = False
-        or
-          SpielVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.KI_Spieler_Enum
-      then
-         return;
-         
-      else
-         null;
-      end if;
-      
-   end Debuginformationen;
    
 end StadtseitenleisteGrafik;

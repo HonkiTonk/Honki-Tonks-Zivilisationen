@@ -28,6 +28,7 @@ with EditorenGrafik;
 with ForschungserfolgGrafik;
 with TasteneingabeGrafik;
 with AbspannGrafik;
+with VerkaufsauswahlGrafik;
 -- with Systemchecks;
 
 package body Grafik is
@@ -208,6 +209,10 @@ package body Grafik is
          when GrafikDatentypen.Grafik_Bauen_Enum =>
             BauauswahlGrafik.Bauauswahl (StadtRasseNummerExtern => (NachGrafiktask.AktuelleRasse, NachGrafiktask.AktuelleStadt),
                                          AktuelleAuswahlExtern  => NachGrafiktask.AktuelleBauauswahl);
+            
+         when GrafikDatentypen.Grafik_Verkaufen_Enum =>
+            VerkaufsauswahlGrafik.Verkaufsauswahl (RasseExtern           => NachGrafiktask.AktuelleRasse,
+                                                   AktuelleAuswahlExtern => NachGrafiktask.AktuelleBauauswahl.Gebäude);
             
          when GrafikDatentypen.Grafik_Diplomatie_Enum =>
             DiplomatieauswahlGrafik.Diplomatieauswahl (AuswahlExtern => NachGrafiktask.AktuelleAuswahl.AuswahlEins);

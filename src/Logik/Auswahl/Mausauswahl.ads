@@ -9,6 +9,7 @@ with ForschungenDatentypen;
 with StadtRecords;
 with MenueDatentypen;
 with SystemRecords;
+with BefehleDatentypen;
 
 -- Später alles auf Natural umschreiben und die einzelnen Auswahlen zusammenführen? äöü
 package Mausauswahl is
@@ -50,7 +51,10 @@ package Mausauswahl is
      return Sf.System.Vector2.sfVector2f;
    
    function Stadtbefehle
-     return Natural;
+     return BefehleDatentypen.Stadtbefehle_Enum;
+   
+   function Verkaufsmenü
+     return StadtDatentypen.GebäudeIDMitNullwert;
    
 private
    

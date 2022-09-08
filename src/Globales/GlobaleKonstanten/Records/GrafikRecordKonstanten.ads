@@ -25,12 +25,7 @@ package GrafikRecordKonstanten is
    Eingabebereich : constant Sf.Graphics.Rect.sfFloatRect := (Fragenbereich.left, Fragenbereich.top + Fragenbereich.height, Fragenbereich.width, Fragenbereich.height);
    JaNeinBereich : constant Sf.Graphics.Rect.sfFloatRect := (Fragenbereich.left, Fragenbereich.top + Fragenbereich.height, Fragenbereich.width, 2.00 * Fragenbereich.height);
    Meldungsbereich : constant Sf.Graphics.Rect.sfFloatRect := Fragenbereich;
-   
-   SeitenleisteGesamtbereich : constant Sf.Graphics.Rect.sfFloatRect := (KarteAnzeigebereich.width, 0.00, 1.00 - KarteAnzeigebereich.width, 1.00);
-   
-   StadtkarteAnzeigebereich : constant Sf.Graphics.Rect.sfFloatRect := (0.00, 0.00, 0.75, 1.00);
-   StadtumgebungBereich : constant Sf.Graphics.Rect.sfFloatRect := (StadtkarteAnzeigebereich.width, 0.00, 0.25, 0.25);
-   
+         
    Forschungserfolgbereich : constant Sf.Graphics.Rect.sfFloatRect := Sprachenbereich;
    
    Abspannbereich : constant Sf.Graphics.Rect.sfFloatRect := Sprachenbereich;
@@ -49,14 +44,14 @@ package GrafikRecordKonstanten is
                                                                                     1 => (0.00, Überschriftbereich.height, 0.66, 1.00 - Überschriftbereich.height),
                                                                                     2 => (0.66, Überschriftbereich.height, 0.35, 1.00 - Überschriftbereich.height)
                                                                                    );
-   
-   SeitenleisteWeltkartenbereich : constant BereicheArray (Views.SeitenleisteWeltkarteAccesse'Range) := (
-                                                                                                         1 => (SeitenleisteGesamtbereich.left, SeitenleisteGesamtbereich.top, SeitenleisteGesamtbereich.width, 0.20),
-                                                                                                         2 => (SeitenleisteGesamtbereich.left, 0.20, SeitenleisteGesamtbereich.width, 0.10),
-                                                                                                         3 => (SeitenleisteGesamtbereich.left, 0.30, SeitenleisteGesamtbereich.width, 0.35),
-                                                                                                         4 => (SeitenleisteGesamtbereich.left, 0.65, SeitenleisteGesamtbereich.width, 0.35)
-                                                                                                        );
       
+   SeitenleisteWeltkartenbereich : constant BereicheArray (Views.SeitenleisteWeltkarteAccesse'Range) := (
+                                                                                                         1 => (KarteAnzeigebereich.width, 0.00, 1.00 - KarteAnzeigebereich.width, 0.20),
+                                                                                                         2 => (KarteAnzeigebereich.width, 0.20, 1.00 - KarteAnzeigebereich.width, 0.10),
+                                                                                                         3 => (KarteAnzeigebereich.width, 0.30, 1.00 - KarteAnzeigebereich.width, 0.35),
+                                                                                                         4 => (KarteAnzeigebereich.width, 0.65, 1.00 - KarteAnzeigebereich.width, 0.35)
+                                                                                                        );
+   
    Forschungsbereich : constant BereicheArray (Views.ForschungsviewAccesse'Range) := (
                                                                                       1 => (0.00, 0.10, 0.50, 0.80),
                                                                                       2 => (0.50, 0.10, 0.50, 0.40),
@@ -71,5 +66,19 @@ package GrafikRecordKonstanten is
                                                                              4 => (0.00, 0.10, 0.50, 0.80),
                                                                              5 => (0.00, 0.90, 1.00, 0.10)
                                                                             );
+   
+   Verkausmenübereich : constant BereicheArray (Views.VerkaufsviewAccesse'Range) := (
+                                                                                      1 => (0.00, 0.10, 0.50, 0.90),
+                                                                                      2 => (0.50, 0.10, 0.50, 0.90)
+                                                                                     );
+   
+   -- Später durch Enum'Range ersetzen? Bei allen Arrays? äöü
+   -- 1 = Stadtkarte, 2 = Stadtumgebung, 3 = Stadtbefehle, 4 = Stadtseitenleiste
+   Stadtbereich : constant BereicheArray (Views.StadtviewAccesse'Range) := (
+                                                                            1 => (0.00, 0.00, 0.75, 1.00),
+                                                                            2 => (0.75, 0.00, 0.25, 0.25),
+                                                                            3 => (0.75, 0.25, 0.25, 0.25),
+                                                                            4 => (0.75, 0.50, 0.25, 0.50)
+                                                                           );
 
 end GrafikRecordKonstanten;

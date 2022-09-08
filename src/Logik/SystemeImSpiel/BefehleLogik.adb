@@ -151,7 +151,7 @@ package body BefehleLogik is
                                                     EinheitNummerExtern => EinheitNummer)
          is
             when 0 =>
-               StadtEntfernen.StadtAbreißen (StadtRasseNummerExtern => (RasseExtern, StadtNummer));
+               LeerRückgabewert := StadtEntfernen.StadtAbreißen (StadtRasseNummerExtern => (RasseExtern, StadtNummer));
             
             when 1 =>
                EinheitBefehle (RasseExtern  => RasseExtern,
@@ -164,7 +164,7 @@ package body BefehleLogik is
       elsif
         StadtNummer /= StadtDatentypen.MaximaleStädteMitNullWert'First
       then
-         StadtEntfernen.StadtAbreißen (StadtRasseNummerExtern => (RasseExtern, StadtNummer));
+         LeerRückgabewert := StadtEntfernen.StadtAbreißen (StadtRasseNummerExtern => (RasseExtern, StadtNummer));
          
       elsif
         EinheitNummer /= EinheitenDatentypen.MaximaleEinheitenMitNullWert'First

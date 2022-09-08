@@ -42,7 +42,7 @@ private
    VolleInformation : Boolean;
    Beladen : Boolean;
    
-   IDEinheit : EinheitenDatentypen.EinheitenID;
+   IDEinheit : EinheitenDatentypen.EinheitenIDMitNullWert;
    
    Stadtnummer : StadtDatentypen.MaximaleStädteMitNullWert;
    
@@ -82,7 +82,8 @@ private
               );
    
    function Ladung
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      IDExtern : in EinheitenDatentypen.EinheitenID)
       return Unbounded_Wide_Wide_String
      with
        Pre => (

@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with Sf;
 with Sf.Graphics.Sprite;
 
-with BerechnungenKarteSFML;
+with KartenberechnungenGrafik;
 
 package body TexturenSetzenSkalierenGrafik is
    
@@ -19,7 +19,7 @@ package body TexturenSetzenSkalierenGrafik is
                                      resetRect => Sf.sfTrue);
       
       Rechteck := Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern); 
-      KartenfelderAbmessung := BerechnungenKarteSFML.KartenfelderAbmessung;
+      KartenfelderAbmessung := KartenberechnungenGrafik.KartenfelderAbmessung;
       
       SkalierungKartenfeld.x := KartenfelderAbmessung.x / Rechteck.width;
       SkalierungKartenfeld.y := KartenfelderAbmessung.y / Rechteck.height;
@@ -41,7 +41,7 @@ package body TexturenSetzenSkalierenGrafik is
                                      resetRect => Sf.sfTrue);
       
       Rechteck := Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern); 
-      StadtfelderAbmessung := BerechnungenKarteSFML.StadtfelderAbmessung;
+      StadtfelderAbmessung := KartenberechnungenGrafik.StadtfelderAbmessung;
       
       SkalierungKartenfeld.x := StadtfelderAbmessung.x / Rechteck.width;
       SkalierungKartenfeld.y := StadtfelderAbmessung.y / Rechteck.height;
@@ -63,7 +63,7 @@ package body TexturenSetzenSkalierenGrafik is
                                      resetRect => Sf.sfTrue);
       
       Rechteck := Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern); 
-      StadtAbmessung := (BerechnungenKarteSFML.StadtKarte.width, BerechnungenKarteSFML.StadtKarte.height);
+      StadtAbmessung := (KartenberechnungenGrafik.StadtKarte.width, KartenberechnungenGrafik.StadtKarte.height);
       
       SkalierungKartenfeld.x := StadtAbmessung.x / Rechteck.width;
       SkalierungKartenfeld.y := StadtAbmessung.y / Rechteck.height;

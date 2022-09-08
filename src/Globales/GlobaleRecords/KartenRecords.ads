@@ -90,7 +90,6 @@ package KartenRecords is
       
       KoordinatenAktuell : AchsenKartenfeldNaturalRecord;
       KoordinatenAlt : AchsenKartenfeldNaturalRecord;
-      KoordinatenStadt : AchsenStadtfeldRecord;
       
    end record;
    

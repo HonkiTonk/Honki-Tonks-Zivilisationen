@@ -16,6 +16,7 @@ with InteraktionAuswahl;
 -- Generell mal drüber schauen was wirklich gebraucht wird. äöü
 -- Wenn ich regelmäßig den Text und die Farne neusetzen muss sind Arrays nicht sinnvoll gegenüber einem einzelnen Access. äöü
 -- Warum habe ich hier nicht einfach ein Array mit unbekannter Länge? äöü
+-- Auch mal thematisch aufteilen? äöü
 package TextaccessVariablen is
    
    -- Allgemeines
@@ -134,6 +135,13 @@ package TextaccessVariablen is
    
    Spielmeldung : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
    -- AnzeigeEingabe
+   
+   
+   
+   -- Befehle
+   type StadtbefehleAccessArray is array (InteraktionAuswahl.PositionenStadtbefehleArray'Range) of Sf.Graphics.sfText_Ptr;
+   StadtbefehleAccess : constant StadtbefehleAccessArray := (others => Sf.Graphics.Text.create);
+   -- Befehle
    
    
    

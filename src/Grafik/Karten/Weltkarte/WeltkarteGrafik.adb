@@ -10,7 +10,7 @@ with GrafikKonstanten;
 with LeseKarten;
 
 with Kartenkoordinatenberechnungssystem;
-with BerechnungenKarteSFML;
+with KartenberechnungenGrafik;
 with EinstellungenGrafik;
 with ViewsEinstellenGrafik;
 with WeltkarteZeichnenGrafik;
@@ -57,11 +57,11 @@ package body WeltkarteGrafik is
                null;
             end if;
             
-            Feldposition.x := Feldposition.x + BerechnungenKarteSFML.KartenfelderAbmessung.x;
+            Feldposition.x := Feldposition.x + KartenberechnungenGrafik.KartenfelderAbmessung.x;
                           
          end loop XAchseSchleife;
          
-         Feldposition := (0.00, Feldposition.y + BerechnungenKarteSFML.KartenfelderAbmessung.y);
+         Feldposition := (0.00, Feldposition.y + KartenberechnungenGrafik.KartenfelderAbmessung.y);
          
       end loop YAchseSchleife;
             
@@ -121,6 +121,10 @@ package body WeltkarteGrafik is
       WeltkarteZeichnenGrafik.VerbesserungZeichnen (KoordinatenExtern => AktuelleKoordinaten,
                                                     EbeneExtern       => KoordinatenExtern.EAchse,
                                                     PositionExtern    => PositionExtern);
+      
+      -- Put_Line ("E: " & AktuelleKoordinaten.EAchse'Wide_Wide_Image & "   Y: " & AktuelleKoordinaten.YAchse'Wide_Wide_Image & "    X: " & AktuelleKoordinaten.XAchse'Wide_Wide_Image);
+      -- Put_Line ("Rasse: " & RasseEinheitExtern.Rasse'Wide_Wide_Image & "    Nummer: " & RasseEinheitExtern.Nummer'Wide_Wide_Image);
+      -- New_Line (2);
       
       WeltkarteZeichnenGrafik.AnzeigeEinheit (KoordinatenExtern  => AktuelleKoordinaten,
                                               RasseEinheitExtern => RasseEinheitExtern,

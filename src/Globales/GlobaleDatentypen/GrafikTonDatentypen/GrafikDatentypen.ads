@@ -9,7 +9,7 @@ package GrafikDatentypen is
                                              Grafik_Generierungszeit_Enum, Grafik_KI_Rechenzeit_Enum, Grafik_Rundenende_Enum, Grafik_Speichern_Laden_Enum,
                                              Grafik_Menüs_Enum, Grafik_Sprache_Enum,
                                              Grafik_Editoren_Enum,
-                                             Grafik_Weltkarte_Enum, Grafik_Stadtkarte_Enum, Grafik_Forschung_Enum, Grafik_Bauen_Enum, Grafik_Forschung_Erfolgreich_Enum,
+                                             Grafik_Weltkarte_Enum, Grafik_Stadtkarte_Enum, Grafik_Forschung_Enum, Grafik_Bauen_Enum, Grafik_Verkaufen_Enum, Grafik_Forschung_Erfolgreich_Enum,
                                              Grafik_Diplomatie_Enum,
                                              Grafik_Ende_Enum
                                             );

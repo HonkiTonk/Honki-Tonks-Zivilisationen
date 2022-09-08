@@ -52,6 +52,7 @@ package body BewegungBerechnen is
                return;
                
             when True =>
+               -- Das hier am Ende von InStadtEntladbar aufrufen? äöü
                BewegungLadenEntladen.TransporterStadtEntladen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                NeueKoordinatenExtern    => NeueKoordinatenExtern);
          end case;
@@ -73,7 +74,6 @@ package body BewegungBerechnen is
                                                   BewegungspunkteExtern    => BewegungspunkteAbzug,
                                                   RechnenSetzenExtern      => -1);
       end if;
-      -- Hier nicht return, da Bewegung zwar erfolgreich aber jetzt noch die Rechnungen durchlaufen müssen.
 
       case
         LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern)

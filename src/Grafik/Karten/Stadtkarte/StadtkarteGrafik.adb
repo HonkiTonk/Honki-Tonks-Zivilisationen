@@ -12,13 +12,12 @@ with LeseKarten;
 with LeseStadtGebaut;
 
 with FarbgebungGrafik;
-with BerechnungenKarteSFML;
+with KartenberechnungenGrafik;
 with ObjekteZeichnenGrafik;
 with EinstellungenGrafik;
 with EingeleseneTexturenGrafik;
 with KartenspritesZeichnenGrafik;
 with ViewsEinstellenGrafik;
-with Karten;
 
 package body StadtkarteGrafik is
 
@@ -27,9 +26,9 @@ package body StadtkarteGrafik is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.KartenviewAccess,
-                                          GrößeExtern          => (EinstellungenGrafik.AktuelleFensterAuflösung.x, EinstellungenGrafik.AktuelleFensterAuflösung.y),
-                                          AnzeigebereichExtern => GrafikRecordKonstanten.StadtkarteAnzeigebereich);
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.StadtviewAccesse (1),
+                                            GrößeExtern          => EinstellungenGrafik.AktuelleFensterAuflösung,
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Stadtbereich (1));
       
       InformationenStadtAufrufen := False;
       
@@ -38,14 +37,14 @@ package body StadtkarteGrafik is
       YMultiplikator := 0.00;
       
       YAchseSchleife:
-      for YAchseSchleifenwert in Karten.StadtkarteArray'Range (1) loop
+      for YAchseSchleifenwert in KartenDatentypen.Stadtfeld'Range loop
          
          XMultiplikator := 0.00;
          
          XAchseSchleife:
-         for XAchseSchleifenwert in Karten.StadtkarteArray'Range (2) loop
+         for XAchseSchleifenwert in KartenDatentypen.Stadtfeld'Range loop
             
-            GrafikPosition := (XMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.x, YMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.y);
+            GrafikPosition := (XMultiplikator * KartenberechnungenGrafik.StadtfelderAbmessung.x, YMultiplikator * KartenberechnungenGrafik.StadtfelderAbmessung.y);
                         
             DarstellungGebäude (YAchseExtern           => YAchseSchleifenwert,
                                  XAchseExtern           => XAchseSchleifenwert,
@@ -78,7 +77,7 @@ package body StadtkarteGrafik is
             null;
             
          when False =>
-            ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern      => (BerechnungenKarteSFML.StadtKarte.width, BerechnungenKarteSFML.StadtKarte.height),
+            ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern      => (KartenberechnungenGrafik.StadtKarte.width, KartenberechnungenGrafik.StadtKarte.height),
                                                   PositionExtern       => AnfangGrafikPosition,
                                                   FarbeExtern          => FarbgebungGrafik.FarbeKartenfeldErmitteln (GrundExtern => Kartenfeld));
       end case;
@@ -132,7 +131,7 @@ package body StadtkarteGrafik is
          null;
                
       else
-         ObjekteZeichnenGrafik.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.StadtfelderAbmessung.x / 2.00,
+         ObjekteZeichnenGrafik.PolygonZeichnen (RadiusExtern        => KartenberechnungenGrafik.StadtfelderAbmessung.x / 2.00,
                                               PositionExtern      => PositionExtern,
                                               AnzahlEckenExtern   => 3,
                                               FarbeExtern         => Sf.Graphics.Color.sfMagenta);

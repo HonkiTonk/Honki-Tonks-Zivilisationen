@@ -3,7 +3,9 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
+with Sf.Graphics; use Sf.Graphics;
 with Sf.System.Vector2;
+with Sf.Graphics.Rect;
 
 with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
@@ -26,11 +28,19 @@ package StadtseitenleisteGrafik is
                  StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
               );
    
-   procedure Leer;
+   procedure Leer
+     (AnzeigebereichExtern : in Sf.Graphics.Rect.sfFloatRect;
+      ViewExtern : in Sf.Graphics.sfView_Ptr)
+     with
+       Pre => (
+                 ViewExtern /= null
+              );
      
    procedure Stadt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+      StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      AnzeigebereichExtern : in Sf.Graphics.Rect.sfFloatRect;
+      ViewExtern : in Sf.Graphics.sfView_Ptr)
      with
        Pre => (
                  SpielVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
@@ -38,6 +48,8 @@ package StadtseitenleisteGrafik is
                  SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
                and
                  StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+               and
+                 ViewExtern /= null
               );
    
 private
@@ -60,15 +72,6 @@ private
    FestzulegenderText : FestzulegenderTextArray;
    
    procedure Stadtname
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-     with
-       Pre => (
-                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
-               and
-                 SpielVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
-              );
-   
-   procedure Debuginformationen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
      with
        Pre => (

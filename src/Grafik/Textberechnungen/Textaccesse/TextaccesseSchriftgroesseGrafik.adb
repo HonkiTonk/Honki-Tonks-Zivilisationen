@@ -26,6 +26,7 @@ package body TextaccesseSchriftgroesseGrafik is
       EinheitStadtAuswahl;
       AnzeigeEingabe;
       Ladezeiten;
+      Befehle;
       
    end SchriftgrößeSetzen;
    
@@ -330,14 +331,29 @@ package body TextaccesseSchriftgroesseGrafik is
                
             
          
-      Sf.Graphics.Text.setCharacterSize (text  => TextaccessVariablen.RundenendeAccess (1),
+      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.RundenendeAccess (1),
                                          size => TexteinstellungenGrafik.Schriftgrößen.SchriftgrößeStandard);
       
       
                
-      Sf.Graphics.Text.setCharacterSize (text  => TextaccessVariablen.SpeichernLadenAccess (1),
+      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.SpeichernLadenAccess (1),
                                          size => TexteinstellungenGrafik.Schriftgrößen.SchriftgrößeStandard);
       
    end Ladezeiten;
+   
+   
+   
+   procedure Befehle
+   is begin
+      
+      StadtbefehleSchleife:
+      for StadtbefehleSchleifenwert in TextaccessVariablen.StadtbefehleAccessArray'Range loop
+         
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.StadtbefehleAccess (StadtbefehleSchleifenwert),
+                                            size => TexteinstellungenGrafik.Schriftgrößen.SchriftgrößeStandard);
+         
+      end loop StadtbefehleSchleife;
+      
+   end Befehle;
 
 end TextaccesseSchriftgroesseGrafik;

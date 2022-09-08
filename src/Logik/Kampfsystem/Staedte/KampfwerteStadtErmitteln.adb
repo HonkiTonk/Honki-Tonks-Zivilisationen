@@ -19,8 +19,8 @@ package body KampfwerteStadtErmitteln is
    is begin
       
       VerteidigungWert := KampfDatentypen.Kampfwerte (LeseVerbesserungenDatenbank.KampfVerbesserung (VerbesserungExtern => LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                                                            RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                                                                                            WelcherWertExtern  => KartenKonstanten.KampfVerteidigung))
+                                                                                                     RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                                                                                     WelcherWertExtern  => KartenKonstanten.KampfVerteidigung))
         + GesamtwerteFeld.FeldVerteidigung (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                             RasseExtern       => StadtRasseNummerExtern.Rasse);
       
@@ -28,9 +28,8 @@ package body KampfwerteStadtErmitteln is
       for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
          
          if
-           LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                              WelchesGebäudeExtern   => GebäudeSchleifenwert)
-           = False
+           False = LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                      WelchesGebäudeExtern   => GebäudeSchleifenwert)
          then
             null;
             
@@ -63,9 +62,8 @@ package body KampfwerteStadtErmitteln is
       for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
          
          if
-           LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                              WelchesGebäudeExtern   => GebäudeSchleifenwert)
-           = False
+           False = LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                      WelchesGebäudeExtern   => GebäudeSchleifenwert)
          then
             null;
             
@@ -77,7 +75,7 @@ package body KampfwerteStadtErmitteln is
          
       end loop GebäudeSchleife;
       
-      -- Noch einen Angriffsbonus einbauen? Aber wenn, auf welcher Basis?
+      -- Noch einen Angriffsbonus einbauen? Aber wenn, auf welcher Basis? äöü
       
       return AngriffWert;
       

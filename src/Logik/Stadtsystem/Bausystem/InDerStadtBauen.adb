@@ -77,26 +77,19 @@ package body InDerStadtBauen is
    is begin
       
       BauenMöglich := False;
-      InteraktionAuswahl.MöglicheGebäude := (others => False);
       
       GebäudeSchleife:
       for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
-                  
+         
+         InteraktionAuswahl.MöglicheGebäude (GebäudeSchleifenwert) := GebaeudeAllgemein.GebäudeAnforderungenErfüllt (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                                                                                          IDExtern               => GebäudeSchleifenwert);
+         
          if
-           True = GebaeudeAllgemein.GebäudeAnforderungenErfüllt (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                                   IDExtern               => GebäudeSchleifenwert)
+           InteraktionAuswahl.MöglicheGebäude (GebäudeSchleifenwert) = True
+           and
+             BauenMöglich = False
          then
-            InteraktionAuswahl.MöglicheGebäude (GebäudeSchleifenwert) := True;
-            
-            case
-              BauenMöglich
-            is
-               when False =>
-                  BauenMöglich := True;
-                  
-               when True =>
-                  null;
-            end case;
+            BauenMöglich := True;
             
          else
             null;

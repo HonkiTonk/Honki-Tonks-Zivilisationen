@@ -51,7 +51,6 @@ package body StandardSpielwerteSetzenLogik is
       
       Karten.Karteneinstellungen := KartenRecordKonstanten.Standardkartenparameter;
       Karten.Weltkarte := (others => (others => (others => WeltkarteRecords.LeerWeltkarte)));
-      Karten.Stadtkarte := (others => (others => (0)));
       
       Sichtweiten.StandardSichtweiten;
       

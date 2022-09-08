@@ -18,9 +18,9 @@ private
    procedure KarteWichtiges;
    procedure KarteAllgemeines;
    procedure Karte;
-   procedure Zahleneingabe;
    procedure EinheitStadtAuswahl;
    procedure AnzeigeEingabe;
    procedure Ladezeiten;
+   procedure Befehle;
 
 end TextaccesseTextGrafik;

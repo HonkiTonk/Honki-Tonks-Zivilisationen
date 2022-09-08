@@ -64,7 +64,7 @@ package KartengrundDatentypen is
    subtype Kartengrund_Unterfläche_Wasser_Enum is Kartengrund_Unterfläche_Eiswasser_Enum range Küstengrund_Enum .. Unterwald_Enum;
    
    -- Später mal nachprüfen warum die Wasserbasis nicht Küstengrund enthält, wahrscheinlich wegen dem Kartengenerator und dem Setzen der Küste aufgrund der darüber liegenden Ebene. äöü
-   subtype Kartengrund_Unterfläche_Wasserbasis_Enum is Kartengrund_Unterfläche_Wasser_Enum range Meeresgrund_Enum .. Meeresgrund_Enum;
+   subtype Kartengrund_Unterfläche_Wasserbasis_Enum is Kartengrund_Unterfläche_Wasser_Enum range Küstengrund_Enum .. Meeresgrund_Enum;
    subtype Kartengrund_Unterfläche_Wasserzusatz_Enum is Kartengrund_Unterfläche_Wasser_Enum range Korallen_Enum .. Unterwald_Enum;
    
    subtype Kartengrund_Unterfläche_Land_Enum is Kartengrund_Unterfläche_Enum range Erde_Enum .. Gestein_Enum;

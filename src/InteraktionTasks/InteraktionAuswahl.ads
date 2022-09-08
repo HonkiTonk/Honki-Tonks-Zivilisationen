@@ -10,7 +10,9 @@ with StadtDatentypen;
 with ForschungenDatentypen;
 with TastenbelegungDatentypen;
 with RassenDatentypen;
+with BefehleDatentypen;
 
+-- Das hier später auch mal theamtisch aufteilen? äöü
 package InteraktionAuswahl is
 
    type PositionenMenüeinträgeArray is array (MenueDatentypen.Welches_Menü_Vorhanden_Enum'Range, 1 .. SystemKonstanten.ZweitlängstesMenü) of Sf.Graphics.Rect.sfFloatRect;
@@ -39,10 +41,10 @@ package InteraktionAuswahl is
 
 
 
-   type PositionenGebäudeBauenArray is array (StadtDatentypen.GebäudeID'Range) of Sf.Graphics.Rect.sfFloatRect;
-   PositionenGebäudeBauen : PositionenGebäudeBauenArray := (others => (0.00, 0.00, 0.00, 0.00));
+   type PositionenMöglicheGebäudeArray is array (StadtDatentypen.GebäudeID'Range) of Sf.Graphics.Rect.sfFloatRect;
+   PositionenMöglicheGebäude : PositionenMöglicheGebäudeArray := (others => (0.00, 0.00, 0.00, 0.00));
 
-   type MöglicheGebäudeArray is array (PositionenGebäudeBauenArray'Range) of Boolean;
+   type MöglicheGebäudeArray is array (PositionenMöglicheGebäudeArray'Range) of Boolean;
    MöglicheGebäude : MöglicheGebäudeArray := (others => False);
 
    type PositionenEinheitenBauenArray is array (EinheitenDatentypen.EinheitenID'Range) of Sf.Graphics.Rect.sfFloatRect;
@@ -65,5 +67,10 @@ package InteraktionAuswahl is
 
    type RassenMöglicheArray is array (PositionenDiplomatieRasseArray'Range) of Boolean;
    RassenMöglich : RassenMöglicheArray := (others => False);
+
+
+
+   type PositionenStadtbefehleArray is array (BefehleDatentypen.Stadtbefehle_Vorhanden_Enum'Range) of Sf.Graphics.Rect.sfFloatRect;
+   PositionenStadtbefehle : PositionenStadtbefehleArray := (others => (0.00, 0.00, 0.00, 0.00));
 
 end InteraktionAuswahl;

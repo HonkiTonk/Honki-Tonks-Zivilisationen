@@ -24,12 +24,15 @@ with JaNeinLogik;
 
 package body StadtEntfernen is
    
-   procedure StadtAbreißen
+   function StadtAbreißen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+      return Boolean
    is begin
+      
+      Abriss := JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageStadtAbreißen);
          
       case
-        JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageStadtAbreißen)
+        Abriss
       is
          when True =>
             StadtEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern);
@@ -37,6 +40,8 @@ package body StadtEntfernen is
          when False =>
             null;
       end case;
+      
+      return Abriss;
       
    end StadtAbreißen;
    

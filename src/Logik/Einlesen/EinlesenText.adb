@@ -11,6 +11,7 @@ with Kartentexte;
 with GlobaleTexte;
 with Meldungstexte;
 with TextKonstanten;
+with Befehlstexte;
 
 with Warnung;
 with EinlesenAllgemein;
@@ -203,6 +204,9 @@ package body EinlesenText is
                
          when 36 =>
             Kartenpole;
+            
+         when 37 =>
+            Stadtbefehle;
             
          when others =>
             Fehler.LogikFehler (FehlermeldungExtern => "EinlesenText.EinlesenAufteilen - Mehr Dateien eingelesen als möglich.");
@@ -1037,5 +1041,28 @@ package body EinlesenText is
       end loop KartenpoleSchleife;
       
    end Kartenpole;
+   
+   
+   
+   procedure Stadtbefehle
+   is begin
+      
+      StadtbefehleSchleife:
+      for WelcheZeileSchleifenwert in Befehlstexte.Stadtbefehle'Range loop
+         
+         case
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                    AktuelleZeileExtern => WelcheZeileSchleifenwert)
+         is
+            when True =>
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Stadtbefehle -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
+               
+            when False =>
+               Befehlstexte.Stadtbefehle (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Ada.Wide_Wide_Text_IO.Get_Line (File => DateiTextEinlesen));
+         end case;
+         
+      end loop StadtbefehleSchleife;
+      
+   end Stadtbefehle;
 
 end EinlesenText;

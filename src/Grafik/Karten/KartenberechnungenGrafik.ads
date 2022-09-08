@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with Sf.System.Vector2;
 with Sf.Graphics.Rect;
 
-package BerechnungenKarteSFML is
+package KartenberechnungenGrafik is
    
    -- Das hier über eine Funktion abrufen? äöü
    KartenfelderAbmessung : Sf.System.Vector2.sfVector2f;
@@ -16,4 +16,4 @@ package BerechnungenKarteSFML is
    procedure KartenfelderAbmessungBerechnen;
    procedure StadtfelderAbmessungBerechnen;
 
-end BerechnungenKarteSFML;
+end KartenberechnungenGrafik;

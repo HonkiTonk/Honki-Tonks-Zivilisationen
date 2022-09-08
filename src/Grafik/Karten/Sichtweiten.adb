@@ -4,17 +4,18 @@ pragma Warnings (Off, "*array aggregate*");
 with KartenDatentypen; use KartenDatentypen;
 with TastenbelegungDatentypen;
 
-with BerechnungenKarteSFML;
+with KartenberechnungenGrafik;
 with BewegungCursor;
 with NachGrafiktask;
 
+-- Das und KartenberechnungenGrafik mal anders aufteilen. äöü
 package body Sichtweiten is
    
    procedure SichtweiteBewegungsfeldFestlegen
    is begin
          
-      BerechnungenKarteSFML.KartenfelderAbmessungBerechnen;
-      BerechnungenKarteSFML.StadtfelderAbmessungBerechnen;
+      KartenberechnungenGrafik.KartenfelderAbmessungBerechnen;
+      KartenberechnungenGrafik.StadtfelderAbmessungBerechnen;
       
    end SichtweiteBewegungsfeldFestlegen;
    
@@ -54,7 +55,7 @@ package body Sichtweiten is
          AktuelleZoomstufe := AktuelleZoomstufe + ÄnderungExtern;
       end if;
       
-      BerechnungenKarteSFML.KartenfelderAbmessungBerechnen;
+      KartenberechnungenGrafik.KartenfelderAbmessungBerechnen;
       BewegungCursor.ZoomanpassungCursor (RasseExtern => NachGrafiktask.AktuelleRasse);
       
    end ZoomstufeÄndern;

@@ -16,7 +16,7 @@ with Sichtweiten;
 with NachGrafiktask;
 with EinstellungenGrafik;
 with NachLogiktask;
-with BerechnungenKarteSFML;
+with KartenberechnungenGrafik;
 
 package body CursorplatzierungAltGrafik is
 
@@ -93,7 +93,7 @@ package body CursorplatzierungAltGrafik is
       -- 0.001 sind dafür da, damit man beim Verlassen des Fensters nicht mehr weiterscrollt.
       -- Dafür später eine bessere Lösung finden? äöü
       if
-        MausachseExtern in 0.001 .. BerechnungenKarteSFML.KartenfelderAbmessung.y / 2.00
+        MausachseExtern in 0.001 .. KartenberechnungenGrafik.KartenfelderAbmessung.y / 2.00
       then
          if
            YAchseAlt <= Karten.WeltkarteArray'First (2) + Sichtweiten.SichtweiteLesen
@@ -107,7 +107,7 @@ package body CursorplatzierungAltGrafik is
          end if;
          
       elsif
-        MausachseExtern in Sf.Graphics.View.getSize (view => Views.KartenviewAccess).y - BerechnungenKarteSFML.KartenfelderAbmessung.y / 2.00 .. Sf.Graphics.View.getSize (view => Views.KartenviewAccess).y - 0.001
+        MausachseExtern in Sf.Graphics.View.getSize (view => Views.KartenviewAccess).y - KartenberechnungenGrafik.KartenfelderAbmessung.y / 2.00 .. Sf.Graphics.View.getSize (view => Views.KartenviewAccess).y - 0.001
       then
          if
            YAchseAlt >= Karten.Karteneinstellungen.Kartengröße.YAchse - Sichtweiten.SichtweiteLesen
@@ -137,7 +137,7 @@ package body CursorplatzierungAltGrafik is
       -- 0.001 sind dafür da, damit man beim Verlassen des Fensters nicht mehr weiterscrollt.
       -- Dafür später eine bessere Lösung finden? äöü
       if
-        MausachseExtern in 0.001 .. BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00
+        MausachseExtern in 0.001 .. KartenberechnungenGrafik.KartenfelderAbmessung.x / 2.00
       then
          if
            XAchseAlt <= Karten.WeltkarteArray'First (3) + Sichtweiten.SichtweiteLesen
@@ -151,7 +151,7 @@ package body CursorplatzierungAltGrafik is
          end if;
          
       elsif
-        MausachseExtern in Sf.Graphics.View.getSize (view => Views.KartenviewAccess).x - BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00 .. Sf.Graphics.View.getSize (view => Views.KartenviewAccess).x
+        MausachseExtern in Sf.Graphics.View.getSize (view => Views.KartenviewAccess).x - KartenberechnungenGrafik.KartenfelderAbmessung.x / 2.00 .. Sf.Graphics.View.getSize (view => Views.KartenviewAccess).x
       then
          if
            XAchseAlt >= Karten.Karteneinstellungen.Kartengröße.XAchse - Sichtweiten.SichtweiteLesen

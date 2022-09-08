@@ -10,6 +10,8 @@ with Meldungstexte;
 with TextnummernKonstanten;
 with SonstigesKonstanten;
 with Menuetexte;
+with BefehleDatentypen;
+with Befehlstexte;
 
 with RassenbeschreibungenGrafik;
 with ForschungsbeschreibungenGrafik;
@@ -32,10 +34,10 @@ package body TextaccesseTextGrafik is
       KarteWichtiges;
       KarteAllgemeines;
       Karte;
-      Zahleneingabe;
       EinheitStadtAuswahl;
       AnzeigeEingabe;
       Ladezeiten;
+      Befehle;
       
    end TextSetzen;
    
@@ -219,21 +221,13 @@ package body TextaccesseTextGrafik is
    
    
    
-   procedure Zahleneingabe
-   is begin
-      
-      null;
-      
-   end Zahleneingabe;
-   
-   
-   
    procedure EinheitStadtAuswahl
    is begin
       
       null;
       
    end EinheitStadtAuswahl;
+   
    
    
    procedure AnzeigeEingabe
@@ -257,5 +251,20 @@ package body TextaccesseTextGrafik is
       null;
       
    end Ladezeiten;
+   
+   
+   
+   procedure Befehle
+   is begin
+      
+      StadtbefehleSchleife:
+      for StadtbefehleSchleifenwert in TextaccessVariablen.StadtbefehleAccessArray'Range loop
+         
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.StadtbefehleAccess (StadtbefehleSchleifenwert),
+                                            str  => To_Wide_Wide_String (Source => Befehlstexte.Stadtbefehle (BefehleDatentypen.Stadtbefehle_Vorhanden_Enum'Pos (StadtbefehleSchleifenwert))));
+         
+      end loop StadtbefehleSchleife;
+      
+   end Befehle;
 
 end TextaccesseTextGrafik;

@@ -11,7 +11,7 @@ with SchreibeStadtGebaut;
 
 with Kartenkoordinatenberechnungssystem;
 with Mausauswahl;
-with BerechnungenKarteSFML;
+with KartenberechnungenGrafik;
 
 package body EinwohnerZuweisenEntfernen is
 
@@ -28,8 +28,8 @@ package body EinwohnerZuweisenEntfernen is
          return False;
                
       else
-         Stadtfeld.YAchse := KartenDatentypen.Kartenfeld (Float'Floor (Mausposition.y / BerechnungenKarteSFML.StadtfelderAbmessung.y)) - 3;
-         Stadtfeld.XAchse := KartenDatentypen.Kartenfeld (Float'Floor (Mausposition.x / BerechnungenKarteSFML.StadtfelderAbmessung.x)) - 3;
+         Stadtfeld.YAchse := KartenDatentypen.Kartenfeld (Float'Floor (Mausposition.y / KartenberechnungenGrafik.StadtfelderAbmessung.y)) - 3;
+         Stadtfeld.XAchse := KartenDatentypen.Kartenfeld (Float'Floor (Mausposition.x / KartenberechnungenGrafik.StadtfelderAbmessung.x)) - 3;
       end if;
       
       Kartenwert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),

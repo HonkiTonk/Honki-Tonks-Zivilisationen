@@ -77,63 +77,63 @@ package ChangelogSeptember2022 is
    
    
 
-   -- Version 0.0. => 0.0. (19.09.2022):
+   -- Version 0.03. => 0.0. (19.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (18.09.2022):
+   -- Version 0.03. => 0.03. (18.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (17.09.2022):
+   -- Version 0.03. => 0.03. (17.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (16.09.2022):
+   -- Version 0.03. => 0.03. (16.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (15.09.2022):
+   -- Version 0.03. => 0.03. (15.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (14.09.2022):
+   -- Version 0.03. => 0.03. (14.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (13.09.2022):
+   -- Version 0.03. => 0.03. (13.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (12.09.2022):
+   -- Version 0.03. => 0.03. (12.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03. => 0.0. (11.09.2022):
+   -- Version 0.03. => 0.03. (11.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
@@ -147,17 +147,26 @@ package ChangelogSeptember2022 is
    
    
 
-   -- Version 0.03. => 0.03. (09.09.2022):
+   -- Version 0.03.8725 => 0.03. (09.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.8600 => 0.03. (08.09.2022):
+   -- Version 0.03.8600 => 0.03.8725 (08.09.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Stadtbefehle existieren jetzt als auswählbare Texte.
+   -- Erstkontakt mit einer Rasse wird jetzt auch hergesetllt, wenn man Land in ihren Grenzen sieht.
+   -- Texteingaben können jetzt auch mit der rechten Muastaste abgebrochen werden.
+   -- Fehler behoben der dazu führen konnte das beim Entfernen einer Einheit es zu einem Absturz kam.
+   -- Fehler behoben der beim bauen einer Farm auf Küstengrund zu einem Absturz führte.
+   -- Veralteten Code gelöscht.
+   -- Code zusammengeführt.
+   -- Verkaufsmenü eingebaut.
+   -- Neue Beispielbilder erstellt.
+   -- Interne Struktur überarbeitet.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst/optimiert.
    
    
 
@@ -166,7 +175,7 @@ package ChangelogSeptember2022 is
    -- Textanzeige und Skalierung des Baumenüs verbessert.
    -- Textanzeige und Skalierung des Diplomatiemenüs verbessert.
    -- Bei mehreren menschlichen Spielern wird die Rasse jetzt korrekt auf KI gesetzt oder entfernt wenn einer das Spiel verlässt.
-   -- Alle Textanzeige und -skalierungssysteme überarbeitet und an den Variablen Abstand angepasst.
+   -- Alle Textanzeige und -skalierungssysteme überarbeitet und an den variablen Abstand angepasst.
    -- Steuerungsmenü überarbeitet.
    -- Farbfestlegung der Texte überarbeitet.
    -- Neues Zeilenumbruchsystem eingebaut.

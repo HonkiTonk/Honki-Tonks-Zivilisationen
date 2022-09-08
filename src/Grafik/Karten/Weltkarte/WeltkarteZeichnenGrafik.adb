@@ -29,7 +29,7 @@ with FarbgebungGrafik;
 with TextberechnungenBreiteGrafik;
 with RasseneinstellungenGrafik;
 with TextberechnungenHoeheGrafik;
-with BerechnungenKarteSFML;
+with KartenberechnungenGrafik;
 with Kartenkoordinatenberechnungssystem;
 with EinstellungenGrafik;
 
@@ -60,7 +60,7 @@ package body WeltkarteZeichnenGrafik is
                null;
             
             when False =>
-               ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => BerechnungenKarteSFML.KartenfelderAbmessung,
+               ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => KartenberechnungenGrafik.KartenfelderAbmessung,
                                                        PositionExtern  => PositionExtern,
                                                        FarbeExtern     => FarbgebungGrafik.FarbeKartenfeldErmitteln (GrundExtern => BasisKartengrund));
          end case;
@@ -75,7 +75,7 @@ package body WeltkarteZeichnenGrafik is
             null;
             
          when False =>
-            ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => BerechnungenKarteSFML.KartenfelderAbmessung,
+            ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => KartenberechnungenGrafik.KartenfelderAbmessung,
                                                     PositionExtern  => PositionExtern,
                                                     FarbeExtern     => FarbgebungGrafik.FarbeKartenfeldErmitteln (GrundExtern => AktuellerKartengrund));
       end case;
@@ -110,8 +110,8 @@ package body WeltkarteZeichnenGrafik is
             null;
             
          when False =>
-            ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => (BerechnungenKarteSFML.KartenfelderAbmessung.x, BerechnungenKarteSFML.KartenfelderAbmessung.y / 5.00),
-                                                    PositionExtern  => (PositionExtern.x, PositionExtern.y + 0.40 * BerechnungenKarteSFML.KartenfelderAbmessung.y),
+            ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => (KartenberechnungenGrafik.KartenfelderAbmessung.x, KartenberechnungenGrafik.KartenfelderAbmessung.y / 5.00),
+                                                    PositionExtern  => (PositionExtern.x, PositionExtern.y + 0.40 * KartenberechnungenGrafik.KartenfelderAbmessung.y),
                                                     FarbeExtern     => FarbgebungGrafik.FarbeFlussErmitteln (FlussExtern => KartenfeldFluss));
       end case;
       
@@ -145,7 +145,7 @@ package body WeltkarteZeichnenGrafik is
             null;
             
          when False =>
-            ObjekteZeichnenGrafik.KreisZeichnen (RadiusExtern   => BerechnungenKarteSFML.KartenfelderAbmessung.x / 3.00,
+            ObjekteZeichnenGrafik.KreisZeichnen (RadiusExtern   => KartenberechnungenGrafik.KartenfelderAbmessung.x / 3.00,
                                                  PositionExtern => PositionExtern,
                                                  FarbeExtern    => Sf.Graphics.Color.sfBlack);
       end case;
@@ -180,8 +180,8 @@ package body WeltkarteZeichnenGrafik is
             null;
             
          when False =>
-            ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => (BerechnungenKarteSFML.KartenfelderAbmessung.x, BerechnungenKarteSFML.KartenfelderAbmessung.y / 2.00),
-                                                    PositionExtern  => (PositionExtern.x, PositionExtern.y + 0.80 * BerechnungenKarteSFML.KartenfelderAbmessung.y),
+            ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => (KartenberechnungenGrafik.KartenfelderAbmessung.x, KartenberechnungenGrafik.KartenfelderAbmessung.y / 2.00),
+                                                    PositionExtern  => (PositionExtern.x, PositionExtern.y + 0.80 * KartenberechnungenGrafik.KartenfelderAbmessung.y),
                                                     FarbeExtern     => Sf.Graphics.Color.sfRed);
       end case;
       
@@ -227,7 +227,7 @@ package body WeltkarteZeichnenGrafik is
             null;
             
          when False =>
-            ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => (BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00, BerechnungenKarteSFML.KartenfelderAbmessung.y / 2.00),
+            ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => (KartenberechnungenGrafik.KartenfelderAbmessung.x / 2.00, KartenberechnungenGrafik.KartenfelderAbmessung.y / 2.00),
                                                     PositionExtern  => PositionExtern,
                                                     FarbeExtern     => Sf.Graphics.Color.sfCyan);
       end case;
@@ -296,7 +296,7 @@ package body WeltkarteZeichnenGrafik is
             null;
             
          when others =>
-            ObjekteZeichnenGrafik.PolygonZeichnen (RadiusExtern      => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.80,
+            ObjekteZeichnenGrafik.PolygonZeichnen (RadiusExtern      => KartenberechnungenGrafik.KartenfelderAbmessung.x / 2.80,
                                                    PositionExtern    => PositionExtern,
                                                    AnzahlEckenExtern => 4,
                                                    FarbeExtern       => RasseneinstellungenGrafik.RassenfarbenRahmen (EinheitRasseNummer.Rasse));
@@ -337,7 +337,7 @@ package body WeltkarteZeichnenGrafik is
       
       ObjekteZeichnenGrafik.RahmenteilZeichnen (PositionExtern => PositionExtern,
                                                 FarbeExtern    => RasseneinstellungenGrafik.Rassenfarben (RasseExtern),
-                                                GrößeExtern    => BerechnungenKarteSFML.KartenfelderAbmessung);
+                                                GrößeExtern    => KartenberechnungenGrafik.KartenfelderAbmessung);
       
       UmgebungSchleife:
       for UmgebungSchleifenwert in UmgebungArray'Range loop
@@ -380,20 +380,20 @@ package body WeltkarteZeichnenGrafik is
         WelcheRichtungExtern
       is
          when Norden =>
-            Rahmengröße := (BerechnungenKarteSFML.KartenfelderAbmessung.x, DickeRahmen);
+            Rahmengröße := (KartenberechnungenGrafik.KartenfelderAbmessung.x, DickeRahmen);
             Rahmenposition := PositionExtern;
          
          when Westen =>
-            Rahmengröße := (DickeRahmen, BerechnungenKarteSFML.KartenfelderAbmessung.y);
+            Rahmengröße := (DickeRahmen, KartenberechnungenGrafik.KartenfelderAbmessung.y);
             Rahmenposition := PositionExtern;
          
          when Osten =>
-            Rahmengröße := (DickeRahmen, BerechnungenKarteSFML.KartenfelderAbmessung.y);
-            Rahmenposition := (PositionExtern.x + BerechnungenKarteSFML.KartenfelderAbmessung.x - DickeRahmen, PositionExtern.y);
+            Rahmengröße := (DickeRahmen, KartenberechnungenGrafik.KartenfelderAbmessung.y);
+            Rahmenposition := (PositionExtern.x + KartenberechnungenGrafik.KartenfelderAbmessung.x - DickeRahmen, PositionExtern.y);
          
          when Süden =>
-            Rahmengröße := (BerechnungenKarteSFML.KartenfelderAbmessung.x, DickeRahmen);
-            Rahmenposition := (PositionExtern.x, PositionExtern.y + BerechnungenKarteSFML.KartenfelderAbmessung.y - DickeRahmen);
+            Rahmengröße := (KartenberechnungenGrafik.KartenfelderAbmessung.x, DickeRahmen);
+            Rahmenposition := (PositionExtern.x, PositionExtern.y + KartenberechnungenGrafik.KartenfelderAbmessung.y - DickeRahmen);
       end case;
       
       ObjekteZeichnenGrafik.RahmenteilZeichnen (PositionExtern => Rahmenposition,
@@ -414,7 +414,7 @@ package body WeltkarteZeichnenGrafik is
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAccess,
                                          str  => To_Wide_Wide_String (Source => LeseStadtGebaut.Name (StadtRasseNummerExtern => StadtRasseNummer)));
       
-      Textposition.x := PositionExtern.x - TextberechnungenBreiteGrafik.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.KarteAccess) + 0.50 * BerechnungenKarteSFML.KartenfelderAbmessung.x;
+      Textposition.x := PositionExtern.x - TextberechnungenBreiteGrafik.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.KarteAccess) + 0.50 * KartenberechnungenGrafik.KartenfelderAbmessung.x;
       Textposition.y := PositionExtern.y - TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
       
       -- Später noch einen Rahmen um den Namen bauen. äöü

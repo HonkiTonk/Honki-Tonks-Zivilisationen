@@ -3,6 +3,8 @@ pragma Warnings (Off, "*array aggregate*");
 
 with StadtKonstanten;
 with EinheitenKonstanten;
+with GrafikRecordKonstanten;
+with Views;
 
 with LeseKarten;
 
@@ -47,12 +49,15 @@ package body SeitenleisteGrafik is
               StadtRasseNummer.Nummer
             is
                when StadtKonstanten.LeerNummer =>
-                  StadtseitenleisteGrafik.Leer;
+                  StadtseitenleisteGrafik.Leer (AnzeigebereichExtern => GrafikRecordKonstanten.SeitenleisteWeltkartenbereich (3),
+                                                ViewExtern           => Views.SeitenleisteWeltkarteAccesse (3));
                   StadtVorhanden := False;
             
                when others =>
                   StadtseitenleisteGrafik.Stadt (RasseExtern            => RasseExtern,
-                                                 StadtRasseNummerExtern => StadtRasseNummer);
+                                                 StadtRasseNummerExtern => StadtRasseNummer,
+                                                 AnzeigebereichExtern   => GrafikRecordKonstanten.SeitenleisteWeltkartenbereich (3),
+                                                 ViewExtern             => Views.SeitenleisteWeltkarteAccesse (3));
                   StadtVorhanden := True;
             end case;
             
@@ -73,7 +78,8 @@ package body SeitenleisteGrafik is
             
          when False =>
             AllgemeinesSeitenleisteGrafik.Leer;
-            StadtseitenleisteGrafik.Leer;
+            StadtseitenleisteGrafik.Leer (AnzeigebereichExtern => GrafikRecordKonstanten.SeitenleisteWeltkartenbereich (3),
+                                          ViewExtern           => Views.SeitenleisteWeltkarteAccesse (3));
             EinheitenseitenleisteGrafik.Leer (AnzeigebereichExtern => 4);
       end case;
       

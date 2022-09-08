@@ -9,8 +9,9 @@ private with KartenRecords;
 
 package StadtEntfernen is
    
-   procedure StadtAbreißen
+   function StadtAbreißen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+      return Boolean
      with
        Pre => (
                  SpielVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
@@ -28,6 +29,8 @@ package StadtEntfernen is
               );
    
 private
+   
+   Abriss : Boolean;
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    

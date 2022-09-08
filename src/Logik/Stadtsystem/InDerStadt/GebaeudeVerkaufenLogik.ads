@@ -5,11 +5,11 @@ with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
 with StadtRecords;
 
-private with BefehleDatentypen;
+private with StadtDatentypen;
 
-package InDerStadt is
+package GebaeudeVerkaufenLogik is
 
-   procedure InDerStadt
+   procedure Verkaufsliste
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
      with
        Pre => (
@@ -20,11 +20,22 @@ package InDerStadt is
 
 private
 
-   Befehlsauswahl : BefehleDatentypen.Stadtbefehle_Enum;
+   VerkaufenMöglich : Boolean;
+
+   AktuelleAuswahl : StadtDatentypen.GebäudeIDMitNullwert;
+
+   procedure GebäudeVerkaufen
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     with
+       Pre => (
+                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+               and
+                 SpielVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
+              );
 
 
 
-   function WasIstAusgewählt
+   function VerkaufbareGebäudeErmitteln
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return Boolean
      with
@@ -34,15 +45,4 @@ private
                  SpielVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
               );
 
-   function Mausbefehle
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
-      AuswahlExtern : in BefehleDatentypen.Stadtbefehle_Vorhanden_Enum)
-      return Boolean
-     with
-       Pre => (
-                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
-               and
-                 SpielVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
-              );
-
-end InDerStadt;
+end GebaeudeVerkaufenLogik;

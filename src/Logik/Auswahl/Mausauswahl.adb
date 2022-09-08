@@ -10,11 +10,13 @@ with SystemKonstanten;
 with RassenDatentypen;
 with TastenbelegungDatentypen;
 with ForschungKonstanten;
+with StadtKonstanten;
+with EinheitenKonstanten;
 
 with NachLogiktask;
 with Vergleiche;
 with EinstellungenGrafik;
-with BerechnungenKarteSFML;
+with KartenberechnungenGrafik;
 
 package body Mausauswahl is
 
@@ -109,9 +111,9 @@ package body Mausauswahl is
             when True =>
                if
                  True = Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                                    TextboxExtern      => InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert))
+                                                    TextboxExtern      => InteraktionAuswahl.PositionenMöglicheGebäude (GebäudeSchleifenwert))
                then
-                  return (GebäudeSchleifenwert, 0);
+                  return (GebäudeSchleifenwert, EinheitenKonstanten.LeerID);
          
                else
                   null;
@@ -138,7 +140,7 @@ package body Mausauswahl is
                  True = Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
                                                     TextboxExtern      => InteraktionAuswahl.PositionenEinheitenBauen (EinheitenSchleifenwert))
                then
-                  return (0, EinheitenSchleifenwert);
+                  return (StadtKonstanten.LeerGebäudeID, EinheitenSchleifenwert);
          
                else
                   null;
@@ -150,7 +152,7 @@ package body Mausauswahl is
                
       end loop EinheitenSchleife;
       
-      return (0, 0);
+      return (StadtKonstanten.LeerGebäudeID, EinheitenKonstanten.LeerID);
       
    end Baumenü;
    
@@ -280,7 +282,7 @@ package body Mausauswahl is
                                                                  view         => Views.KartenviewAccess);
       
       return Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                         TextboxExtern      => BerechnungenKarteSFML.FensterKarte);
+                                         TextboxExtern      => KartenberechnungenGrafik.FensterKarte);
       
    end Einheitenbewegung;
    
@@ -319,11 +321,11 @@ package body Mausauswahl is
       
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
                                                                  point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
-                                                                 view         => Views.StadtumgebungviewAccess);
+                                                                 view         => Views.StadtviewAccesse (2));
       
       case
         Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                    TextboxExtern      => (0.00, 0.00, Sf.Graphics.View.getSize (view => Views.StadtumgebungviewAccess).x, Sf.Graphics.View.getSize (view => Views.StadtumgebungviewAccess).y))
+                                    TextboxExtern      => (0.00, 0.00, Sf.Graphics.View.getSize (view => Views.StadtviewAccesse (2)).x, Sf.Graphics.View.getSize (view => Views.StadtviewAccesse (2)).y))
       is
          when False =>
             return (-1.00, -1.00);
@@ -336,12 +338,70 @@ package body Mausauswahl is
    
    
    
+   -- Hier und bei weiteren Befehle erst einmal prüfen ob der Mauszeiger sich überhaupt im Befehlsbereich befindet? äöü
    function Stadtbefehle
-     return Natural
+     return BefehleDatentypen.Stadtbefehle_Enum
    is begin
       
-      return 0;
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
+                                                                 point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
+                                                                 view         => Views.StadtviewAccesse (3));
+      
+      BefehleSchleife:
+      for BefehleSchleifenwert in InteraktionAuswahl.PositionenStadtbefehleArray'Range loop
+         
+         case
+           Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
+                                       TextboxExtern      => InteraktionAuswahl.PositionenStadtbefehle (BefehleSchleifenwert))
+         is
+            when True =>
+               return BefehleSchleifenwert;
+               
+            when False =>
+               null;
+         end case;
+         
+      end loop BefehleSchleife;
+      
+      return BefehleDatentypen.Leer_Enum;
       
    end Stadtbefehle;
+   
+   
+   
+   function Verkaufsmenü
+     return StadtDatentypen.GebäudeIDMitNullwert
+   is begin
+      
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
+                                                                 point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
+                                                                 view         => Views.VerkaufsviewAccesse (1));
+      
+      GebäudeSchleife:
+      for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
+         
+         case
+           InteraktionAuswahl.MöglicheGebäude (GebäudeSchleifenwert)
+         is
+            when True =>
+               if
+                 True = Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
+                                                    TextboxExtern      => InteraktionAuswahl.PositionenMöglicheGebäude (GebäudeSchleifenwert))
+               then
+                  return GebäudeSchleifenwert;
+         
+               else
+                  null;
+               end if;
+
+            when others =>
+               null;
+         end case;
+         
+      end loop GebäudeSchleife;
+      
+      return StadtKonstanten.LeerGebäudeID;
+      
+   end Verkaufsmenü;
      
 end Mausauswahl;

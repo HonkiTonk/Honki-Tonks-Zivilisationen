@@ -14,7 +14,6 @@ with LeseStadtGebaut;
   
 with Kartenkoordinatenberechnungssystem;
 with EinheitSuchen;
-with StadtSuchen;
 with KennenLernen;
 
 package body Sichtbarkeit is
@@ -826,19 +825,19 @@ package body Sichtbarkeit is
             return;
       end case;
       
-      FremdeStadt := StadtSuchen.KoordinatenStadtOhneSpezielleRasseSuchen (RasseExtern       => RasseExtern,
-                                                                           KoordinatenExtern => KoordinatenExtern);
+      FremdeStadt := LeseKarten.StadtbelegungGrund (KoordinatenExtern => KoordinatenExtern);
       
-      case
-        FremdeStadt.Rasse
-      is
-         when StadtKonstanten.LeerRasse =>
-            null;
+      if
+        FremdeStadt.Rasse = RassenDatentypen.Keine_Rasse_Enum
+        or
+          FremdeStadt.Rasse = RasseExtern
+      then
+         null;
             
-         when others =>
-            KennenLernen.Erstkontakt (EigeneRasseExtern => RasseExtern,
-                                      FremdeRasseExtern => FremdeStadt.Rasse);
-      end case;
+      else
+         KennenLernen.Erstkontakt (EigeneRasseExtern => RasseExtern,
+                                   FremdeRasseExtern => FremdeStadt.Rasse);
+      end if;
       
    end SichtbarkeitSetzen;
    

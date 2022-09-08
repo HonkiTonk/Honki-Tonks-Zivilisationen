@@ -27,6 +27,7 @@ package body TextaccesseSchriftartGrafik is
       EinheitStadtAuswahl;
       AnzeigeEingabe;
       Ladezeiten;
+      Befehle;
       
    end SchriftartSetzen;
    
@@ -340,5 +341,20 @@ package body TextaccesseSchriftartGrafik is
       end loop SpeichernLadenSchleife;
       
    end Ladezeiten;
+   
+   
+   
+   procedure Befehle
+   is begin
+      
+      StadtbefehleSchleife:
+      for StadtbefehleSchleifenwert in TextaccessVariablen.StadtbefehleAccessArray'Range loop
+         
+         Sf.Graphics.Text.setFont (text => TextaccessVariablen.StadtbefehleAccess (StadtbefehleSchleifenwert),
+                                   font => TexteinstellungenGrafik.SchriftartAccess);
+         
+      end loop StadtbefehleSchleife;
+      
+   end Befehle;
 
 end TextaccesseSchriftartGrafik;

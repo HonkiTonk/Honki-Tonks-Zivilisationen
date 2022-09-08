@@ -16,7 +16,7 @@ private
 
    DateiTextEinlesen : Ada.Wide_Wide_Text_IO.File_Type;
       
-   type TextdateienEinlesenArray is array (1 .. 36) of Unbounded_Wide_Wide_String;
+   type TextdateienEinlesenArray is array (1 .. 37) of Unbounded_Wide_Wide_String;
    TextdateienEinlesen : TextdateienEinlesenArray;
    
    procedure EinlesenTexte;
@@ -56,6 +56,7 @@ private
    procedure Kartenressourcen;
    procedure Einstellungen;
    procedure Kartenpole;
+   procedure Stadtbefehle;
    
    procedure EinlesenAufteilen
      (WelcherDateiExtern : in Positive)
