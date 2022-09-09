@@ -40,7 +40,7 @@ package body Diplomatie is
          if
            RassenSchleifenwert = RasseExtern
            or
-             SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Leer_Spieler_Enum
+             SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Leer_Spieler_Enum
            or
              SpielVariablen.Diplomatie (RasseExtern, RassenSchleifenwert).AktuellerZustand = DiplomatieDatentypen.Unbekannt_Enum
          then

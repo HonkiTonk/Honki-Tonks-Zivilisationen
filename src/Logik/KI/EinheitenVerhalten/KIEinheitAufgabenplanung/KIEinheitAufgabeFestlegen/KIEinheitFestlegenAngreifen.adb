@@ -80,7 +80,7 @@ package body KIEinheitFestlegenAngreifen is
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
-           SpielVariablen.RassenImSpiel (RasseSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
+           SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung = RassenDatentypen.Leer_Spieler_Enum
            or
              RasseSchleifenwert = RasseExtern
          then

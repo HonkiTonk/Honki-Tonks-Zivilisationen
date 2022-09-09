@@ -35,6 +35,15 @@ package SystemDatentypen is
    
    
    
+   type Ende_Enum is (
+                      Leer_Enum,
+                      
+                      Gewonnen_Enum, Verloren_Enum
+                     );
+   
+   
+   
+   
    subtype Spielmeldungen is Natural range 0 .. Meldungstexte.Meldung'Last;
    subtype SpielmeldungenVorhanden is Spielmeldungen range 1 .. Spielmeldungen'Last;
    

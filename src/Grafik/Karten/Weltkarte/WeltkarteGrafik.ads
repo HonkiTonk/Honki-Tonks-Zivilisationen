@@ -19,7 +19,7 @@ package WeltkarteGrafik is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre => (
-                 SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.Mensch_Spieler_Enum
               );
    
 private
@@ -42,8 +42,8 @@ private
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre => (
-                 SpielVariablen.RassenImSpiel (RasseEinheitExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
-               and
+              --   SpielVariablen.Rassenbelegung (RasseEinheitExtern.Rasse).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+              -- and
                  KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
                and
                  KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse

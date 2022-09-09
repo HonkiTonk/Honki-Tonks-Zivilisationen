@@ -12,6 +12,8 @@ with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;
 with SchreibeKarten;
 
+with NachGrafiktask;
+
 package body SchreibeEinheitenGebaut is
 
    procedure ID
@@ -429,6 +431,8 @@ package body SchreibeEinheitenGebaut is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
+      NachGrafiktask.AktuelleEinheit := EinheitenKonstanten.LeerNummer;
+        
       SchreibeKarten.EinheitEntfernen (KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                        EinheitRasseNummerExtern => EinheitRasseNummerExtern);
                                            

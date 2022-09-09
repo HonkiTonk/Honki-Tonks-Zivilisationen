@@ -14,11 +14,11 @@ package KIEinheitGefahrenverhalten is
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
                and
-                 SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.KI_Spieler_Enum
                and
                  FeindlicheEinheitExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (FeindlicheEinheitExtern.Rasse).Einheitengrenze
                and
-                 SpielVariablen.RassenImSpiel (FeindlicheEinheitExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (FeindlicheEinheitExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                and
                  EinheitRasseNummerExtern.Rasse /= FeindlicheEinheitExtern.Rasse
               );

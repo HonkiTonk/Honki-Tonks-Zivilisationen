@@ -36,7 +36,7 @@ package body AufgabeEinheitPluendern is
       end if;
       
       case
-        SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse)
+        SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung
       is
          when RassenDatentypen.KI_Spieler_Enum =>
             null;

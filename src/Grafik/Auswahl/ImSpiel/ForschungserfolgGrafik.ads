@@ -16,7 +16,7 @@ package ForschungserfolgGrafik is
       AuswahlExtern : in Natural)
      with
        Pre => (
-                 SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
                and
                  AuswahlExtern in 1 .. 2
               );
@@ -39,7 +39,7 @@ private
       return Sf.System.Vector2.sfVector2f
      with
        Pre => (
-                 SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
                and
                  ViewbreiteExtern >= 0.00
               );
@@ -51,7 +51,7 @@ private
       return Sf.System.Vector2.sfVector2f
      with
        Pre => (
-                 SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
                and
                  ViewbreiteExtern >= 0.00
               );

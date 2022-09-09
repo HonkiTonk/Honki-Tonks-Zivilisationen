@@ -49,11 +49,14 @@ package GrafikDatentypen is
                                    
                                    Forschungserfolg_Enum,
                                    
-                                   Gewonnen_Enum
+                                   -- Abspann
+                                   Gewonnen_Enum,
+                                   
+                                   Planet_Vernichtet_Enum
                                   );
    
    subtype Rassenhintergrund_Vorhanden_Enum is Rassenhintergrund_Enum range Forschungserfolg_Enum .. Rassenhintergrund_Enum'Last;
    
-   subtype Abspann_Enum is Rassenhintergrund_Vorhanden_Enum range Gewonnen_Enum .. Gewonnen_Enum;
+   subtype Abspann_Enum is Rassenhintergrund_Vorhanden_Enum range Gewonnen_Enum .. Rassenhintergrund_Vorhanden_Enum'Last;
 
 end GrafikDatentypen;

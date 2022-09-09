@@ -218,7 +218,8 @@ package body Grafik is
             DiplomatieauswahlGrafik.Diplomatieauswahl (AuswahlExtern => NachGrafiktask.AktuelleAuswahl.AuswahlEins);
             
          when GrafikDatentypen.Grafik_Abspann_Enum =>
-            AbspannGrafik.Abspann (AbspannExtern => NachGrafiktask.Abspannart);
+            AbspannGrafik.Abspann (AbspannExtern => NachGrafiktask.Abspannart,
+                                   RasseExtern   => NachGrafiktask.AktuelleRasse);
             
          when GrafikDatentypen.Grafik_Ende_Enum =>
             return False;

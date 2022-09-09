@@ -18,7 +18,7 @@ package ForschungsauswahlGrafik is
       AktuelleAuswahlExtern : in Natural)
      with
        Pre => (
-                 SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
               );
    
 private
@@ -43,7 +43,7 @@ private
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
-                 SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
               );
    
    procedure Beschreibung
@@ -52,7 +52,7 @@ private
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
-                 SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
               );
    
    procedure Ermöglicht
@@ -61,7 +61,7 @@ private
       ViewnummerExtern : in Positive)
      with
        Pre => (
-                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum  
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum  
               );
    
    procedure Aktuell
@@ -69,7 +69,7 @@ private
       ViewnummerExtern : in Positive)
      with
        Pre => (
-                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum  
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum  
               );
    
 end ForschungsauswahlGrafik;

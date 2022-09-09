@@ -141,7 +141,7 @@ package body DoppelmenueGrafik is
         AktuellerTextExtern - 1 in RassenKonstanten.Rassenanfang .. RassenKonstanten.Rassenende
       then
          case
-           SpielVariablen.RassenImSpiel (RassenDatentypen.Rassen_Verwendet_Enum'Val (AktuellerTextExtern - 1))
+           SpielVariablen.Rassenbelegung (RassenDatentypen.Rassen_Verwendet_Enum'Val (AktuellerTextExtern - 1)).Belegung
          is
             when RassenDatentypen.Mensch_Spieler_Enum =>
                Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeMenschText;

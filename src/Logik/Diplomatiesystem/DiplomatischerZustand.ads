@@ -22,9 +22,9 @@ package DiplomatischerZustand is
        Pre => (
                  RasseEinsExtern /= RasseZweiExtern
                and
-                 SpielVariablen.RassenImSpiel (RasseEinsExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (RasseEinsExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 SpielVariablen.RassenImSpiel (RasseZweiExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (RasseZweiExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
 
    procedure SympathieÄndern
@@ -35,9 +35,9 @@ package DiplomatischerZustand is
        Pre => (
                  EigeneRasseExtern /= FremdeRasseExtern
                and
-                 SpielVariablen.RassenImSpiel (EigeneRasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (EigeneRasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 SpielVariablen.RassenImSpiel (FremdeRasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (FremdeRasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
 
    procedure VergangeneZeitÄndern
@@ -47,9 +47,9 @@ package DiplomatischerZustand is
        Pre => (
                  RasseEinsExtern /= RasseZweiExtern
                and
-                 SpielVariablen.RassenImSpiel (RasseEinsExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (RasseEinsExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 SpielVariablen.RassenImSpiel (RasseZweiExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (RasseZweiExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
 
 
@@ -62,9 +62,9 @@ package DiplomatischerZustand is
        Pre => (
                  EigeneRasseExtern /= GegnerischeRasseExtern
                and
-                 SpielVariablen.RassenImSpiel (EigeneRasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (EigeneRasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 SpielVariablen.RassenImSpiel (GegnerischeRasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (GegnerischeRasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
 
    function DiplomatischenStatusPrüfen
@@ -75,9 +75,9 @@ package DiplomatischerZustand is
        Pre => (
                  EigeneRasseExtern /= FremdeRasseExtern
                and
-                 SpielVariablen.RassenImSpiel (EigeneRasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (EigeneRasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 SpielVariablen.RassenImSpiel (FremdeRasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (FremdeRasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
 
    function DiplomatischerStatusLetzteÄnderung
@@ -88,9 +88,9 @@ package DiplomatischerZustand is
        Pre => (
                  EigeneRasseExtern /= FremdeRasseExtern
                and
-                 SpielVariablen.RassenImSpiel (EigeneRasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (EigeneRasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 SpielVariablen.RassenImSpiel (FremdeRasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (FremdeRasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
 
    function AktuelleSympathie
@@ -101,9 +101,9 @@ package DiplomatischerZustand is
        Pre => (
                  EigeneRasseExtern /= FremdeRasseExtern
                and
-                 SpielVariablen.RassenImSpiel (EigeneRasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (EigeneRasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 SpielVariablen.RassenImSpiel (FremdeRasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (FremdeRasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
 
 end DiplomatischerZustand;

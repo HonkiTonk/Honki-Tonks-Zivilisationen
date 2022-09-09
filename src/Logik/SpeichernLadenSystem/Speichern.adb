@@ -117,8 +117,8 @@ package body Speichern is
       Natural'Write (Stream (File => DateiSpeichernExtern),
                      SpielVariablen.Allgemeines.Rundengrenze);
       
-      RassenDatentypen.RassenImSpielArray'Write (Stream (File => DateiSpeichernExtern),
-                                                 SpielVariablen.RassenImSpiel);
+      SpielVariablen.RassenbelegungArray'Write (Stream (File => DateiSpeichernExtern),
+                                                 SpielVariablen.Rassenbelegung);
       
       RassenDatentypen.Rassen_Enum'Write (Stream (File => DateiSpeichernExtern),
                                           SpielVariablen.Allgemeines.RasseAmZugNachLaden);
@@ -173,7 +173,7 @@ package body Speichern is
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
-           SpielVariablen.RassenImSpiel (RasseSchleifenwert)
+           SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung
          is
             when RassenDatentypen.Leer_Spieler_Enum =>
                null;
@@ -220,7 +220,7 @@ package body Speichern is
       for DiplomatieSchleifenwert in SpielVariablen.DiplomatieArray'Range (2) loop
 
          case
-           SpielVariablen.RassenImSpiel (DiplomatieSchleifenwert)
+           SpielVariablen.Rassenbelegung (DiplomatieSchleifenwert).Belegung
          is
             when RassenDatentypen.Leer_Spieler_Enum =>
                null;

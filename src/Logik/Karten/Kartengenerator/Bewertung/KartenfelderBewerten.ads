@@ -12,7 +12,7 @@ package KartenfelderBewerten is
      (RasseExtern : in RassenDatentypen.Rassen_Enum)
      with
        Pre => (
-                 if RasseExtern /= RassenDatentypen.Keine_Rasse_Enum then SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 if RasseExtern /= RassenDatentypen.Keine_Rasse_Enum then SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
 
 private

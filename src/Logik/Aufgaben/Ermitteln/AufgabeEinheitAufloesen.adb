@@ -14,7 +14,7 @@ package body AufgabeEinheitAufloesen is
    is begin
       
       case
-        SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse)
+        SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung
       is
          when RassenDatentypen.KI_Spieler_Enum =>
             EinheitenErzeugenEntfernen.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);

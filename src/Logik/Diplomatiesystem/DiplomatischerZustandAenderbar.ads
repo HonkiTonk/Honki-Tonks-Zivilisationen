@@ -15,9 +15,9 @@ package DiplomatischerZustandAenderbar is
        Pre => (
                  RasseEinsExtern /= RasseZweiExtern
                and
-                 SpielVariablen.RassenImSpiel (RasseEinsExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (RasseEinsExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 SpielVariablen.RassenImSpiel (RasseZweiExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (RasseZweiExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
    
 private

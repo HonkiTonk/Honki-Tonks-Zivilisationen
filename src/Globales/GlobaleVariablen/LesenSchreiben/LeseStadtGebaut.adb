@@ -1,6 +1,9 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with TextKonstanten;
+with StadtKonstanten;
+
 package body LeseStadtGebaut is
 
    function ID
@@ -198,8 +201,17 @@ package body LeseStadtGebaut is
       return Unbounded_Wide_Wide_String
    is begin
       
-      return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Name;
+      if
+        StadtRasseNummerExtern.Rasse = RassenDatentypen.Keine_Rasse_Enum
+        or
+          StadtRasseNummerExtern.Nummer = StadtKonstanten.LeerNummer
+      then
+         return TextKonstanten.LeerUnboundedString;
       
+      else
+         return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Name;
+      end if;
+   
    end Name;
    
    
@@ -208,7 +220,7 @@ package body LeseStadtGebaut is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       YKoordinateExtern : in KartenDatentypen.UmgebungsbereichDrei;
       XKoordinateExtern : in KartenDatentypen.UmgebungsbereichDrei)
-      return Boolean
+   return Boolean
    is begin
       
       return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).UmgebungBewirtschaftung (YKoordinateExtern, XKoordinateExtern);
@@ -219,7 +231,7 @@ package body LeseStadtGebaut is
    
    function UmgebungGröße
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return KartenDatentypen.UmgebungsbereichDrei
+   return KartenDatentypen.UmgebungsbereichDrei
    is begin
       
       return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).UmgebungGröße;
@@ -231,7 +243,7 @@ package body LeseStadtGebaut is
    function Meldungen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       WelcheMeldungExtern : in StadtDatentypen.Stadt_Meldung_Art_Enum)
-      return StadtDatentypen.Stadt_Meldung_Enum
+   return StadtDatentypen.Stadt_Meldung_Enum
    is begin
       
       return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Meldungen (WelcheMeldungExtern);
@@ -242,7 +254,7 @@ package body LeseStadtGebaut is
       
    function KIBeschäftigung
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return KIDatentypen.Stadt_Aufgabe_Enum
+   return KIDatentypen.Stadt_Aufgabe_Enum
    is begin
       
       return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).KIBeschäftigung;
@@ -253,7 +265,7 @@ package body LeseStadtGebaut is
    
    function GanzerEintrag
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return StadtRecords.StadtGebautRecord
+   return StadtRecords.StadtGebautRecord
    is begin
       
       return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer);

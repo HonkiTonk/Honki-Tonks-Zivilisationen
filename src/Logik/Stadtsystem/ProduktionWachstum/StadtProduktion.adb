@@ -43,7 +43,7 @@ package body StadtProduktion is
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
                
          case
-           SpielVariablen.RassenImSpiel (RasseSchleifenwert)
+           SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung
          is
             when RassenDatentypen.Leer_Spieler_Enum =>
                null;

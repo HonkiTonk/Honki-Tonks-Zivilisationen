@@ -62,16 +62,16 @@ package body SpieleinstellungenRasseSpieler is
    is begin
       
       case
-        SpielVariablen.RassenImSpiel (RasseExtern)
+        SpielVariablen.Rassenbelegung (RasseExtern).Belegung
       is
          when RassenDatentypen.Leer_Spieler_Enum =>
-            SpielVariablen.RassenImSpiel (RasseExtern) := RassenDatentypen.Mensch_Spieler_Enum;
+            SpielVariablen.Rassenbelegung (RasseExtern).Belegung := RassenDatentypen.Mensch_Spieler_Enum;
                   
          when RassenDatentypen.Mensch_Spieler_Enum =>
-            SpielVariablen.RassenImSpiel (RasseExtern) := RassenDatentypen.KI_Spieler_Enum;
+            SpielVariablen.Rassenbelegung (RasseExtern).Belegung := RassenDatentypen.KI_Spieler_Enum;
                   
          when RassenDatentypen.KI_Spieler_Enum =>
-            SpielVariablen.RassenImSpiel (RasseExtern) := RassenDatentypen.Leer_Spieler_Enum;
+            SpielVariablen.Rassenbelegung (RasseExtern).Belegung := RassenDatentypen.Leer_Spieler_Enum;
       end case;
       
    end BelegungÄndern;
@@ -86,7 +86,7 @@ package body SpieleinstellungenRasseSpieler is
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
-           SpielVariablen.RassenImSpiel (RasseSchleifenwert)
+           SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung
          is
             when RassenDatentypen.Leer_Spieler_Enum =>
                null;
@@ -106,7 +106,7 @@ package body SpieleinstellungenRasseSpieler is
    procedure RasseAutomatischBelegen
    is begin
       
-      SpielVariablen.RassenImSpiel (ZufallsgeneratorenSpieleinstellungen.ZufälligeRasse) := RassenDatentypen.Mensch_Spieler_Enum;
+      SpielVariablen.Rassenbelegung (ZufallsgeneratorenSpieleinstellungen.ZufälligeRasse).Belegung := RassenDatentypen.Mensch_Spieler_Enum;
       
    end RasseAutomatischBelegen;
    
@@ -117,7 +117,7 @@ package body SpieleinstellungenRasseSpieler is
       
       RasseMenschSchnellstart := ZufallsgeneratorenSpieleinstellungen.ZufälligeRasse;
       
-      SpielVariablen.RassenImSpiel (RasseMenschSchnellstart) := RassenDatentypen.Mensch_Spieler_Enum;
+      SpielVariablen.Rassenbelegung (RasseMenschSchnellstart).Belegung := RassenDatentypen.Mensch_Spieler_Enum;
       
       KIBelegenSchleife:
       loop
@@ -130,7 +130,7 @@ package body SpieleinstellungenRasseSpieler is
             null;
             
          else
-            SpielVariablen.RassenImSpiel (RasseKISchnellstart) := RassenDatentypen.KI_Spieler_Enum;
+            SpielVariablen.Rassenbelegung (RasseKISchnellstart).Belegung := RassenDatentypen.KI_Spieler_Enum;
             exit KIBelegenSchleife;
          end if;
          
@@ -147,7 +147,7 @@ package body SpieleinstellungenRasseSpieler is
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
         
          case
-           SpielVariablen.RassenImSpiel (RasseSchleifenwert)
+           SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung
          is
             when RassenDatentypen.Leer_Spieler_Enum =>
                null;
@@ -172,7 +172,7 @@ package body SpieleinstellungenRasseSpieler is
                   is
                      when ZahlenDatentypen.NotAus'Last =>
                         -- Hier wieder eine Meldung einbauen für den Fall dass die Rasse nicht platziert werden konnte? äöü
-                        SpielVariablen.RassenImSpiel (RasseSchleifenwert) := RassenDatentypen.Leer_Spieler_Enum;
+                        SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung := RassenDatentypen.Leer_Spieler_Enum;
                         
                      when others =>
                         null;
@@ -362,7 +362,7 @@ package body SpieleinstellungenRasseSpieler is
                                                   StadtRasseNummerExtern => (RasseExtern, 0));
       
       case
-        SpielVariablen.RassenImSpiel (RasseExtern)
+        SpielVariablen.Rassenbelegung (RasseExtern).Belegung
       is
          when RassenDatentypen.Mensch_Spieler_Enum =>
             SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell := (StartkoordinateEinsExtern.EAchse, Karten.Karteneinstellungen.Kartengröße.YAchse / 2, Karten.Karteneinstellungen.Kartengröße.XAchse / 2);

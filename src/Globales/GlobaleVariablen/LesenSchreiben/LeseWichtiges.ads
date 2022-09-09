@@ -15,7 +15,7 @@ package LeseWichtiges is
       return Integer
      with
        Pre => (
-                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function GeldZugewinnProRunde
@@ -23,7 +23,7 @@ package LeseWichtiges is
       return ProduktionDatentypen.Produktion
      with
        Pre => (
-                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
 
    function GesamteForschungsrate
@@ -31,7 +31,7 @@ package LeseWichtiges is
       return ProduktionDatentypen.Lagermenge
      with
        Pre => (
-                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function Forschungsmenge
@@ -39,7 +39,7 @@ package LeseWichtiges is
       return ProduktionDatentypen.Lagermenge
      with
        Pre => (
-                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function VerbleibendeForschungszeit
@@ -47,7 +47,7 @@ package LeseWichtiges is
       return ProduktionDatentypen.Lagermenge
      with
        Pre => (
-                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function Forschungsprojekt
@@ -55,7 +55,7 @@ package LeseWichtiges is
       return ForschungenDatentypen.ForschungIDMitNullWert
      with
        Pre => (
-                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
 
    function Erforscht
@@ -64,7 +64,7 @@ package LeseWichtiges is
       return Boolean
      with
        Pre => (
-                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function AnzahlStädte
@@ -72,7 +72,7 @@ package LeseWichtiges is
       return StadtDatentypen.MaximaleStädteMitNullWert
      with
        Pre => (
-                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               ),
    
        Post => (
@@ -84,7 +84,7 @@ package LeseWichtiges is
       return EinheitenDatentypen.MaximaleEinheitenMitNullWert
      with
        Pre => (
-                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               ),
    
        Post => (
@@ -96,7 +96,7 @@ package LeseWichtiges is
       return EinheitenDatentypen.MaximaleEinheitenMitNullWert
      with
        Pre => (
-                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               ),
    
        Post => (
@@ -108,7 +108,7 @@ package LeseWichtiges is
       return EinheitenDatentypen.MaximaleEinheitenMitNullWert
      with
        Pre => (
-                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               ),
    
        Post => (
@@ -120,7 +120,7 @@ package LeseWichtiges is
       return EinheitenDatentypen.MaximaleEinheitenMitNullWert
      with
        Pre => (
-                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               ),
    
        Post => (

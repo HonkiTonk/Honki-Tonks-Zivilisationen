@@ -27,7 +27,7 @@ package LeseVerbesserungenDatenbank is
       return KartenDatentypen.Einzelbewertung
      with
        Pre => (
-                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function BewertungWeg
@@ -36,7 +36,7 @@ package LeseVerbesserungenDatenbank is
       return KartenDatentypen.Einzelbewertung
      with
        Pre => (
-                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function WirtschaftVerbesserung
@@ -46,7 +46,7 @@ package LeseVerbesserungenDatenbank is
       return ProduktionDatentypen.Einzelproduktion
      with
        Pre => (
-                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function WirtschaftWeg
@@ -56,7 +56,7 @@ package LeseVerbesserungenDatenbank is
       return ProduktionDatentypen.Einzelproduktion
      with
        Pre => (
-                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function KampfVerbesserung
@@ -66,7 +66,7 @@ package LeseVerbesserungenDatenbank is
       return KampfDatentypen.KampfwerteAllgemein
      with
        Pre => (
-                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function KampfWeg
@@ -76,7 +76,7 @@ package LeseVerbesserungenDatenbank is
       return KampfDatentypen.KampfwerteAllgemein
      with
        Pre => (
-                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
 
 end LeseVerbesserungenDatenbank;

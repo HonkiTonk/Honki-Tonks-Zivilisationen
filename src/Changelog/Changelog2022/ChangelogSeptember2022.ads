@@ -140,24 +140,29 @@ package ChangelogSeptember2022 is
    
    
 
-   -- Version 0.03. => 0.03. (10.09.2022):
+   -- Version 0.03.8805 => 0.03. (10.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.8725 => 0.03. (09.09.2022):
+   -- Version 0.03.8725 => 0.03.8805 (09.09.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Diverse Fehler die zu Abstürzen führten und durch Einbau/Änderung von Funktionen in letzter Zeit auftraten behoben.
+   -- Angefangern weitere Lese/Schreibeprüfungen einzubauen um so die zukünftige Modifizierbarkeit zu erhöhen.
+   -- System zur Überprüfung und Konsequenzermittlung für belegte und besiegte Rassen erweitert.
+   -- Der Kartengenerator berücksichtigt jetzt wieder die Kartenarteinstellung des Nutzers.
+   -- Planetenvernichtung eingebaut.
+   -- Angefangen die Maussteuerung von Einheiten besser an die SFML anzupassen und zu erweitern.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 
    -- Version 0.03.8600 => 0.03.8725 (08.09.2022):
    
    -- Stadtbefehle existieren jetzt als auswählbare Texte.
-   -- Erstkontakt mit einer Rasse wird jetzt auch hergesetllt, wenn man Land in ihren Grenzen sieht.
+   -- Erstkontakt mit einer Rasse wird jetzt auch hergesetllt wenn man Land in ihren Grenzen sieht.
    -- Texteingaben können jetzt auch mit der rechten Muastaste abgebrochen werden.
    -- Fehler behoben der dazu führen konnte das beim Entfernen einer Einheit es zu einem Absturz kam.
    -- Fehler behoben der beim bauen einer Farm auf Küstengrund zu einem Absturz führte.

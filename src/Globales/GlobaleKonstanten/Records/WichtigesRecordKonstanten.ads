@@ -40,7 +40,8 @@ package WichtigesRecordKonstanten is
                                                                  Schwierigkeitsgrad  => SpielDatentypen.Schwierigkeitsgrad_Leicht_Enum,
                                                                  Rundenanzahl        => Positive'First,
                                                                  Rundengrenze        => Natural'First,   
-                                                                 IronmanName         => TextKonstanten.LeerUnboundedString
+                                                                 IronmanName         => TextKonstanten.LeerUnboundedString,
+                                                                 PlanetVernichtet    => RassenDatentypen.Keine_Rasse_Enum
                                                                 );
    
    LeerGrenzen : constant SpielRecords.GrenzenRecord := (
@@ -63,6 +64,11 @@ package WichtigesRecordKonstanten is
                                                                 AktuellerZustand           => WichtigesKonstanten.LeerAktuellerZustand,
                                                                 AktuelleSympathieBewertung => WichtigesKonstanten.LeerAktuelleSympathieBewertung,
                                                                 ZeitSeitLetzterÄnderung    => WichtigesKonstanten.DiplomatischerStatusÄnderungszeit
+                                                               );
+   
+   LeerRassenbelegung : constant SpielRecords.RassenRecords := (
+                                                                Belegung => RassenDatentypen.Leer_Spieler_Enum,
+                                                                Besiegt  => False
                                                                );
    
    -- Wird noch nicht verwendet. Wird das jemals sinnvoll sein? äöü

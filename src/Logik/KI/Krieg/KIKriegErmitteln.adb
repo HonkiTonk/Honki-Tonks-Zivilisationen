@@ -20,7 +20,7 @@ package body KIKriegErmitteln is
          if
            RasseSchleifenwert = RasseExtern
            or
-             SpielVariablen.RassenImSpiel (RasseSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
+             SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung = RassenDatentypen.Leer_Spieler_Enum
          then
             null;
             
@@ -66,7 +66,7 @@ package body KIKriegErmitteln is
          if
            RasseSchleifenwert = RasseExtern
            or
-             SpielVariablen.RassenImSpiel (RasseSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
+             SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung = RassenDatentypen.Leer_Spieler_Enum
          then
             null;
             

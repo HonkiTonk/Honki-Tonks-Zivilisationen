@@ -16,7 +16,7 @@ package KIKartenfeldbewertungModifizieren is
       return KartenDatentypen.Bewertung_Enum
      with
        Pre => (
-                 SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.KI_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.KI_Spieler_Enum
                and
                  KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
                and

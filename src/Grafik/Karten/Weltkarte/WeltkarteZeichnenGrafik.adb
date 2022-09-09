@@ -254,6 +254,16 @@ package body WeltkarteZeichnenGrafik is
          when others =>
             EinheitID := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummer);
       end case;
+      
+      case
+        EinheitID
+      is
+         when EinheitenKonstanten.LeerID =>
+            return;
+            
+         when others =>
+            null;
+      end case;
             
       if
         EinheitRasseNummer.Rasse = RasseEinheitExtern.Rasse

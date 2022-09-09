@@ -15,8 +15,9 @@ with WichtigesRecordKonstanten;
 
 -- Die Zugriffe auf das alles hier auch mal in Funktionen/Prozeduren auslagern? äö
 package SpielVariablen is
-   
-   RassenImSpiel : RassenDatentypen.RassenImSpielArray := (others => RassenDatentypen.Leer_Spieler_Enum);
+      
+   type RassenbelegungArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of SpielRecords.RassenRecords;
+   Rassenbelegung : RassenbelegungArray := (others => WichtigesRecordKonstanten.LeerRassenbelegung);
    
    Debug : SystemRecords.DebugRecord := (others => False);
    

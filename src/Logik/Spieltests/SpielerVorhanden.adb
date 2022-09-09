@@ -17,7 +17,7 @@ package body SpielerVorhanden is
          if
            RasseSchleifenwert = RasseExtern
            or
-             SpielVariablen.RassenImSpiel (RasseSchleifenwert) not in Spieler_Belegt_Enum'Range
+             SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung not in Spieler_Belegt_Enum'Range
          then
             null;
             
@@ -44,7 +44,7 @@ package body SpielerVorhanden is
          if
            RasseSchleifenwert = RasseExtern
            or
-             SpielVariablen.RassenImSpiel (RasseSchleifenwert) /= RassenDatentypen.Mensch_Spieler_Enum
+             SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung /= RassenDatentypen.Mensch_Spieler_Enum
          then
             null;
             
@@ -71,7 +71,7 @@ package body SpielerVorhanden is
          if
            RasseSchleifenwert = RasseExtern
            or
-             SpielVariablen.RassenImSpiel (RasseSchleifenwert) /= RassenDatentypen.KI_Spieler_Enum
+             SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung /= RassenDatentypen.KI_Spieler_Enum
          then
             null;
             

@@ -7,12 +7,11 @@ with StadtRecordKonstanten;
 
 with LeseGebaeudeDatenbank;
 with LeseEinheitenDatenbank;
+with SchreibeKarten;
+with LeseStadtGebaut;
 
--- Stadt (und eventuell einige andere Sachen) werden nicht vollständig auf Leer gesetzt beim entfernen, das mal besser ändern. äöü
---  and
--- KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Karteneinstellungen.Kartengröße.YAchse
---  and
--- KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Karteneinstellungen.Kartengröße.XAchse);
+with NachGrafiktask;
+
 package body SchreibeStadtGebaut is
 
    procedure ID
@@ -552,6 +551,11 @@ package body SchreibeStadtGebaut is
    procedure Nullsetzung
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
+      
+      NachGrafiktask.AktuelleStadt := StadtKonstanten.LeerNummer;
+      
+      SchreibeKarten.Verbesserung (KoordinatenExtern  => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
+                                   VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum);
       
       SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer) := StadtRecordKonstanten.LeerStadt;
       

@@ -17,7 +17,7 @@ package ZufallsgeneratorenStartkoordinaten is
       return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre => (
-                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               ),
            
        Post => (

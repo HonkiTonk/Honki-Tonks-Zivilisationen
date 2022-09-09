@@ -9,14 +9,14 @@ with TextaccessVariablen;
 
 with ViewsEinstellenGrafik;
 with HintergrundGrafik;
-with NachGrafiktask;
 with EinstellungenGrafik;
 with TextberechnungenBreiteGrafik;
 
 package body AbspannGrafik is
 
    procedure Abspann
-     (AbspannExtern : in GrafikDatentypen.Abspann_Enum)
+     (AbspannExtern : in GrafikDatentypen.Abspann_Enum;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       Viewfläche := ViewsEinstellenGrafik.ViewflächeAuflösungAnpassen (ViewflächeExtern => Viewfläche);
@@ -25,16 +25,37 @@ package body AbspannGrafik is
                                             GrößeExtern          => Viewfläche,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Abspannbereich);
       
-      HintergrundGrafik.Rassenhintergrund (RasseExtern       => NachGrafiktask.AktuelleRasse,
+      HintergrundGrafik.Rassenhintergrund (RasseExtern       => RasseExtern,
                                            HintergrundExtern => AbspannExtern,
                                            AbmessungenExtern => Viewfläche);
       
+      case
+        AbspannExtern
+      is
+         when GrafikDatentypen.Planet_Vernichtet_Enum =>
+            Viewfläche := PlanetVernichtet (ViewflächeExtern => Viewfläche);
+            
+         when GrafikDatentypen.Gewonnen_Enum =>
+            Viewfläche := Gewonnen (ViewflächeExtern => Viewfläche);
+      end case;
+      
+   end Abspann;
+   
+   
+   
+   function PlanetVernichtet
+     (ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
+     return Sf.System.Vector2.sfVector2f
+   is begin
+      
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TextAccess,
-                                         str  => "\o/");
+                                         str  => "oO");
       
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.TextAccess,
-                                                                              ViewbreiteExtern => Viewfläche.x);
-      Textposition.y := Viewfläche.y / 2.00;
+                                                                              ViewbreiteExtern => ViewflächeExtern.x);
+      Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.TextAccess,
+                                                                          TextbreiteExtern => 0.00);
+      Textposition.y := ViewflächeExtern.y / 2.00;
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.TextAccess,
                                     position => Textposition);
@@ -42,6 +63,34 @@ package body AbspannGrafik is
       Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
                                          text         => TextaccessVariablen.TextAccess);
       
-   end Abspann;
+      return (Textbreite, Textposition.y);
+      
+   end PlanetVernichtet;
+   
+   
+   
+   function Gewonnen
+     (ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
+     return Sf.System.Vector2.sfVector2f
+   is begin
+      
+      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TextAccess,
+                                         str  => "\o/");
+      
+      Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.TextAccess,
+                                                                              ViewbreiteExtern => ViewflächeExtern.x);
+      Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.TextAccess,
+                                                                          TextbreiteExtern => 0.00);
+      Textposition.y := ViewflächeExtern.y / 2.00;
+      
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.TextAccess,
+                                    position => Textposition);
+        
+      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
+                                         text         => TextaccessVariablen.TextAccess);
+      
+      return (Textbreite, Textposition.y);
+      
+   end Gewonnen;
 
 end AbspannGrafik;

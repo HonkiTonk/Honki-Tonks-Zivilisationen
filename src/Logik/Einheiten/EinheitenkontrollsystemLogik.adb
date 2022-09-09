@@ -1,8 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with KartenKonstanten;
-
 with LeseEinheitenGebaut;
 
 with TasteneingabeLogik;
@@ -13,16 +11,15 @@ with BewegungEinheiten;
 with Kartenkoordinatenberechnungssystem;
 with Mausauswahl;
 
--- Das hier mal umbenennen, man kann hier ja inzwischen wesentlich mehr machen als nur die Einheit bewegen.
 package body EinheitenkontrollsystemLogik is
 
-   procedure BewegungEinheitenRichtung
+   procedure Einheitenkontrolle
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       Änderung := KeineÄnderung;
       
-      BewegenSchleife:
+      KontrollSchleife:
       loop
          
          case
@@ -36,9 +33,9 @@ package body EinheitenkontrollsystemLogik is
                return;
          end case;
          
-      end loop BewegenSchleife;
+      end loop KontrollSchleife;
       
-   end BewegungEinheitenRichtung;
+   end Einheitenkontrolle;
    
    
    
@@ -51,6 +48,9 @@ package body EinheitenkontrollsystemLogik is
       case
         BefehlExtern
       is
+         when TastenbelegungDatentypen.Auswählen_Enum =>
+            return BefehleMaus (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            
          when TastenbelegungDatentypen.Tastenbelegung_Bewegung_Enum'Range =>
             Änderung := Richtung (BefehlExtern);
                
@@ -71,6 +71,9 @@ package body EinheitenkontrollsystemLogik is
             -- Statt nur bei Leer nichts machen und in allen anderen Fällen zurück oder nur bei Menü_Zurück zurück und sonst nicht?
             null;
             
+         when TastenbelegungDatentypen.Menü_Zurück_Enum =>
+            return False;
+            
          when others =>
             return False;
       end case;
@@ -78,8 +81,7 @@ package body EinheitenkontrollsystemLogik is
       if
         Änderung = KeineÄnderung
       then
-         return BefehleMaus (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-         
+         return True;
       else
          return PositionÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                  ÄnderungExtern           => Änderung);
@@ -89,6 +91,7 @@ package body EinheitenkontrollsystemLogik is
    
    
    
+   -- Das hier nach BewegungEinheit oder irgendeiner Bewegungsprüfung schieben? äöü
    function PositionÄndern
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
@@ -116,61 +119,29 @@ package body EinheitenkontrollsystemLogik is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
-            
+      
+      -- Bewegung und dann eine Option für jeden gültigen Befehl. äöü
+      Mausbefehl := Mausauswahl.Einheitenbefehle;
+      
       case
-        Mausauswahl.Einheitenbewegung
+        Mausbefehl
       is
-         when True =>
-            return MausInKarte (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-            
-         when False =>
+         when BefehleDatentypen.Leer_Enum =>
             return False;
-      end case;
             
-      -- return MausInBefehle (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-                  
+         when BefehleDatentypen.Weltkartenbefehle_Bewegung_Enum'Range =>
+            return EinheitenbewegungMaus (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            
+         when BefehleDatentypen.Weltkartenbefehle_Vorhanden_Enum'Range =>
+            return EinheitenbefehlMaus (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                        BefehleExtern            => Mausbefehl);
+      end case;
+                              
    end BefehleMaus;
    
    
    
-   function MausInKarte
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return Boolean
-   is begin
-            
-      EingabeSchleife:
-      loop
-         
-         BefehlMaus := TasteneingabeLogik.Tastenwert;
-         
-         case
-           BefehlMaus
-         is
-            when TastenbelegungDatentypen.Menü_Zurück_Enum =>
-               return False;
-               
-            when TastenbelegungDatentypen.Ebene_Hoch_Enum | TastenbelegungDatentypen.Ebene_Runter_Enum =>
-               return PositionÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                       ÄnderungExtern          => Richtung (BefehlMaus));
-               
-            when TastenbelegungDatentypen.Auswählen_Enum =>
-               return EinheitBewegenMaus (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-               
-            when TastenbelegungDatentypen.Leer_Tastenbelegung_Enum =>
-               null;
-               
-            when others =>
-               return EinheitBefehle (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                      BefehlExtern             => BefehlMaus);
-         end case;
-         
-      end loop EingabeSchleife;
-      
-   end MausInKarte;
-   
-   
-   
-   function EinheitBewegenMaus
+   function EinheitenbewegungMaus
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
@@ -188,12 +159,8 @@ package body EinheitenkontrollsystemLogik is
                                                                                                     ÄnderungExtern    => (EÄnderungSchleifenwert, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
                                                                                                     LogikGrafikExtern => True);
                
+               -- In diesem Fall wird die Prüfung auf Leer nicht benötigt, da im aktuellen System die Cursorkoordinaten niemals ungültig sein können.
                if
-                 KartenWert.XAchse = KartenKonstanten.LeerXAchse
-               then
-                  null;
-                  
-               elsif
                  KartenWert = SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAktuell
                then
                   Änderung := (EÄnderungSchleifenwert, YÄnderungSchleifenwert, XÄnderungSchleifenwert);
@@ -211,15 +178,16 @@ package body EinheitenkontrollsystemLogik is
       
       return False;
       
-   end EinheitBewegenMaus;
+   end EinheitenbewegungMaus;
    
    
    
-   function MausInBefehle
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+   function EinheitenbefehlMaus
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      BefehleExtern : in BefehleDatentypen.Weltkartenbefehle_Vorhanden_Enum)
       return Boolean
    is begin
-      
+            
       case
         EinheitRasseNummerExtern.Nummer
       is
@@ -227,11 +195,11 @@ package body EinheitenkontrollsystemLogik is
             null;
             
          when others =>
-            null;
+            Platzhalter := BefehleExtern;
       end case;
       
       return True;
       
-   end MausInBefehle;
+   end EinheitenbefehlMaus;
 
 end EinheitenkontrollsystemLogik;

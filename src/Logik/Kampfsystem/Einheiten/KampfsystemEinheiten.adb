@@ -14,6 +14,7 @@ with LeseEinheitenDatenbank;
 with ZufallsgeneratorenKampf;
 with KampfwerteEinheitErmitteln;
 with EinheitenErzeugenEntfernen;
+with PZBEingesetztLogik;
 
 package body KampfsystemEinheiten is
 
@@ -22,19 +23,27 @@ package body KampfsystemEinheiten is
       VerteidigerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
-
-      KampfwerteVerteidiger.Verteidigung := KampfwerteEinheitErmitteln.AktuelleVerteidigungEinheit (EinheitRasseNummerExtern => VerteidigerExtern,
-                                                                                                    AngreiferExtern          => False);
-      KampfwerteVerteidiger.Angriff := KampfwerteEinheitErmitteln.AktuellerAngriffEinheit (EinheitRasseNummerExtern => VerteidigerExtern,
-                                                                                           AngreiferExtern          => False);
       
-      KampfwerteAngreifer.Verteidigung := KampfwerteEinheitErmitteln.AktuelleVerteidigungEinheit (EinheitRasseNummerExtern => AngreiferExtern,
-                                                                                                  AngreiferExtern          => True);
-      KampfwerteAngreifer.Angriff := KampfwerteEinheitErmitteln.AktuellerAngriffEinheit (EinheitRasseNummerExtern => AngreiferExtern,
-                                                                                         AngreiferExtern          => True);
+      case
+        PZBEingesetztLogik.PZBEingesetzt (EinheitExtern => AngreiferExtern)
+      is
+         when True =>
+            return False;
+            
+         when False =>
+            KampfwerteVerteidiger.Verteidigung := KampfwerteEinheitErmitteln.AktuelleVerteidigungEinheit (EinheitRasseNummerExtern => VerteidigerExtern,
+                                                                                                          AngreiferExtern          => False);
+            KampfwerteVerteidiger.Angriff := KampfwerteEinheitErmitteln.AktuellerAngriffEinheit (EinheitRasseNummerExtern => VerteidigerExtern,
+                                                                                                 AngreiferExtern          => False);
       
-      return Kampf (VerteidigerExtern => VerteidigerExtern,
-                    AngreiferExtern   => AngreiferExtern);
+            KampfwerteAngreifer.Verteidigung := KampfwerteEinheitErmitteln.AktuelleVerteidigungEinheit (EinheitRasseNummerExtern => AngreiferExtern,
+                                                                                                        AngreiferExtern          => True);
+            KampfwerteAngreifer.Angriff := KampfwerteEinheitErmitteln.AktuellerAngriffEinheit (EinheitRasseNummerExtern => AngreiferExtern,
+                                                                                               AngreiferExtern          => True);
+      
+            return Kampf (VerteidigerExtern => VerteidigerExtern,
+                          AngreiferExtern   => AngreiferExtern);
+      end case;
       
    end KampfsystemNahkampf;
 

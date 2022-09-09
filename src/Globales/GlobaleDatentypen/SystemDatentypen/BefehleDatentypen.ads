@@ -13,12 +13,16 @@ package BefehleDatentypen is
    
    
    
+   -- Das hier mit den Einheitenbefehlen zusammenlegen? äöü
    type Weltkartenbefehle_Enum is (
                                    Leer_Enum,
+                                   
+                                   Bewegen_Enum,
                                    
                                    A_Enum
                                   );
    
+   subtype Weltkartenbefehle_Bewegung_Enum is Weltkartenbefehle_Enum range Bewegen_Enum .. Bewegen_Enum;
    subtype Weltkartenbefehle_Vorhanden_Enum is Weltkartenbefehle_Enum range A_Enum .. Weltkartenbefehle_Enum'Last;
 
 end BefehleDatentypen;

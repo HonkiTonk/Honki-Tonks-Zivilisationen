@@ -18,7 +18,7 @@ package KIStadtSuchen is
       return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre => (
-                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                and
                  AnfangKoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
                and
@@ -36,7 +36,7 @@ package KIStadtSuchen is
       return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre => (
-                 SpielVariablen.RassenImSpiel (FeindlicheRasseExtern) = RassenDatentypen.KI_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (FeindlicheRasseExtern).Belegung = RassenDatentypen.KI_Spieler_Enum
               ),
 
        Post => (
@@ -63,7 +63,7 @@ private
       return StadtDatentypen.MaximaleStädteMitNullWert
      with
        Pre => (
-                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                and
                  AnfangKoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
                and

@@ -82,6 +82,16 @@ package SpielRecords is
       Rundenanzahl : Positive;
       Rundengrenze : Natural;   
       IronmanName : Unbounded_Wide_Wide_String;
+      PlanetVernichtet : RassenDatentypen.Rassen_Enum;
+      
+   end record;
+   
+   
+   
+   type RassenRecords is record
+      
+      Belegung : RassenDatentypen.Spieler_Enum;
+      Besiegt : Boolean;
       
    end record;
 

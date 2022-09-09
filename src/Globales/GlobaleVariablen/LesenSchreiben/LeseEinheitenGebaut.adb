@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KampfDatentypen; use KampfDatentypen;
+with EinheitenKonstanten;
 
 with LeseEinheitenDatenbank;
 
@@ -15,7 +16,16 @@ package body LeseEinheitenGebaut is
       return EinheitenDatentypen.EinheitenIDMitNullWert
    is begin
       
-      return SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).ID;
+      if
+        EinheitRasseNummerExtern.Rasse = RassenDatentypen.Keine_Rasse_Enum
+        or
+          EinheitRasseNummerExtern.Nummer = EinheitenKonstanten.LeerNummer
+      then
+         return EinheitenKonstanten.LeerID;
+         
+      else
+         return SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).ID;
+      end if;
       
    end ID;
    
@@ -85,8 +95,8 @@ package body LeseEinheitenGebaut is
    is begin
       
       Beförderungsgrenze := LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                         IDExtern    => SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).ID);
-        
+                                                                       IDExtern    => ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      
       if
         SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Erfahrungspunkte > Beförderungsgrenze
       then
@@ -109,7 +119,7 @@ package body LeseEinheitenGebaut is
    is begin
       
       MaximalerRang := LeseEinheitenDatenbank.MaximalerRang (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                             IDExtern    => SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).ID);
+                                                             IDExtern    => ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       
       if
         SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Rang > MaximalerRang

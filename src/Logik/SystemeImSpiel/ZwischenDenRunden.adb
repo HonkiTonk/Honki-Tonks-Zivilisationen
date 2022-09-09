@@ -1,10 +1,9 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with RassenDatentypen; use RassenDatentypen;
 with DiplomatieDatentypen; use DiplomatieDatentypen;
+with SystemDatentypen;
 with StadtKonstanten;
-with SpielVariablen;
 with TextnummernKonstanten;
 with GrafikDatentypen;
 
@@ -24,6 +23,7 @@ with Speichern;
 with VerbesserungFertiggestellt;
 with NachGrafiktask;
 with JaNeinLogik;
+with AbspannLogik;
 
 package body ZwischenDenRunden is
 
@@ -60,17 +60,14 @@ package body ZwischenDenRunden is
       
       StadtProduktion.StadtProduktion (StadtRasseNummerExtern => StadtKonstanten.LeerRasseNummer);
       LadezeitenLogik.RundenendeSchreiben;
-      
-      GeldForschungMengeSetzen;
-      LadezeitenLogik.RundenendeSchreiben;
-      
-      ForschungsfortschrittLogik.Forschungsfortschritt;
-      LadezeitenLogik.RundenendeSchreiben;
             
       RundenanzahlSetzen;
       LadezeitenLogik.RundenendeSchreiben;
       
-      DiplomatieÄnderung;
+      GeldForschungDiplomatieÄndern;
+      LadezeitenLogik.RundenendeSchreiben;
+      
+      ForschungsfortschrittLogik.Forschungsfortschritt;
       LadezeitenLogik.RundenendeSchreiben;
       
       -- Autospeichern muss immer nach allen Änderungen kommen, sonst werden nicht alle Änderungen gespeichert.
@@ -88,28 +85,39 @@ package body ZwischenDenRunden is
    is begin
       
       case
+        SpielVariablen.Allgemeines.PlanetVernichtet
+      is
+         when RassenDatentypen.Keine_Rasse_Enum =>
+            null;
+            
+         when others =>
+            AbspannLogik.Abspann (AbspannExtern => GrafikDatentypen.Planet_Vernichtet_Enum);
+            return False;
+      end case;
+      
+      case
         SpielVariablen.Allgemeines.Weiterspielen
       is
-         when False =>
-            if
-              SiegbedingungenLogik.Siegbedingungen = False
-            then
-               null;
-            
-            elsif
-              JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageGewonnenWeiterspielen) = True
-            then
-               SpielVariablen.Allgemeines.Weiterspielen := True;
-                                 
-            else
-               return False;
-            end if;
-         
          when True =>
+            return True;
+            
+         when False =>
             null;
       end case;
       
-      return True;
+      case
+        SiegbedingungenLogik.Siegbedingungen
+      is
+         when SystemDatentypen.Leer_Enum =>
+            return True;
+            
+         when SystemDatentypen.Gewonnen_Enum =>
+            SpielVariablen.Allgemeines.Weiterspielen := JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageGewonnenWeiterspielen);
+            return SpielVariablen.Allgemeines.Weiterspielen;
+            
+         when SystemDatentypen.Verloren_Enum =>
+            return False;
+      end case;
       
    end NachSiegWeiterspielen;
    
@@ -132,72 +140,78 @@ package body ZwischenDenRunden is
    
    
    
-   procedure DiplomatieÄnderung
-   is begin
-      
-      RassenEinsSchleife:
-      for RasseEinsSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
-         RassenZweiSchleife:
-         for RasseZweiSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
-            
-            if
-              SpielVariablen.Diplomatie (RasseEinsSchleifenwert, RasseZweiSchleifenwert).AktuellerZustand = DiplomatieDatentypen.Unbekannt_Enum
-              or
-                RasseEinsSchleifenwert = RasseZweiSchleifenwert
-                or
-                  SpielVariablen.RassenImSpiel (RasseEinsSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
-              or
-                SpielVariablen.RassenImSpiel (RasseZweiSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
-            then
-               null;
-                  
-            else
-               DiplomatischerZustand.VergangeneZeitÄndern (RasseEinsExtern => RasseEinsSchleifenwert,
-                                                            RasseZweiExtern => RasseZweiSchleifenwert);
-               DiplomatischerZustand.SympathieÄndern (EigeneRasseExtern => RasseEinsSchleifenwert,
-                                                       FremdeRasseExtern => RasseZweiSchleifenwert,
-                                                       ÄnderungExtern    => 1);
-            end if;
-            
-         end loop RassenZweiSchleife;
-         
-      end loop RassenEinsSchleife;
-      
-   end DiplomatieÄnderung;
-   
-   
-   
-   procedure GeldForschungMengeSetzen
+   procedure GeldForschungDiplomatieÄndern
    is begin
       
       RassenSchleife:
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
-           SpielVariablen.RassenImSpiel (RasseSchleifenwert)
+           SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung
          is
             when RassenDatentypen.Leer_Spieler_Enum =>
                null;
             
             when others =>
-               if
-                 RasseSchleifenwert = RassenDatentypen.Ekropa_Enum
-               then
-                  null;
-                  
-               else
-                  SchreibeWichtiges.Geldmenge (RasseExtern         => RasseSchleifenwert,
-                                               GeldZugewinnExtern  => Integer (LeseWichtiges.GeldZugewinnProRunde (RasseExtern => RasseSchleifenwert)),
-                                               RechnenSetzenExtern => True);
-               end if;
-               
-               SchreibeWichtiges.Forschungsmenge (RasseExtern             => RasseSchleifenwert,
-                                                  ForschungZugewinnExtern => LeseWichtiges.GesamteForschungsrate (RasseExtern => RasseSchleifenwert),
-                                                  RechnenSetzenExtern     => True);
+               GeldForschung (RasseExtern => RasseSchleifenwert);
+               Diplomatie (RasseExtern => RasseSchleifenwert);
          end case;
          
       end loop RassenSchleife;
       
-   end GeldForschungMengeSetzen;
+   end GeldForschungDiplomatieÄndern;
+   
+   
+   
+   procedure GeldForschung
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+   is begin
+      
+      if
+        RasseExtern = RassenDatentypen.Ekropa_Enum
+      then
+         null;
+                  
+      else
+         SchreibeWichtiges.Geldmenge (RasseExtern         => RasseExtern,
+                                      GeldZugewinnExtern  => Integer (LeseWichtiges.GeldZugewinnProRunde (RasseExtern => RasseExtern)),
+                                      RechnenSetzenExtern => True);
+      end if;
+               
+      SchreibeWichtiges.Forschungsmenge (RasseExtern             => RasseExtern,
+                                         ForschungZugewinnExtern => LeseWichtiges.GesamteForschungsrate (RasseExtern => RasseExtern),
+                                         RechnenSetzenExtern     => True);
+      
+   end GeldForschung;
+   
+   
+   
+   procedure Diplomatie
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+   is begin
+      
+      RassenSchleife:
+      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
+            
+         if
+           SpielVariablen.Diplomatie (RasseExtern, RasseSchleifenwert).AktuellerZustand = DiplomatieDatentypen.Unbekannt_Enum
+           or
+             RasseExtern = RasseSchleifenwert
+             or
+               SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung = RassenDatentypen.Leer_Spieler_Enum
+         then
+            null;
+                  
+         else
+            DiplomatischerZustand.VergangeneZeitÄndern (RasseEinsExtern => RasseExtern,
+                                                         RasseZweiExtern => RasseSchleifenwert);
+            DiplomatischerZustand.SympathieÄndern (EigeneRasseExtern => RasseExtern,
+                                                    FremdeRasseExtern => RasseSchleifenwert,
+                                                    ÄnderungExtern    => 1);
+         end if;
+            
+      end loop RassenSchleife;
+      
+   end Diplomatie;
 
 end ZwischenDenRunden;

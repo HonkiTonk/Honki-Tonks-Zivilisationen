@@ -78,7 +78,9 @@ package body ImSpiel is
             end case;
             
          elsif
-           SpielVariablen.Allgemeines.Rundengrenze > SpielVariablen.Allgemeines.Rundenanzahl
+           SpielVariablen.Allgemeines.Rundengrenze > 0
+           and
+             SpielVariablen.Allgemeines.Rundengrenze < SpielVariablen.Allgemeines.Rundenanzahl
          then
             exit SpielSchleife;
             
@@ -100,7 +102,9 @@ package body ImSpiel is
    is begin
       
       if
-        SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Leer_Spieler_Enum
+        SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Leer_Spieler_Enum
+        or
+          SpielVariablen.Rassenbelegung (RasseExtern).Besiegt = True
       then
          return RueckgabeDatentypen.Start_Weiter_Enum;
       
@@ -133,7 +137,7 @@ package body ImSpiel is
          SpielVariablen.Allgemeines.RasseAmZugNachLaden := EinheitenKonstanten.LeerRasse;
             
          case
-           SpielVariablen.RassenImSpiel (RasseExtern)
+           SpielVariablen.Rassenbelegung (RasseExtern).Belegung
          is
             when RassenDatentypen.Mensch_Spieler_Enum =>
                return MenschlicherSpieler (RasseExtern => RasseExtern);
@@ -231,7 +235,7 @@ package body ImSpiel is
          NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Weltkarte_Enum;
          
          case
-           SpielVariablen.RassenImSpiel (RasseExtern)
+           SpielVariablen.Rassenbelegung (RasseExtern).Belegung
          is
             when RassenDatentypen.Mensch_Spieler_Enum =>
                AktuellerBefehlSpieler := BefehleLogik.Befehle (RasseExtern => RasseExtern);
@@ -242,11 +246,21 @@ package body ImSpiel is
          end case;
          
          case
+           SpielVariablen.Rassenbelegung (RasseExtern).Besiegt
+         is
+            when True =>
+               exit SpielerSchleife;
+               
+            when False =>
+               null;
+         end case;
+         
+         case
            AktuellerBefehlSpieler
          is
             when RueckgabeDatentypen.Start_Weiter_Enum =>
                if
-                 SpielVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
                then
                   null;
                   

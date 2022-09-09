@@ -137,11 +137,19 @@ package body LeseEinheitenDatenbank is
    
    function Beförderungsgrenze
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenID)
+      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return KampfDatentypen.Kampfwerte
    is begin
       
-      return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).Beförderungsgrenze;
+      case
+        IDExtern
+      is
+         when EinheitenKonstanten.LeerID =>
+            return KampfDatentypen.Kampfwerte'First;
+            
+         when others =>
+            return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).Beförderungsgrenze;
+      end case;
       
    end Beförderungsgrenze;
    
@@ -149,11 +157,18 @@ package body LeseEinheitenDatenbank is
    
    function MaximalerRang
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenID)
+      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return KampfDatentypen.Kampfwerte
    is begin
-      
-      return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).MaximalerRang;
+      case
+        IDExtern
+      is
+         when EinheitenKonstanten.LeerID =>
+            return KampfDatentypen.Kampfwerte'First;
+            
+         when others =>
+            return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).MaximalerRang;
+      end case;
       
    end MaximalerRang;
    

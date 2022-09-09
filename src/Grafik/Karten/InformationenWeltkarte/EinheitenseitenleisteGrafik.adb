@@ -259,7 +259,7 @@ package body EinheitenseitenleisteGrafik is
       if
         SpielVariablen.Debug.VolleInformation = False
         or
-          SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.KI_Spieler_Enum
+          SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.KI_Spieler_Enum
       then
          return;
          

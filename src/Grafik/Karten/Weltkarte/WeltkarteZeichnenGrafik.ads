@@ -30,19 +30,21 @@ package WeltkarteZeichnenGrafik is
                                          Süden  => (0, 1, 0)
                                         );
    
-   -- Für die Possitionen noch den Pre >= 0.00 anlegen? äöü
    procedure AnzeigeEinheit
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre => (
-               -- Anders als die /= RassenDatentypen.Leer_Spieler_Enum weiter unten, funktioniert das hier mit der KI weil nur die Spielerrasse übergeben wird und die KIEinheit in der Prozedur selbst gesucht wird.
-                 SpielVariablen.RassenImSpiel (RasseEinheitExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
-               and
+               --   SpielVariablen.Rassenbelegung (RasseEinheitExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+               -- and
                  KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
                and
                  KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+               and
+                 PositionExtern.x >= 0.00
+               and
+                 PositionExtern.y >= 0.00
               );
    
    procedure AnzeigeFeldbesitzer
@@ -53,6 +55,10 @@ package WeltkarteZeichnenGrafik is
                  KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
                and
                  KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+               and
+                 PositionExtern.x >= 0.00
+               and
+                 PositionExtern.y >= 0.00
               );
    
    procedure RahmenBesetztesFeld
@@ -61,11 +67,15 @@ package WeltkarteZeichnenGrafik is
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
-                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                and
                  KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
                and
                  KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+               and
+                 PositionExtern.x >= 0.00
+               and
+                 PositionExtern.y >= 0.00
               );
    
    procedure RahmenZeichnen
@@ -74,7 +84,11 @@ package WeltkarteZeichnenGrafik is
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
-                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+               and
+                 PositionExtern.x >= 0.00
+               and
+                 PositionExtern.y >= 0.00
               );
    
    procedure KartenfeldZeichnen
@@ -86,6 +100,10 @@ package WeltkarteZeichnenGrafik is
                  KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
                and
                  KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+               and
+                 PositionExtern.x >= 0.00
+               and
+                 PositionExtern.y >= 0.00
               );
    
    procedure FlussZeichnen
@@ -96,6 +114,10 @@ package WeltkarteZeichnenGrafik is
                  KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
                and
                  KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+               and
+                 PositionExtern.x >= 0.00
+               and
+                 PositionExtern.y >= 0.00
               );
    
    procedure RessourceZeichnen
@@ -106,6 +128,10 @@ package WeltkarteZeichnenGrafik is
                  KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
                and
                  KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+               and
+                 PositionExtern.x >= 0.00
+               and
+                 PositionExtern.y >= 0.00
               );
    
    procedure WegZeichnen
@@ -116,6 +142,10 @@ package WeltkarteZeichnenGrafik is
                  KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
                and
                  KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+               and
+                 PositionExtern.x >= 0.00
+               and
+                 PositionExtern.y >= 0.00
               );
    
    procedure VerbesserungZeichnen
@@ -127,6 +157,10 @@ package WeltkarteZeichnenGrafik is
                  KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
                and
                  KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+               and
+                 PositionExtern.x >= 0.00
+               and
+                 PositionExtern.y >= 0.00
               );
    
    procedure StadtnameAnzeigen
@@ -137,6 +171,10 @@ package WeltkarteZeichnenGrafik is
                  KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
                and
                  KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+               and
+                 PositionExtern.x >= 0.00
+               and
+                 PositionExtern.y >= 0.00
               );
    
 private
@@ -154,7 +192,7 @@ private
    Wegfeld : KartenverbesserungDatentypen.Karten_Weg_Enum;
    Verbesserungsfeld : KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
    
-   EinheitID : EinheitenDatentypen.EinheitenID;
+   EinheitID : EinheitenDatentypen.EinheitenIDMitNullWert;
    
    DickeRahmen : constant Float := 5.00;
          

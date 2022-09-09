@@ -1,19 +1,20 @@
+
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with WichtigesRecordKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
-with KartenverbesserungDatentypen;
+with GrafikDatentypen;
 
 with SchreibeStadtGebaut;
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
 with LeseStadtGebaut;
-with SchreibeKarten;
 
 with KartenfelderBewerten;
 with LadezeitenLogik;
+with NachGrafiktask;
 
 package body RasseEntfernen is
 
@@ -38,8 +39,6 @@ package body RasseEntfernen is
                null;
                
             when others =>
-               SchreibeKarten.Verbesserung (KoordinatenExtern  => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert)),
-                                            VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum);
                SchreibeStadtGebaut.Nullsetzung (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert));
          end case;
          
@@ -53,10 +52,19 @@ package body RasseEntfernen is
          
       end loop DiplomatieSchleife;
       
+      if
+        RasseExtern = NachGrafiktask.AktuelleRasse
+      then
+         NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
+         
+      else
+         null;
+      end if;
+      
       SpielVariablen.CursorImSpiel (RasseExtern) := WichtigesRecordKonstanten.LeerCursor;
       SpielVariablen.Wichtiges (RasseExtern) := WichtigesRecordKonstanten.LeerWichtigesZeug;
       
-      SpielVariablen.RassenImSpiel (RasseExtern) := RassenDatentypen.Leer_Spieler_Enum;
+      SpielVariablen.Rassenbelegung (RasseExtern).Besiegt := True;
       
    end RasseEntfernen;
    
@@ -106,7 +114,7 @@ package body RasseEntfernen is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      SpielVariablen.RassenImSpiel (RasseExtern) := RassenDatentypen.KI_Spieler_Enum;
+      SpielVariablen.Rassenbelegung (RasseExtern).Belegung := RassenDatentypen.KI_Spieler_Enum;
       LadezeitenLogik.SpielweltNullsetzen;
       KartenfelderBewerten.KartenfelderBewerten (RasseExtern => RasseExtern);
       

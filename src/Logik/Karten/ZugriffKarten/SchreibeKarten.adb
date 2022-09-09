@@ -104,7 +104,16 @@ package body SchreibeKarten is
       VerbesserungExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Enum)
    is begin
       
-      Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Verbesserung := VerbesserungExtern;
+      -- Wird benötigt da beim Bauen einer Stadt sicherheitshalber alles auf Null gesetzt wird und dabei auch die Kartenverbesserung hier.
+      case
+        KoordinatenExtern.EAchse
+      is
+         when KartenKonstanten.LeerEAchse =>
+            null;
+            
+         when others =>
+            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Verbesserung := VerbesserungExtern;
+      end case;
       
    end Verbesserung;
    

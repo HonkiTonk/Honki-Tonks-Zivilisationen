@@ -26,7 +26,7 @@ package body EinheitInUmgebung is
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
-           SpielVariablen.RassenImSpiel (RasseSchleifenwert)
+           SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung
          is
             when RassenDatentypen.Mensch_Spieler_Enum =>
                UmgebungStadt (RasseExtern => RasseSchleifenwert);

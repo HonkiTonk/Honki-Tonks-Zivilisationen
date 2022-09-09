@@ -7,25 +7,27 @@ with KartenDatentypen; use KartenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 
+private with BefehleDatentypen;
 private with TastenbelegungDatentypen;
 
 package EinheitenkontrollsystemLogik is
 
-   procedure BewegungEinheitenRichtung
+   procedure Einheitenkontrolle
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
                and
-                 SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.Mensch_Spieler_Enum
               );
    
 private
    
-   NullWert : Boolean;
+   Platzhalter : BefehleDatentypen.Weltkartenbefehle_Enum;
+   
    BewegungNochMöglich : Boolean;
-      
-   BefehlMaus : TastenbelegungDatentypen.Tastenbelegung_Enum;
+   
+   Mausbefehl : BefehleDatentypen.Weltkartenbefehle_Enum;
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    EinheitenKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
@@ -47,6 +49,8 @@ private
                                          TastenbelegungDatentypen.Ebene_Runter_Enum => (-1, 0, 0)
                                         );
    
+   
+   
    function EinheitBefehle
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Enum)
@@ -55,7 +59,7 @@ private
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
                and
-                 SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.Mensch_Spieler_Enum
               );
    
    function PositionÄndern
@@ -66,7 +70,7 @@ private
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
                and
-                 SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.Mensch_Spieler_Enum
               );
    
    function BefehleMaus
@@ -76,37 +80,28 @@ private
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
                and
-                 SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.Mensch_Spieler_Enum
               );
    
-   function MausInKarte
+   function EinheitenbewegungMaus
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
      with
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
                and
-                 SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.Mensch_Spieler_Enum
               );
    
-   function EinheitBewegenMaus
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+   function EinheitenbefehlMaus
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      BefehleExtern : in BefehleDatentypen.Weltkartenbefehle_Vorhanden_Enum)
       return Boolean
      with
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
                and
-                 SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
-              );
-   
-   function MausInBefehle
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return Boolean
-     with
-       Pre => (
-                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
-               and
-                 SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.Mensch_Spieler_Enum
               );
 
 end EinheitenkontrollsystemLogik;

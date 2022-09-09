@@ -102,7 +102,7 @@ package body FelderwerteFestlegen is
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
-           SpielVariablen.RassenImSpiel (RasseSchleifenwert) = RassenDatentypen.KI_Spieler_Enum
+           SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung = RassenDatentypen.KI_Spieler_Enum
            and
              (RasseExtern = EinheitenKonstanten.LeerRasse
               or
@@ -133,7 +133,7 @@ package body FelderwerteFestlegen is
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
-           SpielVariablen.RassenImSpiel (RasseSchleifenwert) = RassenDatentypen.KI_Spieler_Enum
+           SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung = RassenDatentypen.KI_Spieler_Enum
            and
              (RasseExtern = EinheitenKonstanten.LeerRasse
               or

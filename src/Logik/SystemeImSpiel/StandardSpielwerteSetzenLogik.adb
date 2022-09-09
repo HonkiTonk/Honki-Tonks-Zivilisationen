@@ -5,7 +5,6 @@ with WichtigesRecordKonstanten;
 with TextKonstanten;
 with EinheitenKonstanten;
 with StadtRecordKonstanten;
-with RassenDatentypen;
 with SpielVariablen;
 with KartenRecordKonstanten;
 with EinheitenRecordKonstanten;
@@ -43,7 +42,7 @@ package body StandardSpielwerteSetzenLogik is
       SpielVariablen.Allgemeines.Rundenanzahl := Positive'First;
       SpielVariablen.CursorImSpiel := (others => WichtigesRecordKonstanten.LeerCursor);
       SpielVariablen.Allgemeines.IronmanName := TextKonstanten.LeerUnboundedString;
-      SpielVariablen.RassenImSpiel := (others => RassenDatentypen.Leer_Spieler_Enum);
+      SpielVariablen.Rassenbelegung := (others => WichtigesRecordKonstanten.LeerRassenbelegung);
       SpielVariablen.Allgemeines.RasseAmZugNachLaden := EinheitenKonstanten.LeerRasse;
       SpielVariablen.Allgemeines.Gewonnen := False;
       SpielVariablen.Allgemeines.Weiterspielen := False;

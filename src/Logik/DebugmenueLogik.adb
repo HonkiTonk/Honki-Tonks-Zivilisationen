@@ -96,9 +96,9 @@ package body DebugmenueLogik is
          for RasseZweiSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
             
             if
-              SpielVariablen.RassenImSpiel (RasseEinsSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
+              SpielVariablen.Rassenbelegung (RasseEinsSchleifenwert).Belegung = RassenDatentypen.Leer_Spieler_Enum
               or
-                SpielVariablen.RassenImSpiel (RasseZweiSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
+                SpielVariablen.Rassenbelegung (RasseZweiSchleifenwert).Belegung = RassenDatentypen.Leer_Spieler_Enum
             then
                null;
                

@@ -302,7 +302,7 @@ package body BefehleLogik is
           JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageBeschäftigungAbbrechen) = True
       then
          AufgabenAllgemein.Nullsetzung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-         EinheitenkontrollsystemLogik.BewegungEinheitenRichtung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         EinheitenkontrollsystemLogik.Einheitenkontrolle (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          NachGrafiktask.AktuelleEinheit := EinheitenKonstanten.LeerNummer;
          return;
          
@@ -314,7 +314,7 @@ package body BefehleLogik is
         EinheitenSpielmeldungenLogik.BewegungspunkteMeldung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       is
          when True =>
-            EinheitenkontrollsystemLogik.BewegungEinheitenRichtung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            EinheitenkontrollsystemLogik.Einheitenkontrolle (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when False =>
             null;

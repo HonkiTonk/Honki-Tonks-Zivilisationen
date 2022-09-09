@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
 with SpielVariablen;
+with WichtigesRecordKonstanten;
 
 with KartengeneratorVariablen;
 with Karten;
@@ -106,7 +107,7 @@ package body ZufallsgeneratorenSpieleinstellungen is
    is begin
       
       SpielerVorhanden := False;
-      SpielVariablen.RassenImSpiel := (others => RassenDatentypen.Leer_Spieler_Enum);
+      SpielVariablen.Rassenbelegung := (others => WichtigesRecordKonstanten.LeerRassenbelegung);
       ZufälligeRassenbelegungWählen.Reset (Gen => ZufälligeRassenbelegungGewählt);
       
       SpielerSchleife:
@@ -119,7 +120,7 @@ package body ZufallsgeneratorenSpieleinstellungen is
             if
               RasseImSpiel = RassenDatentypen.KI_Spieler_Enum
             then
-               SpielVariablen.RassenImSpiel (RasseSchleifenwert) := RasseImSpiel;
+               SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung := RasseImSpiel;
                SpielerVorhanden := True;
             
             else
@@ -137,7 +138,7 @@ package body ZufallsgeneratorenSpieleinstellungen is
          for MenschlicheRasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
 
             if
-              SpielVariablen.RassenImSpiel (MenschlicheRasseSchleifenwert) = RassenDatentypen.KI_Spieler_Enum
+              SpielVariablen.Rassenbelegung (MenschlicheRasseSchleifenwert).Belegung = RassenDatentypen.KI_Spieler_Enum
             then
                RasseImSpiel := ZufälligeRassenbelegungWählen.Random (Gen => ZufälligeRassenbelegungGewählt);
                
@@ -145,7 +146,7 @@ package body ZufallsgeneratorenSpieleinstellungen is
                  RasseImSpiel
                is
                   when RassenDatentypen.Mensch_Spieler_Enum =>
-                     SpielVariablen.RassenImSpiel (MenschlicheRasseSchleifenwert) := RassenDatentypen.Mensch_Spieler_Enum;
+                     SpielVariablen.Rassenbelegung (MenschlicheRasseSchleifenwert).Belegung := RassenDatentypen.Mensch_Spieler_Enum;
                      return;
                      
                   when others =>

@@ -108,8 +108,8 @@ package body Laden is
       Natural'Read (Stream (File => DateiLadenExtern),
                     SpielVariablen.Allgemeines.Rundengrenze);
       
-      RassenDatentypen.RassenImSpielArray'Read (Stream (File => DateiLadenExtern),
-                                                SpielVariablen.RassenImSpiel);
+      SpielVariablen.RassenbelegungArray'Read (Stream (File => DateiLadenExtern),
+                                                SpielVariablen.Rassenbelegung);
       
       RassenDatentypen.Rassen_Enum'Read (Stream (File => DateiLadenExtern),
                                          SpielVariablen.Allgemeines.RasseAmZugNachLaden);
@@ -163,7 +163,7 @@ package body Laden is
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
-           SpielVariablen.RassenImSpiel (RasseSchleifenwert)
+           SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung
          is
             when RassenDatentypen.Leer_Spieler_Enum =>
                null;
@@ -210,7 +210,7 @@ package body Laden is
       for RasseDiplomatieSchleifenwert in SpielVariablen.DiplomatieArray'Range (2) loop
 
          case
-           SpielVariablen.RassenImSpiel (RasseDiplomatieSchleifenwert)
+           SpielVariablen.Rassenbelegung (RasseDiplomatieSchleifenwert).Belegung
          is
             when RassenDatentypen.Leer_Spieler_Enum =>
                null;

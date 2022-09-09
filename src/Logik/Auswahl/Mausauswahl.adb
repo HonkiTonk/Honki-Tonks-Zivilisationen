@@ -273,29 +273,28 @@ package body Mausauswahl is
    
    
    
-   function Einheitenbewegung
-     return Boolean
+   -- Später so erweitern dass die Mausposition noch Befehlsknöpfen abfragt. äöü
+   function Einheitenbefehle
+     return BefehleDatentypen.Weltkartenbefehle_Enum
    is begin
       
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
                                                                  point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
                                                                  view         => Views.KartenviewAccess);
       
-      return Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                         TextboxExtern      => KartenberechnungenGrafik.FensterKarte);
+      case
+        Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
+                                    TextboxExtern      => KartenberechnungenGrafik.FensterKarte)
+      is
+         when True =>
+            return BefehleDatentypen.Bewegen_Enum;
+            
+         when False =>
+            Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
+                                                                       point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
+                                                                       view         => Views.BefehlsviewAccess);
+      end case;
       
-   end Einheitenbewegung;
-   
-   
-   
-   -- Später so anpassen dass die Mausposition nicht in der Seitenleiste abgefragt wird sondern in Befehlsknöpfen. äöü
-   function Einheitenbefehle
-     return Boolean
-   is begin
-      
-      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
-                                                                 point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
-                                                                 view         => Views.BefehlsviewAccess);
          
       case
         Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
@@ -303,13 +302,13 @@ package body Mausauswahl is
                                     TextboxExtern      => (0.00, 0.00, 0.00, 0.00))
       is
          when True =>
-            return True;
+            return BefehleDatentypen.A_Enum;
             
          when False =>
             null;
       end case;
       
-      return False;
+      return BefehleDatentypen.Leer_Enum;
       
    end Einheitenbefehle;
    

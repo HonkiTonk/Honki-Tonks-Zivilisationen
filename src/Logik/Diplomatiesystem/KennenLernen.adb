@@ -28,17 +28,17 @@ package body KennenLernen is
       end case;
       
       if
-        SpielVariablen.RassenImSpiel (EigeneRasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+        SpielVariablen.Rassenbelegung (EigeneRasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
         and
-          SpielVariablen.RassenImSpiel (FremdeRasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+          SpielVariablen.Rassenbelegung (FremdeRasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
       then
          ErstkontaktMenschMensch (EigeneRasseExtern => EigeneRasseExtern,
                                   FremdeRasseExtern => FremdeRasseExtern);
       
       elsif
-        SpielVariablen.RassenImSpiel (EigeneRasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+        SpielVariablen.Rassenbelegung (EigeneRasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
         or
-          SpielVariablen.RassenImSpiel (FremdeRasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+          SpielVariablen.Rassenbelegung (FremdeRasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
       then
          ErstkontaktMenschKI (EigeneRasseExtern => EigeneRasseExtern,
                               FremdeRasseExtern => FremdeRasseExtern);

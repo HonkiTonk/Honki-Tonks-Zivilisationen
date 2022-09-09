@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with TastenbelegungDatentypen;
+with SpielVariablen;
 
 with NachGrafiktask;
 with TasteneingabeLogik;
@@ -11,6 +12,16 @@ package body AbspannLogik is
    procedure Abspann
      (AbspannExtern : in GrafikDatentypen.Abspann_Enum)
    is begin
+      
+      case
+        AbspannExtern
+      is
+         when GrafikDatentypen.Planet_Vernichtet_Enum =>
+            NachGrafiktask.AktuelleRasse := SpielVariablen.Allgemeines.PlanetVernichtet;
+            
+         when others =>
+            null;
+      end case;
       
       NachGrafiktask.Abspannart := AbspannExtern;
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Abspann_Enum;

@@ -41,11 +41,8 @@ package Mausauswahl is
    function Steuerung
      return SystemRecords.MehrfacheAuswahlRecord;
    
-   function Einheitenbewegung
-     return Boolean;
-   
    function Einheitenbefehle
-     return Boolean;
+     return BefehleDatentypen.Weltkartenbefehle_Enum;
    
    function Stadtumgebung
      return Sf.System.Vector2.sfVector2f;

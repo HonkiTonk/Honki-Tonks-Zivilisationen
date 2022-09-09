@@ -5,6 +5,7 @@ with StadtKonstanten;
 with EinheitenKonstanten;
 with GrafikRecordKonstanten;
 with Views;
+with SpielVariablen;
 
 with LeseKarten;
 

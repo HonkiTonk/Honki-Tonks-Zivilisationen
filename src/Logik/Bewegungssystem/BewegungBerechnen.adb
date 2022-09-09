@@ -27,7 +27,7 @@ package body BewegungBerechnen is
       
       LadungVerschieben := False;
 
-      -- Immer berücksichtigen dass in BewegungssystemEinheiten.BewegungPrüfen bereits geprüft wird ob der Transporter die Einheit transportieren kann und ein freier Platz vorhanden ist.
+      -- Immer berücksichtigen dass in BewegungEinheiten.BewegungPrüfen bereits geprüft wird ob der Transporter die Einheit transportieren kann und ein freier Platz vorhanden ist.
       if
         EinheitenKonstanten.LeerKannTransportieren = LeseEinheitenDatenbank.KannTransportieren (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                                                                 IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
@@ -87,7 +87,7 @@ package body BewegungBerechnen is
       end case;
       
       case
-        SpielVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse)
+        SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung
       is
          when RassenDatentypen.KI_Spieler_Enum =>
             null;
@@ -126,12 +126,12 @@ package body BewegungBerechnen is
       
       -- Prüft nur ob das Feld auf dass sich diese Einheit bewegt bereits von einer anderen Rasse aufgedeckt wurde und stellt entsprechend Kontakt her.
       KontaktSchleife:
-      for FremdeSichtbarkeitSchleifenwert in RassenDatentypen.RassenImSpielArray'Range loop
+      for FremdeSichtbarkeitSchleifenwert in SpielVariablen.RassenbelegungArray'Range loop
          
          if
            FremdeSichtbarkeitSchleifenwert = EinheitRasseNummerExtern.Rasse
            or
-             SpielVariablen.RassenImSpiel (FremdeSichtbarkeitSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
+             SpielVariablen.Rassenbelegung (FremdeSichtbarkeitSchleifenwert).Belegung = RassenDatentypen.Leer_Spieler_Enum
          then
             null;
             

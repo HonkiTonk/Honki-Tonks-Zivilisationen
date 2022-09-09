@@ -24,7 +24,7 @@ package StadtSuchen is
                and
                  KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
                and
-                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               ),
                       
        Post => (
@@ -51,7 +51,7 @@ package StadtSuchen is
                and
                  KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
                and
-                 SpielVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function StadtNachNamenSuchen
@@ -60,7 +60,7 @@ package StadtSuchen is
        Post => (
                   StadtNachNamenSuchen'Result.Nummer <= SpielVariablen.Grenzen (StadtNachNamenSuchen'Result.Rasse).Städtegrenze
                 and
-                  SpielVariablen.RassenImSpiel (StadtNachNamenSuchen'Result.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                  SpielVariablen.Rassenbelegung (StadtNachNamenSuchen'Result.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                );
 
 private

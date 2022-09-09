@@ -25,7 +25,7 @@ package body MeldungFestlegenLogik is
    is begin
       
       case
-        SpielVariablen.RassenImSpiel (RasseExtern)
+        SpielVariablen.Rassenbelegung (RasseExtern).Belegung
       is
          when RassenDatentypen.Mensch_Spieler_Enum =>
             MeldungFestlegen (MeldungExtern => MeldungExtern);
