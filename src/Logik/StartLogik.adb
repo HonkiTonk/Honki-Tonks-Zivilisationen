@@ -8,7 +8,7 @@ with TastenbelegungDatentypen;
 with SchreibenVerzeichnisse;
 with EinlesenEinstellungen;
 with Einlesen;
-with Hauptmenue;
+with HauptmenueLogik;
 with NachGrafiktask;
 with NachLogiktask;
 with LogiktaskAnAlle;
@@ -54,7 +54,7 @@ package body StartLogik is
          
       end loop IntroSchleife;
       
-      Hauptmenue.Hauptmenü;
+      HauptmenueLogik.Hauptmenü;
       
    end StartLogik;
    

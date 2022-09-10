@@ -17,8 +17,8 @@ with Fehler;
 with NachGrafiktask;
 with BefehleLogik;
 with JaNeinLogik;
-with SpielerVorhanden;
-with Auswahlaufteilungen;
+with Spielertests;
+with AuswahlaufteilungLogik;
 
 with KI;
 
@@ -58,7 +58,7 @@ package body ImSpiel is
            SpielVariablen.Allgemeines.RasseAmZugNachLaden = EinheitenKonstanten.LeerRasse
          then
             case
-              SpielerVorhanden.MenschlicheSpieler (RasseExtern => RassenDatentypen.Keine_Rasse_Enum)
+              Spielertests.MenschlicheSpieler (RasseExtern => RassenDatentypen.Keine_Rasse_Enum)
             is
                when True =>
                   null;
@@ -193,7 +193,7 @@ package body ImSpiel is
       is
          when RueckgabeDatentypen.Spiel_Beenden_Enum | RueckgabeDatentypen.Hauptmenü_Enum =>
             if
-              SpielerVorhanden.MenschlicheSpieler (RasseExtern => RasseExtern) = True
+              Spielertests.MenschlicheSpieler (RasseExtern => RasseExtern) = True
             then
                case
                  JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageKIEinsetzen)
@@ -322,7 +322,7 @@ package body ImSpiel is
       SpielmenüSchleife:
       loop
          
-         AuswahlSpielmenü := Auswahlaufteilungen.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Spiel_Menü_Enum);
+         AuswahlSpielmenü := AuswahlaufteilungLogik.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Spiel_Menü_Enum);
 
          case
            AuswahlSpielmenü

@@ -10,8 +10,8 @@ with MenueDatentypen;
 
 with NachGrafiktask;
 with TasteneingabeLogik;
-with Mausauswahl;
-with Auswahlaufteilungen;
+with MausauswahlLogik;
+with AuswahlaufteilungLogik;
 with Fehler;
 with DiplomatischerZustandAenderbar;
 with EinheitVerschieben;
@@ -68,7 +68,7 @@ package body Diplomatie is
          RassenauswahlSchleife:
          loop
             
-            Auswahl := Mausauswahl.RassenauswahlDiplomatie;
+            Auswahl := MausauswahlLogik.RassenauswahlDiplomatie;
             NachGrafiktask.AktuelleAuswahl.AuswahlEins := Auswahl;
                         
             case
@@ -100,7 +100,7 @@ package body Diplomatie is
          DiplomatieBetreibenSchleife:
          loop
             
-            AktionAuswahl := Auswahlaufteilungen.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Diplomatie_Menü_Enum);
+            AktionAuswahl := AuswahlaufteilungLogik.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Diplomatie_Menü_Enum);
             
             case
               AktionAuswahl

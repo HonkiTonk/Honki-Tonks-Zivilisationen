@@ -12,12 +12,12 @@ with SpieleinstellungenRasseSpieler;
 with SpieleinstellungenSonstiges;
 with Warnung;
 with LadezeitenLogik;
-with Auswahlaufteilungen;
+with AuswahlaufteilungLogik;
 with NachGrafiktask;
 with StandardSpielwerteSetzenLogik;
 with Karten;
 with KartengeneratorVariablen;
-with SpielerVorhanden;
+with Spielertests;
 
 package body Spieleinstellungen is
 
@@ -44,7 +44,7 @@ package body Spieleinstellungen is
          SpielEinstellungenSchleife:
          loop
          
-            Auswahl := Auswahlaufteilungen.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Einstellungen_Menü_Enum);
+            Auswahl := AuswahlaufteilungLogik.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Einstellungen_Menü_Enum);
          
             case
               Auswahl
@@ -128,7 +128,7 @@ package body Spieleinstellungen is
       SpieleinstellungenRasseSpieler.StartwerteErmitteln;
       
       case
-        SpielerVorhanden.BeliebigeSpielerart (RasseExtern => RassenDatentypen.Keine_Rasse_Enum)
+        Spielertests.BeliebigeSpielerart (RasseExtern => RassenDatentypen.Keine_Rasse_Enum)
       is
          when True =>
             null;

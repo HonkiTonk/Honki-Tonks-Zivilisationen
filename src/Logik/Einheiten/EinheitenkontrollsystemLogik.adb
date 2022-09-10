@@ -6,10 +6,10 @@ with LeseEinheitenGebaut;
 with TasteneingabeLogik;
 with EinheitenModifizieren;
 with StadtBauen;
-with Aufgaben;
+with AufgabenLogik;
 with BewegungEinheiten;
 with Kartenkoordinatenberechnungssystem;
-with Mausauswahl;
+with MausauswahlLogik;
 
 package body EinheitenkontrollsystemLogik is
 
@@ -59,9 +59,9 @@ package body EinheitenkontrollsystemLogik is
                
          when TastenbelegungDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range | TastenbelegungDatentypen.Tastenbelegung_Allgemeine_Befehle_Enum'Range =>
             -- Das Umgekehrte zurückgeben da bei erfolgreichen Aufgabenanfang keine Bewegung mehr möglich ist und umgekehrt.
-            return not Aufgaben.Aufgabe (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                         BefehlExtern             => BefehlExtern,
-                                         KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+            return not AufgabenLogik.Aufgabe (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                              BefehlExtern             => BefehlExtern,
+                                              KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
                
          when TastenbelegungDatentypen.Bauen_Enum =>
             -- Das Umgekehrte zurückgeben da bei erfolgreichem Städtebau keine Bewegung mehr möglich ist und umgekehrt.
@@ -121,7 +121,7 @@ package body EinheitenkontrollsystemLogik is
    is begin
       
       -- Bewegung und dann eine Option für jeden gültigen Befehl. äöü
-      Mausbefehl := Mausauswahl.Einheitenbefehle;
+      Mausbefehl := MausauswahlLogik.Einheitenbefehle;
       
       case
         Mausbefehl

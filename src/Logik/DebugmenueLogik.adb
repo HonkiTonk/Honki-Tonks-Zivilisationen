@@ -7,7 +7,7 @@ with ZahlenDatentypen;
 with SchreibeKarten;
 with SchreibeWichtiges;
 
-with Auswahlaufteilungen;
+with AuswahlaufteilungLogik;
 with Fehler;
 with Karten;
 
@@ -20,7 +20,7 @@ package body DebugmenueLogik is
       DebugmenüSchleife:
       loop
          
-         RückgabeDebugmenü := Auswahlaufteilungen.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Debug_Menü_Enum);
+         RückgabeDebugmenü := AuswahlaufteilungLogik.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Debug_Menü_Enum);
 
          case
            RückgabeDebugmenü

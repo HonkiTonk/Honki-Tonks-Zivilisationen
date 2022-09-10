@@ -19,7 +19,7 @@ with EinheitSuchen;
 with Kartenkoordinatenberechnungssystem;
 with BewegungPassierbarkeitPruefen;
 with EinheitenErzeugenEntfernen;
-with Auswahlaufteilungen;
+with AuswahlaufteilungLogik;
 with Fehler;
 with LadezeitenLogik;
 with UmwandlungenVerschiedeneDatentypen;
@@ -33,7 +33,7 @@ package body SpieleinstellungenRasseSpieler is
       RasseSchleife:
       loop
          
-         RassenAuswahl := Auswahlaufteilungen.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Rassen_Menü_Enum);
+         RassenAuswahl := AuswahlaufteilungLogik.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Rassen_Menü_Enum);
 
          case
            RassenAuswahl

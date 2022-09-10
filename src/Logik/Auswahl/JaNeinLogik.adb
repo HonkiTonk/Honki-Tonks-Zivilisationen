@@ -7,7 +7,7 @@ with TastenbelegungDatentypen;
 
 with TasteneingabeLogik;
 with NachGrafiktask;
-with Mausauswahl;
+with MausauswahlLogik;
 
 package body JaNeinLogik is
 
@@ -22,7 +22,7 @@ package body JaNeinLogik is
       AuswahlSchleife:
       loop
       
-         AktuelleAuswahl := Mausauswahl.JaNein;
+         AktuelleAuswahl := MausauswahlLogik.JaNein;
          NachGrafiktask.AktuelleAuswahl.AuswahlZwei := AktuelleAuswahl;
       
          case

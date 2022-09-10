@@ -49,7 +49,7 @@ package body SprachauswahlGrafik is
       MehrereSeiten := NachGrafiktask.MehrereSeiten;
       AktuelleAuswahl := NachGrafiktask.AktuelleAuswahl.AuswahlEins;
       Ende := NachGrafiktask.Endauswahl;
-      AktuelleSprachen := AuswahlSprache.AktuelleSprachen;
+      AktuelleSprachen := SprachauswahlLogik.AktuelleSprachen;
       
       Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
       AktuelleTextbreite := 0.00;

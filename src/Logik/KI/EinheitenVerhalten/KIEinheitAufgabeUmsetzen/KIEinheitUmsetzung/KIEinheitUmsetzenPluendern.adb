@@ -5,7 +5,7 @@ with TastenbelegungDatentypen;
 
 with LeseEinheitenGebaut;
 
-with Aufgaben;
+with AufgabenLogik;
 
 package body KIEinheitUmsetzenPluendern is
 
@@ -14,9 +14,9 @@ package body KIEinheitUmsetzenPluendern is
       return Boolean
    is begin
       
-      return Aufgaben.Aufgabe (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                           BefehlExtern             => TastenbelegungDatentypen.Plündern_Enum,
-                                           KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      return AufgabenLogik.Aufgabe (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                    BefehlExtern             => TastenbelegungDatentypen.Plündern_Enum,
+                                    KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       
    end StadtumgebungZerstören;
 

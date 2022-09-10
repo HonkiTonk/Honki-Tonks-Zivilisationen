@@ -12,6 +12,7 @@ with LeseKartenDatenbanken;
 with LeseVerbesserungenDatenbank;
 
 -- Später die Beschreibungen noch um RasseExtern erweitern damit jede Rasse ihren eigenen Text haben kann? äöü
+-- Beschreibugnen nach Grafik verschieben. äöü
 package body KartenAllgemein is
    
    function BeschreibungBasisgrund
@@ -183,13 +184,13 @@ package body KartenAllgemein is
       if
         Basisgrund = Zusatzgrund
       then
-         return LeseKartenDatenbanken.KampfGrund (GrundExtern         => Basisgrund,
-                                                  RasseExtern         => RasseExtern,
+         return LeseKartenDatenbanken.KampfGrund (GrundExtern    => Basisgrund,
+                                                  RasseExtern    => RasseExtern,
                                                   KampfArtExtern => KartenKonstanten.KampfVerteidigung);
          
       else
-         return LeseKartenDatenbanken.KampfGrund (GrundExtern         => Zusatzgrund,
-                                                  RasseExtern         => RasseExtern,
+         return LeseKartenDatenbanken.KampfGrund (GrundExtern    => Zusatzgrund,
+                                                  RasseExtern    => RasseExtern,
                                                   KampfArtExtern => KartenKonstanten.KampfVerteidigung);
       end if;
       
@@ -209,13 +210,13 @@ package body KartenAllgemein is
       if
         Basisgrund = Zusatzgrund
       then
-         return LeseKartenDatenbanken.KampfGrund (GrundExtern         => Basisgrund,
-                                                  RasseExtern         => RasseExtern,
+         return LeseKartenDatenbanken.KampfGrund (GrundExtern    => Basisgrund,
+                                                  RasseExtern    => RasseExtern,
                                                   KampfArtExtern => KartenKonstanten.KampfAngriff);
          
       else
-         return LeseKartenDatenbanken.KampfGrund (GrundExtern         => Zusatzgrund,
-                                                  RasseExtern         => RasseExtern,
+         return LeseKartenDatenbanken.KampfGrund (GrundExtern    => Zusatzgrund,
+                                                  RasseExtern    => RasseExtern,
                                                   KampfArtExtern => KartenKonstanten.KampfAngriff);
       end if;
       
@@ -431,9 +432,9 @@ package body KartenAllgemein is
             return 0;
             
          when others =>
-            return LeseVerbesserungenDatenbank.WirtschaftWeg (WegExtern => KartenWeg,
-                                                              RasseExtern        => RasseExtern,
-                                                              WelcherWertExtern  => KartenKonstanten.WirtschaftNahrung);
+            return LeseVerbesserungenDatenbank.WirtschaftWeg (WegExtern         => KartenWeg,
+                                                              RasseExtern       => RasseExtern,
+                                                              WelcherWertExtern => KartenKonstanten.WirtschaftNahrung);
       end case;
       
    end WegNahrung;
@@ -455,9 +456,9 @@ package body KartenAllgemein is
             return 0;
             
          when others =>
-            return LeseVerbesserungenDatenbank.WirtschaftWeg (WegExtern => KartenWeg,
-                                                              RasseExtern        => RasseExtern,
-                                                              WelcherWertExtern  => KartenKonstanten.WirtschaftProduktion);
+            return LeseVerbesserungenDatenbank.WirtschaftWeg (WegExtern         => KartenWeg,
+                                                              RasseExtern       => RasseExtern,
+                                                              WelcherWertExtern => KartenKonstanten.WirtschaftProduktion);
       end case;
       
    end WegProduktion;
@@ -479,9 +480,9 @@ package body KartenAllgemein is
             return 0;
             
          when others =>
-            return LeseVerbesserungenDatenbank.WirtschaftWeg (WegExtern => KartenWeg,
-                                                              RasseExtern        => RasseExtern,
-                                                              WelcherWertExtern  => KartenKonstanten.WirtschaftGeld);
+            return LeseVerbesserungenDatenbank.WirtschaftWeg (WegExtern         => KartenWeg,
+                                                              RasseExtern       => RasseExtern,
+                                                              WelcherWertExtern => KartenKonstanten.WirtschaftGeld);
       end case;
       
    end WegGeld;
@@ -503,9 +504,9 @@ package body KartenAllgemein is
             return 0;
             
          when others =>
-            return LeseVerbesserungenDatenbank.WirtschaftWeg (WegExtern => KartenWeg,
-                                                              RasseExtern        => RasseExtern,
-                                                              WelcherWertExtern  => KartenKonstanten.WirtschaftForschung);
+            return LeseVerbesserungenDatenbank.WirtschaftWeg (WegExtern         => KartenWeg,
+                                                              RasseExtern       => RasseExtern,
+                                                              WelcherWertExtern => KartenKonstanten.WirtschaftForschung);
       end case;
       
    end WegWissen;
@@ -527,9 +528,9 @@ package body KartenAllgemein is
             return 0;
             
          when others =>
-            return LeseVerbesserungenDatenbank.KampfWeg (WegExtern => KartenWeg,
-                                                         RasseExtern        => RasseExtern,
-                                                         WelcherWertExtern  => KartenKonstanten.KampfVerteidigung);
+            return LeseVerbesserungenDatenbank.KampfWeg (WegExtern         => KartenWeg,
+                                                         RasseExtern       => RasseExtern,
+                                                         WelcherWertExtern => KartenKonstanten.KampfVerteidigung);
       end case;
       
    end WegVerteidigung;
@@ -551,9 +552,9 @@ package body KartenAllgemein is
             return 0;
             
          when others =>
-            return LeseVerbesserungenDatenbank.KampfWeg (WegExtern => KartenWeg,
-                                                         RasseExtern        => RasseExtern,
-                                                         WelcherWertExtern  => KartenKonstanten.KampfAngriff);
+            return LeseVerbesserungenDatenbank.KampfWeg (WegExtern         => KartenWeg,
+                                                         RasseExtern       => RasseExtern,
+                                                         WelcherWertExtern => KartenKonstanten.KampfAngriff);
       end case;
       
    end WegAngriff;
@@ -575,8 +576,8 @@ package body KartenAllgemein is
             return 0;
             
          when others =>
-            return LeseVerbesserungenDatenbank.BewertungWeg (WegExtern => KartenWeg,
-                                                             RasseExtern        => RasseExtern);
+            return LeseVerbesserungenDatenbank.BewertungWeg (WegExtern   => KartenWeg,
+                                                             RasseExtern => RasseExtern);
       end case;
       
    end WegBewertung;
@@ -765,7 +766,7 @@ package body KartenAllgemein is
             return 0;
             
          when others =>
-            return LeseKartenDatenbanken.WirtschaftRessourcen (RessourceExtern         => KartenRessource,
+            return LeseKartenDatenbanken.WirtschaftRessourcen (RessourceExtern     => KartenRessource,
                                                                RasseExtern         => RasseExtern,
                                                                WirtschaftArtExtern => KartenKonstanten.WirtschaftNahrung);
       end case;
@@ -789,7 +790,7 @@ package body KartenAllgemein is
             return 0;
             
          when others =>
-            return LeseKartenDatenbanken.WirtschaftRessourcen (RessourceExtern         => KartenRessource,
+            return LeseKartenDatenbanken.WirtschaftRessourcen (RessourceExtern     => KartenRessource,
                                                                RasseExtern         => RasseExtern,
                                                                WirtschaftArtExtern => KartenKonstanten.WirtschaftProduktion);
       end case;
@@ -813,7 +814,7 @@ package body KartenAllgemein is
             return 0;
             
          when others =>
-            return LeseKartenDatenbanken.WirtschaftRessourcen (RessourceExtern         => KartenRessource,
+            return LeseKartenDatenbanken.WirtschaftRessourcen (RessourceExtern     => KartenRessource,
                                                                RasseExtern         => RasseExtern,
                                                                WirtschaftArtExtern => KartenKonstanten.WirtschaftGeld);
       end case;
@@ -837,7 +838,7 @@ package body KartenAllgemein is
             return 0;
             
          when others =>
-            return LeseKartenDatenbanken.WirtschaftRessourcen (RessourceExtern         => KartenRessource,
+            return LeseKartenDatenbanken.WirtschaftRessourcen (RessourceExtern     => KartenRessource,
                                                                RasseExtern         => RasseExtern,
                                                                WirtschaftArtExtern => KartenKonstanten.WirtschaftForschung);
       end case;
@@ -861,9 +862,9 @@ package body KartenAllgemein is
             return 0;
             
          when others =>
-            return LeseKartenDatenbanken.KampfRessource (RessourceExtern    => KartenRessource,
-                                                         RasseExtern    => RasseExtern,
-                                                         KampfArtExtern => KartenKonstanten.KampfVerteidigung);
+            return LeseKartenDatenbanken.KampfRessource (RessourceExtern => KartenRessource,
+                                                         RasseExtern     => RasseExtern,
+                                                         KampfArtExtern  => KartenKonstanten.KampfVerteidigung);
       end case;
       
    end RessourceVerteidigung;
@@ -885,9 +886,9 @@ package body KartenAllgemein is
             return 0;
             
          when others =>
-            return LeseKartenDatenbanken.KampfRessource (RessourceExtern    => KartenRessource,
-                                                         RasseExtern    => RasseExtern,
-                                                         KampfArtExtern => KartenKonstanten.KampfAngriff);
+            return LeseKartenDatenbanken.KampfRessource (RessourceExtern => KartenRessource,
+                                                         RasseExtern     => RasseExtern,
+                                                         KampfArtExtern  => KartenKonstanten.KampfAngriff);
       end case;
       
    end RessourceAngriff;
@@ -910,7 +911,7 @@ package body KartenAllgemein is
             
          when others =>
             return LeseKartenDatenbanken.BewertungRessource (RessourceExtern => KartenRessource,
-                                                             RasseExtern => RasseExtern);
+                                                             RasseExtern     => RasseExtern);
       end case;
       
    end RessourceBewertung;

@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with MenueDatentypen;
 
-with Auswahlaufteilungen;
+with AuswahlaufteilungLogik;
 with SchreibenTastatur;
 with TastenbelegungVariablen;
 with Fehler;
@@ -17,7 +17,7 @@ package body OptionenSteuerung is
       BelegungSchleife:
       loop
                   
-         AuswahlWert := Auswahlaufteilungen.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Steuerung_Menü_Enum);
+         AuswahlWert := AuswahlaufteilungLogik.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Steuerung_Menü_Enum);
          
          case
            AuswahlWert

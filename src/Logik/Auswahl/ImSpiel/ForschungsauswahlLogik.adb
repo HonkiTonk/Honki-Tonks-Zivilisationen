@@ -10,7 +10,7 @@ with SchreibeWichtiges;
 with LeseWichtiges;
 
 with TasteneingabeLogik;
-with Mausauswahl;
+with MausauswahlLogik;
 with NachGrafiktask;
 with ForschugnstestsLogik;
 
@@ -67,7 +67,7 @@ package body ForschungsauswahlLogik is
       AuswahlSchleife:
       loop
          
-         AktuelleAuswahl := Mausauswahl.Forschungsmenü;
+         AktuelleAuswahl := MausauswahlLogik.Forschungsmenü;
          NachGrafiktask.AktuelleAuswahl.AuswahlEins := Natural (AktuelleAuswahl);
          
          case

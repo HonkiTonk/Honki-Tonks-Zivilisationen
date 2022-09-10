@@ -8,7 +8,7 @@ with MenueDatentypen;
 
 with NachGrafiktask;
 with NachLogiktask;
-with Auswahlaufteilungen;
+with AuswahlaufteilungLogik;
 with ZahleneingabeLogik;
 with EinstellungenGrafik;
 with SchreibenEinstellungen;
@@ -23,7 +23,7 @@ package body OptionenGrafik is
       GrafikSchleife:
       loop
          
-         AuswahlWert := Auswahlaufteilungen.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Grafik_Menü_Enum);
+         AuswahlWert := AuswahlaufteilungLogik.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Grafik_Menü_Enum);
          
          case
            AuswahlWert

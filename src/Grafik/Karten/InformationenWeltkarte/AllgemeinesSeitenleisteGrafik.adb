@@ -18,7 +18,7 @@ with LeseKarten;
 
 with EinstellungenGrafik;
 with KartenAllgemein;
-with AufgabenAllgemein;
+with AufgabenAllgemeinLogik;
 with TextberechnungenHoeheGrafik;
 with ViewsEinstellenGrafik;
 with HintergrundGrafik;
@@ -104,7 +104,7 @@ package body AllgemeinesSeitenleisteGrafik is
             TextAnzeigen (3) := True;
             
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (3),
-                                               str  => AufgabenAllgemein.BeschreibungVerbesserung (KartenVerbesserungExtern => KartenVerbesserung));
+                                               str  => AufgabenAllgemeinLogik.BeschreibungVerbesserung (KartenVerbesserungExtern => KartenVerbesserung));
       end case;
       
       
@@ -121,7 +121,7 @@ package body AllgemeinesSeitenleisteGrafik is
             TextAnzeigen (4) := True;
             
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (4),
-                                               str  => AufgabenAllgemein.BeschreibungWeg (KartenWegExtern => KartenWeg));
+                                               str  => AufgabenAllgemeinLogik.BeschreibungWeg (KartenWegExtern => KartenWeg));
       end case;
       
       

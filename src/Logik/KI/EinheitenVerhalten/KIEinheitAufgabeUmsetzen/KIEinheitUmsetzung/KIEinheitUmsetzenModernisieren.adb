@@ -5,7 +5,7 @@ with TastenbelegungDatentypen;
 
 with LeseEinheitenGebaut;
 
-with Aufgaben;
+with AufgabenLogik;
 
 package body KIEinheitUmsetzenModernisieren is
 
@@ -14,9 +14,9 @@ package body KIEinheitUmsetzenModernisieren is
       return Boolean
    is begin
       
-      NullWert := Aufgaben.Aufgabe (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                BefehlExtern             => TastenbelegungDatentypen.Einheit_Verbessern_Enum,
-                                                KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      NullWert := AufgabenLogik.Aufgabe (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                         BefehlExtern             => TastenbelegungDatentypen.Einheit_Verbessern_Enum,
+                                         KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       
       return False;
       

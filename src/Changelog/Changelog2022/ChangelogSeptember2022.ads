@@ -133,17 +133,17 @@ package ChangelogSeptember2022 is
    
    
 
-   -- Version 0.03. => 0.03. (11.09.2022):
+   -- Version 0.03.8830 => 0.03. (11.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.8805 => 0.03. (10.09.2022):
+   -- Version 0.03.8805 => 0.03.8830 (10.09.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Interne Struktur und Benennung überarbeitet.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 

@@ -11,7 +11,7 @@ with KartengeneratorRecordKonstanten;
 with Karten;
 with ZahleneingabeLogik;
 with ZufallsgeneratorenSpieleinstellungen;
-with Auswahlaufteilungen;
+with AuswahlaufteilungLogik;
 with Fehler;
 with KartengeneratorVariablen;
 with UmwandlungenVerschiedeneDatentypen;
@@ -25,7 +25,7 @@ package body SpieleinstellungenKarten is
       KartenpoleSchleife:
       loop
          
-         KartenpoleAuswahl := Auswahlaufteilungen.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Kartenpole_Menü_Enum);
+         KartenpoleAuswahl := AuswahlaufteilungLogik.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Kartenpole_Menü_Enum);
          
          case
            KartenpoleAuswahl
@@ -107,7 +107,7 @@ package body SpieleinstellungenKarten is
       KartengrößeSchleife:
       loop
          
-         KartengrößeAuswahl := Auswahlaufteilungen.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Kartengröße_Menü_Enum);
+         KartengrößeAuswahl := AuswahlaufteilungLogik.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Kartengröße_Menü_Enum);
                   
          case
            KartengrößeAuswahl
@@ -183,7 +183,7 @@ package body SpieleinstellungenKarten is
       KartenartSchleife:
       loop
 
-         KartenartAuswahl := Auswahlaufteilungen.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Kartenart_Menü_Enum);
+         KartenartAuswahl := AuswahlaufteilungLogik.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Kartenart_Menü_Enum);
          
          case
            KartenartAuswahl
@@ -323,7 +323,7 @@ package body SpieleinstellungenKarten is
       KartenformSchleife:
       loop
 
-         KartenformAuswahl := Auswahlaufteilungen.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Kartenform_Menü_Enum);
+         KartenformAuswahl := AuswahlaufteilungLogik.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Kartenform_Menü_Enum);
          
          case
            KartenformAuswahl
@@ -434,7 +434,7 @@ package body SpieleinstellungenKarten is
       KartentemperaturSchleife:
       loop
 
-         KartentemperaturAuswahl := Auswahlaufteilungen.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Kartentemperatur_Menü_Enum);
+         KartentemperaturAuswahl := AuswahlaufteilungLogik.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Kartentemperatur_Menü_Enum);
                   
          case
            KartentemperaturAuswahl
@@ -464,7 +464,7 @@ package body SpieleinstellungenKarten is
       KartenressourcenSchleife:
       loop
 
-         KartenressourcenAuswahl := Auswahlaufteilungen.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Kartenressourcen_Menü_Enum);
+         KartenressourcenAuswahl := AuswahlaufteilungLogik.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Kartenressourcen_Menü_Enum);
          
          case
            KartenressourcenAuswahl

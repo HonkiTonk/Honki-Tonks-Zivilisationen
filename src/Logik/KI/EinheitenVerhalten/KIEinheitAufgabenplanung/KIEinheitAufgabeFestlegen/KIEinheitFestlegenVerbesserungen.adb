@@ -14,7 +14,7 @@ with LeseKarten;
 
 with Vergleiche;
 with Kartenkoordinatenberechnungssystem;
-with Aufgaben;
+with AufgabenLogik;
 
 with KIDatentypen;
 
@@ -202,7 +202,7 @@ package body KIEinheitFestlegenVerbesserungen is
       BasisGrund := LeseKarten.BasisGrund (KoordinatenExtern => KoordinatenExtern);
       
       case
-        Aufgaben.AufgabeTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+        AufgabenLogik.AufgabeTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                      BefehlExtern             => TastenbelegungDatentypen.Mine_Bauen_Enum,
                                      KoordinatenExtern        => KoordinatenExtern)
       is
@@ -231,7 +231,7 @@ package body KIEinheitFestlegenVerbesserungen is
       end case;
       
       case
-        Aufgaben.AufgabeTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+        AufgabenLogik.AufgabeTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                      BefehlExtern             => TastenbelegungDatentypen.Festung_Bauen_Enum,
                                      KoordinatenExtern        => KoordinatenExtern)
       is
@@ -252,7 +252,7 @@ package body KIEinheitFestlegenVerbesserungen is
       end case;
          
       case
-        Aufgaben.AufgabeTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+        AufgabenLogik.AufgabeTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                      BefehlExtern             => TastenbelegungDatentypen.Farm_Bauen_Enum,
                                      KoordinatenExtern        => KoordinatenExtern)
       is
@@ -289,7 +289,7 @@ package body KIEinheitFestlegenVerbesserungen is
       
       -- Vielleicht ist das Problem ja dass da immer die Koordinaten der Einheit genutzt werden und nicht die ermittelten Koordinaten? äöü
       case
-        Aufgaben.AufgabeTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+        AufgabenLogik.AufgabeTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                      BefehlExtern             => TastenbelegungDatentypen.Straße_Bauen_Enum,
                                      KoordinatenExtern        => KoordinatenExtern)
       is

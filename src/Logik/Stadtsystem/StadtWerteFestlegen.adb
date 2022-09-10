@@ -14,7 +14,7 @@ with LeseKarten;
 with Kartenkoordinatenberechnungssystem;
 with GesamtwerteFeld;
 with StadtUmgebungsbereichFestlegen;
-with GebaeudeRichtigeUmgebung;
+with GebaeudeumgebungLogik;
 
 package body StadtWerteFestlegen is
    
@@ -69,9 +69,8 @@ package body StadtWerteFestlegen is
                or
                abs (XÄnderungSchleifenwert) > GrößeNeu)
               and
-                LeseKarten.BestimmteStadtBelegtGrund (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                      KoordinatenExtern      => KartenWert)
-              = True
+                True = LeseKarten.BestimmteStadtBelegtGrund (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                             KoordinatenExtern      => KartenWert)
             then
                SchreibeKarten.BelegterGrund (KoordinatenExtern   => KartenWert,
                                              BelegterGrundExtern => KartenRecordKonstanten.LeerDurchStadtBelegterGrund);
@@ -227,25 +226,22 @@ package body StadtWerteFestlegen is
                null;
                
             elsif
-              LeseKarten.BestimmteStadtBelegtGrund (StadtRasseNummerExtern => StadtRasseNummerExtern,
+             False = LeseKarten.BestimmteStadtBelegtGrund (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                     KoordinatenExtern      => KartenWert)
-              = False
             then
                null;
               
             elsif
-              LeseStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                       YKoordinateExtern      => YAchseSchleifenwert,
-                                                       XKoordinateExtern      => XAchseSchleifenwert)
-              = ZuwachsOderSchwundExtern
+              ZuwachsOderSchwundExtern = LeseStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                                                  YKoordinateExtern      => YAchseSchleifenwert,
+                                                                                  XKoordinateExtern      => XAchseSchleifenwert)
             then
                Umgebung (YAchseSchleifenwert, XAchseSchleifenwert).Belegt := ZuwachsOderSchwundExtern;
                
             else
-               Umgebung (YAchseSchleifenwert, XAchseSchleifenwert)
-                 := (not ZuwachsOderSchwundExtern, FeldBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                                 KoordinatenExtern      => KartenWert,
-                                                                 BelegenOderEntfernen   => ZuwachsOderSchwundExtern));
+               Umgebung (YAchseSchleifenwert, XAchseSchleifenwert) := (not ZuwachsOderSchwundExtern, FeldBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                                                                                   KoordinatenExtern      => KartenWert,
+                                                                                                                   BelegenOderEntfernen   => ZuwachsOderSchwundExtern));
             end if;
             
          end loop XAchseSchleife;
@@ -545,16 +541,14 @@ package body StadtWerteFestlegen is
       for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
          
          if
-           LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                              WelchesGebäudeExtern  => GebäudeSchleifenwert)
-           = False
+           False = LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                      WelchesGebäudeExtern  => GebäudeSchleifenwert)
          then
             null;
             
          elsif
-           GebaeudeRichtigeUmgebung.RichtigeUmgebungVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                               GebäudeIDExtern       => GebäudeSchleifenwert)
-           = True
+           True = GebaeudeumgebungLogik.RichtigeUmgebungVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                                   GebäudeIDExtern       => GebäudeSchleifenwert)
          then
             null;
             

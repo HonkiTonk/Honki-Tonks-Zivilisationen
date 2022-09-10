@@ -5,7 +5,7 @@ with TastenbelegungDatentypen;
 
 with LeseEinheitenGebaut;
 
-with Aufgaben;
+with AufgabenLogik;
 
 package body KIEinheitUmsetzenBewachen is
 
@@ -14,9 +14,9 @@ package body KIEinheitUmsetzenBewachen is
       return Boolean
    is begin
       
-      return Aufgaben.Aufgabe (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                           BefehlExtern             => TastenbelegungDatentypen.Verschanzen_Enum,
-                                           KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      return AufgabenLogik.Aufgabe (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                    BefehlExtern             => TastenbelegungDatentypen.Verschanzen_Enum,
+                                    KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       
    end StadtBewachen;
      

@@ -8,7 +8,7 @@ with KIDatentypen;
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
 
-with GebaeudeAllgemein;
+with GebaeudeAllgemeinLogik;
 
 package body StadtGebaeudeBauen is
 
@@ -16,8 +16,8 @@ package body StadtGebaeudeBauen is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
-      GebaeudeAllgemein.GebäudeProduktionBeenden (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                   IDExtern               => StadtDatentypen.GebäudeID (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Gebäude));
+      GebaeudeAllgemeinLogik.GebäudeProduktionBeenden (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                        IDExtern               => StadtDatentypen.GebäudeID (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Gebäude));
             
       if
         SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Mensch_Spieler_Enum

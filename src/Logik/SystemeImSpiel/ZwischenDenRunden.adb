@@ -10,9 +10,9 @@ with GrafikDatentypen;
 with SchreibeWichtiges;
 with LeseWichtiges;
 
-with Wachstum;
+with WachstumLogik;
 with ForschungsfortschrittLogik;
-with StadtProduktion;
+with StadtproduktionLogik;
 with SiegbedingungenLogik;
 with DiplomatischerZustand;
 with MeldungenSetzenLogik;
@@ -20,7 +20,7 @@ with EinheitInUmgebung;
 with EinheitenModifizieren;
 with LadezeitenLogik;
 with Speichern;
-with VerbesserungFertiggestellt;
+with VerbesserungFertiggestelltLogik;
 with NachGrafiktask;
 with JaNeinLogik;
 with AbspannLogik;
@@ -52,13 +52,13 @@ package body ZwischenDenRunden is
       EinheitenModifizieren.HeilungBewegungspunkteNeueRundeErmitteln;
       LadezeitenLogik.RundenendeSchreiben;
       
-      VerbesserungFertiggestellt.VerbesserungFertiggestellt;
+      VerbesserungFertiggestelltLogik.VerbesserungFertiggestellt;
       LadezeitenLogik.RundenendeSchreiben;
       
-      Wachstum.StadtWachstum;
+      WachstumLogik.StadtWachstum;
       LadezeitenLogik.RundenendeSchreiben;
       
-      StadtProduktion.StadtProduktion (StadtRasseNummerExtern => StadtKonstanten.LeerRasseNummer);
+      StadtproduktionLogik.Stadtproduktion (StadtRasseNummerExtern => StadtKonstanten.LeerRasseNummer);
       LadezeitenLogik.RundenendeSchreiben;
             
       RundenanzahlSetzen;

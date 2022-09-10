@@ -12,10 +12,10 @@ with TextnummernKonstanten;
 
 with LeseEinheitenGebaut;
 
-with InDerStadt;
+with StadtmenueLogik;
 with BewegungCursor;
 with NaechstesObjekt;
-with Aufgaben;
+with AufgabenLogik;
 with Diplomatie;
 with DebugmenueLogik;
 with StadtBauen;
@@ -25,9 +25,9 @@ with TasteneingabeLogik;
 with StadtEntfernen;
 with TransporterSuchen;
 with EinheitenModifizieren;
-with AufgabenAllgemein;
+with AufgabenAllgemeinLogik;
 with EinheitenkontrollsystemLogik;
-with AuswahlStadtEinheit;
+with AuswahlStadtEinheitLogik;
 with NachGrafiktask;
 with JaNeinLogik;
 with EinheitenSpielmeldungenLogik;
@@ -146,13 +146,13 @@ package body BefehleLogik is
       then
          -- Transporter sollten in der Stadt nicht beladen sein, deswegen es hier keine Prüfung auf Transporter braucht.
          case
-           AuswahlStadtEinheit.AuswahlStadtEinheit (RasseExtern         => RasseExtern,
-                                                    StadtNummerExtern   => StadtNummer,
-                                                    EinheitNummerExtern => EinheitNummer)
+           AuswahlStadtEinheitLogik.AuswahlStadtEinheit (RasseExtern         => RasseExtern,
+                                                         StadtNummerExtern   => StadtNummer,
+                                                         EinheitNummerExtern => EinheitNummer)
          is
             when 0 =>
                LeerRückgabewert := StadtEntfernen.StadtAbreißen (StadtRasseNummerExtern => (RasseExtern, StadtNummer));
-            
+               
             when 1 =>
                EinheitBefehle (RasseExtern  => RasseExtern,
                                BefehlExtern => TastenbelegungDatentypen.Auflösen_Enum);
@@ -203,7 +203,7 @@ package body BefehleLogik is
       elsif
         StadtNummer /= StadtDatentypen.MaximaleStädteMitNullWert'First
       then
-         InDerStadt.InDerStadt (StadtRasseNummerExtern => (RasseExtern, StadtNummer));
+         StadtmenueLogik.Stadtmenü (StadtRasseNummerExtern => (RasseExtern, StadtNummer));
          
       elsif
         EinheitNummer /= EinheitenDatentypen.MaximaleEinheitenMitNullWert'First
@@ -236,15 +236,15 @@ package body BefehleLogik is
         LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= EinheitenKonstanten.LeerWirdTransportiert
       then
          TransporterNummer := LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-         AusgewählteEinheit := AuswahlStadtEinheit.AuswahlStadtEinheit (RasseExtern         => EinheitRasseNummerExtern.Rasse,
-                                                                         StadtNummerExtern   => StadtDatentypen.MaximaleStädteMitNullWert'First,
-                                                                         EinheitNummerExtern => TransporterNummer);
+         AusgewählteEinheit := AuswahlStadtEinheitLogik.AuswahlStadtEinheit (RasseExtern         => EinheitRasseNummerExtern.Rasse,
+                                                                              StadtNummerExtern   => StadtDatentypen.MaximaleStädteMitNullWert'First,
+                                                                              EinheitNummerExtern => TransporterNummer);
 
       else
          TransporterNummer := EinheitRasseNummerExtern.Nummer;
-         AusgewählteEinheit := AuswahlStadtEinheit.AuswahlStadtEinheit (RasseExtern         => EinheitRasseNummerExtern.Rasse,
-                                                                         StadtNummerExtern   => StadtDatentypen.MaximaleStädteMitNullWert'First,
-                                                                         EinheitNummerExtern => TransporterNummer);
+         AusgewählteEinheit := AuswahlStadtEinheitLogik.AuswahlStadtEinheit (RasseExtern         => EinheitRasseNummerExtern.Rasse,
+                                                                              StadtNummerExtern   => StadtDatentypen.MaximaleStädteMitNullWert'First,
+                                                                              EinheitNummerExtern => TransporterNummer);
       end if;
       
       case
@@ -272,12 +272,12 @@ package body BefehleLogik is
    is begin
       
       case
-        AuswahlStadtEinheit.AuswahlStadtEinheit (RasseExtern         => RasseExtern,
-                                                 StadtNummerExtern   => StadtNummerExtern,
-                                                 EinheitNummerExtern => EinheitNummerExtern)
+        AuswahlStadtEinheitLogik.AuswahlStadtEinheit (RasseExtern         => RasseExtern,
+                                                      StadtNummerExtern   => StadtNummerExtern,
+                                                      EinheitNummerExtern => EinheitNummerExtern)
       is
          when 0 =>
-            InDerStadt.InDerStadt (StadtRasseNummerExtern => (RasseExtern, StadtNummerExtern));
+            StadtmenueLogik.Stadtmenü (StadtRasseNummerExtern => (RasseExtern, StadtNummerExtern));
             
          when 1 =>
             EinheitSteuern (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerExtern));
@@ -301,7 +301,7 @@ package body BefehleLogik is
         and then
           JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageBeschäftigungAbbrechen) = True
       then
-         AufgabenAllgemein.Nullsetzung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         AufgabenAllgemeinLogik.Nullsetzung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          EinheitenkontrollsystemLogik.Einheitenkontrolle (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          NachGrafiktask.AktuelleEinheit := EinheitenKonstanten.LeerNummer;
          return;
@@ -380,9 +380,9 @@ package body BefehleLogik is
         EinheitenSpielmeldungenLogik.BewegungspunkteMeldung (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer))
       is
          when True =>
-            LeerRückgabewert := Aufgaben.Aufgabe (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer),
-                                                   BefehlExtern             => BefehlExtern,
-                                                   KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer)));
+            LeerRückgabewert := AufgabenLogik.Aufgabe (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer),
+                                                        BefehlExtern             => BefehlExtern,
+                                                        KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer)));
             
          when False =>
             null;

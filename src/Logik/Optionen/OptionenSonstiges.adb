@@ -11,9 +11,9 @@ with EinlesenSprache;
 with EinlesenText;
 with EinlesenRassentexte;
 
-with AuswahlSprache;
+with SprachauswahlLogik;
 with ZahleneingabeLogik;
-with Auswahlaufteilungen;
+with AuswahlaufteilungLogik;
 with Fehler;
 with NachGrafiktask;
 
@@ -26,7 +26,7 @@ package body OptionenSonstiges is
       SonstigesSchleife:
       loop
 
-         AuswahlWert := Auswahlaufteilungen.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Sonstiges_Menü_Enum);
+         AuswahlWert := AuswahlaufteilungLogik.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Sonstiges_Menü_Enum);
 
          case
            AuswahlWert
@@ -115,7 +115,7 @@ package body OptionenSonstiges is
         EinlesenSprache.EinlesenSprache
       is
          when True =>
-            GewählteSprache := AuswahlSprache.AuswahlSprache;
+            GewählteSprache := SprachauswahlLogik.AuswahlSprache;
             
             if
               GewählteSprache = TextKonstanten.LeerUnboundedString

@@ -16,7 +16,7 @@ with LeseEinheitenDatenbank;
 with StadtSuchen;
 with EinheitSuchen;
 with BewegungPassierbarkeitPruefen;
-with StadtProduktion;
+with StadtproduktionLogik;
 with ForschugnstestsLogik;
 
 with KIDatentypen; use KIDatentypen;
@@ -160,7 +160,7 @@ package body EinheitenModifizieren is
          
       end loop PermanenteKostenSchleife;
       
-      StadtProduktion.StadtProduktion (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, Heimatstadt));
+      StadtproduktionLogik.Stadtproduktion (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, Heimatstadt));
       
    end PermanenteKostenÄndern;
    

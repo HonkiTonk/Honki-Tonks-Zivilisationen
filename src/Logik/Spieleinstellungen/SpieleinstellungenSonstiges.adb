@@ -5,7 +5,7 @@ with SpielVariablen;
 with MenueDatentypen;
 
 with ZufallsgeneratorenSpieleinstellungen;
-with Auswahlaufteilungen;
+with AuswahlaufteilungLogik;
 with Fehler;
 with UmwandlungenVerschiedeneDatentypen;
 
@@ -17,7 +17,7 @@ package body SpieleinstellungenSonstiges is
       SchwierigkeitsgradSchleife:
       loop
 
-         SchwierigkeitAuswahl := Auswahlaufteilungen.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Schwierigkeitsgrad_Menü_Enum);
+         SchwierigkeitAuswahl := AuswahlaufteilungLogik.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Schwierigkeitsgrad_Menü_Enum);
          
          case
            SchwierigkeitAuswahl

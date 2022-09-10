@@ -9,7 +9,7 @@ with EinlesenText;
 with EinlesenTastatur;
 with EinlesenDatenbanken;
 with SchreibenEinstellungen;
-with AuswahlSprache;
+with SprachauswahlLogik;
 with EinlesenTexturen;
 with Fehler;
 with EinlesenMusik;
@@ -45,7 +45,7 @@ package body Einlesen is
                SpracheAuswählenSchleife:
                loop
                   
-                  GewählteSprache := AuswahlSprache.AuswahlSprache;
+                  GewählteSprache := SprachauswahlLogik.AuswahlSprache;
                   
                   if
                     GewählteSprache = TextKonstanten.LeerUnboundedString

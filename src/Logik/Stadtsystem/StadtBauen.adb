@@ -15,11 +15,11 @@ with SchreibeKarten;
 
 with StadtWerteFestlegen;
 with TexteingabeLogik;
-with StadtProduktion;
+with StadtproduktionLogik;
 with Sichtbarkeit;
 with EinheitenErzeugenEntfernen;
 with Fehler;
-with Wegeplatzierungssystem;
+with WegeplatzierungssystemLogik;
 with EinheitenSpielmeldungenLogik;
 with MeldungFestlegenLogik;
 
@@ -193,7 +193,7 @@ package body StadtBauen is
                                        PlusMinusExtern => True);
       
       StadtWerteFestlegen.StadtUmgebungGrößeFestlegen (StadtRasseNummerExtern => StadtRasseNummerExtern);
-      StadtProduktion.StadtProduktion (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      StadtproduktionLogik.Stadtproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern);
       SchreibeWichtiges.VerbleibendeForschungszeit (RasseExtern => StadtRasseNummerExtern.Rasse);
       Sichtbarkeit.SichtbarkeitsprüfungFürStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
@@ -236,8 +236,8 @@ package body StadtBauen is
             return;
       end case;
       
-      Wegeplatzierungssystem.Wegplatzierung (KoordinatenExtern => KoordinatenExtern,
-                                             WegartExtern      => WelcherWeg);
+      WegeplatzierungssystemLogik.Wegplatzierung (KoordinatenExtern => KoordinatenExtern,
+                                                  WegartExtern      => WelcherWeg);
             
    end WegAnlegen;
    
