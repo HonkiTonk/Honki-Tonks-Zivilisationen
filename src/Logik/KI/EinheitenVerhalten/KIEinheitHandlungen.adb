@@ -9,7 +9,7 @@ with KartenRecordKonstanten;
 with LeseEinheitenGebaut;
 
 with Vergleiche;
-with BewegungEinheiten;
+with EinheitenbewegungLogik;
 
 with KIDatentypen; use KIDatentypen;
 
@@ -40,11 +40,11 @@ package body KIEinheitHandlungen is
             
       else
          -- Muss hier not sein wegen den Rückgabewerten in der Funktion selbst, die nicht geändert werden können wegen der Einbindung im Bewegungssystem.
-         return not BewegungEinheiten.NochBewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         return not EinheitenbewegungLogik.NochBewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       end if;
       
    end HandlungBeendet;
-           
+   
       
    
    -- Muss auch eine Funktion sein, es könnte ja als Aufgabe Stadt_Bewachen_Enum festgelegt werden für den Ort an dem sich die Einheit gerade befindet.

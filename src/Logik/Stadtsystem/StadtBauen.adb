@@ -17,7 +17,7 @@ with StadtWerteFestlegen;
 with TexteingabeLogik;
 with StadtproduktionLogik;
 with Sichtbarkeit;
-with EinheitenErzeugenEntfernen;
+with EinheitenErzeugenEntfernenLogik;
 with Fehler;
 with WegeplatzierungssystemLogik;
 with EinheitenSpielmeldungenLogik;
@@ -77,7 +77,7 @@ package body StadtBauen is
                       KoordinatenExtern      => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       SchreibeStadtGebaut.Name (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer),
                                 NameExtern             => StadtName.EingegebenerText);
-      EinheitenErzeugenEntfernen.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      EinheitenErzeugenEntfernenLogik.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       return True;
       

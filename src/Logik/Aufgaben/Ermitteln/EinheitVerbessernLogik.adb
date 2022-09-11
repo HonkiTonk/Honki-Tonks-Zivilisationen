@@ -10,7 +10,7 @@ with LeseKarten;
 with SchreibeEinheitenGebaut;
 with LeseEinheitenDatenbank;
 
-with EinheitenModifizieren;
+with EinheitenmodifizierungLogik;
 with ForschugnstestsLogik;
 
 package body EinheitVerbessernLogik is
@@ -55,14 +55,14 @@ package body EinheitVerbessernLogik is
                                                      BewegungspunkteExtern    => EinheitenKonstanten.LeerBewegungspunkte,
                                                      RechnenSetzenExtern      => 0);
       
-            EinheitenModifizieren.PermanenteKostenÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                           VorzeichenWechselExtern  => -1);
+            EinheitenmodifizierungLogik.PermanenteKostenÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                 VorzeichenWechselExtern  => -1);
       
             SchreibeEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                         IDExtern                 => IDNeueEinheit);
       
-            EinheitenModifizieren.PermanenteKostenÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                           VorzeichenWechselExtern  => 1);
+            EinheitenmodifizierungLogik.PermanenteKostenÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                 VorzeichenWechselExtern  => 1);
                                     
          when False =>
             null;

@@ -15,7 +15,7 @@ with LeseEinheitenDatenbank;
 
 with Kartenkoordinatenberechnungssystem;
 with EinheitSuchen;
-with DiplomatischerZustand;
+with DiplomatischerZustandLogik;
 
 with KIKriegErmitteln;
 
@@ -118,8 +118,8 @@ package body KIGefahrErmitteln is
       end if;
                      
       case
-        DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                           FremdeRasseExtern => AndereEinheitExtern.Rasse)
+        DiplomatischerZustandLogik.DiplomatischenStatusPrüfen (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                FremdeRasseExtern => AndereEinheitExtern.Rasse)
       is
          when DiplomatieDatentypen.Krieg_Enum =>
             null;

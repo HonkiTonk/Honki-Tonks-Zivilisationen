@@ -16,7 +16,7 @@ with LeseStadtGebaut;
 with EinheitSuchen;
 with UmgebungErreichbarTesten;
 with MeldungenSetzenLogik;
-with EinheitenErzeugenEntfernen;
+with EinheitenErzeugenEntfernenLogik;
 
 package body StadtEinheitenBauen is
 
@@ -102,10 +102,10 @@ package body StadtEinheitenBauen is
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
       
-      EinheitenErzeugenEntfernen.EinheitErzeugen (KoordinatenExtern      => KoordinatenExtern,
-                                                  EinheitNummerExtern    => EinheitNummer,
-                                                  IDExtern               =>  EinheitenDatentypen.EinheitenID (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Einheit),
-                                                  StadtRasseNummerExtern => StadtRasseNummerExtern);
+      EinheitenErzeugenEntfernenLogik.EinheitErzeugen (KoordinatenExtern      => KoordinatenExtern,
+                                                       EinheitNummerExtern    => EinheitNummer,
+                                                       IDExtern               =>  EinheitenDatentypen.EinheitenID (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Einheit),
+                                                       StadtRasseNummerExtern => StadtRasseNummerExtern);
       SchreibeStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                       RessourcenExtern       => StadtKonstanten.LeerRessourcen,
                                       ÄndernSetzenExtern     => False);

@@ -126,17 +126,18 @@ package ChangelogSeptember2022 is
    
    
 
-   -- Version 0.03. => 0.03. (12.09.2022):
+   -- Version 0.03.8855 => 0.03. (12.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.8830 => 0.03. (11.09.2022):
+   -- Version 0.03.8830 => 0.03.8855 (11.09.2022):
    
+   -- Interne Struktur und Benennung überarbeitet.
    -- 
-   -- Kleinigkeiten korrigiert.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 

@@ -6,7 +6,7 @@ with EinheitenDatentypen;
 with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;
 
-with EinheitenErzeugenEntfernen;
+with EinheitenErzeugenEntfernenLogik;
 
 package body PZBEingesetztLogik is
 
@@ -21,7 +21,7 @@ package body PZBEingesetztLogik is
       is
          when EinheitenDatentypen.PZB_Enum =>
             SpielVariablen.Allgemeines.PlanetVernichtet := EinheitExtern.Rasse;
-            EinheitenErzeugenEntfernen.EinheitEntfernen (EinheitRasseNummerExtern => EinheitExtern);
+            EinheitenErzeugenEntfernenLogik.EinheitEntfernen (EinheitRasseNummerExtern => EinheitExtern);
             
          when others =>
             return False;

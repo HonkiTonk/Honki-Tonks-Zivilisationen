@@ -89,6 +89,7 @@ package body KIGebaeudeBauen is
    
    
    
+   -- Mal die Abfragen in ein lokale Variable schieben. äöü
    function NahrungsproduktionBewerten
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       IDExtern : in StadtDatentypen.GebäudeID)
@@ -178,10 +179,9 @@ package body KIGebaeudeBauen is
       elsif
         LeseWichtiges.GeldZugewinnProRunde (RasseExtern => StadtRasseNummerExtern.Rasse) < WichtigesKonstanten.LeerGeldZugewinnProRunde
         and
-          LeseGebaeudeDatenbank.WirtschaftBonus (RasseExtern            => StadtRasseNummerExtern.Rasse,
-                                                 IDExtern               => IDExtern,
-                                                 WWirtschaftBonusExtern => KartenKonstanten.WirtschaftGeld)
-        = StadtKonstanten.LeerGeldgewinnung
+          StadtKonstanten.LeerGeldgewinnung = LeseGebaeudeDatenbank.WirtschaftBonus (RasseExtern            => StadtRasseNummerExtern.Rasse,
+                                                                                     IDExtern               => IDExtern,
+                                                                                     WWirtschaftBonusExtern => KartenKonstanten.WirtschaftGeld)
       then
          return 5;
          
@@ -253,6 +253,7 @@ package body KIGebaeudeBauen is
       elsif
         LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern) < StadtKonstanten.LeerProduktionrate
         and
+          LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern)
           + LeseGebaeudeDatenbank.WirtschaftBonus (RasseExtern            => StadtRasseNummerExtern.Rasse,
                                                    IDExtern               => IDExtern,
                                                    WWirtschaftBonusExtern => KartenKonstanten.WirtschaftProduktion)
@@ -263,6 +264,7 @@ package body KIGebaeudeBauen is
       elsif
         LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern) < StadtKonstanten.LeerProduktionrate
         and
+          LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern)
           + LeseGebaeudeDatenbank.WirtschaftBonus (RasseExtern            => StadtRasseNummerExtern.Rasse,
                                                    IDExtern               => IDExtern,
                                                    WWirtschaftBonusExtern => KartenKonstanten.WirtschaftProduktion)

@@ -7,7 +7,7 @@ with LeseKarten;
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
 
-with BewegungPassierbarkeitPruefen;
+with PassierbarkeitspruefungLogik;
 with Kartenkoordinatenberechnungssystem;
 
 with KIDatentypen;
@@ -94,21 +94,17 @@ package body KIEinheitFestlegenErkunden is
                      null;
                         
                   elsif
-                    LeseKarten.Sichtbar (KoordinatenExtern => KartenWert,
-                                         RasseExtern       => EinheitRasseNummerExtern.Rasse)
-                    = False
+                    False = LeseKarten.Sichtbar (KoordinatenExtern => KartenWert,
+                                                 RasseExtern       => EinheitRasseNummerExtern.Rasse)
                     and
-                      BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                 NeueKoordinatenExtern    => KartenWert)
-                    = True
+                      True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                       NeueKoordinatenExtern    => KartenWert)
                     and
-                      KIAufgabenVerteilt.EinheitZiel (RasseExtern           => EinheitRasseNummerExtern.Rasse,
-                                                      ZielKoordinatenExtern => KartenWert)
-                    = False
+                      False = KIAufgabenVerteilt.EinheitZiel (RasseExtern           => EinheitRasseNummerExtern.Rasse,
+                                                              ZielKoordinatenExtern => KartenWert)
                     and
-                      KIEinheitAllgemeinePruefungen.AktuellUnpassierbar (KoordinatenExtern => KartenWert,
-                                                                         RasseExtern       => EinheitRasseNummerExtern.Rasse)
-                    = False
+                      False = KIEinheitAllgemeinePruefungen.AktuellUnpassierbar (KoordinatenExtern => KartenWert,
+                                                                                 RasseExtern       => EinheitRasseNummerExtern.Rasse)
                   then
                      SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                 KoordinatenExtern        => KartenWert);

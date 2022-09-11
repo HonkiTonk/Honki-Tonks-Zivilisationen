@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with TextnummernKonstanten;
 
-with EinheitenErzeugenEntfernen;
+with EinheitenErzeugenEntfernenLogik;
 with JaNeinLogik;
 
 package body EinheitAufloesenLogik is
@@ -17,13 +17,13 @@ package body EinheitAufloesenLogik is
         SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung
       is
          when RassenDatentypen.KI_Spieler_Enum =>
-            EinheitenErzeugenEntfernen.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            EinheitenErzeugenEntfernenLogik.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when others =>
             if
               JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageEinheitAuflösen) = True
             then
-               EinheitenErzeugenEntfernen.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+               EinheitenErzeugenEntfernenLogik.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
             else
                return False;

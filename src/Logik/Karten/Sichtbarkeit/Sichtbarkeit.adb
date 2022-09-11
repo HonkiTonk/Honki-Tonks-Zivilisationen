@@ -14,7 +14,7 @@ with LeseStadtGebaut;
   
 with Kartenkoordinatenberechnungssystem;
 with EinheitSuchen;
-with KennenLernen;
+with KennenlernenLogik;
 
 package body Sichtbarkeit is
    
@@ -820,8 +820,8 @@ package body Sichtbarkeit is
             null;
             
          when others =>
-            KennenLernen.Erstkontakt (EigeneRasseExtern => RasseExtern,
-                                      FremdeRasseExtern => FremdeEinheit.Rasse);
+            KennenlernenLogik.Erstkontakt (EigeneRasseExtern => RasseExtern,
+                                           FremdeRasseExtern => FremdeEinheit.Rasse);
             return;
       end case;
       
@@ -835,8 +835,8 @@ package body Sichtbarkeit is
          null;
             
       else
-         KennenLernen.Erstkontakt (EigeneRasseExtern => RasseExtern,
-                                   FremdeRasseExtern => FremdeStadt.Rasse);
+         KennenlernenLogik.Erstkontakt (EigeneRasseExtern => RasseExtern,
+                                        FremdeRasseExtern => FremdeStadt.Rasse);
       end if;
       
    end SichtbarkeitSetzen;

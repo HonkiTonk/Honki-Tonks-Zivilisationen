@@ -11,7 +11,7 @@ with LeseEinheitenDatenbank;
 with LeseWichtiges;
 with LeseEinheitenGebaut;
 
-with EinheitenAllgemeines;
+with EinheitenAllgemeinesLogik;
 
 with KIDatentypen; use KIDatentypen;
 
@@ -35,7 +35,7 @@ package body KIEinheitAufgabeAufloesen is
       elsif
         KIKriegErmitteln.IstImKrieg (RasseExtern => EinheitRasseNummerExtern.Rasse) = True
         and
-          EinheitenAllgemeines.Kampfeinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
+          EinheitenAllgemeinesLogik.Kampfeinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
       then
          return StadtzustandKrieg (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          

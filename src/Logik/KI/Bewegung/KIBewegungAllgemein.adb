@@ -10,7 +10,7 @@ with KIKonstanten;
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
 
-with DiplomatischerZustand;
+with DiplomatischerZustandLogik;
 with EinheitSuchen;
 with StadtSuchen;
 
@@ -70,16 +70,16 @@ package body KIBewegungAllgemein is
       if
         BlockierendeEinheit = EinheitenKonstanten.LeerRasse
         and then
-          DiplomatieDatentypen.Krieg_Enum /= DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                                                FremdeRasseExtern => BlockierendeStadt)
+          DiplomatieDatentypen.Krieg_Enum /= DiplomatischerZustandLogik.DiplomatischenStatusPrüfen (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                                                     FremdeRasseExtern => BlockierendeStadt)
       then
          return KIKonstanten.KeineBewegung;
          
       elsif
         BlockierendeStadt = EinheitenKonstanten.LeerRasse
         and then
-          DiplomatieDatentypen.Krieg_Enum /= DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                                                FremdeRasseExtern => BlockierendeEinheit)
+          DiplomatieDatentypen.Krieg_Enum /= DiplomatischerZustandLogik.DiplomatischenStatusPrüfen (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                                                     FremdeRasseExtern => BlockierendeEinheit)
       then
          return KIKonstanten.KeineBewegung;
          

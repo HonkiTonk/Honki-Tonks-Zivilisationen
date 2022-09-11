@@ -13,7 +13,7 @@ with LeseEinheitenDatenbank;
 with LeseStadtGebaut;
 with LeseWichtiges;
 
-with EinheitenModifizieren;
+with EinheitenmodifizierungLogik;
 
 with KIKriegErmitteln;
 with KIStadtLaufendeBauprojekte;
@@ -56,8 +56,8 @@ package body KIEinheitenBauen is
       for EinheitenSchleifenwert in EinheitenDatentypen.EinheitenID'Range loop
          
          case
-           EinheitenModifizieren.EinheitAnforderungenErfüllt (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                               IDExtern               => EinheitenSchleifenwert)
+           EinheitenmodifizierungLogik.EinheitAnforderungenErfüllt (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                                     IDExtern               => EinheitenSchleifenwert)
          is
             when True =>
                Einheitwertung := EinheitBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
@@ -335,18 +335,16 @@ package body KIEinheitenBauen is
    is begin
       
       if
-        LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                                 IDExtern           => EinheitenIDExtern,
-                                                 WelcheKostenExtern => ProduktionDatentypen.Geld_Enum)
-        = WichtigesKonstanten.LeerGeldZugewinnProRunde
+        WichtigesKonstanten.LeerGeldZugewinnProRunde = LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                                                                                IDExtern           => EinheitenIDExtern,
+                                                                                                WelcheKostenExtern => ProduktionDatentypen.Geld_Enum)
       then
          return 5;
          
       elsif
-        LeseWichtiges.GeldZugewinnProRunde (RasseExtern => StadtRasseNummerExtern.Rasse)
-        - LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                                   IDExtern           => EinheitenIDExtern,
-                                                   WelcheKostenExtern => ProduktionDatentypen.Geld_Enum)
+        LeseWichtiges.GeldZugewinnProRunde (RasseExtern => StadtRasseNummerExtern.Rasse) - LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                                                                                                                    IDExtern           => EinheitenIDExtern,
+                                                                                                                                    WelcheKostenExtern => ProduktionDatentypen.Geld_Enum)
         < WichtigesKonstanten.LeerGeldZugewinnProRunde
       then
          return -10;
@@ -366,22 +364,20 @@ package body KIEinheitenBauen is
    is begin
       
       if
-        LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                                 IDExtern           => EinheitenIDExtern,
-                                                 WelcheKostenExtern => ProduktionDatentypen.Nahrung_Enum)
-        = StadtKonstanten.LeerNahrungsproduktion
+        StadtKonstanten.LeerNahrungsproduktion = LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                                                                          IDExtern           => EinheitenIDExtern,
+                                                                                          WelcheKostenExtern => ProduktionDatentypen.Nahrung_Enum)
       then
          return 5;
          
       elsif
-        LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern)
-        - LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                                   IDExtern           => EinheitenIDExtern,
-                                                   WelcheKostenExtern => ProduktionDatentypen.Nahrung_Enum)
+        LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern) - LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                                                                                                                         IDExtern           => EinheitenIDExtern,
+                                                                                                                                         WelcheKostenExtern => ProduktionDatentypen.Nahrung_Enum)
         < StadtKonstanten.LeerNahrungsproduktion
       then
          return -20;
-      
+         
       else
          return 0;
       end if;
@@ -397,18 +393,16 @@ package body KIEinheitenBauen is
    is begin
       
       if
-        LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                                 IDExtern           => EinheitenIDExtern,
-                                                 WelcheKostenExtern => ProduktionDatentypen.Ressourcen_Enum)
-        = StadtKonstanten.LeerProduktionrate
+        StadtKonstanten.LeerProduktionrate = LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                                                                      IDExtern           => EinheitenIDExtern,
+                                                                                      WelcheKostenExtern => ProduktionDatentypen.Ressourcen_Enum)
       then
          return 5;
          
       elsif
-        LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern)
-        - LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                                   IDExtern           => EinheitenIDExtern,
-                                                   WelcheKostenExtern => ProduktionDatentypen.Ressourcen_Enum)
+        LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern) - LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                                                                                                                     IDExtern           => EinheitenIDExtern,
+                                                                                                                                     WelcheKostenExtern => ProduktionDatentypen.Ressourcen_Enum)
         < StadtKonstanten.LeerProduktionrate
       then
          return -20;

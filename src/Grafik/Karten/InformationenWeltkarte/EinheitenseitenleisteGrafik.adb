@@ -19,7 +19,7 @@ with LeseEinheitenDatenbank;
 with LeseStadtGebaut;
 
 with EinheitenbeschreibungenGrafik;
-with KampfwerteEinheitErmitteln;
+with KampfwerteEinheitErmittelnLogik;
 with EinstellungenGrafik;
 with TextberechnungenHoeheGrafik;
 with ViewsEinstellenGrafik;
@@ -118,10 +118,10 @@ package body EinheitenseitenleisteGrafik is
            & ZahlAlsStringKampfwerte (ZahlExtern => LeseEinheitenDatenbank.MaximalerRang (RasseExtern => EinheitRasseNummer.Rasse,
                                                                                           IDExtern    => IDEinheit));
          FestzulegenderText (10) := Heimatstadt (EinheitRasseNummerExtern => EinheitRasseNummer);
-         FestzulegenderText (11) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugGegenschlagskraftFeld) & KampfwerteEinheitErmitteln.AktuelleVerteidigungEinheit (EinheitRasseNummerExtern => EinheitRasseNummer,
-                                                                                                                                                                   AngreiferExtern          => False)'Wide_Wide_Image;
-         FestzulegenderText (12) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugGegenschlagskraft) & KampfwerteEinheitErmitteln.AktuellerAngriffEinheit (EinheitRasseNummerExtern => EinheitRasseNummer,
-                                                                                                                                                           AngreiferExtern          => False)'Wide_Wide_Image;
+         FestzulegenderText (11) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugGegenschlagskraftFeld) & KampfwerteEinheitErmittelnLogik.AktuelleVerteidigungEinheit (EinheitRasseNummerExtern => EinheitRasseNummer,
+                                                                                                                                                                        AngreiferExtern          => False)'Wide_Wide_Image;
+         FestzulegenderText (12) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugGegenschlagskraft) & KampfwerteEinheitErmittelnLogik.AktuellerAngriffEinheit (EinheitRasseNummerExtern => EinheitRasseNummer,
+                                                                                                                                                                AngreiferExtern          => False)'Wide_Wide_Image;
          FestzulegenderText (13) := Ladung (EinheitRasseNummerExtern => EinheitRasseNummer,
                                             IDExtern                 => IDEinheit);
          

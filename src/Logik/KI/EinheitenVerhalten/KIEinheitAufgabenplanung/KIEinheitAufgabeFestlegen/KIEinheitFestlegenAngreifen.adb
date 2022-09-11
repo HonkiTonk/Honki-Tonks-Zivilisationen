@@ -8,7 +8,7 @@ with KartenKonstanten;
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
 
-with DiplomatischerZustand;
+with DiplomatischerZustandLogik;
 
 with KIDatentypen;
 
@@ -87,8 +87,8 @@ package body KIEinheitFestlegenAngreifen is
             null;
             
          elsif
-           DiplomatieDatentypen.Krieg_Enum = DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => RasseExtern,
-                                                                                                FremdeRasseExtern => RasseSchleifenwert)
+           DiplomatieDatentypen.Krieg_Enum = DiplomatischerZustandLogik.DiplomatischenStatusPrüfen (EigeneRasseExtern => RasseExtern,
+                                                                                                     FremdeRasseExtern => RasseSchleifenwert)
          then
             -- Es sollte auch noch Prüfungen auf die Stärke der feindlichen Rassen erfolgen. äöü
             Ziel := RasseSchleifenwert;

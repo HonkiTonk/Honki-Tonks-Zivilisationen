@@ -10,7 +10,7 @@ with KartenKonstanten;
 with LeseKarten;
 
 with EinheitSuchen;
-with BewegungPassierbarkeitPruefen;
+with PassierbarkeitspruefungLogik;
 
 with Kartenkoordinatenberechnungssystem;
 
@@ -36,8 +36,8 @@ package body KIEinheitAllgemeinePruefungen is
          return False;
       
       elsif
-        False = BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                           NeueKoordinatenExtern    => KoordinatenExtern)
+        False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                          NeueKoordinatenExtern    => KoordinatenExtern)
       then
          return False;
          

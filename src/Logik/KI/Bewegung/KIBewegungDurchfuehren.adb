@@ -11,11 +11,11 @@ with KIKonstanten;
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
 
-with BewegungBerechnen;
+with BewegungsberechnungLogik;
 with EinheitSuchen;
-with KampfsystemEinheiten;
+with KampfsystemEinheitenLogik;
 with StadtSuchen;
-with KampfsystemStadt;
+with KampfsystemStadtLogik;
 
 with KIBewegungBerechnen;
 with KIBewegungAllgemein;
@@ -96,9 +96,9 @@ package body KIBewegungDurchfuehren is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
-      BewegungBerechnen.BewegungEinheitenBerechnung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                     NeueKoordinatenExtern    => LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                                                     PlanschrittExtern        => 1));
+      BewegungsberechnungLogik.Bewegungsberechnung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                    NeueKoordinatenExtern    => LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                                                    PlanschrittExtern        => 1));
       
       BewegungPlanVerschiebenSchleife:
       for PositionSchleifenwert in EinheitenRecords.KIBewegungPlanArray'First + 1 .. EinheitenRecords.KIBewegungPlanArray'Last loop
@@ -130,24 +130,24 @@ package body KIBewegungDurchfuehren is
         FremdeStadt.Rasse = EinheitenKonstanten.LeerRasse
       then
          case
-           KampfsystemEinheiten.KampfsystemNahkampf (AngreiferExtern   => EinheitRasseNummerExtern,
-                                                     VerteidigerExtern => FremdeEinheit)
+           KampfsystemEinheitenLogik.KampfsystemNahkampf (AngreiferExtern   => EinheitRasseNummerExtern,
+                                                          VerteidigerExtern => FremdeEinheit)
          is
             when True =>
                BewegtSich (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-              
+               
             when False =>
                null;
          end case;
          
       else
          case
-           KampfsystemStadt.KampfsystemStadt (AngreifendeEinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                              VerteidigendeStadtRasseNummerExtern => FremdeStadt)
+           KampfsystemStadtLogik.KampfsystemStadt (AngreifendeEinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                   VerteidigendeStadtRasseNummerExtern => FremdeStadt)
          is
             when True =>
                BewegtSich (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-              
+               
             when False =>
                null;
          end case;

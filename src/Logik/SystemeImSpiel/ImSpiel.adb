@@ -12,7 +12,7 @@ with LadezeitenLogik;
 with Speichern;
 with Laden;
 with RasseEntfernen;
-with ZwischenDenRunden;
+with RundenendeLogik;
 with Fehler;
 with NachGrafiktask;
 with BefehleLogik;
@@ -68,7 +68,7 @@ package body ImSpiel is
             end case;
             
             case
-              ZwischenDenRunden.BerechnungenRundenende
+              RundenendeLogik.BerechnungenRundenende
             is
                when False =>
                   exit SpielSchleife;

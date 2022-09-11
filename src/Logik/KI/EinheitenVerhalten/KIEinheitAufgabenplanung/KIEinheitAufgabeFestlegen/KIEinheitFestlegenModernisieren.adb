@@ -10,7 +10,7 @@ with LeseStadtGebaut;
 with LeseEinheitenGebaut;
 with SchreibeEinheitenGebaut;
 
-with BewegungPassierbarkeitPruefen;
+with PassierbarkeitspruefungLogik;
 with Kartenkoordinatenberechnungssystem;
 
 with KIDatentypen; use KIDatentypen;
@@ -111,16 +111,14 @@ package body KIEinheitFestlegenModernisieren is
                null;
                
             elsif
-              BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern),
-                                                                         NeueKoordinatenExtern    => KartenWert)
-              = False
+              False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern),
+                                                                                NeueKoordinatenExtern    => KartenWert)
             then
                null;
                
             elsif
-              KIBewegungAllgemein.FeldBetreten (FeldKoordinatenExtern    => KartenWert,
-                                                EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern))
-                /= KIKonstanten.BewegungNormal
+              KIKonstanten.BewegungNormal /= KIBewegungAllgemein.FeldBetreten (FeldKoordinatenExtern    => KartenWert,
+                                                                               EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern))
             then
                null;
                

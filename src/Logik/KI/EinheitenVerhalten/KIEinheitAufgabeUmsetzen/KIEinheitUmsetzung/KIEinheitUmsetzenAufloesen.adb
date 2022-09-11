@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitenErzeugenEntfernen;
+with EinheitenErzeugenEntfernenLogik;
 
 package body KIEinheitUmsetzenAufloesen is
 
@@ -10,7 +10,7 @@ package body KIEinheitUmsetzenAufloesen is
       return Boolean
    is begin
       
-      EinheitenErzeugenEntfernen.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      EinheitenErzeugenEntfernenLogik.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       return False;
       

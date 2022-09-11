@@ -17,13 +17,13 @@ with ZufallsgeneratorenSpieleinstellungen;
 with ZufallsgeneratorenStartkoordinaten;
 with EinheitSuchen;
 with Kartenkoordinatenberechnungssystem;
-with BewegungPassierbarkeitPruefen;
-with EinheitenErzeugenEntfernen;
+with PassierbarkeitspruefungLogik;
+with EinheitenErzeugenEntfernenLogik;
 with AuswahlaufteilungLogik;
 with Fehler;
 with LadezeitenLogik;
 with UmwandlungenVerschiedeneDatentypen;
-with BewegungCursor;
+with CursorbewegungLogik;
 
 package body SpieleinstellungenRasseSpieler is
    
@@ -208,9 +208,9 @@ package body SpieleinstellungenRasseSpieler is
             
          when others =>
             if
-              True = BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern           => RasseExtern,
-                                                                            IDExtern              => 1,
-                                                                            NeueKoordinatenExtern => GezogeneKoordinate)
+              True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenID (RasseExtern           => RasseExtern,
+                                                                           IDExtern              => 1,
+                                                                           NeueKoordinatenExtern => GezogeneKoordinate)
             then
                null;
                
@@ -288,9 +288,9 @@ package body SpieleinstellungenRasseSpieler is
                null;
                                     
             elsif
-              False = BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern           => RasseExtern,
-                                                                             IDExtern              => 2,
-                                                                             NeueKoordinatenExtern => KartenWert)
+              False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenID (RasseExtern           => RasseExtern,
+                                                                            IDExtern              => 2,
+                                                                            NeueKoordinatenExtern => KartenWert)
             then
                null;
                
@@ -351,15 +351,15 @@ package body SpieleinstellungenRasseSpieler is
       StartkoordinateZweiExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
 
-      EinheitenErzeugenEntfernen.EinheitErzeugen (KoordinatenExtern      => StartkoordinateEinsExtern,
-                                                  EinheitNummerExtern    => 1,
-                                                  IDExtern               => 1,
-                                                  StadtRasseNummerExtern => (RasseExtern, 0));
+      EinheitenErzeugenEntfernenLogik.EinheitErzeugen (KoordinatenExtern      => StartkoordinateEinsExtern,
+                                                       EinheitNummerExtern    => 1,
+                                                       IDExtern               => 1,
+                                                       StadtRasseNummerExtern => (RasseExtern, 0));
       
-      EinheitenErzeugenEntfernen.EinheitErzeugen (KoordinatenExtern      => StartkoordinateZweiExtern,
-                                                  EinheitNummerExtern    => 2,
-                                                  IDExtern               => 2,
-                                                  StadtRasseNummerExtern => (RasseExtern, 0));
+      EinheitenErzeugenEntfernenLogik.EinheitErzeugen (KoordinatenExtern      => StartkoordinateZweiExtern,
+                                                       EinheitNummerExtern    => 2,
+                                                       IDExtern               => 2,
+                                                       StadtRasseNummerExtern => (RasseExtern, 0));
       
       case
         SpielVariablen.Rassenbelegung (RasseExtern).Belegung
@@ -367,7 +367,7 @@ package body SpieleinstellungenRasseSpieler is
          when RassenDatentypen.Mensch_Spieler_Enum =>
             SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell := (StartkoordinateEinsExtern.EAchse, Karten.Karteneinstellungen.Kartengröße.YAchse / 2, Karten.Karteneinstellungen.Kartengröße.XAchse / 2);
             SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt := StartkoordinateEinsExtern;
-            BewegungCursor.ZoomanpassungCursor (RasseExtern => RasseExtern);
+            CursorbewegungLogik.ZoomanpassungCursor (RasseExtern => RasseExtern);
             
          when others =>
             null;

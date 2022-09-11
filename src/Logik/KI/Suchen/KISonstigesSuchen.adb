@@ -7,7 +7,7 @@ with KartenRecordKonstanten;
 with LeseKarten;
 
 with Kartenkoordinatenberechnungssystem;
-with BewegungPassierbarkeitPruefen;
+with PassierbarkeitspruefungLogik;
 
 package body KISonstigesSuchen is
 
@@ -73,8 +73,8 @@ package body KISonstigesSuchen is
               True = LeseKarten.BelegterGrund (RasseExtern       => EinheitRasseNummerExtern.Rasse,
                                                KoordinatenExtern => KartenWert)
               and
-                True = BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                  NeueKoordinatenExtern    => KartenWert)
+                True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                 NeueKoordinatenExtern    => KartenWert)
             then
                return KartenWert;
                      

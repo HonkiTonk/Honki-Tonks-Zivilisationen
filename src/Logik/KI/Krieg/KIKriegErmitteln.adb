@@ -5,7 +5,7 @@ with ProduktionDatentypen; use ProduktionDatentypen;
 with DiplomatieDatentypen; use DiplomatieDatentypen;
 with EinheitenKonstanten;
 
-with DiplomatischerZustand;
+with DiplomatischerZustandLogik;
 
 package body KIKriegErmitteln is
 
@@ -25,8 +25,8 @@ package body KIKriegErmitteln is
             null;
             
          elsif
-           DiplomatieDatentypen.Krieg_Enum = DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => RasseExtern,
-                                                                                                FremdeRasseExtern => RasseSchleifenwert)
+           DiplomatieDatentypen.Krieg_Enum = DiplomatischerZustandLogik.DiplomatischenStatusPrüfen (EigeneRasseExtern => RasseExtern,
+                                                                                                     FremdeRasseExtern => RasseSchleifenwert)
          then
             return True;
                   

@@ -4,10 +4,10 @@ pragma Warnings (Off, "*array aggregate*");
 with LeseEinheitenGebaut;
 
 with TasteneingabeLogik;
-with EinheitenModifizieren;
+with EinheitenmodifizierungLogik;
 with StadtBauen;
 with AufgabenLogik;
-with BewegungEinheiten;
+with EinheitenbewegungLogik;
 with Kartenkoordinatenberechnungssystem;
 with MausauswahlLogik;
 
@@ -55,7 +55,7 @@ package body EinheitenkontrollsystemLogik is
             Änderung := Richtung (BefehlExtern);
                
          when TastenbelegungDatentypen.Heimatstadt_Ändern_Enum =>
-            EinheitenModifizieren.HeimatstadtÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            EinheitenmodifizierungLogik.HeimatstadtÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
                
          when TastenbelegungDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range | TastenbelegungDatentypen.Tastenbelegung_Allgemeine_Befehle_Enum'Range =>
             -- Das Umgekehrte zurückgeben da bei erfolgreichen Aufgabenanfang keine Bewegung mehr möglich ist und umgekehrt.
@@ -101,11 +101,11 @@ package body EinheitenkontrollsystemLogik is
       if
         ÄnderungExtern = KeineÄnderung
       then
-         BewegungNochMöglich := BewegungEinheiten.NochBewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         BewegungNochMöglich := EinheitenbewegungLogik.NochBewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
       else
-         BewegungNochMöglich := BewegungEinheiten.BewegungPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                    PositionÄnderungExtern   => ÄnderungExtern);
+         BewegungNochMöglich := EinheitenbewegungLogik.BewegungPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                         PositionÄnderungExtern   => ÄnderungExtern);
          Änderung := KeineÄnderung;
       end if;
       

@@ -14,8 +14,8 @@ with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
 
 with Kartenkoordinatenberechnungssystem;
-with BewegungPassierbarkeitPruefen;
-with EinheitenTransporter;
+with PassierbarkeitspruefungLogik;
+with EinheitentransporterLogik;
 
 with KIBewegungAllgemein;
 
@@ -242,7 +242,7 @@ package body KIBewegungBerechnen is
       end case;
                   
       case
-        BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern    => EinheitRasseNummerExtern,
+        PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern    => EinheitRasseNummerExtern,
                                                                    NeueKoordinatenExtern       => KartenWert)
       is
          when True =>
@@ -250,9 +250,8 @@ package body KIBewegungBerechnen is
                         
          when False =>
             if
-              TransporterNutzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                 KoordinatenExtern        => KartenWert)
-              = True
+              True = TransporterNutzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                        KoordinatenExtern        => KartenWert)
             then
                null;
                
@@ -359,9 +358,8 @@ package body KIBewegungBerechnen is
       for FelderSchleifenwert in EinheitenRecords.KIBewegungPlanArray'Range loop
          
          if
-           LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                               PlanschrittExtern        => FelderSchleifenwert)
-           = KoordinatenExtern
+           KoordinatenExtern = LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                   PlanschrittExtern        => FelderSchleifenwert)
          then
             return True;
             
@@ -387,13 +385,11 @@ package body KIBewegungBerechnen is
          for ÜberNächsterZugSchleifenwert in EinheitenRecords.KIBewegungPlanArray'Range loop
             
             if
-              LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                  PlanschrittExtern        => ÜberNächsterZugSchleifenwert)
-              = KartenRecordKonstanten.LeerKoordinate
+              KartenRecordKonstanten.LeerKoordinate = LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                          PlanschrittExtern        => ÜberNächsterZugSchleifenwert)
               or
-                LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    PlanschrittExtern        => ErsterZugSchleifenwert)
-              = KartenRecordKonstanten.LeerKoordinate
+                KartenRecordKonstanten.LeerKoordinate = LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                            PlanschrittExtern        => ErsterZugSchleifenwert)
             then
                return;
                
@@ -490,13 +486,11 @@ package body KIBewegungBerechnen is
             null;
             
          elsif
-           EinheitenTransporter.KannTransportiertWerden (LadungExtern      => EinheitRasseNummerExtern,
-                                                         TransporterExtern => (EinheitRasseNummerExtern.Rasse, EinheitSchleifenwert))
-             = True
+           True = EinheitentransporterLogik.KannTransportiertWerden (LadungExtern      => EinheitRasseNummerExtern,
+                                                                     TransporterExtern => (EinheitRasseNummerExtern.Rasse, EinheitSchleifenwert))
            and
-             BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern    => (EinheitRasseNummerExtern.Rasse, EinheitSchleifenwert),
-                                                                        NeueKoordinatenExtern       => KoordinatenExtern)
-           = True
+             True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern    => (EinheitRasseNummerExtern.Rasse, EinheitSchleifenwert),
+                                                                              NeueKoordinatenExtern       => KoordinatenExtern)
          then
             -- Hier später True zurückgeben äöü
             null;

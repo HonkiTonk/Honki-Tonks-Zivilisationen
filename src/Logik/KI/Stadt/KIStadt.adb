@@ -18,8 +18,8 @@ with LeseEinheitenGebaut;
 
 with EinheitSuchen;
 with Kartenkoordinatenberechnungssystem;
-with DiplomatischerZustand;
-with EinheitenModifizieren;
+with DiplomatischerZustandLogik;
+with EinheitenmodifizierungLogik;
 
 with KIEinheitenBauen;
 with KIGebaeudeBauen;
@@ -192,8 +192,8 @@ package body KIStadt is
                      null;
                      
                   elsif
-                    DiplomatieDatentypen.Krieg_Enum /= DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                                                          FremdeRasseExtern => FremdeEinheit.Rasse)
+                    DiplomatieDatentypen.Krieg_Enum /= DiplomatischerZustandLogik.DiplomatischenStatusPrüfen (EigeneRasseExtern => StadtRasseNummerExtern.Rasse,
+                                                                                                               FremdeRasseExtern => FremdeEinheit.Rasse)
                   then
                      null;
                      
@@ -228,15 +228,14 @@ package body KIStadt is
       for EinheitenSchleifenwert in EinheitenDatentypen.EinheitenID'Range loop
          
          if
-           LeseEinheitenDatenbank.EinheitArt (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                              IDExtern    => EinheitenSchleifenwert)
-           = EinheitenDatentypen.Arbeiter_Enum
+           EinheitenDatentypen.Arbeiter_Enum = LeseEinheitenDatenbank.EinheitArt (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                                                  IDExtern    => EinheitenSchleifenwert)
          then
             null;
             
          elsif
-          True = EinheitenModifizieren.EinheitAnforderungenErfüllt (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                               IDExtern               => EinheitenSchleifenwert)
+           True = EinheitenmodifizierungLogik.EinheitAnforderungenErfüllt (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                                            IDExtern               => EinheitenSchleifenwert)
          then
             NotfallEinheitBauen (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                  EinheitIDExtern        => EinheitenSchleifenwert);

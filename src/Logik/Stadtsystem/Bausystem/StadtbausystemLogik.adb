@@ -11,7 +11,7 @@ with LeseStadtGebaut;
 
 with TasteneingabeLogik;
 with GebaeudeAllgemeinLogik;
-with EinheitenModifizieren;
+with EinheitenmodifizierungLogik;
 with NachGrafiktask;
 with InteraktionAuswahl;
 with MausauswahlLogik;
@@ -115,8 +115,8 @@ package body StadtbausystemLogik is
       for EinheitSchleifenwert in EinheitenDatentypen.EinheitenID'Range loop
          
          if
-           True = EinheitenModifizieren.EinheitAnforderungenErfüllt (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                                      IDExtern               => EinheitSchleifenwert)
+           True = EinheitenmodifizierungLogik.EinheitAnforderungenErfüllt (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                                            IDExtern               => EinheitSchleifenwert)
          then
             InteraktionAuswahl.MöglicheEinheiten (EinheitSchleifenwert) := True;
             

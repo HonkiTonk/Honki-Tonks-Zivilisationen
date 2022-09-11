@@ -9,7 +9,7 @@ with KartenRecordKonstanten;
 with LeseKarten;
 
 with Kartenkoordinatenberechnungssystem;
-with BewegungPassierbarkeitPruefen;
+with PassierbarkeitspruefungLogik;
 with EinheitSuchen;
 
 package body UmgebungErreichbarTesten is
@@ -60,9 +60,9 @@ package body UmgebungErreichbarTesten is
                    EinheitenKonstanten.LeerNummer = EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert,
                                                                                                      LogikGrafikExtern => True).Nummer
                  and
-                   True = BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern           => RasseExtern,
-                                                                                 IDExtern              => IDExtern,
-                                                                                 NeueKoordinatenExtern => KartenWert)
+                   True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenID (RasseExtern           => RasseExtern,
+                                                                                IDExtern              => IDExtern,
+                                                                                NeueKoordinatenExtern => KartenWert)
                  and
                    True = NochErreichbar (AktuelleKoordinatenExtern => KartenWert,
                                           RasseExtern               => RasseExtern,
@@ -79,9 +79,9 @@ package body UmgebungErreichbarTesten is
                    EinheitenKonstanten.LeerNummer = EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert,
                                                                                                      LogikGrafikExtern => True).Nummer
                  and
-                   True = BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern           => RasseExtern,
-                                                                                 IDExtern              => IDExtern,
-                                                                                 NeueKoordinatenExtern => KartenWert)
+                   True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenID (RasseExtern           => RasseExtern,
+                                                                                IDExtern              => IDExtern,
+                                                                                NeueKoordinatenExtern => KartenWert)
                  and
                    True = NochErreichbar (AktuelleKoordinatenExtern => KartenWert,
                                           RasseExtern               => RasseExtern,
@@ -141,9 +141,9 @@ package body UmgebungErreichbarTesten is
               True = LeseKarten.BelegterGrund (RasseExtern       => RasseExtern,
                                                KoordinatenExtern => KartenWertZwei)
               and
-                True = BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern           => RasseExtern,
-                                                                              IDExtern              => IDExtern,
-                                                                              NeueKoordinatenExtern => KartenWertZwei)
+                True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenID (RasseExtern           => RasseExtern,
+                                                                             IDExtern              => IDExtern,
+                                                                             NeueKoordinatenExtern => KartenWertZwei)
             then
                return True;
                

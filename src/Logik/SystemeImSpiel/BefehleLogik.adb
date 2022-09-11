@@ -13,18 +13,18 @@ with TextnummernKonstanten;
 with LeseEinheitenGebaut;
 
 with StadtmenueLogik;
-with BewegungCursor;
+with CursorbewegungLogik;
 with NaechstesObjekt;
 with AufgabenLogik;
-with Diplomatie;
+with DiplomatieLogik;
 with DebugmenueLogik;
 with StadtBauen;
 with EinheitSuchen;
 with StadtSuchen;
 with TasteneingabeLogik;
 with StadtEntfernen;
-with TransporterSuchen;
-with EinheitenModifizieren;
+with TransporterSuchenLogik;
+with EinheitenmodifizierungLogik;
 with AufgabenAllgemeinLogik;
 with EinheitenkontrollsystemLogik;
 with AuswahlStadtEinheitLogik;
@@ -49,8 +49,8 @@ package body BefehleLogik is
         Befehl
       is
          when TastenbelegungDatentypen.Tastenbelegung_Bewegung_Ebene_Enum'Range =>
-            BewegungCursor.CursorbewegungBerechnen (RichtungExtern => Befehl,
-                                                    RasseExtern    => RasseExtern);
+            CursorbewegungLogik.CursorbewegungBerechnen (RichtungExtern => Befehl,
+                                                         RasseExtern    => RasseExtern);
             
          when TastenbelegungDatentypen.Auswählen_Enum =>
             AuswahlEinheitStadt (RasseExtern => RasseExtern);
@@ -93,10 +93,10 @@ package body BefehleLogik is
             end if;
 
          when TastenbelegungDatentypen.Diplomatie_Enum =>
-            Diplomatie.DiplomatieMöglich (RasseExtern => RasseExtern);
+            DiplomatieLogik.DiplomatieMöglich (RasseExtern => RasseExtern);
 
          when TastenbelegungDatentypen.Gehe_Zu_Enum =>
-            BewegungCursor.GeheZu;
+            CursorbewegungLogik.GeheZu;
 
          when TastenbelegungDatentypen.Stadt_Umbenennen_Enum =>
             StadtUmbenennen (RasseExtern => RasseExtern);
@@ -111,7 +111,7 @@ package body BefehleLogik is
             NaechstesObjekt.NächsteEinheitMeldung (RasseExtern => RasseExtern);
             
          when TastenbelegungDatentypen.Heimatstadt_Ändern_Enum =>
-            EinheitenModifizieren.HeimatstadtÄndern (EinheitRasseNummerExtern => (RasseExtern, 0));
+            EinheitenmodifizierungLogik.HeimatstadtÄndern (EinheitRasseNummerExtern => (RasseExtern, 0));
             
          when TastenbelegungDatentypen.Runde_Beenden_Enum =>
             return RueckgabeDatentypen.Runde_Beenden_Enum;
@@ -222,7 +222,7 @@ package body BefehleLogik is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
-      Transportiert := TransporterSuchen.HatTransporterLadung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      Transportiert := TransporterSuchenLogik.HatTransporterLadung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       if
         LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerWirdTransportiert

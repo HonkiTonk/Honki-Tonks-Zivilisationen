@@ -24,6 +24,7 @@ package GebaeudeumgebungLogik is
 private
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Stadtkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    function UmgebungPrüfen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;

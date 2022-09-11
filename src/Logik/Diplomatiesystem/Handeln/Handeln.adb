@@ -8,8 +8,8 @@ with LeseWichtiges;
 with LeseKarten;
 
 with Sichtbarkeit;
-with KennenLernen;
-with DiplomatischerZustand;
+with KennenlernenLogik;
+with DiplomatischerZustandLogik;
 with Karten;
 
 package body Handeln is
@@ -43,13 +43,7 @@ package body Handeln is
       
       HandelSchleife:
       loop
-         
-         --  AuswahlHandeln := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Handeln,
-         --                                     TextDateiExtern   => GlobaleTexte.Handeln,
-         --                                     FrageZeileExtern  => 1,
-         --                                     ErsteZeileExtern  => 2,
-         --                                    LetzteZeileExtern => 10);
-      
+                  
          case
            AuswahlHandeln
          is
@@ -131,14 +125,14 @@ package body Handeln is
          -- if
          --    Geldmenge / 25 > Integer (ProduktionDatentypen.Feldproduktion'Last)
          --  then
-         DiplomatischerZustand.SympathieÄndern (EigeneRasseExtern => KontaktierteRasseExtern,
-                                                 FremdeRasseExtern => RasseExtern,
-                                                 ÄnderungExtern    => DiplomatieDatentypen.Meinung'Last);
+         DiplomatischerZustandLogik.SympathieÄndern (EigeneRasseExtern => KontaktierteRasseExtern,
+                                                      FremdeRasseExtern => RasseExtern,
+                                                      ÄnderungExtern    => DiplomatieDatentypen.Meinung'Last);
                      
          --  else
-         DiplomatischerZustand.SympathieÄndern (EigeneRasseExtern => KontaktierteRasseExtern,
-                                                 FremdeRasseExtern => RasseExtern,
-                                                 ÄnderungExtern    => DiplomatieDatentypen.Meinung (Geldmenge / 25));
+         DiplomatischerZustandLogik.SympathieÄndern (EigeneRasseExtern => KontaktierteRasseExtern,
+                                                      FremdeRasseExtern => RasseExtern,
+                                                      ÄnderungExtern    => DiplomatieDatentypen.Meinung (Geldmenge / 25));
          --   end if;
                   
       else
@@ -211,8 +205,8 @@ package body Handeln is
             null;
                   
          else
-            KennenLernen.Erstkontakt (EigeneRasseExtern => KontaktierteRasseExtern,
-                                      FremdeRasseExtern => RasseZweiSchleifenwert);
+            KennenlernenLogik.Erstkontakt (EigeneRasseExtern => KontaktierteRasseExtern,
+                                           FremdeRasseExtern => RasseZweiSchleifenwert);
          end if;
                
       end loop RassenZweiSchleife;
@@ -241,8 +235,8 @@ package body Handeln is
             null;
                   
          else
-            KennenLernen.Erstkontakt (EigeneRasseExtern => RasseExtern,
-                                      FremdeRasseExtern => RasseEinsSchleifenwert);
+            KennenlernenLogik.Erstkontakt (EigeneRasseExtern => RasseExtern,
+                                           FremdeRasseExtern => RasseEinsSchleifenwert);
          end if;
                
       end loop RassenEinsSchleife;

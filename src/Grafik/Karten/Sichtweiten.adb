@@ -5,7 +5,7 @@ with KartenDatentypen; use KartenDatentypen;
 with TastenbelegungDatentypen;
 
 with KartenberechnungenGrafik;
-with BewegungCursor;
+with CursorbewegungLogik;
 with NachGrafiktask;
 
 -- Das und KartenberechnungenGrafik mal anders aufteilen. äöü
@@ -40,15 +40,15 @@ package body Sichtweiten is
       if
         AktuelleZoomstufe + ÄnderungExtern > MaximaleZoomstufe
       then
-         BewegungCursor.CursorbewegungBerechnen (RichtungExtern => TastenbelegungDatentypen.Ebene_Hoch_Enum,
-                                                 RasseExtern    => NachGrafiktask.AktuelleRasse);
+         CursorbewegungLogik.CursorbewegungBerechnen (RichtungExtern => TastenbelegungDatentypen.Ebene_Hoch_Enum,
+                                                      RasseExtern    => NachGrafiktask.AktuelleRasse);
          AktuelleZoomstufe := KartenDatentypen.KartenfeldPositiv'First;
          
       elsif
         AktuelleZoomstufe + ÄnderungExtern < MinimaleZoomstufe
       then
-         BewegungCursor.CursorbewegungBerechnen (RichtungExtern => TastenbelegungDatentypen.Ebene_Runter_Enum,
-                                                 RasseExtern    => NachGrafiktask.AktuelleRasse);
+         CursorbewegungLogik.CursorbewegungBerechnen (RichtungExtern => TastenbelegungDatentypen.Ebene_Runter_Enum,
+                                                      RasseExtern    => NachGrafiktask.AktuelleRasse);
          AktuelleZoomstufe := MaximaleZoomstufe;
          
       else
@@ -56,7 +56,7 @@ package body Sichtweiten is
       end if;
       
       KartenberechnungenGrafik.KartenfelderAbmessungBerechnen;
-      BewegungCursor.ZoomanpassungCursor (RasseExtern => NachGrafiktask.AktuelleRasse);
+      CursorbewegungLogik.ZoomanpassungCursor (RasseExtern => NachGrafiktask.AktuelleRasse);
       
    end ZoomstufeÄndern;
    
