@@ -273,7 +273,41 @@ package body MausauswahlLogik is
    
    
    
+   function Weltkartenbefehle
+     return BefehleDatentypen.Weltkartenbefehle_Enum
+   is begin
+      
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
+                                                                 point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
+                                                                 view         => Views.KartenbefehlsviewAccess);
+      
+      BefehleSchleife:
+      for BefehlSchleifenwert in InteraktionAuswahl.PositionenKartenbefehleArray'Range loop
+         
+         case
+           Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
+                                       TextboxExtern      => InteraktionAuswahl.PositionenKartenbefehle (BefehlSchleifenwert))
+         is
+            when True =>
+               return BefehlSchleifenwert;
+               
+            when False =>
+               null;
+         end case;
+                 
+      end loop BefehleSchleife;
+      
+      return BefehleDatentypen.Leer_Enum;
+      
+   end Weltkartenbefehle;
+   
+   
+   
    -- Später so erweitern dass die Mausposition noch Befehlsknöpfen abfragt. äöü
+   -- Hier auch gleich noch Weltkartenbefehle aufrufen um die allgemeinen Befehle zu bekommen? äöü
+   -- Erzeugt wahrscheinlich Probleme mit dem aktuellen System wenn eine Einheit ausgewählt ist. äöü
+   -- Wobei ich wohl einfach die Auswahl zurückgeben kann und dann entsprechend prüfen und weiter zurückgeben kann? äöü
+   -- Vermutlich sind da dann aber noch ein paar zusätzliche Prüfungen notwendig. äöü
    function Einheitenbefehle
      return BefehleDatentypen.Weltkartenbefehle_Enum
    is begin
@@ -290,23 +324,27 @@ package body MausauswahlLogik is
             return BefehleDatentypen.Bewegen_Enum;
             
          when False =>
+            -- Vermutlich muss ich die Befehlsknöpfe zuerst abfragen wenn ich die in die Karte einbaue. äöü
             Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
                                                                        point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
-                                                                       view         => Views.BefehlsviewAccess);
+                                                                       view         => Views.EinheitenbefehlsviewAccess);
       end case;
       
+      BefehleSchleife:
+      for BefehlSchleifenwert in InteraktionAuswahl.PositionenEinheitenbefehleArray'Range loop
          
-      case
-        Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                    -- Hier später die Befehlsknöpfe einbauen.
-                                    TextboxExtern      => (0.00, 0.00, 0.00, 0.00))
-      is
-         when True =>
-            return BefehleDatentypen.A_Enum;
-            
-         when False =>
-            null;
-      end case;
+         case
+           Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
+                                       TextboxExtern      => InteraktionAuswahl.PositionenEinheitenbefehle (BefehlSchleifenwert))
+         is
+            when True =>
+               return BefehlSchleifenwert;
+               
+            when False =>
+               null;
+         end case;
+         
+      end loop BefehleSchleife;
       
       return BefehleDatentypen.Leer_Enum;
       

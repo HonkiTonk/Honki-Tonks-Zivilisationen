@@ -2,40 +2,14 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
-with RueckgabeDatentypen;
 with SpielVariablen;
+with TastenbelegungDatentypen;
 
-private with StadtRecords;
 private with EinheitenRecords;
 private with EinheitenDatentypen;
 private with StadtDatentypen;
-private with TastenbelegungDatentypen;
 
-package BefehleLogik is
-   
-   function Befehle
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return RueckgabeDatentypen.Rückgabe_Werte_Enum
-     with
-       Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
-              );
-
-private
-
-   Transportiert : Boolean;
-   LeerRückgabewert : Boolean;
-      
-   Befehl : TastenbelegungDatentypen.Tastenbelegung_Enum;
-
-   EinheitNummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
-   TransporterNummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
-   StadtNummer : StadtDatentypen.MaximaleStädteMitNullWert;
-   
-   -- Ist Integer um mit dem aktuellen Auswahlsystem zu funktionieren.
-   AusgewählteEinheit : Integer;
-   
-   StadtSuchenNachNamen : StadtRecords.RasseStadtnummerRecord;
+package BefehlspruefungenLogik is
    
    procedure AuswahlEinheitStadt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
@@ -43,21 +17,8 @@ private
        Pre => (
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
               );
-
-   procedure EinheitOderStadt
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      StadtNummerExtern : in StadtDatentypen.MaximaleStädteMitNullWert;
-      EinheitNummerExtern : in EinheitenDatentypen.MaximaleEinheitenMitNullWert)
-     with
-       Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
-               and
-                 EinheitNummerExtern in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Einheitengrenze
-               and
-                 StadtNummerExtern in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Städtegrenze
-              );
    
-   procedure BaueStadt
+   procedure WasWirdEntfernt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
@@ -79,6 +40,41 @@ private
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
               );
    
+   procedure BaueStadt
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre => (
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+              );
+   
+private
+
+   Transportiert : Boolean;
+   LeerRückgabewert : Boolean;
+
+   EinheitNummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   TransporterNummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   StadtNummer : StadtDatentypen.MaximaleStädteMitNullWert;
+   
+   -- Ist Integer um mit dem aktuellen Auswahlsystem zu funktionieren.
+   AusgewählteEinheit : Integer;
+   
+      
+   procedure EinheitOderStadt
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      StadtNummerExtern : in StadtDatentypen.MaximaleStädteMitNullWert;
+      EinheitNummerExtern : in EinheitenDatentypen.MaximaleEinheitenMitNullWert)
+     with
+       Pre => (
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+               and
+                 EinheitNummerExtern in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Einheitengrenze
+               and
+                 StadtNummerExtern in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Städtegrenze
+              );
+   
+   
+   
    procedure AuswahlEinheitTransporter
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
@@ -96,12 +92,5 @@ private
                and
                  SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
-   
-   procedure WasWirdEntfernt
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-     with
-       Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
-              );
 
-end BefehleLogik;
+end BefehlspruefungenLogik;

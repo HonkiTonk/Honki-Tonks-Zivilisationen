@@ -41,6 +41,9 @@ package MausauswahlLogik is
    function Steuerung
      return SystemRecords.MehrfacheAuswahlRecord;
    
+   function Weltkartenbefehle
+     return BefehleDatentypen.Weltkartenbefehle_Enum;
+   
    function Einheitenbefehle
      return BefehleDatentypen.Weltkartenbefehle_Enum;
    

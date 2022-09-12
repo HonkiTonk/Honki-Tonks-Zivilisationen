@@ -15,7 +15,7 @@ with RasseEntfernen;
 with RundenendeLogik;
 with Fehler;
 with NachGrafiktask;
-with BefehleLogik;
+with BefehlsauswahlLogik;
 with JaNeinLogik;
 with Spielertests;
 with AuswahlaufteilungLogik;
@@ -238,7 +238,7 @@ package body ImSpiel is
            SpielVariablen.Rassenbelegung (RasseExtern).Belegung
          is
             when RassenDatentypen.Mensch_Spieler_Enum =>
-               AktuellerBefehlSpieler := BefehleLogik.Befehle (RasseExtern => RasseExtern);
+               AktuellerBefehlSpieler := BefehlsauswahlLogik.Befehlsauswahl (RasseExtern => RasseExtern);
                
             when others =>
                RückgabeMenschAmZug := RueckgabeDatentypen.Hauptmenü_Enum;

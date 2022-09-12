@@ -15,22 +15,6 @@ with Karten;
 
 package KartenAllgemein is
 
-   function BeschreibungZusatzgrund
-     (KartenGrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
-      return Wide_Wide_String;
-
-   function BeschreibungBasisgrund
-     (KartenGrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
-      return Wide_Wide_String;
-
-   function BeschreibungFluss
-     (KartenFlussExtern : in KartengrundDatentypen.Kartenfluss_Vorhanden_Enum)
-      return Wide_Wide_String;
-
-   function BeschreibungRessource
-     (KartenRessourceExtern : in KartengrundDatentypen.Kartenressourcen_Vorhanden_Enum)
-      return Wide_Wide_String;
-
    function GrundNahrung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
@@ -458,10 +442,5 @@ private
 
    Basisgrund : KartengrundDatentypen.Kartengrund_Enum;
    Zusatzgrund : KartengrundDatentypen.Kartengrund_Enum;
-
-   GrundAktuell : Positive;
-   ZusatzAktuell : Positive;
-   FlussAktuell : Positive;
-   RessourceAktuell : Positive;
 
 end KartenAllgemein;

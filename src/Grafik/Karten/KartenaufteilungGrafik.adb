@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with EinheitenKonstanten;
+
 with StadtkarteGrafik;
 with CursorplatzierungGrafik;
 with CursorplatzierungAltGrafik;
@@ -9,6 +11,7 @@ with SeitenleisteGrafik;
 with StadtseitenleisteGrafik;
 with StadtumgebungGrafik;
 with StadtbefehleGrafik;
+with WeltkartenbefehleGrafik;
 
 package body KartenaufteilungGrafik is
    
@@ -22,6 +25,17 @@ package body KartenaufteilungGrafik is
       -- Von außen die Arraypositionen für die Bereiche/Views hineingeben? äöü
       WeltkarteGrafik.Weltkarte (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       SeitenleisteGrafik.SeitenleisteGrafik (RasseExtern => EinheitRasseNummerExtern.Rasse);
+      
+      -- Für den Anfang nur eines der beiden Anzeigen, man kann das ja später ändern. äöü
+      case
+        EinheitRasseNummerExtern.Nummer
+      is
+         when EinheitenKonstanten.LeerNummer =>
+            WeltkartenbefehleGrafik.Kartenbefehle;
+            
+         when others =>
+            WeltkartenbefehleGrafik.Einheitenbefehle (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      end case;
       
    end Weltkarte;
    

@@ -73,4 +73,12 @@ package InteraktionAuswahl is
    type PositionenStadtbefehleArray is array (BefehleDatentypen.Stadtbefehle_Vorhanden_Enum'Range) of Sf.Graphics.Rect.sfFloatRect;
    PositionenStadtbefehle : PositionenStadtbefehleArray := (others => (0.00, 0.00, 0.00, 0.00));
 
+
+
+   type PositionenKartenbefehleArray is array (BefehleDatentypen.Kartenbefehle_Enum'Range) of Sf.Graphics.Rect.sfFloatRect;
+   PositionenKartenbefehle : PositionenKartenbefehleArray := (others => (0.00, 0.00, 0.00, 0.00));
+
+   type PositionenEinheitenbefehleArray is array (BefehleDatentypen.Einheitenbefehle_Enum'Range) of Sf.Graphics.Rect.sfFloatRect;
+   PositionenEinheitenbefehle : PositionenEinheitenbefehleArray := (others => (0.00, 0.00, 0.00, 0.00));
+
 end InteraktionAuswahl;

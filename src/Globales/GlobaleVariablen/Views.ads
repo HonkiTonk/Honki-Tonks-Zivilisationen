@@ -18,8 +18,10 @@ package Views is
 
    MeldungssviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
 
+   -- Später zusammenfassen. äöü
    KartenviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
-   BefehlsviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
+   KartenbefehlsviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
+   EinheitenbefehlsviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
 
    ForschungserfolgviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
 

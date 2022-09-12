@@ -17,12 +17,12 @@ with TextnummernKonstanten;
 with LeseKarten;
 
 with EinstellungenGrafik;
-with KartenAllgemein;
-with AufgabenAllgemeinLogik;
 with TextberechnungenHoeheGrafik;
 with ViewsEinstellenGrafik;
 with HintergrundGrafik;
 with TextberechnungenBreiteGrafik;
+with AufgabenbeschreibungenGrafik;
+with KartenbeschreibungenGrafik;
 
 package body AllgemeinesSeitenleisteGrafik is
    
@@ -64,13 +64,13 @@ package body AllgemeinesSeitenleisteGrafik is
         VorhandenerGrund.BasisGrund = VorhandenerGrund.AktuellerGrund
       then
          Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (1),
-                                            str  => KartenAllgemein.BeschreibungBasisgrund (KartenGrundExtern => VorhandenerGrund.AktuellerGrund));
+                                            str  => KartenbeschreibungenGrafik.BeschreibungBasisgrund (KartenGrundExtern => VorhandenerGrund.AktuellerGrund));
          
       else
          Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (1),
-                                            str  => KartenAllgemein.BeschreibungBasisgrund (KartenGrundExtern => VorhandenerGrund.BasisGrund) & " "
+                                            str  => KartenbeschreibungenGrafik.BeschreibungBasisgrund (KartenGrundExtern => VorhandenerGrund.BasisGrund) & " "
                                             &  To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugMit)) & " "
-                                            & KartenAllgemein.BeschreibungZusatzgrund (KartenGrundExtern => VorhandenerGrund.AktuellerGrund));
+                                            & KartenbeschreibungenGrafik.BeschreibungZusatzgrund (KartenGrundExtern => VorhandenerGrund.AktuellerGrund));
       end if;
       
       -- Eventuell auch mehr Wörter zusammenfassen? äöü
@@ -87,7 +87,7 @@ package body AllgemeinesSeitenleisteGrafik is
             TextAnzeigen (2) := True;
             
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (2),
-                                               str  => KartenAllgemein.BeschreibungRessource (KartenRessourceExtern => KartenRessource));
+                                               str  => KartenbeschreibungenGrafik.BeschreibungRessource (KartenRessourceExtern => KartenRessource));
       end case;
       
       
@@ -104,7 +104,7 @@ package body AllgemeinesSeitenleisteGrafik is
             TextAnzeigen (3) := True;
             
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (3),
-                                               str  => AufgabenAllgemeinLogik.BeschreibungVerbesserung (KartenVerbesserungExtern => KartenVerbesserung));
+                                               str  => AufgabenbeschreibungenGrafik.BeschreibungVerbesserung (KartenVerbesserungExtern => KartenVerbesserung));
       end case;
       
       
@@ -121,7 +121,7 @@ package body AllgemeinesSeitenleisteGrafik is
             TextAnzeigen (4) := True;
             
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (4),
-                                               str  => AufgabenAllgemeinLogik.BeschreibungWeg (KartenWegExtern => KartenWeg));
+                                               str  => AufgabenbeschreibungenGrafik.BeschreibungWeg (KartenWegExtern => KartenWeg));
       end case;
       
       
@@ -138,7 +138,7 @@ package body AllgemeinesSeitenleisteGrafik is
             TextAnzeigen (5) := True;
             
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (5),
-                                               str  => KartenAllgemein.BeschreibungFluss (KartenFlussExtern => KartenFluss));
+                                               str  => KartenbeschreibungenGrafik.BeschreibungFluss (KartenFlussExtern => KartenFluss));
       end case;
                
       TextSchleife:

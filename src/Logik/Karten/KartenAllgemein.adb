@@ -1,71 +1,14 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
-
 with KartengrundDatentypen; use KartengrundDatentypen;
-with Kartentexte;
 with KartenKonstanten;
 
 with LeseKarten;
 with LeseKartenDatenbanken;
 with LeseVerbesserungenDatenbank;
 
--- Später die Beschreibungen noch um RasseExtern erweitern damit jede Rasse ihren eigenen Text haben kann? äöü
--- Beschreibugnen nach Grafik verschieben. äöü
 package body KartenAllgemein is
-   
-   function BeschreibungBasisgrund
-     (KartenGrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
-      return Wide_Wide_String
-   is begin
-            
-      GrundAktuell := 2 * KartengrundDatentypen.Kartengrund_Vorhanden_Enum'Pos (KartenGrundExtern) - 1;
-   
-      return To_Wide_Wide_String (Source => Kartentexte.Kartenfelder (GrundAktuell));
-      
-   end BeschreibungBasisgrund;
-   
-
-
-   function BeschreibungZusatzgrund
-     (KartenGrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
-      return Wide_Wide_String
-   is begin
-      
-      ZusatzAktuell := 2 * KartengrundDatentypen.Kartengrund_Vorhanden_Enum'Pos (KartenGrundExtern) - 1;
-   
-      return To_Wide_Wide_String (Source => Kartentexte.Kartenfelder (ZusatzAktuell));
-      
-   end BeschreibungZusatzgrund;
-   
-   
-   
-   function BeschreibungFluss
-     (KartenFlussExtern : in KartengrundDatentypen.Kartenfluss_Vorhanden_Enum)
-      return Wide_Wide_String
-   is begin
-            
-      FlussAktuell := 2 * KartengrundDatentypen.Kartenfluss_Vorhanden_Enum'Pos (KartenFlussExtern) - 1;
-      
-      return To_Wide_Wide_String (Source => Kartentexte.Kartenflüsse (FlussAktuell));
-      
-   end BeschreibungFluss;
-   
-   
-   
-   function BeschreibungRessource
-     (KartenRessourceExtern : in KartengrundDatentypen.Kartenressourcen_Vorhanden_Enum)
-      return Wide_Wide_String
-   is begin
-      
-      RessourceAktuell := 2 * KartengrundDatentypen.Kartenressourcen_Vorhanden_Enum'Pos (KartenRessourceExtern) - 1;
-   
-      return To_Wide_Wide_String (Source => Kartentexte.Kartenressourcen (RessourceAktuell));
-      
-   end BeschreibungRessource;
-   
-   
    
    -- Später mal ein besseres Berechnungssystem einbauen. äöü
    function GrundNahrung
