@@ -112,17 +112,22 @@ package ChangelogSeptember2022 is
    
    
 
-   -- Version 0.03. => 0.03. (14.09.2022):
+   -- Version 0.03.8990 => 0.03. (14.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.8905 => 0.03. (13.09.2022):
+   -- Version 0.03.8905 => 0.03.8990 (13.09.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Einfache Befehlsknöpfe für die Weltkarte eingebaut.
+   -- Einfach Befehlsknöpfe für Einheitenbefehle eingebaut.
+   -- Einige Fehler mit den neuen System korrigiert, die zu Systemstopps führen konnten.
+   -- Kampfrelevante Datentypen besser aufgeteilt.
+   -- Grafikoption eingebaut die den Wechsel zwischen Texturen und einfachen Rechtecken zulässt.
+   -- Angefangen die RückgabeDatentype zu überarbeiten und zu verkleinern.
+   -- Constracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst/entfernt.
    
    
 

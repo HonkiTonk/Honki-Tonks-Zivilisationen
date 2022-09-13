@@ -91,7 +91,7 @@ package body LeseEinheitenGebaut is
    
    function Erfahrungspunkte
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return KampfDatentypen.Kampfwerte
+      return KampfDatentypen.Erfahrungspunkte
    is begin
       
       Beförderungsgrenze := LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => EinheitRasseNummerExtern.Rasse,
@@ -115,7 +115,7 @@ package body LeseEinheitenGebaut is
    
    function Rang
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return KampfDatentypen.Kampfwerte
+      return KampfDatentypen.Rang
    is begin
       
       MaximalerRang := LeseEinheitenDatenbank.MaximalerRang (RasseExtern => EinheitRasseNummerExtern.Rasse,

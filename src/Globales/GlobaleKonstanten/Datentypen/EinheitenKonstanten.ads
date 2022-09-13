@@ -23,8 +23,8 @@ package EinheitenKonstanten is
    LeerHeimatstadt : constant StadtDatentypen.MaximaleStädteMitNullWert := StadtDatentypen.MaximaleStädteMitNullWert'First;
    LeerLebenspunkte : constant EinheitenDatentypen.Lebenspunkte := EinheitenDatentypen.Lebenspunkte'First;
    LeerBewegungspunkte : constant EinheitenDatentypen.VorhandeneBewegungspunkte := EinheitenDatentypen.VorhandeneBewegungspunkte'First;
-   LeerErfahrungspunkte : constant KampfDatentypen.Kampfwerte := KampfDatentypen.Kampfwerte'First;
-   LeerRang : constant KampfDatentypen.Kampfwerte := KampfDatentypen.Kampfwerte'First;
+   LeerErfahrungspunkte : constant KampfDatentypen.Erfahrungspunkte := KampfDatentypen.Erfahrungspunkte'First;
+   LeerRang : constant KampfDatentypen.Rang := KampfDatentypen.Rang'First;
    LeerBeschäftigung : constant AufgabenDatentypen.Einheiten_Aufgaben_Enum := AufgabenDatentypen.Leer_Aufgabe_Enum;
    LeerBeschäftigungszeit : constant ProduktionDatentypen.ArbeitszeitVorhanden := 0;
    LeerKIBeschäftigt : constant KIDatentypen.Einheit_Aufgabe_Enum := KIDatentypen.Leer_Aufgabe_Enum;
@@ -34,7 +34,7 @@ package EinheitenKonstanten is
    
    
    
-   LeerEinheitArt : constant EinheitenDatentypen.Einheitart_Enum := EinheitenDatentypen.Arbeiter_Enum;
+   LeerEinheitArt : constant EinheitenDatentypen.Einheitart_Enum := EinheitenDatentypen.Leer_Einheitart_Enum;
    LeerPreisGeld : constant ProduktionDatentypen.Produktion := 0;
    LeerPreisRessourcen : constant ProduktionDatentypen.Produktion := 0;
    LeerPermanenteKosten : constant ProduktionDatentypen.Stadtproduktion := 0;
@@ -43,9 +43,9 @@ package EinheitenKonstanten is
    LeerMaximaleLebenspunkte : constant EinheitenDatentypen.LebenspunkteVorhanden := EinheitenDatentypen.LebenspunkteVorhanden'First;
    LeerMaximaleBewegungspunkte : constant EinheitenDatentypen.VorhandeneBewegungspunkte := 1.00;
    LeerWirdVerbessertZu : constant EinheitenDatentypen.EinheitenIDMitNullWert := EinheitenDatentypen.EinheitenIDMitNullWert'First;
-   LeerBeförderungsgrenze : constant KampfDatentypen.Kampfwerte := KampfDatentypen.Kampfwerte'First;
-   LeerMaximalerRang : constant KampfDatentypen.Kampfwerte := KampfDatentypen.Kampfwerte'First;
-   LeerReichweite : constant KampfDatentypen.Kampfwerte := KampfDatentypen.Kampfwerte'First;
+   LeerBeförderungsgrenze : constant KampfDatentypen.ErfahrungspunkteVorhanden := KampfDatentypen.ErfahrungspunkteVorhanden'First;
+   LeerMaximalerRang : constant KampfDatentypen.Rang := KampfDatentypen.RangVorhanden'First;
+   LeerReichweite : constant KampfDatentypen.Reichweite := KampfDatentypen.Reichweite'First;
    LeerAngriff : constant KampfDatentypen.Kampfwerte := KampfDatentypen.Kampfwerte'First;
    LeerVerteidigung : constant KampfDatentypen.Kampfwerte := KampfDatentypen.Kampfwerte'First;
    LeerKannTransportieren : constant EinheitenDatentypen.Transport_Enum := EinheitenDatentypen.Kein_Transport_Enum;

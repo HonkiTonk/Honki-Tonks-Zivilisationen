@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+
 with EinheitenDatentypen; use EinheitenDatentypen;
 with TastenbelegungDatentypen; use TastenbelegungDatentypen;
 with AufgabenDatentypen; use AufgabenDatentypen;
@@ -29,12 +31,13 @@ with EinheitAufloesenLogik;
 with UmwandlungenVerschiedeneDatentypen;
 with JaNeinLogik;
 with MeldungFestlegenLogik;
+with NachGrafiktask;
 
 package body AufgabenLogik is
    
    function AufgabeTesten
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum;
+      BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Baulos_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is begin
@@ -62,7 +65,7 @@ package body AufgabenLogik is
    
    function Aufgabe
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum;
+      BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Baulos_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is begin
@@ -81,6 +84,7 @@ package body AufgabenLogik is
             return False;
       end case;
      
+      -- Kann dieser Fall so noch auftreten? äöü
       if
         LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= EinheitenKonstanten.LeerBeschäftigung
         and
@@ -93,6 +97,8 @@ package body AufgabenLogik is
                null;
                
             when False =>
+               Put_Line ("Prüfung ob das hier jemals aufgerufen wird oder entfernt werden kann.");
+               NachGrafiktask.AktuelleEinheit := EinheitenKonstanten.LeerNummer;
                return False;
          end case;
          
@@ -112,7 +118,7 @@ package body AufgabenLogik is
    function Anfangstest
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       EinheitartExtern : in EinheitenDatentypen.Einheitart_Vorhanden_Enum;
-      BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum;
+      BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Baulos_Enum;
       VerbesserungExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Enum)
       return Boolean
    is begin
@@ -203,7 +209,7 @@ package body AufgabenLogik is
 
    function AufgabeFestlegen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum;
+      BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Baulos_Enum;
       AnlegenTestenExtern : in Boolean;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean

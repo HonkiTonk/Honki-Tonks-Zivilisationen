@@ -14,6 +14,7 @@ with LeseStadtGebaut;
 with LeseWichtiges;
 
 with EinheitenmodifizierungLogik;
+with Fehler;
 
 with KIKriegErmitteln;
 with KIStadtLaufendeBauprojekte;
@@ -144,6 +145,9 @@ package body KIEinheitenBauen is
             
          when EinheitenDatentypen.Cheat_Enum =>
             return KIDatentypen.BauenBewertung'First;
+            
+         when EinheitenDatentypen.Leer_Einheitart_Enum =>
+            Fehler.LogikFehler (FehlermeldungExtern => "KIEinheitenBauen.SpezielleEinheitBewerten - Leere Einheitart.");
       end case;
       
       return 0;

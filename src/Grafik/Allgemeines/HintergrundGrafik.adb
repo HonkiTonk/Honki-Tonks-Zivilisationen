@@ -10,6 +10,7 @@ with EingeleseneTexturenGrafik;
 with TexturenSetzenSkalierenGrafik;
 with EinstellungenGrafik;
 with Warnung;
+with ObjekteZeichnenGrafik;
 
 package body HintergrundGrafik is
    
@@ -19,8 +20,16 @@ package body HintergrundGrafik is
    is begin
       
       if
-        EingeleseneTexturenGrafik.HintergrundAccess (HintergrundExtern) /= null
+        EinstellungenGrafik.TexturenVerwenden = False
       then
+         null;
+         
+      elsif
+        EingeleseneTexturenGrafik.HintergrundAccess (HintergrundExtern) = null
+      then
+         Warnung.GrafikWarnung (WarnmeldungExtern => "HintergrundGrafik.Hintergrund - Hintergrund fehlt: " & HintergrundExtern'Wide_Wide_Image);
+         
+      else
          Sf.Graphics.Sprite.scale (sprite  => HintergrundSpriteAccess,
                                    factors => TexturenSetzenSkalierenGrafik.TexturskalierungVariabel (SpriteAccessExtern  => HintergrundSpriteAccess,
                                                                                                       TextureAccessExtern => EingeleseneTexturenGrafik.HintergrundAccess (HintergrundExtern),
@@ -44,9 +53,12 @@ package body HintergrundGrafik is
          Sf.Graphics.RenderWindow.drawSprite (renderWindow => EinstellungenGrafik.FensterAccess,
                                               object       => HintergrundSpriteAccess);
          
-      else
-         Warnung.GrafikWarnung (WarnmeldungExtern => "HintergrundGrafik.Hintergrund - Hintergrund fehlt: " & HintergrundExtern'Wide_Wide_Image);
+         return;
       end if;
+      
+      ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => AbmessungenExtern,
+                                              PositionExtern  => (0.00, 0.00),
+                                              FarbeExtern     => Sf.Graphics.Color.sfBlack);
       
    end Hintergrund;
    
@@ -59,14 +71,22 @@ package body HintergrundGrafik is
    is begin
       
       if
-        EingeleseneTexturenGrafik.RassenhintergrundAccess (RasseExtern, HintergrundExtern) /= null
+        EinstellungenGrafik.TexturenVerwenden = False
       then
+         null;
+         
+      elsif
+        EingeleseneTexturenGrafik.RassenhintergrundAccess (RasseExtern, HintergrundExtern) = null
+      then
+         Warnung.GrafikWarnung (WarnmeldungExtern => "HintergrundGrafik.Rassenhintergrund - Hintergrund fehlt: " & RasseExtern'Wide_Wide_Image & " - " & HintergrundExtern'Wide_Wide_Image);
+         
+      else
          Sf.Graphics.Sprite.scale (sprite  => RassenhintergrundSpriteAccess,
                                    factors => TexturenSetzenSkalierenGrafik.TexturskalierungVariabel (SpriteAccessExtern  => RassenhintergrundSpriteAccess,
                                                                                                       TextureAccessExtern => EingeleseneTexturenGrafik.RassenhintergrundAccess (RasseExtern, HintergrundExtern),
                                                                                                       GrößeExtern         => AbmessungenExtern));
          
-        -- Farbe := Sf.Graphics.Sprite.getColor (sprite => RassenhintergrundSpriteAccess);
+         -- Farbe := Sf.Graphics.Sprite.getColor (sprite => RassenhintergrundSpriteAccess);
          
          -- case
          --   HintergrundExtern
@@ -84,9 +104,12 @@ package body HintergrundGrafik is
          Sf.Graphics.RenderWindow.drawSprite (renderWindow => EinstellungenGrafik.FensterAccess,
                                               object       => RassenhintergrundSpriteAccess);
          
-      else
-         Warnung.GrafikWarnung (WarnmeldungExtern => "HintergrundGrafik.Rassenhintergrund - Hintergrund fehlt: " & HintergrundExtern'Wide_Wide_Image);
+         return;
       end if;
+      
+      ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => AbmessungenExtern,
+                                              PositionExtern  => (0.00, 0.00),
+                                              FarbeExtern     => Sf.Graphics.Color.sfBlack);
       
    end Rassenhintergrund;
 

@@ -115,6 +115,9 @@ package body KIEinheitAufgabenplanung is
             
          when EinheitenDatentypen.Cheat_Enum =>
             Fehler.LogikFehler (FehlermeldungExtern => "KIAufgabenPlanung.EinheitSpezifischeAufgabenErmitteln - KI hat Cheateinheit ausgewählt.");
+            
+         when EinheitenDatentypen.Leer_Einheitart_Enum =>
+            Fehler.LogikFehler (FehlermeldungExtern => "KIAufgabenPlanung.EinheitSpezifischeAufgabenErmitteln - Leere Einheitart.");
       end case;
       
    end EinheitSpezifischeAufgabeErmitteln;

@@ -18,6 +18,7 @@ with Vergleiche;
 with EinstellungenGrafik;
 with KartenberechnungenGrafik;
 
+-- Auch mal thematisch aufteilen? äöü
 package body MausauswahlLogik is
 
    function RassenauswahlDiplomatie
@@ -276,7 +277,7 @@ package body MausauswahlLogik is
    function Weltkartenbefehle
      return BefehleDatentypen.Weltkartenbefehle_Enum
    is begin
-      
+            
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
                                                                  point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
                                                                  view         => Views.KartenbefehlsviewAccess);
@@ -294,10 +295,25 @@ package body MausauswahlLogik is
             when False =>
                null;
          end case;
-                 
+         
       end loop BefehleSchleife;
       
-      return BefehleDatentypen.Leer_Enum;
+      
+      
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
+                                                                 point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
+                                                                 view         => Views.KartenviewAccess);
+      
+      case
+        Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
+                                    TextboxExtern      => (0.00, 0.00, Sf.Graphics.View.getSize (view => Views.KartenviewAccess).x, Sf.Graphics.View.getSize (view => Views.KartenviewAccess).y))
+      is
+         when True =>
+            return TastenbelegungDatentypen.Auswählen_Enum;
+            
+         when False =>
+            return TastenbelegungDatentypen.Leer_Tastenbelegung_Enum;
+      end case;
       
    end Weltkartenbefehle;
    
@@ -309,26 +325,12 @@ package body MausauswahlLogik is
    -- Wobei ich wohl einfach die Auswahl zurückgeben kann und dann entsprechend prüfen und weiter zurückgeben kann? äöü
    -- Vermutlich sind da dann aber noch ein paar zusätzliche Prüfungen notwendig. äöü
    function Einheitenbefehle
-     return BefehleDatentypen.Weltkartenbefehle_Enum
+      return BefehleDatentypen.Weltkartenbefehle_Enum
    is begin
       
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
                                                                  point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
-                                                                 view         => Views.KartenviewAccess);
-      
-      case
-        Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                    TextboxExtern      => KartenberechnungenGrafik.FensterKarte)
-      is
-         when True =>
-            return BefehleDatentypen.Bewegen_Enum;
-            
-         when False =>
-            -- Vermutlich muss ich die Befehlsknöpfe zuerst abfragen wenn ich die in die Karte einbaue. äöü
-            Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
-                                                                       point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
-                                                                       view         => Views.EinheitenbefehlsviewAccess);
-      end case;
+                                                                 view         => Views.EinheitenbefehlsviewAccess);
       
       BefehleSchleife:
       for BefehlSchleifenwert in InteraktionAuswahl.PositionenEinheitenbefehleArray'Range loop
@@ -346,7 +348,20 @@ package body MausauswahlLogik is
          
       end loop BefehleSchleife;
       
-      return BefehleDatentypen.Leer_Enum;
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
+                                                                 point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
+                                                                 view         => Views.KartenviewAccess);
+      
+      case
+        Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
+                                    TextboxExtern      => KartenberechnungenGrafik.FensterKarte)
+      is
+         when True =>
+            return TastenbelegungDatentypen.Auswählen_Enum;
+            
+         when False =>
+            return TastenbelegungDatentypen.Leer_Tastenbelegung_Enum;
+      end case;
       
    end Einheitenbefehle;
    

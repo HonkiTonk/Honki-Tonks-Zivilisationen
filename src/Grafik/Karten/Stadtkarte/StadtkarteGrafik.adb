@@ -71,15 +71,15 @@ package body StadtkarteGrafik is
       
       case
         KartenspritesZeichnenGrafik.SpriteGezeichnetStadtgrund (TexturAccessExtern => EingeleseneTexturenGrafik.KartenfelderAccess (Kartenfeld),
-                                                              PositionExtern     => AnfangGrafikPosition)
+                                                                PositionExtern     => AnfangGrafikPosition)
       is
          when True =>
             null;
             
          when False =>
             ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern      => (KartenberechnungenGrafik.StadtKarte.width, KartenberechnungenGrafik.StadtKarte.height),
-                                                  PositionExtern       => AnfangGrafikPosition,
-                                                  FarbeExtern          => FarbgebungGrafik.FarbeKartenfeldErmitteln (GrundExtern => Kartenfeld));
+                                                    PositionExtern       => AnfangGrafikPosition,
+                                                    FarbeExtern          => FarbgebungGrafik.FarbeKartenfeldErmitteln (GrundExtern => Kartenfeld));
       end case;
       
    end GrafischeDarstellung;
@@ -126,15 +126,15 @@ package body StadtkarteGrafik is
          
       elsif
         True = KartenspritesZeichnenGrafik.SpriteGezeichnetStadtfeld (TexturAccessExtern => EingeleseneTexturenGrafik.GebäudeAccess (StadtRasseNummerExtern.Rasse, GebäudeID),
-                                                                    PositionExtern     => PositionExtern)
+                                                                      PositionExtern     => PositionExtern)
       then
          null;
                
       else
-         ObjekteZeichnenGrafik.PolygonZeichnen (RadiusExtern        => KartenberechnungenGrafik.StadtfelderAbmessung.x / 2.00,
-                                              PositionExtern      => PositionExtern,
-                                              AnzahlEckenExtern   => 3,
-                                              FarbeExtern         => Sf.Graphics.Color.sfMagenta);
+         ObjekteZeichnenGrafik.PolygonZeichnen (RadiusExtern      => KartenberechnungenGrafik.StadtfelderAbmessung.x / 2.00,
+                                                PositionExtern    => PositionExtern,
+                                                AnzahlEckenExtern => 3,
+                                                FarbeExtern       => Sf.Graphics.Color.sfMagenta);
       end if;
       
    end DarstellungGebäude;

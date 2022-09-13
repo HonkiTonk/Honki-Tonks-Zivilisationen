@@ -34,14 +34,18 @@ package body EinlesenEinstellungen is
       
       SystemRecords.FensterRecord'Read (Stream (File => DateiEinstellungenEinlesen),
                                         EinstellungenGrafik.FensterEinstellungen);
+      Boolean'Read (Stream (File => DateiEinstellungenEinlesen),
+                    EinstellungenGrafik.TexturenVerwenden);
+      
       SystemRecords.SchriftgrößenRecord'Read (Stream (File => DateiEinstellungenEinlesen),
                                                 TexteinstellungenGrafik.Schriftgrößen);
       SystemRecords.SchriftfarbenRecord'Read (Stream (File => DateiEinstellungenEinlesen),
                                               TexteinstellungenGrafik.Schriftfarben);
+      
       RasseneinstellungenGrafik.RassenFarbenArray'Read (Stream (File => DateiEinstellungenEinlesen),
-                                                      RasseneinstellungenGrafik.Rassenfarben);
+                                                        RasseneinstellungenGrafik.Rassenfarben);
       RasseneinstellungenGrafik.RassenFarbenArray'Read (Stream (File => DateiEinstellungenEinlesen),
-                                                      RasseneinstellungenGrafik.RassenfarbenRahmen);
+                                                        RasseneinstellungenGrafik.RassenfarbenRahmen);
 
       Close (File => DateiEinstellungenEinlesen);
       

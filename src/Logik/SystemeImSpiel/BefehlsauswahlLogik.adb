@@ -24,16 +24,18 @@ package body BefehlsauswahlLogik is
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
-      Mausbefehl := MausauswahlLogik.Weltkartenbefehle;
+      Befehl := TasteneingabeLogik.Tastenwert;
       
       case
-        Mausbefehl
+        Befehl
       is
-         when BefehleDatentypen.Leer_Enum =>
-            return Tasteneingabe (RasseExtern => RasseExtern);
+         when TastenbelegungDatentypen.Auswählen_Enum =>
+            return Tasteneingabe (RasseExtern  => RasseExtern,
+                                  BefehlExtern => MausauswahlLogik.Weltkartenbefehle);
             
          when others =>
-            return Befehlsknöpfe (RasseExtern => RasseExtern);
+            return Tasteneingabe (RasseExtern  => RasseExtern,
+                                  BefehlExtern => Befehl);
       end case;
       
    end Befehlsauswahl;
@@ -41,17 +43,16 @@ package body BefehlsauswahlLogik is
    
    
    function Tasteneingabe
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Enum)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
-      
-      Befehl := TasteneingabeLogik.Tastenwert;
 
       case
-        Befehl
+        BefehlExtern
       is
          when TastenbelegungDatentypen.Tastenbelegung_Bewegung_Ebene_Enum'Range =>
-            CursorbewegungLogik.CursorbewegungBerechnen (RichtungExtern => Befehl,
+            CursorbewegungLogik.CursorbewegungBerechnen (RichtungExtern => BefehlExtern,
                                                          RasseExtern    => RasseExtern);
             
          when TastenbelegungDatentypen.Auswählen_Enum =>
@@ -83,15 +84,15 @@ package body BefehlsauswahlLogik is
             NaechstesObjekt.NächsteEinheit (RasseExtern           => RasseExtern,
                                              BewegungspunkteExtern => NaechstesObjekt.Keine_Bewegungspunkte);
             
-         when TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum'Range =>
+         when TastenbelegungDatentypen.Tastenbelegung_Befehle_Baulos_Enum'Range =>
             if
-              Befehl = TastenbelegungDatentypen.Auflösen_Enum
+              BefehlExtern = TastenbelegungDatentypen.Auflösen_Enum
             then
                BefehlspruefungenLogik.WasWirdEntfernt (RasseExtern => RasseExtern);
                
             else
                BefehlspruefungenLogik.EinheitBefehle (RasseExtern  => RasseExtern,
-                                                      BefehlExtern => Befehl);
+                                                      BefehlExtern => BefehlExtern);
             end if;
 
          when TastenbelegungDatentypen.Diplomatie_Enum =>
@@ -122,33 +123,16 @@ package body BefehlsauswahlLogik is
          when TastenbelegungDatentypen.Debugmenü_Enum =>
             DebugmenueLogik.Debugmenü (RasseExtern => RasseExtern);
             
-         when TastenbelegungDatentypen.Leer_Tastenbelegung_Enum | TastenbelegungDatentypen.Tastenbelegung_Bewegung_Numblock_Enum'Range =>
+            -- Das hier irgendwann auch einbauen. äöü
+         when TastenbelegungDatentypen.Tastenbelegung_Bewegung_Numblock_Enum'Range =>
+            null;
+            
+         when TastenbelegungDatentypen.Leer_Tastenbelegung_Enum =>
             null;
       end case;
       
       return RueckgabeDatentypen.Start_Weiter_Enum;
       
    end Tasteneingabe;
-   
-   
-   
-   function Befehlsknöpfe
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return RueckgabeDatentypen.Rückgabe_Werte_Enum
-   is begin
-      
-      case
-        RasseExtern
-      is
-         when RassenDatentypen.Ekropa_Enum =>
-            null;
-            
-         when others =>
-            null;
-      end case;
-      
-      return RueckgabeDatentypen.Start_Weiter_Enum;
-      
-   end Befehlsknöpfe;
 
 end BefehlsauswahlLogik;

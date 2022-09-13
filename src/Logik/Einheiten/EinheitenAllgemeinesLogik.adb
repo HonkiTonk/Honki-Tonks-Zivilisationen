@@ -22,6 +22,9 @@ package body EinheitenAllgemeinesLogik is
             
          when EinheitenDatentypen.Arbeiter_Enum | EinheitenDatentypen.PZB_Enum | EinheitenDatentypen.Cheat_Enum =>
             return False;
+            
+         when EinheitenDatentypen.Leer_Einheitart_Enum =>
+            return False;
       end case;
       
    end Kampfeinheit;

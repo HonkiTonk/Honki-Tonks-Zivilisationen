@@ -92,7 +92,15 @@ package body LeseKarten is
       return KartenverbesserungDatentypen.Karten_Verbesserung_Enum
    is begin
       
-      return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Verbesserung;
+      case
+        KoordinatenExtern.EAchse
+      is
+         when KartenKonstanten.LeerEAchse =>
+            return KartenverbesserungDatentypen.Leer_Verbesserung_Enum;
+            
+         when others =>
+            return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Verbesserung;
+      end case;
       
    end Verbesserung;
    

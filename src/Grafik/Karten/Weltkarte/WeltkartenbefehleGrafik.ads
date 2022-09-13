@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 private with Sf.System.Vector2;
+private with Sf.Graphics.Rect;
 
 with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
@@ -21,10 +22,19 @@ package WeltkartenbefehleGrafik is
               );
    
 private
+   
+   Kampfeinheit : Boolean;
+   
+   AnfangEinheitenbefehle : constant Positive := 2;
+   AnfangKartenbefehle : constant Positive := 15;
+   Aktuelleposition : Positive;
 
    Textbreite : Float;
 
-   Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartgrößeView;
+   EinheitenViewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartgrößeView;
+   KartenbefehleViewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartgrößeView;
    Textposition : Sf.System.Vector2.sfVector2f;
+   
+   Textbox : Sf.Graphics.Rect.sfFloatRect;
 
 end WeltkartenbefehleGrafik;

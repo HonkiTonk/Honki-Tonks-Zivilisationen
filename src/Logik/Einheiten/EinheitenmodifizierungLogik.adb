@@ -12,6 +12,7 @@ with SchreibeEinheitenGebaut;
 with SchreibeStadtGebaut;
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
+with LeseKarten;
 
 with StadtSuchen;
 with EinheitSuchen;
@@ -176,38 +177,41 @@ package body EinheitenmodifizierungLogik is
             EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
                                                                              KoordinatenExtern => SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAktuell,
                                                                              LogikGrafikExtern => True);
+      
+            NeueHeimatstadt.Rasse := EinheitRasseNummerExtern.Rasse;
+            NeueHeimatstadt.Nummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                                                                  KoordinatenExtern => SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAktuell);
             
          when others =>
             EinheitNummer := EinheitRasseNummerExtern.Nummer;
+            
+            NeueHeimatstadt := LeseKarten.StadtbelegungGrund (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       end case;
-      
-      StadtNummerNeu := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                                    KoordinatenExtern => SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAktuell);
       
       if
         EinheitNummer = EinheitenKonstanten.LeerNummer
         or
-          StadtNummerNeu = StadtKonstanten.LeerNummer
+          NeueHeimatstadt.Nummer = StadtKonstanten.LeerNummer
+          or
+            EinheitRasseNummerExtern.Rasse /= NeueHeimatstadt.Rasse
       then
          return;
          
       elsif
-        StadtNummerNeu = LeseEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer))
+        NeueHeimatstadt.Nummer = LeseEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer))
       then
          return;
          
       else
-         null;
+         PermanenteKostenÄndern (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer),
+                                  VorzeichenWechselExtern  => -1);
+      
+         SchreibeEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer),
+                                              HeimatstadtExtern        => NeueHeimatstadt.Nummer);
+      
+         PermanenteKostenÄndern (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer),
+                                  VorzeichenWechselExtern  => 1);
       end if;
-      
-      PermanenteKostenÄndern (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer),
-                               VorzeichenWechselExtern  => -1);
-      
-      SchreibeEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer),
-                                           HeimatstadtExtern        => StadtNummerNeu);
-      
-      PermanenteKostenÄndern (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer),
-                               VorzeichenWechselExtern  => 1);
       
    end HeimatstadtÄndern;
    

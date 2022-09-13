@@ -19,19 +19,25 @@ package body KartenspritesZeichnenGrafik is
    is begin
       
       if
-        TexturAccessExtern /= null
+        EinstellungenGrafik.TexturenVerwenden = False
       then
+         null;
+         
+      elsif
+        TexturAccessExtern = null
+      then
+         Warnung.GrafikWarnung (WarnmeldungExtern => "KartenspritesZeichnenGrafik.SpriteGezeichnetKartenfeld - TexturAccessExtern = null");
+         
+      else
          SpriteZeichnen (SpriteAccesExtern      => SpriteAccess,
                          PositionExtern         => PositionExtern,
                          SkalierungExtern       => TexturenSetzenSkalierenGrafik.TexturenSetzenSkalierenWeltkarte (SpriteAccessExtern  => SpriteAccess,
-                                                                                                                 TextureAccessExtern => TexturAccessExtern),
+                                                                                                                   TextureAccessExtern => TexturAccessExtern),
                          DurchsichtigkeitExtern => DurchsichtigkeitExtern);
          return True;
-         
-      else
-         Warnung.GrafikWarnung (WarnmeldungExtern => "KartenspritesZeichnenGrafik.SpriteGezeichnetKartenfeld - TexturAccessExtern = null");
-         return False;
       end if;
+      
+      return False;
       
    end SpriteGezeichnetKartenfeld;
    
@@ -44,24 +50,31 @@ package body KartenspritesZeichnenGrafik is
    is begin
       
       if
-        TexturAccessExtern /= null
+        EinstellungenGrafik.TexturenVerwenden = False
       then
+         null;
+         
+      elsif
+        TexturAccessExtern = null
+      then
+         Warnung.GrafikWarnung (WarnmeldungExtern => "KartenspritesZeichnenGrafik.SpriteGezeichnetStadtfeld - TexturAccessExtern = null");
+         
+      else
          SpriteZeichnen (SpriteAccesExtern      => SpriteAccess,
                          PositionExtern         => PositionExtern,
                          SkalierungExtern       => TexturenSetzenSkalierenGrafik.TexturenSetzenSkalierenStadtkarte (SpriteAccessExtern  => SpriteAccess,
-                                                                                                                  TextureAccessExtern => TexturAccessExtern),
+                                                                                                                    TextureAccessExtern => TexturAccessExtern),
                          DurchsichtigkeitExtern => Sf.sfUint8'Last);
          return True;
-         
-      else
-         Warnung.GrafikWarnung (WarnmeldungExtern => "KartenspritesZeichnenGrafik.SpriteGezeichnetStadtfeld - TexturAccessExtern = null");
-         return False;
       end if;
+      
+      return False;
       
    end SpriteGezeichnetStadtfeld;
    
    
    
+   -- Das nach Hintergrund verschieben? äöü
    function SpriteGezeichnetStadtgrund
      (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
@@ -74,7 +87,7 @@ package body KartenspritesZeichnenGrafik is
          SpriteZeichnen (SpriteAccesExtern      => SpriteAccess,
                          PositionExtern         => PositionExtern,
                          SkalierungExtern       => TexturenSetzenSkalierenGrafik.TexturenSetzenSkalierenGesamteStadtkarte (SpriteAccessExtern  => SpriteAccess,
-                                                                                                                         TextureAccessExtern => TexturAccessExtern),
+                                                                                                                           TextureAccessExtern => TexturAccessExtern),
                          DurchsichtigkeitExtern => Sf.sfUint8'Last);
          return True;
          

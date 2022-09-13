@@ -83,7 +83,7 @@ package SchreibeEinheitenGebaut is
    
    procedure Erfahrungspunkte
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      ErfahrungspunkteExtern : in KampfDatentypen.Kampfwerte;
+      ErfahrungspunkteExtern : in KampfDatentypen.ErfahrungspunkteVorhanden;
       AddierenSetzenExtern : in Boolean)
      with
        Pre => (
@@ -320,7 +320,7 @@ package SchreibeEinheitenGebaut is
    
 private
    
-   Beförderungsgrenze : KampfDatentypen.Kampfwerte;
+   Beförderungsgrenze : KampfDatentypen.ErfahrungspunkteVorhanden;
    
    MaximaleLebenspunkte : EinheitenDatentypen.LebenspunkteVorhanden;
    

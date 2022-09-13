@@ -49,9 +49,9 @@ package body WeltkarteGrafik is
               True = LeseKarten.Sichtbar (KoordinatenExtern => KartenWert,
                                           RasseExtern       => EinheitRasseNummerExtern.Rasse)
             then
-               IstSichtbar (KoordinatenExtern  => KartenWert,
-                            RasseEinheitExtern => EinheitRasseNummerExtern,
-                            PositionExtern     => Feldposition);
+               IstSichtbar (KoordinatenExtern        => KartenWert,
+                            EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                            PositionExtern           => Feldposition);
                
             else
                null;
@@ -71,10 +71,20 @@ package body WeltkarteGrafik is
    
    procedure IstSichtbar
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
+      case
+        EinstellungenGrafik.TexturenVerwenden
+      is
+         when False =>
+            null;
+            
+         when True =>
+            null;
+      end case;
+                  
       Transparents := GrafikKonstanten.Undurchsichtig;
       
       case
@@ -105,33 +115,33 @@ package body WeltkarteGrafik is
             AktuelleKoordinaten := KoordinatenExtern;
       end case;
       
-      WeltkarteZeichnenGrafik.KartenfeldZeichnen (KoordinatenExtern      => AktuelleKoordinaten,
-                                                  PositionExtern         => PositionExtern,
-                                                  DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
+      UntereEbene (KoordinatenExtern        => AktuelleKoordinaten,
+                   EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                   PositionExtern           => PositionExtern);
       
-      WeltkarteZeichnenGrafik.RessourceZeichnen (KoordinatenExtern => AktuelleKoordinaten,
-                                                 PositionExtern    => PositionExtern);
+    --  WeltkarteZeichnenGrafik.KartenfeldZeichnen (KoordinatenExtern      => AktuelleKoordinaten,
+    --                                              PositionExtern         => PositionExtern,
+     --                                             DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
       
-      WeltkarteZeichnenGrafik.FlussZeichnen (KoordinatenExtern => AktuelleKoordinaten,
-                                             PositionExtern    => PositionExtern);
+    --  WeltkarteZeichnenGrafik.RessourceZeichnen (KoordinatenExtern => AktuelleKoordinaten,
+    --                                             PositionExtern    => PositionExtern);
       
-      WeltkarteZeichnenGrafik.WegZeichnen (KoordinatenExtern => AktuelleKoordinaten,
-                                           PositionExtern    => PositionExtern);
+   --   WeltkarteZeichnenGrafik.FlussZeichnen (KoordinatenExtern => AktuelleKoordinaten,
+    --                                         PositionExtern    => PositionExtern);
       
-      WeltkarteZeichnenGrafik.VerbesserungZeichnen (KoordinatenExtern => AktuelleKoordinaten,
-                                                    EbeneExtern       => KoordinatenExtern.EAchse,
-                                                    PositionExtern    => PositionExtern);
+    --  WeltkarteZeichnenGrafik.WegZeichnen (KoordinatenExtern => AktuelleKoordinaten,
+    --                                       PositionExtern    => PositionExtern);
       
-      -- Put_Line ("E: " & AktuelleKoordinaten.EAchse'Wide_Wide_Image & "   Y: " & AktuelleKoordinaten.YAchse'Wide_Wide_Image & "    X: " & AktuelleKoordinaten.XAchse'Wide_Wide_Image);
-      -- Put_Line ("Rasse: " & RasseEinheitExtern.Rasse'Wide_Wide_Image & "    Nummer: " & RasseEinheitExtern.Nummer'Wide_Wide_Image);
-      -- New_Line (2);
+     -- WeltkarteZeichnenGrafik.VerbesserungZeichnen (KoordinatenExtern => AktuelleKoordinaten,
+    --                                                EbeneExtern       => KoordinatenExtern.EAchse,
+    --                                                PositionExtern    => PositionExtern);
       
-      WeltkarteZeichnenGrafik.AnzeigeEinheit (KoordinatenExtern  => AktuelleKoordinaten,
-                                              RasseEinheitExtern => RasseEinheitExtern,
-                                              PositionExtern     => PositionExtern);
+   --   WeltkarteZeichnenGrafik.AnzeigeEinheit (KoordinatenExtern  => AktuelleKoordinaten,
+   --                                           RasseEinheitExtern => EinheitRasseNummerExtern,
+   --                                           PositionExtern     => PositionExtern);
       
-      WeltkarteZeichnenGrafik.AnzeigeFeldbesitzer (KoordinatenExtern => AktuelleKoordinaten,
-                                                   PositionExtern    => PositionExtern);
+  --    WeltkarteZeichnenGrafik.AnzeigeFeldbesitzer (KoordinatenExtern => AktuelleKoordinaten,
+   --                                                PositionExtern    => PositionExtern);
       
       if
         KoordinatenExtern.EAchse = AktuelleKoordinaten.EAchse
@@ -154,7 +164,7 @@ package body WeltkarteGrafik is
                                                        PositionExtern    => PositionExtern);
          
          WeltkarteZeichnenGrafik.AnzeigeEinheit (KoordinatenExtern  => KoordinatenExtern,
-                                                 RasseEinheitExtern => RasseEinheitExtern,
+                                                 RasseEinheitExtern => EinheitRasseNummerExtern,
                                                  PositionExtern     => PositionExtern);
       
          WeltkarteZeichnenGrafik.AnzeigeFeldbesitzer (KoordinatenExtern => KoordinatenExtern,
@@ -162,5 +172,71 @@ package body WeltkarteGrafik is
       end if;
       
    end IstSichtbar;
+   
+   
+   
+   -- Nur eine Ebene nötig, Transparenz mit übergeben und eine Prüfung auf Texturen und Durchsichtigkeit einbauen. äöü
+   procedure AktuelleEbene
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
+   is begin
+      
+      WeltkarteZeichnenGrafik.KartenfeldZeichnen (KoordinatenExtern      => KoordinatenExtern,
+                                                  PositionExtern         => PositionExtern,
+                                                  DurchsichtigkeitExtern => Transparents);
+      
+      WeltkarteZeichnenGrafik.RessourceZeichnen (KoordinatenExtern => KoordinatenExtern,
+                                                 PositionExtern    => PositionExtern);
+      
+      WeltkarteZeichnenGrafik.WegZeichnen (KoordinatenExtern => KoordinatenExtern,
+                                           PositionExtern    => PositionExtern);
+      
+      WeltkarteZeichnenGrafik.VerbesserungZeichnen (KoordinatenExtern => KoordinatenExtern,
+                                                    EbeneExtern       => KoordinatenExtern.EAchse,
+                                                    PositionExtern    => PositionExtern);
+         
+      WeltkarteZeichnenGrafik.AnzeigeEinheit (KoordinatenExtern  => KoordinatenExtern,
+                                              RasseEinheitExtern => EinheitRasseNummerExtern,
+                                              PositionExtern     => PositionExtern);
+      
+      WeltkarteZeichnenGrafik.AnzeigeFeldbesitzer (KoordinatenExtern => KoordinatenExtern,
+                                                   PositionExtern    => PositionExtern);
+      
+   end AktuelleEbene;
+   
+   
+   
+   procedure UntereEbene
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
+   is begin
+      
+      WeltkarteZeichnenGrafik.KartenfeldZeichnen (KoordinatenExtern      => AktuelleKoordinaten,
+                                                  PositionExtern         => PositionExtern,
+                                                  DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
+      
+      WeltkarteZeichnenGrafik.RessourceZeichnen (KoordinatenExtern => AktuelleKoordinaten,
+                                                 PositionExtern    => PositionExtern);
+      
+      WeltkarteZeichnenGrafik.FlussZeichnen (KoordinatenExtern => AktuelleKoordinaten,
+                                             PositionExtern    => PositionExtern);
+      
+      WeltkarteZeichnenGrafik.WegZeichnen (KoordinatenExtern => AktuelleKoordinaten,
+                                           PositionExtern    => PositionExtern);
+      
+      WeltkarteZeichnenGrafik.VerbesserungZeichnen (KoordinatenExtern => AktuelleKoordinaten,
+                                                    EbeneExtern       => KoordinatenExtern.EAchse,
+                                                    PositionExtern    => PositionExtern);
+      
+      WeltkarteZeichnenGrafik.AnzeigeEinheit (KoordinatenExtern  => AktuelleKoordinaten,
+                                              RasseEinheitExtern => EinheitRasseNummerExtern,
+                                              PositionExtern     => PositionExtern);
+      
+      WeltkarteZeichnenGrafik.AnzeigeFeldbesitzer (KoordinatenExtern => AktuelleKoordinaten,
+                                                   PositionExtern    => PositionExtern);
+      
+   end UntereEbene;
 
 end WeltkarteGrafik;

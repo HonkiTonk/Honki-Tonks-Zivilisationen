@@ -164,7 +164,7 @@ package body SchreibeEinheitenGebaut is
    
    procedure Erfahrungspunkte
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      ErfahrungspunkteExtern : in KampfDatentypen.Kampfwerte;
+      ErfahrungspunkteExtern : in KampfDatentypen.ErfahrungspunkteVorhanden;
       AddierenSetzenExtern : in Boolean)
    is begin
       

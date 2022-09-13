@@ -754,22 +754,27 @@ package body MenuerueckgabenLogik is
       if
         AktuelleAuswahlExtern = Anfang
       then
-         return RueckgabeDatentypen.Auflösung_Ändern_Enum;
+         return RueckgabeDatentypen.Auswahl_Eins_Enum;
                     
       elsif
         AktuelleAuswahlExtern = Anfang + 1
       then
-         return RueckgabeDatentypen.Vollbild_Fenster_Enum;
+         return RueckgabeDatentypen.Auswahl_Zwei_Enum;
                     
       elsif
         AktuelleAuswahlExtern = Anfang + 2
       then
-         return RueckgabeDatentypen.Bildrate_Ändern_Enum;
+         return RueckgabeDatentypen.Auswahl_Drei_Enum;
                     
       elsif
         AktuelleAuswahlExtern = Anfang + 3
       then
-         return RueckgabeDatentypen.Speichern_Enum;
+         return RueckgabeDatentypen.Auswahl_Vier_Enum;
+         
+      elsif
+        AktuelleAuswahlExtern = Anfang + 4
+      then
+         return RueckgabeDatentypen.Auswahl_Fünf_Enum;
                     
       else
          return ZurückHauptmenüEnde (EndeExtern            => EndeExtern,

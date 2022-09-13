@@ -12,8 +12,8 @@ package LeseEinheitenDatenbank is
 
    function EinheitArt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenID)
-      return EinheitenDatentypen.Einheitart_Vorhanden_Enum
+      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
+      return EinheitenDatentypen.Einheitart_Enum
      with
        Pre => (
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
@@ -96,7 +96,7 @@ package LeseEinheitenDatenbank is
    function Beförderungsgrenze
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
-      return KampfDatentypen.Kampfwerte
+      return KampfDatentypen.Erfahrungspunkte
      with
        Pre => (
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
@@ -105,7 +105,7 @@ package LeseEinheitenDatenbank is
    function MaximalerRang
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
-      return KampfDatentypen.Kampfwerte
+      return KampfDatentypen.Rang
      with
        Pre => (
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
@@ -114,7 +114,7 @@ package LeseEinheitenDatenbank is
    function Reichweite
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenID)
-      return KampfDatentypen.Kampfwerte
+      return KampfDatentypen.Reichweite
      with
        Pre => (
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum

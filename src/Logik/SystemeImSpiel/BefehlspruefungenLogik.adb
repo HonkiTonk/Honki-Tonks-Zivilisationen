@@ -3,8 +3,8 @@ pragma Warnings (Off, "*array aggregate*");
 
 with EinheitenDatentypen; use EinheitenDatentypen;
 with TastenbelegungDatentypen; use TastenbelegungDatentypen;
-with AufgabenDatentypen; use AufgabenDatentypen;
 with StadtDatentypen; use StadtDatentypen;
+with AufgabenDatentypen; use AufgabenDatentypen;
 with EinheitenKonstanten;
 with StadtKonstanten;
 with TextnummernKonstanten;
@@ -197,31 +197,41 @@ package body BefehlspruefungenLogik is
       NachGrafiktask.AktuelleEinheit := EinheitRasseNummerExtern.Nummer;
       
       if
-        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= EinheitenKonstanten.LeerBeschäftigung
-        and then
-          JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageBeschäftigungAbbrechen) = True
+        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerBeschäftigung
       then
-         AufgabenAllgemeinLogik.Nullsetzung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-         EinheitenkontrollsystemLogik.Einheitenkontrolle (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-         NachGrafiktask.AktuelleEinheit := EinheitenKonstanten.LeerNummer;
-         return;
-         
+         case
+           EinheitenSpielmeldungenLogik.BewegungspunkteMeldung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+         is
+            when True =>
+               EinheitenkontrollsystemLogik.Einheitenkontrolle (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+               
+            when False =>
+               null;
+         end case;
+            
       else
-         null;
+         case
+           JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageBeschäftigungAbbrechen)
+         is
+            when True =>
+               AufgabenAllgemeinLogik.Nullsetzung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+               
+               if
+                 LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerBewegungspunkte
+               then
+                  null;
+                  
+               else
+                  EinheitenkontrollsystemLogik.Einheitenkontrolle (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+               end if;
+               
+            when others =>
+               null;
+         end case;
       end if;
       
-      case
-        EinheitenSpielmeldungenLogik.BewegungspunkteMeldung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
-      is
-         when True =>
-            EinheitenkontrollsystemLogik.Einheitenkontrolle (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-            
-         when False =>
-            null;
-      end case;
-      
       NachGrafiktask.AktuelleEinheit := EinheitenKonstanten.LeerNummer;
-      
+            
    end EinheitSteuern;
    
    

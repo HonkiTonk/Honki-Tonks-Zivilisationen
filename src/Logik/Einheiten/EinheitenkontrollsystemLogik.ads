@@ -1,9 +1,9 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with KartenRecords; use KartenRecords;
 with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
+with KartenRecords;
 with EinheitenRecords;
 with SpielVariablen;
 
@@ -22,20 +22,13 @@ package EinheitenkontrollsystemLogik is
               );
    
 private
-   
-   Platzhalter : BefehleDatentypen.Weltkartenbefehle_Enum;
-   
-   BewegungNochMöglich : Boolean;
-   
+      
    Mausbefehl : BefehleDatentypen.Weltkartenbefehle_Enum;
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    EinheitenKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
-      
-   KeineÄnderung : constant KartenRecords.AchsenKartenfeldRecord := (0, 0, 0);
-   Änderung : KartenRecords.AchsenKartenfeldRecord;
    
-   type RichtungArray is array (TastenbelegungDatentypen.Tastenbelegung_Bewegung_Enum'Range) of KartenRecords.AchsenKartenfeldRecord;
+   type RichtungArray is array (BefehleDatentypen.Einheiten_Bewegung_Enum'Range) of KartenRecords.AchsenKartenfeldRecord;
    Richtung : constant RichtungArray := (
                                          TastenbelegungDatentypen.Oben_Enum         => (0, -1, 0),
                                          TastenbelegungDatentypen.Links_Enum        => (0, 0, -1),
@@ -62,17 +55,6 @@ private
                  SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.Mensch_Spieler_Enum
               );
    
-   function PositionÄndern
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
-      return Boolean
-     with
-       Pre => (
-                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
-               and
-                 SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.Mensch_Spieler_Enum
-              );
-   
    function BefehleMaus
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
@@ -83,19 +65,8 @@ private
                  SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.Mensch_Spieler_Enum
               );
    
-   function EinheitenbewegungMaus
+   function AllgemeineEinheitenbewegungMaus
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return Boolean
-     with
-       Pre => (
-                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
-               and
-                 SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.Mensch_Spieler_Enum
-              );
-   
-   function EinheitenbefehlMaus
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      BefehleExtern : in BefehleDatentypen.Weltkartenbefehle_Vorhanden_Enum)
       return Boolean
      with
        Pre => (

@@ -19,7 +19,7 @@ package DatenbankRecords is
    type EinheitenlisteRecord is record
       
       -- Solche Benennungen auch mal anpassen. äöü
-      EinheitArt : EinheitenDatentypen.Einheitart_Vorhanden_Enum;
+      EinheitArt : EinheitenDatentypen.Einheitart_Enum;
       PreisGeld : ProduktionDatentypen.Produktion;
       PreisRessourcen : ProduktionDatentypen.Lagermenge;
       PermanenteKosten : StadtRecords.PermanenteKostenArray;
@@ -31,9 +31,9 @@ package DatenbankRecords is
       MaximaleBewegungspunkte : EinheitenDatentypen.VorhandeneBewegungspunkte;
       WirdVerbessertZu : EinheitenDatentypen.EinheitenIDMitNullWert;
 
-      Beförderungsgrenze : KampfDatentypen.Kampfwerte;
-      MaximalerRang : KampfDatentypen.Kampfwerte;
-      Reichweite : KampfDatentypen.Kampfwerte;
+      Beförderungsgrenze : KampfDatentypen.ErfahrungspunkteVorhanden;
+      MaximalerRang : KampfDatentypen.RangVorhanden;
+      Reichweite : KampfDatentypen.Reichweite;
       Angriff : KampfDatentypen.Kampfwerte;
       Verteidigung : KampfDatentypen.Kampfwerte;
 

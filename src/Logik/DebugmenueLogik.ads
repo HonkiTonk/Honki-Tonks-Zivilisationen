@@ -6,6 +6,7 @@ with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
 with DatenbankRecords;
 with EinheitenDatentypen;
+with KampfDatentypen;
 with EinheitenRecords;
 
 private with RueckgabeDatentypen;
@@ -21,14 +22,14 @@ package DebugmenueLogik is
                                                                      PermanenteKosten        => (others => 0),
                                                                      Anforderungen           => -1,
                                                                      Passierbarkeit          => (others => True),
-                                                                     MaximaleLebenspunkte    => 100,
-                                                                     MaximaleBewegungspunkte => 100.00,
+                                                                     MaximaleLebenspunkte    => EinheitenDatentypen.Lebenspunkte'Last,
+                                                                     MaximaleBewegungspunkte => EinheitenDatentypen.VorhandeneBewegungspunkte'Last,
                                                                      WirdVerbessertZu        => 0,
                                                                      Beförderungsgrenze      => 1,
-                                                                     MaximalerRang           => 100,
-                                                                     Reichweite              => 100,
-                                                                     Angriff                 => 100,
-                                                                     Verteidigung            => 100,
+                                                                     MaximalerRang           => KampfDatentypen.RangVorhanden'Last,
+                                                                     Reichweite              => KampfDatentypen.Reichweite'Last,
+                                                                     Angriff                 => KampfDatentypen.Kampfwerte'Last,
+                                                                     Verteidigung            => KampfDatentypen.Kampfwerte'Last,
                                                                      KannTransportieren      => EinheitenDatentypen.Gigantisch_Transport_Enum,
                                                                      KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                      Transportkapazität      => EinheitenRecords.TransporterArray'Last

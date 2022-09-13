@@ -33,6 +33,7 @@ with KartenberechnungenGrafik;
 with Kartenkoordinatenberechnungssystem;
 with EinstellungenGrafik;
 
+-- Das Zeichnen der Texturen/Objekte noch einmal überarbeiten, vielleicht kann man das auch mit Prozeduren bewerkstelligen? äöü
 package body WeltkarteZeichnenGrafik is
 
    procedure KartenfeldZeichnen

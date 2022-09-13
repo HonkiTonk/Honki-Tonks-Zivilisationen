@@ -61,8 +61,8 @@ package EinheitenRecords is
       
       Lebenspunkte : EinheitenDatentypen.Lebenspunkte;
       Bewegungspunkte : EinheitenDatentypen.VorhandeneBewegungspunkte;
-      Erfahrungspunkte : KampfDatentypen.Kampfwerte;
-      Rang : KampfDatentypen.Kampfwerte;
+      Erfahrungspunkte : KampfDatentypen.Erfahrungspunkte;
+      Rang : KampfDatentypen.Rang;
       
       Beschäftigung : ArbeitRecord;
       BeschäftigungNachfolger : ArbeitRecord;

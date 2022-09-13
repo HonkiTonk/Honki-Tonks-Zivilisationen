@@ -83,7 +83,7 @@ package LeseEinheitenGebaut is
    
    function Erfahrungspunkte
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return KampfDatentypen.Kampfwerte
+      return KampfDatentypen.Erfahrungspunkte
      with
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -93,7 +93,7 @@ package LeseEinheitenGebaut is
    
    function Rang
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return KampfDatentypen.Kampfwerte
+      return KampfDatentypen.Rang
      with
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -287,8 +287,8 @@ private
    
    EinheitID : EinheitenDatentypen.EinheitenIDMitNullWert;
    
-   Beförderungsgrenze : KampfDatentypen.Kampfwerte;
-   MaximalerRang : KampfDatentypen.Kampfwerte;
+   Beförderungsgrenze : KampfDatentypen.ErfahrungspunkteVorhanden;
+   MaximalerRang : KampfDatentypen.RangVorhanden;
    
    ErlaubteLebenspunkte : EinheitenDatentypen.LebenspunkteVorhanden;
 

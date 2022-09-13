@@ -1,5 +1,17 @@
 Controls
 Build city/Buildingmenu
+Build/Upgrade road
+Build/Upgrade mine
+Build/Upgrade farm
+Build/Upgrade fortress
+Reforest
+Clearing/Draining
+Heal
+Entrench
+Plunder
+Dissolve
+Upgrade
+Change home city
 Research
 Show next city
 Show next unit with movement points
@@ -7,18 +19,6 @@ Show next unit
 Show next unit with no movement points
 Next city with notification
 Next unit with notification
-Build/Upgrade road
-Build/Upgrade mine
-Build/Upgrade farm
-Build/Upgrade fortress
-Reforest
-Clearing / draining
-Heal unity
-Entrench unit
-Plunder
-Dissolve
-Upgrade Unit
-Change home city
 Diplomacy
 Go to coordinates
 Rename city

@@ -1,5 +1,17 @@
 Steuerung
 Stadt bauen/Baumenü
+Straße bauen/verbessern
+Mine bauen/verbessern
+Farm bauen/verbessern
+Festung bauen/verbessern
+Aufforsten
+Roden/Trockenlegen
+Heilen
+Verschanzen
+Plündern
+Auflösen
+Verbessern
+Heimatstadt ändern
 Forschung
 Nächste Stadt zeigen
 Nächste Einheit mit Bewegungspunkten zeigen
@@ -7,18 +19,6 @@ Nächste Einheit zeigen
 Nächste Einheit ohne Bewegungspunkte zeigen
 Nächste Stadt mit Meldung
 Nächste Einheit mit Meldung
-Straße bauen/verbessern
-Mine bauen/verbessern
-Farm bauen/verbessern
-Festung bauen/verbessern
-Aufforsten
-Roden/Trockenlegen
-Einheit heilen
-Einheit verschanzen
-Plündern
-Auflösen
-Einheit verbessern
-Heimatstadt ändern
 Diplomatie
 Gehe zu Koordinaten
 Stadt umbenennen

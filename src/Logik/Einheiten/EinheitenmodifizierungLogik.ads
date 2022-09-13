@@ -59,11 +59,11 @@ private
    KIBeschäftigung : KIDatentypen.Einheit_Aufgabe_Enum;
    
    Heimatstadt : StadtDatentypen.MaximaleStädteMitNullWert;
-   StadtNummerNeu : StadtDatentypen.MaximaleStädteMitNullWert;
    
    Heilungsrate : constant EinheitenDatentypen.LebenspunkteVorhanden := 10;
-   ErhalteneErfahrungspunkte : StadtDatentypen.MaximaleStädte;
       
+   NeueHeimatstadt : StadtRecords.RasseStadtnummerRecord;
+   
    EinheitNummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
 
    procedure HeilungBewegungspunkteNeueRundeSetzen

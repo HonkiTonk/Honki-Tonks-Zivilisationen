@@ -28,19 +28,19 @@ package body OptionenGrafik is
          case
            AuswahlWert
          is
-            when RueckgabeDatentypen.Auflösung_Ändern_Enum =>
+            when RueckgabeDatentypen.Auswahl_Eins_Enum =>
                AuflösungÄndern;
             
-            when RueckgabeDatentypen.Vollbild_Fenster_Enum =>
+            when RueckgabeDatentypen.Auswahl_Zwei_Enum =>
                VollbildFenster;
                
-            when RueckgabeDatentypen.Bildrate_Ändern_Enum =>
+            when RueckgabeDatentypen.Auswahl_Drei_Enum =>
                BildrateÄndern;
                
-            when RueckgabeDatentypen.Schriftgröße_Enum =>
-               null;
+            when RueckgabeDatentypen.Auswahl_Vier_Enum =>
+               EinstellungenGrafik.TexturenVerwenden := not EinstellungenGrafik.TexturenVerwenden;
                
-            when RueckgabeDatentypen.Speichern_Enum =>
+            when RueckgabeDatentypen.Auswahl_Fünf_Enum =>
                EinstellungenSpeichern;
                
             when RueckgabeDatentypen.Zurück_Beenden_Enum'Range =>
@@ -60,8 +60,8 @@ package body OptionenGrafik is
    is begin
       
       EingabeAuflösung := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => 320,
-                                                  ZahlenMaximumExtern => ZahlenDatentypen.EigenerInteger'Last,
-                                                  WelcheFrageExtern   => TextnummernKonstanten.FrageAuflösungsbreite);
+                                                             ZahlenMaximumExtern => ZahlenDatentypen.EigenerInteger'Last,
+                                                             WelcheFrageExtern   => TextnummernKonstanten.FrageAuflösungsbreite);
       
       if
         EingabeAuflösung.ErfolgreichAbbruch
@@ -73,8 +73,8 @@ package body OptionenGrafik is
       end if;
       
       EingabeAuflösung := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => 240,
-                                                  ZahlenMaximumExtern => ZahlenDatentypen.EigenerInteger'Last,
-                                                  WelcheFrageExtern   => TextnummernKonstanten.FrageAuflösungshöhe);
+                                                             ZahlenMaximumExtern => ZahlenDatentypen.EigenerInteger'Last,
+                                                             WelcheFrageExtern   => TextnummernKonstanten.FrageAuflösungshöhe);
       
       if
         EingabeAuflösung.ErfolgreichAbbruch
@@ -107,8 +107,8 @@ package body OptionenGrafik is
    is begin
       
       EingabeBildrate := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => 0,
-                                                ZahlenMaximumExtern => ZahlenDatentypen.EigenerInteger'Last,
-                                                WelcheFrageExtern   => TextnummernKonstanten.FrageBildrate);
+                                                           ZahlenMaximumExtern => ZahlenDatentypen.EigenerInteger'Last,
+                                                           WelcheFrageExtern   => TextnummernKonstanten.FrageBildrate);
       
       if
         EingabeBildrate.ErfolgreichAbbruch

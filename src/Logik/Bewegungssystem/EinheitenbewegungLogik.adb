@@ -3,6 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with EinheitenDatentypen; use EinheitenDatentypen;
 with StadtDatentypen; use StadtDatentypen;
+with KartenRecords; use KartenRecords;
 with EinheitenKonstanten;
 with KartenKonstanten;
 with StadtKonstanten;
@@ -224,5 +225,25 @@ package body EinheitenbewegungLogik is
                                                LadungExtern      => BewegendeEinheitExtern.Nummer);
       
    end EigeneEinheitAufFeld;
+   
+   
+   
+   function PositionÄndern
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
+      return Boolean
+   is begin
+      
+      if
+        ÄnderungExtern = KeineÄnderung
+      then
+         return NochBewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            
+      else
+         return BewegungPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                 PositionÄnderungExtern   => ÄnderungExtern);
+      end if;
+      
+   end PositionÄndern;
 
 end EinheitenbewegungLogik;

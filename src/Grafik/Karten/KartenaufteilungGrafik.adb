@@ -26,16 +26,17 @@ package body KartenaufteilungGrafik is
       WeltkarteGrafik.Weltkarte (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       SeitenleisteGrafik.SeitenleisteGrafik (RasseExtern => EinheitRasseNummerExtern.Rasse);
       
-      -- Für den Anfang nur eines der beiden Anzeigen, man kann das ja später ändern. äöü
       case
         EinheitRasseNummerExtern.Nummer
       is
          when EinheitenKonstanten.LeerNummer =>
-            WeltkartenbefehleGrafik.Kartenbefehle;
+            null;
             
          when others =>
             WeltkartenbefehleGrafik.Einheitenbefehle (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       end case;
+            
+      WeltkartenbefehleGrafik.Kartenbefehle;
       
    end Weltkarte;
    
@@ -48,6 +49,7 @@ package body KartenaufteilungGrafik is
       -- Von außen die Arraypositionen für die Bereiche/Views hineingeben? äöü
       StadtkarteGrafik.Stadtkarte (StadtRasseNummerExtern => StadtRasseNummerExtern);
       StadtumgebungGrafik.Stadtumgebung (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      
       StadtbefehleGrafik.Stadtbefehle;
       StadtseitenleisteGrafik.Stadtinformationen (StadtRasseNummerExtern => StadtRasseNummerExtern);
       

@@ -35,14 +35,18 @@ package body SchreibenEinstellungen is
       
       SystemRecords.FensterRecord'Write (Stream (File => DateiEinstellungenSchreiben),
                                          EinstellungenGrafik.FensterEinstellungen);
+      Boolean'Write (Stream (File => DateiEinstellungenSchreiben),
+                     EinstellungenGrafik.TexturenVerwenden);
+      
       SystemRecords.SchriftgrößenRecord'Write (Stream (File => DateiEinstellungenSchreiben),
                                                  TexteinstellungenGrafik.Schriftgrößen);
       SystemRecords.SchriftfarbenRecord'Write (Stream (File => DateiEinstellungenSchreiben),
                                                TexteinstellungenGrafik.Schriftfarben);
+      
       RasseneinstellungenGrafik.RassenFarbenArray'Write (Stream (File => DateiEinstellungenSchreiben),
-                                                       RasseneinstellungenGrafik.Rassenfarben);
+                                                         RasseneinstellungenGrafik.Rassenfarben);
       RasseneinstellungenGrafik.RassenFarbenArray'Write (Stream (File => DateiEinstellungenSchreiben),
-                                                       RasseneinstellungenGrafik.RassenfarbenRahmen);
+                                                         RasseneinstellungenGrafik.RassenfarbenRahmen);
       
       Close (File => DateiEinstellungenSchreiben);
       

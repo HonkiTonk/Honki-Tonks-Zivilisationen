@@ -22,7 +22,7 @@ package SystemKonstanten is
                                            MenueDatentypen.Einstellungen_Menü_Enum      => 12,
                                            MenueDatentypen.Editoren_Menü_Enum           => 9,
                                            MenueDatentypen.Sonstiges_Menü_Enum          => 7,
-                                           MenueDatentypen.Grafik_Menü_Enum             => 8,
+                                           MenueDatentypen.Grafik_Menü_Enum             => 9,
                                            MenueDatentypen.Sound_Menü_Enum              => 4,
                                            MenueDatentypen.Debug_Menü_Enum              => 9,
                                            MenueDatentypen.Kartenart_Menü_Enum          => 9,

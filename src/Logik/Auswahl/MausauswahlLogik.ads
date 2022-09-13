@@ -33,7 +33,11 @@ package MausauswahlLogik is
      (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum;
       AnfangExtern : in Positive;
       EndeExtern : in Positive)
-      return Natural;
+      return Natural
+     with
+       Pre => (
+                 AnfangExtern <= EndeExtern
+              );
    
    function JaNein
      return Natural;
@@ -45,7 +49,7 @@ package MausauswahlLogik is
      return BefehleDatentypen.Weltkartenbefehle_Enum;
    
    function Einheitenbefehle
-     return BefehleDatentypen.Weltkartenbefehle_Enum;
+      return BefehleDatentypen.Weltkartenbefehle_Enum;
    
    function Stadtumgebung
      return Sf.System.Vector2.sfVector2f;

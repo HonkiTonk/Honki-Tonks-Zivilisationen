@@ -10,12 +10,9 @@ package RueckgabeDatentypen is
                                  Würdigungen_Enum, Runde_Beenden_Enum, Sieg_Enum, Vernichtung_Enum, Zufall_Enum, Eingabe_Enum, Grafik_Enum, Sound_Enum, Steuerung_Enum, Sonstiges_Enum, Fertig_Enum, Schleife_Verlassen_Enum,
                                  Anzahl_Speicherstände_Enum, Runden_Bis_Autospeichern_Enum, Sprache_Enum, Spielmenü_Enum, Nutzerdefiniert_Enum, Schnellstart_Enum,
                                  
-                                 -- Grafikmenü
-                                 Auflösung_Ändern_Enum, Vollbild_Fenster_Enum, Bildrate_Ändern_Enum, Schriftgröße_Enum,
-                                 
-                                 -- Soundmenü
-                                 
-                                 
+                                 Auswahl_Eins_Enum, Auswahl_Zwei_Enum, Auswahl_Drei_Enum, Auswahl_Vier_Enum, Auswahl_Fünf_Enum, Auswahl_Sechs_Enum, Auswahl_Sieben_Enum, Auswahl_Acht_Enum, Auswahl_Neun_Enum,
+                                 Auswahl_Zehn_Enum,
+                                                                  
                                  -- Editoren
                                  Editoren_Enum, Kartenfeld_Editor_Enum, Einheiten_Editor_Enum, Gebäude_Editor_Enum, Forschung_Editor_Enum, Verbesserungen_Editor_Enum,
                                                                   

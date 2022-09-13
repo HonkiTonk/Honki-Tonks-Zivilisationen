@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with TastenbelegungDatentypen;
+
 package BefehleDatentypen is
 
    type Stadtbefehle_Enum is (
@@ -10,23 +12,15 @@ package BefehleDatentypen is
                              );
    
    subtype Stadtbefehle_Vorhanden_Enum is Stadtbefehle_Enum range Bauen_Enum .. Stadtbefehle_Enum'Last;
+      
    
    
+   subtype Weltkartenbefehle_Enum is TastenbelegungDatentypen.Tastenbelegung_Enum range TastenbelegungDatentypen.Tastenbelegung_Enum'First .. TastenbelegungDatentypen.Runde_Beenden_Enum;
    
-   -- Das hier mit den Einheitenbefehlen zusammenlegen? äöü
-   -- Wäre vermutlich sinnvoll, dann könnte ich auch gleich die allgemeinen Weltkartenbefehle reinpacken. äöü
-   type Weltkartenbefehle_Enum is (
-                                   Leer_Enum,
-                                   
-                                   Bewegen_Enum,
-                                   
-                                   A_Enum
-                                  );
+   -- später wieder Bewegungsknöpfe einbauen, aktuell nicht integriert wegen testen ob es überhaupt funktioniert. äöü
+   subtype Einheiten_Bewegung_Enum is Weltkartenbefehle_Enum range TastenbelegungDatentypen.Oben_Enum .. TastenbelegungDatentypen.Ebene_Runter_Enum;
+   subtype Einheiten_Aufgaben_Enum is Weltkartenbefehle_Enum range TastenbelegungDatentypen.Bauen_Enum .. TastenbelegungDatentypen.Heimatstadt_Ändern_Enum;
    
-   subtype Kartenbefehle_Enum is Weltkartenbefehle_Enum range Weltkartenbefehle_Enum'Range;
-   
-   subtype Einheitenbefehle_Enum is Weltkartenbefehle_Enum range Weltkartenbefehle_Enum'Range;
-   subtype Weltkartenbefehle_Bewegung_Enum is Einheitenbefehle_Enum range Bewegen_Enum .. Bewegen_Enum;
-   subtype Weltkartenbefehle_Vorhanden_Enum is Einheitenbefehle_Enum range A_Enum .. Weltkartenbefehle_Enum'Last;
+   subtype Kartenbefehle_Enum is Weltkartenbefehle_Enum range TastenbelegungDatentypen.Forschung_Enum .. TastenbelegungDatentypen.Runde_Beenden_Enum;
 
 end BefehleDatentypen;

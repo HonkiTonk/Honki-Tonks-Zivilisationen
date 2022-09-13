@@ -7,6 +7,7 @@ with Sf.Graphics.RenderWindow;
 with TastenbelegungDatentypen;
 with SystemDatentypen;
 with Views;
+with GrafikRecordKonstanten;
 
 with LeseEinheitenGebaut;
 
@@ -51,7 +52,7 @@ package body AuswahlStadtEinheitLogik is
       end if;
       
       AktuelleAuswahl := 0;
-      InteraktionAuswahl.PositionenEinheitStadt := (others => (0.00, 0.00, 0.00, 0.00));
+      InteraktionAuswahl.PositionenEinheitStadt := (others => GrafikRecordKonstanten.Leerbereich);
       NachGrafiktask.AktuelleAuswahl.AuswahlEins := AktuelleAuswahl;
       NachGrafiktask.WelcheAuswahl := WelcheAuswahl;
       

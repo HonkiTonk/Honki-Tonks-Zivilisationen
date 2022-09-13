@@ -31,6 +31,17 @@ package EinheitenbewegungLogik is
                  SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
    
+   function PositionÄndern
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
+      return Boolean
+     with
+       Pre => (
+                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+               and
+                 SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+              );
+   
 private
    
    FeldPassierbar : Boolean;
@@ -40,6 +51,7 @@ private
       
    EinheitAufFeld : EinheitenRecords.RasseEinheitnummerRecord;
 
+   KeineÄnderung : constant KartenRecords.AchsenKartenfeldRecord := (0, 0, 0);
    NeuePosition : KartenRecords.AchsenKartenfeldNaturalRecord;
      
    procedure EigeneEinheitAufFeld

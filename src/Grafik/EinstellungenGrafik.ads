@@ -9,6 +9,8 @@ with SystemRecords;
 
 package EinstellungenGrafik is
    
+   TexturenVerwenden : Boolean := False;
+   
    FensterAccess : Sf.Graphics.sfRenderWindow_Ptr;
    
    MausAccess : Sf.Window.sfCursor_Ptr;
