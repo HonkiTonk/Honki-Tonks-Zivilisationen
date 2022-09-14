@@ -11,38 +11,33 @@ with MausauswahlLogik;
 package body MenueauswahlLogik is
 
    function AuswahlMenüsEinfach
-     (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum)
+     (WelchesMenüExtern : in MenueDatentypen.Menü_Ohne_Steuerung_Enum)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       Ende := SystemKonstanten.EndeAbzugGrafik (WelchesMenüExtern) - 1;
       
       Ausgewählt := Auswahl (WelchesMenüExtern => WelchesMenüExtern,
-                              AnfangExtern      => Anfang,
                               EndeExtern        => Ende);
    
       case
         Ausgewählt
       is
          when RechteMaustaste =>
-            RückgabeWert := RueckgabeDatentypen.Zurück_Enum;
+            return RueckgabeDatentypen.Zurück_Enum;
             
          when others =>
-            RückgabeWert := MenuerueckgabenLogik.RückgabeMenüs (AnfangExtern          => Anfang,
-                                                                   EndeExtern            => Ende,
-                                                                   AktuelleAuswahlExtern => Ausgewählt,
-                                                                   WelchesMenüExtern     => WelchesMenüExtern);
+            return MenuerueckgabenLogik.RückgabeMenüs (EndeExtern            => Ende,
+                                                         AktuelleAuswahlExtern => Ausgewählt,
+                                                         WelchesMenüExtern     => WelchesMenüExtern);
       end case;
-      
-      return RückgabeWert;
       
    end AuswahlMenüsEinfach;
 
    
    
    function Auswahl
-     (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum;
-      AnfangExtern : in Positive;
+     (WelchesMenüExtern : in MenueDatentypen.Menü_Ohne_Steuerung_Enum;
       EndeExtern : in Positive)
       return Integer
    is begin
@@ -51,7 +46,7 @@ package body MenueauswahlLogik is
       loop
       
          AktuelleAuswahl := MausauswahlLogik.Menüs (WelchesMenüExtern => WelchesMenüExtern,
-                                                     AnfangExtern      => AnfangExtern,
+                                                     AnfangExtern      => Anfang,
                                                      EndeExtern        => EndeExtern);
          NachGrafiktask.AktuelleAuswahl.AuswahlEins := AktuelleAuswahl;
          

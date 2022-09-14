@@ -16,18 +16,19 @@ package MenueDatentypen is
                                
                                -- Doppelte Menüs.
                                Rassen_Menü_Enum, Kartenform_Menü_Enum,
+                                 
+                               -- Sprachen_Menü_Enum.
                                
                                -- Steuerungsmneü.
                                Steuerung_Menü_Enum
-                                 
-                               -- Sprachen_Menü_Enum
                               );
    
    subtype Welches_Menü_Vorhanden_Enum is Welches_Menü_Enum range Haupt_Menü_Enum .. Welches_Menü_Enum'Last;
+   subtype Menü_Ohne_Steuerung_Enum is Welches_Menü_Vorhanden_Enum range Welches_Menü_Vorhanden_Enum'First .. Kartenform_Menü_Enum;
    
-   subtype Menü_Einfach_Enum is Welches_Menü_Vorhanden_Enum range Haupt_Menü_Enum .. Kartenpole_Menü_Enum;
+   subtype Menü_Einfach_Enum is Menü_Ohne_Steuerung_Enum range Haupt_Menü_Enum .. Kartenpole_Menü_Enum;
    subtype Menü_Zusatztext_Einfach_Enum is Menü_Einfach_Enum range Kartengröße_Menü_Enum .. Kartenpole_Menü_Enum;
-   subtype Menü_Doppelt_Enum is Welches_Menü_Vorhanden_Enum range Rassen_Menü_Enum .. Kartenform_Menü_Enum;
+   subtype Menü_Doppelt_Enum is Menü_Ohne_Steuerung_Enum range Rassen_Menü_Enum .. Kartenform_Menü_Enum;
    subtype Menü_Steuerung_Enum is Welches_Menü_Vorhanden_Enum range Steuerung_Menü_Enum .. Steuerung_Menü_Enum;
    
    subtype Menü_Ohne_Überschrift_Enum is Menü_Einfach_Enum range Haupt_Menü_Enum .. Spiel_Menü_Enum;

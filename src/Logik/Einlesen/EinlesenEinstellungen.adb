@@ -6,6 +6,7 @@ with Ada.Directories; use Ada.Directories;
 with SystemRecords;
 with OptionenVariablen;
 with VerzeichnisKonstanten;
+with GrafikRecords;
 
 with EinstellungenGrafik;
 with TexteinstellungenGrafik;
@@ -32,14 +33,14 @@ package body EinlesenEinstellungen is
       SystemRecords.NutzerEinstellungenRecord'Read (Stream (File => DateiEinstellungenEinlesen),
                                                     OptionenVariablen.NutzerEinstellungen);
       
-      SystemRecords.FensterRecord'Read (Stream (File => DateiEinstellungenEinlesen),
+      GrafikRecords.FensterRecord'Read (Stream (File => DateiEinstellungenEinlesen),
                                         EinstellungenGrafik.FensterEinstellungen);
-      Boolean'Read (Stream (File => DateiEinstellungenEinlesen),
-                    EinstellungenGrafik.TexturenVerwenden);
+      GrafikRecords.GrafikeinstellungenRecord'Read (Stream (File => DateiEinstellungenEinlesen),
+                                                    EinstellungenGrafik.Grafikeinstellungen);
       
-      SystemRecords.SchriftgrößenRecord'Read (Stream (File => DateiEinstellungenEinlesen),
+      GrafikRecords.SchriftgrößenRecord'Read (Stream (File => DateiEinstellungenEinlesen),
                                                 TexteinstellungenGrafik.Schriftgrößen);
-      SystemRecords.SchriftfarbenRecord'Read (Stream (File => DateiEinstellungenEinlesen),
+      GrafikRecords.SchriftfarbenRecord'Read (Stream (File => DateiEinstellungenEinlesen),
                                               TexteinstellungenGrafik.Schriftfarben);
       
       RasseneinstellungenGrafik.RassenFarbenArray'Read (Stream (File => DateiEinstellungenEinlesen),

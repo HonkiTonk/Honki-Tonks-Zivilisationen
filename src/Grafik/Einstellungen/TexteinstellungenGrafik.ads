@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with Sf.Graphics;
 with Sf.Graphics.Color;
 
-with SystemRecords;
+with GrafikRecords;
 
 package TexteinstellungenGrafik is
 
@@ -13,22 +13,22 @@ package TexteinstellungenGrafik is
    -- Später wie hier überall mehr konstante Standards und dann einfach zuweisen. Nutzereinstellungen dann auch in den Einstellugnen speichern! äöü
    -- Lese- und Schreibefunktion/Prozedur dafür anlegen?
    -- Später auch was für den Textstyle einbauen? äöü
-   Schriftgrößen : SystemRecords.SchriftgrößenRecord;
+   Schriftgrößen : GrafikRecords.SchriftgrößenRecord;
    
-   Schriftfarben : SystemRecords.SchriftfarbenRecord;
+   Schriftfarben : GrafikRecords.SchriftfarbenRecord;
    
    procedure StandardLaden;
    procedure SchriftartFestlegen;
    
 private
    
-   SchriftgrößenStandard : constant SystemRecords.SchriftgrößenRecord := (
+   SchriftgrößenStandard : constant GrafikRecords.SchriftgrößenRecord := (
                                                                               SchriftgrößeÜberschrift => 36,
                                                                               SchriftgrößeStandard    => 24,
                                                                               SchriftgrößeKlein       => 12
                                                                              );
    
-   SchriftfarbenStandard : constant SystemRecords.SchriftfarbenRecord := (
+   SchriftfarbenStandard : constant GrafikRecords.SchriftfarbenRecord := (
                                                                           FarbeÜberschrift    => Sf.Graphics.Color.sfRed,
                                                                           FarbeStandardText   => Sf.Graphics.Color.sfWhite,
                                                                           FarbeAusgewähltText => Sf.Graphics.Color.sfGreen,

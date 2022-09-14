@@ -41,7 +41,7 @@ package body SpieleinstellungenRasseSpieler is
             when RueckgabeDatentypen.Rassen_Verwendet_Enum'Range =>
                BelegungÄndern (RasseExtern => UmwandlungenVerschiedeneDatentypen.RückgabeNachRasse (RückgabeExtern => RassenAuswahl));
 
-            when RueckgabeDatentypen.Zufall_Enum =>
+            when RueckgabeDatentypen.Auswahl_Neunzehn_Enum =>
                ZufallsgeneratorenSpieleinstellungen.ZufälligeRassenbelegung;
                
             when RueckgabeDatentypen.Fertig_Enum | RueckgabeDatentypen.Zurück_Enum =>

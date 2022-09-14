@@ -8,7 +8,7 @@ with MenueDatentypen;
 
 with Optionen;
 with Spieleinstellungen;
-with ImSpiel;
+with SpielLogik;
 with Laden;
 with AuswahlaufteilungLogik;
 with Fehler;
@@ -53,7 +53,7 @@ package body HauptmenueLogik is
                  Laden.Laden = True
                then
                   case
-                    ImSpiel.ImSpiel
+                    SpielLogik.Spiel
                   is
                      when RueckgabeDatentypen.Spiel_Beenden_Enum =>
                         exit HauptmenüSchleife;

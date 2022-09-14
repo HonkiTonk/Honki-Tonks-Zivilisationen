@@ -105,25 +105,25 @@ package body DiplomatieLogik is
             case
               AktionAuswahl
             is
-               when RueckgabeDatentypen.Kartenart_Zufall_Enum =>
+               when RueckgabeDatentypen.Auswahl_Eins_Enum =>
                   Handeln.SichtbarkeitTauschen (RasseEinsExtern => RasseExtern,
                                                 RasseZweiExtern => KontaktierteRasse);
                   
-               when RueckgabeDatentypen.Keine_Rasse_Enum =>
+               when RueckgabeDatentypen.Auswahl_Zwei_Enum =>
                   EinheitenverschiebungLogik.VonEigenemLandWerfen (RasseExtern             => RasseExtern,
                                                                    KontaktierteRasseExtern => KontaktierteRasse);
                   
-               when RueckgabeDatentypen.Schwierigkeitsgrad_Leicht_Enum =>
+               when RueckgabeDatentypen.Auswahl_Drei_Enum =>
                   DiplomatischerZustandAenderbarLogik.StatusÄnderbarkeitPrüfen (RasseEinsExtern   => RasseExtern,
                                                                                   RasseZweiExtern   => KontaktierteRasse,
                                                                                   NeuerStatusExtern => DiplomatieDatentypen.Nichtangriffspakt_Enum);
                   
-               when RueckgabeDatentypen.Schwierigkeitsgrad_Mittel_Enum =>
+               when RueckgabeDatentypen.Auswahl_Vier_Enum =>
                   DiplomatischerZustandAenderbarLogik.StatusÄnderbarkeitPrüfen (RasseEinsExtern   => RasseExtern,
                                                                                   RasseZweiExtern   => KontaktierteRasse,
                                                                                   NeuerStatusExtern => DiplomatieDatentypen.Neutral_Enum);
                   
-               when RueckgabeDatentypen.Schwierigkeitsgrad_Schwer_Enum =>
+               when RueckgabeDatentypen.Auswahl_Fünf_Enum =>
                   DiplomatischerZustandAenderbarLogik.StatusÄnderbarkeitPrüfen (RasseEinsExtern   => RasseExtern,
                                                                                   RasseZweiExtern   => KontaktierteRasse,
                                                                                   NeuerStatusExtern => DiplomatieDatentypen.Krieg_Enum);

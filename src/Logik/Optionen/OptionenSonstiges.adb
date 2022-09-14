@@ -31,21 +31,22 @@ package body OptionenSonstiges is
          case
            AuswahlWert
          is
-            when RueckgabeDatentypen.Anzahl_Speicherstände_Enum =>
+            when RueckgabeDatentypen.Auswahl_Eins_Enum =>
                AnzahlAutomatischerSpielstände;
                
-            when RueckgabeDatentypen.Runden_Bis_Autospeichern_Enum =>
+            when RueckgabeDatentypen.Auswahl_Zwei_Enum =>
                RundenBisAutospeichern;
                
-            when RueckgabeDatentypen.Sprache_Enum =>
+            when RueckgabeDatentypen.Auswahl_Drei_Enum =>
                SpracheWechseln;
                
             when RueckgabeDatentypen.Zurück_Beenden_Enum'Range =>
+               -- Bei allen Optionen speichern wenn zurückgegangen wird? äöü
                SchreibenEinstellungen.SchreibenEinstellungen;
                return AuswahlWert;
                
             when others =>
-               Fehler.LogikFehler (FehlermeldungExtern => "OptionenSonstiges.Sonstiges - Falsche Menüauswahl.");
+               Fehler.LogikFehler (FehlermeldungExtern => "OptionenSonstiges.Sonstiges: Falsche Auswahl: " & AuswahlWert'Wide_Wide_Image);
          end case;
          
       end loop SonstigesSchleife;

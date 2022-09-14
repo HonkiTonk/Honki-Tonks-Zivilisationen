@@ -10,7 +10,8 @@ package body EinstellungenGrafik is
    is begin
       
       FensterEinstellungen := FensterStandardEinstellungen;
-      
+      Grafikeinstellungen := GrafikeinstellungenStandard;
+            
       TexteinstellungenGrafik.StandardLaden;
       RasseneinstellungenGrafik.StandardLaden;
       

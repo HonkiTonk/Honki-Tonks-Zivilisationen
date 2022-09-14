@@ -20,7 +20,7 @@ package body HintergrundGrafik is
    is begin
       
       if
-        EinstellungenGrafik.TexturenVerwenden = False
+        EinstellungenGrafik.Grafikeinstellungen.TexturenVerwenden = False
       then
          null;
          
@@ -56,9 +56,9 @@ package body HintergrundGrafik is
          return;
       end if;
       
-      ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => AbmessungenExtern,
-                                              PositionExtern  => (0.00, 0.00),
-                                              FarbeExtern     => Sf.Graphics.Color.sfBlack);
+      ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern        => AbmessungenExtern,
+                                              PositionExtern         => (0.00, 0.00),
+                                              FarbeExtern            => Sf.Graphics.Color.sfBlack);
       
    end Hintergrund;
    
@@ -71,7 +71,7 @@ package body HintergrundGrafik is
    is begin
       
       if
-        EinstellungenGrafik.TexturenVerwenden = False
+        EinstellungenGrafik.Grafikeinstellungen.TexturenVerwenden = False
       then
          null;
          
@@ -107,9 +107,9 @@ package body HintergrundGrafik is
          return;
       end if;
       
-      ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => AbmessungenExtern,
-                                              PositionExtern  => (0.00, 0.00),
-                                              FarbeExtern     => Sf.Graphics.Color.sfBlack);
+      ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern        => AbmessungenExtern,
+                                              PositionExtern         => (0.00, 0.00),
+                                              FarbeExtern            => Sf.Graphics.Color.sfBlack);
       
    end Rassenhintergrund;
 

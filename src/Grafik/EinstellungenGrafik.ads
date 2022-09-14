@@ -5,17 +5,17 @@ with Sf.Graphics;
 with Sf.System.Vector2;
 with Sf.Window.Cursor;
 
-with SystemRecords;
+with GrafikRecords;
 
 package EinstellungenGrafik is
    
-   TexturenVerwenden : Boolean := False;
+   Grafikeinstellungen : GrafikRecords.GrafikeinstellungenRecord;
    
    FensterAccess : Sf.Graphics.sfRenderWindow_Ptr;
    
    MausAccess : Sf.Window.sfCursor_Ptr;
    
-   FensterEinstellungen : SystemRecords.FensterRecord;
+   FensterEinstellungen : GrafikRecords.FensterRecord;
       
    AktuelleFensterAuflösung : Sf.System.Vector2.sfVector2f;
    
@@ -31,7 +31,7 @@ private
    -- Fullscreen mode = 8
    -- Default window style = 7
       
-   FensterStandardEinstellungen : constant SystemRecords.FensterRecord := (
+   FensterStandardEinstellungen : constant GrafikRecords.FensterRecord := (
                                                                            FensterVollbild => 7,
                                                                            
                                                                            FensterBreite   => 640,
@@ -41,5 +41,10 @@ private
                                                                            
                                                                            MausZeiger      => Sf.Window.Cursor.sfCursorCross
                                                                           );
+   
+   GrafikeinstellungenStandard : constant GrafikRecords.GrafikeinstellungenRecord := (
+                                                                                      TexturenVerwenden      => False,
+                                                                                      EbeneUnterhalbSichtbar => True
+                                                                                     );
    
 end EinstellungenGrafik;

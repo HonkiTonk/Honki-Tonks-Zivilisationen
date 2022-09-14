@@ -14,6 +14,7 @@ package ZufallsgeneratorenSpieleinstellungen is
    procedure ZufälligeRassenbelegung;
    procedure ZufälligeKartenform;
    procedure ZufälligePole;
+   procedure ZufälligeKartenart;
    
    
 
@@ -23,8 +24,8 @@ package ZufallsgeneratorenSpieleinstellungen is
    function ZufälligeKartengröße
      return KartenRecords.YXAchsenKartenfeldPositivRecord;
    
-   function ZufälligeKartenart
-     return KartenDatentypen.Kartenart_Enum;
+   function ZufälligeVordefinierteKartenart
+     return KartenDatentypen.Kartenart_Normal_Enum;
    
    function ZufälligeKartentemperatur
      return KartenDatentypen.Kartentemperatur_Enum;
@@ -48,7 +49,7 @@ private
    
    package ZufälligeVordefinierteKartengrößeWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => RueckgabeDatentypen.Kartengrößen_Standard_Enum);
    package ZufälligeKartengrößeWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.KartenfeldPositiv);
-   package ZufälligeKartenartWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.Kartenart_Enum);
+   package ZufälligeKartenartWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.Kartenart_Normal_Enum);
    package ZufälligeKartentemperaturWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.Kartentemperatur_Enum);
    package ZufälligeKartenressourcenWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.Kartenressourcen_Enum);
    package ZufälligeRassenbelegungWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => RassenDatentypen.Spieler_Enum);

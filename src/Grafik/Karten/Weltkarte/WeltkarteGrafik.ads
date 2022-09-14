@@ -28,7 +28,6 @@ private
    
    SichtbereichAnfangEnde : KartenDatentypen.SichtbereichAnfangEndeArray;
       
-   Position : Sf.System.Vector2.sfVector2f;
    Feldposition : Sf.System.Vector2.sfVector2f;
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
@@ -37,36 +36,6 @@ private
          
    -- Hier die Benennung von RasseEinheitExtern auf EinheitRasseNummerExtern umschreiben. äöü
    procedure IstSichtbar
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      PositionExtern : in Sf.System.Vector2.sfVector2f)
-     with
-       Pre => (
-                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-               and
-                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
-               and
-                 PositionExtern.x >= 0.00
-               and
-                 PositionExtern.y >= 0.00
-              );
-   
-   procedure AktuelleEbene
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      PositionExtern : in Sf.System.Vector2.sfVector2f)
-     with
-       Pre => (
-                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
-               and
-                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
-               and
-                 PositionExtern.x >= 0.00
-               and
-                 PositionExtern.y >= 0.00
-              );
-   
-   procedure UntereEbene
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)

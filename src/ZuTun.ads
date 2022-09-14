@@ -13,8 +13,9 @@
 --                      Angefangen neue Texturen zu erstellen.
 --                      Erste Version eines neuen Stadtsystems eingebaut.
 --                      Scrollen und Zoomen angepasst und verbessert. Introbild eingebaut. Endesystem überarbeitet und einfache grafische Version erstellt.
+--                      Einfache grafische Einstellmöglichkeiten eingebaut.
 --                      Forschungserfolganzeige eingabaut. Rassenspezifische Hintergrund-, Einheiten- und Gebäudegrafiken ermöglicht.).
--- Einfache Musik/Sounds einbauen ().
+-- Einfache Musik/Sounds einbauen (Einlesesystem für rassenspezifische Musik und Sound eingebaut.).
 -- Forschungen/Einheiten/Gebäude für zweite Rasse einbauen ().
 -- Herausfinden wie man eine Windowsversion ohne GPL Zwang kompiliert ().
 -- Einmal den Code großflächig überarbeiten?

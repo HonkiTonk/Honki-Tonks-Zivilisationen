@@ -41,12 +41,55 @@ package body ZufallsgeneratorenSpieleinstellungen is
    
    
    
-   function ZufälligeKartenart
-     return KartenDatentypen.Kartenart_Enum
+   function ZufälligeVordefinierteKartenart
+     return KartenDatentypen.Kartenart_Normal_Enum
    is begin
       
       ZufälligeKartenartWählen.Reset (Gen => ZufälligeKartenartGewählt);
       return ZufälligeKartenartWählen.Random (Gen => ZufälligeKartenartGewählt);
+      
+   end ZufälligeVordefinierteKartenart;
+   
+   
+   
+   procedure ZufälligeKartenart
+   is begin
+      
+      ZufälligeKartengrößeWählen.Reset (Gen => ZufälligeKartengrößeGewählt);
+      
+      KartengeneratorVariablen.Landgrößen.MinimaleYAchse := ZufälligeKartengrößeWählen.Random (Gen   => ZufälligeKartengrößeGewählt,
+                                                                                                     First => 1,
+                                                                                                     Last  => Karten.Karteneinstellungen.Kartengröße.YAchse / 2);
+      
+      KartengeneratorVariablen.Landgrößen.MaximaleYAchse := ZufälligeKartengrößeWählen.Random (Gen   => ZufälligeKartengrößeGewählt,
+                                                                                                     First => KartengeneratorVariablen.Landgrößen.MinimaleYAchse,
+                                                                                                     Last  => Karten.Karteneinstellungen.Kartengröße.YAchse / 2);
+      
+      KartengeneratorVariablen.Landgrößen.MinimaleXAchse := ZufälligeKartengrößeWählen.Random (Gen   => ZufälligeKartengrößeGewählt,
+                                                                                                     First => 1,
+                                                                                                     Last  => Karten.Karteneinstellungen.Kartengröße.XAchse / 2);
+      
+      KartengeneratorVariablen.Landgrößen.MaximaleXAchse := ZufälligeKartengrößeWählen.Random (Gen   => ZufälligeKartengrößeGewählt,
+                                                                                                     First => KartengeneratorVariablen.Landgrößen.MinimaleXAchse,
+                                                                                                     Last  => Karten.Karteneinstellungen.Kartengröße.XAchse / 2);
+      
+
+
+      KartengeneratorVariablen.Abstände.MinimaleYAchse := ZufälligeKartengrößeWählen.Random (Gen   => ZufälligeKartengrößeGewählt,
+                                                                                                  First => KartengeneratorVariablen.Landgrößen.MaximaleYAchse,
+                                                                                                  Last  => KartengeneratorVariablen.Landgrößen.MaximaleYAchse + 10);
+      
+      KartengeneratorVariablen.Abstände.MaximaleYAchse := ZufälligeKartengrößeWählen.Random (Gen   => ZufälligeKartengrößeGewählt,
+                                                                                                  First => KartengeneratorVariablen.Abstände.MinimaleYAchse,
+                                                                                                  Last  => KartengeneratorVariablen.Landgrößen.MaximaleYAchse + 10);
+      
+      KartengeneratorVariablen.Abstände.MinimaleXAchse := ZufälligeKartengrößeWählen.Random (Gen   => ZufälligeKartengrößeGewählt,
+                                                                                                  First => KartengeneratorVariablen.Landgrößen.MaximaleXAchse,
+                                                                                                  Last  => KartengeneratorVariablen.Landgrößen.MaximaleXAchse + 10);
+      
+      KartengeneratorVariablen.Abstände.MaximaleXAchse := ZufälligeKartengrößeWählen.Random (Gen   => ZufälligeKartengrößeGewählt,
+                                                                                                  First => KartengeneratorVariablen.Abstände.MinimaleXAchse,
+                                                                                                  Last  => KartengeneratorVariablen.Landgrößen.MaximaleXAchse + 10);
       
    end ZufälligeKartenart;
    

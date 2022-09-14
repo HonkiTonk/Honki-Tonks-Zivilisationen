@@ -77,7 +77,7 @@ package body ForschungsauswahlGrafik is
                                      AbmessungenExtern => Viewfläche (ViewnummerExtern));
       
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
-      Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
+      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       AktuelleTextbreite := 0.00;
             
       AnzeigeSchleife:
@@ -142,7 +142,7 @@ package body ForschungsauswahlGrafik is
             
          when others =>
             Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
-            Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
+            Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
             
             Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüZusatztextAccess (RasseExtern, ZusatztextExtern),
                                           position => Textposition);
@@ -191,7 +191,7 @@ package body ForschungsauswahlGrafik is
             
          when others =>
             Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
-            Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
+            Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
             AktuelleTextbreite := 0.00;
       
             Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüErmöglichtAccess,

@@ -47,15 +47,15 @@ package KartenKonstanten is
    
    type StandardKartengrößenArray is array (RueckgabeDatentypen.Kartengrößen_Standard_Enum'Range) of KartenRecords.YXAchsenKartenfeldPositivRecord;
    StandardKartengrößen : constant StandardKartengrößenArray := (
-                                                                     RueckgabeDatentypen.Kartengröße_20_20_Enum     => (20, 20),
-                                                                     RueckgabeDatentypen.Kartengröße_40_40_Enum     => (40, 40),
-                                                                     RueckgabeDatentypen.Kartengröße_80_80_Enum     => (80, 80),
-                                                                     RueckgabeDatentypen.Kartengröße_120_80_Enum    => (120, 80),
-                                                                     RueckgabeDatentypen.Kartengröße_120_160_Enum   => (120, 160),
-                                                                     RueckgabeDatentypen.Kartengröße_160_160_Enum   => (160, 160),
-                                                                     RueckgabeDatentypen.Kartengröße_240_240_Enum   => (240, 240),
-                                                                     RueckgabeDatentypen.Kartengröße_320_320_Enum   => (320, 320),
-                                                                     RueckgabeDatentypen.Kartengröße_1000_1000_Enum => (KartenDatentypen.KartenfeldPositiv'Last, KartenDatentypen.KartenfeldPositiv'Last)
+                                                                     RueckgabeDatentypen.Auswahl_Eins_Enum   => (20, 20),
+                                                                     RueckgabeDatentypen.Auswahl_Zwei_Enum   => (40, 40),
+                                                                     RueckgabeDatentypen.Auswahl_Drei_Enum   => (80, 80),
+                                                                     RueckgabeDatentypen.Auswahl_Vier_Enum   => (120, 80),
+                                                                     RueckgabeDatentypen.Auswahl_Fünf_Enum   => (120, 160),
+                                                                     RueckgabeDatentypen.Auswahl_Sechs_Enum  => (160, 160),
+                                                                     RueckgabeDatentypen.Auswahl_Sieben_Enum => (240, 240),
+                                                                     RueckgabeDatentypen.Auswahl_Acht_Enum   => (320, 320),
+                                                                     RueckgabeDatentypen.Auswahl_Neun_Enum   => (KartenDatentypen.KartenfeldPositiv'Last, KartenDatentypen.KartenfeldPositiv'Last)
                                                                     );
    
    StandardKartenart : constant KartenDatentypen.Kartenart_Normal_Enum := KartenDatentypen.Kartenart_Inseln_Enum;

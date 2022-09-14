@@ -105,17 +105,23 @@ package ChangelogSeptember2022 is
    
    
 
-   -- Version 0.03. => 0.03. (15.09.2022):
+   -- Version 0.03.9085 => 0.03. (15.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.8990 => 0.03. (14.09.2022):
+   -- Version 0.03.8990 => 0.03.9085 (14.09.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Sichtbarkeit der Ebene unterhalb der aktuellen Ebene ist jetzt einstellbar.
+   -- Code zusammengeführt.
+   -- Unnötigen Code gelöscht.
+   -- Rassenspezifisches Einlesesystem für Musik eingebaut.
+   -- Einlesesystem für Sounds eingebaut.
+   -- Angefangen bessere Warn- und Fehlermeldungen einzubauen.
+   -- Interne Struktur des Menüsystems überarbeitet.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst/verbessert.
    
    
 

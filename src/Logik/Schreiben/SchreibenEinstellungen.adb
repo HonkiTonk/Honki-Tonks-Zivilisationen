@@ -6,6 +6,7 @@ with Ada.Directories; use Ada.Directories;
 with OptionenVariablen;
 with SystemRecords;
 with VerzeichnisKonstanten;
+with GrafikRecords;
 
 with EinstellungenGrafik;
 with TexteinstellungenGrafik;
@@ -33,14 +34,14 @@ package body SchreibenEinstellungen is
       SystemRecords.NutzerEinstellungenRecord'Write (Stream (File => DateiEinstellungenSchreiben),
                                                      OptionenVariablen.NutzerEinstellungen);
       
-      SystemRecords.FensterRecord'Write (Stream (File => DateiEinstellungenSchreiben),
+      GrafikRecords.FensterRecord'Write (Stream (File => DateiEinstellungenSchreiben),
                                          EinstellungenGrafik.FensterEinstellungen);
-      Boolean'Write (Stream (File => DateiEinstellungenSchreiben),
-                     EinstellungenGrafik.TexturenVerwenden);
+      GrafikRecords.GrafikeinstellungenRecord'Write (Stream (File => DateiEinstellungenSchreiben),
+                                                     EinstellungenGrafik.Grafikeinstellungen);
       
-      SystemRecords.SchriftgrößenRecord'Write (Stream (File => DateiEinstellungenSchreiben),
+      GrafikRecords.SchriftgrößenRecord'Write (Stream (File => DateiEinstellungenSchreiben),
                                                  TexteinstellungenGrafik.Schriftgrößen);
-      SystemRecords.SchriftfarbenRecord'Write (Stream (File => DateiEinstellungenSchreiben),
+      GrafikRecords.SchriftfarbenRecord'Write (Stream (File => DateiEinstellungenSchreiben),
                                                TexteinstellungenGrafik.Schriftfarben);
       
       RasseneinstellungenGrafik.RassenFarbenArray'Write (Stream (File => DateiEinstellungenSchreiben),

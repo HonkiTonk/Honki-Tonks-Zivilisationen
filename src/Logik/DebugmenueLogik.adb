@@ -25,28 +25,22 @@ package body DebugmenueLogik is
          case
            RückgabeDebugmenü
          is
-            when RueckgabeDatentypen.Menschen_Enum =>
+            when RueckgabeDatentypen.Auswahl_Eins_Enum =>
                KarteAufdecken (RasseExtern => RasseExtern);
                
-            when RueckgabeDatentypen.Kasrodiah_Enum =>
+            when RueckgabeDatentypen.Auswahl_Zwei_Enum =>
                SpielVariablen.Wichtiges (RasseExtern).Erforscht := (others => True);
                
-            when RueckgabeDatentypen.Lasupin_Enum =>
+            when RueckgabeDatentypen.Auswahl_Drei_Enum =>
                SchreibeWichtiges.Geldmenge (RasseExtern         => RasseExtern,
                                             GeldZugewinnExtern  => ZahlenDatentypen.EigenerInteger'Last,
                                             RechnenSetzenExtern => False);
                
-            when RueckgabeDatentypen.Lamustra_Enum =>
+            when RueckgabeDatentypen.Auswahl_Vier_Enum =>
                SpielVariablen.Debug.Allgemeines := not SpielVariablen.Debug.Allgemeines;
                
-            when RueckgabeDatentypen.Manuky_Enum =>
+            when RueckgabeDatentypen.Auswahl_Fünf_Enum =>
                SpielVariablen.Debug.VolleInformation := not SpielVariablen.Debug.VolleInformation;
-               
-            when RueckgabeDatentypen.Suroka_Enum =>
-               SpielVariablen.Debug.Sieg := not SpielVariablen.Debug.Sieg;
-               
-            when RueckgabeDatentypen.Pryolon_Enum =>
-               LadezeitenAnzegien;
                
             when RueckgabeDatentypen.Fertig_Enum | RueckgabeDatentypen.Zurück_Enum =>
                return;
@@ -110,15 +104,5 @@ package body DebugmenueLogik is
       end loop RassenErsteSchleife;
       
    end DiplomatischenStatusÄndern;
-   
-   
-   
-   procedure LadezeitenAnzegien
-   is begin
-      
-      -- Hier einfach die zu prüfende Zeit einbauen, wenn es jemals einen Grund gibt die Zeit irgendwo zu messen.
-      null;
-           
-   end LadezeitenAnzegien;
 
 end DebugmenueLogik;

@@ -22,9 +22,9 @@ with AuswahlaufteilungLogik;
 
 with KI;
 
-package body ImSpiel is
+package body SpielLogik is
 
-   function ImSpiel
+   function Spiel
      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
             
@@ -49,7 +49,7 @@ package body ImSpiel is
                   null;
                
                when others =>
-                  Fehler.LogikFehler (FehlermeldungExtern => "ImSpiel.ImSpiel - Falsche Rückgabe.");
+                  Fehler.LogikFehler (FehlermeldungExtern => "SpielLogik.Spiel: Falsche Rückgabe.");
             end case;
             
          end loop RassenSchleife;
@@ -92,7 +92,7 @@ package body ImSpiel is
       
       return RueckgabeDatentypen.Hauptmenü_Enum;
             
-   end ImSpiel;
+   end Spiel;
    
    
    
@@ -146,7 +146,7 @@ package body ImSpiel is
                KISpieler (RasseExtern => RasseExtern);
                
             when RassenDatentypen.Leer_Spieler_Enum =>
-               Fehler.LogikFehler (FehlermeldungExtern => "ImSpiel.RasseDurchgehen - Keine Rasse.");
+               Fehler.LogikFehler (FehlermeldungExtern => "SpielLogik.RasseDurchgehen: Keine Rasse.");
          end case;
 
       else
@@ -296,11 +296,11 @@ package body ImSpiel is
                   null;
                   
                else
-                  Fehler.LogikFehler (FehlermeldungExtern => "ImSpiel.MenschAmZug - Falsche Rückgabe.");
+                  Fehler.LogikFehler (FehlermeldungExtern => "SpielLogik.MenschAmZug: Falsche Rückgabe.");
                end if;
                
             when others =>
-               Fehler.LogikFehler (FehlermeldungExtern => "ImSpiel.MenschAmZug - Falscher Befehl.");
+               Fehler.LogikFehler (FehlermeldungExtern => "SpielLogik.MenschAmZug: Falscher Befehl.");
          end case;
                      
       end loop SpielerSchleife;
@@ -357,11 +357,11 @@ package body ImSpiel is
                return AuswahlSpielmenü;
                   
             when others =>
-               Fehler.LogikFehler (FehlermeldungExtern => "ImSpiel.Spielmenü - Falsche Rückgabe.");
+               Fehler.LogikFehler (FehlermeldungExtern => "SpielLogik.Spielmenü: Falsche Rückgabe.");
          end case;
       
       end loop SpielmenüSchleife;
    
    end Spielmenü;
 
-end ImSpiel;
+end SpielLogik;

@@ -58,6 +58,4 @@ private
    procedure DiplomatischenStatusÄndern
      (NeuerStatusExtern : in DiplomatieDatentypen.Status_Untereinander_Enum);
 
-   procedure LadezeitenAnzegien;
-
 end DebugmenueLogik;

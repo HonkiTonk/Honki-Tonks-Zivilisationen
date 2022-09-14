@@ -24,16 +24,16 @@ package body Optionen is
          case
            AuswahlWert
          is
-            when RueckgabeDatentypen.Grafik_Enum =>
+            when RueckgabeDatentypen.Auswahl_Eins_Enum =>
                RückgabeWert := OptionenGrafik.OptionenGrafik;
                
-            when RueckgabeDatentypen.Sound_Enum =>
+            when RueckgabeDatentypen.Auswahl_Zwei_Enum =>
                RückgabeWert := OptionenSound.OptionenSound;
                
-            when RueckgabeDatentypen.Steuerung_Enum =>
+            when RueckgabeDatentypen.Auswahl_Drei_Enum =>
                RückgabeWert := OptionenSteuerung.SteuerungBelegen;
                
-            when RueckgabeDatentypen.Sonstiges_Enum =>
+            when RueckgabeDatentypen.Auswahl_Vier_Enum =>
                RückgabeWert := OptionenSonstiges.Sonstiges;
                
             when RueckgabeDatentypen.Zurück_Beenden_Enum'Range =>

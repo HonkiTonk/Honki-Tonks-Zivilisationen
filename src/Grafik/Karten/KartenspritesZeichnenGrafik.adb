@@ -19,7 +19,7 @@ package body KartenspritesZeichnenGrafik is
    is begin
       
       if
-        EinstellungenGrafik.TexturenVerwenden = False
+        EinstellungenGrafik.Grafikeinstellungen.TexturenVerwenden = False
       then
          null;
          
@@ -50,7 +50,7 @@ package body KartenspritesZeichnenGrafik is
    is begin
       
       if
-        EinstellungenGrafik.TexturenVerwenden = False
+        EinstellungenGrafik.Grafikeinstellungen.TexturenVerwenden = False
       then
          null;
          

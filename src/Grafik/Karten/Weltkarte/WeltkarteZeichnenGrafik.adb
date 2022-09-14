@@ -5,7 +5,6 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Text;
-with Sf.Graphics.Color;
 
 with EinheitenDatentypen; use EinheitenDatentypen;
 with KartengrundDatentypen; use KartengrundDatentypen;
@@ -35,6 +34,41 @@ with EinstellungenGrafik;
 
 -- Das Zeichnen der Texturen/Objekte noch einmal überarbeiten, vielleicht kann man das auch mit Prozeduren bewerkstelligen? äöü
 package body WeltkarteZeichnenGrafik is
+   
+   procedure EbeneZeichnen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      TransparentsExtern : in Sf.sfUint8)
+   is begin
+      
+      WeltkarteZeichnenGrafik.KartenfeldZeichnen (KoordinatenExtern      => KoordinatenExtern,
+                                                  PositionExtern         => PositionExtern,
+                                                  DurchsichtigkeitExtern => TransparentsExtern);
+      
+      WeltkarteZeichnenGrafik.RessourceZeichnen (KoordinatenExtern => KoordinatenExtern,
+                                                 PositionExtern    => PositionExtern);
+      
+      WeltkarteZeichnenGrafik.FlussZeichnen (KoordinatenExtern => KoordinatenExtern,
+                                             PositionExtern    => PositionExtern);
+      
+      WeltkarteZeichnenGrafik.WegZeichnen (KoordinatenExtern => KoordinatenExtern,
+                                           PositionExtern    => PositionExtern);
+      
+      WeltkarteZeichnenGrafik.VerbesserungZeichnen (KoordinatenExtern => KoordinatenExtern,
+                                                    EbeneExtern       => KoordinatenExtern.EAchse,
+                                                    PositionExtern    => PositionExtern);
+      
+      WeltkarteZeichnenGrafik.AnzeigeEinheit (KoordinatenExtern  => KoordinatenExtern,
+                                              RasseEinheitExtern => EinheitRasseNummerExtern,
+                                              PositionExtern     => PositionExtern);
+      
+      WeltkarteZeichnenGrafik.AnzeigeFeldbesitzer (KoordinatenExtern => KoordinatenExtern,
+                                                   PositionExtern    => PositionExtern);
+      
+   end EbeneZeichnen;
+   
+   
 
    procedure KartenfeldZeichnen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
@@ -61,9 +95,11 @@ package body WeltkarteZeichnenGrafik is
                null;
             
             when False =>
+               Farbe := FarbgebungGrafik.FarbeKartenfeldErmitteln (GrundExtern => BasisKartengrund);
+               Farbe.a := DurchsichtigkeitExtern;
                ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => KartenberechnungenGrafik.KartenfelderAbmessung,
                                                        PositionExtern  => PositionExtern,
-                                                       FarbeExtern     => FarbgebungGrafik.FarbeKartenfeldErmitteln (GrundExtern => BasisKartengrund));
+                                                       FarbeExtern     => Farbe);
          end case;
       end if;
       
@@ -76,9 +112,11 @@ package body WeltkarteZeichnenGrafik is
             null;
             
          when False =>
+            Farbe := FarbgebungGrafik.FarbeKartenfeldErmitteln (GrundExtern => AktuellerKartengrund);
+            Farbe.a := DurchsichtigkeitExtern;
             ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => KartenberechnungenGrafik.KartenfelderAbmessung,
                                                     PositionExtern  => PositionExtern,
-                                                    FarbeExtern     => FarbgebungGrafik.FarbeKartenfeldErmitteln (GrundExtern => AktuellerKartengrund));
+                                                    FarbeExtern     => Farbe);
       end case;
       
    end KartenfeldZeichnen;

@@ -9,7 +9,7 @@ private with SystemKonstanten;
 package MenueauswahlLogik is
 
    function AuswahlMenüsEinfach
-     (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum)
+     (WelchesMenüExtern : in MenueDatentypen.Menü_Ohne_Steuerung_Enum)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
 private
@@ -22,21 +22,11 @@ private
    RechteMaustaste : constant Integer := -2;
    Ausgewählt : Integer;
 
-   Eins : Float;
-   Zwei : Float;
-
-   RückgabeWert : RueckgabeDatentypen.Rückgabe_Werte_Enum;
-
 
 
    function Auswahl
-     (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum;
-      AnfangExtern : in Positive;
+     (WelchesMenüExtern : in MenueDatentypen.Menü_Ohne_Steuerung_Enum;
       EndeExtern : in Positive)
-      return Integer
-     with
-       Pre => (
-                 AnfangExtern <= EndeExtern
-              );
+      return Integer;
 
 end MenueauswahlLogik;

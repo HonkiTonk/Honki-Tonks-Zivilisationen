@@ -38,9 +38,12 @@ package body OptionenGrafik is
                BildrateÄndern;
                
             when RueckgabeDatentypen.Auswahl_Vier_Enum =>
-               EinstellungenGrafik.TexturenVerwenden := not EinstellungenGrafik.TexturenVerwenden;
+               EinstellungenGrafik.Grafikeinstellungen.TexturenVerwenden := not EinstellungenGrafik.Grafikeinstellungen.TexturenVerwenden;
                
             when RueckgabeDatentypen.Auswahl_Fünf_Enum =>
+               EinstellungenGrafik.Grafikeinstellungen.EbeneUnterhalbSichtbar := not EinstellungenGrafik.Grafikeinstellungen.EbeneUnterhalbSichtbar;
+               
+            when RueckgabeDatentypen.Auswahl_Sechs_Enum =>
                EinstellungenSpeichern;
                
             when RueckgabeDatentypen.Zurück_Beenden_Enum'Range =>

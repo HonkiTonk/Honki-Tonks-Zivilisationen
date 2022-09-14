@@ -5,7 +5,7 @@ with RassenDatentypen;
 with MenueDatentypen;
 with GrafikDatentypen;
 
-with ImSpiel;
+with SpielLogik;
 with Kartengenerator;
 with SpieleinstellungenKarten;
 with SpieleinstellungenRasseSpieler;
@@ -49,28 +49,28 @@ package body Spieleinstellungen is
             case
               Auswahl
             is
-               when RueckgabeDatentypen.Auswahl_Kartenpole_Enum =>
+               when RueckgabeDatentypen.Auswahl_Eins_Enum =>
                   SpieleinstellungenKarten.KartenpoleWählen;
                     
-               when RueckgabeDatentypen.Auswahl_Kartengröße_Enum =>
+               when RueckgabeDatentypen.Auswahl_Zwei_Enum =>
                   SpieleinstellungenKarten.KartengrößeWählen;
 
-               when RueckgabeDatentypen.Auswahl_Kartenart_Enum =>
+               when RueckgabeDatentypen.Auswahl_Drei_Enum =>
                   SpieleinstellungenKarten.KartenartWählen;
                
-               when RueckgabeDatentypen.Auswahl_Kartenform_Enum =>
+               when RueckgabeDatentypen.Auswahl_Vier_Enum =>
                   SpieleinstellungenKarten.KartenformWählen;
 
-               when RueckgabeDatentypen.Auswahl_Kartentemperatur_Enum =>
+               when RueckgabeDatentypen.Auswahl_Fünf_Enum =>
                   SpieleinstellungenKarten.KartentemperaturWählen;
                
-               when RueckgabeDatentypen.Auswahl_Kartenressourcen_Enum =>
+               when RueckgabeDatentypen.Auswahl_Sechs_Enum =>
                   SpieleinstellungenKarten.KartenressourcenWählen;
 
-               when RueckgabeDatentypen.Auswahl_Rassen_Enum =>
+               when RueckgabeDatentypen.Auswahl_Sieben_Enum =>
                   SpieleinstellungenRasseSpieler.RassenWählen;
 
-               when RueckgabeDatentypen.Auswahl_Schwierigkeitsgrad_Enum =>
+               when RueckgabeDatentypen.Auswahl_Acht_Enum =>
                   SpieleinstellungenSonstiges.SchwierigkeitsgradFestlegen;
                
                when RueckgabeDatentypen.Fertig_Enum =>
@@ -134,11 +134,11 @@ package body Spieleinstellungen is
             null;
             
          when False =>
-            Warnung.LogikWarnung (WarnmeldungExtern => "SpielEinstellungen.AutomatischeEinstellungen - Keine Rassenplatzierung möglich.");
+            Warnung.LogikWarnung (WarnmeldungExtern => "SpielEinstellungen.AutomatischeEinstellungen: Keine Rassenplatzierung möglich.");
             return RueckgabeDatentypen.Spielmenü_Enum;
       end case;
             
-      return ImSpiel.ImSpiel;
+      return SpielLogik.Spiel;
       
    end AutomatischeEinstellungen;
 

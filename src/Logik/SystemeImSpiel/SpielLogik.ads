@@ -6,9 +6,9 @@ with RueckgabeDatentypen;
 
 private with SpielVariablen;
 
-package ImSpiel is
+package SpielLogik is
 
-   function ImSpiel
+   function Spiel
      return RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
 private
@@ -64,4 +64,4 @@ private
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
               );
 
-end ImSpiel;
+end SpielLogik;

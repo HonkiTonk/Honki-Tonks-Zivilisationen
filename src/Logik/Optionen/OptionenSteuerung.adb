@@ -25,7 +25,7 @@ package body OptionenSteuerung is
             when RueckgabeDatentypen.Speichern_Enum =>
                SchreibenTastatur.TastenbelegungSchreiben;
                
-            when RueckgabeDatentypen.Wiederherstellen_Enum =>
+            when RueckgabeDatentypen.Standard_Enum =>
                TastenbelegungVariablen.StandardTastenbelegungLaden;
                -- Das Schreiben rauswerfen oder durch zusätzliche Abfrage erweitern? äöü
                SchreibenTastatur.TastenbelegungSchreiben;

@@ -25,22 +25,22 @@ package body DatenbankenEditoren is
          case
            AuswahlWert
          is
-            when RueckgabeDatentypen.Kartenfeld_Editor_Enum =>
+            when RueckgabeDatentypen.Auswahl_Eins_Enum =>
                KartenDatenbankenEditor.KartenDatenbankenEditor;
                
-            when RueckgabeDatentypen.Einheiten_Editor_Enum =>
+            when RueckgabeDatentypen.Auswahl_Zwei_Enum =>
                EinheitenDatenbankEditor.EinheitenDatenbankEditor;
                
-            when RueckgabeDatentypen.Gebäude_Editor_Enum =>
+            when RueckgabeDatentypen.Auswahl_Drei_Enum =>
                GebaeudeDatenbankEditor.GebäudeDatenbankEditor;
                
-            when RueckgabeDatentypen.Forschung_Editor_Enum =>
+            when RueckgabeDatentypen.Auswahl_Vier_Enum =>
                ForschungenDatenbankEditor.ForschungenDatenbankEditor;
                
-            when RueckgabeDatentypen.Verbesserungen_Editor_Enum =>
+            when RueckgabeDatentypen.Auswahl_Fünf_Enum =>
                VerbesserungenDatenbankEditor.VerbesserungenDatenbankEditor;
                
-            when RueckgabeDatentypen.Zurück_Enum | RueckgabeDatentypen.Spiel_Beenden_Enum | RueckgabeDatentypen.Hauptmenü_Enum =>
+            when RueckgabeDatentypen.Zurück_Beenden_Enum'Range =>
                return AuswahlWert;
                
             when others =>

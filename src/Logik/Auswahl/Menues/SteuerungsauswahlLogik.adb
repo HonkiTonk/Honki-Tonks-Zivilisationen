@@ -5,7 +5,6 @@ with Sf.Window.Keyboard; use Sf.Window.Keyboard;
 
 with TastenbelegungDatentypen; use TastenbelegungDatentypen;
 with InteraktionAuswahl;
-with MenueDatentypen;
 with SystemKonstanten;
 with SystemDatentypen;
 with TextnummernKonstanten;
@@ -35,10 +34,9 @@ package body SteuerungsauswahlLogik is
                if
                  AktuelleAuswahl.AuswahlEins /= 0
                then
-                  Rückgabewert := MenuerueckgabenLogik.RückgabeMenüs (AnfangExtern          => InteraktionAuswahl.PositionenSteuerung'First,
-                                                                         EndeExtern            => InteraktionAuswahl.PositionenSteuerung'Last,
-                                                                         AktuelleAuswahlExtern => AktuelleAuswahl.AuswahlEins,
-                                                                         WelchesMenüExtern     => MenueDatentypen.Steuerung_Menü_Enum);
+                  Rückgabewert := MenuerueckgabenLogik.SteuerungMenü (AnfangExtern          => InteraktionAuswahl.PositionenSteuerung'First,
+                                                                      EndeExtern            => InteraktionAuswahl.PositionenSteuerung'Last,
+                                                                      AktuelleAuswahlExtern => AktuelleAuswahl.AuswahlEins);
                   exit AuswahlSchleife;
                   
                elsif

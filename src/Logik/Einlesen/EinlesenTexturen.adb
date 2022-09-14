@@ -36,7 +36,8 @@ package body EinlesenTexturen is
         Exists (Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Hintergrund & VerzeichnisKonstanten.NullDatei)
       is
          when False =>
-            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenHintergrund - 0-Datei fehlt.");
+            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenHintergrund: Es fehlt: "
+                                  & Decode (Item => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Hintergrund & VerzeichnisKonstanten.NullDatei));
             return;
             
          when True =>
@@ -55,7 +56,8 @@ package body EinlesenTexturen is
                                                     AktuelleZeileExtern => AktuelleZeile)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenHintergrund - Nicht genug Zeilen in 0-Datei.");
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenHintergrund: Fehlende Zeilen: "
+                                     & Decode (Item => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Hintergrund & VerzeichnisKonstanten.NullDatei));
                Close (File => DateiHintergrund);
                return;
                
@@ -79,7 +81,7 @@ package body EinlesenTexturen is
                  := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => HintergrundEinlesen (TexturSchleifenwert))));
                   
             when False =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenHintergrund - " & To_Wide_Wide_String (Source => HintergrundEinlesen (TexturSchleifenwert)) & " fehlt.");
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenHintergrund: Es fehlt: " & To_Wide_Wide_String (Source => HintergrundEinlesen (TexturSchleifenwert)));
                EingeleseneTexturenGrafik.HintergrundAccess (TexturSchleifenwert) := null;
          end case;
          

@@ -56,56 +56,56 @@ private
    
    type RückgabeRasseArray is array (RueckgabeDatentypen.Rassen_Verwendet_Enum'Range) of RassenDatentypen.Rassen_Verwendet_Enum;
    RückgabeRasse : constant RückgabeRasseArray := (
-                                                     RueckgabeDatentypen.Menschen_Enum         => RassenDatentypen.Menschen_Enum,
-                                                     RueckgabeDatentypen.Kasrodiah_Enum        => RassenDatentypen.Kasrodiah_Enum,
-                                                     RueckgabeDatentypen.Lasupin_Enum          => RassenDatentypen.Lasupin_Enum,
-                                                     RueckgabeDatentypen.Lamustra_Enum         => RassenDatentypen.Lamustra_Enum,
-                                                     RueckgabeDatentypen.Manuky_Enum           => RassenDatentypen.Manuky_Enum,
-                                                     RueckgabeDatentypen.Suroka_Enum           => RassenDatentypen.Suroka_Enum,
-                                                     RueckgabeDatentypen.Pryolon_Enum          => RassenDatentypen.Pryolon_Enum,
-                                                     RueckgabeDatentypen.Talbidahr_Enum        => RassenDatentypen.Talbidahr_Enum,
-                                                     RueckgabeDatentypen.Moru_Phisihl_Enum     => RassenDatentypen.Moru_Phisihl_Enum,
-                                                     RueckgabeDatentypen.Larinos_Lotaris_Enum  => RassenDatentypen.Larinos_Lotaris_Enum,
-                                                     RueckgabeDatentypen.Carupex_Enum          => RassenDatentypen.Carupex_Enum,
-                                                     RueckgabeDatentypen.Alary_Enum            => RassenDatentypen.Alary_Enum,
-                                                     RueckgabeDatentypen.Tesorahn_Enum         => RassenDatentypen.Tesorahn_Enum,
-                                                     RueckgabeDatentypen.Natries_Zermanis_Enum => RassenDatentypen.Natries_Zermanis_Enum,
-                                                     RueckgabeDatentypen.Tridatus_Enum         => RassenDatentypen.Tridatus_Enum,
-                                                     RueckgabeDatentypen.Senelari_Enum         => RassenDatentypen.Senelari_Enum,
-                                                     RueckgabeDatentypen.Aspari_2_Enum         => RassenDatentypen.Aspari_2_Enum,
-                                                     RueckgabeDatentypen.Ekropa_Enum           => RassenDatentypen.Ekropa_Enum
+                                                     RueckgabeDatentypen.Auswahl_Eins_Enum     => RassenDatentypen.Menschen_Enum,
+                                                     RueckgabeDatentypen.Auswahl_Zwei_Enum     => RassenDatentypen.Kasrodiah_Enum,
+                                                     RueckgabeDatentypen.Auswahl_Drei_Enum     => RassenDatentypen.Lasupin_Enum,
+                                                     RueckgabeDatentypen.Auswahl_Vier_Enum     => RassenDatentypen.Lamustra_Enum,
+                                                     RueckgabeDatentypen.Auswahl_Fünf_Enum     => RassenDatentypen.Manuky_Enum,
+                                                     RueckgabeDatentypen.Auswahl_Sechs_Enum    => RassenDatentypen.Suroka_Enum,
+                                                     RueckgabeDatentypen.Auswahl_Sieben_Enum   => RassenDatentypen.Pryolon_Enum,
+                                                     RueckgabeDatentypen.Auswahl_Acht_Enum     => RassenDatentypen.Moru_Phisihl_Enum,
+                                                     RueckgabeDatentypen.Auswahl_Neun_Enum     => RassenDatentypen.Larinos_Lotaris_Enum,
+                                                     RueckgabeDatentypen.Auswahl_Zehn_Enum     => RassenDatentypen.Carupex_Enum,
+                                                     RueckgabeDatentypen.Auswahl_Elf_Enum      => RassenDatentypen.Alary_Enum,
+                                                     RueckgabeDatentypen.Auswahl_Zwölf_Enum    => RassenDatentypen.Natries_Zermanis_Enum,
+                                                     RueckgabeDatentypen.Auswahl_Dreizehn_Enum => RassenDatentypen.Tridatus_Enum,
+                                                     RueckgabeDatentypen.Auswahl_Vierzehn_Enum => RassenDatentypen.Senelari_Enum,
+                                                     RueckgabeDatentypen.Auswahl_Fünfzehn_Enum => RassenDatentypen.Aspari_2_Enum,
+                                                     RueckgabeDatentypen.Auswahl_Sechzehn_Enum => RassenDatentypen.Ekropa_Enum,
+                                                     RueckgabeDatentypen.Auswahl_Siebzehn_Enum => RassenDatentypen.Tesorahn_Enum,
+                                                     RueckgabeDatentypen.Auswahl_Achtzehn_Enum => RassenDatentypen.Talbidahr_Enum
                                                     );
    
    type KartenartrückgabeKartenartArray is array (RueckgabeDatentypen.Kartenart_Enum'Range) of KartenDatentypen.Kartenart_Enum;
    KartenartrückgabeKartenart : constant KartenartrückgabeKartenartArray := (
-                                                                               RueckgabeDatentypen.Kartenart_Inseln_Enum        => KartenDatentypen.Kartenart_Inseln_Enum,
-                                                                               RueckgabeDatentypen.Kartenart_Kontinente_Enum    => KartenDatentypen.Kartenart_Kontinente_Enum,
-                                                                               RueckgabeDatentypen.Kartenart_Pangäa_Enum        => KartenDatentypen.Kartenart_Pangäa_Enum
+                                                                               RueckgabeDatentypen.Auswahl_Eins_Enum => KartenDatentypen.Kartenart_Inseln_Enum,
+                                                                               RueckgabeDatentypen.Auswahl_Zwei_Enum => KartenDatentypen.Kartenart_Kontinente_Enum,
+                                                                               RueckgabeDatentypen.Auswahl_Drei_Enum => KartenDatentypen.Kartenart_Pangäa_Enum
                                                                               );
    
    type KartentemperaturrückgabeKartentemperaturArray is array (RueckgabeDatentypen.Kartentemperatur_Enum'Range) of KartenDatentypen.Kartentemperatur_Enum;
    KartentemperaturrückgabeKartentemperatur : constant KartentemperaturrückgabeKartentemperaturArray := (
-                                                                                                           RueckgabeDatentypen.Kartentemperatur_Kalt_Enum     => KartenDatentypen.Kartentemperatur_Kalt_Enum,
-                                                                                                           RueckgabeDatentypen.Kartentemperatur_Gemäßigt_Enum => KartenDatentypen.Kartentemperatur_Gemäßigt_Enum,
-                                                                                                           RueckgabeDatentypen.Kartentemperatur_Heiß_Enum     => KartenDatentypen.Kartentemperatur_Heiß_Enum,
-                                                                                                           RueckgabeDatentypen.Kartentemperatur_Eiszeit_Enum  => KartenDatentypen.Kartentemperatur_Eiszeit_Enum,
-                                                                                                           RueckgabeDatentypen.Kartentemperatur_Wüste_Enum    => KartenDatentypen.Kartentemperatur_Wüste_Enum
+                                                                                                           RueckgabeDatentypen.Auswahl_Eins_Enum => KartenDatentypen.Kartentemperatur_Kalt_Enum,
+                                                                                                           RueckgabeDatentypen.Auswahl_Zwei_Enum => KartenDatentypen.Kartentemperatur_Gemäßigt_Enum,
+                                                                                                           RueckgabeDatentypen.Auswahl_Drei_Enum => KartenDatentypen.Kartentemperatur_Heiß_Enum,
+                                                                                                           RueckgabeDatentypen.Auswahl_Vier_Enum => KartenDatentypen.Kartentemperatur_Eiszeit_Enum,
+                                                                                                           RueckgabeDatentypen.Auswahl_Fünf_Enum => KartenDatentypen.Kartentemperatur_Wüste_Enum
                                                                                                           );
    
    type KartenressourcenrückgabeKartenressourceArray is array (RueckgabeDatentypen.Kartenressourcen_Enum'Range) of KartenDatentypen.Kartenressourcen_Enum;
    KartenressourcenrückgabeKartenressource : constant KartenressourcenrückgabeKartenressourceArray := (
-                                                                                                         RueckgabeDatentypen.Kartenressourcen_Arm_Enum       => KartenDatentypen.Kartenressourcen_Arm_Enum,
-                                                                                                         RueckgabeDatentypen.Kartenressourcen_Wenig_Enum     => KartenDatentypen.Kartenressourcen_Wenig_Enum,
-                                                                                                         RueckgabeDatentypen.Kartenressourcen_Mittel_Enum    => KartenDatentypen.Kartenressourcen_Mittel_Enum,
-                                                                                                         RueckgabeDatentypen.Kartenressourcen_Viel_Enum      => KartenDatentypen.Kartenressourcen_Viel_Enum,
-                                                                                                         RueckgabeDatentypen.Kartenressourcen_Überfluss_Enum => KartenDatentypen.Kartenressourcen_Überfluss_Enum
+                                                                                                         RueckgabeDatentypen.Auswahl_Eins_Enum => KartenDatentypen.Kartenressourcen_Arm_Enum,
+                                                                                                         RueckgabeDatentypen.Auswahl_Zwei_Enum => KartenDatentypen.Kartenressourcen_Wenig_Enum,
+                                                                                                         RueckgabeDatentypen.Auswahl_Drei_Enum => KartenDatentypen.Kartenressourcen_Mittel_Enum,
+                                                                                                         RueckgabeDatentypen.Auswahl_Vier_Enum => KartenDatentypen.Kartenressourcen_Viel_Enum,
+                                                                                                         RueckgabeDatentypen.Auswahl_Fünf_Enum => KartenDatentypen.Kartenressourcen_Überfluss_Enum
                                                                                                         );
    
    type RückgabeSchwierigkeitsgradArray is array (RueckgabeDatentypen.Schwierigkeitsgrad_Enum'Range) of SpielDatentypen.Schwierigkeitsgrad_Enum;
    RückgabeSchwierigkeitsgrad : constant RückgabeSchwierigkeitsgradArray := (
-                                                                               RueckgabeDatentypen.Schwierigkeitsgrad_Leicht_Enum => SpielDatentypen.Schwierigkeitsgrad_Leicht_Enum,
-                                                                               RueckgabeDatentypen.Schwierigkeitsgrad_Mittel_Enum => SpielDatentypen.Schwierigkeitsgrad_Mittel_Enum,
-                                                                               RueckgabeDatentypen.Schwierigkeitsgrad_Schwer_Enum => SpielDatentypen.Schwierigkeitsgrad_Schwer_Enum
+                                                                               RueckgabeDatentypen.Auswahl_Eins_Enum => SpielDatentypen.Schwierigkeitsgrad_Leicht_Enum,
+                                                                               RueckgabeDatentypen.Auswahl_Zwei_Enum => SpielDatentypen.Schwierigkeitsgrad_Mittel_Enum,
+                                                                               RueckgabeDatentypen.Auswahl_Drei_Enum => SpielDatentypen.Schwierigkeitsgrad_Schwer_Enum
                                                                               );
 
 end UmwandlungenVerschiedeneDatentypen;
