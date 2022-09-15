@@ -3,11 +3,13 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Calendar;
 
-with Sf.System.Vector2;
+private with Sf.System.Vector2;
 
 with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
+with EinheitenDatentypen; use EinheitenDatentypen;
 with SpielVariablen;
+with EinheitenRecords;
 
 private with KartenRecords;
 
@@ -16,10 +18,12 @@ private with Karten;
 package CursorplatzierungAltGrafik is
 
    procedure CursorplatzierungAlt
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+                 EinheitRasseNummerExtern.Nummer <= SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+               and
+                 SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.Mensch_Spieler_Enum
               );
    
 private

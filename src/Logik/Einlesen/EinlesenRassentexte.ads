@@ -1,10 +1,9 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-private with Ada.Wide_Wide_Text_IO;
-private with Ada.Strings.Wide_Wide_Unbounded;
+with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-private with ZahlenDatentypen;
 private with RassenDatentypen;
 
 package EinlesenRassentexte is
@@ -13,20 +12,20 @@ package EinlesenRassentexte is
 
 private
 
-   AktuelleZeile : ZahlenDatentypen.EigenesPositive;
+   AktuelleZeile : Positive;
 
-   DateiNull : Ada.Wide_Wide_Text_IO.File_Type;
-   DateiUnternull : Ada.Wide_Wide_Text_IO.File_Type;
-   DateiNameBeschreibung : Ada.Wide_Wide_Text_IO.File_Type;
-   DateiStädtenamen : Ada.Wide_Wide_Text_IO.File_Type;
-   DateiForschungen : Ada.Wide_Wide_Text_IO.File_Type;
-   DateiEinheiten : Ada.Wide_Wide_Text_IO.File_Type;
-   DateiGebäude : Ada.Wide_Wide_Text_IO.File_Type;
+   DateiNull : File_Type;
+   DateiUnternull : File_Type;
+   DateiNameBeschreibung : File_Type;
+   DateiStädtenamen : File_Type;
+   DateiForschungen : File_Type;
+   DateiEinheiten : File_Type;
+   DateiGebäude : File_Type;
 
-   type HauptdateiArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of Ada.Strings.Wide_Wide_Unbounded.Unbounded_Wide_Wide_String;
+   type HauptdateiArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of Unbounded_Wide_Wide_String;
    Hauptdatei : HauptdateiArray;
 
-   type RassendateienArray is array (1 .. 5) of Ada.Strings.Wide_Wide_Unbounded.Unbounded_Wide_Wide_String;
+   type RassendateienArray is array (1 .. 5) of Unbounded_Wide_Wide_String;
    Rassendateien : RassendateienArray;
 
 

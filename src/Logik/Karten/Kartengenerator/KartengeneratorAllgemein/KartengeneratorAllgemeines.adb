@@ -20,6 +20,8 @@ package body KartengeneratorAllgemeines is
    
    
   
+   -- Wenn ich die ganzen Arbeiten zusammenführe könnte ich wahrscheinlich noch mehr parallelisieren. äöü
+   -- Beispielsweise nach der Generierung des Planeteninneres direkt dafür die Flüsse generieren und nicht warten das der Hauptteil fertig wird. äöü
    procedure GenerierungGrundlagen
    is
    

@@ -2,9 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
-private with Ada.Wide_Wide_Text_IO;
-
-private with ZahlenDatentypen;
+with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
 package EinlesenText is
    
@@ -12,14 +10,14 @@ package EinlesenText is
    
 private
       
-   AktuelleZeile : ZahlenDatentypen.EigenesPositive;
-
-   DateiTextEinlesen : Ada.Wide_Wide_Text_IO.File_Type;
+   DateiVerzeichnisse : File_Type;
+   DateiText : File_Type;
+   
+   Verzeichnisse : Unbounded_Wide_Wide_String;
       
    type TextdateienEinlesenArray is array (1 .. 37) of Unbounded_Wide_Wide_String;
    TextdateienEinlesen : TextdateienEinlesenArray;
    
-   procedure EinlesenTexte;
    procedure Hauptmenü;
    procedure Spielmenü;
    procedure Optionsmenü;
@@ -59,10 +57,13 @@ private
    procedure Stadtbefehle;
    
    procedure EinlesenAufteilen
-     (WelcherDateiExtern : in Positive)
+     (WelcheDateiExtern : in Positive;
+      VerzeichnisExtern : in Wide_Wide_String)
      with
        Pre => (
-                 WelcherDateiExtern <= TextdateienEinlesen'Last
+                 WelcheDateiExtern <= TextdateienEinlesen'Last
+               and
+                 VerzeichnisExtern'Length > 0
               );
    
 end EinlesenText;

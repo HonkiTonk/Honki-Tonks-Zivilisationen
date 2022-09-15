@@ -88,17 +88,9 @@ package body LadezeitenGrafik is
                      
       SpielweltErstellenSchleife:
       for SpielweltErstellenSchleifenwert in LadezeitenDatentypen.Spielwelt_Erstellen_Enum'Range loop
-                  
-         case
-           LadezeitenLogik.FortschrittSpielwelt (SpielweltErstellenSchleifenwert)
-         is
-            when 0 =>
-               Text := GlobaleTexte.Ladezeit (WelcheZeit);
-            
-            when others =>
-               Text := GlobaleTexte.Ladezeit (WelcheZeit) & TextKonstanten.StandardAbstand & ZahlAlsStringLadefortschritt (ZahlExtern => LadezeitenLogik.FortschrittSpielwelt (SpielweltErstellenSchleifenwert))
-                 & TextKonstanten.Trennzeichen & "100";
-         end case;
+                
+         Text := GlobaleTexte.Ladezeit (WelcheZeit) & TextKonstanten.StandardAbstand & ZahlAlsStringLadefortschritt (ZahlExtern => LadezeitenLogik.FortschrittSpielwelt (SpielweltErstellenSchleifenwert))
+           & TextKonstanten.Trennzeichen & "100";
          
          Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
                                             str  => To_Wide_Wide_String (Text));
@@ -140,16 +132,8 @@ package body LadezeitenGrafik is
       KIRechnetSchleife:
       for KIRechnetSchleifenwert in LadezeitenDatentypen.KI_Rechnet_Enum'Range loop
                   
-         case
-           LadezeitenLogik.FortschrittKI (KIRechnetSchleifenwert)
-         is
-            when 0 =>
-               Text := GlobaleTexte.Ladezeit (WelcheZeit);
-            
-            when others =>
-               Text := GlobaleTexte.Ladezeit (WelcheZeit) & TextKonstanten.StandardAbstand & ZahlAlsStringLadefortschritt (ZahlExtern => LadezeitenLogik.FortschrittKI (KIRechnetSchleifenwert))
-                 & TextKonstanten.Trennzeichen & "100";
-         end case;
+         Text := GlobaleTexte.Ladezeit (WelcheZeit) & TextKonstanten.StandardAbstand & ZahlAlsStringLadefortschritt (ZahlExtern => LadezeitenLogik.FortschrittKI (KIRechnetSchleifenwert))
+           & TextKonstanten.Trennzeichen & "100";
          
          Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
                                             str  => To_Wide_Wide_String (Source => Text));

@@ -14,17 +14,6 @@ with Flussplatzierungssystem;
 with LadezeitenLogik;
 
 package body KartengeneratorFluss is
-   
-   procedure AufteilungFlussgenerierung
-   is begin
-      
-      Multiplikator := (others => 1);
-      GenerierungFlüsse;
-      LadezeitenLogik.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Flüsse_Enum);
-      
-   end AufteilungFlussgenerierung;
-   
-   
 
    procedure GenerierungFlüsse
    is
@@ -58,6 +47,8 @@ package body KartengeneratorFluss is
      (EbeneExtern : in KartenDatentypen.EbenePlanet)
    is begin
       
+      Kartenzeitwert (EbeneExtern) := (KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse + (33 - 1)) / 33;
+      
       YAchseSchleife:
       for YAchseSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.YAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse loop
          XAchseSchleife:
@@ -83,15 +74,15 @@ package body KartengeneratorFluss is
          
          end loop XAchseSchleife;
          
-         if
-           ZahlenDatentypen.EigenesPositive (YAchseSchleifenwert) >= Multiplikator (EbeneExtern) * ZahlenDatentypen.EigenesPositive (KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse) / 33
-         then
-            LadezeitenLogik.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Flüsse_Enum);
-            Multiplikator (EbeneExtern) := Multiplikator (EbeneExtern) + 1;
+         case
+           YAchseSchleifenwert mod Kartenzeitwert (EbeneExtern)
+         is
+            when 0 =>
+               LadezeitenLogik.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Flüsse_Enum);
                
-         else
-            null;
-         end if;
+            when others =>
+               null;
+         end case;
          
       end loop YAchseSchleife;
       

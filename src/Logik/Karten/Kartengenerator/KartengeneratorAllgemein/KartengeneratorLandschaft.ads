@@ -4,7 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 with KartenDatentypen; use KartenDatentypen;
 
 private with KartengrundDatentypen;
-private with ZahlenDatentypen;
 private with KartenRecords;
 
 private with Karten;
@@ -15,14 +14,14 @@ package KartengeneratorLandschaft is
 
 private
    
-   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Kartenzeitwert : KartenDatentypen.KartenfeldNatural;
    
    WelcherGrund : KartengrundDatentypen.Kartengrund_Enum;
    BasisGrund : KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum;
-
-   Multiplikator : ZahlenDatentypen.EigenesPositive;
    
    BasisWahrscheinlichkeitAktuell : KartengrundDatentypen.Kartengrund_Oberfläche_Enum;
+   
+   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    type BasisWahrscheinlichkeitenArray is array (KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum'Range) of KartenDatentypen.Auswahlbereich;
    BasisWahrscheinlichkeiten : BasisWahrscheinlichkeitenArray := (

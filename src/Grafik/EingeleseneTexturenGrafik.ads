@@ -18,6 +18,9 @@ package EingeleseneTexturenGrafik is
    -- Eventuell nach Bereiche aufteilen, damit dass hier nicht zu unübersichtlich wird? äöü
    -- Wenn dann in die gleichen Bereiche wie in EinlesenTexturen. äöü
 
+   type SystemAccessArray is array (GrafikDatentypen.Systemgrafiken_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
+   SystemAccess : SystemAccessArray := (others => null);
+
    type HintergrundAccessArray is array (GrafikDatentypen.Hintergrund_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
    HintergrundAccess : HintergrundAccessArray := (others => null);
 

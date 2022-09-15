@@ -62,7 +62,7 @@ package body Einlesen is
                SchreibenEinstellungen.SchreibenEinstellungen;
                   
             when False =>
-               Fehler.LogikFehler (FehlermeldungExtern => "Einlesen.EinlesenMitAnzeige - Sprachen nicht gefunden.");
+               Fehler.LogikFehler (FehlermeldungExtern => "Einlesen.EinlesenMitAnzeige: Sprachen nicht gefunden.");
          end case;
                
       else

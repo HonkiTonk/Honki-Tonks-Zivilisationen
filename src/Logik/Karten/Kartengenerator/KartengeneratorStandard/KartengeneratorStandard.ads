@@ -4,7 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 with KartenDatentypen; use KartenDatentypen;
 
 private with KartenRecords;
-private with ZahlenDatentypen;
 
 private with Karten;
 
@@ -16,13 +15,16 @@ private
    
    LandHöheBreite : Boolean;
    
+   YAchseZwischenwert : KartenDatentypen.KartenfeldPositiv;
+   XAchseZwischenwert : KartenDatentypen.KartenfeldPositiv;
+   
+   Kartenzeitwert : KartenDatentypen.KartenfeldNatural;
+      
    type LandmassenArray is array (1 .. 4) of KartenDatentypen.KartenfeldPositiv;
    Landmassen : LandmassenArray;
    Landabstand : LandmassenArray;
    
    BeliebigerLandwert : KartenDatentypen.Auswahlbereich;
-   
-   Multiplikator : ZahlenDatentypen.EigenesPositive;
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    
@@ -36,7 +38,7 @@ private
    -- Später Nutzereinstellbar machen. äöü
    WahrscheinlichkeitLandmasse : constant WahrscheinlichkeitenRecord := (20, 80);
    WahrscheinlichkeitLandInLandmasse : constant WahrscheinlichkeitenRecord := (0, 90);
-   WahrscheinlichkeitWasser : constant WahrscheinlichkeitenRecord := (0, 95);
+   WahrscheinlichkeitWasser : constant WahrscheinlichkeitenRecord := (0, 90);
 
    procedure LandVorhanden
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
@@ -48,17 +50,7 @@ private
                  XAchseExtern <= Karten.Karteneinstellungen.Kartengröße.XAchse
               );
    
-   procedure LandmasseGenerieren
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
-     with
-       Pre => (
-                 YAchseExtern <= Karten.Karteneinstellungen.Kartengröße.YAchse
-               and
-                 XAchseExtern <= Karten.Karteneinstellungen.Kartengröße.XAchse
-              );
-   
-   procedure AbstandGenerieren
+   procedure LandmasseAbstandGenerieren
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
      with
@@ -76,6 +68,28 @@ private
        Pre => (
                  YAchseExtern <= Karten.Karteneinstellungen.Kartengröße.YAchse
                and
+                 XAchseExtern <= Karten.Karteneinstellungen.Kartengröße.XAchse
+              );
+   
+   
+   
+   function StartYAchse
+     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      AnfangExtern : in KartenDatentypen.KartenfeldPositiv;
+      EndeExtern : in KartenDatentypen.KartenfeldPositiv)
+      return KartenDatentypen.KartenfeldPositiv
+     with
+       Pre => (
+                 YAchseExtern <= Karten.Karteneinstellungen.Kartengröße.YAchse
+              );
+     
+   function StartXAchse
+     (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      AnfangExtern : in KartenDatentypen.KartenfeldPositiv;
+      EndeExtern : in KartenDatentypen.KartenfeldPositiv)
+      return KartenDatentypen.KartenfeldPositiv
+     with
+       Pre => (
                  XAchseExtern <= Karten.Karteneinstellungen.Kartengröße.XAchse
               );
 

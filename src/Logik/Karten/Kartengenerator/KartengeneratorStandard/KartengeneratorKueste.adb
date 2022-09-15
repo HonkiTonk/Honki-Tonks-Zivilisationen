@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with KartengrundDatentypen; use KartengrundDatentypen;
+with KartengrundDatentypen;
 with LadezeitenDatentypen;
 with KartenKonstanten;
 
@@ -16,7 +16,7 @@ package body KartengeneratorKueste is
    procedure GenerierungKüstenSeeGewässer
    is begin
       
-      Multiplikator := 1;
+      Kartenzeitwert := (Karten.Karteneinstellungen.Kartengröße.YAchse + (100 - 1)) / 100;
       
       YAchseSchleife:
       for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Karteneinstellungen.Kartengröße.YAchse loop
@@ -35,15 +35,15 @@ package body KartengeneratorKueste is
             
          end loop XAchseSchleife;
             
-         if
-           ZahlenDatentypen.EigenesPositive (YAchseSchleifenwert) >= Multiplikator * ZahlenDatentypen.EigenesPositive (Karten.Karteneinstellungen.Kartengröße.YAchse) / 100
-         then
-            LadezeitenLogik.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Küstenwasser_Enum);
-            Multiplikator := Multiplikator + 1;
+         case
+           YAchseSchleifenwert mod Kartenzeitwert
+         is
+            when 0 =>
+               LadezeitenLogik.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Küstenwasser_Enum);
                
-         else
-            null;
-         end if;
+            when others =>
+               null;
+         end case;
          
       end loop YAchseSchleife;
       
@@ -69,17 +69,18 @@ package body KartengeneratorKueste is
             then
                null;
                
-            elsif
-              LeseKarten.AktuellerGrund (KoordinatenExtern => KartenWert) = KartengrundDatentypen.Flachland_Enum
-              or
-                LeseKarten.AktuellerGrund (KoordinatenExtern => KartenWert) = KartengrundDatentypen.Eis_Enum
-            then
-               SchreibeKarten.GleicherGrund (KoordinatenExtern => KoordinatenExtern,
-                                            GrundExtern       => KartengrundDatentypen.Küstengewässer_Enum);
-               return;
-               
             else
-               null;
+               case
+                 LeseKarten.AktuellerGrund (KoordinatenExtern => KartenWert)
+               is
+                  when KartengrundDatentypen.Flachland_Enum |  KartengrundDatentypen.Eis_Enum =>
+                     SchreibeKarten.GleicherGrund (KoordinatenExtern => KoordinatenExtern,
+                                                   GrundExtern       => KartengrundDatentypen.Küstengewässer_Enum);
+                     return;
+                     
+                  when others =>
+                     null;
+               end case;
             end if;
                         
          end loop XAchseSchleife;

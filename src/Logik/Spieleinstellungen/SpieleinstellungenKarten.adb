@@ -52,7 +52,6 @@ package body SpieleinstellungenKarten is
             when RueckgabeDatentypen.Auswahl_Sechs_Enum =>
                KartengeneratorVariablen.Kartenparameter.Kartenpole := KartenRecordKonstanten.KartenpoleStandard;
                KartengeneratorVariablen.Polgrößen := KartengeneratorRecordKonstanten.Eisrand;
-               KartengeneratorVariablen.Eisschild := KartengeneratorRecordKonstanten.Eisschild;
                
             when RueckgabeDatentypen.Fertig_Enum | RueckgabeDatentypen.Zurück_Enum =>
                return;
@@ -195,17 +194,14 @@ package body SpieleinstellungenKarten is
                  KartengeneratorVariablen.Kartenparameter.Kartenart = KartenDatentypen.Kartenart_Inseln_Enum
                then
                   KartengeneratorVariablen.Landgrößen := KartengeneratorRecordKonstanten.Inselgröße;
-                  KartengeneratorVariablen.Abstände := KartengeneratorRecordKonstanten.Inselabstand;
                   
                elsif
                  KartengeneratorVariablen.Kartenparameter.Kartenart = KartenDatentypen.Kartenart_Kontinente_Enum
                then
                   KartengeneratorVariablen.Landgrößen := KartengeneratorRecordKonstanten.Kontinentgröße;
-                  KartengeneratorVariablen.Abstände := KartengeneratorRecordKonstanten.Kontinentabstand;
                                     
                else
                   KartengeneratorVariablen.Landgrößen := KartengeneratorRecordKonstanten.Pangäagröße;
-                  KartengeneratorVariablen.Abstände := KartengeneratorRecordKonstanten.Pangäaabstand;
                end if;
                
             when RueckgabeDatentypen.Auswahl_Vier_Enum =>
@@ -315,8 +311,7 @@ package body SpieleinstellungenKarten is
    is begin
 
       KartengeneratorVariablen.Kartenparameter.Kartenart := KartenKonstanten.StandardKartenart;
-      KartengeneratorVariablen.Landgrößen := KartengeneratorRecordKonstanten.Inselgröße;
-      KartengeneratorVariablen.Abstände := KartengeneratorRecordKonstanten.Inselabstand;
+      KartengeneratorVariablen.Landgrößen := KartengeneratorRecordKonstanten.Kontinentgröße;
 
    end KartenartStandard;
    

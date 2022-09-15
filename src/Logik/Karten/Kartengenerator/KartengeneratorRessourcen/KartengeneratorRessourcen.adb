@@ -15,22 +15,11 @@ with KartengeneratorRessourcenUnterflaecheWasser;
 with LadezeitenLogik;
 
 package body KartengeneratorRessourcen is
-   
-   procedure AufteilungRessourcengenerierung
-   is begin
-      
-      Multiplikator := (others => 1);
-      GenerierungRessourcen;
-      LadezeitenLogik.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Ressourcen_Enum);
-      
-   end AufteilungRessourcengenerierung;
-   
-   
 
    procedure GenerierungRessourcen
    is
    
-      -- Später noch Ressourcen für weitere Ebenen einbauen. äöü
+      -- Später noch Ressourcen für weitere Ebenen einbauen? äöü
       task RessourcenUnterfläche;
       task RessourcenKern;
       
@@ -61,6 +50,8 @@ package body KartengeneratorRessourcen is
    procedure RessourcenGenerierung
      (EbeneExtern : in KartenDatentypen.EbenePlanet)
    is begin
+      
+      Kartenzeitwert (EbeneExtern) := (KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse + (33 - 1)) / 33;
       
       YAchseSchleife:
       for YAchseSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.YAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse loop
@@ -99,15 +90,15 @@ package body KartengeneratorRessourcen is
             
          end loop XAchseSchleife;
             
-         if
-           ZahlenDatentypen.EigenesPositive (YAchseSchleifenwert) >= Multiplikator (EbeneExtern) * ZahlenDatentypen.EigenesPositive (KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse) / 33
-         then
-            LadezeitenLogik.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Ressourcen_Enum);
-            Multiplikator (EbeneExtern) := Multiplikator (EbeneExtern) + 1;
+         case
+           YAchseSchleifenwert mod Kartenzeitwert (EbeneExtern)
+         is
+            when 0 =>
+               LadezeitenLogik.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Ressourcen_Enum);
                
-         else
-            null;
-         end if;
+            when others =>
+               null;
+         end case;
          
       end loop YAchseSchleife;
       

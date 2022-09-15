@@ -29,6 +29,9 @@ package VerzeichnisKonstanten is
    Musik : constant String (1 .. 6) := "/Musik";
    Sound : constant String (1 .. 6) := "/Sound";
    
+   -- Statt einzelner Teile einfach nur die Gesamtpfade erstellen? äöü
+   -- Wäre wahrscheinlich übersichtlicher und weniger Konstanten. äöü
+   System : constant String (1 .. 7) := "/System";
    Hintergrund : constant String (1 .. 12) := "/Hintergrund";
    Kartenfelder : constant String (1 .. 13) := "/Kartenfelder";
    Kartenfluss : constant String (1 .. 12) := "/Kartenfluss";
@@ -38,5 +41,5 @@ package VerzeichnisKonstanten is
    Einheiten : constant String (1 .. 10) := "/Einheiten";
    Bauwerke : constant String (1 .. 9) := "/Bauwerke";
    Rassen : constant String (1 .. 7) := "/Rassen";
-
+   
 end VerzeichnisKonstanten;

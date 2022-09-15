@@ -98,17 +98,24 @@ package ChangelogSeptember2022 is
    
    
 
-   -- Version 0.03. => 0.03. (16.09.2022):
+   -- Version 0.03.9185 => 0.03. (16.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.9085 => 0.03. (15.09.2022):
+   -- Version 0.03.9085 => 0.03.9185 (15.09.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Kartengenerator überarbeitet.
+   -- Unnötigen Code gelöscht.
+   -- Code zusammengeführt.
+   -- Ladezeitberechnung und -anzeige überarbeitet.
+   -- Angefangen Systemsymbole einzubauen.
+   -- Textureneinlesesystem überarbeitet.
+   -- Texteinlesesystem überarbeitet.
+   -- Man scrollt jetzt nicht mehr wenn man sich in den Karten- und Einheitenbefehlen befindet.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    
 

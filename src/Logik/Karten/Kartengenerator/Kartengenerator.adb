@@ -73,7 +73,7 @@ package body Kartengenerator is
    procedure FlüsseGenerieren
    is begin
             
-      KartengeneratorFluss.AufteilungFlussgenerierung;
+      KartengeneratorFluss.GenerierungFlüsse;
       LadezeitenLogik.FortschrittSpielweltMaximum (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Flüsse_Enum);
       
    end FlüsseGenerieren;
@@ -83,7 +83,7 @@ package body Kartengenerator is
    procedure RessourcenGenerieren
    is begin
             
-      KartengeneratorRessourcen.AufteilungRessourcengenerierung;
+      KartengeneratorRessourcen.GenerierungRessourcen;
       LadezeitenLogik.FortschrittSpielweltMaximum (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Ressourcen_Enum);
       
    end RessourcenGenerieren;

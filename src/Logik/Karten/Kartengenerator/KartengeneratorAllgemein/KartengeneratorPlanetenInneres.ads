@@ -5,7 +5,6 @@ with KartenDatentypen; use KartenDatentypen;
 
 private with KartengrundDatentypen;
 private with KartenRecords;
-private with ZahlenDatentypen;
 
 private with Karten;
 
@@ -20,7 +19,7 @@ private
    YKernende : KartenDatentypen.KartenfeldPositiv;
    XKernende : KartenDatentypen.KartenfeldPositiv;
 
-   Multiplikator : ZahlenDatentypen.EigenesPositive;
+   Kartenzeitwert : KartenDatentypen.KartenfeldNatural;
 
    WelcherGrund : KartengrundDatentypen.Kartengrund_Enum;
 

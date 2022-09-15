@@ -10,6 +10,7 @@ with KartenKonstanten;
 with KartenRecordKonstanten;
 with ZeitKonstanten;
 with Views;
+with EinheitenKonstanten;
 
 with Kartenkoordinatenberechnungssystem;
 with Sichtweiten;
@@ -17,11 +18,12 @@ with NachGrafiktask;
 with EinstellungenGrafik;
 with NachLogiktask;
 with KartenberechnungenGrafik;
+with Vergleiche;
 
 package body CursorplatzierungAltGrafik is
 
    procedure CursorplatzierungAlt
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
       case
@@ -47,21 +49,66 @@ package body CursorplatzierungAltGrafik is
             end if;
             
             Scrollzeit := Clock;
+            
+            -- Hierfür später mal eine bessere Lösung einbauen. äöü
+            Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
+                                                                       point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
+                                                                       view         => Views.KartenbefehlsviewAccess);
+            
+            case
+              Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
+                                          TextboxExtern      => (Sf.Graphics.View.getCenter (view => Views.KartenbefehlsviewAccess).x - Sf.Graphics.View.getSize (view => Views.KartenbefehlsviewAccess).x / 2.00,
+                                                                 Sf.Graphics.View.getCenter (view => Views.KartenbefehlsviewAccess).y - Sf.Graphics.View.getSize (view => Views.KartenbefehlsviewAccess).y / 2.00,
+                                                                 Sf.Graphics.View.getSize (view => Views.KartenbefehlsviewAccess).x,
+                                                                 Sf.Graphics.View.getSize (view => Views.KartenbefehlsviewAccess).y))
+            is
+               when True =>
+                  return;
+               
+               when False =>
+                  null;
+            end case;
+            
+            if
+              EinheitRasseNummerExtern.Nummer = EinheitenKonstanten.LeerNummer
+            then
+               null;
+               
+            else
+               Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
+                                                                          point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
+                                                                          view         => Views.EinheitenbefehlsviewAccess);
+            
+               case
+                 Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
+                                             TextboxExtern      => (Sf.Graphics.View.getCenter (view => Views.EinheitenbefehlsviewAccess).x - Sf.Graphics.View.getSize (view => Views.EinheitenbefehlsviewAccess).x / 2.00,
+                                                                    Sf.Graphics.View.getCenter (view => Views.EinheitenbefehlsviewAccess).y - Sf.Graphics.View.getSize (view => Views.EinheitenbefehlsviewAccess).y / 2.00,
+                                                                    Sf.Graphics.View.getSize (view => Views.EinheitenbefehlsviewAccess).x,
+                                                                    Sf.Graphics.View.getSize (view => Views.EinheitenbefehlsviewAccess).y))
+               is
+                  when True =>
+                     return;
+               
+                  when False =>
+                     null;
+               end case;
+            end if;
+            
             Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
                                                                        point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
                                                                        view         => Views.KartenviewAccess);
             
             -- Die EAchse später auch noch über eine Funktion die Änderung ermitteln oder einfach so lassen? äöü
-            SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.EAchse := SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.EAchse;
+            SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt.EAchse := SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAktuell.EAchse;
             
             Koordinatenänderung.EAchse := 0;
             Koordinatenänderung.YAchse := AlteYAchseFestlegen (MausachseExtern => Mausposition.y,
-                                                                YAchseAlt       => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse);
+                                                                YAchseAlt       => SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt.YAchse);
             
             Koordinatenänderung.XAchse := AlteXAchseFestlegen (MausachseExtern => Mausposition.x,
-                                                                XAchseAlt       => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse);
+                                                                XAchseAlt       => SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt.XAchse);
            
-            Kartenwert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
+            Kartenwert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt,
                                                                                                  ÄnderungExtern    => Koordinatenänderung,
                                                                                                  LogikGrafikExtern => False);
             
@@ -71,11 +118,11 @@ package body CursorplatzierungAltGrafik is
                null;
                   
             else
-               SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt := Kartenwert;
+               SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt := Kartenwert;
             end if;
                   
          when others =>
-            GeheZuFestlegung (RasseExtern => RasseExtern);
+            GeheZuFestlegung (RasseExtern => EinheitRasseNummerExtern.Rasse);
       end case;
       
    end CursorplatzierungAlt;

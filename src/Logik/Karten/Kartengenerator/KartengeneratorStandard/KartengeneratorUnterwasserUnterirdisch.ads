@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-private with ZahlenDatentypen;
+private with KartenDatentypen;
 
 package KartengeneratorUnterwasserUnterirdisch is
 
@@ -9,6 +9,6 @@ package KartengeneratorUnterwasserUnterirdisch is
 
 private
 
-   Multiplikator : ZahlenDatentypen.EigenesPositive;
+   Kartenzeitwert : KartenDatentypen.KartenfeldNatural;
 
 end KartengeneratorUnterwasserUnterirdisch;

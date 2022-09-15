@@ -4,13 +4,12 @@ pragma Warnings (Off, "*array aggregate*");
 with KartenDatentypen; use KartenDatentypen;
 
 private with KartenRecords;
-private with ZahlenDatentypen;
 
 private with Karten;
 
 package KartengeneratorFluss is
 
-   procedure AufteilungFlussgenerierung;
+   procedure GenerierungFlüsse;
 
 private
    
@@ -18,8 +17,8 @@ private
    -- Oder rauswerfen? äöü
    FlussumgebungBonus : Float := 1.25;
    
-   type MultiplikatorArray is array (KartenDatentypen.EbenePlanet'Range) of ZahlenDatentypen.EigenesPositive;
-   Multiplikator : MultiplikatorArray;
+   type KartenzeitwertArray is array (KartenDatentypen.EbenePlanet'Range) of KartenDatentypen.KartenfeldNatural;
+   Kartenzeitwert : KartenzeitwertArray;
    
    -- Später vom Nutzer änderbar machen. äöü
    type WahrscheinlichkeitFlussArray is array (KartenDatentypen.EbenePlanet'Range) of KartenDatentypen.Auswahlbereich;
@@ -34,8 +33,6 @@ private
 
    type KartenWertArray is array (WahrscheinlichkeitFlussArray'Range) of KartenRecords.AchsenKartenfeldNaturalRecord;
    KartenWert : KartenWertArray;
-   
-   procedure GenerierungFlüsse;
    
    procedure FlussGenerierung
      (EbeneExtern : in KartenDatentypen.EbenePlanet);

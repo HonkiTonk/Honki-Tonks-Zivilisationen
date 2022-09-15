@@ -8,94 +8,60 @@ with FelderwerteFestlegen;
 with Karten;
 with LadezeitenLogik;
 
--- Den Aufbau hier an die Berechnungen der Ressourcenaufbau anpassen.
 package body KartenfelderBewerten is
-
+   
    -- Leerwert heineingeben um für alle Rassen die Werte zu berechnen, anderer Wert um für eine bestimmte Rasse die Werte zu berechnen.
    procedure KartenfelderBewerten
      (RasseExtern : in RassenDatentypen.Rassen_Enum)
    is
-
+      
       task Unterfläche;
       task Planetenkern;
       
       task body Unterfläche
       is begin
          
-         -- Das mit den Teiler noch einmal überarbeiten. äöü
-         Unterflächenteiler := Karten.Karteneinstellungen.Kartengröße.YAchse / 33 + 1;
-         
-         YAchseUnterwasserSchleife:
-         for YAchseUnterwasserSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Karteneinstellungen.Kartengröße.YAchse loop
-            XAchseUnterwasserSchleife:
-            for XAchseUnterwasserSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Karteneinstellungen.Kartengröße.XAchse loop
-               
-               FelderwerteFestlegen.KartenfeldBewerten (RasseExtern       => RasseExtern,
-                                                        KoordinatenExtern => (-1, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert));
-               
-            end loop XAchseUnterwasserSchleife;
-            
-            case
-              YAchseUnterwasserSchleifenwert mod Unterflächenteiler
-            is
-               when 0 =>
-                  LadezeitenLogik.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Bewerte_Kartenfelder_Enum);
-               
-               when others =>
-                  null;
-            end case;
-            
-         end loop YAchseUnterwasserSchleife;
+         Kartenbewertung (RasseExtern => RasseExtern,
+                          EbeneExtern => -1);
          
       end Unterfläche;
-      
-      
       
       task body Planetenkern
       is begin
          
-         Kernflächenteiler := Karten.Karteneinstellungen.Kartengröße.YAchse / 33 + 1;
-         
-         YAchseInneresSchleife:
-         for YAchseInneresSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Karteneinstellungen.Kartengröße.YAchse loop
-            XAchseInneresSchleife:
-            for XAchseInneresSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Karteneinstellungen.Kartengröße.XAchse loop
-               
-               FelderwerteFestlegen.KartenfeldBewerten (RasseExtern       => RasseExtern,
-                                                        KoordinatenExtern => (-2, YAchseInneresSchleifenwert, XAchseInneresSchleifenwert));
-               
-            end loop XAchseInneresSchleife;
-            
-            case
-              YAchseInneresSchleifenwert mod Kernflächenteiler
-            is
-               when 0 =>
-                  LadezeitenLogik.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Bewerte_Kartenfelder_Enum);
-               
-               when others =>
-                  null;
-            end case;
-            
-         end loop YAchseInneresSchleife;
+         Kartenbewertung (RasseExtern => RasseExtern,
+                          EbeneExtern => -2);
          
       end Planetenkern;
       
    begin
          
-      Oberflächenteiler := Karten.Karteneinstellungen.Kartengröße.YAchse / 33 + 1;
+      Kartenbewertung (RasseExtern => RasseExtern,
+                       EbeneExtern => 0);
+         
+   end KartenfelderBewerten;
+   
+   
+   
+   procedure Kartenbewertung
+     (RasseExtern : in RassenDatentypen.Rassen_Enum;
+      EbeneExtern : in KartenDatentypen.EbenePlanet)
+   is begin
+      
+      Kartenzeitwert (EbeneExtern) := (Karten.Karteneinstellungen.Kartengröße.YAchse + (33 - 1)) / 33;
       
       YAchseSchleife:
       for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Karteneinstellungen.Kartengröße.YAchse loop
-         XAchseSchleife:
+         XAchsSchleife:
          for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Karteneinstellungen.Kartengröße.XAchse loop
-            
-            FelderwerteFestlegen.KartenfeldBewerten (RasseExtern       => RasseExtern,
-                                                     KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert));
                
-         end loop XAchseSchleife;
+            FelderwerteFestlegen.KartenfeldBewerten (RasseExtern       => RasseExtern,
+                                                     KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert));
+               
+         end loop XAchsSchleife;
             
          case
-           YAchseSchleifenwert mod Oberflächenteiler
+           YAchseSchleifenwert mod Kartenzeitwert (EbeneExtern)
          is
             when 0 =>
                LadezeitenLogik.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Bewerte_Kartenfelder_Enum);
@@ -103,11 +69,9 @@ package body KartenfelderBewerten is
             when others =>
                null;
          end case;
-         
+            
       end loop YAchseSchleife;
       
-      LadezeitenLogik.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Bewerte_Kartenfelder_Enum);
-   
-   end KartenfelderBewerten;
+   end Kartenbewertung;
 
 end KartenfelderBewerten;

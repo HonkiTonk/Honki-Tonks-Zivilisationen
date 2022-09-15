@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with KartenDatentypen; use KartenDatentypen;
 with KartengrundDatentypen;
 with LadezeitenDatentypen;
 
@@ -14,7 +15,7 @@ package body KartengeneratorWeltraum is
    procedure Weltraum
    is begin
       
-      Multiplikator := 1;
+      Kartenzeitwert := (Karten.Karteneinstellungen.Kartengröße.YAchse + (25 - 1)) / 25;
       
       YAchseSchleife:
       for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Karteneinstellungen.Kartengröße.YAchse loop
@@ -26,15 +27,15 @@ package body KartengeneratorWeltraum is
                
          end loop XAchseSchleife;
             
-         if
-           ZahlenDatentypen.EigenesPositive (YAchseSchleifenwert) >= Multiplikator * ZahlenDatentypen.EigenesPositive (Karten.Karteneinstellungen.Kartengröße.YAchse) / 25
-         then
-            LadezeitenLogik.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Allgemeines_Enum);
-            Multiplikator := Multiplikator + 1;
+         case
+           YAchseSchleifenwert mod Kartenzeitwert
+         is
+            when 0 =>
+               LadezeitenLogik.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Allgemeines_Enum);
                
-         else
-            null;
-         end if;
+            when others =>
+               null;
+         end case;
          
       end loop YAchseSchleife;
       

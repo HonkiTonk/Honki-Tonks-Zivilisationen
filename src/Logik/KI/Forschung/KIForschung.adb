@@ -41,6 +41,7 @@ package body KIForschung is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
+      Ladezeit := (ForschungenDatenbank.ForschungslisteArray'Last (2) + (100 - 1)) / 100;
       WelchesProjekt := ForschungKonstanten.LeerForschung;
       
       ForschungenSchleife:
@@ -48,7 +49,7 @@ package body KIForschung is
          
          case
            ForschugnstestsLogik.ForschungAnforderungErfüllt (RasseExtern       => RasseExtern,
-                                                            ForschungIDExtern => ForschungSchleifenwert)
+                                                              ForschungIDExtern => ForschungSchleifenwert)
          is
             when True =>
                if
@@ -72,7 +73,15 @@ package body KIForschung is
                null;
          end case;
          
-         LadezeitenLogik.FortschrittKISchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Berechne_Forschung_Enum);
+         case
+           ForschungSchleifenwert mod Ladezeit
+         is
+            when 0 =>
+               LadezeitenLogik.FortschrittKISchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Berechne_Forschung_Enum);
+               
+            when others =>
+               null;
+         end case;
                
       end loop ForschungenSchleife;
       

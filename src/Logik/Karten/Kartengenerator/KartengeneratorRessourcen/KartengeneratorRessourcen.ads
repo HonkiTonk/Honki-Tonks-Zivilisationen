@@ -2,18 +2,16 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 private with KartenDatentypen;
-private with ZahlenDatentypen;
 
 package KartengeneratorRessourcen is
    
-   procedure AufteilungRessourcengenerierung;
+   procedure GenerierungRessourcen;
 
 private
    
-   type MultiplikatorArray is array (KartenDatentypen.EbenePlanet'Range) of ZahlenDatentypen.EigenesPositive;
-   Multiplikator : MultiplikatorArray;
-      
-   procedure GenerierungRessourcen;
+   type KartenzeitwertArray is array (KartenDatentypen.EbenePlanet'Range) of KartenDatentypen.KartenfeldNatural;
+   Kartenzeitwert : KartenzeitwertArray;
+         
    procedure RessourcenGenerierung
      (EbeneExtern : in KartenDatentypen.EbenePlanet);
 

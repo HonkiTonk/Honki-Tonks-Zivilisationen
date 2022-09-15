@@ -23,6 +23,8 @@ private
    
    ForschungMöglich : Boolean;
    
+   Ladezeit : ForschungenDatentypen.ForschungID;
+   
    WelchesProjekt : ForschungenDatentypen.ForschungIDMitNullWert;
    
    Bewertung : KIDatentypen.AufgabenWichtigkeitKlein;

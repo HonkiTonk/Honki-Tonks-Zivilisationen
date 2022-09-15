@@ -3,7 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 
-with Fehler;
 with KartengeneratorVariablen;
 
 package body ZufallsgeneratorenKarten is
@@ -55,55 +54,20 @@ package body ZufallsgeneratorenKarten is
       elsif
         MinimalerWert > MaximalerWert
       then
-         Fehler.LogikFehler (FehlermeldungExtern => "ZufallsgeneratorenKarten.KartengeneratorLandgrößen - Minimum größer als Maximum");
+         Zwischenspeicher := MinimalerWert;
+         MinimalerWert := MaximalerWert;
+         MaximalerWert := Zwischenspeicher;
 
       else
-         ZufälligeLandgrößenAbstände.Reset (Gen => ZufälligeLandgrößeAbstandGewählt);
+         null;
       end if;
       
-      return ZufälligeLandgrößenAbstände.Random (Gen   => ZufälligeLandgrößeAbstandGewählt,
-                                                     First => MinimalerWert,
-                                                     Last  => MaximalerWert);
+      ZufälligeLandgrößen.Reset (Gen => ZufälligeLandgrößeGewählt);
+      
+      return ZufälligeLandgrößen.Random (Gen   => ZufälligeLandgrößeGewählt,
+                                            First => MinimalerWert,
+                                            Last  => MaximalerWert);
       
    end KartengeneratorLandgrößen;
-   
-   
-   
-   function KartengeneratorAbstände
-     (YAchseXAchseExtern : in Boolean)
-      return KartenDatentypen.KartenfeldPositiv
-   is begin
-      
-      case
-        YAchseXAchseExtern
-      is
-         when True =>
-            MinimalerWert := KartengeneratorVariablen.Abstände.MinimaleYAchse;
-            MaximalerWert := KartengeneratorVariablen.Abstände.MaximaleYAchse;
-
-         when False =>
-            MinimalerWert := KartengeneratorVariablen.Abstände.MinimaleXAchse;
-            MaximalerWert := KartengeneratorVariablen.Abstände.MaximaleXAchse;
-      end case;
-
-      if
-        MinimalerWert = MaximalerWert
-      then
-         return MinimalerWert;
-
-      elsif
-        MinimalerWert > MaximalerWert
-      then
-         Fehler.LogikFehler (FehlermeldungExtern => "ZufallsgeneratorenKarten.KartengeneratorAbstände - Minimum größer als Maximum");
-
-      else
-         ZufälligeLandgrößenAbstände.Reset (Gen => ZufälligeLandgrößeAbstandGewählt);
-      end if;
-      
-      return ZufälligeLandgrößenAbstände.Random (Gen   => ZufälligeLandgrößeAbstandGewählt,
-                                                     First => MinimalerWert,
-                                                     Last  => MaximalerWert);
-      
-   end KartengeneratorAbstände;
 
 end ZufallsgeneratorenKarten;

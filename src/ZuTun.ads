@@ -3,12 +3,13 @@
 -- Kartengenerator
 -- Siegbedingungen und Übergaben
 -- BewegungCursor aufteilen (siehe auch Sichtweiten und KartenberechnungenGrafik), kann größtenteil raus nach vollständiger Überarbeitung der Stadtanzeige und des Stadtsystem.
+-- Knöpfe für meine Knopfauswahl einbauen.
 --
 
 
 -- Aktuell höchste Priorität:
 
--- KI überarbeiten (Funktioniert inzwischen Minimal, später weiter verbessern).
+-- KI überarbeiten (Funktioniert inzwischen Minimal, später verbessern).
 -- Grafik überarbeiten (Menüs und Textanzeigen in Views umgebaut, Textumbruchsystem überarbeitet und variable Textabstände eingebaut.
 --                      Angefangen neue Texturen zu erstellen.
 --                      Erste Version eines neuen Stadtsystems eingebaut.
@@ -33,5 +34,4 @@
 
 -- Erinnerungen:
 
--- In die Beschreibungen später auch Umwandlungen für die Werte, Kosten, nötige Zeit usw. einbauen?
 --

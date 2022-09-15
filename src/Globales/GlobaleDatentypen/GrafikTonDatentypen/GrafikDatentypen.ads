@@ -58,5 +58,13 @@ package GrafikDatentypen is
    subtype Rassenhintergrund_Vorhanden_Enum is Rassenhintergrund_Enum range Forschungserfolg_Enum .. Rassenhintergrund_Enum'Last;
    
    subtype Abspann_Enum is Rassenhintergrund_Vorhanden_Enum range Gewonnen_Enum .. Rassenhintergrund_Vorhanden_Enum'Last;
+   
+   
+   
+   type Systemgrafiken_Enum is (
+                                Test_Enum
+                               );
+   
+   -- subtype  is Systemgrafiken_Enum range  .. ;
 
 end GrafikDatentypen;

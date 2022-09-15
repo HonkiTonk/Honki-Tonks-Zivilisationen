@@ -14,13 +14,6 @@ package KartengeneratorRecordKonstanten is
                                                             KartenDatentypen.Westen_Enum => 0,
                                                             KartenDatentypen.Osten_Enum  => 0
                                                            );
-
-   Eisschild : constant KartenDatentypen.PolregionenArray := (
-                                                              KartenDatentypen.Norden_Enum => 3,
-                                                              KartenDatentypen.Süden_Enum  => 3,
-                                                              KartenDatentypen.Westen_Enum => 0,
-                                                              KartenDatentypen.Osten_Enum  => 0
-                                                             );
    
    Inselgröße : constant KartenRecords.LandgrößenRecord := (
                                                                 MinimaleYAchse => 3,
@@ -42,26 +35,5 @@ package KartengeneratorRecordKonstanten is
                                                                   MinimaleXAchse => 100,
                                                                   MaximaleXAchse => 100
                                                                  );
-   
-   Inselabstand : constant KartenRecords.LandabständeRecord := (
-                                                                 MinimaleYAchse => 13,
-                                                                 MaximaleYAchse => 15,
-                                                                 MinimaleXAchse => 13,
-                                                                 MaximaleXAchse => 15
-                                                                );
-   
-   Kontinentabstand : constant KartenRecords.LandabständeRecord := (
-                                                                     MinimaleYAchse => 17,
-                                                                     MaximaleYAchse => 22,
-                                                                     MinimaleXAchse => 17,
-                                                                     MaximaleXAchse => 22
-                                                                    );
-   
-   Pangäaabstand : constant KartenRecords.LandabständeRecord := (
-                                                                   MinimaleYAchse => 100,
-                                                                   MaximaleYAchse => 100,
-                                                                   MinimaleXAchse => 100,
-                                                                   MaximaleXAchse => 100
-                                                                  );
 
 end KartengeneratorRecordKonstanten;

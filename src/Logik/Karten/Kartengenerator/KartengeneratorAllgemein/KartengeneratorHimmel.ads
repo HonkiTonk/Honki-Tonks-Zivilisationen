@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-private with ZahlenDatentypen;
+private with KartenDatentypen;
 
 package KartengeneratorHimmel is
 
@@ -9,6 +9,6 @@ package KartengeneratorHimmel is
 
 private
 
-   Multiplikator : ZahlenDatentypen.EigenesPositive;
+   Kartenzeitwert : KartenDatentypen.KartenfeldNatural;
 
 end KartengeneratorHimmel;

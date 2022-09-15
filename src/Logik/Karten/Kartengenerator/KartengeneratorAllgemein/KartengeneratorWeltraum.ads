@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-private with ZahlenDatentypen;
+private with KartenDatentypen;
 
 package KartengeneratorWeltraum is
 
@@ -9,6 +9,6 @@ package KartengeneratorWeltraum is
 
 private
 
-   Multiplikator : ZahlenDatentypen.EigenesPositive;
+   Kartenzeitwert : KartenDatentypen.KartenfeldNatural;
 
 end KartengeneratorWeltraum;

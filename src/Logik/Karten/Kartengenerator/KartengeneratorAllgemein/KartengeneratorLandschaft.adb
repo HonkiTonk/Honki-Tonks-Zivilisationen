@@ -18,7 +18,7 @@ package body KartengeneratorLandschaft is
    procedure GenerierungLandschaft
    is begin
       
-      Multiplikator := 1;
+      Kartenzeitwert := (KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse + (100 - 1)) / 100;
       
       YAchseSchleife:
       for YAchseSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.YAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse loop
@@ -47,15 +47,16 @@ package body KartengeneratorLandschaft is
             
          end loop XAchseSchleife;
             
-         if
-           ZahlenDatentypen.EigenesPositive (YAchseSchleifenwert) >= Multiplikator * ZahlenDatentypen.EigenesPositive (KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse) / 100
-         then
-            LadezeitenLogik.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Landschaft_Enum);
-            Multiplikator := Multiplikator + 1;
+         case
+           YAchseSchleifenwert mod Kartenzeitwert
+         is
+            when 0 =>
+               LadezeitenLogik.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Landschaft_Enum);
                
-         else
-            null;
-         end if;
+            when others =>
+               null;
+         end case;
+         
       end loop YAchseSchleife;
       
    end GenerierungLandschaft;

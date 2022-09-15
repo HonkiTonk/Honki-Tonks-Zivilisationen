@@ -12,11 +12,9 @@ package KartengeneratorVariablen is
    Kartenparameter : KartenRecords.TemporäreKartenparameterRecord := KartenRecordKonstanten.Standardkartengeneratorparameter;
 
    Polgrößen : KartenDatentypen.PolregionenArray := KartengeneratorRecordKonstanten.Eisrand;
-   Eisschild : KartenDatentypen.PolregionenArray := KartengeneratorRecordKonstanten.Eisschild;
 
    -- Alle Angaben sind Radien.
    Landgrößen : KartenRecords.LandgrößenRecord := KartengeneratorRecordKonstanten.Kontinentgröße;
-   Abstände : KartenRecords.LandabständeRecord := KartengeneratorRecordKonstanten.Kontinentabstand;
 
    SchleifenanfangOhnePolbereich : KartenRecords.YXAchsenKartenfeldNaturalRecord;
    SchleifenendeOhnePolbereich : KartenRecords.YXAchsenKartenfeldNaturalRecord;

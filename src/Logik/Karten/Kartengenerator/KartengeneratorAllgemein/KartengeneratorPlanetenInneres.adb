@@ -13,7 +13,7 @@ package body KartengeneratorPlaneteninneres is
    procedure Planeteninneres
    is begin
       
-      Multiplikator := 1;
+      Kartenzeitwert := (Karten.Karteneinstellungen.Kartengröße.YAchse + (25 - 1)) / 25;
       
       YKernanfang := Karten.Karteneinstellungen.Kartengröße.YAchse / 2 - Karten.Karteneinstellungen.Kartengröße.YAchse / 10;
       XKernanfang := Karten.Karteneinstellungen.Kartengröße.XAchse / 2 - Karten.Karteneinstellungen.Kartengröße.XAchse / 10;
@@ -39,15 +39,15 @@ package body KartengeneratorPlaneteninneres is
                
          end loop XAchseSchleife;
             
-         if
-           ZahlenDatentypen.EigenesPositive (YAchseSchleifenwert) >= Multiplikator * ZahlenDatentypen.EigenesPositive (Karten.Karteneinstellungen.Kartengröße.YAchse) / 25
-         then
-            LadezeitenLogik.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Allgemeines_Enum);
-            Multiplikator := Multiplikator + 1;
+         case
+           YAchseSchleifenwert mod Kartenzeitwert
+         is
+            when 0 =>
+               LadezeitenLogik.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Allgemeines_Enum);
                
-         else
-            null;
-         end if;
+            when others =>
+               null;
+         end case;
          
       end loop YAchseSchleife;
                

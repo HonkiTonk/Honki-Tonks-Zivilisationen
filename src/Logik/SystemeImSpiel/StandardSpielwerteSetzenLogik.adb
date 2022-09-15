@@ -30,9 +30,7 @@ package body StandardSpielwerteSetzenLogik is
          when False =>
             KartengeneratorVariablen.Kartenparameter := KartenRecordKonstanten.Standardkartengeneratorparameter;
             KartengeneratorVariablen.Polgrößen := KartengeneratorRecordKonstanten.Eisrand;
-            KartengeneratorVariablen.Eisschild := KartengeneratorRecordKonstanten.Eisschild;
             KartengeneratorVariablen.Landgrößen := KartengeneratorRecordKonstanten.Kontinentgröße;
-            KartengeneratorVariablen.Abstände := KartengeneratorRecordKonstanten.Kontinentabstand;
       end case;
       
       SpielVariablen.EinheitenGebaut := (others => (others => EinheitenRecordKonstanten.LeerEinheit));

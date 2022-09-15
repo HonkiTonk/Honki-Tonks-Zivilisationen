@@ -1,8 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
-with Ada.Directories;
+with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
+with Ada.Directories; use Ada.Directories;
 
 with Rassentexte;
 with TextKonstanten;
@@ -17,22 +17,17 @@ package body EinlesenRassentexte is
    procedure RassentexteEinlesen
    is begin
       
-      Rassentexte.NameBeschreibung (RassenDatentypen.Menschen_Enum, 1) := Rassentexte.NameBeschreibung (RassenDatentypen.Menschen_Enum, 2);
-      
-      -- Diese Prüfung mal auslagern und sie dann entsprachend überall verwenden? äöü
       case
-        Ada.Directories.Exists (Name => VerzeichnisKonstanten.SprachenStrich
-                                & Ada.Strings.UTF_Encoding.Wide_Wide_Strings.Encode (Item => Ada.Strings.Wide_Wide_Unbounded.To_Wide_Wide_String (Source => OptionenVariablen.NutzerEinstellungen.Sprache))
-                                & VerzeichnisKonstanten.Rassen & VerzeichnisKonstanten.NullDatei)
+        Exists (Name => VerzeichnisKonstanten.SprachenStrich & Encode (Item => To_Wide_Wide_String (Source => OptionenVariablen.NutzerEinstellungen.Sprache)) & VerzeichnisKonstanten.Rassen
+                & VerzeichnisKonstanten.NullDatei)
       is
          when True =>
             Hauptdatei := (others => TextKonstanten.LeerUnboundedString);
             
-            Ada.Wide_Wide_Text_IO.Open (File => DateiNull,
-                                        Mode => Ada.Wide_Wide_Text_IO.In_File,
-                                        Name => VerzeichnisKonstanten.SprachenStrich
-                                        & Ada.Strings.UTF_Encoding.Wide_Wide_Strings.Encode (Item => Ada.Strings.Wide_Wide_Unbounded.To_Wide_Wide_String (Source => OptionenVariablen.NutzerEinstellungen.Sprache))
-                                        & VerzeichnisKonstanten.Rassen & VerzeichnisKonstanten.NullDatei);
+            Open (File => DateiNull,
+                  Mode => In_File,
+                  Name => VerzeichnisKonstanten.SprachenStrich & Encode (Item => To_Wide_Wide_String (Source => OptionenVariablen.NutzerEinstellungen.Sprache)) & VerzeichnisKonstanten.Rassen
+                  & VerzeichnisKonstanten.NullDatei);
 
          when False =>
             Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.RassentexteEinlesen - 0-Datei fehlt.");
@@ -50,43 +45,52 @@ package body EinlesenRassentexte is
                Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.RassentexteEinlesen - 0-Datei zu kurz.");
                
             when False =>
-               Hauptdatei (WelcheDateienSchleifenwert) := Ada.Strings.Wide_Wide_Unbounded.To_Unbounded_Wide_Wide_String (Source => Ada.Wide_Wide_Text_IO.Get_Line (File => DateiNull));
+               Hauptdatei (WelcheDateienSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiNull));
          end case;
 
       end loop EinlesenSchleife;
 
-      Ada.Wide_Wide_Text_IO.Close (File => DateiNull);
+      Close (File => DateiNull);
       
       RassenSchleife:
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
-            
-         Ada.Wide_Wide_Text_IO.Open (File => DateiUnternull,
-                                     Mode => Ada.Wide_Wide_Text_IO.In_File,
-                                     Name => Ada.Strings.UTF_Encoding.Wide_Wide_Strings.Encode (Item => Ada.Strings.Wide_Wide_Unbounded.To_Wide_Wide_String (Source => Hauptdatei (RasseSchleifenwert))));
          
-         UnterdateienSchleife:
-         for UnterdateiSchleifenwert in RassendateienArray'Range loop
-            
-            case
-              EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiUnternull,
-                                                       AktuelleZeileExtern => UnterdateiSchleifenwert)
-            is
+         case
+           Exists (Name => Encode (Item => To_Wide_Wide_String (Source => Hauptdatei (RasseSchleifenwert))))
+         is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.RassentexteEinlesen - 0-Datei zu kurz.");
+               Open (File => DateiUnternull,
+                     Mode => In_File,
+                     Name => Encode (Item => To_Wide_Wide_String (Source => Hauptdatei (RasseSchleifenwert))));
+         
+               UnterdateienSchleife:
+               for UnterdateiSchleifenwert in RassendateienArray'Range loop
+            
+                  case
+                    EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiUnternull,
+                                                             AktuelleZeileExtern => UnterdateiSchleifenwert)
+                  is
+                     when True =>
+                        Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.RassentexteEinlesen - 0-Datei zu kurz.");
+               
+                     when False =>
+                        Rassendateien (UnterdateiSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiUnternull));
+                  end case;
+            
+               end loop UnterdateienSchleife;
+         
+               Close (File => DateiUnternull);
+         
+               NameBeschreibung (RasseExtern => RasseSchleifenwert);
+               Städtenamen (RasseExtern => RasseSchleifenwert);
+               Forschungen (RasseExtern => RasseSchleifenwert);
+               Einheiten (RasseExtern => RasseSchleifenwert);
+               Gebäude (RasseExtern => RasseSchleifenwert);
                
             when False =>
-               Rassendateien (UnterdateiSchleifenwert) := Ada.Strings.Wide_Wide_Unbounded.To_Unbounded_Wide_Wide_String (Source => Ada.Wide_Wide_Text_IO.Get_Line (File => DateiUnternull));
-            end case;
-            
-         end loop UnterdateienSchleife;
-         
-         Ada.Wide_Wide_Text_IO.Close (File => DateiUnternull);
-         
-         NameBeschreibung (RasseExtern => RasseSchleifenwert);
-         Städtenamen (RasseExtern => RasseSchleifenwert);
-         Forschungen (RasseExtern => RasseSchleifenwert);
-         Einheiten (RasseExtern => RasseSchleifenwert);
-         Gebäude (RasseExtern => RasseSchleifenwert);
+               -- Warnung einbauen. äöü
+               null;
+         end case;
          
       end loop RassenSchleife;
       
@@ -94,14 +98,23 @@ package body EinlesenRassentexte is
    
    
    
-   -- Hier und auch bei den anderen Einlesevorgängen noch einen Check einbauen ob die Dateien wirklich existieren bevor ich sie einlese? äöü
+   -- Den Dateinamen hier überall von außen hineingeben. äöü
    procedure NameBeschreibung
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      Ada.Wide_Wide_Text_IO.Open (File => DateiNameBeschreibung,
-                                  Mode => Ada.Wide_Wide_Text_IO.In_File,
-                                  Name => Ada.Strings.UTF_Encoding.Wide_Wide_Strings.Encode (Item => Ada.Strings.Wide_Wide_Unbounded.To_Wide_Wide_String (Source => Rassendateien (1))));
+      case
+        Exists (Name => Encode (Item => To_Wide_Wide_String (Source => Rassendateien (1))))
+      is
+         when True =>
+            Open (File => DateiNameBeschreibung,
+                  Mode => In_File,
+                  Name => Encode (Item => To_Wide_Wide_String (Source => Rassendateien (1))));
+            
+         when False =>
+            -- Warnung einbauen. äöü
+            return;
+      end case;
       
       NameBeschreibungSchleife:
       for NameBeschreibungSchleifenwert in Rassentexte.NameBeschreibungArray'Range (2) loop
@@ -114,13 +127,12 @@ package body EinlesenRassentexte is
                Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.NameBeschreibung - 0-Datei zu kurz.");
                
             when False =>
-               Rassentexte.NameBeschreibung (RasseExtern, NameBeschreibungSchleifenwert)
-                 := Ada.Strings.Wide_Wide_Unbounded.To_Unbounded_Wide_Wide_String (Source => Ada.Wide_Wide_Text_IO.Get_Line (File => DateiNameBeschreibung));
+               Rassentexte.NameBeschreibung (RasseExtern, NameBeschreibungSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiNameBeschreibung));
          end case;
          
       end loop NameBeschreibungSchleife;
       
-      Ada.Wide_Wide_Text_IO.Close (File => DateiNameBeschreibung);
+      Close (File => DateiNameBeschreibung);
       
    end NameBeschreibung;
    
@@ -130,9 +142,18 @@ package body EinlesenRassentexte is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      Ada.Wide_Wide_Text_IO.Open (File => DateiStädtenamen,
-                                  Mode => Ada.Wide_Wide_Text_IO.In_File,
-                                  Name => Ada.Strings.UTF_Encoding.Wide_Wide_Strings.Encode (Item => Ada.Strings.Wide_Wide_Unbounded.To_Wide_Wide_String (Source => Rassendateien (2))));
+      case
+        Exists (Name => Encode (Item => To_Wide_Wide_String (Source => Rassendateien (2))))
+      is
+         when True =>
+            Open (File => DateiStädtenamen,
+                  Mode => In_File,
+                  Name => Encode (Item => To_Wide_Wide_String (Source => Rassendateien (2))));
+            
+         when False =>
+            -- Warnung einbauen. äöü
+            return;
+      end case;
       
       StädtenamenSchleife:
       for StädtenamenSchleifenwert in Rassentexte.StädtenamenArray'Range (2) loop
@@ -145,13 +166,12 @@ package body EinlesenRassentexte is
                Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.Städtenamen - 0-Datei zu kurz.");
                
             when False =>
-               Rassentexte.Städtenamen (RasseExtern, StädtenamenSchleifenwert)
-                 := Ada.Strings.Wide_Wide_Unbounded.To_Unbounded_Wide_Wide_String (Source => Ada.Wide_Wide_Text_IO.Get_Line (File => DateiStädtenamen));
+               Rassentexte.Städtenamen (RasseExtern, StädtenamenSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiStädtenamen));
          end case;
          
       end loop StädtenamenSchleife;
       
-      Ada.Wide_Wide_Text_IO.Close (File => DateiStädtenamen);
+      Close (File => DateiStädtenamen);
             
    end Städtenamen;
    
@@ -161,11 +181,20 @@ package body EinlesenRassentexte is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      AktuelleZeile := 1;
+      case
+        Exists (Name => Encode (Item => To_Wide_Wide_String (Source => Rassendateien (3))))
+      is
+         when True =>
+            AktuelleZeile := 1;
       
-      Ada.Wide_Wide_Text_IO.Open (File => DateiForschungen,
-                                  Mode => Ada.Wide_Wide_Text_IO.In_File,
-                                  Name => Ada.Strings.UTF_Encoding.Wide_Wide_Strings.Encode (Item => Ada.Strings.Wide_Wide_Unbounded.To_Wide_Wide_String (Source => Rassendateien (3))));
+            Open (File => DateiForschungen,
+                  Mode => In_File,
+                  Name => Encode (Item => To_Wide_Wide_String (Source => Rassendateien (3))));
+            
+         when False =>
+            -- Warnung einbauen. äöü
+            return;
+      end case;
       
       ForschungenSchleife:
       for ForschungenSchleifenwert in Rassentexte.ForschungenArray'Range (2) loop
@@ -180,8 +209,7 @@ package body EinlesenRassentexte is
                   Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.Forschungen - 0-Datei zu kurz.");
                
                when False =>
-                  Rassentexte.Forschungen (RasseExtern, ForschungenSchleifenwert, TextSchleifenwert)
-                    := Ada.Strings.Wide_Wide_Unbounded.To_Unbounded_Wide_Wide_String (Source => Ada.Wide_Wide_Text_IO.Get_Line (File => DateiForschungen));
+                  Rassentexte.Forschungen (RasseExtern, ForschungenSchleifenwert, TextSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiForschungen));
             end case;
          
             AktuelleZeile := AktuelleZeile + 1;
@@ -189,7 +217,7 @@ package body EinlesenRassentexte is
          end loop TextSchleife;
       end loop ForschungenSchleife;
       
-      Ada.Wide_Wide_Text_IO.Close (File => DateiForschungen);
+      Close (File => DateiForschungen);
       
    end Forschungen;
    
@@ -199,11 +227,20 @@ package body EinlesenRassentexte is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      AktuelleZeile := 1;
+      case
+        Exists (Name => Encode (Item => To_Wide_Wide_String (Source => Rassendateien (4))))
+      is
+         when True =>
+            AktuelleZeile := 1;
       
-      Ada.Wide_Wide_Text_IO.Open (File => DateiEinheiten,
-                                  Mode => Ada.Wide_Wide_Text_IO.In_File,
-                                  Name => Ada.Strings.UTF_Encoding.Wide_Wide_Strings.Encode (Item => Ada.Strings.Wide_Wide_Unbounded.To_Wide_Wide_String (Source => Rassendateien (4))));
+            Open (File => DateiEinheiten,
+                  Mode => In_File,
+                  Name => Encode (Item => To_Wide_Wide_String (Source => Rassendateien (4))));
+            
+         when False =>
+            -- Warnung einbauen. äöü
+            return;
+      end case;
       
       EinheitenSchleife:
       for EinheitSchleifenwert in Rassentexte.EinheitenArray'Range (2) loop
@@ -218,8 +255,7 @@ package body EinlesenRassentexte is
                   Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.Einheiten - 0-Datei zu kurz.");
                
                when False =>
-                  Rassentexte.Einheiten (RasseExtern, EinheitSchleifenwert, TextSchleifenwert)
-                    := Ada.Strings.Wide_Wide_Unbounded.To_Unbounded_Wide_Wide_String (Source => Ada.Wide_Wide_Text_IO.Get_Line (File => DateiEinheiten));
+                  Rassentexte.Einheiten (RasseExtern, EinheitSchleifenwert, TextSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiEinheiten));
             end case;
          
             AktuelleZeile := AktuelleZeile + 1;
@@ -227,7 +263,7 @@ package body EinlesenRassentexte is
          end loop TextSchleife;
       end loop EinheitenSchleife;
       
-      Ada.Wide_Wide_Text_IO.Close (File => DateiEinheiten);
+      Close (File => DateiEinheiten);
       
    end Einheiten;
    
@@ -237,11 +273,20 @@ package body EinlesenRassentexte is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      AktuelleZeile := 1;
+      case
+        Exists (Name => Encode (Item => To_Wide_Wide_String (Source => Rassendateien (5))))
+      is
+         when True =>
+            AktuelleZeile := 1;
       
-      Ada.Wide_Wide_Text_IO.Open (File => DateiGebäude,
-                                  Mode => Ada.Wide_Wide_Text_IO.In_File,
-                                  Name => Ada.Strings.UTF_Encoding.Wide_Wide_Strings.Encode (Item => Ada.Strings.Wide_Wide_Unbounded.To_Wide_Wide_String (Source => Rassendateien (5))));
+            Open (File => DateiGebäude,
+                  Mode => In_File,
+                  Name => Encode (Item => To_Wide_Wide_String (Source => Rassendateien (5))));
+            
+         when False =>
+            -- Warnung einbauen. äöü
+            return;
+      end case;
       
       GebäudeSchleife:
       for GebäudeSchleifenwert in Rassentexte.GebäudeArray'Range (2) loop
@@ -256,8 +301,7 @@ package body EinlesenRassentexte is
                   Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.Gebäude - 0-Datei zu kurz.");
                
                when False =>
-                  Rassentexte.Gebäude (RasseExtern, GebäudeSchleifenwert, TextSchleifenwert)
-                    := Ada.Strings.Wide_Wide_Unbounded.To_Unbounded_Wide_Wide_String (Source => Ada.Wide_Wide_Text_IO.Get_Line (File => DateiGebäude));
+                  Rassentexte.Gebäude (RasseExtern, GebäudeSchleifenwert, TextSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiGebäude));
             end case;
          
             AktuelleZeile := AktuelleZeile + 1;
@@ -265,7 +309,7 @@ package body EinlesenRassentexte is
          end loop TextSchleife;
       end loop GebäudeSchleife;
       
-      Ada.Wide_Wide_Text_IO.Close (File => DateiGebäude);
+      Close (File => DateiGebäude);
       
    end Gebäude;
 

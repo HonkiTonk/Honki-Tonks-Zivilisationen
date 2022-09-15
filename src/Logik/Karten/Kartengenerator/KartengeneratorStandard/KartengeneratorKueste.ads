@@ -4,7 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 with KartenDatentypen; use KartenDatentypen;
 
 private with KartenRecords;
-private with ZahlenDatentypen;
 
 private with Karten;
 
@@ -14,7 +13,7 @@ package KartengeneratorKueste is
 
 private
    
-   Multiplikator : ZahlenDatentypen.EigenesPositive;
+   Kartenzeitwert : KartenDatentypen.KartenfeldNatural;
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    
