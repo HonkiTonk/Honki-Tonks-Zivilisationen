@@ -17,10 +17,18 @@ package BefehleDatentypen is
    
    subtype Weltkartenbefehle_Enum is TastenbelegungDatentypen.Tastenbelegung_Enum range TastenbelegungDatentypen.Tastenbelegung_Enum'First .. TastenbelegungDatentypen.Runde_Beenden_Enum;
    
-   -- später wieder Bewegungsknöpfe einbauen, aktuell nicht integriert wegen testen ob es überhaupt funktioniert. äöü
+   -- Später wieder Bewegungsknöpfe einbauen, aktuell nicht integriert wegen testen ob es überhaupt funktioniert. äöü
    subtype Einheiten_Bewegung_Enum is Weltkartenbefehle_Enum range TastenbelegungDatentypen.Oben_Enum .. TastenbelegungDatentypen.Ebene_Runter_Enum;
    subtype Einheiten_Aufgaben_Enum is Weltkartenbefehle_Enum range TastenbelegungDatentypen.Bauen_Enum .. TastenbelegungDatentypen.Heimatstadt_Ändern_Enum;
+   subtype Siedler_Aufgaben_Enum is Einheiten_Aufgaben_Enum range TastenbelegungDatentypen.Bauen_Enum .. TastenbelegungDatentypen.Roden_Trockenlegen_Enum;
+   subtype Kampf_Aufgaben_Enum is Einheiten_Aufgaben_Enum range TastenbelegungDatentypen.Plündern_Enum .. TastenbelegungDatentypen.Plündern_Enum;
    
    subtype Kartenbefehle_Enum is Weltkartenbefehle_Enum range TastenbelegungDatentypen.Forschung_Enum .. TastenbelegungDatentypen.Runde_Beenden_Enum;
+   
+   
+   
+   type Befehlsknöpfe_Enum is (
+                                Einheitenknöpfe_Enum, Kartenknöpfe_Enum -- , Stadtknöpfe_Enum
+                               );
 
 end BefehleDatentypen;

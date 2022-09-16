@@ -91,17 +91,20 @@ package ChangelogSeptember2022 is
    
    
 
-   -- Version 0.03. => 0.03. (17.09.2022):
+   -- Version 0.03.9245 => 0.03. (17.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.9185 => 0.03. (16.09.2022):
+   -- Version 0.03.9185 => 0.03.9245 (16.09.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Befehlsknöpfe für Einheiten können jetzt nicht nur Text sondern auch Bilder sein.
+   -- Texturen für die Einheitenbefehlsknöpfe erstellt.
+   -- Angefangen Kartenbefehlsknöpfe ebenfalls als Bilder einzubauen.
+   -- Angefangen Texturen für die Kartenbefehlsknöpfe zu erstellen.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    
 

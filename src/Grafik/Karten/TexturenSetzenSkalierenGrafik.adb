@@ -93,5 +93,18 @@ package body TexturenSetzenSkalierenGrafik is
       return SkalierungBild;
       
    end TexturskalierungVariabel;
-
+   
+   
+   
+   procedure Textursetzung
+     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
+      TextureAccessExtern : in Sf.Graphics.sfTexture_Ptr)
+   is begin
+      
+      Sf.Graphics.Sprite.setTexture (sprite    => SpriteAccessExtern,
+                                     texture   => TextureAccessExtern,
+                                     resetRect => Sf.sfTrue);
+      
+   end Textursetzung;
+     
 end TexturenSetzenSkalierenGrafik;

@@ -8,6 +8,7 @@ with EinheitenDatentypen;
 with KartenverbesserungDatentypen;
 with RassenDatentypen;
 with GrafikDatentypen;
+with BefehleDatentypen;
 
 with KartengrundDatenbank;
 with KartenflussDatenbank;
@@ -18,7 +19,7 @@ package EingeleseneTexturenGrafik is
    -- Eventuell nach Bereiche aufteilen, damit dass hier nicht zu unübersichtlich wird? äöü
    -- Wenn dann in die gleichen Bereiche wie in EinlesenTexturen. äöü
 
-   type SystemAccessArray is array (GrafikDatentypen.Systemgrafiken_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
+   type SystemAccessArray is array (BefehleDatentypen.Befehlsknöpfe_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
    SystemAccess : SystemAccessArray := (others => null);
 
    type HintergrundAccessArray is array (GrafikDatentypen.Hintergrund_Enum'Range) of Sf.Graphics.sfTexture_Ptr;

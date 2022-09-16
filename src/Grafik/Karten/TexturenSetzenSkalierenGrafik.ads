@@ -7,6 +7,18 @@ with Sf.System.Vector2;
 private with Sf.Graphics.Rect;
 
 package TexturenSetzenSkalierenGrafik is
+   
+   procedure Textursetzung
+     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
+      TextureAccessExtern : in Sf.Graphics.sfTexture_Ptr)
+     with
+       Pre => (
+                 SpriteAccessExtern /= null
+               and
+                 TextureAccessExtern /= null
+              );
+   
+   
 
    function TexturenSetzenSkalierenWeltkarte
      (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
@@ -87,5 +99,6 @@ private
    StadtAbmessung : Sf.System.Vector2.sfVector2f;
    
    Rechteck : Sf.Graphics.Rect.sfFloatRect;
+   RechteckZwei : Sf.Graphics.Rect.sfFloatRect;
 
 end TexturenSetzenSkalierenGrafik;

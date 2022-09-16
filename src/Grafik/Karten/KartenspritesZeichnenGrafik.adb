@@ -123,5 +123,20 @@ package body KartenspritesZeichnenGrafik is
                                            object       => SpriteAccesExtern);
       
    end SpriteZeichnen;
+   
+   
+   
+   procedure BefehlsknöpfespriteZeichnen
+     (SpriteAccesExtern : in Sf.Graphics.sfSprite_Ptr;
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
+   is begin
+      
+      Sf.Graphics.Sprite.setPosition (sprite   => SpriteAccesExtern,
+                                      position => PositionExtern);
+      
+      Sf.Graphics.RenderWindow.drawSprite (renderWindow => EinstellungenGrafik.FensterAccess,
+                                           object       => SpriteAccesExtern);
+      
+   end BefehlsknöpfespriteZeichnen;
 
 end KartenspritesZeichnenGrafik;
