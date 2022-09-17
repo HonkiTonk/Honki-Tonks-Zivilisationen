@@ -3,13 +3,14 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
+with KartenverbesserungDatentypen; use KartenverbesserungDatentypen;
 with StadtKonstanten;
-with KartenverbesserungDatentypen;
 
 with LeseStadtGebaut;
 with LeseKarten;
   
--- with TexteingabeLogik;
+with TexteingabeLogik;
+with NachGrafiktask;
 
 package body StadtSuchen is
 
@@ -90,18 +91,16 @@ package body StadtSuchen is
    
 
    
-   -- Diese Funktion muss noch überarbeitet werden. äöü
-   function StadtNachNamenSuchen
-     return StadtRecords.RasseStadtnummerRecord
+   procedure StadtNachNamenSuchen
    is begin
       
-      -- StadtName := TexteingabeLogik.StadtName;
+      StadtName := TexteingabeLogik.StadtName (StadtRasseNummerExtern => StadtKonstanten.LeerRasseNummer);
       
       case
         StadtName.ErfolgreichAbbruch
       is
          when False =>
-            return StadtKonstanten.LeerRasseNummer;
+            return;
             
          when True =>
             null;
@@ -121,9 +120,15 @@ package body StadtSuchen is
                for StadtNummerSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (RasseSchleifenwert).Städtegrenze loop
                   
                   if
+                    LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseSchleifenwert, StadtNummerSchleifenwert)) = StadtKonstanten.LeerID
+                  then
+                     null;
+                     
+                  elsif
                     LeseStadtGebaut.Name (StadtRasseNummerExtern => (RasseSchleifenwert, StadtNummerSchleifenwert)) = StadtName.EingegebenerText
                   then
-                     return (RasseSchleifenwert, StadtNummerSchleifenwert);
+                     NachGrafiktask.GeheZu := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (RasseSchleifenwert, StadtNummerSchleifenwert));
+                     return;
                
                   else
                      null;
@@ -133,8 +138,6 @@ package body StadtSuchen is
          end case;
          
       end loop RasseSchleife;
-      
-      return StadtKonstanten.LeerRasseNummer;
       
    end StadtNachNamenSuchen;
 

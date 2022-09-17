@@ -7,7 +7,6 @@ with Sf.Graphics.RenderWindow;
 with Sf.Graphics.View;
 
 with KartenKonstanten;
-with KartenRecordKonstanten;
 with ZeitKonstanten;
 with Views;
 with EinheitenKonstanten;
@@ -19,6 +18,7 @@ with EinstellungenGrafik;
 with NachLogiktask;
 with KartenberechnungenGrafik;
 with Vergleiche;
+with GeheZuGrafik;
 
 package body CursorplatzierungAltGrafik is
 
@@ -50,54 +50,17 @@ package body CursorplatzierungAltGrafik is
             
             Scrollzeit := Clock;
             
-            -- Hierfür später mal eine bessere Lösung einbauen. äöü
-            Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
-                                                                       point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
-                                                                       view         => Views.KartenbefehlsviewAccess);
-            
-            case
-              Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                          TextboxExtern      => (Sf.Graphics.View.getCenter (view => Views.KartenbefehlsviewAccess).x - Sf.Graphics.View.getSize (view => Views.KartenbefehlsviewAccess).x / 2.00,
-                                                                 Sf.Graphics.View.getCenter (view => Views.KartenbefehlsviewAccess).y - Sf.Graphics.View.getSize (view => Views.KartenbefehlsviewAccess).y / 2.00,
-                                                                 Sf.Graphics.View.getSize (view => Views.KartenbefehlsviewAccess).x,
-                                                                 Sf.Graphics.View.getSize (view => Views.KartenbefehlsviewAccess).y))
-            is
-               when True =>
-                  return;
-               
-               when False =>
-                  null;
-            end case;
-            
             if
-              EinheitRasseNummerExtern.Nummer = EinheitenKonstanten.LeerNummer
+              BefehlsknöpfePrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
             then
-               null;
-               
+               return;
+                  
             else
                Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
                                                                           point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
-                                                                          view         => Views.EinheitenbefehlsviewAccess);
-            
-               case
-                 Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                             TextboxExtern      => (Sf.Graphics.View.getCenter (view => Views.EinheitenbefehlsviewAccess).x - Sf.Graphics.View.getSize (view => Views.EinheitenbefehlsviewAccess).x / 2.00,
-                                                                    Sf.Graphics.View.getCenter (view => Views.EinheitenbefehlsviewAccess).y - Sf.Graphics.View.getSize (view => Views.EinheitenbefehlsviewAccess).y / 2.00,
-                                                                    Sf.Graphics.View.getSize (view => Views.EinheitenbefehlsviewAccess).x,
-                                                                    Sf.Graphics.View.getSize (view => Views.EinheitenbefehlsviewAccess).y))
-               is
-                  when True =>
-                     return;
-               
-                  when False =>
-                     null;
-               end case;
+                                                                          view         => Views.KartenviewAccess);
             end if;
-            
-            Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
-                                                                       point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
-                                                                       view         => Views.KartenviewAccess);
-            
+                                    
             -- Die EAchse später auch noch über eine Funktion die Änderung ermitteln oder einfach so lassen? äöü
             SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt.EAchse := SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAktuell.EAchse;
             
@@ -122,10 +85,65 @@ package body CursorplatzierungAltGrafik is
             end if;
                   
          when others =>
-            GeheZuFestlegung (RasseExtern => EinheitRasseNummerExtern.Rasse);
+            GeheZuGrafik.GeheZuFestlegung (RasseExtern => EinheitRasseNummerExtern.Rasse);
       end case;
       
    end CursorplatzierungAlt;
+   
+   
+   
+   function BefehlsknöpfePrüfen
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return Boolean
+   is begin
+      
+      -- Hierfür später mal eine bessere Lösung einbauen. äöü
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
+                                                                 point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
+                                                                 view         => Views.KartenbefehlsviewAccess);
+            
+      case
+        Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
+                                    TextboxExtern      => (Sf.Graphics.View.getCenter (view => Views.KartenbefehlsviewAccess).x - Sf.Graphics.View.getSize (view => Views.KartenbefehlsviewAccess).x / 2.00,
+                                                           Sf.Graphics.View.getCenter (view => Views.KartenbefehlsviewAccess).y - Sf.Graphics.View.getSize (view => Views.KartenbefehlsviewAccess).y / 2.00,
+                                                           Sf.Graphics.View.getSize (view => Views.KartenbefehlsviewAccess).x,
+                                                           Sf.Graphics.View.getSize (view => Views.KartenbefehlsviewAccess).y))
+      is
+         when True =>
+            return True;
+               
+         when False =>
+            null;
+      end case;
+            
+      if
+        EinheitRasseNummerExtern.Nummer = EinheitenKonstanten.LeerNummer
+      then
+         null;
+               
+      else
+         Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
+                                                                    point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
+                                                                    view         => Views.EinheitenbefehlsviewAccess);
+            
+         case
+           Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
+                                       TextboxExtern      => (Sf.Graphics.View.getCenter (view => Views.EinheitenbefehlsviewAccess).x - Sf.Graphics.View.getSize (view => Views.EinheitenbefehlsviewAccess).x / 2.00,
+                                                              Sf.Graphics.View.getCenter (view => Views.EinheitenbefehlsviewAccess).y - Sf.Graphics.View.getSize (view => Views.EinheitenbefehlsviewAccess).y / 2.00,
+                                                              Sf.Graphics.View.getSize (view => Views.EinheitenbefehlsviewAccess).x,
+                                                              Sf.Graphics.View.getSize (view => Views.EinheitenbefehlsviewAccess).y))
+         is
+            when True =>
+               return True;
+               
+            when False =>
+               null;
+         end case;
+      end if;
+      
+      return False;
+      
+   end BefehlsknöpfePrüfen;
    
    
    
@@ -216,72 +234,5 @@ package body CursorplatzierungAltGrafik is
       end if;
       
    end AlteXAchseFestlegen;
-   
-   
-   
-   procedure GeheZuFestlegung
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-   is begin
-                
-      Kartenwert := Koordinatenberechnung (KoordinatenExtern => NachGrafiktask.GeheZu);
-      
-      case
-        Kartenwert.EAchse
-      is
-         when KartenKonstanten.LeerEAchse =>
-            SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt := NachGrafiktask.GeheZu;
-            
-         when others =>
-            SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt := Kartenwert;
-      end case;
-      
-      NachGrafiktask.GeheZu := KartenRecordKonstanten.LeerKoordinate;
-      
-   end GeheZuFestlegung;
-   
-   
-   
-   function Koordinatenberechnung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return KartenRecords.AchsenKartenfeldNaturalRecord
-   is begin
-      
-      KartenwertKoordinatenberechnung.EAchse := KoordinatenExtern.EAchse;
-      
-      if
-        KoordinatenExtern.YAchse <= Karten.WeltkarteArray'First (2) + Sichtweiten.SichtweiteLesen / 2
-      then
-         KartenwertKoordinatenberechnung.YAchse := KoordinatenExtern.YAchse + Sichtweiten.BewegungsfeldLesen + 1;
-         
-      elsif
-        KoordinatenExtern.YAchse >= Karten.Karteneinstellungen.Kartengröße.YAchse - Sichtweiten.SichtweiteLesen / 2
-      then
-         KartenwertKoordinatenberechnung.YAchse := KoordinatenExtern.YAchse - Sichtweiten.BewegungsfeldLesen - 1;
-         
-      else
-         KartenwertKoordinatenberechnung.YAchse := KoordinatenExtern.YAchse;
-      end if;
-      
-      if
-        KoordinatenExtern.XAchse <= Karten.WeltkarteArray'First (3) + Sichtweiten.SichtweiteLesen / 2
-      then
-         KartenwertKoordinatenberechnung.XAchse := KoordinatenExtern.XAchse + Sichtweiten.BewegungsfeldLesen;
-         
-      elsif
-        KoordinatenExtern.XAchse >= Karten.Karteneinstellungen.Kartengröße.XAchse - Sichtweiten.SichtweiteLesen / 2
-      then
-         KartenwertKoordinatenberechnung.XAchse := KoordinatenExtern.XAchse - Sichtweiten.BewegungsfeldLesen;
-         
-      else
-         KartenwertKoordinatenberechnung.XAchse := KoordinatenExtern.XAchse;
-      end if;
-      
-      KartenwertKoordinatenberechnung := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KartenwertKoordinatenberechnung,
-                                                                                                                ÄnderungExtern    => (0, 0, 0),
-                                                                                                                LogikGrafikExtern => False);
-      
-      return KartenwertKoordinatenberechnung;
-      
-   end Koordinatenberechnung;
 
 end CursorplatzierungAltGrafik;

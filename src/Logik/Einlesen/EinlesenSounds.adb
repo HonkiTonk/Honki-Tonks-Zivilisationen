@@ -16,6 +16,15 @@ package body EinlesenSounds is
 
    procedure EinlesenSounds
    is begin
+      
+      if
+        Platzhalter
+      then
+         return;
+         
+      else
+         null;
+      end if;
             
       case
         Exists (Name => VerzeichnisKonstanten.Audio & VerzeichnisKonstanten.Sound & VerzeichnisKonstanten.NullDatei)
@@ -52,7 +61,7 @@ package body EinlesenSounds is
            Exists (Name => Encode (Item => To_Wide_Wide_String (Source => Sound)))
          is
             when False =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenMusik.EinlesenLieder: Es fehlt: " & To_Wide_Wide_String (Source => Sound));
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenSounds.EinlesenSounds: Es fehlt: " & To_Wide_Wide_String (Source => Sound));
             
             when True =>
                EingeleseneSounds.Sound (SoundSchleifenwert) := Sf.Audio.SoundBuffer.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => Sound)));

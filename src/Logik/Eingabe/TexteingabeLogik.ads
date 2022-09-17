@@ -13,15 +13,15 @@ package TexteingabeLogik is
       return SystemRecords.TextEingabeRecord
      with
        Pre => (
-                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
-               and
-                 SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+                 if StadtRasseNummerExtern.Rasse /= RassenDatentypen.Keine_Rasse_Enum then SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung = RassenDatentypen.Mensch_Spieler_Enum
               );
 
    function SpielstandName
      return SystemRecords.TextEingabeRecord;
    
 private
+   
+   Frage : Positive;
    
    Name : SystemRecords.TextEingabeRecord;
    

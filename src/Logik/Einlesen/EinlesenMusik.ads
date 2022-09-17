@@ -11,6 +11,8 @@ package EinlesenMusik is
    procedure EinlesenMusik;
    
 private
+   
+   Platzhalter : Boolean := True;
       
    AktuelleZeile : Positive;
    

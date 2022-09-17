@@ -2,8 +2,6 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with WichtigesRecordKonstanten;
-with TextKonstanten;
-with EinheitenKonstanten;
 with StadtRecordKonstanten;
 with SpielVariablen;
 with KartenRecordKonstanten;
@@ -37,17 +35,14 @@ package body StandardSpielwerteSetzenLogik is
       SpielVariablen.StadtGebaut := (others => (others => StadtRecordKonstanten.LeerStadt));
       SpielVariablen.Wichtiges := (others => WichtigesRecordKonstanten.LeerWichtigesZeug);
       SpielVariablen.Diplomatie := (others => (others => WichtigesRecordKonstanten.StartDiplomatie));
-      SpielVariablen.Allgemeines.Rundenanzahl := Positive'First;
       SpielVariablen.CursorImSpiel := (others => WichtigesRecordKonstanten.LeerCursor);
-      SpielVariablen.Allgemeines.IronmanName := TextKonstanten.LeerUnboundedString;
       SpielVariablen.Rassenbelegung := (others => WichtigesRecordKonstanten.LeerRassenbelegung);
-      SpielVariablen.Allgemeines.RasseAmZugNachLaden := EinheitenKonstanten.LeerRasse;
-      SpielVariablen.Allgemeines.Gewonnen := False;
-      SpielVariablen.Allgemeines.Weiterspielen := False;
-      SpielVariablen.Debug := (others => False);
+      SpielVariablen.Allgemeines := WichtigesRecordKonstanten.LeerAllgemeines;
       
       Karten.Karteneinstellungen := KartenRecordKonstanten.Standardkartenparameter;
       Karten.Weltkarte := (others => (others => (others => WeltkarteRecords.LeerWeltkarte)));
+      
+      SpielVariablen.Debug := (others => False);
       
       Sichtweiten.StandardSichtweiten;
       

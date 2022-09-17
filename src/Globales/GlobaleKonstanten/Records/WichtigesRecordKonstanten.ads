@@ -37,9 +37,9 @@ package WichtigesRecordKonstanten is
                                                                  Gewonnen            => False,
                                                                  Weiterspielen       => False,
                                                                  RasseAmZugNachLaden => EinheitenKonstanten.LeerRasse,
-                                                                 Schwierigkeitsgrad  => SpielDatentypen.Schwierigkeitsgrad_Leicht_Enum,
+                                                                 Schwierigkeitsgrad  => SpielDatentypen.Schwierigkeitsgrad_Leicht_Enum, -- Das auslagern damit man es nicht immer neu setzen muss? äöü
                                                                  Rundenanzahl        => Positive'First,
-                                                                 Rundengrenze        => Natural'First,   
+                                                                 Rundengrenze        => Natural'First, -- Das auslagern damit man es nicht immer neu setzen muss? äöü
                                                                  IronmanName         => TextKonstanten.LeerUnboundedString,
                                                                  PlanetVernichtet    => RassenDatentypen.Keine_Rasse_Enum
                                                                 );

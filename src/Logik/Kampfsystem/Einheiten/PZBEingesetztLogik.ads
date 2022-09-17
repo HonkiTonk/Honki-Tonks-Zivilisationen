@@ -8,13 +8,13 @@ with EinheitenRecords;
 package PZBEingesetztLogik is
 
    function PZBEingesetzt
-     (EinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (EinheitExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 EinheitExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitExtern.Rasse).Einheitengrenze
+                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
               );
 
 end PZBEingesetztLogik;

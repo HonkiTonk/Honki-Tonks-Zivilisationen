@@ -12,11 +12,13 @@ with EinheitenRecords;
 with LeseEinheitenGebaut;
 with LeseStadtGebaut;
 
+with NachGrafiktask;
+
 package body NaechstesObjekt is
 
    procedure NächsteEinheit
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      BewegungspunkteExtern : in Bewegungspunkte)
+      BewegungspunkteExtern : in Bewegungspunkte_Enum)
    is begin
       
       EinheitSchleifenbegrenzung := 0;
@@ -32,17 +34,19 @@ package body NaechstesObjekt is
          else
             AktuelleEinheit (RasseExtern) := AktuelleEinheit (RasseExtern) + 1;
          end if;
+         
+         Bewegungspunkte := LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheit (RasseExtern)));
                
          if
            LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheit (RasseExtern))) = EinheitenKonstanten.LeerID
            or
-             (LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheit (RasseExtern))) <= EinheitenKonstanten.LeerBewegungspunkte
+             (Bewegungspunkte <= EinheitenKonstanten.LeerBewegungspunkte
               and
-                BewegungspunkteExtern = Hat_Bewegungspunkte)
+                BewegungspunkteExtern = Hat_Bewegungspunkte_Enum)
            or
-             (LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheit (RasseExtern))) > EinheitenKonstanten.LeerBewegungspunkte
+             (Bewegungspunkte > EinheitenKonstanten.LeerBewegungspunkte
               and
-                BewegungspunkteExtern = Keine_Bewegungspunkte)
+                BewegungspunkteExtern = Keine_Bewegungspunkte_Enum)
          then
             null;
          
@@ -61,7 +65,7 @@ package body NaechstesObjekt is
 
       end loop EinheitSuchenSchleife;
       
-      SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheit (RasseExtern)));
+      NachGrafiktask.GeheZu := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheit (RasseExtern)));
       
    end NächsteEinheit;
    
@@ -106,7 +110,7 @@ package body NaechstesObjekt is
 
       end loop StadtSuchenSchleife;
       
-      SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (RasseExtern, AktuelleStadt (RasseExtern)));
+      NachGrafiktask.GeheZu := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (RasseExtern, AktuelleStadt (RasseExtern)));
       
    end NächsteStadt;
    
@@ -164,7 +168,7 @@ package body NaechstesObjekt is
 
       end loop StadtSuchenSchleife;
       
-      SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (RasseExtern, AktuelleStadtMeldung (RasseExtern)));
+      NachGrafiktask.GeheZu := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (RasseExtern, AktuelleStadtMeldung (RasseExtern)));
       
    end NächsteStadtMeldung;
    
@@ -222,7 +226,7 @@ package body NaechstesObjekt is
 
       end loop EinheitSuchenSchleife;
       
-      SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheitMeldung (RasseExtern)));
+      NachGrafiktask.GeheZu := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheitMeldung (RasseExtern)));
       
    end NächsteEinheitMeldung;
    

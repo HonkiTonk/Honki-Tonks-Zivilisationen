@@ -9,11 +9,13 @@ private with StadtDatentypen;
 
 package NaechstesObjekt is
 
-   type Bewegungspunkte is (Hat_Bewegungspunkte, Keine_Bewegungspunkte, Egal_Bewegeungspunkte);
+   type Bewegungspunkte_Enum is (
+                                 Hat_Bewegungspunkte_Enum, Keine_Bewegungspunkte_Enum, Egal_Bewegeungspunkte_Enum
+                                );
 
    procedure NächsteEinheit
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      BewegungspunkteExtern : in Bewegungspunkte)
+      BewegungspunkteExtern : in Bewegungspunkte_Enum)
      with
        Pre => (
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
@@ -45,6 +47,8 @@ private
    StadtSchleifenbegrenzung : StadtDatentypen.MaximaleStädteMitNullWert;
    
    EinheitSchleifenbegrenzung : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   
+   Bewegungspunkte : EinheitenDatentypen.BewegungFloat;
    
    type AktuelleEinheitArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    AktuelleEinheit : AktuelleEinheitArray := (others => 0);

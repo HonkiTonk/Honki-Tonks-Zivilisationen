@@ -7,6 +7,7 @@ with TextnummernKonstanten;
 with Rassentexte;
 with SystemRecordKonstanten;
 with SystemDatentypen;
+with TextKonstanten;
 
 with NachLogiktask;
 with NachGrafiktask;
@@ -19,9 +20,19 @@ package body TexteingabeLogik is
       return SystemRecords.TextEingabeRecord
    is begin
       
-      NachLogiktask.EingegebenerText.EingegebenerText := Rassentexte.Städtenamen (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer);
+      case
+        StadtRasseNummerExtern.Rasse
+      is
+         when RassenDatentypen.Keine_Rasse_Enum =>
+            Frage := TextnummernKonstanten.ZeugNamenStadt;
+            NachLogiktask.EingegebenerText.EingegebenerText := TextKonstanten.LeerUnboundedString;
+            
+         when others =>
+            Frage := TextnummernKonstanten.FrageStadtname;
+            NachLogiktask.EingegebenerText.EingegebenerText := Rassentexte.Städtenamen (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer);
+      end case;
       
-      return NameEingeben (WelcheFrageExtern => TextnummernKonstanten.FrageStadtname);
+      return NameEingeben (WelcheFrageExtern => Frage);
       
    end StadtName;
    

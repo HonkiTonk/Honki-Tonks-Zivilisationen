@@ -12,6 +12,7 @@ with EinheitenRecords;
 
 private with GrafikRecordKonstanten;
 private with EinheitenDatentypen;
+private with BefehleDatentypen;
 
 package WeltkartenbefehleGrafik is
 
@@ -25,10 +26,10 @@ package WeltkartenbefehleGrafik is
               );
    
 private
-   
-   Kampfeinheit : Boolean;
-   
+      
    Einheitart : EinheitenDatentypen.Einheitart_Enum;
+   
+   WelcherKnopf : BefehleDatentypen.Befehlsknöpfe_Enum;
    
    AnfangEinheitenbefehle : constant Positive := 2;
    AnfangKartenbefehle : constant Positive := 15;
@@ -36,6 +37,7 @@ private
    Teiler : Positive;
 
    Textbreite : Float;
+   Multiplikator : Float;
    
    EinheitenViewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartgrößeView;
    KartenbefehleViewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartgrößeView;
@@ -49,13 +51,45 @@ private
 
    SpriteAccess : constant Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;
    
-   procedure Kartenbefehlsknöpfe;
    
-   procedure Einheitenbefehlsknöpfe
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+   
+   function Einheitenbefehlstexte
+     (EinheitenArtExtern : in EinheitenDatentypen.Einheitart_Standard_Enum)
+      return Sf.System.Vector2.sfVector2f
      with
-       Pre => (
-                 SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.Mensch_Spieler_Enum
-              );
+       Post => (
+                  Einheitenbefehlstexte'Result.x >= 0.00
+                and
+                  Einheitenbefehlstexte'Result.y >= 0.00
+               );
+   
+   function Einheitenbefehlsknöpfe
+     (EinheitenArtExtern : in EinheitenDatentypen.Einheitart_Standard_Enum;
+      WelcheTexturExtern : in BefehleDatentypen.Befehlsknöpfe_Enum)
+      return Sf.System.Vector2.sfVector2f
+     with
+       Post => (
+                  Einheitenbefehlsknöpfe'Result.x >= 0.00
+                and
+                  Einheitenbefehlsknöpfe'Result.y >= 0.00
+               );
+   
+   function Kartenbefehlstexte
+     return Sf.System.Vector2.sfVector2f
+     with
+       Post => (
+                  Kartenbefehlstexte'Result.x >= 0.00
+                and
+                  Kartenbefehlstexte'Result.y >= 0.00
+               );
+   
+   function Kartenbefehlsknöpfe
+     return Sf.System.Vector2.sfVector2f
+     with
+       Post => (
+                  Kartenbefehlsknöpfe'Result.x >= 0.00
+                and
+                  Kartenbefehlsknöpfe'Result.y >= 0.00
+               );
 
 end WeltkartenbefehleGrafik;

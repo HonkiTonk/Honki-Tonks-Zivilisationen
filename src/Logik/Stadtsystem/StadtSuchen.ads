@@ -54,15 +54,8 @@ package StadtSuchen is
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
    
-   function StadtNachNamenSuchen
-     return StadtRecords.RasseStadtnummerRecord
-     with
-       Post => (
-                  StadtNachNamenSuchen'Result.Nummer <= SpielVariablen.Grenzen (StadtNachNamenSuchen'Result.Rasse).Städtegrenze
-                and
-                  SpielVariablen.Rassenbelegung (StadtNachNamenSuchen'Result.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
-               );
-
+   procedure StadtNachNamenSuchen;
+   
 private
       
    StadtName : SystemRecords.TextEingabeRecord;

@@ -12,6 +12,7 @@ with AufgabenLogik;
 with EinheitenbewegungLogik;
 with Kartenkoordinatenberechnungssystem;
 with MausauswahlLogik;
+with PZBEingesetztLogik;
 
 package body EinheitenkontrollsystemLogik is
 
@@ -96,8 +97,15 @@ package body EinheitenkontrollsystemLogik is
                                                            ÄnderungExtern          => Richtung (Mausbefehl));
             
          when BefehleDatentypen.Einheiten_Aufgaben_Enum'Range =>
-            return EinheitBefehle (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                   BefehlExtern             => Mausbefehl);
+            if
+              PZBEingesetztLogik.PZBEingesetzt (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
+            then
+               return False;
+              
+            else
+               return EinheitBefehle (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                      BefehlExtern             => Mausbefehl);
+            end if;
             
          when TastenbelegungDatentypen.Auswählen_Enum =>
             return AllgemeineEinheitenbewegungMaus (EinheitRasseNummerExtern => EinheitRasseNummerExtern);

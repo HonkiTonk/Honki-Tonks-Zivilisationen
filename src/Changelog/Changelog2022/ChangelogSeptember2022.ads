@@ -84,17 +84,25 @@ package ChangelogSeptember2022 is
    
    
 
-   -- Version 0.03. => 0.03. (18.09.2022):
+   -- Version 0.03.9355 => 0.03. (18.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.9245 => 0.03. (17.09.2022):
+   -- Version 0.03.9245 => 0.03.9355 (17.09.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Es sollte jetzt alle spielrelevanten Variablen wieder auf ihr Standardwerte gesetzt werden, wenn man zurück in Hauptmenü geht.
+   -- Befehlsknopf für die PZB eingebaut.
+   -- Einheitenbefehlsknöpfe funktionieren jetzt fehlerfrei.
+   -- Kartenbefehlsknöpfe funktionieren jetzt fehlerfrei.
+   -- Texturen für die Kartenbefehlsknöpfe erstellt.
+   -- Die Auswahlmöglichkeiten zum Durchgehen von Einheiten und Städten funktionieren jetzt wieder.
+   -- Es ist jetzt wieder möglich Städte nach ihrem Namen zu suchen.
+   -- GeheZu ist jetzt besser auf die Zielposition angepasst.
+   -- Angefangen eine Spielstandliste einzubauen.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

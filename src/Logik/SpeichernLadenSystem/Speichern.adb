@@ -22,6 +22,7 @@ with LadezeitenLogik;
 with SpeichernLadenAllgemein;
 with NachGrafiktask;
 with JaNeinLogik;
+with SpielstandlisteLogik;
 
 -- Bei Änderungen am Speichersystem auch immer das Ladesystem anpassen!
 package body Speichern is
@@ -29,6 +30,16 @@ package body Speichern is
    procedure Speichern
      (AutospeichernExtern : in Boolean)
    is begin
+      
+      case
+        SpielstandlisteLogik.Spielstandliste
+      is
+         when False =>
+            null;
+            
+         when True =>
+            null;
+      end case;
 
       NameSpielstand := SpielstandNameFestlegen (AutospeichernExtern => AutospeichernExtern);
       

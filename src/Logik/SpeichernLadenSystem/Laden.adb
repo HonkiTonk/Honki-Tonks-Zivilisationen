@@ -19,12 +19,25 @@ with LadezeitenLogik;
 with JaNeinLogik;
 with SpeichernLadenAllgemein;
 with NachGrafiktask;
+with SpielstandlisteLogik;
 
 package body Laden is
    
    function Laden
      return Boolean
    is begin
+      
+      case
+        SpielstandlisteLogik.Spielstandliste
+      is
+         when False =>
+            -- Bei einer leeren Liste kann man später direkt False zurückgeben. äöü
+            -- return False;
+            null;
+            
+         when True =>
+            null;
+      end case;
       
       NameSpielstand := SpeichernLadenAllgemein.SpielstandNameErmitteln;
       

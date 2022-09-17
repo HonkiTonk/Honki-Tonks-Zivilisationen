@@ -28,7 +28,9 @@ package BefehleDatentypen is
    
    
    type Befehlsknöpfe_Enum is (
-                                Einheitenknöpfe_Enum, Kartenknöpfe_Enum -- , Stadtknöpfe_Enum
+                                Einheitenknöpfe_Enum, Kartenknöpfe_Enum, -- , Stadtknöpfe_Enum
+                                
+                                Roter_Knopf_Enum
                                );
 
 end BefehleDatentypen;

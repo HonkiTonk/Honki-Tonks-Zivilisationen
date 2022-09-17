@@ -207,8 +207,8 @@ package LeseStadtGebaut is
      with
        Pre => (
                  StadtRasseNummerExtern.Nummer <= SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
-               and
-                 SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+              -- and
+              --   SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
 
    function UmgebungBewirtschaftung

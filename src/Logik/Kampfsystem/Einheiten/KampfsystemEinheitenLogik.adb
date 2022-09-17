@@ -25,7 +25,7 @@ package body KampfsystemEinheitenLogik is
    is begin
       
       case
-        PZBEingesetztLogik.PZBEingesetzt (EinheitExtern => AngreiferExtern)
+        PZBEingesetztLogik.PZBEingesetzt (EinheitRasseNummerExtern => AngreiferExtern)
       is
          when True =>
             return False;

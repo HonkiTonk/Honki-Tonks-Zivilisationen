@@ -319,7 +319,6 @@ package body MausauswahlLogik is
    
    
    
-   -- Später so erweitern dass die Mausposition noch Befehlsknöpfen abfragt. äöü
    -- Hier auch gleich noch Weltkartenbefehle aufrufen um die allgemeinen Befehle zu bekommen? äöü
    -- Erzeugt wahrscheinlich Probleme mit dem aktuellen System wenn eine Einheit ausgewählt ist. äöü
    -- Wobei ich wohl einfach die Auswahl zurückgeben kann und dann entsprechend prüfen und weiter zurückgeben kann? äöü

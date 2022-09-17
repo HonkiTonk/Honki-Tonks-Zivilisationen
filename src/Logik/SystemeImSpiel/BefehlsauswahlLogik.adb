@@ -18,7 +18,8 @@ package body BefehlsauswahlLogik is
 
    -- Kann man nicht auch hier eine Schleife einbauen und sich das Zurückgehen sparen? äöü
    -- Nicht so einfach da ja diverse Dinge geprüft werden müssen. äöü
-   -- Also entweder weiter durch ImSpiel aufrufen oder die wichtigsten Prüfungen hierher verschieben? äöü
+   -- Also entweder weiter durch SpielLogik aufrufen oder die wichtigsten Prüfungen hierher verschieben? äöü
+   -- Oder SpielLogik in zwei Teile aufteilen? äöü
    function Befehlsauswahl
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
@@ -67,22 +68,20 @@ package body BefehlsauswahlLogik is
          when TastenbelegungDatentypen.Forschung_Enum =>
             ForschungsauswahlLogik.Forschung (RasseExtern => RasseExtern);
             
-            -- Die folgenden vier Befehle scheinen gar nicht mehr zu funktionieren. äöü
-            -- So anpassen wie GeheZu. äöü
          when TastenbelegungDatentypen.Nächste_Stadt_Enum =>
             NaechstesObjekt.NächsteStadt (RasseExtern => RasseExtern);
             
          when TastenbelegungDatentypen.Einheit_Mit_Bewegungspunkte_Enum =>
             NaechstesObjekt.NächsteEinheit (RasseExtern           => RasseExtern,
-                                             BewegungspunkteExtern => NaechstesObjekt.Hat_Bewegungspunkte);
+                                             BewegungspunkteExtern => NaechstesObjekt.Hat_Bewegungspunkte_Enum);
             
          when TastenbelegungDatentypen.Alle_Einheiten_Enum =>
             NaechstesObjekt.NächsteEinheit (RasseExtern           => RasseExtern,
-                                             BewegungspunkteExtern => NaechstesObjekt.Egal_Bewegeungspunkte);
+                                             BewegungspunkteExtern => NaechstesObjekt.Egal_Bewegeungspunkte_Enum);
             
          when TastenbelegungDatentypen.Einheiten_Ohne_Bewegungspunkte_Enum =>
             NaechstesObjekt.NächsteEinheit (RasseExtern           => RasseExtern,
-                                             BewegungspunkteExtern => NaechstesObjekt.Keine_Bewegungspunkte);
+                                             BewegungspunkteExtern => NaechstesObjekt.Keine_Bewegungspunkte_Enum);
             
          when TastenbelegungDatentypen.Tastenbelegung_Befehle_Baulos_Enum'Range =>
             if
@@ -104,9 +103,8 @@ package body BefehlsauswahlLogik is
          when TastenbelegungDatentypen.Stadt_Umbenennen_Enum =>
             BefehlspruefungenLogik.StadtUmbenennen (RasseExtern => RasseExtern);
             
-            -- Das hier muss vermutlich auch mal überarbeitet werden. äöü
          when TastenbelegungDatentypen.Stadt_Suchen_Enum =>
-            StadtSuchenNachNamen := StadtSuchen.StadtNachNamenSuchen;
+            StadtSuchen.StadtNachNamenSuchen;
             
          when TastenbelegungDatentypen.Nächste_Stadt_Mit_Meldung_Enum =>
             NaechstesObjekt.NächsteStadtMeldung (RasseExtern => RasseExtern);
@@ -123,7 +121,7 @@ package body BefehlsauswahlLogik is
          when TastenbelegungDatentypen.Debugmenü_Enum =>
             DebugmenueLogik.Debugmenü (RasseExtern => RasseExtern);
             
-            -- Das hier irgendwann auch einbauen. äöü
+            -- Das hier irgendwann auch wieder einbauen? äöü
          when TastenbelegungDatentypen.Tastenbelegung_Bewegung_Numblock_Enum'Range =>
             null;
             

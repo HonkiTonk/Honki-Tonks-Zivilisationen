@@ -11,17 +11,17 @@ with EinheitenErzeugenEntfernenLogik;
 package body PZBEingesetztLogik is
 
    function PZBEingesetzt
-     (EinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
       
       case
-        LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitExtern.Rasse,
-                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitExtern))
+        LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       is
          when EinheitenDatentypen.PZB_Enum =>
-            SpielVariablen.Allgemeines.PlanetVernichtet := EinheitExtern.Rasse;
-            EinheitenErzeugenEntfernenLogik.EinheitEntfernen (EinheitRasseNummerExtern => EinheitExtern);
+            SpielVariablen.Allgemeines.PlanetVernichtet := EinheitRasseNummerExtern.Rasse;
+            EinheitenErzeugenEntfernenLogik.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when others =>
             return False;

@@ -39,6 +39,7 @@ package EinheitenDatentypen is
                            );
    
    subtype Einheitart_Vorhanden_Enum is Einheitart_Enum range Arbeiter_Enum .. Einheitart_Enum'Last;
+   subtype Einheitart_Standard_Enum is Einheitart_Vorhanden_Enum range Arbeiter_Enum .. PZB_Enum;
    subtype Einheitenart_Kampf_Enum is Einheitart_Vorhanden_Enum range Nahkämpfer_Enum .. Beides_Enum;
 
    type Einheit_Meldung_Art_Enum is (

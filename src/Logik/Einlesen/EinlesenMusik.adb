@@ -17,6 +17,15 @@ package body EinlesenMusik is
    procedure EinlesenMusik
    is begin
       
+      if
+        Platzhalter
+      then
+         return;
+         
+      else
+         null;
+      end if;
+      
       case
         Exists (Name => VerzeichnisKonstanten.Audio & VerzeichnisKonstanten.Musik & VerzeichnisKonstanten.NullDatei)
       is
