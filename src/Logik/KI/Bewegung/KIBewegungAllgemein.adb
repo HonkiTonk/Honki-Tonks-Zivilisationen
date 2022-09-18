@@ -11,8 +11,8 @@ with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
 
 with DiplomatischerZustandLogik;
-with EinheitSuchen;
-with StadtSuchen;
+with EinheitSuchenLogik;
+with StadtSuchenLogik;
 
 package body KIBewegungAllgemein is
 
@@ -22,9 +22,9 @@ package body KIBewegungAllgemein is
       return KIDatentypen.Bewegung_Enum
    is begin
       
-      BlockierendeEinheit := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => FeldKoordinatenExtern,
-                                                                              LogikGrafikExtern => True).Rasse;
-      BlockierendeStadt := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => FeldKoordinatenExtern).Rasse;
+      BlockierendeEinheit := EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => FeldKoordinatenExtern,
+                                                                                   LogikGrafikExtern => True).Rasse;
+      BlockierendeStadt := StadtSuchenLogik.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => FeldKoordinatenExtern).Rasse;
       
       if
         BlockierendeEinheit = EinheitenKonstanten.LeerRasse

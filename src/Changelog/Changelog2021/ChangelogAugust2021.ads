@@ -145,8 +145,8 @@ package ChangelogAugust2021 is
    
    -- Version 0.00.8370 => 0.00.8380 (17.08.2021):
    
-   -- Alle lesenden Zugriffe auf Karten.Weltkarte erfolgen jetzt über LeseKarten.
-   -- SchreibeKarten erstellt und alle schreibenden Zugriffe auf Karten.Weltkarten darauf umgelegt.
+   -- Alle lesenden Zugriffe auf Weltkarte.Karte erfolgen jetzt über LeseWeltkarte.
+   -- SchreibeKarten erstellt und alle schreibenden Zugriffe auf Weltkarte.Karten darauf umgelegt.
    -- Die Grundänderung von irgendeinem Grund auf Hügel sollte jetzt immer Hügel auf False setzen.
    -- Angefangen alle lesenden Zugriff auf SpielVariablen.EinheitenGebaut über LeseEinheitenGebaut umzuleiten.
    -- Contracts und Kleinigkeiten korrigiert/angepasst/hinzugefügt.

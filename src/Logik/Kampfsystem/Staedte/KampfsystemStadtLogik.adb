@@ -15,12 +15,12 @@ with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
 with LeseStadtGebaut;
 
-with StadtEntfernen;
+with StadtEntfernenLogik;
 with KampfwerteStadtErmittelnLogik;
 with KampfwerteEinheitErmittelnLogik;
 with KampfsystemEinheitenLogik;
 with ZufallsgeneratorenKampf;
-with StadtWerteFestlegen;
+with StadtwerteFestlegenLogik;
 with MeldungenSetzenLogik;
 with EinheitenErzeugenEntfernenLogik;
 
@@ -73,11 +73,11 @@ package body KampfsystemStadtLogik is
         - 1
         <= StadtKonstanten.LeerEinwohner
       then
-         StadtEntfernen.StadtEntfernen (StadtRasseNummerExtern => VerteidigendeStadtRasseNummerExtern);
+         StadtEntfernenLogik.StadtEntfernen (StadtRasseNummerExtern => VerteidigendeStadtRasseNummerExtern);
          return True;
          
       else
-         StadtWerteFestlegen.BewirtschaftbareFelderBelegen (ZuwachsOderSchwundExtern => False,
+         StadtwerteFestlegenLogik.BewirtschaftbareFelderBelegen (ZuwachsOderSchwundExtern => False,
                                                             StadtRasseNummerExtern   => VerteidigendeStadtRasseNummerExtern);
          MeldungenSetzenLogik.StadtmeldungSetzen (StadtRasseNummerExtern => VerteidigendeStadtRasseNummerExtern,
                                                           EreignisExtern         => StadtDatentypen.Einwohner_Reduktion_Enum);
@@ -90,7 +90,7 @@ package body KampfsystemStadtLogik is
                                                 EinwohnerArbeiterExtern => True)
            = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Endwert_Enum, VerteidigendeStadtRasseNummerExtern.Rasse) - 1
          then
-            StadtWerteFestlegen.StadtUmgebungGrößeFestlegen (StadtRasseNummerExtern => VerteidigendeStadtRasseNummerExtern);
+            StadtwerteFestlegenLogik.StadtUmgebungGrößeFestlegen (StadtRasseNummerExtern => VerteidigendeStadtRasseNummerExtern);
             
          else
             null;

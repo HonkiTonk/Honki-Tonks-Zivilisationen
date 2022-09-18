@@ -6,7 +6,7 @@ with KartenKonstanten;
 
 with NachGrafiktask;
 with Sichtweiten;
-with Kartenkoordinatenberechnungssystem;
+with KartenkoordinatenberechnungssystemLogik;
 
 package body GeheZuGrafik is
 
@@ -41,17 +41,17 @@ package body GeheZuGrafik is
       KartenwertKoordinatenberechnung.EAchse := KoordinatenExtern.EAchse;
       
       if
-        Karten.Karteneinstellungen.Kartenform.YAchseNorden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
+        Weltkarte.Karteneinstellungen.Kartenform.YAchseNorden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
         and
-          Karten.Karteneinstellungen.Kartenform.YAchseSüden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
+          Weltkarte.Karteneinstellungen.Kartenform.YAchseSüden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
       then
          if
-           KoordinatenExtern.YAchse <= Karten.WeltkarteArray'First (2) + Sichtweiten.SichtweiteLesen / 2
+           KoordinatenExtern.YAchse <= Weltkarte.KarteArray'First (2) + Sichtweiten.SichtweiteLesen / 2
          then
             KartenwertKoordinatenberechnung.YAchse := KoordinatenExtern.YAchse + Sichtweiten.BewegungsfeldLesen + 1;
             
          elsif
-           KoordinatenExtern.YAchse >= Karten.Karteneinstellungen.Kartengröße.YAchse - Sichtweiten.SichtweiteLesen / 2
+           KoordinatenExtern.YAchse >= Weltkarte.Karteneinstellungen.Kartengröße.YAchse - Sichtweiten.SichtweiteLesen / 2
          then
             KartenwertKoordinatenberechnung.YAchse := KoordinatenExtern.YAchse - Sichtweiten.BewegungsfeldLesen - 1;
          
@@ -60,10 +60,10 @@ package body GeheZuGrafik is
          end if;
          
       elsif
-        Karten.Karteneinstellungen.Kartenform.YAchseNorden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
+        Weltkarte.Karteneinstellungen.Kartenform.YAchseNorden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
       then
          if
-           KoordinatenExtern.YAchse <= Karten.WeltkarteArray'First (2) + Sichtweiten.SichtweiteLesen / 2
+           KoordinatenExtern.YAchse <= Weltkarte.KarteArray'First (2) + Sichtweiten.SichtweiteLesen / 2
          then
             KartenwertKoordinatenberechnung.YAchse := KoordinatenExtern.YAchse + Sichtweiten.BewegungsfeldLesen + 1;
          
@@ -72,10 +72,10 @@ package body GeheZuGrafik is
          end if;
          
       elsif
-        Karten.Karteneinstellungen.Kartenform.YAchseSüden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
+        Weltkarte.Karteneinstellungen.Kartenform.YAchseSüden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
       then
          if
-           KoordinatenExtern.YAchse >= Karten.Karteneinstellungen.Kartengröße.YAchse - Sichtweiten.SichtweiteLesen / 2
+           KoordinatenExtern.YAchse >= Weltkarte.Karteneinstellungen.Kartengröße.YAchse - Sichtweiten.SichtweiteLesen / 2
          then
             KartenwertKoordinatenberechnung.YAchse := KoordinatenExtern.YAchse - Sichtweiten.BewegungsfeldLesen - 1;
          
@@ -88,17 +88,17 @@ package body GeheZuGrafik is
       end if;
       
       if
-        Karten.Karteneinstellungen.Kartenform.XAchseWesten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
+        Weltkarte.Karteneinstellungen.Kartenform.XAchseWesten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
         and
-          Karten.Karteneinstellungen.Kartenform.XAchseOsten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
+          Weltkarte.Karteneinstellungen.Kartenform.XAchseOsten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
       then
          if
-           KoordinatenExtern.XAchse <= Karten.WeltkarteArray'First (3) + Sichtweiten.SichtweiteLesen / 2
+           KoordinatenExtern.XAchse <= Weltkarte.KarteArray'First (3) + Sichtweiten.SichtweiteLesen / 2
          then
             KartenwertKoordinatenberechnung.XAchse := KoordinatenExtern.XAchse + Sichtweiten.BewegungsfeldLesen;
          
          elsif
-           KoordinatenExtern.XAchse >= Karten.Karteneinstellungen.Kartengröße.XAchse - Sichtweiten.SichtweiteLesen / 2
+           KoordinatenExtern.XAchse >= Weltkarte.Karteneinstellungen.Kartengröße.XAchse - Sichtweiten.SichtweiteLesen / 2
          then
             KartenwertKoordinatenberechnung.XAchse := KoordinatenExtern.XAchse - Sichtweiten.BewegungsfeldLesen;
          
@@ -107,10 +107,10 @@ package body GeheZuGrafik is
          end if;
       
       elsif
-        Karten.Karteneinstellungen.Kartenform.XAchseWesten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
+        Weltkarte.Karteneinstellungen.Kartenform.XAchseWesten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
       then
          if
-           KoordinatenExtern.XAchse <= Karten.WeltkarteArray'First (3) + Sichtweiten.SichtweiteLesen / 2
+           KoordinatenExtern.XAchse <= Weltkarte.KarteArray'First (3) + Sichtweiten.SichtweiteLesen / 2
          then
             KartenwertKoordinatenberechnung.XAchse := KoordinatenExtern.XAchse + Sichtweiten.BewegungsfeldLesen;
          
@@ -119,10 +119,10 @@ package body GeheZuGrafik is
          end if;
       
       elsif
-        Karten.Karteneinstellungen.Kartenform.XAchseOsten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
+        Weltkarte.Karteneinstellungen.Kartenform.XAchseOsten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
       then
          if
-           KoordinatenExtern.XAchse >= Karten.Karteneinstellungen.Kartengröße.XAchse - Sichtweiten.SichtweiteLesen / 2
+           KoordinatenExtern.XAchse >= Weltkarte.Karteneinstellungen.Kartengröße.XAchse - Sichtweiten.SichtweiteLesen / 2
          then
             KartenwertKoordinatenberechnung.XAchse := KoordinatenExtern.XAchse - Sichtweiten.BewegungsfeldLesen;
          
@@ -134,7 +134,7 @@ package body GeheZuGrafik is
          KartenwertKoordinatenberechnung.XAchse := KoordinatenExtern.XAchse;
       end if;
       
-      KartenwertKoordinatenberechnung := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KartenwertKoordinatenberechnung,
+      KartenwertKoordinatenberechnung := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KartenwertKoordinatenberechnung,
                                                                                                                 ÄnderungExtern    => (0, 0, 0),
                                                                                                                 LogikGrafikExtern => False);
       

@@ -7,10 +7,10 @@ with GrafikDatentypen;
 with MenueDatentypen;
 with TextnummernKonstanten;
 
-with Optionen;
+with OptionenLogik;
 with LadezeitenLogik;
-with Speichern;
-with Laden;
+with SpeichernLogik;
+with LadenLogik;
 with RasseEntfernen;
 with RundenendeLogik;
 with Fehler;
@@ -329,11 +329,11 @@ package body SpielLogik is
          is
             when RueckgabeDatentypen.Speichern_Enum =>
                SpielVariablen.Allgemeines.RasseAmZugNachLaden := RasseExtern;
-               Speichern.Speichern (AutospeichernExtern => False);
+               SpeichernLogik.Speichern (AutospeichernExtern => False);
                
             when RueckgabeDatentypen.Laden_Enum =>
                if
-                 Laden.Laden = True
+                 LadenLogik.Laden = True
                then
                   return RueckgabeDatentypen.Laden_Enum;
 
@@ -342,7 +342,7 @@ package body SpielLogik is
                end if;
                
             when RueckgabeDatentypen.Optionen_Enum =>
-               RückgabeOptionen := Optionen.Optionen;
+               RückgabeOptionen := OptionenLogik.Optionen;
                
                if
                  RückgabeOptionen in RueckgabeDatentypen.Hauptmenü_Beenden_Enum'Range

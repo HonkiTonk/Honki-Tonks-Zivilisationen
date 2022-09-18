@@ -8,7 +8,7 @@ with TextnummernKonstanten;
 with EinheitenKonstanten;
 
 with SchreibeEinheitenGebaut;
-with LeseKarten;
+with LeseWeltkarte;
 
 with RodenErmittelnLogik;
 with Fehler;
@@ -25,7 +25,7 @@ package body WaldErmittelnLogik is
       return Boolean
    is begin
       
-      VorhandenerGrund := LeseKarten.VorhandenerGrund (KoordinatenExtern => KoordinatenExtern);
+      VorhandenerGrund := LeseWeltkarte.VorhandenerGrund (KoordinatenExtern => KoordinatenExtern);
       
       -- Nur auf Basisgrund prüfen? Müsste hierbei ausreichen. äöü
       if
@@ -36,7 +36,7 @@ package body WaldErmittelnLogik is
          return False;
          
       else
-         VorhandeneVerbesserung := LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern);
+         VorhandeneVerbesserung := LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern);
       end if;
                   
       -- Mehr Prüfungen einbauen, beispielweise keinen Wald auf Eis erlauben. Gilt für alle Aufgaben. äöü

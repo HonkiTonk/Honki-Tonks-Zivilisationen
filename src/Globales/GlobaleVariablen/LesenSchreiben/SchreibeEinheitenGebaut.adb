@@ -10,7 +10,7 @@ with EinheitenRecordKonstanten;
 
 with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;
-with SchreibeKarten;
+with SchreibeWeltkarte;
 
 with NachGrafiktask;
 
@@ -39,13 +39,13 @@ package body SchreibeEinheitenGebaut is
             null;
             
          when others =>
-            SchreibeKarten.EinheitEntfernen (KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+            SchreibeWeltkarte.EinheitEntfernen (KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                              EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       end case;
       
       SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KoordinatenAktuell := KoordinatenExtern;
       
-      SchreibeKarten.EinheitSchreiben (KoordinatenExtern        => KoordinatenExtern,
+      SchreibeWeltkarte.EinheitSchreiben (KoordinatenExtern        => KoordinatenExtern,
                                        EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
    end Koordinaten;
@@ -433,7 +433,7 @@ package body SchreibeEinheitenGebaut is
       
       NachGrafiktask.AktuelleEinheit := EinheitenKonstanten.LeerNummer;
         
-      SchreibeKarten.EinheitEntfernen (KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+      SchreibeWeltkarte.EinheitEntfernen (KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                        EinheitRasseNummerExtern => EinheitRasseNummerExtern);
                                            
       SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer) := EinheitenRecordKonstanten.LeerEinheit;

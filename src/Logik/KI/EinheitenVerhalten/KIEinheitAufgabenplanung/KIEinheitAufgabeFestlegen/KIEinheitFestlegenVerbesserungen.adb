@@ -10,10 +10,10 @@ with AufgabenDatentypen;
 
 with LeseStadtGebaut;
 with SchreibeEinheitenGebaut;
-with LeseKarten;
+with LeseWeltkarte;
 
 with Vergleiche;
-with Kartenkoordinatenberechnungssystem;
+with KartenkoordinatenberechnungssystemLogik;
 with AufgabenLogik;
 
 with KIDatentypen;
@@ -110,7 +110,7 @@ package body KIEinheitFestlegenVerbesserungen is
                null;
                
             else
-               VerbesserungKoordinaten := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtKoordinaten,
+               VerbesserungKoordinaten := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtKoordinaten,
                                                                                                                  ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
                                                                                                                  LogikGrafikExtern => True);
             
@@ -149,7 +149,7 @@ package body KIEinheitFestlegenVerbesserungen is
    is begin
             
       if
-        LeseKarten.RasseBelegtGrund (KoordinatenExtern => VerbesserungKoordinaten) /= EinheitRasseNummerExtern.Rasse
+        LeseWeltkarte.RasseBelegtGrund (KoordinatenExtern => VerbesserungKoordinaten) /= EinheitRasseNummerExtern.Rasse
       then
          return False;
                
@@ -168,7 +168,7 @@ package body KIEinheitFestlegenVerbesserungen is
          return False;
          
       elsif
-        LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern) = KartenverbesserungDatentypen.Leer_Verbesserung_Enum
+        LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern) = KartenverbesserungDatentypen.Leer_Verbesserung_Enum
       then
          WelcheVerbesserung := VerbesserungAnlegbar (KoordinatenExtern        => KoordinatenExtern,
                                                      EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -198,8 +198,8 @@ package body KIEinheitFestlegenVerbesserungen is
       return Boolean
    is begin
       
-      Ressourcen := LeseKarten.Ressource (KoordinatenExtern => KoordinatenExtern);
-      BasisGrund := LeseKarten.BasisGrund (KoordinatenExtern => KoordinatenExtern);
+      Ressourcen := LeseWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern);
+      BasisGrund := LeseWeltkarte.BasisGrund (KoordinatenExtern => KoordinatenExtern);
       
       case
         AufgabenLogik.AufgabeTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,

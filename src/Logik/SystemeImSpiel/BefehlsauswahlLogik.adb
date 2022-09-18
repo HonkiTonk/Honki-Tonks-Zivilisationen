@@ -11,7 +11,7 @@ with DiplomatieLogik;
 with EinheitenmodifizierungLogik;
 with DebugmenueLogik;
 with BefehlspruefungenLogik;
-with StadtSuchen;
+with StadtSuchenLogik;
 with MausauswahlLogik;
 
 package body BefehlsauswahlLogik is
@@ -104,7 +104,7 @@ package body BefehlsauswahlLogik is
             BefehlspruefungenLogik.StadtUmbenennen (RasseExtern => RasseExtern);
             
          when TastenbelegungDatentypen.Stadt_Suchen_Enum =>
-            StadtSuchen.StadtNachNamenSuchen;
+            StadtSuchenLogik.StadtNachNamenSuchen;
             
          when TastenbelegungDatentypen.Nächste_Stadt_Mit_Meldung_Enum =>
             NaechstesObjekt.NächsteStadtMeldung (RasseExtern => RasseExtern);

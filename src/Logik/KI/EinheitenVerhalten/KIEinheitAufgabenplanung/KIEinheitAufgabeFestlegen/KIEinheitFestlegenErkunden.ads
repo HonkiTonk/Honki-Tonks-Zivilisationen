@@ -8,7 +8,7 @@ with SpielVariablen;
 
 private with KartenRecords;
 
-private with Karten;
+private with Weltkarte;
 
 package KIEinheitFestlegenErkunden is
 
@@ -44,9 +44,9 @@ private
                and
                  SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.KI_Spieler_Enum
                and
-                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
                and
-                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
               );
 
 end KIEinheitFestlegenErkunden;

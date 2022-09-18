@@ -7,7 +7,7 @@ with EinheitenRecords;
 with KartenRecords;
 with SpielVariablen;
 
-with Karten;
+with Weltkarte;
 
 with KIDatentypen;
 
@@ -19,9 +19,9 @@ package KIBewegungAllgemein is
       return KIDatentypen.Bewegung_Enum
      with
        Pre => (
-                 FeldKoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                 FeldKoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
                and
-                 FeldKoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+                 FeldKoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
                and
                  SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.KI_Spieler_Enum
               );

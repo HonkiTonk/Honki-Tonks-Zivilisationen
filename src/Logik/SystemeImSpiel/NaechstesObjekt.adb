@@ -14,6 +14,7 @@ with LeseStadtGebaut;
 
 with NachGrafiktask;
 
+-- In Einheiten und Stadt aufteilen und eigene Variable für jede Prozedur erstellen. äöü
 package body NaechstesObjekt is
 
    procedure NächsteEinheit

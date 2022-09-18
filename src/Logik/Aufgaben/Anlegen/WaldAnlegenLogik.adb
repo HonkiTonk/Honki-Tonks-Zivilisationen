@@ -4,8 +4,8 @@ pragma Warnings (Off, "*array aggregate*");
 with KartengrundDatentypen; use KartengrundDatentypen;
 with KartenverbesserungDatentypen;
 
-with SchreibeKarten;
-with LeseKarten;
+with SchreibeWeltkarte;
+with LeseWeltkarte;
 
 with Fehler;
 
@@ -28,14 +28,14 @@ package body WaldAnlegenLogik is
             Fehler.LogikFehler (FehlermeldungExtern => "WaldAnlegen.WaldAnlegen - Falsche Ebene.");
       end case;
       
-      SchreibeKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern,
+      SchreibeWeltkarte.AktuellerGrund (KoordinatenExtern => KoordinatenExtern,
                                      GrundExtern       => NeuerGrund);
       
       case
-        LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern)
+        LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern)
       is
          when KartenverbesserungDatentypen.Karten_Verbesserung_Gebilde_Friedlich_Enum'Range =>
-            SchreibeKarten.Verbesserung (KoordinatenExtern     => KoordinatenExtern,
+            SchreibeWeltkarte.Verbesserung (KoordinatenExtern     => KoordinatenExtern,
                                          VerbesserungExtern    => KartenverbesserungDatentypen.Leer_Verbesserung_Enum);
             
          when others =>

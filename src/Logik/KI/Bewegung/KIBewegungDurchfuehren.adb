@@ -12,9 +12,9 @@ with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
 
 with BewegungsberechnungLogik;
-with EinheitSuchen;
+with EinheitSuchenLogik;
 with KampfsystemEinheitenLogik;
-with StadtSuchen;
+with StadtSuchenLogik;
 with KampfsystemStadtLogik;
 
 with KIBewegungBerechnen;
@@ -122,9 +122,9 @@ package body KIBewegungDurchfuehren is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
-      FremdeEinheit := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => NeuePosition,
-                                                                        LogikGrafikExtern => True);
-      FremdeStadt := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => NeuePosition);
+      FremdeEinheit := EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => NeuePosition,
+                                                                             LogikGrafikExtern => True);
+      FremdeStadt := StadtSuchenLogik.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => NeuePosition);
             
       if
         FremdeStadt.Rasse = EinheitenKonstanten.LeerRasse

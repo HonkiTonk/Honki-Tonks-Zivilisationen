@@ -8,9 +8,9 @@ with KartenKonstanten;
 with Views;
 
 with LeseStadtGebaut;
-with LeseKarten;
+with LeseWeltkarte;
 
-with Kartenkoordinatenberechnungssystem;
+with KartenkoordinatenberechnungssystemLogik;
 with ViewsEinstellenGrafik;
 with KartenberechnungenGrafik;
 with ObjekteZeichnenGrafik;
@@ -39,7 +39,7 @@ package body StadtumgebungGrafik is
          XAchseSchleife:
          for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
             
-            KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Stadtkoordinaten,
+            KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Stadtkoordinaten,
                                                                                                  ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                                                  LogikGrafikExtern => False);
             
@@ -51,7 +51,7 @@ package body StadtumgebungGrafik is
                                                        FarbeExtern          => Sf.Graphics.Color.sfBlack);
                
             elsif
-              False = LeseKarten.Sichtbar (KoordinatenExtern => KartenWert,
+              False = LeseWeltkarte.Sichtbar (KoordinatenExtern => KartenWert,
                                            RasseExtern       => StadtRasseNummerExtern.Rasse)
             then
                ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern      => KartenberechnungenGrafik.StadtfelderAbmessung,
@@ -100,7 +100,7 @@ package body StadtumgebungGrafik is
                          PositionExtern    => PositionExtern);
       
       case
-        LeseKarten.BestimmteStadtBelegtGrund (StadtRasseNummerExtern => StadtRasseNummerExtern,
+        LeseWeltkarte.BestimmteStadtBelegtGrund (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                               KoordinatenExtern      => KarteKoordinatenExtern)
       is
          when True =>
@@ -157,7 +157,7 @@ package body StadtumgebungGrafik is
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
-      Kartenfeld := LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern);
+      Kartenfeld := LeseWeltkarte.AktuellerGrund (KoordinatenExtern => KoordinatenExtern);
       
       case
         KartenspritesZeichnenGrafik.SpriteGezeichnetStadtfeld (TexturAccessExtern => EingeleseneTexturenGrafik.KartenfelderAccess (Kartenfeld),
@@ -181,7 +181,7 @@ package body StadtumgebungGrafik is
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
-      KartenfeldFluss := LeseKarten.Fluss (KoordinatenExtern => KoordinatenExtern);
+      KartenfeldFluss := LeseWeltkarte.Fluss (KoordinatenExtern => KoordinatenExtern);
       
       if
         KartenfeldFluss = KartengrundDatentypen.Leer_Fluss_Enum
@@ -209,7 +209,7 @@ package body StadtumgebungGrafik is
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
-      KartenfeldRessource := LeseKarten.Ressource (KoordinatenExtern => KoordinatenExtern);
+      KartenfeldRessource := LeseWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern);
       
       if
         KartenfeldRessource = KartengrundDatentypen.Leer_Ressource_Enum
@@ -237,7 +237,7 @@ package body StadtumgebungGrafik is
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
-      Wegfeld := LeseKarten.Weg (KoordinatenExtern => KoordinatenExtern);
+      Wegfeld := LeseWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern);
       
       if
         Wegfeld = KartenverbesserungDatentypen.Leer_Weg_Enum
@@ -265,7 +265,7 @@ package body StadtumgebungGrafik is
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
-      Verbesserungsfeld := LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern);
+      Verbesserungsfeld := LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern);
       
       if
         Verbesserungsfeld = KartenverbesserungDatentypen.Leer_Verbesserung_Enum

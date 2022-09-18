@@ -8,9 +8,9 @@ with KartenRecordKonstanten;
 
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
-with LeseKarten;
+with LeseWeltkarte;
 
-with Kartenkoordinatenberechnungssystem;
+with KartenkoordinatenberechnungssystemLogik;
 with Vergleiche;
 
 with KIDatentypen;
@@ -111,7 +111,7 @@ package body KIEinheitFestlegenSiedeln is
                FeldGutUndFrei := False;
                
             else
-               MöglichesStadtfeld := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+               MöglichesStadtfeld := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                                                                                              ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                                                              LogikGrafikExtern => True);
                
@@ -170,7 +170,7 @@ package body KIEinheitFestlegenSiedeln is
       end case;
       
       case
-        LeseKarten.BelegterGrundLeer (KoordinatenExtern => KoordinatenExtern)
+        LeseWeltkarte.BelegterGrundLeer (KoordinatenExtern => KoordinatenExtern)
       is
          when False =>
             return False;
@@ -180,7 +180,7 @@ package body KIEinheitFestlegenSiedeln is
       end case;
       
       if
-        LeseKarten.Bewertung (KoordinatenExtern => KoordinatenExtern,
+        LeseWeltkarte.Bewertung (KoordinatenExtern => KoordinatenExtern,
                               RasseExtern       => EinheitRasseNummerExtern.Rasse)
         < KIKartenfeldbewertungModifizieren.BewertungStadtBauen (KoordinatenExtern => KoordinatenExtern,
                                                                  RasseExtern       => EinheitRasseNummerExtern.Rasse)
@@ -189,7 +189,7 @@ package body KIEinheitFestlegenSiedeln is
          
          -- Diese Prüfung hier mal rassenspezifisch erweitern. äöü
       elsif
-        LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern) = KartengrundDatentypen.Eis_Enum
+        LeseWeltkarte.AktuellerGrund (KoordinatenExtern => KoordinatenExtern) = KartengrundDatentypen.Eis_Enum
       then
          return False;
          

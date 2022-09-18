@@ -5,11 +5,11 @@ with KartenDatentypen; use KartenDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
 with KartenKonstanten;
 
-with LeseKarten;
+with LeseWeltkarte;
 with LeseStadtGebaut;
 with SchreibeStadtGebaut;
 
-with Kartenkoordinatenberechnungssystem;
+with KartenkoordinatenberechnungssystemLogik;
 with MausauswahlLogik;
 with KartenberechnungenGrafik;
 
@@ -32,7 +32,7 @@ package body EinwohnersystemLogik is
          Stadtfeld.XAchse := KartenDatentypen.Kartenfeld (Float'Floor (Mausposition.x / KartenberechnungenGrafik.StadtfelderAbmessung.x)) - 3;
       end if;
       
-      Kartenwert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
+      Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                                                                            ÄnderungExtern    => (0, Stadtfeld.YAchse, Stadtfeld.XAchse),
                                                                                            LogikGrafikExtern => True);
       
@@ -111,7 +111,7 @@ package body EinwohnersystemLogik is
         < LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                              EinwohnerArbeiterExtern => True)
         and
-          True = LeseKarten.BestimmteStadtBelegtGrund (StadtRasseNummerExtern => StadtRasseNummerExtern,
+          True = LeseWeltkarte.BestimmteStadtBelegtGrund (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                        KoordinatenExtern      => Kartenwert)
       then
          SchreibeStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,

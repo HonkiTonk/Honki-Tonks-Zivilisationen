@@ -12,10 +12,10 @@ with SchreibeEinheitenGebaut;
 with SchreibeStadtGebaut;
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
-with LeseKarten;
+with LeseWeltkarte;
 
-with StadtSuchen;
-with EinheitSuchen;
+with StadtSuchenLogik;
+with EinheitSuchenLogik;
 with PassierbarkeitspruefungLogik;
 with StadtproduktionLogik;
 with ForschugnstestsLogik;
@@ -174,18 +174,18 @@ package body EinheitenmodifizierungLogik is
         EinheitRasseNummerExtern.Nummer
       is
          when EinheitenKonstanten.LeerNummer =>
-            EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                                             KoordinatenExtern => SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAktuell,
-                                                                             LogikGrafikExtern => True);
+            EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                                                                  KoordinatenExtern => SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAktuell,
+                                                                                  LogikGrafikExtern => True);
       
             NeueHeimatstadt.Rasse := EinheitRasseNummerExtern.Rasse;
-            NeueHeimatstadt.Nummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                                                  KoordinatenExtern => SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAktuell);
+            NeueHeimatstadt.Nummer := StadtSuchenLogik.KoordinatenStadtMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                                                                       KoordinatenExtern => SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAktuell);
             
          when others =>
             EinheitNummer := EinheitRasseNummerExtern.Nummer;
             
-            NeueHeimatstadt := LeseKarten.StadtbelegungGrund (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+            NeueHeimatstadt := LeseWeltkarte.StadtbelegungGrund (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       end case;
       
       if

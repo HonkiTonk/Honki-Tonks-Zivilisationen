@@ -7,7 +7,7 @@ with StadtRecordKonstanten;
 
 with LeseGebaeudeDatenbank;
 with LeseEinheitenDatenbank;
-with SchreibeKarten;
+with SchreibeWeltkarte;
 with LeseStadtGebaut;
 
 with NachGrafiktask;
@@ -554,7 +554,7 @@ package body SchreibeStadtGebaut is
       
       NachGrafiktask.AktuelleStadt := StadtKonstanten.LeerNummer;
       
-      SchreibeKarten.Verbesserung (KoordinatenExtern  => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
+      SchreibeWeltkarte.Verbesserung (KoordinatenExtern  => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                    VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum);
       
       SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer) := StadtRecordKonstanten.LeerStadt;

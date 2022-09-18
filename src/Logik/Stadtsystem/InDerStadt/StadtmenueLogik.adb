@@ -11,7 +11,7 @@ with EinwohnersystemLogik;
 with GebaeudeVerkaufenLogik;
 with NachGrafiktask;
 with MausauswahlLogik;
-with StadtEntfernen;
+with StadtEntfernenLogik;
 with StadtAllgemeinLogik;
 
 package body StadtmenueLogik is
@@ -44,7 +44,7 @@ package body StadtmenueLogik is
                
             when TastenbelegungDatentypen.Auflösen_Enum =>
                if
-                 StadtEntfernen.StadtAbreißen (StadtRasseNummerExtern => StadtRasseNummerExtern) = True
+                 StadtEntfernenLogik.StadtAbreißen (StadtRasseNummerExtern => StadtRasseNummerExtern) = True
                then
                   exit StadtSchleife;
                   
@@ -122,7 +122,7 @@ package body StadtmenueLogik is
             StadtAllgemeinLogik.NeuerStadtname (StadtRasseNummerExtern => StadtRasseNummerExtern);
             
          when BefehleDatentypen.Auflösen_Enum =>
-            return StadtEntfernen.StadtAbreißen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+            return StadtEntfernenLogik.StadtAbreißen (StadtRasseNummerExtern => StadtRasseNummerExtern);
             
          when others =>
             return True;

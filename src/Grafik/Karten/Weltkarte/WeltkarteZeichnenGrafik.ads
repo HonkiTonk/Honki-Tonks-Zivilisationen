@@ -17,7 +17,7 @@ with EinheitenRecords;
 with SpielVariablen;
 with StadtRecords;
 
-with Karten;
+with Weltkarte;
 
 package WeltkarteZeichnenGrafik is
    
@@ -28,9 +28,9 @@ package WeltkarteZeichnenGrafik is
       TransparentsExtern : in Sf.sfUint8)
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
                and
-                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
                and
                  PositionExtern.x >= 0.00
                and
@@ -102,9 +102,9 @@ private
        Pre => (
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
                and
-                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
                and
                  PositionExtern.x >= 0.00
                and
@@ -119,9 +119,9 @@ private
        Pre => (
                --   SpielVariablen.Rassenbelegung (RasseEinheitExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                -- and
-                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
                and
-                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
                and
                  PositionExtern.x >= 0.00
                and
@@ -133,9 +133,9 @@ private
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
                and
-                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
                and
                  PositionExtern.x >= 0.00
                and
@@ -148,9 +148,9 @@ private
       DurchsichtigkeitExtern : in Sf.sfUint8)
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
                and
-                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
                and
                  PositionExtern.x >= 0.00
                and
@@ -162,9 +162,9 @@ private
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
                and
-                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
                and
                  PositionExtern.x >= 0.00
                and
@@ -176,9 +176,9 @@ private
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
                and
-                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
                and
                  PositionExtern.x >= 0.00
                and
@@ -190,9 +190,9 @@ private
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
                and
-                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
                and
                  PositionExtern.x >= 0.00
                and
@@ -205,9 +205,9 @@ private
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
                and
-                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
                and
                  PositionExtern.x >= 0.00
                and
@@ -219,9 +219,9 @@ private
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
                and
-                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
                and
                  PositionExtern.x >= 0.00
                and

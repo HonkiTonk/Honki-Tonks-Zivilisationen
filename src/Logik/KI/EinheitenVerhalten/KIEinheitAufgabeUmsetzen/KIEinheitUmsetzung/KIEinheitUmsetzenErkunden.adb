@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with LeseEinheitenGebaut;
-with LeseKarten;
+with LeseWeltkarte;
 
 with Vergleiche;
 
@@ -28,7 +28,7 @@ package body KIEinheitUmsetzenErkunden is
          return False;
          
       elsif
-        LeseKarten.Sichtbar (KoordinatenExtern => ZielKoordinaten,
+        LeseWeltkarte.Sichtbar (KoordinatenExtern => ZielKoordinaten,
                              RasseExtern       => EinheitRasseNummerExtern.Rasse)
         = True
       then

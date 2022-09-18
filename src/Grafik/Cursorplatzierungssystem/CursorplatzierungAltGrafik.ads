@@ -13,7 +13,7 @@ with EinheitenRecords;
 
 private with KartenRecords;
 
-private with Karten;
+private with Weltkarte;
 
 package CursorplatzierungAltGrafik is
 
@@ -54,7 +54,7 @@ private
       return KartenDatentypen.UmgebungsbereichEins
      with
        Pre => (
-                 YAchseAlt <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                 YAchseAlt <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
               );
    
    function AlteXAchseFestlegen
@@ -63,7 +63,7 @@ private
       return KartenDatentypen.UmgebungsbereichEins
      with
        Pre => (
-                 XAchseAlt <= Karten.Karteneinstellungen.Kartengröße.XAchse
+                 XAchseAlt <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
               );
 
 end CursorplatzierungAltGrafik;

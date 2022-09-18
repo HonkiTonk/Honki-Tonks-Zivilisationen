@@ -11,11 +11,11 @@ with DiplomatieDatentypen;
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
 with LeseStadtGebaut;
-with LeseKarten;
+with LeseWeltkarte;
 
-with EinheitSuchen;
+with EinheitSuchenLogik;
 with PassierbarkeitspruefungLogik;
-with Kartenkoordinatenberechnungssystem;
+with KartenkoordinatenberechnungssystemLogik;
 
 package body EinheitenverschiebungLogik is
    
@@ -67,9 +67,9 @@ package body EinheitenverschiebungLogik is
          XAchseSchleife:
          for XAchseSchleifenwert in -LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) .. LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) loop
                
-            Kartenwert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Stadtkoordinaten,
-                                                                                                 ÄnderungExtern    => (Stadtkoordinaten.EAchse, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                 LogikGrafikExtern => True);
+            Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Stadtkoordinaten,
+                                                                                                      ÄnderungExtern    => (Stadtkoordinaten.EAchse, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                      LogikGrafikExtern => True);
                      
             if
               Kartenwert.XAchse = KartenKonstanten.LeerXAchse
@@ -77,15 +77,15 @@ package body EinheitenverschiebungLogik is
                null;
                
             elsif
-              False = LeseKarten.BelegterGrund (RasseExtern       => StadtRasseNummerExtern.Rasse,
+              False = LeseWeltkarte.BelegterGrund (RasseExtern       => StadtRasseNummerExtern.Rasse,
                                                 KoordinatenExtern => Kartenwert)
             then
                null;
                                                                                                  
             else
-               EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => KontaktierteRasseExtern,
-                                                                                KoordinatenExtern => Kartenwert,
-                                                                                LogikGrafikExtern => True);
+               EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitRasseSuchen (RasseExtern       => KontaktierteRasseExtern,
+                                                                                     KoordinatenExtern => Kartenwert,
+                                                                                     LogikGrafikExtern => True);
             end if;
                
             case
@@ -122,9 +122,9 @@ package body EinheitenverschiebungLogik is
             XAchseSchleife:
             for XAchseSchleifenwert in -UmgebungPrüfen .. UmgebungPrüfen loop
                      
-               KartenwertVerschieben := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Einheitenkoordinaten,
-                                                                                                               ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                               LogikGrafikExtern => True);
+               KartenwertVerschieben := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Einheitenkoordinaten,
+                                                                                                                    ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                                    LogikGrafikExtern => True);
             
                if
                  KartenwertVerschieben.XAchse = KartenKonstanten.LeerXAchse
@@ -139,14 +139,14 @@ package body EinheitenverschiebungLogik is
                   null;
             
                elsif
-                 False = LeseKarten.BelegterGrund (RasseExtern       => RasseLandExtern,
+                 False = LeseWeltkarte.BelegterGrund (RasseExtern       => RasseLandExtern,
                                                    KoordinatenExtern => KartenwertVerschieben)
                  and
                    True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                                     NeueKoordinatenExtern    => KartenwertVerschieben)
                  and
-                   EinheitenKonstanten.LeerNummer = EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenwertVerschieben,
-                                                                                                     LogikGrafikExtern => True).Nummer
+                   EinheitenKonstanten.LeerNummer = EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenwertVerschieben,
+                                                                                                          LogikGrafikExtern => True).Nummer
                then
                   SchreibeEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                        KoordinatenExtern        => KartenwertVerschieben);

@@ -13,7 +13,7 @@ with KIKonstanten;
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
 
-with Kartenkoordinatenberechnungssystem;
+with KartenkoordinatenberechnungssystemLogik;
 with PassierbarkeitspruefungLogik;
 with EinheitentransporterLogik;
 
@@ -215,7 +215,7 @@ package body KIBewegungBerechnen is
          return KIKonstanten.BewertungBewegungNullwert;
 
       else
-         KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+         KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
                                                                                               ÄnderungExtern    => (EÄnderungExtern, YÄnderungExtern, XÄnderungExtern),
                                                                                               LogikGrafikExtern => True);
       end if;
@@ -429,7 +429,7 @@ package body KIBewegungBerechnen is
             for XÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
                
                KartenWertVereinfachung
-                 := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                 := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                                                                                                     PlanschrittExtern        => ErsterZugExtern),
                                                                                            ÄnderungExtern    => (EÄnderungSchleifenwert, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
                                                                                            LogikGrafikExtern => True);

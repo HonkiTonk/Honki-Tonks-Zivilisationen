@@ -10,16 +10,16 @@ with StadtKonstanten;
 
 with LeseEinheitenGebaut;
 
-with EinheitSuchen;
+with EinheitSuchenLogik;
 with PassierbarkeitspruefungLogik;
 with BewegungsberechnungLogik;
 with DiplomatischerZustandLogik;
 with LadungsbewegungLogik;
 with KampfsystemEinheitenLogik;
-with StadtSuchen;
+with StadtSuchenLogik;
 with KampfsystemStadtLogik;
 with EinheitentransporterLogik;
-with Kartenkoordinatenberechnungssystem;
+with KartenkoordinatenberechnungssystemLogik;
 
 package body EinheitenbewegungLogik is
    
@@ -30,7 +30,7 @@ package body EinheitenbewegungLogik is
       return Boolean
    is begin
       
-      NeuePosition := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+      NeuePosition := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                                                                              ÄnderungExtern    => PositionÄnderungExtern,
                                                                                              LogikGrafikExtern => True);
       
@@ -47,10 +47,10 @@ package body EinheitenbewegungLogik is
       FeldPassierbar := PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                                   NeueKoordinatenExtern       => NeuePosition);
       
-      EinheitAufFeld := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => NeuePosition,
-                                                                         LogikGrafikExtern => True);
-      StadtAufFeld := StadtSuchen.KoordinatenStadtOhneSpezielleRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                                            KoordinatenExtern => NeuePosition);
+      EinheitAufFeld := EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => NeuePosition,
+                                                                              LogikGrafikExtern => True);
+      StadtAufFeld := StadtSuchenLogik.KoordinatenStadtOhneSpezielleRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                                                                 KoordinatenExtern => NeuePosition);
       BewegungDurchführen := False;
       
       if

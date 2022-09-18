@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with KartenDatentypen; use KartenDatentypen;
 with KartenRecords;
 
-with Karten;
+with Weltkarte;
 
 package UmwandlungenGleicheDatentypen is
 
@@ -13,17 +13,17 @@ package UmwandlungenGleicheDatentypen is
       return KartenRecords.AchsenKartenfeldVorhandenRecord
      with
        Pre => (
-                 KoordinatenExtern.EAchse in Karten.WeltkarteArray'Range (1)
+                 KoordinatenExtern.EAchse in Weltkarte.KarteArray'Range (1)
                and
-                 KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse in Weltkarte.KarteArray'First (2) .. Weltkarte.Karteneinstellungen.Kartengröße.YAchse
                and
-                 KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse in Weltkarte.KarteArray'First (3) .. Weltkarte.Karteneinstellungen.Kartengröße.XAchse
               ),
          
        Post => (
-                  KartenfeldNaturalNachKartenfeldVorhanden'Result.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                  KartenfeldNaturalNachKartenfeldVorhanden'Result.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
                 and
-                  KartenfeldNaturalNachKartenfeldVorhanden'Result.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+                  KartenfeldNaturalNachKartenfeldVorhanden'Result.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
                );
 
 end UmwandlungenGleicheDatentypen;

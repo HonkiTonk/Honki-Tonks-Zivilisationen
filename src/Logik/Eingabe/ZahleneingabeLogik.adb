@@ -12,6 +12,8 @@ with NachGrafiktask;
 with NachLogiktask;
 with EingabeAllgemeinLogik;
 
+-- Negative Zahlen scheinen nicht mehr korrekt zu funktionieren. äöü
+-- Bei ZahlHinzufügen noch auf die Obergrenze prüfen und entsprechend setzen. äöü
 package body ZahleneingabeLogik is
    
    function Zahleneingabe
@@ -203,7 +205,7 @@ package body ZahleneingabeLogik is
       end if;
       
       ZahlenString (ZahlenString'Last) := EingabeZahlenUmwandeln (Zwischenspeicher);
-      
+              
       if
         ZahlenString (1) /= '0'
       then

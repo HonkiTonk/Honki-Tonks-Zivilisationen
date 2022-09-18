@@ -3,12 +3,12 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenKonstanten;
 
-with LeseKarten;
+with LeseWeltkarte;
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
 
 with PassierbarkeitspruefungLogik;
-with Kartenkoordinatenberechnungssystem;
+with KartenkoordinatenberechnungssystemLogik;
 
 with KIDatentypen;
 
@@ -84,7 +84,7 @@ package body KIEinheitFestlegenErkunden is
                   null;
                   
                else
-                  KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+                  KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
                                                                                                        ÄnderungExtern    => (EÄnderungSchleifenwert, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
                                                                                                        LogikGrafikExtern => True);
                   
@@ -94,7 +94,7 @@ package body KIEinheitFestlegenErkunden is
                      null;
                         
                   elsif
-                    False = LeseKarten.Sichtbar (KoordinatenExtern => KartenWert,
+                    False = LeseWeltkarte.Sichtbar (KoordinatenExtern => KartenWert,
                                                  RasseExtern       => EinheitRasseNummerExtern.Rasse)
                     and
                       True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,

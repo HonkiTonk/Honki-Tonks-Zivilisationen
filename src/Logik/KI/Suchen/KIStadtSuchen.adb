@@ -8,7 +8,7 @@ with KartenRecordKonstanten;
 
 with LeseStadtGebaut;
 
-with EinheitSuchen;
+with EinheitSuchenLogik;
 
 package body KIStadtSuchen is
    
@@ -100,9 +100,9 @@ package body KIStadtSuchen is
             Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (FeindlicheRasseExtern, StadtNummerSchleifenwert));
                                                              
             case
-              EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => FeindlicheRasseExtern,
-                                                              KoordinatenExtern => Stadtkoordinaten,
-                                                              LogikGrafikExtern => True)
+              EinheitSuchenLogik.KoordinatenEinheitMitRasseSuchen (RasseExtern       => FeindlicheRasseExtern,
+                                                                   KoordinatenExtern => Stadtkoordinaten,
+                                                                   LogikGrafikExtern => True)
             is
                when EinheitenKonstanten.LeerNummer =>
                   return Stadtkoordinaten;

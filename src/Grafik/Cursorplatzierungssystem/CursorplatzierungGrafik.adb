@@ -9,7 +9,7 @@ with Views;
 
 with NachLogiktask;
 with KartenberechnungenGrafik;
-with Kartenkoordinatenberechnungssystem;
+with KartenkoordinatenberechnungssystemLogik;
 with EinstellungenGrafik;
 with NachGrafiktask;
 with Sichtweiten;
@@ -37,7 +37,7 @@ package body CursorplatzierungGrafik is
       Kartenänderung.YAchse := SichtbereichAnfangEnde (1) + KartenDatentypen.Kartenfeld (Float'Floor (Mausposition.y / KartenberechnungenGrafik.KartenfelderAbmessung.y));
       Kartenänderung.XAchse := SichtbereichAnfangEnde (3) + KartenDatentypen.Kartenfeld (Float'Floor (Mausposition.x / KartenberechnungenGrafik.KartenfelderAbmessung.x));
       
-      KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
+      KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
                                                                                            ÄnderungExtern    => (0, Kartenänderung.YAchse, Kartenänderung.XAchse),
                                                                                            LogikGrafikExtern => False);
       

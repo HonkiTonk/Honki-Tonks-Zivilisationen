@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with StadtBauen;
+with StadtBauenLogik;
 
 package body KIEinheitUmsetzenSiedeln is
 
@@ -10,7 +10,7 @@ package body KIEinheitUmsetzenSiedeln is
       return Boolean
    is begin
       
-      return StadtBauen.StadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      return StadtBauenLogik.StadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
    end StadtErrichten;
 

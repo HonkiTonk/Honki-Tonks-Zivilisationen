@@ -8,7 +8,7 @@ with SpielVariablen;
 
 private with KartenRecords;
 
-private with Karten;
+private with Weltkarte;
 
 package KIEinheitFestlegenFliehen is
 
@@ -37,9 +37,9 @@ private
               ),
 
        Post => (
-                  Ziel'Result.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                  Ziel'Result.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
                 and
-                  Ziel'Result.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+                  Ziel'Result.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
                );
 
 end KIEinheitFestlegenFliehen;

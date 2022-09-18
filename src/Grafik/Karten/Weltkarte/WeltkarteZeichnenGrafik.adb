@@ -16,11 +16,11 @@ with KartenKonstanten;
 with GrafikKonstanten;
 
 with LeseEinheitenGebaut;
-with LeseKarten;
+with LeseWeltkarte;
 with LeseStadtGebaut;
 
-with EinheitSuchen;
-with StadtSuchen;
+with EinheitSuchenLogik;
+with StadtSuchenLogik;
 with ObjekteZeichnenGrafik;
 with EingeleseneTexturenGrafik;
 with KartenspritesZeichnenGrafik;
@@ -29,7 +29,7 @@ with TextberechnungenBreiteGrafik;
 with RasseneinstellungenGrafik;
 with TextberechnungenHoeheGrafik;
 with KartenberechnungenGrafik;
-with Kartenkoordinatenberechnungssystem;
+with KartenkoordinatenberechnungssystemLogik;
 with EinstellungenGrafik;
 
 -- Das Zeichnen der Texturen/Objekte noch einmal überarbeiten, vielleicht kann man das auch mit Prozeduren bewerkstelligen? äöü
@@ -76,8 +76,8 @@ package body WeltkarteZeichnenGrafik is
       DurchsichtigkeitExtern : in Sf.sfUint8)
    is begin
       
-      AktuellerKartengrund := LeseKarten.AktuellerGrund (KoordinatenExtern => KoordinatenExtern);
-      BasisKartengrund := LeseKarten.BasisGrund (KoordinatenExtern => KoordinatenExtern);
+      AktuellerKartengrund := LeseWeltkarte.AktuellerGrund (KoordinatenExtern => KoordinatenExtern);
+      BasisKartengrund := LeseWeltkarte.BasisGrund (KoordinatenExtern => KoordinatenExtern);
       
       -- Den aktuellen Grund auch durchsichtig gestalten wenn er nicht dem Basisgrund entspricht, um den Grund darunter sichtbar zu machen? äöü
       if
@@ -128,7 +128,7 @@ package body WeltkarteZeichnenGrafik is
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
-      KartenfeldFluss := LeseKarten.Fluss (KoordinatenExtern => KoordinatenExtern);
+      KartenfeldFluss := LeseWeltkarte.Fluss (KoordinatenExtern => KoordinatenExtern);
       
       case
         KartenfeldFluss
@@ -163,7 +163,7 @@ package body WeltkarteZeichnenGrafik is
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
-      KartenfeldRessource := LeseKarten.Ressource (KoordinatenExtern => KoordinatenExtern);
+      KartenfeldRessource := LeseWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern);
       
       case
         KartenfeldRessource
@@ -198,7 +198,7 @@ package body WeltkarteZeichnenGrafik is
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
-      Wegfeld := LeseKarten.Weg (KoordinatenExtern => KoordinatenExtern);
+      Wegfeld := LeseWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern);
       
       case
         Wegfeld
@@ -234,7 +234,7 @@ package body WeltkarteZeichnenGrafik is
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
-      Verbesserungsfeld := LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern);
+      Verbesserungsfeld := LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern);
       
       case
         Verbesserungsfeld
@@ -281,8 +281,8 @@ package body WeltkarteZeichnenGrafik is
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
-      EinheitRasseNummer := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern,
-                                                                             LogikGrafikExtern => False);
+      EinheitRasseNummer := EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern,
+                                                                                  LogikGrafikExtern => False);
       
       case
         EinheitRasseNummer.Nummer
@@ -309,8 +309,8 @@ package body WeltkarteZeichnenGrafik is
         and
           (EinheitRasseNummer.Nummer = RasseEinheitExtern.Nummer
            or
-             True = EinheitSuchen.TransporterladungSuchen (TransporterExtern   => EinheitRasseNummer,
-                                                           LadungsnummerExtern => RasseEinheitExtern.Nummer))
+             True = EinheitSuchenLogik.TransporterladungSuchen (TransporterExtern   => EinheitRasseNummer,
+                                                                LadungsnummerExtern => RasseEinheitExtern.Nummer))
       then
          if
            Clock - StartzeitBlinkintervall > ZeitKonstanten.Blinkintervall
@@ -360,7 +360,7 @@ package body WeltkarteZeichnenGrafik is
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
-      AktuelleRasse := LeseKarten.RasseBelegtGrund (KoordinatenExtern => KoordinatenExtern);
+      AktuelleRasse := LeseWeltkarte.RasseBelegtGrund (KoordinatenExtern => KoordinatenExtern);
       
       case
         AktuelleRasse
@@ -391,9 +391,9 @@ package body WeltkarteZeichnenGrafik is
       UmgebungSchleife:
       for UmgebungSchleifenwert in UmgebungArray'Range loop
          
-         KartenWertRahmen := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                    ÄnderungExtern    => Umgebung (UmgebungSchleifenwert),
-                                                                                                    LogikGrafikExtern => False);
+         KartenWertRahmen := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+                                                                                                         ÄnderungExtern    => Umgebung (UmgebungSchleifenwert),
+                                                                                                         LogikGrafikExtern => False);
                
          if
            KartenWertRahmen.XAchse = KartenKonstanten.LeerXAchse
@@ -403,7 +403,7 @@ package body WeltkarteZeichnenGrafik is
                             RasseExtern          => RasseExtern);
                      
          elsif
-           RasseExtern /= LeseKarten.RasseBelegtGrund (KoordinatenExtern => KartenWertRahmen)
+           RasseExtern /= LeseWeltkarte.RasseBelegtGrund (KoordinatenExtern => KartenWertRahmen)
          then
             RahmenZeichnen (WelcheRichtungExtern => UmgebungSchleifenwert,
                             PositionExtern       => PositionExtern,
@@ -458,7 +458,7 @@ package body WeltkarteZeichnenGrafik is
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
             
-      StadtRasseNummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
+      StadtRasseNummer := StadtSuchenLogik.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAccess,
                                          str  => To_Wide_Wide_String (Source => LeseStadtGebaut.Name (StadtRasseNummerExtern => StadtRasseNummer)));

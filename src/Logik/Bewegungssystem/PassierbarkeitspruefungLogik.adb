@@ -8,16 +8,16 @@ with KartenKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
 
-with LeseKarten;
+with LeseWeltkarte;
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
 with LeseVerbesserungenDatenbank;
 with LeseStadtGebaut;
 
-with StadtSuchen;
-with UmgebungErreichbarTesten;
-with Kartenkoordinatenberechnungssystem;
-with KartenAllgemein;
+with StadtSuchenLogik;
+with StadtumgebungErreichbarLogik;
+with KartenkoordinatenberechnungssystemLogik;
+with KartenAllgemeinesLogik;
 with Fehler;
 
 package body PassierbarkeitspruefungLogik is
@@ -101,15 +101,15 @@ package body PassierbarkeitspruefungLogik is
       
       -- Alles mal ein wenig optimieren. äöü
       if
-        StadtKonstanten.LeerNummer /= StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                                 KoordinatenExtern => NeueKoordinatenExtern)
+        StadtKonstanten.LeerNummer /= StadtSuchenLogik.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
+                                                                                       KoordinatenExtern => NeueKoordinatenExtern)
       then
          return True;
                   
       elsif
-        LeseKarten.Weg (KoordinatenExtern => NeueKoordinatenExtern) /= KartenverbesserungDatentypen.Leer_Weg_Enum
+        LeseWeltkarte.Weg (KoordinatenExtern => NeueKoordinatenExtern) /= KartenverbesserungDatentypen.Leer_Weg_Enum
         and then
-          False = LeseVerbesserungenDatenbank.PassierbarkeitWeg (WegExtern            => LeseKarten.Weg (KoordinatenExtern => NeueKoordinatenExtern),
+          False = LeseVerbesserungenDatenbank.PassierbarkeitWeg (WegExtern            => LeseWeltkarte.Weg (KoordinatenExtern => NeueKoordinatenExtern),
                                                                  WelcheUmgebungExtern => UmgebungExtern)
       then
          null;
@@ -132,7 +132,7 @@ package body PassierbarkeitspruefungLogik is
                      
       -- Funktioniert akutell nicht richtig, beheben oder entfernen? äöü
       --  elsif
-      --    LeseKarten.Weg (KoordinatenExtern => NeueKoordinatenExtern) /= KartenverbesserungDatentypen.Leer_Weg_Enum
+      --    LeseWeltkarte.Weg (KoordinatenExtern => NeueKoordinatenExtern) /= KartenverbesserungDatentypen.Leer_Weg_Enum
       --    and then
       --       KartenAllgemein.PassierbarWeg (KoordinatenExtern    => NeueKoordinatenExtern,
       --                                      PassierbarkeitExtern => UmgebungExtern)
@@ -142,11 +142,11 @@ package body PassierbarkeitspruefungLogik is
          
       -- Warum kommt die Prüfung hier noch einmal?
       if
-        False = KartenAllgemein.PassierbarGrund (KoordinatenExtern    => NeueKoordinatenExtern,
-                                                 PassierbarkeitExtern => UmgebungExtern)
+        False = KartenAllgemeinesLogik.PassierbarGrund (KoordinatenExtern    => NeueKoordinatenExtern,
+                                                        PassierbarkeitExtern => UmgebungExtern)
       then
          null;
-                  
+         
       else
          return True;
       end if;
@@ -253,10 +253,10 @@ package body PassierbarkeitspruefungLogik is
                IDEinheit := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
                                                                                                                                              PlatzExtern              => BelegterPlatzSchleifenwert)));
                if
-                 KartenKonstanten.LeerXAchse = UmgebungErreichbarTesten.UmgebungErreichbarTesten (AktuelleKoordinatenExtern => NeueKoordinatenExtern,
-                                                                                                  RasseExtern               => TransporterExtern.Rasse,
-                                                                                                  IDExtern                  => IDEinheit,
-                                                                                                  NotwendigeFelderExtern    => BenötigteFelder).XAchse
+                 KartenKonstanten.LeerXAchse = StadtumgebungErreichbarLogik.UmgebungErreichbar (AktuelleKoordinatenExtern => NeueKoordinatenExtern,
+                                                                                                RasseExtern               => TransporterExtern.Rasse,
+                                                                                                IDExtern                  => IDEinheit,
+                                                                                                NotwendigeFelderExtern    => BenötigteFelder).XAchse
                then
                   return False;
                      
@@ -286,7 +286,7 @@ package body PassierbarkeitspruefungLogik is
          XAchseEinheitenSchleife:
          for XAchseEinheitenSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
                
-            KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
+            KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                                                                                  ÄnderungExtern    => (0, YAchseEinheitenSchleifenwert, XAchseEinheitenSchleifenwert),
                                                                                                  LogikGrafikExtern => True);
                

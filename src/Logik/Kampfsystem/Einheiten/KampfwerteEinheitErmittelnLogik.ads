@@ -5,6 +5,7 @@ with RassenDatentypen; use RassenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 with KampfDatentypen;
+with KartenRecords;
 
 package KampfwerteEinheitErmittelnLogik is
 
@@ -43,6 +44,8 @@ private
    
    VerteidigungWertFloat : Float;
    AngriffWertFloat : Float;
+   
+   Einheitenkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    function VerteidigungsbonusVerteidiger
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

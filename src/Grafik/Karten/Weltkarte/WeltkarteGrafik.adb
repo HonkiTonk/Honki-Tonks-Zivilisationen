@@ -7,9 +7,9 @@ with Views;
 with KartengrundDatentypen;
 with GrafikKonstanten;
 
-with LeseKarten;
+with LeseWeltkarte;
 
-with Kartenkoordinatenberechnungssystem;
+with KartenkoordinatenberechnungssystemLogik;
 with KartenberechnungenGrafik;
 with EinstellungenGrafik;
 with ViewsEinstellenGrafik;
@@ -18,7 +18,7 @@ with Sichtweiten;
 
 package body WeltkarteGrafik is
    
-   procedure Weltkarte
+   procedure WeltkarteAnzeigen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
@@ -36,9 +36,9 @@ package body WeltkarteGrafik is
          XAchseSchleife:
          for XAchseSchleifenwert in SichtbereichAnfangEnde (3) .. SichtbereichAnfangEnde (4) loop
             
-            KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => CursorKoordinatenAlt,
-                                                                                                 ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                 LogikGrafikExtern => False);
+            KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => CursorKoordinatenAlt,
+                                                                                                      ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                      LogikGrafikExtern => False);
             
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse
@@ -46,8 +46,8 @@ package body WeltkarteGrafik is
                null;
                
             elsif
-              True = LeseKarten.Sichtbar (KoordinatenExtern => KartenWert,
-                                          RasseExtern       => EinheitRasseNummerExtern.Rasse)
+              True = LeseWeltkarte.Sichtbar (KoordinatenExtern => KartenWert,
+                                             RasseExtern       => EinheitRasseNummerExtern.Rasse)
             then
                IstSichtbar (KoordinatenExtern        => KartenWert,
                             EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -65,7 +65,7 @@ package body WeltkarteGrafik is
          
       end loop YAchseSchleife;
             
-   end Weltkarte;
+   end WeltkarteAnzeigen;
    
    
    
@@ -94,7 +94,7 @@ package body WeltkarteGrafik is
             when KartenKonstanten.OberflächeKonstante =>
                -- Hier eventuell später noch den aktuellen Grund berücksichtigen oder ist der bei Wasser niemals wichtig? äöü
                if
-                 LeseKarten.BasisGrund (KoordinatenExtern => KoordinatenExtern) in KartengrundDatentypen.Kartengrund_Oberfläche_Wasser_Enum'Range
+                 LeseWeltkarte.BasisGrund (KoordinatenExtern => KoordinatenExtern) in KartengrundDatentypen.Kartengrund_Oberfläche_Wasser_Enum'Range
                then
                   AktuelleKoordinaten := (KoordinatenExtern.EAchse - 1, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse);
                   Transparents := GrafikKonstanten.Wassertransparents;

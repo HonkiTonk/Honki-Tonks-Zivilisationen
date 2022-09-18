@@ -8,14 +8,14 @@ with KartenverbesserungDatentypen;
 with StadtKonstanten;
 
 with SchreibeEinheitenGebaut;
-with LeseKarten;
+with LeseWeltkarte;
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
 
-with Sichtbarkeit;
+with SichtbarkeitLogik;
 with KennenlernenLogik;
 with LadungsbewegungLogik;
-with StadtSuchen;
+with StadtSuchenLogik;
 with PassierbarkeitspruefungLogik;
 
 package body BewegungsberechnungLogik is
@@ -35,8 +35,8 @@ package body BewegungsberechnungLogik is
          null;
          
       elsif
-        StadtKonstanten.LeerNummer = StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                                                 KoordinatenExtern => NeueKoordinatenExtern)
+        StadtKonstanten.LeerNummer = StadtSuchenLogik.KoordinatenStadtMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                                                                      KoordinatenExtern => NeueKoordinatenExtern)
       then
          -- Die Ladungsverschiebung muss mit dem neuen Karten/Einheitenkoordinatensystem immer am Schluss erfolgen.
          -- Theoretisch hätte das auch immer im alten System passieren müssen, um zu verhidnern dass die Ladung verschoben wird ohne dass das Schiff verschoben werden kann.
@@ -122,7 +122,7 @@ package body BewegungsberechnungLogik is
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
-      Sichtbarkeit.SichtbarkeitsprüfungFürEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      SichtbarkeitLogik.SichtbarkeitsprüfungFürEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       -- Prüft nur ob das Feld auf dass sich diese Einheit bewegt bereits von einer anderen Rasse aufgedeckt wurde und stellt entsprechend Kontakt her.
       KontaktSchleife:
@@ -136,7 +136,7 @@ package body BewegungsberechnungLogik is
             null;
             
          elsif
-           True = LeseKarten.Sichtbar (KoordinatenExtern => NeueKoordinatenExtern,
+           True = LeseWeltkarte.Sichtbar (KoordinatenExtern => NeueKoordinatenExtern,
                                        RasseExtern       => FremdeSichtbarkeitSchleifenwert)
          then
             KennenlernenLogik.Erstkontakt (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
@@ -162,7 +162,7 @@ package body BewegungsberechnungLogik is
                                                NeueKoordinatenExtern    => NeueKoordinatenExtern);
 
       case
-        LeseKarten.AktuellerGrund (KoordinatenExtern => NeueKoordinatenExtern)
+        LeseWeltkarte.AktuellerGrund (KoordinatenExtern => NeueKoordinatenExtern)
       is
          when KartengrundDatentypen.Eis_Enum | KartengrundDatentypen.Gebirge_Enum | KartengrundDatentypen.Dschungel_Enum | KartengrundDatentypen.Sumpf_Enum =>
             if
@@ -210,7 +210,7 @@ package body BewegungsberechnungLogik is
                                                          WelcheUmgebungExtern => EinheitenDatentypen.Weltraum_Enum)
       then
          case
-           LeseKarten.Weg (KoordinatenExtern => NeueKoordinatenExtern)
+           LeseWeltkarte.Weg (KoordinatenExtern => NeueKoordinatenExtern)
          is
             when KartenverbesserungDatentypen.Karten_Straße_Enum'Range =>
                return Straße_Fluss_Enum;
@@ -226,7 +226,7 @@ package body BewegungsberechnungLogik is
          end case;
 
          case
-           LeseKarten.Fluss (KoordinatenExtern => NeueKoordinatenExtern)
+           LeseWeltkarte.Fluss (KoordinatenExtern => NeueKoordinatenExtern)
          is
             when KartengrundDatentypen.Leer_Fluss_Enum =>
                null;

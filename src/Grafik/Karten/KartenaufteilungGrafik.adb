@@ -23,7 +23,7 @@ package body KartenaufteilungGrafik is
       CursorplatzierungAltGrafik.CursorplatzierungAlt (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       -- Von außen die Arraypositionen für die Bereiche/Views hineingeben? äöü
-      WeltkarteGrafik.Weltkarte (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      WeltkarteGrafik.WeltkarteAnzeigen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       SeitenleisteGrafik.SeitenleisteGrafik (RasseExtern => EinheitRasseNummerExtern.Rasse);
       
       case

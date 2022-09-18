@@ -8,7 +8,7 @@ with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
 
-with UmgebungErreichbarTesten;
+with StadtumgebungErreichbarLogik;
 with TransporterSuchenLogik;
 
 -- Das Verschachteln mehrerer Transporter ineinander sollte keine Probleme mit regulären Einheiten machen.
@@ -148,10 +148,10 @@ package body LadungsbewegungLogik is
                IDEinheit := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitnummerStadtprüfung));
                
                SchreibeEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitnummerStadtprüfung),
-                                                    KoordinatenExtern        => UmgebungErreichbarTesten.UmgebungErreichbarTesten (AktuelleKoordinatenExtern => NeueKoordinatenExtern,
-                                                                                                                                   RasseExtern               => EinheitRasseNummerExtern.Rasse,
-                                                                                                                                   IDExtern                  => IDEinheit,
-                                                                                                                                   NotwendigeFelderExtern    => 1));
+                                                    KoordinatenExtern        => StadtumgebungErreichbarLogik.UmgebungErreichbar (AktuelleKoordinatenExtern => NeueKoordinatenExtern,
+                                                                                                                                 RasseExtern               => EinheitRasseNummerExtern.Rasse,
+                                                                                                                                 IDExtern                  => IDEinheit,
+                                                                                                                                 NotwendigeFelderExtern    => 1));
                
                SchreibeEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitnummerStadtprüfung),
                                                           TransporterExtern        => EinheitenKonstanten.LeerWirdTransportiert);

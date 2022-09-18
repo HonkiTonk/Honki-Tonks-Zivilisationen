@@ -7,7 +7,7 @@ with Sf.Graphics.Rect;
 with KartenDatentypen; use KartenDatentypen;
 with KartenRecords;
 
-with Karten;
+with Weltkarte;
 
 package Vergleiche is
    
@@ -16,9 +16,9 @@ package Vergleiche is
       return Boolean
      with
        Pre => (
-                 KoordinateExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinateExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
                and
-                 KoordinateExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinateExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
               );
    
    function Koordinatenvergleich
@@ -27,13 +27,13 @@ package Vergleiche is
       return Boolean
      with
        Pre => (
-                 KoordinateEinsExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinateEinsExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
                and
-                 KoordinateEinsExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinateEinsExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
                and
-                 KoordinatenZweiExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenZweiExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
                and
-                 KoordinatenZweiExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenZweiExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
               );
    
    function Auswahlposition

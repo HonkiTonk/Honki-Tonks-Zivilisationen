@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with TextnummernKonstanten;
 
-with Karten;
+with Weltkarte;
 with ZahleneingabeLogik;
 with NachGrafiktask;
 with Sichtweiten;
@@ -22,9 +22,9 @@ package body CursorbewegungLogik is
       is
          when 1 =>
             if
-              SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.EAchse = Karten.Weltkarte'Last (1)
+              SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.EAchse = Weltkarte.Karte'Last (1)
             then
-               SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.EAchse := Karten.Weltkarte'First (1);
+               SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.EAchse := Weltkarte.Karte'First (1);
                
             else
                SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.EAchse := SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.EAchse + Änderung;
@@ -32,9 +32,9 @@ package body CursorbewegungLogik is
             
          when -1 =>
             if
-              SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.EAchse = Karten.Weltkarte'First (1)
+              SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.EAchse = Weltkarte.Karte'First (1)
             then
-               SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.EAchse := Karten.Weltkarte'Last (1);
+               SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.EAchse := Weltkarte.Karte'Last (1);
                
             else
                SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.EAchse := SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.EAchse + Änderung;
@@ -57,54 +57,54 @@ package body CursorbewegungLogik is
       AktuelleSichtweite := Sichtweiten.SichtweiteLesen;
         
       if
-        2 * AktuelleSichtweite >= Karten.Karteneinstellungen.Kartengröße.YAchse
+        2 * AktuelleSichtweite >= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
         and
-          Karten.Karteneinstellungen.Kartenform.YAchseNorden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
+          Weltkarte.Karteneinstellungen.Kartenform.YAchseNorden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
           and
-            Karten.Karteneinstellungen.Kartenform.YAchseSüden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
+            Weltkarte.Karteneinstellungen.Kartenform.YAchseSüden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
       then
-         SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse := Karten.Karteneinstellungen.Kartengröße.YAchse / 2;
+         SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse := Weltkarte.Karteneinstellungen.Kartengröße.YAchse / 2;
          
       elsif
-        SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse <= Karten.WeltkarteArray'First (2) + AktuelleSichtweite
+        SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse <= Weltkarte.KarteArray'First (2) + AktuelleSichtweite
         and
-          Karten.Karteneinstellungen.Kartenform.YAchseNorden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
+          Weltkarte.Karteneinstellungen.Kartenform.YAchseNorden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
       then
-         SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse := Karten.WeltkarteArray'First (2) + AktuelleSichtweite;
+         SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse := Weltkarte.KarteArray'First (2) + AktuelleSichtweite;
          
       elsif
-        SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse >= Karten.Karteneinstellungen.Kartengröße.YAchse - AktuelleSichtweite
+        SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse >= Weltkarte.Karteneinstellungen.Kartengröße.YAchse - AktuelleSichtweite
         and
-          Karten.Karteneinstellungen.Kartenform.YAchseSüden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
+          Weltkarte.Karteneinstellungen.Kartenform.YAchseSüden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
       then
-         SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse := Karten.Karteneinstellungen.Kartengröße.YAchse - AktuelleSichtweite;
+         SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse := Weltkarte.Karteneinstellungen.Kartengröße.YAchse - AktuelleSichtweite;
          
       else
          null;
       end if;
       
       if
-        2 * AktuelleSichtweite >= Karten.Karteneinstellungen.Kartengröße.XAchse
+        2 * AktuelleSichtweite >= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
         and
-          Karten.Karteneinstellungen.Kartenform.XAchseWesten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
+          Weltkarte.Karteneinstellungen.Kartenform.XAchseWesten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
           and
-            Karten.Karteneinstellungen.Kartenform.XAchseOsten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
+            Weltkarte.Karteneinstellungen.Kartenform.XAchseOsten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
       then
-         SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse := Karten.Karteneinstellungen.Kartengröße.XAchse / 2;
+         SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse := Weltkarte.Karteneinstellungen.Kartengröße.XAchse / 2;
       
       elsif
-        SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse <= Karten.WeltkarteArray'First (3) + AktuelleSichtweite
+        SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse <= Weltkarte.KarteArray'First (3) + AktuelleSichtweite
         and
-          Karten.Karteneinstellungen.Kartenform.XAchseWesten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
+          Weltkarte.Karteneinstellungen.Kartenform.XAchseWesten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
       then
-         SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse := Karten.WeltkarteArray'First (3) + AktuelleSichtweite;
+         SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse := Weltkarte.KarteArray'First (3) + AktuelleSichtweite;
          
       elsif
-        SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse >= Karten.Karteneinstellungen.Kartengröße.XAchse - AktuelleSichtweite
+        SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse >= Weltkarte.Karteneinstellungen.Kartengröße.XAchse - AktuelleSichtweite
         and
-          Karten.Karteneinstellungen.Kartenform.XAchseOsten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
+          Weltkarte.Karteneinstellungen.Kartenform.XAchseOsten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
       then
-         SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse := Karten.Karteneinstellungen.Kartengröße.XAchse - AktuelleSichtweite;
+         SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse := Weltkarte.Karteneinstellungen.Kartengröße.XAchse - AktuelleSichtweite;
          
       else
          null;
@@ -117,8 +117,8 @@ package body CursorbewegungLogik is
    procedure GeheZu
    is begin
       
-      KoordinatenPunkt := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => Integer (Karten.Weltkarte'First (1)),
-                                                            ZahlenMaximumExtern => Integer (Karten.Weltkarte'Last (1)),
+      KoordinatenPunkt := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => Integer (Weltkarte.Karte'First (1)),
+                                                            ZahlenMaximumExtern => Integer (Weltkarte.Karte'Last (1)),
                                                             WelcheFrageExtern   => TextnummernKonstanten.FrageWelcheEbene);
       
       case
@@ -129,8 +129,8 @@ package body CursorbewegungLogik is
          
          when True =>
             NeueKoordinate.EAchse := KartenDatentypen.EbeneVorhanden (KoordinatenPunkt.EingegebeneZahl);
-            KoordinatenPunkt := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => Positive (Karten.Weltkarte'First (2)),
-                                                                  ZahlenMaximumExtern => Positive (Karten.Karteneinstellungen.Kartengröße.YAchse),
+            KoordinatenPunkt := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => Positive (Weltkarte.Karte'First (2)),
+                                                                  ZahlenMaximumExtern => Positive (Weltkarte.Karteneinstellungen.Kartengröße.YAchse),
                                                                   WelcheFrageExtern   => TextnummernKonstanten.FrageWelcheYPosition);
       end case;
       
@@ -142,8 +142,8 @@ package body CursorbewegungLogik is
          
          when True =>
             NeueKoordinate.YAchse := KartenDatentypen.KartenfeldPositiv (KoordinatenPunkt.EingegebeneZahl);
-            KoordinatenPunkt := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => Positive (Karten.Weltkarte'First (3)),
-                                                                  ZahlenMaximumExtern => Positive (Karten.Karteneinstellungen.Kartengröße.XAchse),
+            KoordinatenPunkt := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => Positive (Weltkarte.Karte'First (3)),
+                                                                  ZahlenMaximumExtern => Positive (Weltkarte.Karteneinstellungen.Kartengröße.XAchse),
                                                                   WelcheFrageExtern   => TextnummernKonstanten.FrageWelcheXPosition);
       end case;
 

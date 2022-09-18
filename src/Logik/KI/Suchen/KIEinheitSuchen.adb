@@ -6,11 +6,11 @@ with KartenKonstanten;
 with EinheitenKonstanten;
 with KartenRecordKonstanten;
 
-with LeseKarten;
+with LeseWeltkarte;
 with LeseEinheitenGebaut;
 
-with Kartenkoordinatenberechnungssystem;
-with EinheitSuchen;
+with KartenkoordinatenberechnungssystemLogik;
+with EinheitSuchenLogik;
 
 package body KIEinheitSuchen is
 
@@ -25,7 +25,7 @@ package body KIEinheitSuchen is
          XAchseSchleife:
          for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
             
-            KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+            KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                                                                                  ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                                                  LogikGrafikExtern => True);
             
@@ -35,15 +35,15 @@ package body KIEinheitSuchen is
                null;
                
             elsif
-              False = LeseKarten.Sichtbar (KoordinatenExtern => KartenWert,
+              False = LeseWeltkarte.Sichtbar (KoordinatenExtern => KartenWert,
                                            RasseExtern       => EinheitRasseNummerExtern.Rasse)
             then
                null;
                   
             else
-               FeindlicheEinheit := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => FeindExtern,
-                                                                                    KoordinatenExtern => KartenWert,
-                                                                                    LogikGrafikExtern => True);
+               FeindlicheEinheit := EinheitSuchenLogik.KoordinatenEinheitMitRasseSuchen (RasseExtern       => FeindExtern,
+                                                                                         KoordinatenExtern => KartenWert,
+                                                                                         LogikGrafikExtern => True);
                case
                  FeindlicheEinheit
                is

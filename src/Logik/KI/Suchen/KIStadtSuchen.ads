@@ -8,7 +8,7 @@ with SpielVariablen;
 
 private with StadtDatentypen;
 
-with Karten;
+with Weltkarte;
 
 package KIStadtSuchen is
 
@@ -20,15 +20,15 @@ package KIStadtSuchen is
        Pre => (
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 AnfangKoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                 AnfangKoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
                and
-                 AnfangKoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+                 AnfangKoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
               ),
 
        Post => (
-                  NähesteFeindlicheStadtSuchen'Result.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                  NähesteFeindlicheStadtSuchen'Result.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
                 and
-                  NähesteFeindlicheStadtSuchen'Result.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+                  NähesteFeindlicheStadtSuchen'Result.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
                );
 
    function UnbewachteStadtSuchen
@@ -40,9 +40,9 @@ package KIStadtSuchen is
               ),
 
        Post => (
-                  UnbewachteStadtSuchen'Result.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                  UnbewachteStadtSuchen'Result.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
                 and
-                  UnbewachteStadtSuchen'Result.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+                  UnbewachteStadtSuchen'Result.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
                );
 
 private
@@ -65,9 +65,9 @@ private
        Pre => (
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 AnfangKoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                 AnfangKoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
                and
-                 AnfangKoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+                 AnfangKoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
               ),
 
        Post => (

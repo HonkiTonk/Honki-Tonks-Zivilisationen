@@ -9,7 +9,7 @@ with EinheitenRecordKonstanten;
 with WeltkarteRecords;
 with KartengeneratorRecordKonstanten;
 
-with Karten;
+with Weltkarte;
 with KartengeneratorVariablen;
 with Sichtweiten;
 
@@ -39,8 +39,8 @@ package body StandardSpielwerteSetzenLogik is
       SpielVariablen.Rassenbelegung := (others => WichtigesRecordKonstanten.LeerRassenbelegung);
       SpielVariablen.Allgemeines := WichtigesRecordKonstanten.LeerAllgemeines;
       
-      Karten.Karteneinstellungen := KartenRecordKonstanten.Standardkartenparameter;
-      Karten.Weltkarte := (others => (others => (others => WeltkarteRecords.LeerWeltkarte)));
+      Weltkarte.Karteneinstellungen := KartenRecordKonstanten.Standardkartenparameter;
+      Weltkarte.Karte := (others => (others => (others => WeltkarteRecords.LeerWeltkarte)));
       
       SpielVariablen.Debug := (others => False);
       

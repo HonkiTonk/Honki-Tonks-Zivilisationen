@@ -9,7 +9,7 @@ with EinheitenDatentypen;
 with SpielVariablen;
 with StadtRecords;
 
-with Karten;
+with Weltkarte;
 
 package EinheitenErzeugenEntfernenLogik is
 
@@ -22,9 +22,9 @@ package EinheitenErzeugenEntfernenLogik is
        Pre => (
                  SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
                and
-                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
               );
 
    procedure EinheitEntfernen

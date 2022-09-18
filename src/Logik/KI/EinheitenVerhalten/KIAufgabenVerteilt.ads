@@ -9,7 +9,7 @@ with KartenRecords;
 
 with KIDatentypen; use KIDatentypen;
 
-with Karten;
+with Weltkarte;
 
 package KIAufgabenVerteilt is
 
@@ -31,9 +31,9 @@ package KIAufgabenVerteilt is
       return Boolean
      with
        Pre => (
-                 ZielKoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                 ZielKoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
                and
-                 ZielKoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+                 ZielKoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
                and
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.KI_Spieler_Enum
               );
@@ -44,9 +44,9 @@ package KIAufgabenVerteilt is
       return Boolean
      with
        Pre => (
-                 ZielKoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                 ZielKoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
                and
-                 ZielKoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+                 ZielKoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
                and
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.KI_Spieler_Enum
               );

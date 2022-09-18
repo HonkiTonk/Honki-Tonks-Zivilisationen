@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenverbesserungDatentypen; use KartenverbesserungDatentypen;
 
-with LeseKarten;
+with LeseWeltkarte;
 with LeseEinheitenGebaut;
 
 with AufgabenLogik;
@@ -18,11 +18,11 @@ package body KIEinheitUmsetzenVerbesserungen is
       
       EinheitKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       WelcheVerbesserung := LeseEinheitenGebaut.KIVerbesserung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      VorhandeneVerbesserung := LeseKarten.Verbesserung (KoordinatenExtern => EinheitKoordinaten);
+      VorhandeneVerbesserung := LeseWeltkarte.Verbesserung (KoordinatenExtern => EinheitKoordinaten);
       
       -- Verhindert das Verbinden von Städten mit Straßen und weiteres. Später eine bessere Lösung bauen. äöü
       if
-        LeseKarten.RasseBelegtGrund (KoordinatenExtern => EinheitKoordinaten) /= EinheitRasseNummerExtern.Rasse
+        LeseWeltkarte.RasseBelegtGrund (KoordinatenExtern => EinheitKoordinaten) /= EinheitRasseNummerExtern.Rasse
       then
          return False;
          

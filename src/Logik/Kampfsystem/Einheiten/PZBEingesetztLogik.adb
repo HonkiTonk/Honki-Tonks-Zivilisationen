@@ -8,6 +8,7 @@ with LeseEinheitenGebaut;
 
 with EinheitenErzeugenEntfernenLogik;
 
+-- Hier noch das Zeitlimit für große Karten einbauen. äöü
 package body PZBEingesetztLogik is
 
    function PZBEingesetzt

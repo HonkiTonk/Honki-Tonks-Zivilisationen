@@ -16,8 +16,8 @@ with LeseStadtGebaut;
 with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;
 
-with EinheitSuchen;
-with Kartenkoordinatenberechnungssystem;
+with EinheitSuchenLogik;
+with KartenkoordinatenberechnungssystemLogik;
 with DiplomatischerZustandLogik;
 with EinheitenmodifizierungLogik;
 
@@ -171,7 +171,7 @@ package body KIStadt is
          XAchseSchleife:
          for XAchseSchleifenwert in -LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) .. LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) loop
             
-            KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
+            KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                                                                                  ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                                                  LogikGrafikExtern => True);
             
@@ -182,9 +182,9 @@ package body KIStadt is
                   null;
                   
                when others =>
-                  FremdeEinheit := EinheitSuchen.KoordinatenEinheitOhneSpezielleRasseSuchen (RasseExtern       => StadtRasseNummerExtern.Rasse,
-                                                                                             KoordinatenExtern => KartenWert,
-                                                                                             LogikGrafikExtern => True);
+                  FremdeEinheit := EinheitSuchenLogik.KoordinatenEinheitOhneSpezielleRasseSuchen (RasseExtern       => StadtRasseNummerExtern.Rasse,
+                                                                                                  KoordinatenExtern => KartenWert,
+                                                                                                  LogikGrafikExtern => True);
                   
                   if
                     FremdeEinheit.Nummer = EinheitenKonstanten.LeerNummer

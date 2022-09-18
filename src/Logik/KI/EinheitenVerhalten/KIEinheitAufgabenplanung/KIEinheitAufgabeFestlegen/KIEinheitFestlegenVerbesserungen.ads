@@ -11,7 +11,7 @@ private with StadtRecords;
 private with EinheitenDatentypen;
 private with KartengrundDatentypen;
 
-private with Karten;
+private with Weltkarte;
 
 package KIEinheitFestlegenVerbesserungen is
 
@@ -56,9 +56,9 @@ private
               ),
 
        Post => (
-                  StädteDurchgehen'Result.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                  StädteDurchgehen'Result.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
                 and
-                  StädteDurchgehen'Result.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+                  StädteDurchgehen'Result.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
                );
 
    function StadtumgebungErmitteln
@@ -73,9 +73,9 @@ private
               ),
 
        Post => (
-                  StadtumgebungErmitteln'Result.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                  StadtumgebungErmitteln'Result.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
                 and
-                  StadtumgebungErmitteln'Result.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+                  StadtumgebungErmitteln'Result.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
                );
 
    function AllgemeineVerbesserungenPrüfungen
@@ -84,9 +84,9 @@ private
       return Boolean
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
                and
-                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
                and
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
                and
@@ -99,9 +99,9 @@ private
       return Boolean
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
                and
-                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
                and
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
                and
@@ -117,9 +117,9 @@ private
       return Boolean
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
                and
-                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
                and
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
                and

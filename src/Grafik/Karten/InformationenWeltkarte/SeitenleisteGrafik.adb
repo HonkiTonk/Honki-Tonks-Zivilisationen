@@ -7,10 +7,10 @@ with GrafikRecordKonstanten;
 with Views;
 with SpielVariablen;
 
-with LeseKarten;
+with LeseWeltkarte;
 
-with StadtSuchen;
-with EinheitSuchen;
+with StadtSuchenLogik;
+with EinheitSuchenLogik;
 with StadtseitenleisteGrafik;
 with EinheitenseitenleisteGrafik;
 with WichtigesSeitenleisteGrafik;
@@ -38,13 +38,13 @@ package body SeitenleisteGrafik is
       end case;
       
       case
-        LeseKarten.Sichtbar (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell,
+        LeseWeltkarte.Sichtbar (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell,
                              RasseExtern       => RasseExtern)
       is
          when True =>
             AllgemeinesSeitenleisteGrafik.AllgemeineInformationen (RasseExtern => RasseExtern);
                                     
-            StadtRasseNummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => AktuelleKoordinaten);
+            StadtRasseNummer := StadtSuchenLogik.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => AktuelleKoordinaten);
       
             case
               StadtRasseNummer.Nummer
@@ -62,8 +62,8 @@ package body SeitenleisteGrafik is
                   StadtVorhanden := True;
             end case;
             
-            EinheitRasseNummer := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => AktuelleKoordinaten,
-                                                                                   LogikGrafikExtern => False);
+            EinheitRasseNummer := EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => AktuelleKoordinaten,
+                                                                                        LogikGrafikExtern => False);
       
             case
               EinheitRasseNummer.Nummer

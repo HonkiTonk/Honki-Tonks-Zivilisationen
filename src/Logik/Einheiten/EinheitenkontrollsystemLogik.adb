@@ -7,10 +7,10 @@ with LeseEinheitenGebaut;
 
 with TasteneingabeLogik;
 with EinheitenmodifizierungLogik;
-with StadtBauen;
+with StadtBauenLogik;
 with AufgabenLogik;
 with EinheitenbewegungLogik;
-with Kartenkoordinatenberechnungssystem;
+with KartenkoordinatenberechnungssystemLogik;
 with MausauswahlLogik;
 with PZBEingesetztLogik;
 
@@ -68,7 +68,7 @@ package body EinheitenkontrollsystemLogik is
                
          when TastenbelegungDatentypen.Bauen_Enum =>
             -- Das Umgekehrte zurückgeben da bei erfolgreichem Städtebau keine Bewegung mehr möglich ist und umgekehrt.
-            return not StadtBauen.StadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            return not StadtBauenLogik.StadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
             -- Da das der Standardrückgabewert ist muss hier True zurückgegeben werden, da sonst die Schleife direkt nach der Auswahl wieder verlassen wird!
          when TastenbelegungDatentypen.Leer_Tastenbelegung_Enum =>
@@ -132,7 +132,7 @@ package body EinheitenkontrollsystemLogik is
             XÄnderungSchleife:
             for XÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
                                           
-               KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => EinheitenKoordinaten,
+               KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => EinheitenKoordinaten,
                                                                                                     ÄnderungExtern    => (EÄnderungSchleifenwert, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
                                                                                                     LogikGrafikExtern => True);
                

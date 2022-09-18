@@ -11,7 +11,7 @@ with LeseEinheitenGebaut;
 with SchreibeEinheitenGebaut;
 
 with PassierbarkeitspruefungLogik;
-with Kartenkoordinatenberechnungssystem;
+with KartenkoordinatenberechnungssystemLogik;
 
 with KIDatentypen; use KIDatentypen;
 with KIKonstanten;
@@ -101,7 +101,7 @@ package body KIEinheitFestlegenModernisieren is
          XAchseSchleife:
          for XAchseSchleifenwert in -Umgebung .. Umgebung loop
             
-            KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtKoordinaten,
+            KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtKoordinaten,
                                                                                                  ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                                                  LogikGrafikExtern => True);
             

@@ -4,12 +4,12 @@ pragma Warnings (Off, "*array aggregate*");
 with MenueDatentypen;
 with ZahlenDatentypen;
 
-with SchreibeKarten;
+with SchreibeWeltkarte;
 with SchreibeWichtiges;
 
 with AuswahlaufteilungLogik;
 with Fehler;
-with Karten;
+with Weltkarte;
 
 package body DebugmenueLogik is
 
@@ -60,13 +60,13 @@ package body DebugmenueLogik is
    is begin
       
       EbeneSchleife:
-      for EAchseSchleifenwert in Karten.WeltkarteArray'Range (1) loop
+      for EAchseSchleifenwert in Weltkarte.KarteArray'Range (1) loop
          YAchseSchleife:
-         for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Karteneinstellungen.Kartengröße.YAchse loop
+         for YAchseSchleifenwert in Weltkarte.KarteArray'First (2) .. Weltkarte.Karteneinstellungen.Kartengröße.YAchse loop
             XAchseSchleife:
-            for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Karteneinstellungen.Kartengröße.XAchse loop
+            for XAchseSchleifenwert in Weltkarte.KarteArray'First (3) .. Weltkarte.Karteneinstellungen.Kartengröße.XAchse loop
             
-               SchreibeKarten.Sichtbar (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+               SchreibeWeltkarte.Sichtbar (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
                                         RasseExtern       => RasseExtern,
                                         SichtbarExtern    => True);
                

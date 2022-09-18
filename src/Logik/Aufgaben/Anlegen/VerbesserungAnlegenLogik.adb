@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SchreibeKarten;
+with SchreibeWeltkarte;
 
 package body VerbesserungAnlegenLogik is
 
@@ -23,7 +23,7 @@ package body VerbesserungAnlegenLogik is
             WelcheVerbesserung := KartenverbesserungDatentypen.Festung_Enum;
       end case;
       
-      SchreibeKarten.Verbesserung (KoordinatenExtern  => KoordinatenExtern,
+      SchreibeWeltkarte.Verbesserung (KoordinatenExtern  => KoordinatenExtern,
                                    VerbesserungExtern => WelcheVerbesserung);
       
    end VerbesserungAnlegen;

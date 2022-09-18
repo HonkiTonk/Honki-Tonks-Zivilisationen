@@ -7,12 +7,12 @@ with EinheitenDatentypen; use EinheitenDatentypen;
 with EinheitenKonstanten;
 with KartenKonstanten;
 
-with LeseKarten;
+with LeseWeltkarte;
 
-with EinheitSuchen;
+with EinheitSuchenLogik;
 with PassierbarkeitspruefungLogik;
 
-with Kartenkoordinatenberechnungssystem;
+with KartenkoordinatenberechnungssystemLogik;
 
 package body KIEinheitAllgemeinePruefungen is
    
@@ -25,8 +25,8 @@ package body KIEinheitAllgemeinePruefungen is
       return Boolean
    is begin
       
-      EinheitAufFeld := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern,
-                                                                         LogikGrafikExtern => True);
+      EinheitAufFeld := EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern,
+                                                                              LogikGrafikExtern => True);
       
       if
         EinheitAufFeld.Nummer /= EinheitenKonstanten.LeerNummer
@@ -48,7 +48,7 @@ package body KIEinheitAllgemeinePruefungen is
          return False;
                   
       elsif
-        False = LeseKarten.Sichtbar (KoordinatenExtern => KoordinatenExtern,
+        False = LeseWeltkarte.Sichtbar (KoordinatenExtern => KoordinatenExtern,
                                      RasseExtern       => EinheitRasseNummerExtern.Rasse)
       then
          return False;
@@ -88,7 +88,7 @@ package body KIEinheitAllgemeinePruefungen is
                   null;
                   
                else
-                  Wasserumgebung := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+                  Wasserumgebung := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
                                                                                                            ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                                                            LogikGrafikExtern => True);
             
@@ -168,7 +168,7 @@ package body KIEinheitAllgemeinePruefungen is
       return KartenDatentypen.SichtweiteNatural
    is begin
       
-      WelcherGrund := LeseKarten.BasisGrund (KoordinatenExtern => KoordinatenExtern);
+      WelcherGrund := LeseWeltkarte.BasisGrund (KoordinatenExtern => KoordinatenExtern);
                   
       if
         RasseExtern in RassenDatentypen.Rassen_Überirdisch_Enum'Range

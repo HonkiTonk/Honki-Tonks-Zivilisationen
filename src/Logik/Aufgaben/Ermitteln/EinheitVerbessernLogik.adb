@@ -6,7 +6,7 @@ with EinheitenDatentypen; use EinheitenDatentypen;
 with EinheitenKonstanten;
 
 with LeseEinheitenGebaut;
-with LeseKarten;
+with LeseWeltkarte;
 with SchreibeEinheitenGebaut;
 with LeseEinheitenDatenbank;
 
@@ -31,7 +31,7 @@ package body EinheitVerbessernLogik is
          return False;
            
       elsif
-        False = LeseKarten.BelegterGrund (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+        False = LeseWeltkarte.BelegterGrund (RasseExtern       => EinheitRasseNummerExtern.Rasse,
                                           KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       then
          return False;

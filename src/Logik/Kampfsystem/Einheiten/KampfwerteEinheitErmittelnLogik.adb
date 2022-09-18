@@ -9,8 +9,8 @@ with ProduktionDatentypen;
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
 
-with StadtSuchen;
-with GesamtwerteFeld;
+with StadtSuchenLogik;
+with KartenfelderwerteLogik;
 
 package body KampfwerteEinheitErmittelnLogik is
 
@@ -52,8 +52,10 @@ package body KampfwerteEinheitErmittelnLogik is
       return KampfDatentypen.Kampfwerte
    is begin
       
-      VerteidigungWertFloat := Float (GesamtwerteFeld.FeldVerteidigung (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                        RasseExtern       => EinheitRasseNummerExtern.Rasse));
+      Einheitenkoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      
+      VerteidigungWertFloat := Float (KartenfelderwerteLogik.FeldVerteidigung (KoordinatenExtern => Einheitenkoordinaten,
+                                                                               RasseExtern       => EinheitRasseNummerExtern.Rasse));
       
       case
         LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
@@ -66,8 +68,8 @@ package body KampfwerteEinheitErmittelnLogik is
       end case;
             
       case
-        StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                    KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
+        StadtSuchenLogik.KoordinatenStadtMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                                         KoordinatenExtern => Einheitenkoordinaten)
       is
          when StadtKonstanten.LeerNummer =>
             null;
@@ -136,8 +138,8 @@ package body KampfwerteEinheitErmittelnLogik is
       return KampfDatentypen.Kampfwerte
    is begin
       
-      AngriffWertFloat := Float (GesamtwerteFeld.FeldAngriff (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                              RasseExtern       => EinheitRasseNummerExtern.Rasse));
+      AngriffWertFloat := Float (KartenfelderwerteLogik.FeldAngriff (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                                     RasseExtern       => EinheitRasseNummerExtern.Rasse));
             
       -- Diesen Bonus anders gestalten, vielleicht auf Basis der Bewegungspunkte?
       AngriffWertFloat := AngriffWertFloat * AngriffBonus;

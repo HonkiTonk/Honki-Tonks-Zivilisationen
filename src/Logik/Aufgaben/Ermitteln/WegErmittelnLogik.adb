@@ -9,7 +9,7 @@ with ForschungKonstanten;
 with EinheitenKonstanten;
 
 with SchreibeEinheitenGebaut;
-with LeseKarten;
+with LeseWeltkarte;
 
 with Fehler;
 with Grenzpruefungen;
@@ -25,7 +25,7 @@ package body WegErmittelnLogik is
       return Boolean
    is begin
       
-      VorhandenerGrund := LeseKarten.VorhandenerGrund (KoordinatenExtern => KoordinatenExtern);
+      VorhandenerGrund := LeseWeltkarte.VorhandenerGrund (KoordinatenExtern => KoordinatenExtern);
       
       -- Nur auf Basisgrund prüfen? Müsste hierbei ausreichen. äöü
       if
@@ -36,7 +36,7 @@ package body WegErmittelnLogik is
          return False;
          
       else
-         WegVorhanden := LeseKarten.Weg (KoordinatenExtern => KoordinatenExtern);
+         WegVorhanden := LeseWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern);
       end if;
 
       case

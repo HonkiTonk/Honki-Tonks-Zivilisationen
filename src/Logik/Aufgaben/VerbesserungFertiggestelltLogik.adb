@@ -12,7 +12,7 @@ with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
 
 with MeldungenSetzenLogik;
-with FelderwerteFestlegen;
+with FelderwerteFestlegenLogik;
 with AufgabenAllgemeinLogik;
 with WegeplatzierungssystemLogik;
 with WaldAnlegenLogik;
@@ -144,7 +144,7 @@ package body VerbesserungFertiggestelltLogik is
             RodenAnlegenLogik.RodenAnlegen (KoordinatenExtern => Koordinaten);
       end case;
 
-      FelderwerteFestlegen.EinzelnesKartenfeldBewerten (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      FelderwerteFestlegenLogik.EinzelnesKartenfeldBewerten (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       
    end VerbesserungAngelegt;
 

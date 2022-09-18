@@ -4,9 +4,9 @@ pragma Warnings (Off, "*array aggregate*");
 with KartenKonstanten;
 with KartenRecordKonstanten;
 
-with LeseKarten;
+with LeseWeltkarte;
 
-with Kartenkoordinatenberechnungssystem;
+with KartenkoordinatenberechnungssystemLogik;
 with PassierbarkeitspruefungLogik;
 
 package body KISonstigesSuchen is
@@ -60,7 +60,7 @@ package body KISonstigesSuchen is
          XAchseSchleife:
          for XAchseSchleifenwert in -BereichExtern .. BereichExtern loop
             
-            KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => AktuelleKoordinatenExtern,
+            KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => AktuelleKoordinatenExtern,
                                                                                                  ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                                                  LogikGrafikExtern => True);
             
@@ -70,7 +70,7 @@ package body KISonstigesSuchen is
                null;
                
             elsif
-              True = LeseKarten.BelegterGrund (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+              True = LeseWeltkarte.BelegterGrund (RasseExtern       => EinheitRasseNummerExtern.Rasse,
                                                KoordinatenExtern => KartenWert)
               and
                 True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,

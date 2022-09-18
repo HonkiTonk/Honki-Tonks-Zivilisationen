@@ -3,10 +3,10 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenKonstanten;
 
-with LeseKarten;
-with SchreibeKarten;
+with LeseWeltkarte;
+with SchreibeWeltkarte;
 
-with Kartenkoordinatenberechnungssystem;
+with KartenkoordinatenberechnungssystemLogik;
 
 package body WegeplatzierungssystemLogik is
 
@@ -25,7 +25,7 @@ package body WegeplatzierungssystemLogik is
          XAchseSchleife:
          for XÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
             
-            KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+            KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
                                                                                                  ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
                                                                                                  LogikGrafikExtern => True);
             
@@ -69,7 +69,7 @@ package body WegeplatzierungssystemLogik is
          end loop XAchseSchleife;
       end loop YAchseSchleife;
       
-      SchreibeKarten.Weg (KoordinatenExtern => KoordinatenExtern,
+      SchreibeWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern,
                           WegExtern         => KartenverbesserungDatentypen.Karten_Weg_Enum'Val (Wegwert (WegLinks, WegRechts, WegOben, WegUnten) + Wegtyp (WegartExtern)));
       
    end Wegplatzierung;
@@ -81,7 +81,7 @@ package body WegeplatzierungssystemLogik is
       return Boolean
    is begin
       
-      WelcherWeg := LeseKarten.Weg (KoordinatenExtern => KoordinatenExtern);
+      WelcherWeg := LeseWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern);
       
       case
         WelcherWeg
@@ -91,7 +91,7 @@ package body WegeplatzierungssystemLogik is
             
          when others =>
             ZwischenWeg := KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Val (KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Pos (WelcherWeg) - (Wegtyp (StandardWeg (WelcherWeg))));
-            SchreibeKarten.Weg (KoordinatenExtern => KoordinatenExtern,
+            SchreibeWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern,
                                 WegExtern         => KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Val (WegeLinks (ZwischenWeg) + Wegtyp (StandardWeg (WelcherWeg))));
             return True;
       end case;
@@ -105,7 +105,7 @@ package body WegeplatzierungssystemLogik is
       return Boolean
    is begin
       
-      WelcherWeg := LeseKarten.Weg (KoordinatenExtern => KoordinatenExtern);
+      WelcherWeg := LeseWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern);
       
       case
         WelcherWeg
@@ -115,7 +115,7 @@ package body WegeplatzierungssystemLogik is
             
          when others =>
             ZwischenWeg := KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Val (KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Pos (WelcherWeg) - (Wegtyp (StandardWeg (WelcherWeg))));
-            SchreibeKarten.Weg (KoordinatenExtern => KoordinatenExtern,
+            SchreibeWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern,
                                 WegExtern         => KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Val (WegeRechts (ZwischenWeg) + Wegtyp (StandardWeg (WelcherWeg))));
             return True;
       end case;
@@ -129,7 +129,7 @@ package body WegeplatzierungssystemLogik is
       return Boolean
    is begin
       
-      WelcherWeg := LeseKarten.Weg (KoordinatenExtern => KoordinatenExtern);
+      WelcherWeg := LeseWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern);
       
       case
         WelcherWeg
@@ -139,7 +139,7 @@ package body WegeplatzierungssystemLogik is
             
          when others =>
             ZwischenWeg := KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Val (KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Pos (WelcherWeg) - (Wegtyp (StandardWeg (WelcherWeg))));
-            SchreibeKarten.Weg (KoordinatenExtern => KoordinatenExtern,
+            SchreibeWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern,
                                 WegExtern         => KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Val (WegeOben (ZwischenWeg) + Wegtyp (StandardWeg (WelcherWeg))));
             return True;
       end case;
@@ -153,7 +153,7 @@ package body WegeplatzierungssystemLogik is
       return Boolean
    is begin
       
-      WelcherWeg := LeseKarten.Weg (KoordinatenExtern => KoordinatenExtern);
+      WelcherWeg := LeseWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern);
       
       case
         WelcherWeg
@@ -163,7 +163,7 @@ package body WegeplatzierungssystemLogik is
             
          when others =>
             ZwischenWeg := KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Val (KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Pos (WelcherWeg) - (Wegtyp (StandardWeg (WelcherWeg))));
-            SchreibeKarten.Weg (KoordinatenExtern => KoordinatenExtern,
+            SchreibeWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern,
                                 WegExtern         => KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Val (WegeUnten (ZwischenWeg) + Wegtyp (StandardWeg (WelcherWeg))));
             return True;
       end case;

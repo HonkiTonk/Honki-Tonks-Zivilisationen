@@ -5,7 +5,7 @@ with ProduktionDatentypen; use ProduktionDatentypen;
 with EinheitenKonstanten;
 
 with SchreibeEinheitenGebaut;
-with LeseKarten;
+with LeseWeltkarte;
   
 with Fehler;
 with ArbeitszeitRodenLogik;
@@ -20,7 +20,7 @@ package body RodenErmittelnLogik is
       return Boolean
    is begin
       
-      VorhandenerGrund := LeseKarten.VorhandenerGrund (KoordinatenExtern => KoordinatenExtern);
+      VorhandenerGrund := LeseWeltkarte.VorhandenerGrund (KoordinatenExtern => KoordinatenExtern);
       
       -- Nur auf Basisgrund prüfen? Müsste hierbei ausreichen. äöü
       if

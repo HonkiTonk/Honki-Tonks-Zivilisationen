@@ -11,7 +11,7 @@ with ZeitKonstanten;
 with Views;
 with EinheitenKonstanten;
 
-with Kartenkoordinatenberechnungssystem;
+with KartenkoordinatenberechnungssystemLogik;
 with Sichtweiten;
 with NachGrafiktask;
 with EinstellungenGrafik;
@@ -71,7 +71,7 @@ package body CursorplatzierungAltGrafik is
             Koordinatenänderung.XAchse := AlteXAchseFestlegen (MausachseExtern => Mausposition.x,
                                                                 XAchseAlt       => SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt.XAchse);
            
-            Kartenwert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt,
+            Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt,
                                                                                                  ÄnderungExtern    => Koordinatenänderung,
                                                                                                  LogikGrafikExtern => False);
             
@@ -161,9 +161,9 @@ package body CursorplatzierungAltGrafik is
         MausachseExtern in 0.001 .. KartenberechnungenGrafik.KartenfelderAbmessung.y / 2.00
       then
          if
-           YAchseAlt <= Karten.WeltkarteArray'First (2) + Sichtweiten.SichtweiteLesen
+           YAchseAlt <= Weltkarte.KarteArray'First (2) + Sichtweiten.SichtweiteLesen
            and
-             Karten.Karteneinstellungen.Kartenform.YAchseNorden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
+             Weltkarte.Karteneinstellungen.Kartenform.YAchseNorden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
          then
             return 0;
             
@@ -175,9 +175,9 @@ package body CursorplatzierungAltGrafik is
         MausachseExtern in Sf.Graphics.View.getSize (view => Views.KartenviewAccess).y - KartenberechnungenGrafik.KartenfelderAbmessung.y / 2.00 .. Sf.Graphics.View.getSize (view => Views.KartenviewAccess).y - 0.001
       then
          if
-           YAchseAlt >= Karten.Karteneinstellungen.Kartengröße.YAchse - Sichtweiten.SichtweiteLesen
+           YAchseAlt >= Weltkarte.Karteneinstellungen.Kartengröße.YAchse - Sichtweiten.SichtweiteLesen
            and
-             Karten.Karteneinstellungen.Kartenform.YAchseSüden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
+             Weltkarte.Karteneinstellungen.Kartenform.YAchseSüden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
          then
             return 0;
          
@@ -205,9 +205,9 @@ package body CursorplatzierungAltGrafik is
         MausachseExtern in 0.001 .. KartenberechnungenGrafik.KartenfelderAbmessung.x / 2.00
       then
          if
-           XAchseAlt <= Karten.WeltkarteArray'First (3) + Sichtweiten.SichtweiteLesen
+           XAchseAlt <= Weltkarte.KarteArray'First (3) + Sichtweiten.SichtweiteLesen
            and
-             Karten.Karteneinstellungen.Kartenform.XAchseWesten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
+             Weltkarte.Karteneinstellungen.Kartenform.XAchseWesten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
          then
             return 0;
             
@@ -219,9 +219,9 @@ package body CursorplatzierungAltGrafik is
         MausachseExtern in Sf.Graphics.View.getSize (view => Views.KartenviewAccess).x - KartenberechnungenGrafik.KartenfelderAbmessung.x / 2.00 .. Sf.Graphics.View.getSize (view => Views.KartenviewAccess).x
       then
          if
-           XAchseAlt >= Karten.Karteneinstellungen.Kartengröße.XAchse - Sichtweiten.SichtweiteLesen
+           XAchseAlt >= Weltkarte.Karteneinstellungen.Kartengröße.XAchse - Sichtweiten.SichtweiteLesen
            and
-             Karten.Karteneinstellungen.Kartenform.XAchseOsten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
+             Weltkarte.Karteneinstellungen.Kartenform.XAchseOsten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
          then
             return 0;
          

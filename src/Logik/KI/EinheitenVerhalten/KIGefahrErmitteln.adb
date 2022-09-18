@@ -9,12 +9,12 @@ with EinheitenKonstanten;
 
 with KIDatentypen;
 
-with LeseKarten;
+with LeseWeltkarte;
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
 
-with Kartenkoordinatenberechnungssystem;
-with EinheitSuchen;
+with KartenkoordinatenberechnungssystemLogik;
+with EinheitSuchenLogik;
 with DiplomatischerZustandLogik;
 
 with KIKriegErmitteln;
@@ -60,7 +60,7 @@ package body KIGefahrErmitteln is
          XAchseSchleife:
          for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
                
-            KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => AktuelleKoordinaten,
+            KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => AktuelleKoordinaten,
                                                                                                  ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                                                  LogikGrafikExtern => True);
                
@@ -70,14 +70,14 @@ package body KIGefahrErmitteln is
                null;
                
             elsif
-              False = LeseKarten.Sichtbar (KoordinatenExtern => KartenWert,
+              False = LeseWeltkarte.Sichtbar (KoordinatenExtern => KartenWert,
                                            RasseExtern       => EinheitRasseNummerExtern.Rasse)
             then
                null;
                   
             else
-               EinheitUnzugeordnet := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert,
-                                                                                       LogikGrafikExtern => True);
+               EinheitUnzugeordnet := EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert,
+                                                                                            LogikGrafikExtern => True);
                   
                case
                  ReaktionErfoderlich (EinheitRasseNummerExtern => EinheitRasseNummerExtern,

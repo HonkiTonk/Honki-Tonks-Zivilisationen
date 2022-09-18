@@ -6,7 +6,7 @@ with KartenDatentypen; use KartenDatentypen;
 with SpielVariablen;
 with KartenRecords;
 
-with Karten;
+with Weltkarte;
 
 package GeheZuGrafik is
 
@@ -27,15 +27,15 @@ private
       return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
                and
-                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
               ),
          
        Post => (
-                  Koordinatenberechnung'Result.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                  Koordinatenberechnung'Result.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
                 and
-                  Koordinatenberechnung'Result.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+                  Koordinatenberechnung'Result.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
                );
 
 end GeheZuGrafik;

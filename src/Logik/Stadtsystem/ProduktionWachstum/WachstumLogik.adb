@@ -16,11 +16,11 @@ with LeseEinheitenDatenbank;
 with LeseStadtGebaut;
 with LeseGebaeudeDatenbank;
 
-with StadtWerteFestlegen;
-with StadtEinheitenBauen;
-with StadtGebaeudeBauen;
-with StadtEntfernen;
-with Sichtbarkeit;
+with StadtwerteFestlegenLogik;
+with StadtEinheitenBauenLogik;
+with StadtGebaeudeBauenLogik;
+with StadtEntfernenLogik;
+with SichtbarkeitLogik;
 with MeldungenSetzenLogik;
 
 package body WachstumLogik is
@@ -88,12 +88,12 @@ package body WachstumLogik is
                                               EinwohnerArbeiterExtern => True)
          is
             when 1 =>
-               StadtEntfernen.StadtEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+               StadtEntfernenLogik.StadtEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern);
                return;
                
             when others =>
-               StadtWerteFestlegen.BewirtschaftbareFelderBelegen (ZuwachsOderSchwundExtern => False,
-                                                                  StadtRasseNummerExtern   => StadtRasseNummerExtern);
+               StadtwerteFestlegenLogik.BewirtschaftbareFelderBelegen (ZuwachsOderSchwundExtern => False,
+                                                                       StadtRasseNummerExtern   => StadtRasseNummerExtern);
                WachstumSchrumpfung := False;
          end case;
                   
@@ -132,8 +132,8 @@ package body WachstumLogik is
       SchreibeStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                              EinwohnerArbeiterExtern => True,
                                              WachsenSchrumpfenExtern => True);
-      StadtWerteFestlegen.BewirtschaftbareFelderBelegen (ZuwachsOderSchwundExtern => True,
-                                                         StadtRasseNummerExtern   => StadtRasseNummerExtern);
+      StadtwerteFestlegenLogik.BewirtschaftbareFelderBelegen (ZuwachsOderSchwundExtern => True,
+                                                              StadtRasseNummerExtern   => StadtRasseNummerExtern);
       
       return True;
       
@@ -154,15 +154,15 @@ package body WachstumLogik is
       is
          when True =>
             MeldungenSetzenLogik.StadtmeldungSetzen (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                             EreignisExtern         => StadtDatentypen.Einwohner_Wachstum_Enum);
+                                                     EreignisExtern         => StadtDatentypen.Einwohner_Wachstum_Enum);
             
             if
               VorhandeneEinwohner = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Anfangswert_Enum, StadtRasseNummerExtern.Rasse)
               or
                 VorhandeneEinwohner = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Endwert_Enum, StadtRasseNummerExtern.Rasse)
             then
-               StadtWerteFestlegen.StadtUmgebungGrößeFestlegen (StadtRasseNummerExtern => StadtRasseNummerExtern);
-               Sichtbarkeit.SichtbarkeitsprüfungFürStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
+               StadtwerteFestlegenLogik.StadtUmgebungGrößeFestlegen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+               SichtbarkeitLogik.SichtbarkeitsprüfungFürStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
          
             else
                null;
@@ -170,14 +170,14 @@ package body WachstumLogik is
             
          when False =>
             MeldungenSetzenLogik.StadtmeldungSetzen (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                             EreignisExtern         => StadtDatentypen.Einwohner_Reduktion_Enum);
+                                                     EreignisExtern         => StadtDatentypen.Einwohner_Reduktion_Enum);
             
             if
               VorhandeneEinwohner = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Anfangswert_Enum, StadtRasseNummerExtern.Rasse) - 1
               or
                 VorhandeneEinwohner = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Endwert_Enum, StadtRasseNummerExtern.Rasse) - 1
             then
-               StadtWerteFestlegen.StadtUmgebungGrößeFestlegen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+               StadtwerteFestlegenLogik.StadtUmgebungGrößeFestlegen (StadtRasseNummerExtern => StadtRasseNummerExtern);
             
             else
                null;
@@ -214,7 +214,7 @@ package body WachstumLogik is
            LeseStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern) >= LeseGebaeudeDatenbank.PreisRessourcen (RasseExtern => StadtRasseNummerExtern.Rasse,
                                                                                                                                    IDExtern    => StadtDatentypen.GebäudeID (Bauprojekt.Gebäude))
          then
-            StadtGebaeudeBauen.GebäudeFertiggestellt (StadtRasseNummerExtern => StadtRasseNummerExtern);
+            StadtGebaeudeBauenLogik.GebäudeFertiggestellt (StadtRasseNummerExtern => StadtRasseNummerExtern);
             
          else
             null;
@@ -225,7 +225,7 @@ package body WachstumLogik is
            LeseStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern) >= LeseEinheitenDatenbank.PreisRessourcen (RasseExtern => StadtRasseNummerExtern.Rasse,
                                                                                                                                     IDExtern    => EinheitenDatentypen.EinheitenID (Bauprojekt.Einheit))
          then
-            StadtEinheitenBauen.EinheitFertiggestellt (StadtRasseNummerExtern => StadtRasseNummerExtern);
+            StadtEinheitenBauenLogik.EinheitFertiggestellt (StadtRasseNummerExtern => StadtRasseNummerExtern);
 
          else
             null;

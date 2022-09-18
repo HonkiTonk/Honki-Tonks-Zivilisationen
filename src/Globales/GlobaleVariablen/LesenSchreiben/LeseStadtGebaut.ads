@@ -16,7 +16,7 @@ with KartenKonstanten;
 
 with KIDatentypen;
 
-with Karten;
+with Weltkarte;
 
 package LeseStadtGebaut is
 
@@ -41,9 +41,9 @@ package LeseStadtGebaut is
               ),
    
        Post => (
-                  Koordinaten'Result.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                  Koordinaten'Result.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
                 and
-                  Koordinaten'Result.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+                  Koordinaten'Result.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
                 and
                   (if Koordinaten'Result.YAchse = KartenKonstanten.LeerYAchse then Koordinaten'Result.XAchse = KartenKonstanten.LeerXAchse and Koordinaten'Result.EAchse = KartenKonstanten.LeerEAchse)
                 and

@@ -11,8 +11,8 @@ with KartenverbesserungDatentypen;
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
 
-with Kartenkoordinatenberechnungssystem;
-with GesamtwerteFeld;
+with KartenkoordinatenberechnungssystemLogik;
+with KartenfelderwerteLogik;
 with WachstumLogik;
 
 package body StadtproduktionLogik is
@@ -134,7 +134,7 @@ package body StadtproduktionLogik is
          XAchseSchleife:
          for XÄnderungSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
             
-            KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
+            KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                                                                                  ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
                                                                                                  LogikGrafikExtern => True);
             
@@ -152,12 +152,12 @@ package body StadtproduktionLogik is
                
             else
                SchreibeStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern   => StadtRasseNummerExtern,
-                                                       NahrungsproduktionExtern => GesamtwerteFeld.FeldNahrung (KoordinatenExtern => KartenWert,
-                                                                                                                RasseExtern       => StadtRasseNummerExtern.Rasse),
+                                                       NahrungsproduktionExtern => KartenfelderwerteLogik.FeldNahrung (KoordinatenExtern => KartenWert,
+                                                                                                                       RasseExtern       => StadtRasseNummerExtern.Rasse),
                                                        ÄndernSetzenExtern       => True);
                SchreibeStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                   ProduktionrateExtern   => GesamtwerteFeld.FeldProduktion (KoordinatenExtern => KartenWert,
-                                                                                                             RasseExtern       => StadtRasseNummerExtern.Rasse),
+                                                   ProduktionrateExtern   => KartenfelderwerteLogik.FeldProduktion (KoordinatenExtern => KartenWert,
+                                                                                                                    RasseExtern       => StadtRasseNummerExtern.Rasse),
                                                    ÄndernSetzenExtern     => True);
                
                case
@@ -168,14 +168,14 @@ package body StadtproduktionLogik is
                      
                   when others =>
                      SchreibeStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                        GeldgewinnungExtern    => GesamtwerteFeld.FeldGeld (KoordinatenExtern => KartenWert,
-                                                                                                            RasseExtern       => StadtRasseNummerExtern.Rasse),
+                                                        GeldgewinnungExtern    => KartenfelderwerteLogik.FeldGeld (KoordinatenExtern => KartenWert,
+                                                                                                                   RasseExtern       => StadtRasseNummerExtern.Rasse),
                                                         ÄndernSetzenExtern     => True);
                end case;
                
                SchreibeStadtGebaut.Forschungsrate (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                   ForschungsrateExtern   => GesamtwerteFeld.FeldWissen (KoordinatenExtern => KartenWert,
-                                                                                                         RasseExtern       => StadtRasseNummerExtern.Rasse),
+                                                   ForschungsrateExtern   => KartenfelderwerteLogik.FeldWissen (KoordinatenExtern => KartenWert,
+                                                                                                                RasseExtern       => StadtRasseNummerExtern.Rasse),
                                                    ÄndernSetzenExtern     => True);
             end if;
                            

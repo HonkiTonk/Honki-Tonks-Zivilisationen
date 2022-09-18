@@ -14,7 +14,7 @@ with GrafikDatentypen;
 with Meldungstexte;
 with TextnummernKonstanten;
 
-with LeseKarten;
+with LeseWeltkarte;
 
 with EinstellungenGrafik;
 with TextberechnungenHoeheGrafik;
@@ -56,7 +56,7 @@ package body AllgemeinesSeitenleisteGrafik is
       RealeYPosition := Textposition.y;
       
       AktuelleKoordinaten := SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell;
-      VorhandenerGrund := LeseKarten.VorhandenerGrund (KoordinatenExtern => AktuelleKoordinaten);
+      VorhandenerGrund := LeseWeltkarte.VorhandenerGrund (KoordinatenExtern => AktuelleKoordinaten);
       
       TextAnzeigen (1) := True;
       
@@ -75,7 +75,7 @@ package body AllgemeinesSeitenleisteGrafik is
       
       -- Eventuell auch mehr Wörter zusammenfassen? äöü
       -- Z.B. Ressourcen und Flüsse, Verbesserungen und Straßen. äöü
-      KartenRessource := LeseKarten.Ressource (KoordinatenExtern => AktuelleKoordinaten);
+      KartenRessource := LeseWeltkarte.Ressource (KoordinatenExtern => AktuelleKoordinaten);
       
       case
         KartenRessource
@@ -92,7 +92,7 @@ package body AllgemeinesSeitenleisteGrafik is
       
       
       
-      KartenVerbesserung := LeseKarten.Verbesserung (KoordinatenExtern => AktuelleKoordinaten);
+      KartenVerbesserung := LeseWeltkarte.Verbesserung (KoordinatenExtern => AktuelleKoordinaten);
       
       case
         KartenVerbesserung
@@ -109,7 +109,7 @@ package body AllgemeinesSeitenleisteGrafik is
       
       
       
-      KartenWeg := LeseKarten.Weg (KoordinatenExtern => AktuelleKoordinaten);
+      KartenWeg := LeseWeltkarte.Weg (KoordinatenExtern => AktuelleKoordinaten);
       
       case
         KartenWeg
@@ -126,7 +126,7 @@ package body AllgemeinesSeitenleisteGrafik is
       
       
       
-      KartenFluss := LeseKarten.Fluss (KoordinatenExtern => AktuelleKoordinaten);
+      KartenFluss := LeseWeltkarte.Fluss (KoordinatenExtern => AktuelleKoordinaten);
       
       case
         KartenFluss

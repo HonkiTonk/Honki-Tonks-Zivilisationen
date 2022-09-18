@@ -42,52 +42,53 @@ package ChangelogSeptember2022 is
    
    
 
-   -- Version 0.0. => 0.0. (24.09.2022):
+   -- Version 0.03. => 0.0. (24.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (23.09.2022):
+   -- Version 0.03. => 0.03. (23.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (22.09.2022):
+   -- Version 0.03. => 0.03. (22.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (21.09.2022):
+   -- Version 0.03. => 0.03. (21.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (20.09.2022):
+   -- Version 0.03. => 0.03. (20.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.9380 => 0.0. (19.09.2022):
+   -- Version 0.03.9395 => 0.03. (19.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.9355 => 0.03.9380 (18.09.2022):
+   -- Version 0.03.9355 => 0.03.9395 (18.09.2022):
    
    -- Weiter an der Spielstandliste gearbeitet.
-   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
+   -- Interne Benennung und Struktur überarbeitet.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

@@ -5,9 +5,9 @@ with GrafikDatentypen; use GrafikDatentypen;
 with ZeitKonstanten;
 with TastenbelegungDatentypen;
 
-with SchreibenVerzeichnisse;
-with EinlesenEinstellungen;
-with Einlesen;
+with SchreibenVerzeichnisseLogik;
+with EinlesenEinstellungenLogik;
+with EinlesenLogik;
 with HauptmenueLogik;
 with NachGrafiktask;
 with NachLogiktask;
@@ -19,10 +19,10 @@ package body StartLogik is
    procedure StartLogik
    is begin
       
-      SchreibenVerzeichnisse.SchreibenVerzeichnisse;
-      EinlesenEinstellungen.EinlesenEinstellungen;
+      SchreibenVerzeichnisseLogik.SchreibenVerzeichnisse;
+      EinlesenEinstellungenLogik.EinlesenEinstellungen;
       
-      Einlesen.EinlesenOhneAnzeige;
+      EinlesenLogik.EinlesenOhneAnzeige;
       
       NachGrafiktask.ErzeugeFenster := True;
       
@@ -33,7 +33,7 @@ package body StartLogik is
          
       end loop FensterVorhandenSchleife;
       
-      Einlesen.EinlesenMitAnzeige;
+      EinlesenLogik.EinlesenMitAnzeige;
       NachGrafiktask.AccesseSetzen := True;
       
       LogiktaskAnAlle.EinlesenAbgeschlossen := True;

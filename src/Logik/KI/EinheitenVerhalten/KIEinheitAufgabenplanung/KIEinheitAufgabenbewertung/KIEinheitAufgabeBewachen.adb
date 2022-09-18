@@ -7,7 +7,7 @@ with KartenverbesserungDatentypen;
 
 with LeseStadtGebaut;
 
-with EinheitSuchen;
+with EinheitSuchenLogik;
 
 with KIAufgabenVerteilt;
 
@@ -30,9 +30,9 @@ package body KIEinheitAufgabeBewachen is
                null;
                
             when others =>
-               EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                                                KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert)),
-                                                                                LogikGrafikExtern => True);
+               EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                                                                     KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert)),
+                                                                                     LogikGrafikExtern => True);
          end case;
          
          if

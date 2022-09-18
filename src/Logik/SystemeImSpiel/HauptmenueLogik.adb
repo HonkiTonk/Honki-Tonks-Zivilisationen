@@ -6,15 +6,15 @@ with GrafikDatentypen;
 with TonDatentypen;
 with MenueDatentypen;
 
-with Optionen;
-with Spieleinstellungen;
+with OptionenLogik;
+with SpieleinstellungenLogik;
 with SpielLogik;
-with Laden;
+with LadenLogik;
 with AuswahlaufteilungLogik;
 with Fehler;
 with NachSoundtask;
 with NachGrafiktask;
-with DatenbankenEditoren;
+with DatenbankeneditorenLogik;
 with NachMusiktask;
 
 package body HauptmenueLogik is
@@ -30,7 +30,7 @@ package body HauptmenueLogik is
          is
             when RueckgabeDatentypen.Start_Weiter_Enum =>
                if
-                 Spieleinstellungen.Spieleinstellungen (SchnellstartExtern => False) = RueckgabeDatentypen.Spiel_Beenden_Enum
+                 SpieleinstellungenLogik.Spieleinstellungen (SchnellstartExtern => False) = RueckgabeDatentypen.Spiel_Beenden_Enum
                then
                   exit HauptmenüSchleife;
 
@@ -40,7 +40,7 @@ package body HauptmenueLogik is
                
             when RueckgabeDatentypen.Schnellstart_Enum =>
                if
-                 Spieleinstellungen.Spieleinstellungen (SchnellstartExtern => True) = RueckgabeDatentypen.Spiel_Beenden_Enum
+                 SpieleinstellungenLogik.Spieleinstellungen (SchnellstartExtern => True) = RueckgabeDatentypen.Spiel_Beenden_Enum
                then
                   exit HauptmenüSchleife;
 
@@ -50,7 +50,7 @@ package body HauptmenueLogik is
                
             when RueckgabeDatentypen.Laden_Enum =>
                if
-                 Laden.Laden = True
+                 LadenLogik.Laden = True
                then
                   case
                     SpielLogik.Spiel
@@ -68,7 +68,7 @@ package body HauptmenueLogik is
                
             when RueckgabeDatentypen.Optionen_Enum =>
                if
-                 Optionen.Optionen = RueckgabeDatentypen.Spiel_Beenden_Enum
+                 OptionenLogik.Optionen = RueckgabeDatentypen.Spiel_Beenden_Enum
                then
                   exit HauptmenüSchleife;
 
@@ -78,7 +78,7 @@ package body HauptmenueLogik is
                
             when RueckgabeDatentypen.Editoren_Enum =>
                if
-                 DatenbankenEditoren.DatenbankenEditoren = RueckgabeDatentypen.Spiel_Beenden_Enum
+                 DatenbankeneditorenLogik.DatenbankenEditoren = RueckgabeDatentypen.Spiel_Beenden_Enum
                then
                   exit HauptmenüSchleife;
 

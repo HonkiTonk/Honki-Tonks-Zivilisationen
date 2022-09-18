@@ -22,11 +22,11 @@ package body ZufallsgeneratorenStartkoordinaten is
          
       Startkoordinate.YAchse := KartenpunktWählen.Random (Gen   => KartenpunktGewählt,
                                                            First => KartenDatentypen.KartenfeldPositiv'First,
-                                                           Last  => Karten.Karteneinstellungen.Kartengröße.YAchse);
+                                                           Last  => Weltkarte.Karteneinstellungen.Kartengröße.YAchse);
       
       Startkoordinate.XAchse := KartenpunktWählen.Random (Gen   => KartenpunktGewählt,
                                                            First => KartenDatentypen.KartenfeldPositiv'First,
-                                                           Last  => Karten.Karteneinstellungen.Kartengröße.XAchse);
+                                                           Last  => Weltkarte.Karteneinstellungen.Kartengröße.XAchse);
          
       return Startkoordinate;
       

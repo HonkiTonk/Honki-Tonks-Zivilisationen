@@ -7,7 +7,7 @@ with EinheitenRecords;
 with SpielVariablen;
 with KartenRecords;
 
-with Karten;
+with Weltkarte;
 
 package VerbesserungPluendernLogik is
 
@@ -18,9 +18,9 @@ package VerbesserungPluendernLogik is
       return Boolean
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
                and
-                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
                and
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
                and

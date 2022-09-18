@@ -11,11 +11,11 @@ with EinheitenRecords;
 
 private with KartenRecords;
 
-private with Karten;
+private with Weltkarte;
 
 package WeltkarteGrafik is
    
-   procedure Weltkarte
+   procedure WeltkarteAnzeigen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre => (
@@ -41,9 +41,9 @@ private
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
                and
-                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
                and
                  PositionExtern.x >= 0.00
                and

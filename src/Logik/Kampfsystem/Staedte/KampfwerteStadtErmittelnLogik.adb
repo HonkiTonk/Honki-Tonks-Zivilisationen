@@ -9,7 +9,7 @@ with LeseStadtGebaut;
 with LeseGebaeudeDatenbank;
 with LeseVerbesserungenDatenbank;
 
-with GesamtwerteFeld;
+with KartenfelderwerteLogik;
 
 package body KampfwerteStadtErmittelnLogik is
 
@@ -21,8 +21,8 @@ package body KampfwerteStadtErmittelnLogik is
       VerteidigungWert := KampfDatentypen.Kampfwerte (LeseVerbesserungenDatenbank.KampfVerbesserung (VerbesserungExtern => LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                                                                                      RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                                                                      WelcherWertExtern  => KartenKonstanten.KampfVerteidigung))
-        + GesamtwerteFeld.FeldVerteidigung (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                            RasseExtern       => StadtRasseNummerExtern.Rasse);
+        + KartenfelderwerteLogik.FeldVerteidigung (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
+                                                   RasseExtern       => StadtRasseNummerExtern.Rasse);
       
       GebäudeSchleife:
       for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
@@ -53,10 +53,10 @@ package body KampfwerteStadtErmittelnLogik is
    is begin
       
       AngriffWert := KampfDatentypen.Kampfwerte (LeseVerbesserungenDatenbank.KampfVerbesserung (VerbesserungExtern => LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                                                       RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                                                                                       WelcherWertExtern  => KartenKonstanten.KampfAngriff))
-        + GesamtwerteFeld.FeldAngriff (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                       RasseExtern       => StadtRasseNummerExtern.Rasse);
+                                                                                                RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                                                                                WelcherWertExtern  => KartenKonstanten.KampfAngriff))
+        + KartenfelderwerteLogik.FeldAngriff (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
+                                              RasseExtern       => StadtRasseNummerExtern.Rasse);
       
       GebäudeSchleife:
       for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop

@@ -8,7 +8,7 @@ with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
 with KartenRecords;
 
-with Karten;
+with Weltkarte;
 
 package ZufallsgeneratorenStartkoordinaten is
      
@@ -23,9 +23,9 @@ package ZufallsgeneratorenStartkoordinaten is
        Post => (
                   Startkoordinaten'Result.EAchse in -1 .. 0
                 and
-                  Startkoordinaten'Result.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                  Startkoordinaten'Result.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
                 and
-                  Startkoordinaten'Result.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+                  Startkoordinaten'Result.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
                );
 
 private

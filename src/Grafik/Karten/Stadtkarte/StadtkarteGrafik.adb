@@ -8,7 +8,7 @@ with StadtDatentypen; use StadtDatentypen;
 with Views;
 with GrafikRecordKonstanten;
 
-with LeseKarten;
+with LeseWeltkarte;
 with LeseStadtGebaut;
 
 with FarbgebungGrafik;
@@ -67,7 +67,7 @@ package body StadtkarteGrafik is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
-      Kartenfeld := LeseKarten.AktuellerGrund (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern));
+      Kartenfeld := LeseWeltkarte.AktuellerGrund (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern));
       
       case
         KartenspritesZeichnenGrafik.SpriteGezeichnetStadtgrund (TexturAccessExtern => EingeleseneTexturenGrafik.KartenfelderAccess (Kartenfeld),

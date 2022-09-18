@@ -13,7 +13,7 @@ with TextnummernKonstanten;
 
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
-with LeseKarten;
+with LeseWeltkarte;
 
 with ForschugnstestsLogik;
 with AufgabenAllgemeinLogik;
@@ -47,7 +47,7 @@ package body AufgabenLogik is
                      EinheitartExtern   => LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                                               IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)),
                      BefehlExtern       => BefehlExtern,
-                     VerbesserungExtern => LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern))
+                     VerbesserungExtern => LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern))
       is
          when True =>
             return AufgabeFestlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -75,7 +75,7 @@ package body AufgabenLogik is
                      EinheitartExtern   => LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                                               IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)),
                      BefehlExtern       => BefehlExtern,
-                     VerbesserungExtern => LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern))
+                     VerbesserungExtern => LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern))
       is
          when True =>
             null;

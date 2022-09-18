@@ -6,7 +6,7 @@ with EinheitenRecordKonstanten;
 with EinheitenKonstanten;
 
 with SchreibeEinheitenGebaut;
-with LeseKarten;
+with LeseWeltkarte;
 
 with RodenErmittelnLogik;
 with Fehler;
@@ -22,7 +22,7 @@ package body MineErmittelnLogik is
       return Boolean
    is begin
       
-      VorhandenerGrund := LeseKarten.VorhandenerGrund (KoordinatenExtern => KoordinatenExtern);
+      VorhandenerGrund := LeseWeltkarte.VorhandenerGrund (KoordinatenExtern => KoordinatenExtern);
       
       -- Nur auf Basisgrund prüfen? Müsste hierbei ausreichen. äöü
       if

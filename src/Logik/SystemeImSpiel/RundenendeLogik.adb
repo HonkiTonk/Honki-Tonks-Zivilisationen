@@ -19,7 +19,7 @@ with MeldungenSetzenLogik;
 with EinheitInUmgebungLogik;
 with EinheitenmodifizierungLogik;
 with LadezeitenLogik;
-with Speichern;
+with SpeichernLogik;
 with VerbesserungFertiggestelltLogik;
 with NachGrafiktask;
 with JaNeinLogik;
@@ -71,7 +71,7 @@ package body RundenendeLogik is
       LadezeitenLogik.RundenendeSchreiben;
       
       -- Autospeichern muss immer nach allen Änderungen kommen, sonst werden nicht alle Änderungen gespeichert.
-      Speichern.AutoSpeichern;
+      SpeichernLogik.AutoSpeichern;
       LadezeitenLogik.RundenendeMaximum;
             
       return True;

@@ -8,7 +8,7 @@ with KartenRecords;
 with SpielVariablen;
 with EinheitenRecords;
 
-with Karten;
+with Weltkarte;
 
 package TransporterSuchenLogik is
 
@@ -18,9 +18,9 @@ package TransporterSuchenLogik is
       return EinheitenDatentypen.MaximaleEinheitenMitNullWert
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Karten.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
                and
-                 KoordinatenExtern.XAchse <= Karten.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
                and
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );

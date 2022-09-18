@@ -4,8 +4,8 @@ pragma Warnings (Off, "*array aggregate*");
 with KartenverbesserungDatentypen; use KartenverbesserungDatentypen;
 with TextnummernKonstanten;
 
-with LeseKarten;
-with SchreibeKarten;
+with LeseWeltkarte;
+with SchreibeWeltkarte;
 with SchreibeWichtiges;
 
 with JaNeinLogik;
@@ -20,9 +20,9 @@ package body VerbesserungPluendernLogik is
    is begin
             
       if
-        LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern) = KartenverbesserungDatentypen.Leer_Verbesserung_Enum
+        LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern) = KartenverbesserungDatentypen.Leer_Verbesserung_Enum
         and
-          LeseKarten.Weg (KoordinatenExtern => KoordinatenExtern) = KartenverbesserungDatentypen.Leer_Weg_Enum
+          LeseWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern) = KartenverbesserungDatentypen.Leer_Weg_Enum
       then
          return False;
          
@@ -53,13 +53,13 @@ package body VerbesserungPluendernLogik is
       end case;
       
       case
-        LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern)
+        LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern)
       is
          when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
             null;
             
          when others =>
-            SchreibeKarten.Verbesserung (KoordinatenExtern  => KoordinatenExtern,
+            SchreibeWeltkarte.Verbesserung (KoordinatenExtern  => KoordinatenExtern,
                                          VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum);
             SchreibeWichtiges.Geldmenge (RasseExtern         => EinheitRasseNummerExtern.Rasse,
                                          GeldZugewinnExtern  => 10,
@@ -67,13 +67,13 @@ package body VerbesserungPluendernLogik is
       end case;
       
       case
-        LeseKarten.Weg (KoordinatenExtern => KoordinatenExtern)
+        LeseWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern)
       is
          when KartenverbesserungDatentypen.Leer_Weg_Enum =>
             null;
             
          when others =>
-            SchreibeKarten.Weg (KoordinatenExtern => KoordinatenExtern,
+            SchreibeWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern,
                                 WegExtern         => KartenverbesserungDatentypen.Leer_Weg_Enum);
             SchreibeWichtiges.Geldmenge (RasseExtern         => EinheitRasseNummerExtern.Rasse,
                                          GeldZugewinnExtern  => 5,

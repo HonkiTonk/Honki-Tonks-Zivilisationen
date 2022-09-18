@@ -15,7 +15,7 @@ with AuswahlaufteilungLogik;
 with Fehler;
 with DiplomatischerZustandAenderbarLogik;
 with EinheitenverschiebungLogik;
-with Handeln;
+with HandelnLogik;
 
 package body DiplomatieLogik is
    
@@ -106,8 +106,8 @@ package body DiplomatieLogik is
               AktionAuswahl
             is
                when RueckgabeDatentypen.Auswahl_Eins_Enum =>
-                  Handeln.SichtbarkeitTauschen (RasseEinsExtern => RasseExtern,
-                                                RasseZweiExtern => KontaktierteRasse);
+                  HandelnLogik.SichtbarkeitTauschen (RasseEinsExtern => RasseExtern,
+                                                     RasseZweiExtern => KontaktierteRasse);
                   
                when RueckgabeDatentypen.Auswahl_Zwei_Enum =>
                   EinheitenverschiebungLogik.VonEigenemLandWerfen (RasseExtern             => RasseExtern,

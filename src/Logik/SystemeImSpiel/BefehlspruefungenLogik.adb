@@ -13,10 +13,10 @@ with LeseEinheitenGebaut;
 
 with StadtmenueLogik;
 with AufgabenLogik;
-with StadtBauen;
-with EinheitSuchen;
-with StadtSuchen;
-with StadtEntfernen;
+with StadtBauenLogik;
+with EinheitSuchenLogik;
+with StadtSuchenLogik;
+with StadtEntfernenLogik;
 with TransporterSuchenLogik;
 with AufgabenAllgemeinLogik;
 with EinheitenkontrollsystemLogik;
@@ -33,11 +33,11 @@ package body BefehlspruefungenLogik is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                       KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell,
-                                                                       LogikGrafikExtern => True);
-      StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                 KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
+      EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
+                                                                            KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell,
+                                                                            LogikGrafikExtern => True);
+      StadtNummer := StadtSuchenLogik.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
+                                                                      KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
       
       if
         EinheitNummer /= EinheitenDatentypen.MaximaleEinheitenMitNullWert'First
@@ -51,7 +51,7 @@ package body BefehlspruefungenLogik is
                                                          EinheitNummerExtern => EinheitNummer)
          is
             when 0 =>
-               LeerRückgabewert := StadtEntfernen.StadtAbreißen (StadtRasseNummerExtern => (RasseExtern, StadtNummer));
+               LeerRückgabewert := StadtEntfernenLogik.StadtAbreißen (StadtRasseNummerExtern => (RasseExtern, StadtNummer));
                
             when 1 =>
                EinheitBefehle (RasseExtern  => RasseExtern,
@@ -64,7 +64,7 @@ package body BefehlspruefungenLogik is
       elsif
         StadtNummer /= StadtDatentypen.MaximaleStädteMitNullWert'First
       then
-         LeerRückgabewert := StadtEntfernen.StadtAbreißen (StadtRasseNummerExtern => (RasseExtern, StadtNummer));
+         LeerRückgabewert := StadtEntfernenLogik.StadtAbreißen (StadtRasseNummerExtern => (RasseExtern, StadtNummer));
          
       elsif
         EinheitNummer /= EinheitenDatentypen.MaximaleEinheitenMitNullWert'First
@@ -84,11 +84,11 @@ package body BefehlspruefungenLogik is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                       KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell,
-                                                                       LogikGrafikExtern => True);
-      StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                 KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
+      EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
+                                                                            KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell,
+                                                                            LogikGrafikExtern => True);
+      StadtNummer := StadtSuchenLogik.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
+                                                                      KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
 
       if
         EinheitNummer /= EinheitenDatentypen.MaximaleEinheitenMitNullWert'First
@@ -240,9 +240,9 @@ package body BefehlspruefungenLogik is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                       KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell,
-                                                                       LogikGrafikExtern => True);
+      EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
+                                                                            KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell,
+                                                                            LogikGrafikExtern => True);
       case
         EinheitNummer
       is
@@ -257,7 +257,7 @@ package body BefehlspruefungenLogik is
         EinheitenSpielmeldungenLogik.BewegungspunkteMeldung (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer))
       is
          when True =>
-            LeerRückgabewert := StadtBauen.StadtBauen (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer));
+            LeerRückgabewert := StadtBauenLogik.StadtBauen (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer));
             
          when False =>
             null;
@@ -272,9 +272,9 @@ package body BefehlspruefungenLogik is
       BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum)
    is begin
                      
-      EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                       KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell,
-                                                                       LogikGrafikExtern => True);
+      EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
+                                                                            KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell,
+                                                                            LogikGrafikExtern => True);
       
       case
         EinheitNummer
@@ -307,8 +307,8 @@ package body BefehlspruefungenLogik is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                 KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
+      StadtNummer := StadtSuchenLogik.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
+                                                                      KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
       
       case
         StadtNummer

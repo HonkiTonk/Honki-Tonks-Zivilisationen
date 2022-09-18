@@ -3,9 +3,9 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenKonstanten;
 
-with LeseKarten;
+with LeseWeltkarte;
 
-with Kartenkoordinatenberechnungssystem;
+with KartenkoordinatenberechnungssystemLogik;
 
 with KIKonstanten;
 
@@ -31,7 +31,7 @@ package body KIKartenfeldbewertungModifizieren is
          XAchseSchleife:
          for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
                               
-            KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+            KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
                                                                                                  ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                                                  LogikGrafikExtern => True);
                      
@@ -41,7 +41,7 @@ package body KIKartenfeldbewertungModifizieren is
                null;
                      
             elsif
-              LeseKarten.BelegterGrundLeer (KoordinatenExtern => KartenWert) = True
+              LeseWeltkarte.BelegterGrundLeer (KoordinatenExtern => KartenWert) = True
             then
                null;
             
