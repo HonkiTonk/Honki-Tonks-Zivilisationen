@@ -3,7 +3,6 @@
 -- Kartengenerator
 -- Siegbedingungen und Übergaben
 -- BewegungCursor aufteilen (siehe auch Sichtweiten und KartenberechnungenGrafik), kann größtenteil raus nach vollständiger Überarbeitung der Stadtanzeige und des Stadtsystem.
--- Knöpfe für meine Knopfauswahl einbauen.
 --
 
 

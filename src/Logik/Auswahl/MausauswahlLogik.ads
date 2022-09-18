@@ -60,6 +60,9 @@ package MausauswahlLogik is
    function Verkaufsmenü
      return StadtDatentypen.GebäudeIDMitNullwert;
    
+   function SpeichernLaden
+     return Natural;
+   
 private
    
    Mausposition : Sf.System.Vector2.sfVector2f;

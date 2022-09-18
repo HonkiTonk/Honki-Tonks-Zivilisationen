@@ -156,6 +156,7 @@ package body Grafik is
             NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
             NachLogiktask.Warten := False;
             
+            -- Wenn ich diese schreckliche Introlösung ersetze, dann die Sprachauswahl auch in die Menüs verschieben? äöü
          when GrafikDatentypen.Grafik_Sprache_Enum =>
             SprachauswahlGrafik.Sprachauswahl;
             Startzeit := Ada.Calendar.Clock;

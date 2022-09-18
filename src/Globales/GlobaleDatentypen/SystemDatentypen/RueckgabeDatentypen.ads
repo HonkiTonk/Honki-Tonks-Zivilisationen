@@ -33,6 +33,8 @@ package RueckgabeDatentypen is
    
    subtype Rassen_Verwendet_Enum is Auswahl_Enum range Auswahl_Eins_Enum .. Auswahl_Achtzehn_Enum;
    
+   subtype Speichern_Laden_Enum is Rückgabe_Werte_Enum range Auswahl_Null_Enum .. Auswahl_Elf_Enum;
+   
    subtype Zurück_Beenden_Enum is Rückgabe_Werte_Enum range Zurück_Enum .. Spiel_Beenden_Enum;
    subtype Hauptmenü_Beenden_Enum is Zurück_Beenden_Enum range Hauptmenü_Enum .. Spiel_Beenden_Enum;
 

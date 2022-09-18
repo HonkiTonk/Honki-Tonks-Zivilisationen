@@ -13,6 +13,7 @@ with TextnummernKonstanten;
 with GrafikDatentypen;
 with VerzeichnisKonstanten;
 with WeltkarteRecords;
+with RueckgabeDatentypen;
 
 with Karten;
 with LadezeitenLogik;
@@ -28,19 +29,15 @@ package body Laden is
    is begin
       
       case
-        SpielstandlisteLogik.Spielstandliste
+        SpielstandlisteLogik.Spielstandliste.Auswahl
       is
-         when False =>
-            -- Bei einer leeren Liste kann man später direkt False zurückgeben. äöü
-            -- return False;
-            null;
+         when RueckgabeDatentypen.Auswahl_Null_Enum =>
+            return False;
             
-         when True =>
-            null;
+         when others =>
+            NameSpielstand := SpeichernLadenAllgemein.SpielstandNameErmitteln;
       end case;
-      
-      NameSpielstand := SpeichernLadenAllgemein.SpielstandNameErmitteln;
-      
+            
       case
         NameSpielstand.ErfolgreichAbbruch
       is

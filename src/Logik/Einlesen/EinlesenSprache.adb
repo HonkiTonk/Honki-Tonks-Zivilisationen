@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Ada.Characters.Conversions;
+with Ada.Characters.Conversions; use Ada.Characters.Conversions;
 
 with GlobaleTexte;
 with TextKonstanten;
@@ -17,10 +17,12 @@ package body EinlesenSprache is
       
       Start_Search (Search    => Suche,
                     Directory => VerzeichnisKonstanten.Sprachen,
-                    Pattern   => "");
+                    Pattern   => "",
+                    Filter    => (Directory => True,
+                                  others    => False));
 
       VerzeichnisAußenSchleife:
-      while More_Entries (Search => Suche) loop
+      while More_Entries (Search => Suche) = True loop
 
          Get_Next_Entry (Search          => Suche,
                          Directory_Entry => Verzeichnis);
@@ -29,8 +31,6 @@ package body EinlesenSprache is
            Simple_Name (Directory_Entry => Verzeichnis) = "."
            or
              Simple_Name (Directory_Entry => Verzeichnis) = ".."
-           or
-             Simple_Name (Directory_Entry => Verzeichnis) = VerzeichnisKonstanten.Schriftart
          then
             null;
                   
@@ -43,7 +43,7 @@ package body EinlesenSprache is
                   null;
             
                else
-                  GlobaleTexte.SprachenEinlesen (SpracheSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Ada.Characters.Conversions.To_Wide_Wide_String (Item => Simple_Name (Directory_Entry => Verzeichnis)));
+                  GlobaleTexte.SprachenEinlesen (SpracheSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => To_Wide_Wide_String (Item => Simple_Name (Directory_Entry => Verzeichnis)));
                   exit VerzeichnisInnenSchleife;
                end if;
          

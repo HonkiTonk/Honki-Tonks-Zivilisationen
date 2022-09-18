@@ -16,6 +16,7 @@ with GrafikDatentypen;
 with TextnummernKonstanten;
 with WeltkarteRecords;
 with VerzeichnisKonstanten;
+with RueckgabeDatentypen;
 
 with Karten;
 with LadezeitenLogik;
@@ -32,16 +33,14 @@ package body Speichern is
    is begin
       
       case
-        SpielstandlisteLogik.Spielstandliste
+        SpielstandlisteLogik.Spielstandliste.Auswahl
       is
-         when False =>
-            null;
+         when RueckgabeDatentypen.Auswahl_Null_Enum =>
+            return;
             
-         when True =>
-            null;
+         when others =>
+            NameSpielstand := SpielstandNameFestlegen (AutospeichernExtern => AutospeichernExtern);
       end case;
-
-      NameSpielstand := SpielstandNameFestlegen (AutospeichernExtern => AutospeichernExtern);
       
       case
         NameSpielstand.ErfolgreichAbbruch

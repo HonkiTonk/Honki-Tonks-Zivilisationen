@@ -13,7 +13,7 @@ with RassenDatentypen;
 with BefehleDatentypen;
 with GrafikRecordKonstanten;
 
--- Das hier später auch mal theamtisch aufteilen? äöü
+-- Das hier später auch mal thematisch aufteilen? äöü
 -- Auch mal besser benennen? äöü
 package InteraktionAuswahl is
 
@@ -25,6 +25,8 @@ package InteraktionAuswahl is
 
 
    PositionenSteuerung : PositionenArray (SystemKonstanten.EndeAbzugGrafik (MenueDatentypen.Steuerung_Menü_Enum) + 1 .. SystemKonstanten.LängstesMenü) := (others => GrafikRecordKonstanten.Leerbereich);
+
+   PositionenSpielstand : PositionenArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Spielstand_Menü_Enum)) := (others => GrafikRecordKonstanten.Leerbereich);
 
    type PositionenSteuerungbelegungArray is array (TastenbelegungDatentypen.Tastenbelegung_Auswählbar_Enum'Range) of Sf.Graphics.Rect.sfFloatRect;
    PositionenSteuerungbelegung : PositionenSteuerungbelegungArray := (others => GrafikRecordKonstanten.Leerbereich);

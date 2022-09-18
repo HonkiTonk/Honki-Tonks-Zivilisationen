@@ -78,6 +78,16 @@ package body TextaccesseSchriftfarbeGrafik is
          
       end loop SteuerungSchleife;
       
+      
+      
+      SpielstandSchleife:
+      for SpielstandSchleifenwert in TextaccessVariablen.SpielstandAccess'Range loop
+         
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SpielstandAccess (SpielstandSchleifenwert),
+                                    color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
+         
+      end loop SpielstandSchleife;
+      
    end Menüs;
    
    

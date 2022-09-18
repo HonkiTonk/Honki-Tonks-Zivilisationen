@@ -79,6 +79,16 @@ package body TextaccesseSchriftartGrafik is
          
       end loop SteuerungSchleife;
       
+      
+      
+      SpielstandSchleife:
+      for SpielstandSchleifenwert in TextaccessVariablen.SpielstandAccess'Range loop
+         
+         Sf.Graphics.Text.setFont (text => TextaccessVariablen.SpielstandAccess (SpielstandSchleifenwert),
+                                   font => TexteinstellungenGrafik.SchriftartAccess);
+         
+      end loop SpielstandSchleife;
+      
    end Menüs;
       
       

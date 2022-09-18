@@ -18,7 +18,7 @@ package body TexteinstellungenGrafik is
    procedure SchriftartFestlegen
    is begin
       
-      TexteinstellungenGrafik.SchriftartAccess := Sf.Graphics.Font.createFromFile (filename => "Sprachen/Schriftart/FreeSans.otf");
+      TexteinstellungenGrafik.SchriftartAccess := Sf.Graphics.Font.createFromFile (filename => "Sprachen/FreeSans.otf");
       
    end SchriftartFestlegen;
 

@@ -454,5 +454,22 @@ package body MausauswahlLogik is
       return StadtKonstanten.LeerGebäudeID;
       
    end Verkaufsmenü;
-     
+   
+   
+   
+   function SpeichernLaden
+     return Natural
+   is begin
+      
+      AuswahlSchleife:
+      loop
+         
+         exit AuswahlSchleife;
+         
+      end loop AuswahlSchleife;
+      
+      return 0;
+      
+   end SpeichernLaden;
+   
 end MausauswahlLogik;

@@ -64,6 +64,16 @@ package body TextaccesseTextGrafik is
          
       end loop SteuerungSchleife;
       
+      
+      
+      SpielstandSchleife:
+      for SpielstandSchleifenwert in TextaccessVariablen.SpielstandAccess'Range loop
+         
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.SpielstandAccess (SpielstandSchleifenwert),
+                                            str  => To_Wide_Wide_String (Source => Menuetexte.Spielstandmenü (SpielstandSchleifenwert)));
+         
+      end loop SpielstandSchleife;
+      
    end Menüs;
       
       

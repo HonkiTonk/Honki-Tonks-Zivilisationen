@@ -78,6 +78,16 @@ package body TextaccesseSchriftgroesseGrafik is
          
       end loop SteuerungSchleife;
       
+      
+      
+      SpielstandSchleife:
+      for SpielstandSchleifenwert in TextaccessVariablen.SpielstandAccess'Range loop
+         
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.SpielstandAccess (SpielstandSchleifenwert),
+                                            size => TexteinstellungenGrafik.Schriftgrößen.SchriftgrößeStandard);
+         
+      end loop SpielstandSchleife;
+      
    end Menüs;
       
       

@@ -15,7 +15,7 @@ private
    
    Verzeichnisse : Unbounded_Wide_Wide_String;
       
-   type TextdateienEinlesenArray is array (1 .. 37) of Unbounded_Wide_Wide_String;
+   type TextdateienEinlesenArray is array (1 .. 38) of Unbounded_Wide_Wide_String;
    TextdateienEinlesen : TextdateienEinlesenArray;
    
    procedure Hauptmenü;
@@ -55,6 +55,7 @@ private
    procedure Einstellungen;
    procedure Kartenpole;
    procedure Stadtbefehle;
+   procedure Spielstandmenü;
    
    procedure EinlesenAufteilen
      (WelcheDateiExtern : in Positive;

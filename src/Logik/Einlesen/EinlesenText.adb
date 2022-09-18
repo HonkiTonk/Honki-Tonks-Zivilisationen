@@ -189,6 +189,9 @@ package body EinlesenText is
          when 37 =>
             Stadtbefehle;
             
+         when 38 =>
+            Spielstandmenü;
+            
          when others =>
             Fehler.LogikFehler (FehlermeldungExtern => "EinlesenText.EinlesenAufteilen - Mehr Dateien eingelesen als möglich.");
       end case;
@@ -1047,5 +1050,28 @@ package body EinlesenText is
       end loop StadtbefehleSchleife;
       
    end Stadtbefehle;
+   
+   
+   
+   procedure Spielstandmenü
+   is begin
+      
+      SpielstandmenüSchleife:
+      for ZeileSchleifenwert in Menuetexte.Spielstandmenü'Range loop
+         
+         case
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiText,
+                                                    AktuelleZeileExtern => ZeileSchleifenwert)
+         is
+            when True =>
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Spielstandmenü -" & ZeileSchleifenwert'Wide_Wide_Image);
+               
+            when False =>
+               Menuetexte.Spielstandmenü (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
+         end case;
+         
+      end loop SpielstandmenüSchleife;
+      
+   end Spielstandmenü;
 
 end EinlesenText;

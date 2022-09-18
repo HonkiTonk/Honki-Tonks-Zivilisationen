@@ -77,17 +77,17 @@ package ChangelogSeptember2022 is
    
    
 
-   -- Version 0.03. => 0.0. (19.09.2022):
+   -- Version 0.03.9380 => 0.0. (19.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.9355 => 0.03. (18.09.2022):
+   -- Version 0.03.9355 => 0.03.9380 (18.09.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter an der Spielstandliste gearbeitet.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

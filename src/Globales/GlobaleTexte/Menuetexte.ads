@@ -39,4 +39,7 @@ package Menuetexte is
    -- Steuerungsmenü.
    Steuerungmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Steuerung_Menü_Enum)) := (others => TextKonstanten.FehlenderText);
 
+   -- SpeichernLadenmenü
+   Spielstandmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Spielstand_Menü_Enum)) := (others => TextKonstanten.FehlenderText);
+   
 end Menuetexte;

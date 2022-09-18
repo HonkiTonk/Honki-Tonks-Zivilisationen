@@ -38,7 +38,10 @@ package SystemKonstanten is
                                            MenueDatentypen.Kartenform_Menü_Enum         => 14,
 
                                            -- Steuerungsmenü.
-                                           MenueDatentypen.Steuerung_Menü_Enum          => 31
+                                           MenueDatentypen.Steuerung_Menü_Enum          => 31,
+
+                                           -- SpeichernLaden
+                                           MenueDatentypen.Spielstand_Menü_Enum         => 14
                                           );
 
    -- Theoretich kann man hier noch -1 machen um die Überschrift abzuziehen, wird in den Positionen/Textaccessen nicht mehr benötigt. äöü
@@ -75,7 +78,9 @@ package SystemKonstanten is
                                                  MenueDatentypen.Kartenform_Menü_Enum         => EndeMenü (MenueDatentypen.Kartenform_Menü_Enum) - 4,
 
                                                  -- Steuerungsmenü.
-                                                 MenueDatentypen.Steuerung_Menü_Enum          => EndeMenü (MenueDatentypen.Steuerung_Menü_Enum) - 5
+                                                 MenueDatentypen.Steuerung_Menü_Enum          => EndeMenü (MenueDatentypen.Steuerung_Menü_Enum) - 5,
+
+                                                 MenueDatentypen.Spielstand_Menü_Enum         => EndeMenü (MenueDatentypen.Spielstand_Menü_Enum)
                                                 );
 
 end SystemKonstanten;

@@ -13,7 +13,8 @@ with EinheitenRecordKonstanten;
 with StadtRecordKonstanten;
 with WichtigesRecordKonstanten;
 
--- Die Zugriffe auf das alles hier auch mal in Funktionen/Prozeduren auslagern? äö
+-- Die Zugriffe auf das alles hier auch mal in Funktionen/Prozeduren auslagern? äöü
+-- Auch mal thematisch trennen? äöü
 package SpielVariablen is
       
    type RassenbelegungArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of SpielRecords.RassenRecords;

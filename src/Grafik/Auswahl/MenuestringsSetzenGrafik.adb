@@ -70,6 +70,9 @@ package body MenuestringsSetzenGrafik is
             
          when MenueDatentypen.Diplomatie_Menü_Enum =>
             AktuellerText := Menuetexte.Diplomatiemenü (WelcheZeileExtern);
+            
+         when MenueDatentypen.Spielstand_Menü_Enum =>
+            null;
       end case;
             
       return To_Wide_Wide_String (Source => AktuellerText);
