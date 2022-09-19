@@ -70,19 +70,24 @@ package ChangelogSeptember2022 is
    
    
 
-   -- Version 0.03. => 0.03. (20.09.2022):
+   -- Version 0.03.9495 => 0.03. (20.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.9395 => 0.03. (19.09.2022):
+   -- Version 0.03.9395 => 0.03.9495 (19.09.2022):
    
    -- Warnmeldungen überarbeitet.
    -- Fehlermeldungen überarbeitet.
-   -- 
-   -- Kommentare und Kleinigkeiten korrigiert.
+   -- Fehler in der Zahleneingabe korrigiert welcher bei der Eingabe von negativen Zahlen zu einem Absturz führte.
+   -- Logikteil der Zahleneingabe überarbeitet.
+   -- Das Durchgehen von Einheiten und Städten überarbeitet.
+   -- Unnötigen Code gelöscht.
+   -- Planetenzerstörerbombe in verschiedene Varianten aufgeteilt und die Planetenvernichtung um entsprechende Zusammenbruchszeit erweitert.
+   -- Einstellungen in verschiedene Speicherdateien aufgeteilt.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

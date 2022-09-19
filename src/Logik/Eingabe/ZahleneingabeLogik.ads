@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Sf.Window.Keyboard;
+private with Sf.Window.Keyboard;
 
 with ZahlenDatentypen;
 with SystemRecords;
@@ -24,8 +24,10 @@ package ZahleneingabeLogik is
 private
 
    WelchesVorzeichen : Boolean;
+   LeerWert : Boolean;
 
    AktuelleZahl : Positive;
+   StringNachZahl : Natural;
 
    ZahlenStringLeer : constant Wide_Wide_String (1 .. 10) := "0000000000";
    ZahlenString : Wide_Wide_String (1 .. 10);
@@ -51,17 +53,22 @@ private
                                                                      Sf.Window.Keyboard.sfKeyNum9 => '9'
                                                                     );
 
-   procedure VorzeichenAnpassen
-     (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
-      ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger;
-      PlusMinusExtern : in Boolean)
+   procedure ZahlHinzufügen
+     (EingegebeneZahlExtern : in Sf.Window.Keyboard.sfKeyCode;
+      ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
+      ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger)
      with
        Pre => (
                  ZahlenMinimumExtern <= ZahlenMaximumExtern
               );
 
-   procedure ZahlHinzufügen
-     (EingegebeneZahlExtern : in Sf.Window.Keyboard.sfKeyCode);
+   procedure ZahlBeschränken
+     (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
+      ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger)
+     with
+       Pre => (
+                 ZahlenMinimumExtern <= ZahlenMaximumExtern
+              );
 
    procedure ZahlEntfernen;
 
@@ -79,7 +86,7 @@ private
    function ZahlSchleife
      (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
       ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger)
-      return Boolean
+      return SystemRecords.ZahlenEingabeRecord
      with
        Pre => (
                  ZahlenMinimumExtern <= ZahlenMaximumExtern
@@ -88,5 +95,15 @@ private
    function GanzeZahlPrüfung
      (ZeichenExtern : in Sf.Window.Keyboard.sfKeyCode)
       return Zahl_Prüfung_Enum;
+
+   function VorzeichenAnpassen
+     (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
+      ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger;
+      PlusMinusExtern : in Boolean)
+      return Boolean
+     with
+       Pre => (
+                 ZahlenMinimumExtern <= ZahlenMaximumExtern
+              );
 
 end ZahleneingabeLogik;

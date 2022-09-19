@@ -59,7 +59,7 @@ package body EinlesenLogik is
                end loop SpracheAuswählenSchleife;
                   
                OptionenVariablen.NutzerEinstellungen.Sprache := GewählteSprache;
-               SchreibenEinstellungenLogik.SchreibenEinstellungen;
+               SchreibenEinstellungenLogik.Nutzereinstellungen;
                   
             when False =>
                Fehler.LogikFehler (FehlermeldungExtern => "Einlesen.EinlesenMitAnzeige: Sprachen nicht gefunden.");

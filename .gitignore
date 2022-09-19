@@ -1,14 +1,13 @@
 obj/
 Spiel/Audio/
 Spiel/Datenbanken/
-Spiel/Einstellungen/
 Spiel/Grafik/
 Spiel/Spielstand/
 Spiel/Start
 Notizen/
 Spiel/Meldungen
-Spiel/Einstellungen
-lib/
-Spiel/lib
 Spiel/Tastenbelegung
 Neu/
+Spiel/Grafikeinstellungen
+Spiel/Nutzereinstellungen
+Spiel/Soundeinstelllungen

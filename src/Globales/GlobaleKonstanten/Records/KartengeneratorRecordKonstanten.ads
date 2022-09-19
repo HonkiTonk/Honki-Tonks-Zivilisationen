@@ -5,9 +5,6 @@ with KartenDatentypen;
 with KartenRecords;
 
 package KartengeneratorRecordKonstanten is
-
-   -- Polgrund auch definierbar machen, so dass die Pole nicht nur aus Eis bestehen. äöü
-   
    
    Eisrand : constant KartenDatentypen.PolregionenArray := (
                                                             KartenDatentypen.Norden_Enum => 1,

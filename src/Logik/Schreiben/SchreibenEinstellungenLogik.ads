@@ -5,10 +5,14 @@ with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 
 package SchreibenEinstellungenLogik is
 
-   procedure SchreibenEinstellungen;
+   procedure Nutzereinstellungen;
+   procedure Grafikeinstellungen;
+   procedure Soundeinstellungen;
 
 private
 
-   DateiEinstellungenSchreiben : File_Type;
+   DateiNutzereinstellungen : File_Type;
+   DateiGrafikeinstellungen : File_Type;
+   DateiSoundeinstellungen : File_Type;
 
 end SchreibenEinstellungenLogik;

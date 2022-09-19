@@ -83,6 +83,7 @@ package SpielRecords is
       Rundengrenze : Natural;   
       IronmanName : Unbounded_Wide_Wide_String;
       PlanetVernichtet : RassenDatentypen.Rassen_Enum;
+      Zusammenbruchszeit : Integer;
       
    end record;
    

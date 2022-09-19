@@ -709,10 +709,10 @@ package EinheitenTesorahn is
                                                                                  Transportkapazität      => 0
                                                                                 ),
                                                
-                                                                                -- PZB20
+                                                                                -- PZB200
                                                                               30 =>
                                                                                 (
-                                                                                 EinheitArt              => EinheitenDatentypen.PZB_Enum,
+                                                                                 EinheitArt              => EinheitenDatentypen.PZB_Klein_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),
@@ -732,10 +732,10 @@ package EinheitenTesorahn is
                                                                                  Transportkapazität      => 0
                                                                                 ),
                                                
-                                                                                -- PZB40
+                                                                                -- PZB400
                                                                               31 =>
                                                                                 (
-                                                                                 EinheitArt              => EinheitenDatentypen.PZB_Enum,
+                                                                                 EinheitArt              => EinheitenDatentypen.PZB_Mittel_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),
@@ -755,10 +755,10 @@ package EinheitenTesorahn is
                                                                                  Transportkapazität      => 0
                                                                                 ),
                                                
-                                                                                -- PZB100
+                                                                                -- PZB1000
                                                                               32 =>
                                                                                 (
-                                                                                 EinheitArt              => EinheitenDatentypen.PZB_Enum,
+                                                                                 EinheitArt              => EinheitenDatentypen.PZB_Groß_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),

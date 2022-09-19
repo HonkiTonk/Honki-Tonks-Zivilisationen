@@ -6,13 +6,14 @@ with TastenbelegungDatentypen; use TastenbelegungDatentypen;
 with TasteneingabeLogik;
 with CursorbewegungLogik;
 with ForschungsauswahlLogik;
-with NaechstesObjekt;
 with DiplomatieLogik;
 with EinheitenmodifizierungLogik;
 with DebugmenueLogik;
 with BefehlspruefungenLogik;
 with StadtSuchenLogik;
 with MausauswahlLogik;
+with NaechsteEinheitLogik;
+with NaechsteStadtLogik;
 
 package body BefehlsauswahlLogik is
 
@@ -69,19 +70,19 @@ package body BefehlsauswahlLogik is
             ForschungsauswahlLogik.Forschung (RasseExtern => RasseExtern);
             
          when TastenbelegungDatentypen.Nächste_Stadt_Enum =>
-            NaechstesObjekt.NächsteStadt (RasseExtern => RasseExtern);
+            NaechsteStadtLogik.NächsteStadt (RasseExtern => RasseExtern);
             
          when TastenbelegungDatentypen.Einheit_Mit_Bewegungspunkte_Enum =>
-            NaechstesObjekt.NächsteEinheit (RasseExtern           => RasseExtern,
-                                             BewegungspunkteExtern => NaechstesObjekt.Hat_Bewegungspunkte_Enum);
+            NaechsteEinheitLogik.NächsteEinheit (RasseExtern           => RasseExtern,
+                                                  BewegungspunkteExtern => NaechsteEinheitLogik.Hat_Bewegungspunkte_Enum);
             
          when TastenbelegungDatentypen.Alle_Einheiten_Enum =>
-            NaechstesObjekt.NächsteEinheit (RasseExtern           => RasseExtern,
-                                             BewegungspunkteExtern => NaechstesObjekt.Egal_Bewegeungspunkte_Enum);
+            NaechsteEinheitLogik.NächsteEinheit (RasseExtern           => RasseExtern,
+                                                  BewegungspunkteExtern => NaechsteEinheitLogik.Egal_Bewegeungspunkte_Enum);
             
          when TastenbelegungDatentypen.Einheiten_Ohne_Bewegungspunkte_Enum =>
-            NaechstesObjekt.NächsteEinheit (RasseExtern           => RasseExtern,
-                                             BewegungspunkteExtern => NaechstesObjekt.Keine_Bewegungspunkte_Enum);
+            NaechsteEinheitLogik.NächsteEinheit (RasseExtern           => RasseExtern,
+                                                  BewegungspunkteExtern => NaechsteEinheitLogik.Keine_Bewegungspunkte_Enum);
             
          when TastenbelegungDatentypen.Tastenbelegung_Befehle_Baulos_Enum'Range =>
             if
@@ -107,10 +108,10 @@ package body BefehlsauswahlLogik is
             StadtSuchenLogik.StadtNachNamenSuchen;
             
          when TastenbelegungDatentypen.Nächste_Stadt_Mit_Meldung_Enum =>
-            NaechstesObjekt.NächsteStadtMeldung (RasseExtern => RasseExtern);
+            NaechsteStadtLogik.NächsteStadtMeldung (RasseExtern => RasseExtern);
             
          when TastenbelegungDatentypen.Nächste_Einheit_Mit_Meldung_Enum =>
-            NaechstesObjekt.NächsteEinheitMeldung (RasseExtern => RasseExtern);
+            NaechsteEinheitLogik.NächsteEinheitMeldung (RasseExtern => RasseExtern);
             
          when TastenbelegungDatentypen.Heimatstadt_Ändern_Enum =>
             EinheitenmodifizierungLogik.HeimatstadtÄndern (EinheitRasseNummerExtern => (RasseExtern, 0));

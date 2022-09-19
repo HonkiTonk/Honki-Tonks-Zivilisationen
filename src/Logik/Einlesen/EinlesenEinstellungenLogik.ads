@@ -9,6 +9,12 @@ package EinlesenEinstellungenLogik is
    
 private
       
-   DateiEinstellungenEinlesen : File_Type;
+   DateiNutzereinstellungen : File_Type;
+   DateiGrafikeinstellungen : File_Type;
+   DateiSoundeinstellungen : File_Type;
+   
+   procedure Nutzereinstellungen;
+   procedure Grafikeinstellungen;
+   procedure Soundeinstelllungen;
 
 end EinlesenEinstellungenLogik;

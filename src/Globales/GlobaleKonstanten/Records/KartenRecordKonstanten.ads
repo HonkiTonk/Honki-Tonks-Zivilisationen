@@ -23,10 +23,6 @@ package KartenRecordKonstanten is
                                                                                  XAchse => KartenKonstanten.LeerXAchse
                                                                                 );
    
-   LeerStadtKoordinate : constant KartenRecords.AchsenStadtfeldRecord := (
-                                                                          YAchse => KartenDatentypen.Stadtfeld'First,
-                                                                          XAchse => KartenDatentypen.Stadtfeld'First);
-   
    LeerKartenListe : constant DatenbankRecords.KartenlisteRecord := (
                                                                      Bewertung      => (others => KartenKonstanten.LeerBewertung),
                                                                      Wirtschaft     => (others => (others => KartenKonstanten.LeerWirtschaft)),

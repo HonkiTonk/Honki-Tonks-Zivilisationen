@@ -120,11 +120,11 @@ package SchreibeWeltkarte is
 
    procedure Bewertung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      RasseExtern : in RassenDatentypen.Rassen_Enum;
       BewertungExtern : in KartenDatentypen.GesamteFeldbewertung)
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+               (if RasseExtern /= RassenDatentypen.Keine_Rasse_Enum then SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum)
                and
                  KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
                and

@@ -44,7 +44,7 @@ package body OptionenGrafikLogik is
                EinstellungenGrafik.Grafikeinstellungen.EbeneUnterhalbSichtbar := not EinstellungenGrafik.Grafikeinstellungen.EbeneUnterhalbSichtbar;
                
             when RueckgabeDatentypen.Auswahl_Sechs_Enum =>
-               EinstellungenSpeichern;
+               SchreibenEinstellungenLogik.Grafikeinstellungen;
                
             when RueckgabeDatentypen.Zurück_Beenden_Enum'Range =>
                return AuswahlWert;
@@ -160,14 +160,5 @@ package body OptionenGrafikLogik is
       end loop ErzeugungNeuesFensterAbwartenSchleife;
       
    end VollbildFenster;
-   
-   
-   
-   procedure EinstellungenSpeichern
-   is begin
-      
-      SchreibenEinstellungenLogik.SchreibenEinstellungen;
-      
-   end EinstellungenSpeichern;
 
 end OptionenGrafikLogik;

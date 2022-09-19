@@ -14,44 +14,91 @@ with RasseneinstellungenGrafik;
 
 package body SchreibenEinstellungenLogik is
    
-   -- Das mal in verschiedene Bereiche aufteilen? äöü
-   procedure SchreibenEinstellungen
+   procedure Nutzereinstellungen
    is begin
       
       case
-        Exists (Name => VerzeichnisKonstanten.Einstellungen)
+        Exists (Name => VerzeichnisKonstanten.Nutzereinstellungen)
       is
          when True =>
-            Open (File => DateiEinstellungenSchreiben,
+            Open (File => DateiNutzereinstellungen,
                   Mode => Out_File,
-                  Name => VerzeichnisKonstanten.Einstellungen);
+                  Name => VerzeichnisKonstanten.Nutzereinstellungen);
 
          when False =>
-            Create (File => DateiEinstellungenSchreiben,
+            Create (File => DateiNutzereinstellungen,
                     Mode => Out_File,
-                    Name => VerzeichnisKonstanten.Einstellungen);
+                    Name => VerzeichnisKonstanten.Nutzereinstellungen);
       end case;
-         
-      SystemRecords.NutzerEinstellungenRecord'Write (Stream (File => DateiEinstellungenSchreiben),
+      
+      SystemRecords.NutzerEinstellungenRecord'Write (Stream (File => DateiNutzereinstellungen),
                                                      OptionenVariablen.NutzerEinstellungen);
       
-      GrafikRecords.FensterRecord'Write (Stream (File => DateiEinstellungenSchreiben),
+      Close (File => DateiNutzereinstellungen);
+      
+   end Nutzereinstellungen;
+   
+   
+   
+   procedure Grafikeinstellungen
+   is begin
+      
+      case
+        Exists (Name => VerzeichnisKonstanten.Grafikeinstellungen)
+      is
+         when True =>
+            Open (File => DateiGrafikeinstellungen,
+                  Mode => Out_File,
+                  Name => VerzeichnisKonstanten.Grafikeinstellungen);
+
+         when False =>
+            Create (File => DateiGrafikeinstellungen,
+                    Mode => Out_File,
+                    Name => VerzeichnisKonstanten.Grafikeinstellungen);
+      end case;
+            
+      GrafikRecords.FensterRecord'Write (Stream (File => DateiGrafikeinstellungen),
                                          EinstellungenGrafik.FensterEinstellungen);
-      GrafikRecords.GrafikeinstellungenRecord'Write (Stream (File => DateiEinstellungenSchreiben),
+      GrafikRecords.GrafikeinstellungenRecord'Write (Stream (File => DateiGrafikeinstellungen),
                                                      EinstellungenGrafik.Grafikeinstellungen);
       
-      GrafikRecords.SchriftgrößenRecord'Write (Stream (File => DateiEinstellungenSchreiben),
+      GrafikRecords.SchriftgrößenRecord'Write (Stream (File => DateiGrafikeinstellungen),
                                                  TexteinstellungenGrafik.Schriftgrößen);
-      GrafikRecords.SchriftfarbenRecord'Write (Stream (File => DateiEinstellungenSchreiben),
+      GrafikRecords.SchriftfarbenRecord'Write (Stream (File => DateiGrafikeinstellungen),
                                                TexteinstellungenGrafik.Schriftfarben);
       
-      RasseneinstellungenGrafik.RassenFarbenArray'Write (Stream (File => DateiEinstellungenSchreiben),
+      RasseneinstellungenGrafik.RassenFarbenArray'Write (Stream (File => DateiGrafikeinstellungen),
                                                          RasseneinstellungenGrafik.Rassenfarben);
-      RasseneinstellungenGrafik.RassenFarbenArray'Write (Stream (File => DateiEinstellungenSchreiben),
+      RasseneinstellungenGrafik.RassenFarbenArray'Write (Stream (File => DateiGrafikeinstellungen),
                                                          RasseneinstellungenGrafik.RassenfarbenRahmen);
       
-      Close (File => DateiEinstellungenSchreiben);
+      Close (File => DateiGrafikeinstellungen);
       
-   end SchreibenEinstellungen;
+   end Grafikeinstellungen;
+   
+   
+   
+   procedure Soundeinstellungen
+   is begin
+      
+      case
+        Exists (Name => VerzeichnisKonstanten.Soundeinstelllungen)
+      is
+         when True =>
+            Open (File => DateiSoundeinstellungen,
+                  Mode => Out_File,
+                  Name => VerzeichnisKonstanten.Soundeinstelllungen);
+
+         when False =>
+            Create (File => DateiSoundeinstellungen,
+                    Mode => Out_File,
+                    Name => VerzeichnisKonstanten.Soundeinstelllungen);
+      end case;
+      
+      
+      
+      Close (File => DateiSoundeinstellungen);
+            
+   end Soundeinstellungen;
 
 end SchreibenEinstellungenLogik;

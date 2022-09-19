@@ -110,7 +110,7 @@ package body KIEinheitAufgabenplanung is
             Wichtigkeit (KIDatentypen.Angreifen_Enum) := KIEinheitAufgabeAngreifen.Angreifen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             Wichtigkeit (KIDatentypen.Erkunden_Enum) := KIEinheitAufgabeErkunden.Erkunden (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-         when EinheitenDatentypen.PZB_Enum =>
+         when EinheitenDatentypen.PZB_Enum'Range =>
             null;
             
          when EinheitenDatentypen.Cheat_Enum =>

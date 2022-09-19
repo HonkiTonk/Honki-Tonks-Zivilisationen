@@ -41,7 +41,8 @@ package WichtigesRecordKonstanten is
                                                                  Rundenanzahl        => Positive'First,
                                                                  Rundengrenze        => Natural'First, -- Das auslagern damit man es nicht immer neu setzen muss? äöü
                                                                  IronmanName         => TextKonstanten.LeerUnboundedString,
-                                                                 PlanetVernichtet    => RassenDatentypen.Keine_Rasse_Enum
+                                                                 PlanetVernichtet    => RassenDatentypen.Keine_Rasse_Enum,
+                                                                 Zusammenbruchszeit  => -1
                                                                 );
    
    LeerGrenzen : constant SpielRecords.GrenzenRecord := (

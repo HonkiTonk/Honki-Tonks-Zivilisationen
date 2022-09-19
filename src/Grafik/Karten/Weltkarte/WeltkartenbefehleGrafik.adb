@@ -40,7 +40,7 @@ package body WeltkartenbefehleGrafik is
          when EinheitenKonstanten.LeerEinheitArt | EinheitenDatentypen.Cheat_Enum =>
             return;
             
-         when EinheitenDatentypen.PZB_Enum =>
+         when EinheitenDatentypen.PZB_Enum'Range =>
             WelcherKnopf := BefehleDatentypen.Roter_Knopf_Enum;
             
          when others =>
@@ -97,7 +97,7 @@ package body WeltkartenbefehleGrafik is
             InteraktionAuswahl.PositionenEinheitenbefehle (PositionSchleifenwert) := GrafikRecordKonstanten.Leerbereich;
          
             -- elsif
-            --   EinheitenArtExtern = EinheitenDatentypen.PZB_Enum
+            --   EinheitenArtExtern = EinheitenDatentypen.PZB_Enum'Range
             -- then
             -- Noch einen roten Knopf für die Textvariante einbauen. äöü
             
@@ -158,7 +158,7 @@ package body WeltkartenbefehleGrafik is
       for PositionSchleifenwert in InteraktionAuswahl.PositionenEinheitenbefehleArray'Range loop
          
          if
-           EinheitenArtExtern = EinheitenDatentypen.PZB_Enum
+           EinheitenArtExtern in EinheitenDatentypen.PZB_Enum'Range
          then
             InteraktionAuswahl.PositionenEinheitenbefehle := (others => (0.00, 0.00, Texturgröße.x, Texturgröße.y));
             exit PositionenSchleife;

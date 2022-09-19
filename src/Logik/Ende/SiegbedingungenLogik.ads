@@ -4,7 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 with SystemDatentypen;
 
 private with GrafikDatentypen;
-private with KartenDatentypen;
 
 package SiegbedingungenLogik is
 
@@ -15,7 +14,9 @@ private
 
    Sieg : GrafikDatentypen.Rassenhintergrund_Enum;
 
-   VorhandeneRassen : KartenDatentypen.SichtweiteNatural;
+   VorhandeneRassen : Natural;
+
+
 
    function RasseBesiegt
      return Boolean;

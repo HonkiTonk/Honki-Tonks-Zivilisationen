@@ -85,14 +85,19 @@ package body RundenendeLogik is
    is begin
       
       case
-        SpielVariablen.Allgemeines.PlanetVernichtet
+        SpielVariablen.Allgemeines.Zusammenbruchszeit
       is
-         when RassenDatentypen.Keine_Rasse_Enum =>
+         when -1 =>
             null;
             
-         when others =>
+         when 0 =>
             AbspannLogik.Abspann (AbspannExtern => GrafikDatentypen.Planet_Vernichtet_Enum);
             return False;
+            
+         when others =>
+            SpielVariablen.Allgemeines.Zusammenbruchszeit := SpielVariablen.Allgemeines.Zusammenbruchszeit - 1;
+            -- Das True muss später raus, wenn ich eine Siegoption für interstellares Siedeln einbauen. äöü
+            return True;
       end case;
       
       case

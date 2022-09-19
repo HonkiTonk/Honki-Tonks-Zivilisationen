@@ -6,15 +6,6 @@ with KartengrundDatentypen;
 with RassenDatentypen;
 
 package KartenRecords is
-
-   type AchsenStadtfeldRecord is record
-      
-      YAchse : KartenDatentypen.Stadtfeld;
-      XAchse : KartenDatentypen.Stadtfeld;
-      
-   end record;
-   
-   
    
    type YXAchsenKartenfeldNaturalRecord is record
             

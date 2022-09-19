@@ -17,7 +17,9 @@ package VerzeichnisKonstanten is
    WegeDatenbank : constant String (1 .. 25) := Datenbanken & "/WegeDatenbank";
    RassenDatenbank : constant String (1 .. 27) := Datenbanken & "/RassenDatenbank";
    
-   Einstellungen : constant String (1 .. 13) := "Einstellungen";
+   Nutzereinstellungen : constant String (1 .. 19) := "Nutzereinstellungen";
+   Grafikeinstellungen : constant String (1 .. 19) := "Grafikeinstellungen";
+   Soundeinstelllungen : constant String (1 .. 18) := "Soundeinstellungen";
    Tastenbelegung : constant String (1 .. 14) := "Tastenbelegung";
    Sprachen : constant String (1 .. 8) := "Sprachen";
    SprachenStrich : constant String (1 .. 9) := Sprachen & "/";
