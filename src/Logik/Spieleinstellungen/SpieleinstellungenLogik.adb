@@ -134,7 +134,7 @@ package body SpieleinstellungenLogik is
             null;
             
          when False =>
-            Warnung.LogikWarnung (WarnmeldungExtern => "SpielEinstellungen.AutomatischeEinstellungen: Keine Rassenplatzierung möglich.");
+            Warnung.LogikWarnung (WarnmeldungExtern => "SpielEinstellungen.AutomatischeEinstellungen: Rassenplatzierung unmöglich.");
             return RueckgabeDatentypen.Spielmenü_Enum;
       end case;
             

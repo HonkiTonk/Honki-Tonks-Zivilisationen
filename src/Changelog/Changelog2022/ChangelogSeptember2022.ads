@@ -79,8 +79,10 @@ package ChangelogSeptember2022 is
 
    -- Version 0.03.9395 => 0.03. (19.09.2022):
    
+   -- Warnmeldungen überarbeitet.
+   -- Fehlermeldungen überarbeitet.
    -- 
-   -- Kleinigkeiten korrigiert.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 

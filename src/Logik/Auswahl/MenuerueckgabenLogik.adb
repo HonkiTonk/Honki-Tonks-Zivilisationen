@@ -267,7 +267,7 @@ package body MenuerueckgabenLogik is
          return RueckgabeDatentypen.Fertig_Enum;
                     
       else
-         Fehler.LogikFehler (FehlermeldungExtern => "MenuerueckgabenLogik.Fertig - Falsche Auswahl.");
+         Fehler.LogikFehler (FehlermeldungExtern => "MenuerueckgabenLogik.Fertig: Falsche Auswahl.");
          return RueckgabeDatentypen.Spiel_Beenden_Enum;
       end if;
       
@@ -305,7 +305,7 @@ package body MenuerueckgabenLogik is
                return RueckgabeDatentypen.Spiel_Beenden_Enum;
                     
             else
-               Fehler.LogikFehler (FehlermeldungExtern => "MenuerueckgabenLogik.ZurückHauptmenüEnde - Falsche Auswahl.");
+               Fehler.LogikFehler (FehlermeldungExtern => "MenuerueckgabenLogik.ZurückHauptmenüEnde: Falsche Auswahl.");
                return RueckgabeDatentypen.Spiel_Beenden_Enum;
             end if;
       end case;

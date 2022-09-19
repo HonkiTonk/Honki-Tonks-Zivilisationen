@@ -40,7 +40,7 @@ package body KartengeneratorUnterflaecheLogik is
                   KartengeneratorErdweltLogik.KartengeneratorErdwelt (KoordinatenExtern => (-1, YAchseSchleifenwert, XAchseSchleifenwert));
                   
                when others =>
-                  Fehler.LogikFehler (FehlermeldungExtern => "KartengeneratorUnterwasserUnterirdisch.GenerierungLandschaft - Weder Wasser noch Erde.");
+                  Fehler.LogikFehler (FehlermeldungExtern => "KartengeneratorUnterflaecheLogik.GenerierungLandschaft: Weder Wasser noch Erde.");
             end case;
                               
          end loop XAchseSchleife;

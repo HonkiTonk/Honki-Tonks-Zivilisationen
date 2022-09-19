@@ -30,7 +30,8 @@ package body EinlesenRassentexteLogik is
                   & VerzeichnisKonstanten.NullDatei);
 
          when False =>
-            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.RassentexteEinlesen - 0-Datei fehlt.");
+            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.RassentexteEinlesen: Es fehlt: " & Decode (Item => VerzeichnisKonstanten.SprachenStrich)
+                                  & To_Wide_Wide_String (Source => OptionenVariablen.NutzerEinstellungen.Sprache) & Decode (Item => VerzeichnisKonstanten.Rassen & VerzeichnisKonstanten.NullDatei));
             return;
       end case;
       
@@ -42,7 +43,8 @@ package body EinlesenRassentexteLogik is
                                                            AktuelleZeileExtern => RassenDatentypen.Rassen_Verwendet_Enum'Pos (WelcheDateienSchleifenwert))
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.RassentexteEinlesen - 0-Datei zu kurz.");
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.RassentexteEinlesen: Fehlende Zeilen: " & Decode (Item => VerzeichnisKonstanten.SprachenStrich)
+                                     & To_Wide_Wide_String (Source => OptionenVariablen.NutzerEinstellungen.Sprache) & Decode (Item => VerzeichnisKonstanten.Rassen & VerzeichnisKonstanten.NullDatei));
                
             when False =>
                Hauptdatei (WelcheDateienSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiNull));
@@ -58,6 +60,9 @@ package body EinlesenRassentexteLogik is
          case
            Exists (Name => Encode (Item => To_Wide_Wide_String (Source => Hauptdatei (RasseSchleifenwert))))
          is
+            when False =>
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.RassentexteEinlesenZwei: Es fehlt: " & To_Wide_Wide_String (Source => Hauptdatei (RasseSchleifenwert)));
+               
             when True =>
                Open (File => DateiUnternull,
                      Mode => In_File,
@@ -71,7 +76,7 @@ package body EinlesenRassentexteLogik is
                                                                     AktuelleZeileExtern => UnterdateiSchleifenwert)
                   is
                      when True =>
-                        Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.RassentexteEinlesen - 0-Datei zu kurz.");
+                        Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.RassentexteEinlesenZwei: Fehlende Zeilen: " & To_Wide_Wide_String (Source => Hauptdatei (RasseSchleifenwert)));
                
                      when False =>
                         Rassendateien (UnterdateiSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiUnternull));
@@ -86,10 +91,6 @@ package body EinlesenRassentexteLogik is
                Forschungen (RasseExtern => RasseSchleifenwert);
                Einheiten (RasseExtern => RasseSchleifenwert);
                Gebäude (RasseExtern => RasseSchleifenwert);
-               
-            when False =>
-               -- Warnung einbauen. äöü
-               null;
          end case;
          
       end loop RassenSchleife;
@@ -112,7 +113,7 @@ package body EinlesenRassentexteLogik is
                   Name => Encode (Item => To_Wide_Wide_String (Source => Rassendateien (1))));
             
          when False =>
-            -- Warnung einbauen. äöü
+            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.NameBeschreibung: Es fehlt: " & To_Wide_Wide_String (Source => Rassendateien (1)));
             return;
       end case;
       
@@ -124,7 +125,8 @@ package body EinlesenRassentexteLogik is
                                                            AktuelleZeileExtern => Positive (NameBeschreibungSchleifenwert))
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.NameBeschreibung - 0-Datei zu kurz.");
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.NameBeschreibung: Fehlende Zeilen: " & To_Wide_Wide_String (Source => Rassendateien (1)));
+               exit NameBeschreibungSchleife;
                
             when False =>
                Rassentexte.NameBeschreibung (RasseExtern, NameBeschreibungSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiNameBeschreibung));
@@ -151,7 +153,7 @@ package body EinlesenRassentexteLogik is
                   Name => Encode (Item => To_Wide_Wide_String (Source => Rassendateien (2))));
             
          when False =>
-            -- Warnung einbauen. äöü
+            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.Städtenamen: Es fehlt: " & To_Wide_Wide_String (Source => Rassendateien (2)));
             return;
       end case;
       
@@ -163,7 +165,8 @@ package body EinlesenRassentexteLogik is
                                                            AktuelleZeileExtern => Positive (StädtenamenSchleifenwert))
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.Städtenamen - 0-Datei zu kurz.");
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.Städtenamen: Fehlende Zeilen: " & To_Wide_Wide_String (Source => Rassendateien (2)));
+               exit StädtenamenSchleife;
                
             when False =>
                Rassentexte.Städtenamen (RasseExtern, StädtenamenSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiStädtenamen));
@@ -192,7 +195,7 @@ package body EinlesenRassentexteLogik is
                   Name => Encode (Item => To_Wide_Wide_String (Source => Rassendateien (3))));
             
          when False =>
-            -- Warnung einbauen. äöü
+            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.Forschungen: Es fehlt: " & To_Wide_Wide_String (Source => Rassendateien (3)));
             return;
       end case;
       
@@ -206,7 +209,8 @@ package body EinlesenRassentexteLogik is
                                                               AktuelleZeileExtern => AktuelleZeile)
             is
                when True =>
-                  Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.Forschungen - 0-Datei zu kurz.");
+                  Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.Forschungen: Fehlende Zeilen: " & To_Wide_Wide_String (Source => Rassendateien (3)));
+                  exit ForschungenSchleife;
                
                when False =>
                   Rassentexte.Forschungen (RasseExtern, ForschungenSchleifenwert, TextSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiForschungen));
@@ -238,7 +242,7 @@ package body EinlesenRassentexteLogik is
                   Name => Encode (Item => To_Wide_Wide_String (Source => Rassendateien (4))));
             
          when False =>
-            -- Warnung einbauen. äöü
+            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.Einheiten: Es fehlt: " & To_Wide_Wide_String (Source => Rassendateien (4)));
             return;
       end case;
       
@@ -252,7 +256,8 @@ package body EinlesenRassentexteLogik is
                                                               AktuelleZeileExtern => AktuelleZeile)
             is
                when True =>
-                  Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.Einheiten - 0-Datei zu kurz.");
+                  Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.Einheiten: Fehlende Zeilen: " & To_Wide_Wide_String (Source => Rassendateien (4)));
+                  exit EinheitenSchleife;
                
                when False =>
                   Rassentexte.Einheiten (RasseExtern, EinheitSchleifenwert, TextSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiEinheiten));
@@ -284,7 +289,7 @@ package body EinlesenRassentexteLogik is
                   Name => Encode (Item => To_Wide_Wide_String (Source => Rassendateien (5))));
             
          when False =>
-            -- Warnung einbauen. äöü
+            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.Gebäude: Es fehlt: " & To_Wide_Wide_String (Source => Rassendateien (4)));
             return;
       end case;
       
@@ -298,7 +303,8 @@ package body EinlesenRassentexteLogik is
                                                               AktuelleZeileExtern => AktuelleZeile)
             is
                when True =>
-                  Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.Gebäude - 0-Datei zu kurz.");
+                  Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.Gebäude: Fehlende Zeilen: " & To_Wide_Wide_String (Source => Rassendateien (5)));
+                  exit GebäudeSchleife;
                
                when False =>
                   Rassentexte.Gebäude (RasseExtern, GebäudeSchleifenwert, TextSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiGebäude));

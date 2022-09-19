@@ -167,7 +167,7 @@ package body LeseWeltkarte is
         or
           Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund.Nummer = StadtKonstanten.LeerNummer
       then
-         Fehler.LogikFehler (FehlermeldungExtern => "LeseWeltkarte.BelegterGrundLeer - Rasse oder Nummer falsch.");
+         Fehler.LogikFehler (FehlermeldungExtern => "LeseWeltkarte.BelegterGrundLeer: Rasse oder Nummer falsch.");
          return True;
          
       else

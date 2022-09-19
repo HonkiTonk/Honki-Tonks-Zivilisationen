@@ -228,7 +228,7 @@ package body SchreibeWichtiges is
             if
               SpielVariablen.Wichtiges (RasseExtern).AnzahlStädte > SpielVariablen.Grenzen (RasseExtern).Städtegrenze
             then
-               Fehler.LogikFehler (FehlermeldungExtern => "SchreibeWichtiges.AnzahlStädte > SpielVariablen.Grenzen (RasseExtern).Städtegrenze");
+               Fehler.LogikFehler (FehlermeldungExtern => "SchreibeWichtiges.AnzahlStädte > Städtegrenze");
                
             else
                SpielVariablen.Wichtiges (RasseExtern).AnzahlStädte := SpielVariablen.Wichtiges (RasseExtern).AnzahlStädte + 1;
@@ -255,7 +255,7 @@ package body SchreibeWichtiges is
               SpielVariablen.Wichtiges (RasseExtern).AnzahlArbeiter + SpielVariablen.Wichtiges (RasseExtern).AnzahlKämpfer + SpielVariablen.Wichtiges (RasseExtern).AnzahlSonstiges
               > SpielVariablen.Grenzen (RasseExtern).Einheitengrenze
             then
-               Fehler.LogikFehler (FehlermeldungExtern => "SchreibeWichtiges.AnzahlArbeiter > SpielVariablen.Grenzen (RasseExtern).Einheitengrenze");
+               Fehler.LogikFehler (FehlermeldungExtern => "SchreibeWichtiges.AnzahlArbeiter > Einheitengrenze");
                
             else
                SpielVariablen.Wichtiges (RasseExtern).AnzahlArbeiter := SpielVariablen.Wichtiges (RasseExtern).AnzahlArbeiter + 1;
@@ -282,7 +282,7 @@ package body SchreibeWichtiges is
               SpielVariablen.Wichtiges (RasseExtern).AnzahlArbeiter + SpielVariablen.Wichtiges (RasseExtern).AnzahlKämpfer + SpielVariablen.Wichtiges (RasseExtern).AnzahlSonstiges
               > SpielVariablen.Grenzen (RasseExtern).Einheitengrenze
             then
-               Fehler.LogikFehler (FehlermeldungExtern => "SchreibeWichtiges.AnzahlKämpfer > SpielVariablen.Grenzen (RasseExtern).Einheitengrenze");
+               Fehler.LogikFehler (FehlermeldungExtern => "SchreibeWichtiges.AnzahlKämpfer > Einheitengrenze");
                
             else
                SpielVariablen.Wichtiges (RasseExtern).AnzahlKämpfer := SpielVariablen.Wichtiges (RasseExtern).AnzahlKämpfer + 1;
@@ -309,7 +309,7 @@ package body SchreibeWichtiges is
               SpielVariablen.Wichtiges (RasseExtern).AnzahlArbeiter + SpielVariablen.Wichtiges (RasseExtern).AnzahlKämpfer + SpielVariablen.Wichtiges (RasseExtern).AnzahlSonstiges
               > SpielVariablen.Grenzen (RasseExtern).Einheitengrenze
             then
-               Fehler.LogikFehler (FehlermeldungExtern => "SchreibeWichtiges.AnzahlSonstiges > SpielVariablen.Grenzen (RasseExtern).Einheitengrenze");
+               Fehler.LogikFehler (FehlermeldungExtern => "SchreibeWichtiges.AnzahlSonstiges > Einheitengrenze");
                
             else
                SpielVariablen.Wichtiges (RasseExtern).AnzahlSonstiges := SpielVariablen.Wichtiges (RasseExtern).AnzahlSonstiges + 1;

@@ -50,7 +50,7 @@ package body OptionenGrafikLogik is
                return AuswahlWert;
                
             when others =>
-               Fehler.LogikFehler (FehlermeldungExtern => "OptionenGrafik.OptionenGrafik - Falsche Menüauswahl.");
+               Fehler.LogikFehler (FehlermeldungExtern => "OptionenGrafik.OptionenGrafik: Falsche Auswahl: " & AuswahlWert'Wide_Wide_Image);
          end case;
          
       end loop GrafikSchleife;
@@ -147,7 +147,7 @@ package body OptionenGrafikLogik is
             EinstellungenGrafik.FensterEinstellungen.FensterVollbild := 7;
             
          when others =>
-            Fehler.LogikFehler (FehlermeldungExtern => "OptionenGrafik.VollbildFenster - Unbekannter Fenstermodus gewählt.");
+            Fehler.LogikFehler (FehlermeldungExtern => "OptionenGrafik.VollbildFenster: Unbekannter Fenstermodus gewählt: " & EinstellungenGrafik.FensterEinstellungen.FensterVollbild'Wide_Wide_Image);
       end case;
       
       NachGrafiktask.FensterVerändert := GrafikDatentypen.Modus_Verändert_Enum;

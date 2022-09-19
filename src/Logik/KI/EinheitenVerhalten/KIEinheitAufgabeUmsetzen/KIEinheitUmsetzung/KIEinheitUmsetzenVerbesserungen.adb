@@ -107,7 +107,7 @@ package body KIEinheitUmsetzenVerbesserungen is
             end if;
             
          when others =>
-            Fehler.LogikFehler (FehlermeldungExtern => "KIEinheitUmsetzenVerbesserungen.WelcheVerbesserungAnlegen - Falsche Verbesserung ausgewählt.");
+            Fehler.LogikFehler (FehlermeldungExtern => "KIEinheitUmsetzenVerbesserungen.WelcheVerbesserungAnlegen: Falsche Verbesserung: " & WelcheVerbesserung'Wide_Wide_Image);
             return False;
       end case;
       

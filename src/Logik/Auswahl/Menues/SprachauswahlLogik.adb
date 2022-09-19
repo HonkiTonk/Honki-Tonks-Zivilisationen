@@ -75,7 +75,7 @@ package body SprachauswahlLogik is
            and
              GlobaleTexte.SprachenEinlesen (EndeSchleifenwert) = TextKonstanten.LeerUnboundedString
          then
-            Fehler.LogikFehler (FehlermeldungExtern => "AuswahlSprache.SprachenListeFestlegen - Keine Sprachen vorhanden.");
+            Fehler.LogikFehler (FehlermeldungExtern => "AuswahlSprache.SprachenListeFestlegen: Keine Sprachen vorhanden.");
             
          elsif
            EndeSchleifenwert > GlobaleTexte.SprachenEinlesen'Last

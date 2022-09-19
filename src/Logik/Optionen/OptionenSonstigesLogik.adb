@@ -79,13 +79,14 @@ package body OptionenSonstigesLogik is
    is begin
       
       EingegebeneZahl := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => 0,
-                                                ZahlenMaximumExtern => 999_999_999,
-                                                WelcheFrageExtern   => TextnummernKonstanten.FrageRundenAutomatischSpeichern);
+                                                           ZahlenMaximumExtern => 999_999_999,
+                                                           WelcheFrageExtern   => TextnummernKonstanten.FrageRundenAutomatischSpeichern);
 
       case
         EingegebeneZahl.ErfolgreichAbbruch
       is
          when True =>
+            -- Das umbauen damit der Fehler raus kann? äöü
             if
               EingegebeneZahl.EingegebeneZahl in 1 .. 999_999_999
             then
@@ -97,7 +98,7 @@ package body OptionenSonstigesLogik is
                OptionenVariablen.NutzerEinstellungen.AnzahlAutosave := EingegebeneZahl.EingegebeneZahl;
                
             else
-               Fehler.LogikFehler (FehlermeldungExtern => "OptionenSonstiges.RundenBisAutospeichern - Falsche Zahl wurde eingegeben.");
+               Fehler.LogikFehler (FehlermeldungExtern => "OptionenSonstiges.RundenBisAutospeichern: Falsche Zahl wurde eingegeben.");
             end if;
             
          when False =>
@@ -131,7 +132,7 @@ package body OptionenSonstigesLogik is
             end if;
             
          when False =>
-            Fehler.LogikFehler (FehlermeldungExtern => "OptionenSonstiges.SpracheWechseln - Sprachen nicht gefunden.");
+            Fehler.LogikFehler (FehlermeldungExtern => "OptionenSonstiges.SpracheWechseln: Sprachen nicht gefunden.");
       end case;
       
    end SpracheWechseln;

@@ -49,7 +49,7 @@ package body SpielLogik is
                   null;
                
                when others =>
-                  Fehler.LogikFehler (FehlermeldungExtern => "SpielLogik.Spiel: Falsche Rückgabe.");
+                  Fehler.LogikFehler (FehlermeldungExtern => "SpielLogik.Spiel: Falsche Rückgabe: " & RückgabeRassen'Wide_Wide_Image);
             end case;
             
          end loop RassenSchleife;
@@ -296,11 +296,11 @@ package body SpielLogik is
                   null;
                   
                else
-                  Fehler.LogikFehler (FehlermeldungExtern => "SpielLogik.MenschAmZug: Falsche Rückgabe.");
+                  Fehler.LogikFehler (FehlermeldungExtern => "SpielLogik.MenschAmZug: Falsche Rückgabe: " & RückgabeSpielmenü'Wide_Wide_Image);
                end if;
                
             when others =>
-               Fehler.LogikFehler (FehlermeldungExtern => "SpielLogik.MenschAmZug: Falscher Befehl.");
+               Fehler.LogikFehler (FehlermeldungExtern => "SpielLogik.MenschAmZug: Falscher Befehl: " & AktuellerBefehlSpieler'Wide_Wide_Image);
          end case;
                      
       end loop SpielerSchleife;
@@ -357,7 +357,7 @@ package body SpielLogik is
                return AuswahlSpielmenü;
                   
             when others =>
-               Fehler.LogikFehler (FehlermeldungExtern => "SpielLogik.Spielmenü: Falsche Rückgabe.");
+               Fehler.LogikFehler (FehlermeldungExtern => "SpielLogik.Spielmenü: Falsche Rückgabe: " & AuswahlSpielmenü'Wide_Wide_Image);
          end case;
       
       end loop SpielmenüSchleife;

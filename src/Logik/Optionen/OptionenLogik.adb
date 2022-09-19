@@ -40,7 +40,7 @@ package body OptionenLogik is
                return AuswahlWert;
                
             when others =>
-               Fehler.LogikFehler (FehlermeldungExtern => "Optionen.Optionen - Falsche Menüauswahl.");
+               Fehler.LogikFehler (FehlermeldungExtern => "Optionen.Optionen: Falsche Auswahl: " & AuswahlWert'Wide_Wide_Image);
          end case;
 
          case
@@ -53,7 +53,7 @@ package body OptionenLogik is
                null;
                      
             when others =>
-               Fehler.LogikFehler (FehlermeldungExtern => "Optionen.Optionen - Falscher Rückgabewert.");
+               Fehler.LogikFehler (FehlermeldungExtern => "Optionen.Optionen: Falsche Rückgabe: " & RückgabeWert'Wide_Wide_Image);
          end case;
 
       end loop OptionenSchleife;

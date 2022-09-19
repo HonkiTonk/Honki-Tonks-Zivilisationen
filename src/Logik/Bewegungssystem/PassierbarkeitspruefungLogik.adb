@@ -34,7 +34,7 @@ package body PassierbarkeitspruefungLogik is
         IDEinheit
       is
          when EinheitenDatentypen.EinheitenIDMitNullWert'First =>
-            Fehler.LogikFehler (FehlermeldungExtern => "BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer - Einheit ohne ID.");
+            Fehler.LogikFehler (FehlermeldungExtern => "BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer: Einheit ohne ID.");
             return False;
             
          when others =>

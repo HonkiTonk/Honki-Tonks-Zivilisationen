@@ -26,7 +26,7 @@ package body KartenspritesZeichnenGrafik is
       elsif
         TexturAccessExtern = null
       then
-         Warnung.GrafikWarnung (WarnmeldungExtern => "KartenspritesZeichnenGrafik.SpriteGezeichnetKartenfeld - TexturAccessExtern = null");
+         Warnung.GrafikWarnung (WarnmeldungExtern => "KartenspritesZeichnenGrafik.SpriteGezeichnetKartenfeld: TexturAccessExtern = null.");
          
       else
          SpriteZeichnen (SpriteAccesExtern      => SpriteAccess,
@@ -57,7 +57,7 @@ package body KartenspritesZeichnenGrafik is
       elsif
         TexturAccessExtern = null
       then
-         Warnung.GrafikWarnung (WarnmeldungExtern => "KartenspritesZeichnenGrafik.SpriteGezeichnetStadtfeld - TexturAccessExtern = null");
+         Warnung.GrafikWarnung (WarnmeldungExtern => "KartenspritesZeichnenGrafik.SpriteGezeichnetStadtfeld: TexturAccessExtern = null.");
          
       else
          SpriteZeichnen (SpriteAccesExtern      => SpriteAccess,
@@ -92,7 +92,7 @@ package body KartenspritesZeichnenGrafik is
          return True;
          
       else
-         Warnung.GrafikWarnung (WarnmeldungExtern => "KartenspritesZeichnenGrafik.SpriteGezeichnetStadtgrund - TexturAccessExtern = null");
+         Warnung.GrafikWarnung (WarnmeldungExtern => "KartenspritesZeichnenGrafik.SpriteGezeichnetStadtgrund: TexturAccessExtern = null.");
          return False;
       end if;
       

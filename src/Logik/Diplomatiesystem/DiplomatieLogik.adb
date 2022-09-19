@@ -135,7 +135,7 @@ package body DiplomatieLogik is
                   return;
                   
                when others =>
-                  Fehler.LogikFehler (FehlermeldungExtern => "Diplomatie.Diplomatie - Ungültiger Rückgabewert.");
+                  Fehler.LogikFehler (FehlermeldungExtern => "Diplomatie.Diplomatie: Ungültige Rückgabe: " & AktionAuswahl'Wide_Wide_Image);
             end case;
             
          end loop DiplomatieBetreibenSchleife;

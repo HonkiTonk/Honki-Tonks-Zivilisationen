@@ -6,8 +6,9 @@ with KartenRecords;
 
 package KartengeneratorRecordKonstanten is
 
-   -- Das hier sollte woanders hin, oder? Oder aus dem Array ein Record machen. äöü
-   -- Polgrund auch definierbar machen, so dass die Pole nicht nur aus Eis bestehen? äöü
+   -- Polgrund auch definierbar machen, so dass die Pole nicht nur aus Eis bestehen. äöü
+   
+   
    Eisrand : constant KartenDatentypen.PolregionenArray := (
                                                             KartenDatentypen.Norden_Enum => 1,
                                                             KartenDatentypen.Süden_Enum  => 1,

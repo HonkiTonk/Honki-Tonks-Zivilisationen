@@ -48,7 +48,7 @@ package body SpieleinstellungenRasseLogik is
                return;
                
             when others =>
-               Fehler.LogikFehler (FehlermeldungExtern => "SpielEinstellungenRasseSpieler.RassenWählen - Falsche Menüauswahl.");
+               Fehler.LogikFehler (FehlermeldungExtern => "SpielEinstellungenRasseSpieler.RassenWählen: Falsche Auswahl: " & RassenAuswahl'Wide_Wide_Image);
          end case;
          
       end loop RasseSchleife;

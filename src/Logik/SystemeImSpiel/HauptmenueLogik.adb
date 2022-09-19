@@ -25,8 +25,10 @@ package body HauptmenueLogik is
       HauptmenüSchleife:
       loop
          
+         RückgabeAuswahl := AuswahlaufteilungLogik.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Haupt_Menü_Enum);
+         
          case
-           AuswahlaufteilungLogik.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Haupt_Menü_Enum)
+           RückgabeAuswahl
          is
             when RueckgabeDatentypen.Start_Weiter_Enum =>
                if
@@ -96,7 +98,7 @@ package body HauptmenueLogik is
                null;
                
             when others =>
-               Fehler.LogikFehler (FehlermeldungExtern => "Hauptmenue.Hauptmenü - Ungültige Menüauswahl");
+               Fehler.LogikFehler (FehlermeldungExtern => "Hauptmenue.Hauptmenü: Ungültige Menüauswahl: " & RückgabeAuswahl'Wide_Wide_Image);
          end case;
          
       end loop HauptmenüSchleife;

@@ -49,7 +49,7 @@ package body EinlesenMusikLogik is
                                                            AktuelleZeileExtern => AktuelleZeile)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenMusik.EinlesenMusik: Fehlende Zeilen in: " & Decode (Item => VerzeichnisKonstanten.Audio & VerzeichnisKonstanten.Musik & VerzeichnisKonstanten.NullDatei));
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenMusik.EinlesenMusik: Fehlende Zeilen: " & Decode (Item => VerzeichnisKonstanten.Audio & VerzeichnisKonstanten.Musik & VerzeichnisKonstanten.NullDatei));
                exit VerzeichnisseSchleife;
                
             when False =>
@@ -102,7 +102,7 @@ package body EinlesenMusikLogik is
                                                            AktuelleZeileExtern => AktuelleZeile)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenMusik.EinlesenLieder: Fehlende Zeilen in: " & DateipfadExtern);
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenMusik.EinlesenLieder: Fehlende Zeilen: " & DateipfadExtern);
                exit MusikSchleife;
                
             when False =>

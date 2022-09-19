@@ -25,18 +25,18 @@ package body WaldAnlegenLogik is
             NeuerGrund := KartengrundDatentypen.Unterwald_Enum;
             
          when others =>
-            Fehler.LogikFehler (FehlermeldungExtern => "WaldAnlegen.WaldAnlegen - Falsche Ebene.");
+            Fehler.LogikFehler (FehlermeldungExtern => "WaldAnlegen.WaldAnlegen: Falsche Ebene.");
       end case;
       
       SchreibeWeltkarte.AktuellerGrund (KoordinatenExtern => KoordinatenExtern,
-                                     GrundExtern       => NeuerGrund);
+                                        GrundExtern       => NeuerGrund);
       
       case
         LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern)
       is
          when KartenverbesserungDatentypen.Karten_Verbesserung_Gebilde_Friedlich_Enum'Range =>
             SchreibeWeltkarte.Verbesserung (KoordinatenExtern     => KoordinatenExtern,
-                                         VerbesserungExtern    => KartenverbesserungDatentypen.Leer_Verbesserung_Enum);
+                                            VerbesserungExtern    => KartenverbesserungDatentypen.Leer_Verbesserung_Enum);
             
          when others =>
             null;

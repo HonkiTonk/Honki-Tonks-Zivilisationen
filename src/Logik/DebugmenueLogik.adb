@@ -46,7 +46,7 @@ package body DebugmenueLogik is
                return;
                   
             when others =>
-               Fehler.LogikFehler (FehlermeldungExtern => "DebugmenueLogik.Debugmenü - Falsche Rückgabe.");
+               Fehler.LogikFehler (FehlermeldungExtern => "DebugmenueLogik.Debugmenü: Falsche Rückgabe: " & RückgabeDebugmenü'Wide_Wide_Image);
          end case;
       
       end loop DebugmenüSchleife;

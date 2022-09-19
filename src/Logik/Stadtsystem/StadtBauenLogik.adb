@@ -69,7 +69,7 @@ package body StadtBauenLogik is
             end if;
             
          when RassenDatentypen.Leer_Spieler_Enum =>
-            Fehler.LogikFehler (FehlermeldungExtern => "StadtBauen.StadtBauen - Nicht vorhandene Rasse baut Stadt.");
+            Fehler.LogikFehler (FehlermeldungExtern => "StadtBauen.StadtBauen: Nicht vorhandene Rasse baut Stadt.");
       end case;
             
       -- Immer daran denken dass die Stadt bei StadtEintragen auf Leer gesetzt wird und deswegen der Name danach eingetragen werden muss.

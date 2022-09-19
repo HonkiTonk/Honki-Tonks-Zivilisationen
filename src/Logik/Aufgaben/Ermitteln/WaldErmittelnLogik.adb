@@ -91,7 +91,7 @@ package body WaldErmittelnLogik is
             null;
             
          when others =>
-            Fehler.LogikFehler (FehlermeldungExtern => "WaldErmitteln.WaldErmitteln - Falsche Aufgabe ausgewählt.");
+            Fehler.LogikFehler (FehlermeldungExtern => "WaldErmitteln.WaldErmitteln: Falsche Aufgabe: " & Arbeitswerte.Aufgabe'Wide_Wide_Image);
       end case;
       
       case

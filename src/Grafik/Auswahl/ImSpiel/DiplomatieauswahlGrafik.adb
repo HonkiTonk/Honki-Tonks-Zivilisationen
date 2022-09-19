@@ -25,7 +25,7 @@ with EinstellungenGrafik;
 with MenuestringsSetzenGrafik;
 with TextfarbeGrafik;
 with NachGrafiktask;
-with Fehler;
+with Warnung;
 
 package body DiplomatieauswahlGrafik is
 
@@ -91,7 +91,8 @@ package body DiplomatieauswahlGrafik is
                      Text := Text & Meldungstexte.Zeug (TextnummernKonstanten.ZeugKrieg);
                
                   when DiplomatieDatentypen.Unbekannt_Enum =>
-                     Fehler.GrafikFehler (FehlermeldungExtern => "DiplomatieauswahlGrafik.Textdarstellung - Kontakt ist unbekannt.");
+                     Warnung.GrafikWarnung (WarnmeldungExtern => "DiplomatieauswahlGrafik.Textdarstellung: Kontakt ist unbekannt.");
+                     Text := TextKonstanten.LeerUnboundedString;
                end case;
 
                Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TextAccess,

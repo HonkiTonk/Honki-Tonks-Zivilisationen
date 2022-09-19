@@ -63,7 +63,7 @@ package body FestungErmittelnLogik is
             null;
             
          when others =>
-            Fehler.LogikFehler (FehlermeldungExtern => "FestungErmitteln.FestungErmitteln - Falsche Aufgabe ausgewählt.");
+            Fehler.LogikFehler (FehlermeldungExtern => "FestungErmitteln.FestungErmitteln: Falsche Aufgabe: " & Arbeitswerte.Aufgabe'Wide_Wide_Image);
       end case;
       
       case

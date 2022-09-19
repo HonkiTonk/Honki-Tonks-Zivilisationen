@@ -78,7 +78,7 @@ package body FarmErmittelnLogik is
             null;
             
          when others =>
-            Fehler.LogikFehler (FehlermeldungExtern => "EinheitFarmLogik.FarmErmitteln - Falsche Aufgabe ausgewählt.");
+            Fehler.LogikFehler (FehlermeldungExtern => "EinheitFarmLogik.FarmErmitteln: Falsche Aufgabe: " & Arbeitswerte.Aufgabe'Wide_Wide_Image);
       end case;
       
       case

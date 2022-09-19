@@ -2,7 +2,7 @@
 
 -- Kartengenerator
 -- Siegbedingungen und Übergaben
--- BewegungCursor aufteilen (siehe auch Sichtweiten und KartenberechnungenGrafik), kann größtenteil raus nach vollständiger Überarbeitung der Stadtanzeige und des Stadtsystem.
+-- Liste beim Speichern/Laden anlegen, ähnlich wie bei der Sprachauswahl.
 --
 
 
@@ -25,7 +25,6 @@
 -- Sonstiges:
 
 -- Diese ganze Aufteilung zwischen AufgabenDatentypen, TastenbelegungDatentypen und KartenverbesserungDatentypen muss mal verbessert werden.
--- Liste beim Speichern/Laden anlegen, ähnlich wie bei der Sprachauswahl.
 --
 
 

@@ -114,10 +114,11 @@ package body KIEinheitAufgabenplanung is
             null;
             
          when EinheitenDatentypen.Cheat_Enum =>
-            Fehler.LogikFehler (FehlermeldungExtern => "KIAufgabenPlanung.EinheitSpezifischeAufgabenErmitteln - KI hat Cheateinheit ausgewählt.");
+            -- Wenn man Debug nutzt, dann auch für die KI die Cheateinheit aktivieren? äöü
+            Fehler.LogikFehler (FehlermeldungExtern => "KIAufgabenPlanung.EinheitSpezifischeAufgabenErmitteln: KI hat Cheateinheit ausgewählt.");
             
          when EinheitenDatentypen.Leer_Einheitart_Enum =>
-            Fehler.LogikFehler (FehlermeldungExtern => "KIAufgabenPlanung.EinheitSpezifischeAufgabenErmitteln - Leere Einheitart.");
+            Fehler.LogikFehler (FehlermeldungExtern => "KIAufgabenPlanung.EinheitSpezifischeAufgabenErmitteln: Leere Einheitart.");
       end case;
       
    end EinheitSpezifischeAufgabeErmitteln;

@@ -147,7 +147,7 @@ package body KIEinheitenBauen is
             return KIDatentypen.BauenBewertung'First;
             
          when EinheitenDatentypen.Leer_Einheitart_Enum =>
-            Fehler.LogikFehler (FehlermeldungExtern => "KIEinheitenBauen.SpezielleEinheitBewerten - Leere Einheitart.");
+            Fehler.LogikFehler (FehlermeldungExtern => "KIEinheitenBauen.SpezielleEinheitBewerten: Leere Einheitart.");
       end case;
       
       return 0;

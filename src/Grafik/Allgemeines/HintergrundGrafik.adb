@@ -27,7 +27,7 @@ package body HintergrundGrafik is
       elsif
         EingeleseneTexturenGrafik.HintergrundAccess (HintergrundExtern) = null
       then
-         Warnung.GrafikWarnung (WarnmeldungExtern => "HintergrundGrafik.Hintergrund - Hintergrund fehlt: " & HintergrundExtern'Wide_Wide_Image);
+         Warnung.GrafikWarnung (WarnmeldungExtern => "HintergrundGrafik.Hintergrund: Hintergrund fehlt: " & HintergrundExtern'Wide_Wide_Image);
          
       else
          Sf.Graphics.Sprite.scale (sprite  => HintergrundSpriteAccess,
@@ -78,7 +78,7 @@ package body HintergrundGrafik is
       elsif
         EingeleseneTexturenGrafik.RassenhintergrundAccess (RasseExtern, HintergrundExtern) = null
       then
-         Warnung.GrafikWarnung (WarnmeldungExtern => "HintergrundGrafik.Rassenhintergrund - Hintergrund fehlt: " & RasseExtern'Wide_Wide_Image & " - " & HintergrundExtern'Wide_Wide_Image);
+         Warnung.GrafikWarnung (WarnmeldungExtern => "HintergrundGrafik.Rassenhintergrund: Hintergrund fehlt: " & RasseExtern'Wide_Wide_Image & " - " & HintergrundExtern'Wide_Wide_Image);
          
       else
          Sf.Graphics.Sprite.scale (sprite  => RassenhintergrundSpriteAccess,

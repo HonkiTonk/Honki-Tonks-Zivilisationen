@@ -52,7 +52,7 @@ package body LeseEinheitenGebaut is
    end Heimatstadt;
    
    
-      
+   
    function Lebenspunkte
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return EinheitenDatentypen.Lebenspunkte
@@ -65,7 +65,7 @@ package body LeseEinheitenGebaut is
         SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Lebenspunkte > ErlaubteLebenspunkte
       then
          SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Lebenspunkte := ErlaubteLebenspunkte;
-         Warnung.LogikWarnung (WarnmeldungExtern => "LeseEinheitenGebaut.Lebenspunkte - Vorhandene Lebenspunkte > Erlaubte Lebenspunkte.");
+         Warnung.LogikWarnung (WarnmeldungExtern => "LeseEinheitenGebaut.Lebenspunkte: Vorhandene Lebenspunkte > Erlaubte Lebenspunkte.");
          
       else
          null;
@@ -77,7 +77,6 @@ package body LeseEinheitenGebaut is
    
    
    
-   -- Hier sollte keine Prüfung notwendig sein ob die Bewegungspunkte < sind als die Leerkonstante der Bewegungspunkte, da dann der Rückgabewert auch kleiner sein müsste als der erlaubte Rückgabebereich.
    function Bewegungspunkte
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return EinheitenDatentypen.VorhandeneBewegungspunkte
@@ -101,7 +100,7 @@ package body LeseEinheitenGebaut is
         SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Erfahrungspunkte > Beförderungsgrenze
       then
          SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Erfahrungspunkte := Beförderungsgrenze;
-         Warnung.LogikWarnung (WarnmeldungExtern => "LeseEinheitenGebaut.Erfahrungspunkte - Mehr Erfahrungspunkte als erlaubt.");
+         Warnung.LogikWarnung (WarnmeldungExtern => "LeseEinheitenGebaut.Erfahrungspunkte: Mehr Erfahrungspunkte als erlaubt.");
 
       else
          null;
@@ -125,7 +124,7 @@ package body LeseEinheitenGebaut is
         SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Rang > MaximalerRang
       then
          SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Rang := MaximalerRang;
-         Warnung.LogikWarnung (WarnmeldungExtern => "LeseEinheitenGebaut.Rang - Höherer Rang als erlaubt.");
+         Warnung.LogikWarnung (WarnmeldungExtern => "LeseEinheitenGebaut.Rang: Höherer Rang als erlaubt.");
       else
          null;
       end if;

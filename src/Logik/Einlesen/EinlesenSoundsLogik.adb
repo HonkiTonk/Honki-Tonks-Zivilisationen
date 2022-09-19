@@ -50,7 +50,7 @@ package body EinlesenSoundsLogik is
          is
             when True =>
                Warnung.LogikWarnung
-                 (WarnmeldungExtern => "EinlesenSounds.EinlesenSounds: Fehlende Zeilen in: " & Decode (Item => VerzeichnisKonstanten.Audio & VerzeichnisKonstanten.Sound & VerzeichnisKonstanten.NullDatei));
+                 (WarnmeldungExtern => "EinlesenSounds.EinlesenSounds: Fehlende Zeilen: " & Decode (Item => VerzeichnisKonstanten.Audio & VerzeichnisKonstanten.Sound & VerzeichnisKonstanten.NullDatei));
                exit SoundsSchleife;
                
             when False =>

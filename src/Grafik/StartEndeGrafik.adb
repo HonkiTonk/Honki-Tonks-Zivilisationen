@@ -23,7 +23,7 @@ package body StartEndeGrafik is
       if
         EinstellungenGrafik.FensterAccess = null
       then
-         Fehler.GrafikFehler (FehlermeldungExtern => "StartEndeGrafik.FensterErzeugen - FensterAccess = null.");
+         Fehler.GrafikFehler (FehlermeldungExtern => "StartEndeGrafik.FensterErzeugen: FensterAccess = null.");
 
       else
          AllgemeinGrafik.MauszeigerFestlegen;
@@ -58,7 +58,7 @@ package body StartEndeGrafik is
                                                                                              style => EinstellungenGrafik.FensterEinstellungen.FensterVollbild);
             
          when others =>
-            Fehler.GrafikFehler (FehlermeldungExtern => "StartEndeGrafik.FensterErzeugenErweitert - Unbekannter Fenstermodus gewählt.");
+            Fehler.GrafikFehler (FehlermeldungExtern => "StartEndeGrafik.FensterErzeugenErweitert: Unbekannter Fenstermodus: " & EinstellungenGrafik.FensterEinstellungen.FensterVollbild'Wide_Wide_Image);
       end case;
             
    end FensterErzeugenErweitert;

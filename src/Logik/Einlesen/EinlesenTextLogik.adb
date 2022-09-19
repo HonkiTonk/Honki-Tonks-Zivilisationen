@@ -30,7 +30,8 @@ package body EinlesenTextLogik is
                   Name => VerzeichnisKonstanten.SprachenStrich & Encode (Item => To_Wide_Wide_String (Source => OptionenVariablen.NutzerEinstellungen.Sprache)) & VerzeichnisKonstanten.NullDatei);
 
          when False =>
-            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.EinlesenDateien - 0-Datei fehlt.");
+            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.EinlesenDateien: Es fehlt: " & Decode (Item => VerzeichnisKonstanten.SprachenStrich)
+                                  & To_Wide_Wide_String (Source => OptionenVariablen.NutzerEinstellungen.Sprache) & Decode (Item => VerzeichnisKonstanten.NullDatei));
             return;
       end case;
       
@@ -42,7 +43,8 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => WelcheDateienSchleifenwert)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.EinlesenDateien - 0-Datei zu kurz.");
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.EinlesenDateien: Fehlende Zeilen: " & Decode (Item => VerzeichnisKonstanten.SprachenStrich)
+                                     & To_Wide_Wide_String (Source => OptionenVariablen.NutzerEinstellungen.Sprache) & Decode (Item => VerzeichnisKonstanten.NullDatei));
                
             when False =>
                EinlesenAufteilen (WelcheDateiExtern => WelcheDateienSchleifenwert,
@@ -71,7 +73,7 @@ package body EinlesenTextLogik is
                   Name => Encode (Item => VerzeichnisExtern));
             
          when False =>
-            -- Warnung einbauen. äöü
+            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.EinlesenAufteilen: Es fehlt: " & VerzeichnisExtern);
             return;
       end case;
       
@@ -193,7 +195,7 @@ package body EinlesenTextLogik is
             Spielstandmenü;
             
          when others =>
-            Fehler.LogikFehler (FehlermeldungExtern => "EinlesenText.EinlesenAufteilen - Mehr Dateien eingelesen als möglich.");
+            Fehler.LogikFehler (FehlermeldungExtern => "EinlesenText.EinlesenAufteilen: Mehr eingelesen als möglich.");
       end case;
             
       Close (File => DateiText);
@@ -213,7 +215,8 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Hauptmenü -" & ZeileSchleifenwert'Wide_Wide_Image);
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Hauptmenü: Fehlende Zeilen.");
+               return;
                
             when False =>
                Menuetexte.Hauptmenü (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
@@ -236,7 +239,8 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Spielmenü -" & ZeileSchleifenwert'Wide_Wide_Image);
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Spielmenü: Fehlende Zeilen.");
+               return;
                
             when False =>
                Menuetexte.Spielmenü (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
@@ -259,7 +263,8 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Optionsmenü -" & ZeileSchleifenwert'Wide_Wide_Image);
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Optionsmenü: Fehlende Zeilen.");
+               return;
                
             when False =>
                Menuetexte.Optionsmenü (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
@@ -282,7 +287,8 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Grafikmenü -" & ZeileSchleifenwert'Wide_Wide_Image);
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Grafikmenü: Fehlende Zeilen.");
+               return;
                
             when False =>
                Menuetexte.Grafikmenü (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
@@ -305,7 +311,8 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Soundmenü -" & ZeileSchleifenwert'Wide_Wide_Image);
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Soundmenü: Fehlende Zeilen.");
+               return;
                
             when False =>
                Menuetexte.Soundmenü (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
@@ -328,7 +335,8 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Steuerungmenü -" & ZeileSchleifenwert'Wide_Wide_Image);
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Steuerungmenü: Fehlende Zeilen.");
+               return;
                
             when False =>
                Menuetexte.Steuerungmenü (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
@@ -351,7 +359,8 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Sonstigesmenü -" & ZeileSchleifenwert'Wide_Wide_Image);
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Sonstigesmenü: Fehlende Zeilen.");
+               return;
                
             when False =>
                Menuetexte.Sonstigesmenü (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
@@ -374,7 +383,8 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Kartengröße -" & ZeileSchleifenwert'Wide_Wide_Image);
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Kartengröße: Fehlende Zeilen.");
+               return;
                
             when False =>
                Menuetexte.Kartengröße (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
@@ -397,7 +407,8 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Kartenart -" & ZeileSchleifenwert'Wide_Wide_Image);
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Kartenart: Fehlende Zeilen.");
+               return;
                
             when False =>
                Menuetexte.Kartenart (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
@@ -420,7 +431,8 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Kartentemperatur -" & ZeileSchleifenwert'Wide_Wide_Image);
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Kartentemperatur: Fehlende Zeilen.");
+               return;
                
             when False =>
                Menuetexte.Kartentemperatur (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
@@ -443,7 +455,8 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Rassenauswahl -" & ZeileSchleifenwert'Wide_Wide_Image);
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Rassenauswahl: Fehlende Zeilen.");
+               return;
                
             when False =>
                Menuetexte.Rassenauswahl (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
@@ -466,7 +479,8 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Schwierigkeitsgrad -" & ZeileSchleifenwert'Wide_Wide_Image);
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Schwierigkeitsgrad: Fehlende Zeilen.");
+               return;
                
             when False =>
                Menuetexte.Schwierigkeitsgrad (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
@@ -489,7 +503,8 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Kartenform -" & ZeileSchleifenwert'Wide_Wide_Image);
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Kartenform: Fehlende Zeilen.");
+               return;
                
             when False =>
                Menuetexte.Kartenform (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
@@ -512,7 +527,8 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Ressourcenmenge -" & ZeileSchleifenwert'Wide_Wide_Image);
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Ressourcenmenge: Fehlende Zeilen.");
+               return;
                
             when False =>
                Menuetexte.Ressourcenmenge (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
@@ -535,7 +551,8 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Kartenfelder -" & ZeileSchleifenwert'Wide_Wide_Image);
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Kartenfelder: Fehlende Zeilen.");
+               return;
                
             when False =>
                Kartentexte.Kartenfelder (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
@@ -558,7 +575,8 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Verbesserungen -" & ZeileSchleifenwert'Wide_Wide_Image);
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Verbesserungen: Fehlende Zeilen.");
+               return;
                
             when False =>
                Kartentexte.Verbesserungen (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
@@ -581,7 +599,8 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Beschäftigungen -" & ZeileSchleifenwert'Wide_Wide_Image);
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Beschäftigungen: Fehlende Zeilen.");
+               return;
                
             when False =>
                GlobaleTexte.Beschäftigungen (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
@@ -604,7 +623,8 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Debugmenü -" & ZeileSchleifenwert'Wide_Wide_Image);
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Debugmenü: Fehlende Zeilen.");
+               return;
                
             when False =>
                Menuetexte.Debugmenü (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
@@ -627,7 +647,8 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.AllgemeineInformationen -" & ZeileSchleifenwert'Wide_Wide_Image);
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.AllgemeineInformationen: Fehlende Zeilen.");
+               return;
                
             when False =>
                GlobaleTexte.AllgemeineInformationen (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
@@ -650,7 +671,8 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Würdigung -" & ZeileSchleifenwert'Wide_Wide_Image);
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Würdigung: Fehlende Zeilen.");
+               return;
                
             when False =>
                GlobaleTexte.Würdigung (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
@@ -673,7 +695,8 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Diplomatiemenü -" & ZeileSchleifenwert'Wide_Wide_Image);
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Diplomatiemenü: Fehlende Zeilen.");
+               return;
                
             when False =>
                Menuetexte.Diplomatiemenü (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
@@ -696,7 +719,8 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.DiplomatieKI -" & ZeileSchleifenwert'Wide_Wide_Image);
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.DiplomatieKI: Fehlende Zeilen.");
+               return;
                
             when False =>
                GlobaleTexte.DiplomatieKI (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
@@ -719,7 +743,8 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Endmeldungen -" & ZeileSchleifenwert'Wide_Wide_Image);
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Endmeldungen: Fehlende Zeilen.");
+               return;
                
             when False =>
                GlobaleTexte.Endmeldungen (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
@@ -742,7 +767,8 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Handelsmenü -" & ZeileSchleifenwert'Wide_Wide_Image);
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Handelsmenü: Fehlende Zeilen.");
+               return;
                
             when False =>
                GlobaleTexte.Handelsmenü (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
@@ -765,7 +791,8 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.DiplomatieStatus -" & ZeileSchleifenwert'Wide_Wide_Image);
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.DiplomatieStatus: Fehlende Zeilen.");
+               return;
                
             when False =>
                GlobaleTexte.DiplomatieStatus (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
@@ -788,7 +815,8 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Spielmenü -" & ZeileSchleifenwert'Wide_Wide_Image);
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Spielmenü: Fehlende Zeilen.");
+               return;
                
             when False =>
                GlobaleTexte.Angebot (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
@@ -811,7 +839,8 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Fehlermeldung -" & ZeileSchleifenwert'Wide_Wide_Image);
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Fehlermeldung: Fehlende Zeilen.");
+               return;
                
             when False =>
                Meldungstexte.Meldung (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
@@ -834,7 +863,8 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Ladezeit -" & ZeileSchleifenwert'Wide_Wide_Image);
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Ladezeit: Fehlende Zeilen.");
+               return;
                
             when False =>
                GlobaleTexte.Ladezeit (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
@@ -857,7 +887,8 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Frage -" & ZeileSchleifenwert'Wide_Wide_Image);
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Frage: Fehlende Zeilen.");
+               return;
                
             when False =>
                Meldungstexte.Frage (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
@@ -880,7 +911,8 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.ZeugSachen -" & ZeileSchleifenwert'Wide_Wide_Image);
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.ZeugSachen: Fehlende Zeilen.");
+               return;
                
             when False =>
                Meldungstexte.Zeug (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
@@ -903,7 +935,8 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Editoren -" & ZeileSchleifenwert'Wide_Wide_Image);
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Editoren: Fehlende Zeilen.");
+               return;
                
             when False =>
                Menuetexte.Editoren (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
@@ -926,7 +959,8 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Wege -" & ZeileSchleifenwert'Wide_Wide_Image);
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Wege: Fehlende Zeilen.");
+               return;
                
             when False =>
                Kartentexte.Wege (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
@@ -949,7 +983,8 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Kartenflüsse -" & ZeileSchleifenwert'Wide_Wide_Image);
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Kartenflüsse: Fehlende Zeilen.");
+               return;
                
             when False =>
                Kartentexte.Kartenflüsse (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
@@ -972,7 +1007,8 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Kartenressourcen -" & ZeileSchleifenwert'Wide_Wide_Image);
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Kartenressourcen: Fehlende Zeilen.");
+               return;
                
             when False =>
                Kartentexte.Kartenressourcen (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
@@ -995,7 +1031,8 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Einstellungen -" & ZeileSchleifenwert'Wide_Wide_Image);
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Einstellungen: Fehlende Zeilen.");
+               return;
                
             when False =>
                Menuetexte.Einstellungsmenü (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
@@ -1018,7 +1055,8 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Kartenpole -" & ZeileSchleifenwert'Wide_Wide_Image);
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Kartenpole: Fehlende Zeilen.");
+               return;
                
             when False =>
                Menuetexte.Kartenpole (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
@@ -1041,7 +1079,8 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Stadtbefehle -" & ZeileSchleifenwert'Wide_Wide_Image);
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Stadtbefehle: Fehlende Zeilen.");
+               return;
                
             when False =>
                Befehlstexte.Stadtbefehle (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
@@ -1064,7 +1103,8 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Spielstandmenü -" & ZeileSchleifenwert'Wide_Wide_Image);
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Spielstandmenü: Fehlende Zeilen.");
+               return;
                
             when False =>
                Menuetexte.Spielstandmenü (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));

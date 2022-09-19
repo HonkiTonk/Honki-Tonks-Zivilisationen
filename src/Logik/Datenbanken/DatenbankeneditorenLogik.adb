@@ -44,7 +44,7 @@ package body DatenbankeneditorenLogik is
                return AuswahlWert;
                
             when others =>
-               Fehler.LogikFehler (FehlermeldungExtern => "DatenbankenEditoren.DatenbankenEditoren - Falsche Menüauswahl.");
+               Fehler.LogikFehler (FehlermeldungExtern => "DatenbankeneditorenLogik.DatenbankenEditoren: Falsche Auswahl: " & AuswahlWert'Wide_Wide_Image);
          end case;
          
       end loop EditorenSchleife;
