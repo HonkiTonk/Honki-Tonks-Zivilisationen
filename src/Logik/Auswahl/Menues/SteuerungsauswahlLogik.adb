@@ -6,7 +6,7 @@ with Sf.Window.Keyboard; use Sf.Window.Keyboard;
 with TastenbelegungDatentypen; use TastenbelegungDatentypen;
 with InteraktionAuswahl;
 with SystemKonstanten;
-with SystemDatentypen;
+with GrafikDatentypen;
 with TextnummernKonstanten;
 with TastenbelegungVariablen;
 
@@ -68,11 +68,11 @@ package body SteuerungsauswahlLogik is
    is begin
       
       NachGrafiktask.AnzeigeFrage := TextnummernKonstanten.FrageNeueTaste;
-      NachGrafiktask.Eingabe := SystemDatentypen.Zeichen_Eingabe_Enum;
+      NachGrafiktask.Eingabe := GrafikDatentypen.Zeichen_Eingabe_Enum;
       
       NeueTaste := TasteneingabeLogik.TastenbelegungAnpassen;
       
-      NachGrafiktask.Eingabe := SystemDatentypen.Keine_Eingabe_Enum;
+      NachGrafiktask.Eingabe := GrafikDatentypen.Keine_Eingabe_Enum;
       
       case
         NeueTaste

@@ -24,7 +24,7 @@ with AuswahlStadtEinheitLogik;
 with NachGrafiktask;
 with JaNeinLogik;
 with EinheitenSpielmeldungenLogik;
-with StadtAllgemeinLogik;
+with StadtAllgemeinesLogik;
 
 -- Hier auch mal überarbeiten, vor allem die Prozeduren weiter unten. äöü
 package body BefehlspruefungenLogik is
@@ -87,6 +87,7 @@ package body BefehlspruefungenLogik is
       EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
                                                                             KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell,
                                                                             LogikGrafikExtern => True);
+      
       StadtNummer := StadtSuchenLogik.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
                                                                       KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
 
@@ -302,7 +303,6 @@ package body BefehlspruefungenLogik is
    
    
    
-   -- Das hier ins Stadtsystem verschieben oder mit dem bereits vorhandenen Zeug zusammenführen. äöü
    procedure StadtUmbenennen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
@@ -317,7 +317,7 @@ package body BefehlspruefungenLogik is
             null;
          
          when others =>
-            StadtAllgemeinLogik.NeuerStadtname (StadtRasseNummerExtern => (RasseExtern, StadtNummer));
+            StadtAllgemeinesLogik.NeuerStadtname (StadtRasseNummerExtern => (RasseExtern, StadtNummer));
       end case;
       
    end StadtUmbenennen;

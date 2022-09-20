@@ -141,7 +141,7 @@ package body KartengeneratorLandschaftLogik is
                                               GrundExtern       => WelcherGrund);
       
       SchreibeWeltkarte.GleicherGrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
-                                   GrundExtern       => WelcherGrund);
+                                       GrundExtern       => WelcherGrund);
       
    end BasisgrundBestimmen;
    
@@ -221,7 +221,7 @@ package body KartengeneratorLandschaftLogik is
       is
          when KartengrundDatentypen.Kartengrund_Oberfläche_Zusatz_Enum'Range =>
             SchreibeWeltkarte.AktuellerGrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
-                                           GrundExtern       => WelcherGrund);
+                                              GrundExtern       => WelcherGrund);
             
          when others =>
             null;
@@ -265,7 +265,6 @@ package body KartengeneratorLandschaftLogik is
    
    
    
-   -- Die Unterfunktionen noch so umbauen das auch kein Zusatzgrund möglich ist. äöü
    function ZusatzExtraberechnungen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Zusatz_Enum)
@@ -304,8 +303,8 @@ package body KartengeneratorLandschaftLogik is
          for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
-                                                                                                 ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                 LogikGrafikExtern => True);
+                                                                                                      ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                      LogikGrafikExtern => True);
             
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse
@@ -342,8 +341,8 @@ package body KartengeneratorLandschaftLogik is
          for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
-                                                                                                 ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                 LogikGrafikExtern => True);
+                                                                                                      ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                      LogikGrafikExtern => True);
             
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse

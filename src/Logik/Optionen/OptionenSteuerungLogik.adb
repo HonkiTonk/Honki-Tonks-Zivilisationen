@@ -27,7 +27,6 @@ package body OptionenSteuerungLogik is
                
             when RueckgabeDatentypen.Standard_Enum =>
                TastenbelegungVariablen.StandardTastenbelegungLaden;
-               -- Das Schreiben rauswerfen oder durch zusätzliche Abfrage erweitern? äöü
                SchreibenTastaturLogik.TastenbelegungSchreiben;
             
             when RueckgabeDatentypen.Zurück_Beenden_Enum'Range =>

@@ -7,7 +7,6 @@ with Sf.Graphics.Text;
 with EinheitenDatentypen; use EinheitenDatentypen;
 with Meldungstexte;
 with TextnummernKonstanten;
-with GrafikDatentypen;
 with Views;
 with TextaccessVariablen;
 
@@ -28,7 +27,7 @@ package body EingabenanzeigeGrafik is
    
    procedure Fragenaufteilung
      (FrageExtern : in ZahlenDatentypen.EigenesPositive;
-      EingabeExtern : in SystemDatentypen.Eingaben_Fragen_Enum)
+      EingabeExtern : in GrafikDatentypen.Eingaben_Fragen_Enum)
    is begin
       
       AllgemeineViewsGrafik.Frage (HintergrundExtern => GrafikDatentypen.Auswahl_Hintergrund_Enum,
@@ -37,16 +36,16 @@ package body EingabenanzeigeGrafik is
       case
         EingabeExtern
       is
-         when SystemDatentypen.Text_Eingabe_Enum =>
+         when GrafikDatentypen.Text_Eingabe_Enum =>
             AnzeigeText;
             
-         when SystemDatentypen.Zahlen_Eingabe_Enum =>
+         when GrafikDatentypen.Zahlen_Eingabe_Enum =>
             AnzeigeGanzeZahl;
             
-         when SystemDatentypen.Ja_Nein_Enum =>
+         when GrafikDatentypen.Ja_Nein_Enum =>
             AnzeigeJaNein;
             
-         when SystemDatentypen.Zeichen_Eingabe_Enum =>
+         when GrafikDatentypen.Zeichen_Eingabe_Enum =>
             null;
       end case;
       

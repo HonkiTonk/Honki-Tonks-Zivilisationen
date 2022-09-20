@@ -12,7 +12,7 @@ with GebaeudeVerkaufenLogik;
 with NachGrafiktask;
 with MausauswahlLogik;
 with StadtEntfernenLogik;
-with StadtAllgemeinLogik;
+with StadtAllgemeinesLogik;
 
 package body StadtmenueLogik is
 
@@ -53,7 +53,7 @@ package body StadtmenueLogik is
                end if;
 
             when TastenbelegungDatentypen.Stadt_Umbenennen_Enum =>
-               StadtAllgemeinLogik.NeuerStadtname (StadtRasseNummerExtern => StadtRasseNummerExtern);
+               StadtAllgemeinesLogik.NeuerStadtname (StadtRasseNummerExtern => StadtRasseNummerExtern);
 
             when TastenbelegungDatentypen.Menü_Zurück_Enum =>
                exit StadtSchleife;
@@ -119,7 +119,7 @@ package body StadtmenueLogik is
             GebaeudeVerkaufenLogik.Verkaufsliste (StadtRasseNummerExtern => StadtRasseNummerExtern);
             
          when BefehleDatentypen.Umbenennen_Enum =>
-            StadtAllgemeinLogik.NeuerStadtname (StadtRasseNummerExtern => StadtRasseNummerExtern);
+            StadtAllgemeinesLogik.NeuerStadtname (StadtRasseNummerExtern => StadtRasseNummerExtern);
             
          when BefehleDatentypen.Auflösen_Enum =>
             return StadtEntfernenLogik.StadtAbreißen (StadtRasseNummerExtern => StadtRasseNummerExtern);

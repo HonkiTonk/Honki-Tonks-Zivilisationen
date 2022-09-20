@@ -53,7 +53,6 @@ package body DiplomatieauswahlGrafik is
    
    
    
-   -- Hier auch gleich noch eine Anzeige für die Meinung und den aktuellen Zustand einbauen? äöü
    function Textdarstellung
      (ViewflächeExtern : in Sf.System.Vector2.sfVector2f;
       AuswahlExtern : in Natural)

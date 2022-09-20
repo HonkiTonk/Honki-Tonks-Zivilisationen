@@ -36,17 +36,6 @@ package body UmwandlungenVerschiedeneDatentypen is
    
    
    
-   function KartenartrückgabeNachKartenart
-     (RückgabeExtern : in RueckgabeDatentypen.Kartenart_Enum)
-      return KartenDatentypen.Kartenart_Enum
-   is begin
-      
-      return KartenartrückgabeKartenart (RückgabeExtern);
-      
-   end KartenartrückgabeNachKartenart;
-   
-   
-   
    function KartentemperaturrückgabeNachKartentemperatur
      (RückgabeExtern : in RueckgabeDatentypen.Kartentemperatur_Enum)
       return KartenDatentypen.Kartentemperatur_Enum

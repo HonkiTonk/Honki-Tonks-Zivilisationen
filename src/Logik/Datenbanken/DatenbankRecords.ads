@@ -79,8 +79,8 @@ package DatenbankRecords is
       GrundBenötigt : KartengrundDatentypen.Kartengrund_Enum;
       FlussBenötigt : Boolean;
       RessourceBenötigt : KartengrundDatentypen.Kartenressourcen_Enum;
-      -- UndOderGrundFlussBenötigt : Boolean; -- In ein Enum einbauen? äöü
       -- Auch noch Abhängigkeit von anderen Gebäuden einbauen. äöü
+      -- Wie könnte man da am besten eine Oder Verknüpfung für die Sachen bauen? äöü
       
       GebäudeSpezielleEigenschaft : StadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum;
 

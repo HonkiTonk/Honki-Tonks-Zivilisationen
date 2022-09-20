@@ -31,7 +31,6 @@ package body EinlesenLogik is
    
    
    
-   -- Die Anzeige wird nur für das Einlesen des Textes benötigt, später mal anpassen? äöü
    procedure EinlesenMitAnzeige
    is begin
       

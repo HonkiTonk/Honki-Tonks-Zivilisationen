@@ -18,7 +18,7 @@ with Vergleiche;
 with EinstellungenGrafik;
 with KartenberechnungenGrafik;
 
--- Auch mal thematisch aufteilen? äöü
+-- Mal thematisch aufteilen. äöü
 package body MausauswahlLogik is
 
    function RassenauswahlDiplomatie
@@ -324,7 +324,7 @@ package body MausauswahlLogik is
    -- Wobei ich wohl einfach die Auswahl zurückgeben kann und dann entsprechend prüfen und weiter zurückgeben kann? äöü
    -- Vermutlich sind da dann aber noch ein paar zusätzliche Prüfungen notwendig. äöü
    function Einheitenbefehle
-      return BefehleDatentypen.Weltkartenbefehle_Enum
+     return BefehleDatentypen.Weltkartenbefehle_Enum
    is begin
       
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
@@ -461,15 +461,92 @@ package body MausauswahlLogik is
      return Natural
    is begin
       
-      AuswahlSchleife:
-      loop
-         
-         exit AuswahlSchleife;
-         
-      end loop AuswahlSchleife;
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
+                                                                 point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
+                                                                 view         => Views.MenüviewAccess);
       
-      return 0;
+      PositionSchleife:
+      for PositionSchleifenwert in InteraktionAuswahl.PositionenSpielstand'Range loop
+                  
+         case
+           Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
+                                       TextboxExtern      => InteraktionAuswahl.PositionenSpielstand (PositionSchleifenwert))
+         is
+            when True =>
+               return PositionSchleifenwert;
+            
+            when False =>
+               null;
+         end case;
+         
+      end loop PositionSchleife;
+      
+      return SystemKonstanten.LeerAuswahl;
       
    end SpeichernLaden;
+   
+   
+   
+   function StadtEinheitauswahl
+     (AnfangExtern : in EinheitenDatentypen.Transportplätze;
+      EndeExtern : in EinheitenDatentypen.TransportplätzeVorhanden)
+     return Integer
+   is begin
+      
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
+                                                                 point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
+                                                                 view         => Views.StadtEinheitviewAccess);
+      
+      AuswahlSchleife:
+      for AuswahlSchleifenwert in AnfangExtern .. EndeExtern loop
+         
+         case
+           Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
+                                       TextboxExtern      => InteraktionAuswahl.PositionenEinheitStadt (AuswahlSchleifenwert))
+         is
+            when True =>
+               return Natural (AuswahlSchleifenwert);
+               
+            when False =>
+               null;
+         end case;
+         
+      end loop AuswahlSchleife;
+              
+      return -1;
+      
+   end StadtEinheitauswahl;
+   
+   
+   
+   function Sprachenauswahl
+     (AnfangExtern : in Positive;
+      EndeExtern : in Positive)
+      return Natural
+   is begin
+      
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
+                                                                 point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
+                                                                 view         => Views.MenüviewAccess);
+      
+      MausZeigerSchleife:
+      for PositionSchleifenwert in AnfangExtern .. EndeExtern loop
+         
+         case
+           Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
+                                       TextboxExtern      => InteraktionAuswahl.PositionenSprachauswahl (PositionSchleifenwert))
+         is
+            when True =>
+               return PositionSchleifenwert;
+            
+            when False =>
+               null;
+         end case;
+         
+      end loop MausZeigerSchleife;
+      
+      return SystemKonstanten.LeerAuswahl;
+      
+   end Sprachenauswahl;
    
 end MausauswahlLogik;

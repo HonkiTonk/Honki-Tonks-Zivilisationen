@@ -10,7 +10,6 @@ private with ZahlenDatentypen;
 
 private with Weltkarte;
 
--- Hier noch Contracts für die Rasse einbauen? Eventuell nicht überall möglich wegen noch nicht vorhandener Belegung. äöü
 package SpieleinstellungenRasseLogik is
    
    procedure StartwerteErmitteln;

@@ -2,10 +2,10 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with RassenDatentypen; use RassenDatentypen;
 
-private with SystemRecords;
 private with SonstigesKonstanten;
 private with SpielVariablen;
 
@@ -20,7 +20,7 @@ private
 
    DateiLaden : File_Type;
 
-   NameSpielstand : SystemRecords.TextEingabeRecord;
+   Spielstandname : Unbounded_Wide_Wide_String;
 
    procedure Allgemeines
      (DateiLadenExtern : in File_Type);

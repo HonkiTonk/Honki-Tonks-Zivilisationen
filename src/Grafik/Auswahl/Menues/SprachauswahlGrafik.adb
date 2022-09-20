@@ -45,7 +45,8 @@ package body SprachauswahlGrafik is
             null;
       end case;
       
-      -- Diese Werter später in die Prozedur übergeben, außer die Sprachen? äöü
+      -- Diese Werte später in die Prozedur übergeben, außer die Sprachen? äöü
+      -- Gilt auch für die Spielstandauswahl. äöü
       MehrereSeiten := NachGrafiktask.MehrereSeiten;
       AktuelleAuswahl := NachGrafiktask.AktuelleAuswahl.AuswahlEins;
       Ende := NachGrafiktask.Endauswahl;

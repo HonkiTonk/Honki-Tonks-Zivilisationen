@@ -10,9 +10,8 @@ package TexteinstellungenGrafik is
 
    SchriftartAccess : Sf.Graphics.sfFont_Ptr;
    
-   -- Später wie hier überall mehr konstante Standards und dann einfach zuweisen. Nutzereinstellungen dann auch in den Einstellugnen speichern! äöü
-   -- Lese- und Schreibefunktion/Prozedur dafür anlegen?
-   -- Später auch was für den Textstyle einbauen? äöü
+   -- Nutzereinstellungen in den Einstellugnen speichern. äöü
+   -- Später auch was für den Textstyle einbauen. äöü
    Schriftgrößen : GrafikRecords.SchriftgrößenRecord;
    
    Schriftfarben : GrafikRecords.SchriftfarbenRecord;

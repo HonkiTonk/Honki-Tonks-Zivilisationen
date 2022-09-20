@@ -3,9 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenKonstanten;
 
--- Die zweidimensionalen Arrays existieren wegen der Parallelisierung der Kartenfelderbewertung und weil das hier von Logik und Grafik benötigt wird.
--- Die Überhangschleifen in den Berechnungen sind nötig, da zwar eine Einheitenbewegung nicht so groß sein kann, aber der Spieler eventuell soweit rauszoomt.
--- Die Überhangsschleifen werden auch für den Kartengenerator benötigt.
+-- Überhangsschleifen noch an das aktuelle System anpassen. äöü
 package body KartenkoordinateXAchseBerechnenLogik is
 
    function KartenkoordinateXAchseBerechnen
@@ -98,7 +96,6 @@ package body KartenkoordinateXAchseBerechnenLogik is
    
    
    
-   -- Die Überhangsschleife wird auch für den Kartengenerator benötigt, also muss sie hier auf jeden Fall noch eingebaut werden, oder? äöü
    function ÜbergangWestenRückwärts
      (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld)
@@ -167,7 +164,6 @@ package body KartenkoordinateXAchseBerechnenLogik is
    
    
    
-   -- Die Überhangsschleife wird auch für den Kartengenerator benötigt, also muss sie hier auf jeden Fall noch eingebaut werden, oder? äöü
    function ÜbergangOstenRückwärts
      (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld)

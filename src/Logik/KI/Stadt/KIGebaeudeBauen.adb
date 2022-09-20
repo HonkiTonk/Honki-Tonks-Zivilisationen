@@ -99,10 +99,9 @@ package body KIGebaeudeBauen is
       if
         LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern) < StadtKonstanten.LeerNahrungsproduktion
         and
-          LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern)
-        + LeseGebaeudeDatenbank.WirtschaftBonus (RasseExtern            => StadtRasseNummerExtern.Rasse,
-                                                 IDExtern               => IDExtern,
-                                                 WWirtschaftBonusExtern => KartenKonstanten.WirtschaftNahrung)
+          LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern) + LeseGebaeudeDatenbank.WirtschaftBonus (RasseExtern            => StadtRasseNummerExtern.Rasse,
+                                                                                                                                         IDExtern               => IDExtern,
+                                                                                                                                         WWirtschaftBonusExtern => KartenKonstanten.WirtschaftNahrung)
         >= StadtKonstanten.LeerNahrungsproduktion
       then
          return 20;

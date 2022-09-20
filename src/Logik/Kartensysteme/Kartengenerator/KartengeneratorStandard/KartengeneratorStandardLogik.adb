@@ -95,7 +95,6 @@ package body KartengeneratorStandardLogik is
    
    
    -- Alle Größen- und Abstandsangaben sind Radien.
-   -- Später auf die jeweiligen Kartenübergänge rücksicht nehmen. äöü
    procedure LandmasseAbstandGenerieren
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
@@ -170,6 +169,7 @@ package body KartengeneratorStandardLogik is
    
    
    
+   -- Später erweitern und verbessern. äöü
    function StartYAchse
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       AnfangExtern : in KartenDatentypen.KartenfeldPositiv;

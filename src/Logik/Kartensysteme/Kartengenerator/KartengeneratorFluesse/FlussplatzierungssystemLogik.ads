@@ -21,7 +21,6 @@ package FlussplatzierungssystemLogik is
    
 private
    
-   -- Teile davon auch nach Umwandlungen auslagern? äöü
    type StandardFlussArray is array (KartenDatentypen.EbeneVorhanden'First .. 0) of KartengrundDatentypen.Kartenfluss_Vorhanden_Enum;
    StandardFluss : constant StandardFlussArray := (
                                                    -2 => KartengrundDatentypen.Lavasee_Enum,

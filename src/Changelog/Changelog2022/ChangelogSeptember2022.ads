@@ -63,17 +63,25 @@ package ChangelogSeptember2022 is
    
    
 
-   -- Version 0.03. => 0.03. (21.09.2022):
+   -- Version 0.03.9650 => 0.03. (21.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.9495 => 0.03. (20.09.2022):
+   -- Version 0.03.9495 => 0.03.9650 (20.09.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- An einer Windowsversion auf Basis der A/C/SFML gearbeitet.
+   -- Liste zum Laden/Speichern der vorhandenen Spielstände fertig eingebaut.
+   -- Speichern/Laden an das neue Listensystem angepasst.
+   -- Es wird jetzt auch die Erstellzeit der Spielstände angezeigt.
+   -- Speichern/Laden an die letzten Spieländerungen angepasst.
+   -- Neues Spielstandsystem vollständig eingebaut.
+   -- Bei Änderungen der Kartengröße werden jetzt alle davon abhängigen Werte angepasst.
+   -- Zahlreiche veraltete Kommentare, Erinnerungen, Hinweise und Notizen korrigiert/angepasst/entfernt.
+   -- Unnötigen Code gelöscht.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

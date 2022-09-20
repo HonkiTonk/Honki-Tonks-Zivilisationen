@@ -6,13 +6,12 @@ with Ada.Strings.Wide_Wide_Fixed;
 with Sf.Window.Keyboard; use Sf.Window.Keyboard;
 with Sf;
 
-with SystemDatentypen;
+with GrafikDatentypen;
 
 with NachGrafiktask;
 with NachLogiktask;
 with EingabeAllgemeinLogik;
 
--- Mal die Variablen mitübergeben anstatt sie quer durch die Gegend zu nutzen. äöü
 package body ZahleneingabeLogik is
    
    function Zahleneingabe
@@ -33,7 +32,7 @@ package body ZahleneingabeLogik is
       
       NachGrafiktask.AnzeigeFrage := WelcheFrageExtern;
       NachGrafiktask.EingegebeneZahl := EingegebeneZahl.EingegebeneZahl;
-      NachGrafiktask.Eingabe := SystemDatentypen.Zahlen_Eingabe_Enum;
+      NachGrafiktask.Eingabe := GrafikDatentypen.Zahlen_Eingabe_Enum;
       
       return ZahlSchleife (ZahlenMinimumExtern => ZahlenMinimumExtern,
                            ZahlenMaximumExtern => ZahlenMaximumExtern);
@@ -119,7 +118,7 @@ package body ZahleneingabeLogik is
             null;
       end case;
             
-      NachGrafiktask.Eingabe := SystemDatentypen.Keine_Eingabe_Enum;
+      NachGrafiktask.Eingabe := GrafikDatentypen.Keine_Eingabe_Enum;
       
       return EingegebeneZahl;
       
@@ -276,7 +275,6 @@ package body ZahleneingabeLogik is
    
    
    
-   -- Das Ganze kann man bestimmt ein wenig zusammenschieben. äöü
    function MinimumMaximumSetzen
      (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
       ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger)

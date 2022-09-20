@@ -33,7 +33,6 @@ private
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    
-   -- Teile davon auch nach Umwandlungen auslagern? äöü
    type StandardWegArray is array (KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Range) of AufgabenDatentypen.Einheitenbefehle_Wege_Enum;
    StandardWeg : constant StandardWegArray := (
                                                KartenverbesserungDatentypen.Karten_Straße_Enum'Range  => AufgabenDatentypen.Straße_Bauen_Enum,

@@ -11,7 +11,6 @@ with MenueDatentypen;
 with SystemRecords;
 with BefehleDatentypen;
 
--- Später alles auf Natural umschreiben und die einzelnen Auswahlen zusammenführen? äöü
 package MausauswahlLogik is
 
    function RassenauswahlDiplomatie
@@ -62,6 +61,28 @@ package MausauswahlLogik is
    
    function SpeichernLaden
      return Natural;
+   
+   function StadtEinheitauswahl
+     (AnfangExtern : in EinheitenDatentypen.Transportplätze;
+      EndeExtern : in EinheitenDatentypen.TransportplätzeVorhanden)
+      return Integer
+     with
+       Pre => (
+                 AnfangExtern < EndeExtern
+              ),
+         
+       Post => (
+                  StadtEinheitauswahl'Result >= -1
+               );
+   
+   function Sprachenauswahl
+     (AnfangExtern : in Positive;
+      EndeExtern : in Positive)
+      return Natural
+     with
+       Pre => (
+                 AnfangExtern <= EndeExtern
+              );
    
 private
    

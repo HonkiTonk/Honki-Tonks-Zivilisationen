@@ -75,10 +75,10 @@ package body SpieleinstellungenKartenLogik is
         YAchseXAchseExtern
       is
          when True =>
-            MaximaleEisdicke := Weltkarte.Karteneinstellungen.Kartengröße.YAchse / 2;
+            MaximaleEisdicke := KartengeneratorVariablen.Kartenparameter.Kartengröße.YAchse / 2;
 
          when False =>
-            MaximaleEisdicke := Weltkarte.Karteneinstellungen.Kartengröße.XAchse / 2;
+            MaximaleEisdicke := KartengeneratorVariablen.Kartenparameter.Kartengröße.XAchse / 2;
       end case;
 
       BenutzerdefinierteGröße := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => 0,
@@ -129,6 +129,8 @@ package body SpieleinstellungenKartenLogik is
             when others =>
                Fehler.LogikFehler (FehlermeldungExtern => "SpielEinstellungenKarten.KartengrößeWählen: Falsche Auswahl: " & KartengrößeAuswahl'Wide_Wide_Image);
          end case;
+
+         KartentestsLogik.Größenanpassung;
          
       end loop KartengrößeSchleife;
       
@@ -175,7 +177,6 @@ package body SpieleinstellungenKartenLogik is
 
 
 
-   -- Theoretisch müsste die Unterteilung in die verschiedenen Kartenarten in KartenDatentypen entfernt werden können und nur die in RueckgabeDatentypen sind noch wichtig. äöü
    procedure KartenartWählen
    is begin
             
@@ -187,22 +188,14 @@ package body SpieleinstellungenKartenLogik is
          case
            KartenartAuswahl
          is
-            when RueckgabeDatentypen.Kartenart_Enum'Range =>
-               KartengeneratorVariablen.Kartenparameter.Kartenart := UmwandlungenVerschiedeneDatentypen.KartenartrückgabeNachKartenart (RückgabeExtern => KartenartAuswahl);
+            when RueckgabeDatentypen.Auswahl_Eins_Enum =>
+               KartengeneratorVariablen.Landgrößen := KartengeneratorRecordKonstanten.Inselgröße;
                
-               if
-                 KartengeneratorVariablen.Kartenparameter.Kartenart = KartenDatentypen.Kartenart_Inseln_Enum
-               then
-                  KartengeneratorVariablen.Landgrößen := KartengeneratorRecordKonstanten.Inselgröße;
-                  
-               elsif
-                 KartengeneratorVariablen.Kartenparameter.Kartenart = KartenDatentypen.Kartenart_Kontinente_Enum
-               then
-                  KartengeneratorVariablen.Landgrößen := KartengeneratorRecordKonstanten.Kontinentgröße;
-                                    
-               else
-                  KartengeneratorVariablen.Landgrößen := KartengeneratorRecordKonstanten.Pangäagröße;
-               end if;
+            when RueckgabeDatentypen.Auswahl_Zwei_Enum =>
+               KartengeneratorVariablen.Landgrößen := KartengeneratorRecordKonstanten.Kontinentgröße;
+               
+            when RueckgabeDatentypen.Auswahl_Drei_Enum =>
+               KartengeneratorVariablen.Landgrößen := KartengeneratorRecordKonstanten.Pangäagröße;
                
             when RueckgabeDatentypen.Auswahl_Vier_Enum =>
                KartengeneratorVariablen.Kartenparameter.Kartenart := KartenDatentypen.Kartenart_Nutzerdefiniert_Enum;
@@ -231,15 +224,11 @@ package body SpieleinstellungenKartenLogik is
    
    
    
-   -- Könnte bei Änderung der Kartengröße zu Problemen führen. äöü
-   -- Einfach prüfen ob die neue Kartengröße kleiner ist als die vorhandenen Werte und wenn ja dann einfach ändern, oder ist das unnötig beim aktuellen Kartengenerator? äöü
-   -- Wo wird überhaupt der Abstand festgelegt? äöü
-   -- Nutzerspezifisch scheinbar gar nicht, mal genauer anschauen. äöü
    procedure KartenartNutzerdefinition
    is begin
       
       BenutzerdefinierteKartenart := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => 1,
-                                                                       ZahlenMaximumExtern => Positive (Weltkarte.Karteneinstellungen.Kartengröße.YAchse / 2),
+                                                                       ZahlenMaximumExtern => Positive (KartengeneratorVariablen.Kartenparameter.Kartengröße.YAchse / 2),
                                                                        WelcheFrageExtern   => TextnummernKonstanten.FrageMinimaleLandhöhe);
       
       case
@@ -255,7 +244,7 @@ package body SpieleinstellungenKartenLogik is
       end case;
             
       BenutzerdefinierteKartenart := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => ZwischenwertKartenart,
-                                                                       ZahlenMaximumExtern => Positive (Weltkarte.Karteneinstellungen.Kartengröße.YAchse / 2),
+                                                                       ZahlenMaximumExtern => Positive (KartengeneratorVariablen.Kartenparameter.Kartengröße.YAchse / 2),
                                                                        WelcheFrageExtern   => TextnummernKonstanten.FrageMaximaleLandhöhe);
       
       case
@@ -272,7 +261,7 @@ package body SpieleinstellungenKartenLogik is
       
       
       BenutzerdefinierteKartenart := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => 1,
-                                                                       ZahlenMaximumExtern => Positive (Weltkarte.Karteneinstellungen.Kartengröße.XAchse / 2),
+                                                                       ZahlenMaximumExtern => Positive (KartengeneratorVariablen.Kartenparameter.Kartengröße.XAchse / 2),
                                                                        WelcheFrageExtern   => TextnummernKonstanten.FrageMinimaleLandbreite);
       
       case
@@ -288,7 +277,7 @@ package body SpieleinstellungenKartenLogik is
       end case;
             
       BenutzerdefinierteKartenart := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => ZwischenwertKartenart,
-                                                                       ZahlenMaximumExtern => Positive (Weltkarte.Karteneinstellungen.Kartengröße.XAchse / 2),
+                                                                       ZahlenMaximumExtern => Positive (KartengeneratorVariablen.Kartenparameter.Kartengröße.XAchse / 2),
                                                                        WelcheFrageExtern   => TextnummernKonstanten.FrageMaximaleLandbreite);
       
       case
@@ -306,7 +295,6 @@ package body SpieleinstellungenKartenLogik is
 
 
 
-   -- Das hier muss auch mal überarbeitet werden. äöü
    procedure KartenartStandard
    is begin
 

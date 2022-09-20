@@ -5,33 +5,29 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Ada.Directories; use Ada.Directories;
 
 with TextKonstanten;
-with RueckgabeDatentypen;
 
 package SpielstandlisteLogik is
 
-   type SpielstandlisteRecord is record
-
-      Auswahl : RueckgabeDatentypen.Speichern_Laden_Enum;
-      Dateiname : Unbounded_Wide_Wide_String;
-
-   end record;
-
+   -- Das auch mal in irgendwas globales verschieben? äöü
    type SpielstandArray is array (1 .. 11) of Unbounded_Wide_Wide_String;
    Spielstand : SpielstandArray := (others => TextKonstanten.LeerUnboundedString);
 
 
 
    function Spielstandliste
-     return SpielstandlisteRecord;
+     (SpeichernLadenExtern : in Boolean)
+      return Unbounded_Wide_Wide_String;
 
 private
 
-   MehrereSeiten : Boolean;
-   EtwasEingetragen : Boolean;
+   Schleifenanfang : Positive;
 
    AktuelleAuswahl : Natural;
+   Ausgewählt : Natural;
 
    Zwischenspeicher : Unbounded_Wide_Wide_String;
+   RückgabeWert : Unbounded_Wide_Wide_String;
+   Spielstandname : Unbounded_Wide_Wide_String;
 
    Suche : Search_Type;
 
@@ -40,6 +36,10 @@ private
 
 
    function Mausauswahl
-     return Natural;
+     (SpeichernLadenExtern : in Boolean)
+      return Natural;
+
+   function NameNutzer
+     return Unbounded_Wide_Wide_String;
 
 end SpielstandlisteLogik;

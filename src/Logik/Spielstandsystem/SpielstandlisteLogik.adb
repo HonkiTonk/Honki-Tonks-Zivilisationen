@@ -6,35 +6,54 @@ with Ada.Characters.Conversions; use Ada.Characters.Conversions;
 with VerzeichnisKonstanten;
 with TastenbelegungDatentypen;
 with SystemKonstanten;
+with MenueDatentypen;
+with GrafikDatentypen;
+with SpielVariablen;
+with TextnummernKonstanten;
 
 with MausauswahlLogik;
 with TasteneingabeLogik;
 with NachGrafiktask;
+with SpielstandAllgemeinesLogik;
+with JaNeinLogik;
+with SpielstandEntfernenLogik;
 
--- Reicht da eine Liste oder muss ich eine Variante für Laden und eine für Speichern einbauen? äöü
 package body SpielstandlisteLogik is
 
    function Spielstandliste
-     return SpielstandlisteRecord
+     (SpeichernLadenExtern : in Boolean)
+      return Unbounded_Wide_Wide_String
    is begin
-      
-      MehrereSeiten := False;
-      EtwasEingetragen := False;
-      Spielstand := (others => TextKonstanten.LeerUnboundedString);
-      
-      ObersteSchleife:
+                  
+      SpielstandSchleife:
       loop
+         
+         Schleifenanfang := 1;
+         NachGrafiktask.MehrereSeiten := False;
          
          Start_Search (Search    => Suche,
                        Directory => VerzeichnisKonstanten.Spielstand,
                        Pattern   => "",
                        Filter    => (Ordinary_File => True,
-                                     others => False));
+                                     others        => False));
       
          MittelSchleife:
          loop
+            
+            case
+              Schleifenanfang
+            is
+               when 1 =>
+                  Spielstand := (others => TextKonstanten.LeerUnboundedString);
+                  
+               when others =>
+                  Zwischenspeicher := Spielstand (SpielstandArray'Last);
+                  Spielstand := (others => TextKonstanten.LeerUnboundedString);
+                  Spielstand (SpielstandArray'First) := Zwischenspeicher;
+            end case;
+            
             SpeicherdateiSchleife:
-            for SpeicherdateiSchleifenwert in SpielstandArray'Range loop
+            for SpeicherdateiSchleifenwert in Schleifenanfang .. SpielstandArray'Last loop
                
                case
                  More_Entries (Search => Suche)
@@ -43,7 +62,6 @@ package body SpielstandlisteLogik is
                      exit SpeicherdateiSchleife;
                      
                   when True =>
-                     EtwasEingetragen := True;
                      Get_Next_Entry (Search          => Suche,
                                      Directory_Entry => Spielstanddatei);
                end case;
@@ -54,7 +72,7 @@ package body SpielstandlisteLogik is
                  SpeicherdateiSchleifenwert
                is
                   when SpielstandArray'Last =>
-                     MehrereSeiten := True;
+                     NachGrafiktask.MehrereSeiten := True;
                      
                   when others =>
                      null;
@@ -62,30 +80,96 @@ package body SpielstandlisteLogik is
                         
             end loop SpeicherdateiSchleife;
             
-            case
-              EtwasEingetragen
-            is
-               when False =>
-                  return (RueckgabeDatentypen.Auswahl_Null_Enum, TextKonstanten.LeerUnboundedString);
-              
-               when True =>
-                  AktuelleAuswahl := Mausauswahl;
-                  
-                  exit ObersteSchleife;
-            end case;
+            AuswahlSchleife:
+            loop
+               
+               Ausgewählt := Mausauswahl (SpeichernLadenExtern => SpeichernLadenExtern);
             
+               case
+                 Ausgewählt
+               is
+                  when 0 | 14 =>
+                     RückgabeWert := TextKonstanten.LeerUnboundedString;
+                     exit SpielstandSchleife;
+                  
+                     -- Mehr
+                  when 11 =>
+                     if
+                       Spielstand (Ausgewählt) = TextKonstanten.LeerUnboundedString
+                     then
+                        exit MittelSchleife;
+                     
+                     else
+                        Schleifenanfang := 2;
+                        exit AuswahlSchleife;
+                     end if;
+                  
+                     -- Neu
+                  when 12 =>
+                     -- Theoretisch sollte man das niemals bei Laden aufrufen können, da die Grafik keine Position setzt. äöü
+                     -- Trotzdem eine Prüfung dafür einbauen? äöü
+                     -- Dann muss da aber was umgebaut werden, sonst überschreite ich die Verschachtelungstiefe. äöü
+                     -- if
+                     --    SpeichernLadenExtern
+                     --  then
+                     RückgabeWert := NameNutzer;
+                     
+                     if
+                       RückgabeWert = TextKonstanten.LeerUnboundedString
+                     then
+                        null;
+                        
+                     else
+                        exit SpielstandSchleife;
+                     end if;
+                     
+                     --  else
+                     --     null;
+                     --  end if;
+                  
+                     -- Löschen
+                  when 13 =>
+                     Ausgewählt := Mausauswahl (SpeichernLadenExtern => SpeichernLadenExtern);
+                     
+                     if
+                       Ausgewählt in 1 .. 10
+                     then
+                        SpielstandEntfernenLogik.SpielstandEntfernen (SpielstandnameExtern => To_Wide_Wide_String (Source => Spielstand (Ausgewählt)));
+                        exit MittelSchleife;
+                        
+                     elsif
+                       Ausgewählt = 14
+                     then
+                        RückgabeWert := TextKonstanten.LeerUnboundedString;
+                        exit SpielstandSchleife;
+                        
+                     else
+                        null;
+                     end if;
+                  
+                  when others =>
+                     RückgabeWert := Spielstand (Ausgewählt);
+                     exit SpielstandSchleife;
+               end case;
+            
+            end loop AuswahlSchleife;
          end loop MittelSchleife;
-      end loop ObersteSchleife;
+      end loop SpielstandSchleife;
       
-      return (RueckgabeDatentypen.Auswahl_Eins_Enum, TextKonstanten.LeerUnboundedString);
+      return RückgabeWert;
       
    end Spielstandliste;
    
    
    
    function Mausauswahl
-     return Natural
+     (SpeichernLadenExtern : in Boolean)
+      return Natural
    is begin
+      
+      NachGrafiktask.SpeichernLaden := SpeichernLadenExtern;
+      NachGrafiktask.AktuellesMenü := MenueDatentypen.Spielstand_Menü_Enum;
+      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Menüs_Enum;
       
       AuswahlSchleife:
       loop
@@ -117,5 +201,48 @@ package body SpielstandlisteLogik is
       end loop AuswahlSchleife;
       
    end Mausauswahl;
+   
+   
+   
+   function NameNutzer
+     return Unbounded_Wide_Wide_String
+   is begin
+      
+      if
+        To_Wide_Wide_String (Source => SpielVariablen.Allgemeines.IronmanName) /= TextKonstanten.LeerString
+      then
+         Spielstandname := SpielVariablen.Allgemeines.IronmanName;
+               
+      else
+         Spielstandname := SpielstandAllgemeinesLogik.SpielstandNameErmitteln;
+         
+         if
+           Spielstandname = TextKonstanten.LeerUnboundedString
+         then
+            null;
+            
+         else
+            case
+              SpielstandAllgemeinesLogik.SpielstandVorhanden (SpielstandnameExtern => Spielstandname)
+            is
+               when False =>
+                  null;
+                  
+               when True =>
+                  if
+                    JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageSpielstandÜberschreiben) = True
+                  then
+                     null;
+                     
+                  else
+                     Spielstandname := TextKonstanten.LeerUnboundedString;
+                  end if;
+            end case;
+         end if;
+      end if;
+      
+      return Spielstandname;
+      
+   end NameNutzer;
 
 end SpielstandlisteLogik;

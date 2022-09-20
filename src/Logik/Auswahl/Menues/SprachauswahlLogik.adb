@@ -1,23 +1,16 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Sf;
-with Sf.Graphics.RenderWindow;
-
 with GlobaleTexte;
 with TextKonstanten;
 with GrafikDatentypen;
-with InteraktionAuswahl;
 with SystemKonstanten;
 with TastenbelegungDatentypen;
 
 with TasteneingabeLogik;
 with Fehler;
 with NachGrafiktask;
-with NachLogiktask;
-with Vergleiche;
-with Views;
-with EinstellungenGrafik;
+with MausauswahlLogik;
 
 package body SprachauswahlLogik is
 
@@ -38,7 +31,6 @@ package body SprachauswahlLogik is
    
    
    
-   -- Kann diese Prozedur nicht in den Grafiktask verschoben werden? Irgendwie. äöü
    procedure SprachenListeFestlegen
    is begin
             
@@ -135,7 +127,8 @@ package body SprachauswahlLogik is
       AuswahlSchleife:
       loop
             
-         AktuelleAuswahl := MausAuswahl;
+         AktuelleAuswahl := MausauswahlLogik.Sprachenauswahl (AnfangExtern => AktuelleSprachen'First,
+                                                              EndeExtern   => Ende);
          NachGrafiktask.AktuelleAuswahl.AuswahlEins := AktuelleAuswahl;
             
          case
@@ -168,36 +161,5 @@ package body SprachauswahlLogik is
       end loop AuswahlSchleife;
       
    end AuswahlSpracheSFML;
-   
-   
-   
-   -- Nach Mausauswahl verschieben indem ich den Anfang/Endwert des Arrays mitübergebe. äöü
-   function MausAuswahl
-     return Natural
-   is begin
-      
-      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
-                                                                 point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
-                                                                 view         => Views.MenüviewAccess);
-      
-      MausZeigerSchleife:
-      for PositionSchleifenwert in AktuelleSprachen'First .. Ende loop
          
-         case
-           Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                       TextboxExtern      => InteraktionAuswahl.PositionenSprachauswahl (PositionSchleifenwert))
-         is
-            when True =>
-               return PositionSchleifenwert;
-            
-            when False =>
-               null;
-         end case;
-         
-      end loop MausZeigerSchleife;
-      
-      return SystemKonstanten.LeerAuswahl;
-      
-   end MausAuswahl;
-   
 end SprachauswahlLogik;

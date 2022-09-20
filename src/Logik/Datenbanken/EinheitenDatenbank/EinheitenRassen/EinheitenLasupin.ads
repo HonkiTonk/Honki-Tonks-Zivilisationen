@@ -6,7 +6,7 @@ with EinheitenRecordKonstanten;
 
 with DatenbankRecords;
 
-with DebugmenueLogik;
+with DebugobjekteLogik;
 
 -- Es muss darauf geachtet werden dass KannTransportieren immer kleiner ist als KannTransportiertWerden.
 package EinheitenLasupin is
@@ -1068,7 +1068,7 @@ package EinheitenLasupin is
                                                                                 Transportkapazität      => 0
                                                                                ),
                                                                               
-                                                                             DatenbankRecords.EinheitenlisteArray'Last => DebugmenueLogik.Alleskönner,
+                                                                             DatenbankRecords.EinheitenlisteArray'Last => DebugobjekteLogik.Alleskönner,
                                                                
                                                                              others => EinheitenRecordKonstanten.LeerEinheitListe
                                                                             );

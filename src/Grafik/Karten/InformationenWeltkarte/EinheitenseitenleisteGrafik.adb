@@ -226,7 +226,6 @@ package body EinheitenseitenleisteGrafik is
            Ladungsnummer /= EinheitenKonstanten.LeerTransportiert
          then
             Beladen := True;
-            -- Das hier überall/öfter einbauen? äöü
             Ladungstext := Ladungstext & TextKonstanten.UmbruchAbstand
               & EinheitenbeschreibungenGrafik.BeschreibungKurz (IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, Ladungsnummer)),
                                                                 RasseExtern => EinheitRasseNummerExtern.Rasse);

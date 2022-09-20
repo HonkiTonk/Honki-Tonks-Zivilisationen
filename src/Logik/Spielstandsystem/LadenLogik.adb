@@ -2,23 +2,20 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with KartenRecords;
 with StadtRecords;
 with SpielRecords;
-with SpielDatentypen;
 with EinheitenRecords;
 with TextnummernKonstanten;
 with GrafikDatentypen;
 with VerzeichnisKonstanten;
 with WeltkarteRecords;
-with RueckgabeDatentypen;
+with TextKonstanten;
 
 with Weltkarte;
 with LadezeitenLogik;
 with JaNeinLogik;
-with SpielstandAllgemeinesLogik;
 with NachGrafiktask;
 with SpielstandlisteLogik;
 
@@ -28,61 +25,40 @@ package body LadenLogik is
      return Boolean
    is begin
       
-      case
-        SpielstandlisteLogik.Spielstandliste.Auswahl
-      is
-         when RueckgabeDatentypen.Auswahl_Null_Enum =>
-            return False;
-            
-         when others =>
-            NameSpielstand := SpielstandAllgemeinesLogik.SpielstandNameErmitteln;
-      end case;
-            
-      case
-        NameSpielstand.ErfolgreichAbbruch
-      is
-         when False =>
-            return False;
-            
-         when True =>
-            null;
-      end case;
+      Spielstandname := SpielstandlisteLogik.Spielstandliste (SpeichernLadenExtern => False);
       
-      case
-        SpielstandAllgemeinesLogik.SpielstandVorhanden (SpielstandnameExtern => NameSpielstand.EingegebenerText)
-      is
-         when True =>
-            null;
-            
-         when False =>
-            return False;
-      end case;
-      
-      Open (File => DateiLaden,
-            Mode => In_File,
-            Name => VerzeichnisKonstanten.SpielstandStrich & Encode (Item => To_Wide_Wide_String (Source => NameSpielstand.EingegebenerText)));
+      if
+        Spielstandname = TextKonstanten.LeerUnboundedString
+      then
+         return False;
+         
+      else
+         Open (File => DateiLaden,
+               Mode => In_File,
+               Name => VerzeichnisKonstanten.SpielstandStrich & Encode (Item => To_Wide_Wide_String (Source => Spielstandname)));
 
-      Wide_Wide_String'Read (Stream (File => DateiLaden),
-                             VersionsnummerPrüfung);
+         Wide_Wide_String'Read (Stream (File => DateiLaden),
+                                VersionsnummerPrüfung);
+      end if;
 
       if
         VersionsnummerPrüfung = SonstigesKonstanten.Versionsnummer
       then
          null;
          
+      elsif
+        JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageLadeFalscheVersion) = True
+      then
+         null;
+         
       else
-         case
-           JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageLadeFalscheVersion)
-         is
-            when True =>
-               null;
-               
-            when False =>
-               Close (File => DateiLaden);
-               return False;
-         end case;
+         Close (File => DateiLaden);
+         return False;
       end if;
       
+      -- Hier noch Prüfungen einbauen ob die Werte so korrekt geladen werden und wenn nicht dann abbrechen und auf Standard setzen. äöü
+      -- Bei Fehlschlag der Prüfungen dann einen Rückgabewert für das Hauptmenü einbauen. äöü
+      -- Das wird wahrscheinlich auch nur mit Exceptions gehen, oder? äöü
       LadezeitenLogik.SpeichernLadenNullsetzen;
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Speichern_Laden_Enum;
       
@@ -109,29 +85,11 @@ package body LadenLogik is
      (DateiLadenExtern : in File_Type)
    is begin
       
-      Unbounded_Wide_Wide_String'Read (Stream (File => DateiLadenExtern),
-                                       SpielVariablen.Allgemeines.IronmanName);
-
-      Positive'Read (Stream (File => DateiLadenExtern),
-                     SpielVariablen.Allgemeines.Rundenanzahl);
-      
-      Natural'Read (Stream (File => DateiLadenExtern),
-                    SpielVariablen.Allgemeines.Rundengrenze);
+      SpielRecords.AllgemeinesRecord'Read (Stream (File => DateiLadenExtern),
+                                           SpielVariablen.Allgemeines);
       
       SpielVariablen.RassenbelegungArray'Read (Stream (File => DateiLadenExtern),
-                                                SpielVariablen.Rassenbelegung);
-      
-      RassenDatentypen.Rassen_Enum'Read (Stream (File => DateiLadenExtern),
-                                         SpielVariablen.Allgemeines.RasseAmZugNachLaden);
-      
-      SpielDatentypen.Schwierigkeitsgrad_Enum'Read (Stream (File => DateiLadenExtern),
-                                                    SpielVariablen.Allgemeines.Schwierigkeitsgrad);
-      
-      Boolean'Read (Stream (File => DateiLadenExtern),
-                    SpielVariablen.Allgemeines.Gewonnen);
-      
-      Boolean'Read (Stream (File => DateiLadenExtern),
-                    SpielVariablen.Allgemeines.Weiterspielen);
+                                               SpielVariablen.Rassenbelegung);
       
    end Allgemeines;
    

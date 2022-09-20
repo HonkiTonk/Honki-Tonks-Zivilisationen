@@ -85,8 +85,7 @@ package body GebaeudeAllgemeinLogik is
    
    
    
-   -- Hier vielleicht noch Prüfungen einbauen um zu testen ob das Gebäude für diese Rasse überhaupt existiert? äöü
-   -- Dafür müsste erst einmal ein Wert vorhanden sein, eventuell Kosten verwenden? äöü
+   -- Sollte ein Gebäude für eine Rassen nicht existieren dann einfach die Forschugnsanforderungen auf -1 setzen.
    function GebäudeAnforderungenErfüllt
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       IDExtern : in StadtDatentypen.GebäudeID)

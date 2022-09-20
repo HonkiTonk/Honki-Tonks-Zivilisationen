@@ -6,8 +6,6 @@ with KartenKonstanten;
 
 with Weltkarte;
 
--- Die zweidimensionalen Arrays existieren wegen der Parallelisierung der Kartenfelderbewertung und weil das hier von Logik und Grafik benötigt wird.
--- Die Überhangschleifen in den Berechnungen sind nötig, da zwar eine Einheitenbewegung nicht so groß sein kann, aber der Spieler eventuell soweit rauszoomt.
 package body KartenkoordinateEAchseBerechnenLogik is
 
    function KartenkoordinateEAchseBerechnen

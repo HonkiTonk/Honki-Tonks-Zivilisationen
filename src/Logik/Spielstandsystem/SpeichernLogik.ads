@@ -2,10 +2,10 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with RassenDatentypen; use RassenDatentypen;
 
-private with SystemRecords;
 private with SpielVariablen;
 
 package SpeichernLogik is
@@ -17,13 +17,12 @@ package SpeichernLogik is
 
 private
 
-   SpielstandVorhanden : Boolean;
-
    AutospeichernWert : Positive := 1;
 
    DateiSpeichern : File_Type;
 
-   NameSpielstand : SystemRecords.TextEingabeRecord;
+   Spielstandname : Unbounded_Wide_Wide_String;
+   Autospeichernname : Unbounded_Wide_Wide_String;
 
    procedure Allgemeines
      (DateiSpeichernExtern : in File_Type);
@@ -48,14 +47,7 @@ private
 
 
 
-   function SpielstandNameFestlegen
-     (AutospeichernExtern : in Boolean)
-      return SystemRecords.TextEingabeRecord;
-
    function NameAutoSpeichern
-     return SystemRecords.TextEingabeRecord;
-
-   function NameNutzer
-     return SystemRecords.TextEingabeRecord;
+     return Unbounded_Wide_Wide_String;
 
 end SpeichernLogik;

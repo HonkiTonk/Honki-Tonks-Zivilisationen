@@ -3,7 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 with LadezeitenDatentypen;
 
--- Gehört das nicht eher nach Logik? äöü
 package LadezeitenLogik is
       
    type FortschrittSpielweltArray is array (LadezeitenDatentypen.Spielwelt_Erstellen_Enum'Range) of LadezeitenDatentypen.Ladefortschritt;

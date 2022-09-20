@@ -159,15 +159,13 @@ package body SpielLogik is
    
    
    
+   -- Um die KI Züge anzuzeigen müsste ich die Cursorposition auch für die KI setzen und ihre Zuggeschwindigkeit begrenzen. äöü
+   -- Erscheint mir ein wenig sinnfrei? äöü
    procedure KISpieler
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       LadezeitenLogik.KINullsetzenFortschritt;
-      
-      -- Mal was einbauen damit man die KI sieht bei ihren Bewegungen? Wenn dann bei Debug an, sonst würde man ja auch nicht sichtbare KIs sehen. äöü
-      -- NachGrafiktask.AktuelleRasseEinheit.Rasse := RasseExtern;
-      -- NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Weltkarte_Enum;
       
       NachGrafiktask.KIRechnet := RasseExtern;
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_KI_Rechenzeit_Enum;

@@ -25,6 +25,7 @@ with KIDatentypen; use KIDatentypen;
 package body EinheitenmodifizierungLogik is
 
    -- Wäre es sinnvoll sowas zu parallelisieren? äöü
+   -- Könnte was bringen bei vielen Einheiten? äöü
    procedure HeilungBewegungspunkteNeueRundeErmitteln
    is begin
       

@@ -7,6 +7,7 @@ with Sf.Window.Cursor;
 
 with GrafikRecords;
 
+-- Teile davon nach GrafikVariablen auslagern? äöü
 package EinstellungenGrafik is
    
    Grafikeinstellungen : GrafikRecords.GrafikeinstellungenRecord;

@@ -1,24 +1,17 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Sf;
-with Sf.Graphics.RenderWindow;
-
 with TastenbelegungDatentypen;
-with SystemDatentypen;
-with Views;
-with GrafikRecordKonstanten;
+with GrafikDatentypen;
 
 with LeseEinheitenGebaut;
 
-with NachLogiktask;
 with NachGrafiktask;
 with TasteneingabeLogik;
-with InteraktionAuswahl;
-with Vergleiche;
-with EinstellungenGrafik;
+with MausauswahlLogik;
 
 -- Kann man das so umbauen dass es wie die restlichen Mausauswahlen eine 0 als Leerauswahl zurück gibt? äöü
+-- Kann man vermutlich aber dazu müsste man wohl mehr anpassen. äöü
 package body AuswahlStadtEinheitLogik is
 
    function AuswahlStadtEinheit
@@ -52,16 +45,16 @@ package body AuswahlStadtEinheitLogik is
       end if;
       
       AktuelleAuswahl := 0;
-      InteraktionAuswahl.PositionenEinheitStadt := (others => GrafikRecordKonstanten.Leerbereich);
       NachGrafiktask.AktuelleAuswahl.AuswahlEins := AktuelleAuswahl;
       NachGrafiktask.WelcheAuswahl := WelcheAuswahl;
       
-      NachGrafiktask.Eingabe := SystemDatentypen.Einheit_Auswahl_Enum;
+      NachGrafiktask.Eingabe := GrafikDatentypen.Einheit_Auswahl_Enum;
       
       AuswahlSchleife:
       loop
          
-         AktuelleAuswahl := MausAuswahl;
+         AktuelleAuswahl := MausauswahlLogik.StadtEinheitauswahl (AnfangExtern => WelcheAuswahl.MöglicheAuswahlen'First,
+                                                                  EndeExtern   => WelcheAuswahl.MöglicheAuswahlen'Last);
          NachGrafiktask.AktuelleAuswahl.AuswahlEins := AktuelleAuswahl;
          
          case
@@ -87,40 +80,10 @@ package body AuswahlStadtEinheitLogik is
          
       end loop AuswahlSchleife;
       
-      NachGrafiktask.Eingabe := SystemDatentypen.Keine_Eingabe_Enum;
+      NachGrafiktask.Eingabe := GrafikDatentypen.Keine_Eingabe_Enum;
       
       return AktuelleAuswahl;
       
    end AuswahlStadtEinheit;
-   
-   
-   
-   function MausAuswahl
-     return Integer
-   is begin
-      
-      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
-                                                                 point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
-                                                                 view         => Views.StadtEinheitviewAccess);
-      
-      AuswahlSchleife:
-      for AuswahlSchleifenwert in WelcheAuswahl.MöglicheAuswahlen'Range loop
-         
-         case
-           Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                       TextboxExtern      => InteraktionAuswahl.PositionenEinheitStadt (AuswahlSchleifenwert))
-         is
-            when True =>
-               return Natural (AuswahlSchleifenwert);
-               
-            when False =>
-               null;
-         end case;
-         
-      end loop AuswahlSchleife;
-              
-      return -1;
-      
-   end MausAuswahl;
 
 end AuswahlStadtEinheitLogik;

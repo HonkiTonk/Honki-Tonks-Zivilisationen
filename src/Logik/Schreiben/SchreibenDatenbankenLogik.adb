@@ -30,7 +30,7 @@ package body SchreibenDatenbankenLogik is
    
    
    -- Schreibt Stream nicht eh immer alles neu und muss deswegen gar nicht auf Existenz geprüft werden? äöü
-   -- Gilt auch für alle anderen Datenbanken. äöü
+   -- Gilt auch für alle Schreibevorgänge. äöü
    procedure SchreibenEinheitenDatenbank
    is begin
       
@@ -109,7 +109,6 @@ package body SchreibenDatenbankenLogik is
    
    
    
-   -- Das mal in eine Datei zusammenfassen? äöü
    procedure SchreibenKartenDatenbanken
    is begin
       
@@ -178,7 +177,6 @@ package body SchreibenDatenbankenLogik is
    
    
    
-   -- Das mal in eine Datei zusammenfassen? äöü
    procedure SchreibenVerbesserungenDatenbank
    is begin
       

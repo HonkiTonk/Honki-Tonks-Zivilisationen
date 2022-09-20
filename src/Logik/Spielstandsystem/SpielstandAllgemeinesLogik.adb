@@ -4,21 +4,31 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Directories; use Ada.Directories;
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 
+with TextKonstanten;
+
 with TexteingabeLogik;
 with NachGrafiktask;
 
 package body SpielstandAllgemeinesLogik is
 
    function SpielstandNameErmitteln
-     return SystemRecords.TextEingabeRecord
+     return Unbounded_Wide_Wide_String
    is begin
      
       NachGrafiktask.NameSpielstand := True;
       SpielstandName := TexteingabeLogik.SpielstandName;
       NachGrafiktask.NameSpielstand := False;
       
-      -- Es wird hier keine Prüfung benötigt ob die Namenslänge > 0 ist, da dies schon in TexteingabeLogik.SpielstandName geprüft wird.
-      return SpielstandName;
+      case
+        SpielstandName.ErfolgreichAbbruch
+      is
+         when True =>
+            -- Es wird hier keine Prüfung benötigt ob die Namenslänge > 0 ist, da dies schon in TexteingabeLogik.SpielstandName geprüft wird.
+            return SpielstandName.EingegebenerText;
+            
+         when False =>
+            return TextKonstanten.LeerUnboundedString;
+      end case;
             
    end SpielstandNameErmitteln;
    

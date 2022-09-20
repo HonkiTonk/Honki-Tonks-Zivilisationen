@@ -69,7 +69,6 @@ package body WeltkarteGrafik is
    
    
    
-   -- Eine Prüfung auf Durchsichtigkeit einbauen. äöü
    procedure IstSichtbar
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

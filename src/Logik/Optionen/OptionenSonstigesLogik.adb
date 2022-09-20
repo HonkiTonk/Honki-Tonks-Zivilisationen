@@ -41,7 +41,6 @@ package body OptionenSonstigesLogik is
                SpracheWechseln;
                
             when RueckgabeDatentypen.Zurück_Beenden_Enum'Range =>
-               -- Bei allen Optionen speichern wenn zurückgegangen wird? äöü
                SchreibenEinstellungenLogik.Nutzereinstellungen;
                return AuswahlWert;
                

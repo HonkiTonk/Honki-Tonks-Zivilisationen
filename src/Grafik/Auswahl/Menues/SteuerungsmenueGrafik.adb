@@ -137,7 +137,6 @@ package body SteuerungsmenueGrafik is
       PositionenSchleife:
       for PositionSchleifenwert in TastenbelegungDatentypen.Tastenbelegung_Auswählbar_Enum'Range loop
          
-         -- Das mal mit der Ermittlung der neuen Taste in EingabeLogik zusammenführen. äöü
          AktuelleBelegung := TastenbelegungVariablen.Tastenbelegung (PositionSchleifenwert);
          
          case

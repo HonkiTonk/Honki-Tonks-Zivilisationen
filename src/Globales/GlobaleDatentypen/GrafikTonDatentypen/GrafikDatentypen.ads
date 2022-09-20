@@ -29,6 +29,20 @@ package GrafikDatentypen is
    
    
    
+   -- Oder in eigene Datentypen verschieben? äöü
+   type Welche_Eingabe_Enum is (
+                                Keine_Eingabe_Enum,
+                                
+                                Zahlen_Eingabe_Enum, Text_Eingabe_Enum, Zeichen_Eingabe_Enum, Ja_Nein_Enum,
+                                
+                                Einheit_Auswahl_Enum
+                               );
+   
+   subtype Eingaben_Vorhanden_Enum is Welche_Eingabe_Enum range Zahlen_Eingabe_Enum .. Welche_Eingabe_Enum'Last;
+   subtype Eingaben_Fragen_Enum is Eingaben_Vorhanden_Enum range Zahlen_Eingabe_Enum .. Ja_Nein_Enum;
+      
+   
+   
    type Hintergrund_Enum is (
                              -- Das hier kann später vermutlich wieder weg? äöü
                              Intro_Hintergrund_Enum,

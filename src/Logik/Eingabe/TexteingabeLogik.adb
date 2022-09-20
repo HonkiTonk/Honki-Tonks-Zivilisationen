@@ -6,7 +6,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with TextnummernKonstanten;
 with Rassentexte;
 with SystemRecordKonstanten;
-with SystemDatentypen;
+with GrafikDatentypen;
 with TextKonstanten;
 
 with NachLogiktask;
@@ -85,14 +85,14 @@ package body TexteingabeLogik is
             NachLogiktask.EingegebenerText := SystemRecordKonstanten.LeerTexteingabe;
       end case;
       
-      NachGrafiktask.Eingabe := SystemDatentypen.Text_Eingabe_Enum;
+      NachGrafiktask.Eingabe := GrafikDatentypen.Text_Eingabe_Enum;
       
       NachLogiktask.Warten := True;
       NachGrafiktask.TextEingabe := True;
       
       EingabeAllgemeinLogik.EingabeAbwarten;
       
-      NachGrafiktask.Eingabe := SystemDatentypen.Keine_Eingabe_Enum;
+      NachGrafiktask.Eingabe := GrafikDatentypen.Keine_Eingabe_Enum;
       
       return NachLogiktask.EingegebenerText;
       

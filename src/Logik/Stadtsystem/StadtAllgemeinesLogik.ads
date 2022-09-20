@@ -7,7 +7,7 @@ with SpielVariablen;
 
 private with SystemRecords;
 
-package StadtAllgemeinLogik is
+package StadtAllgemeinesLogik is
 
    procedure NeuerStadtname
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
@@ -22,4 +22,4 @@ private
    
    NeuerName : SystemRecords.TextEingabeRecord;
 
-end StadtAllgemeinLogik;
+end StadtAllgemeinesLogik;

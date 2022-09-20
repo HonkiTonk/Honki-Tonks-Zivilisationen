@@ -6,7 +6,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Kartentexte;
 
 -- Später die Beschreibungen noch um RasseExtern erweitern damit jede Rasse ihren eigenen Text haben kann? äöü
--- Gilt auch für alle anderen beschreibungen die noch nicht rassenspezifisch sind. äöü
+-- Gilt auch für alle anderen Beschreibungen die noch nicht rassenspezifisch sind. äöü
 -- Aktuell gibt es hier nur eine Kurze, aber keine lange Beschreibung, später mal ändern. äöü
 package body KartenbeschreibungenGrafik is
 

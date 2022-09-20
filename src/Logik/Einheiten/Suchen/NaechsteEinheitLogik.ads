@@ -9,6 +9,7 @@ private with EinheitenDatentypen;
 package NaechsteEinheitLogik is
 
    -- Das hier auch mal austauschen? äöü
+   -- Alternativ könnte man den erweiterten Boolean aus SystemDatentypen verwenden, aber es dann linke ich halt die SystemDatentypen mir ein, ob das sinnvoll ist? äöü
    type Bewegungspunkte_Enum is (
                                  Hat_Bewegungspunkte_Enum, Keine_Bewegungspunkte_Enum, Egal_Bewegeungspunkte_Enum
                                 );

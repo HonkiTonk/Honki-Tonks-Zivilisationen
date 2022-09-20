@@ -93,17 +93,17 @@ package body StadtBauenLogik is
       case
         EinheitenSpielmeldungenLogik.ArbeiteraufgabeMeldung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       is
-         when True =>
-            null;
-         
          when False =>
             return False;
+         
+         when True =>
+            Einheitenkoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       end case;
       
       if
         EinheitRasseNummerExtern.Rasse = RassenDatentypen.Ekropa_Enum
         and
-          LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern).EAchse /= 0
+          Einheitenkoordinaten.EAchse /= 0
       then
          return False;
          
@@ -112,7 +112,7 @@ package body StadtBauenLogik is
       end if;
                   
       if
-        LeseWeltkarte.BelegterGrundLeer (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = True
+        LeseWeltkarte.BelegterGrundLeer (KoordinatenExtern => Einheitenkoordinaten) = True
       then
          return True;
          
@@ -122,7 +122,7 @@ package body StadtBauenLogik is
          return False;
          
       else
-         -- Hier später eine Meldung einbauen. äöü
+         MeldungFestlegenLogik.MeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungBelegt);
          return False;
       end if;
       
@@ -171,7 +171,6 @@ package body StadtBauenLogik is
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
       
-      -- Auch mal vollständig nach SchreibeStadt auslagern? äöü
       SchreibeStadtGebaut.Nullsetzung (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
       Stadtart := HauptstadtPrüfen (RasseExtern => StadtRasseNummerExtern.Rasse);
@@ -188,6 +187,7 @@ package body StadtBauenLogik is
       SchreibeStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                              EinwohnerArbeiterExtern => False,
                                              WachsenSchrumpfenExtern => True);
+      
       SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).UmgebungBewirtschaftung := (0 => (0 => True, others => False), others => (others => False));
       SchreibeWichtiges.AnzahlStädte (RasseExtern     => StadtRasseNummerExtern.Rasse,
                                        PlusMinusExtern => True);
@@ -207,7 +207,6 @@ package body StadtBauenLogik is
    
    
    
-   -- Diese Prüfung mal erweitern und auch an anderen Stellen dann verwenden? äöü
    procedure WegAnlegen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

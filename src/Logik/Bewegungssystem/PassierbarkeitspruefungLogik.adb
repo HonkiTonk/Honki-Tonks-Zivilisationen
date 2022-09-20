@@ -129,20 +129,19 @@ package body PassierbarkeitspruefungLogik is
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is begin
-                     
-      -- Funktioniert akutell nicht richtig, beheben oder entfernen? äöü
-      --  elsif
-      --    LeseWeltkarte.Weg (KoordinatenExtern => NeueKoordinatenExtern) /= KartenverbesserungDatentypen.Leer_Weg_Enum
-      --    and then
-      --       KartenAllgemein.PassierbarWeg (KoordinatenExtern    => NeueKoordinatenExtern,
-      --                                      PassierbarkeitExtern => UmgebungExtern)
-      --    = False
-      --   then
-      --     null;
-         
+                      
       -- Warum kommt die Prüfung hier noch einmal?
       if
         False = KartenAllgemeinesLogik.PassierbarGrund (KoordinatenExtern    => NeueKoordinatenExtern,
+                                                        PassierbarkeitExtern => UmgebungExtern)
+      then
+         null;
+         
+         -- Funktioniert akutell nicht richtig? Beheben oder entfernen? äöü
+      elsif
+        LeseWeltkarte.Weg (KoordinatenExtern => NeueKoordinatenExtern) /= KartenverbesserungDatentypen.Leer_Weg_Enum
+        and then
+          False = KartenAllgemeinesLogik.PassierbarWeg (KoordinatenExtern    => NeueKoordinatenExtern,
                                                         PassierbarkeitExtern => UmgebungExtern)
       then
          null;
@@ -287,8 +286,8 @@ package body PassierbarkeitspruefungLogik is
          for XAchseEinheitenSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
                
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                                                 ÄnderungExtern    => (0, YAchseEinheitenSchleifenwert, XAchseEinheitenSchleifenwert),
-                                                                                                 LogikGrafikExtern => True);
+                                                                                                      ÄnderungExtern    => (0, YAchseEinheitenSchleifenwert, XAchseEinheitenSchleifenwert),
+                                                                                                      LogikGrafikExtern => True);
                
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse

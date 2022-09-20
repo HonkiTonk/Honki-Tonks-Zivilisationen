@@ -47,6 +47,7 @@ private
 
    -- Benutze ich das mehrmals und wenn ja, kann ich es zusammenführen? äöü
    -- Bräuchte ich hier aber in verschiedenen Ausführungen. Vermutlich sinnvoll die alle anzulegen aber wahrscheinlich nicht sie auszulagern. äöü
+   -- Benutze aber eine kleine Version davon im Wegeplatzierungssystem, eventuell ist da eine Zusammenführung sinnvoll? äöü
    type WelcheWegartArray is array (KartenverbesserungDatentypen.Karten_Weg_Enum'Range) of AufgabenDatentypen.Einheitenbefehle_Wege_Enum;
    WelcheWegart : constant WelcheWegartArray := (
                                                  KartenverbesserungDatentypen.Leer_Weg_Enum             => AufgabenDatentypen.Straße_Bauen_Enum,

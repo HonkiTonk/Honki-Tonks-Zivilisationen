@@ -199,7 +199,6 @@ package body SpieleinstellungenRasseLogik is
       
       GezogeneKoordinate := ZufallsgeneratorenStartkoordinaten.Startkoordinaten (RasseExtern => RasseExtern);
       
-      -- Das ganze hier in einen if-Block verschmelzen? äöü
       case
         LeseWeltkarte.AktuellerGrund (KoordinatenExtern => GezogeneKoordinate)
       is

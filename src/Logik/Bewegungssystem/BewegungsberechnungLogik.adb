@@ -39,7 +39,7 @@ package body BewegungsberechnungLogik is
                                                                                       KoordinatenExtern => NeueKoordinatenExtern)
       then
          -- Die Ladungsverschiebung muss mit dem neuen Karten/Einheitenkoordinatensystem immer am Schluss erfolgen.
-         -- Theoretisch hätte das auch immer im alten System passieren müssen, um zu verhidnern dass die Ladung verschoben wird ohne dass das Schiff verschoben werden kann.
+         -- Theoretisch hätte das auch immer im alten System passieren müssen, um zu verhindern dass die Ladung verschoben wird ohne dass das Schiff verschoben werden kann.
          -- Kam nur nie zu einem Problem weil es keinen Bewegungsabzug für Schiffe gab.
          LadungVerschieben := True;
 

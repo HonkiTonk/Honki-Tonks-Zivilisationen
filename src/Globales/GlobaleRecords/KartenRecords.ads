@@ -64,7 +64,6 @@ package KartenRecords is
    
    
    
-   -- Die Felderwertung bläht den Record so enorm auf, mal eine bessere Lösung finden. äöü
    type FelderwertungArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of KartenDatentypen.Bewertung_Enum;
    type SichtbarkeitArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of Boolean;
    
@@ -117,18 +116,6 @@ package KartenRecords is
       
       MinimaleXAchse : KartenDatentypen.KartenfeldPositiv;
       MaximaleXAchse : KartenDatentypen.KartenfeldPositiv;
-      
-   end record;
-   
-   
-   
-   type LandabständeRecord is record
-      
-      MinimaleYAchse : KartenDatentypen.KartenfeldNatural;
-      MaximaleYAchse : KartenDatentypen.KartenfeldNatural;
-      
-      MinimaleXAchse : KartenDatentypen.KartenfeldNatural;
-      MaximaleXAchse : KartenDatentypen.KartenfeldNatural;
       
    end record;
    

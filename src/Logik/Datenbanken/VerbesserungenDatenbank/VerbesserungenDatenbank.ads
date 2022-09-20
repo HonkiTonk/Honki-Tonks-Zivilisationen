@@ -21,7 +21,6 @@ package VerbesserungenDatenbank is
       
 private
    
-   -- Rassenabhängige Stadtgrafiken erstellen? äöü
    VerbesserungenlisteStandard : constant VerbesserungenlisteArray := (
                                                                        -- Städte
                                                                        KartenverbesserungDatentypen.Hauptstadt_Enum =>
@@ -49,7 +48,7 @@ private
                                                                           Passierbarkeit     => (EinheitenDatentypen.Boden_Enum    => True,
                                                                                                  EinheitenDatentypen.Luft_Enum     => True,
                                                                                                  EinheitenDatentypen.Weltraum_Enum => True, 
-                                                                                                 others                               => False),
+                                                                                                 others                            => False),
                                                                           Bewertung          => (others => 1),
                                                                           Wirtschaft         => (others => (others => 1)),
                                                                           Kampf              => (others => (others => 1))

@@ -18,7 +18,6 @@ package body EinlesenAllgemeinesLogik is
             return True;
                
          when False =>
-            -- Das Setzen der aktuellen Zeile herausziehen? Ist immerhin 'in' und wäre dann konsequenter. äöü
             Set_Line (File => AktuelleDateiExtern,
                       To   => Ada.Wide_Wide_Text_IO.Count (AktuelleZeileExtern));
             return False;

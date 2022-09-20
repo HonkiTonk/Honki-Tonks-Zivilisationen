@@ -5,6 +5,10 @@ with KartenDatentypen; use KartenDatentypen;
 
 package KartentestsLogik is
 
+   procedure Größenanpassung;
+
+
+
    function KartenpolePrüfen
      (PolgrößeExtern : in KartenDatentypen.KartenfeldNatural)
       return KartenDatentypen.Kartenpole_Enum

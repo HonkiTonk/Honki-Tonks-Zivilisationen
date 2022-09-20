@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Ada.Calendar;
+with Ada.Calendar; use Ada.Calendar;
 
 with NachGrafiktask;
 
@@ -12,7 +12,7 @@ package body MeldungFestlegenLogik is
    is begin
       
       -- Hier sollte immer erst die Zeit festgelegt werden, da die Grafik ja die Meldung auf 0 setzen kann.
-      NachGrafiktask.StartzeitSpielmeldung := Ada.Calendar.Clock;
+      NachGrafiktask.StartzeitSpielmeldung := Clock;
       NachGrafiktask.Spielmeldung := MeldungExtern;
       
    end MeldungFestlegen;

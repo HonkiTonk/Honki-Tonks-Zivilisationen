@@ -7,8 +7,6 @@ with Sf.System.Vector2;
 private with Sf.Graphics.RectangleShape;
 private with Sf.Graphics.CircleShape;
 
--- Die Contracts so anpassen dass die Abmessungen/Größen immer > 0.00 sind? äöü
--- Dann könnte ich natürlich keine Objekte mit negativen Größenangaben zeichnen, aber ist das wirklich wichtig? äöü
 package ObjekteZeichnenGrafik is
    
    procedure RechteckZeichnen

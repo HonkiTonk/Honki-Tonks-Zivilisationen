@@ -61,8 +61,8 @@ package body KISonstigesSuchen is
          for XAchseSchleifenwert in -BereichExtern .. BereichExtern loop
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => AktuelleKoordinatenExtern,
-                                                                                                 ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                 LogikGrafikExtern => True);
+                                                                                                      ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                      LogikGrafikExtern => True);
             
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse
@@ -71,7 +71,7 @@ package body KISonstigesSuchen is
                
             elsif
               True = LeseWeltkarte.BelegterGrund (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                               KoordinatenExtern => KartenWert)
+                                                  KoordinatenExtern => KartenWert)
               and
                 True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                                  NeueKoordinatenExtern    => KartenWert)

@@ -71,6 +71,7 @@ private
    StartzeitBlinkintervall : Time := Clock;
    
    -- Das hier mal in irgendwas Globales verschieben? äöü
+   -- Eventuell die Poldatentypen verwenden? Die haben ja auch alles vier Richtungen. äöü
    type Umgebung_Enum is (Norden, Westen, Osten, Süden);
    
    type UmgebungArray is array (Umgebung_Enum'Range) of KartenRecords.AchsenKartenfeldRecord;

@@ -116,7 +116,6 @@ package body SpieleinstellungenLogik is
      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
-      -- Nullsetzen der Ladezeiten und das Wechseln der Grafikanzeige kombinieren? äöü
       LadezeitenLogik.SpielweltNullsetzen;
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Generierungszeit_Enum;
 

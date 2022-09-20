@@ -4,7 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Calendar; use Ada.Calendar;
 
 with GrafikDatentypen; use GrafikDatentypen;
-with SystemDatentypen;
 with ZeitKonstanten;
 
 with StartEndeGrafik;
@@ -268,11 +267,11 @@ package body Grafik is
       case
         NachGrafiktask.Eingabe
       is
-         when SystemDatentypen.Eingaben_Fragen_Enum'Range =>
+         when GrafikDatentypen.Eingaben_Fragen_Enum'Range =>
             EingabenanzeigeGrafik.Fragenaufteilung (FrageExtern   => NachGrafiktask.AnzeigeFrage,
                                                     EingabeExtern => NachGrafiktask.Eingabe);
             
-         when SystemDatentypen.Einheit_Auswahl_Enum =>
+         when GrafikDatentypen.Einheit_Auswahl_Enum =>
             EingabenanzeigeGrafik.AnzeigeEinheitenStadt (RasseExtern           => NachGrafiktask.AktuelleRasse,
                                                          AktuelleAuswahlExtern => NachGrafiktask.AktuelleAuswahl.AuswahlEins);
             
@@ -280,7 +279,7 @@ package body Grafik is
             -- Dann könnte ich auch ein durchsichtiges Fenster für die Menüs erstellen. äöü
             -- Könnte Probleme mit den anderen Möglichkeiten erzeugen, genauer prüfen vor dem Umbau. äöü
                
-         when SystemDatentypen.Keine_Eingabe_Enum =>
+         when GrafikDatentypen.Keine_Eingabe_Enum =>
             null;
       end case;
       

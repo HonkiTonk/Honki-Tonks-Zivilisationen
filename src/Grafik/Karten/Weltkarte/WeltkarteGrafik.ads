@@ -34,7 +34,6 @@ private
    CursorKoordinatenAlt : KartenRecords.AchsenKartenfeldNaturalRecord;
    AktuelleKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
          
-   -- Hier die Benennung von RasseEinheitExtern auf EinheitRasseNummerExtern umschreiben. äöü
    procedure IstSichtbar
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

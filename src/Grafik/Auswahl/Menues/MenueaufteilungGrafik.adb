@@ -7,6 +7,7 @@ with EinfachmenueGrafik;
 with SteuerungsmenueGrafik;
 with AllgemeineViewsGrafik;
 with DoppelmenueGrafik;
+with SpielstandmenueGrafik;
 
 -- Hier bekommt man bestimmt auch noch irgendwie die Auswahl für die Bau- und Forschungsmenü rein. äöü
 -- Entsprechende Umwandlungen in den beiden Menüs auch noch anpassen und die Mehrfachauswahl so aus dem NachGrafiktask rausbekommen. äöü
@@ -34,7 +35,7 @@ package body MenueaufteilungGrafik is
             SteuerungsmenueGrafik.Steuerungsmenü (AuswahlExtern => AktuelleAuswahlExtern);
             
          when MenueDatentypen.Spielstand_Menü_Enum =>
-            null;
+            SpielstandmenueGrafik.Spielstandmenü (AuswahlExtern => AktuelleAuswahlExtern.AuswahlEins);
       end case;
       
       case

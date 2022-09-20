@@ -92,8 +92,6 @@ package body KartenfelderwerteLogik is
      
      
      
-   -- Kampfwerte auch anpassen damit die elsif Abfrage entfernt werden kann wie bei den Produktionen oben? äöü
-   -- Dann könnten aber keine negativen Werte übergeben werden, die bei Angriffen/Verteidigungen aber Sinn ergeben würden, anders als bei den Produktionen. äöü
    function FeldVerteidigung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

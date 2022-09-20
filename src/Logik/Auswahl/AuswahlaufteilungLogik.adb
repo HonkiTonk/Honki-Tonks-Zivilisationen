@@ -26,7 +26,7 @@ package body AuswahlaufteilungLogik is
          when MenueDatentypen.Menü_Steuerung_Enum'Range =>
             return SteuerungsauswahlLogik.Auswahl;
             
-            -- Sollte bei der Logik in die einfachen Menüs mit reinpassen, bei Grafik wird das dann ein wenig komplizierter. äöü
+            -- Das passt nicht in die Menüs wegen diversen Spezialeigenschaften, ähnlich wie die Sprachauswahl.
          when MenueDatentypen.Spielstand_Menü_Enum =>
             return RueckgabeDatentypen.Start_Weiter_Enum;
       end case;

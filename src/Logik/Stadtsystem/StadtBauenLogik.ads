@@ -36,6 +36,8 @@ private
 
    StadtName : SystemRecords.TextEingabeRecord;
 
+   Einheitenkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+
    type StandardStadtnameArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of StadtDatentypen.MaximaleStädte;
    StandardStadtname : StandardStadtnameArray := (others => StadtDatentypen.MaximaleStädte'First);
 

@@ -14,7 +14,6 @@ with LeseVerbesserungenDatenbank;
 with KartenkoordinatenberechnungssystemLogik;
 with KartenAllgemeinesLogik;
 
--- Hier eventuell direkt auf die notwendigen Daten zugreifen statt über die Zugriffe zu gehen? äöü
 package body FelderwerteFestlegenLogik is
    
    procedure EinzelnesKartenfeldBewerten
@@ -139,9 +138,8 @@ package body FelderwerteFestlegenLogik is
               or
                 RasseExtern = RasseSchleifenwert)
          then
-            Bewertung (KoordinatenFeldExtern.EAchse) := Gesamtbewertung (KoordinatenFeldExtern.EAchse, RasseSchleifenwert)
-              + KartenAllgemeinesLogik.GrundBewertung (KoordinatenExtern => KoordinatenUmgebungExtern,
-                                                       RasseExtern       => RasseSchleifenwert)
+            Bewertung (KoordinatenFeldExtern.EAchse) := Gesamtbewertung (KoordinatenFeldExtern.EAchse, RasseSchleifenwert) + KartenAllgemeinesLogik.GrundBewertung (KoordinatenExtern => KoordinatenUmgebungExtern,
+                                                                                                                                                                    RasseExtern       => RasseSchleifenwert)
               / KartenDatentypen.Einzelbewertung (TeilerExtern);
 
             Fluss (KoordinatenFeldExtern.EAchse) := LeseWeltkarte.Fluss (KoordinatenExtern => KoordinatenUmgebungExtern);

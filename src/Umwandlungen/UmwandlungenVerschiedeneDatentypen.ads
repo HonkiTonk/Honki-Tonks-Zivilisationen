@@ -22,10 +22,6 @@ package UmwandlungenVerschiedeneDatentypen is
      (RückgabeExtern : in RueckgabeDatentypen.Rassen_Verwendet_Enum)
       return RassenDatentypen.Rassen_Verwendet_Enum;
    
-   function KartenartrückgabeNachKartenart
-     (RückgabeExtern : in RueckgabeDatentypen.Kartenart_Enum)
-      return KartenDatentypen.Kartenart_Enum;
-   
    function KartentemperaturrückgabeNachKartentemperatur
      (RückgabeExtern : in RueckgabeDatentypen.Kartentemperatur_Enum)
       return KartenDatentypen.Kartentemperatur_Enum;
@@ -75,13 +71,6 @@ private
                                                      RueckgabeDatentypen.Auswahl_Siebzehn_Enum => RassenDatentypen.Tesorahn_Enum,
                                                      RueckgabeDatentypen.Auswahl_Achtzehn_Enum => RassenDatentypen.Talbidahr_Enum
                                                     );
-   
-   type KartenartrückgabeKartenartArray is array (RueckgabeDatentypen.Kartenart_Enum'Range) of KartenDatentypen.Kartenart_Enum;
-   KartenartrückgabeKartenart : constant KartenartrückgabeKartenartArray := (
-                                                                               RueckgabeDatentypen.Auswahl_Eins_Enum => KartenDatentypen.Kartenart_Inseln_Enum,
-                                                                               RueckgabeDatentypen.Auswahl_Zwei_Enum => KartenDatentypen.Kartenart_Kontinente_Enum,
-                                                                               RueckgabeDatentypen.Auswahl_Drei_Enum => KartenDatentypen.Kartenart_Pangäa_Enum
-                                                                              );
    
    type KartentemperaturrückgabeKartentemperaturArray is array (RueckgabeDatentypen.Kartentemperatur_Enum'Range) of KartenDatentypen.Kartentemperatur_Enum;
    KartentemperaturrückgabeKartentemperatur : constant KartentemperaturrückgabeKartentemperaturArray := (

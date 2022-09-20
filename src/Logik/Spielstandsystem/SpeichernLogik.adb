@@ -2,28 +2,22 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with KartenRecords;
 with StadtRecords;
 with SpielRecords;
 with SonstigesKonstanten;
 with TextKonstanten;
-with SpielDatentypen;
 with OptionenVariablen;
 with EinheitenRecords;
 with GrafikDatentypen;
-with TextnummernKonstanten;
 with WeltkarteRecords;
 with VerzeichnisKonstanten;
-with RueckgabeDatentypen;
+with SpielstandlisteLogik;
 
 with Weltkarte;
 with LadezeitenLogik;
-with SpielstandAllgemeinesLogik;
 with NachGrafiktask;
-with JaNeinLogik;
-with SpielstandlisteLogik;
 
 -- Bei Änderungen am Speichersystem auch immer das Ladesystem anpassen!
 package body SpeichernLogik is
@@ -33,24 +27,23 @@ package body SpeichernLogik is
    is begin
       
       case
-        SpielstandlisteLogik.Spielstandliste.Auswahl
+        AutospeichernExtern
       is
-         when RueckgabeDatentypen.Auswahl_Null_Enum =>
-            return;
+         when True =>
+            Spielstandname := NameAutoSpeichern;
             
-         when others =>
-            NameSpielstand := SpielstandNameFestlegen (AutospeichernExtern => AutospeichernExtern);
+         when False =>
+            Spielstandname := SpielstandlisteLogik.Spielstandliste (SpeichernLadenExtern => True);
       end case;
       
-      case
-        NameSpielstand.ErfolgreichAbbruch
-      is
-         when False =>
-            return;
-              
-         when True =>
-            null;
-      end case;
+      if
+        Spielstandname = TextKonstanten.LeerUnboundedString
+      then
+         return;
+      
+      else
+         null;
+      end if;
 
       case
         AutospeichernExtern
@@ -65,7 +58,7 @@ package body SpeichernLogik is
       
       Create (File => DateiSpeichern,
               Mode => Out_File,
-              Name => VerzeichnisKonstanten.SpielstandStrich & Encode (Item => (To_Wide_Wide_String (Source => NameSpielstand.EingegebenerText))));
+              Name => (VerzeichnisKonstanten.SpielstandStrich & Encode (Item => (To_Wide_Wide_String (Source => Spielstandname)))));
       
       Allgemeines (DateiSpeichernExtern => DateiSpeichern);
       FortschrittErhöhen (AutospeichernExtern => AutospeichernExtern);
@@ -118,29 +111,11 @@ package body SpeichernLogik is
       Wide_Wide_String'Write (Stream (File => DateiSpeichernExtern),
                               SonstigesKonstanten.Versionsnummer);
       
-      Unbounded_Wide_Wide_String'Write (Stream (File => DateiSpeichernExtern),
-                                        SpielVariablen.Allgemeines.IronmanName);
-      
-      Positive'Write (Stream (File => DateiSpeichernExtern),
-                      SpielVariablen.Allgemeines.Rundenanzahl);
-      
-      Natural'Write (Stream (File => DateiSpeichernExtern),
-                     SpielVariablen.Allgemeines.Rundengrenze);
-      
+      SpielRecords.AllgemeinesRecord'Write (Stream (File => DateiSpeichernExtern),
+                                            SpielVariablen.Allgemeines);
+            
       SpielVariablen.RassenbelegungArray'Write (Stream (File => DateiSpeichernExtern),
-                                                 SpielVariablen.Rassenbelegung);
-      
-      RassenDatentypen.Rassen_Enum'Write (Stream (File => DateiSpeichernExtern),
-                                          SpielVariablen.Allgemeines.RasseAmZugNachLaden);
-      
-      SpielDatentypen.Schwierigkeitsgrad_Enum'Write (Stream (File => DateiSpeichernExtern),
-                                                     SpielVariablen.Allgemeines.Schwierigkeitsgrad);
-      
-      Boolean'Write (Stream (File => DateiSpeichernExtern),
-                     SpielVariablen.Allgemeines.Gewonnen);
-      
-      Boolean'Write (Stream (File => DateiSpeichernExtern),
-                     SpielVariablen.Allgemeines.Weiterspielen);
+                                                SpielVariablen.Rassenbelegung);
       
    end Allgemeines;
    
@@ -249,80 +224,17 @@ package body SpeichernLogik is
    
    
    
-   function SpielstandNameFestlegen
-     (AutospeichernExtern : in Boolean)
-      return SystemRecords.TextEingabeRecord
-   is begin
-      
-      case
-        AutospeichernExtern
-      is
-         when False =>
-            return NameNutzer;
-
-         when True =>
-            return NameAutoSpeichern;
-      end case;
-      
-   end SpielstandNameFestlegen;
-   
-   
-   
-   function NameNutzer
-     return SystemRecords.TextEingabeRecord
-   is begin
-      
-      if
-        To_Wide_Wide_String (Source => SpielVariablen.Allgemeines.IronmanName) /= TextKonstanten.LeerString
-      then
-         NameSpielstand := (True, SpielVariablen.Allgemeines.IronmanName);
-               
-      else
-         -- Anzeige der vorhandenen Spielstände einbauen äöü
-         NameSpielstand := SpielstandAllgemeinesLogik.SpielstandNameErmitteln;
-         
-         case
-           NameSpielstand.ErfolgreichAbbruch
-         is
-            when True =>
-               SpielstandVorhanden := SpielstandAllgemeinesLogik.SpielstandVorhanden (SpielstandnameExtern => NameSpielstand.EingegebenerText);
-                 
-               if
-                 SpielstandVorhanden = False
-               then
-                  null;
-                  
-               elsif
-                 JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageSpielstandÜberschreiben) = True
-               then
-                  null;
-            
-               else
-                  NameSpielstand.ErfolgreichAbbruch := False;
-               end if;
-
-            when False =>
-               null;
-         end case;
-      end if;
-      
-      return NameSpielstand;
-      
-   end NameNutzer;
-   
-   
-   
    function NameAutoSpeichern
-     return SystemRecords.TextEingabeRecord
+     return Unbounded_Wide_Wide_String
    is begin
       
       if
         To_Wide_Wide_String (Source => SpielVariablen.Allgemeines.IronmanName) /= TextKonstanten.LeerString
       then
-         NameSpielstand := (True, SpielVariablen.Allgemeines.IronmanName);
+         Autospeichernname := SpielVariablen.Allgemeines.IronmanName;
                
       else
-         NameSpielstand := (True, To_Unbounded_Wide_Wide_String (Source => "Auto" & AutospeichernWert'Wide_Wide_Image));
+         Autospeichernname := To_Unbounded_Wide_Wide_String (Source => "Auto" & AutospeichernWert'Wide_Wide_Image);
          
          if
            OptionenVariablen.NutzerEinstellungen.AnzahlAutosave = 1
@@ -339,7 +251,7 @@ package body SpeichernLogik is
          end if;
       end if;
       
-      return NameSpielstand;
+      return Autospeichernname;
       
    end NameAutoSpeichern;
    

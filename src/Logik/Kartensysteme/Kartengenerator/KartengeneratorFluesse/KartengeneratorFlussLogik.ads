@@ -20,7 +20,7 @@ private
    type KartenzeitwertArray is array (KartenDatentypen.EbenePlanet'Range) of KartenDatentypen.KartenfeldNatural;
    Kartenzeitwert : KartenzeitwertArray;
    
-   -- Später vom Nutzer änderbar machen. äöü
+   -- Später vom Nutzer einstellbar machen. äöü
    type WahrscheinlichkeitFlussArray is array (KartenDatentypen.EbenePlanet'Range) of KartenDatentypen.Auswahlbereich;
    WahrscheinlichkeitFluss : constant WahrscheinlichkeitFlussArray := (
                                                                        -2 => 30,

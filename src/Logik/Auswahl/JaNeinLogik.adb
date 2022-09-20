@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemDatentypen;
+with GrafikDatentypen;
 with SystemKonstanten;
 with TastenbelegungDatentypen;
 
@@ -17,7 +17,7 @@ package body JaNeinLogik is
    is begin
       
       NachGrafiktask.AnzeigeFrage := FrageZeileExtern;
-      NachGrafiktask.Eingabe := SystemDatentypen.Ja_Nein_Enum;
+      NachGrafiktask.Eingabe := GrafikDatentypen.Ja_Nein_Enum;
       
       AuswahlSchleife:
       loop
@@ -48,7 +48,7 @@ package body JaNeinLogik is
          
       end loop AuswahlSchleife;
       
-      NachGrafiktask.Eingabe := SystemDatentypen.Keine_Eingabe_Enum;
+      NachGrafiktask.Eingabe := GrafikDatentypen.Keine_Eingabe_Enum;
       NachGrafiktask.AnzeigeFrage := 0;
       
       case

@@ -6,6 +6,7 @@ with MenueDatentypen;
 package SystemKonstanten is
 
    -- Das mit der 0 funktioniert so auch nicht mehr, überarbeiten. äöü
+   -- Nur die StadtEinheitenauswahl nutzt das aktuell anders, also das anpassen dann geht es wieder. äöü
    LeerAuswahl : constant Natural := 0;
 
    StandardArrayanpassung : constant Positive := 2;
@@ -40,8 +41,8 @@ package SystemKonstanten is
                                            -- Steuerungsmenü.
                                            MenueDatentypen.Steuerung_Menü_Enum          => 31,
 
-                                           -- SpeichernLaden
-                                           MenueDatentypen.Spielstand_Menü_Enum         => 14
+                                           -- Spielstandmenü
+                                           MenueDatentypen.Spielstand_Menü_Enum         => 15
                                           );
 
    -- Theoretich kann man hier noch -1 machen um die Überschrift abzuziehen, wird in den Positionen/Textaccessen nicht mehr benötigt. äöü
@@ -51,7 +52,7 @@ package SystemKonstanten is
 
    type EndeAbzugArray is array (EndeMenüArray'Range) of Positive;
    EndeAbzugGrafik : constant EndeAbzugArray := (
-                                                 -- Einfache Menü.
+                                                 -- Einfache Menüs.
                                                  -- Ohne Überschrift.
                                                  MenueDatentypen.Haupt_Menü_Enum              => EndeMenü (MenueDatentypen.Haupt_Menü_Enum),
                                                  MenueDatentypen.Spiel_Menü_Enum              => EndeMenü (MenueDatentypen.Spiel_Menü_Enum),
@@ -80,6 +81,7 @@ package SystemKonstanten is
                                                  -- Steuerungsmenü.
                                                  MenueDatentypen.Steuerung_Menü_Enum          => EndeMenü (MenueDatentypen.Steuerung_Menü_Enum) - 5,
 
+                                                 -- Spielstandmenü.
                                                  MenueDatentypen.Spielstand_Menü_Enum         => EndeMenü (MenueDatentypen.Spielstand_Menü_Enum)
                                                 );
 

@@ -73,7 +73,7 @@ package EinheitenDatentypen is
    
    subtype Transport_Vorhanden_Enum is Transport_Enum range Klein_Transport_Enum .. Gigantisch_Transport_Enum;
      
-   -- Hier den Minimalwert bei 0 lassen, wenn ausversehen ein Transport zugewiesen wird, dann kann die Einheit trotzdem nicht transportieren.
+   -- Der Nullwert wird für die Auswahl von Städten/Einheiten benötigt, nicht entfernen.
    type Transportplätze is range 0 .. 10;
    subtype TransportplätzeVorhanden is Transportplätze range 1 .. Transportplätze'Last;
 

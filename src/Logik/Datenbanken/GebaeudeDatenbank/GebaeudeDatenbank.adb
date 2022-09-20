@@ -20,6 +20,7 @@ with GebaeudeSenelari;
 with GebaeudeAspari2;
 with GebaeudeEkropa;
 
+-- Diese Parallelisierungen wieder entfernen, sind ziemlich Unsinn, wenn überhaupt dann wäre es vermutlich sinnvollder alles gleichzeitig einzulesen. äöü
 package body GebaeudeDatenbank is
    
    procedure StandardGebaeudeDatenbankLaden

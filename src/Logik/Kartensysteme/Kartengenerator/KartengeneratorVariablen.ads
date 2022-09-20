@@ -12,7 +12,6 @@ package KartengeneratorVariablen is
    PolgrundOberfläche : KartengrundDatentypen.Kartengrund_Vorhanden_Enum := KartengrundDatentypen.Eis_Enum;
    PolgrundUnterfläche : KartengrundDatentypen.Kartengrund_Vorhanden_Enum := KartengrundDatentypen.Untereis_Enum;
 
-   -- Alle Einstellungen in die Parameter schieben oder thematische Gruppen bilden? äöü
    Kartenparameter : KartenRecords.TemporäreKartenparameterRecord := KartenRecordKonstanten.Standardkartengeneratorparameter;
 
    Polgrößen : KartenDatentypen.PolregionenArray := KartengeneratorRecordKonstanten.Eisrand;

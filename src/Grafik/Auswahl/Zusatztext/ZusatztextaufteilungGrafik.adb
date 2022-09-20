@@ -10,7 +10,6 @@ with ZusatztextDiplomatieGrafik;
 
 package body ZusatztextaufteilungGrafik is
 
-   -- Das vielleicht auch in mehrere Varianten aufteilen? äöü
    function Zusatztextaufteilung
      (WelchesMenüExtern : in MenueDatentypen.Menü_Zusatztext_Einfach_Enum;
       AktuelleAuswahlExtern : in Natural;
@@ -73,7 +72,7 @@ package body ZusatztextaufteilungGrafik is
                
          when MenueDatentypen.Kartenform_Menü_Enum =>
             if
-              -- Dafür später auch was universelleres bauen. äöü
+              -- Dafür später auch was universelleres bauen? äöü
               AktuelleAuswahlExtern in 1 .. 6
             then
                ZusatztextKartenformGrafik.ZusatztextKartenform (AktuelleAuswahlExtern => AktuelleAuswahlExtern);

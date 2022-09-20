@@ -7,13 +7,10 @@ with KartenkoordinateEAchseBerechnenLogik;
 with KartenkoordinateYAchseBerechnenLogik;
 with KartenkoordinateXAchseBerechnenLogik;
 
--- Die zweidimensionalen Arrays existieren wegen der Parallelisierung der Kartenfelderbewertung und weil das hier von Logik und Grafik benötigt wird.
--- Die Überhangschleifen in den Berechnungen sind nötig, da zwar eine Einheitenbewegung nicht so groß sein kann, aber der Spieler eventuell soweit rauszoomt.
--- Gilt das noch mit dem Rauszoomen? äöü
--- Eventuell kann das nach einer korrekten Anpassung der grafischen Anzeige bei verschobenen Übergängen weg? äöü
+-- Die Überhangschleifen in den Berechnungen sind nötig, da zwar eine Einheitenbewegung nicht so groß sein kann, aber der Spieler eventuell soweit rauszoomt. äöü
+-- Die Überhangschleifen müssten auch mal noch angepasst werden an die ganzen Änderungen. äöü
 package body KartenkoordinatenberechnungssystemLogik is
 
-   -- Überall die KoordinatenRecords anpassen? äöü
    function Kartenkoordinatenberechnungssystem
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;

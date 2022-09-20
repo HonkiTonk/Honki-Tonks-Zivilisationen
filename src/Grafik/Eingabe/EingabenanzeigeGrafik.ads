@@ -7,7 +7,7 @@ private with Sf.System.Vector2;
 
 with RassenDatentypen;
 with ZahlenDatentypen;
-with SystemDatentypen;
+with GrafikDatentypen;
 
 private with EinheitenRecords;
 private with StadtRecords;
@@ -19,7 +19,7 @@ package EingabenanzeigeGrafik is
    
    procedure Fragenaufteilung
      (FrageExtern : in ZahlenDatentypen.EigenesPositive;
-      EingabeExtern : in SystemDatentypen.Eingaben_Fragen_Enum);
+      EingabeExtern : in GrafikDatentypen.Eingaben_Fragen_Enum);
    
    -- Später KORREKTEN Contract einfügen. äöü
    procedure AnzeigeEinheitenStadt

@@ -27,7 +27,6 @@ with TextberechnungenBreiteGrafik;
 
 package body StadtseitenleisteGrafik is
    
-   -- Das hier an das neue Viewsystem anpassen oder direkt durch ein besseres System ersetzen? äöü
    procedure Stadtinformationen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
@@ -41,7 +40,6 @@ package body StadtseitenleisteGrafik is
    
    
    
-   -- Überall die Bereiche von außen hineingeben? Dann wäre mehr wiederverwendbar, wobei natürlich die Frage ist ob mir das was bringt. äöü
    procedure Leer
      (AnzeigebereichExtern : in Sf.Graphics.Rect.sfFloatRect;
       ViewExtern : in Sf.Graphics.sfView_Ptr)
@@ -163,7 +161,6 @@ package body StadtseitenleisteGrafik is
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.TextAccess,
                                     position => Textposition);
       
-      -- Eventuell kann man das überall einbauen und so Text deutlich besser anpassen? äöü
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.TextAccess,
                                                                           TextbreiteExtern => Textbreite);
       

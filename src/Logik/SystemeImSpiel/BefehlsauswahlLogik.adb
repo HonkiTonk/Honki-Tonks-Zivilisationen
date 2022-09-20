@@ -123,6 +123,8 @@ package body BefehlsauswahlLogik is
             DebugmenueLogik.Debugmenü (RasseExtern => RasseExtern);
             
             -- Das hier irgendwann auch wieder einbauen? äöü
+            -- Oder ist das mit dem aktuellen System komplett sinnfrei? äöü
+            -- Eventuelle über GeheZu regeln? äöü
          when TastenbelegungDatentypen.Tastenbelegung_Bewegung_Numblock_Enum'Range =>
             null;
             

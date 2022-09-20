@@ -1,13 +1,12 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-private with Sf.System.Vector2;
-
 with RassenDatentypen; use RassenDatentypen;
 with StadtDatentypen; use StadtDatentypen;
 with EinheitenDatentypen;
-with EinheitenRecords;
 with SpielVariablen;
+
+private with EinheitenRecords;
 
 package AuswahlStadtEinheitLogik is
    
@@ -30,12 +29,5 @@ private
    AktuelleAuswahl : Integer;
    
    WelcheAuswahl : EinheitenRecords.AuswahlRecord;
-   
-   Mausposition : Sf.System.Vector2.sfVector2f;
-   
-   
-      
-   function MausAuswahl
-     return Integer;
 
 end AuswahlStadtEinheitLogik;

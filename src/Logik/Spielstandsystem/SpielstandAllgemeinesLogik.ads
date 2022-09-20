@@ -3,12 +3,12 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with SystemRecords;
+private with SystemRecords;
 
 package SpielstandAllgemeinesLogik is
 
    function SpielstandNameErmitteln
-     return SystemRecords.TextEingabeRecord;
+     return Unbounded_Wide_Wide_String;
    
    function SpielstandVorhanden
      (SpielstandnameExtern : in Unbounded_Wide_Wide_String)

@@ -3,11 +3,9 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-private with Sf.System.Vector2;
-
 package SprachauswahlLogik is
       
-   -- Das auch mal in irgendwas globaleres verschieben. äöü
+   -- Das auch mal in irgendwas globales verschieben? äöü
    type AktuelleSprachenArray is array (1 .. 11) of Unbounded_Wide_Wide_String;
    AktuelleSprachen : AktuelleSprachenArray;
    
@@ -27,18 +25,9 @@ private
    ZehnerReihe : Natural;
    AktuelleAuswahl : Natural;
    
-   StartPositionYAchse : constant Float := 10.00;
-   Zeile : Float;
-   TextPositionMaus : Float;
-         
-   Mausposition : Sf.System.Vector2.sfVector2f;
-   
    procedure SprachenListeFestlegen;
    
    
-   
-   function MausAuswahl
-     return Natural;
    
    function AuswahlSpracheSFML
      return Unbounded_Wide_Wide_String;

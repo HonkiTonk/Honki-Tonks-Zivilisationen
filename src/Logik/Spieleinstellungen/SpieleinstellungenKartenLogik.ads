@@ -41,7 +41,6 @@ private
    
       
    
-   -- Post kleiner als Kartengröße? äöü
    function Polgrößen
      (YAchseXAchseExtern : in Boolean)
       return KartenDatentypen.KartenfeldNatural;
