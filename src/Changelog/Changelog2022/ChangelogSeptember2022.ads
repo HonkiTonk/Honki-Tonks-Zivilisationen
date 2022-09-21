@@ -56,17 +56,32 @@ package ChangelogSeptember2022 is
    
    
 
-   -- Version 0.03. => 0.03. (22.09.2022):
+   -- Version 0.03.9850 => 0.03. (22.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.9650 => 0.03. (21.09.2022):
+   -- Version 0.03.9650 => 0.03.9850 (21.09.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Linuxdateien und Windowsdateien sauber voneinander getrennt und in beiden Versionen alle Dateien entsprechend angepasst.
+   -- Skalierung und Positionierung der Seitenleisteninformationen überarbeitet, ist jetzt deutlich einheitlicher.
+   -- Wenn sich der aktuelle Grund und der Basisgrund unterscheiden, dann ist der aktuelle Grund jetzt auch leicht durchsichtig.
+   -- Anzeige des Städtenamens über der Stadt skaliert jetzt mit der Zoomeinstellung.
+   -- Angefangen eine KIPrüfung für vorhandene Transporter einzubauen.
+   -- Es ist jetzt möglich eigene Einheiten die Plätze tauschen zu lassen.
+   -- Fehler korrigiert der es einem erlaubten nicht vorhandene Einheit in einem Transporter anzuwählen.
+   -- Die Sichtbarkeitsprüfung berücksichtigt jetzt auch die EAchse und deckt entsprechend auf.
+   -- Einige Optimierungen durchgeführt.
+   -- Prüfung ob die Vorraussetzungen für ein Gebäude erfüllt sind überarbeitet.
+   -- Gebäude können jetzt auch Verbesserungen oder andere Gebäude vorraussetzen.
+   -- Die notwendigen Technolgien zum Bauen von Wegen und Verbesserungen werden jetzt auch in der Forschungsdatenbank gespeichert und eingelesen.
+   -- Unnötige Code gelöscht.
+   -- Code zusammengeführt.
+   -- Die notwendigen Technologien für die Bestimmung der Stadtumgebung ist jetzt auch Teil der Forschungsdatenbank und kann jetzt auch leer und nicht vorhanden sein.
+   -- Sichtweite und Bewegungsfeld können jetzt auch basierend auf dem Seitenverhältnis berechnet werden.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet/verbessert.
    
    
 

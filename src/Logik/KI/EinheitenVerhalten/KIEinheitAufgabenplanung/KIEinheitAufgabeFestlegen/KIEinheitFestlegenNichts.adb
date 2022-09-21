@@ -14,13 +14,14 @@ package body KIEinheitFestlegenNichts is
       return Boolean
    is begin
       
-      -- Hier eventuell die Bewegungspukte auf 0 setzen? äöü
       SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                               AufgabeExtern            => KIDatentypen.Tut_Nichts_Enum);
       SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                               BeschäftigungExtern      => EinheitenKonstanten.LeerBeschäftigung);
+      SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                               BewegungspunkteExtern    => EinheitenKonstanten.LeerBewegungspunkte,
+                                               RechnenSetzenExtern      => 0);
       
-      -- Brauchts das hier noch eine Sonderprüfung? äöü
       return True;
       
    end NichtsTun;

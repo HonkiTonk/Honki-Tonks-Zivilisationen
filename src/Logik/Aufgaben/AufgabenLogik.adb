@@ -8,14 +8,14 @@ with TastenbelegungDatentypen; use TastenbelegungDatentypen;
 with AufgabenDatentypen; use AufgabenDatentypen;
 with KartenverbesserungDatentypen; use KartenverbesserungDatentypen;
 with EinheitenKonstanten;
-with ForschungKonstanten;
 with TextnummernKonstanten;
 
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
 with LeseWeltkarte;
+with LeseForschungenDatenbank;
 
-with ForschugnstestsLogik;
+with ForschungstestsLogik;
 with AufgabenAllgemeinLogik;
 with WegErmittelnLogik;
 with MineErmittelnLogik;
@@ -150,8 +150,9 @@ package body AufgabenLogik is
       is
          when TastenbelegungDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range =>
             if
-              False = ForschugnstestsLogik.TechnologieVorhanden (RasseExtern       => RasseExtern,
-                                                                 TechnologieExtern => ForschungKonstanten.TechnologieVerbesserung (RasseExtern, BefehlExtern))
+              False = ForschungstestsLogik.TechnologieVorhanden (RasseExtern       => RasseExtern,
+                                                                 TechnologieExtern => LeseForschungenDatenbank.Verbesserungen (VerbesserungExtern => BefehlExtern,
+                                                                                                                               RasseExtern        => RasseExtern))
             then
                MeldungFestlegenLogik.SpielermeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungVerbesserungTechnologie,
                                                               RasseExtern   => RasseExtern);

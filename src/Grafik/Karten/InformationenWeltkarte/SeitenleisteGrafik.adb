@@ -33,8 +33,9 @@ package body SeitenleisteGrafik is
             return;
             
          when False =>
-            WichtigesSeitenleisteGrafik.WichtigesInformationen (RasseExtern        => RasseExtern,
-                                                                KoordinatenExtern  => AktuelleKoordinaten);
+            WichtigesSeitenleisteGrafik.WichtigesInformationen (RasseExtern       => RasseExtern,
+                                                                KoordinatenExtern => AktuelleKoordinaten,
+                                                                ViewbereichExtern => 1);
       end case;
       
       case
@@ -78,7 +79,7 @@ package body SeitenleisteGrafik is
             end case;
             
          when False =>
-            AllgemeinesSeitenleisteGrafik.Leer;
+            AllgemeinesSeitenleisteGrafik.Leer (ViewbereichExtern => 2);
             StadtseitenleisteGrafik.Leer (AnzeigebereichExtern => GrafikRecordKonstanten.SeitenleisteWeltkartenbereich (3),
                                           ViewExtern           => Views.SeitenleisteWeltkarteAccesse (3));
             EinheitenseitenleisteGrafik.Leer (AnzeigebereichExtern => 4);

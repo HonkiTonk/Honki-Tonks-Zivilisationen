@@ -29,7 +29,8 @@ package body SchreibeEinheitenGebaut is
    
    procedure Koordinaten
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      EinheitentauschExtern : in Boolean)
    is begin
       
       case
@@ -40,13 +41,14 @@ package body SchreibeEinheitenGebaut is
             
          when others =>
             SchreibeWeltkarte.EinheitEntfernen (KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                             EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+                                                EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       end case;
       
       SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KoordinatenAktuell := KoordinatenExtern;
       
       SchreibeWeltkarte.EinheitSchreiben (KoordinatenExtern        => KoordinatenExtern,
-                                       EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+                                          EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                          EinheitentauschExtern    => EinheitentauschExtern);
       
    end Koordinaten;
    
@@ -434,7 +436,7 @@ package body SchreibeEinheitenGebaut is
       NachGrafiktask.AktuelleEinheit := EinheitenKonstanten.LeerNummer;
         
       SchreibeWeltkarte.EinheitEntfernen (KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                       EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+                                          EinheitRasseNummerExtern => EinheitRasseNummerExtern);
                                            
       SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer) := EinheitenRecordKonstanten.LeerEinheit;
       
@@ -455,7 +457,8 @@ package body SchreibeEinheitenGebaut is
           IDExtern                 => IDExtern);
       
       Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                   KoordinatenExtern        => KoordinatenExtern);
+                   KoordinatenExtern        => KoordinatenExtern,
+                   EinheitentauschExtern    => False);
       
       Heimatstadt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                    HeimatstadtExtern        => StadtNummerExtern);

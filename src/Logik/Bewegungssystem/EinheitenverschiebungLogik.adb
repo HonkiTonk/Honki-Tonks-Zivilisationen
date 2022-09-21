@@ -149,7 +149,8 @@ package body EinheitenverschiebungLogik is
                                                                                                           LogikGrafikExtern => True).Nummer
                then
                   SchreibeEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                       KoordinatenExtern        => KartenwertVerschieben);
+                                                       KoordinatenExtern        => KartenwertVerschieben,
+                                                       EinheitentauschExtern    => False);
                   return;
                   
                else

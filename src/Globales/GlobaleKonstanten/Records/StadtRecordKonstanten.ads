@@ -42,6 +42,8 @@ package StadtRecordKonstanten is
                                                                          GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
                                                                          FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
                                                                          RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
+                                                                         VerbesserungBenötigt        => StadtKonstanten.LeerVerbesserungBenötigt,
+                                                                         GebäudeBenötigt             => StadtKonstanten.LeerGebäudeID,
                                                                          GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft
                                                                         );
 

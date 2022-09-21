@@ -288,7 +288,7 @@ private
    EinheitID : EinheitenDatentypen.EinheitenIDMitNullWert;
    
    Beförderungsgrenze : KampfDatentypen.ErfahrungspunkteVorhanden;
-   MaximalerRang : KampfDatentypen.RangVorhanden;
+   MaximalerRang : KampfDatentypen.Rang;
    
    ErlaubteLebenspunkte : EinheitenDatentypen.LebenspunkteVorhanden;
 

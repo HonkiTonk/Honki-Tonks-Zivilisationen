@@ -5,7 +5,7 @@ with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
 with ForschungenDatentypen;
 
-package ForschugnstestsLogik is
+package ForschungstestsLogik is
 
    function ForschungAnforderungErfüllt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
@@ -29,4 +29,4 @@ private
 
    Forschungsanforderungen : ForschungenDatentypen.ForschungIDNichtMöglich;
 
-end ForschugnstestsLogik;
+end ForschungstestsLogik;

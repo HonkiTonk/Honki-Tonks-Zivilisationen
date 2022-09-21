@@ -60,15 +60,6 @@ private
    type FestzulegenderTextArray is array (TextaccessVariablen.EinheitenInformationenAccess'Range) of Unbounded_Wide_Wide_String;
    FestzulegenderText : FestzulegenderTextArray;
    
-   procedure Debuginformationen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-     with
-       Pre => (
-                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
-               and
-                 SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
-              );
-   
    
    
    function Heimatstadt

@@ -165,7 +165,8 @@ package body SchreibeWeltkarte is
    
    procedure EinheitSchreiben
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      EinheitentauschExtern : in Boolean)
    is begin
       
       if
@@ -175,6 +176,8 @@ package body SchreibeWeltkarte is
          
       elsif
         LeseWeltkarte.EinheitenbelegungGrund (KoordinatenExtern => KoordinatenExtern) /= EinheitenKonstanten.LeerRasseNummer
+        and
+          EinheitentauschExtern = False
       then
          null;
          

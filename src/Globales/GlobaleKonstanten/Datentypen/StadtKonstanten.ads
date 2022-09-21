@@ -59,10 +59,12 @@ package StadtKonstanten is
    LeerGrundBenötigt : constant KartengrundDatentypen.Kartengrund_Enum := KartengrundDatentypen.Leer_Grund_Enum;
    LeerFlussBenötigt : constant Boolean := False;
    LeerRessourceBenötigt : constant KartengrundDatentypen.Kartenressourcen_Enum := KartengrundDatentypen.Leer_Ressource_Enum;
+   LeerVerbesserungBenötigt : constant KartenverbesserungDatentypen.Karten_Verbesserung_Enum := KartenverbesserungDatentypen.Leer_Verbesserung_Enum;
    LeerSpezielleEigenschaft : constant StadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum := StadtDatentypen.Leer_Gebäude_Spezielle_Egienschaft_Enum;
    
    
    
+   -- Das auch so ändern dass es davon einen Standardwert und einen einstellbaren Wert gibt. äöü
    type StadtUmgebungWachstumArray is array (SystemDatentypen.Anfang_Ende_Enum'Range, RassenDatentypen.Rassen_Verwendet_Enum'Range) of ProduktionDatentypen.Einwohner;
    StadtUmgebungWachstum : constant StadtUmgebungWachstumArray := (
                                                                    SystemDatentypen.Anfangswert_Enum =>

@@ -17,8 +17,53 @@ with EinheitSuchenLogik;
 with KennenlernenLogik;
 
 package body SichtbarkeitLogik is
+
+   -- Einfach immer die Quadranden durchlaufen? Dann müsste mehr gerechnet werden ist aber einfacher zu Programmieren. äöü
+   -- Generell hier mal alles überarbeiten? geht bestimmt auch kürzer. äöü
+   procedure SichtbarkeitsprüfungFürEinheit
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+   is begin
+      
+      SichtweiteObjekt := SichtweiteErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      
+      case
+        SichtweiteObjekt
+      is
+         when KartenDatentypen.Sichtweite'First =>
+            SichtbarkeitsprüfungOhneBlockade (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                               SichtweiteExtern         => SichtweiteObjekt);
+            return;
+            
+         when 3 =>
+            if
+              (True = LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
+                                                             IDExtern             => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                             WelcheUmgebungExtern => EinheitenDatentypen.Luft_Enum)
+               or
+                 True = LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
+                                                               IDExtern             => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                               WelcheUmgebungExtern => EinheitenDatentypen.Weltraum_Enum))
+              and
+                LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern).EAchse >= 0
+            then
+               SichtbarkeitsprüfungOhneBlockade (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                  SichtweiteExtern         => SichtweiteObjekt);
+               return;
+               
+            else
+               null;
+            end if;
+            
+         when others =>
+            null;
+      end case;
+
+      QuadrantenDurchlaufen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      
+   end SichtbarkeitsprüfungFürEinheit;
    
-   -- Über die Sachen hier nochmal drüber gehen. Eventuell auch Sicht nach oben einbauen? äöü
+   
+   
    function SichtweiteErmitteln
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return KartenDatentypen.Sichtweite
@@ -70,50 +115,6 @@ package body SichtbarkeitLogik is
       
    end SichtweiteErmitteln;
    
-
-
-   procedure SichtbarkeitsprüfungFürEinheit
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-   is begin
-      
-      SichtweiteObjekt := SichtweiteErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      
-      case
-        SichtweiteObjekt
-      is
-         when KartenDatentypen.Sichtweite'First =>
-            SichtbarkeitsprüfungOhneBlockade (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                               SichtweiteExtern         => SichtweiteObjekt);
-            return;
-            
-         when 3 =>
-            if
-              (True = LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
-                                                             IDExtern             => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                             WelcheUmgebungExtern => EinheitenDatentypen.Luft_Enum)
-               or
-                 True = LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
-                                                               IDExtern             => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                               WelcheUmgebungExtern => EinheitenDatentypen.Weltraum_Enum))
-              and
-                LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern).EAchse >= 0
-            then
-               SichtbarkeitsprüfungOhneBlockade (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                  SichtweiteExtern         => SichtweiteObjekt);
-               return;
-               
-            else
-               null;
-            end if;
-            
-         when others =>
-            null;
-      end case;
-
-      QuadrantenDurchlaufen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      
-   end SichtbarkeitsprüfungFürEinheit;
-   
    
    
    -- Das hier Parallelisieren? äöü
@@ -121,58 +122,88 @@ package body SichtbarkeitLogik is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
-      YQuadrantSchleife:
-      for YQuadrantSchleifenwert in 0 .. SichtweiteObjekt loop
-         XQuadrantSchleife:
-         for XQuadrantSchleifenwert in 0 .. SichtweiteObjekt loop
-            
-            QuadrantEins (EinheitRasseNummerExtern  => EinheitRasseNummerExtern,
-                          SichtweiteYRichtungExtern => YQuadrantSchleifenwert,
-                          SichtweiteXRichtungExtern => XQuadrantSchleifenwert,
-                          SichtweiteMaximalExtern   => SichtweiteObjekt);
-            
-            case
-              YQuadrantSchleifenwert
-            is
-               when 0 =>
-                  null;
-                  
-               when others =>
-                  QuadrantZwei (EinheitRasseNummerExtern  => EinheitRasseNummerExtern,
-                                SichtweiteYRichtungExtern => YQuadrantSchleifenwert,
-                                SichtweiteXRichtungExtern => XQuadrantSchleifenwert,
-                                SichtweiteMaximalExtern   => SichtweiteObjekt);
-            end case;
+      Einheitenkoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
-            case
-              XQuadrantSchleifenwert
-            is
-               when 0 =>
-                  null;
-                  
-               when others =>
-                  QuadrantDrei (EinheitRasseNummerExtern  => EinheitRasseNummerExtern,
-                                SichtweiteYRichtungExtern => YQuadrantSchleifenwert,
-                                SichtweiteXRichtungExtern => XQuadrantSchleifenwert,
-                                SichtweiteMaximalExtern   => SichtweiteObjekt);
-            end case;
+      -- Das berücksichtigt noch nicht die Durchsichtigkeit von Wasser, später noch einbauen. äöü
+      case
+        Einheitenkoordinaten.EAchse
+      is
+         when 0 =>
+            EAchseAnfang := 0;
+            EAchseEnde := 1;
+            
+         when 1 =>
+            EAchseAnfang := 0;
+            EAchseEnde := 2;
+            
+         when 2 =>
+            EAchseAnfang := 1;
+            EAchseEnde := 2;
+            
+         when others =>
+            EAchseAnfang := Einheitenkoordinaten.EAchse;
+            EAchseEnde := Einheitenkoordinaten.EAchse;
+      end case;
       
-            if
-              YQuadrantSchleifenwert = 0
-              and
-                XQuadrantSchleifenwert = 0
-            then
-               null;
-               
-            else
-               QuadrantVier (EinheitRasseNummerExtern  => EinheitRasseNummerExtern,
+      EAchseSchleife:
+      for EAchseSchleifenwert in EAchseAnfang .. EAchseEnde loop
+         YQuadrantSchleife:
+         for YQuadrantSchleifenwert in 0 .. SichtweiteObjekt loop
+            XQuadrantSchleife:
+            for XQuadrantSchleifenwert in 0 .. SichtweiteObjekt loop
+            
+               QuadrantEins (EinheitRasseNummerExtern  => EinheitRasseNummerExtern,
                              SichtweiteYRichtungExtern => YQuadrantSchleifenwert,
                              SichtweiteXRichtungExtern => XQuadrantSchleifenwert,
+                             SichtweiteERichtungExtern => EAchseSchleifenwert,
                              SichtweiteMaximalExtern   => SichtweiteObjekt);
-            end if;
             
-         end loop XQuadrantSchleife;
-      end loop YQuadrantSchleife;
+               case
+                 YQuadrantSchleifenwert
+               is
+                  when 0 =>
+                     null;
+                  
+                  when others =>
+                     QuadrantZwei (EinheitRasseNummerExtern  => EinheitRasseNummerExtern,
+                                   SichtweiteYRichtungExtern => YQuadrantSchleifenwert,
+                                   SichtweiteXRichtungExtern => XQuadrantSchleifenwert,
+                                   SichtweiteERichtungExtern => EAchseSchleifenwert,
+                                   SichtweiteMaximalExtern   => SichtweiteObjekt);
+               end case;
+      
+               case
+                 XQuadrantSchleifenwert
+               is
+                  when 0 =>
+                     null;
+                  
+                  when others =>
+                     QuadrantDrei (EinheitRasseNummerExtern  => EinheitRasseNummerExtern,
+                                   SichtweiteYRichtungExtern => YQuadrantSchleifenwert,
+                                   SichtweiteXRichtungExtern => XQuadrantSchleifenwert,
+                                   SichtweiteERichtungExtern => EAchseSchleifenwert,
+                                   SichtweiteMaximalExtern   => SichtweiteObjekt);
+               end case;
+      
+               if
+                 YQuadrantSchleifenwert = 0
+                 and
+                   XQuadrantSchleifenwert = 0
+               then
+                  null;
+               
+               else
+                  QuadrantVier (EinheitRasseNummerExtern  => EinheitRasseNummerExtern,
+                                SichtweiteYRichtungExtern => YQuadrantSchleifenwert,
+                                SichtweiteXRichtungExtern => XQuadrantSchleifenwert,
+                                SichtweiteERichtungExtern => EAchseSchleifenwert,
+                                SichtweiteMaximalExtern   => SichtweiteObjekt);
+               end if;
+            
+            end loop XQuadrantSchleife;
+         end loop YQuadrantSchleife;
+      end loop EAchseSchleife;
       
    end QuadrantenDurchlaufen;
    
@@ -182,11 +213,12 @@ package body SichtbarkeitLogik is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteNatural;
       SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteNatural;
+      SichtweiteERichtungExtern : in KartenDatentypen.EbeneVorhanden;
       SichtweiteMaximalExtern : in KartenDatentypen.Sichtweite)
    is begin
               
       KartenQuadrantWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                                                        ÄnderungExtern    => (0, -SichtweiteYRichtungExtern, SichtweiteXRichtungExtern),
+                                                                                                        ÄnderungExtern    => (SichtweiteERichtungExtern, -SichtweiteYRichtungExtern, SichtweiteXRichtungExtern),
                                                                                                         LogikGrafikExtern => True);
             
       if
@@ -306,11 +338,12 @@ package body SichtbarkeitLogik is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteNatural;
       SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteNatural;
+      SichtweiteERichtungExtern : in KartenDatentypen.EbeneVorhanden;
       SichtweiteMaximalExtern : in KartenDatentypen.Sichtweite)
    is begin
                     
       KartenQuadrantWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                                                        ÄnderungExtern    => (0, SichtweiteYRichtungExtern, SichtweiteXRichtungExtern),
+                                                                                                        ÄnderungExtern    => (SichtweiteERichtungExtern, SichtweiteYRichtungExtern, SichtweiteXRichtungExtern),
                                                                                                         LogikGrafikExtern => True);
             
       if
@@ -430,11 +463,12 @@ package body SichtbarkeitLogik is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteNatural;
       SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteNatural;
+      SichtweiteERichtungExtern : in KartenDatentypen.EbeneVorhanden;
       SichtweiteMaximalExtern : in KartenDatentypen.Sichtweite)
    is begin
                     
       KartenQuadrantWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                                                        ÄnderungExtern    => (0, SichtweiteYRichtungExtern, -SichtweiteXRichtungExtern),
+                                                                                                        ÄnderungExtern    => (SichtweiteERichtungExtern, SichtweiteYRichtungExtern, -SichtweiteXRichtungExtern),
                                                                                                         LogikGrafikExtern => True);
             
       if
@@ -554,11 +588,12 @@ package body SichtbarkeitLogik is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteNatural;
       SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteNatural;
+      SichtweiteERichtungExtern : in KartenDatentypen.EbeneVorhanden;
       SichtweiteMaximalExtern : in KartenDatentypen.Sichtweite)
    is begin
                     
       KartenQuadrantWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                                                        ÄnderungExtern    => (0, -SichtweiteYRichtungExtern, -SichtweiteXRichtungExtern),
+                                                                                                        ÄnderungExtern    => (SichtweiteERichtungExtern, -SichtweiteYRichtungExtern, -SichtweiteXRichtungExtern),
                                                                                                         LogikGrafikExtern => True);
             
       if
@@ -727,62 +762,113 @@ package body SichtbarkeitLogik is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       SichtweiteExtern : in KartenDatentypen.Sichtweite)
    is begin
-         
-      YÄnderungEinheitenSchleife:
-      for YÄnderungSchleifenwert in -SichtweiteExtern .. SichtweiteExtern loop
-         XÄnderungEinheitenSchleife:
-         for XÄnderungSchleifenwert in -SichtweiteExtern .. SichtweiteExtern loop
+      
+      Einheitenkoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      
+      -- Das berücksichtigt noch nicht die Durchsichtigkeit von Wasser, später noch einbauen. äöü
+      case
+        Einheitenkoordinaten.EAchse
+      is
+         when 0 =>
+            EAchseAnfang := 0;
+            EAchseEnde := 1;
             
-            KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                                                      ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                                                      LogikGrafikExtern => True);
+         when 1 =>
+            EAchseAnfang := 0;
+            EAchseEnde := 2;
             
-            case
-              KartenWert.XAchse
-            is
-               when KartenKonstanten.LeerXAchse =>
-                  null;
+         when 2 =>
+            EAchseAnfang := 1;
+            EAchseEnde := 2;
+            
+         when others =>
+            EAchseAnfang := Einheitenkoordinaten.EAchse;
+            EAchseEnde := Einheitenkoordinaten.EAchse;
+      end case;
+            
+      EAchseSchleife:
+      for EAchseSchleifenwert in EAchseAnfang .. EAchseEnde loop
+         YAchseSchleife:
+         for YAchseSchleifenwert in -SichtweiteExtern .. SichtweiteExtern loop
+            XAchseSchleife:
+            for XAchseSchleifenwert in -SichtweiteExtern .. SichtweiteExtern loop
+            
+               KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Einheitenkoordinaten,
+                                                                                                         ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                         LogikGrafikExtern => True);
+            
+               case
+                 KartenWert.XAchse
+               is
+                  when KartenKonstanten.LeerXAchse =>
+                     null;
                   
-               when others =>
-                  SichtbarkeitSetzen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                      KoordinatenExtern => KartenWert);
-            end case;
-            
-         end loop XÄnderungEinheitenSchleife;
-      end loop YÄnderungEinheitenSchleife;
+                  when others =>
+                     SichtbarkeitSetzen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                         KoordinatenExtern => KartenWert);
+               end case;
+               
+            end loop XAchseSchleife;
+         end loop YAchseSchleife;
+      end loop EAchseSchleife;
       
    end SichtbarkeitsprüfungOhneBlockade;
-
-
+   
+   
 
    procedure SichtbarkeitsprüfungFürStadt
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
       SichtweiteObjekt := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) + 1;
+      Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      
+      -- Das berücksichtigt noch nicht die Durchsichtigkeit von Wasser, später noch einbauen. äöü
+      case
+        Stadtkoordinaten.EAchse
+      is
+         when 0 =>
+            EAchseAnfang := 0;
+            EAchseEnde := 1;
             
-      YÄnderungStadtSchleife:
-      for YÄnderungSchleifenwert in -SichtweiteObjekt .. SichtweiteObjekt loop
-         XÄnderungStadtSchleife:
-         for XÄnderungSchleifenwert in -SichtweiteObjekt .. SichtweiteObjekt loop
+         when 1 =>
+            EAchseAnfang := 0;
+            EAchseEnde := 2;
             
-            KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                                                      ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                                                      LogikGrafikExtern => True);
+         when 2 =>
+            EAchseAnfang := 1;
+            EAchseEnde := 2;
             
-            case
-              KartenWert.XAchse
-            is
-               when KartenKonstanten.LeerXAchse =>
-                  null;
+         when others =>
+            EAchseAnfang := Stadtkoordinaten.EAchse;
+            EAchseEnde := Stadtkoordinaten.EAchse;
+      end case;
+            
+      EAchseSchleife:
+      for EAchseSchleifenwert in EAchseAnfang .. EAchseEnde loop
+         YAchseSchleife:
+         for YAchseSchleifenwert in -SichtweiteObjekt .. SichtweiteObjekt loop
+            XAchseSchleife:
+            for XAchseSchleifenwert in -SichtweiteObjekt .. SichtweiteObjekt loop
+            
+               KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Stadtkoordinaten,
+                                                                                                         ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                         LogikGrafikExtern => True);
+            
+               case
+                 KartenWert.XAchse
+               is
+                  when KartenKonstanten.LeerXAchse =>
+                     null;
                   
-               when others =>
-                  SichtbarkeitSetzen (RasseExtern       => StadtRasseNummerExtern.Rasse,
-                                      KoordinatenExtern => KartenWert);
-            end case;
+                  when others =>
+                     SichtbarkeitSetzen (RasseExtern       => StadtRasseNummerExtern.Rasse,
+                                         KoordinatenExtern => KartenWert);
+               end case;
                         
-         end loop XÄnderungStadtSchleife;
-      end loop YÄnderungStadtSchleife;
+            end loop XAchseSchleife;
+         end loop YAchseSchleife;
+      end loop EAchseSchleife;
       
    end SichtbarkeitsprüfungFürStadt;
    

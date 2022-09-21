@@ -15,9 +15,11 @@ package Sichtweiten is
    
    
    function SichtweiteLesen
+     (YXExtern : in Boolean)
      return KartenDatentypen.KartenfeldPositiv;
    
    function BewegungsfeldLesen
+     (YXExtern : in Boolean)
      return KartenDatentypen.KartenfeldPositiv;
    
    function SichtbereichKarteBerechnen
@@ -25,7 +27,6 @@ package Sichtweiten is
    
 private
    
-   -- Eventuell die Zoomstufen so anpassen, dass die YAchse ein wenig kleiner ist als die XAchse, wegen der Seitenleiste. äöü
    MaximaleZoomstufe : constant KartenDatentypen.KartenfeldPositiv := 10;
    StandardZoomstufe : constant KartenDatentypen.KartenfeldPositiv := 4;
    MinimaleZoomstufe : KartenDatentypen.KartenfeldPositiv := KartenDatentypen.KartenfeldPositiv'First;

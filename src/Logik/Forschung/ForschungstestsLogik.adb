@@ -7,7 +7,7 @@ with ForschungKonstanten;
 with LeseForschungenDatenbank;
 with LeseWichtiges;
 
-package body ForschugnstestsLogik is
+package body ForschungstestsLogik is
 
    function TechnologieVorhanden
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
@@ -74,4 +74,4 @@ package body ForschugnstestsLogik is
       
    end ForschungAnforderungErfüllt;
 
-end ForschugnstestsLogik;
+end ForschungstestsLogik;

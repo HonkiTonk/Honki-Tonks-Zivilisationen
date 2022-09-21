@@ -208,12 +208,19 @@ package body LeseEinheitenDatenbank is
    
    function Verteidigung
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenID)
+      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return KampfDatentypen.Kampfwerte
    is begin
       
-      
-      return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).Verteidigung;
+      case
+        IDExtern
+      is
+         when EinheitenKonstanten.LeerID =>
+            return KampfDatentypen.Kampfwerte'First;
+            
+         when others =>
+            return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).Verteidigung;
+      end case;
       
    end Verteidigung;
    

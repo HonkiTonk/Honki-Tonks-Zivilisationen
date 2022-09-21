@@ -62,19 +62,15 @@ package body StadtseitenleisteGrafik is
       AnzeigebereichExtern : in Sf.Graphics.Rect.sfFloatRect;
       ViewExtern : in Sf.Graphics.sfView_Ptr)
    is begin
-                  
-      Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
-                                                                        VerhältnisExtern => (0.15, 0.05));
-      
+                        
       Leer (AnzeigebereichExtern => AnzeigebereichExtern,
             ViewExtern           => ViewExtern);
       
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
-      -- Allgemeine Stadtinformationen, nur sichtbar wenn das Kartenfeld aufgedeckt ist und sich dort eine Stadt befindet.
-      -- Brauche ich den Stadtnamen überhaupt? Der wird ja auch drüber angezeigt. äöü
-      Stadtname (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      -- Die Anzeige des Stadtnamens mal noch nicht entfernen, eventuell will ich das später wieder einbauen?
+      -- Stadtname (StadtRasseNummerExtern => StadtRasseNummerExtern);
       Textbreite := 0.00;
       
       case
@@ -84,11 +80,9 @@ package body StadtseitenleisteGrafik is
             return;
             
          when others =>
-            null;
+            FestzulegenderText (1) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugEinwohner) & LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+                                                                                                                                    EinwohnerArbeiterExtern => True)'Wide_Wide_Image;
       end case;
-      
-      FestzulegenderText (1) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugEinwohner) & LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
-                                                                                                                              EinwohnerArbeiterExtern => True)'Wide_Wide_Image;
       
       -- Volle Stadtinformationen, nur sichtbar wenn eigene Stadt oder durch Debug.
       if
@@ -123,7 +117,7 @@ package body StadtseitenleisteGrafik is
          if
            VolleInformation = False
            and
-             TextSchleifenwert > 2
+             TextSchleifenwert >= 2
          then
             null;
             
@@ -135,10 +129,10 @@ package body StadtseitenleisteGrafik is
             
             Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
                                                text         => TextaccessVariablen.StadtInformationenAccess (TextSchleifenwert));
-                     
-            Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.StadtInformationenAccess (TextSchleifenwert),
-                                                                                TextbreiteExtern => Textbreite);
          end if;
+                     
+         Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.StadtInformationenAccess (TextSchleifenwert),
+                                                                             TextbreiteExtern => Textbreite);
       
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                          TextAccessExtern => TextaccessVariablen.StadtInformationenAccess (TextSchleifenwert),
@@ -152,6 +146,7 @@ package body StadtseitenleisteGrafik is
    
    
    
+   -- Die Anzeige des Stadtnamens mal noch nicht entfernen, eventuell will ich das später wieder einbauen?
    procedure Stadtname
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
@@ -192,13 +187,13 @@ package body StadtseitenleisteGrafik is
         Bauprojekt.Gebäude /= 0
       then
          Text := To_Unbounded_Wide_Wide_String (Source => GebaeudebeschreibungenGrafik.BeschreibungKurz (IDExtern    => Bauprojekt.Gebäude,
-                                                                                                       RasseExtern => StadtRasseNummerExtern.Rasse));
+                                                                                                         RasseExtern => StadtRasseNummerExtern.Rasse));
       
       elsif
         Bauprojekt.Einheit /= 0
       then
          Text := To_Unbounded_Wide_Wide_String (Source => EinheitenbeschreibungenGrafik.BeschreibungKurz (IDExtern    => Bauprojekt.Einheit,
-                                                                                                        RasseExtern => StadtRasseNummerExtern.Rasse));
+                                                                                                          RasseExtern => StadtRasseNummerExtern.Rasse));
       
       else
          Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugKeines);

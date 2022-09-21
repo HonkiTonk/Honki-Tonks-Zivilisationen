@@ -10,6 +10,7 @@ with ForschungenDatentypen;
 with ProduktionDatentypen;
 with StadtRecords;
 with KampfDatentypen;
+with KartenverbesserungDatentypen;
 
 package DatenbankRecords is
 
@@ -76,11 +77,12 @@ package DatenbankRecords is
       BonusWirtschaft : BonusWirtschaftArray;
       BonusKampf : BonusKampfArray;
       
+      -- Wie könnte man da am besten eine Oder Verknüpfung einbauen? äöü
       GrundBenötigt : KartengrundDatentypen.Kartengrund_Enum;
       FlussBenötigt : Boolean;
       RessourceBenötigt : KartengrundDatentypen.Kartenressourcen_Enum;
-      -- Auch noch Abhängigkeit von anderen Gebäuden einbauen. äöü
-      -- Wie könnte man da am besten eine Oder Verknüpfung für die Sachen bauen? äöü
+      VerbesserungBenötigt : KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
+      GebäudeBenötigt : StadtDatentypen.GebäudeIDMitNullwert;
       
       GebäudeSpezielleEigenschaft : StadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum;
 

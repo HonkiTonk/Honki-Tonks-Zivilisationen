@@ -85,8 +85,8 @@ package body KIEinheitFestlegenErkunden is
                   
                else
                   KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                       ÄnderungExtern    => (EÄnderungSchleifenwert, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                                                       LogikGrafikExtern => True);
+                                                                                                            ÄnderungExtern    => (EÄnderungSchleifenwert, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                                                            LogikGrafikExtern => True);
                   
                   if
                     KartenWert.XAchse = KartenKonstanten.LeerXAchse
@@ -103,8 +103,8 @@ package body KIEinheitFestlegenErkunden is
                       False = KIAufgabenVerteilt.EinheitZiel (RasseExtern           => EinheitRasseNummerExtern.Rasse,
                                                               ZielKoordinatenExtern => KartenWert)
                     and
-                      False = KIEinheitAllgemeinePruefungen.AktuellUnpassierbar (KoordinatenExtern => KartenWert,
-                                                                                 RasseExtern       => EinheitRasseNummerExtern.Rasse)
+                      False = KIEinheitAllgemeinePruefungen.AktuellUnpassierbar (KoordinatenExtern        => KartenWert,
+                                                                                 EinheitRasseNummerExtern => EinheitRasseNummerExtern)
                   then
                      SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                 KoordinatenExtern        => KartenWert);

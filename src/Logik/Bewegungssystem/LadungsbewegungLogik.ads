@@ -12,9 +12,10 @@ with Weltkarte;
 
 package LadungsbewegungLogik is
 
-   procedure TransporterBeladen
+   function TransporterBeladen
      (TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       LadungExtern : in EinheitenDatentypen.MaximaleEinheiten)
+      return Boolean
      with
        Pre => (
                  TransporterExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (TransporterExtern.Rasse).Einheitengrenze

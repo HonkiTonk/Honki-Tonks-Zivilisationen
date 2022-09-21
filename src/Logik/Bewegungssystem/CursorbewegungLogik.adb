@@ -54,7 +54,7 @@ package body CursorbewegungLogik is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      AktuelleSichtweite := Sichtweiten.SichtweiteLesen;
+      AktuelleSichtweite := Sichtweiten.SichtweiteLesen (YXExtern => True);
         
       if
         2 * AktuelleSichtweite >= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
@@ -82,6 +82,8 @@ package body CursorbewegungLogik is
       else
          null;
       end if;
+      
+      AktuelleSichtweite := Sichtweiten.SichtweiteLesen (YXExtern => False);
       
       if
         2 * AktuelleSichtweite >= Weltkarte.Karteneinstellungen.Kartengröße.XAchse

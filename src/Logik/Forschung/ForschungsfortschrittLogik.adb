@@ -11,7 +11,6 @@ with LeseWichtiges;
 with LeseForschungenDatenbank;
 
 with StadtwerteFestlegenLogik;
-with StadtumgebungsbereichFestlegenLogik;
 with ForschungsauswahlLogik;
 
 package body ForschungsfortschrittLogik is
@@ -61,9 +60,11 @@ package body ForschungsfortschrittLogik is
          SchreibeWichtiges.Erforscht (RasseExtern => RasseExtern);
          
          if
-           AktuellesForschungsprojekt = StadtumgebungsbereichFestlegenLogik.TechnologieUmgebungsgröße (SystemDatentypen.Anfangswert_Enum, RasseExtern)
+           AktuellesForschungsprojekt = LeseForschungenDatenbank.Umgebung (AnfangEndeExtern => SystemDatentypen.Anfangswert_Enum,
+                                                                           RasseExtern      => RasseExtern)
            or
-             AktuellesForschungsprojekt = StadtumgebungsbereichFestlegenLogik.TechnologieUmgebungsgröße (SystemDatentypen.Endwert_Enum, RasseExtern)
+             AktuellesForschungsprojekt = LeseForschungenDatenbank.Umgebung (AnfangEndeExtern => SystemDatentypen.Endwert_Enum,
+                                                                             RasseExtern      => RasseExtern)
          then
             StadtwerteFestlegenLogik.StadtUmgebungGrößeFestlegenTechnologie (RasseExtern => RasseExtern);
 

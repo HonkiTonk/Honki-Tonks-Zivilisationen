@@ -8,6 +8,7 @@ with ForschungKonstanten;
 with TastenbelegungDatentypen;
 
 with LeseWichtiges;
+with LeseForschungenDatenbank;
 
 with KIDatentypen; use KIDatentypen;
 
@@ -44,9 +45,10 @@ package body KIEinheitAufgabeVerbesserungen is
       AufgabenSchleife:
       for AufgabeSchleifenwert in TastenbelegungDatentypen.Tastenbelegung_Konstruktionen_Enum'Range loop
          
-         NötigeTechnologie := ForschungKonstanten.TechnologieVerbesserung (RasseExtern, AufgabeSchleifenwert);
+         NötigeTechnologie := LeseForschungenDatenbank.Verbesserungen (VerbesserungExtern => AufgabeSchleifenwert,
+                                                                       RasseExtern        => RasseExtern);
          
-         -- Hier nicht die Funktion ForschugnstestsLogik.TechnologieVorhanden verwenden um später eine bessere Bewertung einbauen zu können. äöü
+         -- Hier nicht die Funktion ForschungstestsLogik.TechnologieVorhanden verwenden um später eine bessere Bewertung einbauen zu können. äöü
          if
            NötigeTechnologie = ForschungKonstanten.LeerForschung
          then

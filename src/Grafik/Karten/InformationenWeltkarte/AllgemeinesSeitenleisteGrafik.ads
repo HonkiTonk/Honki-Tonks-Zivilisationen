@@ -14,7 +14,8 @@ private with GrafikRecordKonstanten;
 
 package AllgemeinesSeitenleisteGrafik is
    
-   procedure Leer;
+   procedure Leer
+     (ViewbereichExtern : in Positive);
 
    procedure AllgemeineInformationen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

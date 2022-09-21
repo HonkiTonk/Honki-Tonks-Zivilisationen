@@ -15,9 +15,10 @@ with TransporterSuchenLogik;
 -- Es muss nur darauf geachtet werden dass in der EinheitenDatenbank das KannTransportieren immer kleiner ist als KannTransportiertWerden.
 package body LadungsbewegungLogik is
 
-   procedure TransporterBeladen
+   function TransporterBeladen
      (TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       LadungExtern : in EinheitenDatentypen.MaximaleEinheiten)
+      return Boolean
    is begin
       
       FreierPlatzNummer := TransporterSuchenLogik.FreierPlatz (TransporterExtern => TransporterExtern);
@@ -26,7 +27,7 @@ package body LadungsbewegungLogik is
         FreierPlatzNummer
       is
          when EinheitenDatentypen.Transportplätze'First =>
-            null;
+            return False;
             
          when others =>
             if
@@ -49,10 +50,13 @@ package body LadungsbewegungLogik is
                                                        TransporterExtern        => TransporterExtern.Nummer);
             NeueKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => TransporterExtern);
             SchreibeEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern),
-                                                 KoordinatenExtern        => NeueKoordinaten);
+                                                 KoordinatenExtern        => NeueKoordinaten,
+                                                 EinheitentauschExtern    => False);
             
             TransporterladungVerschieben (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern),
                                           NeueKoordinatenExtern    => NeueKoordinaten);
+            
+            return True;
       end case;
       
    end TransporterBeladen;
@@ -113,7 +117,8 @@ package body LadungsbewegungLogik is
                      
             when others =>
                SchreibeEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, Ladungsnummer),
-                                                    KoordinatenExtern        => NeueKoordinatenExtern);
+                                                    KoordinatenExtern        => NeueKoordinatenExtern,
+                                                    EinheitentauschExtern    => False);
                
                TransporterladungVerschieben (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, Ladungsnummer),
                                              NeueKoordinatenExtern    => NeueKoordinatenExtern);
@@ -151,7 +156,8 @@ package body LadungsbewegungLogik is
                                                     KoordinatenExtern        => StadtumgebungErreichbarLogik.UmgebungErreichbar (AktuelleKoordinatenExtern => NeueKoordinatenExtern,
                                                                                                                                  RasseExtern               => EinheitRasseNummerExtern.Rasse,
                                                                                                                                  IDExtern                  => IDEinheit,
-                                                                                                                                 NotwendigeFelderExtern    => 1));
+                                                                                                                                 NotwendigeFelderExtern    => 1),
+                                                    EinheitentauschExtern    => False);
                
                SchreibeEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitnummerStadtprüfung),
                                                           TransporterExtern        => EinheitenKonstanten.LeerWirdTransportiert);

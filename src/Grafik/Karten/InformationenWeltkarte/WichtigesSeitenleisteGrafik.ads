@@ -22,7 +22,8 @@ package WichtigesSeitenleisteGrafik is
 
    procedure WichtigesInformationen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      ViewbereichExtern : in Positive)
      with
        Pre => (
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
@@ -44,8 +45,22 @@ private
 
    
    
+   function Rundenanzahl
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      return Unbounded_Wide_Wide_String
+     with
+       Pre => (
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+              ),
+         
+       Post => (
+                  To_Wide_Wide_String (Source => Rundenanzahl'Result)'Length > 0 
+               );
+   
    function ZahlAlsStringKostenLager is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => ProduktionDatentypen.Produktion);
    
    function ZahlAlsStringEbeneVorhanden is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => KartenDatentypen.EbeneVorhanden);
+   
+   function ZahlAlsStringPositive is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => Natural);
 
 end WichtigesSeitenleisteGrafik;

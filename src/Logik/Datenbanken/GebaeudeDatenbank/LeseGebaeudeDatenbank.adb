@@ -113,6 +113,30 @@ package body LeseGebaeudeDatenbank is
       return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).RessourceBenötigt;
       
    end RessourceBenötigt;
+   
+   
+   
+   function VerbesserungBenötigt
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in StadtDatentypen.GebäudeID)
+      return KartenverbesserungDatentypen.Karten_Verbesserung_Enum
+   is begin
+     
+      return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).VerbesserungBenötigt;
+     
+   end VerbesserungBenötigt;
+     
+     
+     
+   function GebäudeBenötigt
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in StadtDatentypen.GebäudeID)
+      return StadtDatentypen.GebäudeIDMitNullwert
+   is begin
+      
+      return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).GebäudeBenötigt;
+      
+   end GebäudeBenötigt;
 
 
    

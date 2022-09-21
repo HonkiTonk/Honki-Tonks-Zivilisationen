@@ -11,7 +11,7 @@ with LeseGebaeudeDatenbank;
 
 with GebaeudeumgebungLogik;
 with StadtproduktionLogik;
-with ForschugnstestsLogik;
+with ForschungstestsLogik;
 
 package body GebaeudeAllgemeinLogik is
 
@@ -111,7 +111,7 @@ package body GebaeudeAllgemeinLogik is
             return False;
             
          when True =>
-            return ForschugnstestsLogik.TechnologieVorhanden (RasseExtern       => StadtRasseNummerExtern.Rasse,
+            return ForschungstestsLogik.TechnologieVorhanden (RasseExtern       => StadtRasseNummerExtern.Rasse,
                                                               TechnologieExtern => LeseGebaeudeDatenbank.Anforderungen (RasseExtern => StadtRasseNummerExtern.Rasse,
                                                                                                                         IDExtern    => IDExtern));
       end case;

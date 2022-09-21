@@ -32,8 +32,7 @@ package body EinheitenseitenleisteGrafik is
      (AnzeigebereichExtern : in Positive)
    is begin
       
-      -- Diese Bereiche sicherheitshalber auch von außen hineingeben? äöü
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.SeitenleisteWeltkarteAccesse (4),
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.SeitenleisteWeltkarteAccesse (AnzeigebereichExtern),
                                             GrößeExtern          => Viewfläche,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.SeitenleisteWeltkartenbereich (AnzeigebereichExtern));
       
@@ -86,14 +85,12 @@ package body EinheitenseitenleisteGrafik is
             return;
             
          when others =>
-            null;
+            FestzulegenderText (1) := To_Unbounded_Wide_Wide_String (Source => EinheitenbeschreibungenGrafik.BeschreibungKurz (IDExtern    => IDEinheit,
+                                                                                                                               RasseExtern => EinheitRasseNummer.Rasse));
+            FestzulegenderText (2) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugLebenspunkte) & " " & LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummer)'Wide_Wide_Image
+              & TextKonstanten.Trennzeichen & ZahlAlsStringLebenspunkte (ZahlExtern => LeseEinheitenDatenbank.MaximaleLebenspunkte (RasseExtern => EinheitRasseNummer.Rasse,
+                                                                                                                                    IDExtern    => IDEinheit));
       end case;
-      
-      FestzulegenderText (1) := To_Unbounded_Wide_Wide_String (Source => EinheitenbeschreibungenGrafik.BeschreibungKurz (IDExtern    => IDEinheit,
-                                                                                                                         RasseExtern => EinheitRasseNummer.Rasse));
-      FestzulegenderText (2) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugLebenspunkte) & " " & LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummer)'Wide_Wide_Image
-        & TextKonstanten.Trennzeichen & ZahlAlsStringLebenspunkte (ZahlExtern => LeseEinheitenDatenbank.MaximaleLebenspunkte (RasseExtern => EinheitRasseNummer.Rasse,
-                                                                                                                              IDExtern    => IDEinheit));
       
       if
         RasseExtern = EinheitRasseNummer.Rasse
@@ -137,7 +134,7 @@ package body EinheitenseitenleisteGrafik is
          if
            VolleInformation = False
            and
-             TextSchleifenwert > 2
+             TextSchleifenwert >= 3
          then
             null;
             
@@ -150,17 +147,19 @@ package body EinheitenseitenleisteGrafik is
             Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
                                                text         => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert));
          
-            case
-              TextSchleifenwert
-            is
-               when 10 =>
-                  null;
-                  
-               when others =>
-                  Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),
-                                                                                      TextbreiteExtern => Textbreite);
-            end case;
+            
          end if;
+         
+         case
+           TextSchleifenwert
+         is
+            when 10 =>
+               null;
+                  
+            when others =>
+               Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),
+                                                                                   TextbreiteExtern => Textbreite);
+         end case;
          
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                          TextAccessExtern => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),
@@ -168,9 +167,7 @@ package body EinheitenseitenleisteGrafik is
          
       end loop TextSchleife;
       
-      Viewfläche := (Textbreite, Textposition.y);
-      
-      Debuginformationen (EinheitRasseNummerExtern => EinheitRasseNummer);
+      Viewfläche := (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       
    end Einheiten;
    
@@ -247,25 +244,5 @@ package body EinheitenseitenleisteGrafik is
       end case;
       
    end Ladung;
-   
-   
-   
-   -- Debuginformationen einfach in die Konsole ausgeben lassen.
-   procedure Debuginformationen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-   is begin
-      
-      if
-        SpielVariablen.Debug.VolleInformation = False
-        or
-          SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.KI_Spieler_Enum
-      then
-         return;
-         
-      else
-         null;
-      end if;
-      
-   end Debuginformationen;
 
 end EinheitenseitenleisteGrafik;

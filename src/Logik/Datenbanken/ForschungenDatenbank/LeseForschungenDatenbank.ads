@@ -5,6 +5,9 @@ with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
 with ForschungenDatentypen;
 with ProduktionDatentypen;
+with TastenbelegungDatentypen;
+with AufgabenDatentypen;
+with SystemDatentypen;
 
 package LeseForschungenDatenbank is
 
@@ -21,6 +24,33 @@ package LeseForschungenDatenbank is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in ForschungenDatentypen.ForschungID;
       WelcheAnforderungExtern : in Positive)
+      return ForschungenDatentypen.ForschungIDNichtMöglich
+     with
+       Pre => (
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+              );
+
+   function Verbesserungen
+     (VerbesserungExtern : in TastenbelegungDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      return ForschungenDatentypen.ForschungIDNichtMöglich
+     with
+       Pre => (
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+              );
+
+   function Wege
+     (WegExtern : in AufgabenDatentypen.Einheitenbefehle_Wege_Enum;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      return ForschungenDatentypen.ForschungIDNichtMöglich
+     with
+       Pre => (
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+              );
+
+   function Umgebung
+     (AnfangEndeExtern : in SystemDatentypen.Anfang_Ende_Enum;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return ForschungenDatentypen.ForschungIDNichtMöglich
      with
        Pre => (

@@ -46,14 +46,14 @@ package body GeheZuGrafik is
           Weltkarte.Karteneinstellungen.Kartenform.YAchseSüden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
       then
          if
-           KoordinatenExtern.YAchse <= Weltkarte.KarteArray'First (2) + Sichtweiten.SichtweiteLesen / 2
+           KoordinatenExtern.YAchse <= Weltkarte.KarteArray'First (2) + Sichtweiten.SichtweiteLesen (YXExtern => True) / 2
          then
-            KartenwertKoordinatenberechnung.YAchse := KoordinatenExtern.YAchse + Sichtweiten.BewegungsfeldLesen + 1;
+            KartenwertKoordinatenberechnung.YAchse := KoordinatenExtern.YAchse + Sichtweiten.BewegungsfeldLesen (YXExtern => True) + 1;
             
          elsif
-           KoordinatenExtern.YAchse >= Weltkarte.Karteneinstellungen.Kartengröße.YAchse - Sichtweiten.SichtweiteLesen / 2
+           KoordinatenExtern.YAchse >= Weltkarte.Karteneinstellungen.Kartengröße.YAchse - Sichtweiten.SichtweiteLesen (YXExtern => True) / 2
          then
-            KartenwertKoordinatenberechnung.YAchse := KoordinatenExtern.YAchse - Sichtweiten.BewegungsfeldLesen - 1;
+            KartenwertKoordinatenberechnung.YAchse := KoordinatenExtern.YAchse - Sichtweiten.BewegungsfeldLesen (YXExtern => True) - 1;
          
          else
             KartenwertKoordinatenberechnung.YAchse := KoordinatenExtern.YAchse;
@@ -63,9 +63,9 @@ package body GeheZuGrafik is
         Weltkarte.Karteneinstellungen.Kartenform.YAchseNorden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
       then
          if
-           KoordinatenExtern.YAchse <= Weltkarte.KarteArray'First (2) + Sichtweiten.SichtweiteLesen / 2
+           KoordinatenExtern.YAchse <= Weltkarte.KarteArray'First (2) + Sichtweiten.SichtweiteLesen (YXExtern => True) / 2
          then
-            KartenwertKoordinatenberechnung.YAchse := KoordinatenExtern.YAchse + Sichtweiten.BewegungsfeldLesen + 1;
+            KartenwertKoordinatenberechnung.YAchse := KoordinatenExtern.YAchse + Sichtweiten.BewegungsfeldLesen (YXExtern => True) + 1;
          
          else
             KartenwertKoordinatenberechnung.YAchse := KoordinatenExtern.YAchse;
@@ -75,9 +75,9 @@ package body GeheZuGrafik is
         Weltkarte.Karteneinstellungen.Kartenform.YAchseSüden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
       then
          if
-           KoordinatenExtern.YAchse >= Weltkarte.Karteneinstellungen.Kartengröße.YAchse - Sichtweiten.SichtweiteLesen / 2
+           KoordinatenExtern.YAchse >= Weltkarte.Karteneinstellungen.Kartengröße.YAchse - Sichtweiten.SichtweiteLesen (YXExtern => True) / 2
          then
-            KartenwertKoordinatenberechnung.YAchse := KoordinatenExtern.YAchse - Sichtweiten.BewegungsfeldLesen - 1;
+            KartenwertKoordinatenberechnung.YAchse := KoordinatenExtern.YAchse - Sichtweiten.BewegungsfeldLesen (YXExtern => True) - 1;
          
          else
             KartenwertKoordinatenberechnung.YAchse := KoordinatenExtern.YAchse;
@@ -93,14 +93,14 @@ package body GeheZuGrafik is
           Weltkarte.Karteneinstellungen.Kartenform.XAchseOsten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
       then
          if
-           KoordinatenExtern.XAchse <= Weltkarte.KarteArray'First (3) + Sichtweiten.SichtweiteLesen / 2
+           KoordinatenExtern.XAchse <= Weltkarte.KarteArray'First (3) + Sichtweiten.SichtweiteLesen (YXExtern => False) / 2
          then
-            KartenwertKoordinatenberechnung.XAchse := KoordinatenExtern.XAchse + Sichtweiten.BewegungsfeldLesen;
+            KartenwertKoordinatenberechnung.XAchse := KoordinatenExtern.XAchse + Sichtweiten.BewegungsfeldLesen (YXExtern => False);
          
          elsif
-           KoordinatenExtern.XAchse >= Weltkarte.Karteneinstellungen.Kartengröße.XAchse - Sichtweiten.SichtweiteLesen / 2
+           KoordinatenExtern.XAchse >= Weltkarte.Karteneinstellungen.Kartengröße.XAchse - Sichtweiten.SichtweiteLesen (YXExtern => False) / 2
          then
-            KartenwertKoordinatenberechnung.XAchse := KoordinatenExtern.XAchse - Sichtweiten.BewegungsfeldLesen;
+            KartenwertKoordinatenberechnung.XAchse := KoordinatenExtern.XAchse - Sichtweiten.BewegungsfeldLesen (YXExtern => False);
          
          else
             KartenwertKoordinatenberechnung.XAchse := KoordinatenExtern.XAchse;
@@ -110,9 +110,9 @@ package body GeheZuGrafik is
         Weltkarte.Karteneinstellungen.Kartenform.XAchseWesten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
       then
          if
-           KoordinatenExtern.XAchse <= Weltkarte.KarteArray'First (3) + Sichtweiten.SichtweiteLesen / 2
+           KoordinatenExtern.XAchse <= Weltkarte.KarteArray'First (3) + Sichtweiten.SichtweiteLesen (YXExtern => False) / 2
          then
-            KartenwertKoordinatenberechnung.XAchse := KoordinatenExtern.XAchse + Sichtweiten.BewegungsfeldLesen;
+            KartenwertKoordinatenberechnung.XAchse := KoordinatenExtern.XAchse + Sichtweiten.BewegungsfeldLesen (YXExtern => False);
          
          else
             KartenwertKoordinatenberechnung.XAchse := KoordinatenExtern.XAchse;
@@ -122,9 +122,9 @@ package body GeheZuGrafik is
         Weltkarte.Karteneinstellungen.Kartenform.XAchseOsten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
       then
          if
-           KoordinatenExtern.XAchse >= Weltkarte.Karteneinstellungen.Kartengröße.XAchse - Sichtweiten.SichtweiteLesen / 2
+           KoordinatenExtern.XAchse >= Weltkarte.Karteneinstellungen.Kartengröße.XAchse - Sichtweiten.SichtweiteLesen (YXExtern => False) / 2
          then
-            KartenwertKoordinatenberechnung.XAchse := KoordinatenExtern.XAchse - Sichtweiten.BewegungsfeldLesen;
+            KartenwertKoordinatenberechnung.XAchse := KoordinatenExtern.XAchse - Sichtweiten.BewegungsfeldLesen (YXExtern => False);
          
          else
             KartenwertKoordinatenberechnung.XAchse := KoordinatenExtern.XAchse;

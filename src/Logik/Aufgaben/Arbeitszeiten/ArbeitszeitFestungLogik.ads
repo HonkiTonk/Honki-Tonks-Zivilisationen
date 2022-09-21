@@ -7,6 +7,7 @@ with ProduktionDatentypen;
 
 package ArbeitszeitFestungLogik is
 
+   -- -1 bedeutet es ist unmöglich diese Verbesserung auf diesem Grund anzulegen.
    type ArbeitszeitArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, KartengrundDatentypen.Kartengrund_Arbeitszeit_Enum'Range) of ProduktionDatentypen.ArbeitszeitVorhanden;
    Arbeitszeit : constant ArbeitszeitArray := (
                                                RassenDatentypen.Menschen_Enum =>

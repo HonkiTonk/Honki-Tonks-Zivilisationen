@@ -28,20 +28,24 @@ private
    type RassendateienArray is array (1 .. 5) of Unbounded_Wide_Wide_String;
    Rassendateien : RassendateienArray;
 
-
    procedure NameBeschreibung
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      DateinameExtern : in Wide_Wide_String);
 
    procedure Städtenamen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      DateinameExtern : in Wide_Wide_String);
 
    procedure Forschungen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      DateinameExtern : in Wide_Wide_String);
 
    procedure Einheiten
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      DateinameExtern : in Wide_Wide_String);
 
    procedure Gebäude
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      DateinameExtern : in Wide_Wide_String);
 
 end EinlesenRassentexteLogik;

@@ -11,5 +11,6 @@ package GrafikKonstanten is
    Wolkentransparents : constant Sf.sfUint8 := 240;
    Wassertransparents : constant Sf.sfUint8 := 215;
    Weltraumtransparents : constant Sf.sfUint8 := 220;
+   VerschiedenerGrundtransparents : constant Sf.sfUint8 := 180;
 
 end GrafikKonstanten;

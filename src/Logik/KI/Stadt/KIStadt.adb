@@ -26,7 +26,6 @@ with KIGebaeudeBauen;
 
 package body KIStadt is
 
-   -- KI baut manchmal Gebäude mehrfach in einer Stadt. äöü
    procedure KIStadt
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin

@@ -4,9 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Text;
 
-with KartenDatentypen;
-with SpielVariablen;
-with SpielDatentypen;
 with TextaccessVariablen;
 with SystemKonstanten;
 with InteraktionAuswahl;
@@ -17,11 +14,10 @@ with EinstellungenGrafik;
 with TextberechnungenBreiteGrafik;
 with MenuestringsSetzenGrafik;
 with ZusatztextaufteilungGrafik;
-with KartengeneratorVariablen;
 with TextberechnungenHoeheGrafik;
-with TexteinstellungenGrafik;
 with ViewsEinstellenGrafik;
 with HintergrundGrafik;
+with TextfarbeGrafik;
 
 package body EinfachmenueGrafik is
 
@@ -76,9 +72,10 @@ package body EinfachmenueGrafik is
       PositionenSchleife:
       for PositionSchleifenwert in SystemKonstanten.StandardArrayanpassung .. SystemKonstanten.EndeAbzugGrafik (WelchesMenüExtern) loop
       
-         FarbeFestlegen (WelchesMenüExtern     => WelchesMenüExtern,
-                         AktuelleAuswahlExtern => AktuelleAuswahlExtern + 1,
-                         AktuellerTextExtern   => PositionSchleifenwert);
+         TextfarbeGrafik.FarbeEinfachmenü (WelchesMenüExtern    => WelchesMenüExtern,
+                                            AktuelleAuswahlExtern => AktuelleAuswahlExtern + 1,
+                                            AktuellerTextExtern   => PositionSchleifenwert,
+                                            TextaccessExtern      => TextaccessVariablen.MenüsSFMLAccess (WelchesMenüExtern, PositionSchleifenwert));
 
          Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.MenüsSFMLAccess (WelchesMenüExtern, PositionSchleifenwert),
                                             str  => MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => PositionSchleifenwert,
@@ -108,52 +105,5 @@ package body EinfachmenueGrafik is
       return (Textbreite, Textposition.y);
 
    end Textdarstellung;
-   
-   
-   
-   -- Das hier mal in eine Funktion umwandeln die die Farbe zurückgibt anstatt sie direkt zu setzen? äöü
-   procedure FarbeFestlegen
-     (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum;
-      AktuelleAuswahlExtern : in Natural;
-      AktuellerTextExtern : in Positive)
-   is begin
-            
-      case
-        WelchesMenüExtern
-      is
-         when MenueDatentypen.Kartenart_Menü_Enum =>
-            AktuelleEinstellung := SystemKonstanten.StandardArrayanpassung + KartenDatentypen.Kartenart_Enum'Pos (KartengeneratorVariablen.Kartenparameter.Kartenart);
-            
-         when MenueDatentypen.Kartentemperatur_Menü_Enum =>
-            AktuelleEinstellung := SystemKonstanten.StandardArrayanpassung + KartenDatentypen.Kartentemperatur_Enum'Pos (KartengeneratorVariablen.Kartenparameter.Kartentemperatur);
-            
-         when MenueDatentypen.Kartenressourcen_Menü_Enum =>
-            AktuelleEinstellung := SystemKonstanten.StandardArrayanpassung + KartenDatentypen.Kartenressourcen_Enum'Pos (KartengeneratorVariablen.Kartenparameter.Kartenressourcen);
-            
-         when MenueDatentypen.Schwierigkeitsgrad_Menü_Enum =>
-            AktuelleEinstellung := SystemKonstanten.StandardArrayanpassung + SpielDatentypen.Schwierigkeitsgrad_Enum'Pos (SpielVariablen.Allgemeines.Schwierigkeitsgrad);
-            
-         when others =>
-            AktuelleEinstellung := 0;
-      end case;
-      
-      if
-        AktuellerTextExtern = AktuelleAuswahlExtern
-      then
-         Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeAusgewähltText;
-         
-      elsif
-        AktuelleEinstellung = AktuellerTextExtern
-      then
-         Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeMenschText;
-      
-      else
-         Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeStandardText;
-      end if;
-   
-      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.MenüsSFMLAccess (WelchesMenüExtern, AktuellerTextExtern),
-                                 color => Farbe);
-      
-   end FarbeFestlegen;
 
 end EinfachmenueGrafik;

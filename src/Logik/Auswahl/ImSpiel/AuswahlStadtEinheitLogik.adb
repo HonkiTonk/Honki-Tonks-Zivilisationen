@@ -3,6 +3,8 @@ pragma Warnings (Off, "*array aggregate*");
 
 with TastenbelegungDatentypen;
 with GrafikDatentypen;
+with GrafikRecordKonstanten;
+with InteraktionAuswahl;
 
 with LeseEinheitenGebaut;
 
@@ -44,6 +46,10 @@ package body AuswahlStadtEinheitLogik is
          end loop TransporterSchleife;
       end if;
       
+      InteraktionAuswahl.PositionenEinheitStadt := (others => GrafikRecordKonstanten.Leerbereich);
+      -- Ist da wegen dem Fehler in gnatwu, wenn ich das entferne dann behauptet der Kompiler dass InteraktionAuswahl nicht aufgerufen wird.
+      -- Sollte dieser Fehler irgendwann einmal behoben werden, dann kann das weg. äöü
+      InteraktionAuswahl.PositionenEinheitStadt (1) := InteraktionAuswahl.PositionenEinheitStadt (2);
       AktuelleAuswahl := 0;
       NachGrafiktask.AktuelleAuswahl.AuswahlEins := AktuelleAuswahl;
       NachGrafiktask.WelcheAuswahl := WelcheAuswahl;

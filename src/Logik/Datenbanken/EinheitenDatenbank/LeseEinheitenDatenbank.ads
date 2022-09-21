@@ -131,7 +131,7 @@ package LeseEinheitenDatenbank is
    
    function Verteidigung
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenID)
+      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return KampfDatentypen.Kampfwerte
      with
        Pre => (

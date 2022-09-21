@@ -7,8 +7,6 @@ with EinstellungenGrafik;
 with TexturenSetzenSkalierenGrafik;
 with Warnung;
 
--- Später die Funktionen durch Prozeduren austauschen die Prüfung auf TexturAccessExtern in einen Contract schieben. äöü
--- Skalierungen auch an das neue Viewsystem anpassen? äöü
 package body KartenspritesZeichnenGrafik is
    
    function SpriteGezeichnetKartenfeld

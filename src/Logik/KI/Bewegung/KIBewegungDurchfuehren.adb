@@ -98,11 +98,12 @@ package body KIBewegungDurchfuehren is
       
       BewegungsberechnungLogik.Bewegungsberechnung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     NeueKoordinatenExtern    => LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                                                    PlanschrittExtern        => 1));
+                                                                                                                    PlanschrittExtern        => 1),
+                                                    EinheitentauschExtern    => False);
       
       BewegungPlanVerschiebenSchleife:
       for PositionSchleifenwert in EinheitenRecords.KIBewegungPlanArray'First + 1 .. EinheitenRecords.KIBewegungPlanArray'Last loop
-               
+         
          SchreibeEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                  KoordinatenExtern        => LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                                                                  PlanschrittExtern        => PositionSchleifenwert),

@@ -48,6 +48,8 @@ private
 
    BereitsGetestet : KartenDatentypen.UmgebungsbereichZwei;
    Umgebung : KartenDatentypen.UmgebungsbereichDrei;
+   EAchseAnfang : KartenDatentypen.EbeneVorhanden;
+   EAchseEnde : KartenDatentypen.EbeneVorhanden;
 
    SichtweiteObjekt : KartenDatentypen.Sichtweite;
 
@@ -64,6 +66,8 @@ private
    KartenQuadrantWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    KartenBlockadeWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    KoordinatenEinheit : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Einheitenkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Stadtkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
 
    procedure SichtbarkeitsprüfungOhneBlockade
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
@@ -88,6 +92,7 @@ private
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteNatural;
       SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteNatural;
+      SichtweiteERichtungExtern : in KartenDatentypen.EbeneVorhanden;
       SichtweiteMaximalExtern : in KartenDatentypen.Sichtweite)
      with
        Pre => (
@@ -100,6 +105,7 @@ private
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteNatural;
       SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteNatural;
+      SichtweiteERichtungExtern : in KartenDatentypen.EbeneVorhanden;
       SichtweiteMaximalExtern : in KartenDatentypen.Sichtweite)
      with
        Pre => (
@@ -112,6 +118,7 @@ private
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteNatural;
       SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteNatural;
+      SichtweiteERichtungExtern : in KartenDatentypen.EbeneVorhanden;
       SichtweiteMaximalExtern : in KartenDatentypen.Sichtweite)
      with
        Pre => (
@@ -124,6 +131,7 @@ private
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteNatural;
       SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteNatural;
+      SichtweiteERichtungExtern : in KartenDatentypen.EbeneVorhanden;
       SichtweiteMaximalExtern : in KartenDatentypen.Sichtweite)
      with
        Pre => (

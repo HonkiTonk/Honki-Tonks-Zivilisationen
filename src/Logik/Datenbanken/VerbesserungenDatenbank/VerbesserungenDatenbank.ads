@@ -80,6 +80,7 @@ private
    
    
    
+   -- Die ganzen => mal korrekt ausrichten. äöü
    WegelisteStandard : constant WegelisteArray := (
                                                    -- Straßen
                                                    KartenverbesserungDatentypen.Straßenkreuzung_Vier_Enum =>

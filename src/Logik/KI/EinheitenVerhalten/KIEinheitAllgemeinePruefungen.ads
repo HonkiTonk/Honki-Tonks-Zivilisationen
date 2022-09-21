@@ -8,6 +8,7 @@ with KartenRecords;
 with EinheitenRecords;
 
 private with KartengrundDatentypen;
+private with EinheitenDatentypen;
 
 with Weltkarte;
 
@@ -30,7 +31,7 @@ package KIEinheitAllgemeinePruefungen is
    
    function AktuellUnpassierbar
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
      with
        Pre => (
@@ -38,13 +39,21 @@ package KIEinheitAllgemeinePruefungen is
                and
                  KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
                and
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.KI_Spieler_Enum
+                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+               and
+                 SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.KI_Spieler_Enum
               );
    
 private
    
+   TransporterErforscht : Boolean;
+   
    UmgebungPrüfen : KartenDatentypen.UmgebungsbereichDrei;
    BereitsGeprüft : KartenDatentypen.UmgebungsbereichDrei;
+   
+   TransportMöglich : EinheitenDatentypen.Transport_Enum;
+   
+   TransporterID : EinheitenDatentypen.EinheitenIDMitNullWert;
    
    BlockierteFelder : KartenDatentypen.KartenfeldNatural;
    

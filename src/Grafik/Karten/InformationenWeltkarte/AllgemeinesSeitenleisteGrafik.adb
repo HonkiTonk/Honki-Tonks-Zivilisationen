@@ -27,12 +27,12 @@ with KartenbeschreibungenGrafik;
 package body AllgemeinesSeitenleisteGrafik is
    
    procedure Leer
+     (ViewbereichExtern : in Positive)
    is begin
       
-      -- Diese Bereiche sicherheitshalber auch von außen hineingeben? äöü
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.SeitenleisteWeltkarteAccesse (2),
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.SeitenleisteWeltkarteAccesse (ViewbereichExtern),
                                             GrößeExtern          => Viewfläche,
-                                            AnzeigebereichExtern => GrafikRecordKonstanten.SeitenleisteWeltkartenbereich (2));
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.SeitenleisteWeltkartenbereich (ViewbereichExtern));
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Seitenleiste_Hintergrund_Enum,
                                      AbmessungenExtern => Viewfläche);
@@ -48,7 +48,7 @@ package body AllgemeinesSeitenleisteGrafik is
       Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
                                                                         VerhältnisExtern => (0.15, 0.05));
       
-      Leer;
+      Leer (ViewbereichExtern => 2);
       
       Textbreite := 0.00;
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
@@ -153,9 +153,6 @@ package body AllgemeinesSeitenleisteGrafik is
                
                Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
                                                   text         => TextaccessVariablen.KarteAllgemeinesAccess (TextSchleifenwert));
-         
-               Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.KarteAllgemeinesAccess (TextSchleifenwert),
-                                                                                   TextbreiteExtern => Textbreite);
                
                RealeYPosition := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => RealeYPosition,
                                                                                TextAccessExtern => TextaccessVariablen.KarteAllgemeinesAccess (TextSchleifenwert),
@@ -164,6 +161,9 @@ package body AllgemeinesSeitenleisteGrafik is
             when False =>
                null;
          end case;
+         
+         Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.KarteAllgemeinesAccess (TextSchleifenwert),
+                                                                             TextbreiteExtern => Textbreite);
          
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                          TextAccessExtern => TextaccessVariablen.KarteAllgemeinesAccess (TextSchleifenwert),

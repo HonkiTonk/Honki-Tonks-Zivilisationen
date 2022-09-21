@@ -10,7 +10,7 @@ with LeseForschungenDatenbank;
 with SchreibeWichtiges;
 with LeseWichtiges;
 
-with ForschugnstestsLogik;
+with ForschungstestsLogik;
 with LadezeitenLogik;
 
 package body KIForschung is
@@ -48,7 +48,7 @@ package body KIForschung is
       for ForschungSchleifenwert in ForschungenDatenbank.ForschungslisteArray'Range (2) loop
          
          case
-           ForschugnstestsLogik.ForschungAnforderungErfüllt (RasseExtern       => RasseExtern,
+           ForschungstestsLogik.ForschungAnforderungErfüllt (RasseExtern       => RasseExtern,
                                                               ForschungIDExtern => ForschungSchleifenwert)
          is
             when True =>

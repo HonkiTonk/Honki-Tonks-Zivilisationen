@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 private with Sf.System.Vector2;
-private with Sf.Graphics.Color;
 
 with MenueDatentypen;
 
@@ -16,20 +15,11 @@ package EinfachmenueGrafik is
 
 private
 
-   AktuelleEinstellung : Natural;
-
    Textbreite : Float;
    Viewbreite : Float;
 
    Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartgrößeView;
    Textposition : Sf.System.Vector2.sfVector2f;
-
-   Farbe : Sf.Graphics.Color.sfColor;
-
-   procedure FarbeFestlegen
-     (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum;
-      AktuelleAuswahlExtern : in Natural;
-      AktuellerTextExtern : in Positive);
 
 
 

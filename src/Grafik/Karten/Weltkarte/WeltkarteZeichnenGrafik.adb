@@ -3,6 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
+with Sf; use Sf;
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Text;
 
@@ -32,7 +33,7 @@ with KartenberechnungenGrafik;
 with KartenkoordinatenberechnungssystemLogik;
 with EinstellungenGrafik;
 
--- Das Zeichnen der Texturen/Objekte noch einmal überarbeiten, vielleicht kann man das auch mit Prozeduren bewerkstelligen? äöü
+-- Man könnte die Prüfungen in KartenspritesZeichnenGrafik hierher verschieben und dann entsprechend Prozeduren nutzen, aber dann benötige ich mehr Prüfungen und ob es das wirklich bringt? äöü
 package body WeltkarteZeichnenGrafik is
    
    procedure EbeneZeichnen
@@ -79,13 +80,14 @@ package body WeltkarteZeichnenGrafik is
       AktuellerKartengrund := LeseWeltkarte.AktuellerGrund (KoordinatenExtern => KoordinatenExtern);
       BasisKartengrund := LeseWeltkarte.BasisGrund (KoordinatenExtern => KoordinatenExtern);
       
-      -- Den aktuellen Grund auch durchsichtig gestalten wenn er nicht dem Basisgrund entspricht, um den Grund darunter sichtbar zu machen? äöü
       if
         AktuellerKartengrund = BasisKartengrund
       then
-         null;
+         GrundGleich := True;
          
       else
+         GrundGleich := False;
+         
          case
            KartenspritesZeichnenGrafik.SpriteGezeichnetKartenfeld (TexturAccessExtern     => EingeleseneTexturenGrafik.KartenfelderAccess (BasisKartengrund),
                                                                    PositionExtern         => PositionExtern,
@@ -103,17 +105,28 @@ package body WeltkarteZeichnenGrafik is
          end case;
       end if;
       
+      if
+        GrundGleich = False
+        and
+          DurchsichtigkeitExtern = GrafikKonstanten.Undurchsichtig
+      then
+         Durchsichtigkeit := GrafikKonstanten.VerschiedenerGrundtransparents;
+         
+      else
+         Durchsichtigkeit := DurchsichtigkeitExtern;
+      end if;
+      
       case
         KartenspritesZeichnenGrafik.SpriteGezeichnetKartenfeld (TexturAccessExtern     => EingeleseneTexturenGrafik.KartenfelderAccess (AktuellerKartengrund),
                                                                 PositionExtern         => PositionExtern,
-                                                                DurchsichtigkeitExtern => DurchsichtigkeitExtern)
+                                                                DurchsichtigkeitExtern => Durchsichtigkeit)
       is
          when True =>
             null;
             
          when False =>
             Farbe := FarbgebungGrafik.FarbeKartenfeldErmitteln (GrundExtern => AktuellerKartengrund);
-            Farbe.a := DurchsichtigkeitExtern;
+            Farbe.a := Durchsichtigkeit;
             ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => KartenberechnungenGrafik.KartenfelderAbmessung,
                                                     PositionExtern  => PositionExtern,
                                                     FarbeExtern     => Farbe);
@@ -420,7 +433,7 @@ package body WeltkarteZeichnenGrafik is
 
 
    procedure RahmenZeichnen
-     (WelcheRichtungExtern : in Umgebung_Enum;
+     (WelcheRichtungExtern : in KartenDatentypen.Himmelsrichtungen_Enum;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
@@ -428,19 +441,19 @@ package body WeltkarteZeichnenGrafik is
       case
         WelcheRichtungExtern
       is
-         when Norden =>
+         when KartenDatentypen.Norden_Enum =>
             Rahmengröße := (KartenberechnungenGrafik.KartenfelderAbmessung.x, DickeRahmen);
             Rahmenposition := PositionExtern;
          
-         when Westen =>
+         when KartenDatentypen.Westen_Enum =>
             Rahmengröße := (DickeRahmen, KartenberechnungenGrafik.KartenfelderAbmessung.y);
             Rahmenposition := PositionExtern;
          
-         when Osten =>
+         when KartenDatentypen.Osten_Enum =>
             Rahmengröße := (DickeRahmen, KartenberechnungenGrafik.KartenfelderAbmessung.y);
             Rahmenposition := (PositionExtern.x + KartenberechnungenGrafik.KartenfelderAbmessung.x - DickeRahmen, PositionExtern.y);
          
-         when Süden =>
+         when KartenDatentypen.Süden_Enum =>
             Rahmengröße := (KartenberechnungenGrafik.KartenfelderAbmessung.x, DickeRahmen);
             Rahmenposition := (PositionExtern.x, PositionExtern.y + KartenberechnungenGrafik.KartenfelderAbmessung.y - DickeRahmen);
       end case;
@@ -462,6 +475,9 @@ package body WeltkarteZeichnenGrafik is
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAccess,
                                          str  => To_Wide_Wide_String (Source => LeseStadtGebaut.Name (StadtRasseNummerExtern => StadtRasseNummer)));
+      
+      Sf.Graphics.Text.setScale (text  => TextaccessVariablen.KarteAccess,
+                                 scale => (0.70, 0.70));
       
       Textposition.x := PositionExtern.x - TextberechnungenBreiteGrafik.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.KarteAccess) + 0.50 * KartenberechnungenGrafik.KartenfelderAbmessung.x;
       Textposition.y := PositionExtern.y - TextberechnungenHoeheGrafik.ZeilenabstandVariabel;

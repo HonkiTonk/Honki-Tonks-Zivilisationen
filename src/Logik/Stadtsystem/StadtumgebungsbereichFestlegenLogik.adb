@@ -3,12 +3,14 @@ pragma Warnings (Off, "*array aggregate*");
 
 with ProduktionDatentypen; use ProduktionDatentypen;
 with StadtKonstanten;
+with SystemDatentypen;
 
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
+with LeseForschungenDatenbank;
 
 with Fehler;
-with ForschugnstestsLogik;
+with ForschungstestsLogik;
 
 package body StadtumgebungsbereichFestlegenLogik is
 
@@ -39,21 +41,23 @@ package body StadtumgebungsbereichFestlegenLogik is
                                                       EinwohnerArbeiterExtern => True);
       
       if
-        True = ForschugnstestsLogik.TechnologieVorhanden (RasseExtern       => StadtRasseNummerExtern.Rasse,
-                                                          TechnologieExtern => TechnologieUmgebungsgröße (SystemDatentypen.Endwert_Enum, StadtRasseNummerExtern.Rasse))
+        True = ForschungstestsLogik.TechnologieVorhanden (RasseExtern       => StadtRasseNummerExtern.Rasse,
+                                                          TechnologieExtern => LeseForschungenDatenbank.Umgebung (AnfangEndeExtern => SystemDatentypen.Endwert_Enum,
+                                                                                                                  RasseExtern      => StadtRasseNummerExtern.Rasse))
         and
           Einwohner >= StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Endwert_Enum, StadtRasseNummerExtern.Rasse)
       then
          Umgebung := 3;
          
       elsif
-        True = ForschugnstestsLogik.TechnologieVorhanden (RasseExtern       => StadtRasseNummerExtern.Rasse,
-                                                          TechnologieExtern => TechnologieUmgebungsgröße (SystemDatentypen.Anfangswert_Enum, StadtRasseNummerExtern.Rasse))
+        True = ForschungstestsLogik.TechnologieVorhanden (RasseExtern       => StadtRasseNummerExtern.Rasse,
+                                                          TechnologieExtern => LeseForschungenDatenbank.Umgebung (AnfangEndeExtern => SystemDatentypen.Anfangswert_Enum,
+                                                                                                                  RasseExtern      => StadtRasseNummerExtern.Rasse))
         and
           Einwohner >= StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Anfangswert_Enum, StadtRasseNummerExtern.Rasse)
       then
          Umgebung := 2;      
-                  
+         
       else
          Umgebung := 1;
       end if;

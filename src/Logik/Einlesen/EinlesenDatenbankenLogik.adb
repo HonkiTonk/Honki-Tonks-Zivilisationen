@@ -13,6 +13,7 @@ with VerbesserungenDatenbank;
 with RassenDatenbank;
 with KartenflussDatenbank;
 with KartenressourcenDatenbank;
+with ForschungKonstanten;
 
 package body EinlesenDatenbankenLogik is
    
@@ -72,7 +73,16 @@ package body EinlesenDatenbankenLogik is
       end case;
       
       ForschungenDatenbank.ForschungslisteArray'Read (Stream (File => DatenbankEinlesen),
-                                                    ForschungenDatenbank.Forschungsliste);
+                                                      ForschungenDatenbank.Forschungsliste);
+      
+      ForschungKonstanten.TechnologieVerbesserungenArray'Read (Stream (File => DatenbankEinlesen),
+                                                               ForschungenDatenbank.TechnologieVerbesserungen);
+      
+      ForschungKonstanten.TechnologieWegeArray'Read (Stream (File => DatenbankEinlesen),
+                                                     ForschungenDatenbank.TechnologieWege);
+      
+      ForschungKonstanten.TechnologieUmgebungsgrößeArray'Read (Stream (File => DatenbankEinlesen),
+                                                                 ForschungenDatenbank.TechnologieUmgebungsgröße);
       
       Close (File => DatenbankEinlesen);
       

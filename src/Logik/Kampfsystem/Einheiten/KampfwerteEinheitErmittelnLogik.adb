@@ -5,6 +5,7 @@ with KampfDatentypen; use KampfDatentypen;
 with StadtKonstanten;
 with AufgabenDatentypen;
 with ProduktionDatentypen;
+with EinheitenKonstanten;
 
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
@@ -107,8 +108,18 @@ package body KampfwerteEinheitErmittelnLogik is
       return KampfDatentypen.Kampfwerte
    is begin
       
-      AngriffWert := LeseEinheitenDatenbank.Angriff (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                     IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      EinheitenID := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      
+      case
+        EinheitenID
+      is
+         when EinheitenKonstanten.LeerID =>
+            return 0;
+            
+         when others =>
+            AngriffWert := LeseEinheitenDatenbank.Angriff (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                           IDExtern    => EinheitenID);
+      end case;
       
       case
         AngreiferExtern

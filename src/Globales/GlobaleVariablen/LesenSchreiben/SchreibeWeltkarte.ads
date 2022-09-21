@@ -133,7 +133,8 @@ package SchreibeWeltkarte is
    
    procedure EinheitSchreiben
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      EinheitentauschExtern : in Boolean)
      with
        Pre => (
                  KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse

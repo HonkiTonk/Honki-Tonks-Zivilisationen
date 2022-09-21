@@ -18,7 +18,7 @@ with StadtSuchenLogik;
 with EinheitSuchenLogik;
 with PassierbarkeitspruefungLogik;
 with StadtproduktionLogik;
-with ForschugnstestsLogik;
+with ForschungstestsLogik;
 
 with KIDatentypen; use KIDatentypen;
 
@@ -237,7 +237,7 @@ package body EinheitenmodifizierungLogik is
          return False;
          
       else
-         return ForschugnstestsLogik.TechnologieVorhanden (RasseExtern       => StadtRasseNummerExtern.Rasse,
+         return ForschungstestsLogik.TechnologieVorhanden (RasseExtern       => StadtRasseNummerExtern.Rasse,
                                                            TechnologieExtern => LeseEinheitenDatenbank.Anforderungen (RasseExtern => StadtRasseNummerExtern.Rasse,
                                                                                                                       IDExtern    => IDExtern));
       end if;

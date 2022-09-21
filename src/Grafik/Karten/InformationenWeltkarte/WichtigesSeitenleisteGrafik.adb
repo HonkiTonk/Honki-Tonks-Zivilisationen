@@ -9,6 +9,7 @@ with Meldungstexte;
 with TextnummernKonstanten;
 with Views;
 with GrafikDatentypen;
+with TextKonstanten;
 
 with LeseWichtiges;
 
@@ -23,16 +24,16 @@ package body WichtigesSeitenleisteGrafik is
 
    procedure WichtigesInformationen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      ViewbereichExtern : in Positive)
    is begin
       
       Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
                                                                         VerhältnisExtern => (0.15, 0.05));
       
-      -- Diese Bereiche sicherheitshalber auch von außen hineingeben? äöü
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.SeitenleisteWeltkarteAccesse (1),
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.SeitenleisteWeltkarteAccesse (ViewbereichExtern),
                                             GrößeExtern          => Viewfläche,
-                                            AnzeigebereichExtern => GrafikRecordKonstanten.SeitenleisteWeltkartenbereich (1));
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.SeitenleisteWeltkartenbereich (ViewbereichExtern));
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Seitenleiste_Hintergrund_Enum,
                                      AbmessungenExtern => Viewfläche);
@@ -44,8 +45,7 @@ package body WichtigesSeitenleisteGrafik is
       FestzulegenderText (1) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuellePosition) & " " & ZahlAlsStringEbeneVorhanden (ZahlExtern => KoordinatenExtern.EAchse) & "," & KoordinatenExtern.YAchse'Wide_Wide_Image
         & "," & KoordinatenExtern.XAchse'Wide_Wide_Image;
       
-      -- Wieso gibt es keine Lese/Schreibefunktion für die Rundenanzahl? äöü
-      FestzulegenderText (2) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuelleRunde) & SpielVariablen.Allgemeines.Rundenanzahl'Wide_Wide_Image;
+      FestzulegenderText (2) := Rundenanzahl (RasseExtern => RasseExtern);
       
       FestzulegenderText (3) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuelleGeldmenge) & LeseWichtiges.Geldmenge (RasseExtern => RasseExtern)'Wide_Wide_Image;
       FestzulegenderText (4) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuellerGeldzuwachs) & " " & ZahlAlsStringKostenLager (ZahlExtern => LeseWichtiges.GeldZugewinnProRunde (RasseExtern => RasseExtern));
@@ -79,5 +79,38 @@ package body WichtigesSeitenleisteGrafik is
       Viewfläche := (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
             
    end WichtigesInformationen;
+   
+   
+   
+   -- Wieso gibt es keine Lese/Schreibefunktion für die Rundenanzahl? äöü
+   -- Vermutlich weil sie meistens nur gelesen und nur am Rundenende oder beim Standard setzen aufgerufen wird? äöü
+   function Rundenanzahl
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     return Unbounded_Wide_Wide_String
+   is begin
+                  
+      case
+        SpielVariablen.Grenzen (RasseExtern).RassenRundengrenze
+      is
+         when 0 =>
+            null;
+            
+         when others =>
+            return Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuelleRunde) & SpielVariablen.Allgemeines.Rundenanzahl'Wide_Wide_Image & TextKonstanten.Trennzeichen
+              & ZahlAlsStringPositive (ZahlExtern => SpielVariablen.Grenzen (RasseExtern).RassenRundengrenze);
+      end case;
+      
+      case
+        SpielVariablen.Allgemeines.Rundengrenze
+      is
+         when 0 =>
+            return Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuelleRunde) & SpielVariablen.Allgemeines.Rundenanzahl'Wide_Wide_Image;
+            
+         when others =>
+            return Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuelleRunde) & SpielVariablen.Allgemeines.Rundenanzahl'Wide_Wide_Image & TextKonstanten.Trennzeichen
+              & ZahlAlsStringPositive (ZahlExtern => SpielVariablen.Allgemeines.Rundengrenze);
+      end case;
+      
+   end Rundenanzahl;
 
 end WichtigesSeitenleisteGrafik;

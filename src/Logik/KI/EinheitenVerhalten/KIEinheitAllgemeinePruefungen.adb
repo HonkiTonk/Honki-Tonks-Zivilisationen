@@ -8,17 +8,20 @@ with EinheitenKonstanten;
 with KartenKonstanten;
 
 with LeseWeltkarte;
+with LeseEinheitenDatenbank;
+with LeseEinheitenGebaut;
 
 with EinheitSuchenLogik;
 with PassierbarkeitspruefungLogik;
-
+with ForschungstestsLogik;
 with KartenkoordinatenberechnungssystemLogik;
 
 package body KIEinheitAllgemeinePruefungen is
    
-   -- Einige Prüfungen sind nicht immer 100% sinnvoll, beispielsweise von KIEinheitFestlegenVerbesserungen.StadtumgebungVerbessern kommend ist die Sichtbarkeitsprüfung ein wenig unsinnig,
-   -- aber nur dafür eine Extrafunktion schein ein wenig übertrieben.
-   -- Werde wohl mehrere Versionen bauen müssen. äöü
+   -- Einige Prüfungen sind nicht immer 100% sinnvoll, beispielsweise von KIEinheitFestlegenVerbesserungen.StadtumgebungVerbessern kommend ist die Sichtbarkeitsprüfung ein wenig unsinnig.
+   -- Aber nur dafür eine Extrafunktion schein ein wenig übertrieben?
+   -- Werde wohl mehrere Versionen bauen müssen? äöü
+   -- Alleine schon wegen der Prüfung in AktuellUnpassierbar. äöü
    function KartenfeldPrüfen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
@@ -42,14 +45,14 @@ package body KIEinheitAllgemeinePruefungen is
          return False;
          
       elsif
-        True = AktuellUnpassierbar (KoordinatenExtern => KoordinatenExtern,
-                                    RasseExtern       => EinheitRasseNummerExtern.Rasse)
+        True = AktuellUnpassierbar (KoordinatenExtern        => KoordinatenExtern,
+                                    EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       then
          return False;
                   
       elsif
         False = LeseWeltkarte.Sichtbar (KoordinatenExtern => KoordinatenExtern,
-                                     RasseExtern       => EinheitRasseNummerExtern.Rasse)
+                                        RasseExtern       => EinheitRasseNummerExtern.Rasse)
       then
          return False;
          
@@ -63,7 +66,7 @@ package body KIEinheitAllgemeinePruefungen is
    
    function AktuellUnpassierbar
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
       
@@ -89,8 +92,8 @@ package body KIEinheitAllgemeinePruefungen is
                   
                else
                   Wasserumgebung := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                           ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                           LogikGrafikExtern => True);
+                                                                                                                ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                                LogikGrafikExtern => True);
             
                   case
                     Wasserumgebung.XAchse
@@ -100,7 +103,7 @@ package body KIEinheitAllgemeinePruefungen is
                   
                      when others =>
                         BlockierteFelder := BlockierteFelder + FeldUnpassierbar (KoordinatenExtern => Wasserumgebung,
-                                                                                 RasseExtern       => RasseExtern);
+                                                                                 RasseExtern       => EinheitRasseNummerExtern.Rasse);
                         
                   end case;
                end if;
@@ -115,7 +118,7 @@ package body KIEinheitAllgemeinePruefungen is
                if
                  BlockierteFelder >= 8
                then
-                  return True;
+                  exit PassierbareUmgebungSchleife;
             
                else
                   null;
@@ -125,7 +128,7 @@ package body KIEinheitAllgemeinePruefungen is
                if
                  BlockierteFelder >= 16
                then
-                  return True;
+                  exit PassierbareUmgebungSchleife;
             
                else
                   null;
@@ -135,7 +138,7 @@ package body KIEinheitAllgemeinePruefungen is
                if
                  BlockierteFelder >= 24
                then
-                  return True;
+                  exit PassierbareUmgebungSchleife;
             
                else
                   return False;
@@ -147,16 +150,49 @@ package body KIEinheitAllgemeinePruefungen is
                   
       end loop PassierbareUmgebungSchleife;
       
-      -- Hier später noch brauchbare Prüfungen auf vorhandene Technologie und Wassertransporter einbauen. äöü
-      -- Die Technologieprüfung mit in die Passierbarkeitsprüfung werfen? Bzw. eine Abspaltung davon für die KI vornehmen. äöü
-      -- ForschungenSchleife:
-      -- for ForschungSchleifenwert in ForschungenDatentypen.ForschungID'Range loop
-         
-      --    null;
-         
-      -- end loop ForschungenSchleife;
+      TransportMöglich := LeseEinheitenDatenbank.KannTransportiertWerden (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       
-      -- return True;
+      case
+        TransportMöglich
+      is
+         when EinheitenDatentypen.Kein_Transport_Enum =>
+            return True;
+            
+         when others =>
+            TransporterErforscht := False;
+      end case;
+      
+      TransporterID := EinheitenKonstanten.LeerID;
+            
+      EinheitenartSchleife:
+      for EinheitenartSchleifenwert in EinheitenDatentypen.EinheitenID'Range loop
+         
+         if
+           TransportMöglich >= LeseEinheitenDatenbank.KannTransportieren (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                           IDExtern    => EinheitenartSchleifenwert)
+         then
+            case
+              ForschungstestsLogik.TechnologieVorhanden (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                                         TechnologieExtern => LeseEinheitenDatenbank.Anforderungen (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                                                                    IDExtern    => EinheitenartSchleifenwert))
+            is
+               when True =>
+                  -- Hier auch prüfen ob ein Transporter dieser Art existiert und wenn nicht weitersuchen. äöü
+                  TransporterID := EinheitenartSchleifenwert;
+                  exit EinheitenartSchleife;
+                  
+               when False =>
+                  null;
+            end case;
+               
+         else
+            null;
+         end if;
+         
+      end loop EinheitenartSchleife;
+      
+      return True;
       
    end AktuellUnpassierbar;
    

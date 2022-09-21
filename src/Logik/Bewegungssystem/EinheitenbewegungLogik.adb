@@ -9,6 +9,7 @@ with KartenKonstanten;
 with StadtKonstanten;
 
 with LeseEinheitenGebaut;
+with LeseEinheitenDatenbank;
 
 with EinheitSuchenLogik;
 with PassierbarkeitspruefungLogik;
@@ -30,12 +31,12 @@ package body EinheitenbewegungLogik is
       return Boolean
    is begin
       
-      NeuePosition := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                                             ÄnderungExtern    => PositionÄnderungExtern,
-                                                                                             LogikGrafikExtern => True);
+      NeueKoordinaten := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                                                                     ÄnderungExtern    => PositionÄnderungExtern,
+                                                                                                     LogikGrafikExtern => True);
       
       case
-        NeuePosition.XAchse
+        NeueKoordinaten.XAchse
       is
          when KartenKonstanten.LeerXAchse =>
             return True;
@@ -45,12 +46,12 @@ package body EinheitenbewegungLogik is
       end case;
       
       FeldPassierbar := PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                  NeueKoordinatenExtern       => NeuePosition);
+                                                                                  NeueKoordinatenExtern       => NeueKoordinaten);
       
-      EinheitAufFeld := EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => NeuePosition,
+      EinheitAufFeld := EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => NeueKoordinaten,
                                                                               LogikGrafikExtern => True);
       StadtAufFeld := StadtSuchenLogik.KoordinatenStadtOhneSpezielleRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                                                 KoordinatenExtern => NeuePosition);
+                                                                                 KoordinatenExtern => NeueKoordinaten);
       BewegungDurchführen := False;
       
       if
@@ -62,20 +63,9 @@ package body EinheitenbewegungLogik is
          
       elsif
         EinheitAufFeld.Rasse = EinheitRasseNummerExtern.Rasse
-        and then
-          False = EinheitentransporterLogik.KannTransportiertWerden (LadungExtern      => EinheitRasseNummerExtern,
-                                                                     TransporterExtern => EinheitAufFeld)
       then
-         return True;
-         
-      elsif
-        EinheitAufFeld.Rasse = EinheitRasseNummerExtern.Rasse
-        and then
-          True = EinheitentransporterLogik.KannTransportiertWerden (LadungExtern      => EinheitRasseNummerExtern,
-                                                                    TransporterExtern => EinheitAufFeld)
-      then
-         EigeneEinheitAufFeld (BewegendeEinheitExtern     => EinheitRasseNummerExtern,
-                               FeldBelegendeEinheitExtern => EinheitAufFeld);
+         BewegungDurchführen := EigeneEinheitAufFeld (BewegendeEinheitExtern     => EinheitRasseNummerExtern,
+                                                       FeldBelegendeEinheitExtern => EinheitAufFeld);
          
       elsif
         EinheitAufFeld.Rasse /= EinheitRasseNummerExtern.Rasse
@@ -119,7 +109,8 @@ package body EinheitenbewegungLogik is
       is
          when True =>
             BewegungsberechnungLogik.Bewegungsberechnung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                          NeueKoordinatenExtern    => NeuePosition);
+                                                          NeueKoordinatenExtern    => NeueKoordinaten,
+                                                          EinheitentauschExtern    => False);
             
          when False =>
             null;
@@ -215,14 +206,74 @@ package body EinheitenbewegungLogik is
    
    
    
-   -- Hier vielleicht später mehr einbauen? Beispielsweise Plätzetauschen? äöü
-   procedure EigeneEinheitAufFeld
+   -- Das hier noch einmal überarbeiten, vermutlich muss ich dazu auch die BewegungsberechnungLogik überarbeien. äöü 
+   function EigeneEinheitAufFeld
      (BewegendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       FeldBelegendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return Boolean
    is begin
       
-      LadungsbewegungLogik.TransporterBeladen (TransporterExtern => FeldBelegendeEinheitExtern,
-                                               LadungExtern      => BewegendeEinheitExtern.Nummer);
+      case
+        EinheitentransporterLogik.KannTransportiertWerden (LadungExtern      => BewegendeEinheitExtern,
+                                                           TransporterExtern => EinheitAufFeld)
+      is
+         when True =>
+            if
+              True = LadungsbewegungLogik.TransporterBeladen (TransporterExtern => FeldBelegendeEinheitExtern,
+                                                              LadungExtern      => BewegendeEinheitExtern.Nummer)
+            then
+               return False;
+               
+            else
+               null;
+            end if;
+            
+         when False =>
+            null;
+      end case;
+      
+      Tauschkoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => BewegendeEinheitExtern);
+      
+      if
+        False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => FeldBelegendeEinheitExtern,
+                                                                          NeueKoordinatenExtern    => Tauschkoordinaten)
+      then
+         return False;
+         
+      elsif
+        ((EinheitenDatentypen.Kein_Transport_Enum /= LeseEinheitenDatenbank.KannTransportieren (RasseExtern => FeldBelegendeEinheitExtern.Rasse,
+                                                                                                IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => FeldBelegendeEinheitExtern))
+          and
+            StadtKonstanten.LeerNummer /= StadtSuchenLogik.KoordinatenStadtMitRasseSuchen (RasseExtern       => FeldBelegendeEinheitExtern.Rasse,
+                                                                                           KoordinatenExtern => Tauschkoordinaten))
+         and then
+         False = PassierbarkeitspruefungLogik.InStadtEntladbar (TransporterExtern     => FeldBelegendeEinheitExtern,
+                                                                NeueKoordinatenExtern => Tauschkoordinaten))
+        or
+          ((EinheitenDatentypen.Kein_Transport_Enum /= LeseEinheitenDatenbank.KannTransportieren (RasseExtern => BewegendeEinheitExtern.Rasse,
+                                                                                                  IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => BewegendeEinheitExtern))
+            and
+              StadtKonstanten.LeerNummer /= StadtSuchenLogik.KoordinatenStadtMitRasseSuchen (RasseExtern       => FeldBelegendeEinheitExtern.Rasse,
+                                                                                             KoordinatenExtern => Tauschkoordinaten))
+           and then
+           False = PassierbarkeitspruefungLogik.InStadtEntladbar (TransporterExtern     => BewegendeEinheitExtern,
+                                                                  NeueKoordinatenExtern => Tauschkoordinaten))
+      then
+         return False;
+         
+      elsif
+        LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => FeldBelegendeEinheitExtern) < BewegungsberechnungLogik.AbzugDurchBewegung (NeueKoordinatenExtern    => Tauschkoordinaten,
+                                                                                                                                                    EinheitRasseNummerExtern => FeldBelegendeEinheitExtern)
+      then
+         return False;
+         
+      else
+         BewegungsberechnungLogik.Bewegungsberechnung (EinheitRasseNummerExtern => FeldBelegendeEinheitExtern,
+                                                       NeueKoordinatenExtern    => Tauschkoordinaten,
+                                                       EinheitentauschExtern    => True);
+      
+         return True;
+      end if;
       
    end EigeneEinheitAufFeld;
    

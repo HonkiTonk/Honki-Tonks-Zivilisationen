@@ -6,6 +6,7 @@ with StadtRecords;
 with SpielVariablen;
 
 private with StadtDatentypen;
+private with ProduktionDatentypen;
 
 with KIRecords;
 
@@ -27,6 +28,8 @@ private
    
    Gesamtwertung : KIDatentypen.BauenBewertung;
    Gebäudewertung : KIDatentypen.BauenBewertung;
+   
+   Produktion : ProduktionDatentypen.Stadtproduktion;
    
    GebäudeBewertet : KIRecords.GebäudeIDBewertungRecord;
    

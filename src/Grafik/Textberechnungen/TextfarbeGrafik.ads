@@ -5,6 +5,8 @@ with Sf.Graphics; use Sf.Graphics;
 
 private with Sf.Graphics.Color;
 
+with MenueDatentypen;
+
 package TextfarbeGrafik is
 
    procedure AuswahlfarbeFestlegen
@@ -23,7 +25,19 @@ package TextfarbeGrafik is
                  TextaccessExtern /= null
               );
    
+   procedure FarbeEinfachmenü
+     (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum;
+      AktuelleAuswahlExtern : in Natural;
+      AktuellerTextExtern : in Positive;
+      TextaccessExtern : in Sf.Graphics.sfText_Ptr)
+     with
+       Pre => (
+                 TextaccessExtern /= null
+              );
+   
 private
+   
+   AktuelleEinstellung : Natural;
    
    Farbe : Sf.Graphics.Color.sfColor;
 

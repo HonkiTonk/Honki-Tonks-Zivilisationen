@@ -5,15 +5,15 @@ with KartenverbesserungDatentypen; use KartenverbesserungDatentypen;
 with AufgabenDatentypen; use AufgabenDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
 with EinheitenRecordKonstanten;
-with ForschungKonstanten;
 with EinheitenKonstanten;
 
 with SchreibeEinheitenGebaut;
 with LeseWeltkarte;
+with LeseForschungenDatenbank;
 
 with Fehler;
 with Grenzpruefungen;
-with ForschugnstestsLogik;
+with ForschungstestsLogik;
 with ArbeitszeitWegLogik;
 
 package body WegErmittelnLogik is
@@ -111,8 +111,9 @@ package body WegErmittelnLogik is
       is
          when KartenverbesserungDatentypen.Karten_Straße_Enum'Range | KartenverbesserungDatentypen.Leer_Weg_Enum =>
             if
-              True = ForschugnstestsLogik.TechnologieVorhanden (RasseExtern       => RasseExtern,
-                                                                TechnologieExtern => ForschungKonstanten.TechnologischeVoraussetzung (RasseExtern, WelcheWegart (WegExtern)))
+              True = ForschungstestsLogik.TechnologieVorhanden (RasseExtern       => RasseExtern,
+                                                                TechnologieExtern => LeseForschungenDatenbank.Wege (WegExtern   => WelcheWegart (WegExtern),
+                                                                                                                    RasseExtern => RasseExtern))
             then
                WelcheArbeit := WelcheWegart (WegExtern);
                
@@ -166,8 +167,9 @@ package body WegErmittelnLogik is
       is
          when KartenverbesserungDatentypen.Karten_Straße_Enum'Range | KartenverbesserungDatentypen.Leer_Weg_Enum =>
             if
-              True = ForschugnstestsLogik.TechnologieVorhanden (RasseExtern       => RasseExtern,
-                                                                TechnologieExtern => ForschungKonstanten.TechnologischeVoraussetzung (RasseExtern, WelcheWegart (WegExtern)))
+              True = ForschungstestsLogik.TechnologieVorhanden (RasseExtern       => RasseExtern,
+                                                                TechnologieExtern => LeseForschungenDatenbank.Wege (WegExtern   => WelcheWegart (WegExtern),
+                                                                                                                    RasseExtern => RasseExtern))
             then
                WelcheArbeit := WelcheWegart (WegExtern);
                
@@ -210,8 +212,9 @@ package body WegErmittelnLogik is
       is
          when KartenverbesserungDatentypen.Karten_Straße_Enum'Range | KartenverbesserungDatentypen.Leer_Weg_Enum =>
             if
-              True = ForschugnstestsLogik.TechnologieVorhanden (RasseExtern       => RasseExtern,
-                                                                TechnologieExtern => ForschungKonstanten.TechnologischeVoraussetzung (RasseExtern, WelcheWegart (WegExtern)))
+              True = ForschungstestsLogik.TechnologieVorhanden (RasseExtern       => RasseExtern,
+                                                                TechnologieExtern => LeseForschungenDatenbank.Wege (WegExtern   => WelcheWegart (WegExtern),
+                                                                                                                    RasseExtern => RasseExtern))
             then
                WelcheArbeit := WelcheWegart (WegExtern);
                
@@ -255,8 +258,9 @@ package body WegErmittelnLogik is
       is
          when KartenverbesserungDatentypen.Karten_Straße_Enum'Range | KartenverbesserungDatentypen.Leer_Weg_Enum =>
             if
-              True = ForschugnstestsLogik.TechnologieVorhanden (RasseExtern       => RasseExtern,
-                                                                TechnologieExtern => ForschungKonstanten.TechnologischeVoraussetzung (RasseExtern, WelcheWegart (WegExtern)))
+              True = ForschungstestsLogik.TechnologieVorhanden (RasseExtern       => RasseExtern,
+                                                                TechnologieExtern => LeseForschungenDatenbank.Wege (WegExtern   => WelcheWegart (WegExtern),
+                                                                                                                    RasseExtern => RasseExtern))
             then
                WelcheArbeit := WelcheWegart (WegExtern);
                

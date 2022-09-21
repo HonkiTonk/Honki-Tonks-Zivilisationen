@@ -52,11 +52,13 @@ private
    EinheitAufFeld : EinheitenRecords.RasseEinheitnummerRecord;
 
    KeineÄnderung : constant KartenRecords.AchsenKartenfeldRecord := (0, 0, 0);
-   NeuePosition : KartenRecords.AchsenKartenfeldNaturalRecord;
+   NeueKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Tauschkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
      
-   procedure EigeneEinheitAufFeld
+   function EigeneEinheitAufFeld
      (BewegendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       FeldBelegendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return Boolean
      with
        Pre => (
                  BewegendeEinheitExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (BewegendeEinheitExtern.Rasse).Einheitengrenze

@@ -11,7 +11,7 @@ with SchreibeEinheitenGebaut;
 with LeseEinheitenDatenbank;
 
 with EinheitenmodifizierungLogik;
-with ForschugnstestsLogik;
+with ForschungstestsLogik;
 
 package body EinheitVerbessernLogik is
 
@@ -37,7 +37,7 @@ package body EinheitVerbessernLogik is
          return False;
          
       elsif
-        False = ForschugnstestsLogik.TechnologieVorhanden (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+        False = ForschungstestsLogik.TechnologieVorhanden (RasseExtern       => EinheitRasseNummerExtern.Rasse,
                                                            TechnologieExtern => LeseEinheitenDatenbank.Anforderungen (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                                                                                       IDExtern    => IDNeueEinheit))
       then

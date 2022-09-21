@@ -38,9 +38,7 @@ package body WaldErmittelnLogik is
       else
          VorhandeneVerbesserung := LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern);
       end if;
-                  
-      -- Mehr Prüfungen einbauen, beispielweise keinen Wald auf Eis erlauben. Gilt für alle Aufgaben. äöü
-      -- Kann jetzt über die Arbeitszeit geregelt werden. äöü
+      
       if
         (VorhandeneVerbesserung = KartenverbesserungDatentypen.Farm_Enum
          or

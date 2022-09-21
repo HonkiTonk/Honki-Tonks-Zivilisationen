@@ -75,8 +75,6 @@ package body SprachauswahlGrafik is
               and
                 ZeileSchleifenwert < Ende)
          then
-            -- Alle Textaccesse nach dem Erzeugen des Fenster setzen und dann noch einmal nach der Sprachauswahl? äöü
-            -- Dann würde alles doppelt gesetzt werden, dafür müsste ich hier weniger einstellen. äöü
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.SprachauswahlAccess,
                                                str  => To_Wide_Wide_String (Source => AktuelleSprachen (ZeileSchleifenwert)));
             Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SprachauswahlAccess,

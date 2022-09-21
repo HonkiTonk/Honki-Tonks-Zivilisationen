@@ -10,8 +10,7 @@ package TexteinstellungenGrafik is
 
    SchriftartAccess : Sf.Graphics.sfFont_Ptr;
    
-   -- Nutzereinstellungen in den Einstellugnen speichern. äöü
-   -- Später auch was für den Textstyle einbauen. äöü
+   -- Später auch was für den Textstyle einbauen? äöü
    Schriftgrößen : GrafikRecords.SchriftgrößenRecord;
    
    Schriftfarben : GrafikRecords.SchriftfarbenRecord;

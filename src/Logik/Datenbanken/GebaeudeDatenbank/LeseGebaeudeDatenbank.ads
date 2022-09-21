@@ -9,6 +9,7 @@ with KartengrundDatentypen;
 with ForschungenDatentypen;
 with ProduktionDatentypen;
 with KampfDatentypen;
+with KartenverbesserungDatentypen;
 
 package LeseGebaeudeDatenbank is
 
@@ -91,6 +92,24 @@ package LeseGebaeudeDatenbank is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in StadtDatentypen.GebäudeID)
       return KartengrundDatentypen.Kartenressourcen_Enum
+     with
+       Pre => (
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+              );
+   
+   function VerbesserungBenötigt
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in StadtDatentypen.GebäudeID)
+      return KartenverbesserungDatentypen.Karten_Verbesserung_Enum
+     with
+       Pre => (
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+              );
+     
+   function GebäudeBenötigt
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in StadtDatentypen.GebäudeID)
+      return StadtDatentypen.GebäudeIDMitNullwert
      with
        Pre => (
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum

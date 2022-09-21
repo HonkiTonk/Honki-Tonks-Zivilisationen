@@ -86,11 +86,20 @@ package body EinlesenRassentexteLogik is
          
                Close (File => DateiUnternull);
          
-               NameBeschreibung (RasseExtern => RasseSchleifenwert);
-               Städtenamen (RasseExtern => RasseSchleifenwert);
-               Forschungen (RasseExtern => RasseSchleifenwert);
-               Einheiten (RasseExtern => RasseSchleifenwert);
-               Gebäude (RasseExtern => RasseSchleifenwert);
+               NameBeschreibung (RasseExtern     => RasseSchleifenwert,
+                                 DateinameExtern => To_Wide_Wide_String (Source => Rassendateien (1)));
+               
+               Städtenamen (RasseExtern     => RasseSchleifenwert,
+                            DateinameExtern => To_Wide_Wide_String (Source => Rassendateien (2)));
+               
+               Forschungen (RasseExtern     => RasseSchleifenwert,
+                            DateinameExtern => To_Wide_Wide_String (Source => Rassendateien (3)));
+               
+               Einheiten (RasseExtern     => RasseSchleifenwert,
+                          DateinameExtern => To_Wide_Wide_String (Source => Rassendateien (4)));
+               
+               Gebäude (RasseExtern     => RasseSchleifenwert,
+                        DateinameExtern => To_Wide_Wide_String (Source => Rassendateien (5)));
          end case;
          
       end loop RassenSchleife;
@@ -99,21 +108,21 @@ package body EinlesenRassentexteLogik is
    
    
    
-   -- Den Dateinamen hier überall von außen hineingeben. äöü
    procedure NameBeschreibung
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      DateinameExtern : in Wide_Wide_String)
    is begin
       
       case
-        Exists (Name => Encode (Item => To_Wide_Wide_String (Source => Rassendateien (1))))
+        Exists (Name => Encode (Item => DateinameExtern))
       is
          when True =>
             Open (File => DateiNameBeschreibung,
                   Mode => In_File,
-                  Name => Encode (Item => To_Wide_Wide_String (Source => Rassendateien (1))));
+                  Name => Encode (Item => DateinameExtern));
             
          when False =>
-            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.NameBeschreibung: Es fehlt: " & To_Wide_Wide_String (Source => Rassendateien (1)));
+            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.NameBeschreibung: Es fehlt: " & DateinameExtern);
             return;
       end case;
       
@@ -125,7 +134,7 @@ package body EinlesenRassentexteLogik is
                                                            AktuelleZeileExtern => Positive (NameBeschreibungSchleifenwert))
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.NameBeschreibung: Fehlende Zeilen: " & To_Wide_Wide_String (Source => Rassendateien (1)));
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.NameBeschreibung: Fehlende Zeilen: " & DateinameExtern);
                exit NameBeschreibungSchleife;
                
             when False =>
@@ -141,19 +150,20 @@ package body EinlesenRassentexteLogik is
    
    
    procedure Städtenamen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      DateinameExtern : in Wide_Wide_String)
    is begin
       
       case
-        Exists (Name => Encode (Item => To_Wide_Wide_String (Source => Rassendateien (2))))
+        Exists (Name => Encode (Item => DateinameExtern))
       is
          when True =>
             Open (File => DateiStädtenamen,
                   Mode => In_File,
-                  Name => Encode (Item => To_Wide_Wide_String (Source => Rassendateien (2))));
+                  Name => Encode (Item => DateinameExtern));
             
          when False =>
-            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.Städtenamen: Es fehlt: " & To_Wide_Wide_String (Source => Rassendateien (2)));
+            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.Städtenamen: Es fehlt: " & DateinameExtern);
             return;
       end case;
       
@@ -165,7 +175,7 @@ package body EinlesenRassentexteLogik is
                                                            AktuelleZeileExtern => Positive (StädtenamenSchleifenwert))
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.Städtenamen: Fehlende Zeilen: " & To_Wide_Wide_String (Source => Rassendateien (2)));
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.Städtenamen: Fehlende Zeilen: " & DateinameExtern);
                exit StädtenamenSchleife;
                
             when False =>
@@ -181,21 +191,22 @@ package body EinlesenRassentexteLogik is
    
    
    procedure Forschungen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      DateinameExtern : in Wide_Wide_String)
    is begin
       
       case
-        Exists (Name => Encode (Item => To_Wide_Wide_String (Source => Rassendateien (3))))
+        Exists (Name => Encode (Item => DateinameExtern))
       is
          when True =>
             AktuelleZeile := 1;
       
             Open (File => DateiForschungen,
                   Mode => In_File,
-                  Name => Encode (Item => To_Wide_Wide_String (Source => Rassendateien (3))));
+                  Name => Encode (Item => DateinameExtern));
             
          when False =>
-            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.Forschungen: Es fehlt: " & To_Wide_Wide_String (Source => Rassendateien (3)));
+            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.Forschungen: Es fehlt: " & DateinameExtern);
             return;
       end case;
       
@@ -209,7 +220,7 @@ package body EinlesenRassentexteLogik is
                                                               AktuelleZeileExtern => AktuelleZeile)
             is
                when True =>
-                  Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.Forschungen: Fehlende Zeilen: " & To_Wide_Wide_String (Source => Rassendateien (3)));
+                  Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.Forschungen: Fehlende Zeilen: " & DateinameExtern);
                   exit ForschungenSchleife;
                
                when False =>
@@ -228,21 +239,22 @@ package body EinlesenRassentexteLogik is
    
    
    procedure Einheiten
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      DateinameExtern : in Wide_Wide_String)
    is begin
       
       case
-        Exists (Name => Encode (Item => To_Wide_Wide_String (Source => Rassendateien (4))))
+        Exists (Name => Encode (Item => DateinameExtern))
       is
          when True =>
             AktuelleZeile := 1;
       
             Open (File => DateiEinheiten,
                   Mode => In_File,
-                  Name => Encode (Item => To_Wide_Wide_String (Source => Rassendateien (4))));
+                  Name => Encode (Item => DateinameExtern));
             
          when False =>
-            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.Einheiten: Es fehlt: " & To_Wide_Wide_String (Source => Rassendateien (4)));
+            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.Einheiten: Es fehlt: " & DateinameExtern);
             return;
       end case;
       
@@ -256,7 +268,7 @@ package body EinlesenRassentexteLogik is
                                                               AktuelleZeileExtern => AktuelleZeile)
             is
                when True =>
-                  Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.Einheiten: Fehlende Zeilen: " & To_Wide_Wide_String (Source => Rassendateien (4)));
+                  Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.Einheiten: Fehlende Zeilen: " & DateinameExtern);
                   exit EinheitenSchleife;
                
                when False =>
@@ -275,21 +287,22 @@ package body EinlesenRassentexteLogik is
    
    
    procedure Gebäude
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      DateinameExtern : in Wide_Wide_String)
    is begin
       
       case
-        Exists (Name => Encode (Item => To_Wide_Wide_String (Source => Rassendateien (5))))
+        Exists (Name => Encode (Item => DateinameExtern))
       is
          when True =>
             AktuelleZeile := 1;
       
             Open (File => DateiGebäude,
                   Mode => In_File,
-                  Name => Encode (Item => To_Wide_Wide_String (Source => Rassendateien (5))));
+                  Name => Encode (Item => DateinameExtern));
             
          when False =>
-            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.Gebäude: Es fehlt: " & To_Wide_Wide_String (Source => Rassendateien (4)));
+            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.Gebäude: Es fehlt: " & DateinameExtern);
             return;
       end case;
       
@@ -303,7 +316,7 @@ package body EinlesenRassentexteLogik is
                                                               AktuelleZeileExtern => AktuelleZeile)
             is
                when True =>
-                  Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.Gebäude: Fehlende Zeilen: " & To_Wide_Wide_String (Source => Rassendateien (5)));
+                  Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.Gebäude: Fehlende Zeilen: " & DateinameExtern);
                   exit GebäudeSchleife;
                
                when False =>

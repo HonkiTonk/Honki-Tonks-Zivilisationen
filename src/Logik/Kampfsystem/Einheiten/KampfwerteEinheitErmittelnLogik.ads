@@ -5,7 +5,9 @@ with RassenDatentypen; use RassenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 with KampfDatentypen;
-with KartenRecords;
+
+private with KartenRecords;
+private with EinheitenDatentypen;
 
 package KampfwerteEinheitErmittelnLogik is
 
@@ -32,6 +34,8 @@ package KampfwerteEinheitErmittelnLogik is
               );
    
 private
+   
+   EinheitenID : EinheitenDatentypen.EinheitenIDMitNullWert;
    
    VerschanzungBonus : constant Float := 1.25;
    StadtBonus : constant Float := 1.25;

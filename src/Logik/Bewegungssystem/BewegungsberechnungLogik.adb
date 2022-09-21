@@ -22,12 +22,13 @@ package body BewegungsberechnungLogik is
 
    procedure Bewegungsberechnung
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      EinheitentauschExtern : in Boolean)
    is begin
       
       LadungVerschieben := False;
 
-      -- Immer berücksichtigen dass in BewegungEinheiten.BewegungPrüfen bereits geprüft wird ob der Transporter die Einheit transportieren kann und ein freier Platz vorhanden ist.
+      -- Immer berücksichtigen dass in EinheitenbewegungLogik.BewegungPrüfen bereits geprüft wird ob der Transporter die Einheit transportieren kann und ein freier Platz vorhanden ist.
       if
         EinheitenKonstanten.LeerKannTransportieren = LeseEinheitenDatenbank.KannTransportieren (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                                                                 IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
@@ -97,7 +98,8 @@ package body BewegungsberechnungLogik is
       end case;
       
       SchreibeEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                           KoordinatenExtern        => NeueKoordinatenExtern);
+                                           KoordinatenExtern        => NeueKoordinatenExtern,
+                                           EinheitentauschExtern    => EinheitentauschExtern);
       
       case
         LadungVerschieben
@@ -137,7 +139,7 @@ package body BewegungsberechnungLogik is
             
          elsif
            True = LeseWeltkarte.Sichtbar (KoordinatenExtern => NeueKoordinatenExtern,
-                                       RasseExtern       => FremdeSichtbarkeitSchleifenwert)
+                                          RasseExtern       => FremdeSichtbarkeitSchleifenwert)
          then
             KennenlernenLogik.Erstkontakt (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
                                            FremdeRasseExtern => FremdeSichtbarkeitSchleifenwert);

@@ -40,6 +40,7 @@ package WeltkarteZeichnenGrafik is
 private
    
    AusgewählteEinheitAnzeigen : Boolean := True;
+   GrundGleich : Boolean;
    
    AktuelleRasse : RassenDatentypen.Rassen_Enum;
    
@@ -53,6 +54,8 @@ private
    Verbesserungsfeld : KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
    
    EinheitID : EinheitenDatentypen.EinheitenIDMitNullWert;
+   
+   Durchsichtigkeit : Sf.sfUint8;
    
    DickeRahmen : constant Float := 5.00;
          
@@ -69,21 +72,17 @@ private
    Farbe : Sf.Graphics.Color.sfColor;
    
    StartzeitBlinkintervall : Time := Clock;
-   
-   -- Das hier mal in irgendwas Globales verschieben? äöü
-   -- Eventuell die Poldatentypen verwenden? Die haben ja auch alles vier Richtungen. äöü
-   type Umgebung_Enum is (Norden, Westen, Osten, Süden);
-   
-   type UmgebungArray is array (Umgebung_Enum'Range) of KartenRecords.AchsenKartenfeldRecord;
+      
+   type UmgebungArray is array (KartenDatentypen.Himmelsrichtungen_Enum'Range) of KartenRecords.AchsenKartenfeldRecord;
    Umgebung : constant UmgebungArray := (
-                                         Norden => (0, -1, 0),
-                                         Westen => (0, 0, -1),
-                                         Osten  => (0, 0, 1),
-                                         Süden  => (0, 1, 0)
+                                         Norden_Enum => (0, -1, 0),
+                                         Westen_Enum => (0, 0, -1),
+                                         Osten_Enum  => (0, 0, 1),
+                                         Süden_Enum  => (0, 1, 0)
                                         );
    
    procedure RahmenZeichnen
-     (WelcheRichtungExtern : in Umgebung_Enum;
+     (WelcheRichtungExtern : in KartenDatentypen.Himmelsrichtungen_Enum;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
@@ -118,8 +117,6 @@ private
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre => (
-               --   SpielVariablen.Rassenbelegung (RasseEinheitExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
-               -- and
                  KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
                and
                  KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse

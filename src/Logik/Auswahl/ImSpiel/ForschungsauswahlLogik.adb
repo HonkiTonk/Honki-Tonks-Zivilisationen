@@ -12,7 +12,7 @@ with LeseWichtiges;
 with TasteneingabeLogik;
 with MausauswahlLogik;
 with NachGrafiktask;
-with ForschugnstestsLogik;
+with ForschungstestsLogik;
 
 package body ForschungsauswahlLogik is
 
@@ -47,7 +47,7 @@ package body ForschungsauswahlLogik is
       ForschungSchleife:
       for ForschungenSchleifenwert in ForschungenDatentypen.ForschungID loop
          
-         InteraktionAuswahl.MöglicheForschungen (ForschungenSchleifenwert) := ForschugnstestsLogik.ForschungAnforderungErfüllt (RasseExtern       => RasseExtern,
+         InteraktionAuswahl.MöglicheForschungen (ForschungenSchleifenwert) := ForschungstestsLogik.ForschungAnforderungErfüllt (RasseExtern       => RasseExtern,
                                                                                                                                   ForschungIDExtern => ForschungenSchleifenwert);
          
       end loop ForschungSchleife;

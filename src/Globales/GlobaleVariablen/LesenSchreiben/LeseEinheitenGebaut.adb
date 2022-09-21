@@ -58,8 +58,18 @@ package body LeseEinheitenGebaut is
       return EinheitenDatentypen.Lebenspunkte
    is begin
       
-      ErlaubteLebenspunkte := LeseEinheitenDatenbank.MaximaleLebenspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                           IDExtern    => SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).ID);
+      EinheitID := SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).ID;
+      
+      case
+        EinheitID
+      is
+         when EinheitenKonstanten.LeerID =>
+            return EinheitenKonstanten.LeerLebenspunkte;
+            
+         when others =>
+            ErlaubteLebenspunkte := LeseEinheitenDatenbank.MaximaleLebenspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                                 IDExtern    => EinheitID);
+      end case;
       
       if
         SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Lebenspunkte > ErlaubteLebenspunkte
@@ -94,7 +104,7 @@ package body LeseEinheitenGebaut is
    is begin
       
       Beförderungsgrenze := LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                       IDExtern    => ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+                                                                         IDExtern    => ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       
       if
         SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Erfahrungspunkte > Beförderungsgrenze

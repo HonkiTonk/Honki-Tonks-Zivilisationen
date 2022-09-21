@@ -12,6 +12,7 @@ with RassenDatenbank;
 with KartenflussDatenbank;
 with KartenressourcenDatenbank;
 with VerzeichnisKonstanten;
+with ForschungKonstanten;
 
 package body SchreibenDatenbankenLogik is
    
@@ -75,7 +76,16 @@ package body SchreibenDatenbankenLogik is
       end case;
       
       ForschungenDatenbank.ForschungslisteArray'Write (Stream (File => DatenbankSpeichern),
-                                                     ForschungenDatenbank.Forschungsliste);
+                                                       ForschungenDatenbank.Forschungsliste);
+      
+      ForschungKonstanten.TechnologieVerbesserungenArray'Write (Stream (File => DatenbankSpeichern),
+                                                                ForschungenDatenbank.TechnologieVerbesserungen);
+      
+      ForschungKonstanten.TechnologieWegeArray'Write (Stream (File => DatenbankSpeichern),
+                                                      ForschungenDatenbank.TechnologieWege);
+      
+      ForschungKonstanten.TechnologieUmgebungsgrößeArray'Write (Stream (File => DatenbankSpeichern),
+                                                                  ForschungenDatenbank.TechnologieUmgebungsgröße);
       
       Close (File => DatenbankSpeichern);
       
