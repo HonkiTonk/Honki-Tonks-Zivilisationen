@@ -27,10 +27,15 @@ package CursorplatzierungAltGrafik is
               );
    
 private
+   
+   XAchsenbereich : Float;
       
    Scrollzeit : Ada.Calendar.Time := Ada.Calendar.Clock;
    
    Mausposition : Sf.System.Vector2.sfVector2f;
+   Viewfläche : Sf.System.Vector2.sfVector2f;
+   Viewzentrum : Sf.System.Vector2.sfVector2f;
+   Achsenviewfläche : Sf.System.Vector2.sfVector2f;
    
    Kartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
    
@@ -49,21 +54,21 @@ private
               );
          
    function AlteYAchseFestlegen
-     (MausachseExtern : in Float;
-      YAchseAlt : in KartenDatentypen.KartenfeldPositiv)
+     (MauspositionExtern : in Sf.System.Vector2.sfVector2f;
+      YAchseAltExtern : in KartenDatentypen.KartenfeldPositiv)
       return KartenDatentypen.UmgebungsbereichEins
      with
        Pre => (
-                 YAchseAlt <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 YAchseAltExtern <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
               );
    
    function AlteXAchseFestlegen
      (MausachseExtern : in Float;
-      XAchseAlt : in KartenDatentypen.KartenfeldPositiv)
+      XAchseAltExtern : in KartenDatentypen.KartenfeldPositiv)
       return KartenDatentypen.UmgebungsbereichEins
      with
        Pre => (
-                 XAchseAlt <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 XAchseAltExtern <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
               );
 
 end CursorplatzierungAltGrafik;

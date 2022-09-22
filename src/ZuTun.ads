@@ -14,7 +14,7 @@
 --                      Angefangen neue Texturen zu erstellen. Befehlsknöpfe/texte für Kartenbefehle, Einheitenbefehle und Stadtbefehle eingebaut.
 --                      Neues Stadtsystems gebaut.
 --                      Scrollen und Zoomen angepasst und verbessert. Introbild eingebaut. Endesystem überarbeitet und einfache grafische Version erstellt.
---                      Anzeige der Karte kann jetzt auch unter Berücksichtigung des Seitenverhältnis erfolgen.
+--                      Anzeige der Karte kann jetzt auch unter Berücksichtigung des Seitenverhältnis erfolgen. Bessere Textskalierung eingebaut.
 --                      Einfache grafische Einstellmöglichkeiten eingebaut.
 --                      Forschungserfolganzeige eingabaut. Rassenspezifische Hintergrund-, Einheiten- und Gebäudegrafiken ermöglicht.
 

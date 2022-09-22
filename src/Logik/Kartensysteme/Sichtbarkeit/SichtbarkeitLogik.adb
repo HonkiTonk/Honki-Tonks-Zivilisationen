@@ -133,16 +133,16 @@ package body SichtbarkeitLogik is
             EAchseEnde := 1;
             
          when 1 =>
-            EAchseAnfang := 0;
-            EAchseEnde := 2;
+            EAchseAnfang := -1;
+            EAchseEnde := 1;
             
          when 2 =>
-            EAchseAnfang := 1;
-            EAchseEnde := 2;
+            EAchseAnfang := -1;
+            EAchseEnde := 0;
             
          when others =>
-            EAchseAnfang := Einheitenkoordinaten.EAchse;
-            EAchseEnde := Einheitenkoordinaten.EAchse;
+            EAchseAnfang := 0;
+            EAchseEnde := 0;
       end case;
       
       EAchseSchleife:
@@ -774,16 +774,16 @@ package body SichtbarkeitLogik is
             EAchseEnde := 1;
             
          when 1 =>
-            EAchseAnfang := 0;
-            EAchseEnde := 2;
+            EAchseAnfang := -1;
+            EAchseEnde := 1;
             
          when 2 =>
-            EAchseAnfang := 1;
-            EAchseEnde := 2;
+            EAchseAnfang := -1;
+            EAchseEnde := 0;
             
          when others =>
-            EAchseAnfang := Einheitenkoordinaten.EAchse;
-            EAchseEnde := Einheitenkoordinaten.EAchse;
+            EAchseAnfang := 0;
+            EAchseEnde := 0;
       end case;
             
       EAchseSchleife:
@@ -832,16 +832,16 @@ package body SichtbarkeitLogik is
             EAchseEnde := 1;
             
          when 1 =>
-            EAchseAnfang := 0;
-            EAchseEnde := 2;
+            EAchseAnfang := -1;
+            EAchseEnde := 1;
             
          when 2 =>
-            EAchseAnfang := 1;
-            EAchseEnde := 2;
+            EAchseAnfang := -1;
+            EAchseEnde := 0;
             
          when others =>
-            EAchseAnfang := Stadtkoordinaten.EAchse;
-            EAchseEnde := Stadtkoordinaten.EAchse;
+            EAchseAnfang := 0;
+            EAchseEnde := 0;
       end case;
             
       EAchseSchleife:

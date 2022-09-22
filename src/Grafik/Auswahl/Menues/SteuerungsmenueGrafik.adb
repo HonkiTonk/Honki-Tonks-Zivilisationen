@@ -32,7 +32,7 @@ package body SteuerungsmenueGrafik is
    is begin
       
       ViewflächeText := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => ViewflächeText,
-                                                                            VerhältnisExtern => (0.33, 0.50));
+                                                                            VerhältnisExtern => (GrafikRecordKonstanten.Steuerungbereich (1).width, GrafikRecordKonstanten.Steuerungbereich (1).height));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.SteuerungviewAccesse (1),
                                             GrößeExtern          => ViewflächeText,
@@ -47,7 +47,7 @@ package body SteuerungsmenueGrafik is
       
       
       ViewflächeBelegung := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => ViewflächeBelegung,
-                                                                                VerhältnisExtern => (0.33, 0.50));
+                                                                                VerhältnisExtern => (GrafikRecordKonstanten.Steuerungbereich (2).width, GrafikRecordKonstanten.Steuerungbereich (2).height));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.SteuerungviewAccesse (2),
                                             GrößeExtern          => ViewflächeBelegung,

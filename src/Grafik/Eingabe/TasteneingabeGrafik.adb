@@ -38,6 +38,13 @@ package body TasteneingabeGrafik is
                   
             when Sf.Window.Event.sfEvtResized =>
                NachGrafiktask.FensterVerändert := GrafikDatentypen.Fenster_Verändert_Enum;
+               
+            when Sf.Window.Event.sfEvtMouseLeft =>
+               NachLogiktask.Mausposition := (-1.00, -1.00);
+               
+            when Sf.Window.Event.sfEvtMouseEntered =>
+               NachLogiktask.Mausposition := (Float (Sf.Graphics.RenderWindow.Mouse.getPosition (relativeTo => EinstellungenGrafik.FensterAccess).x),
+                                              Float (Sf.Graphics.RenderWindow.Mouse.getPosition (relativeTo => EinstellungenGrafik.FensterAccess).y));
                   
             when Sf.Window.Event.sfEvtMouseMoved =>
                NachLogiktask.Mausposition := (Float (Nutzereingabe.mouseMove.x), Float (Nutzereingabe.mouseMove.y));

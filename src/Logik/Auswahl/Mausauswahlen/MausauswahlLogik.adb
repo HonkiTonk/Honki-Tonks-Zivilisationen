@@ -18,7 +18,7 @@ with Vergleiche;
 with EinstellungenGrafik;
 with KartenberechnungenGrafik;
 
--- Mal thematisch aufteilen. äöü
+-- Thematisch aufteilen? äöü
 package body MausauswahlLogik is
 
    function RassenauswahlDiplomatie

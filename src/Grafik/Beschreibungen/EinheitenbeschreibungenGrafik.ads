@@ -8,7 +8,7 @@ with RassenDatentypen;
 package EinheitenbeschreibungenGrafik is
    
    function BeschreibungKurz
-     (IDExtern : in EinheitenDatentypen.EinheitenID;
+     (IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Wide_Wide_String;
    

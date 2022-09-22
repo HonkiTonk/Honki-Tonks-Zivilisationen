@@ -62,11 +62,11 @@ package ObjekteZeichnenGrafik is
                and
                  PositionExtern.y >= 0.00
                and
-                 GrößeExtern.x > 0.00
+                 GrößeExtern.x >= 0.00
                and
-                 GrößeExtern.y > 0.00
+                 GrößeExtern.y >= 0.00
                and
-                 RahmendickeExtern > 0.00
+                 RahmendickeExtern >= 0.00
               );
    
    procedure RahmenteilZeichnen
@@ -75,13 +75,14 @@ package ObjekteZeichnenGrafik is
       GrößeExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre => (
-                 PositionExtern.x >= 0.00
+               -- Führt bei sehr kleinem Fenster zu Problemen, deswegen draußen lassen.
+               --  PositionExtern.x >= 0.00
+               -- and
+               --   PositionExtern.y >= 0.00
+               -- and
+                 GrößeExtern.x >= 0.00
                and
-                 PositionExtern.y >= 0.00
-               and
-                 GrößeExtern.x > 0.00
-               and
-                 GrößeExtern.y > 0.00
+                 GrößeExtern.y >= 0.00
               );
    
 private

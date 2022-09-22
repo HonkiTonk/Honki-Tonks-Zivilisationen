@@ -100,19 +100,19 @@ package TextaccessVariablen is
    
    
    -- StadtInformationen
-   StadtInformationenAccess : constant TextaccessArray (1 .. 12) := (others => Sf.Graphics.Text.create);
+   StadtInformationenAccess : constant TextaccessArray (1 .. 9) := (others => Sf.Graphics.Text.create);
    -- StadtInformationen
    
    
    
    -- EinheitenInformationen
-   EinheitenInformationenAccess : constant TextaccessArray (1 .. 13) := (others => Sf.Graphics.Text.create);
+   EinheitenInformationenAccess : constant TextaccessArray (1 .. 11) := (others => Sf.Graphics.Text.create);
    -- EinheitenInformationen
    
       
    
    -- KarteWichtiges
-   KarteWichtigesAccess : constant TextaccessArray (1 .. 8) := (others => Sf.Graphics.Text.create);
+   KarteWichtigesAccess : constant TextaccessArray (1 .. 4) := (others => Sf.Graphics.Text.create);
    -- KarteWichtiges
    
    

@@ -45,6 +45,9 @@ package body StadtseitenleisteGrafik is
       ViewExtern : in Sf.Graphics.sfView_Ptr)
    is begin
       
+      Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
+                                                                        VerhältnisExtern => (AnzeigebereichExtern.width, AnzeigebereichExtern.height));
+      
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => ViewExtern,
                                             GrößeExtern          => Viewfläche,
                                             AnzeigebereichExtern => AnzeigebereichExtern);
@@ -90,20 +93,16 @@ package body StadtseitenleisteGrafik is
         or
           SpielVariablen.Debug.VolleInformation
       then
-         FestzulegenderText (2) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel) & LeseStadtGebaut.Nahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
-         FestzulegenderText (3) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugNahrungsproduktion) & " "
-           & ZahlAlsStringGesamtproduktionStadt (ZahlExtern => LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern));
-         FestzulegenderText (4) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugRessourcenproduktion) & " "
+         FestzulegenderText (2) := Nahrung (StadtRasseNummerExtern => StadtRasseNummerExtern);
+         FestzulegenderText (3) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugRessourcenproduktion) & " "
            & ZahlAlsStringGesamtproduktionStadt (ZahlExtern => LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern));
-         FestzulegenderText (5) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugGeldproduktion) & " " &
+         FestzulegenderText (4) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugGeldproduktion) & " " &
            ZahlAlsStringGesamtproduktionStadt (ZahlExtern => LeseStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern));
-         FestzulegenderText (6) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugWissensproduktion) & LeseStadtGebaut.Forschungsrate (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
-         FestzulegenderText (7) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugVerteidigung) & KampfwerteStadtErmittelnLogik.AktuelleVerteidigungStadt (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
-         FestzulegenderText (8) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugAngriff) & KampfwerteStadtErmittelnLogik.AktuellerAngriffStadt (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
-         FestzulegenderText (9) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugKorruption) & LeseStadtGebaut.Korruption (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
-         FestzulegenderText (10) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugVerfügbareArbeiter) & LeseStadtGebaut.Arbeitslose (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
-         FestzulegenderText (11) := AktuellesBauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern);
-         FestzulegenderText (12) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugVerbleibendeBauzeit) & LeseStadtGebaut.Bauzeit (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
+         FestzulegenderText (5) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugWissensproduktion) & LeseStadtGebaut.Forschungsrate (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
+         FestzulegenderText (6) := Kampfwerte (StadtRasseNummerExtern => StadtRasseNummerExtern);
+           FestzulegenderText (7) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugKorruption) & LeseStadtGebaut.Korruption (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
+         FestzulegenderText (8) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugVerfügbareArbeiter) & LeseStadtGebaut.Arbeitslose (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
+         FestzulegenderText (9) := AktuellesBauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern);
                                  
          VolleInformation := True;
 
@@ -176,11 +175,50 @@ package body StadtseitenleisteGrafik is
    
    
    
-   function AktuellesBauprojekt
+   function Nahrung
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return Unbounded_Wide_Wide_String
    is begin
       
+      Nahrungsproduktion := LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      
+      if
+        Nahrungsproduktion = 0
+      then
+         return Meldungstexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel) & LeseStadtGebaut.Nahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
+         
+      elsif
+        Nahrungsproduktion > 0
+      then
+         return Meldungstexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel) & LeseStadtGebaut.Nahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image & TextKonstanten.StandardAbstand
+         & "+" & ZahlAlsStringGesamtproduktionStadt (ZahlExtern => Nahrungsproduktion);
+         
+      else
+         return Meldungstexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel) & LeseStadtGebaut.Nahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image & TextKonstanten.StandardAbstand
+           & ZahlAlsStringGesamtproduktionStadt (ZahlExtern => Nahrungsproduktion);
+      end if;
+      
+   end Nahrung;
+   
+   
+   
+   function Kampfwerte
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+      return Unbounded_Wide_Wide_String
+   is begin
+            
+      return Meldungstexte.Zeug (TextnummernKonstanten.ZeugKampfwerte) & KampfwerteStadtErmittelnLogik.AktuellerAngriffStadt (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image
+        & " " & TextKonstanten.TrennzeichenUnterschiedlich & KampfwerteStadtErmittelnLogik.AktuelleVerteidigungStadt (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
+      
+   end Kampfwerte;
+   
+   
+   
+   function AktuellesBauprojekt
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+      return Unbounded_Wide_Wide_String
+   is begin
+            
       Bauprojekt := LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
       if
@@ -196,11 +234,21 @@ package body StadtseitenleisteGrafik is
                                                                                                           RasseExtern => StadtRasseNummerExtern.Rasse));
       
       else
-         Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugKeines);
+         return Meldungstexte.Zeug (TextnummernKonstanten.ZeugBauprojekt);
       end if;
       
-      return Meldungstexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & TextKonstanten.UmbruchAbstand & Text;
+      Bauzeit := LeseStadtGebaut.Bauzeit (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
+      case
+        Bauzeit
+      is
+         when ProduktionDatentypen.Produktion'Last =>
+            return Meldungstexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & TextKonstanten.UmbruchAbstand & Text;
+            
+         when others =>
+            return Meldungstexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & TextKonstanten.UmbruchAbstand & Text & TextKonstanten.UmbruchAbstand & Bauzeit'Wide_Wide_Image;
+      end case;
+            
    end AktuellesBauprojekt;
    
 end StadtseitenleisteGrafik;

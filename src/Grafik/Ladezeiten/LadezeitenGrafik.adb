@@ -42,16 +42,17 @@ package body LadezeitenGrafik is
       end case;
       
       AllgemeineViewsGrafik.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => Text),
-                                        HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum);
+                                          HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum);
       
-      Viewfläche := ViewsEinstellenGrafik.ViewflächeAuflösungAnpassen (ViewflächeExtern => Viewfläche);
+      Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
+                                                                        VerhältnisExtern => (GrafikRecordKonstanten.Ladebereich.width, GrafikRecordKonstanten.Ladebereich.height));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.LadeviewAccess,
-                                          GrößeExtern          => Viewfläche,
-                                          AnzeigebereichExtern => GrafikRecordKonstanten.Ladebereich);
+                                            GrößeExtern          => Viewfläche,
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Ladebereich);
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
-                                   AbmessungenExtern => Viewfläche);
+                                     AbmessungenExtern => Viewfläche);
             
       case
         WelcheLadeanzeigeExtern
@@ -96,9 +97,9 @@ package body LadezeitenGrafik is
                                             str  => To_Wide_Wide_String (Text));
                                                  
          Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
-                                                                               ViewbreiteExtern => ViewflächeExtern.x);
+                                                                                 ViewbreiteExtern => ViewflächeExtern.x);
          Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
-                                                                           TextbreiteExtern => Textbreite);
+                                                                             TextbreiteExtern => Textbreite);
          
          Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
                                        position => Textposition);
@@ -139,9 +140,9 @@ package body LadezeitenGrafik is
                                             str  => To_Wide_Wide_String (Source => Text));
          
          Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
-                                                                               ViewbreiteExtern => ViewflächeExtern.x);
+                                                                                 ViewbreiteExtern => ViewflächeExtern.x);
          Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
-                                                                           TextbreiteExtern => Textbreite);
+                                                                             TextbreiteExtern => Textbreite);
          
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                          TextAccessExtern => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
@@ -201,9 +202,9 @@ package body LadezeitenGrafik is
                                          str  => To_Wide_Wide_String (Source => ZahlAlsStringLadefortschritt (ZahlExtern => LadezeitenLogik.FortschrittSpeichernLaden)) & TextKonstanten.Trennzeichen & "100");
                                                  
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.SpeichernLadenAccess (1),
-                                                                            ViewbreiteExtern => ViewflächeExtern.x);
+                                                                              ViewbreiteExtern => ViewflächeExtern.x);
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.RundenendeAccess (1),
-                                                                        TextbreiteExtern => 0.00);
+                                                                          TextbreiteExtern => 0.00);
             
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.SpeichernLadenAccess (1),
                                     position => Textposition);

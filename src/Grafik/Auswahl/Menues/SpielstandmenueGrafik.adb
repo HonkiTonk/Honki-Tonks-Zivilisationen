@@ -32,7 +32,8 @@ package body SpielstandmenueGrafik is
      (AuswahlExtern : in Natural)
    is begin
       
-      Viewfläche := ViewsEinstellenGrafik.ViewflächeAuflösungAnpassen (ViewflächeExtern => Viewfläche);
+      Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
+                                                                        VerhältnisExtern => (GrafikRecordKonstanten.MenüEinfachbereich.width, GrafikRecordKonstanten.MenüEinfachbereich.height));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.MenüviewAccess,
                                             GrößeExtern          => Viewfläche,
@@ -138,7 +139,7 @@ package body SpielstandmenueGrafik is
          
       else
          return (TextExtern & TextKonstanten.LangerAbstand & Decode (Item => Local_Image (Date                  => Modification_Time (Name => (VerzeichnisKonstanten.SpielstandStrich & Encode (Item => TextExtern))),
-                                                                                          Include_Time_Fraction => True)));
+                                                                                          Include_Time_Fraction => False)));
       end if;
       
    end TextSetzen;

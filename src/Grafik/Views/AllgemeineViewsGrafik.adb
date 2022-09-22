@@ -23,7 +23,8 @@ package body AllgemeineViewsGrafik is
    is begin
       
       Viewfläche (Überschrift_Enum) := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (Überschrift_Enum),
-                                                                                            VerhältnisExtern => (1.00, 0.10));
+                                                                                            VerhältnisExtern => (GrafikRecordKonstanten.Überschriftbereich.width,
+                                                                                                                  GrafikRecordKonstanten.Überschriftbereich.height));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.ÜberschriftviewAccess,
                                             GrößeExtern          => Viewfläche (Überschrift_Enum),
@@ -84,7 +85,7 @@ package body AllgemeineViewsGrafik is
    is begin
       
       Viewfläche (Versionsnummer_Enum) := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (Versionsnummer_Enum),
-                                                                                              VerhältnisExtern => (0.05, 0.05));
+                                                                                              VerhältnisExtern => (GrafikRecordKonstanten.Versionsbereich.width, GrafikRecordKonstanten.Versionsbereich.height));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.VersionsnummerviewAccess,
                                             GrößeExtern          => Viewfläche (Versionsnummer_Enum),
@@ -122,7 +123,7 @@ package body AllgemeineViewsGrafik is
    is begin
       
       Viewfläche (Frage_Enum) := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (Frage_Enum),
-                                                                                     VerhältnisExtern => (0.50, 0.05));
+                                                                                     VerhältnisExtern => (GrafikRecordKonstanten.Fragenbereich.width, GrafikRecordKonstanten.Fragenbereich.height));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.FragenviewAccesse (1),
                                             GrößeExtern          => Viewfläche (Frage_Enum),

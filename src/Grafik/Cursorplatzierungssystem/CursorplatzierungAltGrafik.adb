@@ -69,15 +69,15 @@ package body CursorplatzierungAltGrafik is
             SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt.EAchse := SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAktuell.EAchse;
             
             Koordinatenänderung.EAchse := 0;
-            Koordinatenänderung.YAchse := AlteYAchseFestlegen (MausachseExtern => Mausposition.y,
-                                                                YAchseAlt       => SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt.YAchse);
+            Koordinatenänderung.YAchse := AlteYAchseFestlegen (MauspositionExtern => Mausposition,
+                                                               YAchseAltExtern    => SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt.YAchse);
             
             Koordinatenänderung.XAchse := AlteXAchseFestlegen (MausachseExtern => Mausposition.x,
-                                                                XAchseAlt       => SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt.XAchse);
+                                                               XAchseAltExtern => SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt.XAchse);
            
             Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt,
-                                                                                                 ÄnderungExtern    => Koordinatenänderung,
-                                                                                                 LogikGrafikExtern => False);
+                                                                                                      ÄnderungExtern    => Koordinatenänderung,
+                                                                                                      LogikGrafikExtern => False);
             
             if
               Kartenwert.EAchse = KartenKonstanten.LeerEAchse
@@ -96,46 +96,62 @@ package body CursorplatzierungAltGrafik is
    
    
    
+   -- Hierfür später mal eine bessere Lösung einbauen. äöü
    function BefehlsknöpfePrüfen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
+            
+      if
+        NachLogiktask.Mausposition.x < 0.00
+        or
+          NachLogiktask.Mausposition.y < 0.00
+      then
+         null;
+         
+      else
+         Viewfläche := Sf.Graphics.View.getSize (view => Views.KartenbefehlsviewAccess);
+         Viewzentrum := Sf.Graphics.View.getCenter (view => Views.KartenbefehlsviewAccess);
+         
+         Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
+                                                                    point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
+                                                                    view         => Views.KartenbefehlsviewAccess);
       
-      -- Hierfür später mal eine bessere Lösung einbauen. äöü
-      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
-                                                                 point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
-                                                                 view         => Views.KartenbefehlsviewAccess);
-            
-      case
-        Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                    TextboxExtern      => (Sf.Graphics.View.getCenter (view => Views.KartenbefehlsviewAccess).x - Sf.Graphics.View.getSize (view => Views.KartenbefehlsviewAccess).x / 2.00,
-                                                           Sf.Graphics.View.getCenter (view => Views.KartenbefehlsviewAccess).y - Sf.Graphics.View.getSize (view => Views.KartenbefehlsviewAccess).y / 2.00,
-                                                           Sf.Graphics.View.getSize (view => Views.KartenbefehlsviewAccess).x,
-                                                           Sf.Graphics.View.getSize (view => Views.KartenbefehlsviewAccess).y))
-      is
-         when True =>
-            return True;
+         case
+           Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
+                                       TextboxExtern      => (Viewzentrum.x - Viewfläche.x / 2.00, Viewzentrum.y - Viewfläche.y / 2.00, Viewfläche.x, Viewfläche.y))
+         is
+            when True =>
+               return True;
                
-         when False =>
-            null;
-      end case;
-            
+            when False =>
+               null;
+         end case;
+      end if;
+                        
       if
         EinheitRasseNummerExtern.Nummer = EinheitenKonstanten.LeerNummer
       then
          null;
-               
+         
+      elsif
+        NachLogiktask.Mausposition.x <= 0.00
+        or
+          NachLogiktask.Mausposition.y <= 0.00
+      then
+         null;
+         
       else
+         Viewfläche := Sf.Graphics.View.getSize (view => Views.EinheitenbefehlsviewAccess);
+         Viewzentrum := Sf.Graphics.View.getCenter (view => Views.EinheitenbefehlsviewAccess);
+         
          Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
                                                                     point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
                                                                     view         => Views.EinheitenbefehlsviewAccess);
             
          case
            Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                       TextboxExtern      => (Sf.Graphics.View.getCenter (view => Views.EinheitenbefehlsviewAccess).x - Sf.Graphics.View.getSize (view => Views.EinheitenbefehlsviewAccess).x / 2.00,
-                                                              Sf.Graphics.View.getCenter (view => Views.EinheitenbefehlsviewAccess).y - Sf.Graphics.View.getSize (view => Views.EinheitenbefehlsviewAccess).y / 2.00,
-                                                              Sf.Graphics.View.getSize (view => Views.EinheitenbefehlsviewAccess).x,
-                                                              Sf.Graphics.View.getSize (view => Views.EinheitenbefehlsviewAccess).y))
+                                       TextboxExtern      => (Viewzentrum.x - Viewfläche.x / 2.00, Viewzentrum.y - Viewfläche.y / 2.00, Viewfläche.x, Viewfläche.y))
          is
             when True =>
                return True;
@@ -151,21 +167,24 @@ package body CursorplatzierungAltGrafik is
    
    
    
-   -- Eventuell später noch erweitern damit auch bei anderen Einstellungen die Verschiebung korrekter ist. äöü
-   -- Gilt auch für die Anpassung in BewegungCursor. äöü
    function AlteYAchseFestlegen
-     (MausachseExtern : in Float;
-      YAchseAlt : in KartenDatentypen.KartenfeldPositiv)
+     (MauspositionExtern : in Sf.System.Vector2.sfVector2f;
+      YAchseAltExtern : in KartenDatentypen.KartenfeldPositiv)
       return KartenDatentypen.UmgebungsbereichEins
    is begin
-         
-      -- 0.001 sind dafür da, damit man beim Verlassen des Fensters nicht mehr weiterscrollt.
-      -- Dafür später eine bessere Lösung finden? äöü
+      
+      Achsenviewfläche := Sf.Graphics.View.getSize (view => Views.KartenviewAccess);
+      
       if
-        MausachseExtern in 0.001 .. KartenberechnungenGrafik.KartenfelderAbmessung.y / 2.00
+        MauspositionExtern.x not in 0.00 .. Achsenviewfläche.x
+      then
+         return 0;
+      
+      elsif
+        MauspositionExtern.y in 0.00 .. KartenberechnungenGrafik.KartenfelderAbmessung.y / 2.00
       then
          if
-           YAchseAlt <= Weltkarte.KarteArray'First (2) + Sichtweiten.SichtweiteLesen (YXExtern => True)
+           YAchseAltExtern <= Weltkarte.KarteArray'First (2) + Sichtweiten.SichtweiteLesen (YXExtern => True)
            and
              Weltkarte.Karteneinstellungen.Kartenform.YAchseNorden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
          then
@@ -176,10 +195,10 @@ package body CursorplatzierungAltGrafik is
          end if;
          
       elsif
-        MausachseExtern in Sf.Graphics.View.getSize (view => Views.KartenviewAccess).y - KartenberechnungenGrafik.KartenfelderAbmessung.y / 2.00 .. Sf.Graphics.View.getSize (view => Views.KartenviewAccess).y - 0.001
+        MauspositionExtern.y in Achsenviewfläche.y - KartenberechnungenGrafik.KartenfelderAbmessung.y / 2.00 .. Achsenviewfläche.y
       then
          if
-           YAchseAlt >= Weltkarte.Karteneinstellungen.Kartengröße.YAchse - Sichtweiten.SichtweiteLesen (YXExtern => True)
+           YAchseAltExtern >= Weltkarte.Karteneinstellungen.Kartengröße.YAchse - Sichtweiten.SichtweiteLesen (YXExtern => True)
            and
              Weltkarte.Karteneinstellungen.Kartenform.YAchseSüden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
          then
@@ -199,17 +218,17 @@ package body CursorplatzierungAltGrafik is
    
    function AlteXAchseFestlegen
      (MausachseExtern : in Float;
-      XAchseAlt : in KartenDatentypen.KartenfeldPositiv)
+      XAchseAltExtern : in KartenDatentypen.KartenfeldPositiv)
       return KartenDatentypen.UmgebungsbereichEins
    is begin
       
-      -- 0.001 sind dafür da, damit man beim Verlassen des Fensters nicht mehr weiterscrollt.
-      -- Dafür später eine bessere Lösung finden? äöü
+      XAchsenbereich := Sf.Graphics.View.getSize (view => Views.KartenviewAccess).x;
+      
       if
-        MausachseExtern in 0.001 .. KartenberechnungenGrafik.KartenfelderAbmessung.x / 2.00
+        MausachseExtern in 0.00 .. KartenberechnungenGrafik.KartenfelderAbmessung.x / 2.00
       then
          if
-           XAchseAlt <= Weltkarte.KarteArray'First (3) + Sichtweiten.SichtweiteLesen (YXExtern => False)
+           XAchseAltExtern <= Weltkarte.KarteArray'First (3) + Sichtweiten.SichtweiteLesen (YXExtern => False)
            and
              Weltkarte.Karteneinstellungen.Kartenform.XAchseWesten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
          then
@@ -220,10 +239,10 @@ package body CursorplatzierungAltGrafik is
          end if;
          
       elsif
-        MausachseExtern in Sf.Graphics.View.getSize (view => Views.KartenviewAccess).x - KartenberechnungenGrafik.KartenfelderAbmessung.x / 2.00 .. Sf.Graphics.View.getSize (view => Views.KartenviewAccess).x
+        MausachseExtern in XAchsenbereich - KartenberechnungenGrafik.KartenfelderAbmessung.x / 2.00 .. XAchsenbereich
       then
          if
-           XAchseAlt >= Weltkarte.Karteneinstellungen.Kartengröße.XAchse - Sichtweiten.SichtweiteLesen (YXExtern => False)
+           XAchseAltExtern >= Weltkarte.Karteneinstellungen.Kartengröße.XAchse - Sichtweiten.SichtweiteLesen (YXExtern => False)
            and
              Weltkarte.Karteneinstellungen.Kartenform.XAchseOsten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
          then

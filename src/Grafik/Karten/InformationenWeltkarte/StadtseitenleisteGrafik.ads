@@ -57,6 +57,10 @@ private
    VolleInformation : Boolean;
    MausInformationen : Boolean;
    
+   Nahrungsproduktion : ProduktionDatentypen.Stadtproduktion;
+   
+   Bauzeit : ProduktionDatentypen.Produktion;
+   
    Textbreite : Float;
    Textskalierung : Float;
          
@@ -81,6 +85,34 @@ private
               );
    
    
+   
+   function Nahrung
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+      return Unbounded_Wide_Wide_String
+     with
+       Pre => (
+                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+               and
+                 SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+              ),
+         
+       Post => (
+                  To_Wide_Wide_String (Source => Nahrung'Result)'Length > 0 
+               );
+   
+   function Kampfwerte
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+      return Unbounded_Wide_Wide_String
+     with
+       Pre => (
+                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+               and
+                 SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+              ),
+         
+       Post => (
+                  To_Wide_Wide_String (Source => Kampfwerte'Result)'Length > 0 
+               );
 
    function AktuellesBauprojekt
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
@@ -90,7 +122,11 @@ private
                  StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
                and
                  SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
-              );
+              ),
+         
+       Post => (
+                  To_Wide_Wide_String (Source => AktuellesBauprojekt'Result)'Length > 0 
+               );
       
    function ZahlAlsStringGesamtproduktionStadt is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => ProduktionDatentypen.Stadtproduktion);
 

@@ -42,11 +42,10 @@ package Vergleiche is
       return Boolean
      with
        Pre => (
-                 -- Später wieder einbindbar? äöü
-              --   TextboxExtern.left >= 0.00
-             --  and
-              --   TextboxExtern.top >= 0.00
-             --  and
+                 TextboxExtern.left >= 0.00
+               and
+                 TextboxExtern.top >= 0.00
+               and
                  TextboxExtern.width >= 0.00
                and
                  TextboxExtern.height >= 0.00

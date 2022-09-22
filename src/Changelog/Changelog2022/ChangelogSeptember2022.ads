@@ -42,24 +42,35 @@ package ChangelogSeptember2022 is
    
    
 
-   -- Version 0.03. => 0.0. (24.09.2022):
+   -- Version 0.04. => 0.0. (24.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03. => 0.03. (23.09.2022):
+   -- Version 0.04.0000 => 0.04. (23.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.03.9850 => 0.03. (22.09.2022):
+   -- Version 0.03.9850 => 0.04.0000 (22.09.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Debian GNAT 12.2.0-2 auf Debian GNAT 12.2.0-3 aktualisiert.
+   -- Aufbau des Forschungsmenüs angepasst.
+   -- Fehler in der Ermittlung der Sichtbarkeit korrigiert, welcher verhinderte dass die Unterflächenrassen die Karten aufgedeckt bekamen.
+   -- Diverse Berechnungen mit zusätzlichen Prüfungen versehen, um Fehlberechnungen und Programmstopps zu verhindern.
+   -- Bestimmung der Mausposition und dem Vergleichen mit Viewbereichen überarbeitet.
+   -- Probleme die bei sehr niedrigen Fensterauflösungen autraten behoben.
+   -- Aufbau diverser Menüs leicht überarbeitet.
+   -- Textskalierung verbessert.
+   -- Sollte man das Fenster verlassen, auf die Befehlsknöpfe oder die Seitenleiste mit der Maus gehen wird jetzt die Karten nicht mehr gescrollt.
+   -- Seitenleisteninformationen kürzer und übersichtlicher gestaltet.
+   -- Einige Fehler die Aufgrund der letzten Änderungen entstanden korrigiert.
+   -- Neue Beispielbilder erstellt.
+   -- Contarcts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    
 

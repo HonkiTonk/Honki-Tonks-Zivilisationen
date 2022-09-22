@@ -55,7 +55,7 @@ package body Vergleiche is
       TextboxExtern : in Sf.Graphics.Rect.sfFloatRect)
       return Boolean
    is begin
-      
+            
       if
         MauspositionExtern.x in TextboxExtern.left .. TextboxExtern.left + TextboxExtern.width
         and

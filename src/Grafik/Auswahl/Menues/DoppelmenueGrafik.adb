@@ -31,7 +31,8 @@ package body DoppelmenueGrafik is
    is begin
       
       Viewfläche (Auswahlbereich) := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (Auswahlbereich),
-                                                                                         VerhältnisExtern => (0.25, 1.00));
+                                                                                         VerhältnisExtern => (GrafikRecordKonstanten.MenüDoppelbereich (Auswahlbereich).width,
+                                                                                                               GrafikRecordKonstanten.MenüDoppelbereich (Auswahlbereich).height));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.MenüviewAccess,
                                             GrößeExtern          => Viewfläche (Auswahlbereich),
@@ -59,7 +60,8 @@ package body DoppelmenueGrafik is
 
       
       Viewfläche (Zusatzbereich) := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (Zusatzbereich),
-                                                                                        VerhältnisExtern => (1.00, 1.00));
+                                                                                        VerhältnisExtern => (GrafikRecordKonstanten.MenüDoppelbereich (Zusatzbereich).width,
+                                                                                                              GrafikRecordKonstanten.MenüDoppelbereich (Zusatzbereich).height));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.ZusatztextviewAccess,
                                             GrößeExtern          => Viewfläche (Zusatzbereich),
@@ -113,14 +115,14 @@ package body DoppelmenueGrafik is
          
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                          TextAccessExtern => TextaccessVariablen.MenüsSFMLAccess (WelchesMenüExtern, PositionSchleifenwert),
-                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
+                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
          
          Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
                                             text         => TextaccessVariablen.MenüsSFMLAccess (WelchesMenüExtern, PositionSchleifenwert));
          
       end loop PositionenSchleife;
 
-      return (Textbreite, Textposition.y);
+      return (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
 
    end TextpositionFestlegen;
    

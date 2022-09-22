@@ -13,8 +13,11 @@ package GrafikRecordKonstanten is
    
    
    Leerbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.00, 0.00, 0.00, 0.00);
+   Gesamtbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.00, 0.00, 1.00, 1.00);
    
-   Sprachenbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.00, 0.00, 1.00, 1.00);
+   Sprachenbereich : constant Sf.Graphics.Rect.sfFloatRect := Gesamtbereich;
+   Forschungserfolgbereich : constant Sf.Graphics.Rect.sfFloatRect := Gesamtbereich;
+   Abspannbereich : constant Sf.Graphics.Rect.sfFloatRect := Gesamtbereich;
    
    KarteAnzeigebereich : constant Sf.Graphics.Rect.sfFloatRect := (0.00, 0.00, 0.80, 1.00);
    Kartenbefehlsbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.60, 0.80, 0.20, 0.20);
@@ -29,14 +32,10 @@ package GrafikRecordKonstanten is
    Eingabebereich : constant Sf.Graphics.Rect.sfFloatRect := (Fragenbereich.left, Fragenbereich.top + Fragenbereich.height, Fragenbereich.width, Fragenbereich.height);
    JaNeinBereich : constant Sf.Graphics.Rect.sfFloatRect := (Fragenbereich.left, Fragenbereich.top + Fragenbereich.height, Fragenbereich.width, 2.00 * Fragenbereich.height);
    Meldungsbereich : constant Sf.Graphics.Rect.sfFloatRect := Fragenbereich;
-         
-   Forschungserfolgbereich : constant Sf.Graphics.Rect.sfFloatRect := Sprachenbereich;
-   
-   Abspannbereich : constant Sf.Graphics.Rect.sfFloatRect := Sprachenbereich;
    
    Stadtauswahlbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.25, 0.45, 0.50, 0.10);
    Einheitauswahlbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.25, 0.35, 0.50, 0.30);
-      
+   
    type BereicheArray is array (Positive range <>) of Sf.Graphics.Rect.sfFloatRect;
    
    MenüDoppelbereich : constant BereicheArray (1 .. 2) := (
@@ -57,9 +56,9 @@ package GrafikRecordKonstanten is
                                                                                                         );
    
    Forschungsbereich : constant BereicheArray (Views.ForschungsviewAccesse'Range) := (
-                                                                                      1 => (0.00, 0.10, 0.50, 0.80),
+                                                                                      1 => (0.00, 0.10, 0.50, 0.40),
                                                                                       2 => (0.50, 0.10, 0.50, 0.40),
-                                                                                      3 => (0.50, 0.50, 0.50, 0.40),
+                                                                                      3 => (0.00, 0.50, 1.00, 0.40),
                                                                                       4 => (0.00, 0.90, 1.00, 0.10)
                                                                                      );
    

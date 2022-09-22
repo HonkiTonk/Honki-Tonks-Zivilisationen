@@ -21,7 +21,7 @@ package body StadtbefehleGrafik is
    is begin
       
       Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
-                                                                        VerhältnisExtern => (0.10, 0.10));
+                                                                        VerhältnisExtern => (GrafikRecordKonstanten.Stadtbereich (3).width, GrafikRecordKonstanten.Stadtbereich (3).height));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.StadtviewAccesse (3),
                                             GrößeExtern          => Viewfläche,

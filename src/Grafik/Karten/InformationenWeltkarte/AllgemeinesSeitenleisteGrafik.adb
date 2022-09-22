@@ -30,6 +30,10 @@ package body AllgemeinesSeitenleisteGrafik is
      (ViewbereichExtern : in Positive)
    is begin
       
+      Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
+                                                                        VerhältnisExtern => (GrafikRecordKonstanten.SeitenleisteWeltkartenbereich (ViewbereichExtern).width,
+                                                                                              GrafikRecordKonstanten.SeitenleisteWeltkartenbereich (ViewbereichExtern).height));
+      
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.SeitenleisteWeltkarteAccesse (ViewbereichExtern),
                                             GrößeExtern          => Viewfläche,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.SeitenleisteWeltkartenbereich (ViewbereichExtern));
@@ -44,10 +48,7 @@ package body AllgemeinesSeitenleisteGrafik is
    procedure AllgemeineInformationen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
-      
-      Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
-                                                                        VerhältnisExtern => (0.15, 0.05));
-      
+            
       Leer (ViewbereichExtern => 2);
       
       Textbreite := 0.00;
@@ -171,7 +172,7 @@ package body AllgemeinesSeitenleisteGrafik is
          
       end loop TextSchleife;
             
-      Viewfläche := (Textbreite, Textposition.y);
+      Viewfläche := (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
 
    end AllgemeineInformationen;
 

@@ -17,7 +17,6 @@ package Kartentexte is
    Kartenflüsse : TexteArray (1 .. NameBeschreibungMultiplikator * FlussartenMultiplikator * 16) := (others => TextKonstanten.FehlenderText);
    Kartenressourcen : TexteArray (1 .. NameBeschreibungMultiplikator * 7) := (others => TextKonstanten.FehlenderText);
    
-   -- Hier auch zweimal Enumlänge? äöü
    Verbesserungen : TexteArray (1 .. NameBeschreibungMultiplikator * 5) := (others => TextKonstanten.FehlenderText);
    Wege : TexteArray (1 .. NameBeschreibungMultiplikator * WegartenMultiplikator * 16) := (others => TextKonstanten.FehlenderText);
 

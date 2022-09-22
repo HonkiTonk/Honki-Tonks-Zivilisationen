@@ -52,7 +52,8 @@ package body VerkaufsauswahlGrafik is
    is begin
       
       Viewfläche (ViewnummerExtern) := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
-                                                                                           VerhältnisExtern => (1.00, 1.00));
+                                                                                           VerhältnisExtern => (GrafikRecordKonstanten.Verkausmenübereich (ViewnummerExtern).width,
+                                                                                                                 GrafikRecordKonstanten.Verkausmenübereich (ViewnummerExtern).height));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.VerkaufsviewAccesse (ViewnummerExtern),
                                             GrößeExtern          => Viewfläche (ViewnummerExtern),
@@ -112,7 +113,8 @@ package body VerkaufsauswahlGrafik is
    is begin
       
       Viewfläche (ViewnummerExtern) := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
-                                                                                           VerhältnisExtern => (1.00, 1.00));
+                                                                                           VerhältnisExtern => (GrafikRecordKonstanten.Verkausmenübereich (ViewnummerExtern).width,
+                                                                                                                 GrafikRecordKonstanten.Verkausmenübereich (ViewnummerExtern).height));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.VerkaufsviewAccesse (ViewnummerExtern),
                                             GrößeExtern          => Viewfläche (ViewnummerExtern),

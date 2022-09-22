@@ -5,11 +5,13 @@ with Sf.Graphics.RenderWindow;
 with Sf.Graphics;
 with Sf.Graphics.Text;
 
+with ProduktionDatentypen; use ProduktionDatentypen;
 with Meldungstexte;
 with TextnummernKonstanten;
 with Views;
 with GrafikDatentypen;
 with TextKonstanten;
+with ForschungKonstanten;
 
 with LeseWichtiges;
 
@@ -29,7 +31,8 @@ package body WichtigesSeitenleisteGrafik is
    is begin
       
       Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
-                                                                        VerhältnisExtern => (0.15, 0.05));
+                                                                        VerhältnisExtern => (GrafikRecordKonstanten.SeitenleisteWeltkartenbereich (ViewbereichExtern).width,
+                                                                                              GrafikRecordKonstanten.SeitenleisteWeltkartenbereich (ViewbereichExtern).height));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.SeitenleisteWeltkarteAccesse (ViewbereichExtern),
                                             GrößeExtern          => Viewfläche,
@@ -47,14 +50,8 @@ package body WichtigesSeitenleisteGrafik is
       
       FestzulegenderText (2) := Rundenanzahl (RasseExtern => RasseExtern);
       
-      FestzulegenderText (3) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuelleGeldmenge) & LeseWichtiges.Geldmenge (RasseExtern => RasseExtern)'Wide_Wide_Image;
-      FestzulegenderText (4) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuellerGeldzuwachs) & " " & ZahlAlsStringKostenLager (ZahlExtern => LeseWichtiges.GeldZugewinnProRunde (RasseExtern => RasseExtern));
-      FestzulegenderText (5) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt) & " "
-        & ForschungsbeschreibungenGrafik.BeschreibungKurz (IDExtern    => LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern),
-                                                           RasseExtern => RasseExtern);
-      FestzulegenderText (6) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugVerbleibendeForschungszeit) & LeseWichtiges.VerbleibendeForschungszeit (RasseExtern => RasseExtern)'Wide_Wide_Image;
-      FestzulegenderText (7) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuelleForschungsmenge) & LeseWichtiges.Forschungsmenge (RasseExtern => RasseExtern)'Wide_Wide_Image;
-      FestzulegenderText (8) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuellerForschungsgewinn) & LeseWichtiges.GesamteForschungsrate (RasseExtern => RasseExtern)'Wide_Wide_Image;
+      FestzulegenderText (3) := Geld (RasseExtern => RasseExtern); 
+      FestzulegenderText (4) := Forschung (RasseExtern => RasseExtern);
             
       TextSchleife:
       for TextSchleifenwert in TextaccessVariablen.KarteWichtigesAccess'Range loop
@@ -64,6 +61,9 @@ package body WichtigesSeitenleisteGrafik is
          
          Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteWichtigesAccess (TextSchleifenwert),
                                        position => Textposition);
+         
+         Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
+                                            text         => TextaccessVariablen.KarteWichtigesAccess (TextSchleifenwert));
                   
          Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.KarteWichtigesAccess (TextSchleifenwert),
                                                                              TextbreiteExtern => Textbreite);
@@ -71,12 +71,9 @@ package body WichtigesSeitenleisteGrafik is
                                                                          TextAccessExtern => TextaccessVariablen.KarteWichtigesAccess (TextSchleifenwert),
                                                                          ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
          
-         Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                            text         => TextaccessVariablen.KarteWichtigesAccess (TextSchleifenwert));
-         
       end loop TextSchleife;
       
-      Viewfläche := (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+      Viewfläche := (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
             
    end WichtigesInformationen;
    
@@ -86,7 +83,7 @@ package body WichtigesSeitenleisteGrafik is
    -- Vermutlich weil sie meistens nur gelesen und nur am Rundenende oder beim Standard setzen aufgerufen wird? äöü
    function Rundenanzahl
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-     return Unbounded_Wide_Wide_String
+      return Unbounded_Wide_Wide_String
    is begin
                   
       case
@@ -112,5 +109,74 @@ package body WichtigesSeitenleisteGrafik is
       end case;
       
    end Rundenanzahl;
+   
+   
+   
+   function Geld
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      return Unbounded_Wide_Wide_String
+   is begin
+      
+      case
+        RasseExtern
+      is
+         when RassenDatentypen.Ekropa_Enum =>
+            return TextKonstanten.LeerUnboundedString;
+            
+         when others =>
+            Geldzuwachs := LeseWichtiges.GeldZugewinnProRunde (RasseExtern => RasseExtern);
+      end case;
+      
+      if
+        Geldzuwachs = 0
+      then
+         return Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuelleGeldmenge) & LeseWichtiges.Geldmenge (RasseExtern => RasseExtern)'Wide_Wide_Image;
+           
+      elsif
+        Geldzuwachs > 0
+      then
+         return Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuelleGeldmenge) & LeseWichtiges.Geldmenge (RasseExtern => RasseExtern)'Wide_Wide_Image & TextKonstanten.StandardAbstand & "+"
+           & ZahlAlsStringKostenLager (ZahlExtern => LeseWichtiges.GeldZugewinnProRunde (RasseExtern => RasseExtern));
+         
+      else
+         return Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuelleGeldmenge) & LeseWichtiges.Geldmenge (RasseExtern => RasseExtern)'Wide_Wide_Image & TextKonstanten.StandardAbstand
+           & ZahlAlsStringKostenLager (ZahlExtern => LeseWichtiges.GeldZugewinnProRunde (RasseExtern => RasseExtern));
+      end if;
+      
+   end Geld;
+   
+   
+   
+   function Forschung
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      return Unbounded_Wide_Wide_String
+   is begin
+      
+      Forschungsprojekt := LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern);
+      
+      case
+        Forschungsprojekt
+      is
+         when ForschungKonstanten.LeerForschung =>
+            return Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt);
+            
+         when others =>
+            Forschungszeit := LeseWichtiges.VerbleibendeForschungszeit (RasseExtern => RasseExtern);
+      end case;
+      
+      case
+        Forschungszeit
+      is
+         when ProduktionDatentypen.Lagermenge'Last =>
+            return Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt) & TextKonstanten.UmbruchAbstand & ForschungsbeschreibungenGrafik.BeschreibungKurz (IDExtern    => Forschungsprojekt,
+                                                                                                                                                                                RasseExtern => RasseExtern);
+            
+         when others =>
+            return Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt) & TextKonstanten.UmbruchAbstand & ForschungsbeschreibungenGrafik.BeschreibungKurz (IDExtern    => Forschungsprojekt,
+                                                                                                                                                                                RasseExtern => RasseExtern)
+              & TextKonstanten.UmbruchAbstand & Forschungszeit'Wide_Wide_Image;
+      end case;
+            
+   end Forschung;
 
 end WichtigesSeitenleisteGrafik;

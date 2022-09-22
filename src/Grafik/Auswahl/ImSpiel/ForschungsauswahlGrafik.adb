@@ -47,12 +47,12 @@ package body ForschungsauswahlGrafik is
       Auswahlmöglichkeiten (AuswahlExtern    => AktuelleAuswahl,
                              ViewnummerExtern => 1,
                              RasseExtern      => RasseExtern);
-      Beschreibung (ZusatztextExtern => AktuelleAuswahl,
-                    ViewnummerExtern => 2,
-                    RasseExtern      => RasseExtern);
       Ermöglicht (ZusatztextExtern => AktuelleAuswahl,
                    RasseExtern      => RasseExtern,
-                   ViewnummerExtern => 3);
+                   ViewnummerExtern => 2);
+      Beschreibung (ZusatztextExtern => AktuelleAuswahl,
+                    ViewnummerExtern => 3,
+                    RasseExtern      => RasseExtern);
       Aktuell (RasseExtern      => RasseExtern,
                ViewnummerExtern => 4);
       
@@ -67,7 +67,8 @@ package body ForschungsauswahlGrafik is
    is begin
       
       Viewfläche (ViewnummerExtern) := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
-                                                                                           VerhältnisExtern => (0.50, 1.00));
+                                                                                           VerhältnisExtern => (GrafikRecordKonstanten.Forschungsbereich (ViewnummerExtern).width,
+                                                                                                                 GrafikRecordKonstanten.Forschungsbereich (ViewnummerExtern).height));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.ForschungsviewAccesse (ViewnummerExtern),
                                             GrößeExtern          => Viewfläche (ViewnummerExtern),
@@ -112,57 +113,9 @@ package body ForschungsauswahlGrafik is
          
       end loop AnzeigeSchleife;
       
-      Viewfläche (ViewnummerExtern) := (AktuelleTextbreite, Textposition.y);
+      Viewfläche (ViewnummerExtern) := (AktuelleTextbreite, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       
    end Auswahlmöglichkeiten;
-   
-   
-   
-   procedure Beschreibung
-     (ZusatztextExtern : in ForschungenDatentypen.ForschungIDMitNullWert;
-      ViewnummerExtern : in Positive;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-   is begin
-      
-      Viewfläche (ViewnummerExtern) := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
-                                                                                           VerhältnisExtern => (0.50, 0.50));
-      
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.ForschungsviewAccesse (ViewnummerExtern),
-                                            GrößeExtern          => Viewfläche (ViewnummerExtern),
-                                            AnzeigebereichExtern => GrafikRecordKonstanten.Forschungsbereich (ViewnummerExtern));
-      
-      HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Forschung_Hintergrund_Enum,
-                                     AbmessungenExtern => Viewfläche (ViewnummerExtern));
-      
-      case
-        ZusatztextExtern
-      is
-         when ForschungKonstanten.LeerForschung =>
-            null;
-            
-         when others =>
-            Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
-            Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
-            
-            Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüZusatztextAccess (RasseExtern, ZusatztextExtern),
-                                          position => Textposition);
-      
-            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüZusatztextAccess (RasseExtern, ZusatztextExtern),
-                                               str  => ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung (TextExtern           => ForschungsbeschreibungenGrafik.BeschreibungLang (IDExtern    => ZusatztextExtern,
-                                                                                                                                                                                       RasseExtern => RasseExtern),
-                                                                                                              TextfeldbreiteExtern => Viewfläche (ViewnummerExtern).x / 2.00 - Textposition.x));
-      
-            Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                               text         => TextaccessVariablen.ForschungsmenüZusatztextAccess (RasseExtern, ZusatztextExtern));
-      
-            Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                            TextAccessExtern => TextaccessVariablen.ForschungsmenüZusatztextAccess (RasseExtern, ZusatztextExtern),
-                                                                            ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
-      
-            Viewfläche (ViewnummerExtern) := Textposition;
-      end case;
-              
-   end Beschreibung;
    
    
    
@@ -172,9 +125,9 @@ package body ForschungsauswahlGrafik is
       ViewnummerExtern : in Positive)
    is begin
       
-      -- Sieht auch ohne Anpassung ganz gut aus?
       Viewfläche (ViewnummerExtern) := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
-                                                                                           VerhältnisExtern => (0.50, 0.50));
+                                                                                           VerhältnisExtern => (GrafikRecordKonstanten.Forschungsbereich (ViewnummerExtern).width,
+                                                                                                                 GrafikRecordKonstanten.Forschungsbereich (ViewnummerExtern).height));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.ForschungsviewAccesse (ViewnummerExtern),
                                             GrößeExtern          => Viewfläche (ViewnummerExtern),
@@ -244,7 +197,7 @@ package body ForschungsauswahlGrafik is
          end loop TechnologienSchleife;
       end loop ErmöglichtSchleife;
       
-      Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
+      Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
          
       EinheitenSchleife:
       for EinheitenSchleifenwert in EinheitenDatentypen.EinheitenID'Range loop
@@ -274,7 +227,7 @@ package body ForschungsauswahlGrafik is
                
       end loop EinheitenSchleife;
          
-      Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
+      Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
          
       GebäudeSchleife:
       for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
@@ -306,9 +259,60 @@ package body ForschungsauswahlGrafik is
          
       Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
-      Viewfläche (ViewnummerExtern) := (AktuelleTextbreite, Textposition.y);
+      Viewfläche (ViewnummerExtern) := (AktuelleTextbreite, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       
    end Ermöglicht;
+   
+   
+   
+   procedure Beschreibung
+     (ZusatztextExtern : in ForschungenDatentypen.ForschungIDMitNullWert;
+      ViewnummerExtern : in Positive;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+   is begin
+      
+      Viewfläche (ViewnummerExtern) := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
+                                                                                           VerhältnisExtern => (GrafikRecordKonstanten.Forschungsbereich (ViewnummerExtern).width,
+                                                                                                                 GrafikRecordKonstanten.Forschungsbereich (ViewnummerExtern).height));
+      
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.ForschungsviewAccesse (ViewnummerExtern),
+                                            GrößeExtern          => Viewfläche (ViewnummerExtern),
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Forschungsbereich (ViewnummerExtern));
+      
+      HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Forschung_Hintergrund_Enum,
+                                     AbmessungenExtern => Viewfläche (ViewnummerExtern));
+      
+      case
+        ZusatztextExtern
+      is
+         when ForschungKonstanten.LeerForschung =>
+            null;
+            
+         when others =>
+            Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
+            Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
+            
+            Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüZusatztextAccess (RasseExtern, ZusatztextExtern),
+                                          position => Textposition);
+      
+            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüZusatztextAccess (RasseExtern, ZusatztextExtern),
+                                               str  => ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung (TextExtern           => ForschungsbeschreibungenGrafik.BeschreibungLang (IDExtern    => ZusatztextExtern,
+                                                                                                                                                                                       RasseExtern => RasseExtern),
+                                                                                                              TextfeldbreiteExtern => Viewfläche (ViewnummerExtern).x / 2.00 - Textposition.x));
+      
+            Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
+                                               text         => TextaccessVariablen.ForschungsmenüZusatztextAccess (RasseExtern, ZusatztextExtern));
+      
+            Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                            TextAccessExtern => TextaccessVariablen.ForschungsmenüZusatztextAccess (RasseExtern, ZusatztextExtern),
+                                                                            ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+            
+            Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
+      
+            Viewfläche (ViewnummerExtern) := Textposition;
+      end case;
+              
+   end Beschreibung;
    
    
    
@@ -317,9 +321,9 @@ package body ForschungsauswahlGrafik is
       ViewnummerExtern : in Positive)
    is begin
       
-      -- Sieht auch ohne Anpassung ganz gut aus.
-      -- Viewfläche (ViewnummerExtern) := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
-      --                                                                     VerhältnisExtern => (0.10, 0.10));
+      Viewfläche (ViewnummerExtern) := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
+                                                                                           VerhältnisExtern => (GrafikRecordKonstanten.Forschungsbereich (ViewnummerExtern).width,
+                                                                                                                 GrafikRecordKonstanten.Forschungsbereich (ViewnummerExtern).height));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.ForschungsviewAccesse (ViewnummerExtern),
                                             GrößeExtern          => Viewfläche (ViewnummerExtern),
@@ -382,7 +386,7 @@ package body ForschungsauswahlGrafik is
                                                                       TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                                                       ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
             
-      Viewfläche (ViewnummerExtern) := (AktuelleTextbreite, Textposition.y);
+      Viewfläche (ViewnummerExtern) := (AktuelleTextbreite, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       
    end Aktuell;
 

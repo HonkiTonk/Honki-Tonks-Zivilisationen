@@ -15,6 +15,7 @@ private with KampfDatentypen;
 private with TextaccessVariablen;
 private with StadtDatentypen;
 private with GrafikRecordKonstanten;
+private with AufgabenDatentypen;
 
 private with UmwandlungenAdaNachEigenes;
 
@@ -42,6 +43,8 @@ private
    VolleInformation : Boolean;
    Beladen : Boolean;
    
+   Beschäftigung : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
+   
    IDEinheit : EinheitenDatentypen.EinheitenIDMitNullWert;
    
    Stadtnummer : StadtDatentypen.MaximaleStädteMitNullWert;
@@ -61,6 +64,29 @@ private
    FestzulegenderText : FestzulegenderTextArray;
    
    
+   
+   function Aufgabe
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return Unbounded_Wide_Wide_String
+     with
+       Pre => (
+                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+               and
+                 SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+              );
+   
+   function Kampfwerte
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitenDatentypen.EinheitenID)
+      return Unbounded_Wide_Wide_String
+     with
+       Pre => (
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+              ),
+         
+       Post => (
+                  To_Wide_Wide_String (Source => Kampfwerte'Result)'Length > 0 
+               );
    
    function Heimatstadt
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

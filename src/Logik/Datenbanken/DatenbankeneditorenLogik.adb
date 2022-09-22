@@ -22,6 +22,10 @@ package body DatenbankeneditorenLogik is
          
          AuswahlWert := AuswahlaufteilungLogik.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Editoren_Menü_Enum);
          
+         -- Karten- und Verbesserungeneditor in die entsprechenden Bereiche aufteilen und dann einfach mehr Editoren einbauen? äöü
+         -- Wäre mehr Arbeit aber vielleicht auch einfacher? äöü
+         -- Oder einfach die Felder anzeigen und auswählbar machen? äöü
+         -- Und je nach Auswahl dann die entsprechenden Einstellungen aufrufen? äöü
          case
            AuswahlWert
          is

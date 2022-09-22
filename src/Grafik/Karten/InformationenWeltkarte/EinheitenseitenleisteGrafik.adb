@@ -32,6 +32,10 @@ package body EinheitenseitenleisteGrafik is
      (AnzeigebereichExtern : in Positive)
    is begin
       
+      Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
+                                                                        VerhältnisExtern => (GrafikRecordKonstanten.SeitenleisteWeltkartenbereich (AnzeigebereichExtern).width,
+                                                                                              GrafikRecordKonstanten.SeitenleisteWeltkartenbereich (AnzeigebereichExtern).height));
+      
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.SeitenleisteWeltkarteAccesse (AnzeigebereichExtern),
                                             GrößeExtern          => Viewfläche,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.SeitenleisteWeltkartenbereich (AnzeigebereichExtern));
@@ -104,22 +108,18 @@ package body EinheitenseitenleisteGrafik is
          FestzulegenderText (4) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugErfahrungspunkte) & LeseEinheitenGebaut.Erfahrungspunkte (EinheitRasseNummerExtern => EinheitRasseNummer)'Wide_Wide_Image
            & TextKonstanten.Trennzeichen & ZahlAlsStringErfahrungspunkte (ZahlExtern => LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => EinheitRasseNummer.Rasse,
                                                                                                                                     IDExtern    => IDEinheit));
-         FestzulegenderText (5) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugBeschäftigung) & " "
-           & EinheitenbeschreibungenGrafik.Beschäftigung (LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummer));
-         FestzulegenderText (6) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugBeschäftigungszeit) & LeseEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummer)'Wide_Wide_Image;
-         FestzulegenderText (7) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugAngriff) & LeseEinheitenDatenbank.Angriff (RasseExtern => EinheitRasseNummer.Rasse,
-                                                                                                                            IDExtern    => IDEinheit)'Wide_Wide_Image;
-         FestzulegenderText (8) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugVerteidigung) & LeseEinheitenDatenbank.Verteidigung (RasseExtern => EinheitRasseNummer.Rasse,
-                                                                                                                                      IDExtern    => IDEinheit)'Wide_Wide_Image;
-         FestzulegenderText (9) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugRang) & LeseEinheitenGebaut.Rang (EinheitRasseNummerExtern => EinheitRasseNummer)'Wide_Wide_Image & TextKonstanten.Trennzeichen
+         FestzulegenderText (5) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugRang) & LeseEinheitenGebaut.Rang (EinheitRasseNummerExtern => EinheitRasseNummer)'Wide_Wide_Image & TextKonstanten.Trennzeichen
            & ZahlAlsStringRang (ZahlExtern => LeseEinheitenDatenbank.MaximalerRang (RasseExtern => EinheitRasseNummer.Rasse,
                                                                                     IDExtern    => IDEinheit));
-         FestzulegenderText (10) := Heimatstadt (EinheitRasseNummerExtern => EinheitRasseNummer);
-         FestzulegenderText (11) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugGegenschlagskraftFeld) & KampfwerteEinheitErmittelnLogik.AktuelleVerteidigungEinheit (EinheitRasseNummerExtern => EinheitRasseNummer,
-                                                                                                                                                                        AngreiferExtern          => False)'Wide_Wide_Image;
-         FestzulegenderText (12) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugGegenschlagskraft) & KampfwerteEinheitErmittelnLogik.AktuellerAngriffEinheit (EinheitRasseNummerExtern => EinheitRasseNummer,
+         FestzulegenderText (6) := Aufgabe (EinheitRasseNummerExtern => EinheitRasseNummer);
+         FestzulegenderText (7) := Kampfwerte (RasseExtern => EinheitRasseNummer.Rasse,
+                                               IDExtern    => IDEinheit);
+         FestzulegenderText (8) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugGegenschlagskraftFeld) & KampfwerteEinheitErmittelnLogik.AktuelleVerteidigungEinheit (EinheitRasseNummerExtern => EinheitRasseNummer,
+                                                                                                                                                                       AngreiferExtern          => False)'Wide_Wide_Image;
+         FestzulegenderText (9) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugGegenschlagskraft) & KampfwerteEinheitErmittelnLogik.AktuellerAngriffEinheit (EinheitRasseNummerExtern => EinheitRasseNummer,
                                                                                                                                                                 AngreiferExtern          => False)'Wide_Wide_Image;
-         FestzulegenderText (13) := Ladung (EinheitRasseNummerExtern => EinheitRasseNummer,
+         FestzulegenderText (FestzulegenderTextArray'Last - 1) := Heimatstadt (EinheitRasseNummerExtern => EinheitRasseNummer);
+         FestzulegenderText (11) := Ladung (EinheitRasseNummerExtern => EinheitRasseNummer,
                                             IDExtern                 => IDEinheit);
          
          VolleInformation := True;
@@ -146,14 +146,12 @@ package body EinheitenseitenleisteGrafik is
             
             Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
                                                text         => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert));
-         
-            
          end if;
          
          case
            TextSchleifenwert
          is
-            when 10 =>
+            when FestzulegenderTextArray'Last - 1 =>
                null;
                   
             when others =>
@@ -173,6 +171,43 @@ package body EinheitenseitenleisteGrafik is
    
    
    
+   function Aufgabe
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return Unbounded_Wide_Wide_String
+   is begin
+      
+      Beschäftigung := LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      
+      case
+        Beschäftigung
+      is
+         when AufgabenDatentypen.Leer_Aufgabe_Enum =>
+            return TextKonstanten.LeerUnboundedString;
+            
+         when others =>
+            return Meldungstexte.Zeug (TextnummernKonstanten.ZeugBeschäftigung) & TextKonstanten.UmbruchAbstand & EinheitenbeschreibungenGrafik.Beschäftigung (Beschäftigung) & " (" &
+              ZahlAlsStringArbeitszeit (ZahlExtern => LeseEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) & ")";
+      end case;
+      
+   end Aufgabe;
+   
+   
+   
+   function Kampfwerte
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitenDatentypen.EinheitenID)
+      return Unbounded_Wide_Wide_String
+   is begin
+            
+      return Meldungstexte.Zeug (TextnummernKonstanten.ZeugKampfwerte) & LeseEinheitenDatenbank.Angriff (RasseExtern => RasseExtern,
+                                                                                                         IDExtern    => IDExtern)'Wide_Wide_Image
+        & " " & TextKonstanten.TrennzeichenUnterschiedlich & LeseEinheitenDatenbank.Verteidigung (RasseExtern => RasseExtern,
+                                                                                                  IDExtern    => IDExtern)'Wide_Wide_Image;
+      
+   end Kampfwerte;
+   
+   
+   
    function Heimatstadt
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Unbounded_Wide_Wide_String
@@ -184,7 +219,7 @@ package body EinheitenseitenleisteGrafik is
         Stadtnummer
       is
          when StadtKonstanten.LeerNummer =>
-            return Meldungstexte.Zeug (TextnummernKonstanten.ZeugHeimatstadt) & " " & Meldungstexte.Zeug (TextnummernKonstanten.ZeugKeine);
+            return TextKonstanten.LeerUnboundedString;
                
          when others =>
             return Meldungstexte.Zeug (TextnummernKonstanten.ZeugHeimatstadt) & " " & LeseStadtGebaut.Name (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, Stadtnummer));
@@ -240,7 +275,7 @@ package body EinheitenseitenleisteGrafik is
             return Ladungstext;
             
          when False =>
-            return Ladungstext & " " & Meldungstexte.Zeug (TextnummernKonstanten.ZeugKeine);
+            return TextKonstanten.LeerUnboundedString;
       end case;
       
    end Ladung;

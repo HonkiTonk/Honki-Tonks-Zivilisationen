@@ -57,7 +57,7 @@ package body EingabenanzeigeGrafik is
    is begin
       
       Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
-                                                                        VerhältnisExtern => (0.50, 0.05));
+                                                                        VerhältnisExtern => (GrafikRecordKonstanten.Eingabebereich.width, GrafikRecordKonstanten.Eingabebereich.height));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.FragenviewAccesse (2),
                                             GrößeExtern          => Viewfläche,
@@ -107,7 +107,7 @@ package body EingabenanzeigeGrafik is
    is begin
             
       Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
-                                                                        VerhältnisExtern => (0.50, 0.05));
+                                                                        VerhältnisExtern => (GrafikRecordKonstanten.Eingabebereich.width, GrafikRecordKonstanten.Eingabebereich.height));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.FragenviewAccesse (2),
                                             GrößeExtern          => Viewfläche,
@@ -147,7 +147,7 @@ package body EingabenanzeigeGrafik is
    is begin
             
       Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
-                                                                        VerhältnisExtern => (0.50, 0.10));
+                                                                        VerhältnisExtern => (GrafikRecordKonstanten.JaNeinBereich.width, GrafikRecordKonstanten.JaNeinBereich.height));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.FragenviewAccesse (2),
                                             GrößeExtern          => Viewfläche,
@@ -202,18 +202,21 @@ package body EingabenanzeigeGrafik is
       
       WelcheAuswahl := NachGrafiktask.WelcheAuswahl;
       
-      Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
-                                                                        VerhältnisExtern => (0.25, 0.20));
-      
       case
         WelcheAuswahl.StadtEinheit
       is
          when True =>
+            Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
+                                                                              VerhältnisExtern => (GrafikRecordKonstanten.Stadtauswahlbereich.width, GrafikRecordKonstanten.Stadtauswahlbereich.height));
+            
             ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.StadtEinheitviewAccess,
                                                   GrößeExtern          => Viewfläche,
                                                   AnzeigebereichExtern => GrafikRecordKonstanten.Stadtauswahlbereich);
             
          when False =>
+            Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
+                                                                              VerhältnisExtern => (GrafikRecordKonstanten.Einheitauswahlbereich.width, GrafikRecordKonstanten.Einheitauswahlbereich.height));
+            
             ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.StadtEinheitviewAccess,
                                                   GrößeExtern          => Viewfläche,
                                                   AnzeigebereichExtern => GrafikRecordKonstanten.Einheitauswahlbereich);
@@ -294,7 +297,7 @@ package body EingabenanzeigeGrafik is
          
       end loop AuswahlSchleife;
       
-      Viewfläche := (Textbreite, Textposition.y);
+      Viewfläche := (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
             
    end AnzeigeEinheitenStadt;
 

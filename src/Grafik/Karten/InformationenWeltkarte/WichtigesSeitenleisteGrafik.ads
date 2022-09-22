@@ -13,6 +13,7 @@ with KartenRecords;
 private with TextaccessVariablen;
 private with ProduktionDatentypen;
 private with GrafikRecordKonstanten;
+private with ForschungenDatentypen;
 
 with Weltkarte;
 
@@ -35,6 +36,11 @@ package WichtigesSeitenleisteGrafik is
    
 private
    
+   Geldzuwachs : ProduktionDatentypen.Produktion;
+   Forschungszeit : ProduktionDatentypen.Lagermenge;
+   
+   Forschungsprojekt : ForschungenDatentypen.ForschungIDMitNullWert;
+   
    Textbreite : Float;
       
    Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartgrößeView;
@@ -55,6 +61,26 @@ private
          
        Post => (
                   To_Wide_Wide_String (Source => Rundenanzahl'Result)'Length > 0 
+               );
+   
+   function Geld
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      return Unbounded_Wide_Wide_String
+     with
+       Pre => (
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+              );
+   
+   function Forschung
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      return Unbounded_Wide_Wide_String
+     with
+       Pre => (
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+              ),
+         
+       Post => (
+                  To_Wide_Wide_String (Source => Forschung'Result)'Length > 0 
                );
    
    function ZahlAlsStringKostenLager is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => ProduktionDatentypen.Produktion);
