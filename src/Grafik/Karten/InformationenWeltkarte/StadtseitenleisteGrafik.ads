@@ -128,6 +128,6 @@ private
                   To_Wide_Wide_String (Source => AktuellesBauprojekt'Result)'Length > 0 
                );
       
-   function ZahlAlsStringGesamtproduktionStadt is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => ProduktionDatentypen.Stadtproduktion);
+   function ZahlAlsStringProduktion is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => ProduktionDatentypen.Produktion);
 
 end StadtseitenleisteGrafik;

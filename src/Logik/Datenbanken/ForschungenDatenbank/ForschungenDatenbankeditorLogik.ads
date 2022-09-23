@@ -5,8 +5,4 @@ package ForschungenDatenbankeditorLogik is
 
    procedure ForschungenDatenbankEditor;
 
-private
-
-   procedure ForschungenDatenbankSpeichern;
-
 end ForschungenDatenbankeditorLogik;

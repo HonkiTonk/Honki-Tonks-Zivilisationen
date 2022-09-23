@@ -12,5 +12,6 @@ package EinheitenDatenbank is
    Einheitenliste : EinheitenlisteArray;
    
    procedure StandardEinheitenDatenbankLaden;
+   procedure EinheitenDatenbankSpeichern;
 
 end EinheitenDatenbank;

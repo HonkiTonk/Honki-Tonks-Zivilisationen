@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with SchreibenDatenbankenLogik;
+
 with EinheitenMenschen;
 with EinheitenKasrodiah;
 with EinheitenLasupin;
@@ -92,5 +94,14 @@ package body EinheitenDatenbank is
       end loop RassenSchleife;
       
    end StandardEinheitenDatenbankLaden;
+   
+   
+
+   procedure EinheitenDatenbankSpeichern
+   is begin
+      
+      SchreibenDatenbankenLogik.SchreibenEinheitenDatenbank;
+      
+   end EinheitenDatenbankSpeichern;
    
 end EinheitenDatenbank;

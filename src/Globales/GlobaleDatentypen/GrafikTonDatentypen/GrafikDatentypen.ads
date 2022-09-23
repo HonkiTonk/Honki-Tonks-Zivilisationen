@@ -15,7 +15,6 @@ package GrafikDatentypen is
                                             );
    
    subtype Ladezeiten_Enum is Grafik_Aktuelle_Darstellung_Enum range Grafik_Generierungszeit_Enum .. Grafik_Speichern_Laden_Enum;
-   subtype Editoren_Anzeigen_Enum is Grafik_Aktuelle_Darstellung_Enum range Grafik_Editoren_Enum .. Grafik_Editoren_Enum;
    
    
    
@@ -80,5 +79,11 @@ package GrafikDatentypen is
                                );
    
    -- subtype  is Systemgrafiken_Enum range  .. ;
+   
+   
+   
+   type Editor_Enum is (
+                        Kartengrund_Editor_Enum, Einheiten_Editor_Enum, Gebäude_Editor_Enum, Forschungen_Editor_Enum
+                       );
 
 end GrafikDatentypen;

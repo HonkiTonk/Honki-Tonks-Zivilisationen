@@ -183,7 +183,7 @@ package ChangelogMai2022 is
    -- Fehler behoben der zu Abstürzen führte, wenn eine Achse auf einer Seite einen Übergang hatte auf der Anderen aber nicht.
    -- Unnötige Anzeigen im Kartenformauswahlmenü entfernt.
    -- Fehler korrigiert welcher dazu führte dass die KI kein Feld zum Bauen einer Stadt fand.
-   -- KartenDatenbank in KartengrundDatenbank, KartenflussDatenbank und KartenressourcenDatenbank aufgeteilt um weniger Zeilenlänge der einzelnen Dateien zu reduzieren.
+   -- KartenDatenbank in KartengrundDatenbank, KartenflussDatenbank und KartenDatenbank. aufgeteilt um weniger Zeilenlänge der einzelnen Dateien zu reduzieren.
    -- Angefangen die KartenDatenbanken mit rassenspezifische Werte zu füllen.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    

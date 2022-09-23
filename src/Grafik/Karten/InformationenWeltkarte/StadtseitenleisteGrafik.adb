@@ -95,9 +95,9 @@ package body StadtseitenleisteGrafik is
       then
          FestzulegenderText (2) := Nahrung (StadtRasseNummerExtern => StadtRasseNummerExtern);
          FestzulegenderText (3) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugRessourcenproduktion) & " "
-           & ZahlAlsStringGesamtproduktionStadt (ZahlExtern => LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern));
+           & ZahlAlsStringProduktion (ZahlExtern => LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern));
          FestzulegenderText (4) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugGeldproduktion) & " " &
-           ZahlAlsStringGesamtproduktionStadt (ZahlExtern => LeseStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern));
+           ZahlAlsStringProduktion (ZahlExtern => LeseStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern));
          FestzulegenderText (5) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugWissensproduktion) & LeseStadtGebaut.Forschungsrate (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
          FestzulegenderText (6) := Kampfwerte (StadtRasseNummerExtern => StadtRasseNummerExtern);
            FestzulegenderText (7) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugKorruption) & LeseStadtGebaut.Korruption (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
@@ -191,11 +191,11 @@ package body StadtseitenleisteGrafik is
         Nahrungsproduktion > 0
       then
          return Meldungstexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel) & LeseStadtGebaut.Nahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image & TextKonstanten.StandardAbstand
-         & "+" & ZahlAlsStringGesamtproduktionStadt (ZahlExtern => Nahrungsproduktion);
+         & "+" & ZahlAlsStringProduktion (ZahlExtern => Nahrungsproduktion);
          
       else
          return Meldungstexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel) & LeseStadtGebaut.Nahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image & TextKonstanten.StandardAbstand
-           & ZahlAlsStringGesamtproduktionStadt (ZahlExtern => Nahrungsproduktion);
+           & ZahlAlsStringProduktion (ZahlExtern => Nahrungsproduktion);
       end if;
       
    end Nahrung;
@@ -243,10 +243,10 @@ package body StadtseitenleisteGrafik is
         Bauzeit
       is
          when ProduktionDatentypen.Produktion'Last =>
-            return Meldungstexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & TextKonstanten.UmbruchAbstand & Text;
+            return Meldungstexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & TextKonstanten.UmbruchAbstand & Text & " (∞)";
             
          when others =>
-            return Meldungstexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & TextKonstanten.UmbruchAbstand & Text & TextKonstanten.UmbruchAbstand & Bauzeit'Wide_Wide_Image;
+            return Meldungstexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & TextKonstanten.UmbruchAbstand & Text & " (" & ZahlAlsStringProduktion (ZahlExtern => Bauzeit) & ")";
       end case;
             
    end AktuellesBauprojekt;

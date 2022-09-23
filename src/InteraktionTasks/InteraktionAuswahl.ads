@@ -12,6 +12,7 @@ with TastenbelegungDatentypen;
 with RassenDatentypen;
 with BefehleDatentypen;
 with GrafikRecordKonstanten;
+with KartengrundDatentypen;
 
 -- Das hier später auch mal thematisch aufteilen? äöü
 -- Auch mal besser benennen? äöü
@@ -84,5 +85,10 @@ package InteraktionAuswahl is
 
    type PositionenKartenbefehleArray is array (BefehleDatentypen.Kartenbefehle_Enum'Range) of Sf.Graphics.Rect.sfFloatRect;
    PositionenKartenbefehle : PositionenKartenbefehleArray := (others => GrafikRecordKonstanten.Leerbereich);
+
+
+
+   type PositionenKartengrundeditorArray is array (KartengrundDatentypen.Kartengrund_Vorhanden_Enum'Range) of Sf.Graphics.Rect.sfFloatRect;
+   PositionenKartengrundeditor : PositionenKartengrundeditorArray := (others => GrafikRecordKonstanten.Leerbereich);
 
 end InteraktionAuswahl;

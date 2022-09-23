@@ -1,9 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with KartengrundDatenbank;
-with KartenflussDatenbank;
-with KartenressourcenDatenbank;
+with KartenDatenbank;
 
 package body LeseKartenDatenbanken is
 
@@ -13,7 +11,7 @@ package body LeseKartenDatenbanken is
       return Boolean
    is begin
       
-      return KartengrundDatenbank.Kartengrundliste (GrundExtern).Passierbarkeit (WelcheUmgebungExtern);
+      return KartenDatenbank.Kartengrundliste (GrundExtern).Passierbarkeit (WelcheUmgebungExtern);
       
    end Passierbarkeit;
    
@@ -25,7 +23,7 @@ package body LeseKartenDatenbanken is
       return KartenDatentypen.Einzelbewertung
    is begin
       
-      return KartengrundDatenbank.Kartengrundliste (GrundExtern).Bewertung (RasseExtern);
+      return KartenDatenbank.Kartengrundliste (GrundExtern).Bewertung (RasseExtern);
       
    end BewertungGrund;
    
@@ -37,7 +35,7 @@ package body LeseKartenDatenbanken is
       return KartenDatentypen.Einzelbewertung
    is begin
       
-      return KartenflussDatenbank.Kartenflussliste (FlussExtern).Bewertung (RasseExtern);
+      return KartenDatenbank.Kartenflussliste (FlussExtern).Bewertung (RasseExtern);
       
    end BewertungFluss;
    
@@ -49,7 +47,7 @@ package body LeseKartenDatenbanken is
       return KartenDatentypen.Einzelbewertung
    is begin
       
-      return KartenressourcenDatenbank.Kartenressourcenliste (RessourceExtern).Bewertung (RasseExtern);
+      return KartenDatenbank.Kartenressourcenliste (RessourceExtern).Bewertung (RasseExtern);
       
    end BewertungRessource;
    
@@ -62,7 +60,7 @@ package body LeseKartenDatenbanken is
       return ProduktionDatentypen.Einzelproduktion
    is begin
       
-      return KartengrundDatenbank.Kartengrundliste (GrundExtern).Wirtschaft (RasseExtern, WirtschaftArtExtern);
+      return KartenDatenbank.Kartengrundliste (GrundExtern).Wirtschaft (RasseExtern, WirtschaftArtExtern);
       
    end WirtschaftGrund;
    
@@ -75,7 +73,7 @@ package body LeseKartenDatenbanken is
       return ProduktionDatentypen.Einzelproduktion
    is begin
       
-      return KartenflussDatenbank.Kartenflussliste (FlussExtern).Wirtschaft (RasseExtern, WirtschaftArtExtern);
+      return KartenDatenbank.Kartenflussliste (FlussExtern).Wirtschaft (RasseExtern, WirtschaftArtExtern);
       
    end WirtschaftFluss;
    
@@ -88,7 +86,7 @@ package body LeseKartenDatenbanken is
       return ProduktionDatentypen.Einzelproduktion
    is begin
       
-      return KartenressourcenDatenbank.Kartenressourcenliste (RessourceExtern).Wirtschaft (RasseExtern, WirtschaftArtExtern);
+      return KartenDatenbank.Kartenressourcenliste (RessourceExtern).Wirtschaft (RasseExtern, WirtschaftArtExtern);
       
    end WirtschaftRessourcen;
    
@@ -101,7 +99,7 @@ package body LeseKartenDatenbanken is
       return KampfDatentypen.KampfwerteAllgemein
    is begin
       
-      return KartengrundDatenbank.Kartengrundliste (GrundExtern).Kampf (RasseExtern, KampfArtExtern);
+      return KartenDatenbank.Kartengrundliste (GrundExtern).Kampf (RasseExtern, KampfArtExtern);
       
    end KampfGrund;
    
@@ -114,7 +112,7 @@ package body LeseKartenDatenbanken is
       return KampfDatentypen.KampfwerteAllgemein
    is begin
       
-      return KartenflussDatenbank.Kartenflussliste (FlussExtern).Kampf (RasseExtern, KampfArtExtern);
+      return KartenDatenbank.Kartenflussliste (FlussExtern).Kampf (RasseExtern, KampfArtExtern);
       
    end KampfFluss;
    
@@ -127,7 +125,7 @@ package body LeseKartenDatenbanken is
       return KampfDatentypen.KampfwerteAllgemein
    is begin
       
-      return KartenressourcenDatenbank.Kartenressourcenliste (RessourceExtern).Kampf (RasseExtern, KampfArtExtern);
+      return KartenDatenbank.Kartenressourcenliste (RessourceExtern).Kampf (RasseExtern, KampfArtExtern);
       
    end KampfRessource;
 

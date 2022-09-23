@@ -18,7 +18,8 @@ package VerbesserungenDatenbank is
    
    procedure StandardVerbesserungenDatenbankLaden;
    procedure StandardWegeDatenbankLaden;
-      
+   procedure VerbesserungenDatenbankSpeichern;
+   
 private
    
    VerbesserungenlisteStandard : constant VerbesserungenlisteArray := (

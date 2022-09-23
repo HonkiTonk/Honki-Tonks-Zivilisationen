@@ -5,8 +5,4 @@ package GebaeudeDatenbankeditorLogik is
 
    procedure GebäudeDatenbankEditor;
 
-private
-
-   procedure GebäudeDatenbankSpeichern;
-
 end GebaeudeDatenbankeditorLogik;

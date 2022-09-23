@@ -5,8 +5,4 @@ package VerbesserungenDatenbankeditorLogik is
 
    procedure VerbesserungenDatenbankEditor;
 
-private
-
-   procedure VerbesserungenDatenbankSpeichern;
-
 end VerbesserungenDatenbankeditorLogik;

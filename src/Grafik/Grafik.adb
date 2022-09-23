@@ -189,8 +189,8 @@ package body Grafik is
             MenueaufteilungGrafik.Menüaufteilung (WelchesMenüExtern     => NachGrafiktask.AktuellesMenü,
                                                    AktuelleAuswahlExtern => NachGrafiktask.AktuelleAuswahl);
                
-         when GrafikDatentypen.Editoren_Anzeigen_Enum'Range =>
-            EditorenGrafik.Editoren;
+         when GrafikDatentypen.Grafik_Editoren_Enum =>
+            EditorenGrafik.Editoren (WelcherEditorExtern => NachGrafiktask.WelcherEditor);
                
          when GrafikDatentypen.Grafik_Weltkarte_Enum =>
             KartenaufteilungGrafik.Weltkarte (EinheitRasseNummerExtern => (NachGrafiktask.AktuelleRasse, NachGrafiktask.AktuelleEinheit));

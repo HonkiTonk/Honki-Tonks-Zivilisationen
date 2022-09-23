@@ -3,8 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 -- with ForschungenDatenbank;
 
-with SchreibenDatenbankenLogik;
-
 package body ForschungenDatenbankeditorLogik is
    
    procedure ForschungenDatenbankEditor
@@ -13,14 +11,5 @@ package body ForschungenDatenbankeditorLogik is
       null;
       
    end ForschungenDatenbankEditor;
-   
-   
-
-   procedure ForschungenDatenbankSpeichern
-   is begin
-      
-      SchreibenDatenbankenLogik.SchreibenForschungenDatenbank;
-      
-   end ForschungenDatenbankSpeichern;
 
 end ForschungenDatenbankeditorLogik;

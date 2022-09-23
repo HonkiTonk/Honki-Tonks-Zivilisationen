@@ -19,14 +19,16 @@ package GrafikRecordKonstanten is
    Forschungserfolgbereich : constant Sf.Graphics.Rect.sfFloatRect := Gesamtbereich;
    Abspannbereich : constant Sf.Graphics.Rect.sfFloatRect := Gesamtbereich;
    
+   Überschriftbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.00, 0.00, 1.00, 0.10);
+   Unterschriftbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.00, Überschriftbereich.height, 1.00, 1.00 - Überschriftbereich.height);
+   
    KarteAnzeigebereich : constant Sf.Graphics.Rect.sfFloatRect := (0.00, 0.00, 0.80, 1.00);
    Kartenbefehlsbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.60, 0.80, 0.20, 0.20);
    Einheitenbefehlsbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.60, 0.60, 0.20, 0.20);
      
-   Überschriftbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.00, 0.00, 1.00, 0.10);
    Versionsbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.35, 0.95, 0.30, 0.05);
-   MenüEinfachbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.00, Überschriftbereich.height, 1.00, 1.00 - Überschriftbereich.height);
-   Ladebereich : constant Sf.Graphics.Rect.sfFloatRect := (0.00, Überschriftbereich.height, 1.00, 1.00 - Überschriftbereich.height);
+   MenüEinfachbereich : constant Sf.Graphics.Rect.sfFloatRect := Unterschriftbereich;
+   Ladebereich : constant Sf.Graphics.Rect.sfFloatRect := Unterschriftbereich;
    
    Fragenbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.25, 0.45, 0.50, 0.05);
    Eingabebereich : constant Sf.Graphics.Rect.sfFloatRect := (Fragenbereich.left, Fragenbereich.top + Fragenbereich.height, Fragenbereich.width, Fragenbereich.height);
@@ -83,5 +85,10 @@ package GrafikRecordKonstanten is
                                                                             3 => (0.75, 0.25, 0.25, 0.25),
                                                                             4 => (0.75, 0.50, 0.25, 0.50)
                                                                            );
+   
+   Editorenbereich : constant BereicheArray (Views.EditorenviewAccesse'Range) := (
+                                                                                  1 => Unterschriftbereich,
+                                                                                  2 => Gesamtbereich
+                                                                                 );
 
 end GrafikRecordKonstanten;

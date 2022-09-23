@@ -12,7 +12,7 @@ package VerzeichnisKonstanten is
    GebaeudeDatenbank : constant String (1 .. 29) := Datenbanken & "/GebaeudeDatenbank";
    KartenGrundDatenbank : constant String (1 .. 32) := Datenbanken & "/KartenGrundDatenbank";
    KartenFlussDatenbank : constant String (1 .. 32) := Datenbanken & "/KartenFlussDatenbank";
-   KartenRessourcenDatenbank : constant String (1 .. 37) := Datenbanken & "/KartenRessourcenDatenbank";
+   KartenDatenbank : constant String (1 .. 37) := Datenbanken & "/KartenRessourcenDatenbank";
    VerbesserungenDatenbank : constant String (1 .. 35) := Datenbanken & "/VerbesserungenDatenbank";
    WegeDatenbank : constant String (1 .. 25) := Datenbanken & "/WegeDatenbank";
    RassenDatenbank : constant String (1 .. 27) := Datenbanken & "/RassenDatenbank";

@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with SchreibenDatenbankenLogik;
+
 with GebaeudeMenschen;
 with GebaeudeKasrodiah;
 with GebaeudeLasupin;
@@ -92,5 +94,14 @@ package body GebaeudeDatenbank is
       end loop RassenSchleife;
       
    end StandardGebaeudeDatenbankLaden;
+   
+   
+
+   procedure GebäudeDatenbankSpeichern
+   is begin
+      
+      SchreibenDatenbankenLogik.SchreibenGebäudeDatenbank;
+      
+   end GebäudeDatenbankSpeichern;
 
 end GebaeudeDatenbank;

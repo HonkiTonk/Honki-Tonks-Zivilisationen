@@ -10,9 +10,7 @@ with RassenDatentypen;
 with GrafikDatentypen;
 with BefehleDatentypen;
 
-with KartengrundDatenbank;
-with KartenflussDatenbank;
-with KartenressourcenDatenbank;
+with KartenDatenbank;
 
 package EingeleseneTexturenGrafik is
 
@@ -25,13 +23,13 @@ package EingeleseneTexturenGrafik is
    type HintergrundAccessArray is array (GrafikDatentypen.Hintergrund_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
    HintergrundAccess : HintergrundAccessArray := (others => null);
 
-   type KartenfelderAccessArray is array (KartengrundDatenbank.KartengrundlisteArray'Range) of Sf.Graphics.sfTexture_Ptr;
+   type KartenfelderAccessArray is array (KartenDatenbank.KartengrundlisteArray'Range) of Sf.Graphics.sfTexture_Ptr;
    KartenfelderAccess : KartenfelderAccessArray := (others => null);
 
-   type KartenflussAccessArray is array (KartenflussDatenbank.KartenflusslisteArray'Range) of Sf.Graphics.sfTexture_Ptr;
+   type KartenflussAccessArray is array (KartenDatenbank.KartenflusslisteArray'Range) of Sf.Graphics.sfTexture_Ptr;
    KartenflussAccess : KartenflussAccessArray := (others => null);
 
-   type KartenressourcenAccessArray is array (KartenressourcenDatenbank.KartenressourcenlisteArray'Range) of Sf.Graphics.sfTexture_Ptr;
+   type KartenressourcenAccessArray is array (KartenDatenbank.KartenressourcenlisteArray'Range) of Sf.Graphics.sfTexture_Ptr;
    KartenressourceAccess : KartenressourcenAccessArray := (others => null);
 
    -- Auch auf Rasse erweitern, damit man verschieden aussehende Städte/Verbesserungen hat? äöü

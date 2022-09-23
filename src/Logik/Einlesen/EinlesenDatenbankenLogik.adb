@@ -8,11 +8,9 @@ with VerzeichnisKonstanten;
 with EinheitenDatenbank;
 with ForschungenDatenbank;
 with GebaeudeDatenbank;
-with KartengrundDatenbank;
+with KartenDatenbank;
 with VerbesserungenDatenbank;
 with RassenDatenbank;
-with KartenflussDatenbank;
-with KartenressourcenDatenbank;
 with ForschungKonstanten;
 
 package body EinlesenDatenbankenLogik is
@@ -127,12 +125,12 @@ package body EinlesenDatenbankenLogik is
                   Name => VerzeichnisKonstanten.KartenGrundDatenbank);
 
          when False =>
-            KartengrundDatenbank.StandardKartengrundDatenbankLaden;
+            KartenDatenbank.StandardKartengrundDatenbankLaden;
             return;
       end case;
       
-      KartengrundDatenbank.KartengrundlisteArray'Read (Stream (File => DatenbankEinlesen),
-                                                  KartengrundDatenbank.Kartengrundliste);
+      KartenDatenbank.KartengrundlisteArray'Read (Stream (File => DatenbankEinlesen),
+                                                  KartenDatenbank.Kartengrundliste);
       
       Close (File => DatenbankEinlesen);
       
@@ -147,32 +145,32 @@ package body EinlesenDatenbankenLogik is
                   Name => VerzeichnisKonstanten.KartenFlussDatenbank);
 
          when False =>
-            KartenflussDatenbank.StandardKartenflussDatenbankLaden;
+            KartenDatenbank.StandardKartenflussDatenbankLaden;
             return;
       end case;
       
-      KartenflussDatenbank.KartenflusslisteArray'Read (Stream (File => DatenbankEinlesen),
-                                                  KartenflussDatenbank.Kartenflussliste);
+      KartenDatenbank.KartenflusslisteArray'Read (Stream (File => DatenbankEinlesen),
+                                                  KartenDatenbank.Kartenflussliste);
       
       Close (File => DatenbankEinlesen);
       
       
       
       case
-        Exists (Name => VerzeichnisKonstanten.KartenRessourcenDatenbank)
+        Exists (Name => VerzeichnisKonstanten.KartenDatenbank)
       is
          when True =>
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.KartenRessourcenDatenbank);
+                  Name => VerzeichnisKonstanten.KartenDatenbank);
 
          when False =>
-            KartenressourcenDatenbank.StandardKartenressourcenDatenbankLaden;
+            KartenDatenbank.StandardKartenressourcenDatenbankLaden;
             return;
       end case;
       
-      KartenressourcenDatenbank.KartenressourcenlisteArray'Read (Stream (File => DatenbankEinlesen),
-                                                       KartenressourcenDatenbank.Kartenressourcenliste);
+      KartenDatenbank.KartenressourcenlisteArray'Read (Stream (File => DatenbankEinlesen),
+                                                       KartenDatenbank.Kartenressourcenliste);
       
       Close (File => DatenbankEinlesen);
       

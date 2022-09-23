@@ -1,58 +1,64 @@
 package ChangelogSeptember2022 is
 
-   -- Version 0.0. => 0.0. (30.09.2022):
+   -- Version 0.04. => 0.04. (30.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (29.09.2022):
+   -- Version 0.04. => 0.04. (29.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (28.09.2022):
+   -- Version 0.04. => 0.04. (28.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (27.09.2022):
+   -- Version 0.04. => 0.04. (27.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (26.09.2022):
+   -- Version 0.04. => 0.04. (26.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (25.09.2022):
+   -- Version 0.04. => 0.04. (25.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04. => 0.0. (24.09.2022):
+   -- Version 0.04.0085 => 0.04. (24.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.0000 => 0.04. (23.09.2022):
+   -- Version 0.04.0000 => 0.04.0085 (23.09.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Seitenleiste leicht überarbeitet.
+   -- Es ist jetzt möglich alle Datenbanken auf den Standard zurückzusetzen.
+   -- Es ist jetzt wieder möglich die Standarddatenbanken als externe Datei zu speichern.
+   -- Änderungen an den Datenbanken vorgenommen um sie später besser Editieren zu können.
+   -- Ein Grundgerüst für die Datenbankeditoren eingebaut.
+   -- Angefangen eine erste Version für den Kartengrundeditor einzubauen.
+   -- Angefangen den Forschungsbaum der Tesorahn zu erstellen.
+   -- Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 

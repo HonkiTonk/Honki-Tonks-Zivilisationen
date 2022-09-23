@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with SchreibenDatenbankenLogik;
+
 with ForschungenMenschen;
 with ForschungenKasrodiah;
 with ForschungenLasupin;
@@ -128,5 +130,14 @@ package body ForschungenDatenbank is
       end loop UmgebungSchleife;
       
    end StandardTechnologienLaden;
+   
+   
+
+   procedure ForschungenDatenbankSpeichern
+   is begin
+      
+      SchreibenDatenbankenLogik.SchreibenForschungenDatenbank;
+      
+   end ForschungenDatenbankSpeichern;
 
 end ForschungenDatenbank;

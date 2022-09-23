@@ -12,4 +12,6 @@ private
 
    AuswahlWert : RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
+   procedure AlleAufStandard;
+
 end DatenbankeneditorenLogik;

@@ -3,8 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 -- with VerbesserungenDatenbank;
 
-with SchreibenDatenbankenLogik;
-
 package body VerbesserungenDatenbankeditorLogik is
    
    procedure VerbesserungenDatenbankEditor
@@ -13,14 +11,5 @@ package body VerbesserungenDatenbankeditorLogik is
       null;
       
    end VerbesserungenDatenbankEditor;
-   
-   
-
-   procedure VerbesserungenDatenbankSpeichern
-   is begin
-      
-      SchreibenDatenbankenLogik.SchreibenVerbesserungenDatenbank;
-      
-   end VerbesserungenDatenbankSpeichern;
 
 end VerbesserungenDatenbankeditorLogik;

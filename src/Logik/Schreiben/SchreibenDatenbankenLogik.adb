@@ -6,14 +6,13 @@ with Ada.Directories; use Ada.Directories;
 with EinheitenDatenbank;
 with ForschungenDatenbank;
 with GebaeudeDatenbank;
-with KartengrundDatenbank;
+with KartenDatenbank;
 with VerbesserungenDatenbank;
 with RassenDatenbank;
-with KartenflussDatenbank;
-with KartenressourcenDatenbank;
 with VerzeichnisKonstanten;
 with ForschungKonstanten;
 
+-- Die Datenbanken wieder einzeln schreiben, damit die Editoren sie auch einzeln schreiben können. äöü
 package body SchreibenDatenbankenLogik is
    
    procedure SchreibenAlleDatenbanken
@@ -136,8 +135,8 @@ package body SchreibenDatenbankenLogik is
                     Name => VerzeichnisKonstanten.KartenGrundDatenbank);
       end case;
       
-      KartengrundDatenbank.KartengrundlisteArray'Write (Stream (File => DatenbankSpeichern),
-                                                   KartengrundDatenbank.Kartengrundliste);
+      KartenDatenbank.KartengrundlisteArray'Write (Stream (File => DatenbankSpeichern),
+                                                   KartenDatenbank.Kartengrundliste);
       
       Close (File => DatenbankSpeichern);
       
@@ -157,29 +156,29 @@ package body SchreibenDatenbankenLogik is
                     Name => VerzeichnisKonstanten.KartenFlussDatenbank);
       end case;
       
-      KartenflussDatenbank.KartenflusslisteArray'Write (Stream (File => DatenbankSpeichern),
-                                                   KartenflussDatenbank.Kartenflussliste);
+      KartenDatenbank.KartenflusslisteArray'Write (Stream (File => DatenbankSpeichern),
+                                                   KartenDatenbank.Kartenflussliste);
       
       Close (File => DatenbankSpeichern);
       
       
       
       case
-        Exists (Name => VerzeichnisKonstanten.KartenRessourcenDatenbank)
+        Exists (Name => VerzeichnisKonstanten.KartenDatenbank)
       is
          when True =>
             Open (File => DatenbankSpeichern,
                   Mode => Out_File,
-                  Name => VerzeichnisKonstanten.KartenRessourcenDatenbank);
+                  Name => VerzeichnisKonstanten.KartenDatenbank);
             
          when False =>
             Create (File => DatenbankSpeichern,
                     Mode => Out_File,
-                    Name => VerzeichnisKonstanten.KartenRessourcenDatenbank);
+                    Name => VerzeichnisKonstanten.KartenDatenbank);
       end case;
       
-      KartenressourcenDatenbank.KartenressourcenlisteArray'Write (Stream (File => DatenbankSpeichern),
-                                                        KartenressourcenDatenbank.Kartenressourcenliste);
+      KartenDatenbank.KartenressourcenlisteArray'Write (Stream (File => DatenbankSpeichern),
+                                                        KartenDatenbank.Kartenressourcenliste);
       
       Close (File => DatenbankSpeichern);
       

@@ -7,6 +7,4 @@ package EinheitenDatenbankeditorLogik is
 
 private
 
-   procedure EinheitenDatenbankSpeichern;
-
 end EinheitenDatenbankeditorLogik;

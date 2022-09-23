@@ -19,6 +19,7 @@ package ForschungenDatenbank is
    TechnologieUmgebungsgröße : ForschungKonstanten.TechnologieUmgebungsgrößeArray;
 
    procedure StandardForschungenDatenbankLaden;
+   procedure ForschungenDatenbankSpeichern;
 
 private
 

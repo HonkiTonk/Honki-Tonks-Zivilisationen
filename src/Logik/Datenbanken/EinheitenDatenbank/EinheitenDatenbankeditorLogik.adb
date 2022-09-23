@@ -3,8 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 -- with EinheitenDatenbank;
 
-with SchreibenDatenbankenLogik;
-
 package body EinheitenDatenbankeditorLogik is
    
    procedure EinheitenDatenbankEditor
@@ -13,14 +11,5 @@ package body EinheitenDatenbankeditorLogik is
       null;
       
    end EinheitenDatenbankEditor;
-   
-   
-
-   procedure EinheitenDatenbankSpeichern
-   is begin
-      
-      SchreibenDatenbankenLogik.SchreibenEinheitenDatenbank;
-      
-   end EinheitenDatenbankSpeichern;
 
 end EinheitenDatenbankeditorLogik;

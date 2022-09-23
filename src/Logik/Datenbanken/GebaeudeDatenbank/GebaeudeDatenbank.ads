@@ -12,5 +12,6 @@ package GebaeudeDatenbank is
    GebäudeListe : GebäudelisteArray;
    
    procedure StandardGebaeudeDatenbankLaden;
+   procedure GebäudeDatenbankSpeichern;
    
 end GebaeudeDatenbank;

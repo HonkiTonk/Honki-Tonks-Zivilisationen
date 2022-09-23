@@ -21,7 +21,7 @@ package SystemKonstanten is
                                            -- Mit Überschrift.
                                            MenueDatentypen.Optionen_Menü_Enum           => 8,
                                            MenueDatentypen.Einstellungen_Menü_Enum      => 12,
-                                           MenueDatentypen.Editoren_Menü_Enum           => 9,
+                                           MenueDatentypen.Editoren_Menü_Enum           => 10,
                                            MenueDatentypen.Sonstiges_Menü_Enum          => 7,
                                            MenueDatentypen.Grafik_Menü_Enum             => 10,
                                            MenueDatentypen.Sound_Menü_Enum              => 4,

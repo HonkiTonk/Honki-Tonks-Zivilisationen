@@ -169,12 +169,13 @@ package body WichtigesSeitenleisteGrafik is
       is
          when ProduktionDatentypen.Lagermenge'Last =>
             return Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt) & TextKonstanten.UmbruchAbstand & ForschungsbeschreibungenGrafik.BeschreibungKurz (IDExtern    => Forschungsprojekt,
-                                                                                                                                                                                RasseExtern => RasseExtern);
+                                                                                                                                                                                RasseExtern => RasseExtern)
+              & " (∞)";
             
          when others =>
             return Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt) & TextKonstanten.UmbruchAbstand & ForschungsbeschreibungenGrafik.BeschreibungKurz (IDExtern    => Forschungsprojekt,
                                                                                                                                                                                 RasseExtern => RasseExtern)
-              & TextKonstanten.UmbruchAbstand & Forschungszeit'Wide_Wide_Image;
+              & " (" & ZahlAlsStringKostenLager (ZahlExtern => Forschungszeit) & ")";
       end case;
             
    end Forschung;

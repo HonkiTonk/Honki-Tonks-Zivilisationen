@@ -76,5 +76,11 @@ package NachGrafiktask is
    GeheZu : KartenRecords.AchsenKartenfeldNaturalRecord := KartenRecordKonstanten.LeerKoordinate;
    
    Abspannart : GrafikDatentypen.Rassenhintergrund_Enum := GrafikDatentypen.Leer_Hintergrund_Enum;
+   
+   
+   
+   -- Editoren
+   WelcherEditor : GrafikDatentypen.Editor_Enum;
+   -- Editoren
 
 end NachGrafiktask;

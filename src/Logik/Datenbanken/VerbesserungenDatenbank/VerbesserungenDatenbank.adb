@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with SchreibenDatenbankenLogik;
+
 package body VerbesserungenDatenbank is
    
    procedure StandardVerbesserungenDatenbankLaden
@@ -18,5 +20,14 @@ package body VerbesserungenDatenbank is
       Wegeliste := WegelisteStandard;
       
    end StandardWegeDatenbankLaden;
+   
+   
+
+   procedure VerbesserungenDatenbankSpeichern
+   is begin
+      
+      SchreibenDatenbankenLogik.SchreibenVerbesserungenDatenbank;
+      
+   end VerbesserungenDatenbankSpeichern;
    
 end VerbesserungenDatenbank;
