@@ -35,17 +35,17 @@ package ChangelogSeptember2022 is
    
    
 
-   -- Version 0.04. => 0.04. (25.09.2022):
+   -- Version 0.04.0110 => 0.04. (25.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.0085 => 0.04. (24.09.2022):
+   -- Version 0.04.0085 => 0.04.0110 (24.09.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter am Forschungsbaum der Tesorahn gearbeitet.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 
