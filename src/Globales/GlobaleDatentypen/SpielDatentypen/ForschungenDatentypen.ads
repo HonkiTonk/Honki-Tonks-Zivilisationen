@@ -7,6 +7,10 @@ package ForschungenDatentypen is
    type ForschungIDNichtMöglich is range -1 .. 75;
    subtype ForschungIDMitNullWert is ForschungIDNichtMöglich range 0 .. ForschungIDNichtMöglich'Last;
    subtype ForschungID is ForschungIDMitNullWert range 1 .. ForschungIDMitNullWert'Last;
+   
+   type Technologie_Anforderung_Enum is (
+                                         Anforderung_Eins_Enum, Anforderung_Zwei_Enum, Anforderung_Drei_Enum, Anforderung_Vier_Enum
+                                        );
 
    type AnforderungForschungArray is array (1 .. 4) of ForschungIDNichtMöglich;
    type ErforschtArray is array (ForschungID'Range) of Boolean;
