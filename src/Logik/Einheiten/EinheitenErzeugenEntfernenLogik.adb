@@ -10,7 +10,7 @@ with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;
 
 with SichtbarkeitLogik;
-with RasseEntfernen;
+with RasseEntfernenLogik;
 with EinheitenmodifizierungLogik;
 
 package body EinheitenErzeugenEntfernenLogik is
@@ -61,7 +61,7 @@ package body EinheitenErzeugenEntfernenLogik is
       
       Entfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
-      RasseEntfernen.RasseExistenzPrüfen (RasseExtern => EinheitRasseNummerExtern.Rasse);
+      RasseEntfernenLogik.RasseExistenzPrüfen (RasseExtern => EinheitRasseNummerExtern.Rasse);
       
    end EinheitEntfernen;
    

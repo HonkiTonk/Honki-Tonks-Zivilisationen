@@ -16,7 +16,7 @@ with AuswahlaufteilungLogik;
 with NachGrafiktask;
 with StandardSpielwerteSetzenLogik;
 with Weltkarte;
-with KartengeneratorVariablen;
+with KartengeneratorVariablenLogik;
 with Spielertests;
 
 package body SpieleinstellungenLogik is
@@ -120,8 +120,8 @@ package body SpieleinstellungenLogik is
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Generierungszeit_Enum;
 
       -- Wird benötigt, da sonst die wichtigen Kartenwerte nicht gespeichert/geladen werden können. Sicherheitshalber immer vor Aufruf des Kartengenerators setzen.
-      Weltkarte.Karteneinstellungen.Kartengröße := KartengeneratorVariablen.Kartenparameter.Kartengröße;
-      Weltkarte.Karteneinstellungen.Kartenform := KartengeneratorVariablen.Kartenparameter.Kartenform;
+      Weltkarte.Karteneinstellungen.Kartengröße := KartengeneratorVariablenLogik.Kartenparameter.Kartengröße;
+      Weltkarte.Karteneinstellungen.Kartenform := KartengeneratorVariablenLogik.Kartenparameter.Kartenform;
       KartengeneratorLogik.Kartengenerator;
       
       SpieleinstellungenRasseLogik.StartwerteErmitteln;

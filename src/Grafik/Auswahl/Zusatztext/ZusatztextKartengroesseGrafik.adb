@@ -14,7 +14,7 @@ with TextaccessVariablen;
 
 with EinstellungenGrafik;
 with MenuestringsSetzenGrafik;
-with KartengeneratorVariablen;
+with KartengeneratorVariablenLogik;
 with TextberechnungenBreiteGrafik;
 with TextberechnungenHoeheGrafik;
 
@@ -59,8 +59,8 @@ package body ZusatztextKartengroesseGrafik is
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ZusatztextKartengrößeAccess (1),
                                          str  => MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => SystemKonstanten.EndeMenü (MenueDatentypen.Kartengröße_Menü_Enum) - 1,
                                                                                               WelchesMenüExtern => MenueDatentypen.Kartengröße_Menü_Enum) & TextKonstanten.StandardAbstand & "5x"
-                                         & To_Wide_Wide_String (Source => ZahlAlsStringKartenfeldPositiv (ZahlExtern => KartengeneratorVariablen.Kartenparameter.Kartengröße.YAchse)) & "x"
-                                         & To_Wide_Wide_String (Source => ZahlAlsStringKartenfeldPositiv (ZahlExtern => KartengeneratorVariablen.Kartenparameter.Kartengröße.XAchse)));
+                                         & To_Wide_Wide_String (Source => ZahlAlsStringKartenfeldPositiv (ZahlExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.YAchse)) & "x"
+                                         & To_Wide_Wide_String (Source => ZahlAlsStringKartenfeldPositiv (ZahlExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.XAchse)));
       
       case
         AktuelleAuswahlExtern

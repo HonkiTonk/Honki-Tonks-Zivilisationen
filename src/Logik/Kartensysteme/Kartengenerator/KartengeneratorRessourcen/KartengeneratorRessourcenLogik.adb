@@ -7,7 +7,7 @@ with LadezeitenDatentypen;
 
 with LeseWeltkarte;
 
-with KartengeneratorVariablen;
+with KartengeneratorVariablenLogik;
 with KartengeneratorLandressourcenLogik;
 with KartengeneratorWasserressourcenLogik;
 with KartengeneratorUnterlandressourcenLogik;
@@ -51,12 +51,12 @@ package body KartengeneratorRessourcenLogik is
      (EbeneExtern : in KartenDatentypen.EbenePlanet)
    is begin
       
-      Kartenzeitwert (EbeneExtern) := (KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse + (33 - 1)) / 33;
+      Kartenzeitwert (EbeneExtern) := (KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.YAchse + (33 - 1)) / 33;
       
       YAchseSchleife:
-      for YAchseSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.YAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse loop
+      for YAchseSchleifenwert in KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.YAchse .. KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.YAchse loop
          XAchseSchleife:
-         for XAchseSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.XAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.XAchse loop
+         for XAchseSchleifenwert in KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.XAchse .. KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.XAchse loop
             
             -- Ist aktuell nur vorhanden, da noch keine Ressourcen für den Kern vorhanden sind aber Werte für die Ladezeiten benötigt werden.
             case

@@ -1,7 +1,7 @@
 pragma SPARK_Mode (Off);
 pragma Warnings (Off, "*array aggregate*");
 
-with KartengeneratorVariablen;
+with KartengeneratorVariablenLogik;
 
 package body KartentestsLogik is
    
@@ -9,72 +9,72 @@ package body KartentestsLogik is
    is begin
 
       if
-        KartengeneratorVariablen.Polgrößen (KartenDatentypen.Norden_Enum) > KartengeneratorVariablen.Kartenparameter.Kartengröße.YAchse / 2
+        KartengeneratorVariablenLogik.Polgrößen (KartenDatentypen.Norden_Enum) > KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.YAchse / 2
       then
-         KartengeneratorVariablen.Polgrößen (KartenDatentypen.Norden_Enum) := KartengeneratorVariablen.Kartenparameter.Kartengröße.YAchse / 2;
+         KartengeneratorVariablenLogik.Polgrößen (KartenDatentypen.Norden_Enum) := KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.YAchse / 2;
          
       else
          null;
       end if;
       
       if
-        KartengeneratorVariablen.Polgrößen (KartenDatentypen.Süden_Enum) > KartengeneratorVariablen.Kartenparameter.Kartengröße.YAchse / 2
+        KartengeneratorVariablenLogik.Polgrößen (KartenDatentypen.Süden_Enum) > KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.YAchse / 2
       then
-         KartengeneratorVariablen.Polgrößen (KartenDatentypen.Süden_Enum) := KartengeneratorVariablen.Kartenparameter.Kartengröße.YAchse / 2;
+         KartengeneratorVariablenLogik.Polgrößen (KartenDatentypen.Süden_Enum) := KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.YAchse / 2;
          
       else
          null;
       end if;
       
       if
-        KartengeneratorVariablen.Polgrößen (KartenDatentypen.Osten_Enum) > KartengeneratorVariablen.Kartenparameter.Kartengröße.XAchse / 2
+        KartengeneratorVariablenLogik.Polgrößen (KartenDatentypen.Osten_Enum) > KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.XAchse / 2
       then
-         KartengeneratorVariablen.Polgrößen (KartenDatentypen.Osten_Enum) := KartengeneratorVariablen.Kartenparameter.Kartengröße.XAchse / 2;
+         KartengeneratorVariablenLogik.Polgrößen (KartenDatentypen.Osten_Enum) := KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.XAchse / 2;
          
       else
          null;
       end if;
       
       if
-        KartengeneratorVariablen.Polgrößen (KartenDatentypen.Westen_Enum) > KartengeneratorVariablen.Kartenparameter.Kartengröße.XAchse / 2
+        KartengeneratorVariablenLogik.Polgrößen (KartenDatentypen.Westen_Enum) > KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.XAchse / 2
       then
-         KartengeneratorVariablen.Polgrößen (KartenDatentypen.Westen_Enum) := KartengeneratorVariablen.Kartenparameter.Kartengröße.XAchse / 2;
+         KartengeneratorVariablenLogik.Polgrößen (KartenDatentypen.Westen_Enum) := KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.XAchse / 2;
          
       else
          null;
       end if;
       
       if
-        KartengeneratorVariablen.Landgrößen.MinimaleYAchse > KartengeneratorVariablen.Kartenparameter.Kartengröße.YAchse / 2
+        KartengeneratorVariablenLogik.Landgrößen.MinimaleYAchse > KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.YAchse / 2
       then
-         KartengeneratorVariablen.Landgrößen.MinimaleYAchse := KartengeneratorVariablen.Kartenparameter.Kartengröße.YAchse / 2;
+         KartengeneratorVariablenLogik.Landgrößen.MinimaleYAchse := KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.YAchse / 2;
          
       else
          null;
       end if;
       
       if
-        KartengeneratorVariablen.Landgrößen.MinimaleXAchse > KartengeneratorVariablen.Kartenparameter.Kartengröße.XAchse / 2
+        KartengeneratorVariablenLogik.Landgrößen.MinimaleXAchse > KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.XAchse / 2
       then
-         KartengeneratorVariablen.Landgrößen.MinimaleXAchse := KartengeneratorVariablen.Kartenparameter.Kartengröße.XAchse / 2;
+         KartengeneratorVariablenLogik.Landgrößen.MinimaleXAchse := KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.XAchse / 2;
          
       else
          null;
       end if;
       
       if
-        KartengeneratorVariablen.Landgrößen.MaximaleYAchse > KartengeneratorVariablen.Kartenparameter.Kartengröße.YAchse / 2
+        KartengeneratorVariablenLogik.Landgrößen.MaximaleYAchse > KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.YAchse / 2
       then
-         KartengeneratorVariablen.Landgrößen.MaximaleYAchse := KartengeneratorVariablen.Kartenparameter.Kartengröße.YAchse / 2;
+         KartengeneratorVariablenLogik.Landgrößen.MaximaleYAchse := KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.YAchse / 2;
          
       else
          null;
       end if;
       
       if
-        KartengeneratorVariablen.Landgrößen.MaximaleXAchse > KartengeneratorVariablen.Kartenparameter.Kartengröße.XAchse / 2
+        KartengeneratorVariablenLogik.Landgrößen.MaximaleXAchse > KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.XAchse / 2
       then
-         KartengeneratorVariablen.Landgrößen.MaximaleXAchse := KartengeneratorVariablen.Kartenparameter.Kartengröße.XAchse / 2;
+         KartengeneratorVariablenLogik.Landgrößen.MaximaleXAchse := KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.XAchse / 2;
          
       else
          null;

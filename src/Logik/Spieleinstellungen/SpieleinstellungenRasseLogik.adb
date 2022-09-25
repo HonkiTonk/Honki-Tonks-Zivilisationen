@@ -13,8 +13,8 @@ with SpielVariablen;
 
 with LeseWeltkarte;
 
-with ZufallsgeneratorenSpieleinstellungen;
-with ZufallsgeneratorenStartkoordinaten;
+with ZufallsgeneratorenSpieleinstellungenLogik;
+with ZufallsgeneratorenStartkoordinatenLogik;
 with EinheitSuchenLogik;
 with KartenkoordinatenberechnungssystemLogik;
 with PassierbarkeitspruefungLogik;
@@ -42,7 +42,7 @@ package body SpieleinstellungenRasseLogik is
                BelegungÄndern (RasseExtern => UmwandlungenVerschiedeneDatentypen.RückgabeNachRasse (RückgabeExtern => RassenAuswahl));
 
             when RueckgabeDatentypen.Auswahl_Neunzehn_Enum =>
-               ZufallsgeneratorenSpieleinstellungen.ZufälligeRassenbelegung;
+               ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeRassenbelegung;
                
             when RueckgabeDatentypen.Fertig_Enum | RueckgabeDatentypen.Zurück_Enum =>
                return;
@@ -106,7 +106,7 @@ package body SpieleinstellungenRasseLogik is
    procedure RasseAutomatischBelegen
    is begin
       
-      SpielVariablen.Rassenbelegung (ZufallsgeneratorenSpieleinstellungen.ZufälligeRasse).Belegung := RassenDatentypen.Mensch_Spieler_Enum;
+      SpielVariablen.Rassenbelegung (ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeRasse).Belegung := RassenDatentypen.Mensch_Spieler_Enum;
       
    end RasseAutomatischBelegen;
    
@@ -115,14 +115,14 @@ package body SpieleinstellungenRasseLogik is
    procedure RasseBelegenSchnellstart
    is begin
       
-      RasseMenschSchnellstart := ZufallsgeneratorenSpieleinstellungen.ZufälligeRasse;
+      RasseMenschSchnellstart := ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeRasse;
       
       SpielVariablen.Rassenbelegung (RasseMenschSchnellstart).Belegung := RassenDatentypen.Mensch_Spieler_Enum;
       
       KIBelegenSchleife:
       loop
          
-         RasseKISchnellstart := ZufallsgeneratorenSpieleinstellungen.ZufälligeRasse;
+         RasseKISchnellstart := ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeRasse;
          
          if
            RasseMenschSchnellstart = RasseKISchnellstart
@@ -197,7 +197,7 @@ package body SpieleinstellungenRasseLogik is
       return Boolean
    is begin
       
-      GezogeneKoordinate := ZufallsgeneratorenStartkoordinaten.Startkoordinaten (RasseExtern => RasseExtern);
+      GezogeneKoordinate := ZufallsgeneratorenStartkoordinatenLogik.Startkoordinaten (RasseExtern => RasseExtern);
       
       case
         LeseWeltkarte.AktuellerGrund (KoordinatenExtern => GezogeneKoordinate)

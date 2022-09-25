@@ -28,19 +28,22 @@ package ChangelogSeptember2022 is
    
    
 
-   -- Version 0.04.0155 => 0.04. (26.09.2022):
+   -- Version 0.04.0185 => 0.04. (26.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.0110 => 0.04.0155 (25.09.2022):
+   -- Version 0.04.0110 => 0.04.0185 (25.09.2022):
    
    -- Erste Version des Forschungsbaums der Tesorahn eingebaut.
    -- Erste Version der Tesorahneinheiten eingebaut.
    -- Erste Version der Tesorahngebäude eingebaut.
-   -- Kommentare und Kleinigkeiten korrigiert.
+   -- Forschungsanforderungen in ein Enum umgewandelt.
+   -- Interne Benennung überarbeitet.
+   -- Interne Struktur überarbeitet.
+   -- Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 

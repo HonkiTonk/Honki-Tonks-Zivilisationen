@@ -8,9 +8,9 @@ with LadezeitenDatentypen;
 with SchreibeWeltkarte;
 with LeseWeltkarte;
 
-with ZufallsgeneratorenKarten;
+with ZufallsgeneratorenKartenLogik;
 with KartenkoordinatenberechnungssystemLogik;
-with KartengeneratorVariablen;
+with KartengeneratorVariablenLogik;
 with LadezeitenLogik;
 
 package body KartengeneratorStandardLogik is
@@ -18,12 +18,12 @@ package body KartengeneratorStandardLogik is
    procedure OberflächeGenerieren
    is begin
       
-      Kartenzeitwert := (KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse + (25 - 1)) / 25;
+      Kartenzeitwert := (KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.YAchse + (25 - 1)) / 25;
       
       YAchseSchleife:
-      for YAchseSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.YAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse loop
+      for YAchseSchleifenwert in KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.YAchse .. KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.YAchse loop
          XAchseSchleife:
-         for XAchseSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.XAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.XAchse loop
+         for XAchseSchleifenwert in KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.XAchse .. KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.XAchse loop
                
             LandVorhanden (YAchseExtern => YAchseSchleifenwert,
                            XAchseExtern => XAchseSchleifenwert);
@@ -55,7 +55,7 @@ package body KartengeneratorStandardLogik is
         LeseWeltkarte.BasisGrund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern))
       is
          when KartengrundDatentypen.Leer_Grund_Enum =>
-            BeliebigerLandwert := ZufallsgeneratorenKarten.KartengeneratorZufallswerte;
+            BeliebigerLandwert := ZufallsgeneratorenKartenLogik.KartengeneratorZufallswerte;
             
             if
               BeliebigerLandwert < WahrscheinlichkeitLandmasse.Anfangswert
@@ -113,7 +113,7 @@ package body KartengeneratorStandardLogik is
                LandHöheBreite := False;
          end case;
 
-         Landmassen (LandmassenSchleifenwert) := ZufallsgeneratorenKarten.KartengeneratorLandgrößen (YAchseXAchseExtern => LandHöheBreite);
+         Landmassen (LandmassenSchleifenwert) := ZufallsgeneratorenKartenLogik.KartengeneratorLandgrößen (YAchseXAchseExtern => LandHöheBreite);
          Landabstand (LandmassenSchleifenwert) := 3 * Landmassen (LandmassenSchleifenwert);
 
       end loop LandmassenSchleife;
@@ -141,9 +141,9 @@ package body KartengeneratorStandardLogik is
                null;
                
             elsif
-              KartenWert.YAchse not in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.YAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse
+              KartenWert.YAchse not in KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.YAchse .. KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.YAchse
               or
-                KartenWert.XAchse not in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.XAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.XAchse
+                KartenWert.XAchse not in KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.XAchse .. KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.XAchse
             then
                null;
                   
@@ -183,12 +183,12 @@ package body KartengeneratorStandardLogik is
           Weltkarte.Karteneinstellungen.Kartenform.YAchseSüden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
       then
          if
-           YAchseExtern - AnfangExtern < KartengeneratorVariablen.SchleifenanfangOhnePolbereich.YAchse
+           YAchseExtern - AnfangExtern < KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.YAchse
          then
             return AnfangExtern;
          
          elsif
-           YAchseExtern + EndeExtern > KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse
+           YAchseExtern + EndeExtern > KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.YAchse
          then
             return EndeExtern;
          
@@ -200,7 +200,7 @@ package body KartengeneratorStandardLogik is
         Weltkarte.Karteneinstellungen.Kartenform.YAchseNorden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
       then
          if
-           YAchseExtern - AnfangExtern < KartengeneratorVariablen.SchleifenanfangOhnePolbereich.YAchse
+           YAchseExtern - AnfangExtern < KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.YAchse
          then
             return AnfangExtern;
             
@@ -212,7 +212,7 @@ package body KartengeneratorStandardLogik is
         Weltkarte.Karteneinstellungen.Kartenform.YAchseSüden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
       then
          if
-           YAchseExtern + EndeExtern > KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse
+           YAchseExtern + EndeExtern > KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.YAchse
          then
             return EndeExtern;
          
@@ -243,12 +243,12 @@ package body KartengeneratorStandardLogik is
           Weltkarte.Karteneinstellungen.Kartenform.XAchseOsten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
       then
          if
-           XAchseExtern - AnfangExtern < KartengeneratorVariablen.SchleifenanfangOhnePolbereich.XAchse
+           XAchseExtern - AnfangExtern < KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.XAchse
          then
             return AnfangExtern;
          
          elsif
-           XAchseExtern + EndeExtern > KartengeneratorVariablen.SchleifenendeOhnePolbereich.XAchse
+           XAchseExtern + EndeExtern > KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.XAchse
          then
             return EndeExtern;
          
@@ -260,7 +260,7 @@ package body KartengeneratorStandardLogik is
         Weltkarte.Karteneinstellungen.Kartenform.XAchseWesten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
       then
          if
-           XAchseExtern - AnfangExtern < KartengeneratorVariablen.SchleifenanfangOhnePolbereich.XAchse
+           XAchseExtern - AnfangExtern < KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.XAchse
          then
             return AnfangExtern;
             
@@ -272,7 +272,7 @@ package body KartengeneratorStandardLogik is
         Weltkarte.Karteneinstellungen.Kartenform.XAchseOsten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
       then
          if
-           XAchseExtern + EndeExtern > KartengeneratorVariablen.SchleifenendeOhnePolbereich.XAchse
+           XAchseExtern + EndeExtern > KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.XAchse
          then
             return EndeExtern;
          
@@ -296,7 +296,7 @@ package body KartengeneratorStandardLogik is
       MasseAbstandExtern : in Boolean)
    is begin
       
-      BeliebigerLandwert := ZufallsgeneratorenKarten.KartengeneratorZufallswerte;
+      BeliebigerLandwert := ZufallsgeneratorenKartenLogik.KartengeneratorZufallswerte;
       
       case
         MasseAbstandExtern

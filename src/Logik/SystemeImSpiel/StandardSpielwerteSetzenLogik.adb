@@ -10,7 +10,7 @@ with WeltkarteRecords;
 with KartengeneratorRecordKonstanten;
 
 with Weltkarte;
-with KartengeneratorVariablen;
+with KartengeneratorVariablenLogik;
 with Sichtweiten;
 
 package body StandardSpielwerteSetzenLogik is
@@ -26,9 +26,9 @@ package body StandardSpielwerteSetzenLogik is
             null;
             
          when False =>
-            KartengeneratorVariablen.Kartenparameter := KartenRecordKonstanten.Standardkartengeneratorparameter;
-            KartengeneratorVariablen.Polgrößen := KartengeneratorRecordKonstanten.Eisrand;
-            KartengeneratorVariablen.Landgrößen := KartengeneratorRecordKonstanten.Kontinentgröße;
+            KartengeneratorVariablenLogik.Kartenparameter := KartenRecordKonstanten.Standardkartengeneratorparameter;
+            KartengeneratorVariablenLogik.Polgrößen := KartengeneratorRecordKonstanten.Eisrand;
+            KartengeneratorVariablenLogik.Landgrößen := KartengeneratorRecordKonstanten.Kontinentgröße;
       end case;
       
       SpielVariablen.EinheitenGebaut := (others => (others => EinheitenRecordKonstanten.LeerEinheit));

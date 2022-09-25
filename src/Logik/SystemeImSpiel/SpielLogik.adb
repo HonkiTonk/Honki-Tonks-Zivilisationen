@@ -11,7 +11,7 @@ with OptionenLogik;
 with LadezeitenLogik;
 with SpeichernLogik;
 with LadenLogik;
-with RasseEntfernen;
+with RasseEntfernenLogik;
 with RundenendeLogik;
 with Fehler;
 with NachGrafiktask;
@@ -20,7 +20,7 @@ with JaNeinLogik;
 with Spielertests;
 with AuswahlaufteilungLogik;
 
-with KI;
+with KILogik;
 
 package body SpielLogik is
 
@@ -113,7 +113,7 @@ package body SpielLogik is
         and
           SpielVariablen.Grenzen (RasseExtern).RassenRundengrenze > 0
       then
-         RasseEntfernen.RasseEntfernen (RasseExtern => RasseExtern);
+         RasseEntfernenLogik.RasseEntfernen (RasseExtern => RasseExtern);
          return RueckgabeDatentypen.Start_Weiter_Enum;
          
       else
@@ -170,7 +170,7 @@ package body SpielLogik is
       NachGrafiktask.KIRechnet := RasseExtern;
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_KI_Rechenzeit_Enum;
       
-      KI.KI (RasseExtern => RasseExtern);
+      KILogik.KI (RasseExtern => RasseExtern);
       
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
       NachGrafiktask.KIRechnet := RassenDatentypen.Keine_Rasse_Enum;
@@ -197,10 +197,10 @@ package body SpielLogik is
                  JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageKIEinsetzen)
                is
                   when True =>
-                     RasseEntfernen.RasseAufKISetzen (RasseExtern => RasseExtern);
+                     RasseEntfernenLogik.RasseAufKISetzen (RasseExtern => RasseExtern);
                      
                   when others =>
-                     RasseEntfernen.RasseEntfernen (RasseExtern => RasseExtern);
+                     RasseEntfernenLogik.RasseEntfernen (RasseExtern => RasseExtern);
                end case;
                
             else

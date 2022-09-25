@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with SchreibeWeltkarte;
 
-with ZufallsgeneratorenKarten;
+with ZufallsgeneratorenKartenLogik;
 
 package body KartengeneratorErdweltLogik is
 
@@ -28,7 +28,7 @@ package body KartengeneratorErdweltLogik is
       ZufallszahlenSchleife:
       for ZufallszahlSchleifenwert in BasisWahrscheinlichkeitenArray'Range loop
          
-         BasisZahlen (ZufallszahlSchleifenwert) := ZufallsgeneratorenKarten.KartengeneratorZufallswerte;
+         BasisZahlen (ZufallszahlSchleifenwert) := ZufallsgeneratorenKartenLogik.KartengeneratorZufallswerte;
          
          if
            BasisZahlen (ZufallszahlSchleifenwert) < BasisWahrscheinlichkeiten (ZufallszahlSchleifenwert)
@@ -69,7 +69,7 @@ package body KartengeneratorErdweltLogik is
                      elsif
                        BasisZahlen (WahrscheinlichkeitSchleifenwert) = BasisZahlen (WelcherGrund)
                        and
-                         ZufallsgeneratorenKarten.KartengeneratorBoolean = True
+                         ZufallsgeneratorenKartenLogik.KartengeneratorBoolean = True
                      then
                         WelcherGrund := WahrscheinlichkeitSchleifenwert;
                            

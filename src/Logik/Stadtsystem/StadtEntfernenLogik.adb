@@ -18,7 +18,7 @@ with LeseEinheitenGebaut;
 with LeseStadtGebaut;
 
 with KartenkoordinatenberechnungssystemLogik;
-with RasseEntfernen;
+with RasseEntfernenLogik;
 with WachstumLogik;
 with JaNeinLogik;
 
@@ -60,7 +60,7 @@ package body StadtEntfernenLogik is
       WachstumLogik.WachstumWichtiges (RasseExtern => StadtRasseNummerExtern.Rasse);
       SchreibeWichtiges.AnzahlStädte (RasseExtern     => StadtRasseNummerExtern.Rasse,
                                        PlusMinusExtern => False);
-      RasseEntfernen.RasseExistenzPrüfen (RasseExtern => StadtRasseNummerExtern.Rasse);
+      RasseEntfernenLogik.RasseExistenzPrüfen (RasseExtern => StadtRasseNummerExtern.Rasse);
       
    end StadtEntfernen;
    

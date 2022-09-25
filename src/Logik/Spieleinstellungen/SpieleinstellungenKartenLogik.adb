@@ -10,10 +10,10 @@ with KartengeneratorRecordKonstanten;
 
 with Weltkarte;
 with ZahleneingabeLogik;
-with ZufallsgeneratorenSpieleinstellungen;
+with ZufallsgeneratorenSpieleinstellungenLogik;
 with AuswahlaufteilungLogik;
 with Fehler;
-with KartengeneratorVariablen;
+with KartengeneratorVariablenLogik;
 with UmwandlungenVerschiedeneDatentypen;
 with KartentestsLogik;
 
@@ -31,27 +31,27 @@ package body SpieleinstellungenKartenLogik is
            KartenpoleAuswahl
          is
             when RueckgabeDatentypen.Auswahl_Eins_Enum =>
-               KartengeneratorVariablen.Polgrößen (KartenDatentypen.Norden_Enum) := Polgrößen (YAchseXAchseExtern => True);
-               KartengeneratorVariablen.Kartenparameter.Kartenpole.Nordpol := KartentestsLogik.KartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablen.Polgrößen (KartenDatentypen.Norden_Enum));
+               KartengeneratorVariablenLogik.Polgrößen (KartenDatentypen.Norden_Enum) := Polgrößen (YAchseXAchseExtern => True);
+               KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Nordpol := KartentestsLogik.KartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.Polgrößen (KartenDatentypen.Norden_Enum));
                
             when RueckgabeDatentypen.Auswahl_Zwei_Enum =>
-               KartengeneratorVariablen.Polgrößen (KartenDatentypen.Süden_Enum) := Polgrößen (YAchseXAchseExtern => True);
-               KartengeneratorVariablen.Kartenparameter.Kartenpole.Südpol := KartentestsLogik.KartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablen.Polgrößen (KartenDatentypen.Süden_Enum));
+               KartengeneratorVariablenLogik.Polgrößen (KartenDatentypen.Süden_Enum) := Polgrößen (YAchseXAchseExtern => True);
+               KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Südpol := KartentestsLogik.KartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.Polgrößen (KartenDatentypen.Süden_Enum));
                
             when RueckgabeDatentypen.Auswahl_Drei_Enum =>
-               KartengeneratorVariablen.Polgrößen (KartenDatentypen.Westen_Enum) := Polgrößen (YAchseXAchseExtern => False);
-               KartengeneratorVariablen.Kartenparameter.Kartenpole.Westpol := KartentestsLogik.KartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablen.Polgrößen (KartenDatentypen.Westen_Enum));
+               KartengeneratorVariablenLogik.Polgrößen (KartenDatentypen.Westen_Enum) := Polgrößen (YAchseXAchseExtern => False);
+               KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Westpol := KartentestsLogik.KartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.Polgrößen (KartenDatentypen.Westen_Enum));
                
             when RueckgabeDatentypen.Auswahl_Vier_Enum =>
-               KartengeneratorVariablen.Polgrößen (KartenDatentypen.Osten_Enum) := Polgrößen (YAchseXAchseExtern => False);
-               KartengeneratorVariablen.Kartenparameter.Kartenpole.Ostpol := KartentestsLogik.KartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablen.Polgrößen (KartenDatentypen.Osten_Enum));
+               KartengeneratorVariablenLogik.Polgrößen (KartenDatentypen.Osten_Enum) := Polgrößen (YAchseXAchseExtern => False);
+               KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Ostpol := KartentestsLogik.KartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.Polgrößen (KartenDatentypen.Osten_Enum));
                
             when RueckgabeDatentypen.Auswahl_Fünf_Enum =>
-               ZufallsgeneratorenSpieleinstellungen.ZufälligePole;
+               ZufallsgeneratorenSpieleinstellungenLogik.ZufälligePole;
                
             when RueckgabeDatentypen.Auswahl_Sechs_Enum =>
-               KartengeneratorVariablen.Kartenparameter.Kartenpole := KartenRecordKonstanten.KartenpoleStandard;
-               KartengeneratorVariablen.Polgrößen := KartengeneratorRecordKonstanten.Eisrand;
+               KartengeneratorVariablenLogik.Kartenparameter.Kartenpole := KartenRecordKonstanten.KartenpoleStandard;
+               KartengeneratorVariablenLogik.Polgrößen := KartengeneratorRecordKonstanten.Eisrand;
                
             when RueckgabeDatentypen.Fertig_Enum | RueckgabeDatentypen.Zurück_Enum =>
                return;
@@ -75,10 +75,10 @@ package body SpieleinstellungenKartenLogik is
         YAchseXAchseExtern
       is
          when True =>
-            MaximaleEisdicke := KartengeneratorVariablen.Kartenparameter.Kartengröße.YAchse / 2;
+            MaximaleEisdicke := KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.YAchse / 2;
 
          when False =>
-            MaximaleEisdicke := KartengeneratorVariablen.Kartenparameter.Kartengröße.XAchse / 2;
+            MaximaleEisdicke := KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.XAchse / 2;
       end case;
 
       BenutzerdefinierteGröße := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => 0,
@@ -112,16 +112,16 @@ package body SpieleinstellungenKartenLogik is
            KartengrößeAuswahl
          is
             when RueckgabeDatentypen.Kartengrößen_Standard_Enum'Range =>
-               KartengeneratorVariablen.Kartenparameter.Kartengröße := KartenKonstanten.StandardKartengrößen (KartengrößeAuswahl);
+               KartengeneratorVariablenLogik.Kartenparameter.Kartengröße := KartenKonstanten.StandardKartengrößen (KartengrößeAuswahl);
 
             when RueckgabeDatentypen.Auswahl_Zehn_Enum =>
-               KartengeneratorVariablen.Kartenparameter.Kartengröße := GrößeSelbstBestimmen;
+               KartengeneratorVariablenLogik.Kartenparameter.Kartengröße := GrößeSelbstBestimmen;
                
             when RueckgabeDatentypen.Auswahl_Elf_Enum =>
-               KartengeneratorVariablen.Kartenparameter.Kartengröße := KartenKonstanten.StandardKartengrößen (ZufallsgeneratorenSpieleinstellungen.ZufälligeVordefinierteKartengröße);
+               KartengeneratorVariablenLogik.Kartenparameter.Kartengröße := KartenKonstanten.StandardKartengrößen (ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeVordefinierteKartengröße);
                
             when RueckgabeDatentypen.Auswahl_Zwölf_Enum =>
-               KartengeneratorVariablen.Kartenparameter.Kartengröße := ZufallsgeneratorenSpieleinstellungen.ZufälligeKartengröße;
+               KartengeneratorVariablenLogik.Kartenparameter.Kartengröße := ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeKartengröße;
                
             when RueckgabeDatentypen.Fertig_Enum | RueckgabeDatentypen.Zurück_Enum =>
                return;
@@ -189,24 +189,24 @@ package body SpieleinstellungenKartenLogik is
            KartenartAuswahl
          is
             when RueckgabeDatentypen.Auswahl_Eins_Enum =>
-               KartengeneratorVariablen.Landgrößen := KartengeneratorRecordKonstanten.Inselgröße;
+               KartengeneratorVariablenLogik.Landgrößen := KartengeneratorRecordKonstanten.Inselgröße;
                
             when RueckgabeDatentypen.Auswahl_Zwei_Enum =>
-               KartengeneratorVariablen.Landgrößen := KartengeneratorRecordKonstanten.Kontinentgröße;
+               KartengeneratorVariablenLogik.Landgrößen := KartengeneratorRecordKonstanten.Kontinentgröße;
                
             when RueckgabeDatentypen.Auswahl_Drei_Enum =>
-               KartengeneratorVariablen.Landgrößen := KartengeneratorRecordKonstanten.Pangäagröße;
+               KartengeneratorVariablenLogik.Landgrößen := KartengeneratorRecordKonstanten.Pangäagröße;
                
             when RueckgabeDatentypen.Auswahl_Vier_Enum =>
-               KartengeneratorVariablen.Kartenparameter.Kartenart := KartenDatentypen.Kartenart_Nutzerdefiniert_Enum;
+               KartengeneratorVariablenLogik.Kartenparameter.Kartenart := KartenDatentypen.Kartenart_Nutzerdefiniert_Enum;
                KartenartNutzerdefinition;
                
             when RueckgabeDatentypen.Auswahl_Fünf_Enum =>
-               KartengeneratorVariablen.Kartenparameter.Kartenart := ZufallsgeneratorenSpieleinstellungen.ZufälligeVordefinierteKartenart;
+               KartengeneratorVariablenLogik.Kartenparameter.Kartenart := ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeVordefinierteKartenart;
                
             when RueckgabeDatentypen.Auswahl_Sechs_Enum =>
-               KartengeneratorVariablen.Kartenparameter.Kartenart := KartenDatentypen.Kartenart_Nutzerdefiniert_Enum;
-               ZufallsgeneratorenSpieleinstellungen.ZufälligeKartenart;
+               KartengeneratorVariablenLogik.Kartenparameter.Kartenart := KartenDatentypen.Kartenart_Nutzerdefiniert_Enum;
+               ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeKartenart;
                
             when RueckgabeDatentypen.Auswahl_Sieben_Enum =>
                KartenartStandard;
@@ -228,7 +228,7 @@ package body SpieleinstellungenKartenLogik is
    is begin
       
       BenutzerdefinierteKartenart := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => 1,
-                                                                       ZahlenMaximumExtern => Positive (KartengeneratorVariablen.Kartenparameter.Kartengröße.YAchse / 2),
+                                                                       ZahlenMaximumExtern => Positive (KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.YAchse / 2),
                                                                        WelcheFrageExtern   => TextnummernKonstanten.FrageMinimaleLandhöhe);
       
       case
@@ -239,12 +239,12 @@ package body SpieleinstellungenKartenLogik is
             return;
             
          when True =>
-            KartengeneratorVariablen.Landgrößen.MinimaleYAchse := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteKartenart.EingegebeneZahl);
+            KartengeneratorVariablenLogik.Landgrößen.MinimaleYAchse := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteKartenart.EingegebeneZahl);
             ZwischenwertKartenart := BenutzerdefinierteKartenart.EingegebeneZahl;
       end case;
             
       BenutzerdefinierteKartenart := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => ZwischenwertKartenart,
-                                                                       ZahlenMaximumExtern => Positive (KartengeneratorVariablen.Kartenparameter.Kartengröße.YAchse / 2),
+                                                                       ZahlenMaximumExtern => Positive (KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.YAchse / 2),
                                                                        WelcheFrageExtern   => TextnummernKonstanten.FrageMaximaleLandhöhe);
       
       case
@@ -255,13 +255,13 @@ package body SpieleinstellungenKartenLogik is
             return;
             
          when True =>
-            KartengeneratorVariablen.Landgrößen.MaximaleYAchse := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteKartenart.EingegebeneZahl);
+            KartengeneratorVariablenLogik.Landgrößen.MaximaleYAchse := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteKartenart.EingegebeneZahl);
       end case;
       
       
       
       BenutzerdefinierteKartenart := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => 1,
-                                                                       ZahlenMaximumExtern => Positive (KartengeneratorVariablen.Kartenparameter.Kartengröße.XAchse / 2),
+                                                                       ZahlenMaximumExtern => Positive (KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.XAchse / 2),
                                                                        WelcheFrageExtern   => TextnummernKonstanten.FrageMinimaleLandbreite);
       
       case
@@ -272,12 +272,12 @@ package body SpieleinstellungenKartenLogik is
             return;
             
          when True =>
-            KartengeneratorVariablen.Landgrößen.MinimaleXAchse := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteKartenart.EingegebeneZahl);
+            KartengeneratorVariablenLogik.Landgrößen.MinimaleXAchse := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteKartenart.EingegebeneZahl);
             ZwischenwertKartenart := BenutzerdefinierteKartenart.EingegebeneZahl;
       end case;
             
       BenutzerdefinierteKartenart := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => ZwischenwertKartenart,
-                                                                       ZahlenMaximumExtern => Positive (KartengeneratorVariablen.Kartenparameter.Kartengröße.XAchse / 2),
+                                                                       ZahlenMaximumExtern => Positive (KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.XAchse / 2),
                                                                        WelcheFrageExtern   => TextnummernKonstanten.FrageMaximaleLandbreite);
       
       case
@@ -288,7 +288,7 @@ package body SpieleinstellungenKartenLogik is
             return;
             
          when True =>
-            KartengeneratorVariablen.Landgrößen.MaximaleXAchse := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteKartenart.EingegebeneZahl);
+            KartengeneratorVariablenLogik.Landgrößen.MaximaleXAchse := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteKartenart.EingegebeneZahl);
       end case;
       
    end KartenartNutzerdefinition;
@@ -298,8 +298,8 @@ package body SpieleinstellungenKartenLogik is
    procedure KartenartStandard
    is begin
 
-      KartengeneratorVariablen.Kartenparameter.Kartenart := KartenKonstanten.StandardKartenart;
-      KartengeneratorVariablen.Landgrößen := KartengeneratorRecordKonstanten.Kontinentgröße;
+      KartengeneratorVariablenLogik.Kartenparameter.Kartenart := KartenKonstanten.StandardKartenart;
+      KartengeneratorVariablenLogik.Landgrößen := KartengeneratorRecordKonstanten.Kontinentgröße;
 
    end KartenartStandard;
    
@@ -320,10 +320,10 @@ package body SpieleinstellungenKartenLogik is
                KartenformZuweisen (WelcheAchseExtern => KartenformAuswahl);
                
             when RueckgabeDatentypen.Auswahl_Sieben_Enum =>
-               ZufallsgeneratorenSpieleinstellungen.ZufälligeKartenform;
+               ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeKartenform;
                
             when RueckgabeDatentypen.Auswahl_Acht_Enum =>
-               KartengeneratorVariablen.Kartenparameter.Kartenform := KartenRecordKonstanten.KartenformStandard;
+               KartengeneratorVariablenLogik.Kartenparameter.Kartenform := KartenRecordKonstanten.KartenformStandard;
                
             when RueckgabeDatentypen.Fertig_Enum | RueckgabeDatentypen.Zurück_Enum =>
                return;
@@ -347,68 +347,68 @@ package body SpieleinstellungenKartenLogik is
       is
          when RueckgabeDatentypen.Auswahl_Eins_Enum =>
             if
-              KartengeneratorVariablen.Kartenparameter.Kartenform.EAchseOben = KartenDatentypen.Kartenform_E_Einstellbar_Enum'Last
+              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.EAchseOben = KartenDatentypen.Kartenform_E_Einstellbar_Enum'Last
             then
-               KartengeneratorVariablen.Kartenparameter.Kartenform.EAchseOben := KartenDatentypen.Kartenform_E_Einstellbar_Enum'First;
+               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.EAchseOben := KartenDatentypen.Kartenform_E_Einstellbar_Enum'First;
                
             else
-               KartengeneratorVariablen.Kartenparameter.Kartenform.EAchseOben
-                 := KartenDatentypen.Kartenform_E_Einstellbar_Enum'Val (KartenDatentypen.Kartenform_E_Einstellbar_Enum'Pos (KartengeneratorVariablen.Kartenparameter.Kartenform.EAchseOben) + 1);
+               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.EAchseOben
+                 := KartenDatentypen.Kartenform_E_Einstellbar_Enum'Val (KartenDatentypen.Kartenform_E_Einstellbar_Enum'Pos (KartengeneratorVariablenLogik.Kartenparameter.Kartenform.EAchseOben) + 1);
             end if;
             
          when RueckgabeDatentypen.Auswahl_Zwei_Enum =>
             if
-              KartengeneratorVariablen.Kartenparameter.Kartenform.EAchseUnten = KartenDatentypen.Kartenform_E_Einstellbar_Enum'Last
+              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.EAchseUnten = KartenDatentypen.Kartenform_E_Einstellbar_Enum'Last
             then
-               KartengeneratorVariablen.Kartenparameter.Kartenform.EAchseUnten := KartenDatentypen.Kartenform_E_Einstellbar_Enum'First;
+               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.EAchseUnten := KartenDatentypen.Kartenform_E_Einstellbar_Enum'First;
                
             else
-               KartengeneratorVariablen.Kartenparameter.Kartenform.EAchseUnten
-                 := KartenDatentypen.Kartenform_E_Einstellbar_Enum'Val (KartenDatentypen.Kartenform_E_Einstellbar_Enum'Pos (KartengeneratorVariablen.Kartenparameter.Kartenform.EAchseUnten) + 1);
+               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.EAchseUnten
+                 := KartenDatentypen.Kartenform_E_Einstellbar_Enum'Val (KartenDatentypen.Kartenform_E_Einstellbar_Enum'Pos (KartengeneratorVariablenLogik.Kartenparameter.Kartenform.EAchseUnten) + 1);
             end if;
             
          when RueckgabeDatentypen.Auswahl_Drei_Enum =>
             if
-              KartengeneratorVariablen.Kartenparameter.Kartenform.YAchseNorden = KartenDatentypen.Kartenform_Y_Einstellbar_Enum'Last
+              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.YAchseNorden = KartenDatentypen.Kartenform_Y_Einstellbar_Enum'Last
             then
-               KartengeneratorVariablen.Kartenparameter.Kartenform.YAchseNorden := KartenDatentypen.Kartenform_Y_Einstellbar_Enum'First;
+               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.YAchseNorden := KartenDatentypen.Kartenform_Y_Einstellbar_Enum'First;
                
             else
-               KartengeneratorVariablen.Kartenparameter.Kartenform.YAchseNorden
-                 := KartenDatentypen.Kartenform_Y_Einstellbar_Enum'Val (KartenDatentypen.Kartenform_Y_Einstellbar_Enum'Pos (KartengeneratorVariablen.Kartenparameter.Kartenform.YAchseNorden) + 1);
+               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.YAchseNorden
+                 := KartenDatentypen.Kartenform_Y_Einstellbar_Enum'Val (KartenDatentypen.Kartenform_Y_Einstellbar_Enum'Pos (KartengeneratorVariablenLogik.Kartenparameter.Kartenform.YAchseNorden) + 1);
             end if;
             
          when RueckgabeDatentypen.Auswahl_Vier_Enum =>
             if
-              KartengeneratorVariablen.Kartenparameter.Kartenform.YAchseSüden = KartenDatentypen.Kartenform_Y_Einstellbar_Enum'Last
+              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.YAchseSüden = KartenDatentypen.Kartenform_Y_Einstellbar_Enum'Last
             then
-               KartengeneratorVariablen.Kartenparameter.Kartenform.YAchseSüden := KartenDatentypen.Kartenform_Y_Einstellbar_Enum'First;
+               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.YAchseSüden := KartenDatentypen.Kartenform_Y_Einstellbar_Enum'First;
                
             else
-               KartengeneratorVariablen.Kartenparameter.Kartenform.YAchseSüden
-                 := KartenDatentypen.Kartenform_Y_Einstellbar_Enum'Val (KartenDatentypen.Kartenform_Y_Einstellbar_Enum'Pos (KartengeneratorVariablen.Kartenparameter.Kartenform.YAchseSüden) + 1);
+               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.YAchseSüden
+                 := KartenDatentypen.Kartenform_Y_Einstellbar_Enum'Val (KartenDatentypen.Kartenform_Y_Einstellbar_Enum'Pos (KartengeneratorVariablenLogik.Kartenparameter.Kartenform.YAchseSüden) + 1);
             end if;
             
          when RueckgabeDatentypen.Auswahl_Fünf_Enum =>
             if
-              KartengeneratorVariablen.Kartenparameter.Kartenform.XAchseWesten = KartenDatentypen.Kartenform_X_Einstellbar_Enum'Last
+              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.XAchseWesten = KartenDatentypen.Kartenform_X_Einstellbar_Enum'Last
             then
-               KartengeneratorVariablen.Kartenparameter.Kartenform.XAchseWesten := KartenDatentypen.Kartenform_X_Einstellbar_Enum'First;
+               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.XAchseWesten := KartenDatentypen.Kartenform_X_Einstellbar_Enum'First;
                
             else
-               KartengeneratorVariablen.Kartenparameter.Kartenform.XAchseWesten
-                 := KartenDatentypen.Kartenform_X_Einstellbar_Enum'Val (KartenDatentypen.Kartenform_X_Einstellbar_Enum'Pos (KartengeneratorVariablen.Kartenparameter.Kartenform.XAchseWesten) + 1);
+               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.XAchseWesten
+                 := KartenDatentypen.Kartenform_X_Einstellbar_Enum'Val (KartenDatentypen.Kartenform_X_Einstellbar_Enum'Pos (KartengeneratorVariablenLogik.Kartenparameter.Kartenform.XAchseWesten) + 1);
             end if;
             
          when RueckgabeDatentypen.Auswahl_Sechs_Enum =>
             if
-              KartengeneratorVariablen.Kartenparameter.Kartenform.XAchseOsten = KartenDatentypen.Kartenform_X_Einstellbar_Enum'Last
+              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.XAchseOsten = KartenDatentypen.Kartenform_X_Einstellbar_Enum'Last
             then
-               KartengeneratorVariablen.Kartenparameter.Kartenform.XAchseOsten := KartenDatentypen.Kartenform_X_Einstellbar_Enum'First;
+               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.XAchseOsten := KartenDatentypen.Kartenform_X_Einstellbar_Enum'First;
                
             else
-               KartengeneratorVariablen.Kartenparameter.Kartenform.XAchseOsten
-                 := KartenDatentypen.Kartenform_X_Einstellbar_Enum'Val (KartenDatentypen.Kartenform_X_Einstellbar_Enum'Pos (KartengeneratorVariablen.Kartenparameter.Kartenform.XAchseOsten) + 1);
+               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.XAchseOsten
+                 := KartenDatentypen.Kartenform_X_Einstellbar_Enum'Val (KartenDatentypen.Kartenform_X_Einstellbar_Enum'Pos (KartengeneratorVariablenLogik.Kartenparameter.Kartenform.XAchseOsten) + 1);
             end if;
       end case;
       
@@ -428,10 +428,10 @@ package body SpieleinstellungenKartenLogik is
            KartentemperaturAuswahl
          is
             when RueckgabeDatentypen.Kartentemperatur_Enum'Range =>
-               KartengeneratorVariablen.Kartenparameter.Kartentemperatur := UmwandlungenVerschiedeneDatentypen.KartentemperaturrückgabeNachKartentemperatur (RückgabeExtern => KartentemperaturAuswahl);
+               KartengeneratorVariablenLogik.Kartenparameter.Kartentemperatur := UmwandlungenVerschiedeneDatentypen.KartentemperaturrückgabeNachKartentemperatur (RückgabeExtern => KartentemperaturAuswahl);
                
             when RueckgabeDatentypen.Auswahl_Sechs_Enum =>
-               KartengeneratorVariablen.Kartenparameter.Kartentemperatur := ZufallsgeneratorenSpieleinstellungen.ZufälligeKartentemperatur;
+               KartengeneratorVariablenLogik.Kartenparameter.Kartentemperatur := ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeKartentemperatur;
                
             when RueckgabeDatentypen.Fertig_Enum | RueckgabeDatentypen.Zurück_Enum =>
                return;
@@ -458,10 +458,10 @@ package body SpieleinstellungenKartenLogik is
            KartenressourcenAuswahl
          is
             when RueckgabeDatentypen.Kartenressourcen_Enum'Range =>
-               KartengeneratorVariablen.Kartenparameter.Kartenressourcen := UmwandlungenVerschiedeneDatentypen.KartenressourcenrückgabeNachKartenressource (RückgabeExtern => KartenressourcenAuswahl);
+               KartengeneratorVariablenLogik.Kartenparameter.Kartenressourcen := UmwandlungenVerschiedeneDatentypen.KartenressourcenrückgabeNachKartenressource (RückgabeExtern => KartenressourcenAuswahl);
                
             when RueckgabeDatentypen.Auswahl_Sechs_Enum =>
-               KartengeneratorVariablen.Kartenparameter.Kartenressourcen := ZufallsgeneratorenSpieleinstellungen.ZufälligeKartenressourcen;
+               KartengeneratorVariablenLogik.Kartenparameter.Kartenressourcen := ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeKartenressourcen;
                
             when RueckgabeDatentypen.Fertig_Enum | RueckgabeDatentypen.Zurück_Enum =>
                return;

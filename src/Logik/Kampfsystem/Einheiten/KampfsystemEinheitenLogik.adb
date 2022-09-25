@@ -11,7 +11,7 @@ with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
 
-with ZufallsgeneratorenKampf;
+with ZufallsgeneratorenKampfLogik;
 with KampfwerteEinheitErmittelnLogik;
 with EinheitenErzeugenEntfernenLogik;
 with PZBEingesetztLogik;
@@ -134,7 +134,7 @@ package body KampfsystemEinheitenLogik is
          WelcherFall := Gleich_Enum;
       end if;
       
-      Kampfglück := ZufallsgeneratorenKampf.KampfErfolg;
+      Kampfglück := ZufallsgeneratorenKampfLogik.KampfErfolg;
       AngerichteterSchaden := 0;
       
       AngerichteterSchadenSchleife:

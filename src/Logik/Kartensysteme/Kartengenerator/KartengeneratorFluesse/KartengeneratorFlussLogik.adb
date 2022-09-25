@@ -8,8 +8,8 @@ with LadezeitenDatentypen;
 with LeseWeltkarte;
 
 with KartenkoordinatenberechnungssystemLogik;
-with ZufallsgeneratorenKarten;
-with KartengeneratorVariablen;
+with ZufallsgeneratorenKartenLogik;
+with KartengeneratorVariablenLogik;
 with FlussplatzierungssystemLogik;
 with LadezeitenLogik;
 
@@ -49,12 +49,12 @@ package body KartengeneratorFlussLogik is
      (EbeneExtern : in KartenDatentypen.EbenePlanet)
    is begin
       
-      Kartenzeitwert (EbeneExtern) := (KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse + (33 - 1)) / 33;
+      Kartenzeitwert (EbeneExtern) := (KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.YAchse + (33 - 1)) / 33;
       
       YAchseSchleife:
-      for YAchseSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.YAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse loop
+      for YAchseSchleifenwert in KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.YAchse .. KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.YAchse loop
          XAchseSchleife:
-         for XAchseSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.XAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.XAchse loop
+         for XAchseSchleifenwert in KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.XAchse .. KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.XAchse loop
             
             case
               LeseWeltkarte.AktuellerGrund (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert))
@@ -97,7 +97,7 @@ package body KartengeneratorFlussLogik is
       return Boolean
    is begin
          
-      BeliebigerFlusswert (KoordinatenExtern.EAchse) := ZufallsgeneratorenKarten.KartengeneratorZufallswerte;
+      BeliebigerFlusswert (KoordinatenExtern.EAchse) := ZufallsgeneratorenKartenLogik.KartengeneratorZufallswerte;
                   
       if
         BeliebigerFlusswert (KoordinatenExtern.EAchse) <= WahrscheinlichkeitFluss (KoordinatenExtern.EAchse)

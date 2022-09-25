@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with SpielVariablen;
 with MenueDatentypen;
 
-with ZufallsgeneratorenSpieleinstellungen;
+with ZufallsgeneratorenSpieleinstellungenLogik;
 with AuswahlaufteilungLogik;
 with Fehler;
 with UmwandlungenVerschiedeneDatentypen;
@@ -26,7 +26,7 @@ package body SpieleinstellungenSonstigesLogik is
                SpielVariablen.Allgemeines.Schwierigkeitsgrad := UmwandlungenVerschiedeneDatentypen.RückgabeNachSchwierigkeitsgrad (RückgabeExtern => SchwierigkeitAuswahl);
 
             when RueckgabeDatentypen.Auswahl_Vier_Enum =>
-               SpielVariablen.Allgemeines.Schwierigkeitsgrad := ZufallsgeneratorenSpieleinstellungen.ZufälligerSchwiewrigkeitsgrad;
+               SpielVariablen.Allgemeines.Schwierigkeitsgrad := ZufallsgeneratorenSpieleinstellungenLogik.ZufälligerSchwiewrigkeitsgrad;
                
             when RueckgabeDatentypen.Fertig_Enum | RueckgabeDatentypen.Zurück_Enum =>
                return;

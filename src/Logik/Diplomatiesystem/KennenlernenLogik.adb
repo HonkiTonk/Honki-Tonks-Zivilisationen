@@ -5,7 +5,7 @@ with DiplomatieDatentypen;
 
 with DiplomatischerZustandLogik;
 
-with KIDiplomatie;
+with KIDiplomatieLogik;
 
 package body KennenlernenLogik is
 
@@ -44,8 +44,8 @@ package body KennenlernenLogik is
                               FremdeRasseExtern => FremdeRasseExtern);
          
       else
-         KIDiplomatie.DiplomatieKIKI (EigeneRasseExtern   => EigeneRasseExtern,
-                                      FremdeRasseKIExtern => FremdeRasseExtern);
+         KIDiplomatieLogik.DiplomatieKIKI (EigeneRasseExtern   => EigeneRasseExtern,
+                                           FremdeRasseKIExtern => FremdeRasseExtern);
       end if;
       
    end Erstkontakt;

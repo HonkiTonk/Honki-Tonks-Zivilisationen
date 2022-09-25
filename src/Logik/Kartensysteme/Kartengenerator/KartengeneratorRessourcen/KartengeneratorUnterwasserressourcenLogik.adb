@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with SchreibeWeltkarte;
 
-with ZufallsgeneratorenKarten;
+with ZufallsgeneratorenKartenLogik;
 
 package body KartengeneratorUnterwasserressourcenLogik is
 
@@ -16,7 +16,7 @@ package body KartengeneratorUnterwasserressourcenLogik is
       ZufallszahlenSchleife:
       for ZufallszahlSchleifenwert in KartenressourceWahrscheinlichkeitArray'Range loop
          
-         GezogeneZahlen (ZufallszahlSchleifenwert) := ZufallsgeneratorenKarten.KartengeneratorZufallswerte;
+         GezogeneZahlen (ZufallszahlSchleifenwert) := ZufallsgeneratorenKartenLogik.KartengeneratorZufallswerte;
          
          if
            GezogeneZahlen (ZufallszahlSchleifenwert) < KartenressourceWahrscheinlichkeit (ZufallszahlSchleifenwert)
@@ -53,7 +53,7 @@ package body KartengeneratorUnterwasserressourcenLogik is
                   elsif
                     GezogeneZahlen (WahrscheinlichkeitSchleifenwert) = GezogeneZahlen (WelcheRessource)
                     and
-                      ZufallsgeneratorenKarten.KartengeneratorBoolean = True
+                      ZufallsgeneratorenKartenLogik.KartengeneratorBoolean = True
                   then
                      WelcheRessource := WahrscheinlichkeitSchleifenwert;
                            

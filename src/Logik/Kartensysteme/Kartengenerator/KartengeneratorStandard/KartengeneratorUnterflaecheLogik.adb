@@ -8,7 +8,7 @@ with LadezeitenDatentypen;
 with LeseWeltkarte;
 with SchreibeWeltkarte;
 
-with KartengeneratorVariablen;
+with KartengeneratorVariablenLogik;
 with KartengeneratorErdweltLogik;
 with KartengeneratorWasserweltLogik;
 with Fehler;
@@ -19,12 +19,12 @@ package body KartengeneratorUnterflaecheLogik is
    procedure GenerierungLandschaft
    is begin
       
-      Kartenzeitwert := (KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse + (100 - 1)) / 100;
+      Kartenzeitwert := (KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.YAchse + (100 - 1)) / 100;
                
       YAchseSchleife:
-      for YAchseSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.YAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse loop
+      for YAchseSchleifenwert in KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.YAchse .. KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.YAchse loop
          XAchseSchleife:
-         for XAchseSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.XAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.XAchse loop
+         for XAchseSchleifenwert in KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.XAchse .. KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.XAchse loop
             
             case
               LeseWeltkarte.BasisGrund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert))

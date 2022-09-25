@@ -5,7 +5,7 @@ with LadezeitenDatentypen;
 
 with SchreibeWeltkarte;
 
-with ZufallsgeneratorenKarten;
+with ZufallsgeneratorenKartenLogik;
 with LadezeitenLogik;
 
 package body KartengeneratorPlanetenkernLogik is
@@ -64,7 +64,7 @@ package body KartengeneratorPlanetenkernLogik is
       ZufallszahlenSchleife:
       for ZufallszahlSchleifenwert in BasisWahrscheinlichkeitenArray'Range loop
          
-         BasisZahlen (ZufallszahlSchleifenwert) := ZufallsgeneratorenKarten.KartengeneratorZufallswerte;
+         BasisZahlen (ZufallszahlSchleifenwert) := ZufallsgeneratorenKartenLogik.KartengeneratorZufallswerte;
          
          if
            BasisZahlen (ZufallszahlSchleifenwert) < BasisWahrscheinlichkeiten (ZufallszahlSchleifenwert)
@@ -101,7 +101,7 @@ package body KartengeneratorPlanetenkernLogik is
                elsif
                  BasisZahlen (WahrscheinlichkeitSchleifenwert) = BasisZahlen (WelcherGrund)
                  and
-                   ZufallsgeneratorenKarten.KartengeneratorBoolean = True
+                   ZufallsgeneratorenKartenLogik.KartengeneratorBoolean = True
                then
                   WelcherGrund := WahrscheinlichkeitSchleifenwert;
                            
