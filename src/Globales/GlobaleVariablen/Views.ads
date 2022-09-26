@@ -43,7 +43,7 @@ package Views is
    StadtviewAccesse : constant ViewsArray (1 .. 4) := (others => Sf.Graphics.View.create);
 
    ForschungsviewAccesse : constant ViewsArray (1 .. 4) := (others => Sf.Graphics.View.create);
-   BauviewAccesse : constant ViewsArray (1 .. 5) := (others => Sf.Graphics.View.create);
+   BauviewAccesse : constant ViewsArray (1 .. 7) := (others => Sf.Graphics.View.create);
    VerkaufsviewAccesse : constant ViewsArray (1 .. 2) := (others => Sf.Graphics.View.create);
 
    EditorenviewAccesse : constant ViewsArray (1 .. 2) := (others => Sf.Graphics.View.create);

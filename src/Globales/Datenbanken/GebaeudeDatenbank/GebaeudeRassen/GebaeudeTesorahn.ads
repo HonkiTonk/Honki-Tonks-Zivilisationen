@@ -18,7 +18,7 @@ package GebaeudeTesorahn is
                                                                                PreisRessourcen             => 100,
                                                                                PermanenteKosten            => (others => 0),
                                                                                Anforderungen               => 0,
-                                                                               BonusWirtschaft             => (KartenDatentypen.Nahrung => 10,
+                                                                               BonusWirtschaft             => (KartenDatentypen.Nahrung_Enum => 10,
                                                                                                                others                   => 0),
                                                                                BonusKampf                  => (others => 10),
                                                                                GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,

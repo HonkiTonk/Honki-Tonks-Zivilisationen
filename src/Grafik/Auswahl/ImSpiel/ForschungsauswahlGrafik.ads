@@ -10,6 +10,7 @@ with SpielVariablen;
 
 private with ForschungenDatentypen;
 private with GrafikRecordKonstanten;
+private with ProduktionDatentypen;
 
 package ForschungsauswahlGrafik is
 
@@ -27,6 +28,8 @@ private
    AktuellesForschungsprojekt : ForschungenDatentypen.ForschungIDMitNullWert;
    
    Forschungswert : ForschungenDatentypen.ForschungIDNichtMöglich;
+   
+   Forschungszeit : ProduktionDatentypen.Lagermenge;
       
    AktuelleTextbreite : Float;
       

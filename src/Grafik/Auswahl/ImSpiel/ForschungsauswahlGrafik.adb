@@ -47,12 +47,14 @@ package body ForschungsauswahlGrafik is
       Auswahlmöglichkeiten (AuswahlExtern    => AktuelleAuswahl,
                              ViewnummerExtern => 1,
                              RasseExtern      => RasseExtern);
+      
       Ermöglicht (ZusatztextExtern => AktuelleAuswahl,
                    RasseExtern      => RasseExtern,
                    ViewnummerExtern => 2);
       Beschreibung (ZusatztextExtern => AktuelleAuswahl,
                     ViewnummerExtern => 3,
                     RasseExtern      => RasseExtern);
+      
       Aktuell (RasseExtern      => RasseExtern,
                ViewnummerExtern => 4);
       
@@ -341,7 +343,7 @@ package body ForschungsauswahlGrafik is
         AktuellesForschungsprojekt
       is
          when ForschungKonstanten.LeerForschung =>
-            Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt) & " " & Meldungstexte.Zeug (TextnummernKonstanten.ZeugKeines);
+            return;
             
          when others =>
             Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt) & " " & ForschungsbeschreibungenGrafik.BeschreibungKurz (IDExtern    => AktuellesForschungsprojekt,
@@ -366,7 +368,18 @@ package body ForschungsauswahlGrafik is
                                                                       TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                                                       ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       
-      Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugVerbleibendeForschungszeit) & LeseWichtiges.VerbleibendeForschungszeit (RasseExtern => RasseExtern)'Wide_Wide_Image;
+      Forschungszeit := LeseWichtiges.VerbleibendeForschungszeit (RasseExtern => RasseExtern);
+      Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugVerbleibendeForschungszeit);
+      
+      case
+        Forschungszeit
+      is
+         when ProduktionDatentypen.Lagermenge'Last =>
+            Text := Text & " ∞";
+            
+         when others =>
+            Text := Text & Forschungszeit'Wide_Wide_Image;
+      end case;
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                          str  => To_Wide_Wide_String (Source => Text));

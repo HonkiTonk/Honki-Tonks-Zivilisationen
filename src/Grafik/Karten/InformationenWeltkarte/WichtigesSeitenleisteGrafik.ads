@@ -77,11 +77,7 @@ private
      with
        Pre => (
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
-              ),
-         
-       Post => (
-                  To_Wide_Wide_String (Source => Forschung'Result)'Length > 0 
-               );
+              );
    
    function ZahlAlsStringKostenLager is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => ProduktionDatentypen.Produktion);
    

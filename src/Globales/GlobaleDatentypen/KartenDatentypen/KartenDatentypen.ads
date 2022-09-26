@@ -122,11 +122,11 @@ package KartenDatentypen is
    -- subtype  is Bewertung_Enum range  .. ;
 
    type Wirtschaft_Enum is (
-                            Nahrung, Produktion, Geld, Forschung
+                            Nahrung_Enum, Produktion_Enum, Geld_Enum, Forschung_Enum
                            );
    
    type Kampf_Enum is (
-                       Verteidigung, Angriff
+                       Verteidigung_Enum, Angriff_Enum
                       );
    
    

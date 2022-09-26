@@ -19,7 +19,7 @@ with KennenlernenLogik;
 package body SichtbarkeitLogik is
 
    -- Einfach immer die Quadranden durchlaufen? Dann müsste mehr gerechnet werden ist aber einfacher zu Programmieren. äöü
-   -- Generell hier mal alles überarbeiten? geht bestimmt auch kürzer. äöü
+   -- geht nicht so einfach, da die Einheitenpassierbarkeit dann nicht korrekt auf Luft/Weltraum geprüft wird. äöü
    procedure SichtbarkeitsprüfungFürEinheit
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin

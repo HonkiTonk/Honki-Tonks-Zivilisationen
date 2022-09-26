@@ -31,12 +31,16 @@ package BauauswahlGrafik is
 
 private
 
-   AktuelleTextbreite : Float;
+   Textbreite : Float;
 
    Text : Unbounded_Wide_Wide_String;
    AktuellesBauprojekt : StadtRecords.BauprojektRecord;
 
    Textposition : Sf.System.Vector2.sfVector2f;
+
+   type InformationstextArray is array (Positive range <>) of Unbounded_Wide_Wide_String;
+   Gebäudetext : InformationstextArray (1 .. 10);
+   Einheitentext : InformationstextArray (1 .. 9);
 
    type ViewflächenArray is array (GrafikRecordKonstanten.Baumenübereich'Range) of Sf.System.Vector2.sfVector2f;
    Viewfläche : ViewflächenArray := (others => GrafikRecordKonstanten.StartgrößeView);
@@ -59,7 +63,7 @@ private
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
               );
 
-   procedure InformationenGebäude
+   procedure Gebäudeinformationen
      (AuswahlExtern : in StadtDatentypen.GebäudeIDMitNullwert;
       ViewnummerExtern : in Positive;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
@@ -68,7 +72,25 @@ private
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
               );
 
-   procedure InformationenEinheiten
+   procedure Gebäudebeschreibung
+     (AuswahlExtern : in StadtDatentypen.GebäudeIDMitNullwert;
+      ViewnummerExtern : in Positive;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre => (
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+              );
+
+   procedure Einheiteninformationen
+     (AuswahlExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
+      ViewnummerExtern : in Positive;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre => (
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+              );
+
+   procedure Einheitenbeschreibung
      (AuswahlExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
       ViewnummerExtern : in Positive;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

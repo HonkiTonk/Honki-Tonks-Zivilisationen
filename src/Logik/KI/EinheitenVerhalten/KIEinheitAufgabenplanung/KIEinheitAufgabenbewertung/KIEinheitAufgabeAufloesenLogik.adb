@@ -113,7 +113,7 @@ package body KIEinheitAufgabeAufloesenLogik is
         and
           LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => EinheitRasseNummerExtern.Rasse,
                                                    IDExtern           => EinheitID,
-                                                   WelcheKostenExtern => ProduktionDatentypen.Ressourcen_Enum)
+                                                   WelcheKostenExtern => ProduktionDatentypen.Produktion_Enum)
         > 0
       then
          Zwischenwert := KIGrenzpruefungen.AufgabenWichtigkeit (AktuellerWertExtern => Zwischenwert,
@@ -124,7 +124,7 @@ package body KIEinheitAufgabeAufloesenLogik is
         and
           LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => EinheitRasseNummerExtern.Rasse,
                                                    IDExtern           => EinheitID,
-                                                   WelcheKostenExtern => ProduktionDatentypen.Ressourcen_Enum)
+                                                   WelcheKostenExtern => ProduktionDatentypen.Produktion_Enum)
         > 0
       then
          Zwischenwert := KIGrenzpruefungen.AufgabenWichtigkeit (AktuellerWertExtern => Zwischenwert,

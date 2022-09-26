@@ -13,12 +13,11 @@ package ProduktionDatentypen is
    subtype Einzelproduktion is Feldproduktion range 0 .. 10;
    subtype Zwischenlösung is Stadtproduktion range -1 .. 1;
 
-   -- Das hier wird für Einheiten und Gebäude benutzt. äöü
-   -- Besser benennen und generell mal bessere Benennung für Produktion und Ressource einbauen, damit man die produzierte Menge in einer Stadt besser von den Kartenressourcen unterscheiden kann. äöü
+   -- Das hier wird für Einheiten und Gebäude benutzt.
    type Permanente_Kosten_Enum is (
                                    Leer_Permanente_Kosten_Enum,
                                    
-                                   Nahrung_Enum, Geld_Enum, Ressourcen_Enum, Hier_Spezielle_Ressourcen_Einbauen_Enum
+                                   Nahrung_Enum, Geld_Enum, Produktion_Enum -- , Hier_Spezielle_Ressourcen_Einbauen_Enum? äöü
                                   );
    
    subtype Permanente_Kosten_Verwendet_Enum is Permanente_Kosten_Enum range Nahrung_Enum .. Permanente_Kosten_Enum'Last;

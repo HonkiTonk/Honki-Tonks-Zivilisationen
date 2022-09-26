@@ -268,7 +268,7 @@ package body KIGebaeudeBauenLogik is
       elsif
         StadtKonstanten.LeerProduktionrate >= Produktion - LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                                                                    IDExtern           => IDExtern,
-                                                                                                   WelcheKostenExtern => ProduktionDatentypen.Ressourcen_Enum)
+                                                                                                   WelcheKostenExtern => ProduktionDatentypen.Produktion_Enum)
       then
          return -20;
          
@@ -278,7 +278,7 @@ package body KIGebaeudeBauenLogik is
                                                                                     WWirtschaftBonusExtern => KartenKonstanten.WirtschaftProduktion)
                                              - LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                                                        IDExtern           => IDExtern,
-                                                                                       WelcheKostenExtern => ProduktionDatentypen.Ressourcen_Enum));
+                                                                                       WelcheKostenExtern => ProduktionDatentypen.Produktion_Enum));
       end if;
       
    end RessourcenproduktionBewerten;

@@ -234,7 +234,7 @@ package body StadtseitenleisteGrafik is
                                                                                                           RasseExtern => StadtRasseNummerExtern.Rasse));
       
       else
-         return Meldungstexte.Zeug (TextnummernKonstanten.ZeugBauprojekt);
+         return TextKonstanten.LeerUnboundedString;
       end if;
       
       Bauzeit := LeseStadtGebaut.Bauzeit (StadtRasseNummerExtern => StadtRasseNummerExtern);

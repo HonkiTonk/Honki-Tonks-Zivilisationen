@@ -399,14 +399,14 @@ package body KIEinheitenBauenLogik is
       if
         StadtKonstanten.LeerProduktionrate = LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                                                       IDExtern           => EinheitenIDExtern,
-                                                                                      WelcheKostenExtern => ProduktionDatentypen.Ressourcen_Enum)
+                                                                                      WelcheKostenExtern => ProduktionDatentypen.Produktion_Enum)
       then
          return 5;
          
       elsif
         LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern) - LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                                                                                                      IDExtern           => EinheitenIDExtern,
-                                                                                                                                     WelcheKostenExtern => ProduktionDatentypen.Ressourcen_Enum)
+                                                                                                                                     WelcheKostenExtern => ProduktionDatentypen.Produktion_Enum)
         < StadtKonstanten.LeerProduktionrate
       then
          return -20;

@@ -264,7 +264,7 @@ package body StadtproduktionLogik is
       
       SchreibeStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                           ProduktionrateExtern   => -LeseStadtGebaut.PermanenteKostenPosten (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                                                                             WelcherPostenExtern    => ProduktionDatentypen.Ressourcen_Enum),
+                                                                                                             WelcherPostenExtern    => ProduktionDatentypen.Produktion_Enum),
                                           ÄndernSetzenExtern     => True);
             
       case

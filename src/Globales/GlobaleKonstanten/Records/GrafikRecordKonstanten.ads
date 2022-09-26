@@ -67,9 +67,11 @@ package GrafikRecordKonstanten is
    Baumenübereich : constant BereicheArray (Views.BauviewAccesse'Range) := (
                                                                              1 => (0.00, 0.10, 0.50, 0.80),
                                                                              2 => (0.50, 0.10, 0.50, 0.80),
-                                                                             3 => (0.50, 0.10, 0.50, 0.80),
-                                                                             4 => (0.00, 0.10, 0.50, 0.80),
-                                                                             5 => (0.00, 0.90, 1.00, 0.10)
+                                                                             3 => (0.50, 0.10, 0.50, 0.40),
+                                                                             4 => (0.50, 0.50, 0.50, 0.40),
+                                                                             5 => (0.00, 0.10, 0.50, 0.40),
+                                                                             6 => (0.00, 0.50, 0.50, 0.40),
+                                                                             7 => (0.00, 0.90, 1.00, 0.10)
                                                                             );
    
    Verkausmenübereich : constant BereicheArray (Views.VerkaufsviewAccesse'Range) := (

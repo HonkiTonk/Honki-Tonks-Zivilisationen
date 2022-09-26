@@ -21,17 +21,22 @@ package ChangelogSeptember2022 is
    
    
 
-   -- Version 0.04. => 0.04. (27.09.2022):
+   -- Version 0.04.0265 => 0.04. (27.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.0185 => 0.04. (26.09.2022):
+   -- Version 0.04.0185 => 0.04.0265 (26.09.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Interne Benennung überarbeitet.
+   -- Interne Struktur überarbeitet.
+   -- Datenbanken und Standardeinstellungen vollständig voneinander getrennt und besseres Setzen der Standardeinstellungen eingebaut.
+   -- Seitenleisteninformationen überarbeitet.
+   -- Forschungsmenü überarbeitet.
+   -- Baumenü überarbeitet.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

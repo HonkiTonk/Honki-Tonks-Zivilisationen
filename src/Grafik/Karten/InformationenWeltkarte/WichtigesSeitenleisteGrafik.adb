@@ -158,7 +158,7 @@ package body WichtigesSeitenleisteGrafik is
         Forschungsprojekt
       is
          when ForschungKonstanten.LeerForschung =>
-            return Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt);
+            return TextKonstanten.LeerUnboundedString;
             
          when others =>
             Forschungszeit := LeseWichtiges.VerbleibendeForschungszeit (RasseExtern => RasseExtern);

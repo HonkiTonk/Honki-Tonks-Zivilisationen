@@ -23,22 +23,22 @@ package body KartenDatenbank is
          case
            KartenfelderSchleifenwert
          is
-            when KartengrundDatentypen.Kartengrund_Weltraum_Enum'Range =>
+            when KartengrundWeltall.KartengrundlisteWeltallArray'Range =>
                Kartengrundliste (KartenfelderSchleifenwert) := KartengrundWeltall.KartengrundlisteWeltall (KartenfelderSchleifenwert);
                
-            when KartengrundDatentypen.Kartengrund_Himmel_Enum'Range =>
+            when KartengrundHimmel.KartengrundlisteHimmelArray'Range =>
                Kartengrundliste (KartenfelderSchleifenwert) := KartengrundHimmel.KartengrundlisteHimmel (KartenfelderSchleifenwert);
                
-            when KartengrundDatentypen.Kartengrund_Unterfläche_Enum'Range =>
+            when KartengrundUnterflaeche.KartengrundlisteUnterflächeArray'Range =>
                Kartengrundliste (KartenfelderSchleifenwert) := KartengrundUnterflaeche.KartengrundlisteUnterfläche (KartenfelderSchleifenwert);
                
-            when KartengrundDatentypen.Kartengrund_Kernfläche_Enum'Range =>
+            when KartengrundKern.KartengrundlisteKernArray'Range =>
                Kartengrundliste (KartenfelderSchleifenwert) := KartengrundKern.KartengrundlisteKern (KartenfelderSchleifenwert);
                
-            when KartengrundDatentypen.Kartengrund_Sonstiges_Enum'Range =>
+            when KartengrundSonstiges.KartengrundlisteSonstigesArray'Range =>
                Kartengrundliste (KartenfelderSchleifenwert) := KartengrundSonstiges.KartengrundlisteSonstiges (KartenfelderSchleifenwert);
                
-            when KartengrundDatentypen.Kartengrund_Oberfläche_Enum'Range =>
+            when KartengrundOberflaeche.KartengrundlisteOberflächeArray'Range =>
                Kartengrundliste (KartenfelderSchleifenwert) := KartengrundOberflaeche.KartengrundlisteOberfläche (KartenfelderSchleifenwert);
          end case;
          
@@ -57,13 +57,13 @@ package body KartenDatenbank is
          case
            KartenflussSchleifenwert
          is
-            when KartengrundDatentypen.Kartenfluss_Oberfläche_Enum'Range =>
+            when KartengrundFluss.KartenflusslisteOberflächeArray'Range =>
                Kartenflussliste (KartenflussSchleifenwert) := KartengrundFluss.KartenflusslisteOberfläche (KartenflussSchleifenwert);
                
-            when KartengrundDatentypen.Kartenfluss_Unterfläche_Enum'Range =>
+            when KartengrundFluss.KartenflusslisteUnterflächeArray'Range =>
                Kartenflussliste (KartenflussSchleifenwert) := KartengrundFluss.KartenflusslisteUnterfläche (KartenflussSchleifenwert);
                
-            when KartengrundDatentypen.Kartenfluss_Kern_Enum'Range =>
+            when KartengrundFluss.KartenflusslisteKernArray'Range =>
                Kartenflussliste (KartenflussSchleifenwert) := KartengrundFluss.KartenflusslisteKern (KartenflussSchleifenwert);
          end case;
          
@@ -82,10 +82,10 @@ package body KartenDatenbank is
          case
            KartenressourcenSchleifenwert
          is
-            when KartengrundDatentypen.Kartenressourcen_Oberfläche_Land_Enum'Range =>
+            when KartengrundRessourcen.KartenressourcenlisteLandArray'Range =>
                Kartenressourcenliste (KartenressourcenSchleifenwert) := KartengrundRessourcen.KartenressourcenlisteLand (KartenressourcenSchleifenwert);
                
-            when KartengrundDatentypen.Kartenressourcen_Oberfläche_Wasser_Enum'Range =>
+            when KartengrundRessourcen.KartenressourcenlisteWasserArray'Range =>
                Kartenressourcenliste (KartenressourcenSchleifenwert) := KartengrundRessourcen.KartenressourcenlisteWasser (KartenressourcenSchleifenwert);
          end case;
          

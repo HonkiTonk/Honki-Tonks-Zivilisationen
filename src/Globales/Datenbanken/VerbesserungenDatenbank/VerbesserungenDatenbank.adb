@@ -3,12 +3,28 @@ pragma Warnings (Off, "*array aggregate*");
 
 with SchreibenDatenbankenLogik;
 
+with WegeStandard;
+with VerbesserungenStandard;
+
 package body VerbesserungenDatenbank is
    
    procedure StandardVerbesserungenDatenbankLaden
    is begin
       
-      Verbesserungenliste := VerbesserungenlisteStandard;
+      VerbesserungenSchleife:
+      for VerbesserungenSchleifenwert in KartenverbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum'Range loop
+         
+         case
+           VerbesserungenSchleifenwert
+         is
+            when VerbesserungenStandard.StadtlisteArray'Range =>
+               Verbesserungenliste (VerbesserungenSchleifenwert) := VerbesserungenStandard.Stadtliste (VerbesserungenSchleifenwert);
+               
+            when VerbesserungenStandard.GebildelisteArray'Range =>
+               Verbesserungenliste (VerbesserungenSchleifenwert) := VerbesserungenStandard.Gebildeliste (VerbesserungenSchleifenwert);
+         end case;
+         
+      end loop VerbesserungenSchleife;
       
    end StandardVerbesserungenDatenbankLaden;
    
@@ -17,7 +33,23 @@ package body VerbesserungenDatenbank is
    procedure StandardWegeDatenbankLaden
    is begin
       
-      Wegeliste := WegelisteStandard;
+      WegeSchleife:
+      for WegeSchleifenwert in KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Range loop
+         
+         case
+           WegeSchleifenwert
+         is
+            when WegeStandard.WegelisteArray'Range =>
+               Wegeliste (WegeSchleifenwert) := WegeStandard.Wegeliste (WegeSchleifenwert);
+               
+            when WegeStandard.SchienenlisteArray'Range =>
+               Wegeliste (WegeSchleifenwert) := WegeStandard.Schienenliste (WegeSchleifenwert);
+               
+            when WegeStandard.TunnellisteArray'Range =>
+               Wegeliste (WegeSchleifenwert) := WegeStandard.Tunnelliste (WegeSchleifenwert);
+         end case;
+         
+      end loop WegeSchleife;
       
    end StandardWegeDatenbankLaden;
    

@@ -1,216 +1,216 @@
 package ChangelogOktober2022 is
 
-   -- Version 0.0. => 0.0. (31.10.2022):
+   -- Version 0.04. => 0.04. (31.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (30.10.2022):
+   -- Version 0.04. => 0.04. (30.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (29.10.2022):
+   -- Version 0.04. => 0.04. (29.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (28.10.2022):
+   -- Version 0.04. => 0.04. (28.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (27.10.2022):
+   -- Version 0.04. => 0.04. (27.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (26.10.2022):
+   -- Version 0.04. => 0.04. (26.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (25.10.2022):
+   -- Version 0.04. => 0.04. (25.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (24.10.2022):
+   -- Version 0.04. => 0.04. (24.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (23.10.2022):
+   -- Version 0.04. => 0.04. (23.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (22.10.2022):
+   -- Version 0.04. => 0.04. (22.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (21.10.2022):
+   -- Version 0.04. => 0.04. (21.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (20.10.2022):
+   -- Version 0.04. => 0.04. (20.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (19.10.2022):
+   -- Version 0.04. => 0.04. (19.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (18.10.2022):
+   -- Version 0.04. => 0.04. (18.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (17.10.2022):
+   -- Version 0.04. => 0.04. (17.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (16.10.2022):
+   -- Version 0.04. => 0.04. (16.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (15.10.2022):
+   -- Version 0.04. => 0.04. (15.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (14.10.2022):
+   -- Version 0.04. => 0.04. (14.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (13.10.2022):
+   -- Version 0.04. => 0.04. (13.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (12.10.2022):
+   -- Version 0.04. => 0.04. (12.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (11.10.2022):
+   -- Version 0.04. => 0.04. (11.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (10.10.2022):
+   -- Version 0.04. => 0.04. (10.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (09.10.2022):
+   -- Version 0.04. => 0.04. (09.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (08.10.2022):
+   -- Version 0.04. => 0.04. (08.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (07.10.2022):
+   -- Version 0.04. => 0.04. (07.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (06.10.2022):
+   -- Version 0.04. => 0.04. (06.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (05.10.2022):
+   -- Version 0.04. => 0.04. (05.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (04.10.2022):
+   -- Version 0.04. => 0.04. (04.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (03.10.2022):
+   -- Version 0.04. => 0.04. (03.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (02.10.2022):
+   -- Version 0.04. => 0.04. (02.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (01.10.2022):
+   -- Version 0.04. => 0.04. (01.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
