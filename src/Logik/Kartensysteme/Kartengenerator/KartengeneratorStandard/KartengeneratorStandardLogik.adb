@@ -61,13 +61,13 @@ package body KartengeneratorStandardLogik is
               BeliebigerLandwert < WahrscheinlichkeitLandmasse.Anfangswert
             then
                SchreibeWeltkarte.GleicherGrund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
-                                             GrundExtern       => KartengrundDatentypen.Wasser_Enum);
+                                                GrundExtern       => KartengrundDatentypen.Wasser_Enum);
          
             elsif
               BeliebigerLandwert > WahrscheinlichkeitLandmasse.Endwert
             then
                SchreibeWeltkarte.GleicherGrund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
-                                             GrundExtern       => KartengrundDatentypen.Flachland_Enum);
+                                                GrundExtern       => KartengrundDatentypen.Flachland_Enum);
                
             else
                LandmasseAbstandGenerieren (YAchseExtern => YAchseExtern,
@@ -132,8 +132,8 @@ package body KartengeneratorStandardLogik is
          for XÄnderungSchleifenwert in -Landabstand (3) .. Landabstand (4) loop
                            
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => (0, YAchseZwischenwert, XAchseZwischenwert),
-                                                                                                 ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                                                 LogikGrafikExtern => True);
+                                                                                                      ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                                                      LogikGrafikExtern => True);
             
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse
@@ -306,10 +306,10 @@ package body KartengeneratorStandardLogik is
               LeseWeltkarte.BasisGrund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern)) = KartengrundDatentypen.Wasser_Enum
             then
                if
-                 BeliebigerLandwert in WahrscheinlichkeitLandInLandmasse.Anfangswert .. WahrscheinlichkeitLandInLandmasse.Endwert / 2
+                 BeliebigerLandwert in WahrscheinlichkeitLandInLandmasse.Anfangswert .. 3 * ( WahrscheinlichkeitLandInLandmasse.Endwert / 4)
                then
                   SchreibeWeltkarte.GleicherGrund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
-                                                GrundExtern       => KartengrundDatentypen.Flachland_Enum);
+                                                   GrundExtern       => KartengrundDatentypen.Flachland_Enum);
                   
                else
                   null;
@@ -319,11 +319,11 @@ package body KartengeneratorStandardLogik is
               BeliebigerLandwert in WahrscheinlichkeitLandInLandmasse.Anfangswert .. WahrscheinlichkeitLandInLandmasse.Endwert
             then
                SchreibeWeltkarte.GleicherGrund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
-                                             GrundExtern       => KartengrundDatentypen.Flachland_Enum);
+                                                GrundExtern       => KartengrundDatentypen.Flachland_Enum);
                
             else
                SchreibeWeltkarte.GleicherGrund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
-                                             GrundExtern       => KartengrundDatentypen.Wasser_Enum);
+                                                GrundExtern       => KartengrundDatentypen.Wasser_Enum);
             end if;
             
          when False =>
@@ -336,11 +336,11 @@ package body KartengeneratorStandardLogik is
               BeliebigerLandwert in WahrscheinlichkeitWasser.Anfangswert .. WahrscheinlichkeitWasser.Endwert
             then
                SchreibeWeltkarte.GleicherGrund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
-                                             GrundExtern       => KartengrundDatentypen.Wasser_Enum);
+                                                GrundExtern       => KartengrundDatentypen.Wasser_Enum);
                
             else
                SchreibeWeltkarte.GleicherGrund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
-                                             GrundExtern       => KartengrundDatentypen.Flachland_Enum);
+                                                GrundExtern       => KartengrundDatentypen.Flachland_Enum);
             end if;
       end case;
       

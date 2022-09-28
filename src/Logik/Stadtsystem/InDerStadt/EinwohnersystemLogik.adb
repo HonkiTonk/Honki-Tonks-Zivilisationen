@@ -12,6 +12,7 @@ with SchreibeStadtGebaut;
 with KartenkoordinatenberechnungssystemLogik;
 with MausauswahlLogik;
 with KartenberechnungenGrafik;
+with StadtproduktionLogik;
 
 package body EinwohnersystemLogik is
 
@@ -33,8 +34,8 @@ package body EinwohnersystemLogik is
       end if;
       
       Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                                           ÄnderungExtern    => (0, Stadtfeld.YAchse, Stadtfeld.XAchse),
-                                                                                           LogikGrafikExtern => True);
+                                                                                                ÄnderungExtern    => (0, Stadtfeld.YAchse, Stadtfeld.XAchse),
+                                                                                                LogikGrafikExtern => True);
       
       case
         Kartenwert.EAchse
@@ -46,7 +47,6 @@ package body EinwohnersystemLogik is
             EinwohnerBelegungÄndern (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                       YAchseExtern           => Stadtfeld.YAchse,
                                       XAchseExtern           => Stadtfeld.XAchse);
-            
             return True;
       end case;
       
@@ -95,6 +95,8 @@ package body EinwohnersystemLogik is
                                              EinwohnerArbeiterExtern => False,
                                              WachsenSchrumpfenExtern => False);
       
+      StadtproduktionLogik.Stadtproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      
    end EinwohnerEntfernen;
    
    
@@ -112,16 +114,19 @@ package body EinwohnersystemLogik is
                                              EinwohnerArbeiterExtern => True)
         and
           True = LeseWeltkarte.BestimmteStadtBelegtGrund (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                       KoordinatenExtern      => Kartenwert)
+                                                          KoordinatenExtern      => Kartenwert)
       then
          SchreibeStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                       YKoordinateExtern      => YAchseExtern,
                                                       XKoordinateExtern      => XAchseExtern,
                                                       BelegenEntfernenExtern => True);
+         
          SchreibeStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                                 EinwohnerArbeiterExtern => False,
                                                 WachsenSchrumpfenExtern => True);
-            
+         
+         StadtproduktionLogik.Stadtproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern);
+         
       else
          null;
       end if;

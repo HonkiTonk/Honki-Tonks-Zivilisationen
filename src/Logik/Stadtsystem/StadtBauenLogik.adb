@@ -16,7 +16,7 @@ with SchreibeWeltkarte;
 with StadtwerteFestlegenLogik;
 with TexteingabeLogik;
 with StadtproduktionLogik;
-with SichtbarkeitLogik;
+with SichtbarkeitsberechnungssystemLogik;
 with EinheitenErzeugenEntfernenLogik;
 with Fehler;
 with WegeplatzierungssystemLogik;
@@ -193,15 +193,17 @@ package body StadtBauenLogik is
                                        PlusMinusExtern => True);
       
       StadtwerteFestlegenLogik.StadtUmgebungGrößeFestlegen (StadtRasseNummerExtern => StadtRasseNummerExtern);
-      StadtproduktionLogik.Stadtproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern);
       SchreibeWichtiges.VerbleibendeForschungszeit (RasseExtern => StadtRasseNummerExtern.Rasse);
-      SichtbarkeitLogik.SichtbarkeitsprüfungFürStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      SichtbarkeitsberechnungssystemLogik.SichtbarkeitsprüfungFürStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
       WegAnlegen (KoordinatenExtern => KoordinatenExtern,
                   RasseExtern       => StadtRasseNummerExtern.Rasse);
       
       SchreibeWeltkarte.Verbesserung (KoordinatenExtern  => KoordinatenExtern,
-                                   VerbesserungExtern => Stadtart);
+                                      VerbesserungExtern => Stadtart);
+      
+      -- Stadtproduktion muss immer nach Änderungen an Verbesserungen/Wege berechnet werden, sonst werden diese Änderungen ja nicht berücksichtigt.
+      StadtproduktionLogik.Stadtproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
    end StadtEintragen;
    

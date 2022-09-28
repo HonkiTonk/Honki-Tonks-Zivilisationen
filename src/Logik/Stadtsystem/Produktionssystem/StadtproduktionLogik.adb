@@ -135,8 +135,8 @@ package body StadtproduktionLogik is
          for XÄnderungSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                                                 ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                                                 LogikGrafikExtern => True);
+                                                                                                      ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                                                      LogikGrafikExtern => True);
             
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse
@@ -231,6 +231,12 @@ package body StadtproduktionLogik is
                                               NahrungsproduktionExtern => -LeseStadtGebaut.PermanenteKostenPosten (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                                                                                    WelcherPostenExtern    => ProduktionDatentypen.Nahrung_Enum),
                                               ÄndernSetzenExtern       => True);
+      
+      SchreibeStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern   => StadtRasseNummerExtern,
+                                              NahrungsproduktionExtern => -ProduktionDatentypen.Stadtproduktion (LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+                                                                                                                                                    EinwohnerArbeiterExtern => True)),
+                                              ÄndernSetzenExtern       => True);
+      
       VorhandeneEinwohner := LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                                                 EinwohnerArbeiterExtern => True);
       case

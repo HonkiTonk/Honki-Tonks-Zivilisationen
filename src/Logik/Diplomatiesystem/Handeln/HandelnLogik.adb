@@ -7,7 +7,7 @@ with SchreibeWichtiges;
 with LeseWichtiges;
 with LeseWeltkarte;
 
-with SichtbarkeitLogik;
+with SichtbarkeitSetzenLogik;
 with KennenlernenLogik;
 with DiplomatischerZustandLogik;
 with Weltkarte;
@@ -273,13 +273,13 @@ package body HandelnLogik is
 
                if
                  False = LeseWeltkarte.Sichtbar (KoordinatenExtern => (EAchseEinsSchleifenwert, YAchseEinsSchleifenwert, XAchseEinsSchleifenwert),
-                                              RasseExtern       => RasseEinsExtern)
+                                                 RasseExtern       => RasseEinsExtern)
                  and
                    True = LeseWeltkarte.Sichtbar (KoordinatenExtern => (EAchseEinsSchleifenwert, YAchseEinsSchleifenwert, XAchseEinsSchleifenwert),
-                                               RasseExtern       => RasseZweiExtern)
+                                                  RasseExtern       => RasseZweiExtern)
                then
-                  SichtbarkeitLogik.SichtbarkeitSetzen (RasseExtern       => RasseEinsExtern,
-                                                        KoordinatenExtern => (EAchseEinsSchleifenwert, YAchseEinsSchleifenwert, XAchseEinsSchleifenwert));
+                  SichtbarkeitSetzenLogik.SichtbarkeitSetzen (RasseExtern       => RasseEinsExtern,
+                                                              KoordinatenExtern => (EAchseEinsSchleifenwert, YAchseEinsSchleifenwert, XAchseEinsSchleifenwert));
                         
                else
                   null;
@@ -307,13 +307,13 @@ package body HandelnLogik is
 
                if
                  False = LeseWeltkarte.Sichtbar (KoordinatenExtern => (EAchseZweiSchleifenwert, YAchseZweiSchleifenwert, XAchseZweiSchleifenwert),
-                                              RasseExtern       => RasseZweiExtern)
+                                                 RasseExtern       => RasseZweiExtern)
                  and
                    True = LeseWeltkarte.Sichtbar (KoordinatenExtern => (EAchseZweiSchleifenwert, YAchseZweiSchleifenwert, XAchseZweiSchleifenwert),
-                                               RasseExtern       => RasseEinsExtern)
+                                                  RasseExtern       => RasseEinsExtern)
                then
-                  SichtbarkeitLogik.SichtbarkeitSetzen (RasseExtern       => RasseZweiExtern,
-                                                        KoordinatenExtern => (EAchseZweiSchleifenwert, YAchseZweiSchleifenwert, XAchseZweiSchleifenwert));
+                  SichtbarkeitSetzenLogik.SichtbarkeitSetzen (RasseExtern       => RasseZweiExtern,
+                                                              KoordinatenExtern => (EAchseZweiSchleifenwert, YAchseZweiSchleifenwert, XAchseZweiSchleifenwert));
                         
                else
                   null;

@@ -34,6 +34,7 @@ private
    NeueStadtKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    MöglichesFeld : KartenRecords.AchsenKartenfeldNaturalRecord;
    MöglichesStadtfeld : KartenRecords.AchsenKartenfeldNaturalRecord;
+   EinheitenKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
 
 
 

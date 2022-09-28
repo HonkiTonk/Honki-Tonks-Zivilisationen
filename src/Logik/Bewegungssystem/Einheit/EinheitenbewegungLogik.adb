@@ -13,7 +13,7 @@ with LeseEinheitenDatenbank;
 
 with EinheitSuchenLogik;
 with PassierbarkeitspruefungLogik;
-with BewegungsberechnungLogik;
+with BewegungsberechnungEinheitenLogik;
 with DiplomatischerZustandLogik;
 with LadungsbewegungLogik;
 with KampfsystemEinheitenLogik;
@@ -108,9 +108,9 @@ package body EinheitenbewegungLogik is
         BewegungDurchführen
       is
          when True =>
-            BewegungsberechnungLogik.Bewegungsberechnung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                          NeueKoordinatenExtern    => NeueKoordinaten,
-                                                          EinheitentauschExtern    => False);
+            BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                   NeueKoordinatenExtern    => NeueKoordinaten,
+                                                                   EinheitentauschExtern    => False);
             
          when False =>
             null;
@@ -262,15 +262,15 @@ package body EinheitenbewegungLogik is
          return False;
          
       elsif
-        LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => FeldBelegendeEinheitExtern) < BewegungsberechnungLogik.AbzugDurchBewegung (NeueKoordinatenExtern    => Tauschkoordinaten,
-                                                                                                                                                    EinheitRasseNummerExtern => FeldBelegendeEinheitExtern)
+        LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => FeldBelegendeEinheitExtern) < BewegungsberechnungEinheitenLogik.AbzugDurchBewegung (NeueKoordinatenExtern    => Tauschkoordinaten,
+                                                                                                                                                             EinheitRasseNummerExtern => FeldBelegendeEinheitExtern)
       then
          return False;
          
       else
-         BewegungsberechnungLogik.Bewegungsberechnung (EinheitRasseNummerExtern => FeldBelegendeEinheitExtern,
-                                                       NeueKoordinatenExtern    => Tauschkoordinaten,
-                                                       EinheitentauschExtern    => True);
+         BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitRasseNummerExtern => FeldBelegendeEinheitExtern,
+                                                                NeueKoordinatenExtern    => Tauschkoordinaten,
+                                                                EinheitentauschExtern    => True);
       
          return True;
       end if;

@@ -7,24 +7,36 @@ package ChangelogSeptember2022 is
    
    
 
-   -- Version 0.04. => 0.04. (29.09.2022):
+   -- Version 0.04.0425 => 0.04. (29.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04. => 0.04. (28.09.2022):
+   -- Version 0.04.0265 => 0.04.0425 (28.09.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Die Feldersichtbarkeitsprüfungen überarbeiten, so dass eine Ebene halbwegs logisch von einer anderen Ebene aus aufgedeckt wird.
+   -- Stadtnamen von Unterwasserstädten werden jetzt nicht mehr an der Oberfläche angezeigt.
+   -- Angefangen die EAchsenkonstanten einzubauen.
+   -- Baumenüanzeige überarbeitet.
+   -- Sichtweiten und Bewegungsfeld überarbeitet, es past sich jetzt ein wenig an die aktuelle Auflösung an.
+   -- Die Produktionswerte einer Stadt werden bei einer Änderung der bearbeiteten Felder sofort korrekt angezeigt und nicht erst in der nächsten Runde.
+   -- Bei der Berechnung der Nahrungsproduktion werden jetzt die vorhandenen Einwohner berücksichtigt.
+   -- Fehler korrigiert der verhinderte das Einwohner einer Stadt verhungern konnten.
+   -- Fehler korrigiert, welcher zu einem Absturz durch Fehlberechnung der verbleibenden Forschungszeit führte.
+   -- Falsche Anzeige bei der Kartenartauswahl korrigiert.
+   -- Fehler im Kartengenerator korrigiert, welcher bei zu großen Landflächen auf kleinen Karten zu Abstürzen führte.
+   -- Karteneinstellungen überarbeitet.
+   -- Kartengenerator überarbeitet.
+   -- KI überarbeitet.
+   -- Contracts, Kommenatare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    
 
-   -- Version 0.04.0265 => 0.04. (27.09.2022):
+   -- Version 0.04.0265 => 0.04.0265 (27.09.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 

@@ -80,6 +80,14 @@ package TextnummernKonstanten is
    ZeugNichtangriffspakt : constant Positive := 75;
    ZeugKrieg : constant Positive := 76;
    ZeugKampfwerte : constant Positive := 77;
+   ZeugTransportkapazität : constant Positive := 78;
+   ZeugTransportergröße : constant Positive := 79;
+   ZeugEinheitengröße : constant Positive := 80;
+   ZeugKlein : constant Positive := 81;
+   ZeugMittel : constant Positive := 82;
+   ZeugGroß : constant Positive := 83;
+   ZeugRiesige : constant Positive := 84;
+   ZeugGigantisch : constant Positive := 85;
    
    
    

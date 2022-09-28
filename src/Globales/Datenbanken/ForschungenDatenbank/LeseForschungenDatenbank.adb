@@ -10,7 +10,7 @@ package body LeseForschungenDatenbank is
    function PreisForschung
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in ForschungenDatentypen.ForschungID)
-      return ProduktionDatentypen.Produktion
+      return ProduktionDatentypen.Lagermenge
    is begin
 
       return ForschungenDatenbank.Forschungsliste (RasseExtern, IDExtern).PreisForschung;

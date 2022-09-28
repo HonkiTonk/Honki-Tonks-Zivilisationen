@@ -83,6 +83,9 @@ package body KIEinheitAufgabenumsetzungLogik is
          when KIDatentypen.Tut_Nichts_Enum =>
             AufgabeDurchführen := KIEinheitUmsetzenNichtsLogik.NichtsTun (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
+         when KIDatentypen.Planet_Vernichten_Enum =>
+            null;
+            
          when KIDatentypen.Leer_Aufgabe_Enum =>
             AufgabeDurchführen := False;
       end case;

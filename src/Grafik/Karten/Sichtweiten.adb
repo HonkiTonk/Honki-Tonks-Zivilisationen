@@ -7,7 +7,7 @@ with TastenbelegungDatentypen;
 with KartenberechnungenGrafik;
 with CursorbewegungLogik;
 with NachGrafiktask;
--- with EinstellungenGrafik;
+with EinstellungenGrafik;
 
 -- Das und KartenberechnungenGrafik mal anders aufteilen. äöü
 package body Sichtweiten is
@@ -65,6 +65,7 @@ package body Sichtweiten is
 
    -- Das noch einmal überarbeiten und anschließend vom Nutzer auswählbar machen? äöü
    -- Dazu muss vermutlich auch ZoomstufeÄndern ein wenig angepasst werden. äöü
+   -- Ist mehr als AktuelleZoomstufe * 2 überhaupt sinnvoll? äöü
    function SichtweiteLesen
      (YXExtern : in Boolean)
       return KartenDatentypen.KartenfeldPositiv
@@ -74,12 +75,34 @@ package body Sichtweiten is
         YXExtern
       is
          when True =>
-            -- return KartenDatentypen.KartenfeldPositiv (Float (AktuelleZoomstufe * 2) * EinstellungenGrafik.AktuelleFensterAuflösung.y / EinstellungenGrafik.AktuelleFensterAuflösung.x);
-            return AktuelleZoomstufe * 2;
+            if
+              EinstellungenGrafik.AktuelleFensterAuflösung.y > EinstellungenGrafik.AktuelleFensterAuflösung.x
+            then
+               return AktuelleZoomstufe * 2 + 1;
+               
+            elsif
+              EinstellungenGrafik.AktuelleFensterAuflösung.y < EinstellungenGrafik.AktuelleFensterAuflösung.x
+            then
+               return AktuelleZoomstufe * 2 - 1;
+               
+            else
+               return AktuelleZoomstufe * 2;
+            end if;
             
          when False =>
-            -- return KartenDatentypen.KartenfeldPositiv (Float (AktuelleZoomstufe * 2) * EinstellungenGrafik.AktuelleFensterAuflösung.x / EinstellungenGrafik.AktuelleFensterAuflösung.y);
-            return AktuelleZoomstufe * 2;
+            if
+              EinstellungenGrafik.AktuelleFensterAuflösung.y > EinstellungenGrafik.AktuelleFensterAuflösung.x
+            then
+               return AktuelleZoomstufe * 2 - 1;
+               
+            elsif
+              EinstellungenGrafik.AktuelleFensterAuflösung.y < EinstellungenGrafik.AktuelleFensterAuflösung.x
+            then
+               return AktuelleZoomstufe * 2 + 1;
+               
+            else
+               return AktuelleZoomstufe * 2;
+            end if;
       end case;
             
    end SichtweiteLesen;
@@ -91,17 +114,7 @@ package body Sichtweiten is
       return KartenDatentypen.KartenfeldPositiv
    is begin
       
-      case
-        YXExtern
-      is
-         when True =>
-            -- return KartenDatentypen.KartenfeldPositiv (Float (AktuelleZoomstufe * 2) * EinstellungenGrafik.AktuelleFensterAuflösung.y / EinstellungenGrafik.AktuelleFensterAuflösung.x) - 1;
-            return AktuelleZoomstufe * 2 - 1;
-            
-         when False =>
-            -- return KartenDatentypen.KartenfeldPositiv (Float (AktuelleZoomstufe * 2) * EinstellungenGrafik.AktuelleFensterAuflösung.x / EinstellungenGrafik.AktuelleFensterAuflösung.y) - 1;
-            return AktuelleZoomstufe * 2 - 1;
-      end case;
+      return SichtweiteLesen (YXExtern => YXExtern) - 1;
       
    end BewegungsfeldLesen;
    

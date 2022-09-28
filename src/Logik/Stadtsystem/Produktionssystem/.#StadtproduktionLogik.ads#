@@ -36,6 +36,15 @@ private
    
    procedure StadtProduktionAlle;
    
+   procedure FelderProduktionBerechnen
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     with
+       Pre => (
+                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+               and
+                 SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+              );
+   
    procedure KorruptionBerechnen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
      with
@@ -62,16 +71,7 @@ private
                and
                  SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
-   
-   procedure FelderProduktionBerechnen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-     with
-       Pre => (
-                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
-               and
-                 SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
-              );
-
+      
    procedure WeitereNahrungsproduktionÄnderungen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
      with

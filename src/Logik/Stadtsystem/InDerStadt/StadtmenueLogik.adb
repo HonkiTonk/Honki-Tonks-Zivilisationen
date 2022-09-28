@@ -90,15 +90,13 @@ package body StadtmenueLogik is
         Befehlsauswahl
       is
          when BefehleDatentypen.Leer_Enum =>
-            null;
+            return False;
             
          when others =>
             return Mausbefehle (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                 AuswahlExtern          => Befehlsauswahl);
       end case;
-      
-      return False;
-            
+                  
    end WasIstAusgewählt;
    
    

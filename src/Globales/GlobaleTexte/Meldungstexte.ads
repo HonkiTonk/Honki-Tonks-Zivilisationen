@@ -9,7 +9,7 @@ package Meldungstexte is
       
    type TexteArray is array (Positive range <>) of Unbounded_Wide_Wide_String;
       
-   Zeug : TexteArray (1 .. 77) := (others => TextKonstanten.FehlenderText);
+   Zeug : TexteArray (1 .. 85) := (others => TextKonstanten.FehlenderText);
    Frage : TexteArray (1 .. 47) := (others => TextKonstanten.FehlenderText);
    Meldung : TexteArray (1 .. 16) := (others => TextKonstanten.FehlenderText);
    

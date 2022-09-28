@@ -10,7 +10,7 @@ with SpielVariablen;
 
 with Weltkarte;
 
-package BewegungsberechnungLogik is
+package BewegungsberechnungEinheitenLogik is
 
    procedure Bewegungsberechnung
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
@@ -98,4 +98,4 @@ private
                  SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
 
-end BewegungsberechnungLogik;
+end BewegungsberechnungEinheitenLogik;

@@ -2,6 +2,7 @@ pragma SPARK_Mode (Off);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
+with Weltkarte;
 
 with KartengeneratorVariablenLogik;
 
@@ -40,12 +41,48 @@ package body ZufallsgeneratorenKartenLogik is
          when True =>
             MinimalerWert := KartengeneratorVariablenLogik.Landgrößen.MinimaleYAchse;
             MaximalerWert := KartengeneratorVariablenLogik.Landgrößen.MaximaleYAchse;
+            
+            if
+              MinimalerWert > Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+            then
+               MinimalerWert := Weltkarte.Karteneinstellungen.Kartengröße.YAchse;
+               
+            else
+               null;
+            end if;
+            
+            if
+              MaximalerWert > Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+            then
+               MaximalerWert := Weltkarte.Karteneinstellungen.Kartengröße.YAchse;
+               
+            else
+               null;
+            end if;
 
          when False =>
             MinimalerWert := KartengeneratorVariablenLogik.Landgrößen.MinimaleXAchse;
             MaximalerWert := KartengeneratorVariablenLogik.Landgrößen.MaximaleXAchse;
+            
+            if
+              MinimalerWert > Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+            then
+               MinimalerWert := Weltkarte.Karteneinstellungen.Kartengröße.XAchse;
+               
+            else
+               null;
+            end if;
+            
+            if
+              MaximalerWert > Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+            then
+               MaximalerWert := Weltkarte.Karteneinstellungen.Kartengröße.XAchse;
+               
+            else
+               null;
+            end if;
       end case;
-
+        
       if
         MinimalerWert = MaximalerWert
       then

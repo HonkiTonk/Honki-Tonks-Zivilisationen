@@ -5,9 +5,9 @@ Fremde Stadt
 Einwohner:
 Nahrungsmittel:
 Nahrungsproduktion:
-Ressourcenproduktion:
-Geldproduktion:
-Wissensproduktion:
+Produktion:
+Geld:
+Wissen:
 Korruption:
 Bauprojekt:
 Bauzeit:
@@ -75,3 +75,11 @@ Frieden
 Nichtangriffspakt
 Krieg
 Kampfwerte:
+Transporterkapazität:
+Transportergröße:
+Kann geladen werden auf:
+Kleine Transporter
+Mittlere Transporter
+Große Transporter
+Riesige Transporter
+Gigantische Transporter

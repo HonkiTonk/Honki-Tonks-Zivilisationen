@@ -104,7 +104,7 @@ package body BefehlspruefungenLogik is
       elsif
         StadtNummer /= StadtDatentypen.MaximaleStädteMitNullWert'First
       then
-         StadtmenueLogik.Stadtmenü (StadtRasseNummerExtern => (RasseExtern, StadtNummer));
+         StadtAktion (StadtRasseNummerExtern => (RasseExtern, StadtNummer));
          
       elsif
         EinheitNummer /= EinheitenDatentypen.MaximaleEinheitenMitNullWert'First
@@ -178,7 +178,7 @@ package body BefehlspruefungenLogik is
                                                       EinheitNummerExtern => EinheitNummerExtern)
       is
          when 0 =>
-            StadtmenueLogik.Stadtmenü (StadtRasseNummerExtern => (RasseExtern, StadtNummerExtern));
+            StadtAktion (StadtRasseNummerExtern => (RasseExtern, StadtNummerExtern));
             
          when 1 =>
             EinheitSteuern (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerExtern));
@@ -321,5 +321,18 @@ package body BefehlspruefungenLogik is
       end case;
       
    end StadtUmbenennen;
+   
+   
+   
+   -- Hier dann später die Prüfungen für das vorhandene Stadtbewegungsgebäude und die entsprechende Auswahl zwischen Stadt betreten und bewegen einbauen. äöü
+   procedure StadtAktion
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+   is begin
+      
+      
+      
+      StadtmenueLogik.Stadtmenü (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      
+   end StadtAktion;
 
 end BefehlspruefungenLogik;

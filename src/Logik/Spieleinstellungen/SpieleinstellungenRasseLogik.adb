@@ -364,7 +364,7 @@ package body SpieleinstellungenRasseLogik is
         SpielVariablen.Rassenbelegung (RasseExtern).Belegung
       is
          when RassenDatentypen.Mensch_Spieler_Enum =>
-            SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell := (StartkoordinateEinsExtern.EAchse, Weltkarte.Karteneinstellungen.Kartengröße.YAchse / 2, Weltkarte.Karteneinstellungen.Kartengröße.XAchse / 2);
+            SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell := (StartkoordinateEinsExtern.EAchse, 1, 1);
             SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt := StartkoordinateEinsExtern;
             CursorbewegungLogik.ZoomanpassungCursor (RasseExtern => RasseExtern);
             

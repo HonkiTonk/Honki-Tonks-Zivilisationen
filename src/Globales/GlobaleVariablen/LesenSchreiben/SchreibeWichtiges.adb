@@ -6,6 +6,7 @@ with EinheitenDatentypen; use EinheitenDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
 with StadtDatentypen; use StadtDatentypen;
 with WichtigesKonstanten;
+with ForschungKonstanten;
 
 with LeseForschungenDatenbank;
 
@@ -169,12 +170,20 @@ package body SchreibeWichtiges is
         or
           SpielVariablen.Wichtiges (RasseExtern).GesamteForschungsrate = 0
       then
-         SpielVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit := ProduktionDatentypen.Produktion'Last;
+         SpielVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit := ProduktionDatentypen.Lagermenge'Last;
          
+      elsif
+        LeseForschungenDatenbank.PreisForschung (RasseExtern => RasseExtern,
+                                                 IDExtern    => SpielVariablen.Wichtiges (RasseExtern).Forschungsprojekt)
+          - SpielVariablen.Wichtiges (RasseExtern).Forschungsmenge
+        <= ForschungKonstanten.LeerPreisForschung
+      then
+         SpielVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit := 1;
+        
       else
          SpielVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit
            := (LeseForschungenDatenbank.PreisForschung (RasseExtern => RasseExtern,
-                                                       IDExtern    => SpielVariablen.Wichtiges (RasseExtern).Forschungsprojekt)
+                                                        IDExtern    => SpielVariablen.Wichtiges (RasseExtern).Forschungsprojekt)
                - SpielVariablen.Wichtiges (RasseExtern).Forschungsmenge)
              / SpielVariablen.Wichtiges (RasseExtern).GesamteForschungsrate;
       end if;

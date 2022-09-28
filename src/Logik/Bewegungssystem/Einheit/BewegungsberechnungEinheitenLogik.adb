@@ -12,13 +12,13 @@ with LeseWeltkarte;
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
 
-with SichtbarkeitLogik;
+with SichtbarkeitsberechnungssystemLogik;
 with KennenlernenLogik;
 with LadungsbewegungLogik;
 with StadtSuchenLogik;
 with PassierbarkeitspruefungLogik;
 
-package body BewegungsberechnungLogik is
+package body BewegungsberechnungEinheitenLogik is
 
    procedure Bewegungsberechnung
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
@@ -124,9 +124,10 @@ package body BewegungsberechnungLogik is
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
-      SichtbarkeitLogik.SichtbarkeitsprüfungFürEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      SichtbarkeitsberechnungssystemLogik.SichtbarkeitsprüfungFürEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
-      -- Prüft nur ob das Feld auf dass sich diese Einheit bewegt bereits von einer anderen Rasse aufgedeckt wurde und stellt entsprechend Kontakt her.
+      -- Prüft ob die Einheit jetzt auf einem Feld steht welches von einer fremden Rasse bereits aufgedeckt wurde und stellt entsprechend Kontakt her.
+      -- Anders als die Berechnung in SichtbarkeitLogik, wo geprüft wird ob eine fremde Stadt oder Einheit auf einem neu aufgedecktem Feld steht.
       KontaktSchleife:
       for FremdeSichtbarkeitSchleifenwert in SpielVariablen.RassenbelegungArray'Range loop
          
@@ -245,4 +246,4 @@ package body BewegungsberechnungLogik is
       
    end StraßeUndFlussPrüfen;
 
-end BewegungsberechnungLogik;
+end BewegungsberechnungEinheitenLogik;

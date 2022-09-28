@@ -26,7 +26,7 @@ package Sichtweiten is
      return KartenDatentypen.SichtbereichAnfangEndeArray;
    
 private
-   
+      
    MaximaleZoomstufe : constant KartenDatentypen.KartenfeldPositiv := 10;
    StandardZoomstufe : constant KartenDatentypen.KartenfeldPositiv := 4;
    MinimaleZoomstufe : KartenDatentypen.KartenfeldPositiv := KartenDatentypen.KartenfeldPositiv'First;

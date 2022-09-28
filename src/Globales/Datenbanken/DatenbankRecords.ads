@@ -52,7 +52,7 @@ package DatenbankRecords is
    -- ForschungenDatenbank
    type ForschungslisteRecord is record
 
-      PreisForschung : ProduktionDatentypen.Produktion;
+      PreisForschung : ProduktionDatentypen.Lagermenge;
       AnforderungForschung : ForschungenDatentypen.AnforderungForschungArray;
 
    end record;
@@ -63,6 +63,7 @@ package DatenbankRecords is
 
    
    -- GebäudeDatenbank
+   -- Die Bonus, Kosten und Kampfbereiche auf ein Enum anstelle eines Arrays umschreiben?
    type BonusWirtschaftArray is array (KartenDatentypen.Wirtschaft_Enum'Range) of ProduktionDatentypen.Feldproduktion;
    type BonusKampfArray is array (KartenDatentypen.Kampf_Enum'Range) of KampfDatentypen.Kampfwerte;
    

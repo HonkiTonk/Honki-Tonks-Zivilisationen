@@ -115,7 +115,8 @@ package body WeltkarteGrafik is
       WeltkarteZeichnenGrafik.EbeneZeichnen (KoordinatenExtern        => AktuelleKoordinaten,
                                              EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                              PositionExtern           => PositionExtern,
-                                             TransparentsExtern       => GrafikKonstanten.Undurchsichtig);
+                                             TransparentsExtern       => GrafikKonstanten.Undurchsichtig,
+                                             EbeneExtern              => KoordinatenExtern.EAchse);
       
       if
         KoordinatenExtern.EAchse = AktuelleKoordinaten.EAchse
@@ -126,7 +127,8 @@ package body WeltkarteGrafik is
          WeltkarteZeichnenGrafik.EbeneZeichnen (KoordinatenExtern        => KoordinatenExtern,
                                                 EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                 PositionExtern           => PositionExtern,
-                                                TransparentsExtern       => Transparents);
+                                                TransparentsExtern       => Transparents,
+                                                EbeneExtern              => KoordinatenExtern.EAchse);
       end if;
       
    end IstSichtbar;

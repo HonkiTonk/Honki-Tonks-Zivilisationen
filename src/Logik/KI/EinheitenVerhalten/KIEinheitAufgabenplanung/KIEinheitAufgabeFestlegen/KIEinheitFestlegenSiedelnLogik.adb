@@ -50,7 +50,7 @@ package body KIEinheitFestlegenSiedelnLogik is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
-            
+        
       UmgebungPrüfen := 0;
       BereitsGeprüft := 0;
             
@@ -90,7 +90,8 @@ package body KIEinheitFestlegenSiedelnLogik is
    end StadtfeldSuchen;
      
    
-      
+   
+   -- Hier die EAchse noch beim Suchen eines neuen Feldes berücksichtigen, da braucht es vermutlich zusätzliche Ausnahmeregeln da die oberen Bereiche ja nicht bewertet werden. äöü
    function NeuesStadtfeld
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       UmgebungExtern : in KartenDatentypen.KartenfeldNatural;
@@ -98,52 +99,57 @@ package body KIEinheitFestlegenSiedelnLogik is
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
       
-      YAchseKartenfeldSuchenSchleife:
-      for YAchseSchleifenwert in -UmgebungExtern .. UmgebungExtern loop
-         XAchseKartenfeldSuchenSchleife:
-         for XAchseSchleifenwert in -UmgebungExtern .. UmgebungExtern loop
-               
-            if
-              GeprüftExtern > abs (YAchseSchleifenwert)
-              and
-                GeprüftExtern > abs (XAchseSchleifenwert)
-            then
-               FeldGutUndFrei := False;
-               
-            else
-               MöglichesStadtfeld := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                                                                  ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                                  LogikGrafikExtern => True);
+      EinheitenKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+   
+      EAchseSchleife:
+      for EAchseSchleifenwert in KartenKonstanten.UnterflächeKonstante .. KartenKonstanten.HimmelKonstante loop
+         YAchseKartenfeldSuchenSchleife:
+         for YAchseSchleifenwert in -UmgebungExtern .. UmgebungExtern loop
+            XAchseKartenfeldSuchenSchleife:
+            for XAchseSchleifenwert in -UmgebungExtern .. UmgebungExtern loop
                
                if
-                 MöglichesStadtfeld.XAchse = KartenKonstanten.LeerXAchse
+                 GeprüftExtern > abs (YAchseSchleifenwert)
+                 and
+                   GeprüftExtern > abs (XAchseSchleifenwert)
                then
                   FeldGutUndFrei := False;
-                     
+               
                else
-                  FeldGutUndFrei := KartenfeldUmgebungPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                               KoordinatenExtern        => MöglichesStadtfeld);
+                  MöglichesStadtfeld := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => EinheitenKoordinaten,
+                                                                                                                     ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                                     LogikGrafikExtern => True);
+               
+                  if
+                    MöglichesStadtfeld.XAchse = KartenKonstanten.LeerXAchse
+                  then
+                     FeldGutUndFrei := False;
+                     
+                  else
+                     FeldGutUndFrei := KartenfeldUmgebungPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                  KoordinatenExtern        => MöglichesStadtfeld);
+                  end if;
                end if;
-            end if;
             
-            if
-              FeldGutUndFrei = False
-            then
-               null;
+               if
+                 FeldGutUndFrei = False
+               then
+                  null;
                
-            elsif
-              False = KIAufgabenVerteiltLogik.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Stadt_Bauen_Enum,
-                                                                  RasseExtern           => EinheitRasseNummerExtern.Rasse,
-                                                                  ZielKoordinatenExtern => MöglichesStadtfeld)
-            then
-               return MöglichesStadtfeld;
+               elsif
+                 False = KIAufgabenVerteiltLogik.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Stadt_Bauen_Enum,
+                                                                     RasseExtern           => EinheitRasseNummerExtern.Rasse,
+                                                                     ZielKoordinatenExtern => MöglichesStadtfeld)
+               then
+                  return MöglichesStadtfeld;
                
-            else
-               null;
-            end if;
+               else
+                  null;
+               end if;
             
-         end loop XAchseKartenfeldSuchenSchleife;
-      end loop YAchseKartenfeldSuchenSchleife;
+            end loop XAchseKartenfeldSuchenSchleife;
+         end loop YAchseKartenfeldSuchenSchleife;
+      end loop EAchseSchleife;
       
       return KartenRecordKonstanten.LeerKoordinate;
       
@@ -178,17 +184,17 @@ package body KIEinheitFestlegenSiedelnLogik is
             null;
       end case;
       
+      -- Diese Prüfung hier mal rassenspezifisch erweitern. äöü
       if
+        LeseWeltkarte.AktuellerGrund (KoordinatenExtern => KoordinatenExtern) = KartengrundDatentypen.Eis_Enum
+      then
+         return False;
+         
+      elsif
         LeseWeltkarte.Bewertung (KoordinatenExtern => KoordinatenExtern,
                                  RasseExtern       => EinheitRasseNummerExtern.Rasse)
         < KIKartenfeldbewertungModifizierenLogik.BewertungStadtBauen (KoordinatenExtern => KoordinatenExtern,
                                                                       RasseExtern       => EinheitRasseNummerExtern.Rasse)
-      then
-         return False;
-         
-         -- Diese Prüfung hier mal rassenspezifisch erweitern. äöü
-      elsif
-        LeseWeltkarte.AktuellerGrund (KoordinatenExtern => KoordinatenExtern) = KartengrundDatentypen.Eis_Enum
       then
          return False;
          

@@ -40,7 +40,8 @@ package body WeltkarteZeichnenGrafik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
-      TransparentsExtern : in Sf.sfUint8)
+      TransparentsExtern : in Sf.sfUint8;
+      EbeneExtern : in KartenDatentypen.EbeneVorhanden)
    is begin
       
       WeltkarteZeichnenGrafik.KartenfeldZeichnen (KoordinatenExtern      => KoordinatenExtern,
@@ -57,7 +58,7 @@ package body WeltkarteZeichnenGrafik is
                                            PositionExtern    => PositionExtern);
       
       WeltkarteZeichnenGrafik.VerbesserungZeichnen (KoordinatenExtern => KoordinatenExtern,
-                                                    EbeneExtern       => KoordinatenExtern.EAchse,
+                                                    EbeneExtern       => EbeneExtern,
                                                     PositionExtern    => PositionExtern);
       
       WeltkarteZeichnenGrafik.AnzeigeEinheit (KoordinatenExtern  => KoordinatenExtern,

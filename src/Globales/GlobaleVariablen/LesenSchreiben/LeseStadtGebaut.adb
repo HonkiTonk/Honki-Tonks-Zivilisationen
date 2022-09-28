@@ -64,7 +64,7 @@ package body LeseStadtGebaut is
    
    function Nahrungsmittel
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return ProduktionDatentypen.StadtLagermenge
+      return ProduktionDatentypen.Stadtproduktion
    is begin
       
       return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Nahrungsmittel;

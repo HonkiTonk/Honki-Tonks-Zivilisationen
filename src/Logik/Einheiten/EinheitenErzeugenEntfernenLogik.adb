@@ -9,7 +9,7 @@ with SchreibeWichtiges;
 with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;
 
-with SichtbarkeitLogik;
+with SichtbarkeitsberechnungssystemLogik;
 with RasseEntfernenLogik;
 with EinheitenmodifizierungLogik;
 
@@ -47,7 +47,7 @@ package body EinheitenErzeugenEntfernenLogik is
       EinheitenmodifizierungLogik.PermanenteKostenÄndern (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern),
                                                            VorzeichenWechselExtern  => 1);
       
-      SichtbarkeitLogik.SichtbarkeitsprüfungFürEinheit (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern));
+      SichtbarkeitsberechnungssystemLogik.SichtbarkeitsprüfungFürEinheit (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern));
       
    end EinheitErzeugen;
 

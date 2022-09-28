@@ -227,6 +227,9 @@ package body KIEinheitAufgabenplanungLogik is
                
             when KIDatentypen.Tut_Nichts_Enum =>
                AufgabeFestgelegt := KIEinheitFestlegenNichtsLogik.NichtsTun (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+               
+            when KIDatentypen.Planet_Vernichten_Enum =>
+               null;
             
             when KIDatentypen.Leer_Aufgabe_Enum =>
                exit AufgabeFestlegenSchleife;

@@ -25,7 +25,6 @@ project Stream is
    end Binder;
 
    package Pretty_Printer is
-      for Default_Switches ("ada") use ("-W8");
    end Pretty_Printer;
 
    package Prove is

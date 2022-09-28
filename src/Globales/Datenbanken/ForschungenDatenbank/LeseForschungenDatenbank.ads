@@ -14,7 +14,7 @@ package LeseForschungenDatenbank is
    function PreisForschung
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in ForschungenDatentypen.ForschungID)
-      return ProduktionDatentypen.Produktion
+      return ProduktionDatentypen.Lagermenge
      with
        Pre => (
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum

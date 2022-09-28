@@ -25,7 +25,8 @@ package WeltkarteZeichnenGrafik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
-      TransparentsExtern : in Sf.sfUint8)
+      TransparentsExtern : in Sf.sfUint8;
+      EbeneExtern : in KartenDatentypen.EbeneVorhanden)
      with
        Pre => (
                  KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse

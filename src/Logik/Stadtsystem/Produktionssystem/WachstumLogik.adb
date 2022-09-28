@@ -20,7 +20,7 @@ with StadtwerteFestlegenLogik;
 with StadtEinheitenBauenLogik;
 with StadtGebaeudeBauenLogik;
 with StadtEntfernenLogik;
-with SichtbarkeitLogik;
+with SichtbarkeitsberechnungssystemLogik;
 with MeldungenSetzenLogik;
 
 package body WachstumLogik is
@@ -162,7 +162,7 @@ package body WachstumLogik is
                 VorhandeneEinwohner = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Endwert_Enum, StadtRasseNummerExtern.Rasse)
             then
                StadtwerteFestlegenLogik.StadtUmgebungGrößeFestlegen (StadtRasseNummerExtern => StadtRasseNummerExtern);
-               SichtbarkeitLogik.SichtbarkeitsprüfungFürStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
+               SichtbarkeitsberechnungssystemLogik.SichtbarkeitsprüfungFürStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
          
             else
                null;

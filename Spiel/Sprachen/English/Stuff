@@ -5,9 +5,9 @@ Unfamiliar city
 Residents:
 Food:
 Food production:
-Resource production:
-Money production:
-Knowledge production:
+Production:
+Money:
+Knowledge:
 Corruption:
 Construction project:
 Construction time:
@@ -75,3 +75,11 @@ Peace
 Non-aggression pact
 War
 Combat stats:
+Transport capacity:
+Transporter size:
+Can be loaded on:
+Small transporter
+Middle transporter
+Big transporter
+Huge transporter
+Gigantic transporter

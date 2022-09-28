@@ -32,8 +32,8 @@ package body KIKartenfeldbewertungModifizierenLogik is
          for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
                               
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                 ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                 LogikGrafikExtern => True);
+                                                                                                      ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                      LogikGrafikExtern => True);
                      
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse
@@ -55,9 +55,9 @@ package body KIKartenfeldbewertungModifizierenLogik is
                                                                                  ÄnderungExtern      => 5);
                   
                elsif
-               abs (YAchseSchleifenwert) = 3
+               abs (YAchseSchleifenwert) = 2
                  or
-               abs (XAchseSchleifenwert) = 3
+               abs (XAchseSchleifenwert) = 2
                then
                   BewertungKartenfeld := KIGrenzpruefungen.GesamteFeldbewertung (AktuellerWertExtern => BewertungKartenfeld,
                                                                                  ÄnderungExtern      => 15);

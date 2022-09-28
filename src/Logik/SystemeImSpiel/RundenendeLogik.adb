@@ -60,14 +60,14 @@ package body RundenendeLogik is
       
       StadtproduktionLogik.Stadtproduktion (StadtRasseNummerExtern => StadtKonstanten.LeerRasseNummer);
       LadezeitenLogik.RundenendeSchreiben;
+      
+      ForschungsfortschrittLogik.Forschungsfortschritt;
+      LadezeitenLogik.RundenendeSchreiben;
             
       RundenanzahlSetzen;
       LadezeitenLogik.RundenendeSchreiben;
       
       GeldForschungDiplomatieÄndern;
-      LadezeitenLogik.RundenendeSchreiben;
-      
-      ForschungsfortschrittLogik.Forschungsfortschritt;
       LadezeitenLogik.RundenendeSchreiben;
       
       -- Autospeichern muss immer nach allen Änderungen kommen, sonst werden nicht alle Änderungen gespeichert.

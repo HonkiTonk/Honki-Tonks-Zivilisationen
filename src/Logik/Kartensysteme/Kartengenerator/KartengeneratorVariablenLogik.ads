@@ -17,7 +17,7 @@ package KartengeneratorVariablenLogik is
    Polgrößen : KartenDatentypen.PolregionenArray := KartengeneratorRecordKonstanten.Eisrand;
 
    -- Alle Angaben sind Radien.
-   Landgrößen : KartenRecords.LandgrößenRecord := KartengeneratorRecordKonstanten.Kontinentgröße;
+   Landgrößen : KartenRecords.LandgrößenRecord := KartengeneratorRecordKonstanten.Kartenartgrößen (KartenDatentypen.Kartenart_Kontinente_Enum);
 
    SchleifenanfangOhnePolbereich : KartenRecords.YXAchsenKartenfeldNaturalRecord;
    SchleifenendeOhnePolbereich : KartenRecords.YXAchsenKartenfeldNaturalRecord;

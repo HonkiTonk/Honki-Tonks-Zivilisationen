@@ -58,6 +58,35 @@ package body ForschungsauswahlLogik is
    
    
    
+   procedure Anfangsauswahl
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+   is begin
+      
+      case
+        SpielVariablen.Rassenbelegung (RasseExtern).Belegung
+      is
+         when RassenDatentypen.Mensch_Spieler_Enum =>
+            null;
+            
+         when others =>
+            return;
+      end case;
+      
+      case
+        SpielVariablen.Allgemeines.Rundenanzahl
+      is
+         when 1 =>
+            NachGrafiktask.AktuelleRasse := RasseExtern;
+            Forschung (RasseExtern => RasseExtern);
+            
+         when others =>
+            null;
+      end case;
+      
+   end Anfangsauswahl;
+   
+   
+   
    function Forschungsauswahl
      return ForschungenDatentypen.ForschungIDMitNullWert
    is begin
