@@ -24,7 +24,7 @@ package body PZBEingesetztLogik is
       return Boolean
    is begin
       
-      Einheitenart := LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
+      Einheitenart := LeseEinheitenDatenbank.Einheitenart (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                          IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       
       case

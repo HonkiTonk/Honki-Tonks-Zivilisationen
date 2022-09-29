@@ -17,7 +17,7 @@ package body KIEinheitAufgabeModernisierenLogik is
       return KIDatentypen.AufgabenWichtigkeitKlein
    is begin
       
-      NeueEinheitenID := LeseEinheitenDatenbank.WirdVerbessertZu (RasseExtern => EinheitRasseNummerExtern.Rasse,
+      NeueEinheitenID := LeseEinheitenDatenbank.VerbesserungZu (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                                   IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       
       case

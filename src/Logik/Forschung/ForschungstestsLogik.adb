@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with ForschungenDatentypen; use ForschungenDatentypen;
 with ForschungKonstanten;
 
 with LeseForschungenDatenbank;
@@ -21,7 +20,7 @@ package body ForschungstestsLogik is
          when ForschungKonstanten.ForschungUnmöglich =>
             return False;
             
-         when ForschungKonstanten.LeerForschungAnforderung =>
+         when ForschungKonstanten.LeerForschungsanforderung =>
             return True;
             
          when others =>

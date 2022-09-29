@@ -45,7 +45,7 @@ package body BauauswahlEinheitenGrafik is
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
                                      AbmessungenExtern => ViewflächeInformationen);
       
-      Einheitentexte (1) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugBaukosten) & LeseEinheitenDatenbank.PreisRessourcen (RasseExtern => RasseExtern,
+      Einheitentexte (1) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugBaukosten) & LeseEinheitenDatenbank.Produktionskosten (RasseExtern => RasseExtern,
                                                                                                                                IDExtern    => AuswahlExtern)'Wide_Wide_Image;
       Einheitentexte (2) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenteNahrungskosten) & LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => RasseExtern,
                                                                                                                                                IDExtern           => AuswahlExtern,

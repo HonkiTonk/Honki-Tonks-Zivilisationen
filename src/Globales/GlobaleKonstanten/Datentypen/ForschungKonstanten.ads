@@ -12,14 +12,14 @@ with DatenbankRecords;
 
 package ForschungKonstanten is
    
-   LeerPreisForschung : constant ProduktionDatentypen.Produktion := 0;
+   LeerKosten : constant ProduktionDatentypen.Einzelproduktion := 0;
    LeerForschung : constant ForschungenDatentypen.ForschungIDMitNullWert := ForschungenDatentypen.ForschungIDMitNullWert'First;
-   LeerForschungAnforderung : constant ForschungenDatentypen.ForschungIDMitNullWert := ForschungenDatentypen.ForschungIDMitNullWert'First;
+   LeerForschungsanforderung : constant ForschungenDatentypen.ForschungIDMitNullWert := ForschungenDatentypen.ForschungIDMitNullWert'First;
    ForschungUnmöglich : constant ForschungenDatentypen.ForschungIDNichtMöglich := ForschungenDatentypen.ForschungIDNichtMöglich'First;
    
-   LeerForschungListe : constant DatenbankRecords.ForschungslisteRecord := (
-                                                                            PreisForschung       => LeerPreisForschung,
-                                                                            AnforderungForschung => (others => ForschungUnmöglich)
+   LeerForschungsliste : constant DatenbankRecords.ForschungslisteRecord := (
+                                                                            Kosten      => LeerKosten,
+                                                                            Anforderung => (others => ForschungUnmöglich)
                                                                            );
    
    -- Das hier als Standard nehmen und Laden wenn keine Datenbank verfügbar ist, dafür eine Datenbank anlegen. äöü

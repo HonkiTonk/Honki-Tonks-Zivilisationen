@@ -129,7 +129,7 @@ package body KIGefahrErmittelnLogik is
       end case;
       
       case
-        LeseEinheitenDatenbank.EinheitArt (RasseExtern => AndereEinheitExtern.Rasse,
+        LeseEinheitenDatenbank.Einheitenart (RasseExtern => AndereEinheitExtern.Rasse,
                                            IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => AndereEinheitExtern))
       is
          when EinheitenDatentypen.Arbeiter_Enum =>

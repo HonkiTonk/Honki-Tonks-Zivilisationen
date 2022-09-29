@@ -34,7 +34,7 @@ package StadtRecordKonstanten is
    
    LeerGebäudeListe : constant DatenbankRecords.GebäudelisteRecord := (
                                                                          PreisGeld                   => StadtKonstanten.LeerPreisGeld,
-                                                                         PreisRessourcen             => StadtKonstanten.LeerPreisRessourcen,
+                                                                         Produktionskosten           => StadtKonstanten.LeerPreisRessourcen,
                                                                          PermanenteKosten            => (others => StadtKonstanten.LeerPermanenteKosten),
                                                                          Anforderungen               => StadtKonstanten.LeerAnforderungen,
                                                                          BonusWirtschaft             => (others => StadtKonstanten.LeerBonusWirtschaft),
@@ -44,7 +44,7 @@ package StadtRecordKonstanten is
                                                                          RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
                                                                          VerbesserungBenötigt        => StadtKonstanten.LeerVerbesserungBenötigt,
                                                                          GebäudeBenötigt             => StadtKonstanten.LeerGebäudeID,
-                                                                         GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft
+                                                                         SpezielleEigenschaft        => StadtKonstanten.LeerSpezielleEigenschaft
                                                                         );
 
 end StadtRecordKonstanten;

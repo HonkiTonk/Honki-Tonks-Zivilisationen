@@ -81,7 +81,7 @@ package body LeseRassenDatenbank is
       for StaatsformSchleifenwert in RassenDatentypen.StaatsformenArray'Range loop
          
          if
-           RassenDatenbank.Rassenliste (RasseExtern).GültigeStaatsformen (StaatsformSchleifenwert) = StaatsformExtern
+           RassenDatenbank.Rassenliste (RasseExtern).Staatsformen (StaatsformSchleifenwert) = StaatsformExtern
          then
             return True;
          

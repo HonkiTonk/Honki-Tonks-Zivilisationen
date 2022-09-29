@@ -20,9 +20,9 @@ package DatenbankRecords is
    type EinheitenlisteRecord is record
       
       -- Solche Benennungen auch mal anpassen. äöü
-      EinheitArt : EinheitenDatentypen.Einheitart_Enum;
+      Einheitenart : EinheitenDatentypen.Einheitart_Enum;
       PreisGeld : ProduktionDatentypen.Produktion;
-      PreisRessourcen : ProduktionDatentypen.Lagermenge;
+      Produktionskosten : ProduktionDatentypen.Lagermenge;
       PermanenteKosten : StadtRecords.PermanenteKostenArray;
       Anforderungen : ForschungenDatentypen.ForschungIDNichtMöglich;
 
@@ -30,7 +30,7 @@ package DatenbankRecords is
       
       MaximaleLebenspunkte : EinheitenDatentypen.LebenspunkteVorhanden;
       MaximaleBewegungspunkte : EinheitenDatentypen.VorhandeneBewegungspunkte;
-      WirdVerbessertZu : EinheitenDatentypen.EinheitenIDMitNullWert;
+      VerbesserungZu : EinheitenDatentypen.EinheitenIDMitNullWert;
 
       Beförderungsgrenze : KampfDatentypen.ErfahrungspunkteVorhanden;
       MaximalerRang : KampfDatentypen.RangVorhanden;
@@ -52,8 +52,8 @@ package DatenbankRecords is
    -- ForschungenDatenbank
    type ForschungslisteRecord is record
 
-      PreisForschung : ProduktionDatentypen.Lagermenge;
-      AnforderungForschung : ForschungenDatentypen.AnforderungForschungArray;
+      Kosten : ProduktionDatentypen.Lagermenge;
+      Anforderung : ForschungenDatentypen.AnforderungForschungArray;
 
    end record;
    
@@ -70,7 +70,7 @@ package DatenbankRecords is
    type GebäudelisteRecord is record
       
       PreisGeld : ProduktionDatentypen.Lagermenge;
-      PreisRessourcen : ProduktionDatentypen.Lagermenge;
+      Produktionskosten : ProduktionDatentypen.Lagermenge;
       PermanenteKosten : StadtRecords.PermanenteKostenArray;
       
       Anforderungen : ForschungenDatentypen.ForschungIDNichtMöglich;
@@ -86,7 +86,7 @@ package DatenbankRecords is
       VerbesserungBenötigt : KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
       GebäudeBenötigt : StadtDatentypen.GebäudeIDMitNullwert;
       
-      GebäudeSpezielleEigenschaft : StadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum;
+      SpezielleEigenschaft : StadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum;
 
    end record;
    
@@ -148,7 +148,7 @@ package DatenbankRecords is
       Wirtschaft : StadtDatentypen.MaximaleStädteMitNullWert;
       Bewirtschaftung : StadtDatentypen.MaximaleStädteMitNullWert;
       
-      GültigeStaatsformen : RassenDatentypen.StaatsformenArray;
+      Staatsformen : RassenDatentypen.StaatsformenArray;
       -- Besondere Eigenschaften hinzufügen, als Enum? oder was Anderes?
       
    end record;

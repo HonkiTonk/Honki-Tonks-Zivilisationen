@@ -1,16 +1,18 @@
 package ChangelogSeptember2022 is
 
-   -- Version 0.04. => 0.04. (30.09.2022):
+   -- Version 0.04.0470 => 0.04. (30.09.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.0425 => 0.04. (29.09.2022):
+   -- Version 0.04.0425 => 0.04.0470 (29.09.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Virtuelles System mit Debian Bullseye aufgesetzt um Tests in einer unmodifizeirten Umgebung durchführen zu können.
+   -- Diverse Anpassungen an der gpr Datei vorgenommen um mehr Dateien statisch einzukompilieren und so plattformunabhängiger zu sein.
+   -- Interne Benennung überarbeitet.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert.
    
    
 

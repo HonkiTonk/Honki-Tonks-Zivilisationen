@@ -22,7 +22,7 @@ package LeseGebaeudeDatenbank is
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
    
-   function PreisRessourcen
+   function Produktionskosten
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in StadtDatentypen.GebäudeID)
       return ProduktionDatentypen.Produktion

@@ -15,16 +15,16 @@ package EinheitenMoruPhisihl is
                                                                                  -- Siedler
                                                                                  1 =>
                                                                                    (
-                                                                                    EinheitArt              => EinheitenDatentypen.Arbeiter_Enum,
+                                                                                    Einheitenart            => EinheitenDatentypen.Arbeiter_Enum,
                                                                                     PreisGeld               => 10,
-                                                                                    PreisRessourcen         => 10,
+                                                                                    Produktionskosten       => 10,
                                                                                     PermanenteKosten        => (others => 0),
                                                                                     Anforderungen           => 0,
                                                                                     Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
                                                                                                                 others                         => False),
                                                                                     MaximaleLebenspunkte    => 3,
                                                                                     MaximaleBewegungspunkte => 3.00,
-                                                                                    WirdVerbessertZu        => 0,
+                                                                                    VerbesserungZu          => 0,
                                                                                     Beförderungsgrenze      => 30,
                                                                                     MaximalerRang           => 3,
                                                                                     Reichweite              => 1,
@@ -38,16 +38,16 @@ package EinheitenMoruPhisihl is
                                                                                    -- Steinzeitkämpfer
                                                                                  2 =>
                                                                                    (
-                                                                                    EinheitArt              => EinheitenDatentypen.Nahkämpfer_Enum,
+                                                                                    Einheitenart            => EinheitenDatentypen.Nahkämpfer_Enum,
                                                                                     PreisGeld               => 25,
-                                                                                    PreisRessourcen         => 20,
+                                                                                    Produktionskosten       => 20,
                                                                                     PermanenteKosten        => (others => 0),
                                                                                     Anforderungen           => 0,
                                                                                     Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
                                                                                                                 others                         => False),
                                                                                     MaximaleLebenspunkte    => 5,
                                                                                     MaximaleBewegungspunkte => 3.00,
-                                                                                    WirdVerbessertZu        => 5,
+                                                                                    VerbesserungZu          => 5,
                                                                                     Beförderungsgrenze      => 30,
                                                                                     MaximalerRang           => 3,
                                                                                     Reichweite              => 1,
@@ -61,16 +61,16 @@ package EinheitenMoruPhisihl is
                                                                                    -- Bogenschütze
                                                                                  3 =>
                                                                                    (
-                                                                                    EinheitArt              => EinheitenDatentypen.Fernkämpfer_Enum,
+                                                                                    Einheitenart            => EinheitenDatentypen.Fernkämpfer_Enum,
                                                                                     PreisGeld               => 25,
-                                                                                    PreisRessourcen         => 20,
+                                                                                    Produktionskosten       => 20,
                                                                                     PermanenteKosten        => (others => 0),
                                                                                     Anforderungen           => 1,
                                                                                     Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
                                                                                                                 others                         => False),
                                                                                     MaximaleLebenspunkte    => 5,
                                                                                     MaximaleBewegungspunkte => 3.00,
-                                                                                    WirdVerbessertZu        => 8,
+                                                                                    VerbesserungZu          => 8,
                                                                                     Beförderungsgrenze      => 30,
                                                                                     MaximalerRang           => 3,
                                                                                     Reichweite              => 2,
@@ -84,16 +84,16 @@ package EinheitenMoruPhisihl is
                                                                                    -- Erstes Schiff
                                                                                  4 =>
                                                                                    (
-                                                                                    EinheitArt              => EinheitenDatentypen.Nahkämpfer_Enum,
+                                                                                    Einheitenart            => EinheitenDatentypen.Nahkämpfer_Enum,
                                                                                     PreisGeld               => 25,
-                                                                                    PreisRessourcen         => 20,
+                                                                                    Produktionskosten       => 20,
                                                                                     PermanenteKosten        => (others => 0),
                                                                                     Anforderungen           => 7,
                                                                                     Passierbarkeit          => (EinheitenDatentypen.Küstenwasser_Enum => True,
                                                                                                                 others                                => False),
                                                                                     MaximaleLebenspunkte    => 5,
                                                                                     MaximaleBewegungspunkte => 3.00,
-                                                                                    WirdVerbessertZu        => 10,
+                                                                                    VerbesserungZu          => 10,
                                                                                     Beförderungsgrenze      => 30,
                                                                                     MaximalerRang           => 3,
                                                                                     Reichweite              => 2,
@@ -107,16 +107,16 @@ package EinheitenMoruPhisihl is
                                                                                    -- Bronzekämpfer
                                                                                  5 =>
                                                                                    (
-                                                                                    EinheitArt              => EinheitenDatentypen.Nahkämpfer_Enum,
+                                                                                    Einheitenart            => EinheitenDatentypen.Nahkämpfer_Enum,
                                                                                     PreisGeld               => 25,
-                                                                                    PreisRessourcen         => 20,
+                                                                                    Produktionskosten       => 20,
                                                                                     PermanenteKosten        => (others => 0),
                                                                                     Anforderungen           => 10,
                                                                                     Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
                                                                                                                 others                         => False),
                                                                                     MaximaleLebenspunkte    => 5,
                                                                                     MaximaleBewegungspunkte => 3.00,
-                                                                                    WirdVerbessertZu        => 6,
+                                                                                    VerbesserungZu          => 6,
                                                                                     Beförderungsgrenze      => 30,
                                                                                     MaximalerRang           => 3,
                                                                                     Reichweite              => 2,
@@ -130,16 +130,16 @@ package EinheitenMoruPhisihl is
                                                                                    -- Eisenkämpfer
                                                                                  6 =>
                                                                                    (
-                                                                                    EinheitArt              => EinheitenDatentypen.Nahkämpfer_Enum,
+                                                                                    Einheitenart            => EinheitenDatentypen.Nahkämpfer_Enum,
                                                                                     PreisGeld               => 25,
-                                                                                    PreisRessourcen         => 20,
+                                                                                    Produktionskosten       => 20,
                                                                                     PermanenteKosten        => (others => 0),
                                                                                     Anforderungen           => 13,
                                                                                     Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
                                                                                                                 others                         => False),
                                                                                     MaximaleLebenspunkte    => 5,
                                                                                     MaximaleBewegungspunkte => 3.00,
-                                                                                    WirdVerbessertZu        => 12,
+                                                                                    VerbesserungZu          => 12,
                                                                                     Beförderungsgrenze      => 30,
                                                                                     MaximalerRang           => 3,
                                                                                     Reichweite              => 2,
@@ -153,16 +153,16 @@ package EinheitenMoruPhisihl is
                                                                                    -- Streitwagen
                                                                                  7 =>
                                                                                    (
-                                                                                    EinheitArt              => EinheitenDatentypen.Nahkämpfer_Enum,
+                                                                                    Einheitenart            => EinheitenDatentypen.Nahkämpfer_Enum,
                                                                                     PreisGeld               => 25,
-                                                                                    PreisRessourcen         => 20,
+                                                                                    Produktionskosten       => 20,
                                                                                     PermanenteKosten        => (others => 0),
                                                                                     Anforderungen           => 5,
                                                                                     Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
                                                                                                                 others                         => False),
                                                                                     MaximaleLebenspunkte    => 5,
                                                                                     MaximaleBewegungspunkte => 3.00,
-                                                                                    WirdVerbessertZu        => 17,
+                                                                                    VerbesserungZu          => 17,
                                                                                     Beförderungsgrenze      => 30,
                                                                                     MaximalerRang           => 3,
                                                                                     Reichweite              => 2,
@@ -176,16 +176,16 @@ package EinheitenMoruPhisihl is
                                                                                    -- Katapult
                                                                                  8 =>
                                                                                    (
-                                                                                    EinheitArt              => EinheitenDatentypen.Fernkämpfer_Enum,
+                                                                                    Einheitenart            => EinheitenDatentypen.Fernkämpfer_Enum,
                                                                                     PreisGeld               => 25,
-                                                                                    PreisRessourcen         => 20,
+                                                                                    Produktionskosten       => 20,
                                                                                     PermanenteKosten        => (others => 0),
                                                                                     Anforderungen           => 11,
                                                                                     Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
                                                                                                                 others                         => False),
                                                                                     MaximaleLebenspunkte    => 5,
                                                                                     MaximaleBewegungspunkte => 3.00,
-                                                                                    WirdVerbessertZu        => 9,
+                                                                                    VerbesserungZu          => 9,
                                                                                     Beförderungsgrenze      => 30,
                                                                                     MaximalerRang           => 3,
                                                                                     Reichweite              => 2,
@@ -199,16 +199,16 @@ package EinheitenMoruPhisihl is
                                                                                    -- Balliste
                                                                                  9 =>
                                                                                    (
-                                                                                    EinheitArt              => EinheitenDatentypen.Fernkämpfer_Enum,
+                                                                                    Einheitenart            => EinheitenDatentypen.Fernkämpfer_Enum,
                                                                                     PreisGeld               => 25,
-                                                                                    PreisRessourcen         => 20,
+                                                                                    Produktionskosten       => 20,
                                                                                     PermanenteKosten        => (others => 0),
                                                                                     Anforderungen           => 12,
                                                                                     Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
                                                                                                                 others                         => False),
                                                                                     MaximaleLebenspunkte    => 5,
                                                                                     MaximaleBewegungspunkte => 3.00,
-                                                                                    WirdVerbessertZu        => 13,
+                                                                                    VerbesserungZu          => 13,
                                                                                     Beförderungsgrenze      => 30,
                                                                                     MaximalerRang           => 3,
                                                                                     Reichweite              => 2,
@@ -222,9 +222,9 @@ package EinheitenMoruPhisihl is
                                                                                    -- Segelschiff
                                                                                  10 =>
                                                                                    (
-                                                                                    EinheitArt              => EinheitenDatentypen.Nahkämpfer_Enum,
+                                                                                    Einheitenart            => EinheitenDatentypen.Nahkämpfer_Enum,
                                                                                     PreisGeld               => 25,
-                                                                                    PreisRessourcen         => 20,
+                                                                                    Produktionskosten       => 20,
                                                                                     PermanenteKosten        => (others => 0),
                                                                                     Anforderungen           => 14,
                                                                                     Passierbarkeit          => (EinheitenDatentypen.Wasser_Enum       => True,
@@ -232,7 +232,7 @@ package EinheitenMoruPhisihl is
                                                                                                                 others                                => False),
                                                                                     MaximaleLebenspunkte    => 5,
                                                                                     MaximaleBewegungspunkte => 3.00,
-                                                                                    WirdVerbessertZu        => 11,
+                                                                                    VerbesserungZu          => 11,
                                                                                     Beförderungsgrenze      => 30,
                                                                                     MaximalerRang           => 3,
                                                                                     Reichweite              => 2,
@@ -246,9 +246,9 @@ package EinheitenMoruPhisihl is
                                                                                    -- Großes Segelschiff
                                                                                  11 =>
                                                                                    (
-                                                                                    EinheitArt              => EinheitenDatentypen.Nahkämpfer_Enum,
+                                                                                    Einheitenart            => EinheitenDatentypen.Nahkämpfer_Enum,
                                                                                     PreisGeld               => 25,
-                                                                                    PreisRessourcen         => 20,
+                                                                                    Produktionskosten       => 20,
                                                                                     PermanenteKosten        => (others => 0),
                                                                                     Anforderungen           => 23,
                                                                                     Passierbarkeit          => (EinheitenDatentypen.Wasser_Enum       => True,
@@ -256,7 +256,7 @@ package EinheitenMoruPhisihl is
                                                                                                                 others                                => False),
                                                                                     MaximaleLebenspunkte    => 5,
                                                                                     MaximaleBewegungspunkte => 3.00,
-                                                                                    WirdVerbessertZu        => 14,
+                                                                                    VerbesserungZu          => 14,
                                                                                     Beförderungsgrenze      => 30,
                                                                                     MaximalerRang           => 3,
                                                                                     Reichweite              => 2,
@@ -270,16 +270,16 @@ package EinheitenMoruPhisihl is
                                                                                    -- Gewehrkämpfer
                                                                                  12 =>
                                                                                    (
-                                                                                    EinheitArt              => EinheitenDatentypen.Nahkämpfer_Enum,
+                                                                                    Einheitenart            => EinheitenDatentypen.Nahkämpfer_Enum,
                                                                                     PreisGeld               => 25,
-                                                                                    PreisRessourcen         => 20,
+                                                                                    Produktionskosten       => 20,
                                                                                     PermanenteKosten        => (others => 0),
                                                                                     Anforderungen           => 28,
                                                                                     Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
                                                                                                                 others                         => False),
                                                                                     MaximaleLebenspunkte    => 5,
                                                                                     MaximaleBewegungspunkte => 3.00,
-                                                                                    WirdVerbessertZu        => 44,
+                                                                                    VerbesserungZu          => 44,
                                                                                     Beförderungsgrenze      => 30,
                                                                                     MaximalerRang           => 3,
                                                                                     Reichweite              => 2,
@@ -293,16 +293,16 @@ package EinheitenMoruPhisihl is
                                                                                    -- Kanone
                                                                                  13 =>
                                                                                    (
-                                                                                    EinheitArt              => EinheitenDatentypen.Fernkämpfer_Enum,
+                                                                                    Einheitenart            => EinheitenDatentypen.Fernkämpfer_Enum,
                                                                                     PreisGeld               => 25,
-                                                                                    PreisRessourcen         => 20,
+                                                                                    Produktionskosten       => 20,
                                                                                     PermanenteKosten        => (others => 0),
                                                                                     Anforderungen           => 34,
                                                                                     Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
                                                                                                                 others                         => False),
                                                                                     MaximaleLebenspunkte    => 5,
                                                                                     MaximaleBewegungspunkte => 3.00,
-                                                                                    WirdVerbessertZu        => 40,
+                                                                                    VerbesserungZu          => 40,
                                                                                     Beförderungsgrenze      => 30,
                                                                                     MaximalerRang           => 3,
                                                                                     Reichweite              => 2,
@@ -316,9 +316,9 @@ package EinheitenMoruPhisihl is
                                                                                    -- Dampfschiff
                                                                                  14 =>
                                                                                    (
-                                                                                    EinheitArt              => EinheitenDatentypen.Nahkämpfer_Enum,
+                                                                                    Einheitenart            => EinheitenDatentypen.Nahkämpfer_Enum,
                                                                                     PreisGeld               => 25,
-                                                                                    PreisRessourcen         => 20,
+                                                                                    Produktionskosten       => 20,
                                                                                     PermanenteKosten        => (others => 0),
                                                                                     Anforderungen           => 31,
                                                                                     Passierbarkeit          => (EinheitenDatentypen.Wasser_Enum       => True,
@@ -326,7 +326,7 @@ package EinheitenMoruPhisihl is
                                                                                                                 others                                => False),
                                                                                     MaximaleLebenspunkte    => 5,
                                                                                     MaximaleBewegungspunkte => 3.00,
-                                                                                    WirdVerbessertZu        => 15,
+                                                                                    VerbesserungZu          => 15,
                                                                                     Beförderungsgrenze      => 30,
                                                                                     MaximalerRang           => 3,
                                                                                     Reichweite              => 2,
@@ -340,9 +340,9 @@ package EinheitenMoruPhisihl is
                                                                                    -- Motorschiff
                                                                                  15 =>
                                                                                    (
-                                                                                    EinheitArt              => EinheitenDatentypen.Nahkämpfer_Enum,
+                                                                                    Einheitenart            => EinheitenDatentypen.Nahkämpfer_Enum,
                                                                                     PreisGeld               => 25,
-                                                                                    PreisRessourcen         => 20,
+                                                                                    Produktionskosten       => 20,
                                                                                     PermanenteKosten        => (others => 0),
                                                                                     Anforderungen           => 38,
                                                                                     Passierbarkeit          => (EinheitenDatentypen.Wasser_Enum       => True,
@@ -350,7 +350,7 @@ package EinheitenMoruPhisihl is
                                                                                                                 others                                => False),
                                                                                     MaximaleLebenspunkte    => 5,
                                                                                     MaximaleBewegungspunkte => 3.00,
-                                                                                    WirdVerbessertZu        => 42,
+                                                                                    VerbesserungZu          => 42,
                                                                                     Beförderungsgrenze      => 30,
                                                                                     MaximalerRang           => 3,
                                                                                     Reichweite              => 2,
@@ -364,9 +364,9 @@ package EinheitenMoruPhisihl is
                                                                                    -- U-Boot
                                                                                  16 =>
                                                                                    (
-                                                                                    EinheitArt              => EinheitenDatentypen.Nahkämpfer_Enum,
+                                                                                    Einheitenart            => EinheitenDatentypen.Nahkämpfer_Enum,
                                                                                     PreisGeld               => 25,
-                                                                                    PreisRessourcen         => 20,
+                                                                                    Produktionskosten       => 20,
                                                                                     PermanenteKosten        => (others => 0),
                                                                                     Anforderungen           => 39,
                                                                                     Passierbarkeit          => (EinheitenDatentypen.Wasser_Enum            => True,
@@ -376,7 +376,7 @@ package EinheitenMoruPhisihl is
                                                                                                                 others                                     => False),
                                                                                     MaximaleLebenspunkte    => 5,
                                                                                     MaximaleBewegungspunkte => 3.00,
-                                                                                    WirdVerbessertZu        => 42,
+                                                                                    VerbesserungZu          => 42,
                                                                                     Beförderungsgrenze      => 30,
                                                                                     MaximalerRang           => 3,
                                                                                     Reichweite              => 2,
@@ -390,16 +390,16 @@ package EinheitenMoruPhisihl is
                                                                                    -- Gepanzerter Wagen
                                                                                  17 =>
                                                                                    (
-                                                                                    EinheitArt              => EinheitenDatentypen.Nahkämpfer_Enum,
+                                                                                    Einheitenart            => EinheitenDatentypen.Nahkämpfer_Enum,
                                                                                     PreisGeld               => 25,
-                                                                                    PreisRessourcen         => 20,
+                                                                                    Produktionskosten       => 20,
                                                                                     PermanenteKosten        => (others => 0),
                                                                                     Anforderungen           => 40,
                                                                                     Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
                                                                                                                 others                         => False),
                                                                                     MaximaleLebenspunkte    => 5,
                                                                                     MaximaleBewegungspunkte => 3.00,
-                                                                                    WirdVerbessertZu        => 18,
+                                                                                    VerbesserungZu          => 18,
                                                                                     Beförderungsgrenze      => 30,
                                                                                     MaximalerRang           => 3,
                                                                                     Reichweite              => 2,
@@ -413,16 +413,16 @@ package EinheitenMoruPhisihl is
                                                                                    -- Panzer
                                                                                  18 =>
                                                                                    (
-                                                                                    EinheitArt              => EinheitenDatentypen.Nahkämpfer_Enum,
+                                                                                    Einheitenart            => EinheitenDatentypen.Nahkämpfer_Enum,
                                                                                     PreisGeld               => 25,
-                                                                                    PreisRessourcen         => 20,
+                                                                                    Produktionskosten       => 20,
                                                                                     PermanenteKosten        => (others => 0),
                                                                                     Anforderungen           => 42,
                                                                                     Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
                                                                                                                 others                         => False),
                                                                                     MaximaleLebenspunkte    => 5,
                                                                                     MaximaleBewegungspunkte => 3.00,
-                                                                                    WirdVerbessertZu        => 35,
+                                                                                    VerbesserungZu          => 35,
                                                                                     Beförderungsgrenze      => 30,
                                                                                     MaximalerRang           => 3,
                                                                                     Reichweite              => 2,
@@ -436,16 +436,16 @@ package EinheitenMoruPhisihl is
                                                                                    -- Jäger
                                                                                  19 =>
                                                                                    (
-                                                                                    EinheitArt              => EinheitenDatentypen.Nahkämpfer_Enum,
+                                                                                    Einheitenart            => EinheitenDatentypen.Nahkämpfer_Enum,
                                                                                     PreisGeld               => 25,
-                                                                                    PreisRessourcen         => 20,
+                                                                                    Produktionskosten       => 20,
                                                                                     PermanenteKosten        => (others => 0),
                                                                                     Anforderungen           => 41,
                                                                                     Passierbarkeit          => (EinheitenDatentypen.Luft_Enum => True,
                                                                                                                 others                        => False),
                                                                                     MaximaleLebenspunkte    => 5,
                                                                                     MaximaleBewegungspunkte => 3.00,
-                                                                                    WirdVerbessertZu        => 22,
+                                                                                    VerbesserungZu          => 22,
                                                                                     Beförderungsgrenze      => 30,
                                                                                     MaximalerRang           => 3,
                                                                                     Reichweite              => 2,
@@ -459,16 +459,16 @@ package EinheitenMoruPhisihl is
                                                                                    -- Bomber
                                                                                  20 =>
                                                                                    (
-                                                                                    EinheitArt              => EinheitenDatentypen.Fernkämpfer_Enum,
+                                                                                    Einheitenart            => EinheitenDatentypen.Fernkämpfer_Enum,
                                                                                     PreisGeld               => 25,
-                                                                                    PreisRessourcen         => 20,
+                                                                                    Produktionskosten       => 20,
                                                                                     PermanenteKosten        => (others => 0),
                                                                                     Anforderungen           => 41,
                                                                                     Passierbarkeit          => (EinheitenDatentypen.Luft_Enum => True,
                                                                                                                 others                        => False),
                                                                                     MaximaleLebenspunkte    => 5,
                                                                                     MaximaleBewegungspunkte => 3.00,
-                                                                                    WirdVerbessertZu        => 23,
+                                                                                    VerbesserungZu          => 23,
                                                                                     Beförderungsgrenze      => 30,
                                                                                     MaximalerRang           => 3,
                                                                                     Reichweite              => 2,
@@ -482,9 +482,9 @@ package EinheitenMoruPhisihl is
                                                                                    -- Rakete
                                                                                  21 =>
                                                                                    (
-                                                                                    EinheitArt              => EinheitenDatentypen.Nahkämpfer_Enum,
+                                                                                    Einheitenart            => EinheitenDatentypen.Nahkämpfer_Enum,
                                                                                     PreisGeld               => 25,
-                                                                                    PreisRessourcen         => 20,
+                                                                                    Produktionskosten       => 20,
                                                                                     PermanenteKosten        => (others => 0),
                                                                                     Anforderungen           => 46,
                                                                                     Passierbarkeit          => (EinheitenDatentypen.Luft_Enum     => True,
@@ -492,7 +492,7 @@ package EinheitenMoruPhisihl is
                                                                                                                 others                            => False),
                                                                                     MaximaleLebenspunkte    => 5,
                                                                                     MaximaleBewegungspunkte => 3.00,
-                                                                                    WirdVerbessertZu        => 0,
+                                                                                    VerbesserungZu          => 0,
                                                                                     Beförderungsgrenze      => 30,
                                                                                     MaximalerRang           => 3,
                                                                                     Reichweite              => 2,
@@ -506,16 +506,16 @@ package EinheitenMoruPhisihl is
                                                                                    -- Düsenjäger
                                                                                  22 =>
                                                                                    (
-                                                                                    EinheitArt              => EinheitenDatentypen.Nahkämpfer_Enum,
+                                                                                    Einheitenart            => EinheitenDatentypen.Nahkämpfer_Enum,
                                                                                     PreisGeld               => 25,
-                                                                                    PreisRessourcen         => 20,
+                                                                                    Produktionskosten       => 20,
                                                                                     PermanenteKosten        => (others => 0),
                                                                                     Anforderungen           => 51,
                                                                                     Passierbarkeit          => (EinheitenDatentypen.Luft_Enum => True,
                                                                                                                 others                        => False),
                                                                                     MaximaleLebenspunkte    => 5,
                                                                                     MaximaleBewegungspunkte => 3.00,
-                                                                                    WirdVerbessertZu        => 38,
+                                                                                    VerbesserungZu          => 38,
                                                                                     Beförderungsgrenze      => 30,
                                                                                     MaximalerRang           => 3,
                                                                                     Reichweite              => 2,
@@ -529,16 +529,16 @@ package EinheitenMoruPhisihl is
                                                                                    -- Düsenbomber
                                                                                  23 =>
                                                                                    (
-                                                                                    EinheitArt              => EinheitenDatentypen.Fernkämpfer_Enum,
+                                                                                    Einheitenart            => EinheitenDatentypen.Fernkämpfer_Enum,
                                                                                     PreisGeld               => 25,
-                                                                                    PreisRessourcen         => 20,
+                                                                                    Produktionskosten       => 20,
                                                                                     PermanenteKosten        => (others => 0),
                                                                                     Anforderungen           => 51,
                                                                                     Passierbarkeit          => (EinheitenDatentypen.Luft_Enum => True,
                                                                                                                 others                        => False),
                                                                                     MaximaleLebenspunkte    => 5,
                                                                                     MaximaleBewegungspunkte => 3.00,
-                                                                                    WirdVerbessertZu        => 39,
+                                                                                    VerbesserungZu          => 39,
                                                                                     Beförderungsgrenze      => 30,
                                                                                     MaximalerRang           => 3,
                                                                                     Reichweite              => 2,
@@ -552,16 +552,16 @@ package EinheitenMoruPhisihl is
                                                                                    -- Atombombe
                                                                                  24 =>
                                                                                    (
-                                                                                    EinheitArt              => EinheitenDatentypen.Fernkämpfer_Enum,
+                                                                                    Einheitenart            => EinheitenDatentypen.Fernkämpfer_Enum,
                                                                                     PreisGeld               => 25,
-                                                                                    PreisRessourcen         => 20,
+                                                                                    Produktionskosten       => 20,
                                                                                     PermanenteKosten        => (others => 0),
                                                                                     Anforderungen           => 45,
                                                                                     Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
                                                                                                                 others                         => False),
                                                                                     MaximaleLebenspunkte    => 5,
                                                                                     MaximaleBewegungspunkte => 3.00,
-                                                                                    WirdVerbessertZu        => 0,
+                                                                                    VerbesserungZu          => 0,
                                                                                     Beförderungsgrenze      => 30,
                                                                                     MaximalerRang           => 3,
                                                                                     Reichweite              => 2,
@@ -575,16 +575,16 @@ package EinheitenMoruPhisihl is
                                                                                    -- Drohne
                                                                                  25 =>
                                                                                    (
-                                                                                    EinheitArt              => EinheitenDatentypen.Fernkämpfer_Enum,
+                                                                                    Einheitenart            => EinheitenDatentypen.Fernkämpfer_Enum,
                                                                                     PreisGeld               => 25,
-                                                                                    PreisRessourcen         => 20,
+                                                                                    Produktionskosten       => 20,
                                                                                     PermanenteKosten        => (others => 0),
                                                                                     Anforderungen           => 49,
                                                                                     Passierbarkeit          => (EinheitenDatentypen.Luft_Enum => True,
                                                                                                                 others                        => False),
                                                                                     MaximaleLebenspunkte    => 5,
                                                                                     MaximaleBewegungspunkte => 3.00,
-                                                                                    WirdVerbessertZu        => 0,
+                                                                                    VerbesserungZu          => 0,
                                                                                     Beförderungsgrenze      => 30,
                                                                                     MaximalerRang           => 3,
                                                                                     Reichweite              => 2,
@@ -598,16 +598,16 @@ package EinheitenMoruPhisihl is
                                                                                    -- Gensoldat
                                                                                  26 =>
                                                                                    (
-                                                                                    EinheitArt              => EinheitenDatentypen.Nahkämpfer_Enum,
+                                                                                    Einheitenart            => EinheitenDatentypen.Nahkämpfer_Enum,
                                                                                     PreisGeld               => 25,
-                                                                                    PreisRessourcen         => 20,
+                                                                                    Produktionskosten       => 20,
                                                                                     PermanenteKosten        => (others => 0),
                                                                                     Anforderungen           => 56,
                                                                                     Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
                                                                                                                 others                         => False),
                                                                                     MaximaleLebenspunkte    => 5,
                                                                                     MaximaleBewegungspunkte => 3.00,
-                                                                                    WirdVerbessertZu        => 28,
+                                                                                    VerbesserungZu          => 28,
                                                                                     Beförderungsgrenze      => 30,
                                                                                     MaximalerRang           => 3,
                                                                                     Reichweite              => 2,
@@ -621,9 +621,9 @@ package EinheitenMoruPhisihl is
                                                                                    -- Wassersiedler
                                                                                  27 =>
                                                                                    (
-                                                                                    EinheitArt              => EinheitenDatentypen.Arbeiter_Enum,
+                                                                                    Einheitenart            => EinheitenDatentypen.Arbeiter_Enum,
                                                                                     PreisGeld               => 25,
-                                                                                    PreisRessourcen         => 20,
+                                                                                    Produktionskosten       => 20,
                                                                                     PermanenteKosten        => (others => 0),
                                                                                     Anforderungen           => 58,
                                                                                     Passierbarkeit          => (EinheitenDatentypen.Boden_Enum        => True,
@@ -632,7 +632,7 @@ package EinheitenMoruPhisihl is
                                                                                                                 others                                => False),
                                                                                     MaximaleLebenspunkte    => 5,
                                                                                     MaximaleBewegungspunkte => 3.00,
-                                                                                    WirdVerbessertZu        => 0,
+                                                                                    VerbesserungZu          => 0,
                                                                                     Beförderungsgrenze      => 30,
                                                                                     MaximalerRang           => 3,
                                                                                     Reichweite              => 2,
@@ -646,16 +646,16 @@ package EinheitenMoruPhisihl is
                                                                                    -- Cyborg
                                                                                  28 =>
                                                                                    (
-                                                                                    EinheitArt              => EinheitenDatentypen.Nahkämpfer_Enum,
+                                                                                    Einheitenart            => EinheitenDatentypen.Nahkämpfer_Enum,
                                                                                     PreisGeld               => 25,
-                                                                                    PreisRessourcen         => 20,
+                                                                                    Produktionskosten       => 20,
                                                                                     PermanenteKosten        => (others => 0),
                                                                                     Anforderungen           => 57,
                                                                                     Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
                                                                                                                 others                         => False),
                                                                                     MaximaleLebenspunkte    => 5,
                                                                                     MaximaleBewegungspunkte => 3.00,
-                                                                                    WirdVerbessertZu        => 33,
+                                                                                    VerbesserungZu          => 33,
                                                                                     Beförderungsgrenze      => 30,
                                                                                     MaximalerRang           => 3,
                                                                                     Reichweite              => 2,
@@ -669,9 +669,9 @@ package EinheitenMoruPhisihl is
                                                                                    -- Unterwasser/Unterirdischer Siedler
                                                                                  29 =>
                                                                                    (
-                                                                                    EinheitArt              => EinheitenDatentypen.Arbeiter_Enum,
+                                                                                    Einheitenart            => EinheitenDatentypen.Arbeiter_Enum,
                                                                                     PreisGeld               => 25,
-                                                                                    PreisRessourcen         => 20,
+                                                                                    Produktionskosten       => 20,
                                                                                     PermanenteKosten        => (others => 0),
                                                                                     Anforderungen           => 62,
                                                                                     Passierbarkeit          => (EinheitenDatentypen.Boden_Enum             => True,
@@ -683,7 +683,7 @@ package EinheitenMoruPhisihl is
                                                                                                                 others                                     => False),
                                                                                     MaximaleLebenspunkte    => 5,
                                                                                     MaximaleBewegungspunkte => 3.00,
-                                                                                    WirdVerbessertZu        => 0,
+                                                                                    VerbesserungZu          => 0,
                                                                                     Beförderungsgrenze      => 30,
                                                                                     MaximalerRang           => 3,
                                                                                     Reichweite              => 2,
@@ -697,16 +697,16 @@ package EinheitenMoruPhisihl is
                                                                                    -- PZB200
                                                                                  30 =>
                                                                                    (
-                                                                                    EinheitArt              => EinheitenDatentypen.PZB_Klein_Enum,
+                                                                                    Einheitenart            => EinheitenDatentypen.PZB_Klein_Enum,
                                                                                     PreisGeld               => 25,
-                                                                                    PreisRessourcen         => 20,
+                                                                                    Produktionskosten       => 20,
                                                                                     PermanenteKosten        => (others => 0),
                                                                                     Anforderungen           => 63,
                                                                                     Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
                                                                                                                 others                         => False),
                                                                                     MaximaleLebenspunkte    => 5,
                                                                                     MaximaleBewegungspunkte => 3.00,
-                                                                                    WirdVerbessertZu        => 0,
+                                                                                    VerbesserungZu          => 0,
                                                                                     Beförderungsgrenze      => 30,
                                                                                     MaximalerRang           => 3,
                                                                                     Reichweite              => 2,
@@ -720,16 +720,16 @@ package EinheitenMoruPhisihl is
                                                                                    -- PZB400
                                                                                  31 =>
                                                                                    (
-                                                                                    EinheitArt              => EinheitenDatentypen.PZB_Mittel_Enum,
+                                                                                    Einheitenart            => EinheitenDatentypen.PZB_Mittel_Enum,
                                                                                     PreisGeld               => 25,
-                                                                                    PreisRessourcen         => 20,
+                                                                                    Produktionskosten       => 20,
                                                                                     PermanenteKosten        => (others => 0),
                                                                                     Anforderungen           => 66,
                                                                                     Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
                                                                                                                 others                         => False),
                                                                                     MaximaleLebenspunkte    => 5,
                                                                                     MaximaleBewegungspunkte => 3.00,
-                                                                                    WirdVerbessertZu        => 0,
+                                                                                    VerbesserungZu          => 0,
                                                                                     Beförderungsgrenze      => 30,
                                                                                     MaximalerRang           => 3,
                                                                                     Reichweite              => 2,
@@ -743,16 +743,16 @@ package EinheitenMoruPhisihl is
                                                                                    -- PZB1000
                                                                                  32 =>
                                                                                    (
-                                                                                    EinheitArt              => EinheitenDatentypen.PZB_Groß_Enum,
+                                                                                    Einheitenart            => EinheitenDatentypen.PZB_Groß_Enum,
                                                                                     PreisGeld               => 25,
-                                                                                    PreisRessourcen         => 20,
+                                                                                    Produktionskosten       => 20,
                                                                                     PermanenteKosten        => (others => 0),
                                                                                     Anforderungen           => 66,
                                                                                     Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
                                                                                                                 others                         => False),
                                                                                     MaximaleLebenspunkte    => 5,
                                                                                     MaximaleBewegungspunkte => 3.00,
-                                                                                    WirdVerbessertZu        => 0,
+                                                                                    VerbesserungZu          => 0,
                                                                                     Beförderungsgrenze      => 30,
                                                                                     MaximalerRang           => 3,
                                                                                     Reichweite              => 2,
@@ -766,16 +766,16 @@ package EinheitenMoruPhisihl is
                                                                                    -- Gaußkämpfer
                                                                                  33 =>
                                                                                    (
-                                                                                    EinheitArt              => EinheitenDatentypen.Nahkämpfer_Enum,
+                                                                                    Einheitenart            => EinheitenDatentypen.Nahkämpfer_Enum,
                                                                                     PreisGeld               => 25,
-                                                                                    PreisRessourcen         => 20,
+                                                                                    Produktionskosten       => 20,
                                                                                     PermanenteKosten        => (others => 0),
                                                                                     Anforderungen           => 68,
                                                                                     Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
                                                                                                                 others                         => False),
                                                                                     MaximaleLebenspunkte    => 5,
                                                                                     MaximaleBewegungspunkte => 3.00,
-                                                                                    WirdVerbessertZu        => 34,
+                                                                                    VerbesserungZu          => 34,
                                                                                     Beförderungsgrenze      => 30,
                                                                                     MaximalerRang           => 3,
                                                                                     Reichweite              => 2,
@@ -789,16 +789,16 @@ package EinheitenMoruPhisihl is
                                                                                    -- Magnetkämpfer
                                                                                  34 =>
                                                                                    (
-                                                                                    EinheitArt              => EinheitenDatentypen.Nahkämpfer_Enum,
+                                                                                    Einheitenart            => EinheitenDatentypen.Nahkämpfer_Enum,
                                                                                     PreisGeld               => 25,
-                                                                                    PreisRessourcen         => 20,
+                                                                                    Produktionskosten       => 20,
                                                                                     PermanenteKosten        => (others => 0),
                                                                                     Anforderungen           => 74,
                                                                                     Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
                                                                                                                 others                         => False),
                                                                                     MaximaleLebenspunkte    => 5,
                                                                                     MaximaleBewegungspunkte => 3.00,
-                                                                                    WirdVerbessertZu        => 0,
+                                                                                    VerbesserungZu          => 0,
                                                                                     Beförderungsgrenze      => 30,
                                                                                     MaximalerRang           => 3,
                                                                                     Reichweite              => 2,
@@ -812,9 +812,9 @@ package EinheitenMoruPhisihl is
                                                                                    -- Schwebepanzer
                                                                                  35 =>
                                                                                    (
-                                                                                    EinheitArt              => EinheitenDatentypen.Nahkämpfer_Enum,
+                                                                                    Einheitenart            => EinheitenDatentypen.Nahkämpfer_Enum,
                                                                                     PreisGeld               => 25,
-                                                                                    PreisRessourcen         => 20,
+                                                                                    Produktionskosten       => 20,
                                                                                     PermanenteKosten        => (others => 0),
                                                                                     Anforderungen           => 74,
                                                                                     Passierbarkeit          => (EinheitenDatentypen.Boden_Enum        => True,
@@ -823,7 +823,7 @@ package EinheitenMoruPhisihl is
                                                                                                                 others                                => False),
                                                                                     MaximaleLebenspunkte    => 5,
                                                                                     MaximaleBewegungspunkte => 3.00,
-                                                                                    WirdVerbessertZu        => 0,
+                                                                                    VerbesserungZu          => 0,
                                                                                     Beförderungsgrenze      => 30,
                                                                                     MaximalerRang           => 3,
                                                                                     Reichweite              => 2,
@@ -837,9 +837,9 @@ package EinheitenMoruPhisihl is
                                                                                    -- Planetenkernsiedler
                                                                                  36 =>
                                                                                    (
-                                                                                    EinheitArt              => EinheitenDatentypen.Arbeiter_Enum,
+                                                                                    Einheitenart            => EinheitenDatentypen.Arbeiter_Enum,
                                                                                     PreisGeld               => 25,
-                                                                                    PreisRessourcen         => 20,
+                                                                                    Produktionskosten       => 20,
                                                                                     PermanenteKosten        => (others => 0),
                                                                                     Anforderungen           => 65,
                                                                                     Passierbarkeit          => (EinheitenDatentypen.Boden_Enum             => True,
@@ -853,7 +853,7 @@ package EinheitenMoruPhisihl is
                                                                                                                 others                                     => False),
                                                                                     MaximaleLebenspunkte    => 5,
                                                                                     MaximaleBewegungspunkte => 3.00,
-                                                                                    WirdVerbessertZu        => 0,
+                                                                                    VerbesserungZu          => 0,
                                                                                     Beförderungsgrenze      => 30,
                                                                                     MaximalerRang           => 3,
                                                                                     Reichweite              => 2,
@@ -867,9 +867,9 @@ package EinheitenMoruPhisihl is
                                                                                    -- Himmel/Orbitalsiedler
                                                                                  37 =>
                                                                                    (
-                                                                                    EinheitArt              => EinheitenDatentypen.Arbeiter_Enum,
+                                                                                    Einheitenart            => EinheitenDatentypen.Arbeiter_Enum,
                                                                                     PreisGeld               => 25,
-                                                                                    PreisRessourcen         => 20,
+                                                                                    Produktionskosten       => 20,
                                                                                     PermanenteKosten        => (others => 0),
                                                                                     Anforderungen           => 72,
                                                                                     Passierbarkeit          => (EinheitenDatentypen.Boden_Enum        => True,
@@ -880,7 +880,7 @@ package EinheitenMoruPhisihl is
                                                                                                                 others                                => False),
                                                                                     MaximaleLebenspunkte    => 5,
                                                                                     MaximaleBewegungspunkte => 3.00,
-                                                                                    WirdVerbessertZu        => 0,
+                                                                                    VerbesserungZu          => 0,
                                                                                     Beförderungsgrenze      => 30,
                                                                                     MaximalerRang           => 3,
                                                                                     Reichweite              => 2,
@@ -894,9 +894,9 @@ package EinheitenMoruPhisihl is
                                                                                    -- Atmosphärenjäger
                                                                                  38 =>
                                                                                    (
-                                                                                    EinheitArt              => EinheitenDatentypen.Nahkämpfer_Enum,
+                                                                                    Einheitenart            => EinheitenDatentypen.Nahkämpfer_Enum,
                                                                                     PreisGeld               => 25,
-                                                                                    PreisRessourcen         => 20,
+                                                                                    Produktionskosten       => 20,
                                                                                     PermanenteKosten        => (others => 0),
                                                                                     Anforderungen           => 74,
                                                                                     Passierbarkeit          => (EinheitenDatentypen.Luft_Enum     => True,
@@ -904,7 +904,7 @@ package EinheitenMoruPhisihl is
                                                                                                                 others                            => False),
                                                                                     MaximaleLebenspunkte    => 5,
                                                                                     MaximaleBewegungspunkte => 3.00,
-                                                                                    WirdVerbessertZu        => 0,
+                                                                                    VerbesserungZu          => 0,
                                                                                     Beförderungsgrenze      => 30,
                                                                                     MaximalerRang           => 3,
                                                                                     Reichweite              => 2,
@@ -918,9 +918,9 @@ package EinheitenMoruPhisihl is
                                                                                    -- Atmosphärenbomber
                                                                                  39 =>
                                                                                    (
-                                                                                    EinheitArt              => EinheitenDatentypen.Fernkämpfer_Enum,
+                                                                                    Einheitenart            => EinheitenDatentypen.Fernkämpfer_Enum,
                                                                                     PreisGeld               => 25,
-                                                                                    PreisRessourcen         => 20,
+                                                                                    Produktionskosten       => 20,
                                                                                     PermanenteKosten        => (others => 0),
                                                                                     Anforderungen           => 74,
                                                                                     Passierbarkeit          => (EinheitenDatentypen.Luft_Enum     => True,
@@ -928,7 +928,7 @@ package EinheitenMoruPhisihl is
                                                                                                                 others                            => False),
                                                                                     MaximaleLebenspunkte    => 5,
                                                                                     MaximaleBewegungspunkte => 3.00,
-                                                                                    WirdVerbessertZu        => 0,
+                                                                                    VerbesserungZu          => 0,
                                                                                     Beförderungsgrenze      => 30,
                                                                                     MaximalerRang           => 3,
                                                                                     Reichweite              => 2,
@@ -942,16 +942,16 @@ package EinheitenMoruPhisihl is
                                                                                    -- Artillerie
                                                                                  40 =>
                                                                                    (
-                                                                                    EinheitArt              => EinheitenDatentypen.Fernkämpfer_Enum,
+                                                                                    Einheitenart            => EinheitenDatentypen.Fernkämpfer_Enum,
                                                                                     PreisGeld               => 25,
-                                                                                    PreisRessourcen         => 20,
+                                                                                    Produktionskosten       => 20,
                                                                                     PermanenteKosten        => (others => 0),
                                                                                     Anforderungen           => 42,
                                                                                     Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
                                                                                                                 others                         => False),
                                                                                     MaximaleLebenspunkte    => 5,
                                                                                     MaximaleBewegungspunkte => 3.00,
-                                                                                    WirdVerbessertZu        => 41,
+                                                                                    VerbesserungZu          => 41,
                                                                                     Beförderungsgrenze      => 30,
                                                                                     MaximalerRang           => 3,
                                                                                     Reichweite              => 2,
@@ -965,9 +965,9 @@ package EinheitenMoruPhisihl is
                                                                                    -- Stellare Artillerie
                                                                                  41 =>
                                                                                    (
-                                                                                    EinheitArt              => EinheitenDatentypen.Fernkämpfer_Enum,
+                                                                                    Einheitenart            => EinheitenDatentypen.Fernkämpfer_Enum,
                                                                                     PreisGeld               => 25,
-                                                                                    PreisRessourcen         => 20,
+                                                                                    Produktionskosten       => 20,
                                                                                     PermanenteKosten        => (others => 0),
                                                                                     Anforderungen           => 74,
                                                                                     Passierbarkeit          => (EinheitenDatentypen.Boden_Enum        => True,
@@ -976,7 +976,7 @@ package EinheitenMoruPhisihl is
                                                                                                                 others                                => False),
                                                                                     MaximaleLebenspunkte    => 5,
                                                                                     MaximaleBewegungspunkte => 3.00,
-                                                                                    WirdVerbessertZu        => 0,
+                                                                                    VerbesserungZu          => 0,
                                                                                     Beförderungsgrenze      => 30,
                                                                                     MaximalerRang           => 3,
                                                                                     Reichweite              => 2,
@@ -990,9 +990,9 @@ package EinheitenMoruPhisihl is
                                                                                    -- Gräberschiff
                                                                                  42 =>
                                                                                    (
-                                                                                    EinheitArt              => EinheitenDatentypen.Nahkämpfer_Enum,
+                                                                                    Einheitenart            => EinheitenDatentypen.Nahkämpfer_Enum,
                                                                                     PreisGeld               => 25,
-                                                                                    PreisRessourcen         => 20,
+                                                                                    Produktionskosten       => 20,
                                                                                     PermanenteKosten        => (others => 0),
                                                                                     Anforderungen           => 62,
                                                                                     Passierbarkeit          => (EinheitenDatentypen.Boden_Enum             => True,
@@ -1004,7 +1004,7 @@ package EinheitenMoruPhisihl is
                                                                                                                 others                                     => False),
                                                                                     MaximaleLebenspunkte    => 5,
                                                                                     MaximaleBewegungspunkte => 3.00,
-                                                                                    WirdVerbessertZu        => 43,
+                                                                                    VerbesserungZu          => 43,
                                                                                     Beförderungsgrenze      => 30,
                                                                                     MaximalerRang           => 3,
                                                                                     Reichweite              => 2,
@@ -1018,9 +1018,9 @@ package EinheitenMoruPhisihl is
                                                                                    -- Kerngräber
                                                                                  43 =>
                                                                                    (
-                                                                                    EinheitArt              => EinheitenDatentypen.Nahkämpfer_Enum,
+                                                                                    Einheitenart            => EinheitenDatentypen.Nahkämpfer_Enum,
                                                                                     PreisGeld               => 25,
-                                                                                    PreisRessourcen         => 20,
+                                                                                    Produktionskosten       => 20,
                                                                                     PermanenteKosten        => (others => 0),
                                                                                     Anforderungen           => 65,
                                                                                     Passierbarkeit          => (EinheitenDatentypen.Boden_Enum             => True,
@@ -1034,7 +1034,7 @@ package EinheitenMoruPhisihl is
                                                                                                                 others                                     => False),
                                                                                     MaximaleLebenspunkte    => 5,
                                                                                     MaximaleBewegungspunkte => 3.00,
-                                                                                    WirdVerbessertZu        => 0,
+                                                                                    VerbesserungZu          => 0,
                                                                                     Beförderungsgrenze      => 30,
                                                                                     MaximalerRang           => 3,
                                                                                     Reichweite              => 2,
@@ -1048,16 +1048,16 @@ package EinheitenMoruPhisihl is
                                                                                    -- Moderne Infanterie
                                                                                  44 =>
                                                                                    (
-                                                                                    EinheitArt              => EinheitenDatentypen.Nahkämpfer_Enum,
+                                                                                    Einheitenart            => EinheitenDatentypen.Nahkämpfer_Enum,
                                                                                     PreisGeld               => 25,
-                                                                                    PreisRessourcen         => 20,
+                                                                                    Produktionskosten       => 20,
                                                                                     PermanenteKosten        => (others => 0),
                                                                                     Anforderungen           => 40,
                                                                                     Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
                                                                                                                 others                         => False),
                                                                                     MaximaleLebenspunkte    => 5,
                                                                                     MaximaleBewegungspunkte => 3.00,
-                                                                                    WirdVerbessertZu        => 26,
+                                                                                    VerbesserungZu          => 26,
                                                                                     Beförderungsgrenze      => 30,
                                                                                     MaximalerRang           => 3,
                                                                                     Reichweite              => 2,

@@ -339,7 +339,7 @@ package body KIGebaeudeBauenLogik is
       return KIDatentypen.BauenBewertung
    is begin
       
-      return -(KIDatentypen.BauenBewertung (LeseGebaeudeDatenbank.PreisRessourcen (RasseExtern => StadtRasseNummerExtern.Rasse,
+      return -(KIDatentypen.BauenBewertung (LeseGebaeudeDatenbank.Produktionskosten (RasseExtern => StadtRasseNummerExtern.Rasse,
                                                                                    IDExtern    => IDExtern)
                / LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern)
                / 10));

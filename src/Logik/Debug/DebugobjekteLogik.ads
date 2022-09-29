@@ -11,15 +11,15 @@ with DatenbankRecords;
 package DebugobjekteLogik is
 
    Alleskönner : constant DatenbankRecords.EinheitenlisteRecord := (
-                                                                     EinheitArt              => EinheitenDatentypen.Cheat_Enum,
+                                                                     Einheitenart            => EinheitenDatentypen.Cheat_Enum,
                                                                      PreisGeld               => 1,
-                                                                     PreisRessourcen         => 1,
+                                                                     Produktionskosten       => 1,
                                                                      PermanenteKosten        => (others => 0),
                                                                      Anforderungen           => -1,
                                                                      Passierbarkeit          => (others => True),
                                                                      MaximaleLebenspunkte    => EinheitenDatentypen.Lebenspunkte'Last,
                                                                      MaximaleBewegungspunkte => EinheitenDatentypen.VorhandeneBewegungspunkte'Last,
-                                                                     WirdVerbessertZu        => 0,
+                                                                     VerbesserungZu          => 0,
                                                                      Beförderungsgrenze      => 1,
                                                                      MaximalerRang           => KampfDatentypen.RangVorhanden'Last,
                                                                      Reichweite              => KampfDatentypen.Reichweite'Last,

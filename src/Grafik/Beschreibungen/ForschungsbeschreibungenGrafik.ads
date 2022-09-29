@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with ForschungenDatentypen;
 
 package ForschungsbeschreibungenGrafik is

@@ -55,7 +55,7 @@ package body ForschungsfortschrittLogik is
       end case;
          
       if
-        LeseWichtiges.Forschungsmenge (RasseExtern => RasseExtern) >= LeseForschungenDatenbank.PreisForschung (RasseExtern => RasseExtern,
+        LeseWichtiges.Forschungsmenge (RasseExtern => RasseExtern) >= LeseForschungenDatenbank.Kosten (RasseExtern => RasseExtern,
                                                                                                                IDExtern    => AktuellesForschungsprojekt)
       then
          SchreibeWichtiges.Erforscht (RasseExtern => RasseExtern);

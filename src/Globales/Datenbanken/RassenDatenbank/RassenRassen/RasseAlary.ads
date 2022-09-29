@@ -15,7 +15,7 @@ package RasseAlary is
                                                                      Produktion          => 0,
                                                                      Wirtschaft          => 0,
                                                                      Bewirtschaftung     => 0,
-                                                                     GültigeStaatsformen =>
+                                                                     Staatsformen        =>
                                                                        (
                                                                         RassenDatentypen.Anarchie_Enum,
                                                                         RassenDatentypen.Demokratie_Enum,

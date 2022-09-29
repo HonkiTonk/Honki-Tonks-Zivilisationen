@@ -10,7 +10,7 @@ with EinheitenDatenbank;
 
 package body LeseEinheitenDatenbank is
 
-   function EinheitArt
+   function Einheitenart
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return EinheitenDatentypen.Einheitart_Enum
@@ -23,10 +23,10 @@ package body LeseEinheitenDatenbank is
             return EinheitenKonstanten.LeerEinheitArt;
               
          when others =>
-            return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).EinheitArt;
+            return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).Einheitenart;
       end case;
             
-   end EinheitArt;
+   end Einheitenart;
    
    
    
@@ -42,15 +42,15 @@ package body LeseEinheitenDatenbank is
    
    
    
-   function PreisRessourcen
+   function Produktionskosten
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenID)
       return ProduktionDatentypen.Produktion
    is begin
       
-      return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).PreisRessourcen;
+      return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).Produktionskosten;
       
-   end PreisRessourcen;
+   end Produktionskosten;
    
    
    
@@ -131,15 +131,15 @@ package body LeseEinheitenDatenbank is
    
    
    
-   function WirdVerbessertZu
+   function VerbesserungZu
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenID)
       return EinheitenDatentypen.EinheitenIDMitNullWert
    is begin
       
-      return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).WirdVerbessertZu;
+      return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).VerbesserungZu;
       
-   end WirdVerbessertZu;
+   end VerbesserungZu;
    
    
    

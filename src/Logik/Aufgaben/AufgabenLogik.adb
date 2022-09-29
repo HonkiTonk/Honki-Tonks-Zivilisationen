@@ -44,7 +44,7 @@ package body AufgabenLogik is
       
       case
         Anfangstest (RasseExtern        => EinheitRasseNummerExtern.Rasse,
-                     EinheitartExtern   => LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                     EinheitartExtern   => LeseEinheitenDatenbank.Einheitenart (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                                               IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)),
                      BefehlExtern       => BefehlExtern,
                      VerbesserungExtern => LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern))
@@ -72,7 +72,7 @@ package body AufgabenLogik is
       
       case
         Anfangstest (RasseExtern        => EinheitRasseNummerExtern.Rasse,
-                     EinheitartExtern   => LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                     EinheitartExtern   => LeseEinheitenDatenbank.Einheitenart (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                                               IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)),
                      BefehlExtern       => BefehlExtern,
                      VerbesserungExtern => LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern))

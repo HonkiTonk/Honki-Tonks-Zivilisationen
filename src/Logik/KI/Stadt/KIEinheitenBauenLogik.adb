@@ -122,7 +122,7 @@ package body KIEinheitenBauenLogik is
    is begin
       
       case
-        LeseEinheitenDatenbank.EinheitArt (RasseExtern => StadtRasseNummerExtern.Rasse,
+        LeseEinheitenDatenbank.Einheitenart (RasseExtern => StadtRasseNummerExtern.Rasse,
                                            IDExtern    => IDExtern)
       is
          when EinheitenDatentypen.Arbeiter_Enum =>
@@ -323,7 +323,7 @@ package body KIEinheitenBauenLogik is
       return KIDatentypen.BauenBewertung
    is begin
       
-      return -(KIDatentypen.BauenBewertung (LeseEinheitenDatenbank.PreisRessourcen (RasseExtern => StadtRasseNummerExtern.Rasse,
+      return -(KIDatentypen.BauenBewertung (LeseEinheitenDatenbank.Produktionskosten (RasseExtern => StadtRasseNummerExtern.Rasse,
                                                                                     IDExtern    => EinheitenIDExtern)
                / LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern)
                / 10));

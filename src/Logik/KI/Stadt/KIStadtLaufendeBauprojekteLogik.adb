@@ -67,7 +67,7 @@ package body KIStadtLaufendeBauprojekteLogik is
            LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Einheit /= 0
          then
             if
-              EinheitArtExtern = LeseEinheitenDatenbank.EinheitArt (RasseExtern => StadtRasseNummerExtern.Rasse,
+              EinheitArtExtern = LeseEinheitenDatenbank.Einheitenart (RasseExtern => StadtRasseNummerExtern.Rasse,
                                                                     IDExtern    => EinheitenID (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Einheit))
             then
                GleichesEinheitenBauprojekt := GleichesEinheitenBauprojekt + 1;

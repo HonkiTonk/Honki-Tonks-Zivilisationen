@@ -29,7 +29,7 @@ package body KIEinheitAufgabeFliehenLogik is
       end if;
       
       case
-        LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
+        LeseEinheitenDatenbank.Einheitenart (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                            IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       is
          when EinheitenDatentypen.Einheitenart_Kampf_Enum'Range =>

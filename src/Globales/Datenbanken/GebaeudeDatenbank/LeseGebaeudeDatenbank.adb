@@ -17,15 +17,15 @@ package body LeseGebaeudeDatenbank is
 
 
    
-   function PreisRessourcen
+   function Produktionskosten
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in StadtDatentypen.GebäudeID)
       return ProduktionDatentypen.Produktion
    is begin
       
-      return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).PreisRessourcen;
+      return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).Produktionskosten;
       
-   end PreisRessourcen;
+   end Produktionskosten;
 
 
    
@@ -146,7 +146,7 @@ package body LeseGebaeudeDatenbank is
       return StadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum
    is begin
       
-      return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).GebäudeSpezielleEigenschaft;
+      return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).SpezielleEigenschaft;
       
    end GebäudeSpezielleEigenschaft;
 

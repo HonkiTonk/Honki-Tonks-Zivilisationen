@@ -16,9 +16,9 @@ package EinheitenTesorahn is
                                                                               -- Siedler
                                                                               1 =>
                                                                                 (
-                                                                                 EinheitArt              => EinheitenDatentypen.Arbeiter_Enum,
+                                                                                 Einheitenart            => EinheitenDatentypen.Arbeiter_Enum,
                                                                                  PreisGeld               => 10,
-                                                                                 PreisRessourcen         => 10,
+                                                                                 Produktionskosten       => 10,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 0,
                                                                                  Passierbarkeit          => (EinheitenDatentypen.Unterwasser_Enum       => True,
@@ -26,7 +26,7 @@ package EinheitenTesorahn is
                                                                                                              others                                     => False),
                                                                                  MaximaleLebenspunkte    => 3,
                                                                                  MaximaleBewegungspunkte => 3.00,
-                                                                                 WirdVerbessertZu        => 0,
+                                                                                 VerbesserungZu          => 0,
                                                                                  Beförderungsgrenze      => 30,
                                                                                  MaximalerRang           => 3,
                                                                                  Reichweite              => 1,
@@ -40,9 +40,9 @@ package EinheitenTesorahn is
                                                                                 -- Steinzeitkämpfer
                                                                               2 =>
                                                                                 (
-                                                                                 EinheitArt              => EinheitenDatentypen.Nahkämpfer_Enum,
+                                                                                 Einheitenart            => EinheitenDatentypen.Nahkämpfer_Enum,
                                                                                  PreisGeld               => 25,
-                                                                                 PreisRessourcen         => 20,
+                                                                                 Produktionskosten       => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 0,
                                                                                  Passierbarkeit          => (EinheitenDatentypen.Unterwasser_Enum       => True,
@@ -50,7 +50,7 @@ package EinheitenTesorahn is
                                                                                                              others                                     => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
-                                                                                 WirdVerbessertZu        => 5,
+                                                                                 VerbesserungZu          => 5,
                                                                                  Beförderungsgrenze      => 30,
                                                                                  MaximalerRang           => 3,
                                                                                  Reichweite              => 1,
@@ -64,9 +64,9 @@ package EinheitenTesorahn is
                                                                                 -- Knochenkämpfer
                                                                               3 =>
                                                                                 (
-                                                                                 EinheitArt              => EinheitenDatentypen.Nahkämpfer_Enum,
+                                                                                 Einheitenart            => EinheitenDatentypen.Nahkämpfer_Enum,
                                                                                  PreisGeld               => 25,
-                                                                                 PreisRessourcen         => 20,
+                                                                                 Produktionskosten       => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 4,
                                                                                  Passierbarkeit          => (EinheitenDatentypen.Unterwasser_Enum       => True,
@@ -74,7 +74,7 @@ package EinheitenTesorahn is
                                                                                                              others                                     => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
-                                                                                 WirdVerbessertZu        => 8,
+                                                                                 VerbesserungZu          => 8,
                                                                                  Beförderungsgrenze      => 30,
                                                                                  MaximalerRang           => 3,
                                                                                  Reichweite              => 1,
@@ -88,9 +88,9 @@ package EinheitenTesorahn is
                                                                                 -- Erstes Schiff
                                                                               4 =>
                                                                                 (
-                                                                                 EinheitArt              => EinheitenDatentypen.Nahkämpfer_Enum,
+                                                                                 Einheitenart            => EinheitenDatentypen.Nahkämpfer_Enum,
                                                                                  PreisGeld               => 25,
-                                                                                 PreisRessourcen         => 20,
+                                                                                 Produktionskosten       => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 10,
                                                                                  Passierbarkeit          => (EinheitenDatentypen.Unterwasser_Enum       => True,
@@ -100,7 +100,7 @@ package EinheitenTesorahn is
                                                                                                              others                                     => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
-                                                                                 WirdVerbessertZu        => 10,
+                                                                                 VerbesserungZu          => 10,
                                                                                  Beförderungsgrenze      => 30,
                                                                                  MaximalerRang           => 3,
                                                                                  Reichweite              => 2,
@@ -114,9 +114,9 @@ package EinheitenTesorahn is
                                                                                 -- Überwassereinheit
                                                                               5 =>
                                                                                 (
-                                                                                 EinheitArt              => EinheitenDatentypen.Nahkämpfer_Enum,
+                                                                                 Einheitenart            => EinheitenDatentypen.Nahkämpfer_Enum,
                                                                                  PreisGeld               => 25,
-                                                                                 PreisRessourcen         => 20,
+                                                                                 Produktionskosten       => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 9,
                                                                                  Passierbarkeit          => (EinheitenDatentypen.Unterwasser_Enum       => True,
@@ -126,7 +126,7 @@ package EinheitenTesorahn is
                                                                                                              others                                     => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
-                                                                                 WirdVerbessertZu        => 6,
+                                                                                 VerbesserungZu          => 6,
                                                                                  Beförderungsgrenze      => 30,
                                                                                  MaximalerRang           => 3,
                                                                                  Reichweite              => 2,
@@ -140,9 +140,9 @@ package EinheitenTesorahn is
                                                                                 -- Überwassersiedler
                                                                               6 =>
                                                                                 (
-                                                                                 EinheitArt              => EinheitenDatentypen.Arbeiter_Enum,
+                                                                                 Einheitenart            => EinheitenDatentypen.Arbeiter_Enum,
                                                                                  PreisGeld               => 25,
-                                                                                 PreisRessourcen         => 20,
+                                                                                 Produktionskosten       => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 12,
                                                                                  Passierbarkeit          => (EinheitenDatentypen.Unterwasser_Enum       => True,
@@ -152,7 +152,7 @@ package EinheitenTesorahn is
                                                                                                              others                                     => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
-                                                                                 WirdVerbessertZu        => 12,
+                                                                                 VerbesserungZu          => 12,
                                                                                  Beförderungsgrenze      => 30,
                                                                                  MaximalerRang           => 3,
                                                                                  Reichweite              => 2,
@@ -166,9 +166,9 @@ package EinheitenTesorahn is
                                                                                 -- Eisenkämpfer
                                                                               7 =>
                                                                                 (
-                                                                                 EinheitArt              => EinheitenDatentypen.Nahkämpfer_Enum,
+                                                                                 Einheitenart            => EinheitenDatentypen.Nahkämpfer_Enum,
                                                                                  PreisGeld               => 25,
-                                                                                 PreisRessourcen         => 20,
+                                                                                 Produktionskosten       => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 21,
                                                                                  Passierbarkeit          => (EinheitenDatentypen.Unterwasser_Enum       => True,
@@ -178,7 +178,7 @@ package EinheitenTesorahn is
                                                                                                              others                                     => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
-                                                                                 WirdVerbessertZu        => 17,
+                                                                                 VerbesserungZu          => 17,
                                                                                  Beförderungsgrenze      => 30,
                                                                                  MaximalerRang           => 3,
                                                                                  Reichweite              => 2,
@@ -192,9 +192,9 @@ package EinheitenTesorahn is
                                                                                 -- Handelsschiff
                                                                               8 =>
                                                                                 (
-                                                                                 EinheitArt              => EinheitenDatentypen.Nahkämpfer_Enum,
+                                                                                 Einheitenart            => EinheitenDatentypen.Nahkämpfer_Enum,
                                                                                  PreisGeld               => 25,
-                                                                                 PreisRessourcen         => 20,
+                                                                                 Produktionskosten       => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 18,
                                                                                  Passierbarkeit          => (EinheitenDatentypen.Unterwasser_Enum       => True,
@@ -204,7 +204,7 @@ package EinheitenTesorahn is
                                                                                                              others                                     => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
-                                                                                 WirdVerbessertZu        => 9,
+                                                                                 VerbesserungZu          => 9,
                                                                                  Beförderungsgrenze      => 30,
                                                                                  MaximalerRang           => 3,
                                                                                  Reichweite              => 2,
@@ -218,9 +218,9 @@ package EinheitenTesorahn is
                                                                                 -- Landsiedler
                                                                               9 =>
                                                                                 (
-                                                                                 EinheitArt              => EinheitenDatentypen.Fernkämpfer_Enum,
+                                                                                 Einheitenart            => EinheitenDatentypen.Fernkämpfer_Enum,
                                                                                  PreisGeld               => 25,
-                                                                                 PreisRessourcen         => 20,
+                                                                                 Produktionskosten       => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 23,
                                                                                  Passierbarkeit          => (EinheitenDatentypen.Unterwasser_Enum       => True,
@@ -231,7 +231,7 @@ package EinheitenTesorahn is
                                                                                                              others                                     => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
-                                                                                 WirdVerbessertZu        => 13,
+                                                                                 VerbesserungZu          => 13,
                                                                                  Beförderungsgrenze      => 30,
                                                                                  MaximalerRang           => 3,
                                                                                  Reichweite              => 2,
@@ -245,9 +245,9 @@ package EinheitenTesorahn is
                                                                                 -- Dampfschiff
                                                                               10 =>
                                                                                 (
-                                                                                 EinheitArt              => EinheitenDatentypen.Nahkämpfer_Enum,
+                                                                                 Einheitenart            => EinheitenDatentypen.Nahkämpfer_Enum,
                                                                                  PreisGeld               => 25,
-                                                                                 PreisRessourcen         => 20,
+                                                                                 Produktionskosten       => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 29,
                                                                                  Passierbarkeit          => (EinheitenDatentypen.Wasser_Enum       => True,
@@ -255,7 +255,7 @@ package EinheitenTesorahn is
                                                                                                              others                                => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
-                                                                                 WirdVerbessertZu        => 11,
+                                                                                 VerbesserungZu          => 11,
                                                                                  Beförderungsgrenze      => 30,
                                                                                  MaximalerRang           => 3,
                                                                                  Reichweite              => 2,
@@ -269,9 +269,9 @@ package EinheitenTesorahn is
                                                                                 -- Motorschiff
                                                                               11 =>
                                                                                 (
-                                                                                 EinheitArt              => EinheitenDatentypen.Nahkämpfer_Enum,
+                                                                                 Einheitenart            => EinheitenDatentypen.Nahkämpfer_Enum,
                                                                                  PreisGeld               => 25,
-                                                                                 PreisRessourcen         => 20,
+                                                                                 Produktionskosten       => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 36,
                                                                                  Passierbarkeit          => (EinheitenDatentypen.Wasser_Enum       => True,
@@ -279,7 +279,7 @@ package EinheitenTesorahn is
                                                                                                              others                                => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
-                                                                                 WirdVerbessertZu        => 14,
+                                                                                 VerbesserungZu          => 14,
                                                                                  Beförderungsgrenze      => 30,
                                                                                  MaximalerRang           => 3,
                                                                                  Reichweite              => 2,
@@ -293,9 +293,9 @@ package EinheitenTesorahn is
                                                                                 -- Schlachtschiff
                                                                               12 =>
                                                                                 (
-                                                                                 EinheitArt              => EinheitenDatentypen.Beides_Enum,
+                                                                                 Einheitenart            => EinheitenDatentypen.Beides_Enum,
                                                                                  PreisGeld               => 25,
-                                                                                 PreisRessourcen         => 20,
+                                                                                 Produktionskosten       => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 37,
                                                                                  Passierbarkeit          => (EinheitenDatentypen.Wasser_Enum            => True,
@@ -305,7 +305,7 @@ package EinheitenTesorahn is
                                                                                                              others                                     => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
-                                                                                 WirdVerbessertZu        => 44,
+                                                                                 VerbesserungZu          => 44,
                                                                                  Beförderungsgrenze      => 30,
                                                                                  MaximalerRang           => 3,
                                                                                  Reichweite              => 2,
@@ -319,16 +319,16 @@ package EinheitenTesorahn is
                                                                                 -- Auto
                                                                               13 =>
                                                                                 (
-                                                                                 EinheitArt              => EinheitenDatentypen.Nahkämpfer_Enum,
+                                                                                 Einheitenart            => EinheitenDatentypen.Nahkämpfer_Enum,
                                                                                  PreisGeld               => 25,
-                                                                                 PreisRessourcen         => 20,
+                                                                                 Produktionskosten       => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 38,
                                                                                  Passierbarkeit          => (EinheitenDatentypen.Boden_Enum       => True,
                                                                                                              others                               => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
-                                                                                 WirdVerbessertZu        => 40,
+                                                                                 VerbesserungZu          => 40,
                                                                                  Beförderungsgrenze      => 30,
                                                                                  MaximalerRang           => 3,
                                                                                  Reichweite              => 2,
@@ -342,9 +342,9 @@ package EinheitenTesorahn is
                                                                                 -- Genkämpfer
                                                                               14 =>
                                                                                 (
-                                                                                 EinheitArt              => EinheitenDatentypen.Nahkämpfer_Enum,
+                                                                                 Einheitenart            => EinheitenDatentypen.Nahkämpfer_Enum,
                                                                                  PreisGeld               => 25,
-                                                                                 PreisRessourcen         => 20,
+                                                                                 Produktionskosten       => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 44,
                                                                                  Passierbarkeit          => (EinheitenDatentypen.Wasser_Enum            => True,
@@ -355,7 +355,7 @@ package EinheitenTesorahn is
                                                                                                              others                                     => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
-                                                                                 WirdVerbessertZu        => 15,
+                                                                                 VerbesserungZu          => 15,
                                                                                  Beförderungsgrenze      => 30,
                                                                                  MaximalerRang           => 3,
                                                                                  Reichweite              => 2,
@@ -369,9 +369,9 @@ package EinheitenTesorahn is
                                                                                 -- Atombombe
                                                                               15 =>
                                                                                 (
-                                                                                 EinheitArt              => EinheitenDatentypen.Nahkämpfer_Enum,
+                                                                                 Einheitenart            => EinheitenDatentypen.Nahkämpfer_Enum,
                                                                                  PreisGeld               => 25,
-                                                                                 PreisRessourcen         => 20,
+                                                                                 Produktionskosten       => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 46,
                                                                                  Passierbarkeit          => (EinheitenDatentypen.Wasser_Enum            => True,
@@ -382,7 +382,7 @@ package EinheitenTesorahn is
                                                                                                              others                                     => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
-                                                                                 WirdVerbessertZu        => 42,
+                                                                                 VerbesserungZu          => 42,
                                                                                  Beförderungsgrenze      => 30,
                                                                                  MaximalerRang           => 3,
                                                                                  Reichweite              => 2,
@@ -396,9 +396,9 @@ package EinheitenTesorahn is
                                                                                 -- Kernsiedler
                                                                               16 =>
                                                                                 (
-                                                                                 EinheitArt              => EinheitenDatentypen.Arbeiter_Enum,
+                                                                                 Einheitenart            => EinheitenDatentypen.Arbeiter_Enum,
                                                                                  PreisGeld               => 25,
-                                                                                 PreisRessourcen         => 20,
+                                                                                 Produktionskosten       => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 48,
                                                                                  Passierbarkeit          => (EinheitenDatentypen.Wasser_Enum            => True,
@@ -411,7 +411,7 @@ package EinheitenTesorahn is
                                                                                                              others                                     => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
-                                                                                 WirdVerbessertZu        => 42,
+                                                                                 VerbesserungZu          => 42,
                                                                                  Beförderungsgrenze      => 30,
                                                                                  MaximalerRang           => 3,
                                                                                  Reichweite              => 2,
@@ -425,9 +425,9 @@ package EinheitenTesorahn is
                                                                                 -- Kerngräber
                                                                               17 =>
                                                                                 (
-                                                                                 EinheitArt              => EinheitenDatentypen.Nahkämpfer_Enum,
+                                                                                 Einheitenart            => EinheitenDatentypen.Nahkämpfer_Enum,
                                                                                  PreisGeld               => 25,
-                                                                                 PreisRessourcen         => 20,
+                                                                                 Produktionskosten       => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 48,
                                                                                  Passierbarkeit          => (EinheitenDatentypen.Wasser_Enum            => True,
@@ -440,7 +440,7 @@ package EinheitenTesorahn is
                                                                                                              others                                     => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
-                                                                                 WirdVerbessertZu        => 18,
+                                                                                 VerbesserungZu          => 18,
                                                                                  Beförderungsgrenze      => 30,
                                                                                  MaximalerRang           => 3,
                                                                                  Reichweite              => 2,
@@ -454,9 +454,9 @@ package EinheitenTesorahn is
                                                                                 -- PZB200
                                                                               18 =>
                                                                                 (
-                                                                                 EinheitArt              => EinheitenDatentypen.PZB_Klein_Enum,
+                                                                                 Einheitenart            => EinheitenDatentypen.PZB_Klein_Enum,
                                                                                  PreisGeld               => 25,
-                                                                                 PreisRessourcen         => 20,
+                                                                                 Produktionskosten       => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 50,
                                                                                  Passierbarkeit          => (EinheitenDatentypen.Wasser_Enum            => True,
@@ -467,7 +467,7 @@ package EinheitenTesorahn is
                                                                                                              others                                     => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
-                                                                                 WirdVerbessertZu        => 35,
+                                                                                 VerbesserungZu          => 35,
                                                                                  Beförderungsgrenze      => 30,
                                                                                  MaximalerRang           => 3,
                                                                                  Reichweite              => 2,
@@ -481,9 +481,9 @@ package EinheitenTesorahn is
                                                                                 -- PZB400
                                                                               19 =>
                                                                                 (
-                                                                                 EinheitArt              => EinheitenDatentypen.PZB_Mittel_Enum,
+                                                                                 Einheitenart            => EinheitenDatentypen.PZB_Mittel_Enum,
                                                                                  PreisGeld               => 25,
-                                                                                 PreisRessourcen         => 20,
+                                                                                 Produktionskosten       => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 52,
                                                                                  Passierbarkeit          => (EinheitenDatentypen.Wasser_Enum            => True,
@@ -494,7 +494,7 @@ package EinheitenTesorahn is
                                                                                                              others                                     => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
-                                                                                 WirdVerbessertZu        => 22,
+                                                                                 VerbesserungZu          => 22,
                                                                                  Beförderungsgrenze      => 30,
                                                                                  MaximalerRang           => 3,
                                                                                  Reichweite              => 2,
@@ -508,9 +508,9 @@ package EinheitenTesorahn is
                                                                                 -- PZB1000
                                                                               20 =>
                                                                                 (
-                                                                                 EinheitArt              => EinheitenDatentypen.PZB_Groß_Enum,
+                                                                                 Einheitenart            => EinheitenDatentypen.PZB_Groß_Enum,
                                                                                  PreisGeld               => 25,
-                                                                                 PreisRessourcen         => 20,
+                                                                                 Produktionskosten       => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 52,
                                                                                  Passierbarkeit          => (EinheitenDatentypen.Wasser_Enum            => True,
@@ -521,7 +521,7 @@ package EinheitenTesorahn is
                                                                                                              others                                     => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
-                                                                                 WirdVerbessertZu        => 23,
+                                                                                 VerbesserungZu          => 23,
                                                                                  Beförderungsgrenze      => 30,
                                                                                  MaximalerRang           => 3,
                                                                                  Reichweite              => 2,
@@ -535,9 +535,9 @@ package EinheitenTesorahn is
                                                                                 -- Gaußkämpfer
                                                                               21 =>
                                                                                 (
-                                                                                 EinheitArt              => EinheitenDatentypen.Nahkämpfer_Enum,
+                                                                                 Einheitenart            => EinheitenDatentypen.Nahkämpfer_Enum,
                                                                                  PreisGeld               => 25,
-                                                                                 PreisRessourcen         => 20,
+                                                                                 Produktionskosten       => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 54,
                                                                                  Passierbarkeit          => (EinheitenDatentypen.Weltraum_Enum => False,
@@ -545,7 +545,7 @@ package EinheitenTesorahn is
                                                                                                              others => True),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
-                                                                                 WirdVerbessertZu        => 0,
+                                                                                 VerbesserungZu          => 0,
                                                                                  Beförderungsgrenze      => 30,
                                                                                  MaximalerRang           => 3,
                                                                                  Reichweite              => 2,
@@ -559,15 +559,15 @@ package EinheitenTesorahn is
                                                                                 -- Himmel/Orbitalsiedler
                                                                               22 =>
                                                                                 (
-                                                                                 EinheitArt              => EinheitenDatentypen.Arbeiter_Enum,
+                                                                                 Einheitenart            => EinheitenDatentypen.Arbeiter_Enum,
                                                                                  PreisGeld               => 25,
-                                                                                 PreisRessourcen         => 20,
+                                                                                 Produktionskosten       => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 59,
                                                                                  Passierbarkeit          => (others => True),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
-                                                                                 WirdVerbessertZu        => 38,
+                                                                                 VerbesserungZu          => 38,
                                                                                  Beförderungsgrenze      => 30,
                                                                                  MaximalerRang           => 3,
                                                                                  Reichweite              => 2,
@@ -581,9 +581,9 @@ package EinheitenTesorahn is
                                                                                 -- Magnetkämpfer
                                                                               23 =>
                                                                                 (
-                                                                                 EinheitArt              => EinheitenDatentypen.Nahkämpfer_Enum,
+                                                                                 Einheitenart            => EinheitenDatentypen.Nahkämpfer_Enum,
                                                                                  PreisGeld               => 25,
-                                                                                 PreisRessourcen         => 20,
+                                                                                 Produktionskosten       => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 57,
                                                                                  Passierbarkeit          => (EinheitenDatentypen.Unterwasser_Enum       => True,
@@ -591,7 +591,7 @@ package EinheitenTesorahn is
                                                                                                              others                                     => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
-                                                                                 WirdVerbessertZu        => 0,
+                                                                                 VerbesserungZu          => 0,
                                                                                  Beförderungsgrenze      => 30,
                                                                                  MaximalerRang           => 3,
                                                                                  Reichweite              => 2,
@@ -605,9 +605,9 @@ package EinheitenTesorahn is
                                                                                 -- Schwebepanzer
                                                                               24 =>
                                                                                 (
-                                                                                 EinheitArt              => EinheitenDatentypen.Nahkämpfer_Enum,
+                                                                                 Einheitenart            => EinheitenDatentypen.Nahkämpfer_Enum,
                                                                                  PreisGeld               => 25,
-                                                                                 PreisRessourcen         => 20,
+                                                                                 Produktionskosten       => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 57,
                                                                                  Passierbarkeit          => (EinheitenDatentypen.Boden_Enum        => True,
@@ -616,7 +616,7 @@ package EinheitenTesorahn is
                                                                                                              others                                => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
-                                                                                 WirdVerbessertZu        => 0,
+                                                                                 VerbesserungZu          => 0,
                                                                                  Beförderungsgrenze      => 30,
                                                                                  MaximalerRang           => 3,
                                                                                  Reichweite              => 2,
@@ -630,9 +630,9 @@ package EinheitenTesorahn is
                                                                                 -- Atmosphärenjäger
                                                                               25 =>
                                                                                 (
-                                                                                 EinheitArt              => EinheitenDatentypen.Nahkämpfer_Enum,
+                                                                                 Einheitenart            => EinheitenDatentypen.Nahkämpfer_Enum,
                                                                                  PreisGeld               => 25,
-                                                                                 PreisRessourcen         => 20,
+                                                                                 Produktionskosten       => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 57,
                                                                                  Passierbarkeit          => (EinheitenDatentypen.Luft_Enum     => True,
@@ -640,7 +640,7 @@ package EinheitenTesorahn is
                                                                                                              others                            => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
-                                                                                 WirdVerbessertZu        => 0,
+                                                                                 VerbesserungZu          => 0,
                                                                                  Beförderungsgrenze      => 30,
                                                                                  MaximalerRang           => 3,
                                                                                  Reichweite              => 2,
@@ -654,9 +654,9 @@ package EinheitenTesorahn is
                                                                                 -- Atmosphärenbomber
                                                                               26 =>
                                                                                 (
-                                                                                 EinheitArt              => EinheitenDatentypen.Fernkämpfer_Enum,
+                                                                                 Einheitenart            => EinheitenDatentypen.Fernkämpfer_Enum,
                                                                                  PreisGeld               => 25,
-                                                                                 PreisRessourcen         => 20,
+                                                                                 Produktionskosten       => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 57,
                                                                                  Passierbarkeit          => (EinheitenDatentypen.Luft_Enum     => True,
@@ -664,7 +664,7 @@ package EinheitenTesorahn is
                                                                                                              others                            => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
-                                                                                 WirdVerbessertZu        => 0,
+                                                                                 VerbesserungZu          => 0,
                                                                                  Beförderungsgrenze      => 30,
                                                                                  MaximalerRang           => 3,
                                                                                  Reichweite              => 2,
@@ -678,9 +678,9 @@ package EinheitenTesorahn is
                                                                                 -- Stellare Artillerie
                                                                               27 =>
                                                                                 (
-                                                                                 EinheitArt              => EinheitenDatentypen.Fernkämpfer_Enum,
+                                                                                 Einheitenart            => EinheitenDatentypen.Fernkämpfer_Enum,
                                                                                  PreisGeld               => 25,
-                                                                                 PreisRessourcen         => 20,
+                                                                                 Produktionskosten       => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 57,
                                                                                  Passierbarkeit          => (EinheitenDatentypen.Unterwasser_Enum       => True,
@@ -690,7 +690,7 @@ package EinheitenTesorahn is
                                                                                                              others                                => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
-                                                                                 WirdVerbessertZu        => 0,
+                                                                                 VerbesserungZu          => 0,
                                                                                  Beförderungsgrenze      => 30,
                                                                                  MaximalerRang           => 3,
                                                                                  Reichweite              => 2,

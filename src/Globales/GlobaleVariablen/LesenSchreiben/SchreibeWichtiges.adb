@@ -173,16 +173,16 @@ package body SchreibeWichtiges is
          SpielVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit := ProduktionDatentypen.Lagermenge'Last;
          
       elsif
-        LeseForschungenDatenbank.PreisForschung (RasseExtern => RasseExtern,
+        LeseForschungenDatenbank.Kosten (RasseExtern => RasseExtern,
                                                  IDExtern    => SpielVariablen.Wichtiges (RasseExtern).Forschungsprojekt)
           - SpielVariablen.Wichtiges (RasseExtern).Forschungsmenge
-        <= ForschungKonstanten.LeerPreisForschung
+        <= ForschungKonstanten.LeerKosten
       then
          SpielVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit := 1;
         
       else
          SpielVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit
-           := (LeseForschungenDatenbank.PreisForschung (RasseExtern => RasseExtern,
+           := (LeseForschungenDatenbank.Kosten (RasseExtern => RasseExtern,
                                                         IDExtern    => SpielVariablen.Wichtiges (RasseExtern).Forschungsprojekt)
                - SpielVariablen.Wichtiges (RasseExtern).Forschungsmenge)
              / SpielVariablen.Wichtiges (RasseExtern).GesamteForschungsrate;

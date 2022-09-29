@@ -84,7 +84,7 @@ package body KIEinheitAufgabenplanungLogik is
    is begin
       
       case
-        LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
+        LeseEinheitenDatenbank.Einheitenart (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                            IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       is
          when EinheitenDatentypen.Arbeiter_Enum =>

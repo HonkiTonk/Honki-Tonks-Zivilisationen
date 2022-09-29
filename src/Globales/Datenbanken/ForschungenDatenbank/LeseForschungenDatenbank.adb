@@ -7,15 +7,15 @@ with ForschungenDatenbank;
 -- Wobei, würde das private nicht auch ein Schreiben der Datenbanken verhindern? äöü
 package body LeseForschungenDatenbank is
 
-   function PreisForschung
+   function Kosten
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in ForschungenDatentypen.ForschungID)
       return ProduktionDatentypen.Lagermenge
    is begin
 
-      return ForschungenDatenbank.Forschungsliste (RasseExtern, IDExtern).PreisForschung;
+      return ForschungenDatenbank.Forschungsliste (RasseExtern, IDExtern).Kosten;
 
-   end PreisForschung;
+   end Kosten;
 
 
 
@@ -26,7 +26,7 @@ package body LeseForschungenDatenbank is
       return ForschungenDatentypen.ForschungIDNichtMöglich
    is begin
 
-      return ForschungenDatenbank.Forschungsliste (RasseExtern, IDExtern).AnforderungForschung (WelcheAnforderungExtern);
+      return ForschungenDatenbank.Forschungsliste (RasseExtern, IDExtern).Anforderung (WelcheAnforderungExtern);
 
    end AnforderungForschung;
 

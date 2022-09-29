@@ -58,9 +58,9 @@ package body KIForschungLogik is
                   WelchesProjekt := ForschungSchleifenwert;
                   
                elsif
-                 LeseForschungenDatenbank.PreisForschung (RasseExtern => RasseExtern,
+                 LeseForschungenDatenbank.Kosten (RasseExtern => RasseExtern,
                                                           IDExtern    => WelchesProjekt)
-                 > LeseForschungenDatenbank.PreisForschung (RasseExtern => RasseExtern,
+                 > LeseForschungenDatenbank.Kosten (RasseExtern => RasseExtern,
                                                             IDExtern    => ForschungSchleifenwert)
                then
                   WelchesProjekt := ForschungSchleifenwert;

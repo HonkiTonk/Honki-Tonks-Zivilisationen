@@ -225,7 +225,7 @@ package body EinheitenmodifizierungLogik is
    is begin
       
       if
-        EinheitenDatentypen.Cheat_Enum = LeseEinheitenDatenbank.EinheitArt (RasseExtern => StadtRasseNummerExtern.Rasse,
+        EinheitenDatentypen.Cheat_Enum = LeseEinheitenDatenbank.Einheitenart (RasseExtern => StadtRasseNummerExtern.Rasse,
                                                                             IDExtern    => IDExtern)
       then
          return SpielVariablen.Debug.VolleInformation;

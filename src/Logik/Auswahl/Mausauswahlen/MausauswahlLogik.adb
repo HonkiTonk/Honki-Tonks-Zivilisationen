@@ -89,7 +89,7 @@ package body MausauswahlLogik is
          
       end loop MausZeigerSchleife;
       
-      return ForschungKonstanten.LeerForschungAnforderung;
+      return ForschungKonstanten.LeerForschungsanforderung;
       
    end Forschungsmenü;
    

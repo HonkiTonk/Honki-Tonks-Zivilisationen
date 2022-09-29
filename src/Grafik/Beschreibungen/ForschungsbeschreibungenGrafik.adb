@@ -19,7 +19,7 @@ package body ForschungsbeschreibungenGrafik is
       case
         IDExtern
       is
-         when ForschungKonstanten.LeerForschungAnforderung =>
+         when ForschungKonstanten.LeerForschungsanforderung =>
             return To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugKeines));
             
          when others =>

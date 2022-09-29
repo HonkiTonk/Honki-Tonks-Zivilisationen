@@ -28,7 +28,7 @@ package body EinheitenErzeugenEntfernenLogik is
                                              StadtNummerExtern        => StadtRasseNummerExtern.Nummer);
             
       case
-        LeseEinheitenDatenbank.EinheitArt (RasseExtern => StadtRasseNummerExtern.Rasse,
+        LeseEinheitenDatenbank.Einheitenart (RasseExtern => StadtRasseNummerExtern.Rasse,
                                            IDExtern    => IDExtern)
       is
          when EinheitenDatentypen.Arbeiter_Enum =>
@@ -103,7 +103,7 @@ package body EinheitenErzeugenEntfernenLogik is
                                                            VorzeichenWechselExtern  => -1);
       
       case
-        LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
+        LeseEinheitenDatenbank.Einheitenart (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                            IDExtern    => (SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).ID))
       is
          when EinheitenDatentypen.Arbeiter_Enum =>

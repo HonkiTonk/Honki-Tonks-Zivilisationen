@@ -24,7 +24,7 @@ package body ForschungsauswahlLogik is
       WasErforschtWerdenSoll := Forschungsmöglichkeiten (RasseExtern => RasseExtern);
 
       if
-        WasErforschtWerdenSoll = ForschungKonstanten.LeerForschungAnforderung
+        WasErforschtWerdenSoll = ForschungKonstanten.LeerForschungsanforderung
         or
           WasErforschtWerdenSoll = AktuellesForschungsprojekt
       then
@@ -104,7 +104,7 @@ package body ForschungsauswahlLogik is
          is
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if
-                 AktuelleAuswahl = ForschungKonstanten.LeerForschungAnforderung
+                 AktuelleAuswahl = ForschungKonstanten.LeerForschungsanforderung
                then
                   null;
                   
@@ -114,7 +114,7 @@ package body ForschungsauswahlLogik is
                end if;
                
             when TastenbelegungDatentypen.Menü_Zurück_Enum =>
-               GewählteForschung := ForschungKonstanten.LeerForschungAnforderung;
+               GewählteForschung := ForschungKonstanten.LeerForschungsanforderung;
                exit AuswahlSchleife;
                
             when others =>

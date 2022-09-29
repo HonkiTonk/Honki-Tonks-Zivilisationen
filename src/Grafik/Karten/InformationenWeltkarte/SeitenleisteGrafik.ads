@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 -- with SpielVariablen;
 
 private with EinheitenRecords;
@@ -12,10 +12,6 @@ package SeitenleisteGrafik is
 
    procedure SeitenleisteGrafik
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
-   --  with
-   --   Pre => (
-    --             SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
-    --          );
 
 private
 

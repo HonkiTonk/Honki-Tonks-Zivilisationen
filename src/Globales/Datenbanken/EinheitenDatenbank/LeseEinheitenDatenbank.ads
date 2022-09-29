@@ -10,7 +10,7 @@ with KampfDatentypen;
 
 package LeseEinheitenDatenbank is
 
-   function EinheitArt
+   function Einheitenart
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return EinheitenDatentypen.Einheitart_Enum
@@ -28,7 +28,7 @@ package LeseEinheitenDatenbank is
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
    
-   function PreisRessourcen
+   function Produktionskosten
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenID)
       return ProduktionDatentypen.Produktion
@@ -84,7 +84,7 @@ package LeseEinheitenDatenbank is
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
    
-   function WirdVerbessertZu
+   function VerbesserungZu
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenID)
       return EinheitenDatentypen.EinheitenIDMitNullWert

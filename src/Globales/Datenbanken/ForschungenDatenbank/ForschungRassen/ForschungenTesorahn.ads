@@ -12,8 +12,8 @@ package ForschungenTesorahn is
                                                                                 -- Steinwerkzeuge
                                                                                 1 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       others => 0
                                                                                      )
@@ -22,8 +22,8 @@ package ForschungenTesorahn is
                                                                                   -- Korallenzucht
                                                                                 2 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       others => 0
                                                                                      )
@@ -32,8 +32,8 @@ package ForschungenTesorahn is
                                                                                   -- Muschelkunst
                                                                                 3 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       others => 0
                                                                                      )
@@ -42,8 +42,8 @@ package ForschungenTesorahn is
                                                                                   -- Knochenverarbeitung
                                                                                 4 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 1,
                                                                                       others                                      => 0
@@ -53,8 +53,8 @@ package ForschungenTesorahn is
                                                                                   -- Mineralienabbau
                                                                                 5 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 1,
                                                                                       others                                      => 0
@@ -64,8 +64,8 @@ package ForschungenTesorahn is
                                                                                   -- Fischverwertung
                                                                                 6 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 2,
                                                                                       others                                      => 0
@@ -75,8 +75,8 @@ package ForschungenTesorahn is
                                                                                   -- Schrift
                                                                                 7 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 3,
                                                                                       others                                      => 0
@@ -86,8 +86,8 @@ package ForschungenTesorahn is
                                                                                   -- Muschelgeld
                                                                                 8 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 3,
                                                                                       others                                      => 0
@@ -97,8 +97,8 @@ package ForschungenTesorahn is
                                                                                   -- Atemblase
                                                                                 9 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 6,
                                                                                       others                                      => 0
@@ -108,8 +108,8 @@ package ForschungenTesorahn is
                                                                                   -- Schiffsbau
                                                                                 10 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 4,
                                                                                       ForschungenDatentypen.Anforderung_Zwei_Enum => 9,
@@ -120,8 +120,8 @@ package ForschungenTesorahn is
                                                                                   -- Feuer
                                                                                 11 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 10,
                                                                                       others                                      => 0
@@ -131,8 +131,8 @@ package ForschungenTesorahn is
                                                                                   -- Wasserplattform
                                                                                 12 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 10,
                                                                                       others                                      => 0
@@ -142,8 +142,8 @@ package ForschungenTesorahn is
                                                                                   -- Biologie
                                                                                 13 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 6,
                                                                                       others                                      => 0
@@ -153,8 +153,8 @@ package ForschungenTesorahn is
                                                                                   -- Handel
                                                                                 14 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 8,
                                                                                       others                                      => 0
@@ -164,8 +164,8 @@ package ForschungenTesorahn is
                                                                                   -- Buchhaltung
                                                                                 15 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 11,
                                                                                       ForschungenDatentypen.Anforderung_Zwei_Enum => 5,
@@ -176,8 +176,8 @@ package ForschungenTesorahn is
                                                                                   -- Kunsthandel
                                                                                 16 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 16,
                                                                                       others                                      => 0
@@ -187,8 +187,8 @@ package ForschungenTesorahn is
                                                                                   -- Mathematik
                                                                                 17 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 15,
                                                                                       others                                      => 0
@@ -198,8 +198,8 @@ package ForschungenTesorahn is
                                                                                   -- Handelsschiffe
                                                                                 18 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 12,
                                                                                       ForschungenDatentypen.Anforderung_Zwei_Enum => 14,
@@ -210,8 +210,8 @@ package ForschungenTesorahn is
                                                                                   -- Heilkunde
                                                                                 19 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 13,
                                                                                       others                                      => 0
@@ -221,8 +221,8 @@ package ForschungenTesorahn is
                                                                                   -- Oberflächenkunde
                                                                                 20 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 12,
                                                                                       others                                      => 0
@@ -232,8 +232,8 @@ package ForschungenTesorahn is
                                                                                   -- Eisenverarbeitung
                                                                                 21 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 5,
                                                                                       ForschungenDatentypen.Anforderung_Zwei_Enum => 11,
@@ -245,8 +245,8 @@ package ForschungenTesorahn is
                                                                                   -- Physik
                                                                                 22 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 12,
                                                                                       others                                      => 0
@@ -256,8 +256,8 @@ package ForschungenTesorahn is
                                                                                   -- Landkonstruktionen
                                                                                 23 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 20,
                                                                                       ForschungenDatentypen.Anforderung_Zwei_Enum => 21,
@@ -269,8 +269,8 @@ package ForschungenTesorahn is
                                                                                   -- Dampfmaschine
                                                                                 24 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 23,
                                                                                       others                                      => 0
@@ -280,8 +280,8 @@ package ForschungenTesorahn is
                                                                                   -- Oberflächentierzucht
                                                                                 25 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 13,
                                                                                       ForschungenDatentypen.Anforderung_Zwei_Enum => 23,
@@ -292,8 +292,8 @@ package ForschungenTesorahn is
                                                                                   -- Navigation
                                                                                 26 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 17,
                                                                                       ForschungenDatentypen.Anforderung_Zwei_Enum => 22,
@@ -304,8 +304,8 @@ package ForschungenTesorahn is
                                                                                   -- Handelsvereinigung
                                                                                 27 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 15,
                                                                                       ForschungenDatentypen.Anforderung_Zwei_Enum => 18,
@@ -317,8 +317,8 @@ package ForschungenTesorahn is
                                                                                   -- Handelskunst
                                                                                 28 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 16,
                                                                                       others                                      => 0
@@ -328,8 +328,8 @@ package ForschungenTesorahn is
                                                                                   -- Dampfschiffe
                                                                                 29 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 18,
                                                                                       ForschungenDatentypen.Anforderung_Zwei_Enum => 24,
@@ -340,8 +340,8 @@ package ForschungenTesorahn is
                                                                                   -- Handels- und Schiffahrtsunion
                                                                                 30 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 27,
                                                                                       ForschungenDatentypen.Anforderung_Zwei_Enum => 28,
@@ -353,8 +353,8 @@ package ForschungenTesorahn is
                                                                                   -- Verbrennungsmotor
                                                                                 31 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 29,
                                                                                       others                                      => 0
@@ -364,8 +364,8 @@ package ForschungenTesorahn is
                                                                                   -- Bergbau
                                                                                 32 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 23,
                                                                                       others                                      => 0
@@ -375,8 +375,8 @@ package ForschungenTesorahn is
                                                                                   -- Metallurgie
                                                                                 33 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 32,
                                                                                       others                                      => 0
@@ -386,8 +386,8 @@ package ForschungenTesorahn is
                                                                                   -- Feuerwaffen
                                                                                 34 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 32,
                                                                                       others                                      => 0
@@ -397,8 +397,8 @@ package ForschungenTesorahn is
                                                                                   -- Medizin
                                                                                 35 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 19,
                                                                                       others                                      => 0
@@ -408,8 +408,8 @@ package ForschungenTesorahn is
                                                                                   -- Motorenschiffe
                                                                                 36 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 31,
                                                                                       ForschungenDatentypen.Anforderung_Zwei_Enum => 33,
@@ -420,8 +420,8 @@ package ForschungenTesorahn is
                                                                                   -- Schlachtschiffe
                                                                                 37 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 30,
                                                                                       ForschungenDatentypen.Anforderung_Zwei_Enum => 34,
@@ -433,8 +433,8 @@ package ForschungenTesorahn is
                                                                                   -- Landschiffe
                                                                                 38 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 36,
                                                                                       others                                      => 0
@@ -444,8 +444,8 @@ package ForschungenTesorahn is
                                                                                   -- Elektrizität
                                                                                 39 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 33,
                                                                                       others                                      => 0
@@ -455,8 +455,8 @@ package ForschungenTesorahn is
                                                                                   -- Funk
                                                                                 40 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 39,
                                                                                       others                                      => 0
@@ -466,8 +466,8 @@ package ForschungenTesorahn is
                                                                                   -- Computer
                                                                                 41 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 39,
                                                                                       others                                      => 0
@@ -477,8 +477,8 @@ package ForschungenTesorahn is
                                                                                   -- Kabellose Übertragung
                                                                                 42 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 40,
                                                                                       ForschungenDatentypen.Anforderung_Zwei_Enum => 41,
@@ -489,8 +489,8 @@ package ForschungenTesorahn is
                                                                                   -- Gezeiten/Wasserkraft
                                                                                 43 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 39,
                                                                                       others                                      => 0
@@ -500,8 +500,8 @@ package ForschungenTesorahn is
                                                                                   -- Genetik
                                                                                 44 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 35,
                                                                                       ForschungenDatentypen.Anforderung_Zwei_Enum => 41,
@@ -512,8 +512,8 @@ package ForschungenTesorahn is
                                                                                   -- Hochleistungsmaterialien
                                                                                 45 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 43,
                                                                                       others                                      => 0
@@ -523,8 +523,8 @@ package ForschungenTesorahn is
                                                                                   -- Atomtheorie
                                                                                 46 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 42,
                                                                                       others                                      => 0
@@ -534,8 +534,8 @@ package ForschungenTesorahn is
                                                                                   -- Nanotechnologie
                                                                                 47 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 46,
                                                                                       others                                      => 0
@@ -545,8 +545,8 @@ package ForschungenTesorahn is
                                                                                   -- Kernstädte
                                                                                 48 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 44,
                                                                                       ForschungenDatentypen.Anforderung_Zwei_Enum => 45,
@@ -557,8 +557,8 @@ package ForschungenTesorahn is
                                                                                   -- Quantencomputer
                                                                                 49 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 47,
                                                                                       others                                      => 0
@@ -568,8 +568,8 @@ package ForschungenTesorahn is
                                                                                   -- NAMR-Reaktor
                                                                                 50 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 43,
                                                                                       ForschungenDatentypen.Anforderung_Zwei_Enum => 49,
@@ -580,8 +580,8 @@ package ForschungenTesorahn is
                                                                                   -- Hochleistungsmagnettechnologie
                                                                                 51 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 45,
                                                                                       ForschungenDatentypen.Anforderung_Zwei_Enum => 50,
@@ -592,8 +592,8 @@ package ForschungenTesorahn is
                                                                                   -- NAMR-Theorie
                                                                                 52 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 50,
                                                                                       others                                      => 0
@@ -603,8 +603,8 @@ package ForschungenTesorahn is
                                                                                   -- Unvollständige Raumebenentheorie
                                                                                 53 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 52,
                                                                                       others                                      => 0
@@ -614,8 +614,8 @@ package ForschungenTesorahn is
                                                                                   -- Gaußwaffen
                                                                                 54 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 51,
                                                                                       others                                      => 0
@@ -625,8 +625,8 @@ package ForschungenTesorahn is
                                                                                   -- Magnetschilde
                                                                                 55 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 51,
                                                                                       others                                      => 0
@@ -636,8 +636,8 @@ package ForschungenTesorahn is
                                                                                   -- Permanenter magnetoplasmadynamischer Antrieb
                                                                                 56 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 51,
                                                                                       others                                      => 0
@@ -647,8 +647,8 @@ package ForschungenTesorahn is
                                                                                   -- Magnetische Kampfsysteme
                                                                                 57 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 54,
                                                                                       ForschungenDatentypen.Anforderung_Zwei_Enum => 55,
@@ -659,8 +659,8 @@ package ForschungenTesorahn is
                                                                                   -- Raketentechnologie
                                                                                 58 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 56,
                                                                                       others                                      => 0
@@ -670,8 +670,8 @@ package ForschungenTesorahn is
                                                                                   -- Himmel/Orbitalstädte
                                                                                 59 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 44,
                                                                                       ForschungenDatentypen.Anforderung_Zwei_Enum => 58,
@@ -682,8 +682,8 @@ package ForschungenTesorahn is
                                                                                   -- Asteroidenbergbau
                                                                                 60 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 59,
                                                                                       others                                      => 0
@@ -693,8 +693,8 @@ package ForschungenTesorahn is
                                                                                   -- Interstellarer Antrieb
                                                                                 61 =>
                                                                                   (
-                                                                                   PreisForschung       => 100,
-                                                                                   AnforderungForschung =>
+                                                                                   Kosten      => 100,
+                                                                                   Anforderung =>
                                                                                      (
                                                                                       ForschungenDatentypen.Anforderung_Eins_Enum => 53,
                                                                                       ForschungenDatentypen.Anforderung_Zwei_Enum => 59,
@@ -702,7 +702,7 @@ package ForschungenTesorahn is
                                                                                      )
                                                                                   ),
 
-                                                                                others => ForschungKonstanten.LeerForschungListe
+                                                                                others => ForschungKonstanten.LeerForschungsliste
                                                                                );
 
 end ForschungenTesorahn;

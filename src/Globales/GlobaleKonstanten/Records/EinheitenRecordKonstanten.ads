@@ -31,15 +31,15 @@ package EinheitenRecordKonstanten is
                                                                     );
    
    LeerEinheitListe : constant DatenbankRecords.EinheitenlisteRecord := (
-                                                                         EinheitArt              => EinheitenKonstanten.LeerEinheitArt,
+                                                                         Einheitenart            => EinheitenKonstanten.LeerEinheitArt,
                                                                          PreisGeld               => EinheitenKonstanten.LeerPreisGeld,
-                                                                         PreisRessourcen         => EinheitenKonstanten.LeerPreisRessourcen,
+                                                                         Produktionskosten       => EinheitenKonstanten.LeerPreisRessourcen,
                                                                          PermanenteKosten        => (others => EinheitenKonstanten.LeerPermanenteKosten),
                                                                          Anforderungen           => EinheitenKonstanten.LeerAnforderungen,
                                                                          Passierbarkeit          => (others => EinheitenKonstanten.LeerPassierbarkeit),
                                                                          MaximaleLebenspunkte    => EinheitenKonstanten.LeerMaximaleLebenspunkte,
                                                                          MaximaleBewegungspunkte => EinheitenKonstanten.LeerMaximaleBewegungspunkte,
-                                                                         WirdVerbessertZu        => EinheitenKonstanten.LeerWirdVerbessertZu,
+                                                                         VerbesserungZu          => EinheitenKonstanten.LeerWirdVerbessertZu,
                                                                          Beförderungsgrenze      => EinheitenKonstanten.LeerBeförderungsgrenze,
                                                                          MaximalerRang           => EinheitenKonstanten.LeerMaximalerRang,
                                                                          Reichweite              => EinheitenKonstanten.LeerReichweite,

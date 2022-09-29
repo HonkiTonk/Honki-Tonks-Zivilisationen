@@ -12,8 +12,8 @@ package ForschungenNatriesZermanis is
                                                                                        -- Steinwerkzeuge
                                                                                        1 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              others => 0
                                                                                             )
@@ -22,8 +22,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Einfache Landwirtschaft
                                                                                        2 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              others => 0
                                                                                             )
@@ -32,8 +32,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Frühe Handwerke
                                                                                        3 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              others => 0
                                                                                             )
@@ -42,8 +42,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Höhlenmalerei
                                                                                        4 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              others => 0
                                                                                             )
@@ -52,8 +52,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Rad
                                                                                        5 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 1,
                                                                                              others                                      => 0
@@ -63,8 +63,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Bergbau
                                                                                        6 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 1,
                                                                                              others                                      => 0
@@ -74,8 +74,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Frühe Schiffahrt
                                                                                        7 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 1,
                                                                                              ForschungenDatentypen.Anforderung_Zwei_Enum => 3,
@@ -86,8 +86,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Mathematik
                                                                                        8 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 4,
                                                                                              others                                      => 0
@@ -97,8 +97,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Schrift
                                                                                        9 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 4,
                                                                                              others                                      => 0
@@ -108,8 +108,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Bronzeverarbeitung
                                                                                        10 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 6,
                                                                                              ForschungenDatentypen.Anforderung_Zwei_Enum => 3,
@@ -120,8 +120,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Einfache Konstruktionen
                                                                                        11 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 10,
                                                                                              ForschungenDatentypen.Anforderung_Zwei_Enum => 8,
@@ -132,8 +132,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Physik
                                                                                        12 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 11,
                                                                                              ForschungenDatentypen.Anforderung_Zwei_Enum => 9,
@@ -144,8 +144,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Eisenverarbeitung
                                                                                        13 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 10,
                                                                                              others                                      => 0
@@ -155,8 +155,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Segelschiffe
                                                                                        14 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 7,
                                                                                              ForschungenDatentypen.Anforderung_Zwei_Enum => 11,
@@ -167,8 +167,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Radkonstruktionen
                                                                                        15 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 11,
                                                                                              ForschungenDatentypen.Anforderung_Zwei_Enum => 5,
@@ -179,8 +179,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Bewässerungstechnik
                                                                                        16 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 11,
                                                                                              ForschungenDatentypen.Anforderung_Zwei_Enum => 2,
@@ -191,8 +191,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Erste Maschinen
                                                                                        17 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 12,
                                                                                              ForschungenDatentypen.Anforderung_Zwei_Enum => 13,
@@ -203,8 +203,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Brückenbau
                                                                                        18 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 11,
                                                                                              others                                      => 0
@@ -214,8 +214,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Verbesserte Landwirtschaft
                                                                                        19 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 16,
                                                                                              ForschungenDatentypen.Anforderung_Zwei_Enum => 15,
@@ -226,8 +226,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Chemie
                                                                                        20 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 19,
                                                                                              others                                      => 0
@@ -237,8 +237,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Buchdruck
                                                                                        21 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 20,
                                                                                              ForschungenDatentypen.Anforderung_Zwei_Enum => 9,
@@ -249,8 +249,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Fortschrittliche Konstruktionen
                                                                                        22 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 17,
                                                                                              ForschungenDatentypen.Anforderung_Zwei_Enum => 18,
@@ -261,8 +261,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Große Segelschiffe
                                                                                        23 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 22,
                                                                                              ForschungenDatentypen.Anforderung_Zwei_Enum => 14,
@@ -273,8 +273,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Biologie
                                                                                        24 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 19,
                                                                                              others                                      => 0
@@ -284,8 +284,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Schwere Befestigungen
                                                                                        25 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 22,
                                                                                              others                                      => 0
@@ -295,8 +295,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Schießpulver
                                                                                        26 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 25,
                                                                                              ForschungenDatentypen.Anforderung_Zwei_Enum => 20,
@@ -307,8 +307,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Ingenieurswesen
                                                                                        27 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 25,
                                                                                              ForschungenDatentypen.Anforderung_Zwei_Enum => 21,
@@ -319,8 +319,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Feuerwaffen
                                                                                        28 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 26,
                                                                                              others                                      => 0
@@ -330,8 +330,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Dampfmaschine
                                                                                        29 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 27,
                                                                                              others                                      => 0
@@ -341,8 +341,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Angetriebene Maschinen
                                                                                        30 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 29,
                                                                                              others                                      => 0
@@ -352,8 +352,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Dampfschiffe
                                                                                        31 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 30,
                                                                                              ForschungenDatentypen.Anforderung_Zwei_Enum => 23,
@@ -364,8 +364,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Petrochemie
                                                                                        32 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 30,
                                                                                              ForschungenDatentypen.Anforderung_Zwei_Enum => 20,
@@ -376,8 +376,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Stahl
                                                                                        33 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 20,
                                                                                              others                                      => 0
@@ -387,8 +387,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Kanonen
                                                                                        34 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 33,
                                                                                              ForschungenDatentypen.Anforderung_Zwei_Enum => 28,
@@ -399,8 +399,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Eisenbahn
                                                                                        35 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 30,
                                                                                              others                                      => 0
@@ -410,8 +410,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Elektrizität
                                                                                        36 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 27,
                                                                                              others                                      => 0
@@ -421,8 +421,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Generator/Motortechnik
                                                                                        37 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 33,
                                                                                              ForschungenDatentypen.Anforderung_Zwei_Enum => 35,
@@ -434,8 +434,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Motorenschiffe
                                                                                        38 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 37,
                                                                                              ForschungenDatentypen.Anforderung_Zwei_Enum => 31,
@@ -447,8 +447,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- U-Boot
                                                                                        39 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 38,
                                                                                              others                                      => 0
@@ -458,8 +458,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Fahrzeug
                                                                                        40 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 37,
                                                                                              others                                      => 0
@@ -469,8 +469,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Flugzeug
                                                                                        41 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 37,
                                                                                              others                                      => 0
@@ -480,8 +480,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Panzer
                                                                                        42 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 40,
                                                                                              ForschungenDatentypen.Anforderung_Zwei_Enum => 34,
@@ -492,8 +492,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Medizin
                                                                                        43 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 32,
                                                                                              ForschungenDatentypen.Anforderung_Zwei_Enum => 24,
@@ -504,8 +504,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Naturwissenschaft
                                                                                        44 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 43,
                                                                                              ForschungenDatentypen.Anforderung_Zwei_Enum => 40,
@@ -517,8 +517,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Atomtheorie
                                                                                        45 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 44,
                                                                                              others                                      => 0
@@ -528,8 +528,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Raketentechnik
                                                                                        46 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 44,
                                                                                              others                                      => 0
@@ -539,8 +539,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Laser
                                                                                        47 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 44,
                                                                                              others                                      => 0
@@ -550,8 +550,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Mikroeletronik
                                                                                        48 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 47,
                                                                                              others                                      => 0
@@ -561,8 +561,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Computer
                                                                                        49 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 48,
                                                                                              others                                      => 0
@@ -572,8 +572,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Orbitale Objekte
                                                                                        50 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 46,
                                                                                              others                                      => 0
@@ -583,8 +583,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Düsenflugzeuge
                                                                                        51 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 46,
                                                                                              others                                      => 0
@@ -594,8 +594,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Genetik
                                                                                        52 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 43,
                                                                                              others                                      => 0
@@ -605,8 +605,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Regenerative Energien
                                                                                        53 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 44,
                                                                                              others                                      => 0
@@ -616,8 +616,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Astroidenbergbau
                                                                                        54 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 53,
                                                                                              ForschungenDatentypen.Anforderung_Zwei_Enum => 50,
@@ -629,8 +629,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Nanotechnologie
                                                                                        55 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 49,
                                                                                              ForschungenDatentypen.Anforderung_Zwei_Enum => 45,
@@ -641,8 +641,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Genetische Modifikationen
                                                                                        56 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 52,
                                                                                              ForschungenDatentypen.Anforderung_Zwei_Enum => 49,
@@ -653,8 +653,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Cyborgisierung
                                                                                        57 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 55,
                                                                                              ForschungenDatentypen.Anforderung_Zwei_Enum => 56,
@@ -665,8 +665,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Komplexe Konstruktionen
                                                                                        58 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 55,
                                                                                              ForschungenDatentypen.Anforderung_Zwei_Enum => 54,
@@ -677,8 +677,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Quantencomputer
                                                                                        59 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 55,
                                                                                              others                                      => 0
@@ -688,8 +688,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Kernfusion
                                                                                        60 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 58,
                                                                                              others                                      => 0
@@ -699,8 +699,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Kalte Kernfusion
                                                                                        61 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 60,
                                                                                              others                                      => 0
@@ -710,8 +710,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Unterwasser/Unterirdische Städte
                                                                                        62 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 58,
                                                                                              others                                      => 0
@@ -721,8 +721,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- NAMR Reaktor
                                                                                        63 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 61,
                                                                                              ForschungenDatentypen.Anforderung_Zwei_Enum => 59,
@@ -733,8 +733,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Hochleistungsmaterialien
                                                                                        64 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 63,
                                                                                              ForschungenDatentypen.Anforderung_Zwei_Enum => 62,
@@ -745,8 +745,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Planetenkernstädte
                                                                                        65 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 64,
                                                                                              others                                      => 0
@@ -756,8 +756,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- NAMR-Theorie
                                                                                        66 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 63,
                                                                                              others                                      => 0
@@ -767,8 +767,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Hochleistungsmagnettechnologie
                                                                                        67 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 66,
                                                                                              ForschungenDatentypen.Anforderung_Zwei_Enum => 64,
@@ -779,8 +779,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Gauß-Waffen
                                                                                        68 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 67,
                                                                                              others                                      => 0
@@ -790,8 +790,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Magnetschilde
                                                                                        69 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 67,
                                                                                              others                                      => 0
@@ -801,8 +801,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Unvollständige Raumebenentheorie
                                                                                        70 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 66,
                                                                                              others                                      => 0
@@ -812,8 +812,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Permanenter magnetoplasmadynamischer Antrieb
                                                                                        71 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 67,
                                                                                              others                                      => 0
@@ -823,8 +823,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Himmel/Orbitalstädte
                                                                                        72 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 71,
                                                                                              others                                      => 0
@@ -834,8 +834,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Interstellarer Antrieb
                                                                                        73 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 69,
                                                                                              ForschungenDatentypen.Anforderung_Zwei_Enum => 70,
@@ -847,8 +847,8 @@ package ForschungenNatriesZermanis is
                                                                                          -- Magnetische Kampfsysteme
                                                                                        74 =>
                                                                                          (
-                                                                                          PreisForschung       => 100,
-                                                                                          AnforderungForschung =>
+                                                                                          Kosten      => 100,
+                                                                                          Anforderung =>
                                                                                             (
                                                                                              ForschungenDatentypen.Anforderung_Eins_Enum => 71,
                                                                                              ForschungenDatentypen.Anforderung_Zwei_Enum => 68,
@@ -857,7 +857,7 @@ package ForschungenNatriesZermanis is
                                                                                             )
                                                                                          ),
 
-                                                                                       others => ForschungKonstanten.LeerForschungListe
+                                                                                       others => ForschungKonstanten.LeerForschungsliste
                                                                                       );
 
 end ForschungenNatriesZermanis;

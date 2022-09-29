@@ -11,7 +11,7 @@ with SystemDatentypen;
 
 package LeseForschungenDatenbank is
 
-   function PreisForschung
+   function Kosten
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in ForschungenDatentypen.ForschungID)
       return ProduktionDatentypen.Lagermenge

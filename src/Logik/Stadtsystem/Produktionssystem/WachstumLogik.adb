@@ -211,7 +211,7 @@ package body WachstumLogik is
         Bauprojekt.Gebäude /= 0
       then
          if
-           LeseStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern) >= LeseGebaeudeDatenbank.PreisRessourcen (RasseExtern => StadtRasseNummerExtern.Rasse,
+           LeseStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern) >= LeseGebaeudeDatenbank.Produktionskosten (RasseExtern => StadtRasseNummerExtern.Rasse,
                                                                                                                                    IDExtern    => StadtDatentypen.GebäudeID (Bauprojekt.Gebäude))
          then
             StadtGebaeudeBauenLogik.GebäudeFertiggestellt (StadtRasseNummerExtern => StadtRasseNummerExtern);
@@ -222,7 +222,7 @@ package body WachstumLogik is
          
       else
          if
-           LeseStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern) >= LeseEinheitenDatenbank.PreisRessourcen (RasseExtern => StadtRasseNummerExtern.Rasse,
+           LeseStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern) >= LeseEinheitenDatenbank.Produktionskosten (RasseExtern => StadtRasseNummerExtern.Rasse,
                                                                                                                                     IDExtern    => EinheitenDatentypen.EinheitenID (Bauprojekt.Einheit))
          then
             StadtEinheitenBauenLogik.EinheitFertiggestellt (StadtRasseNummerExtern => StadtRasseNummerExtern);

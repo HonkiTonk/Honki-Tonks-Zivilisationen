@@ -22,7 +22,7 @@ package body EinheitVerbessernLogik is
    is begin
       
       IDEinheit := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      IDNeueEinheit := LeseEinheitenDatenbank.WirdVerbessertZu (RasseExtern => EinheitRasseNummerExtern.Rasse,
+      IDNeueEinheit := LeseEinheitenDatenbank.VerbesserungZu (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                                 IDExtern    => IDEinheit);
       
       if

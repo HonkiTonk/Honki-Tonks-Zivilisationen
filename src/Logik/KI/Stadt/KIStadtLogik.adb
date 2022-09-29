@@ -198,7 +198,7 @@ package body KIStadtLogik is
                      
                   else
                      case
-                       LeseEinheitenDatenbank.EinheitArt (RasseExtern => FremdeEinheit.Rasse,
+                       LeseEinheitenDatenbank.Einheitenart (RasseExtern => FremdeEinheit.Rasse,
                                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => FremdeEinheit))
                      is
                         when EinheitenDatentypen.Arbeiter_Enum =>
@@ -227,7 +227,7 @@ package body KIStadtLogik is
       for EinheitenSchleifenwert in EinheitenDatentypen.EinheitenID'Range loop
          
          if
-           EinheitenDatentypen.Arbeiter_Enum = LeseEinheitenDatenbank.EinheitArt (RasseExtern => StadtRasseNummerExtern.Rasse,
+           EinheitenDatentypen.Arbeiter_Enum = LeseEinheitenDatenbank.Einheitenart (RasseExtern => StadtRasseNummerExtern.Rasse,
                                                                                   IDExtern    => EinheitenSchleifenwert)
          then
             null;
