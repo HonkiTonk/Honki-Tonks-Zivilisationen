@@ -6,7 +6,8 @@ package KampfDatentypen is
    -- Negativer Bereich für Abzug.
    -- Das mal überall so gestalten? äöü
    -- Das für Angriff, Verteidigung und Lebenspunkte verwenden oder noch weiter aufteilen? äöü
-   type KampfwerteAllgemein is range -100 .. 100;
+   type KampfwerteGroß is range -100 .. 1_000;
+   subtype KampfwerteAllgemein is KampfwerteGroß range -100 .. 100;
    subtype Kampfwerte is KampfwerteAllgemein range 0 .. 100;
    subtype Schadensbereiche is Kampfwerte range 1 .. 3;
 

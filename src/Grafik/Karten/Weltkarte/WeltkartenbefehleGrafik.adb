@@ -32,12 +32,12 @@ package body WeltkartenbefehleGrafik is
    is begin
       
       Einheitart := LeseEinheitenDatenbank.Einheitenart (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                       IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+                                                         IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       
       case
         Einheitart
       is
-         when EinheitenKonstanten.LeerEinheitArt | EinheitenDatentypen.Cheat_Enum =>
+         when EinheitenKonstanten.LeerEinheitArt =>
             return;
             
          when EinheitenDatentypen.PZB_Enum'Range =>
@@ -67,7 +67,7 @@ package body WeltkartenbefehleGrafik is
    
    
    function Einheitenbefehlstexte
-     (EinheitenArtExtern : in EinheitenDatentypen.Einheitart_Standard_Enum)
+     (EinheitenArtExtern : in EinheitenDatentypen.Einheitart_Vorhanden_Enum)
       return Sf.System.Vector2.sfVector2f
    is begin
       
@@ -136,7 +136,7 @@ package body WeltkartenbefehleGrafik is
    
    -- Für alle Einheittypen eine spezifische Anzeige einbinden? äöü
    function Einheitenbefehlsknöpfe
-     (EinheitenArtExtern : in EinheitenDatentypen.Einheitart_Standard_Enum;
+     (EinheitenArtExtern : in EinheitenDatentypen.Einheitart_Vorhanden_Enum;
       WelcheTexturExtern : in BefehleDatentypen.Befehlsknöpfe_Enum)
       return Sf.System.Vector2.sfVector2f
    is begin

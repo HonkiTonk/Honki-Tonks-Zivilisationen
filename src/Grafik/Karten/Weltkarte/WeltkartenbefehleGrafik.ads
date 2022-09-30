@@ -54,7 +54,7 @@ private
    
    
    function Einheitenbefehlstexte
-     (EinheitenArtExtern : in EinheitenDatentypen.Einheitart_Standard_Enum)
+     (EinheitenArtExtern : in EinheitenDatentypen.Einheitart_Vorhanden_Enum)
       return Sf.System.Vector2.sfVector2f
      with
        Post => (
@@ -64,7 +64,7 @@ private
                );
    
    function Einheitenbefehlsknöpfe
-     (EinheitenArtExtern : in EinheitenDatentypen.Einheitart_Standard_Enum;
+     (EinheitenArtExtern : in EinheitenDatentypen.Einheitart_Vorhanden_Enum;
       WelcheTexturExtern : in BefehleDatentypen.Befehlsknöpfe_Enum)
       return Sf.System.Vector2.sfVector2f
      with

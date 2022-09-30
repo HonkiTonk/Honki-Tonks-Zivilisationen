@@ -132,6 +132,7 @@ package body KampfsystemStadtLogik is
             null;
          end if;
          
+         -- Die Berechnungen selbst auch mal in eine eigene Datei verschieben. äöü
          KampfsystemEinheitenLogik.KampfBerechnung (VerteidigerExtern  => AngreifendeEinheitRasseNummerExtern,
                                                     AngriffExtern      => KampfwerteVerteidiger.Angriff,
                                                     VerteidigungExtern => KampfwerteAngreifer.Verteidigung);

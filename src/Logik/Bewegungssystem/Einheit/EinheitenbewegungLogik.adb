@@ -7,6 +7,7 @@ with KartenRecords; use KartenRecords;
 with EinheitenKonstanten;
 with KartenKonstanten;
 with StadtKonstanten;
+with KartenRecordKonstanten;
 
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
@@ -22,7 +23,65 @@ with KampfsystemStadtLogik;
 with EinheitentransporterLogik;
 with KartenkoordinatenberechnungssystemLogik;
 
+-- Muss alles mal überarbeitet werden aufgrund der Änderungen in letzter Zeit. äöü
 package body EinheitenbewegungLogik is
+   
+   function PositionÄndern
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
+      return Boolean
+   is begin
+      
+      if
+        ÄnderungExtern = KeineÄnderung
+      then
+         return NochBewegungspunkte (EinheitRasseNummerExtern  => EinheitRasseNummerExtern,
+                                     BewegungDurchführenExtern => False,
+                                     KoordinatenExtern         => KartenRecordKonstanten.LeerKoordinate);
+            
+      else
+         return BewegungPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                 PositionÄnderungExtern   => ÄnderungExtern);
+      end if;
+      
+   end PositionÄndern;
+   
+   
+   
+   -- Wird auch in KIEinheitHandlungen verwendet, eventuell in zwei Varianten aufteilen bei der nur eine Variante die BewegungsberechnungEinheitenLogik enthält? äöü
+   function NochBewegungspunkte
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      BewegungDurchführenExtern : in Boolean;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      return Boolean
+   is begin
+      
+      case
+        BewegungDurchführenExtern
+      is
+         when True =>
+            BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                   NeueKoordinatenExtern    => KoordinatenExtern,
+                                                                   EinheitentauschExtern    => False);
+            
+         when False =>
+            null;
+      end case;
+      
+      if
+        LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerBewegungspunkte
+        or
+          LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerID
+      then
+         return False;
+            
+      else
+         return True;
+      end if;
+      
+   end NochBewegungspunkte;
+   
+   
    
    -- Hier wird True zurückgegeben wenn keine Bewegung stattfindet, damit klar ist dass noch eine weitere Bewegung stattfinden kann.
    function BewegungPrüfen
@@ -42,17 +101,13 @@ package body EinheitenbewegungLogik is
             return True;
             
          when others =>
-            null;
+            FeldPassierbar := PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                        NeueKoordinatenExtern    => NeueKoordinaten);
+            EinheitAufFeld := EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => NeueKoordinaten,
+                                                                                    LogikGrafikExtern => True);
+            StadtAufFeld := StadtSuchenLogik.KoordinatenStadtOhneSpezielleRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                                                                       KoordinatenExtern => NeueKoordinaten);
       end case;
-      
-      FeldPassierbar := PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                  NeueKoordinatenExtern       => NeueKoordinaten);
-      
-      EinheitAufFeld := EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => NeueKoordinaten,
-                                                                              LogikGrafikExtern => True);
-      StadtAufFeld := StadtSuchenLogik.KoordinatenStadtOhneSpezielleRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                                                 KoordinatenExtern => NeueKoordinaten);
-      BewegungDurchführen := False;
       
       if
         FeldPassierbar = False
@@ -67,79 +122,61 @@ package body EinheitenbewegungLogik is
          BewegungDurchführen := EigeneEinheitAufFeld (BewegendeEinheitExtern     => EinheitRasseNummerExtern,
                                                        FeldBelegendeEinheitExtern => EinheitAufFeld);
          
+         return NochBewegungspunkte (EinheitRasseNummerExtern  => EinheitRasseNummerExtern,
+                                     BewegungDurchführenExtern => BewegungDurchführen,
+                                     KoordinatenExtern         => NeueKoordinaten);
+         
+      elsif
+        FeldPassierbar = False
+      then
+         return False;
+         
+      else
+         null;
+      end if;
+         
+      if
+        EinheitAufFeld.Rasse /= EinheitRasseNummerExtern.Rasse
+        and
+          EinheitAufFeld.Rasse /= EinheitenKonstanten.LeerRasse
+          and
+            StadtAufFeld.Nummer /= StadtKonstanten.LeerNummer
+      then
+         case
+           FremderAufFeld (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                           FremdeEinheitExtern      => EinheitAufFeld)
+         is
+            when False =>
+               return False;
+               
+            when True =>
+               BewegungDurchführen := FremdeStadtAufFeld (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                           FremdeStadtExtern        => StadtAufFeld);
+         end case;
+            
       elsif
         EinheitAufFeld.Rasse /= EinheitRasseNummerExtern.Rasse
         and
           EinheitAufFeld.Rasse /= EinheitenKonstanten.LeerRasse
       then
-         if
-           FeldPassierbar
-           and
-             (True = FremderAufFeld (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                     FremdeEinheitExtern      => EinheitAufFeld))
-         then
-            BewegungDurchführen := True;
-            
-         else
-            null;
-         end if;
-         
+         BewegungDurchführen := FremderAufFeld (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                 FremdeEinheitExtern      => EinheitAufFeld);
+      
       elsif
         StadtAufFeld.Nummer /= StadtKonstanten.LeerNummer
-        and
-          FeldPassierbar
       then
-         case
-           FremdeStadtAufFeld (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                               FremdeStadtExtern        => StadtAufFeld)
-         is
-            when False =>
-               null;
-               
-            when True =>
-               BewegungDurchführen := True;
-         end case;
+         BewegungDurchführen := FremdeStadtAufFeld (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                     FremdeStadtExtern        => StadtAufFeld);
          
       else
          BewegungDurchführen := True;
       end if;
       
-      case
-        BewegungDurchführen
-      is
-         when True =>
-            BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                   NeueKoordinatenExtern    => NeueKoordinaten,
-                                                                   EinheitentauschExtern    => False);
-            
-         when False =>
-            null;
-      end case;
-      
-      return NochBewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      return NochBewegungspunkte (EinheitRasseNummerExtern  => EinheitRasseNummerExtern,
+                                  BewegungDurchführenExtern => BewegungDurchführen,
+                                  KoordinatenExtern         => NeueKoordinaten);
       
    end BewegungPrüfen;
-   
-   
-   
-   -- Wird auch in KIEinheitHandlungen verwendet.
-   function NochBewegungspunkte
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return Boolean
-   is begin
-      
-      if
-        LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerBewegungspunkte
-        or
-          LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerID
-      then
-         return False;
-            
-      else
-         return True;
-      end if;
-      
-   end NochBewegungspunkte;
    
    
    
@@ -157,28 +194,9 @@ package body EinheitenbewegungLogik is
             return False;
             
          when True =>
-            null;
+            return KampfsystemEinheitenLogik.KampfsystemNahkampf (AngreiferExtern    => EinheitRasseNummerExtern,
+                                                                  VerteidigerExtern => FremdeEinheitExtern);
       end case;
-      
-      if
-        True = KampfsystemEinheitenLogik.KampfsystemNahkampf (AngreiferExtern    => EinheitRasseNummerExtern,
-                                                              VerteidigerExtern => FremdeEinheitExtern)
-      then
-         case
-           EinheitAufFeld.Nummer
-         is
-            when EinheitenKonstanten.LeerNummer =>
-               return True;
-                     
-            when others =>
-               null;
-         end case;
-         
-      else
-         null;
-      end if;
-      
-      return False;
       
    end FremderAufFeld;
    
@@ -206,7 +224,7 @@ package body EinheitenbewegungLogik is
    
    
    
-   -- Das hier noch einmal überarbeiten, vermutlich muss ich dazu auch die BewegungsberechnungLogik überarbeien. äöü 
+   -- Das hier noch einmal überarbeiten, vermutlich muss ich dazu auch die BewegungsberechnungLogik überarbeien. äöü
    function EigeneEinheitAufFeld
      (BewegendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       FeldBelegendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
@@ -215,7 +233,7 @@ package body EinheitenbewegungLogik is
       
       case
         EinheitentransporterLogik.KannTransportiertWerden (LadungExtern      => BewegendeEinheitExtern,
-                                                           TransporterExtern => EinheitAufFeld)
+                                                           TransporterExtern => FeldBelegendeEinheitExtern)
       is
          when True =>
             if
@@ -276,25 +294,5 @@ package body EinheitenbewegungLogik is
       end if;
       
    end EigeneEinheitAufFeld;
-   
-   
-   
-   function PositionÄndern
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
-      return Boolean
-   is begin
-      
-      if
-        ÄnderungExtern = KeineÄnderung
-      then
-         return NochBewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-            
-      else
-         return BewegungPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                 PositionÄnderungExtern   => ÄnderungExtern);
-      end if;
-      
-   end PositionÄndern;
 
 end EinheitenbewegungLogik;

@@ -138,13 +138,13 @@ package body PassierbarkeitspruefungLogik is
          null;
          
          -- Funktioniert akutell nicht richtig? Beheben oder entfernen? äöü
-      elsif
-        LeseWeltkarte.Weg (KoordinatenExtern => NeueKoordinatenExtern) /= KartenverbesserungDatentypen.Leer_Weg_Enum
-        and then
-          False = KartenAllgemeinesLogik.PassierbarWeg (KoordinatenExtern    => NeueKoordinatenExtern,
-                                                        PassierbarkeitExtern => UmgebungExtern)
-      then
-         null;
+         -- elsif
+         --  LeseWeltkarte.Weg (KoordinatenExtern => NeueKoordinatenExtern) /= KartenverbesserungDatentypen.Leer_Weg_Enum
+         --   and then
+         --     False = KartenAllgemeinesLogik.PassierbarWeg (KoordinatenExtern    => NeueKoordinatenExtern,
+         --                                                   PassierbarkeitExtern => UmgebungExtern)
+         -- then
+         --    null;
          
       else
          return True;

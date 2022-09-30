@@ -40,7 +40,9 @@ package body KIEinheitHandlungenLogik is
             
       else
          -- Muss hier not sein wegen den Rückgabewerten in der Funktion selbst, die nicht geändert werden können wegen der Einbindung im Bewegungssystem.
-         return not EinheitenbewegungLogik.NochBewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         return not EinheitenbewegungLogik.NochBewegungspunkte (EinheitRasseNummerExtern  => EinheitRasseNummerExtern,
+                                                                BewegungDurchführenExtern => False,
+                                                                KoordinatenExtern         => KartenRecordKonstanten.LeerKoordinate);
       end if;
       
    end HandlungBeendet;

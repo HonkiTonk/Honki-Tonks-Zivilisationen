@@ -1,9 +1,14 @@
 package ChangelogSeptember2022 is
 
-   -- Version 0.04.0470 => 0.04. (30.09.2022):
+   -- Version 0.04.0470 => 0.04.0550 (30.09.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Scrollen ist jetzt auch mit ausgewählter Debugeinheit möglich.
+   -- Fehler behoben der bei zu hohen Kampfwerten zu einem Absturz führte.
+   -- Fehler korrigiert welcher es unmöglich machte sich auf Straßen zu bewegen.
+   -- Fehler korrigiert der er unmöglich machte gegnerische Einheiten und Städte anzugreifen.
+   -- Fehler korrigiert welcher dazu führte das eine ausgewählte Einheit nach einem Kampfsieg nicht mehr blinkte.
+   -- Fehler korrigiert welcher nach beim Entfernen aller Einheiten und Städten nach einem Sieg zu einem feststecken im Ladebereich führte.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

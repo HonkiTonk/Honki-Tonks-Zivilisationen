@@ -104,7 +104,23 @@ package body RundenendeLogik is
         SpielVariablen.Allgemeines.Weiterspielen
       is
          when True =>
-            return True;
+            RassenSchleife:
+            for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
+               
+               if
+                 SpielVariablen.Rassenbelegung (RasseSchleifenwert).Besiegt = False
+                 and
+                   SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+               then
+                  return True;
+                  
+               else
+                  null;
+               end if;
+               
+            end loop RassenSchleife;
+            
+            return False;
             
          when False =>
             null;

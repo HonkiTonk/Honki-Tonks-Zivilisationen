@@ -10,8 +10,6 @@ with LeseEinheitenDatenbank;
 with SchreibeWeltkarte;
 with LeseStadtGebaut;
 
-with NachGrafiktask;
-
 package body SchreibeStadtGebaut is
 
    procedure ID
@@ -551,9 +549,7 @@ package body SchreibeStadtGebaut is
    procedure Nullsetzung
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
-      
-      NachGrafiktask.AktuelleStadt := StadtKonstanten.LeerNummer;
-      
+            
       SchreibeWeltkarte.Verbesserung (KoordinatenExtern  => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                    VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum);
       

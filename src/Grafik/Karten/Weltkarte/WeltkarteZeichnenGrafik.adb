@@ -44,29 +44,29 @@ package body WeltkarteZeichnenGrafik is
       EbeneExtern : in KartenDatentypen.EbeneVorhanden)
    is begin
       
-      WeltkarteZeichnenGrafik.KartenfeldZeichnen (KoordinatenExtern      => KoordinatenExtern,
-                                                  PositionExtern         => PositionExtern,
-                                                  DurchsichtigkeitExtern => TransparentsExtern);
+      KartenfeldZeichnen (KoordinatenExtern      => KoordinatenExtern,
+                          PositionExtern         => PositionExtern,
+                          DurchsichtigkeitExtern => TransparentsExtern);
       
-      WeltkarteZeichnenGrafik.RessourceZeichnen (KoordinatenExtern => KoordinatenExtern,
-                                                 PositionExtern    => PositionExtern);
+      RessourceZeichnen (KoordinatenExtern => KoordinatenExtern,
+                         PositionExtern    => PositionExtern);
       
-      WeltkarteZeichnenGrafik.FlussZeichnen (KoordinatenExtern => KoordinatenExtern,
-                                             PositionExtern    => PositionExtern);
+      FlussZeichnen (KoordinatenExtern => KoordinatenExtern,
+                     PositionExtern    => PositionExtern);
       
-      WeltkarteZeichnenGrafik.WegZeichnen (KoordinatenExtern => KoordinatenExtern,
-                                           PositionExtern    => PositionExtern);
+      WegZeichnen (KoordinatenExtern => KoordinatenExtern,
+                   PositionExtern    => PositionExtern);
       
-      WeltkarteZeichnenGrafik.VerbesserungZeichnen (KoordinatenExtern => KoordinatenExtern,
-                                                    EbeneExtern       => EbeneExtern,
-                                                    PositionExtern    => PositionExtern);
+      VerbesserungZeichnen (KoordinatenExtern => KoordinatenExtern,
+                            EbeneExtern       => EbeneExtern,
+                            PositionExtern    => PositionExtern);
       
-      WeltkarteZeichnenGrafik.AnzeigeEinheit (KoordinatenExtern  => KoordinatenExtern,
-                                              RasseEinheitExtern => EinheitRasseNummerExtern,
-                                              PositionExtern     => PositionExtern);
+      AnzeigeEinheit (KoordinatenExtern  => KoordinatenExtern,
+                      RasseEinheitExtern => EinheitRasseNummerExtern,
+                      PositionExtern     => PositionExtern);
       
-      WeltkarteZeichnenGrafik.AnzeigeFeldbesitzer (KoordinatenExtern => KoordinatenExtern,
-                                                   PositionExtern    => PositionExtern);
+      AnzeigeFeldbesitzer (KoordinatenExtern => KoordinatenExtern,
+                           PositionExtern    => PositionExtern);
       
    end EbeneZeichnen;
    

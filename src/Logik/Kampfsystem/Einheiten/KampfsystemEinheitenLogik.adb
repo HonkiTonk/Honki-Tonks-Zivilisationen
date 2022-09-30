@@ -69,6 +69,7 @@ package body KampfsystemEinheitenLogik is
                                                       ErfahrungspunkteExtern   => LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => AngreiferExtern.Rasse,
                                                                                                                               IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => AngreiferExtern)),
                                                       AddierenSetzenExtern     => True);
+            
             EinheitenErzeugenEntfernenLogik.EinheitEntfernen (EinheitRasseNummerExtern => VerteidigerExtern);
             return True;
             
