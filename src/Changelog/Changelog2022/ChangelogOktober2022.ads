@@ -203,16 +203,18 @@ package ChangelogOktober2022 is
    
    
 
-   -- Version 0.04. => 0.04. (02.10.2022):
+   -- Version 0.04.0595 => 0.04. (02.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.0550 => 0.04. (01.10.2022):
+   -- Version 0.04.0550 => 0.04.0595 (01.10.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Die Bewegungskostenberechnung für Einheiten überarbeitet.
+   -- Die VerbesserungenDatenbank überarbeitet.
+   -- Unnötigen Code gelöscht.
+   -- Contarcts, Kommentare und Kleinigkeiten korrigiert.
 
 end ChangelogOktober2022;

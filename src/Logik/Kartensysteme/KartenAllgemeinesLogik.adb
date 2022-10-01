@@ -878,29 +878,6 @@ package body KartenAllgemeinesLogik is
    
    
    
-   function PassierbarVerbesserung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      PassierbarkeitExtern : in EinheitenDatentypen.Passierbarkeit_Enum)
-      return Boolean
-   is begin
-            
-      KartenVerbesserung := LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern);
-      
-      case
-        KartenVerbesserung
-      is
-         when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
-            return True;
-            
-         when others =>
-            return LeseVerbesserungenDatenbank.PassierbarkeitVerbesserung (VerbesserungExtern   => KartenVerbesserung,
-                                                                           WelcheUmgebungExtern => PassierbarkeitExtern);
-      end case;
-      
-   end PassierbarVerbesserung;
-   
-   
-   
    function PassierbarWeg
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PassierbarkeitExtern : in EinheitenDatentypen.Passierbarkeit_Enum)

@@ -33,4 +33,7 @@ private
    function NachSiegWeiterspielen
      return Boolean;
 
+   function MenschlicherSpielerVorhanden
+     return Boolean;
+
 end RundenendeLogik;

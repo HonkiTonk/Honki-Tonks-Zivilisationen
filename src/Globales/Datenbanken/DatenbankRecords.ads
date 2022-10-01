@@ -118,7 +118,7 @@ package DatenbankRecords is
 
 
 
-   -- VerbesserungenDatenbank
+   -- VerbesserungenWegeDatenbank
    type VerbesserungenWegeListeRecord is new KartenlisteRecord with record
       
      -- Bewertung : BewertungArray;
@@ -128,13 +128,7 @@ package DatenbankRecords is
       Passierbarkeit : PassierbarkeitArray;
       
    end record;
-   
-   -- type VerbesserungenListeRecord is new WegeListeRecord with record
-                 
-   --    Passierbarkeit : PassierbarkeitArray;
-      
-   -- end record;
-   -- VerbesserungenDatenbank
+   -- VerbesserungenWegeDatenbank
    
    
    

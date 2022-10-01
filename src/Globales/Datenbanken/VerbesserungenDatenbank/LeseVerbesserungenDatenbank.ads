@@ -10,11 +10,6 @@ with ProduktionDatentypen;
 with KampfDatentypen;
 
 package LeseVerbesserungenDatenbank is
-
-   function PassierbarkeitVerbesserung
-     (VerbesserungExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum;
-      WelcheUmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Vorhanden_Enum)
-      return Boolean;
    
    function PassierbarkeitWeg
      (WegExtern : in KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum;

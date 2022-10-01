@@ -4,19 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with VerbesserungenDatenbank;
 
 package body LeseVerbesserungenDatenbank is
-
-   function PassierbarkeitVerbesserung
-     (VerbesserungExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum;
-      WelcheUmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Vorhanden_Enum)
-      return Boolean
-   is begin
       
-      return VerbesserungenDatenbank.Verbesserungenliste (VerbesserungExtern).Passierbarkeit (WelcheUmgebungExtern);
-      
-   end PassierbarkeitVerbesserung;
-   
-   
-
    function PassierbarkeitWeg
      (WegExtern : in KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum;
       WelcheUmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Vorhanden_Enum)

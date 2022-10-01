@@ -22,6 +22,7 @@ with StadtSuchenLogik;
 with KampfsystemStadtLogik;
 with EinheitentransporterLogik;
 with KartenkoordinatenberechnungssystemLogik;
+with BewegungspunkteBerechnenLogik;
 
 -- Muss alles mal überarbeitet werden aufgrund der Änderungen in letzter Zeit. äöü
 package body EinheitenbewegungLogik is
@@ -280,8 +281,8 @@ package body EinheitenbewegungLogik is
          return False;
          
       elsif
-        LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => FeldBelegendeEinheitExtern) < BewegungsberechnungEinheitenLogik.AbzugDurchBewegung (NeueKoordinatenExtern    => Tauschkoordinaten,
-                                                                                                                                                             EinheitRasseNummerExtern => FeldBelegendeEinheitExtern)
+        LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => FeldBelegendeEinheitExtern) < BewegungspunkteBerechnenLogik.AbzugDurchBewegung (NeueKoordinatenExtern    => Tauschkoordinaten,
+                                                                                                                                                         EinheitRasseNummerExtern => FeldBelegendeEinheitExtern)
       then
          return False;
          

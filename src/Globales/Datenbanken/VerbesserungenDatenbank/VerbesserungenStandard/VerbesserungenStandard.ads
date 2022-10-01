@@ -2,17 +2,15 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenverbesserungDatentypen;
-with EinheitenDatentypen;
 
 with DatenbankRecords;
 
 package VerbesserungenStandard is
    
-   type StadtlisteArray is array (KartenverbesserungDatentypen.Karten_Verbesserung_Städte_Enum'Range) of DatenbankRecords.VerbesserungenWegeListeRecord;
+   type StadtlisteArray is array (KartenverbesserungDatentypen.Karten_Verbesserung_Städte_Enum'Range) of DatenbankRecords.KartenlisteRecord;
    Stadtliste : constant StadtlisteArray := (
                                              KartenverbesserungDatentypen.Hauptstadt_Enum =>
                                                (
-                                                Passierbarkeit     => (others => True),
                                                 Bewertung          => (others => 1),
                                                 Wirtschaft         => (others => (others => 1)),
                                                 Kampf              => (others => (others => 1))
@@ -20,7 +18,6 @@ package VerbesserungenStandard is
                                                   
                                              KartenverbesserungDatentypen.Stadt_Enum =>
                                                (
-                                                Passierbarkeit     => (others => True),
                                                 Bewertung          => (others => 1),
                                                 Wirtschaft         => (others => (others => 1)),
                                                 Kampf              => (others => (others => 1))
@@ -29,14 +26,10 @@ package VerbesserungenStandard is
    
    
    
-   type GebildelisteArray is array (KartenverbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum'Range) of DatenbankRecords.VerbesserungenWegeListeRecord;
+   type GebildelisteArray is array (KartenverbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum'Range) of DatenbankRecords.KartenlisteRecord;
    Gebildeliste : constant GebildelisteArray := (
                                                  KartenverbesserungDatentypen.Farm_Enum =>
                                                    (
-                                                    Passierbarkeit     => (EinheitenDatentypen.Boden_Enum    => True,
-                                                                           EinheitenDatentypen.Luft_Enum     => True,
-                                                                           EinheitenDatentypen.Weltraum_Enum => True, 
-                                                                           others                            => False),
                                                     Bewertung          => (others => 1),
                                                     Wirtschaft         => (others => (others => 1)),
                                                     Kampf              => (others => (others => 1))
@@ -44,10 +37,6 @@ package VerbesserungenStandard is
                                                   
                                                  KartenverbesserungDatentypen.Mine_Enum =>
                                                    (
-                                                    Passierbarkeit     => (EinheitenDatentypen.Boden_Enum    => True,
-                                                                           EinheitenDatentypen.Luft_Enum     => True,
-                                                                           EinheitenDatentypen.Weltraum_Enum => True,
-                                                                           others                            => False),
                                                     Bewertung          => (others => 1),
                                                     Wirtschaft         => (others => (others => 1)),
                                                     Kampf              => (others => (others => 1))
@@ -55,10 +44,6 @@ package VerbesserungenStandard is
                                                   
                                                  KartenverbesserungDatentypen.Festung_Enum =>
                                                    (
-                                                    Passierbarkeit     => (EinheitenDatentypen.Boden_Enum    => True,
-                                                                           EinheitenDatentypen.Luft_Enum     => True,
-                                                                           EinheitenDatentypen.Weltraum_Enum => True,
-                                                                           others                            => False),
                                                     Bewertung          => (others => 1),
                                                     Wirtschaft         => (others => (others => 1)),
                                                     Kampf              => (others => (others => 1))

@@ -411,17 +411,6 @@ package KartenAllgemeinesLogik is
                  KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
               );
 
-   function PassierbarVerbesserung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      PassierbarkeitExtern : in EinheitenDatentypen.Passierbarkeit_Enum)
-      return Boolean
-     with
-       Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
-               and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
-              );
-
    function PassierbarWeg
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PassierbarkeitExtern : in EinheitenDatentypen.Passierbarkeit_Enum)

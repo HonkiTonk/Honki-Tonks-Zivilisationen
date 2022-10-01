@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with EinheitenDatentypen; use EinheitenDatentypen;
 with ForschungKonstanten;
 with AufgabenDatentypen;
 with RassenDatentypen;
@@ -9,7 +10,6 @@ with ProduktionDatentypen;
 with EinheitenRecords;
 with KampfDatentypen;
 with StadtDatentypen;
-with EinheitenDatentypen;
 
 with KIDatentypen;
 
@@ -31,6 +31,7 @@ package EinheitenKonstanten is
    LeerTransportiert : constant EinheitenDatentypen.MaximaleEinheitenMitNullWert := EinheitenDatentypen.MaximaleEinheitenMitNullWert'First;
    LeerWirdTransportiert : constant EinheitenDatentypen.MaximaleEinheitenMitNullWert := EinheitenDatentypen.MaximaleEinheitenMitNullWert'First;
    LeerMeldung : constant EinheitenDatentypen.Einheit_Meldung_Enum := EinheitenDatentypen.Leer_Einheit_Meldung_Enum;
+   EinheitUnbewegbar : constant EinheitenDatentypen.BewegungFloat := -1.00;
    
    
    
