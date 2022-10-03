@@ -1,8 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Ada.Directories; use Ada.Directories;
-
 with OptionenVariablen;
 with SystemRecords;
 with VerzeichnisKonstanten;
@@ -17,19 +15,9 @@ package body SchreibenEinstellungenLogik is
    procedure Nutzereinstellungen
    is begin
       
-      case
-        Exists (Name => VerzeichnisKonstanten.Nutzereinstellungen)
-      is
-         when True =>
-            Open (File => DateiNutzereinstellungen,
-                  Mode => Out_File,
-                  Name => VerzeichnisKonstanten.Nutzereinstellungen);
-
-         when False =>
-            Create (File => DateiNutzereinstellungen,
-                    Mode => Out_File,
-                    Name => VerzeichnisKonstanten.Nutzereinstellungen);
-      end case;
+      Create (File => DateiNutzereinstellungen,
+              Mode => Out_File,
+              Name => VerzeichnisKonstanten.Nutzereinstellungen);
       
       SystemRecords.NutzerEinstellungenRecord'Write (Stream (File => DateiNutzereinstellungen),
                                                      OptionenVariablen.NutzerEinstellungen);
@@ -43,19 +31,9 @@ package body SchreibenEinstellungenLogik is
    procedure Grafikeinstellungen
    is begin
       
-      case
-        Exists (Name => VerzeichnisKonstanten.Grafikeinstellungen)
-      is
-         when True =>
-            Open (File => DateiGrafikeinstellungen,
-                  Mode => Out_File,
-                  Name => VerzeichnisKonstanten.Grafikeinstellungen);
-
-         when False =>
-            Create (File => DateiGrafikeinstellungen,
-                    Mode => Out_File,
-                    Name => VerzeichnisKonstanten.Grafikeinstellungen);
-      end case;
+      Create (File => DateiGrafikeinstellungen,
+              Mode => Out_File,
+              Name => VerzeichnisKonstanten.Grafikeinstellungen);
             
       GrafikRecords.FensterRecord'Write (Stream (File => DateiGrafikeinstellungen),
                                          EinstellungenGrafik.FensterEinstellungen);
@@ -81,19 +59,9 @@ package body SchreibenEinstellungenLogik is
    procedure Soundeinstellungen
    is begin
       
-      case
-        Exists (Name => VerzeichnisKonstanten.Soundeinstelllungen)
-      is
-         when True =>
-            Open (File => DateiSoundeinstellungen,
-                  Mode => Out_File,
-                  Name => VerzeichnisKonstanten.Soundeinstelllungen);
-
-         when False =>
-            Create (File => DateiSoundeinstellungen,
-                    Mode => Out_File,
-                    Name => VerzeichnisKonstanten.Soundeinstelllungen);
-      end case;
+      Create (File => DateiSoundeinstellungen,
+              Mode => Out_File,
+              Name => VerzeichnisKonstanten.Soundeinstelllungen);
       
       
       

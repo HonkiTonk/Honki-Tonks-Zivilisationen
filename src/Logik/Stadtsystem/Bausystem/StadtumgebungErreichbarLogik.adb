@@ -41,7 +41,7 @@ package body StadtumgebungErreichbarLogik is
                  KartenWert.XAchse = KartenKonstanten.LeerXAchse
                then
                   null;
-                  
+                 
                elsif
                  (YÄnderungSchleifenwert = 0
                   and
@@ -55,7 +55,7 @@ package body StadtumgebungErreichbarLogik is
                   
                elsif
                  True = LeseWeltkarte.BelegterGrund (RasseExtern       => RasseExtern,
-                                                  KoordinatenExtern => KartenWert)
+                                                     KoordinatenExtern => KartenWert)
                  and
                    EinheitenKonstanten.LeerNummer = EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert,
                                                                                                           LogikGrafikExtern => True).Nummer

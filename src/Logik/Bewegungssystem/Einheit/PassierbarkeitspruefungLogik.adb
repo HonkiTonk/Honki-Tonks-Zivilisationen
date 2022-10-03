@@ -47,7 +47,6 @@ package body PassierbarkeitspruefungLogik is
    
    
    
-   -- Die Passierbarkeit für Ressourcen ist unwichtig, da sie sowieso nie geprüft werden muss.
    function PassierbarkeitPrüfenID
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenID;
@@ -56,13 +55,12 @@ package body PassierbarkeitspruefungLogik is
    is begin
             
       PassierbarkeitSchleife:
-      for PassierbarkeitSchleifenwert in EinheitenDatentypen.Passierbarkeit_Vorhanden_Enum'Range loop
+      for PassierbarkeitSchleifenwert in EinheitenDatentypen.Passierbarkeit_Enum'Range loop
          
          case
-           PassierbarTesten (RasseExtern           => RasseExtern,
-                             UmgebungExtern        => PassierbarkeitSchleifenwert,
-                             IDExtern              => IDExtern,
-                             NeueKoordinatenExtern => NeueKoordinatenExtern)
+           LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => RasseExtern,
+                                                  IDExtern             => IDExtern,
+                                                  WelcheUmgebungExtern => PassierbarkeitSchleifenwert)
          is
             when False =>
                Passierbar := IstNichtPassierbar (RasseExtern           => RasseExtern,
@@ -70,7 +68,8 @@ package body PassierbarkeitspruefungLogik is
                                                  NeueKoordinatenExtern => NeueKoordinatenExtern);
                
             when True =>
-               Passierbar := IstPassierbar (UmgebungExtern        => PassierbarkeitSchleifenwert,
+               Passierbar := IstPassierbar (RasseExtern           => RasseExtern,
+                                            UmgebungExtern        => PassierbarkeitSchleifenwert,
                                             NeueKoordinatenExtern => NeueKoordinatenExtern);
          end case;
          
@@ -94,137 +93,58 @@ package body PassierbarkeitspruefungLogik is
    
    function IstNichtPassierbar
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      UmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Vorhanden_Enum;
+      UmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Enum;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is begin
       
-      -- Alles mal ein wenig optimieren. äöü
-      if
-        StadtKonstanten.LeerNummer /= StadtSuchenLogik.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                                       KoordinatenExtern => NeueKoordinatenExtern)
-      then
-         return True;
-                  
-      elsif
-        LeseWeltkarte.Weg (KoordinatenExtern => NeueKoordinatenExtern) /= KartenverbesserungDatentypen.Leer_Weg_Enum
-        and then
-          False = LeseVerbesserungenDatenbank.PassierbarkeitWeg (WegExtern            => LeseWeltkarte.Weg (KoordinatenExtern => NeueKoordinatenExtern),
-                                                                 WelcheUmgebungExtern => UmgebungExtern)
-      then
-         null;
-         
-      else
-         null;
-      end if;
+      case
+        StadtSuchenLogik.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
+                                                         KoordinatenExtern => NeueKoordinatenExtern)
+      is
+         when StadtKonstanten.LeerNummer =>
+            WegVorhanden := LeseWeltkarte.Weg (KoordinatenExtern => NeueKoordinatenExtern);
+
+         when others =>
+            return True;
+      end case;
       
-      return False;
+      case
+        WegVorhanden
+      is
+         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
+            return False;
+            
+         when others =>
+            return LeseVerbesserungenDatenbank.PassierbarkeitWeg (WegExtern            => WegVorhanden,
+                                                                  WelcheUmgebungExtern => UmgebungExtern);
+      end case;
       
    end IstNichtPassierbar;
    
    
    
    function IstPassierbar
-     (UmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Vorhanden_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      UmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Enum;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is begin
-                      
-      -- Warum kommt die Prüfung hier noch einmal?
-      if
-        False = KartenAllgemeinesLogik.PassierbarGrund (KoordinatenExtern    => NeueKoordinatenExtern,
-                                                        PassierbarkeitExtern => UmgebungExtern)
-      then
-         null;
-         
-         -- Funktioniert akutell nicht richtig? Beheben oder entfernen? äöü
-         -- elsif
-         --  LeseWeltkarte.Weg (KoordinatenExtern => NeueKoordinatenExtern) /= KartenverbesserungDatentypen.Leer_Weg_Enum
-         --   and then
-         --     False = KartenAllgemeinesLogik.PassierbarWeg (KoordinatenExtern    => NeueKoordinatenExtern,
-         --                                                   PassierbarkeitExtern => UmgebungExtern)
-         -- then
-         --    null;
-         
-      else
-         return True;
-      end if;
       
-      return False;
+      case
+        KartenAllgemeinesLogik.PassierbarGrund (KoordinatenExtern    => NeueKoordinatenExtern,
+                                                PassierbarkeitExtern => UmgebungExtern)
+      is
+         when True =>
+            return True;
+            
+         when False =>
+            return IstNichtPassierbar (RasseExtern           => RasseExtern,
+                                       UmgebungExtern        => UmgebungExtern,
+                                       NeueKoordinatenExtern => NeueKoordinatenExtern);
+      end case;
       
    end IstPassierbar;
-   
-   
-   
-   function PassierbarTesten
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      UmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Vorhanden_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenID;
-      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return Boolean
-   is begin
-      
-      if
-        NeueKoordinatenExtern.EAchse = -2
-        and
-          UmgebungExtern /= EinheitenDatentypen.Planeteninneres_Enum
-          and
-            UmgebungExtern /= EinheitenDatentypen.Lava_Enum
-      then
-         null;
-                  
-      elsif
-        NeueKoordinatenExtern.EAchse = -1
-        and
-          UmgebungExtern /= EinheitenDatentypen.Unterwasser_Enum
-          and
-            UmgebungExtern /= EinheitenDatentypen.Unterküstenwasser_Enum
-            and
-              UmgebungExtern /= EinheitenDatentypen.Unterirdisch_Enum
-      then
-         null;
-                  
-      elsif
-        NeueKoordinatenExtern.EAchse = 0
-        and
-          UmgebungExtern /= EinheitenDatentypen.Wasser_Enum
-          and
-            UmgebungExtern /= EinheitenDatentypen.Küstenwasser_Enum
-            and
-              UmgebungExtern /= EinheitenDatentypen.Boden_Enum
-              and
-                UmgebungExtern not in EinheitenDatentypen.Passierbarkeit_Fliegen_Enum'Range
-      then
-         null;
-                  
-      elsif
-        NeueKoordinatenExtern.EAchse = 1
-        and
-          UmgebungExtern not in EinheitenDatentypen.Passierbarkeit_Fliegen_Enum'Range
-      then
-         null;
-         
-      elsif
-        NeueKoordinatenExtern.EAchse = 2
-        and
-          UmgebungExtern /= EinheitenDatentypen.Weltraum_Enum
-      then
-         null;
-            
-      elsif
-        False = LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => RasseExtern,
-                                                       IDExtern             => IDExtern,
-                                                       WelcheUmgebungExtern => UmgebungExtern)
-      then
-         null;
-         
-      else
-         return True;
-      end if;
-      
-      return False;
-      
-   end PassierbarTesten;
    
 
 
@@ -251,6 +171,7 @@ package body PassierbarkeitspruefungLogik is
             when others =>
                IDEinheit := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
                                                                                                                                              PlatzExtern              => BelegterPlatzSchleifenwert)));
+               
                if
                  KartenKonstanten.LeerXAchse = StadtumgebungErreichbarLogik.UmgebungErreichbar (AktuelleKoordinatenExtern => NeueKoordinatenExtern,
                                                                                                 RasseExtern               => TransporterExtern.Rasse,
@@ -278,6 +199,8 @@ package body PassierbarkeitspruefungLogik is
       return Boolean
    is begin
       
+      StadtKoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      
       -- Bei Einheiten nur um das direkte StadtumfeldUmfeld loopen. Das ist doch Blödsinn, die Einheiten werden ja auf einem beliebigen Feld innerhalb des Stadtbereiches platziert. äöü
       -- Oder reicht das weil es ja hauptsächlich dazu da ist um z.B. Panzer im Himmel zu verhindern? äöü
       YAchseEinheitenSchleife:
@@ -285,7 +208,7 @@ package body PassierbarkeitspruefungLogik is
          XAchseEinheitenSchleife:
          for XAchseEinheitenSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
                
-            KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
+            KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtKoordinaten,
                                                                                                       ÄnderungExtern    => (0, YAchseEinheitenSchleifenwert, XAchseEinheitenSchleifenwert),
                                                                                                       LogikGrafikExtern => True);
                

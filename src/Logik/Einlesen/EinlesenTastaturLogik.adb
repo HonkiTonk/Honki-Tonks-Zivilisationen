@@ -18,16 +18,15 @@ package body EinlesenTastaturLogik is
             Open (File => TastenbelegungLaden,
                   Mode => In_File,
                   Name => VerzeichnisKonstanten.Tastenbelegung);
+      
+            TastenbelegungVariablen.TastenbelegungArray'Read (Stream (File => TastenbelegungLaden),
+                                                              TastenbelegungVariablen.Tastenbelegung);
+      
+            Close (File => TastenbelegungLaden);
 
          when False =>
             TastenbelegungVariablen.StandardTastenbelegungLaden;
-            return;
       end case;
-      
-      TastenbelegungVariablen.TastenbelegungArray'Read (Stream (File => TastenbelegungLaden),
-                                                        TastenbelegungVariablen.Tastenbelegung);
-      
-      Close (File => TastenbelegungLaden);
       
    end EinlesenTastaturbelegung;
 

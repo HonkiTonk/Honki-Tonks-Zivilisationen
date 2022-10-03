@@ -60,6 +60,10 @@ package body BefehlsauswahlLogik is
          when TastenbelegungDatentypen.Auswählen_Enum =>
             BefehlspruefungenLogik.AuswahlEinheitStadt (RasseExtern => RasseExtern);
             
+            -- Hier noch Zeug einbauen. äöü
+         when TastenbelegungDatentypen.Entladen_Enum =>
+            null;
+            
          when TastenbelegungDatentypen.Menü_Zurück_Enum =>
             return RueckgabeDatentypen.Spielmenü_Enum;
 

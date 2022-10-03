@@ -39,7 +39,7 @@ package SystemKonstanten is
                                            MenueDatentypen.Kartenform_Menü_Enum         => 14,
 
                                            -- Steuerungsmenü.
-                                           MenueDatentypen.Steuerung_Menü_Enum          => 31,
+                                           MenueDatentypen.Steuerung_Menü_Enum          => 32,
 
                                            -- Spielstandmenü
                                            MenueDatentypen.Spielstand_Menü_Enum         => 15

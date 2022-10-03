@@ -89,7 +89,7 @@ package body LeseEinheitenDatenbank is
    function Passierbarkeit
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenID;
-      WelcheUmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Vorhanden_Enum)
+      WelcheUmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Enum)
       return Boolean
    is begin
       

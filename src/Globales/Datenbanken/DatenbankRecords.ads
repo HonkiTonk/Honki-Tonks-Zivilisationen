@@ -15,11 +15,10 @@ with KartenverbesserungDatentypen;
 package DatenbankRecords is
 
    -- EinheitenDatenbank
-   type PassierbarkeitArray is array (EinheitenDatentypen.Passierbarkeit_Vorhanden_Enum'Range) of Boolean;
+   type PassierbarkeitArray is array (EinheitenDatentypen.Passierbarkeit_Enum'Range) of Boolean;
 
    type EinheitenlisteRecord is record
       
-      -- Solche Benennungen auch mal anpassen. äöü
       Einheitenart : EinheitenDatentypen.Einheitart_Enum;
       PreisGeld : ProduktionDatentypen.Produktion;
       Produktionskosten : ProduktionDatentypen.Lagermenge;
@@ -120,11 +119,7 @@ package DatenbankRecords is
 
    -- VerbesserungenWegeDatenbank
    type VerbesserungenWegeListeRecord is new KartenlisteRecord with record
-      
-     -- Bewertung : BewertungArray;
-     -- Wirtschaft : WirtschaftArray;
-     -- Kampf : KampfArray;
-      
+                
       Passierbarkeit : PassierbarkeitArray;
       
    end record;

@@ -189,17 +189,22 @@ package ChangelogOktober2022 is
    
    
 
-   -- Version 0.04. => 0.04. (04.10.2022):
+   -- Version 0.04.0750 => 0.04. (04.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.0670 => 0.04. (03.10.2022):
+   -- Version 0.04.0670 => 0.04.0750 (03.10.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Noch mehr Tests und Einstellungen durchgeführt um eine vollständig plattformunabhängige Version zu bekommen, aber der scheiß funktioniert einfach nicht so wie ich das haben will.
+   -- Diverse Prüfungen eingebaut um Abstürze zu verhindern.
+   -- Passierbarkeitssystem überarbeitet, Passierbarkeit wird jetzt immer korrekt auf Basis des Grunds, vorhandener Stadt und vorhandenem Weg geprüft.
+   -- Fehler korrigiert, welcher das Einlesen einiger Standarddatenbanken verhinderte.
+   -- Fehler korrigiert, welcher es ermöglichte Einheiten den Platz tauschen zu lassen, auch wenn der Grund der einen Einheit von der anderen Einheit gar nicht betretbar war.
+   -- Angefangen das automatische Ausladen wenn ein beladener Transporter sich auf eine Stadt bewegt durch eine Befehl auszutauschen welcher den Transporter automatisch vollständig entlädt.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    
 

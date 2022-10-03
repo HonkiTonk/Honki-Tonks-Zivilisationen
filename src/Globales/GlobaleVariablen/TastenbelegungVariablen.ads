@@ -53,6 +53,7 @@ private
                                                              TastenbelegungDatentypen.Auflösen_Enum                       => Sf.Window.Keyboard.sfKeyK,
                                                              TastenbelegungDatentypen.Einheit_Verbessern_Enum             => Sf.Window.Keyboard.sfKeyA,
                                                              TastenbelegungDatentypen.Heimatstadt_Ändern_Enum             => Sf.Window.Keyboard.sfKeyC,
+                                                             TastenbelegungDatentypen.Entladen_Enum                       => Sf.Window.Keyboard.sfKeyE,
 
                                                              TastenbelegungDatentypen.Diplomatie_Enum                     => Sf.Window.Keyboard.sfKeyD,
                                                              TastenbelegungDatentypen.Gehe_Zu_Enum                        => Sf.Window.Keyboard.sfKeyG,

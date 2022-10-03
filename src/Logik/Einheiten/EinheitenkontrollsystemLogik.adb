@@ -59,6 +59,10 @@ package body EinheitenkontrollsystemLogik is
          when TastenbelegungDatentypen.Heimatstadt_Ändern_Enum =>
             EinheitenmodifizierungLogik.HeimatstadtÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             return True;
+            
+         when TastenbelegungDatentypen.Entladen_Enum =>
+            -- Hier muss noch Zeug rein. äöü
+            return True;
                
          when TastenbelegungDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range | TastenbelegungDatentypen.Tastenbelegung_Allgemeine_Befehle_Enum'Range =>
             -- Das Umgekehrte zurückgeben da bei erfolgreichen Aufgabenanfang keine Bewegung mehr möglich ist und umgekehrt.

@@ -1,8 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Ada.Directories; use Ada.Directories;
-
 with EinheitenDatenbank;
 with ForschungenDatenbank;
 with GebaeudeDatenbank;
@@ -29,24 +27,12 @@ package body SchreibenDatenbankenLogik is
    
    
    
-   -- Schreibt Stream nicht eh immer alles neu und muss deswegen gar nicht auf Existenz geprüft werden? äöü
-   -- Gilt auch für alle Schreibevorgänge. äöü
    procedure SchreibenEinheitenDatenbank
    is begin
       
-      case
-        Exists (Name => VerzeichnisKonstanten.EinheitenDatenbank)
-      is
-         when True =>
-            Open (File => DatenbankSpeichern,
-                  Mode => Out_File,
-                  Name => VerzeichnisKonstanten.EinheitenDatenbank);
-            
-         when False =>
-            Create (File => DatenbankSpeichern,
-                    Mode => Out_File,
-                    Name => VerzeichnisKonstanten.EinheitenDatenbank);
-      end case;
+      Create (File => DatenbankSpeichern,
+              Mode => Out_File,
+              Name => VerzeichnisKonstanten.EinheitenDatenbank);
       
       EinheitenDatenbank.EinheitenlisteArray'Write (Stream (File => DatenbankSpeichern),
                                                     EinheitenDatenbank.Einheitenliste);
@@ -60,19 +46,9 @@ package body SchreibenDatenbankenLogik is
    procedure SchreibenForschungenDatenbank
    is begin
       
-      case
-        Exists (Name => VerzeichnisKonstanten.ForschungenDatenbank)
-      is
-         when True =>
-            Open (File => DatenbankSpeichern,
-                  Mode => Out_File,
-                  Name => VerzeichnisKonstanten.ForschungenDatenbank);
-            
-         when False =>
-            Create (File => DatenbankSpeichern,
-                    Mode => Out_File,
-                    Name => VerzeichnisKonstanten.ForschungenDatenbank);
-      end case;
+      Create (File => DatenbankSpeichern,
+              Mode => Out_File,
+              Name => VerzeichnisKonstanten.ForschungenDatenbank);
       
       ForschungenDatenbank.ForschungslisteArray'Write (Stream (File => DatenbankSpeichern),
                                                        ForschungenDatenbank.Forschungsliste);
@@ -95,19 +71,9 @@ package body SchreibenDatenbankenLogik is
    procedure SchreibenGebäudeDatenbank
    is begin
       
-      case
-        Exists (Name => VerzeichnisKonstanten.GebaeudeDatenbank)
-      is
-         when True =>
-            Open (File => DatenbankSpeichern,
-                  Mode => Out_File,
-                  Name => VerzeichnisKonstanten.GebaeudeDatenbank);
-            
-         when False =>
-            Create (File => DatenbankSpeichern,
-                    Mode => Out_File,
-                    Name => VerzeichnisKonstanten.GebaeudeDatenbank);
-      end case;
+      Create (File => DatenbankSpeichern,
+              Mode => Out_File,
+              Name => VerzeichnisKonstanten.GebaeudeDatenbank);
       
       GebaeudeDatenbank.GebäudelisteArray'Write (Stream (File => DatenbankSpeichern),
                                                   GebaeudeDatenbank.Gebäudeliste);
@@ -121,19 +87,9 @@ package body SchreibenDatenbankenLogik is
    procedure SchreibenKartenDatenbanken
    is begin
       
-      case
-        Exists (Name => VerzeichnisKonstanten.KartenGrundDatenbank)
-      is
-         when True =>
-            Open (File => DatenbankSpeichern,
-                  Mode => Out_File,
-                  Name => VerzeichnisKonstanten.KartenGrundDatenbank);
-            
-         when False =>
-            Create (File => DatenbankSpeichern,
-                    Mode => Out_File,
-                    Name => VerzeichnisKonstanten.KartenGrundDatenbank);
-      end case;
+      Create (File => DatenbankSpeichern,
+              Mode => Out_File,
+              Name => VerzeichnisKonstanten.KartenGrundDatenbank);
       
       KartenDatenbank.KartengrundlisteArray'Write (Stream (File => DatenbankSpeichern),
                                                    KartenDatenbank.Kartengrundliste);
@@ -142,19 +98,9 @@ package body SchreibenDatenbankenLogik is
       
       
       
-      case
-        Exists (Name => VerzeichnisKonstanten.KartenFlussDatenbank)
-      is
-         when True =>
-            Open (File => DatenbankSpeichern,
-                  Mode => Out_File,
-                  Name => VerzeichnisKonstanten.KartenFlussDatenbank);
-            
-         when False =>
-            Create (File => DatenbankSpeichern,
-                    Mode => Out_File,
-                    Name => VerzeichnisKonstanten.KartenFlussDatenbank);
-      end case;
+      Create (File => DatenbankSpeichern,
+              Mode => Out_File,
+              Name => VerzeichnisKonstanten.KartenFlussDatenbank);
       
       KartenDatenbank.KartenflusslisteArray'Write (Stream (File => DatenbankSpeichern),
                                                    KartenDatenbank.Kartenflussliste);
@@ -163,19 +109,9 @@ package body SchreibenDatenbankenLogik is
       
       
       
-      case
-        Exists (Name => VerzeichnisKonstanten.KartenDatenbank)
-      is
-         when True =>
-            Open (File => DatenbankSpeichern,
-                  Mode => Out_File,
-                  Name => VerzeichnisKonstanten.KartenDatenbank);
-            
-         when False =>
-            Create (File => DatenbankSpeichern,
-                    Mode => Out_File,
-                    Name => VerzeichnisKonstanten.KartenDatenbank);
-      end case;
+      Create (File => DatenbankSpeichern,
+              Mode => Out_File,
+              Name => VerzeichnisKonstanten.KartenDatenbank);
       
       KartenDatenbank.KartenressourcenlisteArray'Write (Stream (File => DatenbankSpeichern),
                                                         KartenDatenbank.Kartenressourcenliste);
@@ -189,19 +125,9 @@ package body SchreibenDatenbankenLogik is
    procedure SchreibenVerbesserungenDatenbank
    is begin
       
-      case
-        Exists (Name => VerzeichnisKonstanten.VerbesserungenDatenbank)
-      is
-         when True =>
-            Open (File => DatenbankSpeichern,
-                  Mode => Out_File,
-                  Name => VerzeichnisKonstanten.VerbesserungenDatenbank);
-            
-         when False =>
-            Create (File => DatenbankSpeichern,
-                    Mode => Out_File,
-                    Name => VerzeichnisKonstanten.VerbesserungenDatenbank);
-      end case;
+      Create (File => DatenbankSpeichern,
+              Mode => Out_File,
+              Name => VerzeichnisKonstanten.VerbesserungenDatenbank);
       
       VerbesserungenDatenbank.VerbesserungenlisteArray'Write (Stream (File => DatenbankSpeichern),
                                                               VerbesserungenDatenbank.Verbesserungenliste);
@@ -210,19 +136,9 @@ package body SchreibenDatenbankenLogik is
       
       
       
-      case
-        Exists (Name => VerzeichnisKonstanten.WegeDatenbank)
-      is
-         when True =>
-            Open (File => DatenbankSpeichern,
-                  Mode => Out_File,
-                  Name => VerzeichnisKonstanten.WegeDatenbank);
-            
-         when False =>
-            Create (File => DatenbankSpeichern,
-                    Mode => Out_File,
-                    Name => VerzeichnisKonstanten.WegeDatenbank);
-      end case;
+      Create (File => DatenbankSpeichern,
+              Mode => Out_File,
+              Name => VerzeichnisKonstanten.WegeDatenbank);
       
       VerbesserungenDatenbank.WegelisteArray'Write (Stream (File => DatenbankSpeichern),
                                                     VerbesserungenDatenbank.Wegeliste);
@@ -236,19 +152,9 @@ package body SchreibenDatenbankenLogik is
    procedure SchreibenRassenDatenbank
    is begin
       
-      case
-        Exists (Name => VerzeichnisKonstanten.RassenDatenbank)
-      is
-         when True =>
-            Open (File => DatenbankSpeichern,
-                  Mode => Out_File,
-                  Name => VerzeichnisKonstanten.RassenDatenbank);
-            
-         when False =>
-            Create (File => DatenbankSpeichern,
-                    Mode => Out_File,
-                    Name => VerzeichnisKonstanten.RassenDatenbank);
-      end case;
+      Create (File => DatenbankSpeichern,
+              Mode => Out_File,
+              Name => VerzeichnisKonstanten.RassenDatenbank);
       
       RassenDatenbank.RassenlisteArray'Write (Stream (File => DatenbankSpeichern),
                                               RassenDatenbank.Rassenliste);

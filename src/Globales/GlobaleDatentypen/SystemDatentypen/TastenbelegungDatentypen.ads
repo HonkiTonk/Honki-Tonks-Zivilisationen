@@ -3,6 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 package TastenbelegungDatentypen is
 
+   -- Wenn ich bestimmte Einheitenbefehle nur noch bei ausgewählten Einheiten zulasse, müsste ich das hier dann nicht in zwei unabhängige Teile aufteilen können? äöü
    type Tastenbelegung_Enum is (
                                 Leer_Tastenbelegung_Enum,
                                 
@@ -20,7 +21,7 @@ package TastenbelegungDatentypen is
                                 
                                 -- Einheitenbefehle allgemein
                                 Heilen_Enum, Verschanzen_Enum, Plündern_Enum, Auflösen_Enum, Einheit_Verbessern_Enum,
-                                Heimatstadt_Ändern_Enum,
+                                Heimatstadt_Ändern_Enum, Entladen_Enum,
                                 
                                 -- Ab hier auswählbar.
                                 Forschung_Enum,

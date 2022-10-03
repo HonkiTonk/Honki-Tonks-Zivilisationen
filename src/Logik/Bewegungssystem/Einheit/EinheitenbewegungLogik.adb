@@ -24,7 +24,6 @@ with EinheitentransporterLogik;
 with KartenkoordinatenberechnungssystemLogik;
 with BewegungspunkteBerechnenLogik;
 
--- Muss alles mal überarbeitet werden aufgrund der Änderungen in letzter Zeit. äöü
 package body EinheitenbewegungLogik is
    
    function PositionÄndern
@@ -120,8 +119,8 @@ package body EinheitenbewegungLogik is
       elsif
         EinheitAufFeld.Rasse = EinheitRasseNummerExtern.Rasse
       then
-         BewegungDurchführen := EigeneEinheitAufFeld (BewegendeEinheitExtern     => EinheitRasseNummerExtern,
-                                                       FeldBelegendeEinheitExtern => EinheitAufFeld);
+         BewegungDurchführen := EigeneEinheitAufFeld (BewegendeEinheitExtern => EinheitRasseNummerExtern,
+                                                       StehendeEinheitExtern  => EinheitAufFeld);
          
          return NochBewegungspunkte (EinheitRasseNummerExtern  => EinheitRasseNummerExtern,
                                      BewegungDurchführenExtern => BewegungDurchführen,
@@ -225,70 +224,72 @@ package body EinheitenbewegungLogik is
    
    
    
-   -- Das hier noch einmal überarbeiten, vermutlich muss ich dazu auch die BewegungsberechnungLogik überarbeien. äöü
+   -- Das hier noch einmal überarbeiten, eventuell muss ich dazu auch die BewegungsberechnungLogik überarbeiten. äöü
    function EigeneEinheitAufFeld
      (BewegendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      FeldBelegendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      StehendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
       
-      case
-        EinheitentransporterLogik.KannTransportiertWerden (LadungExtern      => BewegendeEinheitExtern,
-                                                           TransporterExtern => FeldBelegendeEinheitExtern)
-      is
-         when True =>
-            if
-              True = LadungsbewegungLogik.TransporterBeladen (TransporterExtern => FeldBelegendeEinheitExtern,
-                                                              LadungExtern      => BewegendeEinheitExtern.Nummer)
-            then
-               return False;
-               
-            else
-               null;
-            end if;
-            
-         when False =>
-            null;
-      end case;
-      
-      Tauschkoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => BewegendeEinheitExtern);
-      
       if
-        False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => FeldBelegendeEinheitExtern,
-                                                                          NeueKoordinatenExtern    => Tauschkoordinaten)
-      then
-         return False;
-         
-      elsif
-        ((EinheitenDatentypen.Kein_Transport_Enum /= LeseEinheitenDatenbank.KannTransportieren (RasseExtern => FeldBelegendeEinheitExtern.Rasse,
-                                                                                                IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => FeldBelegendeEinheitExtern))
-          and
-            StadtKonstanten.LeerNummer /= StadtSuchenLogik.KoordinatenStadtMitRasseSuchen (RasseExtern       => FeldBelegendeEinheitExtern.Rasse,
-                                                                                           KoordinatenExtern => Tauschkoordinaten))
-         and then
-         False = PassierbarkeitspruefungLogik.InStadtEntladbar (TransporterExtern     => FeldBelegendeEinheitExtern,
-                                                                NeueKoordinatenExtern => Tauschkoordinaten))
-        or
-          ((EinheitenDatentypen.Kein_Transport_Enum /= LeseEinheitenDatenbank.KannTransportieren (RasseExtern => BewegendeEinheitExtern.Rasse,
-                                                                                                  IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => BewegendeEinheitExtern))
-            and
-              StadtKonstanten.LeerNummer /= StadtSuchenLogik.KoordinatenStadtMitRasseSuchen (RasseExtern       => FeldBelegendeEinheitExtern.Rasse,
-                                                                                             KoordinatenExtern => Tauschkoordinaten))
-           and then
-           False = PassierbarkeitspruefungLogik.InStadtEntladbar (TransporterExtern     => BewegendeEinheitExtern,
-                                                                  NeueKoordinatenExtern => Tauschkoordinaten))
-      then
-         return False;
-         
-      elsif
-        LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => FeldBelegendeEinheitExtern) < BewegungspunkteBerechnenLogik.AbzugDurchBewegung (NeueKoordinatenExtern    => Tauschkoordinaten,
-                                                                                                                                                         EinheitRasseNummerExtern => FeldBelegendeEinheitExtern)
+        True = EinheitentransporterLogik.KannTransportiertWerden (LadungExtern      => BewegendeEinheitExtern,
+                                                                  TransporterExtern => StehendeEinheitExtern)
+        and then
+          True = LadungsbewegungLogik.TransporterBeladen (TransporterExtern => StehendeEinheitExtern,
+                                                          LadungExtern      => BewegendeEinheitExtern.Nummer)
       then
          return False;
          
       else
-         BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitRasseNummerExtern => FeldBelegendeEinheitExtern,
-                                                                NeueKoordinatenExtern    => Tauschkoordinaten,
+         BewegendeKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => BewegendeEinheitExtern);
+         StehendeKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => StehendeEinheitExtern);
+      end if;
+            
+      if
+        False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => StehendeEinheitExtern,
+                                                                          NeueKoordinatenExtern    => BewegendeKoordinaten)
+        or
+          False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => BewegendeEinheitExtern,
+                                                                            NeueKoordinatenExtern    => StehendeKoordinaten)
+      then
+         return False;
+         
+      elsif
+        LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => StehendeEinheitExtern) < BewegungspunkteBerechnenLogik.AbzugDurchBewegung (NeueKoordinatenExtern    => BewegendeKoordinaten,
+                                                                                                                                                    EinheitRasseNummerExtern => StehendeEinheitExtern)
+        or
+          LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => BewegendeEinheitExtern) < BewegungspunkteBerechnenLogik.AbzugDurchBewegung (NeueKoordinatenExtern    => StehendeKoordinaten,
+                                                                                                                                                       EinheitRasseNummerExtern => BewegendeEinheitExtern)
+      then
+         return False;
+         
+      elsif
+        (EinheitenDatentypen.Kein_Transport_Enum /= LeseEinheitenDatenbank.KannTransportieren (RasseExtern => StehendeEinheitExtern.Rasse,
+                                                                                               IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => StehendeEinheitExtern))
+         and
+           StadtKonstanten.LeerNummer /= StadtSuchenLogik.KoordinatenStadtMitRasseSuchen (RasseExtern       => StehendeEinheitExtern.Rasse,
+                                                                                          KoordinatenExtern => BewegendeKoordinaten))
+        and then
+          False = PassierbarkeitspruefungLogik.InStadtEntladbar (TransporterExtern     => StehendeEinheitExtern,
+                                                                 NeueKoordinatenExtern => BewegendeKoordinaten)
+      then
+         return False;
+         
+      elsif
+        (EinheitenDatentypen.Kein_Transport_Enum /= LeseEinheitenDatenbank.KannTransportieren (RasseExtern => BewegendeEinheitExtern.Rasse,
+                                                                                               IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => BewegendeEinheitExtern))
+         and
+           StadtKonstanten.LeerNummer /= StadtSuchenLogik.KoordinatenStadtMitRasseSuchen (RasseExtern       => StehendeEinheitExtern.Rasse,
+                                                                                          KoordinatenExtern => BewegendeKoordinaten))
+        and then
+          False = PassierbarkeitspruefungLogik.InStadtEntladbar (TransporterExtern     => BewegendeEinheitExtern,
+                                                                 NeueKoordinatenExtern => BewegendeKoordinaten)
+      then
+         return False;
+         
+      else
+         BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitRasseNummerExtern => StehendeEinheitExtern,
+                                                                NeueKoordinatenExtern    => BewegendeKoordinaten,
                                                                 EinheitentauschExtern    => True);
       
          return True;

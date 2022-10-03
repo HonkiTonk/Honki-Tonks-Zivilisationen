@@ -84,6 +84,7 @@ library project ASFML is
 
    package Binder is
       for Switches ("Ada") use ("-Es"); --  Symbolic traceback
+	for Default_Switches ("ada") use ("-static");
    end Binder;
 
    package Linker is

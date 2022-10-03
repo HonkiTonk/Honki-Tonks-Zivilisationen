@@ -28,7 +28,7 @@ package KartengrundDatentypen is
                              
                              Erde_Enum, Erdgestein_Enum, Sand_Enum, Gestein_Enum,
                               
-                             -- Planeteninneres
+                             -- Planetenkern
                              Lava_Enum, Planetenkern_Enum,
                              Ringwoodit_Enum, Majorit_Enum, Perowskit_Enum, Magnesiowüstit_Enum,
                               

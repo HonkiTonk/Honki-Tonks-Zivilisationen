@@ -13,7 +13,7 @@ package LeseVerbesserungenDatenbank is
    
    function PassierbarkeitWeg
      (WegExtern : in KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum;
-      WelcheUmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Vorhanden_Enum)
+      WelcheUmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Enum)
       return Boolean;
    
    function BewertungVerbesserung

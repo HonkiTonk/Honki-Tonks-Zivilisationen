@@ -61,7 +61,7 @@ package body BewegungsberechnungEinheitenLogik is
 
       BewegungspunkteAbzug := BewegungspunkteBerechnenLogik.AbzugDurchBewegung (NeueKoordinatenExtern    => NeueKoordinatenExtern,
                                                                                 EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-        
+      
       if
         BewegungspunkteAbzug = EinheitenKonstanten.EinheitUnbewegbar
       then

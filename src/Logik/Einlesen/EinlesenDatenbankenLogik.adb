@@ -39,16 +39,15 @@ package body EinlesenDatenbankenLogik is
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
                   Name => VerzeichnisKonstanten.EinheitenDatenbank);
+      
+            EinheitenDatenbank.EinheitenlisteArray'Read (Stream (File => DatenbankEinlesen),
+                                                         EinheitenDatenbank.Einheitenliste);
+      
+            Close (File => DatenbankEinlesen);
 
          when False =>
             EinheitenDatenbank.StandardEinheitenDatenbankLaden;
-            return;
       end case;
-      
-      EinheitenDatenbank.EinheitenlisteArray'Read (Stream (File => DatenbankEinlesen),
-                                                   EinheitenDatenbank.Einheitenliste);
-      
-      Close (File => DatenbankEinlesen);
       
    end EinlesenEinheitenDatenbank;
    
@@ -64,25 +63,24 @@ package body EinlesenDatenbankenLogik is
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
                   Name => VerzeichnisKonstanten.ForschungenDatenbank);
+      
+            ForschungenDatenbank.ForschungslisteArray'Read (Stream (File => DatenbankEinlesen),
+                                                            ForschungenDatenbank.Forschungsliste);
+      
+            ForschungKonstanten.TechnologieVerbesserungenArray'Read (Stream (File => DatenbankEinlesen),
+                                                                     ForschungenDatenbank.TechnologieVerbesserungen);
+      
+            ForschungKonstanten.TechnologieWegeArray'Read (Stream (File => DatenbankEinlesen),
+                                                           ForschungenDatenbank.TechnologieWege);
+      
+            ForschungKonstanten.TechnologieUmgebungsgrößeArray'Read (Stream (File => DatenbankEinlesen),
+                                                                       ForschungenDatenbank.TechnologieUmgebungsgröße);
+      
+            Close (File => DatenbankEinlesen);
 
          when False =>
             ForschungenDatenbank.StandardForschungenDatenbankLaden;
-            return;
       end case;
-      
-      ForschungenDatenbank.ForschungslisteArray'Read (Stream (File => DatenbankEinlesen),
-                                                      ForschungenDatenbank.Forschungsliste);
-      
-      ForschungKonstanten.TechnologieVerbesserungenArray'Read (Stream (File => DatenbankEinlesen),
-                                                               ForschungenDatenbank.TechnologieVerbesserungen);
-      
-      ForschungKonstanten.TechnologieWegeArray'Read (Stream (File => DatenbankEinlesen),
-                                                     ForschungenDatenbank.TechnologieWege);
-      
-      ForschungKonstanten.TechnologieUmgebungsgrößeArray'Read (Stream (File => DatenbankEinlesen),
-                                                                 ForschungenDatenbank.TechnologieUmgebungsgröße);
-      
-      Close (File => DatenbankEinlesen);
       
    end EinlesenForschungenDatenbank;
    
@@ -98,16 +96,15 @@ package body EinlesenDatenbankenLogik is
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
                   Name => VerzeichnisKonstanten.GebaeudeDatenbank);
+      
+            GebaeudeDatenbank.GebäudelisteArray'Read (Stream (File => DatenbankEinlesen),
+                                                       GebaeudeDatenbank.Gebäudeliste);
+      
+            Close (File => DatenbankEinlesen);
 
          when False =>
             GebaeudeDatenbank.StandardGebaeudeDatenbankLaden;
-            return;
       end case;
-      
-      GebaeudeDatenbank.GebäudelisteArray'Read (Stream (File => DatenbankEinlesen),
-                                                 GebaeudeDatenbank.Gebäudeliste);
-      
-      Close (File => DatenbankEinlesen);
       
    end EinlesenGebäudeDatenbank;
    
@@ -123,18 +120,15 @@ package body EinlesenDatenbankenLogik is
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
                   Name => VerzeichnisKonstanten.KartenGrundDatenbank);
+      
+            KartenDatenbank.KartengrundlisteArray'Read (Stream (File => DatenbankEinlesen),
+                                                        KartenDatenbank.Kartengrundliste);
+      
+            Close (File => DatenbankEinlesen);
 
          when False =>
             KartenDatenbank.StandardKartengrundDatenbankLaden;
-            return;
       end case;
-      
-      KartenDatenbank.KartengrundlisteArray'Read (Stream (File => DatenbankEinlesen),
-                                                  KartenDatenbank.Kartengrundliste);
-      
-      Close (File => DatenbankEinlesen);
-      
-      
       
       case
         Exists (Name => VerzeichnisKonstanten.KartenFlussDatenbank)
@@ -143,18 +137,15 @@ package body EinlesenDatenbankenLogik is
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
                   Name => VerzeichnisKonstanten.KartenFlussDatenbank);
+      
+            KartenDatenbank.KartenflusslisteArray'Read (Stream (File => DatenbankEinlesen),
+                                                        KartenDatenbank.Kartenflussliste);
+      
+            Close (File => DatenbankEinlesen);
 
          when False =>
             KartenDatenbank.StandardKartenflussDatenbankLaden;
-            return;
       end case;
-      
-      KartenDatenbank.KartenflusslisteArray'Read (Stream (File => DatenbankEinlesen),
-                                                  KartenDatenbank.Kartenflussliste);
-      
-      Close (File => DatenbankEinlesen);
-      
-      
       
       case
         Exists (Name => VerzeichnisKonstanten.KartenDatenbank)
@@ -163,16 +154,15 @@ package body EinlesenDatenbankenLogik is
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
                   Name => VerzeichnisKonstanten.KartenDatenbank);
+      
+            KartenDatenbank.KartenressourcenlisteArray'Read (Stream (File => DatenbankEinlesen),
+                                                             KartenDatenbank.Kartenressourcenliste);
+      
+            Close (File => DatenbankEinlesen);
 
          when False =>
             KartenDatenbank.StandardKartenressourcenDatenbankLaden;
-            return;
       end case;
-      
-      KartenDatenbank.KartenressourcenlisteArray'Read (Stream (File => DatenbankEinlesen),
-                                                       KartenDatenbank.Kartenressourcenliste);
-      
-      Close (File => DatenbankEinlesen);
       
    end EinlesenKartengrundDatenbank;
    
@@ -188,18 +178,15 @@ package body EinlesenDatenbankenLogik is
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
                   Name => VerzeichnisKonstanten.WegeDatenbank);
+      
+            VerbesserungenDatenbank.VerbesserungenlisteArray'Read (Stream (File => DatenbankEinlesen),
+                                                                   VerbesserungenDatenbank.Verbesserungenliste);
+      
+            Close (File => DatenbankEinlesen);
 
          when False =>
             VerbesserungenDatenbank.StandardVerbesserungenDatenbankLaden;
-            return;
       end case;
-      
-      VerbesserungenDatenbank.VerbesserungenlisteArray'Read (Stream (File => DatenbankEinlesen),
-                                                             VerbesserungenDatenbank.Verbesserungenliste);
-      
-      Close (File => DatenbankEinlesen);
-      
-      
       
       case
         Exists (Name => VerzeichnisKonstanten.WegeDatenbank)
@@ -208,16 +195,15 @@ package body EinlesenDatenbankenLogik is
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
                   Name => VerzeichnisKonstanten.WegeDatenbank);
+      
+            VerbesserungenDatenbank.WegelisteArray'Read (Stream (File => DatenbankEinlesen),
+                                                         VerbesserungenDatenbank.Wegeliste);
+      
+            Close (File => DatenbankEinlesen);
 
          when False =>
             VerbesserungenDatenbank.StandardWegeDatenbankLaden;
-            return;
       end case;
-      
-      VerbesserungenDatenbank.WegelisteArray'Read (Stream (File => DatenbankEinlesen),
-                                                   VerbesserungenDatenbank.Wegeliste);
-      
-      Close (File => DatenbankEinlesen);
       
    end EinlesenVerbesserungenDatenbank;
    
@@ -233,16 +219,15 @@ package body EinlesenDatenbankenLogik is
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
                   Name => VerzeichnisKonstanten.RassenDatenbank);
+      
+            RassenDatenbank.RassenlisteArray'Read (Stream (File => DatenbankEinlesen),
+                                                   RassenDatenbank.Rassenliste);
+      
+            Close (File => DatenbankEinlesen);
 
          when False =>
             RassenDatenbank.StandardRassenDatenbankLaden;
-            return;
       end case;
-      
-      RassenDatenbank.RassenlisteArray'Read (Stream (File => DatenbankEinlesen),
-                                             RassenDatenbank.Rassenliste);
-      
-      Close (File => DatenbankEinlesen);
       
    end EinlesenRassenDatenbank;
 

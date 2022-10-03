@@ -9,7 +9,8 @@ with DatenbankRecords;
 package WegeStandard is
 
    type WegelisteArray is array (KartenverbesserungDatentypen.Karten_Straße_Enum'Range) of DatenbankRecords.VerbesserungenWegeListeRecord;
-   Wegeliste : constant WegelisteArray := (others =>
+   Wegeliste : constant WegelisteArray := (
+                                           others =>
                                              (
                                               Passierbarkeit     => (EinheitenDatentypen.Boden_Enum    => True,
                                                                      EinheitenDatentypen.Luft_Enum     => True,
@@ -24,7 +25,8 @@ package WegeStandard is
    
    
    type SchienenlisteArray is array (KartenverbesserungDatentypen.Karten_Schiene_Enum'Range) of DatenbankRecords.VerbesserungenWegeListeRecord;
-   Schienenliste : constant SchienenlisteArray := (others =>
+   Schienenliste : constant SchienenlisteArray := (
+                                                   others =>
                                                      (
                                                       Passierbarkeit     => (
                                                                              EinheitenDatentypen.Boden_Enum    => True,
@@ -41,7 +43,8 @@ package WegeStandard is
    
    
    type TunnellisteArray is array (KartenverbesserungDatentypen.Karten_Tunnel_Enum'Range) of DatenbankRecords.VerbesserungenWegeListeRecord;
-   Tunnelliste : constant TunnellisteArray := (others =>
+   Tunnelliste : constant TunnellisteArray := (
+                                               others =>
                                                  (
                                                   Passierbarkeit     => (
                                                                          EinheitenDatentypen.Unterirdisch_Enum => True,

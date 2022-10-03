@@ -37,15 +37,15 @@ package body EinlesenEinstellungenLogik is
             Open (File => DateiNutzereinstellungen,
                   Mode => In_File,
                   Name => VerzeichnisKonstanten.Nutzereinstellungen);
+         
+            SystemRecords.NutzerEinstellungenRecord'Read (Stream (File => DateiNutzereinstellungen),
+                                                          OptionenVariablen.NutzerEinstellungen);
+
+            Close (File => DateiNutzereinstellungen);
 
          when False =>
-            return;
+            null;
       end case;
-         
-      SystemRecords.NutzerEinstellungenRecord'Read (Stream (File => DateiNutzereinstellungen),
-                                                    OptionenVariablen.NutzerEinstellungen);
-
-      Close (File => DateiNutzereinstellungen);
       
    end Nutzereinstellungen;
    
@@ -61,28 +61,27 @@ package body EinlesenEinstellungenLogik is
             Open (File => DateiGrafikeinstellungen,
                   Mode => In_File,
                   Name => VerzeichnisKonstanten.Grafikeinstellungen);
+            
+            GrafikRecords.FensterRecord'Read (Stream (File => DateiGrafikeinstellungen),
+                                              EinstellungenGrafik.FensterEinstellungen);
+            GrafikRecords.GrafikeinstellungenRecord'Read (Stream (File => DateiGrafikeinstellungen),
+                                                          EinstellungenGrafik.Grafikeinstellungen);
+      
+            GrafikRecords.SchriftgrößenRecord'Read (Stream (File => DateiGrafikeinstellungen),
+                                                      TexteinstellungenGrafik.Schriftgrößen);
+            GrafikRecords.SchriftfarbenRecord'Read (Stream (File => DateiGrafikeinstellungen),
+                                                    TexteinstellungenGrafik.Schriftfarben);
+      
+            RasseneinstellungenGrafik.RassenFarbenArray'Read (Stream (File => DateiGrafikeinstellungen),
+                                                              RasseneinstellungenGrafik.Rassenfarben);
+            RasseneinstellungenGrafik.RassenFarbenArray'Read (Stream (File => DateiGrafikeinstellungen),
+                                                              RasseneinstellungenGrafik.RassenfarbenRahmen);
+      
+            Close (File => DateiGrafikeinstellungen);
 
          when False =>
             EinstellungenGrafik.StandardeinstellungenLaden;
-            return;
       end case;
-            
-      GrafikRecords.FensterRecord'Read (Stream (File => DateiGrafikeinstellungen),
-                                        EinstellungenGrafik.FensterEinstellungen);
-      GrafikRecords.GrafikeinstellungenRecord'Read (Stream (File => DateiGrafikeinstellungen),
-                                                    EinstellungenGrafik.Grafikeinstellungen);
-      
-      GrafikRecords.SchriftgrößenRecord'Read (Stream (File => DateiGrafikeinstellungen),
-                                                TexteinstellungenGrafik.Schriftgrößen);
-      GrafikRecords.SchriftfarbenRecord'Read (Stream (File => DateiGrafikeinstellungen),
-                                              TexteinstellungenGrafik.Schriftfarben);
-      
-      RasseneinstellungenGrafik.RassenFarbenArray'Read (Stream (File => DateiGrafikeinstellungen),
-                                                        RasseneinstellungenGrafik.Rassenfarben);
-      RasseneinstellungenGrafik.RassenFarbenArray'Read (Stream (File => DateiGrafikeinstellungen),
-                                                        RasseneinstellungenGrafik.RassenfarbenRahmen);
-      
-      Close (File => DateiGrafikeinstellungen);
       
    end Grafikeinstellungen;
    
@@ -98,14 +97,15 @@ package body EinlesenEinstellungenLogik is
             Open (File => DateiSoundeinstellungen,
                   Mode => In_File,
                   Name => VerzeichnisKonstanten.Soundeinstelllungen);
+            
+            
+      
+            Close (File => DateiSoundeinstellungen);
 
          when False =>
             EinstellungenMusik.StandardeinstellungenLaden;
             EinstellungenSound.StandardeinstellungenLaden;
-            return;
       end case;
-      
-      Close (File => DateiSoundeinstellungen);
       
    end Soundeinstelllungen;
 

@@ -10,6 +10,7 @@ with EinheitenDatentypen;
 with StadtRecords;
 
 private with StadtDatentypen;
+private with KartenverbesserungDatentypen;
 
 with Weltkarte;
 
@@ -74,6 +75,8 @@ private
    
    Passierbar : Boolean;
    
+   WegVorhanden : KartenverbesserungDatentypen.Karten_Weg_Enum;
+   
    Transporterkapazität : EinheitenDatentypen.Transportplätze;
    
    IDEinheit : EinheitenDatentypen.EinheitenIDMitNullWert;
@@ -85,27 +88,15 @@ private
    BenötigteFelder : Positive;
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   StadtKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    TransportplatzEntladen : EinheitenRecords.TransporterArray;
    
-   function PassierbarTesten
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      UmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Vorhanden_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenID;
-      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return Boolean
-     with
-       Pre => (
-                 NeueKoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
-               and
-                 NeueKoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
-               and
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
-              );
+   
    
    function IstNichtPassierbar
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      UmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Vorhanden_Enum;
+      UmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Enum;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
      with
@@ -118,7 +109,8 @@ private
               );
      
    function IstPassierbar
-     (UmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Vorhanden_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      UmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Enum;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
      with
@@ -126,6 +118,8 @@ private
                  NeueKoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
                and
                  NeueKoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+               and
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
 
 end PassierbarkeitspruefungLogik;

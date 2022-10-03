@@ -13,7 +13,7 @@ project Stream is
    end Naming;
 
    package Compiler is
-      for Switches ("ada") use ("-gnatW8", "-gnatf", "-gnato", "-fstack-check", "-gnat2020", "-g", "-gnata", "-gnatVacdefimoprst", 
+      for Switches ("ada") use ("-gnatW8", "-gnatf", "-gnato", "-fstack-check", "-g", "-gnata", "-gnat2020", "-gnatVacdefimoprst", 
          "-gnatw.a.b.c.d.f.g.h.i.j.k.l.m.n.o.p.q.r.s.t.v.w.x.zcdghiklmopqrtuvwxyz_c_re.u_pajf", "-gnatyACOSadefhiklnprsxM222L7");
    end Compiler;
 
@@ -34,7 +34,7 @@ project Stream is
 
    package Linker is
       for Switches ("ada") use ("-s");
-      -- for Linker_Options use ("", "");
+      for Linker_Options use ("-static");
    end Linker;
 
 end Stream;

@@ -10,6 +10,8 @@ with Fehler;
 
 -- Mal den AchsenKartenfeldNaturalRecord auf AchsenKartenfeldPositiveRecord umschreiben oder hier überall eine Umwandlung einbauen? äöü
 -- Gilt auch für alle anderen KoordinatenExtern. äöü
+-- Bei all diesen Lese/Schreibe aufrufe mal Teile der Contracts als normale Prüfung einbauen. äöü
+-- Aufgrund des Doppelzugriffs von Logik- und Grafiktask ist das wohl nötig. äöü
 package body LeseWeltkarte is
    
    function BasisGrund
@@ -17,7 +19,16 @@ package body LeseWeltkarte is
       return KartengrundDatentypen.Kartengrund_Enum
    is begin
       
-      return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund.BasisGrund;
+      case
+        KoordinatenExtern.EAchse
+      is
+         when KartenKonstanten.LeerEAchse =>
+            -- Bei sowas kann nicht Leer zurückgegeben werden weil es keine Grafik für leere Felder gibt und dieser Teil auch nur vom Grafiktask aufgerufen werden sollte.
+            return KartengrundDatentypen.Vernichtet_Enum;
+            
+         when others =>
+            return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund.BasisGrund;
+      end case;
       
    end BasisGrund;
    
@@ -28,7 +39,16 @@ package body LeseWeltkarte is
       return KartengrundDatentypen.Kartengrund_Enum
    is begin
       
-      return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund.AktuellerGrund;
+      case
+        KoordinatenExtern.EAchse
+      is
+         when KartenKonstanten.LeerEAchse =>
+            -- Bei sowas kann nicht Leer zurückgegeben werden weil es keine Grafik für leere Felder gibt und dieser Teil auch nur vom Grafiktask aufgerufen werden sollte.
+            return KartengrundDatentypen.Vernichtet_Enum;
+            
+         when others =>
+            return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund.AktuellerGrund;
+      end case;
       
    end AktuellerGrund;
    
@@ -39,7 +59,16 @@ package body LeseWeltkarte is
       return KartenRecords.KartengrundRecord
    is begin
       
-      return (BasisGrund (KoordinatenExtern => KoordinatenExtern), AktuellerGrund (KoordinatenExtern => KoordinatenExtern));
+      case
+        KoordinatenExtern.EAchse
+      is
+         when KartenKonstanten.LeerEAchse =>
+            -- Bei sowas kann nicht Leer zurückgegeben werden weil es keine Grafik für leere Felder gibt und dieser Teil auch nur vom Grafiktask aufgerufen werden sollte.
+            return (KartengrundDatentypen.Vernichtet_Enum, KartengrundDatentypen.Vernichtet_Enum);
+            
+         when others =>
+            return (BasisGrund (KoordinatenExtern => KoordinatenExtern), AktuellerGrund (KoordinatenExtern => KoordinatenExtern));
+      end case;
       
    end VorhandenerGrund;
    

@@ -50,11 +50,14 @@ private
 
    KeineÄnderung : constant KartenRecords.AchsenKartenfeldRecord := (0, 0, 0);
    NeueKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
-   Tauschkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   BewegendeKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   StehendeKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   
+   
      
    function EigeneEinheitAufFeld
      (BewegendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      FeldBelegendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      StehendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
      with
        Pre => (
@@ -62,12 +65,10 @@ private
                and
                  SpielVariablen.Rassenbelegung (BewegendeEinheitExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 FeldBelegendeEinheitExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (FeldBelegendeEinheitExtern.Rasse).Einheitengrenze
+                 StehendeEinheitExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (StehendeEinheitExtern.Rasse).Einheitengrenze
                and
-                 SpielVariablen.Rassenbelegung (FeldBelegendeEinheitExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (StehendeEinheitExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
-   
-   
    
    function FremderAufFeld
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

@@ -13,7 +13,7 @@ package LeseKartenDatenbanken is
 
    function Passierbarkeit
      (GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
-      WelcheUmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Vorhanden_Enum)
+      WelcheUmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Enum)
       return Boolean;
    
    function BewertungGrund
