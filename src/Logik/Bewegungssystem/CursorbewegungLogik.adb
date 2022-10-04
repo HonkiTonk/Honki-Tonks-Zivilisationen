@@ -2,46 +2,34 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with TextnummernKonstanten;
+with KartenKonstanten;
 
 with Weltkarte;
 with ZahleneingabeLogik;
 with NachGrafiktask;
 with Sichtweiten;
+with KartenkoordinatenberechnungssystemLogik;
 
 package body CursorbewegungLogik is
    
    procedure CursorbewegungBerechnen
-     (RichtungExtern : in TastenbelegungDatentypen.Tastenbelegung_Bewegung_Ebene_Enum;
+     (RichtungExtern : in TastenbelegungDatentypen.Tastenbelegung_Bewegung_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      Änderung := Richtung (RichtungExtern);
+      KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
+                                                                                                ÄnderungExtern    => Richtung (RichtungExtern),
+                                                                                                LogikGrafikExtern => True);
       
       case
-        Änderung
+        KartenWert.XAchse
       is
-         when 1 =>
-            if
-              SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.EAchse = Weltkarte.Karte'Last (1)
-            then
-               SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.EAchse := Weltkarte.Karte'First (1);
-               
-            else
-               SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.EAchse := SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.EAchse + Änderung;
-            end if;
-            
-         when -1 =>
-            if
-              SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.EAchse = Weltkarte.Karte'First (1)
-            then
-               SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.EAchse := Weltkarte.Karte'Last (1);
-               
-            else
-               SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.EAchse := SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.EAchse + Änderung;
-            end if;
-            
-         when others =>
+         when KartenKonstanten.LeerXAchse =>
             null;
+               
+         when others =>
+            -- SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt := KartenWert;
+            NachGrafiktask.GeheZu := KartenWert;
       end case;
       
    end CursorbewegungBerechnen;
@@ -50,6 +38,8 @@ package body CursorbewegungLogik is
    
    -- Eventuell später noch erweitern damit auch bei anderen Einstellungen die Verschiebung korrekter ist. äöü
    -- Gilt auch für die Anpassung in CursorplatzierungAltGrafik. äöü
+   -- GeheZuGrafik.Koordinatenberechnung hat vergleichbare Berechnungen, mal zusammenführen. äöü
+   -- Das Ergebnis nach NachGrafiktask.GeheZu schreiben, dann wird die Cursorposition gar nicht? mehr von der Logik Festgelegt, sondern nur noch von der Grafik. äöü
    procedure ZoomanpassungCursor
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin

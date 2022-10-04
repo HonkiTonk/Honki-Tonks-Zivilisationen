@@ -5,8 +5,8 @@ with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
-with TastenbelegungDatentypen;
 with KartenRecords;
+with BefehleDatentypen;
 
 private with EinheitenDatentypen;
 private with KartenverbesserungDatentypen;
@@ -17,7 +17,7 @@ package AufgabenLogik is
    
    function AufgabeTesten
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Baulos_Enum;
+      BefehlExtern : in BefehleDatentypen.Einheiten_Aufgaben_Baulos_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
      with
@@ -33,7 +33,7 @@ package AufgabenLogik is
    
    function Aufgabe
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Baulos_Enum;
+      BefehlExtern : in BefehleDatentypen.Einheiten_Aufgaben_Baulos_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
      with
@@ -51,7 +51,7 @@ private
       
    function AufgabeFestlegen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Baulos_Enum;
+      BefehlExtern : in BefehleDatentypen.Einheiten_Aufgaben_Baulos_Enum;
       AnlegenTestenExtern : in Boolean;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
@@ -69,7 +69,7 @@ private
    function Anfangstest
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       EinheitartExtern : in EinheitenDatentypen.Einheitart_Vorhanden_Enum;
-      BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Baulos_Enum;
+      BefehlExtern : in BefehleDatentypen.Einheiten_Aufgaben_Baulos_Enum;
       VerbesserungExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Enum)
       return Boolean
      with

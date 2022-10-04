@@ -20,7 +20,7 @@ package BefehlsauswahlLogik is
    
 private
       
-   Befehl : TastenbelegungDatentypen.Tastenbelegung_Enum;
+   Befehl : TastenbelegungDatentypen.Allgemeine_Belegung_Enum;
    
    StadtSuchenNachNamen : StadtRecords.RasseStadtnummerRecord;
    
@@ -28,7 +28,7 @@ private
    
    function Tasteneingabe
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Enum)
+      BefehlExtern : in TastenbelegungDatentypen.Allgemeine_Belegung_Enum)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
      with
        Pre => (

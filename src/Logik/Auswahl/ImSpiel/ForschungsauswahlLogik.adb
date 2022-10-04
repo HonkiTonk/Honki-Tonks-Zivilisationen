@@ -100,7 +100,7 @@ package body ForschungsauswahlLogik is
          NachGrafiktask.AktuelleAuswahl.AuswahlEins := Natural (AktuelleAuswahl);
          
          case
-           TasteneingabeLogik.Tastenwert
+           TasteneingabeLogik.VereinfachteEingabe
          is
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if
@@ -113,7 +113,7 @@ package body ForschungsauswahlLogik is
                   exit AuswahlSchleife;
                end if;
                
-            when TastenbelegungDatentypen.Menü_Zurück_Enum =>
+            when TastenbelegungDatentypen.Abwählen_Enum =>
                GewählteForschung := ForschungKonstanten.LeerForschungsanforderung;
                exit AuswahlSchleife;
                
@@ -145,7 +145,7 @@ package body ForschungsauswahlLogik is
          NachGrafiktask.AktuelleAuswahl.AuswahlEins := Auswahl;
          
          case
-           TasteneingabeLogik.Tastenwert
+           TasteneingabeLogik.VereinfachteEingabe
          is
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if
@@ -157,7 +157,7 @@ package body ForschungsauswahlLogik is
                   exit ErfolgSchleife;
                end if;
                
-            when TastenbelegungDatentypen.Menü_Zurück_Enum =>
+            when TastenbelegungDatentypen.Abwählen_Enum =>
                if
                  Auswahl = 2
                then

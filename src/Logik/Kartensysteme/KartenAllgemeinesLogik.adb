@@ -256,6 +256,7 @@ package body KartenAllgemeinesLogik is
             return 0;
             
          when others =>
+            -- Hat schon einmal einen Absturz durch range check failed verursacht, eventuell müssen hier überall weitere Tests rein. äöü
             return LeseKartenDatenbanken.WirtschaftFluss (FlussExtern         => KartenFluss,
                                                           RasseExtern         => RasseExtern,
                                                           WirtschaftArtExtern => KartenKonstanten.WirtschaftGeld);

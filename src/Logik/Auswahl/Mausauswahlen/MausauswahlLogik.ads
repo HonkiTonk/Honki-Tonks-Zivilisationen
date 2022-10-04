@@ -10,6 +10,7 @@ with StadtRecords;
 with MenueDatentypen;
 with SystemRecords;
 with BefehleDatentypen;
+with TastenbelegungDatentypen;
 
 package MausauswahlLogik is
 
@@ -45,10 +46,10 @@ package MausauswahlLogik is
      return SystemRecords.MehrfacheAuswahlRecord;
    
    function Weltkartenbefehle
-     return BefehleDatentypen.Weltkartenbefehle_Enum;
+     return TastenbelegungDatentypen.Weltkartenbefehle_Enum;
    
    function Einheitenbefehle
-      return BefehleDatentypen.Weltkartenbefehle_Enum;
+      return BefehleDatentypen.Einheitenbelegung_Enum;
    
    function Stadtumgebung
      return Sf.System.Vector2.sfVector2f;

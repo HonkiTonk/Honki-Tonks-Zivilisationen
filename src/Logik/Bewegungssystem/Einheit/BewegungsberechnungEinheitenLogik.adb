@@ -1,22 +1,18 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with StadtDatentypen; use StadtDatentypen;
 with EinheitenDatentypen; use EinheitenDatentypen;
 with EinheitenKonstanten;
-with StadtKonstanten;
 
 with SchreibeEinheitenGebaut;
 with LeseWeltkarte;
 with LeseEinheitenGebaut;
-with LeseEinheitenDatenbank;
 
 with SichtbarkeitsberechnungssystemLogik;
 with KennenlernenLogik;
-with LadungsbewegungLogik;
-with StadtSuchenLogik;
-with PassierbarkeitspruefungLogik;
+with TransporterLadungsverschiebungLogik;
 with BewegungspunkteBerechnenLogik;
+with TransporterBeladenEntladenLogik;
 
 package body BewegungsberechnungEinheitenLogik is
 
@@ -26,39 +22,6 @@ package body BewegungsberechnungEinheitenLogik is
       EinheitentauschExtern : in Boolean)
    is begin
       
-      LadungVerschieben := False;
-
-      -- Immer berücksichtigen dass in EinheitenbewegungLogik.BewegungPrüfen bereits geprüft wird ob der Transporter die Einheit transportieren kann und ein freier Platz vorhanden ist.
-      if
-        EinheitenKonstanten.LeerKannTransportieren = LeseEinheitenDatenbank.KannTransportieren (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                                                IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
-      then
-         null;
-         
-      elsif
-        StadtKonstanten.LeerNummer = StadtSuchenLogik.KoordinatenStadtMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                                                      KoordinatenExtern => NeueKoordinatenExtern)
-      then
-         -- Die Ladungsverschiebung muss mit dem neuen Karten/Einheitenkoordinatensystem immer am Schluss erfolgen.
-         -- Theoretisch hätte das auch immer im alten System passieren müssen, um zu verhindern dass die Ladung verschoben wird ohne dass das Schiff verschoben werden kann.
-         -- Kam nur nie zu einem Problem weil es keinen Bewegungsabzug für Schiffe gab.
-         LadungVerschieben := True;
-
-      else
-         case
-           PassierbarkeitspruefungLogik.InStadtEntladbar (TransporterExtern     => EinheitRasseNummerExtern,
-                                                          NeueKoordinatenExtern => NeueKoordinatenExtern)
-         is
-            when False =>
-               return;
-               
-            when True =>
-               -- Das hier am Ende von InStadtEntladbar aufrufen? äöü
-               LadungsbewegungLogik.TransporterStadtEntladen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                              NeueKoordinatenExtern    => NeueKoordinatenExtern);
-         end case;
-      end if;
-
       BewegungspunkteAbzug := BewegungspunkteBerechnenLogik.AbzugDurchBewegung (NeueKoordinatenExtern    => NeueKoordinatenExtern,
                                                                                 EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
@@ -74,43 +37,37 @@ package body BewegungsberechnungEinheitenLogik is
          SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                   BewegungspunkteExtern    => BewegungspunkteAbzug,
                                                   RechnenSetzenExtern      => -1);
+         
+         IstLadung := LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       end if;
+      
+      case
+        SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung
+      is
+         when RassenDatentypen.Mensch_Spieler_Enum =>
+            SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAktuell.EAchse := NeueKoordinatenExtern.EAchse;
+            
+         when others =>
+            null;
+      end case;
 
       case
-        LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+        IstLadung
       is
          when EinheitenKonstanten.LeerWirdTransportiert =>
             null;
             
          when others =>
-            LadungsbewegungLogik.EinheitAusTransporterEntfernen (TransporterExtern => (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern)),
-                                                                 LadungExtern      => EinheitRasseNummerExtern.Nummer);
-      end case;
-      
-      case
-        SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung
-      is
-         when RassenDatentypen.KI_Spieler_Enum =>
-            null;
-            
-         when others =>
-            SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAktuell := NeueKoordinatenExtern;
+            TransporterBeladenEntladenLogik.EinheitAusladen (TransporterExtern => (EinheitRasseNummerExtern.Rasse, IstLadung),
+                                                             LadungExtern      => EinheitRasseNummerExtern.Nummer);
       end case;
       
       SchreibeEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                            KoordinatenExtern        => NeueKoordinatenExtern,
                                            EinheitentauschExtern    => EinheitentauschExtern);
       
-      case
-        LadungVerschieben
-      is
-         when True =>
-            LadungsbewegungLogik.TransporterladungVerschieben (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                               NeueKoordinatenExtern    => NeueKoordinatenExtern);
-            
-         when False =>
-            null;
-      end case;
+      TransporterLadungsverschiebungLogik.LadungVerschieben (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                             NeueKoordinatenExtern    => NeueKoordinatenExtern);
       
       NachBewegung (NeueKoordinatenExtern    => NeueKoordinatenExtern,
                     EinheitRasseNummerExtern => EinheitRasseNummerExtern);

@@ -4,9 +4,9 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
 with EinheitenDatentypen; use EinheitenDatentypen;
-with TastenbelegungDatentypen; use TastenbelegungDatentypen;
 with AufgabenDatentypen; use AufgabenDatentypen;
 with KartenverbesserungDatentypen; use KartenverbesserungDatentypen;
+with BefehleDatentypen; use BefehleDatentypen;
 with EinheitenKonstanten;
 with TextnummernKonstanten;
 
@@ -37,7 +37,7 @@ package body AufgabenLogik is
    
    function AufgabeTesten
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Baulos_Enum;
+      BefehlExtern : in BefehleDatentypen.Einheiten_Aufgaben_Baulos_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is begin
@@ -45,7 +45,7 @@ package body AufgabenLogik is
       case
         Anfangstest (RasseExtern        => EinheitRasseNummerExtern.Rasse,
                      EinheitartExtern   => LeseEinheitenDatenbank.Einheitenart (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                              IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)),
+                                                                                IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)),
                      BefehlExtern       => BefehlExtern,
                      VerbesserungExtern => LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern))
       is
@@ -65,7 +65,7 @@ package body AufgabenLogik is
    
    function Aufgabe
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Baulos_Enum;
+      BefehlExtern : in BefehleDatentypen.Einheiten_Aufgaben_Baulos_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is begin
@@ -73,7 +73,7 @@ package body AufgabenLogik is
       case
         Anfangstest (RasseExtern        => EinheitRasseNummerExtern.Rasse,
                      EinheitartExtern   => LeseEinheitenDatenbank.Einheitenart (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                              IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)),
+                                                                                IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)),
                      BefehlExtern       => BefehlExtern,
                      VerbesserungExtern => LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern))
       is
@@ -118,13 +118,13 @@ package body AufgabenLogik is
    function Anfangstest
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       EinheitartExtern : in EinheitenDatentypen.Einheitart_Vorhanden_Enum;
-      BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Baulos_Enum;
+      BefehlExtern : in BefehleDatentypen.Einheiten_Aufgaben_Baulos_Enum;
       VerbesserungExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Enum)
       return Boolean
    is begin
       
       if
-        BefehlExtern in TastenbelegungDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range
+        BefehlExtern in BefehleDatentypen.Siedler_Verbesserung_Enum'Range
         and
           EinheitartExtern /= EinheitenDatentypen.Arbeiter_Enum
       then
@@ -133,7 +133,7 @@ package body AufgabenLogik is
          return False;
          
       elsif
-        BefehlExtern = TastenbelegungDatentypen.Plündern_Enum
+        BefehlExtern = BefehleDatentypen.Plündern_Enum
         and
           EinheitartExtern = EinheitenDatentypen.Arbeiter_Enum
       then
@@ -148,7 +148,7 @@ package body AufgabenLogik is
       case
         BefehlExtern
       is
-         when TastenbelegungDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range =>
+         when BefehleDatentypen.Siedler_Verbesserung_Enum'Range =>
             if
               False = ForschungstestsLogik.TechnologieVorhanden (RasseExtern       => RasseExtern,
                                                                  TechnologieExtern => LeseForschungenDatenbank.Verbesserungen (VerbesserungExtern => BefehlExtern,
@@ -170,7 +170,7 @@ package body AufgabenLogik is
       case
         BefehlExtern
       is
-         when TastenbelegungDatentypen.Tastenbelegung_Konstruktionen_Enum'Range =>
+         when BefehleDatentypen.Siedler_Konstruktionen_Enum'Range =>
             if
               VerbesserungExtern in KartenverbesserungDatentypen.Karten_Verbesserung_Städte_Enum'Range
             then
@@ -179,7 +179,7 @@ package body AufgabenLogik is
                return False;
                
             elsif
-              VerbesserungExtern = UmwandlungenVerschiedeneDatentypen.TastenbelegungNachKartenverbesserung (TasteExtern => BefehlExtern)
+              VerbesserungExtern = UmwandlungenVerschiedeneDatentypen.BefehleNachKartenverbesserung (TasteExtern => BefehlExtern)
             then
                MeldungFestlegenLogik.SpielermeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungVerbesserungExistiert,
                                                               RasseExtern   => RasseExtern);
@@ -210,7 +210,7 @@ package body AufgabenLogik is
 
    function AufgabeFestlegen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Baulos_Enum;
+      BefehlExtern : in BefehleDatentypen.Einheiten_Aufgaben_Baulos_Enum;
       AnlegenTestenExtern : in Boolean;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
@@ -221,52 +221,52 @@ package body AufgabenLogik is
       case
         BefehlExtern
       is
-         when TastenbelegungDatentypen.Straße_Bauen_Enum =>
+         when BefehleDatentypen.Straße_Bauen_Enum =>
             return WegErmittelnLogik.WegErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                    AnlegenTestenExtern      => AnlegenTestenExtern,
                                                    KoordinatenExtern        => KoordinatenExtern);
          
-         when TastenbelegungDatentypen.Mine_Bauen_Enum =>
+         when BefehleDatentypen.Mine_Bauen_Enum =>
             return MineErmittelnLogik.MineErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                      AnlegenTestenExtern      => AnlegenTestenExtern,
                                                      KoordinatenExtern        => KoordinatenExtern);
             
-         when TastenbelegungDatentypen.Farm_Bauen_Enum =>
+         when BefehleDatentypen.Farm_Bauen_Enum =>
             return FarmErmittelnLogik.FarmErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                      AnlegenTestenExtern      => AnlegenTestenExtern,
                                                      KoordinatenExtern        => KoordinatenExtern);
             
-         when TastenbelegungDatentypen.Festung_Bauen_Enum =>
+         when BefehleDatentypen.Festung_Bauen_Enum =>
             return FestungErmittelnLogik.FestungErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                            AnlegenTestenExtern      => AnlegenTestenExtern,
                                                            KoordinatenExtern        => KoordinatenExtern);
             
-         when TastenbelegungDatentypen.Wald_Aufforsten_Enum =>
+         when BefehleDatentypen.Wald_Aufforsten_Enum =>
             return WaldErmittelnLogik.WaldErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                      AnlegenTestenExtern      => AnlegenTestenExtern,
                                                      KoordinatenExtern        => KoordinatenExtern);
          
-         when TastenbelegungDatentypen.Roden_Trockenlegen_Enum =>
+         when BefehleDatentypen.Roden_Trockenlegen_Enum =>
             return RodenErmittelnLogik.RodenErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                        AnlegenTestenExtern      => AnlegenTestenExtern,
                                                        KoordinatenExtern        => KoordinatenExtern);
          
-         when TastenbelegungDatentypen.Heilen_Enum =>
+         when BefehleDatentypen.Heilen_Enum =>
             return EinheitHeilenLogik.EinheitHeilen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                      AnlegenTestenExtern      => AnlegenTestenExtern);
             
-         when TastenbelegungDatentypen.Verschanzen_Enum =>
+         when BefehleDatentypen.Verschanzen_Enum =>
             return EinheitVerschanzenLogik.Verschanzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
-         when TastenbelegungDatentypen.Auflösen_Enum =>
+         when BefehleDatentypen.Auflösen_Enum =>
             return EinheitAufloesenLogik.EinheitAuflösen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
-         when TastenbelegungDatentypen.Plündern_Enum =>
+         when BefehleDatentypen.Plündern_Enum =>
             return VerbesserungPluendernLogik.VerbesserungPlündern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                      AnlegenTestenExtern      => AnlegenTestenExtern,
                                                                      KoordinatenExtern        => KoordinatenExtern);
          
-         when TastenbelegungDatentypen.Einheit_Verbessern_Enum =>
+         when BefehleDatentypen.Einheit_Verbessern_Enum =>
             return EinheitVerbessernLogik.VerbesserungEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                AnlegenTestenExtern      => AnlegenTestenExtern);
       end case;

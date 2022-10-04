@@ -13,8 +13,11 @@ package body SchreibenTastaturLogik is
               Mode => Out_File,
               Name => VerzeichnisKonstanten.Tastenbelegung);
       
-      TastenbelegungVariablen.TastenbelegungArray'Write (Stream (File => TastenbelegungSpeichern),
-                                                         TastenbelegungVariablen.Tastenbelegung);
+      TastenbelegungVariablen.AllgemeineBelegungArray'Write (Stream (File => TastenbelegungSpeichern),
+                                                             TastenbelegungVariablen.AllgemeineBelegung);
+      
+      TastenbelegungVariablen.EinheitenbelegungArray'Write (Stream (File => TastenbelegungSpeichern),
+                                                            TastenbelegungVariablen.Einheitenbelegung);
       
       Close (File => TastenbelegungSpeichern);
       

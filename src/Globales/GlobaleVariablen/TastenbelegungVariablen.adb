@@ -5,8 +5,9 @@ package body TastenbelegungVariablen is
    
    procedure StandardTastenbelegungLaden
    is begin
-      
-      Tastenbelegung := TastenbelegungStandard;
+            
+      AllgemeineBelegung := AllgemeineBelegungStandard;
+      Einheitenbelegung := EinheitenbelegungStandard;
       
    end StandardTastenbelegungLaden;
 

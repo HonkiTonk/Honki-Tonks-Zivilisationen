@@ -11,7 +11,6 @@ with GrafikDatentypen;
 with InteraktionAuswahl;
 with TextaccessVariablen;
 with EinheitenKonstanten;
-with TastenbelegungDatentypen;
 
 with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;
@@ -242,34 +241,27 @@ package body WeltkartenbefehleGrafik is
       PositionenSchleife:
       for PositionSchleifenwert in InteraktionAuswahl.PositionenKartenbefehleArray'Range loop
          
-         case
-           PositionSchleifenwert
-         is
-            when TastenbelegungDatentypen.Stadt_Umbenennen_Enum =>
-               null;
-               
-            when others =>
-               Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.SteuerungSFMLAccess (Aktuelleposition),
-                                                                                       ViewbreiteExtern => KartenbefehleViewfläche.x);
+         Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.SteuerungSFMLAccess (Aktuelleposition),
+                                                                                 ViewbreiteExtern => KartenbefehleViewfläche.x);
          
-               Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.SteuerungSFMLAccess (Aktuelleposition),
-                                             position => Textposition);
+         Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.SteuerungSFMLAccess (Aktuelleposition),
+                                       position => Textposition);
          
-               Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.SteuerungSFMLAccess (Aktuelleposition),
-                                                                                   TextbreiteExtern => Textbreite);
+         Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.SteuerungSFMLAccess (Aktuelleposition),
+                                                                             TextbreiteExtern => Textbreite);
          
-               Textbox := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SteuerungSFMLAccess (Aktuelleposition));
-               Textbox.left := 0.00;
-               Textbox.width := KartenbefehleViewfläche.x;
-               InteraktionAuswahl.PositionenKartenbefehle (PositionSchleifenwert) := Textbox;
+         Textbox := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SteuerungSFMLAccess (Aktuelleposition));
+         Textbox.left := 0.00;
+         Textbox.width := KartenbefehleViewfläche.x;
+         InteraktionAuswahl.PositionenKartenbefehle (PositionSchleifenwert) := Textbox;
          
-               Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                               TextAccessExtern => TextaccessVariablen.SteuerungSFMLAccess (Aktuelleposition),
-                                                                               ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+         Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                         TextAccessExtern => TextaccessVariablen.SteuerungSFMLAccess (Aktuelleposition),
+                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
          
-               Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                                  text         => TextaccessVariablen.SteuerungSFMLAccess (Aktuelleposition));
-         end case;
+         Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
+                                            text         => TextaccessVariablen.SteuerungSFMLAccess (Aktuelleposition));
+         
          
          Aktuelleposition := Aktuelleposition + 1;
          

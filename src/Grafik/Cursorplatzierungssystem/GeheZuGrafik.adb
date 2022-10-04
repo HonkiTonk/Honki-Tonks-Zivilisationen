@@ -33,14 +33,19 @@ package body GeheZuGrafik is
    
    
    -- Später noch einmal überarbeiten und auch besser an den Kartenrand anpassen und nicht nur eine halbe Sichtbreite wegschieben. äöü
+   -- Das mal mit CursorbewegungLogik.ZoomanpassungCursor zusammenführen? äöü
+   -- Oder in die gleiche Datei schieben? äöü
    function Koordinatenberechnung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
       
       KartenwertKoordinatenberechnung.EAchse := KoordinatenExtern.EAchse;
-      
+      AktuelleSichtweite := Sichtweiten.SichtweiteLesen (YXExtern => True);
+        
       if
+        --  2 * AktuelleSichtweite >= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+        --   and
         Weltkarte.Karteneinstellungen.Kartenform.YAchseNorden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
         and
           Weltkarte.Karteneinstellungen.Kartenform.YAchseSüden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum

@@ -1,22 +1,22 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with TastenbelegungDatentypen;
 with KartenverbesserungDatentypen;
 with RueckgabeDatentypen;
 with RassenDatentypen;
 with KartenDatentypen;
 with SpielDatentypen;
+with BefehleDatentypen;
 
 package UmwandlungenVerschiedeneDatentypen is
 
-   function TastenbelegungNachKartenverbesserung
-     (TasteExtern : in TastenbelegungDatentypen.Tastenbelegung_Konstruktionen_Enum)
+   function BefehleNachKartenverbesserung
+     (TasteExtern : in BefehleDatentypen.Siedler_Konstruktionen_Enum)
       return KartenverbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum;
    
-   function KartenverbesserungNachTastenbelegung
+   function KartenverbesserungNachBefehle
      (VerbesserungExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum)
-      return TastenbelegungDatentypen.Tastenbelegung_Konstruktionen_Enum;
+      return BefehleDatentypen.Siedler_Konstruktionen_Enum;
    
    function RückgabeNachRasse
      (RückgabeExtern : in RueckgabeDatentypen.Rassen_Verwendet_Enum)
@@ -36,18 +36,18 @@ package UmwandlungenVerschiedeneDatentypen is
    
 private
    
-   type TastenbelegungKartenverbesserungArray is array (TastenbelegungDatentypen.Tastenbelegung_Konstruktionen_Enum'Range) of KartenverbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum;
-   TastenbelegungKartenverbesserung : constant TastenbelegungKartenverbesserungArray := (
-                                                                                         TastenbelegungDatentypen.Mine_Bauen_Enum    => KartenverbesserungDatentypen.Mine_Enum,
-                                                                                         TastenbelegungDatentypen.Farm_Bauen_Enum    => KartenverbesserungDatentypen.Farm_Enum,
-                                                                                         TastenbelegungDatentypen.Festung_Bauen_Enum => KartenverbesserungDatentypen.Festung_Enum
-                                                                                        );
+   type BefehleKartenverbesserungArray is array (BefehleDatentypen.Siedler_Konstruktionen_Enum'Range) of KartenverbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum;
+   BefehleKartenverbesserung : constant BefehleKartenverbesserungArray := (
+                                                                           BefehleDatentypen.Mine_Bauen_Enum    => KartenverbesserungDatentypen.Mine_Enum,
+                                                                           BefehleDatentypen.Farm_Bauen_Enum    => KartenverbesserungDatentypen.Farm_Enum,
+                                                                           BefehleDatentypen.Festung_Bauen_Enum => KartenverbesserungDatentypen.Festung_Enum
+                                                                          );
    
-   type KartenverbesserungTastenbelegungArray is array (KartenverbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum'Range) of TastenbelegungDatentypen.Tastenbelegung_Konstruktionen_Enum;
-   KartenverbesserungTastenbelegung : constant KartenverbesserungTastenbelegungArray := (
-                                                                                         KartenverbesserungDatentypen.Mine_Enum    => TastenbelegungDatentypen.Mine_Bauen_Enum,
-                                                                                         KartenverbesserungDatentypen.Farm_Enum    => TastenbelegungDatentypen.Farm_Bauen_Enum,
-                                                                                         KartenverbesserungDatentypen.Festung_Enum => TastenbelegungDatentypen.Festung_Bauen_Enum
+   type KartenverbesserungBefehleArray is array (KartenverbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum'Range) of BefehleDatentypen.Siedler_Konstruktionen_Enum;
+   KartenverbesserungBefehle : constant KartenverbesserungBefehleArray := (
+                                                                           KartenverbesserungDatentypen.Mine_Enum    => BefehleDatentypen.Mine_Bauen_Enum,
+                                                                           KartenverbesserungDatentypen.Farm_Enum    => BefehleDatentypen.Farm_Bauen_Enum,
+                                                                           KartenverbesserungDatentypen.Festung_Enum => BefehleDatentypen.Festung_Bauen_Enum
                                                                                         );
    
    type RückgabeRasseArray is array (RueckgabeDatentypen.Rassen_Verwendet_Enum'Range) of RassenDatentypen.Rassen_Verwendet_Enum;

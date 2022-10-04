@@ -83,7 +83,7 @@ package body GebaeudeVerkaufenLogik is
          NachGrafiktask.AktuelleBauauswahl.Gebäude := AktuelleAuswahl;
          
          case
-           TasteneingabeLogik.Tastenwert
+           TasteneingabeLogik.VereinfachteEingabe
          is               
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if
@@ -114,7 +114,7 @@ package body GebaeudeVerkaufenLogik is
                   end case;
                end if;
                
-            when TastenbelegungDatentypen.Menü_Zurück_Enum =>
+            when TastenbelegungDatentypen.Abwählen_Enum =>
                exit AuswahlSchleife;
                
             when others =>

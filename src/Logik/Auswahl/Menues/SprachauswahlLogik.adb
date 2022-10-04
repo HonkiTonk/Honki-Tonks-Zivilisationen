@@ -132,7 +132,7 @@ package body SprachauswahlLogik is
          NachGrafiktask.AktuelleAuswahl.AuswahlEins := AktuelleAuswahl;
             
          case
-           TasteneingabeLogik.Tastenwert
+           TasteneingabeLogik.VereinfachteEingabe
          is
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if
@@ -151,7 +151,7 @@ package body SprachauswahlLogik is
                   return AktuelleSprachen (AktuelleAuswahl);
                end if;
                
-            when TastenbelegungDatentypen.Menü_Zurück_Enum =>
+            when TastenbelegungDatentypen.Abwählen_Enum =>
                return TextKonstanten.LeerUnboundedString;
             
             when others =>

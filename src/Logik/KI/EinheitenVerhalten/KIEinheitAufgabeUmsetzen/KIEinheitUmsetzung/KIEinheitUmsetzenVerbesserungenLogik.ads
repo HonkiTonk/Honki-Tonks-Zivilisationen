@@ -6,9 +6,9 @@ with EinheitenRecords;
 with SpielVariablen;
 
 private with KartenRecords;
-private with TastenbelegungDatentypen;
 private with AufgabenDatentypen;
 private with KartenverbesserungDatentypen;
+private with BefehleDatentypen;
 
 package KIEinheitUmsetzenVerbesserungenLogik is
 
@@ -28,7 +28,7 @@ private
    
    VorhandeneVerbesserung : KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
    
-   Befehl : TastenbelegungDatentypen.Tastenbelegung_Enum;
+   Befehl : BefehleDatentypen.Einheitenbelegung_Enum;
    
    EinheitKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
 

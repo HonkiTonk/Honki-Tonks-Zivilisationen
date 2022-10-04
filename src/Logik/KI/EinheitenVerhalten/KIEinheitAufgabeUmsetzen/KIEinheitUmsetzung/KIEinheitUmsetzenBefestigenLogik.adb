@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with TastenbelegungDatentypen;
+with BefehleDatentypen;
 
 with LeseEinheitenGebaut;
 
@@ -15,7 +15,7 @@ package body KIEinheitUmsetzenBefestigenLogik is
    is begin
       
       return AufgabenLogik.Aufgabe (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                    BefehlExtern             => TastenbelegungDatentypen.Verschanzen_Enum,
+                                    BefehlExtern             => BefehleDatentypen.Verschanzen_Enum,
                                     KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       
    end Befestigen;

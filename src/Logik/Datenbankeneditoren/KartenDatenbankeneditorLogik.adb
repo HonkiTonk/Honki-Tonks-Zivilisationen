@@ -52,12 +52,12 @@ package body KartenDatenbankeneditorLogik is
       loop
          
          case
-           TasteneingabeLogik.Tastenwert
+           TasteneingabeLogik.VereinfachteEingabe
          is
             when TastenbelegungDatentypen.Auswählen_Enum =>
                return MausauswahlEditorLogik.Kartengrundeditor;
                
-            when TastenbelegungDatentypen.Menü_Zurück_Enum =>
+            when TastenbelegungDatentypen.Abwählen_Enum =>
                return KartengrundDatentypen.Leer_Grund_Enum;
                
             when others =>

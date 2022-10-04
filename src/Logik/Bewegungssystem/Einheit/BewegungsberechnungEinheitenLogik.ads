@@ -29,7 +29,7 @@ package BewegungsberechnungEinheitenLogik is
    
 private
    
-   LadungVerschieben : Boolean;
+   IstLadung : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    
    BewegungspunkteAbzug : EinheitenDatentypen.BewegungFloat;
    

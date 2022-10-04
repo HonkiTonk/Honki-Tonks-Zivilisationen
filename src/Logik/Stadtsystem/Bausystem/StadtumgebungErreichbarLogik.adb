@@ -74,7 +74,7 @@ package body StadtumgebungErreichbarLogik is
                   
                elsif
                  True = LeseWeltkarte.BelegterGrund (RasseExtern       => RasseExtern,
-                                                  KoordinatenExtern => KartenWert)
+                                                     KoordinatenExtern => KartenWert)
                  and
                    EinheitenKonstanten.LeerNummer = EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert,
                                                                                                           LogikGrafikExtern => True).Nummer
@@ -139,7 +139,7 @@ package body StadtumgebungErreichbarLogik is
                
             elsif
               True = LeseWeltkarte.BelegterGrund (RasseExtern       => RasseExtern,
-                                               KoordinatenExtern => KartenWertZwei)
+                                                  KoordinatenExtern => KartenWertZwei)
               and
                 True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenID (RasseExtern           => RasseExtern,
                                                                              IDExtern              => IDExtern,

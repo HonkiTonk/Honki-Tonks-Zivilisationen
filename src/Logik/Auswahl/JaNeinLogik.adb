@@ -26,7 +26,7 @@ package body JaNeinLogik is
          NachGrafiktask.AktuelleAuswahl.AuswahlZwei := AktuelleAuswahl;
       
          case
-           TasteneingabeLogik.Tastenwert
+           TasteneingabeLogik.VereinfachteEingabe
          is
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if
@@ -38,7 +38,7 @@ package body JaNeinLogik is
                   exit AuswahlSchleife;
                end if;
                
-            when TastenbelegungDatentypen.Menü_Zurück_Enum =>
+            when TastenbelegungDatentypen.Abwählen_Enum =>
                AktuelleAuswahl := SystemKonstanten.LeerAuswahl;
                exit AuswahlSchleife;
             

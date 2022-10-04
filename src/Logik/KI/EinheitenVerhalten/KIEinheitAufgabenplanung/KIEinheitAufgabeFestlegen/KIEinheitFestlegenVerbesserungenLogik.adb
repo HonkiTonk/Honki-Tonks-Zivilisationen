@@ -5,7 +5,7 @@ with KartenverbesserungDatentypen; use KartenverbesserungDatentypen;
 with KartengrundDatentypen; use KartengrundDatentypen;
 with KartenRecordKonstanten;
 with KartenKonstanten;
-with TastenbelegungDatentypen;
+with BefehleDatentypen;
 with AufgabenDatentypen;
 
 with LeseStadtGebaut;
@@ -203,7 +203,7 @@ package body KIEinheitFestlegenVerbesserungenLogik is
       
       case
         AufgabenLogik.AufgabeTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                     BefehlExtern             => TastenbelegungDatentypen.Mine_Bauen_Enum,
+                                     BefehlExtern             => BefehleDatentypen.Mine_Bauen_Enum,
                                      KoordinatenExtern        => KoordinatenExtern)
       is
          when True =>
@@ -232,7 +232,7 @@ package body KIEinheitFestlegenVerbesserungenLogik is
       
       case
         AufgabenLogik.AufgabeTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                     BefehlExtern             => TastenbelegungDatentypen.Festung_Bauen_Enum,
+                                     BefehlExtern             => BefehleDatentypen.Festung_Bauen_Enum,
                                      KoordinatenExtern        => KoordinatenExtern)
       is
          when True =>
@@ -253,7 +253,7 @@ package body KIEinheitFestlegenVerbesserungenLogik is
          
       case
         AufgabenLogik.AufgabeTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                     BefehlExtern             => TastenbelegungDatentypen.Farm_Bauen_Enum,
+                                     BefehlExtern             => BefehleDatentypen.Farm_Bauen_Enum,
                                      KoordinatenExtern        => KoordinatenExtern)
       is
          when True =>
@@ -290,7 +290,7 @@ package body KIEinheitFestlegenVerbesserungenLogik is
       -- Vielleicht ist das Problem ja dass da immer die Koordinaten der Einheit genutzt werden und nicht die ermittelten Koordinaten? äöü
       case
         AufgabenLogik.AufgabeTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                     BefehlExtern             => TastenbelegungDatentypen.Straße_Bauen_Enum,
+                                     BefehlExtern             => BefehleDatentypen.Straße_Bauen_Enum,
                                      KoordinatenExtern        => KoordinatenExtern)
       is
          when True =>

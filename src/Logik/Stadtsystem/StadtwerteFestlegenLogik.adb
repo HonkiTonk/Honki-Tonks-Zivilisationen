@@ -551,7 +551,7 @@ package body StadtwerteFestlegenLogik is
             
          elsif
            True = GebaeudeumgebungLogik.RichtigeUmgebungVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                                   GebäudeIDExtern       => GebäudeSchleifenwert)
+                                                                   GebäudeIDExtern        => GebäudeSchleifenwert)
          then
             null;
             

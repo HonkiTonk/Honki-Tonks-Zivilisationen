@@ -5,9 +5,9 @@ with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
 with ForschungenDatentypen;
 with ProduktionDatentypen;
-with TastenbelegungDatentypen;
 with AufgabenDatentypen;
 with SystemDatentypen;
+with BefehleDatentypen;
 
 package LeseForschungenDatenbank is
 
@@ -31,7 +31,7 @@ package LeseForschungenDatenbank is
               );
 
    function Verbesserungen
-     (VerbesserungExtern : in TastenbelegungDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum;
+     (VerbesserungExtern : in BefehleDatentypen.Siedler_Verbesserung_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return ForschungenDatentypen.ForschungIDNichtMöglich
      with

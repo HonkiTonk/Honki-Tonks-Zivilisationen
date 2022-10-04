@@ -1,8 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with TastenbelegungDatentypen;
-
 package BefehleDatentypen is
 
    type Stadtbefehle_Enum is (
@@ -12,19 +10,47 @@ package BefehleDatentypen is
                              );
    
    subtype Stadtbefehle_Vorhanden_Enum is Stadtbefehle_Enum range Bauen_Enum .. Stadtbefehle_Enum'Last;
-      
    
    
-   subtype Weltkartenbefehle_Enum is TastenbelegungDatentypen.Tastenbelegung_Enum range TastenbelegungDatentypen.Tastenbelegung_Enum'First .. TastenbelegungDatentypen.Runde_Beenden_Enum;
    
-   -- Später wieder Bewegungsknöpfe einbauen, aktuell nicht integriert wegen testen ob es überhaupt funktioniert. äöü
-   subtype Einheiten_Bewegung_Enum is Weltkartenbefehle_Enum range TastenbelegungDatentypen.Oben_Enum .. TastenbelegungDatentypen.Ebene_Runter_Enum;
-   subtype Einheiten_Aufgaben_Enum is Weltkartenbefehle_Enum range TastenbelegungDatentypen.Bauen_Enum .. TastenbelegungDatentypen.Entladen_Enum;
+   type Einheitenbelegung_Enum is (
+                                   Leer_Einheitenbelegung_Enum,
+                                   
+                                   Auswählen_Enum,
+                                
+                                   -- Bewegung
+                                   Oben_Enum, Links_Enum, Unten_Enum, Rechts_Enum, Links_Oben_Enum, Rechts_Oben_Enum, Links_Unten_Enum, Rechts_Unten_Enum,
+                                   Ebene_Hoch_Enum, Ebene_Runter_Enum,
+                                
+                                   -- Einheitenbefehle Verbesserungen
+                                   Bauen_Enum,
+                                
+                                   Straße_Bauen_Enum,
+                                   Mine_Bauen_Enum, Farm_Bauen_Enum, Festung_Bauen_Enum,
+                                   Wald_Aufforsten_Enum, Roden_Trockenlegen_Enum,
+                                
+                                   -- Einheitenbefehle Allgemein
+                                   Heilen_Enum, Verschanzen_Enum, Plündern_Enum, Auflösen_Enum, Einheit_Verbessern_Enum,
+                                   Heimatstadt_Ändern_Enum, Entladen_Enum,
+                                   
+                                   Abwählen_Enum
+                                  );
    
-   subtype Siedler_Aufgaben_Enum is Einheiten_Aufgaben_Enum range TastenbelegungDatentypen.Bauen_Enum .. TastenbelegungDatentypen.Roden_Trockenlegen_Enum;
-   subtype Kampf_Aufgaben_Enum is Einheiten_Aufgaben_Enum range TastenbelegungDatentypen.Plündern_Enum .. TastenbelegungDatentypen.Plündern_Enum;
+   subtype Einheitenbelegung_Vorhanden_Enum is Einheitenbelegung_Enum range Auswählen_Enum .. Einheitenbelegung_Enum'Last;
    
-   subtype Kartenbefehle_Enum is Weltkartenbefehle_Enum range TastenbelegungDatentypen.Forschung_Enum .. TastenbelegungDatentypen.Runde_Beenden_Enum;
+   subtype Einheiten_Bewegung_Enum is Einheitenbelegung_Vorhanden_Enum range Oben_Enum .. Ebene_Runter_Enum;
+   
+   -- Mit dem neuen System könnte man Heimatstadt ändern und Entladen auch in die Aufgaben schieben? äöü
+   subtype Einheiten_Aufgaben_Enum is Einheitenbelegung_Vorhanden_Enum range Bauen_Enum .. Entladen_Enum;
+   subtype Einheiten_Aufgaben_Klein_Enum is Einheiten_Aufgaben_Enum range Bauen_Enum .. Einheit_Verbessern_Enum;
+   subtype Einheiten_Aufgaben_Baulos_Enum is Einheiten_Aufgaben_Enum range Straße_Bauen_Enum .. Einheit_Verbessern_Enum;
+   subtype Einheiten_Allgemeine_Befehle_Enum is Einheiten_Aufgaben_Baulos_Enum range Heilen_Enum .. Einheit_Verbessern_Enum;
+   
+   subtype Siedler_Aufgaben_Enum is Einheitenbelegung_Vorhanden_Enum range Bauen_Enum .. Roden_Trockenlegen_Enum;
+   subtype Siedler_Verbesserung_Enum is Siedler_Aufgaben_Enum range Straße_Bauen_Enum .. Roden_Trockenlegen_Enum;
+   subtype Siedler_Konstruktionen_Enum is Siedler_Verbesserung_Enum range Mine_Bauen_Enum .. Festung_Bauen_Enum;
+   
+   subtype Kampf_Aufgaben_Enum is Einheitenbelegung_Vorhanden_Enum range Plündern_Enum .. Plündern_Enum;
    
    
    

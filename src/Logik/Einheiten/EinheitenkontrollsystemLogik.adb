@@ -13,6 +13,7 @@ with EinheitenbewegungLogik;
 with KartenkoordinatenberechnungssystemLogik;
 with MausauswahlLogik;
 with PZBEingesetztLogik;
+with EinheitentransporterLogik;
 
 package body EinheitenkontrollsystemLogik is
 
@@ -25,7 +26,7 @@ package body EinheitenkontrollsystemLogik is
          
          case
            EinheitBefehle (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                           BefehlExtern             => TasteneingabeLogik.Tastenwert)
+                           BefehlExtern             => TasteneingabeLogik.Einheitentaste)
          is
             when True =>
                null;
@@ -40,42 +41,43 @@ package body EinheitenkontrollsystemLogik is
    
    
    
+   -- Mit der Aufteilung der Tastenbelegung in Allgemeine und Einheitenbefehle kann man hier eventuell mehr zusammenfassen. äöü
    function EinheitBefehle
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Enum)
+      BefehlExtern : in BefehleDatentypen.Einheitenbelegung_Enum)
       return Boolean
    is begin
             
       case
         BefehlExtern
       is
-         when TastenbelegungDatentypen.Auswählen_Enum =>
+         when BefehleDatentypen.Auswählen_Enum =>
             return BefehleMaus (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-         when TastenbelegungDatentypen.Tastenbelegung_Bewegung_Enum'Range =>
+         when BefehleDatentypen.Einheiten_Bewegung_Enum'Range =>
             return EinheitenbewegungLogik.PositionÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                            ÄnderungExtern           => Richtung (BefehlExtern));
                
-         when TastenbelegungDatentypen.Heimatstadt_Ändern_Enum =>
+         when BefehleDatentypen.Heimatstadt_Ändern_Enum =>
             EinheitenmodifizierungLogik.HeimatstadtÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             return True;
             
-         when TastenbelegungDatentypen.Entladen_Enum =>
-            -- Hier muss noch Zeug rein. äöü
+         when BefehleDatentypen.Entladen_Enum =>
+            EinheitentransporterLogik.TransporterEntladen (TransporterExtern => EinheitRasseNummerExtern);
             return True;
                
-         when TastenbelegungDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range | TastenbelegungDatentypen.Tastenbelegung_Allgemeine_Befehle_Enum'Range =>
+         when BefehleDatentypen.Siedler_Verbesserung_Enum'Range | BefehleDatentypen.Einheiten_Allgemeine_Befehle_Enum'Range =>
             -- Das Umgekehrte zurückgeben da bei erfolgreichen Aufgabenanfang keine Bewegung mehr möglich ist und umgekehrt.
             return not AufgabenLogik.Aufgabe (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                               BefehlExtern             => BefehlExtern,
                                               KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
                
-         when TastenbelegungDatentypen.Bauen_Enum =>
+         when BefehleDatentypen.Bauen_Enum =>
             -- Das Umgekehrte zurückgeben da bei erfolgreichem Städtebau keine Bewegung mehr möglich ist und umgekehrt.
             return not StadtBauenLogik.StadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
             -- Da das der Standardrückgabewert ist muss hier True zurückgegeben werden, da sonst die Schleife direkt nach der Auswahl wieder verlassen wird!
-         when TastenbelegungDatentypen.Leer_Tastenbelegung_Enum =>
+         when BefehleDatentypen.Leer_Einheitenbelegung_Enum =>
             return True;
             
          when others =>
@@ -111,7 +113,7 @@ package body EinheitenkontrollsystemLogik is
                                       BefehlExtern             => Mausbefehl);
             end if;
             
-         when TastenbelegungDatentypen.Auswählen_Enum =>
+         when BefehleDatentypen.Auswählen_Enum =>
             return AllgemeineEinheitenbewegungMaus (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when others =>
@@ -137,8 +139,8 @@ package body EinheitenkontrollsystemLogik is
             for XÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
                                           
                KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => EinheitenKoordinaten,
-                                                                                                    ÄnderungExtern    => (EÄnderungSchleifenwert, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                                                    LogikGrafikExtern => True);
+                                                                                                         ÄnderungExtern    => (EÄnderungSchleifenwert, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                                                         LogikGrafikExtern => True);
                
                -- In diesem Fall wird die Prüfung auf Leer nicht benötigt, da im aktuellen System die Cursorkoordinaten niemals ungültig sein können.
                if

@@ -64,7 +64,7 @@ package body AuswahlStadtEinheitLogik is
          NachGrafiktask.AktuelleAuswahl.AuswahlEins := AktuelleAuswahl;
          
          case
-           TasteneingabeLogik.Tastenwert
+           TasteneingabeLogik.VereinfachteEingabe
          is               
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if
@@ -76,7 +76,7 @@ package body AuswahlStadtEinheitLogik is
                   null;
                end if;
                
-            when TastenbelegungDatentypen.Menü_Zurück_Enum =>
+            when TastenbelegungDatentypen.Abwählen_Enum =>
                AktuelleAuswahl := -1;
                exit AuswahlSchleife;
                

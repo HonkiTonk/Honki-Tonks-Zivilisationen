@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
-with TastenbelegungDatentypen;
+with BefehleDatentypen;
 
 private with EinheitenRecords;
 private with EinheitenDatentypen;
@@ -28,7 +28,7 @@ package BefehlspruefungenLogik is
    
    procedure EinheitBefehle
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum)
+      BefehlExtern : in BefehleDatentypen.Einheiten_Aufgaben_Klein_Enum)
      with
        Pre => (
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum

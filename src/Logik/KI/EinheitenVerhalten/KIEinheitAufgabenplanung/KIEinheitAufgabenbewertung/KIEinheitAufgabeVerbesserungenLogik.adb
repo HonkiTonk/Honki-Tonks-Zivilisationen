@@ -5,7 +5,7 @@ with EinheitenRecords; use EinheitenRecords;
 with ForschungenDatentypen; use ForschungenDatentypen;
 with EinheitenKonstanten;
 with ForschungKonstanten;
-with TastenbelegungDatentypen;
+with BefehleDatentypen;
 
 with LeseWichtiges;
 with LeseForschungenDatenbank;
@@ -43,7 +43,7 @@ package body KIEinheitAufgabeVerbesserungenLogik is
    is begin
             
       AufgabenSchleife:
-      for AufgabeSchleifenwert in TastenbelegungDatentypen.Tastenbelegung_Konstruktionen_Enum'Range loop
+      for AufgabeSchleifenwert in BefehleDatentypen.Siedler_Konstruktionen_Enum'Range loop
          
          NötigeTechnologie := LeseForschungenDatenbank.Verbesserungen (VerbesserungExtern => AufgabeSchleifenwert,
                                                                        RasseExtern        => RasseExtern);

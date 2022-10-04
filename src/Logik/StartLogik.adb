@@ -43,9 +43,9 @@ package body StartLogik is
       while NachLogiktask.IntroAbwarten loop
          
          case
-           TasteneingabeLogik.Tastenwert
+           TasteneingabeLogik.VereinfachteEingabe
          is
-            when TastenbelegungDatentypen.Menü_Zurück_Enum =>
+            when TastenbelegungDatentypen.Abwählen_Enum =>
                NachGrafiktask.IntroAnzeigen := False;
                
             when others =>

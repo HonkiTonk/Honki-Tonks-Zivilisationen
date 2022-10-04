@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with TastenbelegungDatentypen;
+with BefehleDatentypen;
 
 with LeseEinheitenGebaut;
 
@@ -15,7 +15,7 @@ package body KIEinheitUmsetzenPluendernLogik is
    is begin
       
       return AufgabenLogik.Aufgabe (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                    BefehlExtern             => TastenbelegungDatentypen.Plündern_Enum,
+                                    BefehlExtern             => BefehleDatentypen.Plündern_Enum,
                                     KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       
    end StadtumgebungZerstören;

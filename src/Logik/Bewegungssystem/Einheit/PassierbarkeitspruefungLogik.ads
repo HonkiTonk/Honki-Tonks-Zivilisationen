@@ -44,21 +44,6 @@ package PassierbarkeitspruefungLogik is
                and
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
-
-   function InStadtEntladbar
-     (TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return Boolean
-     with
-       Pre => (
-                 TransporterExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (TransporterExtern.Rasse).Einheitengrenze
-               and
-                 NeueKoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
-               and
-                 NeueKoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
-               and
-                 SpielVariablen.Rassenbelegung (TransporterExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
-              );
       
    function RichtigeUmgebungVorhanden
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
@@ -76,21 +61,13 @@ private
    Passierbar : Boolean;
    
    WegVorhanden : KartenverbesserungDatentypen.Karten_Weg_Enum;
-   
-   Transporterkapazität : EinheitenDatentypen.Transportplätze;
-   
+      
    IDEinheit : EinheitenDatentypen.EinheitenIDMitNullWert;
    
    StadtNummer : StadtDatentypen.MaximaleStädteMitNullWert;
-   TransporterNummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
-   Transportplatz : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
-
-   BenötigteFelder : Positive;
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    StadtKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
-   
-   TransportplatzEntladen : EinheitenRecords.TransporterArray;
    
    
    

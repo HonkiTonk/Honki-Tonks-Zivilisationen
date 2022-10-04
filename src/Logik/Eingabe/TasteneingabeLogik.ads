@@ -6,11 +6,18 @@ with Sf.Window.Keyboard;
 private with Sf.Window.Mouse;
 
 with TastenbelegungDatentypen;
+with BefehleDatentypen;
 
 package TasteneingabeLogik is
-
-   function Tastenwert
-     return TastenbelegungDatentypen.Tastenbelegung_Enum;
+   
+   function VereinfachteEingabe
+     return TastenbelegungDatentypen.Allgemeine_Belegung_Enum;
+   
+   function AllgemeineTaste
+     return TastenbelegungDatentypen.Allgemeine_Belegung_Enum;
+   
+   function Einheitentaste
+     return BefehleDatentypen.Einheitenbelegung_Enum;
    
    function TastenbelegungAnpassen
      return Sf.Window.Keyboard.sfKeyCode;

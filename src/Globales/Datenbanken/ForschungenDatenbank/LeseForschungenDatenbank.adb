@@ -33,7 +33,7 @@ package body LeseForschungenDatenbank is
 
 
    function Verbesserungen
-     (VerbesserungExtern : in TastenbelegungDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum;
+     (VerbesserungExtern : in BefehleDatentypen.Siedler_Verbesserung_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return ForschungenDatentypen.ForschungIDNichtMöglich
    is begin

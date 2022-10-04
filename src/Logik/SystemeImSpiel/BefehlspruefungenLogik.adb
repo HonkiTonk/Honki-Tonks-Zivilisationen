@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with EinheitenDatentypen; use EinheitenDatentypen;
-with TastenbelegungDatentypen; use TastenbelegungDatentypen;
 with StadtDatentypen; use StadtDatentypen;
 with AufgabenDatentypen; use AufgabenDatentypen;
 with EinheitenKonstanten;
@@ -55,7 +54,7 @@ package body BefehlspruefungenLogik is
                
             when 1 =>
                EinheitBefehle (RasseExtern  => RasseExtern,
-                               BefehlExtern => TastenbelegungDatentypen.Auflösen_Enum);
+                               BefehlExtern => BefehleDatentypen.Auflösen_Enum);
                
             when others =>
                null;
@@ -70,7 +69,7 @@ package body BefehlspruefungenLogik is
         EinheitNummer /= EinheitenDatentypen.MaximaleEinheitenMitNullWert'First
       then
          EinheitBefehle (RasseExtern  => RasseExtern,
-                         BefehlExtern => TastenbelegungDatentypen.Auflösen_Enum);
+                         BefehlExtern => BefehleDatentypen.Auflösen_Enum);
                
       else
          null;
@@ -270,7 +269,7 @@ package body BefehlspruefungenLogik is
    
    procedure EinheitBefehle
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum)
+      BefehlExtern : in BefehleDatentypen.Einheiten_Aufgaben_Klein_Enum)
    is begin
                      
       EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,

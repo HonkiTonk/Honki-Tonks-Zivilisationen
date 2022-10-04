@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with TastenbelegungDatentypen;
+with BefehleDatentypen;
 
 with LeseEinheitenGebaut;
 
@@ -15,7 +15,7 @@ package body KIEinheitUmsetzenModernisierenLogik is
    is begin
       
       NullWert := AufgabenLogik.Aufgabe (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                         BefehlExtern             => TastenbelegungDatentypen.Einheit_Verbessern_Enum,
+                                         BefehlExtern             => BefehleDatentypen.Einheit_Verbessern_Enum,
                                          KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       
       return False;

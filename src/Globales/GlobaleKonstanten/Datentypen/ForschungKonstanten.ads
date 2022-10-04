@@ -2,11 +2,11 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen;
-with TastenbelegungDatentypen;
 with ForschungenDatentypen;
 with ProduktionDatentypen;
 with AufgabenDatentypen;
 with SystemDatentypen;
+with BefehleDatentypen;
 
 with DatenbankRecords;
 
@@ -18,14 +18,14 @@ package ForschungKonstanten is
    ForschungUnmöglich : constant ForschungenDatentypen.ForschungIDNichtMöglich := ForschungenDatentypen.ForschungIDNichtMöglich'First;
    
    LeerForschungsliste : constant DatenbankRecords.ForschungslisteRecord := (
-                                                                            Kosten      => LeerKosten,
-                                                                            Anforderung => (others => ForschungUnmöglich)
-                                                                           );
+                                                                             Kosten      => LeerKosten,
+                                                                             Anforderung => (others => ForschungUnmöglich)
+                                                                            );
    
    -- Das hier als Standard nehmen und Laden wenn keine Datenbank verfügbar ist, dafür eine Datenbank anlegen. äöü
-   type TechnologieVerbesserungenArray is array (TastenbelegungDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range, RassenDatentypen.Rassen_Verwendet_Enum'Range) of ForschungenDatentypen.ForschungIDNichtMöglich;
+   type TechnologieVerbesserungenArray is array (BefehleDatentypen.Siedler_Verbesserung_Enum'Range, RassenDatentypen.Rassen_Verwendet_Enum'Range) of ForschungenDatentypen.ForschungIDNichtMöglich;
    StandardtechnologieVerbesserungen : constant TechnologieVerbesserungenArray := (
-                                                                                   TastenbelegungDatentypen.Straße_Bauen_Enum =>
+                                                                                   BefehleDatentypen.Straße_Bauen_Enum =>
                                                                                      (
                                                                                       RassenDatentypen.Menschen_Enum         => 0,
                                                                                       RassenDatentypen.Kasrodiah_Enum        => 0,
@@ -47,7 +47,7 @@ package ForschungKonstanten is
                                                                                       RassenDatentypen.Talbidahr_Enum        => 0
                                                                                      ),
                                                                        
-                                                                                   TastenbelegungDatentypen.Wald_Aufforsten_Enum =>
+                                                                                   BefehleDatentypen.Wald_Aufforsten_Enum =>
                                                                                      (
                                                                                       RassenDatentypen.Menschen_Enum         => 0,
                                                                                       RassenDatentypen.Kasrodiah_Enum        => 0,
@@ -69,7 +69,7 @@ package ForschungKonstanten is
                                                                                       RassenDatentypen.Talbidahr_Enum        => 0
                                                                                      ),
                                                                        
-                                                                                   TastenbelegungDatentypen.Mine_Bauen_Enum =>
+                                                                                   BefehleDatentypen.Mine_Bauen_Enum =>
                                                                                      (
                                                                                       RassenDatentypen.Menschen_Enum         => 6,
                                                                                       RassenDatentypen.Kasrodiah_Enum        => 6,
@@ -91,7 +91,7 @@ package ForschungKonstanten is
                                                                                       RassenDatentypen.Talbidahr_Enum        => 6
                                                                                      ),
                                                                        
-                                                                                   TastenbelegungDatentypen.Farm_Bauen_Enum =>
+                                                                                   BefehleDatentypen.Farm_Bauen_Enum =>
                                                                                      (
                                                                                       RassenDatentypen.Menschen_Enum         => 2,
                                                                                       RassenDatentypen.Kasrodiah_Enum        => 2,
@@ -113,7 +113,7 @@ package ForschungKonstanten is
                                                                                       RassenDatentypen.Talbidahr_Enum        => 2
                                                                                      ),
                                                                        
-                                                                                   TastenbelegungDatentypen.Festung_Bauen_Enum =>
+                                                                                   BefehleDatentypen.Festung_Bauen_Enum =>
                                                                                      (
                                                                                       RassenDatentypen.Menschen_Enum         => 11,
                                                                                       RassenDatentypen.Kasrodiah_Enum        => 11,
@@ -135,7 +135,7 @@ package ForschungKonstanten is
                                                                                       RassenDatentypen.Talbidahr_Enum        => 11
                                                                                      ),
                                                                        
-                                                                                   TastenbelegungDatentypen.Roden_Trockenlegen_Enum =>
+                                                                                   BefehleDatentypen.Roden_Trockenlegen_Enum =>
                                                                                      (
                                                                                       RassenDatentypen.Menschen_Enum         => 1,
                                                                                       RassenDatentypen.Kasrodiah_Enum        => 1,

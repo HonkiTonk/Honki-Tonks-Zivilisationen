@@ -8,7 +8,6 @@ with Views;
 with InteraktionAuswahl;
 with SystemKonstanten;
 with RassenDatentypen;
-with TastenbelegungDatentypen;
 with ForschungKonstanten;
 with StadtKonstanten;
 with EinheitenKonstanten;
@@ -253,14 +252,14 @@ package body MausauswahlLogik is
                                                                  view         => Views.SteuerungviewAccesse (2));
          
       PositionSchleife:
-      for PositionSchleifenwert in TastenbelegungDatentypen.Tastenbelegung_Auswählbar_Enum'Range loop
+      for PositionSchleifenwert in TastenbelegungDatentypen.Kartenbefehle_Enum'Range loop
                   
          case
            Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
                                        TextboxExtern      => InteraktionAuswahl.PositionenSteuerungbelegung (PositionSchleifenwert))
          is
             when True =>
-               return (SystemKonstanten.LeerAuswahl, TastenbelegungDatentypen.Tastenbelegung_Verwendet_Enum'Pos (PositionSchleifenwert));
+               return (SystemKonstanten.LeerAuswahl, TastenbelegungDatentypen.Allgemeine_Belegung_Vorhanden_Enum'Pos (PositionSchleifenwert));
                
             when False =>
                null;
@@ -275,7 +274,7 @@ package body MausauswahlLogik is
    
    
    function Weltkartenbefehle
-     return BefehleDatentypen.Weltkartenbefehle_Enum
+     return TastenbelegungDatentypen.Weltkartenbefehle_Enum
    is begin
             
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
@@ -312,7 +311,7 @@ package body MausauswahlLogik is
             return TastenbelegungDatentypen.Auswählen_Enum;
             
          when False =>
-            return TastenbelegungDatentypen.Leer_Tastenbelegung_Enum;
+            return TastenbelegungDatentypen.Leer_Allgemeine_Belegung_Enum;
       end case;
       
    end Weltkartenbefehle;
@@ -324,7 +323,7 @@ package body MausauswahlLogik is
    -- Wobei ich wohl einfach die Auswahl zurückgeben kann und dann entsprechend prüfen und weiter zurückgeben kann? äöü
    -- Vermutlich sind da dann aber noch ein paar zusätzliche Prüfungen notwendig. äöü
    function Einheitenbefehle
-     return BefehleDatentypen.Weltkartenbefehle_Enum
+     return BefehleDatentypen.Einheitenbelegung_Enum
    is begin
       
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
@@ -356,10 +355,10 @@ package body MausauswahlLogik is
                                     TextboxExtern      => KartenberechnungenGrafik.FensterKarte)
       is
          when True =>
-            return TastenbelegungDatentypen.Auswählen_Enum;
+            return BefehleDatentypen.Auswählen_Enum;
             
          when False =>
-            return TastenbelegungDatentypen.Leer_Tastenbelegung_Enum;
+            return BefehleDatentypen.Leer_Einheitenbelegung_Enum;
       end case;
       
    end Einheitenbefehle;

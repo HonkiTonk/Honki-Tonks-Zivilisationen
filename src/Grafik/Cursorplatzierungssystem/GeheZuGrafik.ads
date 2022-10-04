@@ -6,7 +6,7 @@ with KartenDatentypen; use KartenDatentypen;
 with SpielVariablen;
 with KartenRecords;
 
-with Weltkarte;
+private with Weltkarte;
 
 package GeheZuGrafik is
 
@@ -18,6 +18,8 @@ package GeheZuGrafik is
               );
    
 private
+   
+   AktuelleSichtweite : KartenDatentypen.KartenfeldPositiv;
    
    Kartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
    KartenwertKoordinatenberechnung : KartenRecords.AchsenKartenfeldNaturalRecord;

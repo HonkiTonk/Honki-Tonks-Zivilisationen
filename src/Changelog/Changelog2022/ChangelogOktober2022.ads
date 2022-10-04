@@ -182,17 +182,26 @@ package ChangelogOktober2022 is
    
    
 
-   -- Version 0.04. => 0.04. (05.10.2022):
+   -- Version 0.04.0875 => 0.04. (05.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.0750 => 0.04. (04.10.2022):
+   -- Version 0.04.0750 => 0.04.0875 (04.10.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- GNAT auf Version Debian 12.2.0-5 aktualisiert.
+   -- Transporter werden jetzt nicht mehr automatisch entladen wenn man sie auf eine Stadt bewegt.
+   -- Man kann jetzt über einen Befehlsknopf alle Arten von Transportern entladen.
+   -- Angefangen die Tastenbelegung in eine Allgemeines und eine Einheiten Belegung umzubauen.
+   -- Einheitenbefehle haben jetzt eine eigene Tastenbelegung und können nur noch mit ausgewählter Einheit durchgeführt werden.
+   -- Allgemeine Befehle haben jetzt eine eigene Tastenbelegung.
+   -- Es ist jetzt wieder möglich mit der tastatur die Karte zu scrollen, wenn keine Einheit ausgewählt ist.
+   -- Unnötigen Code gelöscht.
+   -- Code zusammengeführt.
+   -- Vereinfachte Tasteneingabe eingebaut.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst/optimiert.
    
    
 

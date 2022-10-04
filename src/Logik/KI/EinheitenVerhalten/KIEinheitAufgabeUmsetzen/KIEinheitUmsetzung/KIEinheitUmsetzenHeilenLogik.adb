@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with TastenbelegungDatentypen;
+with BefehleDatentypen;
 
 with LeseEinheitenGebaut;
 
@@ -15,7 +15,7 @@ package body KIEinheitUmsetzenHeilenLogik is
    is begin
       
       return AufgabenLogik.Aufgabe (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                    BefehlExtern             => TastenbelegungDatentypen.Heilen_Enum,
+                                    BefehlExtern             => BefehleDatentypen.Heilen_Enum,
                                     KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       
    end Heilen;

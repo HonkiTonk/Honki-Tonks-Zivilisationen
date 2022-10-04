@@ -36,7 +36,7 @@ package body KIEinheitUmsetzenVerbesserungenLogik is
         WelcheVerbesserung
       is
          when AufgabenDatentypen.Mine_Bauen_Enum =>
-            Befehl := TastenbelegungDatentypen.Mine_Bauen_Enum;
+            Befehl := BefehleDatentypen.Mine_Bauen_Enum;
             
             if
               VorhandeneVerbesserung = KartenverbesserungDatentypen.Mine_Enum
@@ -45,7 +45,7 @@ package body KIEinheitUmsetzenVerbesserungenLogik is
                
             elsif
               True = AufgabenLogik.AufgabeTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                  BefehlExtern             => TastenbelegungDatentypen.Mine_Bauen_Enum,
+                                                  BefehlExtern             => BefehleDatentypen.Mine_Bauen_Enum,
                                                   KoordinatenExtern        => EinheitKoordinaten)
             then
                null;
@@ -55,7 +55,7 @@ package body KIEinheitUmsetzenVerbesserungenLogik is
             end if;
             
          when AufgabenDatentypen.Farm_Bauen_Enum =>
-            Befehl := TastenbelegungDatentypen.Farm_Bauen_Enum;
+            Befehl := BefehleDatentypen.Farm_Bauen_Enum;
             
             if
               VorhandeneVerbesserung = KartenverbesserungDatentypen.Farm_Enum
@@ -64,7 +64,7 @@ package body KIEinheitUmsetzenVerbesserungenLogik is
                
             elsif
               True = AufgabenLogik.AufgabeTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                  BefehlExtern             => TastenbelegungDatentypen.Farm_Bauen_Enum,
+                                                  BefehlExtern             => BefehleDatentypen.Farm_Bauen_Enum,
                                                   KoordinatenExtern        => EinheitKoordinaten)
             then
                null;
@@ -74,7 +74,7 @@ package body KIEinheitUmsetzenVerbesserungenLogik is
             end if;
             
          when AufgabenDatentypen.Festung_Bauen_Enum =>
-            Befehl := TastenbelegungDatentypen.Festung_Bauen_Enum;
+            Befehl := BefehleDatentypen.Festung_Bauen_Enum;
             
             if
               VorhandeneVerbesserung = KartenverbesserungDatentypen.Festung_Enum
@@ -83,7 +83,7 @@ package body KIEinheitUmsetzenVerbesserungenLogik is
                
             elsif
               True = AufgabenLogik.AufgabeTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                  BefehlExtern             => TastenbelegungDatentypen.Festung_Bauen_Enum,
+                                                  BefehlExtern             => BefehleDatentypen.Festung_Bauen_Enum,
                                                   KoordinatenExtern        => EinheitKoordinaten)
             then
                null;
@@ -93,11 +93,11 @@ package body KIEinheitUmsetzenVerbesserungenLogik is
             end if;
             
          when AufgabenDatentypen.Straße_Bauen_Enum =>
-            Befehl := TastenbelegungDatentypen.Straße_Bauen_Enum;
+            Befehl := BefehleDatentypen.Straße_Bauen_Enum;
             
             if
               True = AufgabenLogik.AufgabeTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                  BefehlExtern             => TastenbelegungDatentypen.Straße_Bauen_Enum,
+                                                  BefehlExtern             => BefehleDatentypen.Straße_Bauen_Enum,
                                                   KoordinatenExtern        => EinheitKoordinaten)
             then
                null;

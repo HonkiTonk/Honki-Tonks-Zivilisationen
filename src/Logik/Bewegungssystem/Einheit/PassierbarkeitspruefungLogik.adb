@@ -5,7 +5,6 @@ with EinheitenDatentypen; use EinheitenDatentypen;
 with KartenverbesserungDatentypen; use KartenverbesserungDatentypen;
 with StadtDatentypen; use StadtDatentypen;
 with KartenKonstanten;
-with EinheitenKonstanten;
 with StadtKonstanten;
 
 with LeseWeltkarte;
@@ -15,7 +14,6 @@ with LeseVerbesserungenDatenbank;
 with LeseStadtGebaut;
 
 with StadtSuchenLogik;
-with StadtumgebungErreichbarLogik;
 with KartenkoordinatenberechnungssystemLogik;
 with KartenAllgemeinesLogik;
 with Fehler;
@@ -146,53 +144,9 @@ package body PassierbarkeitspruefungLogik is
       
    end IstPassierbar;
    
-
-
-   function InStadtEntladbar
-     (TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return Boolean
-   is begin
-      
-      BenötigteFelder := 1;
-      Transporterkapazität := LeseEinheitenDatenbank.Transportkapazität (RasseExtern => TransporterExtern.Rasse,
-                                                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => TransporterExtern));
-         
-      BelegterPlatzSchleife:
-      for BelegterPlatzSchleifenwert in EinheitenRecords.TransporterArray'First .. Transporterkapazität loop
-         
-         case
-           LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
-                                              PlatzExtern              => BelegterPlatzSchleifenwert)
-         is
-            when EinheitenKonstanten.LeerTransportiert =>
-               null;
-                              
-            when others =>
-               IDEinheit := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
-                                                                                                                                             PlatzExtern              => BelegterPlatzSchleifenwert)));
-               
-               if
-                 KartenKonstanten.LeerXAchse = StadtumgebungErreichbarLogik.UmgebungErreichbar (AktuelleKoordinatenExtern => NeueKoordinatenExtern,
-                                                                                                RasseExtern               => TransporterExtern.Rasse,
-                                                                                                IDExtern                  => IDEinheit,
-                                                                                                NotwendigeFelderExtern    => BenötigteFelder).XAchse
-               then
-                  return False;
-                     
-               else
-                  BenötigteFelder := BenötigteFelder + 1;
-               end if;
-         end case;
-                
-      end loop BelegterPlatzSchleife;
-         
-      return True;
-
-   end InStadtEntladbar;
    
    
-   
+   -- Überarbeiten und in eine eigene Datei verschieben. äöü
    function RichtigeUmgebungVorhanden
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       EinheitenIDExtern : in EinheitenDatentypen.EinheitenID)

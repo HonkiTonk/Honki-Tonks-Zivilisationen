@@ -155,7 +155,7 @@ package body StadtbausystemLogik is
          NachGrafiktask.AktuelleBauauswahl := AktuelleAuswahl;
          
          case
-           TasteneingabeLogik.Tastenwert
+           TasteneingabeLogik.VereinfachteEingabe
          is               
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if
@@ -170,7 +170,7 @@ package body StadtbausystemLogik is
                   exit AuswahlSchleife;
                end if;
                
-            when TastenbelegungDatentypen.Menü_Zurück_Enum =>
+            when TastenbelegungDatentypen.Abwählen_Enum =>
                GewähltesBauprojekt := StadtKonstanten.LeerBauprojekt;
                exit AuswahlSchleife;
                

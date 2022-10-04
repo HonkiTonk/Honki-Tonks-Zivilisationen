@@ -178,7 +178,7 @@ package body SpielstandlisteLogik is
          NachGrafiktask.AktuelleAuswahl.AuswahlEins := AktuelleAuswahl;
          
          case
-           TasteneingabeLogik.Tastenwert
+           TasteneingabeLogik.VereinfachteEingabe
          is
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if
@@ -191,7 +191,7 @@ package body SpielstandlisteLogik is
                   return AktuelleAuswahl;
                end if;
                
-            when TastenbelegungDatentypen.Menü_Zurück_Enum =>
+            when TastenbelegungDatentypen.Abwählen_Enum =>
                return 0;
                
             when others =>

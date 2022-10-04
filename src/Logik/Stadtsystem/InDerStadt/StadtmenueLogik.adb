@@ -27,7 +27,7 @@ package body StadtmenueLogik is
       loop
          
          case
-           TasteneingabeLogik.Tastenwert
+           TasteneingabeLogik.VereinfachteEingabe
          is
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if
@@ -39,23 +39,24 @@ package body StadtmenueLogik is
                   exit StadtSchleife;
                end if;
                
-            when TastenbelegungDatentypen.Bauen_Enum =>
-               StadtbausystemLogik.Bauen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+               -- Das später wieder einbauen und eine eigene Belegung für die Stadttasen einbauen? äöü
+               --  when TastenbelegungDatentypen.Bauen_Enum =>
+               --     StadtbausystemLogik.Bauen (StadtRasseNummerExtern => StadtRasseNummerExtern);
                
-            when TastenbelegungDatentypen.Auflösen_Enum =>
-               if
-                 StadtEntfernenLogik.StadtAbreißen (StadtRasseNummerExtern => StadtRasseNummerExtern) = True
-               then
-                  exit StadtSchleife;
+               --  when TastenbelegungDatentypen.Auflösen_Enum =>
+               --     if
+               --       StadtEntfernenLogik.StadtAbreißen (StadtRasseNummerExtern => StadtRasseNummerExtern) = True
+               --     then
+               --        exit StadtSchleife;
                   
-               else
-                  null;
-               end if;
+               --     else
+               --        null;
+               --     end if;
 
-            when TastenbelegungDatentypen.Stadt_Umbenennen_Enum =>
-               StadtAllgemeinesLogik.NeuerStadtname (StadtRasseNummerExtern => StadtRasseNummerExtern);
+               --  when TastenbelegungDatentypen.Stadt_Umbenennen_Enum =>
+               --     StadtAllgemeinesLogik.NeuerStadtname (StadtRasseNummerExtern => StadtRasseNummerExtern);
 
-            when TastenbelegungDatentypen.Menü_Zurück_Enum =>
+            when TastenbelegungDatentypen.Abwählen_Enum =>
                exit StadtSchleife;
                
             when others =>

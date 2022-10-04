@@ -28,7 +28,7 @@ package body SteuerungsauswahlLogik is
          NachGrafiktask.AktuelleAuswahl := AktuelleAuswahl;
          
          case
-           TasteneingabeLogik.Tastenwert
+           TasteneingabeLogik.VereinfachteEingabe
          is
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if
@@ -48,7 +48,7 @@ package body SteuerungsauswahlLogik is
                   null;
                end if;
                
-            when TastenbelegungDatentypen.Menü_Zurück_Enum =>
+            when TastenbelegungDatentypen.Abwählen_Enum =>
                return RueckgabeDatentypen.Zurück_Enum;
                
             when others =>
@@ -85,17 +85,17 @@ package body SteuerungsauswahlLogik is
       end case;
       
       TastaturSchleife:
-      for TastaturSchleifenwert in TastenbelegungVariablen.TastenbelegungArray'Range loop
+      for TastaturSchleifenwert in TastenbelegungVariablen.AllgemeineBelegungArray'Range loop
          
          if
-           TastaturSchleifenwert = TastenbelegungDatentypen.Tastenbelegung_Enum'Val (AuswahlExtern)
+           TastaturSchleifenwert = TastenbelegungDatentypen.Allgemeine_Belegung_Enum'Val (AuswahlExtern)
          then
-            TastenbelegungVariablen.Tastenbelegung (TastaturSchleifenwert) := NeueTaste;
+            TastenbelegungVariablen.AllgemeineBelegung (TastaturSchleifenwert) := NeueTaste;
             
          elsif
-           TastenbelegungVariablen.Tastenbelegung (TastaturSchleifenwert) = NeueTaste
+           TastenbelegungVariablen.AllgemeineBelegung (TastaturSchleifenwert) = NeueTaste
          then
-            TastenbelegungVariablen.Tastenbelegung (TastaturSchleifenwert) := Sf.Window.Keyboard.sfKeyUnknown;
+            TastenbelegungVariablen.AllgemeineBelegung (TastaturSchleifenwert) := Sf.Window.Keyboard.sfKeyUnknown;
             
          else
             null;

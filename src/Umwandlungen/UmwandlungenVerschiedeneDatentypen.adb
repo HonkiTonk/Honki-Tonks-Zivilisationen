@@ -3,25 +3,25 @@ pragma Warnings (Off, "*array aggregate*");
 
 package body UmwandlungenVerschiedeneDatentypen is
 
-   function TastenbelegungNachKartenverbesserung
-     (TasteExtern : in TastenbelegungDatentypen.Tastenbelegung_Konstruktionen_Enum)
+   function BefehleNachKartenverbesserung
+     (TasteExtern : in BefehleDatentypen.Siedler_Konstruktionen_Enum)
       return KartenverbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum
    is begin
       
-      return TastenbelegungKartenverbesserung (TasteExtern);
+      return BefehleKartenverbesserung (TasteExtern);
       
-   end TastenbelegungNachKartenverbesserung;
+   end BefehleNachKartenverbesserung;
    
    
    
-   function KartenverbesserungNachTastenbelegung
+   function KartenverbesserungNachBefehle
      (VerbesserungExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum)
-      return TastenbelegungDatentypen.Tastenbelegung_Konstruktionen_Enum
+      return BefehleDatentypen.Siedler_Konstruktionen_Enum
    is begin
       
-      return KartenverbesserungTastenbelegung (VerbesserungExtern);
+      return KartenverbesserungBefehle (VerbesserungExtern);
       
-   end KartenverbesserungNachTastenbelegung;
+   end KartenverbesserungNachBefehle;
    
    
    

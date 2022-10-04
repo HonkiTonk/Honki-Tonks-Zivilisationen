@@ -30,9 +30,9 @@ package body AbspannLogik is
       loop
          
          case
-           TasteneingabeLogik.Tastenwert
+           TasteneingabeLogik.VereinfachteEingabe
          is
-            when TastenbelegungDatentypen.Menü_Zurück_Enum | TastenbelegungDatentypen.Auswählen_Enum =>
+            when TastenbelegungDatentypen.Auswählen_Enum | TastenbelegungDatentypen.Abwählen_Enum =>
                exit AbspannSchleife;
                
             when others =>

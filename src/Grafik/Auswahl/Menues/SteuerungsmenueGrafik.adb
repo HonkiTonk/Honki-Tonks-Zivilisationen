@@ -44,8 +44,7 @@ package body SteuerungsmenueGrafik is
       ViewflächeText := BefehleAnzeigen (AuswahlExtern => AuswahlExtern);
       
       ViewflächeText.y := ViewflächeText.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
-      
-      
+            
       ViewflächeBelegung := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => ViewflächeBelegung,
                                                                                 VerhältnisExtern => (GrafikRecordKonstanten.Steuerungbereich (2).width, GrafikRecordKonstanten.Steuerungbereich (2).height));
       
@@ -85,7 +84,7 @@ package body SteuerungsmenueGrafik is
          then
             TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => PositionSchleifenwert,
                                                    AuswahlExtern    => AuswahlExtern.AuswahlZwei + SystemKonstanten.StandardArrayanpassung
-                                                   - TastenbelegungDatentypen.Tastenbelegung_Auswählbar_Enum'Pos (TastenbelegungDatentypen.Tastenbelegung_Auswählbar_Enum'First),
+                                                   - TastenbelegungDatentypen.Kartenbefehle_Enum'Pos (TastenbelegungDatentypen.Kartenbefehle_Enum'First),
                                                    TextaccessExtern => TextaccessVariablen.SteuerungSFMLAccess (PositionSchleifenwert));
                
          else
@@ -135,9 +134,9 @@ package body SteuerungsmenueGrafik is
       Textbreite := 0.00;
       
       PositionenSchleife:
-      for PositionSchleifenwert in TastenbelegungDatentypen.Tastenbelegung_Auswählbar_Enum'Range loop
+      for PositionSchleifenwert in TastenbelegungDatentypen.Allgemeine_Belegung_Vorhanden_Enum'Range loop
          
-         AktuelleBelegung := TastenbelegungVariablen.Tastenbelegung (PositionSchleifenwert);
+         AktuelleBelegung := TastenbelegungVariablen.AllgemeineBelegung (PositionSchleifenwert);
          
          case
            AktuelleBelegung
@@ -161,7 +160,7 @@ package body SteuerungsmenueGrafik is
          Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.TextAccess,
                                                                              TextbreiteExtern => Textbreite);
          
-         TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => TastenbelegungDatentypen.Tastenbelegung_Enum'Pos (PositionSchleifenwert),
+         TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => TastenbelegungDatentypen.Allgemeine_Belegung_Enum'Pos (PositionSchleifenwert),
                                                 AuswahlExtern    => AuswahlExtern,
                                                 TextaccessExtern => TextaccessVariablen.TextAccess);
          
