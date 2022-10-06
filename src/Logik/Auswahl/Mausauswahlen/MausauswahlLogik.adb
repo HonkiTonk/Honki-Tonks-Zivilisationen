@@ -222,50 +222,57 @@ package body MausauswahlLogik is
          
    
    function Steuerung
-     return SystemRecords.MehrfacheAuswahlRecord
+      return SystemRecords.MehrfacheAuswahlRecord
    is begin
       
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
                                                                  point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
                                                                  view         => Views.SteuerungviewAccesse (1));
       
-      BefehleSchleife:
-      for BefehleSchleifenwert in InteraktionAuswahl.PositionenSteuerung'Range loop
+      AufteilungSchleife:
+      for AufteilungSchleifenwert in InteraktionAuswahl.PositionenSteuerungsaufteilung'Range loop
          
          case
            Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                       TextboxExtern      => InteraktionAuswahl.PositionenSteuerung (BefehleSchleifenwert))
+                                       TextboxExtern      => InteraktionAuswahl.PositionenSteuerungsaufteilung (AufteilungSchleifenwert))
          is
             when True =>
-               return (BefehleSchleifenwert, SystemKonstanten.LeerAuswahl);
+               if
+                 AufteilungSchleifenwert = 1
+               then
+                  return (-1, SystemKonstanten.LeerAuswahl);
+                  
+               else
+                  return (SystemKonstanten.LeerAuswahl, -1);
+               end if;
                
             when False =>
                null;
          end case;
          
-      end loop BefehleSchleife;
+      end loop AufteilungSchleife;
       
       
       
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
                                                                  point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
                                                                  view         => Views.SteuerungviewAccesse (2));
+      
+      SteuerungSchleife:
+      for SteuerungSchleifenwert in InteraktionAuswahl.PositionenSteuerung'Range loop
          
-      PositionSchleife:
-      for PositionSchleifenwert in TastenbelegungDatentypen.Kartenbefehle_Enum'Range loop
-                  
          case
            Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                       TextboxExtern      => InteraktionAuswahl.PositionenSteuerungbelegung (PositionSchleifenwert))
+                                       TextboxExtern      => InteraktionAuswahl.PositionenSteuerung (SteuerungSchleifenwert))
          is
             when True =>
-               return (SystemKonstanten.LeerAuswahl, TastenbelegungDatentypen.Allgemeine_Belegung_Vorhanden_Enum'Pos (PositionSchleifenwert));
+               return (SteuerungSchleifenwert, SystemKonstanten.LeerAuswahl);
                
             when False =>
                null;
          end case;
          
-      end loop PositionSchleife;
+      end loop SteuerungSchleife;
       
       return (SystemKonstanten.LeerAuswahl, SystemKonstanten.LeerAuswahl);
       
@@ -489,7 +496,7 @@ package body MausauswahlLogik is
    function StadtEinheitauswahl
      (AnfangExtern : in EinheitenDatentypen.Transportplätze;
       EndeExtern : in EinheitenDatentypen.TransportplätzeVorhanden)
-     return Integer
+      return Integer
    is begin
       
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,

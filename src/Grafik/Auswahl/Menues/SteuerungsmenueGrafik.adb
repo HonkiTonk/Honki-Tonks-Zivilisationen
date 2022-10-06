@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Sf.Window.Keyboard; use Sf.Window.Keyboard;
+-- with Sf.Window.Keyboard; use Sf.Window.Keyboard;
 with Sf.Graphics.Text;
 with Sf.Graphics.RenderWindow;
 
@@ -10,13 +10,15 @@ with GrafikDatentypen;
 with SystemKonstanten;
 with TextaccessVariablen;
 with InteraktionAuswahl;
-with MenueDatentypen;
+-- with MenueDatentypen;
 with TastenbelegungDatentypen;
 with TextKonstanten;
 with TastenbelegungKonstanten;
 with Meldungstexte;
 with TextnummernKonstanten;
 with TastenbelegungVariablen;
+with Menuetexte;
+with BefehleDatentypen;
 
 with ViewsEinstellenGrafik;
 with HintergrundGrafik;
@@ -24,6 +26,8 @@ with TextberechnungenHoeheGrafik;
 with TextberechnungenBreiteGrafik;
 with EinstellungenGrafik;
 with TextfarbeGrafik;
+with TexteinstellungenGrafik;
+with SteuerungsauswahlLogik;
 
 package body SteuerungsmenueGrafik is
 
@@ -31,19 +35,20 @@ package body SteuerungsmenueGrafik is
      (AuswahlExtern : in SystemRecords.MehrfacheAuswahlRecord)
    is begin
       
-      ViewflächeText := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => ViewflächeText,
-                                                                            VerhältnisExtern => (GrafikRecordKonstanten.Steuerungbereich (1).width, GrafikRecordKonstanten.Steuerungbereich (1).height));
+      ViewflächeAufteilung := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => ViewflächeAufteilung,
+                                                                                  VerhältnisExtern => (GrafikRecordKonstanten.Steuerungbereich (1).width, GrafikRecordKonstanten.Steuerungbereich (1).height));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.SteuerungviewAccesse (1),
-                                            GrößeExtern          => ViewflächeText,
+                                            GrößeExtern          => ViewflächeAufteilung,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Steuerungbereich (1));
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
-                                     AbmessungenExtern => ViewflächeText);
+                                     AbmessungenExtern => ViewflächeAufteilung);
                   
-      ViewflächeText := BefehleAnzeigen (AuswahlExtern => AuswahlExtern);
+      ViewflächeAufteilung := Steuerungsaufteilung (AuswahlExtern         => AuswahlExtern,
+                                                     WelcheSteuerungExtern => SteuerungsauswahlLogik.WelcheSteuerung);
       
-      ViewflächeText.y := ViewflächeText.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
+      
             
       ViewflächeBelegung := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => ViewflächeBelegung,
                                                                                 VerhältnisExtern => (GrafikRecordKonstanten.Steuerungbereich (2).width, GrafikRecordKonstanten.Steuerungbereich (2).height));
@@ -55,139 +60,198 @@ package body SteuerungsmenueGrafik is
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
                                      AbmessungenExtern => ViewflächeBelegung);
       
-      ViewflächeBelegung := BelegungAnzeigen (AuswahlExtern => AuswahlExtern.AuswahlZwei);
-      
-      ViewflächeBelegung.y := ViewflächeBelegung.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
+      ViewflächeBelegung := Steuerung (AuswahlExtern         => AuswahlExtern.AuswahlEins,
+                                        WelcheSteuerungExtern => SteuerungsauswahlLogik.WelcheSteuerung);
       
    end Steuerungsmenü;
    
    
    
-   function BefehleAnzeigen
-     (AuswahlExtern : in SystemRecords.MehrfacheAuswahlRecord)
+   function Steuerungsaufteilung
+     (AuswahlExtern : in SystemRecords.MehrfacheAuswahlRecord;
+      WelcheSteuerungExtern : in Boolean)
       return Sf.System.Vector2.sfVector2f
    is begin
       
-      Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
-      Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
+      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
+      Textposition.x := TextberechnungenBreiteGrafik.SpaltenabstandVariabel;
       Textbreite := 0.00;
-      Zusatzabstand := True;
-
-      PositionenSchleife:
-      for PositionSchleifenwert in SystemKonstanten.StandardArrayanpassung .. SystemKonstanten.EndeMenü (MenueDatentypen.Steuerung_Menü_Enum) loop
-
-         Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.SteuerungSFMLAccess (PositionSchleifenwert),
-                                                                             TextbreiteExtern => Textbreite);
+      
+      if
+        AuswahlExtern.AuswahlEins = -1
+      then
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SteuerungSFMLAccess (SystemKonstanten.AllgemeineSteuerung),
+                                    color => TexteinstellungenGrafik.Schriftfarben.FarbeAusgewähltText);
+         
+      elsif
+        WelcheSteuerungExtern = False
+      then
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SteuerungSFMLAccess (SystemKonstanten.AllgemeineSteuerung),
+                                    color => TexteinstellungenGrafik.Schriftfarben.FarbeMenschText);
+           
+      else
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SteuerungSFMLAccess (SystemKonstanten.AllgemeineSteuerung),
+                                    color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
+      end if;
+         
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.SteuerungSFMLAccess (SystemKonstanten.AllgemeineSteuerung),
+                                    position => Textposition);
+      
+      InteraktionAuswahl.PositionenSteuerungsaufteilung (1) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SteuerungSFMLAccess (SystemKonstanten.AllgemeineSteuerung));
+      
+      Textposition.x := Textposition.x + Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SteuerungSFMLAccess (SystemKonstanten.AllgemeineSteuerung)).width
+        + 2.00 * TextberechnungenBreiteGrafik.SpaltenabstandVariabel;
+      
+      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
+                                         text         => TextaccessVariablen.SteuerungSFMLAccess (SystemKonstanten.AllgemeineSteuerung));
+      
+      if
+        AuswahlExtern.AuswahlZwei = -1
+      then
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SteuerungSFMLAccess (SystemKonstanten.Einheitensteuerung),
+                                    color => TexteinstellungenGrafik.Schriftfarben.FarbeAusgewähltText);
+         
+      elsif
+        WelcheSteuerungExtern
+      then
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SteuerungSFMLAccess (SystemKonstanten.Einheitensteuerung),
+                                    color => TexteinstellungenGrafik.Schriftfarben.FarbeMenschText);
+           
+      else
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SteuerungSFMLAccess (SystemKonstanten.Einheitensteuerung),
+                                    color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
+      end if;
+         
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.SteuerungSFMLAccess (SystemKonstanten.Einheitensteuerung),
+                                    position => Textposition);
+      
+      InteraktionAuswahl.PositionenSteuerungsaufteilung (2) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SteuerungSFMLAccess (SystemKonstanten.Einheitensteuerung));
+      
+      Textposition.x := Textposition.x + Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SteuerungSFMLAccess (SystemKonstanten.Einheitensteuerung)).width
+        + TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
+      Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                      TextAccessExtern => TextaccessVariablen.SteuerungSFMLAccess (SystemKonstanten.Einheitensteuerung),
+                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+      
+      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
+                                         text         => TextaccessVariablen.SteuerungSFMLAccess (SystemKonstanten.Einheitensteuerung));
+      
+      return (Textposition.x, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+      
+   end Steuerungsaufteilung;
+   
+   
+   
+   function Steuerung
+     (AuswahlExtern : in Integer;
+      WelcheSteuerungExtern : in Boolean)
+      return Sf.System.Vector2.sfVector2f
+   is begin
+            
+      case
+        WelcheSteuerungExtern
+      is
+         when False =>
+            ArrayAnfang := SystemKonstanten.AllgemeineSteuerung + 1;
+            ArrayEnde := SystemKonstanten.Einheitensteuerung - 1;
+            
+         when True =>
+            ArrayAnfang := SystemKonstanten.Einheitensteuerung + 1;
+            ArrayEnde := SystemKonstanten.SonstigesSteuerung - 1;
+      end case;
+      
+      Textposition.x := TextberechnungenBreiteGrafik.SpaltenabstandVariabel;
+      Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
+      Textbreite := 0.00;
+      
+      TextSchleife:
+      for TextSchleifenwert in TextaccessVariablen.SteuerungSFMLAccess'Range loop
          
          if
-           PositionSchleifenwert <= SystemKonstanten.EndeAbzugGrafik (MenueDatentypen.Steuerung_Menü_Enum)
+           TextSchleifenwert in ArrayAnfang .. ArrayEnde
+           or
+             TextSchleifenwert >= SystemKonstanten.SonstigesSteuerung
          then
-            TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => PositionSchleifenwert,
-                                                   AuswahlExtern    => AuswahlExtern.AuswahlZwei + SystemKonstanten.StandardArrayanpassung
-                                                   - TastenbelegungDatentypen.Kartenbefehle_Enum'Pos (TastenbelegungDatentypen.Kartenbefehle_Enum'First),
-                                                   TextaccessExtern => TextaccessVariablen.SteuerungSFMLAccess (PositionSchleifenwert));
-               
+            TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => TextSchleifenwert,
+                                                   AuswahlExtern    => AuswahlExtern,
+                                                   TextaccessExtern => TextaccessVariablen.SteuerungSFMLAccess (TextSchleifenwert));
+            
+            Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.SteuerungSFMLAccess (TextSchleifenwert),
+                                          position => Textposition);
+            
+            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.SteuerungSFMLAccess (TextSchleifenwert),
+                                               str  => TextFestlegen (WelcheSteuerungExtern => WelcheSteuerungExtern,
+                                                                      WelcheZeileExtern     => TextSchleifenwert));
+            
+            Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.SteuerungSFMLAccess (TextSchleifenwert),
+                                                                                TextbreiteExtern => Textbreite);
+            
+            Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                            TextAccessExtern => TextaccessVariablen.SteuerungSFMLAccess (TextSchleifenwert),
+                                                                            ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+            
+            Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
+                                               text         => TextaccessVariablen.SteuerungSFMLAccess (TextSchleifenwert));
+            
+            InteraktionAuswahl.PositionenSteuerung (TextSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SteuerungSFMLAccess (TextSchleifenwert));
+            
+         elsif
+           TextSchleifenwert = SystemKonstanten.Einheitensteuerung
+         then
+            null;
+            
          else
-            TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => PositionSchleifenwert,
-                                                   AuswahlExtern    => AuswahlExtern.AuswahlEins,
-                                                   TextaccessExtern => TextaccessVariablen.SteuerungSFMLAccess (PositionSchleifenwert));
-            
-            InteraktionAuswahl.PositionenSteuerung (PositionSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SteuerungSFMLAccess (PositionSchleifenwert));
-            
-            case
-              Zusatzabstand
-            is
-               when True =>
-                  Zusatzabstand := False;
-                  Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
-                  
-               when False =>
-                  null;
-            end case;
+            InteraktionAuswahl.PositionenSteuerung (TextSchleifenwert) := GrafikRecordKonstanten.Leerbereich;
          end if;
          
-         Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.SteuerungSFMLAccess (PositionSchleifenwert),
-                                       position => Textposition);
-         
-         Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                         TextAccessExtern => TextaccessVariablen.SteuerungSFMLAccess (PositionSchleifenwert),
-                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
-         
-         Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                            text         => TextaccessVariablen.SteuerungSFMLAccess (PositionSchleifenwert));
-         
-      end loop PositionenSchleife;
-
-      return (Textbreite, Textposition.y);
+      end loop TextSchleife;
       
-   end BefehleAnzeigen;
+      return (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
+      
+   end Steuerung;
    
    
    
-   function BelegungAnzeigen
-     (AuswahlExtern : in Natural)
-      return Sf.System.Vector2.sfVector2f
+   function TextFestlegen
+     (WelcheSteuerungExtern : in Boolean;
+      WelcheZeileExtern : in Positive)
+      return Wide_Wide_String
    is begin
       
-      Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
-      Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
-      Textbreite := 0.00;
+      if
+        WelcheZeileExtern >= SystemKonstanten.SonstigesSteuerung
+      then
+         return To_Wide_Wide_String (Source => Menuetexte.Steuerungmenü (WelcheZeileExtern));
+           
+      else
+         Text := Menuetexte.Steuerungmenü (WelcheZeileExtern) & TextKonstanten.LangerAbstand;
+      end if;
+                                               
+      case
+        WelcheSteuerungExtern
+      is
+         when False =>
+            AktuelleBelegung := TastenbelegungVariablen.AllgemeineBelegung (TastenbelegungDatentypen.Allgemeine_Belegung_Vorhanden_Enum'Val (WelcheZeileExtern - SystemKonstanten.AllgemeineSteuerungEnumausgleich));
+            
+         when True =>
+            AktuelleBelegung := TastenbelegungVariablen.Einheitenbelegung (BefehleDatentypen.Einheiten_Bewegung_Enum'Val (WelcheZeileExtern - SystemKonstanten.EinheitensteuerungEnumausgleich));
+      end case;
       
-      PositionenSchleife:
-      for PositionSchleifenwert in TastenbelegungDatentypen.Allgemeine_Belegung_Vorhanden_Enum'Range loop
-         
-         AktuelleBelegung := TastenbelegungVariablen.AllgemeineBelegung (PositionSchleifenwert);
-         
-         case
-           AktuelleBelegung
-         is
-            when Sf.Window.Keyboard.sfKeyUnknown =>
-               Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugLeer);
-               
-            when Sf.Window.Keyboard.sfKeyA .. Sf.Window.Keyboard.sfKeyCount =>
-               Text := TastenbelegungKonstanten.Tastennamen (AktuelleBelegung);
-               
-            when others =>
-               Text := TextKonstanten.LeerUnboundedString & Wide_Wide_Character'Val (191);
-         end case;
-         
-         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TextAccess,
-                                            str  => To_Wide_Wide_String (Source => Text));
-         
-         Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.TextAccess,
-                                       position => Textposition);
-         
-         Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.TextAccess,
-                                                                             TextbreiteExtern => Textbreite);
-         
-         TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => TastenbelegungDatentypen.Allgemeine_Belegung_Enum'Pos (PositionSchleifenwert),
-                                                AuswahlExtern    => AuswahlExtern,
-                                                TextaccessExtern => TextaccessVariablen.TextAccess);
-         
-         InteraktionAuswahl.PositionenSteuerungbelegung (PositionSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.TextAccess);
-         
-         Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                         TextAccessExtern => TextaccessVariablen.TextAccess,
-                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
-         
-         Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                            text         => TextaccessVariablen.TextAccess);
-         
-      end loop PositionenSchleife;
+      case
+        AktuelleBelegung
+      is
+         when Sf.Window.Keyboard.sfKeyUnknown =>
+            Text := Text & Meldungstexte.Zeug (TextnummernKonstanten.ZeugLeer);
+
+         when Sf.Window.Keyboard.sfKeyA .. Sf.Window.Keyboard.sfKeyCount =>
+            Text := Text & TastenbelegungKonstanten.Tastennamen (AktuelleBelegung);
+
+         when others =>
+            Text := Text & Wide_Wide_Character'Val (191);
+      end case;
       
-      Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
+      return To_Wide_Wide_String (Source => Text);
       
-      ZusatzSchleife:
-      for ZusatzSchleifenwert in SystemKonstanten.EndeAbzugGrafik (MenueDatentypen.Steuerung_Menü_Enum) + 1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Steuerung_Menü_Enum) loop
-         
-         Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                         TextAccessExtern => TextaccessVariablen.SteuerungSFMLAccess (ZusatzSchleifenwert),
-                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
-         
-      end loop ZusatzSchleife;
-      
-      return (Textbreite, Textposition.y);
-      
-   end BelegungAnzeigen;
+   end TextFestlegen;
 
 end SteuerungsmenueGrafik;

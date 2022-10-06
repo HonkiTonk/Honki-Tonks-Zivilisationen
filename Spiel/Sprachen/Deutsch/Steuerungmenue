@@ -1,5 +1,38 @@
 Steuerung
-Stadt bauen/Baumenü
+Allgemein
+Nach Norden scrollen
+Nach Westen scrollen
+Nach Süden scrollen
+Nach Osten scrollen
+Nach Nordwesten scrollen
+Nach Nordosten scrollen
+Nach Südwesten scrollen
+Nach Südosten scrollen
+Ebene hoch scrollen
+Ebene runter scrollen
+Forschungsmenü
+Diplomatiemenü
+Stadt suchen
+Nächste Stadt
+Nächste Stadt mit Meldung
+Nächste Einheit
+Nächste Einheit mit Meldung
+Nächste Einheit mit Bewegungspunkte
+Nächste Einheit ohne Bewegungspunkte
+Gehe Zu
+Runde beenden
+Einheiten
+Nach Norden bewegen
+Nach Westen bewegen
+Nach Süden bewegen
+Nach Osten bewegen
+Nach Nordwesten bewegen
+Nach Nordosten bewegen
+Nach Südwesten bewegen
+Nach Südosten bewegen
+Ebene hoch bewegen
+Ebene runter bewegen
+Stadt bauen
 Straße bauen/verbessern
 Mine bauen/verbessern
 Farm bauen/verbessern
@@ -13,18 +46,6 @@ Auflösen
 Verbessern
 Heimatstadt ändern
 Entladen
-Forschung
-Nächste Stadt zeigen
-Nächste Einheit mit Bewegungspunkten zeigen
-Nächste Einheit zeigen
-Nächste Einheit ohne Bewegungspunkte zeigen
-Nächste Stadt mit Meldung
-Nächste Einheit mit Meldung
-Diplomatie
-Gehe zu Koordinaten
-Stadt umbenennen
-Stadt mit Namen suchen
-Runde beenden
 Speichern
 Wiederherstellen
 Zurück

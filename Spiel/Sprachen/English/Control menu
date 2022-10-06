@@ -1,32 +1,53 @@
-Controls
-Build city/Buildingmenu
-Build/Upgrade road
-Build/Upgrade mine
-Build/Upgrade farm
+Control
+General
+Scroll north
+Scroll west
+Scroll south
+Scroll east
+Scroll Northwest
+Scroll Northeast
+Scroll southwest
+Scroll southeast
+Scroll level up
+Scroll level down
+Research menu
+Diplomacy menu
+Search city
+Next city
+Next city with message
+Next unit
+Next unit with message
+Next unit with movement points
+Next unit without movement points
+Go to
+End round
+Units
+Move north
+Move west
+Move south
+Move East
+Move Northwest
+Move Northeast
+Move Southwest
+Move Southeast
+Move level up
+Move level down
+Build city
+Build/improve road
+Build/upgrade mine
+Build/upgrade farm
 Build/Upgrade fortress
-Reforest
-Clearing/Draining
+Reforestation
+Clearing/draining
 Heal
 Entrench
 Plunder
 Dissolve
-Upgrade
-Change home city
-Unload
-Research
-Show next city
-Show next unit with movement points
-Show next unit
-Show next unit with no movement points
-Next city with notification
-Next unit with notification
-Diplomacy
-Go to coordinates
-Rename city
-Search for a city by name
-End round
+Enhance
+Change Home City
+Unloading
 Save on computer
 Restore
-Back
+Return
 Main menu
 Exit game

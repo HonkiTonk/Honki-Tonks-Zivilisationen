@@ -20,9 +20,9 @@ package TastenbelegungVariablen is
 private
    
    AllgemeineBelegungStandard : constant AllgemeineBelegungArray := (
-                                                                     -- Bewegung auch mit einbauen. äöü
-                                                                     -- Anstelle die aktuelle Koordionate zu verschieben, kann ich doch auch einfach die Alte verschieben. äöü
-                                                                     -- Dann sollte man auch mit Tasten scrollen können. äöü
+                                                                     TastenbelegungDatentypen.Auswählen_Enum                      => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                     
+                                                                     -- Bewegung
                                                                      TastenbelegungDatentypen.Oben_Enum                           => Sf.Window.Keyboard.sfKeyNumpad8,
                                                                      TastenbelegungDatentypen.Links_Enum                          => Sf.Window.Keyboard.sfKeyNumpad4,
                                                                      TastenbelegungDatentypen.Unten_Enum                          => Sf.Window.Keyboard.sfKeyNumpad2,
@@ -34,27 +34,27 @@ private
                                                                      TastenbelegungDatentypen.Ebene_Hoch_Enum                     => Sf.Window.Keyboard.sfKeyAdd,
                                                                      TastenbelegungDatentypen.Ebene_Runter_Enum                   => Sf.Window.Keyboard.sfKeySubtract,
                                 
-                                                                     -- Ab hier auswählbar.
+                                                                     -- Menüs
                                                                      TastenbelegungDatentypen.Forschung_Enum                      => Sf.Window.Keyboard.sfKeyT,
-                                                                
-                                                                     TastenbelegungDatentypen.Nächste_Stadt_Enum                  => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                     TastenbelegungDatentypen.Einheit_Mit_Bewegungspunkte_Enum    => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                     TastenbelegungDatentypen.Alle_Einheiten_Enum                 => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                     TastenbelegungDatentypen.Einheiten_Ohne_Bewegungspunkte_Enum => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                     TastenbelegungDatentypen.Nächste_Stadt_Mit_Meldung_Enum      => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                     TastenbelegungDatentypen.Nächste_Einheit_Mit_Meldung_Enum    => Sf.Window.Keyboard.sfKeyO,
-                                                                     
-                                                                     -- Sonstiges
                                                                      TastenbelegungDatentypen.Diplomatie_Enum                     => Sf.Window.Keyboard.sfKeyD,
-                                                                     TastenbelegungDatentypen.Gehe_Zu_Enum                        => Sf.Window.Keyboard.sfKeyG,
-                                
+                                                                
                                                                      -- Stadt
                                                                      TastenbelegungDatentypen.Stadt_Suchen_Enum                   => Sf.Window.Keyboard.sfKeyY,
-                                
+                                                                     TastenbelegungDatentypen.Nächste_Stadt_Enum                  => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                     TastenbelegungDatentypen.Nächste_Stadt_Mit_Meldung_Enum      => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                     
+                                                                     -- Einheit
+                                                                     TastenbelegungDatentypen.Nächste_Einheit_Enum                => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                     TastenbelegungDatentypen.Nächste_Einheit_Mit_Meldung_Enum    => Sf.Window.Keyboard.sfKeyO,
+                                                                     TastenbelegungDatentypen.Einheit_Mit_Bewegungspunkte_Enum    => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                     TastenbelegungDatentypen.Einheiten_Ohne_Bewegungspunkte_Enum => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                     
+                                                                     -- Sonstiges
+                                                                     TastenbelegungDatentypen.Gehe_Zu_Enum                        => Sf.Window.Keyboard.sfKeyG,
                                                                      TastenbelegungDatentypen.Runde_Beenden_Enum                  => Sf.Window.Keyboard.sfKeyR,
+                                                                     
                                                                      TastenbelegungDatentypen.Debugmenü_Enum                      => Sf.Window.Keyboard.sfKeyPause,
                                                                      
-                                                                     TastenbelegungDatentypen.Auswählen_Enum                      => Sf.Window.Keyboard.sfKeyUnknown,
                                                                      TastenbelegungDatentypen.Abwählen_Enum                       => Sf.Window.Keyboard.sfKeyEscape
                                                                     );
    

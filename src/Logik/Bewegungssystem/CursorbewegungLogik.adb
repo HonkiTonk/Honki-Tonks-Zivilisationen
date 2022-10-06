@@ -1,25 +1,42 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with TastenbelegungDatentypen; use TastenbelegungDatentypen;
 with TextnummernKonstanten;
 with KartenKonstanten;
 
 with Weltkarte;
 with ZahleneingabeLogik;
 with NachGrafiktask;
-with Sichtweiten;
 with KartenkoordinatenberechnungssystemLogik;
 
 package body CursorbewegungLogik is
    
    procedure CursorbewegungBerechnen
-     (RichtungExtern : in TastenbelegungDatentypen.Tastenbelegung_Bewegung_Enum;
+     (RichtungExtern : in TastenbelegungDatentypen.Tastenbelegung_Bewegung_Erweitert_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
-                                                                                                ÄnderungExtern    => Richtung (RichtungExtern),
-                                                                                                LogikGrafikExtern => True);
+      -- Das Scrollen duch die Ebenen auch noch von den Ebenenübergangeinstellungen abhängig machen? äöü
+      if
+        SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.EAchse = KartenKonstanten.WeltraumKonstante
+        and
+          RichtungExtern = TastenbelegungDatentypen.Ebene_Hoch_Enum
+      then
+         KartenWert := (KartenKonstanten.PlaneteninneresKonstante, SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse, SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse);
+           
+      elsif
+        SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.EAchse = KartenKonstanten.PlaneteninneresKonstante
+        and
+          RichtungExtern = TastenbelegungDatentypen.Ebene_Runter_Enum
+      then
+         KartenWert := (KartenKonstanten.WeltraumKonstante, SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse, SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse);
+         
+      else
+         KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
+                                                                                                   ÄnderungExtern    => Richtung (RichtungExtern),
+                                                                                                   LogikGrafikExtern => True);
+      end if;
       
       case
         KartenWert.XAchse
@@ -28,81 +45,10 @@ package body CursorbewegungLogik is
             null;
                
          when others =>
-            -- SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt := KartenWert;
             NachGrafiktask.GeheZu := KartenWert;
       end case;
       
    end CursorbewegungBerechnen;
-   
-   
-   
-   -- Eventuell später noch erweitern damit auch bei anderen Einstellungen die Verschiebung korrekter ist. äöü
-   -- Gilt auch für die Anpassung in CursorplatzierungAltGrafik. äöü
-   -- GeheZuGrafik.Koordinatenberechnung hat vergleichbare Berechnungen, mal zusammenführen. äöü
-   -- Das Ergebnis nach NachGrafiktask.GeheZu schreiben, dann wird die Cursorposition gar nicht? mehr von der Logik Festgelegt, sondern nur noch von der Grafik. äöü
-   procedure ZoomanpassungCursor
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-   is begin
-      
-      AktuelleSichtweite := Sichtweiten.SichtweiteLesen (YXExtern => True);
-        
-      if
-        2 * AktuelleSichtweite >= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
-        and
-          Weltkarte.Karteneinstellungen.Kartenform.YAchseNorden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
-          and
-            Weltkarte.Karteneinstellungen.Kartenform.YAchseSüden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
-      then
-         SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse := Weltkarte.Karteneinstellungen.Kartengröße.YAchse / 2;
-         
-      elsif
-        SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse <= Weltkarte.KarteArray'First (2) + AktuelleSichtweite
-        and
-          Weltkarte.Karteneinstellungen.Kartenform.YAchseNorden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
-      then
-         SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse := Weltkarte.KarteArray'First (2) + AktuelleSichtweite;
-         
-      elsif
-        SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse >= Weltkarte.Karteneinstellungen.Kartengröße.YAchse - AktuelleSichtweite
-        and
-          Weltkarte.Karteneinstellungen.Kartenform.YAchseSüden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
-      then
-         SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse := Weltkarte.Karteneinstellungen.Kartengröße.YAchse - AktuelleSichtweite;
-         
-      else
-         null;
-      end if;
-      
-      AktuelleSichtweite := Sichtweiten.SichtweiteLesen (YXExtern => False);
-      
-      if
-        2 * AktuelleSichtweite >= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
-        and
-          Weltkarte.Karteneinstellungen.Kartenform.XAchseWesten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
-          and
-            Weltkarte.Karteneinstellungen.Kartenform.XAchseOsten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
-      then
-         SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse := Weltkarte.Karteneinstellungen.Kartengröße.XAchse / 2;
-      
-      elsif
-        SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse <= Weltkarte.KarteArray'First (3) + AktuelleSichtweite
-        and
-          Weltkarte.Karteneinstellungen.Kartenform.XAchseWesten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
-      then
-         SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse := Weltkarte.KarteArray'First (3) + AktuelleSichtweite;
-         
-      elsif
-        SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse >= Weltkarte.Karteneinstellungen.Kartengröße.XAchse - AktuelleSichtweite
-        and
-          Weltkarte.Karteneinstellungen.Kartenform.XAchseOsten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
-      then
-         SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse := Weltkarte.Karteneinstellungen.Kartengröße.XAchse - AktuelleSichtweite;
-         
-      else
-         null;
-      end if;
-      
-   end ZoomanpassungCursor;
 
 
 

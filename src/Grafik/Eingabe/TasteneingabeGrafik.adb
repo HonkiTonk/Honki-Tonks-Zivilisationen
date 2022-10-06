@@ -12,7 +12,7 @@ with GrafikDatentypen;
 with NachLogiktask;
 with NachGrafiktask;
 with EinstellungenGrafik;
-with Sichtweiten;
+with SichtweitenGrafik;
 
 package body TasteneingabeGrafik is
 
@@ -65,10 +65,10 @@ package body TasteneingabeGrafik is
                if
                  Nutzereingabe.mouseWheelScroll.eventDelta < 0.00
                then
-                  Sichtweiten.ZoomstufeÄndern (ÄnderungExtern => 1);
+                  SichtweitenGrafik.ZoomstufeÄndern (ÄnderungExtern => 1);
                   
                else
-                  Sichtweiten.ZoomstufeÄndern (ÄnderungExtern => -1);
+                  SichtweitenGrafik.ZoomstufeÄndern (ÄnderungExtern => -1);
                end if;
                   
             when Sf.Window.Event.sfEvtMouseButtonPressed =>

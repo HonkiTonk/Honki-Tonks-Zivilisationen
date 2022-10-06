@@ -1,13 +1,17 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-private with Sf.Window.Keyboard;
+with Sf.Window.Keyboard; use Sf.Window.Keyboard;
 
 with RueckgabeDatentypen;
 
 private with SystemRecords;
 
 package SteuerungsauswahlLogik is
+   
+   WelcheSteuerung : Boolean := False;
+   
+   
    
    function Auswahl
      return RueckgabeDatentypen.Rückgabe_Werte_Enum;
@@ -24,6 +28,23 @@ private
    AktuelleAuswahl : SystemRecords.MehrfacheAuswahlRecord;
       
    procedure TasteBelegen
-     (AuswahlExtern : in Positive);
+     (AuswahlExtern : in Positive;
+      WelcheSteuerungExtern : in Boolean);
+   
+   procedure AllgemeineBelegung
+     (AuswahlExtern : in Positive;
+      TasteExtern : in Sf.Window.Keyboard.sfKeyCode)
+     with
+       Pre => (
+                 TasteExtern /= Sf.Window.Keyboard.sfKeyUnknown
+              );
+   
+   procedure Einheitenbelegung
+     (AuswahlExtern : in Positive;
+      TasteExtern : in Sf.Window.Keyboard.sfKeyCode)
+     with
+       Pre => (
+                 TasteExtern /= Sf.Window.Keyboard.sfKeyUnknown
+              );
    
 end SteuerungsauswahlLogik;

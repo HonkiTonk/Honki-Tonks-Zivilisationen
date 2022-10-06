@@ -26,8 +26,8 @@ package body TasteneingabeLogik is
       
       if
         Maustaste = Sf.Window.Mouse.sfMouseLeft
-        or
-          Taste = TastenbelegungVariablen.AllgemeineBelegung (TastenbelegungDatentypen.Auswählen_Enum)
+      -- or
+      --   Taste = TastenbelegungVariablen.AllgemeineBelegung (TastenbelegungDatentypen.Auswählen_Enum)
       then
          return TastenbelegungDatentypen.Auswählen_Enum;
          
@@ -172,9 +172,6 @@ package body TasteneingabeLogik is
          case
            Taste
          is
-            when Sf.Window.Keyboard.sfKeyNumpad0 .. Sf.Window.Keyboard.sfKeyNumpad9 | Sf.Window.Keyboard.sfKeyAdd .. Sf.Window.Keyboard.sfKeySubtract =>
-               null;
-            
             when Sf.Window.Keyboard.sfKeyEscape =>
                return Sf.Window.Keyboard.sfKeyUnknown;
                

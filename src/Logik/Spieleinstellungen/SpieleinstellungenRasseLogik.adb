@@ -5,6 +5,7 @@ with ZahlenDatentypen; use ZahlenDatentypen;
 with LadezeitenDatentypen; use LadezeitenDatentypen;
 with KartengrundDatentypen; use KartengrundDatentypen;
 with RassenDatentypen; use RassenDatentypen;
+with TastenbelegungDatentypen;
 with KartenRecordKonstanten;
 with KartenKonstanten;
 with EinheitenKonstanten;
@@ -366,7 +367,8 @@ package body SpieleinstellungenRasseLogik is
          when RassenDatentypen.Mensch_Spieler_Enum =>
             SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell := (StartkoordinateEinsExtern.EAchse, 1, 1);
             SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt := StartkoordinateEinsExtern;
-            CursorbewegungLogik.ZoomanpassungCursor (RasseExtern => RasseExtern);
+            CursorbewegungLogik.CursorbewegungBerechnen (RichtungExtern => TastenbelegungDatentypen.Auswählen_Enum,
+                                                         RasseExtern    => RasseExtern);
             
          when others =>
             null;

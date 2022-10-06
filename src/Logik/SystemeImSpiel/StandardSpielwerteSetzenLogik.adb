@@ -9,10 +9,10 @@ with EinheitenRecordKonstanten;
 with WeltkarteRecords;
 with KartengeneratorRecordKonstanten;
 with KartenDatentypen;
-
 with Weltkarte;
+
 with KartengeneratorVariablenLogik;
-with Sichtweiten;
+with SichtweitenGrafik;
 
 package body StandardSpielwerteSetzenLogik is
 
@@ -45,7 +45,7 @@ package body StandardSpielwerteSetzenLogik is
       
       SpielVariablen.Debug := (others => False);
       
-      Sichtweiten.StandardSichtweiten;
+      SichtweitenGrafik.StandardSichtweiten;
       
    end StandardSpielwerteSetzenLogik;
 

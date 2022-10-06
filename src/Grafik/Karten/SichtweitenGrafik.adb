@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
-with TastenbelegungDatentypen;
 
 with KartenberechnungenGrafik;
 with CursorbewegungLogik;
@@ -10,7 +9,7 @@ with NachGrafiktask;
 with EinstellungenGrafik;
 
 -- Das und KartenberechnungenGrafik mal anders aufteilen. äöü
-package body Sichtweiten is
+package body SichtweitenGrafik is
    
    procedure SichtweiteBewegungsfeldFestlegen
    is begin
@@ -41,23 +40,24 @@ package body Sichtweiten is
       if
         AktuelleZoomstufe + ÄnderungExtern > MaximaleZoomstufe
       then
-         CursorbewegungLogik.CursorbewegungBerechnen (RichtungExtern => TastenbelegungDatentypen.Ebene_Hoch_Enum,
-                                                      RasseExtern    => NachGrafiktask.AktuelleRasse);
          AktuelleZoomstufe := KartenDatentypen.KartenfeldPositiv'First;
+         WelcheZoomanpassung := TastenbelegungDatentypen.Ebene_Hoch_Enum;
          
       elsif
         AktuelleZoomstufe + ÄnderungExtern < MinimaleZoomstufe
       then
-         CursorbewegungLogik.CursorbewegungBerechnen (RichtungExtern => TastenbelegungDatentypen.Ebene_Runter_Enum,
-                                                      RasseExtern    => NachGrafiktask.AktuelleRasse);
          AktuelleZoomstufe := MaximaleZoomstufe;
+         WelcheZoomanpassung := TastenbelegungDatentypen.Ebene_Runter_Enum;
          
       else
          AktuelleZoomstufe := AktuelleZoomstufe + ÄnderungExtern;
+         WelcheZoomanpassung := TastenbelegungDatentypen.Auswählen_Enum;
       end if;
       
+      CursorbewegungLogik.CursorbewegungBerechnen (RichtungExtern => WelcheZoomanpassung,
+                                                   RasseExtern    => NachGrafiktask.AktuelleRasse);
+      
       KartenberechnungenGrafik.KartenfelderAbmessungBerechnen;
-      CursorbewegungLogik.ZoomanpassungCursor (RasseExtern => NachGrafiktask.AktuelleRasse);
       
    end ZoomstufeÄndern;
    
@@ -128,4 +128,4 @@ package body Sichtweiten is
       
    end SichtbereichKarteBerechnen;
 
-end Sichtweiten;
+end SichtweitenGrafik;

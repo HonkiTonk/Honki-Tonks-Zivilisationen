@@ -12,7 +12,7 @@ with KartenberechnungenGrafik;
 with KartenkoordinatenberechnungssystemLogik;
 with EinstellungenGrafik;
 with NachGrafiktask;
-with Sichtweiten;
+with SichtweitenGrafik;
 
 package body CursorplatzierungGrafik is
    
@@ -27,7 +27,7 @@ package body CursorplatzierungGrafik is
             Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
                                                                        point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
                                                                        view         => Views.KartenviewAccess);
-            SichtbereichAnfangEnde := Sichtweiten.SichtbereichKarteBerechnen;
+            SichtbereichAnfangEnde := SichtweitenGrafik.SichtbereichKarteBerechnen;
             
          when others =>
             SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell := NachGrafiktask.GeheZu;

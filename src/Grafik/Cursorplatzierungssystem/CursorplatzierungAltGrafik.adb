@@ -12,7 +12,7 @@ with Views;
 with EinheitenKonstanten;
 
 with KartenkoordinatenberechnungssystemLogik;
-with Sichtweiten;
+with SichtweitenGrafik;
 with NachGrafiktask;
 with EinstellungenGrafik;
 with NachLogiktask;
@@ -33,18 +33,18 @@ package body CursorplatzierungAltGrafik is
             if
               Ada.Calendar.Clock - Scrollzeit > ZeitKonstanten.ScrollverzögernMinimalzoom
               and
-                (Sichtweiten.SichtweiteLesen (YXExtern => True) <= 4
+                (SichtweitenGrafik.SichtweiteLesen (YXExtern => True) <= 4
                  or
-                   Sichtweiten.SichtweiteLesen (YXExtern => False) <= 4)
+                   SichtweitenGrafik.SichtweiteLesen (YXExtern => False) <= 4)
             then
                null;
                 
             elsif
               Ada.Calendar.Clock - Scrollzeit > ZeitKonstanten.Scrollverzögerung
               and
-                (Sichtweiten.SichtweiteLesen (YXExtern => True) > 4
+                (SichtweitenGrafik.SichtweiteLesen (YXExtern => True) > 4
                  or
-                   Sichtweiten.SichtweiteLesen (YXExtern => False) > 4)
+                   SichtweitenGrafik.SichtweiteLesen (YXExtern => False) > 4)
             then
                null;
                
@@ -184,7 +184,7 @@ package body CursorplatzierungAltGrafik is
         MauspositionExtern.y in 0.00 .. KartenberechnungenGrafik.KartenfelderAbmessung.y / 2.00
       then
          if
-           YAchseAltExtern <= Weltkarte.KarteArray'First (2) + Sichtweiten.SichtweiteLesen (YXExtern => True)
+           YAchseAltExtern <= Weltkarte.KarteArray'First (2) + SichtweitenGrafik.SichtweiteLesen (YXExtern => True)
            and
              Weltkarte.Karteneinstellungen.Kartenform.YAchseNorden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
          then
@@ -198,7 +198,7 @@ package body CursorplatzierungAltGrafik is
         MauspositionExtern.y in Achsenviewfläche.y - KartenberechnungenGrafik.KartenfelderAbmessung.y / 2.00 .. Achsenviewfläche.y
       then
          if
-           YAchseAltExtern >= Weltkarte.Karteneinstellungen.Kartengröße.YAchse - Sichtweiten.SichtweiteLesen (YXExtern => True)
+           YAchseAltExtern >= Weltkarte.Karteneinstellungen.Kartengröße.YAchse - SichtweitenGrafik.SichtweiteLesen (YXExtern => True)
            and
              Weltkarte.Karteneinstellungen.Kartenform.YAchseSüden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
          then
@@ -228,7 +228,7 @@ package body CursorplatzierungAltGrafik is
         MausachseExtern in 0.00 .. KartenberechnungenGrafik.KartenfelderAbmessung.x / 2.00
       then
          if
-           XAchseAltExtern <= Weltkarte.KarteArray'First (3) + Sichtweiten.SichtweiteLesen (YXExtern => False)
+           XAchseAltExtern <= Weltkarte.KarteArray'First (3) + SichtweitenGrafik.SichtweiteLesen (YXExtern => False)
            and
              Weltkarte.Karteneinstellungen.Kartenform.XAchseWesten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
          then
@@ -242,7 +242,7 @@ package body CursorplatzierungAltGrafik is
         MausachseExtern in XAchsenbereich - KartenberechnungenGrafik.KartenfelderAbmessung.x / 2.00 .. XAchsenbereich
       then
          if
-           XAchseAltExtern >= Weltkarte.Karteneinstellungen.Kartengröße.XAchse - Sichtweiten.SichtweiteLesen (YXExtern => False)
+           XAchseAltExtern >= Weltkarte.Karteneinstellungen.Kartengröße.XAchse - SichtweitenGrafik.SichtweiteLesen (YXExtern => False)
            and
              Weltkarte.Karteneinstellungen.Kartenform.XAchseOsten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
          then

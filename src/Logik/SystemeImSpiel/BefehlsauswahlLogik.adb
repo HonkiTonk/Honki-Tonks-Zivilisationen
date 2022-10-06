@@ -72,9 +72,9 @@ package body BefehlsauswahlLogik is
             NaechsteEinheitLogik.NächsteEinheit (RasseExtern           => RasseExtern,
                                                   BewegungspunkteExtern => NaechsteEinheitLogik.Hat_Bewegungspunkte_Enum);
             
-         when TastenbelegungDatentypen.Alle_Einheiten_Enum =>
+         when TastenbelegungDatentypen.Nächste_Einheit_Enum =>
             NaechsteEinheitLogik.NächsteEinheit (RasseExtern           => RasseExtern,
-                                                  BewegungspunkteExtern => NaechsteEinheitLogik.Egal_Bewegeungspunkte_Enum);
+                                                  BewegungspunkteExtern => NaechsteEinheitLogik.Egal_Bewegungspunkte_Enum);
             
          when TastenbelegungDatentypen.Einheiten_Ohne_Bewegungspunkte_Enum =>
             NaechsteEinheitLogik.NächsteEinheit (RasseExtern           => RasseExtern,

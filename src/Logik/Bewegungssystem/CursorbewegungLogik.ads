@@ -12,15 +12,8 @@ private with KartenRecords;
 package CursorbewegungLogik is
 
    procedure CursorbewegungBerechnen
-     (RichtungExtern : in TastenbelegungDatentypen.Tastenbelegung_Bewegung_Enum;
+     (RichtungExtern : in TastenbelegungDatentypen.Tastenbelegung_Bewegung_Erweitert_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-     with
-       Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
-              );
-   
-   procedure ZoomanpassungCursor
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
@@ -30,15 +23,15 @@ package CursorbewegungLogik is
 
 private
    
-   AktuelleSichtweite : KartenDatentypen.KartenfeldPositiv;
-
    KoordinatenPunkt : SystemRecords.ZahlenEingabeRecord;
 
    NeueKoordinate : KartenRecords.AchsenKartenfeldNaturalRecord;
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    
-   type RichtungArray is array (TastenbelegungDatentypen.Tastenbelegung_Bewegung_Enum'Range) of KartenRecords.AchsenKartenfeldRecord;
+   type RichtungArray is array (TastenbelegungDatentypen.Tastenbelegung_Bewegung_Erweitert_Enum'Range) of KartenRecords.AchsenKartenfeldRecord;
    Richtung : constant RichtungArray := (
+                                         TastenbelegungDatentypen.Auswählen_Enum    => (0, 0, 0),
+                                         
                                          TastenbelegungDatentypen.Oben_Enum         => (0, -1, 0),
                                          TastenbelegungDatentypen.Links_Enum        => (0, 0, -1),
                                          TastenbelegungDatentypen.Unten_Enum        => (0, 1, 0),

@@ -3,7 +3,9 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen;
 
-package Sichtweiten is
+private with TastenbelegungDatentypen;
+
+package SichtweitenGrafik is
    
    procedure SichtweiteBewegungsfeldFestlegen;
    
@@ -26,10 +28,12 @@ package Sichtweiten is
      return KartenDatentypen.SichtbereichAnfangEndeArray;
    
 private
-      
+   
+   WelcheZoomanpassung : TastenbelegungDatentypen.Tastenbelegung_Bewegung_Erweitert_Enum;
+   
    MaximaleZoomstufe : constant KartenDatentypen.KartenfeldPositiv := 10;
    StandardZoomstufe : constant KartenDatentypen.KartenfeldPositiv := 4;
    MinimaleZoomstufe : KartenDatentypen.KartenfeldPositiv := KartenDatentypen.KartenfeldPositiv'First;
    AktuelleZoomstufe : KartenDatentypen.KartenfeldPositiv := StandardZoomstufe;
 
-end Sichtweiten;
+end SichtweitenGrafik;

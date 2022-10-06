@@ -39,7 +39,7 @@ package SystemKonstanten is
                                            MenueDatentypen.Kartenform_Menü_Enum         => 14,
 
                                            -- Steuerungsmenü.
-                                           MenueDatentypen.Steuerung_Menü_Enum          => 32,
+                                           MenueDatentypen.Steuerung_Menü_Enum          => 53,
 
                                            -- Spielstandmenü
                                            MenueDatentypen.Spielstand_Menü_Enum         => 15
@@ -79,10 +79,19 @@ package SystemKonstanten is
                                                  MenueDatentypen.Kartenform_Menü_Enum         => EndeMenü (MenueDatentypen.Kartenform_Menü_Enum) - 4,
 
                                                  -- Steuerungsmenü.
-                                                 MenueDatentypen.Steuerung_Menü_Enum          => EndeMenü (MenueDatentypen.Steuerung_Menü_Enum) - 5,
+                                                 MenueDatentypen.Steuerung_Menü_Enum          => EndeMenü (MenueDatentypen.Steuerung_Menü_Enum),
 
                                                  -- Spielstandmenü.
                                                  MenueDatentypen.Spielstand_Menü_Enum         => EndeMenü (MenueDatentypen.Spielstand_Menü_Enum)
                                                 );
+
+   -- Steuerung
+   -- Diese Werte (teilweise? vollständig?) nach TastenbelegungDatentypen und BefehleDatentypen verschieben? äöü
+   AllgemeineSteuerungEnumausgleich : constant Positive := 1;
+   AllgemeineSteuerung : constant Positive := 2;
+   EinheitensteuerungEnumausgleich : constant Positive := 23;
+   Einheitensteuerung : constant Positive := 24;
+   SonstigesSteuerung : constant Positive := 49;
+   -- Steuerung
 
 end SystemKonstanten;

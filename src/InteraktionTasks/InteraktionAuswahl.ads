@@ -25,12 +25,10 @@ package InteraktionAuswahl is
 
 
 
-   PositionenSteuerung : PositionenArray (SystemKonstanten.EndeAbzugGrafik (MenueDatentypen.Steuerung_Menü_Enum) + 1 .. SystemKonstanten.LängstesMenü) := (others => GrafikRecordKonstanten.Leerbereich);
+   PositionenSteuerungsaufteilung : PositionenArray (1 .. 2) := (others => GrafikRecordKonstanten.Leerbereich);
+   PositionenSteuerung : PositionenArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Steuerung_Menü_Enum)) := (others => GrafikRecordKonstanten.Leerbereich);
 
    PositionenSpielstand : PositionenArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Spielstand_Menü_Enum)) := (others => GrafikRecordKonstanten.Leerbereich);
-
-   type PositionenSteuerungbelegungArray is array (TastenbelegungDatentypen.Kartenbefehle_Enum'Range) of Sf.Graphics.Rect.sfFloatRect;
-   PositionenSteuerungbelegung : PositionenSteuerungbelegungArray := (others => GrafikRecordKonstanten.Leerbereich);
 
 
 

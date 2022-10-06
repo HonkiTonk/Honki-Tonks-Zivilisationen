@@ -14,7 +14,7 @@ with KartenberechnungenGrafik;
 with EinstellungenGrafik;
 with ViewsEinstellenGrafik;
 with WeltkarteZeichnenGrafik;
-with Sichtweiten;
+with SichtweitenGrafik;
 
 package body WeltkarteGrafik is
    
@@ -26,7 +26,7 @@ package body WeltkarteGrafik is
                                             GrößeExtern          => (EinstellungenGrafik.AktuelleFensterAuflösung.x, EinstellungenGrafik.AktuelleFensterAuflösung.y),
                                             AnzeigebereichExtern => GrafikRecordKonstanten.KarteAnzeigebereich);
       
-      SichtbereichAnfangEnde := Sichtweiten.SichtbereichKarteBerechnen;
+      SichtbereichAnfangEnde := SichtweitenGrafik.SichtbereichKarteBerechnen;
       
       CursorKoordinatenAlt := SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt;
       Feldposition := (0.00, 0.00);

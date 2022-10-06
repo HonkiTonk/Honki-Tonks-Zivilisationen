@@ -61,7 +61,6 @@ package body MenuerueckgabenLogik is
    
    
    
-   -- Wenn ich das Steuerungsmenü doch nur mit einem View gestalte, dann könnte ich es oben wieder reinbasteln. äöü
    function SteuerungMenü
      (AnfangExtern : in Positive;
       EndeExtern : in Positive;

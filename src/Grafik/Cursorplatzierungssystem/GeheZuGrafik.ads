@@ -5,8 +5,7 @@ with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
 with SpielVariablen;
 with KartenRecords;
-
-private with Weltkarte;
+with Weltkarte;
 
 package GeheZuGrafik is
 
@@ -23,6 +22,8 @@ private
    
    Kartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
    KartenwertKoordinatenberechnung : KartenRecords.AchsenKartenfeldNaturalRecord;
+   
+   
    
    function Koordinatenberechnung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)

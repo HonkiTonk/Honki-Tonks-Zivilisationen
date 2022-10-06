@@ -46,8 +46,8 @@ package GrafikRecordKonstanten is
                                                            );
    
    Steuerungbereich : constant BereicheArray (Views.SteuerungviewAccesse'Range) := (
-                                                                                    1 => (0.00, Überschriftbereich.height, 0.66, 1.00 - Überschriftbereich.height),
-                                                                                    2 => (0.66, Überschriftbereich.height, 0.35, 1.00 - Überschriftbereich.height)
+                                                                                    1 => (0.00, Überschriftbereich.height, 1.00, 0.05),
+                                                                                    2 => (0.00, Überschriftbereich.height + 0.05, 1.00, 1.00 - Überschriftbereich.height - 0.05)
                                                                                    );
       
    SeitenleisteWeltkartenbereich : constant BereicheArray (Views.SeitenleisteWeltkarteAccesse'Range) := (

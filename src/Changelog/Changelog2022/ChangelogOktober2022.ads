@@ -175,17 +175,24 @@ package ChangelogOktober2022 is
    
    
 
-   -- Version 0.04. => 0.04. (06.10.2022):
+   -- Version 0.04.0975 => 0.04. (06.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.0875 => 0.04. (05.10.2022):
+   -- Version 0.04.0875 => 0.04.0975 (05.10.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehler im neuen Eingabesystem korrigiert, welcher dazu führte das Auswählen permanent aktiv war.
+   -- Unnötigen Code gelöscht.
+   -- Code zusammengeführt.
+   -- Logik- und Grafiktask noch besser voneinander getrennt.
+   -- Es ist jetzt nicht mehr möglich teilweise aus der Karte rauszuscrollen, wenn man die Tastatur zum scrollen verwendet.
+   -- Neues Steuerungsmenü gebaut, was mehrere Kategorien zulässt und mit der neuen Steuerungsaufteilung funktioniert.
+   -- Tastenbelegung durch den Nutzer an die neue Steuerungsaufteilung angepasst.
+   -- Wenn die Sichtweite größer ist als die Kartengröße, dann wird die Karte jetzt, unter Berücksichtigung der Kartenarteinstellungen, mittig zentriert.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 
@@ -197,7 +204,7 @@ package ChangelogOktober2022 is
    -- Angefangen die Tastenbelegung in eine Allgemeines und eine Einheiten Belegung umzubauen.
    -- Einheitenbefehle haben jetzt eine eigene Tastenbelegung und können nur noch mit ausgewählter Einheit durchgeführt werden.
    -- Allgemeine Befehle haben jetzt eine eigene Tastenbelegung.
-   -- Es ist jetzt wieder möglich mit der tastatur die Karte zu scrollen, wenn keine Einheit ausgewählt ist.
+   -- Es ist jetzt wieder möglich mit der Tastatur die Karte zu scrollen, wenn keine Einheit ausgewählt ist.
    -- Unnötigen Code gelöscht.
    -- Code zusammengeführt.
    -- Vereinfachte Tasteneingabe eingebaut.

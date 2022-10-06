@@ -37,20 +37,21 @@ package BefehleDatentypen is
                                   );
    
    subtype Einheitenbelegung_Vorhanden_Enum is Einheitenbelegung_Enum range Auswählen_Enum .. Einheitenbelegung_Enum'Last;
+   subtype Belegung_Auswählen_Enum is Einheitenbelegung_Vorhanden_Enum range Oben_Enum .. Entladen_Enum;
    
-   subtype Einheiten_Bewegung_Enum is Einheitenbelegung_Vorhanden_Enum range Oben_Enum .. Ebene_Runter_Enum;
+   subtype Einheiten_Bewegung_Enum is Belegung_Auswählen_Enum range Oben_Enum .. Ebene_Runter_Enum;
    
    -- Mit dem neuen System könnte man Heimatstadt ändern und Entladen auch in die Aufgaben schieben? äöü
-   subtype Einheiten_Aufgaben_Enum is Einheitenbelegung_Vorhanden_Enum range Bauen_Enum .. Entladen_Enum;
+   subtype Einheiten_Aufgaben_Enum is Belegung_Auswählen_Enum range Bauen_Enum .. Entladen_Enum;
    subtype Einheiten_Aufgaben_Klein_Enum is Einheiten_Aufgaben_Enum range Bauen_Enum .. Einheit_Verbessern_Enum;
    subtype Einheiten_Aufgaben_Baulos_Enum is Einheiten_Aufgaben_Enum range Straße_Bauen_Enum .. Einheit_Verbessern_Enum;
    subtype Einheiten_Allgemeine_Befehle_Enum is Einheiten_Aufgaben_Baulos_Enum range Heilen_Enum .. Einheit_Verbessern_Enum;
    
-   subtype Siedler_Aufgaben_Enum is Einheitenbelegung_Vorhanden_Enum range Bauen_Enum .. Roden_Trockenlegen_Enum;
+   subtype Siedler_Aufgaben_Enum is Belegung_Auswählen_Enum range Bauen_Enum .. Roden_Trockenlegen_Enum;
    subtype Siedler_Verbesserung_Enum is Siedler_Aufgaben_Enum range Straße_Bauen_Enum .. Roden_Trockenlegen_Enum;
    subtype Siedler_Konstruktionen_Enum is Siedler_Verbesserung_Enum range Mine_Bauen_Enum .. Festung_Bauen_Enum;
    
-   subtype Kampf_Aufgaben_Enum is Einheitenbelegung_Vorhanden_Enum range Plündern_Enum .. Plündern_Enum;
+   subtype Kampf_Aufgaben_Enum is Belegung_Auswählen_Enum range Plündern_Enum .. Plündern_Enum;
    
    
    

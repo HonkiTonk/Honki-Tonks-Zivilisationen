@@ -11,7 +11,7 @@ with IntroGrafik;
 with MenueaufteilungGrafik;
 with NachGrafiktask;
 with AllgemeinGrafik;
-with Sichtweiten;
+with SichtweitenGrafik;
 with ForschungsauswahlGrafik;
 with SprachauswahlGrafik;
 with EingabenanzeigeGrafik;
@@ -101,7 +101,7 @@ package body Grafik is
       is
          when GrafikDatentypen.Fenster_Wurde_Verändert_Enum'Range =>
             AllgemeinGrafik.FensterAnpassen;
-            Sichtweiten.SichtweiteBewegungsfeldFestlegen;
+            SichtweitenGrafik.SichtweiteBewegungsfeldFestlegen;
             NachGrafiktask.FensterVerändert := GrafikDatentypen.Keine_Änderung_Enum;
             NachLogiktask.Warten := False;
             
