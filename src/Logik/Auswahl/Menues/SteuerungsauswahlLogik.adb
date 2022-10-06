@@ -24,34 +24,29 @@ package body SteuerungsauswahlLogik is
       loop
          
          AktuelleAuswahl := MausauswahlLogik.Steuerung;
-         NachGrafiktask.AktuelleAuswahl := AktuelleAuswahl;
+         NachGrafiktask.AktuelleAuswahl.AuswahlEins := AktuelleAuswahl;
          
          case
            TasteneingabeLogik.VereinfachteEingabe
          is
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if
-                 AktuelleAuswahl.AuswahlEins = -1
+                 AktuelleAuswahl < SystemKonstanten.LeerAuswahl
                then
-                  WelcheSteuerung := False;
+                  WelcheSteuerung := NummerZuKategorie (AktuelleAuswahl);
                   
                elsif
-                 AktuelleAuswahl.AuswahlZwei = -1
+                 AktuelleAuswahl in SystemKonstanten.AllgemeineSteuerung .. SystemKonstanten.SonstigesSteuerung - 1
                then
-                  WelcheSteuerung := True;
-                  
-               elsif
-                 AktuelleAuswahl.AuswahlEins in SystemKonstanten.AllgemeineSteuerung .. SystemKonstanten.SonstigesSteuerung - 1
-               then
-                  TasteBelegen (AuswahlExtern         => AktuelleAuswahl.AuswahlEins,
+                  TasteBelegen (AuswahlExtern         => AktuelleAuswahl,
                                 WelcheSteuerungExtern => WelcheSteuerung);
                   
                elsif
-                 AktuelleAuswahl.AuswahlEins >= SystemKonstanten.SonstigesSteuerung
+                 AktuelleAuswahl >= SystemKonstanten.SonstigesSteuerung
                then
                   return MenuerueckgabenLogik.SteuerungMenü (AnfangExtern          => SystemKonstanten.SonstigesSteuerung,
                                                               EndeExtern            => InteraktionAuswahl.PositionenSteuerung'Last,
-                                                              AktuelleAuswahlExtern => AktuelleAuswahl.AuswahlEins);
+                                                              AktuelleAuswahlExtern => AktuelleAuswahl);
                   
                else
                   null;
@@ -72,7 +67,7 @@ package body SteuerungsauswahlLogik is
    
    procedure TasteBelegen
      (AuswahlExtern : in Positive;
-      WelcheSteuerungExtern : in Boolean)
+      WelcheSteuerungExtern : in Kategorie_Enum)
    is begin
       
       NachGrafiktask.AnzeigeFrage := TextnummernKonstanten.FrageNeueTaste;
@@ -95,13 +90,17 @@ package body SteuerungsauswahlLogik is
       case
         WelcheSteuerungExtern
       is
-         when False =>
+         when Kategorie_Eins_Enum =>
             AllgemeineBelegung (AuswahlExtern => AuswahlExtern - SystemKonstanten.AllgemeineSteuerungEnumausgleich,
                                 TasteExtern   => NeueTaste);
             
-         when True =>
+         when Kategorie_Zwei_Enum =>
             Einheitenbelegung (AuswahlExtern => AuswahlExtern - SystemKonstanten.EinheitensteuerungEnumausgleich,
                                TasteExtern   => NeueTaste);
+            
+         when Kategorie_Drei_Enum =>
+            Stadtbelegung (AuswahlExtern => AuswahlExtern - SystemKonstanten.StadtsteuerungEnumausgleich,
+                           TasteExtern   => NeueTaste);
       end case;
       
    end TasteBelegen;
@@ -161,5 +160,33 @@ package body SteuerungsauswahlLogik is
       end loop EinheitenbelegungSchleife;
       
    end Einheitenbelegung;
+   
+   
+   
+   procedure Stadtbelegung
+     (AuswahlExtern : in Positive;
+      TasteExtern : in Sf.Window.Keyboard.sfKeyCode)
+   is begin
+      
+      StadtbelegungSchleife:
+      for StadtbelegungSchleifenwert in TastenbelegungVariablen.StadtbelegungArray'Range loop
+         
+         if
+           StadtbelegungSchleifenwert = BefehleDatentypen.Stadtbefehle_Enum'Val (AuswahlExtern)
+         then
+            TastenbelegungVariablen.Stadtbelegung (StadtbelegungSchleifenwert) := TasteExtern;
+            
+         elsif
+           TastenbelegungVariablen.Stadtbelegung (StadtbelegungSchleifenwert) = TasteExtern
+         then
+            TastenbelegungVariablen.Stadtbelegung (StadtbelegungSchleifenwert) := Sf.Window.Keyboard.sfKeyUnknown;
+            
+         else
+            null;
+         end if;
+         
+      end loop StadtbelegungSchleife;
+      
+   end Stadtbelegung;
 
 end SteuerungsauswahlLogik;

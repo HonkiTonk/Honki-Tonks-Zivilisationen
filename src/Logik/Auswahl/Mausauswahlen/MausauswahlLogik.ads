@@ -8,7 +8,6 @@ with EinheitenDatentypen; use EinheitenDatentypen;
 with ForschungenDatentypen;
 with StadtRecords;
 with MenueDatentypen;
-with SystemRecords;
 with BefehleDatentypen;
 with TastenbelegungDatentypen;
 
@@ -43,7 +42,7 @@ package MausauswahlLogik is
      return Natural;
    
    function Steuerung
-     return SystemRecords.MehrfacheAuswahlRecord;
+     return Integer;
    
    function Weltkartenbefehle
      return TastenbelegungDatentypen.Weltkartenbefehle_Enum;

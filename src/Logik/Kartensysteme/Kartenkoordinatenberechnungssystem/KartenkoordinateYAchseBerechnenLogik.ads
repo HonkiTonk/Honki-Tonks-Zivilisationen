@@ -9,6 +9,8 @@ package KartenkoordinateYAchseBerechnenLogik is
    
    type WelcheVerschiebungYAchseArray is array (Boolean'Range, KartenDatentypen.EbeneVorhanden'Range) of KartenDatentypen.Kartenform_Y_Einstellbar_Enum;
    WelcheVerschiebungYAchse : WelcheVerschiebungYAchseArray;
+   
+   
 
    function KartenkoordinateYAchseBerechnen
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
@@ -44,6 +46,10 @@ private
    
    type ÜberhangArray is array (Boolean'Range, KartenDatentypen.EbeneVorhanden'Range) of Integer;
    ÜberhangYAchse : ÜberhangArray;
+   Zwischenwert : ÜberhangArray;
+   Rückgabe : ÜberhangArray;
+   
+   
    
    function ÜbergangNorden
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
@@ -77,7 +83,9 @@ private
    
    function ÜbergangNordenRückwärts
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld)
+      ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld;
+      ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden;
+      LogikGrafikExtern : in Boolean)
       return KartenDatentypen.KartenfeldPositiv
      with
        Pre => (

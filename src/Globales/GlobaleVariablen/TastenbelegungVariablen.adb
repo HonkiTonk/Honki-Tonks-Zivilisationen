@@ -8,6 +8,7 @@ package body TastenbelegungVariablen is
             
       AllgemeineBelegung := AllgemeineBelegungStandard;
       Einheitenbelegung := EinheitenbelegungStandard;
+      Stadtbelegung := StadtbelegungStandard;
       
    end StandardTastenbelegungLaden;
 

@@ -15,8 +15,9 @@ private
    
    type ÜberhangArray is array (Boolean'Range, KartenDatentypen.EbeneVorhanden'Range) of Integer;
    ÜberhangEAchse : ÜberhangArray;
-   
    ZwischenwertEAchse : ÜberhangArray;
+   
+   
          
    function KartenkoordinateEAchseÜbergangUnten
      (EAchseExtern : in KartenDatentypen.EbeneVorhanden;

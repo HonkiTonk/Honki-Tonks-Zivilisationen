@@ -26,15 +26,19 @@ package body TasteneingabeLogik is
       
       if
         Maustaste = Sf.Window.Mouse.sfMouseLeft
-      -- or
-      --   Taste = TastenbelegungVariablen.AllgemeineBelegung (TastenbelegungDatentypen.Auswählen_Enum)
+        or
+          (Taste /= Sf.Window.Keyboard.sfKeyUnknown
+          and
+            Taste = TastenbelegungVariablen.AllgemeineBelegung (TastenbelegungDatentypen.Auswählen_Enum))
       then
          return TastenbelegungDatentypen.Auswählen_Enum;
          
       elsif
         Maustaste = Sf.Window.Mouse.sfMouseRight
         or
-          Taste = TastenbelegungVariablen.AllgemeineBelegung (TastenbelegungDatentypen.Abwählen_Enum)
+          (Taste /= Sf.Window.Keyboard.sfKeyUnknown
+           and
+             Taste = TastenbelegungVariablen.AllgemeineBelegung (TastenbelegungDatentypen.Abwählen_Enum))
       then
          return TastenbelegungDatentypen.Abwählen_Enum;
          
@@ -55,6 +59,7 @@ package body TasteneingabeLogik is
       EingabeAllgemeinLogik.EingabeAbwarten;
       
       Maustaste := NachLogiktask.MausTaste;
+      Taste := NachLogiktask.TastaturTaste;
       
       if
         Maustaste = Sf.Window.Mouse.sfMouseLeft
@@ -67,12 +72,12 @@ package body TasteneingabeLogik is
          return TastenbelegungDatentypen.Abwählen_Enum;
          
       elsif
-        NachLogiktask.TastaturTaste = Sf.Window.Keyboard.sfKeyUnknown
+        Taste = Sf.Window.Keyboard.sfKeyUnknown
       then
          return TastenbelegungDatentypen.Leer_Allgemeine_Belegung_Enum;
             
       else
-         Taste := NachLogiktask.TastaturTaste;
+         null;
       end if;
       
       BelegungSchleife:
@@ -105,6 +110,7 @@ package body TasteneingabeLogik is
       EingabeAllgemeinLogik.EingabeAbwarten;
       
       Maustaste := NachLogiktask.MausTaste;
+      Taste := NachLogiktask.TastaturTaste;
       
       if
         Maustaste = Sf.Window.Mouse.sfMouseLeft
@@ -117,12 +123,12 @@ package body TasteneingabeLogik is
          return BefehleDatentypen.Abwählen_Enum;
          
       elsif
-        NachLogiktask.TastaturTaste = Sf.Window.Keyboard.sfKeyUnknown
+        Taste = Sf.Window.Keyboard.sfKeyUnknown
       then
          return BefehleDatentypen.Leer_Einheitenbelegung_Enum;
             
       else
-         Taste := NachLogiktask.TastaturTaste;
+         null;
       end if;
       
       BelegungSchleife:
@@ -142,6 +148,57 @@ package body TasteneingabeLogik is
       return BefehleDatentypen.Leer_Einheitenbelegung_Enum;
         
    end Einheitentaste;
+   
+   
+   
+   function Stadttaste
+     return BefehleDatentypen.Stadtbefehle_Enum
+   is begin
+      
+      NachLogiktask.Warten := True;
+      NachGrafiktask.TastenEingabe := True;
+      
+      EingabeAllgemeinLogik.EingabeAbwarten;
+      
+      Maustaste := NachLogiktask.MausTaste;
+      Taste := NachLogiktask.TastaturTaste;
+      
+      if
+        Maustaste = Sf.Window.Mouse.sfMouseLeft
+      then
+         return BefehleDatentypen.Auswählen_Enum;
+         
+      elsif
+        Maustaste = Sf.Window.Mouse.sfMouseRight
+      then
+         return BefehleDatentypen.Verlassen_Enum;
+         
+      elsif
+        Taste = Sf.Window.Keyboard.sfKeyUnknown
+      then
+         return BefehleDatentypen.Leer_Stadtbefehle_Enum;
+            
+      else
+         null;
+      end if;
+      
+      BelegungSchleife:
+      for BelegungSchleifenwert in TastenbelegungVariablen.StadtbelegungArray'Range loop
+            
+         if
+           TastenbelegungVariablen.Stadtbelegung (BelegungSchleifenwert) = Taste
+         then
+            return BelegungSchleifenwert;
+               
+         else
+            null;
+         end if;
+            
+      end loop BelegungSchleife;
+            
+      return BefehleDatentypen.Leer_Stadtbefehle_Enum;
+      
+   end Stadttaste;
    
    
 

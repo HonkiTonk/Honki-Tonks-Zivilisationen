@@ -111,12 +111,51 @@ package body PassierbarkeitspruefungLogik is
         WegVorhanden
       is
          when KartenverbesserungDatentypen.Leer_Weg_Enum =>
-            return False;
+            if
+              RasseExtern = RassenDatentypen.Ekropa_Enum
+            then
+               null;
+               
+            else
+               return False;
+            end if;
             
          when others =>
             return LeseVerbesserungenDatenbank.PassierbarkeitWeg (WegExtern            => WegVorhanden,
                                                                   WelcheUmgebungExtern => UmgebungExtern);
       end case;
+      
+      -- Diese Prüfung für die Ekropa später noch einmal überarbeiten und auch die vorhandene Forschung berücksichtigen. äöü
+      YAchseSchleife:
+      for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+         XAchseSchleife:
+         for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+            
+            Ekropaumgebung := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => NeueKoordinatenExtern,
+                                                                                                          ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                          LogikGrafikExtern => True);
+            
+            case
+              Ekropaumgebung.XAchse
+            is
+               when KartenKonstanten.LeerXAchse =>
+                  null;
+                  
+               when others =>
+                  if
+                    LeseWeltkarte.Weg (KoordinatenExtern => Ekropaumgebung) in KartenverbesserungDatentypen.Karten_Schiene_Enum'Range
+                  then
+                     return True;
+                     
+                  else
+                     null;
+                  end if;
+            end case;
+            
+         end loop XAchseSchleife;
+      end loop YAchseSchleife;
+      
+      return False;
       
    end IstNichtPassierbar;
    
@@ -146,7 +185,7 @@ package body PassierbarkeitspruefungLogik is
    
    
    
-   -- Überarbeiten und in eine eigene Datei verschieben. äöü
+   -- In eine eigene Datei verschieben? äöü
    function RichtigeUmgebungVorhanden
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       EinheitenIDExtern : in EinheitenDatentypen.EinheitenID)
@@ -154,37 +193,35 @@ package body PassierbarkeitspruefungLogik is
    is begin
       
       StadtKoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      Stadtumgebung := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
-      -- Bei Einheiten nur um das direkte StadtumfeldUmfeld loopen. Das ist doch Blödsinn, die Einheiten werden ja auf einem beliebigen Feld innerhalb des Stadtbereiches platziert. äöü
-      -- Oder reicht das weil es ja hauptsächlich dazu da ist um z.B. Panzer im Himmel zu verhindern? äöü
       YAchseEinheitenSchleife:
-      for YAchseEinheitenSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+      for YAchseEinheitenSchleifenwert in -Stadtumgebung .. Stadtumgebung loop
          XAchseEinheitenSchleife:
-         for XAchseEinheitenSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+         for XAchseEinheitenSchleifenwert in -Stadtumgebung .. Stadtumgebung loop
                
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtKoordinaten,
                                                                                                       ÄnderungExtern    => (0, YAchseEinheitenSchleifenwert, XAchseEinheitenSchleifenwert),
                                                                                                       LogikGrafikExtern => True);
-               
+            
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse
             then
                null;
                
             elsif
-              YAchseEinheitenSchleifenwert = 0
-              and
-                XAchseEinheitenSchleifenwert = 0
+              False = LeseWeltkarte.BestimmteStadtBelegtGrund (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                               KoordinatenExtern      => KartenWert)
             then
                null;
                   
             elsif
-              False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenID (RasseExtern           => StadtRasseNummerExtern.Rasse,
-                                                                            IDExtern              => EinheitenIDExtern,
-                                                                            NeueKoordinatenExtern => KartenWert)
+              False = PassierbarkeitPrüfenID (RasseExtern           => StadtRasseNummerExtern.Rasse,
+                                               IDExtern              => EinheitenIDExtern,
+                                               NeueKoordinatenExtern => KartenWert)
             then
                null;
-                  
+            
             else
                return True;
             end if;

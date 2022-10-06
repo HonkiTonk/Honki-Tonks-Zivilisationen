@@ -4,12 +4,15 @@ pragma Warnings (Off, "*array aggregate*");
 package BefehleDatentypen is
 
    type Stadtbefehle_Enum is (
-                              Leer_Enum,
+                              Leer_Stadtbefehle_Enum,
+                              
+                              Auswählen_Enum,
                               
                               Bauen_Enum, Verkaufen_Enum, Umbenennen_Enum, Auflösen_Enum, Verlassen_Enum
                              );
    
-   subtype Stadtbefehle_Vorhanden_Enum is Stadtbefehle_Enum range Bauen_Enum .. Stadtbefehle_Enum'Last;
+   subtype Stadtbefehle_Vorhanden_Enum is Stadtbefehle_Enum range Auswählen_Enum .. Stadtbefehle_Enum'Last;
+   subtype Stadtbefehle_Auswählen_Enum is Stadtbefehle_Vorhanden_Enum range Bauen_Enum .. Stadtbefehle_Vorhanden_Enum'Last;
    
    
    

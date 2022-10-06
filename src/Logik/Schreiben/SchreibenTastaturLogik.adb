@@ -19,6 +19,9 @@ package body SchreibenTastaturLogik is
       TastenbelegungVariablen.EinheitenbelegungArray'Write (Stream (File => TastenbelegungSpeichern),
                                                             TastenbelegungVariablen.Einheitenbelegung);
       
+      TastenbelegungVariablen.StadtbelegungArray'Write (Stream (File => TastenbelegungSpeichern),
+                                                        TastenbelegungVariablen.Stadtbelegung);
+      
       Close (File => TastenbelegungSpeichern);
       
    end TastenbelegungSchreiben;

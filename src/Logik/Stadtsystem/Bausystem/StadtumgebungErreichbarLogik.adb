@@ -43,13 +43,9 @@ package body StadtumgebungErreichbarLogik is
                   null;
                  
                elsif
-                 (YÄnderungSchleifenwert = 0
-                  and
-                    XÄnderungSchleifenwert = 0)
-                 or
-                   (BereitsGetestet >= abs (YÄnderungSchleifenwert)
-                    and
-                      BereitsGetestet >= abs (XÄnderungSchleifenwert))
+                 BereitsGetestet >= abs (YÄnderungSchleifenwert)
+                 and
+                   BereitsGetestet >= abs (XÄnderungSchleifenwert)
                then
                   null;
                   
@@ -96,10 +92,15 @@ package body StadtumgebungErreichbarLogik is
             end loop XAchseSchleife;
          end loop YAchseSchleife;
             
-         exit BereichSchleife when Umgebung = KartenDatentypen.UmgebungsbereichDrei'Last;
+         if
+           Umgebung = KartenDatentypen.UmgebungsbereichDrei'Last
+         then
+            exit BereichSchleife;
          
-         Umgebung := Umgebung + 1;
-         BereitsGetestet := Umgebung - 1;
+         else
+            Umgebung := Umgebung + 1;
+            BereitsGetestet := Umgebung - 1;
+         end if;
                      
       end loop BereichSchleife;
       

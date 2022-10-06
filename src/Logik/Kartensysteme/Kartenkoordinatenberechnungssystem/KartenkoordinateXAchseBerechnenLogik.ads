@@ -9,6 +9,8 @@ package KartenkoordinateXAchseBerechnenLogik is
    
    type WelcheVerschiebungXAchseArray is array (Boolean'Range, KartenDatentypen.EbeneVorhanden'Range) of KartenDatentypen.Kartenform_X_Einstellbar_Enum;
    WelcheVerschiebungXAchse : WelcheVerschiebungXAchseArray;
+   
+   
 
    function KartenkoordinateXAchseBerechnen
      (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
@@ -44,6 +46,8 @@ private
    
    type ÜberhangArray is array (Boolean'Range, KartenDatentypen.EbeneVorhanden'Range) of Integer;
    ÜberhangXAchse : ÜberhangArray;
+   
+   
    
    function ÜbergangWesten
      (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;

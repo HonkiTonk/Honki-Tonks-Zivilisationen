@@ -271,7 +271,7 @@ package body TextaccesseTextGrafik is
       for StadtbefehleSchleifenwert in TextaccessVariablen.StadtbefehleAccessArray'Range loop
          
          Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.StadtbefehleAccess (StadtbefehleSchleifenwert),
-                                            str  => To_Wide_Wide_String (Source => Befehlstexte.Stadtbefehle (BefehleDatentypen.Stadtbefehle_Vorhanden_Enum'Pos (StadtbefehleSchleifenwert))));
+                                            str  => To_Wide_Wide_String (Source => Befehlstexte.Stadtbefehle (BefehleDatentypen.Stadtbefehle_Auswählen_Enum'Pos (StadtbefehleSchleifenwert) - 1)));
          
       end loop StadtbefehleSchleife;
       

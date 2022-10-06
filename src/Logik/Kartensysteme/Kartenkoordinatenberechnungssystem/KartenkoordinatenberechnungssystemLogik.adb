@@ -7,21 +7,18 @@ with KartenkoordinateEAchseBerechnenLogik;
 with KartenkoordinateYAchseBerechnenLogik;
 with KartenkoordinateXAchseBerechnenLogik;
 
--- Die Überhangschleifen in den Berechnungen sind nötig, da zwar eine Einheitenbewegung nicht so groß sein kann, aber der Spieler eventuell soweit rauszoomt. äöü
--- Die Überhangschleifen müssten auch mal noch angepasst werden an die ganzen Änderungen. äöü
 package body KartenkoordinatenberechnungssystemLogik is
 
+   -- Wenn man das in einen Grafik- und einen Logikteil aufteilt, könnte man dann Zufallsübergänge berechnen? äöü
+   -- Nein, da auch der Kartengenerator Teil der Logik ist, wenn dann bräuchte man drei Teile, eventuell auch mehr. äöü
+   -- Wobei, man könnte auch beim Kartengenerator dann einfach False statt True übergeben. Die Grafik sollte zu diesem Zeitpunkt ja nicht auf die Berechnungen zugreifen. äöü
    function Kartenkoordinatenberechnungssystem
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
       LogikGrafikExtern : in Boolean)
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
-      
-      -- Wenn man das in einen Grafik- und einen Logikteil aufteilt, könnte man dann Zufallsübergänge berechnen? äöü
-      -- Nein, da auch der Kartengenerator Teil der Logik ist, wenn dann bräuchte man drei Teile, eventuell auch mehr. äöü
-      -- Wobei, man könnte auch beim Kartengenerator dann einfach False statt True übergeben. Die Grafik sollte zu diesem Zeitpunkt ja nicht auf die Berechnungen zugreifen. äöü
-      
+            
       case
         ÄnderungExtern.EAchse
       is

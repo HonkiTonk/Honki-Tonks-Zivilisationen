@@ -25,7 +25,7 @@ package InteraktionAuswahl is
 
 
 
-   PositionenSteuerungsaufteilung : PositionenArray (1 .. 2) := (others => GrafikRecordKonstanten.Leerbereich);
+   PositionenSteuerungsaufteilung : PositionenArray (1 .. 3) := (others => GrafikRecordKonstanten.Leerbereich);
    PositionenSteuerung : PositionenArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Steuerung_Menü_Enum)) := (others => GrafikRecordKonstanten.Leerbereich);
 
    PositionenSpielstand : PositionenArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Spielstand_Menü_Enum)) := (others => GrafikRecordKonstanten.Leerbereich);
@@ -73,7 +73,7 @@ package InteraktionAuswahl is
 
 
 
-   type PositionenStadtbefehleArray is array (BefehleDatentypen.Stadtbefehle_Vorhanden_Enum'Range) of Sf.Graphics.Rect.sfFloatRect;
+   type PositionenStadtbefehleArray is array (BefehleDatentypen.Stadtbefehle_Auswählen_Enum'Range) of Sf.Graphics.Rect.sfFloatRect;
    PositionenStadtbefehle : PositionenStadtbefehleArray := (others => GrafikRecordKonstanten.Leerbereich);
 
 

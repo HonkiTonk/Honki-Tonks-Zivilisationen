@@ -21,6 +21,7 @@ Next unit with movement points
 Next unit without movement points
 Go to
 End round
+Abort
 Units
 Move north
 Move west
@@ -46,6 +47,13 @@ Dissolve
 Enhance
 Change Home City
 Unloading
+Deselect
+City
+Build
+Sell
+Rename
+Dissolve
+Exit
 Save on computer
 Restore
 Return

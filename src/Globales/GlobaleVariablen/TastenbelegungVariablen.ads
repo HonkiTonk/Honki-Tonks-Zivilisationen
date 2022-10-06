@@ -15,10 +15,14 @@ package TastenbelegungVariablen is
    type EinheitenbelegungArray is array (BefehleDatentypen.Einheitenbelegung_Vorhanden_Enum'Range) of Sf.Window.Keyboard.sfKeyCode;
    Einheitenbelegung : EinheitenbelegungArray;
    
+   type StadtbelegungArray is array (BefehleDatentypen.Stadtbefehle_Auswählen_Enum'Range) of Sf.Window.Keyboard.sfKeyCode;
+   Stadtbelegung : StadtbelegungArray;
+   
    procedure StandardTastenbelegungLaden;
    
 private
    
+   -- Kann Auswählen nicht in beiden Fällen raus? äöü
    AllgemeineBelegungStandard : constant AllgemeineBelegungArray := (
                                                                      TastenbelegungDatentypen.Auswählen_Enum                      => Sf.Window.Keyboard.sfKeyUnknown,
                                                                      
@@ -35,19 +39,19 @@ private
                                                                      TastenbelegungDatentypen.Ebene_Runter_Enum                   => Sf.Window.Keyboard.sfKeySubtract,
                                 
                                                                      -- Menüs
-                                                                     TastenbelegungDatentypen.Forschung_Enum                      => Sf.Window.Keyboard.sfKeyT,
+                                                                     TastenbelegungDatentypen.Forschung_Enum                      => Sf.Window.Keyboard.sfKeyF,
                                                                      TastenbelegungDatentypen.Diplomatie_Enum                     => Sf.Window.Keyboard.sfKeyD,
                                                                 
                                                                      -- Stadt
-                                                                     TastenbelegungDatentypen.Stadt_Suchen_Enum                   => Sf.Window.Keyboard.sfKeyY,
-                                                                     TastenbelegungDatentypen.Nächste_Stadt_Enum                  => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                     TastenbelegungDatentypen.Nächste_Stadt_Mit_Meldung_Enum      => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                     TastenbelegungDatentypen.Stadt_Suchen_Enum                   => Sf.Window.Keyboard.sfKeyS,
+                                                                     TastenbelegungDatentypen.Nächste_Stadt_Enum                  => Sf.Window.Keyboard.sfKeyPageUp,
+                                                                     TastenbelegungDatentypen.Nächste_Stadt_Mit_Meldung_Enum      => Sf.Window.Keyboard.sfKeyPageDown,
                                                                      
                                                                      -- Einheit
-                                                                     TastenbelegungDatentypen.Nächste_Einheit_Enum                => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                     TastenbelegungDatentypen.Nächste_Einheit_Enum                => Sf.Window.Keyboard.sfKeyE,
                                                                      TastenbelegungDatentypen.Nächste_Einheit_Mit_Meldung_Enum    => Sf.Window.Keyboard.sfKeyO,
-                                                                     TastenbelegungDatentypen.Einheit_Mit_Bewegungspunkte_Enum    => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                     TastenbelegungDatentypen.Einheiten_Ohne_Bewegungspunkte_Enum => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                     TastenbelegungDatentypen.Einheit_Mit_Bewegungspunkte_Enum    => Sf.Window.Keyboard.sfKeyB,
+                                                                     TastenbelegungDatentypen.Einheiten_Ohne_Bewegungspunkte_Enum => Sf.Window.Keyboard.sfKeyO,
                                                                      
                                                                      -- Sonstiges
                                                                      TastenbelegungDatentypen.Gehe_Zu_Enum                        => Sf.Window.Keyboard.sfKeyG,
@@ -81,20 +85,30 @@ private
                                                                    BefehleDatentypen.Straße_Bauen_Enum       => Sf.Window.Keyboard.sfKeyL,
                                                                    BefehleDatentypen.Mine_Bauen_Enum         => Sf.Window.Keyboard.sfKeyM,
                                                                    BefehleDatentypen.Farm_Bauen_Enum         => Sf.Window.Keyboard.sfKeyF,
-                                                                   BefehleDatentypen.Festung_Bauen_Enum      => Sf.Window.Keyboard.sfKeyU,
-                                                                   BefehleDatentypen.Wald_Aufforsten_Enum    => Sf.Window.Keyboard.sfKeyZ,
-                                                                   BefehleDatentypen.Roden_Trockenlegen_Enum => Sf.Window.Keyboard.sfKeyP,
+                                                                   BefehleDatentypen.Festung_Bauen_Enum      => Sf.Window.Keyboard.sfKeyS,
+                                                                   BefehleDatentypen.Wald_Aufforsten_Enum    => Sf.Window.Keyboard.sfKeyW,
+                                                                   BefehleDatentypen.Roden_Trockenlegen_Enum => Sf.Window.Keyboard.sfKeyR,
                                                                    
                                                                    -- Einheitenbefehle Allgemein
                                                                    BefehleDatentypen.Heilen_Enum             => Sf.Window.Keyboard.sfKeyH,
                                                                    BefehleDatentypen.Verschanzen_Enum        => Sf.Window.Keyboard.sfKeyV,
-                                                                   BefehleDatentypen.Plündern_Enum           => Sf.Window.Keyboard.sfKeyJ,
-                                                                   BefehleDatentypen.Auflösen_Enum           => Sf.Window.Keyboard.sfKeyK,
-                                                                   BefehleDatentypen.Einheit_Verbessern_Enum => Sf.Window.Keyboard.sfKeyA,
+                                                                   BefehleDatentypen.Plündern_Enum           => Sf.Window.Keyboard.sfKeyP,
+                                                                   BefehleDatentypen.Auflösen_Enum           => Sf.Window.Keyboard.sfKeyA,
+                                                                   BefehleDatentypen.Einheit_Verbessern_Enum => Sf.Window.Keyboard.sfKeyU,
                                                                    BefehleDatentypen.Heimatstadt_Ändern_Enum => Sf.Window.Keyboard.sfKeyC,
                                                                    BefehleDatentypen.Entladen_Enum           => Sf.Window.Keyboard.sfKeyE,
                                    
                                                                    BefehleDatentypen.Abwählen_Enum           => Sf.Window.Keyboard.sfKeyEscape
                                                                   );
+   
+   
+   
+   StadtbelegungStandard : constant StadtbelegungArray := (
+                                                           BefehleDatentypen.Bauen_Enum      => Sf.Window.Keyboard.sfKeyB,
+                                                           BefehleDatentypen.Verkaufen_Enum  => Sf.Window.Keyboard.sfKeyV,
+                                                           BefehleDatentypen.Umbenennen_Enum => Sf.Window.Keyboard.sfKeyU,
+                                                           BefehleDatentypen.Auflösen_Enum   => Sf.Window.Keyboard.sfKeyA,
+                                                           BefehleDatentypen.Verlassen_Enum  => Sf.Window.Keyboard.sfKeyEscape
+                                                          );
    
 end TastenbelegungVariablen;

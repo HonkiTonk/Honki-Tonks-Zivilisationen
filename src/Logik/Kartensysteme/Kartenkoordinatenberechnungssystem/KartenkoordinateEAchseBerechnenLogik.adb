@@ -51,11 +51,9 @@ package body KartenkoordinateEAchseBerechnenLogik is
             return KartenKonstanten.LeerEAchse;
             
          when others =>
-            null;
+            ZwischenwertEAchse (LogikGrafikExtern, EAchseExtern) := abs (Integer (ÄnderungEAchseExtern));
+            ÜberhangEAchse (LogikGrafikExtern, EAchseExtern) := Integer (EAchseExtern);
       end case;
-                    
-      ZwischenwertEAchse (LogikGrafikExtern, EAchseExtern) := abs (Integer (ÄnderungEAchseExtern));
-      ÜberhangEAchse (LogikGrafikExtern, EAchseExtern) := Integer (EAchseExtern);
          
       EAchseKleinerSchleife:
       while ZwischenwertEAchse (LogikGrafikExtern, EAchseExtern) > 0 loop
@@ -93,12 +91,10 @@ package body KartenkoordinateEAchseBerechnenLogik is
             return KartenKonstanten.LeerEAchse;
             
          when others =>
-            null;
+            ZwischenwertEAchse (LogikGrafikExtern, EAchseExtern) := (Positive (ÄnderungEAchseExtern));
+            ÜberhangEAchse (LogikGrafikExtern, EAchseExtern) := Integer (EAchseExtern);
       end case;
-      
-      ZwischenwertEAchse (LogikGrafikExtern, EAchseExtern) := (Positive (ÄnderungEAchseExtern));
-      ÜberhangEAchse (LogikGrafikExtern, EAchseExtern) := Integer (EAchseExtern);
-         
+               
       EAchseGrößerSchleife:
       while ZwischenwertEAchse (LogikGrafikExtern, EAchseExtern) > 0 loop
             

@@ -25,6 +25,9 @@ package body EinlesenTastaturLogik is
             TastenbelegungVariablen.EinheitenbelegungArray'Read (Stream (File => TastenbelegungLaden),
                                                                  TastenbelegungVariablen.Einheitenbelegung);
       
+            TastenbelegungVariablen.StadtbelegungArray'Read (Stream (File => TastenbelegungLaden),
+                                                             TastenbelegungVariablen.Stadtbelegung);
+      
             Close (File => TastenbelegungLaden);
 
          when False =>

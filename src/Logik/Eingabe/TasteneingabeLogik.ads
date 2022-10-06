@@ -19,6 +19,9 @@ package TasteneingabeLogik is
    function Einheitentaste
      return BefehleDatentypen.Einheitenbelegung_Enum;
    
+   function Stadttaste
+     return BefehleDatentypen.Stadtbefehle_Enum;
+   
    function TastenbelegungAnpassen
      return Sf.Window.Keyboard.sfKeyCode;
    

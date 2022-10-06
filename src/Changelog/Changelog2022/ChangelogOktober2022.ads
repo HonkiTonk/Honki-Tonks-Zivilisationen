@@ -168,17 +168,23 @@ package ChangelogOktober2022 is
    
    
 
-   -- Version 0.04. => 0.04. (07.10.2022):
+   -- Version 0.04.1065 => 0.04. (07.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.0975 => 0.04. (06.10.2022):
+   -- Version 0.04.0975 => 0.04.1065 (06.10.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Abbrechen/Abwählen kann jetzt auch neu belegt werden, von ein paar Ausnahmen abgesehen.
+   -- Die Tastenbelegung für die Stadt ist jetzt Nutzereinstellbar.
+   -- Stadtbefehle können jetzt wieder über Tasteneingaben durchgeführt werden.
+   -- Diverse allgemeine und rassenspezifische Anpassungen an den Passierbarkeitprüfungen für Einheiten vorgenommen.
+   -- Es wird jetzt für den gesamten Bereich den eine Stadt belegt geprüft ob eine Einheit dort platziert werden kann und nicht nur für die direkte Umgebung.
+   -- Die Ekropa können jetzt Schienen über das Wasser bauen.
+   -- Angefangen die Kartenkoordinatenberechnungen für alle Kartenformen anzupassen.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

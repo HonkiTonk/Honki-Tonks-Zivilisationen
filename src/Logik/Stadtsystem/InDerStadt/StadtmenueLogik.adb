@@ -3,7 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 with StadtKonstanten;
 with GrafikDatentypen;
-with TastenbelegungDatentypen;
 
 with StadtbausystemLogik;
 with TasteneingabeLogik;
@@ -27,9 +26,9 @@ package body StadtmenueLogik is
       loop
          
          case
-           TasteneingabeLogik.VereinfachteEingabe
+           TasteneingabeLogik.Stadttaste
          is
-            when TastenbelegungDatentypen.Auswählen_Enum =>
+            when BefehleDatentypen.Auswählen_Enum =>
                if
                  WasIstAusgewählt (StadtRasseNummerExtern => StadtRasseNummerExtern) = False
                then
@@ -39,27 +38,29 @@ package body StadtmenueLogik is
                   exit StadtSchleife;
                end if;
                
-               -- Das später wieder einbauen und eine eigene Belegung für die Stadttasen einbauen? äöü
-               --  when TastenbelegungDatentypen.Bauen_Enum =>
-               --     StadtbausystemLogik.Bauen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+            when BefehleDatentypen.Bauen_Enum =>
+               StadtbausystemLogik.Bauen (StadtRasseNummerExtern => StadtRasseNummerExtern);
                
-               --  when TastenbelegungDatentypen.Auflösen_Enum =>
-               --     if
-               --       StadtEntfernenLogik.StadtAbreißen (StadtRasseNummerExtern => StadtRasseNummerExtern) = True
-               --     then
-               --        exit StadtSchleife;
+            when BefehleDatentypen.Verkaufen_Enum =>
+               GebaeudeVerkaufenLogik.Verkaufsliste (StadtRasseNummerExtern => StadtRasseNummerExtern);
+               
+            when BefehleDatentypen.Auflösen_Enum =>
+               if
+                 StadtEntfernenLogik.StadtAbreißen (StadtRasseNummerExtern => StadtRasseNummerExtern) = True
+               then
+                  exit StadtSchleife;
                   
-               --     else
-               --        null;
-               --     end if;
+               else
+                  null;
+               end if;
 
-               --  when TastenbelegungDatentypen.Stadt_Umbenennen_Enum =>
-               --     StadtAllgemeinesLogik.NeuerStadtname (StadtRasseNummerExtern => StadtRasseNummerExtern);
+            when BefehleDatentypen.Umbenennen_Enum =>
+               StadtAllgemeinesLogik.NeuerStadtname (StadtRasseNummerExtern => StadtRasseNummerExtern);
 
-            when TastenbelegungDatentypen.Abwählen_Enum =>
+            when BefehleDatentypen.Verlassen_Enum =>
                exit StadtSchleife;
                
-            when others =>
+            when BefehleDatentypen.Leer_Stadtbefehle_Enum =>
                null;
          end case;
          
@@ -90,7 +91,7 @@ package body StadtmenueLogik is
       case
         Befehlsauswahl
       is
-         when BefehleDatentypen.Leer_Enum =>
+         when BefehleDatentypen.Leer_Stadtbefehle_Enum =>
             return False;
             
          when others =>

@@ -6,14 +6,14 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 private with Sf.Window.Keyboard;
 private with Sf.System.Vector2;
 
-with SystemRecords;
-
 private with GrafikRecordKonstanten;
+
+private with SteuerungsauswahlLogik;
 
 package SteuerungsmenueGrafik is
 
    procedure Steuerungsmenü
-     (AuswahlExtern : in SystemRecords.MehrfacheAuswahlRecord);
+     (AuswahlExtern : in Integer);
    
 private
       
@@ -33,8 +33,8 @@ private
    
    
    function Steuerungsaufteilung
-     (AuswahlExtern : in SystemRecords.MehrfacheAuswahlRecord;
-      WelcheSteuerungExtern : in Boolean)
+     (AuswahlExtern : in Integer;
+      WelcheSteuerungExtern : in SteuerungsauswahlLogik.Kategorie_Enum)
       return Sf.System.Vector2.sfVector2f
      with
        Post => (
@@ -45,7 +45,7 @@ private
    
    function Steuerung
      (AuswahlExtern : in Integer;
-      WelcheSteuerungExtern : in Boolean)
+      WelcheSteuerungExtern : in SteuerungsauswahlLogik.Kategorie_Enum)
       return Sf.System.Vector2.sfVector2f
      with
        Post => (
@@ -55,7 +55,7 @@ private
                );
    
    function TextFestlegen
-     (WelcheSteuerungExtern : in Boolean;
+     (WelcheSteuerungExtern : in SteuerungsauswahlLogik.Kategorie_Enum;
       WelcheZeileExtern : in Positive)
       return Wide_Wide_String;
 

@@ -58,7 +58,9 @@ package body KartenkoordinateYAchseBerechnenLogik is
             WelcheVerschiebungYAchse (LogikGrafikExtern, ArrayPositionExtern) := Weltkarte.Karteneinstellungen.Kartenform.YAchseNorden;
             
             return ÜbergangNordenRückwärts (YAchseExtern         => YAchseExtern,
-                                               ÄnderungYAchseExtern => ÄnderungYAchseExtern);
+                                               ÄnderungYAchseExtern => ÄnderungYAchseExtern,
+                                               ArrayPositionExtern  => ArrayPositionExtern,
+                                               LogikGrafikExtern    => LogikGrafikExtern);
                         
          when KartenDatentypen.Karte_Y_Übergang_Enum | KartenDatentypen.Karte_Y_Verschobener_Übergang_Enum =>
             WelcheVerschiebungYAchse (LogikGrafikExtern, ArrayPositionExtern) := Weltkarte.Karteneinstellungen.Kartenform.YAchseNorden;
@@ -98,11 +100,43 @@ package body KartenkoordinateYAchseBerechnenLogik is
    
    function ÜbergangNordenRückwärts
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld)
+      ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld;
+      ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden;
+      LogikGrafikExtern : in Boolean)
       return KartenDatentypen.KartenfeldPositiv
    is begin
+            
+      ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) := Positive (YAchseExtern);
+      Zwischenwert (LogikGrafikExtern, ArrayPositionExtern) := Integer (ÄnderungYAchseExtern);
       
-      return YAchseExtern - (ÄnderungYAchseExtern + 1);
+      while ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) > Positive (Weltkarte.KarteArray'First (2)) loop
+         
+         ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) := ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) - 1;
+         Zwischenwert (LogikGrafikExtern, ArrayPositionExtern) := Zwischenwert (LogikGrafikExtern, ArrayPositionExtern) + 1;
+         
+      end loop;
+      
+      if
+        ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) - Zwischenwert (LogikGrafikExtern, ArrayPositionExtern) <= Positive (Weltkarte.Karteneinstellungen.Kartengröße.YAchse)
+      then
+         return KartenDatentypen.KartenfeldPositiv (ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) - Zwischenwert (LogikGrafikExtern, ArrayPositionExtern));
+         
+      else
+         Rückgabe (LogikGrafikExtern, ArrayPositionExtern) := Integer (ÜbergangSüden (YAchseExtern         => Weltkarte.Karteneinstellungen.Kartengröße.YAchse,
+                                                                                         ÄnderungYAchseExtern => ÄnderungYAchseExtern + Weltkarte.Karteneinstellungen.Kartengröße.YAchse,
+                                                                                         ArrayPositionExtern  => ArrayPositionExtern,
+                                                                                         LogikGrafikExtern    => LogikGrafikExtern));
+      end if;
+      
+      case
+        KartenDatentypen.KartenfeldNatural (Rückgabe (LogikGrafikExtern, ArrayPositionExtern))
+      is
+         when KartenKonstanten.LeerYAchse =>
+            return Weltkarte.Karteneinstellungen.Kartengröße.YAchse;
+            
+         when others =>
+            return KartenDatentypen.KartenfeldPositiv (Rückgabe (LogikGrafikExtern, ArrayPositionExtern));
+      end case;
       
    end ÜbergangNordenRückwärts;
    
@@ -125,7 +159,7 @@ package body KartenkoordinateYAchseBerechnenLogik is
          when KartenDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum =>
             WelcheVerschiebungYAchse (LogikGrafikExtern, ArrayPositionExtern) := Weltkarte.Karteneinstellungen.Kartenform.YAchseSüden;
             
-            return ÜbergangNordenRückwärts (YAchseExtern         => YAchseExtern,
+            return ÜbergangSüdenRückwärts (YAchseExtern         => YAchseExtern,
                                                ÄnderungYAchseExtern => ÄnderungYAchseExtern);
             
          when KartenDatentypen.Karte_Y_Übergang_Enum | KartenDatentypen.Karte_Y_Verschobener_Übergang_Enum =>

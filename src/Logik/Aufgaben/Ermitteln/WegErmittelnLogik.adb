@@ -168,10 +168,10 @@ package body WegErmittelnLogik is
          when KartenverbesserungDatentypen.Karten_Straße_Enum'Range | KartenverbesserungDatentypen.Leer_Weg_Enum =>
             if
               True = ForschungstestsLogik.TechnologieVorhanden (RasseExtern       => RasseExtern,
-                                                                TechnologieExtern => LeseForschungenDatenbank.Wege (WegExtern   => WelcheWegart (WegExtern),
+                                                                TechnologieExtern => LeseForschungenDatenbank.Wege (WegExtern   => WelcheWegart (KartenverbesserungDatentypen.Schiene_Einzeln_Enum),
                                                                                                                     RasseExtern => RasseExtern))
             then
-               WelcheArbeit := WelcheWegart (WegExtern);
+               WelcheArbeit := WelcheWegart (KartenverbesserungDatentypen.Schiene_Einzeln_Enum);
                
             else
                return EinheitenRecordKonstanten.KeineArbeit;

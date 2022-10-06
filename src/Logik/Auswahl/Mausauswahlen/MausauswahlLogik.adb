@@ -222,7 +222,7 @@ package body MausauswahlLogik is
          
    
    function Steuerung
-      return SystemRecords.MehrfacheAuswahlRecord
+      return Integer
    is begin
       
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
@@ -237,14 +237,7 @@ package body MausauswahlLogik is
                                        TextboxExtern      => InteraktionAuswahl.PositionenSteuerungsaufteilung (AufteilungSchleifenwert))
          is
             when True =>
-               if
-                 AufteilungSchleifenwert = 1
-               then
-                  return (-1, SystemKonstanten.LeerAuswahl);
-                  
-               else
-                  return (SystemKonstanten.LeerAuswahl, -1);
-               end if;
+               return -AufteilungSchleifenwert;
                
             when False =>
                null;
@@ -266,7 +259,7 @@ package body MausauswahlLogik is
                                        TextboxExtern      => InteraktionAuswahl.PositionenSteuerung (SteuerungSchleifenwert))
          is
             when True =>
-               return (SteuerungSchleifenwert, SystemKonstanten.LeerAuswahl);
+               return SteuerungSchleifenwert;
                
             when False =>
                null;
@@ -274,7 +267,7 @@ package body MausauswahlLogik is
          
       end loop SteuerungSchleife;
       
-      return (SystemKonstanten.LeerAuswahl, SystemKonstanten.LeerAuswahl);
+      return SystemKonstanten.LeerAuswahl;
       
    end Steuerung;
    
@@ -325,10 +318,6 @@ package body MausauswahlLogik is
    
    
    
-   -- Hier auch gleich noch Weltkartenbefehle aufrufen um die allgemeinen Befehle zu bekommen? äöü
-   -- Erzeugt wahrscheinlich Probleme mit dem aktuellen System wenn eine Einheit ausgewählt ist. äöü
-   -- Wobei ich wohl einfach die Auswahl zurückgeben kann und dann entsprechend prüfen und weiter zurückgeben kann? äöü
-   -- Vermutlich sind da dann aber noch ein paar zusätzliche Prüfungen notwendig. äöü
    function Einheitenbefehle
      return BefehleDatentypen.Einheitenbelegung_Enum
    is begin
@@ -420,7 +409,7 @@ package body MausauswahlLogik is
          
       end loop BefehleSchleife;
       
-      return BefehleDatentypen.Leer_Enum;
+      return BefehleDatentypen.Leer_Stadtbefehle_Enum;
       
    end Stadtbefehle;
    

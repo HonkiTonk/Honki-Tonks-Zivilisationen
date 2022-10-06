@@ -66,7 +66,10 @@ private
    
    StadtNummer : StadtDatentypen.MaximaleStädteMitNullWert;
    
+   Stadtumgebung : KartenDatentypen.UmgebungsbereichDrei;
+   
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Ekropaumgebung : KartenRecords.AchsenKartenfeldNaturalRecord;
    StadtKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    
