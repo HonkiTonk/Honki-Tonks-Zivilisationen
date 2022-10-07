@@ -2,15 +2,11 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
-
 with Weltkarte;
 
+private with KartenkoordinatenWerteLogik;
+
 package KartenkoordinateYAchseBerechnenLogik is
-   
-   type WelcheVerschiebungYAchseArray is array (Boolean'Range, KartenDatentypen.EbeneVorhanden'Range) of KartenDatentypen.Kartenform_Y_Einstellbar_Enum;
-   WelcheVerschiebungYAchse : WelcheVerschiebungYAchseArray;
-   
-   
 
    function KartenkoordinateYAchseBerechnen
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
@@ -40,14 +36,10 @@ package KartenkoordinateYAchseBerechnenLogik is
                );
    
 private
-   
-   -- Achsenverschiebung einstellbar machen? äöü
-   HalberWert : constant Float := 0.50;
-   
-   type ÜberhangArray is array (Boolean'Range, KartenDatentypen.EbeneVorhanden'Range) of Integer;
-   ÜberhangYAchse : ÜberhangArray;
-   Zwischenwert : ÜberhangArray;
-   Rückgabe : ÜberhangArray;
+      
+   ÜberhangYAchse : KartenkoordinatenWerteLogik.ÜberhangArray;
+   Zwischenwert : KartenkoordinatenWerteLogik.ÜberhangArray;
+   Rückgabe : KartenkoordinatenWerteLogik.ÜberhangArray;
    
    
    
@@ -128,7 +120,9 @@ private
    
    function ÜbergangSüdenRückwärts
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      ÄnderungYAchseExtern : in KartenDatentypen.KartenfeldPositiv)
+      ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld;
+      ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden;
+      LogikGrafikExtern : in Boolean)
       return KartenDatentypen.KartenfeldPositiv
      with
        Pre => (

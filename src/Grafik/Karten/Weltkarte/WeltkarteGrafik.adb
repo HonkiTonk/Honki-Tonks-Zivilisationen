@@ -23,7 +23,7 @@ package body WeltkarteGrafik is
    is begin
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.KartenviewAccess,
-                                            GrößeExtern          => (EinstellungenGrafik.AktuelleFensterAuflösung.x, EinstellungenGrafik.AktuelleFensterAuflösung.y),
+                                            GrößeExtern          => EinstellungenGrafik.AktuelleFensterAuflösung,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.KarteAnzeigebereich);
       
       SichtbereichAnfangEnde := SichtweitenGrafik.SichtbereichKarteBerechnen;

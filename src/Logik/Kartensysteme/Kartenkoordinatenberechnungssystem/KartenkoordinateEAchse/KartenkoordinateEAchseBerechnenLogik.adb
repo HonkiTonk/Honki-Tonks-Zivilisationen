@@ -54,7 +54,7 @@ package body KartenkoordinateEAchseBerechnenLogik is
             ZwischenwertEAchse (LogikGrafikExtern, EAchseExtern) := abs (Integer (ÄnderungEAchseExtern));
             ÜberhangEAchse (LogikGrafikExtern, EAchseExtern) := Integer (EAchseExtern);
       end case;
-         
+      
       EAchseKleinerSchleife:
       while ZwischenwertEAchse (LogikGrafikExtern, EAchseExtern) > 0 loop
             

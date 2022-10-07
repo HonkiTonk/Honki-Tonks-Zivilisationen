@@ -3,6 +3,8 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen;
 
+private with KartenkoordinatenWerteLogik;
+
 package KartenkoordinateEAchseBerechnenLogik is
 
    function KartenkoordinateEAchseBerechnen
@@ -13,9 +15,8 @@ package KartenkoordinateEAchseBerechnenLogik is
    
 private
    
-   type ÜberhangArray is array (Boolean'Range, KartenDatentypen.EbeneVorhanden'Range) of Integer;
-   ÜberhangEAchse : ÜberhangArray;
-   ZwischenwertEAchse : ÜberhangArray;
+   ÜberhangEAchse : KartenkoordinatenWerteLogik.ÜberhangArray;
+   ZwischenwertEAchse : KartenkoordinatenWerteLogik.ÜberhangArray;
    
    
          

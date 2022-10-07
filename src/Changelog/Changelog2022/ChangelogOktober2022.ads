@@ -161,17 +161,18 @@ package ChangelogOktober2022 is
    
    
 
-   -- Version 0.04. => 0.04. (08.10.2022):
+   -- Version 0.04.1100 => 0.04. (08.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.1065 => 0.04. (07.10.2022):
+   -- Version 0.04.1065 => 0.04.1100 (07.10.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter daran gearbeitet die Kartenkoordinatenberechnungen für alle Kartenformen anzupassen.
+   -- Selbst bei merkwürdigen Kartenformen und sehr kleinen Karten stürzt das Spiel jetzt nicht mehr ab.
+   -- Kommentare und Kleinigkeiten korrigiert/aufgeteilt.
    
    
 

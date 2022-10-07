@@ -3,7 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenKonstanten;
 
--- Überhangsschleifen noch an das aktuelle System anpassen. äöü
 package body KartenkoordinateYAchseBerechnenLogik is
 
    function KartenkoordinateYAchseBerechnen
@@ -13,8 +12,6 @@ package body KartenkoordinateYAchseBerechnenLogik is
       LogikGrafikExtern : in Boolean)
       return KartenDatentypen.KartenfeldNatural
    is begin
-      
-      WelcheVerschiebungYAchse (LogikGrafikExtern, ArrayPositionExtern) := KartenDatentypen.Karte_Y_Kein_Übergang_Enum;
       
       if
         YAchseExtern + ÄnderungYAchseExtern < Weltkarte.KarteArray'First (2)
@@ -55,15 +52,16 @@ package body KartenkoordinateYAchseBerechnenLogik is
             return KartenKonstanten.LeerYAchse;
             
          when KartenDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum =>
-            WelcheVerschiebungYAchse (LogikGrafikExtern, ArrayPositionExtern) := Weltkarte.Karteneinstellungen.Kartenform.YAchseNorden;
+            KartenkoordinatenWerteLogik.VerschiebungNorden (LogikGrafikExtern, ArrayPositionExtern) := Weltkarte.Karteneinstellungen.Kartenform.YAchseNorden;
             
+            -- Kann ich hier nicht einfach den Süden und umgekehrt aufrufen? äöü
             return ÜbergangNordenRückwärts (YAchseExtern         => YAchseExtern,
                                                ÄnderungYAchseExtern => ÄnderungYAchseExtern,
                                                ArrayPositionExtern  => ArrayPositionExtern,
                                                LogikGrafikExtern    => LogikGrafikExtern);
                         
          when KartenDatentypen.Karte_Y_Übergang_Enum | KartenDatentypen.Karte_Y_Verschobener_Übergang_Enum =>
-            WelcheVerschiebungYAchse (LogikGrafikExtern, ArrayPositionExtern) := Weltkarte.Karteneinstellungen.Kartenform.YAchseNorden;
+            KartenkoordinatenWerteLogik.VerschiebungNorden (LogikGrafikExtern, ArrayPositionExtern) := Weltkarte.Karteneinstellungen.Kartenform.YAchseNorden;
             
             return ÜbergangNordenNormal (YAchseExtern         => YAchseExtern,
                                           ÄnderungYAchseExtern => ÄnderungYAchseExtern,
@@ -84,7 +82,7 @@ package body KartenkoordinateYAchseBerechnenLogik is
    is begin
       
       ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) := Integer (YAchseExtern + ÄnderungYAchseExtern + Weltkarte.Karteneinstellungen.Kartengröße.YAchse);
-         
+      
       YAchseKleinerSchleife:
       while ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) < Positive (Weltkarte.KarteArray'First (2)) loop
             
@@ -116,16 +114,18 @@ package body KartenkoordinateYAchseBerechnenLogik is
          
       end loop;
       
+      -- Eventuell immer die Hauptberechnung erneut aufrufen und nicht einfach das hier? äöü
+      -- Könnte das nicht Probleme machen wenn die Berechnung auch kleiner als das erste Kartenfeld ist? äöü
       if
         ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) - Zwischenwert (LogikGrafikExtern, ArrayPositionExtern) <= Positive (Weltkarte.Karteneinstellungen.Kartengröße.YAchse)
       then
          return KartenDatentypen.KartenfeldPositiv (ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) - Zwischenwert (LogikGrafikExtern, ArrayPositionExtern));
          
       else
-         Rückgabe (LogikGrafikExtern, ArrayPositionExtern) := Integer (ÜbergangSüden (YAchseExtern         => Weltkarte.Karteneinstellungen.Kartengröße.YAchse,
-                                                                                         ÄnderungYAchseExtern => ÄnderungYAchseExtern + Weltkarte.Karteneinstellungen.Kartengröße.YAchse,
-                                                                                         ArrayPositionExtern  => ArrayPositionExtern,
-                                                                                         LogikGrafikExtern    => LogikGrafikExtern));
+         Rückgabe (LogikGrafikExtern, ArrayPositionExtern) := Integer (KartenkoordinateYAchseBerechnen (YAchseExtern         => Weltkarte.Karteneinstellungen.Kartengröße.YAchse,
+                                                                                                         ÄnderungYAchseExtern => -(ÄnderungYAchseExtern + Weltkarte.Karteneinstellungen.Kartengröße.YAchse),
+                                                                                                         ArrayPositionExtern  => ArrayPositionExtern,
+                                                                                                         LogikGrafikExtern    => LogikGrafikExtern));
       end if;
       
       case
@@ -157,13 +157,16 @@ package body KartenkoordinateYAchseBerechnenLogik is
             return KartenKonstanten.LeerYAchse;
             
          when KartenDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum =>
-            WelcheVerschiebungYAchse (LogikGrafikExtern, ArrayPositionExtern) := Weltkarte.Karteneinstellungen.Kartenform.YAchseSüden;
+            KartenkoordinatenWerteLogik.VerschiebungSüden (LogikGrafikExtern, ArrayPositionExtern) := Weltkarte.Karteneinstellungen.Kartenform.YAchseSüden;
             
+            -- Kann ich hier nicht einfach den Norden und umgekehrt aufrufen? äöü
             return ÜbergangSüdenRückwärts (YAchseExtern         => YAchseExtern,
-                                               ÄnderungYAchseExtern => ÄnderungYAchseExtern);
+                                               ÄnderungYAchseExtern => ÄnderungYAchseExtern,
+                                               ArrayPositionExtern  => ArrayPositionExtern,
+                                               LogikGrafikExtern    => LogikGrafikExtern);
             
          when KartenDatentypen.Karte_Y_Übergang_Enum | KartenDatentypen.Karte_Y_Verschobener_Übergang_Enum =>
-            WelcheVerschiebungYAchse (LogikGrafikExtern, ArrayPositionExtern) := Weltkarte.Karteneinstellungen.Kartenform.YAchseSüden;
+            KartenkoordinatenWerteLogik.VerschiebungSüden (LogikGrafikExtern, ArrayPositionExtern) := Weltkarte.Karteneinstellungen.Kartenform.YAchseSüden;
             
             return ÜbergangSüdenNormal (YAchseExtern         => YAchseExtern,
                                           ÄnderungYAchseExtern => ÄnderungYAchseExtern,
@@ -200,11 +203,45 @@ package body KartenkoordinateYAchseBerechnenLogik is
    
    function ÜbergangSüdenRückwärts
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      ÄnderungYAchseExtern : in KartenDatentypen.KartenfeldPositiv)
+      ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld;
+      ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden;
+      LogikGrafikExtern : in Boolean)
       return KartenDatentypen.KartenfeldPositiv
    is begin
       
-      return YAchseExtern - (ÄnderungYAchseExtern - 1);
+      ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) := Positive (YAchseExtern);
+      Zwischenwert (LogikGrafikExtern, ArrayPositionExtern) := Integer (ÄnderungYAchseExtern);
+      
+      while ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) < Positive (Weltkarte.Karteneinstellungen.Kartengröße.YAchse) loop
+         
+         ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) := ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) + 1;
+         Zwischenwert (LogikGrafikExtern, ArrayPositionExtern) := Zwischenwert (LogikGrafikExtern, ArrayPositionExtern) - 1;
+         
+      end loop;
+      
+      -- Eventuell immer die Hauptberechnung erneut aufrufen und nicht einfach das hier? äöü
+      -- Könnte das nicht Probleme machen wenn die Berechnung auch kleiner als das erste Kartenfeld ist? äöü
+      if
+        ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) - Zwischenwert (LogikGrafikExtern, ArrayPositionExtern) >= Positive (Weltkarte.KarteArray'First (2))
+      then
+         return KartenDatentypen.KartenfeldPositiv (ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) - Zwischenwert (LogikGrafikExtern, ArrayPositionExtern));
+         
+      else
+         Rückgabe (LogikGrafikExtern, ArrayPositionExtern) := Integer (KartenkoordinateYAchseBerechnen (YAchseExtern         => Weltkarte.KarteArray'First (2),
+                                                                                                         ÄnderungYAchseExtern => -ÄnderungYAchseExtern,
+                                                                                                         ArrayPositionExtern  => ArrayPositionExtern,
+                                                                                                         LogikGrafikExtern    => LogikGrafikExtern));
+      end if;
+      
+      case
+        KartenDatentypen.KartenfeldNatural (Rückgabe (LogikGrafikExtern, ArrayPositionExtern))
+      is
+         when KartenKonstanten.LeerYAchse =>
+            return Weltkarte.KarteArray'First (2);
+            
+         when others =>
+            return KartenDatentypen.KartenfeldPositiv (Rückgabe (LogikGrafikExtern, ArrayPositionExtern));
+      end case;
       
    end ÜbergangSüdenRückwärts;
    
@@ -216,12 +253,12 @@ package body KartenkoordinateYAchseBerechnenLogik is
    is begin
       
       if
-        YAchseExtern + KartenfeldPositiv (HalberWert * Float (Weltkarte.Karteneinstellungen.Kartengröße.YAchse)) > Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+        YAchseExtern + KartenfeldPositiv (KartenkoordinatenWerteLogik.VerschiebungswertYAchse * Float (Weltkarte.Karteneinstellungen.Kartengröße.YAchse)) > Weltkarte.Karteneinstellungen.Kartengröße.YAchse
       then
-         return YAchseExtern - KartenfeldPositiv (HalberWert * Float (Weltkarte.Karteneinstellungen.Kartengröße.YAchse));
+         return YAchseExtern - KartenfeldPositiv (KartenkoordinatenWerteLogik.VerschiebungswertYAchse * Float (Weltkarte.Karteneinstellungen.Kartengröße.YAchse));
 
       else
-         return YAchseExtern + KartenfeldPositiv (HalberWert * Float (Weltkarte.Karteneinstellungen.Kartengröße.YAchse));
+         return YAchseExtern + KartenfeldPositiv (KartenkoordinatenWerteLogik.VerschiebungswertYAchse * Float (Weltkarte.Karteneinstellungen.Kartengröße.YAchse));
       end if;
       
    end YAchseVerschieben;

@@ -2,15 +2,11 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
-
 with Weltkarte;
 
+private with KartenkoordinatenWerteLogik;
+
 package KartenkoordinateXAchseBerechnenLogik is
-   
-   type WelcheVerschiebungXAchseArray is array (Boolean'Range, KartenDatentypen.EbeneVorhanden'Range) of KartenDatentypen.Kartenform_X_Einstellbar_Enum;
-   WelcheVerschiebungXAchse : WelcheVerschiebungXAchseArray;
-   
-   
 
    function KartenkoordinateXAchseBerechnen
      (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
@@ -40,12 +36,10 @@ package KartenkoordinateXAchseBerechnenLogik is
                );
    
 private
-   
-   -- Achsenverschiebung einstellbar machen? äöü
-   HalberWert : constant Float := 0.50;
-   
-   type ÜberhangArray is array (Boolean'Range, KartenDatentypen.EbeneVorhanden'Range) of Integer;
-   ÜberhangXAchse : ÜberhangArray;
+      
+   ÜberhangXAchse : KartenkoordinatenWerteLogik.ÜberhangArray;
+   Zwischenwert : KartenkoordinatenWerteLogik.ÜberhangArray;
+   Rückgabe : KartenkoordinatenWerteLogik.ÜberhangArray;
    
    
    
@@ -81,7 +75,9 @@ private
    
    function ÜbergangWestenRückwärts
      (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld)
+      ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld;
+      ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden;
+      LogikGrafikExtern : in Boolean)
       return KartenDatentypen.KartenfeldPositiv
      with
        Pre => (
@@ -124,7 +120,9 @@ private
    
    function ÜbergangOstenRückwärts
      (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld)
+      ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld;
+      ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden;
+      LogikGrafikExtern : in Boolean)
       return KartenDatentypen.KartenfeldPositiv
      with
        Pre => (

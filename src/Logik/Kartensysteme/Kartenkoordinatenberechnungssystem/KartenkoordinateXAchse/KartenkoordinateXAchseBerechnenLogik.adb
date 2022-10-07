@@ -3,7 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenKonstanten;
 
--- Überhangsschleifen noch an das aktuelle System anpassen. äöü
 package body KartenkoordinateXAchseBerechnenLogik is
 
    function KartenkoordinateXAchseBerechnen
@@ -13,8 +12,6 @@ package body KartenkoordinateXAchseBerechnenLogik is
       LogikGrafikExtern : in Boolean)
       return KartenDatentypen.KartenfeldNatural
    is begin
-      
-      WelcheVerschiebungXAchse (LogikGrafikExtern, ArrayPositionExtern) := KartenDatentypen.Karte_X_Kein_Übergang_Enum;
       
       if
         XAchseExtern + ÄnderungXAchseExtern < Weltkarte.KarteArray'First (3)
@@ -55,13 +52,15 @@ package body KartenkoordinateXAchseBerechnenLogik is
             return KartenKonstanten.LeerXAchse;
             
          when KartenDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum =>
-            WelcheVerschiebungXAchse (LogikGrafikExtern, ArrayPositionExtern) := Weltkarte.Karteneinstellungen.Kartenform.XAchseWesten;
+            KartenkoordinatenWerteLogik.VerschiebungWesten (LogikGrafikExtern, ArrayPositionExtern) := Weltkarte.Karteneinstellungen.Kartenform.XAchseWesten;
       
             return ÜbergangWestenRückwärts (XAchseExtern         => XAchseExtern,
-                                            ÄnderungXAchseExtern => ÄnderungXAchseExtern);
+                                               ÄnderungXAchseExtern => ÄnderungXAchseExtern,
+                                               ArrayPositionExtern  => ArrayPositionExtern,
+                                               LogikGrafikExtern    => LogikGrafikExtern);
             
          when KartenDatentypen.Karte_X_Übergang_Enum | KartenDatentypen.Karte_X_Verschobener_Übergang_Enum =>
-            WelcheVerschiebungXAchse (LogikGrafikExtern, ArrayPositionExtern) := Weltkarte.Karteneinstellungen.Kartenform.XAchseWesten;
+            KartenkoordinatenWerteLogik.VerschiebungWesten (LogikGrafikExtern, ArrayPositionExtern) := Weltkarte.Karteneinstellungen.Kartenform.XAchseWesten;
             
             return ÜbergangWestenNormal (XAchseExtern         => XAchseExtern,
                                           ÄnderungXAchseExtern => ÄnderungXAchseExtern,
@@ -98,12 +97,46 @@ package body KartenkoordinateXAchseBerechnenLogik is
    
    function ÜbergangWestenRückwärts
      (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld)
+      ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld;
+      ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden;
+      LogikGrafikExtern : in Boolean)
       return KartenDatentypen.KartenfeldPositiv
    is begin
       
-      return XAchseExtern - (ÄnderungXAchseExtern + 1);
+      ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) := Positive (XAchseExtern);
+      Zwischenwert (LogikGrafikExtern, ArrayPositionExtern) := Integer (ÄnderungXAchseExtern);
       
+      while ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) > Positive (Weltkarte.KarteArray'First (3)) loop
+         
+         ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) := ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) - 1;
+         Zwischenwert (LogikGrafikExtern, ArrayPositionExtern) := Zwischenwert (LogikGrafikExtern, ArrayPositionExtern) + 1;
+         
+      end loop;
+      
+      -- Eventuell immer die Hauptberechnung erneut aufrufen und nicht einfach das hier? äöü
+      -- Könnte das nicht Probleme machen wenn die Berechnung auch kleiner als das erste Kartenfeld ist? äöü
+      if
+        ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) - Zwischenwert (LogikGrafikExtern, ArrayPositionExtern) <= Positive (Weltkarte.Karteneinstellungen.Kartengröße.XAchse)
+      then
+         return KartenDatentypen.KartenfeldPositiv (ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) - Zwischenwert (LogikGrafikExtern, ArrayPositionExtern));
+         
+      else
+         Rückgabe (LogikGrafikExtern, ArrayPositionExtern) := Integer (KartenkoordinateXAchseBerechnen (XAchseExtern         => Weltkarte.Karteneinstellungen.Kartengröße.XAchse,
+                                                                                                         ÄnderungXAchseExtern => -(ÄnderungXAchseExtern + Weltkarte.Karteneinstellungen.Kartengröße.XAchse),
+                                                                                                         ArrayPositionExtern  => ArrayPositionExtern,
+                                                                                                         LogikGrafikExtern    => LogikGrafikExtern));
+      end if;
+      
+      case
+        KartenDatentypen.KartenfeldNatural (Rückgabe (LogikGrafikExtern, ArrayPositionExtern))
+      is
+         when KartenKonstanten.LeerXAchse =>
+            return Weltkarte.Karteneinstellungen.Kartengröße.XAchse;
+            
+         when others =>
+            return KartenDatentypen.KartenfeldPositiv (Rückgabe (LogikGrafikExtern, ArrayPositionExtern));
+      end case;
+            
    end ÜbergangWestenRückwärts;
    
    
@@ -123,13 +156,15 @@ package body KartenkoordinateXAchseBerechnenLogik is
             return KartenKonstanten.LeerXAchse;
             
          when KartenDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum =>
-            WelcheVerschiebungXAchse (LogikGrafikExtern, ArrayPositionExtern) := Weltkarte.Karteneinstellungen.Kartenform.XAchseOsten;
+            KartenkoordinatenWerteLogik.VerschiebungOsten (LogikGrafikExtern, ArrayPositionExtern) := Weltkarte.Karteneinstellungen.Kartenform.XAchseOsten;
       
             return ÜbergangOstenRückwärts (XAchseExtern         => XAchseExtern,
-                                           ÄnderungXAchseExtern => ÄnderungXAchseExtern);
+                                              ÄnderungXAchseExtern => ÄnderungXAchseExtern,
+                                              ArrayPositionExtern  => ArrayPositionExtern,
+                                              LogikGrafikExtern    => LogikGrafikExtern);
             
          when KartenDatentypen.Karte_X_Übergang_Enum | KartenDatentypen.Karte_X_Verschobener_Übergang_Enum =>
-            WelcheVerschiebungXAchse (LogikGrafikExtern, ArrayPositionExtern) := Weltkarte.Karteneinstellungen.Kartenform.XAchseOsten;
+            KartenkoordinatenWerteLogik.VerschiebungOsten (LogikGrafikExtern, ArrayPositionExtern) := Weltkarte.Karteneinstellungen.Kartenform.XAchseOsten;
             
             return ÜbergangOstenNormal (XAchseExtern         => XAchseExtern,
                                          ÄnderungXAchseExtern => ÄnderungXAchseExtern,
@@ -166,11 +201,45 @@ package body KartenkoordinateXAchseBerechnenLogik is
    
    function ÜbergangOstenRückwärts
      (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld)
+      ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld;
+      ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden;
+      LogikGrafikExtern : in Boolean)
       return KartenDatentypen.KartenfeldPositiv
    is begin
       
-      return XAchseExtern - (ÄnderungXAchseExtern - 1);
+      ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) := Positive (XAchseExtern);
+      Zwischenwert (LogikGrafikExtern, ArrayPositionExtern) := Integer (ÄnderungXAchseExtern);
+      
+      while ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) < Positive (Weltkarte.Karteneinstellungen.Kartengröße.XAchse) loop
+         
+         ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) := ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) + 1;
+         Zwischenwert (LogikGrafikExtern, ArrayPositionExtern) := Zwischenwert (LogikGrafikExtern, ArrayPositionExtern) - 1;
+         
+      end loop;
+      
+      -- Eventuell immer die Hauptberechnung erneut aufrufen und nicht einfach das hier? äöü
+      -- Könnte das nicht Probleme machen wenn die Berechnung auch kleiner als das erste Kartenfeld ist? äöü
+      if
+        ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) - Zwischenwert (LogikGrafikExtern, ArrayPositionExtern) >= Positive (Weltkarte.KarteArray'First (3))
+      then
+         return KartenDatentypen.KartenfeldPositiv (ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) - Zwischenwert (LogikGrafikExtern, ArrayPositionExtern));
+         
+      else
+         Rückgabe (LogikGrafikExtern, ArrayPositionExtern) := Integer (KartenkoordinateXAchseBerechnen (XAchseExtern         => Weltkarte.KarteArray'First (3),
+                                                                                                         ÄnderungXAchseExtern => -ÄnderungXAchseExtern,
+                                                                                                         ArrayPositionExtern  => ArrayPositionExtern,
+                                                                                                         LogikGrafikExtern    => LogikGrafikExtern));
+      end if;
+      
+      case
+        KartenDatentypen.KartenfeldNatural (Rückgabe (LogikGrafikExtern, ArrayPositionExtern))
+      is
+         when KartenKonstanten.LeerXAchse =>
+            return Weltkarte.KarteArray'First (3);
+            
+         when others =>
+            return KartenDatentypen.KartenfeldPositiv (Rückgabe (LogikGrafikExtern, ArrayPositionExtern));
+      end case;
       
    end ÜbergangOstenRückwärts;
    
@@ -182,12 +251,12 @@ package body KartenkoordinateXAchseBerechnenLogik is
    is begin
       
       if
-        XAchseExtern + KartenfeldPositiv (HalberWert * Float (Weltkarte.Karteneinstellungen.Kartengröße.XAchse)) > Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+        XAchseExtern + KartenfeldPositiv (KartenkoordinatenWerteLogik.VerschiebungswertXAchse * Float (Weltkarte.Karteneinstellungen.Kartengröße.XAchse)) > Weltkarte.Karteneinstellungen.Kartengröße.XAchse
       then
-         return XAchseExtern - KartenfeldPositiv (HalberWert * Float (Weltkarte.Karteneinstellungen.Kartengröße.XAchse));
+         return XAchseExtern - KartenfeldPositiv (KartenkoordinatenWerteLogik.VerschiebungswertXAchse * Float (Weltkarte.Karteneinstellungen.Kartengröße.XAchse));
 
       else
-         return XAchseExtern + KartenfeldPositiv (HalberWert * Float (Weltkarte.Karteneinstellungen.Kartengröße.XAchse));
+         return XAchseExtern + KartenfeldPositiv (KartenkoordinatenWerteLogik.VerschiebungswertXAchse * Float (Weltkarte.Karteneinstellungen.Kartengröße.XAchse));
       end if;
       
    end XAchseVerschieben;
