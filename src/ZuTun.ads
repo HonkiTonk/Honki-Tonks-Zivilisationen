@@ -20,9 +20,11 @@
 
 -- Forschungen/Einheiten/Gebäude für zweite Rasse einbauen: Erste Version des Forschungs-, Einheiten- und Gebäudebaums der Tesorahn eingebaut.
 
--- Sonstiges: Planetenzerstörerbombe inklusive Zusammenbruchszeit eingebaut. Sichtbarkeitsberechnungssystem ist nun ebenenübergreifend.
+-- Sonstiges: Planetenzerstörerbombe inklusive Zusammenbruchszeit eingebaut. Sichtbarkeitsberechnungssystem ist nun ebenenübergreifend. Koordinatenberechnunssystem funktioniert jetzt mit allen Kartenformen ohne abzustürzen.
+--            Steuerungsauswahl mit verschiedenen Kategorien eingebaut.
 
 -- Windowsversion ohne GPL kompilieren: Linux- und Windowsversion voneinander getrennt und so angepasst dass die entsprechenden Versionen der A/C/SFML verwendet werden.
+--                                      VM für das Kompilieren unter älteren Linuxversionen aufgesetzt.
 
 -- Einmal den Code großflächig überarbeiten?
 -- Funktionsfähige Editoren einbauen? Es existiert ein Grundgerüst für die Kartenfelder.

@@ -154,17 +154,17 @@ package ChangelogOktober2022 is
    
    
 
-   -- Version 0.04. => 0.04. (09.10.2022):
+   -- Version 0.04.1125 => 0.04. (09.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.1100 => 0.04. (08.10.2022):
+   -- Version 0.04.1100 => 0.04.1125 (08.10.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Neue Texturen erstellt.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 
