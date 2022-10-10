@@ -13,8 +13,8 @@ package body KartenberechnungenGrafik is
       
       FensterKarte := (0.00, 0.00, EinstellungenGrafik.AktuelleFensterAuflösung.x, EinstellungenGrafik.AktuelleFensterAuflösung.y);
       
-      KartenfelderAbmessung.x := FensterKarte.width / Float (2 * SichtweitenGrafik.SichtweiteLesen (YXExtern => False) + 1);
-      KartenfelderAbmessung.y := FensterKarte.height / Float (2 * SichtweitenGrafik.SichtweiteLesen (YXExtern => True) + 1);
+      KartenfelderAbmessung.x := FensterKarte.width / Float (2 * SichtweitenGrafik.SichtweiteLesen + 1);
+      KartenfelderAbmessung.y := FensterKarte.height / Float (2 * SichtweitenGrafik.SichtweiteLesen + 1);
       
    end KartenfelderAbmessungBerechnen;
    

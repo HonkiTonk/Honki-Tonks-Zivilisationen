@@ -39,8 +39,7 @@ package body GeheZuGrafik is
    is begin
       
       KartenwertKoordinatenberechnung.EAchse := KoordinatenExtern.EAchse;
-      
-      AktuelleSichtweite := SichtweitenGrafik.SichtweiteLesen (YXExtern => True);
+      AktuelleSichtweite := SichtweitenGrafik.SichtweiteLesen;
         
       if
         2 * AktuelleSichtweite >= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
@@ -93,8 +92,6 @@ package body GeheZuGrafik is
       else
          KartenwertKoordinatenberechnung.YAchse := KoordinatenExtern.YAchse;
       end if;
-      
-      AktuelleSichtweite := SichtweitenGrafik.SichtweiteLesen (YXExtern => False);
       
       if
         2 * AktuelleSichtweite >= Weltkarte.Karteneinstellungen.Kartengröße.XAchse

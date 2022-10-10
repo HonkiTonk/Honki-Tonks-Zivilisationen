@@ -23,8 +23,8 @@ package GrafikRecordKonstanten is
    Unterschriftbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.00, Überschriftbereich.height, 1.00, 1.00 - Überschriftbereich.height);
    
    KarteAnzeigebereich : constant Sf.Graphics.Rect.sfFloatRect := (0.00, 0.00, 0.80, 1.00);
-   Kartenbefehlsbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.60, 0.80, 0.20, 0.20);
-   Einheitenbefehlsbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.60, 0.60, 0.20, 0.20);
+   Einheitenbefehlsbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.60, 0.50, 0.20, 0.20);
+   Kartenbefehlsbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.60, 0.70, 0.20, 0.20);
      
    Versionsbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.35, 0.95, 0.30, 0.05);
    MenüEinfachbereich : constant Sf.Graphics.Rect.sfFloatRect := Unterschriftbereich;

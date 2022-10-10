@@ -40,9 +40,7 @@ package body KartenkoordinatenberechnungssystemLogik is
             end if;
       end case;
       
-      -- Das einfach durch eine Zählung der Achsenübergänge ersetzen? äöü
-      KartenkoordinatenWerteLogik.VerschiebungNorden (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartenDatentypen.Karte_Y_Kein_Übergang_Enum;
-      KartenkoordinatenWerteLogik.VerschiebungSüden (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartenDatentypen.Karte_Y_Kein_Übergang_Enum;
+      KartenkoordinatenWerteLogik.VerschiebungYAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartenDatentypen.Karte_Y_Kein_Übergang_Enum;
       
       case
         ÄnderungExtern.YAchse
@@ -66,9 +64,7 @@ package body KartenkoordinatenberechnungssystemLogik is
             end if;
       end case;
       
-      -- Das einfach durch eine Zählung der Achsenübergänge ersetzen? äöü
-      KartenkoordinatenWerteLogik.VerschiebungWesten (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartenDatentypen.Karte_X_Kein_Übergang_Enum;
-      KartenkoordinatenWerteLogik.VerschiebungOsten (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartenDatentypen.Karte_X_Kein_Übergang_Enum;
+      KartenkoordinatenWerteLogik.VerschiebungXAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartenDatentypen.Karte_X_Kein_Übergang_Enum;
             
       case
         ÄnderungExtern.XAchse
@@ -93,7 +89,7 @@ package body KartenkoordinatenberechnungssystemLogik is
       end case;
       
       case
-        KartenkoordinatenWerteLogik.VerschiebungNorden (LogikGrafikExtern, KoordinatenExtern.EAchse)
+        KartenkoordinatenWerteLogik.VerschiebungYAchse (LogikGrafikExtern, KoordinatenExtern.EAchse)
       is
          when KartenDatentypen.Karte_Y_Kein_Übergang_Enum | KartenDatentypen.Karte_Y_Übergang_Enum =>
             null;
@@ -104,29 +100,7 @@ package body KartenkoordinatenberechnungssystemLogik is
       end case;
       
       case
-        KartenkoordinatenWerteLogik.VerschiebungSüden (LogikGrafikExtern, KoordinatenExtern.EAchse)
-      is
-         when KartenDatentypen.Karte_Y_Kein_Übergang_Enum | KartenDatentypen.Karte_Y_Übergang_Enum =>
-            null;
-            
-         when KartenDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum | KartenDatentypen.Karte_Y_Verschobener_Übergang_Enum =>
-            NeueKoordinate (LogikGrafikExtern, KoordinatenExtern.EAchse).XAchse
-              := KartenkoordinateXAchseBerechnenLogik.XAchseVerschieben (XAchseExtern => NeueKoordinate (LogikGrafikExtern, KoordinatenExtern.EAchse).XAchse);
-      end case;
-      
-      case
-        KartenkoordinatenWerteLogik.VerschiebungWesten (LogikGrafikExtern, KoordinatenExtern.EAchse)
-      is
-         when KartenDatentypen.Karte_X_Kein_Übergang_Enum | KartenDatentypen.Karte_X_Übergang_Enum =>
-            null;
-            
-         when KartenDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum | KartenDatentypen.Karte_X_Verschobener_Übergang_Enum =>
-            NeueKoordinate (LogikGrafikExtern, KoordinatenExtern.EAchse).YAchse
-              := KartenkoordinateYAchseBerechnenLogik.YAchseVerschieben (YAchseExtern => NeueKoordinate (LogikGrafikExtern, KoordinatenExtern.EAchse).YAchse);
-      end case;
-      
-      case
-        KartenkoordinatenWerteLogik.VerschiebungOsten (LogikGrafikExtern, KoordinatenExtern.EAchse)
+        KartenkoordinatenWerteLogik.VerschiebungXAchse (LogikGrafikExtern, KoordinatenExtern.EAchse)
       is
          when KartenDatentypen.Karte_X_Kein_Übergang_Enum | KartenDatentypen.Karte_X_Übergang_Enum =>
             null;

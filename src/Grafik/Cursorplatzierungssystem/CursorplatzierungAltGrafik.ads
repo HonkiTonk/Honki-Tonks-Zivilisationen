@@ -12,7 +12,6 @@ with SpielVariablen;
 with EinheitenRecords;
 
 private with KartenRecords;
-
 private with Weltkarte;
 
 package CursorplatzierungAltGrafik is
@@ -27,6 +26,8 @@ package CursorplatzierungAltGrafik is
               );
    
 private
+   
+   AktuelleSichtweite : KartenDatentypen.KartenfeldPositiv;
    
    XAchsenbereich : Float;
       

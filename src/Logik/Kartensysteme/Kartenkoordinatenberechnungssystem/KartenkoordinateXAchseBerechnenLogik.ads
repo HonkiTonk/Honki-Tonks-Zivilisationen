@@ -38,8 +38,6 @@ package KartenkoordinateXAchseBerechnenLogik is
 private
       
    ÜberhangXAchse : KartenkoordinatenWerteLogik.ÜberhangArray;
-   Zwischenwert : KartenkoordinatenWerteLogik.ÜberhangArray;
-   Rückgabe : KartenkoordinatenWerteLogik.ÜberhangArray;
    
    
    
@@ -75,10 +73,8 @@ private
    
    function ÜbergangWestenRückwärts
      (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld;
-      ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden;
-      LogikGrafikExtern : in Boolean)
-      return KartenDatentypen.KartenfeldPositiv
+      ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld)
+      return KartenDatentypen.KartenfeldNatural
      with
        Pre => (
                  XAchseExtern <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
@@ -120,10 +116,8 @@ private
    
    function ÜbergangOstenRückwärts
      (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld;
-      ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden;
-      LogikGrafikExtern : in Boolean)
-      return KartenDatentypen.KartenfeldPositiv
+      ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld)
+      return KartenDatentypen.KartenfeldNatural
      with
        Pre => (
                  XAchseExtern <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse

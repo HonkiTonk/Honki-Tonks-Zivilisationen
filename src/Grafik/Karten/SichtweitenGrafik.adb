@@ -6,7 +6,7 @@ with KartenDatentypen; use KartenDatentypen;
 with KartenberechnungenGrafik;
 with CursorbewegungLogik;
 with NachGrafiktask;
-with EinstellungenGrafik;
+-- with EinstellungenGrafik;
 
 -- Das und KartenberechnungenGrafik mal anders aufteilen. äöü
 package body SichtweitenGrafik is
@@ -63,58 +63,21 @@ package body SichtweitenGrafik is
    
    
 
-   -- Das noch einmal überarbeiten und anschließend vom Nutzer auswählbar machen? äöü
-   -- Dazu muss vermutlich auch ZoomstufeÄndern ein wenig angepasst werden. äöü
-   -- Ist mehr als AktuelleZoomstufe * 2 überhaupt sinnvoll? äöü
    function SichtweiteLesen
-     (YXExtern : in Boolean)
       return KartenDatentypen.KartenfeldPositiv
    is begin
-            
-      case
-        YXExtern
-      is
-         when True =>
-            if
-              EinstellungenGrafik.AktuelleFensterAuflösung.y > EinstellungenGrafik.AktuelleFensterAuflösung.x
-            then
-               return AktuelleZoomstufe * 2 + 1;
-               
-            elsif
-              EinstellungenGrafik.AktuelleFensterAuflösung.y < EinstellungenGrafik.AktuelleFensterAuflösung.x
-            then
-               return AktuelleZoomstufe * 2 - 1;
-               
-            else
-               return AktuelleZoomstufe * 2;
-            end if;
-            
-         when False =>
-            if
-              EinstellungenGrafik.AktuelleFensterAuflösung.y > EinstellungenGrafik.AktuelleFensterAuflösung.x
-            then
-               return AktuelleZoomstufe * 2 - 1;
-               
-            elsif
-              EinstellungenGrafik.AktuelleFensterAuflösung.y < EinstellungenGrafik.AktuelleFensterAuflösung.x
-            then
-               return AktuelleZoomstufe * 2 + 1;
-               
-            else
-               return AktuelleZoomstufe * 2;
-            end if;
-      end case;
+      
+      return AktuelleZoomstufe * 2;
             
    end SichtweiteLesen;
    
    
 
    function BewegungsfeldLesen
-     (YXExtern : in Boolean)
       return KartenDatentypen.KartenfeldPositiv
    is begin
       
-      return SichtweiteLesen (YXExtern => YXExtern) - 1;
+      return SichtweiteLesen - 1;
       
    end BewegungsfeldLesen;
    
@@ -124,7 +87,7 @@ package body SichtweitenGrafik is
      return KartenDatentypen.SichtbereichAnfangEndeArray
    is begin
       
-      return (-SichtweiteLesen (YXExtern => True), SichtweiteLesen (YXExtern => True), -SichtweiteLesen (YXExtern => False), SichtweiteLesen (YXExtern => False));
+      return (-SichtweiteLesen, SichtweiteLesen, -SichtweiteLesen, SichtweiteLesen);
       
    end SichtbereichKarteBerechnen;
 

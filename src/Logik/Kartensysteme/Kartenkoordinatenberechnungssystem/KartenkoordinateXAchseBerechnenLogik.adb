@@ -51,21 +51,19 @@ package body KartenkoordinateXAchseBerechnenLogik is
          when KartenDatentypen.Karte_X_Kein_Übergang_Enum =>
             return KartenKonstanten.LeerXAchse;
             
-         when KartenDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum =>
-            KartenkoordinatenWerteLogik.VerschiebungWesten (LogikGrafikExtern, ArrayPositionExtern) := Weltkarte.Karteneinstellungen.Kartenform.XAchseWesten;
-      
-            return ÜbergangWestenRückwärts (XAchseExtern         => XAchseExtern,
-                                               ÄnderungXAchseExtern => ÄnderungXAchseExtern,
-                                               ArrayPositionExtern  => ArrayPositionExtern,
-                                               LogikGrafikExtern    => LogikGrafikExtern);
-            
          when KartenDatentypen.Karte_X_Übergang_Enum | KartenDatentypen.Karte_X_Verschobener_Übergang_Enum =>
-            KartenkoordinatenWerteLogik.VerschiebungWesten (LogikGrafikExtern, ArrayPositionExtern) := Weltkarte.Karteneinstellungen.Kartenform.XAchseWesten;
+            KartenkoordinatenWerteLogik.VerschiebungXAchse (LogikGrafikExtern, ArrayPositionExtern) := Weltkarte.Karteneinstellungen.Kartenform.XAchseWesten;
             
             return ÜbergangWestenNormal (XAchseExtern         => XAchseExtern,
                                           ÄnderungXAchseExtern => ÄnderungXAchseExtern,
                                           ArrayPositionExtern  => ArrayPositionExtern,
                                           LogikGrafikExtern    => LogikGrafikExtern);
+            
+         when KartenDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum =>
+            KartenkoordinatenWerteLogik.VerschiebungXAchse (LogikGrafikExtern, ArrayPositionExtern) := Weltkarte.Karteneinstellungen.Kartenform.XAchseWesten;
+      
+            return ÜbergangWestenRückwärts (XAchseExtern         => XAchseExtern,
+                                               ÄnderungXAchseExtern => ÄnderungXAchseExtern);
       end case;
       
    end ÜbergangWesten;
@@ -97,45 +95,18 @@ package body KartenkoordinateXAchseBerechnenLogik is
    
    function ÜbergangWestenRückwärts
      (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld;
-      ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden;
-      LogikGrafikExtern : in Boolean)
-      return KartenDatentypen.KartenfeldPositiv
+      ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld)
+      return KartenDatentypen.KartenfeldNatural
    is begin
       
-      ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) := Positive (XAchseExtern);
-      Zwischenwert (LogikGrafikExtern, ArrayPositionExtern) := Integer (ÄnderungXAchseExtern);
-      
-      while ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) > Positive (Weltkarte.KarteArray'First (3)) loop
-         
-         ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) := ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) - 1;
-         Zwischenwert (LogikGrafikExtern, ArrayPositionExtern) := Zwischenwert (LogikGrafikExtern, ArrayPositionExtern) + 1;
-         
-      end loop;
-      
-      -- Eventuell immer die Hauptberechnung erneut aufrufen und nicht einfach das hier? äöü
-      -- Könnte das nicht Probleme machen wenn die Berechnung auch kleiner als das erste Kartenfeld ist? äöü
       if
-        ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) - Zwischenwert (LogikGrafikExtern, ArrayPositionExtern) <= Positive (Weltkarte.Karteneinstellungen.Kartengröße.XAchse)
+        XAchseExtern + ÄnderungXAchseExtern < Weltkarte.KarteArray'First (3) - 1
       then
-         return KartenDatentypen.KartenfeldPositiv (ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) - Zwischenwert (LogikGrafikExtern, ArrayPositionExtern));
+         return KartenKonstanten.LeerXAchse;
          
       else
-         Rückgabe (LogikGrafikExtern, ArrayPositionExtern) := Integer (KartenkoordinateXAchseBerechnen (XAchseExtern         => Weltkarte.Karteneinstellungen.Kartengröße.XAchse,
-                                                                                                         ÄnderungXAchseExtern => -(ÄnderungXAchseExtern + Weltkarte.Karteneinstellungen.Kartengröße.XAchse),
-                                                                                                         ArrayPositionExtern  => ArrayPositionExtern,
-                                                                                                         LogikGrafikExtern    => LogikGrafikExtern));
+         return Weltkarte.KarteArray'First (3) + 1;
       end if;
-      
-      case
-        KartenDatentypen.KartenfeldNatural (Rückgabe (LogikGrafikExtern, ArrayPositionExtern))
-      is
-         when KartenKonstanten.LeerXAchse =>
-            return Weltkarte.Karteneinstellungen.Kartengröße.XAchse;
-            
-         when others =>
-            return KartenDatentypen.KartenfeldPositiv (Rückgabe (LogikGrafikExtern, ArrayPositionExtern));
-      end case;
             
    end ÜbergangWestenRückwärts;
    
@@ -155,21 +126,19 @@ package body KartenkoordinateXAchseBerechnenLogik is
          when KartenDatentypen.Karte_X_Kein_Übergang_Enum =>
             return KartenKonstanten.LeerXAchse;
             
-         when KartenDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum =>
-            KartenkoordinatenWerteLogik.VerschiebungOsten (LogikGrafikExtern, ArrayPositionExtern) := Weltkarte.Karteneinstellungen.Kartenform.XAchseOsten;
-      
-            return ÜbergangOstenRückwärts (XAchseExtern         => XAchseExtern,
-                                              ÄnderungXAchseExtern => ÄnderungXAchseExtern,
-                                              ArrayPositionExtern  => ArrayPositionExtern,
-                                              LogikGrafikExtern    => LogikGrafikExtern);
-            
          when KartenDatentypen.Karte_X_Übergang_Enum | KartenDatentypen.Karte_X_Verschobener_Übergang_Enum =>
-            KartenkoordinatenWerteLogik.VerschiebungOsten (LogikGrafikExtern, ArrayPositionExtern) := Weltkarte.Karteneinstellungen.Kartenform.XAchseOsten;
+            KartenkoordinatenWerteLogik.VerschiebungXAchse (LogikGrafikExtern, ArrayPositionExtern) := Weltkarte.Karteneinstellungen.Kartenform.XAchseOsten;
             
             return ÜbergangOstenNormal (XAchseExtern         => XAchseExtern,
                                          ÄnderungXAchseExtern => ÄnderungXAchseExtern,
                                          ArrayPositionExtern  => ArrayPositionExtern,
                                          LogikGrafikExtern    => LogikGrafikExtern);
+            
+         when KartenDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum =>
+            KartenkoordinatenWerteLogik.VerschiebungXAchse (LogikGrafikExtern, ArrayPositionExtern) := Weltkarte.Karteneinstellungen.Kartenform.XAchseOsten;
+      
+            return ÜbergangOstenRückwärts (XAchseExtern         => XAchseExtern,
+                                              ÄnderungXAchseExtern => ÄnderungXAchseExtern);
       end case;
       
    end ÜbergangOsten;
@@ -201,45 +170,18 @@ package body KartenkoordinateXAchseBerechnenLogik is
    
    function ÜbergangOstenRückwärts
      (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld;
-      ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden;
-      LogikGrafikExtern : in Boolean)
-      return KartenDatentypen.KartenfeldPositiv
+      ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld)
+      return KartenDatentypen.KartenfeldNatural
    is begin
       
-      ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) := Positive (XAchseExtern);
-      Zwischenwert (LogikGrafikExtern, ArrayPositionExtern) := Integer (ÄnderungXAchseExtern);
-      
-      while ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) < Positive (Weltkarte.Karteneinstellungen.Kartengröße.XAchse) loop
-         
-         ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) := ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) + 1;
-         Zwischenwert (LogikGrafikExtern, ArrayPositionExtern) := Zwischenwert (LogikGrafikExtern, ArrayPositionExtern) - 1;
-         
-      end loop;
-      
-      -- Eventuell immer die Hauptberechnung erneut aufrufen und nicht einfach das hier? äöü
-      -- Könnte das nicht Probleme machen wenn die Berechnung auch kleiner als das erste Kartenfeld ist? äöü
       if
-        ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) - Zwischenwert (LogikGrafikExtern, ArrayPositionExtern) >= Positive (Weltkarte.KarteArray'First (3))
+        XAchseExtern + ÄnderungXAchseExtern > Weltkarte.Karteneinstellungen.Kartengröße.XAchse + 1
       then
-         return KartenDatentypen.KartenfeldPositiv (ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) - Zwischenwert (LogikGrafikExtern, ArrayPositionExtern));
+         return KartenKonstanten.LeerXAchse;
          
       else
-         Rückgabe (LogikGrafikExtern, ArrayPositionExtern) := Integer (KartenkoordinateXAchseBerechnen (XAchseExtern         => Weltkarte.KarteArray'First (3),
-                                                                                                         ÄnderungXAchseExtern => -ÄnderungXAchseExtern,
-                                                                                                         ArrayPositionExtern  => ArrayPositionExtern,
-                                                                                                         LogikGrafikExtern    => LogikGrafikExtern));
+         return Weltkarte.Karteneinstellungen.Kartengröße.XAchse - 1;
       end if;
-      
-      case
-        KartenDatentypen.KartenfeldNatural (Rückgabe (LogikGrafikExtern, ArrayPositionExtern))
-      is
-         when KartenKonstanten.LeerXAchse =>
-            return Weltkarte.KarteArray'First (3);
-            
-         when others =>
-            return KartenDatentypen.KartenfeldPositiv (Rückgabe (LogikGrafikExtern, ArrayPositionExtern));
-      end case;
       
    end ÜbergangOstenRückwärts;
    

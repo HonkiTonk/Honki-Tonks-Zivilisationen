@@ -17,11 +17,9 @@ package SichtweitenGrafik is
    
    
    function SichtweiteLesen
-     (YXExtern : in Boolean)
      return KartenDatentypen.KartenfeldPositiv;
    
    function BewegungsfeldLesen
-     (YXExtern : in Boolean)
      return KartenDatentypen.KartenfeldPositiv;
    
    function SichtbereichKarteBerechnen

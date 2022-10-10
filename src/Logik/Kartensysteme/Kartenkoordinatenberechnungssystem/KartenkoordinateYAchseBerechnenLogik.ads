@@ -38,8 +38,6 @@ package KartenkoordinateYAchseBerechnenLogik is
 private
       
    ÜberhangYAchse : KartenkoordinatenWerteLogik.ÜberhangArray;
-   Zwischenwert : KartenkoordinatenWerteLogik.ÜberhangArray;
-   Rückgabe : KartenkoordinatenWerteLogik.ÜberhangArray;
    
    
    
@@ -75,10 +73,8 @@ private
    
    function ÜbergangNordenRückwärts
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld;
-      ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden;
-      LogikGrafikExtern : in Boolean)
-      return KartenDatentypen.KartenfeldPositiv
+      ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld)
+      return KartenDatentypen.KartenfeldNatural
      with
        Pre => (
                  YAchseExtern <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
@@ -120,10 +116,8 @@ private
    
    function ÜbergangSüdenRückwärts
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld;
-      ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden;
-      LogikGrafikExtern : in Boolean)
-      return KartenDatentypen.KartenfeldPositiv
+      ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld)
+      return KartenDatentypen.KartenfeldNatural
      with
        Pre => (
                  YAchseExtern <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse

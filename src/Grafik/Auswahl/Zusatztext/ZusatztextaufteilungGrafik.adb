@@ -75,7 +75,8 @@ package body ZusatztextaufteilungGrafik is
               -- Dafür später auch was universelleres bauen? äöü
               AktuelleAuswahlExtern in 1 .. 6
             then
-               ZusatztextKartenformGrafik.ZusatztextKartenform (AktuelleAuswahlExtern => AktuelleAuswahlExtern);
+               ZusatztextKartenformGrafik.ZusatztextKartenform (AktuelleAuswahlExtern => AktuelleAuswahlExtern,
+                                                                ViewflächeExtern      => ViewflächeExtern);
                
             else
                null;

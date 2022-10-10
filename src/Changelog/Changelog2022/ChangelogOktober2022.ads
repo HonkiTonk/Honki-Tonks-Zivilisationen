@@ -140,24 +140,28 @@ package ChangelogOktober2022 is
    
    
 
-   -- Version 0.04. => 0.04. (11.10.2022):
+   -- Version 0.04.1200 => 0.04. (11.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04. => 0.04. (10.10.2022):
+   -- Version 0.04.1125 => 0.04.1200 (10.10.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Kartenkoordinatenberechnungssystem sollte jetzt immer für alle Arten von Kartenübergängen funktionieren.
+   -- Es werden jetzt auch bei extremeren Kartenformeinstellungen keine schwarzen Ränder mehr angezeigt.
+   -- Es ist jetzt auch bei extremeren Kartenformeinstellungen nicht mehr möglich aus der Karte herauszuscrollen.
+   -- Position der Befehlsknöpfe angepasst damit Scrollen nach unten rechts wieder möglich ist.
+   -- Texturen für die Kartenformanzeige erstellt.
+   -- Bei Auswahl der Kartenformen wird jetzt eine Grafik angezeigt die erklärt was die aktuell ausgewählte Einstellung macht.
+   -- Kommenatare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 
-   -- Version 0.04.1125 => 0.04. (09.10.2022):
+   -- Version 0.04.1125 => 0.04.1125 (09.10.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null
    
    
 

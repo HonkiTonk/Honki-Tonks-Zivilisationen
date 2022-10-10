@@ -79,6 +79,31 @@ package body EinlesenTexturenLogik is
                   
       end loop TexturenSchleife;
       
+      case
+        EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiSystem,
+                                                        AktuelleZeileExtern => AktuelleZeile)
+      is
+         when True =>
+            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenSystem: Fehlende Zeilen: "
+                                  & Decode (Item => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.System & VerzeichnisKonstanten.NullDatei));
+            Close (File => DateiSystem);
+            return;
+               
+         when False =>
+            Verzeichnisname := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiSystem));
+      end case;
+         
+      case
+        Exists (Name => Encode (Item => To_Wide_Wide_String (Source => Verzeichnisname)))
+      is
+         when True =>
+            EingeleseneTexturenGrafik.BilderAccess (1) := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => Verzeichnisname)));
+                  
+         when False =>
+            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenSystem: Es fehlt: " & To_Wide_Wide_String (Source => Verzeichnisname));
+            EingeleseneTexturenGrafik.BilderAccess (1) := null;
+      end case;
+      
       Close (File => DateiSystem);
       
    end EinlesenSystem;
