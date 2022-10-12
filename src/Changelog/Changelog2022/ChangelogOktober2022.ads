@@ -126,24 +126,28 @@ package ChangelogOktober2022 is
    
    
 
-   -- Version 0.04. => 0.04. (13.10.2022):
+   -- Version 0.04.1300 => 0.04. (13.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.1235 => 0.04. (12.10.2022):
+   -- Version 0.04.1235 => 0.04.1300 (12.10.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Neue Texturen erstellt.
+   -- Alte Texturen überarbeitet.
+   -- Vollständigen Satz an Wegetexturen erstellt.
+   -- Neue Schienentexturen erstellt.
+   -- Auch beim Speichern durch Listenauswahl wird jetzt gefragt ob ein vorhandener Spielstand überschrieben werden soll.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 
    -- Version 0.04.1200 => 0.04.1235 (11.10.2022):
    
-   -- Texturen erstellt.
-   -- Texturen überarbeitet.
+   -- Neue Texturen erstellt.
+   -- Alte Texturen überarbeitet.
    -- Kleinigkeiten korrigiert.
    
    

@@ -87,6 +87,7 @@ package body SpielstandlisteLogik is
             
                case
                  Ausgewählt
+                   -- Die Nummern hier später auch mal durch Konstante ersetzen. äöü
                is
                   when 0 | 14 =>
                      RückgabeWert := TextKonstanten.LeerUnboundedString;
@@ -148,8 +149,23 @@ package body SpielstandlisteLogik is
                      end if;
                   
                   when others =>
-                     RückgabeWert := Spielstand (Ausgewählt);
-                     exit SpielstandSchleife;
+                     if
+                       SpeichernLadenExtern
+                       and then
+                         JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageSpielstandÜberschreiben) = True
+                     then
+                        RückgabeWert := Spielstand (Ausgewählt);
+                        exit SpielstandSchleife;
+                        
+                     elsif
+                       SpeichernLadenExtern = False
+                     then
+                        RückgabeWert := Spielstand (Ausgewählt);
+                        exit SpielstandSchleife;
+                        
+                     else
+                        null;
+                     end if;
                end case;
             
             end loop AuswahlSchleife;
@@ -192,7 +208,7 @@ package body SpielstandlisteLogik is
                end if;
                
             when TastenbelegungDatentypen.Abwählen_Enum =>
-               return 0;
+               return SystemKonstanten.LeerAuswahl;
                
             when others =>
                null;
