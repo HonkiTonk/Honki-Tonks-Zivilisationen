@@ -112,24 +112,26 @@ package ChangelogOktober2022 is
    
    
 
-   -- Version 0.04. => 0.04. (15.10.2022):
+   -- Version 0.04.1355 => 0.04. (15.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04. => 0.04. (14.10.2022):
+   -- Version 0.04.1300 => 0.04.1355 (14.10.2022):
    
-   -- 
+   -- Neue Texturen erstellt.
+   -- Alte Texturen überarbeitet.
+   -- Vollständigen Satz an Schienentexturen erstellt.
+   -- Fehler korrigiert der beim Bau einer Stadt dazu führte das ein besserer Weg als eine Straße durch eine Straße ersetzt wurde.
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.1300 => 0.04. (13.10.2022):
+   -- Version 0.04.1300 => 0.04.1300 (13.10.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 

@@ -225,6 +225,16 @@ package body StadtBauenLogik is
       end case;
       
       case
+        LeseWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern)
+      is
+         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
+            null;
+            
+         when others =>
+            return;
+      end case;
+      
+      case
         RasseExtern
       is
          when RassenDatentypen.Rassen_Überirdisch_Enum'Range =>
