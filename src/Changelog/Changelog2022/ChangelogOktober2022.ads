@@ -105,17 +105,23 @@ package ChangelogOktober2022 is
    
    
 
-   -- Version 0.04. => 0.04. (16.10.2022):
+   -- Version 0.04.1445 => 0.04. (16.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.1355 => 0.04. (15.10.2022):
+   -- Version 0.04.1355 => 0.04.1445 (15.10.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Neue Texturen erstellt.
+   -- Alte Texturen überarbeitet.
+   -- Vollständigen Satz an Tunneltexturen erstellt.
+   -- Neue Stadttexturen erstellt.
+   -- Fehler korrigiert der es ermöglichte auf unzulässigen Feldern eine Straße zu bauen.
+   -- Fehler korrigiert welcher dazu führte das unter der Erde eine Straße/Schiene anstelle eines Tunnels gebaut wurde.
+   -- Fehler korrigiert der dazu führte das eine unterirdische Stadt bei ihrem Bau eine Straße statt einem Tunnel anlegte.
+   -- Contract, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

@@ -151,8 +151,9 @@ package body WegErmittelnLogik is
       return EinheitenRecords.ArbeitRecord
    is begin
       
+      -- Eventuell noch Wege für andere Rassen auf Küstengewässer zulassen? äöü
       if
-        GrundExtern.AktuellerGrund = KartengrundDatentypen.Wasser_Enum
+        GrundExtern.AktuellerGrund in KartengrundDatentypen.Kartengrund_Oberfläche_Wasser_Enum'Range
         and
           RasseExtern /= RassenDatentypen.Ekropa_Enum
       then
@@ -210,13 +211,13 @@ package body WegErmittelnLogik is
       case
         WegExtern
       is
-         when KartenverbesserungDatentypen.Karten_Straße_Enum'Range | KartenverbesserungDatentypen.Leer_Weg_Enum =>
+         when KartenverbesserungDatentypen.Leer_Weg_Enum => -- KartenverbesserungDatentypen.Karten_Straße_Enum'Range | KartenverbesserungDatentypen.Leer_Weg_Enum =>
             if
               True = ForschungstestsLogik.TechnologieVorhanden (RasseExtern       => RasseExtern,
-                                                                TechnologieExtern => LeseForschungenDatenbank.Wege (WegExtern   => WelcheWegart (WegExtern),
+                                                                TechnologieExtern => LeseForschungenDatenbank.Wege (WegExtern   => WelcheWegart (KartenverbesserungDatentypen.Tunnel_Einzeln_Enum),
                                                                                                                     RasseExtern => RasseExtern))
             then
-               WelcheArbeit := WelcheWegart (WegExtern);
+               WelcheArbeit := WelcheWegart (KartenverbesserungDatentypen.Tunnel_Einzeln_Enum);
                
             else
                return EinheitenRecordKonstanten.KeineArbeit;
@@ -285,7 +286,9 @@ package body WegErmittelnLogik is
                                                      ÄnderungExtern      => ArbeitszeitWegLogik.Arbeitszeit (RasseExtern, GrundExtern.AktuellerGrund));
       end if;
       
-      return (WelcheArbeit, Arbeitszeit);
+      return EinheitenRecordKonstanten.KeineArbeit;
+      
+      -- return (WelcheArbeit, Arbeitszeit);
    
    end UnterflächeWasser;
 

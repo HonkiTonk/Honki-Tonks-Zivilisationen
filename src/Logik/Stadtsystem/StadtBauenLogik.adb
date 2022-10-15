@@ -5,6 +5,7 @@ with StadtDatentypen; use StadtDatentypen;
 with KartenDatentypen; use KartenDatentypen;
 with Rassentexte;
 with TextnummernKonstanten;
+with KartenKonstanten;
 
 with SchreibeStadtGebaut;
 with SchreibeWichtiges;
@@ -196,8 +197,7 @@ package body StadtBauenLogik is
       SchreibeWichtiges.VerbleibendeForschungszeit (RasseExtern => StadtRasseNummerExtern.Rasse);
       SichtbarkeitsberechnungssystemLogik.SichtbarkeitsprüfungFürStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
-      WegAnlegen (KoordinatenExtern => KoordinatenExtern,
-                  RasseExtern       => StadtRasseNummerExtern.Rasse);
+      WegAnlegen (KoordinatenExtern => KoordinatenExtern);
       
       SchreibeWeltkarte.Verbesserung (KoordinatenExtern  => KoordinatenExtern,
                                       VerbesserungExtern => Stadtart);
@@ -210,19 +210,8 @@ package body StadtBauenLogik is
    
    
    procedure WegAnlegen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
-      
-      case
-        KoordinatenExtern.EAchse
-      is
-         when KartenDatentypen.EbeneLuft'Range =>
-            return;
-            
-         when others =>
-            null;
-      end case;
       
       case
         LeseWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern)
@@ -235,16 +224,16 @@ package body StadtBauenLogik is
       end case;
       
       case
-        RasseExtern
+        KoordinatenExtern.EAchse
       is
-         when RassenDatentypen.Rassen_Überirdisch_Enum'Range =>
+         when KartenDatentypen.EbeneLuft'Range =>
+            return;
+            
+         when KartenKonstanten.OberflächeKonstante =>
             WelcherWeg := AufgabenDatentypen.Straße_Bauen_Enum;
             
-         when RassenDatentypen.Rassen_Erde_Enum'Range =>
-            WelcherWeg := AufgabenDatentypen.Tunnel_Bauen_Enum;
-            
          when others =>
-            return;
+            WelcherWeg := AufgabenDatentypen.Tunnel_Bauen_Enum;
       end case;
       
       WegeplatzierungssystemLogik.Wegplatzierung (KoordinatenExtern => KoordinatenExtern,

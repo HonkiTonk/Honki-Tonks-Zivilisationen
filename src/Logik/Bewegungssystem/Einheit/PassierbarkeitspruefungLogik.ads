@@ -8,11 +8,10 @@ with KartenRecords;
 with EinheitenRecords;
 with EinheitenDatentypen;
 with StadtRecords;
+with Weltkarte;
 
 private with StadtDatentypen;
 private with KartenverbesserungDatentypen;
-
-with Weltkarte;
 
 package PassierbarkeitspruefungLogik is
    

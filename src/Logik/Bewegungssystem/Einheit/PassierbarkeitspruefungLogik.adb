@@ -89,6 +89,8 @@ package body PassierbarkeitspruefungLogik is
    
    
    
+   -- Haut so mit der Prüfung gar nicht hin. äöü
+   -- Ich prüfe ja nicht ob die Einheit diesen Weg betreten kann, sondern ob der aktuelle Schleifenwert das kann. äöü
    function IstNichtPassierbar
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       UmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Enum;
@@ -191,7 +193,7 @@ package body PassierbarkeitspruefungLogik is
       EinheitenIDExtern : in EinheitenDatentypen.EinheitenID)
       return Boolean
    is begin
-      
+            
       StadtKoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
       Stadtumgebung := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
@@ -199,7 +201,7 @@ package body PassierbarkeitspruefungLogik is
       for YAchseEinheitenSchleifenwert in -Stadtumgebung .. Stadtumgebung loop
          XAchseEinheitenSchleife:
          for XAchseEinheitenSchleifenwert in -Stadtumgebung .. Stadtumgebung loop
-               
+                        
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtKoordinaten,
                                                                                                       ÄnderungExtern    => (0, YAchseEinheitenSchleifenwert, XAchseEinheitenSchleifenwert),
                                                                                                       LogikGrafikExtern => True);
@@ -209,12 +211,21 @@ package body PassierbarkeitspruefungLogik is
             then
                null;
                
+               -- Das hier muss noch einmal überarbeitet werden, ist aktuell nur deswegen da weil die Stadt nicht ausgeschlossen werden kann. äöü
+               -- Die Stadt sollte aber ausgeschlossen werden, nicht aber das Feld auf dem sich die Stadt befindet. äöü
+            elsif
+              YAchseEinheitenSchleifenwert = 0
+              and
+                XAchseEinheitenSchleifenwert = 0
+            then
+               null;
+               
             elsif
               False = LeseWeltkarte.BestimmteStadtBelegtGrund (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                                KoordinatenExtern      => KartenWert)
             then
                null;
-                  
+            
             elsif
               False = PassierbarkeitPrüfenID (RasseExtern           => StadtRasseNummerExtern.Rasse,
                                                IDExtern              => EinheitenIDExtern,

@@ -11,7 +11,6 @@ private with StadtDatentypen;
 private with SystemRecords;
 private with StadtRecords;
 private with AufgabenDatentypen;
-
 private with Weltkarte;
 
 package StadtBauenLogik is
@@ -56,12 +55,9 @@ private
               );
 
    procedure WegAnlegen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
-               and
                  KoordinatenExtern.YAchse in Weltkarte.KarteArray'First (2) .. Weltkarte.Karteneinstellungen.Kartengröße.YAchse
                and
                  KoordinatenExtern.XAchse in Weltkarte.KarteArray'First (3) .. Weltkarte.Karteneinstellungen.Kartengröße.XAchse
