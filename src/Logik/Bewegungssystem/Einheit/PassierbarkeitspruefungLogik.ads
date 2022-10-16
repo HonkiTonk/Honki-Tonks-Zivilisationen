@@ -33,7 +33,8 @@ package PassierbarkeitspruefungLogik is
    function PassierbarkeitPrüfenID
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenID;
-      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      StadtBerücksichtigenExtern : in Boolean)
       return Boolean
      with
        Pre => (
@@ -64,6 +65,7 @@ private
    IDEinheit : EinheitenDatentypen.EinheitenIDMitNullWert;
    
    StadtNummer : StadtDatentypen.MaximaleStädteMitNullWert;
+   StadtVorhanden : StadtDatentypen.MaximaleStädteMitNullWert;
    
    Stadtumgebung : KartenDatentypen.UmgebungsbereichDrei;
    
@@ -90,7 +92,8 @@ private
    function IstPassierbar
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       UmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Enum;
-      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      StadtBerücksichtigenExtern : in Boolean)
       return Boolean
      with
        Pre => (

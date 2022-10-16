@@ -7,34 +7,33 @@ with KartenKonstanten;
 with StadtDatentypen;
 with RassenDatentypen;
 with StadtRecords;
-
-with DatenbankRecords;
+with KartendatenbankRecord;
 
 package KartenRecordKonstanten is
 
    LeerKoordinate : constant KartenRecords.AchsenKartenfeldNaturalRecord := (
-                                                                              EAchse => KartenKonstanten.LeerEAchse,
-                                                                              YAchse => KartenKonstanten.LeerYAchse,
-                                                                              XAchse => KartenKonstanten.LeerXAchse
-                                                                             );
+                                                                             EAchse => KartenKonstanten.LeerEAchse,
+                                                                             YAchse => KartenKonstanten.LeerYAchse,
+                                                                             XAchse => KartenKonstanten.LeerXAchse
+                                                                            );
    
    LeerYXKoordinate : constant KartenRecords.YXAchsenKartenfeldNaturalRecord := (
                                                                                  YAchse => KartenKonstanten.LeerYAchse,
                                                                                  XAchse => KartenKonstanten.LeerXAchse
                                                                                 );
    
-   LeerKartenListe : constant DatenbankRecords.KartenlisteRecord := (
-                                                                     Bewertung      => (others => KartenKonstanten.LeerBewertung),
-                                                                     Wirtschaft     => (others => (others => KartenKonstanten.LeerWirtschaft)),
-                                                                     Kampf          => (others => (others => KartenKonstanten.LeerKampf))
-                                                                    );
+   LeerKartenListe : constant KartendatenbankRecord.KartenlistenRecord := (
+                                                                           Bewertung      => (others => KartenKonstanten.LeerBewertung),
+                                                                           Wirtschaft     => (others => (others => KartenKonstanten.LeerWirtschaft)),
+                                                                           Kampf          => (others => (others => KartenKonstanten.LeerKampf))
+                                                                          );
    
-   LeerKartenGrundListe : constant DatenbankRecords.KartengrundlisteRecord := (
-                                                                               Passierbarkeit => (others => KartenKonstanten.LeerPassierbarkeit),
-                                                                               Bewertung      => (others => KartenKonstanten.LeerBewertung),
-                                                                               Wirtschaft     => (others => (others => KartenKonstanten.LeerWirtschaft)),
-                                                                               Kampf          => (others => (others => KartenKonstanten.LeerKampf))
-                                                                              );
+   LeerKartenGrundListe : constant KartendatenbankRecord.KartenpassierbarkeitslistenRecord := (
+                                                                                               Passierbarkeit => (others => KartenKonstanten.LeerPassierbarkeit),
+                                                                                               Bewertung      => (others => KartenKonstanten.LeerBewertung),
+                                                                                               Wirtschaft     => (others => (others => KartenKonstanten.LeerWirtschaft)),
+                                                                                               Kampf          => (others => (others => KartenKonstanten.LeerKampf))
+                                                                                              );
    
    LeerDurchStadtBelegterGrund : constant StadtRecords.RasseStadtnummerRecord := (
                                                                                   Rasse  => RassenDatentypen.Keine_Rasse_Enum,
@@ -57,12 +56,12 @@ package KartenRecordKonstanten is
                                                                     Ostpol  => KartenDatentypen.Kartenpol_Nicht_Vorhanden_Enum
                                                                    );
 
-   LeerVerbesserungListe : constant DatenbankRecords.VerbesserungenWegeListeRecord := (
-                                                                                       Passierbarkeit => (others => KartenKonstanten.LeerPassierbarkeit),
-                                                                                       Bewertung      => (others => KartenKonstanten.LeerVerbesserungBewertung),
-                                                                                       Wirtschaft     => (others => (others => KartenKonstanten.LeerVerbesserungWirtschaft)),
-                                                                                       Kampf          => (others => (others => KartenKonstanten.LeerVerbesserungKampf))
-                                                                                      );
+   LeerVerbesserungListe : constant KartendatenbankRecord.KartenpassierbarkeitslistenRecord := (
+                                                                                                Passierbarkeit => (others => KartenKonstanten.LeerPassierbarkeit),
+                                                                                                Bewertung      => (others => KartenKonstanten.LeerVerbesserungBewertung),
+                                                                                                Wirtschaft     => (others => (others => KartenKonstanten.LeerVerbesserungWirtschaft)),
+                                                                                                Kampf          => (others => (others => KartenKonstanten.LeerVerbesserungKampf))
+                                                                                               );
    
    Standardkartenparameter : constant KartenRecords.PermanenteKartenparameterRecord := (
                                                                                         Kartengröße => (40, 40),

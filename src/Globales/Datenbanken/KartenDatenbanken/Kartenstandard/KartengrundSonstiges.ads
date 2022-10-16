@@ -5,14 +5,13 @@ with KartengrundDatentypen;
 with EinheitenDatentypen;
 with KartenDatentypen;
 with RassenDatentypen;
-
-with DatenbankRecords;
+with KartendatenbankRecord;
 
 package KartengrundSonstiges is
 
    -- Passierbarkeit: Boden, Wasser, Luft, Weltraum, Unterwasser, Küstenwasser, Unterirdisch (Erde), Planeteninneres (Gestein), Lava
 
-   type KartengrundlisteSonstigesArray is array (KartengrundDatentypen.Kartengrund_Sonstiges_Enum'Range) of DatenbankRecords.KartengrundlisteRecord;
+   type KartengrundlisteSonstigesArray is array (KartengrundDatentypen.Kartengrund_Sonstiges_Enum'Range) of KartendatenbankRecord.KartenpassierbarkeitslistenRecord;
    KartengrundlisteSonstiges : constant KartengrundlisteSonstigesArray := (
                                                                            KartengrundDatentypen.Vernichtet_Enum =>
                                                                              (

@@ -13,6 +13,7 @@ with LeseGebaeudeDatenbank;
 
 with KartenkoordinatenberechnungssystemLogik;
 
+-- Um das theoretisch neue Zeug alles da rein zu basteln müsste man aber hier noch einmal deutlich überarbeiten. äöü
 package body GebaeudeumgebungLogik is
 
    function RichtigeUmgebungVorhanden
@@ -20,28 +21,44 @@ package body GebaeudeumgebungLogik is
       GebäudeIDExtern : in StadtDatentypen.GebäudeID)
       return Boolean
    is begin
-     
+      
+      case
+        LeseGebaeudeDatenbank.FalscheEbene (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                            IDExtern    => GebäudeIDExtern,
+                                            EbeneExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern).EAchse)
+      is
+         when True =>
+            return False;
+            
+         when False =>
+            Anforderungen.NotwendigFluss := LeseGebaeudeDatenbank.FlussBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                                                  IDExtern    => GebäudeIDExtern);
+            Anforderungen.NotwendigerGrund := LeseGebaeudeDatenbank.GrundBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                                                    IDExtern    => GebäudeIDExtern);
+            Anforderungen.NotwendigeRessource := LeseGebaeudeDatenbank.RessourceBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                                                           IDExtern    => GebäudeIDExtern);
+            Anforderungen.NotwendigeVerbesserung := LeseGebaeudeDatenbank.VerbesserungBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                                                                 IDExtern    => GebäudeIDExtern);
+            Anforderungen.NotwendigesGebäude := LeseGebaeudeDatenbank.GebäudeBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                                                          IDExtern    => GebäudeIDExtern);
+      end case;
+            
       if
-        KartengrundDatentypen.Leer_Grund_Enum = LeseGebaeudeDatenbank.GrundBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                                      IDExtern    => GebäudeIDExtern)
+        KartengrundDatentypen.Leer_Grund_Enum = Anforderungen.NotwendigerGrund
         and
-          False = LeseGebaeudeDatenbank.FlussBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                        IDExtern    => GebäudeIDExtern)
-        and
-          KartengrundDatentypen.Leer_Ressource_Enum = LeseGebaeudeDatenbank.RessourceBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                                                IDExtern    => GebäudeIDExtern)
-        and
-          KartenverbesserungDatentypen.Leer_Verbesserung_Enum = LeseGebaeudeDatenbank.VerbesserungBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                                                             IDExtern    => GebäudeIDExtern)
-        and
-          StadtKonstanten.LeerGebäudeID = LeseGebaeudeDatenbank.GebäudeBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                                    IDExtern    => GebäudeIDExtern)
+          False = Anforderungen.NotwendigFluss
+          and
+            KartengrundDatentypen.Leer_Ressource_Enum = Anforderungen.NotwendigeRessource
+            and
+              KartenverbesserungDatentypen.Leer_Verbesserung_Enum = Anforderungen.NotwendigeVerbesserung
+              and
+                StadtKonstanten.LeerGebäudeID = Anforderungen.NotwendigesGebäude
       then
          return True;
                
       else
          return UmgebungPrüfen (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                 GebäudeIDExtern       => GebäudeIDExtern);
+                                 AnforderungenExtern    => Anforderungen);
       end if;
             
    end RichtigeUmgebungVorhanden;
@@ -50,20 +67,21 @@ package body GebaeudeumgebungLogik is
    
    function UmgebungPrüfen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
-      GebäudeIDExtern : in StadtDatentypen.GebäudeID)
+      AnforderungenExtern : in AnforderungenRecord)
       return Boolean
    is begin
       
       Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      Umgebungsgröße := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern);
       Ergebnis := False;
       
       YAchseGebäudeSchleife:
-      for YAchseGebäudeSchleifenwert in -LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) .. LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) loop
+      for YAchseGebäudeSchleifenwert in -Umgebungsgröße .. Umgebungsgröße loop
          XAchseGebäudeSchleife:
-         for XAchseGebäudeSchleifenwert in -LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) .. LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) loop
+         for XAchseGebäudeSchleifenwert in -Umgebungsgröße .. Umgebungsgröße loop
                
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Stadtkoordinaten,
-                                                                                                      ÄnderungExtern    => (0, YAchseGebäudeSchleifenwert, XAchseGebäudeSchleifenwert),
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseGebäudeSchleifenwert, XAchseGebäudeSchleifenwert),
                                                                                                       LogikGrafikExtern => True);
             
             if
@@ -79,8 +97,8 @@ package body GebaeudeumgebungLogik is
                
             else
                Ergebnis := Detailprüfung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                           GebäudeIDExtern       => GebäudeIDExtern,
-                                           KoordinatenExtern      => KartenWert);
+                                           KoordinatenExtern      => KartenWert,
+                                           AnforderungenExtern    => AnforderungenExtern);
             end if;
             
             case
@@ -104,23 +122,20 @@ package body GebaeudeumgebungLogik is
    
    function Detailprüfung
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
-      GebäudeIDExtern : in StadtDatentypen.GebäudeID;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      AnforderungenExtern : in AnforderungenRecord)
       return Boolean
    is begin
-      
-      NotwendigerGrund := LeseGebaeudeDatenbank.GrundBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                IDExtern    => GebäudeIDExtern);
-      
+            
       if
-        KartengrundDatentypen.Leer_Grund_Enum = NotwendigerGrund
+        KartengrundDatentypen.Leer_Grund_Enum = AnforderungenExtern.NotwendigerGrund
       then
          null;
          
       elsif
-        NotwendigerGrund = LeseWeltkarte.AktuellerGrund (KoordinatenExtern => KoordinatenExtern)
+        AnforderungenExtern.NotwendigerGrund = LeseWeltkarte.AktuellerGrund (KoordinatenExtern => KoordinatenExtern)
         or
-          NotwendigerGrund = LeseWeltkarte.BasisGrund (KoordinatenExtern => KoordinatenExtern)
+          AnforderungenExtern.NotwendigerGrund = LeseWeltkarte.BasisGrund (KoordinatenExtern => KoordinatenExtern)
       then
          null;
          
@@ -129,8 +144,7 @@ package body GebaeudeumgebungLogik is
       end if;
       
       if
-        False = LeseGebaeudeDatenbank.FlussBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                      IDExtern    => GebäudeIDExtern)
+        False = AnforderungenExtern.NotwendigFluss
       then
          null;
          
@@ -142,17 +156,28 @@ package body GebaeudeumgebungLogik is
       else
          return False;
       end if;
-      
-      NotwendigeRessource := LeseGebaeudeDatenbank.RessourceBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                       IDExtern    => GebäudeIDExtern);
         
       if
-        NotwendigeRessource = KartengrundDatentypen.Leer_Ressource_Enum
+        AnforderungenExtern.NotwendigeRessource = KartengrundDatentypen.Leer_Ressource_Enum
       then
          null;
          
       elsif
-        LeseWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern) = NotwendigeRessource
+        LeseWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern) = AnforderungenExtern.NotwendigeRessource
+      then
+         null;
+         
+      else
+         return False;
+      end if;
+            
+      if
+        AnforderungenExtern.NotwendigeVerbesserung = KartenverbesserungDatentypen.Leer_Verbesserung_Enum
+      then
+         null;
+         
+      elsif
+        AnforderungenExtern.NotwendigeVerbesserung = LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern)
       then
          null;
          
@@ -160,34 +185,14 @@ package body GebaeudeumgebungLogik is
          return False;
       end if;
       
-      NotwendigeVerbesserung := LeseGebaeudeDatenbank.VerbesserungBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                             IDExtern    => GebäudeIDExtern);
-      
       if
-        NotwendigeVerbesserung = KartenverbesserungDatentypen.Leer_Verbesserung_Enum
-      then
-         null;
-         
-      elsif
-        NotwendigeVerbesserung = LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern)
-      then
-         null;
-         
-      else
-         return False;
-      end if;
-      
-      NotwendigesGebäude := LeseGebaeudeDatenbank.GebäudeBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                      IDExtern    => GebäudeIDExtern);
-      
-      if
-        NotwendigesGebäude = StadtKonstanten.LeerGebäudeID
+        AnforderungenExtern.NotwendigesGebäude = StadtKonstanten.LeerGebäudeID
       then
          null;
          
       elsif
         True = LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                  WelchesGebäudeExtern  => NotwendigesGebäude)
+                                                  WelchesGebäudeExtern  => AnforderungenExtern.NotwendigesGebäude)
       then
          null;
          

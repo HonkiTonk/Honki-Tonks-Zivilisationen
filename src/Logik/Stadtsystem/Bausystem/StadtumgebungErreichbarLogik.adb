@@ -56,9 +56,10 @@ package body StadtumgebungErreichbarLogik is
                    EinheitenKonstanten.LeerNummer = EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert,
                                                                                                           LogikGrafikExtern => True).Nummer
                  and
-                   True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenID (RasseExtern           => RasseExtern,
-                                                                                IDExtern              => IDExtern,
-                                                                                NeueKoordinatenExtern => KartenWert)
+                   True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenID (RasseExtern                => RasseExtern,
+                                                                                IDExtern                   => IDExtern,
+                                                                                NeueKoordinatenExtern      => KartenWert,
+                                                                                StadtBerücksichtigenExtern => True)
                  and
                    True = NochErreichbar (AktuelleKoordinatenExtern => KartenWert,
                                           RasseExtern               => RasseExtern,
@@ -75,9 +76,10 @@ package body StadtumgebungErreichbarLogik is
                    EinheitenKonstanten.LeerNummer = EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert,
                                                                                                           LogikGrafikExtern => True).Nummer
                  and
-                   True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenID (RasseExtern           => RasseExtern,
-                                                                                IDExtern              => IDExtern,
-                                                                                NeueKoordinatenExtern => KartenWert)
+                   True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenID (RasseExtern                => RasseExtern,
+                                                                                IDExtern                   => IDExtern,
+                                                                                NeueKoordinatenExtern      => KartenWert,
+                                                                                StadtBerücksichtigenExtern => True)
                  and
                    True = NochErreichbar (AktuelleKoordinatenExtern => KartenWert,
                                           RasseExtern               => RasseExtern,
@@ -142,9 +144,10 @@ package body StadtumgebungErreichbarLogik is
               True = LeseWeltkarte.BelegterGrund (RasseExtern       => RasseExtern,
                                                   KoordinatenExtern => KartenWertZwei)
               and
-                True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenID (RasseExtern           => RasseExtern,
-                                                                             IDExtern              => IDExtern,
-                                                                             NeueKoordinatenExtern => KartenWertZwei)
+                True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenID (RasseExtern                => RasseExtern,
+                                                                             IDExtern                   => IDExtern,
+                                                                             NeueKoordinatenExtern      => KartenWertZwei,
+                                                                             StadtBerücksichtigenExtern => True)
             then
                return True;
                

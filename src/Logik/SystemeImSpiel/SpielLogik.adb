@@ -193,14 +193,17 @@ package body SpielLogik is
             if
               Spielertests.MenschlicheSpieler (RasseExtern => RasseExtern) = True
             then
+               -- Es ist recht nervig wenn man zurück zum Hauptmenü will und für jeden menschlichen Spieler gefragt wird ob er auf die KI gesetzt werden soll. äöü
+               -- Deswegen wird bei Nein jetzt erst einmal direkt zurückgegangen, eventuell später wieder ändern oder besser gestalten. äöü
                case
                  JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageKIEinsetzen)
                is
                   when True =>
                      RasseEntfernenLogik.RasseAufKISetzen (RasseExtern => RasseExtern);
                      
-                  when others =>
-                     RasseEntfernenLogik.RasseEntfernen (RasseExtern => RasseExtern);
+                  when False =>
+                     return RückgabeWert;
+                     -- RasseEntfernenLogik.RasseEntfernen (RasseExtern => RasseExtern);
                end case;
                
             else

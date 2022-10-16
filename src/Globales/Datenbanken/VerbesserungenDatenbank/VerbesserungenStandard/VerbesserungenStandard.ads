@@ -2,12 +2,11 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenverbesserungDatentypen;
-
-with DatenbankRecords;
+with KartendatenbankRecord;
 
 package VerbesserungenStandard is
    
-   type StadtlisteArray is array (KartenverbesserungDatentypen.Karten_Verbesserung_Städte_Enum'Range) of DatenbankRecords.KartenlisteRecord;
+   type StadtlisteArray is array (KartenverbesserungDatentypen.Karten_Verbesserung_Städte_Enum'Range) of KartendatenbankRecord.KartenlistenRecord;
    Stadtliste : constant StadtlisteArray := (
                                              KartenverbesserungDatentypen.Hauptstadt_Enum =>
                                                (
@@ -26,7 +25,7 @@ package VerbesserungenStandard is
    
    
    
-   type GebildelisteArray is array (KartenverbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum'Range) of DatenbankRecords.KartenlisteRecord;
+   type GebildelisteArray is array (KartenverbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum'Range) of KartendatenbankRecord.KartenlistenRecord;
    Gebildeliste : constant GebildelisteArray := (
                                                  KartenverbesserungDatentypen.Farm_Enum =>
                                                    (

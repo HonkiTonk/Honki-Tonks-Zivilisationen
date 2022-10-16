@@ -20,6 +20,12 @@ package SpielstandlisteLogik is
 
 private
 
+   SpielstandlisteAnfang : constant Positive := 1;
+   SpielstandlisteEnde : constant Positive := 10;
+   MehrAnzeigen : constant Positive := 11;
+   NeuerSpielstand : constant Positive := 12;
+   Löschen : constant Positive := 13;
+   Zurück : constant Positive := 14;
    Schleifenanfang : Positive;
 
    AktuelleAuswahl : Natural;

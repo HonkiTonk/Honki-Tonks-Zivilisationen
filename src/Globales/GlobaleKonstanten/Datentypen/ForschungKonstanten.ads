@@ -7,8 +7,7 @@ with ProduktionDatentypen;
 with AufgabenDatentypen;
 with SystemDatentypen;
 with BefehleDatentypen;
-
-with DatenbankRecords;
+with ForschungsdatenbankRecord;
 
 package ForschungKonstanten is
    
@@ -17,10 +16,10 @@ package ForschungKonstanten is
    LeerForschungsanforderung : constant ForschungenDatentypen.ForschungIDMitNullWert := ForschungenDatentypen.ForschungIDMitNullWert'First;
    ForschungUnmöglich : constant ForschungenDatentypen.ForschungIDNichtMöglich := ForschungenDatentypen.ForschungIDNichtMöglich'First;
    
-   LeerForschungsliste : constant DatenbankRecords.ForschungslisteRecord := (
-                                                                             Kosten      => LeerKosten,
-                                                                             Anforderung => (others => ForschungUnmöglich)
-                                                                            );
+   LeerForschungsliste : constant ForschungsdatenbankRecord.ForschungslisteRecord := (
+                                                                                      Kosten      => LeerKosten,
+                                                                                      Anforderung => (others => ForschungUnmöglich)
+                                                                                     );
    
    -- Das hier als Standard nehmen und Laden wenn keine Datenbank verfügbar ist, dafür eine Datenbank anlegen. äöü
    type TechnologieVerbesserungenArray is array (BefehleDatentypen.Siedler_Verbesserung_Enum'Range, RassenDatentypen.Rassen_Verwendet_Enum'Range) of ForschungenDatentypen.ForschungIDNichtMöglich;

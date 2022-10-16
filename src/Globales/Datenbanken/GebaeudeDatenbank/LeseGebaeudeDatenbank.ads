@@ -115,6 +115,16 @@ package LeseGebaeudeDatenbank is
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
    
+   function FalscheEbene
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in StadtDatentypen.GebäudeID;
+      EbeneExtern : in KartenDatentypen.EbeneVorhanden)
+      return Boolean
+     with
+       Pre => (
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+              );
+   
    function GebäudeSpezielleEigenschaft
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in StadtDatentypen.GebäudeID)

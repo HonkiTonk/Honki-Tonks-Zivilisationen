@@ -3,14 +3,13 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartengrundDatentypen;
 with RassenDatentypen;
-
-with DatenbankRecords;
+with KartendatenbankRecord;
 
 -- Die Flusswerte immer nach Flussarten zuweisen? äöü
 -- Sollte ich mich dazu entscheiden jedem Fluss eigene Standardwerte zu geben, dann am besten in Oberfluss, Unterfluss und Lavafluss aufteilen. äöü
 package KartengrundFluss is
    
-   type KartenflusslisteOberflächeArray is array (KartengrundDatentypen.Kartenfluss_Oberfläche_Enum'Range) of DatenbankRecords.KartenlisteRecord;
+   type KartenflusslisteOberflächeArray is array (KartengrundDatentypen.Kartenfluss_Oberfläche_Enum'Range) of KartendatenbankRecord.KartenlistenRecord;
    KartenflusslisteOberfläche : constant KartenflusslisteOberflächeArray := (
                                                                                others =>
                                                                                  (
@@ -84,7 +83,7 @@ package KartengrundFluss is
                                                                                  )
                                                                               );
    
-   type KartenflusslisteUnterflächeArray is array (KartengrundDatentypen.Kartenfluss_Unterfläche_Enum'Range) of DatenbankRecords.KartenlisteRecord;
+   type KartenflusslisteUnterflächeArray is array (KartengrundDatentypen.Kartenfluss_Unterfläche_Enum'Range) of KartendatenbankRecord.KartenlistenRecord;
    KartenflusslisteUnterfläche : constant KartenflusslisteUnterflächeArray := (
                                                                                  others =>
                                                                                    (
@@ -158,7 +157,7 @@ package KartengrundFluss is
                                                                                    )
                                                                                 );
    
-   type KartenflusslisteKernArray is array (KartengrundDatentypen.Kartenfluss_Kern_Enum'Range) of DatenbankRecords.KartenlisteRecord;
+   type KartenflusslisteKernArray is array (KartengrundDatentypen.Kartenfluss_Kern_Enum'Range) of KartendatenbankRecord.KartenlistenRecord;
    KartenflusslisteKern : constant KartenflusslisteKernArray := (
                                                                  others =>
                                                                    (

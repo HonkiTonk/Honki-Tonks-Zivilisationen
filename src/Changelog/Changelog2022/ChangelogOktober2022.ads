@@ -98,17 +98,25 @@ package ChangelogOktober2022 is
    
    
 
-   -- Version 0.04. => 0.04. (17.10.2022):
+   -- Version 0.04.1555 => 0.04. (17.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.1445 => 0.04. (16.10.2022):
+   -- Version 0.04.1445 => 0.04.1555 (16.10.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehler korrigiert der es ermöglichte Einheiten auf ein Feld zu ziehen, welches für die Einheit nicht passierbar war.
+   -- Fehler korrigiert mit dem es möglich war Einheiten in Städten zu bauen die nicht die richtige Umgebung hatten.
+   -- Fehler korrigiert der dafür sorgte dass beim Spielstart manchmal die Karte nicht korrekt aufgedeckt oder die Kamera falsch positioniert wurde.
+   -- Fehler korrigiert der dafür sorgte dass erst bei Rundenende eine besiegte Rasse auf Leer gesetzt wurde.
+   -- Diverse Zahlen durch Konstante ersetzt.
+   -- Code zusammengeführt.
+   -- Teile des Codes neu aufgeteilt um die Kompilierzeit zu reduzieren.
+   -- Gebäudedatenbank überarbeitet, so dass die aktuelle Ebene ebenfalls als Voraussetzung für ein Gebäude dienen kann.
+   -- Prüfung ob ein Gebäude baubar ist überarbeitet und an die neue Datenbank angepasst.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    
 

@@ -4,14 +4,13 @@ pragma Warnings (Off, "*array aggregate*");
 with KartengrundDatentypen;
 with EinheitenDatentypen;
 with RassenDatentypen;
-
-with DatenbankRecords;
+with KartendatenbankRecord;
 
 package KartengrundHimmel is
 
    -- Passierbarkeit: Boden, Wasser, Luft, Weltraum, Unterwasser, Küstenwasser, Unterirdisch (Erde), Planeteninneres (Gestein), Lava
 
-   type KartengrundlisteHimmelArray is array (KartengrundDatentypen.Kartengrund_Himmel_Enum'Range) of DatenbankRecords.KartengrundlisteRecord;
+   type KartengrundlisteHimmelArray is array (KartengrundDatentypen.Kartengrund_Himmel_Enum'Range) of KartendatenbankRecord.KartenpassierbarkeitslistenRecord;
    KartengrundlisteHimmel : constant KartengrundlisteHimmelArray := (
                                                                      KartengrundDatentypen.Wolken_Enum =>
                                                                        (

@@ -24,11 +24,11 @@ package body SpielstandlisteLogik is
      (SpeichernLadenExtern : in Boolean)
       return Unbounded_Wide_Wide_String
    is begin
-                  
+      
       SpielstandSchleife:
       loop
          
-         Schleifenanfang := 1;
+         Schleifenanfang := SpielstandArray'First;
          NachGrafiktask.MehrereSeiten := False;
          
          Start_Search (Search    => Suche,
@@ -36,14 +36,14 @@ package body SpielstandlisteLogik is
                        Pattern   => "",
                        Filter    => (Ordinary_File => True,
                                      others        => False));
-      
+         
          MittelSchleife:
          loop
             
             case
               Schleifenanfang
             is
-               when 1 =>
+               when SpielstandArray'First =>
                   Spielstand := (others => TextKonstanten.LeerUnboundedString);
                   
                when others =>
@@ -84,17 +84,15 @@ package body SpielstandlisteLogik is
             loop
                
                Ausgewählt := Mausauswahl (SpeichernLadenExtern => SpeichernLadenExtern);
-            
+               
                case
                  Ausgewählt
-                   -- Die Nummern hier später auch mal durch Konstante ersetzen. äöü
                is
-                  when 0 | 14 =>
+                  when SystemKonstanten.LeerAuswahl | Zurück =>
                      RückgabeWert := TextKonstanten.LeerUnboundedString;
                      exit SpielstandSchleife;
                   
-                     -- Mehr
-                  when 11 =>
+                  when MehrAnzeigen =>
                      if
                        Spielstand (Ausgewählt) = TextKonstanten.LeerUnboundedString
                      then
@@ -105,8 +103,7 @@ package body SpielstandlisteLogik is
                         exit AuswahlSchleife;
                      end if;
                   
-                     -- Neu
-                  when 12 =>
+                  when NeuerSpielstand =>
                      -- Theoretisch sollte man das niemals bei Laden aufrufen können, da die Grafik keine Position setzt. äöü
                      -- Trotzdem eine Prüfung dafür einbauen? äöü
                      -- Dann muss da aber was umgebaut werden, sonst überschreite ich die Verschachtelungstiefe. äöü
@@ -127,19 +124,18 @@ package body SpielstandlisteLogik is
                      --  else
                      --     null;
                      --  end if;
-                  
-                     -- Löschen
-                  when 13 =>
+                     
+                  when Löschen =>
                      Ausgewählt := Mausauswahl (SpeichernLadenExtern => SpeichernLadenExtern);
                      
                      if
-                       Ausgewählt in 1 .. 10
+                       Ausgewählt in SpielstandlisteAnfang .. SpielstandlisteEnde
                      then
                         SpielstandEntfernenLogik.SpielstandEntfernen (SpielstandnameExtern => To_Wide_Wide_String (Source => Spielstand (Ausgewählt)));
                         exit MittelSchleife;
                         
                      elsif
-                       Ausgewählt = 14
+                       Ausgewählt = Zurück
                      then
                         RückgabeWert := TextKonstanten.LeerUnboundedString;
                         exit SpielstandSchleife;

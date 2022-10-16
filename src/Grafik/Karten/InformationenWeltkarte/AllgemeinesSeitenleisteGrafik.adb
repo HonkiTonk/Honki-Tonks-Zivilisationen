@@ -7,7 +7,6 @@ with Sf.Graphics.RenderWindow;
 with Sf.Graphics;
 with Sf.Graphics.Text;
 
-with KartenRecords; use KartenRecords;
 with KartengrundDatentypen; use KartengrundDatentypen;
 with Views;
 with GrafikDatentypen;

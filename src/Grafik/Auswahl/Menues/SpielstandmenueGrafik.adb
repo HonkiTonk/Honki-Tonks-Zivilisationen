@@ -68,12 +68,12 @@ package body SpielstandmenueGrafik is
          if
            SpeichernLaden = False
            and
-             TextSchleifenwert = 13
+             TextSchleifenwert = NeuerSpielstand
          then
             null;
             
          elsif
-           TextSchleifenwert = 12
+           TextSchleifenwert = MehrAnzeigen
            and
              MehrereSeiten = False
          then
@@ -83,9 +83,9 @@ package body SpielstandmenueGrafik is
             case
               TextSchleifenwert
             is
-               when 2 .. 11 =>
+               when SpielstandlisteAnfang .. SpielstandlisteEnde =>
                   Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.SpielstandAccess (TextSchleifenwert),
-                                                     str  => TextSetzen (TextExtern => To_Wide_Wide_String (Spielstand (TextSchleifenwert - 1))));
+                                                     str  => TextSetzen (TextExtern => To_Wide_Wide_String (Spielstand (TextSchleifenwert - SystemKonstanten.SchleifenwertanpassungGrafikZuAuswahlPosition))));
                   
                when others =>
                   null;
@@ -97,11 +97,12 @@ package body SpielstandmenueGrafik is
             Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.SpielstandAccess (TextSchleifenwert),
                                           position => Textposition);
          
-            TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => TextSchleifenwert - 1,
+            TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => TextSchleifenwert - SystemKonstanten.SchleifenwertanpassungGrafikZuAuswahlPosition,
                                                    AuswahlExtern    => AuswahlExtern,
                                                    TextaccessExtern => TextaccessVariablen.SpielstandAccess (TextSchleifenwert));
          
-            InteraktionAuswahl.PositionenSpielstand (TextSchleifenwert - 1) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SpielstandAccess (TextSchleifenwert));
+            InteraktionAuswahl.PositionenSpielstand (TextSchleifenwert - SystemKonstanten.SchleifenwertanpassungGrafikZuAuswahlPosition)
+              := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SpielstandAccess (TextSchleifenwert));
          
             Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.SpielstandAccess (TextSchleifenwert),
                                                                                 TextbreiteExtern => Textbreite);

@@ -26,7 +26,7 @@ package body EinheitenErzeugenEntfernenLogik is
                                              IDExtern                 => IDExtern,
                                              KoordinatenExtern        => KoordinatenExtern,
                                              StadtNummerExtern        => StadtRasseNummerExtern.Nummer);
-            
+      
       case
         LeseEinheitenDatenbank.Einheitenart (RasseExtern => StadtRasseNummerExtern.Rasse,
                                            IDExtern    => IDExtern)

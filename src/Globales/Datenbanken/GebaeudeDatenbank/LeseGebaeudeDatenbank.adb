@@ -137,6 +137,19 @@ package body LeseGebaeudeDatenbank is
       return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).GebäudeBenötigt;
       
    end GebäudeBenötigt;
+   
+   
+   
+   function FalscheEbene
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in StadtDatentypen.GebäudeID;
+      EbeneExtern : in KartenDatentypen.EbeneVorhanden)
+      return Boolean
+   is begin
+      
+      return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).EbeneBenötigt (EbeneExtern);
+      
+   end FalscheEbene;
 
 
    

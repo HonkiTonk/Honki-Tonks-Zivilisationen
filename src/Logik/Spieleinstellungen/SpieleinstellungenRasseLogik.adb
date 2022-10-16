@@ -5,7 +5,6 @@ with ZahlenDatentypen; use ZahlenDatentypen;
 with LadezeitenDatentypen; use LadezeitenDatentypen;
 with KartengrundDatentypen; use KartengrundDatentypen;
 with RassenDatentypen; use RassenDatentypen;
-with TastenbelegungDatentypen;
 with KartenRecordKonstanten;
 with KartenKonstanten;
 with EinheitenKonstanten;
@@ -24,7 +23,6 @@ with AuswahlaufteilungLogik;
 with Fehler;
 with LadezeitenLogik;
 with UmwandlungenVerschiedeneDatentypen;
-with CursorbewegungLogik;
 
 package body SpieleinstellungenRasseLogik is
    
@@ -208,9 +206,10 @@ package body SpieleinstellungenRasseLogik is
             
          when others =>
             if
-              True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenID (RasseExtern           => RasseExtern,
-                                                                           IDExtern              => 1,
-                                                                           NeueKoordinatenExtern => GezogeneKoordinate)
+              True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenID (RasseExtern                => RasseExtern,
+                                                                          IDExtern                   => 1,
+                                                                          NeueKoordinatenExtern      => GezogeneKoordinate,
+                                                                          StadtBerücksichtigenExtern => False)
             then
                null;
                
@@ -288,9 +287,10 @@ package body SpieleinstellungenRasseLogik is
                null;
                                     
             elsif
-              False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenID (RasseExtern           => RasseExtern,
-                                                                            IDExtern              => 2,
-                                                                            NeueKoordinatenExtern => KartenWert)
+              False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenID (RasseExtern                => RasseExtern,
+                                                                            IDExtern                   => 2,
+                                                                            NeueKoordinatenExtern      => KartenWert,
+                                                                            StadtBerücksichtigenExtern => False)
             then
                null;
                
@@ -365,10 +365,11 @@ package body SpieleinstellungenRasseLogik is
         SpielVariablen.Rassenbelegung (RasseExtern).Belegung
       is
          when RassenDatentypen.Mensch_Spieler_Enum =>
-            SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell := (StartkoordinateEinsExtern.EAchse, 1, 1);
+            -- Reicht das nicht so? äöü
+            SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell := StartkoordinateEinsExtern;
+            -- Oder muss das doch so sein? äöü
+            -- SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell := (StartkoordinateEinsExtern.EAchse, 1, 1);
             SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt := StartkoordinateEinsExtern;
-            CursorbewegungLogik.CursorbewegungBerechnen (RichtungExtern => TastenbelegungDatentypen.Auswählen_Enum,
-                                                         RasseExtern    => RasseExtern);
             
          when others =>
             null;

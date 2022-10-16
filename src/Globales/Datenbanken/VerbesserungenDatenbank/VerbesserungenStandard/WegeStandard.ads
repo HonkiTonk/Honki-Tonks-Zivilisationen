@@ -3,12 +3,11 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenverbesserungDatentypen;
 with EinheitenDatentypen;
-
-with DatenbankRecords;
+with KartendatenbankRecord;
 
 package WegeStandard is
 
-   type WegelisteArray is array (KartenverbesserungDatentypen.Karten_Straße_Enum'Range) of DatenbankRecords.VerbesserungenWegeListeRecord;
+   type WegelisteArray is array (KartenverbesserungDatentypen.Karten_Straße_Enum'Range) of KartendatenbankRecord.KartenpassierbarkeitslistenRecord;
    Wegeliste : constant WegelisteArray := (
                                            others =>
                                              (
@@ -24,7 +23,7 @@ package WegeStandard is
                                            
    
    
-   type SchienenlisteArray is array (KartenverbesserungDatentypen.Karten_Schiene_Enum'Range) of DatenbankRecords.VerbesserungenWegeListeRecord;
+   type SchienenlisteArray is array (KartenverbesserungDatentypen.Karten_Schiene_Enum'Range) of KartendatenbankRecord.KartenpassierbarkeitslistenRecord;
    Schienenliste : constant SchienenlisteArray := (
                                                    others =>
                                                      (
@@ -42,7 +41,7 @@ package WegeStandard is
    
    
    
-   type TunnellisteArray is array (KartenverbesserungDatentypen.Karten_Tunnel_Enum'Range) of DatenbankRecords.VerbesserungenWegeListeRecord;
+   type TunnellisteArray is array (KartenverbesserungDatentypen.Karten_Tunnel_Enum'Range) of KartendatenbankRecord.KartenpassierbarkeitslistenRecord;
    Tunnelliste : constant TunnellisteArray := (
                                                others =>
                                                  (

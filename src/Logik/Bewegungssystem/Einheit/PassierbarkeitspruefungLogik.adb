@@ -36,19 +36,23 @@ package body PassierbarkeitspruefungLogik is
             return False;
             
          when others =>
-            return PassierbarkeitPrüfenID (RasseExtern           => EinheitRasseNummerExtern.Rasse,
-                                            IDExtern              => IDEinheit,
-                                            NeueKoordinatenExtern => NeueKoordinatenExtern);
+            return PassierbarkeitPrüfenID (RasseExtern                => EinheitRasseNummerExtern.Rasse,
+                                            IDExtern                   => IDEinheit,
+                                            NeueKoordinatenExtern      => NeueKoordinatenExtern,
+                                            StadtBerücksichtigenExtern => True);
       end case;
       
    end PassierbarkeitPrüfenNummer;
    
    
    
+   -- Funktioniert noch nicht korreklt wenn sich darunter/oben drüber eine Stadt befindet. äöü
+   -- So lassen oder später noch einmal anpassen? äöü
    function PassierbarkeitPrüfenID
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenID;
-      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      StadtBerücksichtigenExtern : in Boolean)
       return Boolean
    is begin
             
@@ -61,14 +65,13 @@ package body PassierbarkeitspruefungLogik is
                                                   WelcheUmgebungExtern => PassierbarkeitSchleifenwert)
          is
             when False =>
-               Passierbar := IstNichtPassierbar (RasseExtern           => RasseExtern,
-                                                 UmgebungExtern        => PassierbarkeitSchleifenwert,
-                                                 NeueKoordinatenExtern => NeueKoordinatenExtern);
+               Passierbar := False;
                
             when True =>
-               Passierbar := IstPassierbar (RasseExtern           => RasseExtern,
-                                            UmgebungExtern        => PassierbarkeitSchleifenwert,
-                                            NeueKoordinatenExtern => NeueKoordinatenExtern);
+               Passierbar := IstPassierbar (RasseExtern                => RasseExtern,
+                                            UmgebungExtern             => PassierbarkeitSchleifenwert,
+                                            NeueKoordinatenExtern      => NeueKoordinatenExtern,
+                                            StadtBerücksichtigenExtern => StadtBerücksichtigenExtern);
          end case;
          
          case
@@ -89,25 +92,61 @@ package body PassierbarkeitspruefungLogik is
    
    
    
-   -- Haut so mit der Prüfung gar nicht hin. äöü
-   -- Ich prüfe ja nicht ob die Einheit diesen Weg betreten kann, sondern ob der aktuelle Schleifenwert das kann. äöü
+   -- Eventuell mit IstNichtPassierbar zusammenführen oder anders aufteilen. äöü
+   function IstPassierbar
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      UmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Enum;
+      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      StadtBerücksichtigenExtern : in Boolean)
+      return Boolean
+   is begin
+      
+      case
+        KartenAllgemeinesLogik.PassierbarGrund (KoordinatenExtern    => NeueKoordinatenExtern,
+                                                PassierbarkeitExtern => UmgebungExtern)
+      is
+         when True =>
+            return True;
+            
+         when False =>
+            null;
+      end case;
+      
+      case
+        StadtBerücksichtigenExtern
+      is
+         when True =>
+            StadtVorhanden := StadtSuchenLogik.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
+                                                                               KoordinatenExtern => NeueKoordinatenExtern);
+            
+         when False =>
+            StadtVorhanden := StadtKonstanten.LeerNummer;
+      end case;
+           
+      case
+        StadtVorhanden
+      is
+         when StadtKonstanten.LeerNummer =>
+            return IstNichtPassierbar (RasseExtern           => RasseExtern,
+                                       UmgebungExtern        => UmgebungExtern,
+                                       NeueKoordinatenExtern => NeueKoordinatenExtern);
+            
+         when others =>
+            return True;
+      end case;
+      
+   end IstPassierbar;
+   
+   
+   
    function IstNichtPassierbar
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       UmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Enum;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is begin
-      
-      case
-        StadtSuchenLogik.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                         KoordinatenExtern => NeueKoordinatenExtern)
-      is
-         when StadtKonstanten.LeerNummer =>
-            WegVorhanden := LeseWeltkarte.Weg (KoordinatenExtern => NeueKoordinatenExtern);
-
-         when others =>
-            return True;
-      end case;
+            
+      WegVorhanden := LeseWeltkarte.Weg (KoordinatenExtern => NeueKoordinatenExtern);
       
       case
         WegVorhanden
@@ -163,30 +202,6 @@ package body PassierbarkeitspruefungLogik is
    
    
    
-   function IstPassierbar
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      UmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Enum;
-      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return Boolean
-   is begin
-      
-      case
-        KartenAllgemeinesLogik.PassierbarGrund (KoordinatenExtern    => NeueKoordinatenExtern,
-                                                PassierbarkeitExtern => UmgebungExtern)
-      is
-         when True =>
-            return True;
-            
-         when False =>
-            return IstNichtPassierbar (RasseExtern           => RasseExtern,
-                                       UmgebungExtern        => UmgebungExtern,
-                                       NeueKoordinatenExtern => NeueKoordinatenExtern);
-      end case;
-      
-   end IstPassierbar;
-   
-   
-   
    -- In eine eigene Datei verschieben? äöü
    function RichtigeUmgebungVorhanden
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
@@ -201,22 +216,13 @@ package body PassierbarkeitspruefungLogik is
       for YAchseEinheitenSchleifenwert in -Stadtumgebung .. Stadtumgebung loop
          XAchseEinheitenSchleife:
          for XAchseEinheitenSchleifenwert in -Stadtumgebung .. Stadtumgebung loop
-                        
+            
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtKoordinaten,
                                                                                                       ÄnderungExtern    => (0, YAchseEinheitenSchleifenwert, XAchseEinheitenSchleifenwert),
                                                                                                       LogikGrafikExtern => True);
             
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse
-            then
-               null;
-               
-               -- Das hier muss noch einmal überarbeitet werden, ist aktuell nur deswegen da weil die Stadt nicht ausgeschlossen werden kann. äöü
-               -- Die Stadt sollte aber ausgeschlossen werden, nicht aber das Feld auf dem sich die Stadt befindet. äöü
-            elsif
-              YAchseEinheitenSchleifenwert = 0
-              and
-                XAchseEinheitenSchleifenwert = 0
             then
                null;
                
@@ -227,9 +233,10 @@ package body PassierbarkeitspruefungLogik is
                null;
             
             elsif
-              False = PassierbarkeitPrüfenID (RasseExtern           => StadtRasseNummerExtern.Rasse,
-                                               IDExtern              => EinheitenIDExtern,
-                                               NeueKoordinatenExtern => KartenWert)
+              False = PassierbarkeitPrüfenID (RasseExtern                => StadtRasseNummerExtern.Rasse,
+                                               IDExtern                   => EinheitenIDExtern,
+                                               NeueKoordinatenExtern      => KartenWert,
+                                               StadtBerücksichtigenExtern => False)
             then
                null;
             

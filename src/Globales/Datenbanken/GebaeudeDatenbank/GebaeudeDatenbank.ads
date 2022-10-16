@@ -3,12 +3,11 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen;
 with StadtDatentypen;
-
-with DatenbankRecords;
+with GebaeudedatenbankRecord;
 
 package GebaeudeDatenbank is
 
-   type GebäudelisteArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, StadtDatentypen.GebäudeID'Range) of DatenbankRecords.GebäudelisteRecord;
+   type GebäudelisteArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, StadtDatentypen.GebäudeID'Range) of GebaeudedatenbankRecord.GebäudelisteRecord;
    GebäudeListe : GebäudelisteArray;
    
    procedure StandardGebaeudeDatenbankLaden;

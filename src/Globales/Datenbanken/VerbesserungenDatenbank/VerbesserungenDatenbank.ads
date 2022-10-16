@@ -2,15 +2,14 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenverbesserungDatentypen;
-
-with DatenbankRecords;
+with KartendatenbankRecord;
 
 package VerbesserungenDatenbank is
    
-   type VerbesserungenlisteArray is array (KartenverbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum'Range) of DatenbankRecords.KartenlisteRecord;
+   type VerbesserungenlisteArray is array (KartenverbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum'Range) of KartendatenbankRecord.KartenlistenRecord;
    Verbesserungenliste : VerbesserungenlisteArray;
    
-   type WegelisteArray is array (KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Range) of DatenbankRecords.VerbesserungenWegeListeRecord;
+   type WegelisteArray is array (KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Range) of KartendatenbankRecord.KartenpassierbarkeitslistenRecord;
    Wegeliste : WegelisteArray;
    
    procedure StandardVerbesserungenDatenbankLaden;

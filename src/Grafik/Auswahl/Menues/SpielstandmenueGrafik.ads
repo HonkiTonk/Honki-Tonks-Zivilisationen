@@ -20,6 +20,11 @@ private
    SpeichernLaden : Boolean;
    MehrereSeiten : Boolean;
    
+   SpielstandlisteAnfang : constant Positive := 2;
+   SpielstandlisteEnde : constant Positive := 11;
+   MehrAnzeigen : constant Positive := 12;
+   NeuerSpielstand : constant Positive := 13;
+   
    Textbreite : Float;
    
    Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartgrößeView;

@@ -3,13 +3,12 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartengrundDatentypen;
 with RassenDatentypen;
-
-with DatenbankRecords;
+with KartendatenbankRecord;
 
 -- Das hier später auch in verschiedene Dateien aufteilen, vorher aber mehr Ressourcen hinzufügen und in bessere Bereiche einteilen. äöü
 package KartengrundRessourcen is
    
-   type KartenressourcenlisteLandArray is array (KartengrundDatentypen.Kartenressourcen_Oberfläche_Land_Enum'Range) of DatenbankRecords.KartenlisteRecord;
+   type KartenressourcenlisteLandArray is array (KartengrundDatentypen.Kartenressourcen_Oberfläche_Land_Enum'Range) of KartendatenbankRecord.KartenlistenRecord;
    KartenressourcenlisteLand : constant KartenressourcenlisteLandArray := (
                                                                            KartengrundDatentypen.Kohle_Enum =>
                                                                              (
@@ -367,7 +366,7 @@ package KartengrundRessourcen is
                                                                              )
                                                                           );
 
-   type KartenressourcenlisteWasserArray is array (KartengrundDatentypen.Kartenressourcen_Oberfläche_Wasser_Enum'Range) of DatenbankRecords.KartenlisteRecord;
+   type KartenressourcenlisteWasserArray is array (KartengrundDatentypen.Kartenressourcen_Oberfläche_Wasser_Enum'Range) of KartendatenbankRecord.KartenlistenRecord;
    KartenressourcenlisteWasser : constant KartenressourcenlisteWasserArray := (
                                                                                KartengrundDatentypen.Fisch_Enum =>
                                                                                  (

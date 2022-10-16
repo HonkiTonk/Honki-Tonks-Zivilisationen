@@ -3,12 +3,11 @@ pragma Warnings (Off, "*array aggregate*");
 
 with EinheitenDatentypen;
 with RassenDatentypen;
-
-with DatenbankRecords;
+with EinheitendatenbankRecord;
 
 package EinheitenDatenbank is
      
-   type EinheitenlisteArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, EinheitenDatentypen.EinheitenID'Range) of DatenbankRecords.EinheitenlisteRecord;
+   type EinheitenlisteArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, EinheitenDatentypen.EinheitenID'Range) of EinheitendatenbankRecord.EinheitenlisteRecord;
    Einheitenliste : EinheitenlisteArray;
    
    procedure StandardEinheitenDatenbankLaden;

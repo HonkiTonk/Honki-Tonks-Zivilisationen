@@ -4,14 +4,13 @@ pragma Warnings (Off, "*array aggregate*");
 with KartengrundDatentypen;
 with EinheitenDatentypen;
 with RassenDatentypen;
-
-with DatenbankRecords;
+with KartendatenbankRecord;
 
 package KartengrundOberflaeche is
    
    -- Passierbarkeit: Boden, Wasser, Luft, Weltraum, Unterwasser, Küstenwasser, Unterirdisch (Erde), Planeteninneres (Gestein), Lava
 
-   type KartengrundlisteOberflächeArray is array (KartengrundDatentypen.Kartengrund_Oberfläche_Enum'Range) of DatenbankRecords.KartengrundlisteRecord;
+   type KartengrundlisteOberflächeArray is array (KartengrundDatentypen.Kartengrund_Oberfläche_Enum'Range) of KartendatenbankRecord.KartenpassierbarkeitslistenRecord;
    KartengrundlisteOberfläche : constant KartengrundlisteOberflächeArray := (
                                                                                KartengrundDatentypen.Eis_Enum =>
                                                                                  (

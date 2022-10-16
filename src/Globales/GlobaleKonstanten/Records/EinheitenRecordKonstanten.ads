@@ -4,8 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with EinheitenRecords;
 with EinheitenKonstanten;
 with KartenRecordKonstanten;
-
-with DatenbankRecords;
+with EinheitendatenbankRecord;
 
 package EinheitenRecordKonstanten is
 
@@ -30,25 +29,25 @@ package EinheitenRecordKonstanten is
                                                                      Meldungen                   => (others => EinheitenKonstanten.LeerMeldung)
                                                                     );
    
-   LeerEinheitListe : constant DatenbankRecords.EinheitenlisteRecord := (
-                                                                         Einheitenart            => EinheitenKonstanten.LeerEinheitArt,
-                                                                         PreisGeld               => EinheitenKonstanten.LeerPreisGeld,
-                                                                         Produktionskosten       => EinheitenKonstanten.LeerPreisRessourcen,
-                                                                         PermanenteKosten        => (others => EinheitenKonstanten.LeerPermanenteKosten),
-                                                                         Anforderungen           => EinheitenKonstanten.LeerAnforderungen,
-                                                                         Passierbarkeit          => (others => EinheitenKonstanten.LeerPassierbarkeit),
-                                                                         MaximaleLebenspunkte    => EinheitenKonstanten.LeerMaximaleLebenspunkte,
-                                                                         MaximaleBewegungspunkte => EinheitenKonstanten.LeerMaximaleBewegungspunkte,
-                                                                         VerbesserungZu          => EinheitenKonstanten.LeerWirdVerbessertZu,
-                                                                         Beförderungsgrenze      => EinheitenKonstanten.LeerBeförderungsgrenze,
-                                                                         MaximalerRang           => EinheitenKonstanten.LeerMaximalerRang,
-                                                                         Reichweite              => EinheitenKonstanten.LeerReichweite,
-                                                                         Angriff                 => EinheitenKonstanten.LeerAngriff,
-                                                                         Verteidigung            => EinheitenKonstanten.LeerVerteidigung,
-                                                                         KannTransportieren      => EinheitenKonstanten.LeerKannTransportieren,
-                                                                         KannTransportiertWerden => EinheitenKonstanten.LeerKannTransportiertWerden,
-                                                                         Transportkapazität      => EinheitenKonstanten.LeerTransportkapazität
-                                                                        );
+   LeerEinheitListe : constant EinheitendatenbankRecord.EinheitenlisteRecord := (
+                                                                                 Einheitenart            => EinheitenKonstanten.LeerEinheitArt,
+                                                                                 PreisGeld               => EinheitenKonstanten.LeerPreisGeld,
+                                                                                 Produktionskosten       => EinheitenKonstanten.LeerPreisRessourcen,
+                                                                                 PermanenteKosten        => (others => EinheitenKonstanten.LeerPermanenteKosten),
+                                                                                 Anforderungen           => EinheitenKonstanten.LeerAnforderungen,
+                                                                                 Passierbarkeit          => (others => EinheitenKonstanten.LeerPassierbarkeit),
+                                                                                 MaximaleLebenspunkte    => EinheitenKonstanten.LeerMaximaleLebenspunkte,
+                                                                                 MaximaleBewegungspunkte => EinheitenKonstanten.LeerMaximaleBewegungspunkte,
+                                                                                 VerbesserungZu          => EinheitenKonstanten.LeerWirdVerbessertZu,
+                                                                                 Beförderungsgrenze      => EinheitenKonstanten.LeerBeförderungsgrenze,
+                                                                                 MaximalerRang           => EinheitenKonstanten.LeerMaximalerRang,
+                                                                                 Reichweite              => EinheitenKonstanten.LeerReichweite,
+                                                                                 Angriff                 => EinheitenKonstanten.LeerAngriff,
+                                                                                 Verteidigung            => EinheitenKonstanten.LeerVerteidigung,
+                                                                                 KannTransportieren      => EinheitenKonstanten.LeerKannTransportieren,
+                                                                                 KannTransportiertWerden => EinheitenKonstanten.LeerKannTransportiertWerden,
+                                                                                 Transportkapazität      => EinheitenKonstanten.LeerTransportkapazität
+                                                                                );
    
    KeineArbeit : constant EinheitenRecords.ArbeitRecord := (
                                                             Aufgabe     => EinheitenKonstanten.LeerArbeit,
