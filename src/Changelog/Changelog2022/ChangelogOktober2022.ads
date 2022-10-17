@@ -100,6 +100,7 @@ package ChangelogOktober2022 is
 
    -- Version 0.04.1555 => 0.04. (17.10.2022):
    
+   -- Lizenz von Apache 2.0 zu GPL 3.0 geändert.
    -- 
    -- Kleinigkeiten korrigiert.
    
