@@ -5,14 +5,4 @@ package KartengeneratorLogik is
 
    procedure Kartengenerator;
 
-private
-
-   procedure AllgemeinesGenerieren;
-   procedure KüstenwasserGenerieren;
-   procedure LandschaftGenerieren;
-   procedure UnterwasserUnterirdischGenerieren;
-   procedure FlüsseGenerieren;
-   procedure RessourcenGenerieren;
-   procedure BewerteKartenfelder;
-
 end KartengeneratorLogik;

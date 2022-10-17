@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with KartenDatentypen; use KartenDatentypen;
 with KartengrundDatentypen;
 with LadezeitenDatentypen;
+with KartenKonstanten;
 
 with LeseWeltkarte;
 
@@ -26,7 +27,7 @@ package body KartengeneratorRessourcenLogik is
       task body RessourcenUnterfläche
       is begin
          
-         RessourcenGenerierung (EbeneExtern => -1);
+         RessourcenGenerierung (EbeneExtern => KartenKonstanten.UnterflächeKonstante);
          
       end RessourcenUnterfläche;
       
@@ -35,13 +36,13 @@ package body KartengeneratorRessourcenLogik is
       task body RessourcenKern
       is begin
          
-         RessourcenGenerierung (EbeneExtern => -2);
+         RessourcenGenerierung (EbeneExtern => KartenKonstanten.PlaneteninneresKonstante);
          
       end RessourcenKern;
    
    begin
 
-      RessourcenGenerierung (EbeneExtern => 0);
+      RessourcenGenerierung (EbeneExtern => KartenKonstanten.OberflächeKonstante);
       
    end GenerierungRessourcen;
    
@@ -62,7 +63,7 @@ package body KartengeneratorRessourcenLogik is
             case
               EbeneExtern
             is
-               when -2 =>
+               when KartenKonstanten.PlaneteninneresKonstante =>
                   exit XAchseSchleife;
                   
                when others =>

@@ -27,6 +27,7 @@ private
 
    NeueKoordinate : KartenRecords.AchsenKartenfeldNaturalRecord;
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   BasisKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    type RichtungArray is array (TastenbelegungDatentypen.Tastenbelegung_Bewegung_Erweitert_Enum'Range) of KartenRecords.AchsenKartenfeldRecord;
    Richtung : constant RichtungArray := (

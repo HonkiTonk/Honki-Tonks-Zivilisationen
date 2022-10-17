@@ -283,7 +283,7 @@ package body MausauswahlLogik is
       
       BefehleSchleife:
       for BefehlSchleifenwert in InteraktionAuswahl.PositionenKartenbefehleArray'Range loop
-         
+                  
          case
            Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
                                        TextboxExtern      => InteraktionAuswahl.PositionenKartenbefehle (BefehlSchleifenwert))

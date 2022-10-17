@@ -18,35 +18,35 @@ package body BewegungspunkteBerechnenLogik is
       return EinheitenDatentypen.BewegungFloat
    is begin
       
-      Bewegungsbonus := StraßeUndFlussPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                NeueKoordinatenExtern    => NeueKoordinatenExtern);
-
+      Bewegungsbonus := Bewegungsmodifikator (StraßeUndFlussPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                      NeueKoordinatenExtern    => NeueKoordinatenExtern));
+      
       case
         LeseWeltkarte.AktuellerGrund (KoordinatenExtern => NeueKoordinatenExtern)
       is
          when KartengrundDatentypen.Eis_Enum | KartengrundDatentypen.Gebirge_Enum | KartengrundDatentypen.Dschungel_Enum | KartengrundDatentypen.Sumpf_Enum =>
             if
-              LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) < KleinerAbzug - Bewegungsmodifikator (Bewegungsbonus)
+              LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) < KleinerAbzug - Bewegungsbonus
             then
                return EinheitenKonstanten.EinheitUnbewegbar;
       
             elsif
-              MittlererAbzug - Bewegungsmodifikator (Bewegungsbonus) <= KeinAbzug
+              MittlererAbzug - Bewegungsbonus <= KeinAbzug
             then
                return KeinAbzug;
                
             else
-               return MittlererAbzug - Bewegungsmodifikator (Bewegungsbonus);
+               return MittlererAbzug - Bewegungsbonus;
             end if;
             
          when others =>
             if
-              KleinerAbzug - Bewegungsmodifikator (Bewegungsbonus) <= KeinAbzug
+              KleinerAbzug - Bewegungsbonus <= KeinAbzug
             then
                return KeinAbzug;
             
             else
-               return KleinerAbzug - Bewegungsmodifikator (Bewegungsbonus);
+               return KleinerAbzug - Bewegungsbonus;
             end if;
       end case;
       
@@ -75,13 +75,13 @@ package body BewegungspunkteBerechnenLogik is
            LeseWeltkarte.Weg (KoordinatenExtern => NeueKoordinatenExtern)
          is
             when KartenverbesserungDatentypen.Karten_Straße_Enum'Range =>
-               return Straße_Fluss_Enum;
+               return Straße_Enum;
                
             when KartenverbesserungDatentypen.Karten_Schiene_Enum'Range =>
                return Schiene_Enum;
                
             when KartenverbesserungDatentypen.Karten_Tunnel_Enum =>
-               return Straße_Fluss_Enum;
+               return Tunnel_Enum;
                   
             when others =>
                null;
@@ -92,9 +92,12 @@ package body BewegungspunkteBerechnenLogik is
          is
             when KartengrundDatentypen.Leer_Fluss_Enum =>
                null;
+               
+            when KartengrundDatentypen.Kartenfluss_Kern_Enum'Range =>
+               null;
 
             when others =>
-               return Straße_Fluss_Enum;
+               return Fluss_Enum;
          end case;
 
       else

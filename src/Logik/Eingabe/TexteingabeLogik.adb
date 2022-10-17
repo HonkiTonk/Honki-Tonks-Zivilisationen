@@ -24,7 +24,7 @@ package body TexteingabeLogik is
         StadtRasseNummerExtern.Rasse
       is
          when RassenDatentypen.Keine_Rasse_Enum =>
-            Frage := TextnummernKonstanten.ZeugNamenStadt;
+            Frage := TextnummernKonstanten.FrageStadtSuchen;
             NachLogiktask.EingegebenerText.EingegebenerText := TextKonstanten.LeerUnboundedString;
             
          when others =>

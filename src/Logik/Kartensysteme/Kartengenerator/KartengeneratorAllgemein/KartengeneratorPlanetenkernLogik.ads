@@ -5,7 +5,6 @@ with KartenDatentypen; use KartenDatentypen;
 
 private with KartengrundDatentypen;
 private with KartenRecords;
-
 private with Weltkarte;
 
 package KartengeneratorPlanetenkernLogik is

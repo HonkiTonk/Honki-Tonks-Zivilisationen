@@ -24,10 +24,10 @@ package body KartengeneratorKuesteLogik is
          for XAchseSchleifenwert in Weltkarte.KarteArray'First (3) .. Weltkarte.Karteneinstellungen.Kartengröße.XAchse loop
                               
             case
-              LeseWeltkarte.AktuellerGrund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert))
+              LeseWeltkarte.AktuellerGrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseSchleifenwert, XAchseSchleifenwert))
             is
                when KartengrundDatentypen.Wasser_Enum =>
-                  GewässerFestlegen (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert));
+                  GewässerFestlegen (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseSchleifenwert, XAchseSchleifenwert));
                   
                when others =>
                   null;
@@ -61,8 +61,8 @@ package body KartengeneratorKuesteLogik is
          for XÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
                      
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                 ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                                                 LogikGrafikExtern => True);
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                                                      LogikGrafikExtern => True);
                         
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse
@@ -75,7 +75,7 @@ package body KartengeneratorKuesteLogik is
                is
                   when KartengrundDatentypen.Flachland_Enum |  KartengrundDatentypen.Eis_Enum =>
                      SchreibeWeltkarte.GleicherGrund (KoordinatenExtern => KoordinatenExtern,
-                                                   GrundExtern       => KartengrundDatentypen.Küstengewässer_Enum);
+                                                      GrundExtern       => KartengrundDatentypen.Küstengewässer_Enum);
                      return;
                      
                   when others =>

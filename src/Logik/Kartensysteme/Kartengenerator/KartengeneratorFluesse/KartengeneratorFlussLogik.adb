@@ -24,7 +24,7 @@ package body KartengeneratorFlussLogik is
       task body Lavaflüsse
       is begin
          
-         FlussGenerierung (EbeneExtern => -2);
+         FlussGenerierung (EbeneExtern => KartenKonstanten.PlaneteninneresKonstante);
          
       end Lavaflüsse;
       
@@ -33,13 +33,13 @@ package body KartengeneratorFlussLogik is
       task body UnterirdischeFlüsse
       is begin
          
-         FlussGenerierung (EbeneExtern => -1);
+         FlussGenerierung (EbeneExtern => KartenKonstanten.UnterflächeKonstante);
          
       end UnterirdischeFlüsse;
       
    begin
       
-      FlussGenerierung (EbeneExtern => 0);
+      FlussGenerierung (EbeneExtern => KartenKonstanten.OberflächeKonstante);
       
    end GenerierungFlüsse;
    
@@ -119,8 +119,10 @@ package body KartengeneratorFlussLogik is
          for XÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
                   
             KartenWert (KoordinatenExtern.EAchse) := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                                            ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                                                                            LogikGrafikExtern => True);
+                                                                                                                                 ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung,
+                                                                                                                                                        YÄnderungSchleifenwert,
+                                                                                                                                                        XÄnderungSchleifenwert),
+                                                                                                                                 LogikGrafikExtern => True);
             
             if
               KartenWert (KoordinatenExtern.EAchse).XAchse = KartenKonstanten.LeerXAchse

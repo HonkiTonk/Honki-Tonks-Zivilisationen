@@ -68,7 +68,7 @@ package body CursorplatzierungAltGrafik is
             -- Die EAchse später auch noch über eine Funktion die Änderung ermitteln oder einfach so lassen? äöü
             SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt.EAchse := SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAktuell.EAchse;
             
-            Koordinatenänderung.EAchse := 0;
+            Koordinatenänderung.EAchse := KartenKonstanten.LeerEAchseÄnderung;
             Koordinatenänderung.YAchse := AlteYAchseFestlegen (MauspositionExtern => Mausposition,
                                                                 YAchseAltExtern    => SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt.YAchse);
             

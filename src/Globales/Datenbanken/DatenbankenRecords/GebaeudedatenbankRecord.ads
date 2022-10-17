@@ -19,6 +19,7 @@ package GebaeudedatenbankRecord is
    
    -- Um das alles da rein zu basteln müsste man aber die Gebäudeumgebungsprüfung noch einmal deutlich überarbeiten. äöü
    -- Könnte man theoretisch um das vernichtete Feld kürzen, aber ob sich das lohnt? äöü
+   -- Wenn ich Leer mit reinnehme könnte ich daran prüfen ob überhaupt eines gebraucht wird und entsprechend die Prüfung verkürzen? Ist das sinnvoll? äöü
    type GrundArray is array (KartengrundDatentypen.Kartengrund_Vorhanden_Enum'Range) of Boolean;
    type FlussArray is array (KartengrundDatentypen.Kartenfluss_Vorhanden_Enum'Range) of Boolean;
    type RessourcenArray is array (KartengrundDatentypen.Kartenressourcen_Vorhanden_Enum'Range) of Boolean;
@@ -39,8 +40,6 @@ package GebaeudedatenbankRecord is
       BonusWirtschaft : BonusWirtschaftArray;
       BonusKampf : BonusKampfArray;
       
-      -- Wie könnte man da am besten eine Oder Verknüpfung einbauen? äöü
-      -- Aktuell ist von jedem Enum nur eine Auswahl möglich, das später auf mehrere erweitern? äöü
       GrundBenötigt : KartengrundDatentypen.Kartengrund_Enum;
       FlussBenötigt : Boolean;
       RessourceBenötigt : KartengrundDatentypen.Kartenressourcen_Enum;

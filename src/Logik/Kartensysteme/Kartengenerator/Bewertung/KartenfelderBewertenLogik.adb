@@ -3,9 +3,10 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with LadezeitenDatentypen;
+with Weltkarte;
+with KartenKonstanten;
 
 with FelderwerteFestlegenLogik;
-with Weltkarte;
 with LadezeitenLogik;
 
 package body KartenfelderBewertenLogik is
@@ -22,7 +23,7 @@ package body KartenfelderBewertenLogik is
       is begin
          
          Kartenbewertung (RasseExtern => RasseExtern,
-                          EbeneExtern => -1);
+                          EbeneExtern => KartenKonstanten.UnterflächeKonstante);
          
       end Unterfläche;
       
@@ -32,14 +33,14 @@ package body KartenfelderBewertenLogik is
       is begin
          
          Kartenbewertung (RasseExtern => RasseExtern,
-                          EbeneExtern => -2);
+                          EbeneExtern => KartenKonstanten.PlaneteninneresKonstante);
          
       end Planetenkern;
       
    begin
          
       Kartenbewertung (RasseExtern => RasseExtern,
-                       EbeneExtern => 0);
+                       EbeneExtern => KartenKonstanten.OberflächeKonstante);
          
    end KartenfelderBewerten;
    

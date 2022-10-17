@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with KartenDatentypen; use KartenDatentypen;
 with KartengrundDatentypen;
 with LadezeitenDatentypen;
+with KartenKonstanten;
 
 with SchreibeWeltkarte;
 
@@ -22,8 +23,8 @@ package body KartengeneratorWeltraumLogik is
          XAchseSchleife:
          for XAchseSchleifenwert in Weltkarte.KarteArray'First (3) .. Weltkarte.Karteneinstellungen.Kartengröße.XAchse loop
 
-            SchreibeWeltkarte.GleicherGrund (KoordinatenExtern => (2, YAchseSchleifenwert, XAchseSchleifenwert),
-                                          GrundExtern       => KartengrundDatentypen.Weltraum_Enum);
+            SchreibeWeltkarte.GleicherGrund (KoordinatenExtern => (KartenKonstanten.WeltraumKonstante, YAchseSchleifenwert, XAchseSchleifenwert),
+                                             GrundExtern       => KartengrundDatentypen.Weltraum_Enum);
                
          end loop XAchseSchleife;
             

@@ -138,6 +138,7 @@ package TextnummernKonstanten is
    FrageKIEinsetzen : constant Positive := 45;
    FrageGebäudeverkauf : constant Positive := 46;
    FrageSpielstandLöschen : constant Positive := 47;
+   FrageStadtSuchen : constant Positive := 48;
    
    
    

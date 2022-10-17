@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with LadezeitenDatentypen;
+with KartenKonstanten;
 
 with SchreibeWeltkarte;
 
@@ -30,11 +31,11 @@ package body KartengeneratorPlanetenkernLogik is
               and
                 XAchseSchleifenwert in XKernanfang .. XKernende
             then
-               SchreibeWeltkarte.GleicherGrund (KoordinatenExtern => (-2, YAchseSchleifenwert, XAchseSchleifenwert),
-                                             GrundExtern       => KartengrundDatentypen.Planetenkern_Enum);
+               SchreibeWeltkarte.GleicherGrund (KoordinatenExtern => (KartenKonstanten.PlaneteninneresKonstante, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                GrundExtern       => KartengrundDatentypen.Planetenkern_Enum);
                
             else
-               BasisgrundBestimmen (KoordinatenExtern => (-2, YAchseSchleifenwert, XAchseSchleifenwert));
+               BasisgrundBestimmen (KoordinatenExtern => (KartenKonstanten.PlaneteninneresKonstante, YAchseSchleifenwert, XAchseSchleifenwert));
             end if;
                
          end loop XAchseSchleife;
@@ -118,7 +119,7 @@ package body KartengeneratorPlanetenkernLogik is
       is
          when KartengrundDatentypen.Leer_Grund_Enum =>
             SchreibeWeltkarte.GleicherGrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
-                                          GrundExtern       => KartengrundDatentypen.Lava_Enum);
+                                             GrundExtern       => KartengrundDatentypen.Lava_Enum);
             return;
             
          when others =>
@@ -131,11 +132,11 @@ package body KartengeneratorPlanetenkernLogik is
       is
          when KartengrundDatentypen.Kartengrund_Kernfläche_Basis_Enum'Range =>
             SchreibeWeltkarte.GleicherGrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
-                                          GrundExtern       => WelcherGrund);
+                                             GrundExtern       => WelcherGrund);
             
          when others =>
             SchreibeWeltkarte.GleicherGrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
-                                          GrundExtern       => KartengrundDatentypen.Lava_Enum);
+                                             GrundExtern       => KartengrundDatentypen.Lava_Enum);
       end case;
       
    end BasisgrundBestimmen;

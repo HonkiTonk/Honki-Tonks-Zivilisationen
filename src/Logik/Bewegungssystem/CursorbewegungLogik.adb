@@ -17,23 +17,34 @@ package body CursorbewegungLogik is
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
+      -- Ist nötig, da sonst bei schnellem Scrollen die Ebene nicht korrekt gewechselt wird.
+      case
+        NachGrafiktask.GeheZu.XAchse
+      is
+         when KartenKonstanten.LeerXAchse =>
+            BasisKoordinaten := SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt;
+            
+         when others =>
+            BasisKoordinaten := NachGrafiktask.GeheZu;
+      end case;
+      
       -- Das Scrollen duch die Ebenen auch noch von den Ebenenübergangeinstellungen abhängig machen? äöü
       if
-        SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.EAchse = KartenKonstanten.WeltraumKonstante
+        BasisKoordinaten.EAchse = KartenKonstanten.WeltraumKonstante
         and
           RichtungExtern = TastenbelegungDatentypen.Ebene_Hoch_Enum
       then
-         KartenWert := (KartenKonstanten.PlaneteninneresKonstante, SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse, SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse);
+         KartenWert := (KartenKonstanten.PlaneteninneresKonstante, BasisKoordinaten.YAchse, BasisKoordinaten.XAchse);
            
       elsif
-        SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.EAchse = KartenKonstanten.PlaneteninneresKonstante
+        BasisKoordinaten.EAchse = KartenKonstanten.PlaneteninneresKonstante
         and
           RichtungExtern = TastenbelegungDatentypen.Ebene_Runter_Enum
       then
-         KartenWert := (KartenKonstanten.WeltraumKonstante, SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse, SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse);
+         KartenWert := (KartenKonstanten.WeltraumKonstante, BasisKoordinaten.YAchse, BasisKoordinaten.XAchse);
          
       else
-         KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
+         KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => BasisKoordinaten,
                                                                                                    ÄnderungExtern    => Richtung (RichtungExtern),
                                                                                                    LogikGrafikExtern => True);
       end if;

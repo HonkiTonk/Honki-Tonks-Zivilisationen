@@ -192,7 +192,7 @@ package body GebaeudeumgebungLogik is
          
       elsif
         True = LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                  WelchesGebäudeExtern  => AnforderungenExtern.NotwendigesGebäude)
+                                                 WelchesGebäudeExtern   => AnforderungenExtern.NotwendigesGebäude)
       then
          null;
          

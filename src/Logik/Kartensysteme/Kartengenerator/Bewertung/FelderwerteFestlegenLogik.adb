@@ -26,8 +26,10 @@ package body FelderwerteFestlegenLogik is
          for XAchseÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
                   
             KartenWertEins (KoordinatenExtern.EAchse) := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                                                ÄnderungExtern    => (0, YAchseÄnderungSchleifenwert, XAchseÄnderungSchleifenwert),
-                                                                                                                                LogikGrafikExtern => True);
+                                                                                                                                     ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung,
+                                                                                                                                                            YAchseÄnderungSchleifenwert,
+                                                                                                                                                            XAchseÄnderungSchleifenwert),
+                                                                                                                                     LogikGrafikExtern => True);
             
             case
               KartenWertEins (KoordinatenExtern.EAchse).XAchse
@@ -60,8 +62,10 @@ package body FelderwerteFestlegenLogik is
          for BewertungXÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
             
             KartenWertZwei (KoordinatenExtern.EAchse) := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                                                ÄnderungExtern    => (0, BewertungYÄnderungSchleifenwert, BewertungXÄnderungSchleifenwert),
-                                                                                                                                LogikGrafikExtern => True);
+                                                                                                                                     ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung,
+                                                                                                                                                            BewertungYÄnderungSchleifenwert,
+                                                                                                                                                            BewertungXÄnderungSchleifenwert),
+                                                                                                                                     LogikGrafikExtern => True);
 
             case
               KartenWertZwei (KoordinatenExtern.EAchse).XAchse
@@ -108,8 +112,8 @@ package body FelderwerteFestlegenLogik is
                 RasseExtern = RasseSchleifenwert)
          then
             SchreibeWeltkarte.Bewertung (KoordinatenExtern  => KoordinatenExtern,
-                                      RasseExtern        => RasseSchleifenwert,
-                                      BewertungExtern    => Gesamtbewertung (KoordinatenExtern.EAchse, RasseSchleifenwert));
+                                         RasseExtern        => RasseSchleifenwert,
+                                         BewertungExtern    => Gesamtbewertung (KoordinatenExtern.EAchse, RasseSchleifenwert));
             
          else
             null;

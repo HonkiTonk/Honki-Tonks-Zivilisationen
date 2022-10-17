@@ -35,15 +35,21 @@ private
    MittlererAbzug : constant EinheitenDatentypen.VorhandeneBewegungspunkte := 2.00;
    GroßerAbzug : constant EinheitenDatentypen.VorhandeneBewegungspunkte := 3.00;
    KeinAbzug : constant EinheitenDatentypen.VorhandeneBewegungspunkte := 0.00;
-      
-   type Bewegungsbonus_Enum is (Leer_Enum, Straße_Fluss_Enum, Schiene_Enum);
+   Bewegungsbonus : EinheitenDatentypen.VorhandeneBewegungspunkte;
    
-   Bewegungsbonus : Bewegungsbonus_Enum;
+   -- Sollte man das in was Globales verschieben? äöü
+   type Bewegungsbonus_Enum is (
+                                Leer_Enum,
+                                Fluss_Enum,
+                                Straße_Enum, Tunnel_Enum, Schiene_Enum
+                               );
    
    type BewegungsmodifikatorArray is array (Bewegungsbonus_Enum'Range) of EinheitenDatentypen.VorhandeneBewegungspunkte;
    Bewegungsmodifikator : constant BewegungsmodifikatorArray := (
                                                                  Leer_Enum         => 0.00,
-                                                                 Straße_Fluss_Enum => 0.50,
+                                                                 Fluss_Enum        => 0.50,
+                                                                 Straße_Enum       => 0.50,
+                                                                 Tunnel_Enum       => 0.50,
                                                                  Schiene_Enum      => 1.00
                                                                 );
    

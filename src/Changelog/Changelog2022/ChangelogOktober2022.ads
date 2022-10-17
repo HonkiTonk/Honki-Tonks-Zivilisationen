@@ -91,18 +91,24 @@ package ChangelogOktober2022 is
    
    
 
-   -- Version 0.04. => 0.04. (18.10.2022):
+   -- Version 0.04.1655 => 0.04. (18.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.1555 => 0.04. (17.10.2022):
+   -- Version 0.04.1555 => 0.04.1655 (17.10.2022):
    
    -- Lizenz von Apache 2.0 zu GPL 3.0 geändert.
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Bewegungsbonus um Tunnel erweitert und es gibt jetzt keinen Bonus mehr für Lavaflüsse.
+   -- Befehlsknopfpositionen an die vergangenen Änderungen angepasst.
+   -- Diverse Zahlen durch Konstante ersetzt.
+   -- Fehler korrigiert, welche bei sehr schnellem Scrollen dafür sorgte dass die Ebene nicht korrekt gewechselt wurde.
+   -- Neue Texturen erstellt.
+   -- Alte Texturen überarbeitet.
+   -- Vollständigen Satz an Verbesserungentexturen erstellt.
+   -- Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    
 
