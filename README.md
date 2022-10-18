@@ -1,8 +1,8 @@
-# Civ-Klon - Version: 0.04.1655
-4X-Rundenstrategiespiels im Stil von Civilization 1.
+# Civ-Klon - Version: 0.04.1750
+Der Code meines 4X-Rundenstrategiespiels.
 Geschrieben in Ada mit der Standardbibliothek und [ASFML](https://github.com/mgrojo/ASFML). Wird nur unter Linux intensiv getestet, sollte aber auch unter anderen Betriebssystemen problemlos funktionieren.
 
-4X turn-based strategy game in the style of Civilization 1.
+The Code of my 4X turn-based strategy game.
 Written in Ada using the Standard Library and [ASFML](https://github.com/mgrojo/ASFML). Only tested intensively under Linux, but should also work without problems under other operating systems.
 
 Mich unterstützen/Support me:
@@ -16,3 +16,5 @@ Bilder/Pictures:
 ![Forschung/Research](Beispielbilder/Forschung-Research.png)
 ![Stadt/City](Beispielbilder/Stadt-City.png)
 ![Bauen/Construct](Beispielbilder/Bauen-Construct.png)
+![Orbit/Orbit](Beispielbilder/Orbit-Orbit.png)
+![Unterirdisch/Underground](Beispielbilder/Unterirdisch-Underground.png)

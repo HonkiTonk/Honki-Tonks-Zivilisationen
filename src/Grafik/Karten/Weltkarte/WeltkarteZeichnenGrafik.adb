@@ -48,11 +48,11 @@ package body WeltkarteZeichnenGrafik is
                           PositionExtern         => PositionExtern,
                           DurchsichtigkeitExtern => TransparentsExtern);
       
-      RessourceZeichnen (KoordinatenExtern => KoordinatenExtern,
-                         PositionExtern    => PositionExtern);
-      
       FlussZeichnen (KoordinatenExtern => KoordinatenExtern,
                      PositionExtern    => PositionExtern);
+      
+      RessourceZeichnen (KoordinatenExtern => KoordinatenExtern,
+                         PositionExtern    => PositionExtern);
       
       WegZeichnen (KoordinatenExtern => KoordinatenExtern,
                    PositionExtern    => PositionExtern);
@@ -473,6 +473,18 @@ package body WeltkarteZeichnenGrafik is
    is begin
             
       StadtRasseNummer := StadtSuchenLogik.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
+      
+      case
+        KoordinatenExtern.EAchse
+      is
+         when KartenKonstanten.HimmelKonstante =>
+            Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KarteAccess,
+                                       color => Sf.Graphics.Color.sfBlack);
+            
+         when others =>
+            Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KarteAccess,
+                                       color => Sf.Graphics.Color.sfWhite);
+      end case;
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAccess,
                                          str  => To_Wide_Wide_String (Source => LeseStadtGebaut.Name (StadtRasseNummerExtern => StadtRasseNummer)));

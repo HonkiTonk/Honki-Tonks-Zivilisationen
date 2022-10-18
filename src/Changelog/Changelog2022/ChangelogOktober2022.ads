@@ -84,17 +84,24 @@ package ChangelogOktober2022 is
    
    
 
-   -- Version 0.04. => 0.04. (19.10.2022):
+   -- Version 0.04.1750 => 0.04. (19.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.1655 => 0.04. (18.10.2022):
+   -- Version 0.04.1655 => 0.04.1750 (18.10.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Neue Texturen erstellt.
+   -- Alte Texturen überarbeitet.
+   -- Ressourcen werden jetzt über den Flüssen angezeigt, statt wie bisher darunter.
+   -- Vollständigen Satz an Ressourcentexturen erstellt.
+   -- Fehler korrigiert der die Anzeige des Endbildes verhinderte.
+   -- Eigenes Bild für die Planetensprengung durch den Einsatz einer PZB erstellt.
+   -- Neue Beispielbilder erstellt.
+   -- Stadtnamen werden jetzt Schwarz angezeigt, wenn sie sich im Himmel befinden.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

@@ -64,7 +64,6 @@ package body RasseEntfernenLogik is
       SpielVariablen.CursorImSpiel (RasseExtern) := WichtigesRecordKonstanten.LeerCursor;
       SpielVariablen.Wichtiges (RasseExtern) := WichtigesRecordKonstanten.LeerWichtigesZeug;
       
-      SpielVariablen.Rassenbelegung (RasseExtern).Belegung := RassenDatentypen.Leer_Spieler_Enum;
       SpielVariablen.Rassenbelegung (RasseExtern).Besiegt := True;
       
    end RasseEntfernen;

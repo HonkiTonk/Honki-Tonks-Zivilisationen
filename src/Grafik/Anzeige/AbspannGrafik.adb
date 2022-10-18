@@ -25,17 +25,20 @@ package body AbspannGrafik is
                                             GrößeExtern          => Viewfläche,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Abspannbereich);
       
-      HintergrundGrafik.Rassenhintergrund (RasseExtern       => RasseExtern,
-                                           HintergrundExtern => AbspannExtern,
-                                           AbmessungenExtern => Viewfläche);
-      
       case
         AbspannExtern
       is
          when GrafikDatentypen.Planet_Vernichtet_Enum =>
+            HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.PZB_Ende_Hintergrund_Enum,
+                                           AbmessungenExtern => Viewfläche);
+            
             Viewfläche := PlanetVernichtet (ViewflächeExtern => Viewfläche);
             
          when GrafikDatentypen.Gewonnen_Enum =>
+            HintergrundGrafik.Rassenhintergrund (RasseExtern       => RasseExtern,
+                                                 HintergrundExtern => AbspannExtern,
+                                                 AbmessungenExtern => Viewfläche);
+            
             Viewfläche := Gewonnen (ViewflächeExtern => Viewfläche);
       end case;
       

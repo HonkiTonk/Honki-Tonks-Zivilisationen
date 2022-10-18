@@ -15,6 +15,7 @@
 --                      Anzeige der Karte kann jetzt auch unter Berücksichtigung des Seitenverhältnis erfolgen. Bessere Textskalierung eingebaut.
 --                      Einfache grafische Einstellmöglichkeiten eingebaut. Grafik für Kartenformen eingebaut.
 --                      Forschungserfolganzeige eingebaut. Rassenspezifische Hintergrund-, Einheiten- und Gebäudegrafiken ermöglicht.
+--                      Hintergrundbild für das PZB Ende eingebaut. Bessere Texturen erstellt.
 
 -- Einfache Musik/Sounds einbauen: Einlesesystem für Sound und rassenspezifische Musik eingebaut.
 
@@ -26,7 +27,6 @@
 -- Windowsversion ohne GPL kompilieren: Linux- und Windowsversion voneinander getrennt und so angepasst dass die entsprechenden Versionen der A/C/SFML verwendet werden.
 --                                      VM für das Kompilieren unter älteren Linuxversionen aufgesetzt.
 
--- Einmal den Code großflächig überarbeiten?
 -- Funktionsfähige Editoren einbauen? Es existiert ein Grundgerüst für die Kartenfelder.
 
 
