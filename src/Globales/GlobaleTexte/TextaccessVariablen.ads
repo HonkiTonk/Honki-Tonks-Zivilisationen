@@ -10,6 +10,7 @@ with StadtDatentypen;
 with ForschungenDatentypen;
 with SystemKonstanten;
 with MenueDatentypen;
+with Spieltexte;
 
 with InteraktionAuswahl;
 
@@ -29,15 +30,17 @@ package TextaccessVariablen is
    
    -- Für alle Varianten undefinierte Arrays anlegen? äöü
    type TextaccessArray is array (Positive range <>) of Sf.Graphics.sfText_Ptr;
+   
+   IntroAccess : constant TextaccessArray (Positive'First .. Spieltexte.IntroEnde) := (others => Sf.Graphics.Text.create);
+   OutroAccess : constant TextaccessArray (Positive'First .. Spieltexte.OutroEnde) := (others => Sf.Graphics.Text.create);
    -- Allgemeines
 
    -- Menüs
-   -- Die ganzen Arrays mal so anpassen wie das MenüsAccessArray, bzw. soweit wie das möglich ist.
-   -- Warum ist das SFML noch hier? äöü
+   -- Die ganzen Arrays mal so anpassen wie das MenüsAccessArray, bzw. soweit wie das möglich ist. äöü
    type MenüsAccessArray is array (InteraktionAuswahl.PositionenMenüeinträgeArray'Range (1), InteraktionAuswahl.PositionenMenüeinträgeArray'Range (2)) of Sf.Graphics.sfText_Ptr;
-   MenüsSFMLAccess : constant MenüsAccessArray := (others => (others => Sf.Graphics.Text.create));
+   MenüsAccess : constant MenüsAccessArray := (others => (others => Sf.Graphics.Text.create));
    
-   SteuerungSFMLAccess : constant TextaccessArray (1 .. SystemKonstanten.LängstesMenü) := (others => Sf.Graphics.Text.create);
+   SteuerungAccess : constant TextaccessArray (1 .. SystemKonstanten.LängstesMenü) := (others => Sf.Graphics.Text.create);
    
    SpielstandAccess : constant TextaccessArray (InteraktionAuswahl.PositionenSpielstand'Range) := (others => Sf.Graphics.Text.create);
    -- Menüs

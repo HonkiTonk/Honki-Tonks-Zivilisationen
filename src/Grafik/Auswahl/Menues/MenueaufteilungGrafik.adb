@@ -9,8 +9,6 @@ with AllgemeineViewsGrafik;
 with DoppelmenueGrafik;
 with SpielstandmenueGrafik;
 
--- Hier bekommt man bestimmt auch noch irgendwie die Auswahl für die Bau- und Forschungsmenü rein. äöü
--- Entsprechende Umwandlungen in den beiden Menüs auch noch anpassen und die Mehrfachauswahl so aus dem NachGrafiktask rausbekommen. äöü
 package body MenueaufteilungGrafik is
 
    procedure Menüaufteilung

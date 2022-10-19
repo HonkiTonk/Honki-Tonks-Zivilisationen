@@ -22,12 +22,24 @@ package AbspannGrafik is
 
 private
 
+   AllgemeineTextzeilen : constant Positive := 2;
+
    Textbreite : Float;
 
    Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartgrößeView;
+   NeueViewfläche : Sf.System.Vector2.sfVector2f;
    Textposition : Sf.System.Vector2.sfVector2f;
 
 
+
+   function AllgemeinerText
+     return Sf.System.Vector2.sfVector2f
+     with
+       Post => (
+                  AllgemeinerText'Result.x >= 0.00
+                and
+                  AllgemeinerText'Result.y >= 0.00
+               );
 
    function PlanetVernichtet
      (ViewflächeExtern : in Sf.System.Vector2.sfVector2f)

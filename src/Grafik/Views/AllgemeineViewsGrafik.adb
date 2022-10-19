@@ -19,12 +19,21 @@ package body AllgemeineViewsGrafik is
       
    procedure Überschrift
      (ÜberschriftExtern : in Wide_Wide_String;
-      HintergrundExtern : in GrafikDatentypen.Hintergrund_Enum)
+      HintergrundExtern : in GrafikDatentypen.Hintergrund_Enum;
+      SpielenamenExtern : in Boolean)
    is begin
       
-      Viewfläche (Überschrift_Enum) := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (Überschrift_Enum),
-                                                                                            VerhältnisExtern => (GrafikRecordKonstanten.Überschriftbereich.width,
-                                                                                                                  GrafikRecordKonstanten.Überschriftbereich.height));
+      case
+        SpielenamenExtern
+      is
+         when True =>
+            null;
+            
+         when False =>
+            Viewfläche (Überschrift_Enum) := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (Überschrift_Enum),
+                                                                                                  VerhältnisExtern => (GrafikRecordKonstanten.Überschriftbereich.width,
+                                                                                                                        GrafikRecordKonstanten.Überschriftbereich.height));
+      end case;
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.ÜberschriftviewAccess,
                                             GrößeExtern          => Viewfläche (Überschrift_Enum),
@@ -51,7 +60,7 @@ package body AllgemeineViewsGrafik is
       
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                       TextAccessExtern => TextaccessVariablen.ÜberschriftAccess,
-                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel + TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
 
       Viewfläche (Überschrift_Enum) := (Textbreite, Textposition.y);
          
@@ -68,12 +77,14 @@ package body AllgemeineViewsGrafik is
       is
          when MenueDatentypen.Menü_Ohne_Überschrift_Enum'Range =>
             Überschrift (ÜberschriftExtern => SonstigesKonstanten.Spielname,
-                          HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum);
+                          HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
+                          SpielenamenExtern => True);
             
          when others =>
             Überschrift (ÜberschriftExtern => MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => 1,
                                                                                              WelchesMenüExtern => WelchesMenüExtern),
-                          HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum);
+                          HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
+                          SpielenamenExtern => False);
       end case;
             
    end ÜberschriftErmitteln;

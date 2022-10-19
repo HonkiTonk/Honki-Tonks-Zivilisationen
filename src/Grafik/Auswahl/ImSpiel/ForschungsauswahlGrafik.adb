@@ -40,7 +40,8 @@ package body ForschungsauswahlGrafik is
    is begin
       
       AllgemeineViewsGrafik.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => Meldungstexte.Frage (TextnummernKonstanten.FrageForschungsprojekt)),
-                                          HintergrundExtern => GrafikDatentypen.Forschung_Hintergrund_Enum);
+                                          HintergrundExtern => GrafikDatentypen.Forschung_Hintergrund_Enum,
+                                          SpielenamenExtern => False);
             
       AktuelleAuswahl := ForschungenDatentypen.ForschungIDMitNullWert (AktuelleAuswahlExtern);
       

@@ -33,23 +33,23 @@ package body ZusatztextDiplomatieGrafik is
       TextSchleife:
       for TextSchleifenwert in SystemKonstanten.EndeAbzugGrafik (MenueDatentypen.Diplomatie_Menü_Enum) + 1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Diplomatie_Menü_Enum) loop
          
-         Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.MenüsSFMLAccess (MenueDatentypen.Diplomatie_Menü_Enum, TextSchleifenwert),
+         Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.MenüsAccess (MenueDatentypen.Diplomatie_Menü_Enum, TextSchleifenwert),
                                                                                  ViewbreiteExtern => RealeViewbreiteExtern);
       
-         Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.MenüsSFMLAccess (MenueDatentypen.Diplomatie_Menü_Enum, TextSchleifenwert),
+         Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.MenüsAccess (MenueDatentypen.Diplomatie_Menü_Enum, TextSchleifenwert),
                                        position => Textposition);
          
-         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.MenüsSFMLAccess (MenueDatentypen.Diplomatie_Menü_Enum, TextSchleifenwert),
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.MenüsAccess (MenueDatentypen.Diplomatie_Menü_Enum, TextSchleifenwert),
                                             str  => TextSetzen (TextnummerExtern => TextSchleifenwert));
       
-         Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.MenüsSFMLAccess (MenueDatentypen.Diplomatie_Menü_Enum, TextSchleifenwert),
+         Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.MenüsAccess (MenueDatentypen.Diplomatie_Menü_Enum, TextSchleifenwert),
                                                                              TextbreiteExtern => RealeViewbreiteExtern);
       
          Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                            text         => TextaccessVariablen.MenüsSFMLAccess (MenueDatentypen.Diplomatie_Menü_Enum, TextSchleifenwert));
+                                            text         => TextaccessVariablen.MenüsAccess (MenueDatentypen.Diplomatie_Menü_Enum, TextSchleifenwert));
       
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                         TextAccessExtern => TextaccessVariablen.MenüsSFMLAccess (MenueDatentypen.Diplomatie_Menü_Enum, TextSchleifenwert),
+                                                                         TextAccessExtern => TextaccessVariablen.MenüsAccess (MenueDatentypen.Diplomatie_Menü_Enum, TextSchleifenwert),
                                                                          ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
          
       end loop TextSchleife;

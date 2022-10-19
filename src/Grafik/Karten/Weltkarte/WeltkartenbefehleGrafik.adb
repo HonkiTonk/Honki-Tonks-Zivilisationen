@@ -101,26 +101,26 @@ package body WeltkartenbefehleGrafik is
             -- Noch einen roten Knopf für die Textvariante einbauen. äöü
             
          else
-            Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.SteuerungSFMLAccess (Aktuelleposition),
+            Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.SteuerungAccess (Aktuelleposition),
                                                                                     ViewbreiteExtern => EinheitenViewfläche.x);
             
-            Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.SteuerungSFMLAccess (Aktuelleposition),
+            Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.SteuerungAccess (Aktuelleposition),
                                           position => Textposition);
          
-            Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.SteuerungSFMLAccess (Aktuelleposition),
+            Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.SteuerungAccess (Aktuelleposition),
                                                                                 TextbreiteExtern => Textbreite);
                   
-            Textbox := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SteuerungSFMLAccess (Aktuelleposition));
+            Textbox := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SteuerungAccess (Aktuelleposition));
             Textbox.left := 0.00;
             Textbox.width := EinheitenViewfläche.x;
             InteraktionAuswahl.PositionenEinheitenbefehle (PositionSchleifenwert) := Textbox;
          
             Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                            TextAccessExtern => TextaccessVariablen.SteuerungSFMLAccess (Aktuelleposition),
+                                                                            TextAccessExtern => TextaccessVariablen.SteuerungAccess (Aktuelleposition),
                                                                             ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
          
             Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                               text         => TextaccessVariablen.SteuerungSFMLAccess (Aktuelleposition));
+                                               text         => TextaccessVariablen.SteuerungAccess (Aktuelleposition));
          end if;
          
          Aktuelleposition := Aktuelleposition + 1;
@@ -241,26 +241,26 @@ package body WeltkartenbefehleGrafik is
       PositionenSchleife:
       for PositionSchleifenwert in InteraktionAuswahl.PositionenKartenbefehleArray'Range loop
          
-         Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.SteuerungSFMLAccess (Aktuelleposition),
+         Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.SteuerungAccess (Aktuelleposition),
                                                                                  ViewbreiteExtern => KartenbefehleViewfläche.x);
          
-         Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.SteuerungSFMLAccess (Aktuelleposition),
+         Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.SteuerungAccess (Aktuelleposition),
                                        position => Textposition);
          
-         Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.SteuerungSFMLAccess (Aktuelleposition),
+         Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.SteuerungAccess (Aktuelleposition),
                                                                              TextbreiteExtern => Textbreite);
          
-         Textbox := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SteuerungSFMLAccess (Aktuelleposition));
+         Textbox := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SteuerungAccess (Aktuelleposition));
          Textbox.left := 0.00;
          Textbox.width := KartenbefehleViewfläche.x;
          InteraktionAuswahl.PositionenKartenbefehle (PositionSchleifenwert) := Textbox;
          
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                         TextAccessExtern => TextaccessVariablen.SteuerungSFMLAccess (Aktuelleposition),
+                                                                         TextAccessExtern => TextaccessVariablen.SteuerungAccess (Aktuelleposition),
                                                                          ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
          
          Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                            text         => TextaccessVariablen.SteuerungSFMLAccess (Aktuelleposition));
+                                            text         => TextaccessVariablen.SteuerungAccess (Aktuelleposition));
          
          
          Aktuelleposition := Aktuelleposition + 1;

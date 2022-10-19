@@ -33,7 +33,14 @@ package body ZeilenumbruchberechnungGrafik is
       ZeilenumbruchSchleife:
       loop
          
-         Zwischenwert := -1;
+         if
+           SchleifenAnfang > SchleifenEnde
+         then
+            exit ZeilenumbruchSchleife;
+            
+         else
+            Zwischenwert := -1;
+         end if;
       
          TextbereichSchleife:
          for TextbereichSchleifenwert in SchleifenAnfang .. SchleifenEnde loop

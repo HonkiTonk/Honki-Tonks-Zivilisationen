@@ -61,14 +61,14 @@ package body CursorplatzierungAltGrafik is
                                                                           view         => Views.KartenviewAccess);
             end if;
             
-            -- Hier muss noch eine Prüfung rein wo sich die Einheit befindet. äöü
-            -- Erstens weil man die Einheiten jetzt wieder mit der Tastatur bewegen kann und man so sein Sichtfeld ohne scrollen verlassen kann. äöü
-            -- Zweitens weil beim rückwärts verschobenem Übergang man sonst die Einheit immer am obersten Rand sieht. äöü
-            
             -- Die EAchse später auch noch über eine Funktion die Änderung ermitteln oder einfach so lassen? äöü
             SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt.EAchse := SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAktuell.EAchse;
             
             Koordinatenänderung.EAchse := KartenKonstanten.LeerEAchseÄnderung;
+            
+            -- Hier muss noch eine Prüfung rein wo sich die Einheit befindet. äöü
+            -- Erstens weil man die Einheiten jetzt wieder mit der Tastatur bewegen kann und man so sein Sichtfeld ohne scrollen verlassen kann. äöü
+            -- Zweitens weil beim rückwärts verschobenem Übergang man sonst die Einheit immer am obersten Rand sieht. äöü
             Koordinatenänderung.YAchse := AlteYAchseFestlegen (MauspositionExtern => Mausposition,
                                                                 YAchseAltExtern    => SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt.YAchse);
             

@@ -31,7 +31,8 @@ package body VerkaufsauswahlGrafik is
    is begin
       
       AllgemeineViewsGrafik.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => Meldungstexte.Frage (TextnummernKonstanten.FrageGebäudeverkauf)),
-                                          HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum);
+                                          HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
+                                          SpielenamenExtern => False);
       
       Gebäude (AuswahlExtern    => AktuelleAuswahlExtern,
                 ViewnummerExtern => 1,

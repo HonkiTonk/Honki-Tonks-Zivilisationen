@@ -17,7 +17,6 @@ package GlobaleTexte is
    AllgemeineInformationen : TexteArray (1 .. 16) := (others => TextKonstanten.FehlenderText);
    Würdigung : TexteArray (1 .. 1) := (others => TextKonstanten.FehlenderText);
    DiplomatieKI : TexteArray (1 .. 3) := (others => TextKonstanten.FehlenderText);
-   Endmeldungen : TexteArray (1 .. 3) := (others => TextKonstanten.FehlenderText);
    Handelsmenü : TexteArray (1 .. 10) := (others => TextKonstanten.FehlenderText);
    DiplomatieStatus : TexteArray (1 .. 4) := (others => TextKonstanten.FehlenderText);
    Angebot : TexteArray (1 .. 2) := (others => TextKonstanten.FehlenderText);

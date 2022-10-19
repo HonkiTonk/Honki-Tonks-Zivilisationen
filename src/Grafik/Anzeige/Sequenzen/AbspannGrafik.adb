@@ -6,11 +6,13 @@ with Sf.Graphics.Text;
 
 with Views;
 with TextaccessVariablen;
+-- with Spieltexte;
 
 with ViewsEinstellenGrafik;
 with HintergrundGrafik;
 with EinstellungenGrafik;
 with TextberechnungenBreiteGrafik;
+with TextberechnungenHoeheGrafik;
 
 package body AbspannGrafik is
 
@@ -46,10 +48,47 @@ package body AbspannGrafik is
    
    
    
-   function PlanetVernichtet
-     (ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
+   function AllgemeinerText
      return Sf.System.Vector2.sfVector2f
    is begin
+      
+      Textbreite := 0.00;
+      Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
+      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
+      
+      AllgemeinSchleife:
+      for AllgemeinSchleifenwert in TextaccessVariablen.OutroAccess'First .. AllgemeineTextzeilen loop
+         
+         Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.OutroAccess (AllgemeinSchleifenwert),
+                                       position => Textposition);
+         
+         Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.OutroAccess (AllgemeinSchleifenwert),
+                                                                             TextbreiteExtern => Textbreite);
+         Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                         TextAccessExtern => TextaccessVariablen.OutroAccess (AllgemeinSchleifenwert),
+                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+      
+         Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.OutroAccess (AllgemeinSchleifenwert),
+                                       position => Textposition);
+        
+         Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
+                                            text         => TextaccessVariablen.OutroAccess (AllgemeinSchleifenwert));
+         
+      end loop AllgemeinSchleife;
+      
+      return (Textbreite, Textposition.y);
+      
+   end AllgemeinerText;
+     
+   
+   
+   
+   function PlanetVernichtet
+     (ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
+      return Sf.System.Vector2.sfVector2f
+   is begin
+      
+      NeueViewfläche := AllgemeinerText;
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TextAccess,
                                          str  => "oO");
@@ -58,7 +97,8 @@ package body AbspannGrafik is
                                                                               ViewbreiteExtern => ViewflächeExtern.x);
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.TextAccess,
                                                                           TextbreiteExtern => 0.00);
-      Textposition.y := ViewflächeExtern.y / 2.00;
+      Textposition.y := NeueViewfläche.y;
+      Textbreite := NeueViewfläche.x;
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.TextAccess,
                                     position => Textposition);
@@ -74,8 +114,10 @@ package body AbspannGrafik is
    
    function Gewonnen
      (ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
-     return Sf.System.Vector2.sfVector2f
+      return Sf.System.Vector2.sfVector2f
    is begin
+      
+      NeueViewfläche := AllgemeinerText;
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TextAccess,
                                          str  => "\o/");
@@ -84,7 +126,8 @@ package body AbspannGrafik is
                                                                               ViewbreiteExtern => ViewflächeExtern.x);
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.TextAccess,
                                                                           TextbreiteExtern => 0.00);
-      Textposition.y := ViewflächeExtern.y / 2.00;
+      Textposition.y := NeueViewfläche.y;
+      Textbreite := NeueViewfläche.x;
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.TextAccess,
                                     position => Textposition);

@@ -79,89 +79,89 @@ package body SteuerungsmenueGrafik is
       if
         AuswahlExtern = -1
       then
-         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SteuerungSFMLAccess (SystemKonstanten.AllgemeineSteuerung),
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SteuerungAccess (SystemKonstanten.AllgemeineSteuerung),
                                     color => TexteinstellungenGrafik.Schriftfarben.FarbeAusgewähltText);
          
       elsif
         WelcheSteuerungExtern = SteuerungsauswahlLogik.Kategorie_Eins_Enum
       then
-         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SteuerungSFMLAccess (SystemKonstanten.AllgemeineSteuerung),
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SteuerungAccess (SystemKonstanten.AllgemeineSteuerung),
                                     color => TexteinstellungenGrafik.Schriftfarben.FarbeMenschText);
            
       else
-         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SteuerungSFMLAccess (SystemKonstanten.AllgemeineSteuerung),
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SteuerungAccess (SystemKonstanten.AllgemeineSteuerung),
                                     color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
       end if;
          
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.SteuerungSFMLAccess (SystemKonstanten.AllgemeineSteuerung),
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.SteuerungAccess (SystemKonstanten.AllgemeineSteuerung),
                                     position => Textposition);
       
-      InteraktionAuswahl.PositionenSteuerungsaufteilung (1) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SteuerungSFMLAccess (SystemKonstanten.AllgemeineSteuerung));
+      InteraktionAuswahl.PositionenSteuerungsaufteilung (1) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SteuerungAccess (SystemKonstanten.AllgemeineSteuerung));
       
-      Textposition.x := Textposition.x + Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SteuerungSFMLAccess (SystemKonstanten.AllgemeineSteuerung)).width
+      Textposition.x := Textposition.x + Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SteuerungAccess (SystemKonstanten.AllgemeineSteuerung)).width
         + 2.00 * TextberechnungenBreiteGrafik.SpaltenabstandVariabel;
       
       Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                         text         => TextaccessVariablen.SteuerungSFMLAccess (SystemKonstanten.AllgemeineSteuerung));
+                                         text         => TextaccessVariablen.SteuerungAccess (SystemKonstanten.AllgemeineSteuerung));
       
       if
         AuswahlExtern = -2
       then
-         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SteuerungSFMLAccess (SystemKonstanten.Einheitensteuerung),
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SteuerungAccess (SystemKonstanten.Einheitensteuerung),
                                     color => TexteinstellungenGrafik.Schriftfarben.FarbeAusgewähltText);
          
       elsif
         WelcheSteuerungExtern = SteuerungsauswahlLogik.Kategorie_Zwei_Enum
       then
-         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SteuerungSFMLAccess (SystemKonstanten.Einheitensteuerung),
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SteuerungAccess (SystemKonstanten.Einheitensteuerung),
                                     color => TexteinstellungenGrafik.Schriftfarben.FarbeMenschText);
            
       else
-         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SteuerungSFMLAccess (SystemKonstanten.Einheitensteuerung),
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SteuerungAccess (SystemKonstanten.Einheitensteuerung),
                                     color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
       end if;
          
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.SteuerungSFMLAccess (SystemKonstanten.Einheitensteuerung),
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.SteuerungAccess (SystemKonstanten.Einheitensteuerung),
                                     position => Textposition);
       
-      InteraktionAuswahl.PositionenSteuerungsaufteilung (2) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SteuerungSFMLAccess (SystemKonstanten.Einheitensteuerung));
+      InteraktionAuswahl.PositionenSteuerungsaufteilung (2) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SteuerungAccess (SystemKonstanten.Einheitensteuerung));
       
-      Textposition.x := Textposition.x + Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SteuerungSFMLAccess (SystemKonstanten.Einheitensteuerung)).width
+      Textposition.x := Textposition.x + Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SteuerungAccess (SystemKonstanten.Einheitensteuerung)).width
         + 2.00 * TextberechnungenBreiteGrafik.SpaltenabstandVariabel;
       
       Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                         text         => TextaccessVariablen.SteuerungSFMLAccess (SystemKonstanten.Einheitensteuerung));
+                                         text         => TextaccessVariablen.SteuerungAccess (SystemKonstanten.Einheitensteuerung));
       
       if
         AuswahlExtern = -3
       then
-         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SteuerungSFMLAccess (SystemKonstanten.Stadtsteuerung),
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SteuerungAccess (SystemKonstanten.Stadtsteuerung),
                                     color => TexteinstellungenGrafik.Schriftfarben.FarbeAusgewähltText);
          
       elsif
         WelcheSteuerungExtern = SteuerungsauswahlLogik.Kategorie_Drei_Enum
       then
-         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SteuerungSFMLAccess (SystemKonstanten.Stadtsteuerung),
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SteuerungAccess (SystemKonstanten.Stadtsteuerung),
                                     color => TexteinstellungenGrafik.Schriftfarben.FarbeMenschText);
          
       else
-         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SteuerungSFMLAccess (SystemKonstanten.Stadtsteuerung),
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SteuerungAccess (SystemKonstanten.Stadtsteuerung),
                                     color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
       end if;
          
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.SteuerungSFMLAccess (SystemKonstanten.Stadtsteuerung),
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.SteuerungAccess (SystemKonstanten.Stadtsteuerung),
                                     position => Textposition);
       
-      InteraktionAuswahl.PositionenSteuerungsaufteilung (3) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SteuerungSFMLAccess (SystemKonstanten.Stadtsteuerung));
+      InteraktionAuswahl.PositionenSteuerungsaufteilung (3) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SteuerungAccess (SystemKonstanten.Stadtsteuerung));
       
-      Textposition.x := Textposition.x + Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SteuerungSFMLAccess (SystemKonstanten.Stadtsteuerung)).width
+      Textposition.x := Textposition.x + Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SteuerungAccess (SystemKonstanten.Stadtsteuerung)).width
         + 2.00 * TextberechnungenBreiteGrafik.SpaltenabstandVariabel;
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                      TextAccessExtern => TextaccessVariablen.SteuerungSFMLAccess (SystemKonstanten.Stadtsteuerung),
+                                                                      TextAccessExtern => TextaccessVariablen.SteuerungAccess (SystemKonstanten.Stadtsteuerung),
                                                                       ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       
       Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                         text         => TextaccessVariablen.SteuerungSFMLAccess (SystemKonstanten.Stadtsteuerung));
+                                         text         => TextaccessVariablen.SteuerungAccess (SystemKonstanten.Stadtsteuerung));
       
       return (Textposition.x, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       
@@ -196,7 +196,7 @@ package body SteuerungsmenueGrafik is
       Textbreite := 0.00;
       
       TextSchleife:
-      for TextSchleifenwert in TextaccessVariablen.SteuerungSFMLAccess'Range loop
+      for TextSchleifenwert in TextaccessVariablen.SteuerungAccess'Range loop
          
          if
            TextSchleifenwert in ArrayAnfang .. ArrayEnde
@@ -205,26 +205,26 @@ package body SteuerungsmenueGrafik is
          then
             TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => TextSchleifenwert,
                                                    AuswahlExtern    => AuswahlExtern,
-                                                   TextaccessExtern => TextaccessVariablen.SteuerungSFMLAccess (TextSchleifenwert));
+                                                   TextaccessExtern => TextaccessVariablen.SteuerungAccess (TextSchleifenwert));
             
-            Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.SteuerungSFMLAccess (TextSchleifenwert),
+            Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.SteuerungAccess (TextSchleifenwert),
                                           position => Textposition);
             
-            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.SteuerungSFMLAccess (TextSchleifenwert),
+            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.SteuerungAccess (TextSchleifenwert),
                                                str  => TextFestlegen (WelcheSteuerungExtern => WelcheSteuerungExtern,
                                                                       WelcheZeileExtern     => TextSchleifenwert));
             
-            Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.SteuerungSFMLAccess (TextSchleifenwert),
+            Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.SteuerungAccess (TextSchleifenwert),
                                                                                 TextbreiteExtern => Textbreite);
             
             Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                            TextAccessExtern => TextaccessVariablen.SteuerungSFMLAccess (TextSchleifenwert),
+                                                                            TextAccessExtern => TextaccessVariablen.SteuerungAccess (TextSchleifenwert),
                                                                             ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
             
             Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                               text         => TextaccessVariablen.SteuerungSFMLAccess (TextSchleifenwert));
+                                               text         => TextaccessVariablen.SteuerungAccess (TextSchleifenwert));
             
-            InteraktionAuswahl.PositionenSteuerung (TextSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SteuerungSFMLAccess (TextSchleifenwert));
+            InteraktionAuswahl.PositionenSteuerung (TextSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SteuerungAccess (TextSchleifenwert));
             
          elsif
            TextSchleifenwert = SystemKonstanten.Einheitensteuerung

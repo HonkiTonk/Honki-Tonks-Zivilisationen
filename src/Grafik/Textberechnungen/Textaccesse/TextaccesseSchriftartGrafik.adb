@@ -51,6 +51,26 @@ package body TextaccesseSchriftartGrafik is
       Sf.Graphics.Text.setFont (text => TextaccessVariablen.Spielmeldung,
                                 font => TexteinstellungenGrafik.SchriftartAccess);
       
+      
+      
+      IntroSchleife:
+      for IntroSchleifenwert in TextaccessVariablen.IntroAccess'Range loop
+         
+         Sf.Graphics.Text.setFont (text => TextaccessVariablen.IntroAccess (IntroSchleifenwert),
+                                   font => TexteinstellungenGrafik.SchriftartAccess);
+         
+      end loop IntroSchleife;
+      
+      
+      
+      OutroSchleife:
+      for OutroSchleifenwert in TextaccessVariablen.OutroAccess'Range loop
+         
+         Sf.Graphics.Text.setFont (text => TextaccessVariablen.OutroAccess (OutroSchleifenwert),
+                                   font => TexteinstellungenGrafik.SchriftartAccess);
+         
+      end loop OutroSchleife;
+      
    end Allgemeines;
    
    
@@ -63,7 +83,7 @@ package body TextaccesseSchriftartGrafik is
          MenüsInnenSchleife:
          for InnenSchleifenwert in TextaccessVariablen.MenüsAccessArray'Range (2) loop
             
-            Sf.Graphics.Text.setFont (text => TextaccessVariablen.MenüsSFMLAccess (AußenSchleifenwert, InnenSchleifenwert),
+            Sf.Graphics.Text.setFont (text => TextaccessVariablen.MenüsAccess (AußenSchleifenwert, InnenSchleifenwert),
                                       font => TexteinstellungenGrafik.SchriftartAccess);
             
          end loop MenüsInnenSchleife;
@@ -72,9 +92,9 @@ package body TextaccesseSchriftartGrafik is
       
       
       SteuerungSchleife:
-      for SteuerungSchleifenwert in TextaccessVariablen.SteuerungSFMLAccess'Range loop
+      for SteuerungSchleifenwert in TextaccessVariablen.SteuerungAccess'Range loop
          
-         Sf.Graphics.Text.setFont (text => TextaccessVariablen.SteuerungSFMLAccess (SteuerungSchleifenwert),
+         Sf.Graphics.Text.setFont (text => TextaccessVariablen.SteuerungAccess (SteuerungSchleifenwert),
                                    font => TexteinstellungenGrafik.SchriftartAccess);
          
       end loop SteuerungSchleife;

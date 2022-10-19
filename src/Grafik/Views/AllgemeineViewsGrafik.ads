@@ -12,7 +12,8 @@ package AllgemeineViewsGrafik is
    
    procedure Überschrift
      (ÜberschriftExtern : in Wide_Wide_String;
-      HintergrundExtern : in GrafikDatentypen.Hintergrund_Enum);
+      HintergrundExtern : in GrafikDatentypen.Hintergrund_Enum;
+      SpielenamenExtern : in Boolean);
    
    procedure ÜberschriftErmitteln
      (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum);

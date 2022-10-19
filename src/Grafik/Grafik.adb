@@ -165,8 +165,8 @@ package body Grafik is
             
             -- Später eine bessere Variante dafür bauen. äöü
             if
-              Startzeit + ZeitKonstanten.Introzeit < Ada.Calendar.Clock
-              or
+            --  Startzeit + ZeitKonstanten.Introzeit < Ada.Calendar.Clock
+             -- or
                 NachGrafiktask.IntroAnzeigen = False
             then
                NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;

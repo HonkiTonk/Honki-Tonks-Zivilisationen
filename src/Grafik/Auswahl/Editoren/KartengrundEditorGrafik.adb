@@ -17,7 +17,8 @@ package body KartengrundEditorGrafik is
    is begin
       
       AllgemeineViewsGrafik.Überschrift (ÜberschriftExtern => "Test",
-                                          HintergrundExtern => GrafikDatentypen.Auswahl_Hintergrund_Enum);
+                                          HintergrundExtern => GrafikDatentypen.Auswahl_Hintergrund_Enum,
+                                          SpielenamenExtern => False);
       
       Viewfläche := ViewsEinstellenGrafik.ViewflächeAuflösungAnpassen (ViewflächeExtern => Viewfläche);
       

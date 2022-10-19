@@ -35,29 +35,29 @@ package body KartenformmenueGrafik is
       
          TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => PositionSchleifenwert,
                                                 AuswahlExtern    => AktuelleAuswahlExtern + 1,
-                                                TextaccessExtern => TextaccessVariablen.MenüsSFMLAccess (MenueDatentypen.Kartenform_Menü_Enum, PositionSchleifenwert));
+                                                TextaccessExtern => TextaccessVariablen.MenüsAccess (MenueDatentypen.Kartenform_Menü_Enum, PositionSchleifenwert));
 
-         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.MenüsSFMLAccess (WelchesMenüExtern, PositionSchleifenwert),
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert),
                                             str  => TextEinlesen (SchleifenwertExtern => PositionSchleifenwert));
          
-         Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.MenüsSFMLAccess (WelchesMenüExtern, PositionSchleifenwert),
+         Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert),
                                                                                  ViewbreiteExtern => ViewflächeExtern.x);
          
-         Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.MenüsSFMLAccess (WelchesMenüExtern, PositionSchleifenwert),
+         Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert),
                                        position => Textposition);
 
-         Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.MenüsSFMLAccess (WelchesMenüExtern, PositionSchleifenwert),
+         Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert),
                                                                            TextbreiteExtern => Textbreite);
          
          InteraktionAuswahl.PositionenMenüeinträge (WelchesMenüExtern, PositionSchleifenwert - 1)
-           := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.MenüsSFMLAccess (WelchesMenüExtern, PositionSchleifenwert));
+           := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert));
          
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                         TextAccessExtern => TextaccessVariablen.MenüsSFMLAccess (WelchesMenüExtern, PositionSchleifenwert),
+                                                                         TextAccessExtern => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert),
                                                                          ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
          
          Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                            text         => TextaccessVariablen.MenüsSFMLAccess (WelchesMenüExtern, PositionSchleifenwert));
+                                            text         => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert));
          
       end loop PositionenSchleife;
 

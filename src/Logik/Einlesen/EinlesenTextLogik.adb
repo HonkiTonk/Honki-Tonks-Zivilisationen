@@ -11,6 +11,7 @@ with Kartentexte;
 with GlobaleTexte;
 with Meldungstexte;
 with Befehlstexte;
+with Spieltexte;
 
 with Warnung;
 with EinlesenAllgemeinesLogik;
@@ -147,52 +148,55 @@ package body EinlesenTextLogik is
             DiplomatieKI;
                
          when 23 =>
-            Endmeldungen;
-               
-         when 24 =>
             Handelsmenü;
                
-         when 25 =>
+         when 24 =>
             DiplomatieStatus;
                
-         when 26 =>
+         when 25 =>
             Angebot;
                
-         when 27 =>
+         when 26 =>
             Fehlermeldung;
                
-         when 28 =>
+         when 27 =>
             Ladezeit;
                
-         when 29 =>
+         when 28 =>
             Frage;
                
-         when 30 =>
+         when 29 =>
             ZeugSachen;
                
-         when 31 =>
+         when 30 =>
             Editoren;
                
-         when 32 =>
+         when 31 =>
             Wege;
                
-         when 33 =>
+         when 32 =>
             Kartenflüsse;
                
-         when 34 =>
+         when 33 =>
             Kartenressourcen;
                
-         when 35 =>
+         when 34 =>
             Einstellungen;
                
-         when 36 =>
+         when 35 =>
             Kartenpole;
             
-         when 37 =>
+         when 36 =>
             Stadtbefehle;
             
-         when 38 =>
+         when 37 =>
             Spielstandmenü;
+            
+         when 38 =>
+            Intro;
+            
+         when 39 =>
+            Outro;
             
          when others =>
             Fehler.LogikFehler (FehlermeldungExtern => "EinlesenText.EinlesenAufteilen: Mehr eingelesen als möglich.");
@@ -732,30 +736,6 @@ package body EinlesenTextLogik is
    
    
    
-   procedure Endmeldungen
-   is begin
-      
-      EndmeldungenSchleife:
-      for ZeileSchleifenwert in GlobaleTexte.Endmeldungen'Range loop
-         
-         case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiText,
-                                                           AktuelleZeileExtern => ZeileSchleifenwert)
-         is
-            when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Endmeldungen: Fehlende Zeilen.");
-               return;
-               
-            when False =>
-               GlobaleTexte.Endmeldungen (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
-         end case;
-         
-      end loop EndmeldungenSchleife;
-      
-   end Endmeldungen;
-   
-   
-   
    procedure Handelsmenü
    is begin
       
@@ -1113,5 +1093,53 @@ package body EinlesenTextLogik is
       end loop SpielstandmenüSchleife;
       
    end Spielstandmenü;
+   
+   
+   
+   procedure Intro
+   is begin
+      
+      IntroSchleife:
+      for ZeileSchleifenwert in Spieltexte.Intro'Range loop
+         
+         case
+           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiText,
+                                                           AktuelleZeileExtern => ZeileSchleifenwert)
+         is
+            when True =>
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Intro: Fehlende Zeilen.");
+               return;
+               
+            when False =>
+               Spieltexte.Intro (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
+         end case;
+         
+      end loop IntroSchleife;
+      
+   end Intro;
+   
+   
+   
+   procedure Outro
+   is begin
+      
+      OutroSchleife:
+      for ZeileSchleifenwert in Spieltexte.Outro'Range loop
+         
+         case
+           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiText,
+                                                           AktuelleZeileExtern => ZeileSchleifenwert)
+         is
+            when True =>
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Outro: Fehlende Zeilen.");
+               return;
+               
+            when False =>
+               Spieltexte.Outro (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
+         end case;
+         
+      end loop OutroSchleife;
+      
+   end Outro;
 
 end EinlesenTextLogik;

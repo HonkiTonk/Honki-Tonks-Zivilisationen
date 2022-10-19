@@ -50,6 +50,26 @@ package body TextaccesseSchriftfarbeGrafik is
       Sf.Graphics.Text.setColor (text  => TextaccessVariablen.Spielmeldung,
                                  color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
       
+      
+      
+      IntroSchleife:
+      for IntroSchleifenwert in TextaccessVariablen.IntroAccess'Range loop
+         
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.IntroAccess (IntroSchleifenwert),
+                                    color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
+         
+      end loop IntroSchleife;
+      
+      
+      
+      OutroSchleife:
+      for OutroSchleifenwert in TextaccessVariablen.OutroAccess'Range loop
+         
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.OutroAccess (OutroSchleifenwert),
+                                    color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
+         
+      end loop OutroSchleife;
+      
    end Allgemeines;
    
    
@@ -62,7 +82,7 @@ package body TextaccesseSchriftfarbeGrafik is
          MenüsEinfachInnenSchleife:
          for InnenSchleifenwert in TextaccessVariablen.MenüsAccessArray'Range (2) loop
       
-            Sf.Graphics.Text.setColor (text  => TextaccessVariablen.MenüsSFMLAccess (AußenSchleifenwert, InnenSchleifenwert),
+            Sf.Graphics.Text.setColor (text  => TextaccessVariablen.MenüsAccess (AußenSchleifenwert, InnenSchleifenwert),
                                        color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
             
          end loop MenüsEinfachInnenSchleife;
@@ -71,9 +91,9 @@ package body TextaccesseSchriftfarbeGrafik is
       
       
       SteuerungSchleife:
-      for SteuerungSchleifenwert in TextaccessVariablen.SteuerungSFMLAccess'Range loop
+      for SteuerungSchleifenwert in TextaccessVariablen.SteuerungAccess'Range loop
          
-         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SteuerungSFMLAccess (SteuerungSchleifenwert),
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SteuerungAccess (SteuerungSchleifenwert),
                                     color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
          
       end loop SteuerungSchleife;

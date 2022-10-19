@@ -77,20 +77,27 @@ package ChangelogOktober2022 is
    
    
 
-   -- Version 0.04. => 0.04. (20.10.2022):
+   -- Version 0.04.1880 => 0.04. (20.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.1750 => 0.04. (19.10.2022):
+   -- Version 0.04.1750 => 0.04.1880 (19.10.2022):
    
    -- Interne Struktur überarbeitet.
    -- Externe Struktur überarbeitet.
-   -- Namen und GitHub-Repository überarbeitet.
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Namen und Anzeige überarbeitet.
+   -- GitHub-Repository überarbeitet.
+   -- Intro überarbeitet.
+   -- Ende überarbeitet.
+   -- Fehler in der Zeilenumbruchsberechnung korrigiert, welcher zu einem Endlosloop führte.
+   -- Neue Texturen erstellt.
+   -- Alte Texturen überarbeitet.
+   -- Neue Gebäudetextur erstellt.
+   -- Neue Beispielbilder erstellt.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 

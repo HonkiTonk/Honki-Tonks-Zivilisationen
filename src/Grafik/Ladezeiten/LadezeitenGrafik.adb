@@ -42,7 +42,8 @@ package body LadezeitenGrafik is
       end case;
       
       AllgemeineViewsGrafik.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => Text),
-                                          HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum);
+                                          HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
+                                          SpielenamenExtern => False);
       
       Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
                                                                         VerhältnisExtern => (GrafikRecordKonstanten.Ladebereich.width, GrafikRecordKonstanten.Ladebereich.height));

@@ -12,6 +12,7 @@ with SonstigesKonstanten;
 with Menuetexte;
 with BefehleDatentypen;
 with Befehlstexte;
+with Spieltexte;
 
 with RassenbeschreibungenGrafik;
 with ForschungsbeschreibungenGrafik;
@@ -49,6 +50,26 @@ package body TextaccesseTextGrafik is
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.VersionsnummerAccess,
                                          str  => "Version: " & SonstigesKonstanten.Versionsnummer);
       
+      
+      
+      IntroSchleife:
+      for IntroSchleifenwert in TextaccessVariablen.IntroAccess'Range loop
+         
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.IntroAccess (IntroSchleifenwert),
+                                            str  => To_Wide_Wide_String (Source => Spieltexte.Intro (IntroSchleifenwert)));
+         
+      end loop IntroSchleife;
+      
+      
+      
+      OutroSchleife:
+      for OutroSchleifenwert in TextaccessVariablen.OutroAccess'Range loop
+         
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.OutroAccess (OutroSchleifenwert),
+                                            str  => To_Wide_Wide_String (Source => Spieltexte.Outro (OutroSchleifenwert)));
+         
+      end loop OutroSchleife;
+      
    end Allgemeines;
    
    
@@ -57,9 +78,9 @@ package body TextaccesseTextGrafik is
    is begin
             
       SteuerungSchleife:
-      for SteuerungSchleifenwert in TextaccessVariablen.SteuerungSFMLAccess'Range loop
+      for SteuerungSchleifenwert in TextaccessVariablen.SteuerungAccess'Range loop
          
-         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.SteuerungSFMLAccess (SteuerungSchleifenwert),
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.SteuerungAccess (SteuerungSchleifenwert),
                                             str  => To_Wide_Wide_String (Source => Menuetexte.Steuerungmenü (SteuerungSchleifenwert)));
          
       end loop SteuerungSchleife;

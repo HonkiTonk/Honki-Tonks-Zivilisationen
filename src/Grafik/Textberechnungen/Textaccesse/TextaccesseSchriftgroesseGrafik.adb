@@ -50,6 +50,26 @@ package body TextaccesseSchriftgroesseGrafik is
       Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.Spielmeldung,
                                          size => TexteinstellungenGrafik.Schriftgrößen.SchriftgrößeStandard);
       
+      
+      
+      IntroSchleife:
+      for IntroSchleifenwert in TextaccessVariablen.IntroAccess'Range loop
+         
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.IntroAccess (IntroSchleifenwert),
+                                            size => TexteinstellungenGrafik.Schriftgrößen.SchriftgrößeStandard);
+         
+      end loop IntroSchleife;
+      
+      
+      
+      OutroSchleife:
+      for OutroSchleifenwert in TextaccessVariablen.OutroAccess'Range loop
+         
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.OutroAccess (OutroSchleifenwert),
+                                            size => TexteinstellungenGrafik.Schriftgrößen.SchriftgrößeStandard);
+         
+      end loop OutroSchleife;
+      
    end Allgemeines;
    
    
@@ -62,7 +82,7 @@ package body TextaccesseSchriftgroesseGrafik is
          MenüsEinfachInnenSchleife:
          for InnenSchleifenwert in TextaccessVariablen.MenüsAccessArray'Range (2) loop
             
-            Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.MenüsSFMLAccess (AußenSchleifenwert, InnenSchleifenwert),
+            Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.MenüsAccess (AußenSchleifenwert, InnenSchleifenwert),
                                                size => TexteinstellungenGrafik.Schriftgrößen.SchriftgrößeStandard);
             
          end loop MenüsEinfachInnenSchleife;
@@ -71,9 +91,9 @@ package body TextaccesseSchriftgroesseGrafik is
       
       
       SteuerungSchleife:
-      for SteuerungSchleifenwert in TextaccessVariablen.SteuerungSFMLAccess'Range loop
+      for SteuerungSchleifenwert in TextaccessVariablen.SteuerungAccess'Range loop
          
-         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.SteuerungSFMLAccess (SteuerungSchleifenwert),
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.SteuerungAccess (SteuerungSchleifenwert),
                                             size => TexteinstellungenGrafik.Schriftgrößen.SchriftgrößeStandard);
          
       end loop SteuerungSchleife;

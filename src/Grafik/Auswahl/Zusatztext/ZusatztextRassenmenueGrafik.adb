@@ -28,7 +28,7 @@ package body ZusatztextRassenmenueGrafik is
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.RassenbeschreibungAccess (RasseAnzeigen),
                                          str  => ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung (TextExtern           => RassenbeschreibungenGrafik.BeschreibungLang (RasseExtern => RasseAnzeigen),
-                                                                                                        TextfeldbreiteExtern => (ViewflächeExtern.x / 2.00 - TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel)));
+                                                                                                        TextfeldbreiteExtern => (ViewflächeExtern.x / 2.00 - Textposition.x)));
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.RassenbeschreibungAccess (RasseAnzeigen),
                                     position => Textposition);
       

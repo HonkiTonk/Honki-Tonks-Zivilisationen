@@ -11,6 +11,8 @@ package IntroGrafik is
 
 private
 
+   Textbreite : Float;
+
    Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartgrößeView;
    Textposition : Sf.System.Vector2.sfVector2f;
 
