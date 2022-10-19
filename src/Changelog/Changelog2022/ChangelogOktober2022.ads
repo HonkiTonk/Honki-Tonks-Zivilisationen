@@ -88,6 +88,7 @@ package ChangelogOktober2022 is
    
    -- Interne Struktur überarbeitet.
    -- Externe Struktur überarbeitet.
+   -- Namen und GitHub-Repository überarbeitet.
    -- 
    -- Kleinigkeiten korrigiert.
    
