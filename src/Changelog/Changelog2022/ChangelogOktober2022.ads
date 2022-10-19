@@ -86,6 +86,8 @@ package ChangelogOktober2022 is
 
    -- Version 0.04.1750 => 0.04. (19.10.2022):
    
+   -- Interne Struktur überarbeitet.
+   -- Externe Struktur überarbeitet.
    -- 
    -- Kleinigkeiten korrigiert.
    
