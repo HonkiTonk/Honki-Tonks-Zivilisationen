@@ -1,15 +1,6 @@
 obj/
-Spiel/Audio/
-Spiel/Datenbanken/
-Spiel/Grafik/
-Spiel/Spielstand/
-Spiel/Start
+Spiel/
 Notizen/
-Spiel/Meldungen
-Spiel/Tastenbelegung
 Neu/
-Spiel/Grafikeinstellungen
-Spiel/Nutzereinstellungen
-Spiel/Soundeinstelllungen
 stream_dynamic.gpr
 asfml.gpr
