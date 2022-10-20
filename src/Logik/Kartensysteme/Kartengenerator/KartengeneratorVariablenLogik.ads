@@ -2,10 +2,10 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenRecords;
-with KartenDatentypen;
 with KartenRecordKonstanten;
 with KartengeneratorRecordKonstanten;
 with KartengrundDatentypen;
+with KartenartDatentypen;
 
 package KartengeneratorVariablenLogik is
 
@@ -14,10 +14,10 @@ package KartengeneratorVariablenLogik is
 
    Kartenparameter : KartenRecords.TemporäreKartenparameterRecord := KartenRecordKonstanten.Standardkartengeneratorparameter;
 
-   Polgrößen : KartenDatentypen.PolregionenArray := KartengeneratorRecordKonstanten.Eisrand;
+   Polgrößen : KartengeneratorRecordKonstanten.PolregionenArray := KartengeneratorRecordKonstanten.Eisrand;
 
    -- Alle Angaben sind Radien.
-   Landgrößen : KartenRecords.LandgrößenRecord := KartengeneratorRecordKonstanten.Kartenartgrößen (KartenDatentypen.Kartenart_Kontinente_Enum);
+   Landgrößen : KartenRecords.LandgrößenRecord := KartengeneratorRecordKonstanten.Kartenartgrößen (KartenartDatentypen.Kartenart_Kontinente_Enum);
 
    SchleifenanfangOhnePolbereich : KartenRecords.YXAchsenKartenfeldNaturalRecord;
    SchleifenendeOhnePolbereich : KartenRecords.YXAchsenKartenfeldNaturalRecord;

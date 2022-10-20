@@ -15,7 +15,7 @@
 --                      Anzeige der Karte kann jetzt auch unter Berücksichtigung des Seitenverhältnis erfolgen. Bessere Textskalierung eingebaut.
 --                      Einfache grafische Einstellmöglichkeiten eingebaut. Grafik für Kartenformen eingebaut.
 --                      Forschungserfolganzeige eingebaut. Rassenspezifische Hintergrund-, Einheiten- und Gebäudegrafiken ermöglicht.
---                      Hintergrundbild für das PZB Ende eingebaut. Bessere Texturen erstellt.
+--                      Hintergrundbild für das PZB Ende eingebaut. Bessere Texturen erstellt. Introbild eingebaut.
 
 -- Einfache Musik/Sounds einbauen: Einlesesystem für Sound und rassenspezifische Musik eingebaut.
 
@@ -24,10 +24,9 @@
 -- Sonstiges: Planetenzerstörerbombe inklusive Zusammenbruchszeit eingebaut. Sichtbarkeitsberechnungssystem ist nun ebenenübergreifend. Koordinatenberechnunssystem funktioniert jetzt mit allen Kartenformen ohne abzustürzen.
 --            Steuerungsauswahl mit verschiedenen Kategorien eingebaut.
 
--- Windowsversion ohne GPL kompilieren: Linux- und Windowsversion voneinander getrennt und so angepasst dass die entsprechenden Versionen der A/C/SFML verwendet werden.
---                                      VM für das Kompilieren unter älteren Linuxversionen aufgesetzt.
-
--- Funktionsfähige Editoren einbauen? Es existiert ein Grundgerüst für die Kartenfelder.
+-- Windowsversion kompilieren: Linux- und Windowsversion voneinander getrennt und so angepasst dass die entsprechenden Versionen der A/C/SFML verwendet werden.
+--                             VM für das Kompilieren unter älteren Linuxversionen aufgesetzt.
+--                             Kompiliert und funktioniert fehlerfrei unter Windows.
 
 
 
@@ -39,10 +38,4 @@
 -- Kartengenerator
 -- Siegbedingungen und Übergaben
 -- Brauchbare Editoren
---
-
-
-
--- Erinnerungen:
-
---
+-- YAchsenwerte und XAchsenwerte mal in zwei Unterschiedliche Datentypen aufteilen?

@@ -27,10 +27,12 @@ package CursorplatzierungAltGrafik is
    
 private
    
+   EinheitFolgen : Boolean;
+   
    AktuelleSichtweite : KartenDatentypen.KartenfeldPositiv;
    
    XAchsenbereich : Float;
-      
+         
    Scrollzeit : Ada.Calendar.Time := Ada.Calendar.Clock;
    
    Mausposition : Sf.System.Vector2.sfVector2f;
@@ -39,12 +41,32 @@ private
    Achsenviewfläche : Sf.System.Vector2.sfVector2f;
    
    Kartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Einheitenkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    Koordinatenänderung : KartenRecords.AchsenKartenfeldRecord;
+   
+   procedure Platzierung
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     with
+       Pre => (
+                 EinheitRasseNummerExtern.Nummer <= SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+               and
+                 SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+              );
    
    
    
    function BefehlsknöpfePrüfen
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return Boolean
+     with
+       Pre => (
+                 EinheitRasseNummerExtern.Nummer <= SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+               and
+                 SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+              );
+   
+   function Einheitenbereich
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
      with

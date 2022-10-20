@@ -24,7 +24,7 @@ package body KIEinheitStandardverhaltenLogik is
             when False =>
                null;
          end case;
-         
+                  
          case
            KIEinheitHandlungenLogik.Bewegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
          is

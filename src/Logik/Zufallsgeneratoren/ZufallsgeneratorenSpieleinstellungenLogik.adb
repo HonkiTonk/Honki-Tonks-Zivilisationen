@@ -42,7 +42,7 @@ package body ZufallsgeneratorenSpieleinstellungenLogik is
    
    
    function ZufälligeVordefinierteKartenart
-     return KartenDatentypen.Kartenart_Normal_Enum
+     return KartenartDatentypen.Kartenart_Normal_Enum
    is begin
       
       ZufälligeKartenartWählen.Reset (Gen => ZufälligeKartenartGewählt);
@@ -96,7 +96,7 @@ package body ZufallsgeneratorenSpieleinstellungenLogik is
    
    
    function ZufälligeKartentemperatur
-     return KartenDatentypen.Kartentemperatur_Enum
+     return KartenartDatentypen.Kartentemperatur_Enum
    is begin
       
       ZufälligeKartentemperaturWählen.Reset (Gen => ZufälligeKartentemperaturGewählt);
@@ -107,7 +107,7 @@ package body ZufallsgeneratorenSpieleinstellungenLogik is
    
    
    function ZufälligeKartenressourcen
-     return KartenDatentypen.Kartenressourcen_Enum
+     return KartenartDatentypen.Kartenressourcen_Enum
    is begin
       
       ZufälligeKartenressourcenWählen.Reset (Gen => ZufälligeKartenressourcenGewählt);
@@ -207,35 +207,35 @@ package body ZufallsgeneratorenSpieleinstellungenLogik is
       ZufälligePolgrößenWählen.Reset (Gen => ZufälligePolgrößeGewählt);
       
       
-      KartengeneratorVariablenLogik.Polgrößen (KartenDatentypen.Norden_Enum) := ZufälligePolgrößenWählen.Random (Gen   => ZufälligePolgrößeGewählt,
+      KartengeneratorVariablenLogik.Polgrößen (KartenartDatentypen.Norden_Enum) := ZufälligePolgrößenWählen.Random (Gen   => ZufälligePolgrößeGewählt,
                                                                                                                        First => 0,
                                                                                                                        Last  => Weltkarte.Karteneinstellungen.Kartengröße.YAchse / 2);
       
-      KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Nordpol := KartentestsLogik.KartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.Polgrößen (KartenDatentypen.Norden_Enum));
+      KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Nordpol := KartentestsLogik.KartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.Polgrößen (KartenartDatentypen.Norden_Enum));
       
       
       
-      KartengeneratorVariablenLogik.Polgrößen (KartenDatentypen.Süden_Enum) := ZufälligePolgrößenWählen.Random (Gen   => ZufälligePolgrößeGewählt,
+      KartengeneratorVariablenLogik.Polgrößen (KartenartDatentypen.Süden_Enum) := ZufälligePolgrößenWählen.Random (Gen   => ZufälligePolgrößeGewählt,
                                                                                                                        First => 0,
                                                                                                                        Last  => Weltkarte.Karteneinstellungen.Kartengröße.YAchse / 2);
       
-      KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Südpol := KartentestsLogik.KartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.Polgrößen (KartenDatentypen.Süden_Enum));
+      KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Südpol := KartentestsLogik.KartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.Polgrößen (KartenartDatentypen.Süden_Enum));
             
       
       
-      KartengeneratorVariablenLogik.Polgrößen (KartenDatentypen.Westen_Enum) := ZufälligePolgrößenWählen.Random (Gen   => ZufälligePolgrößeGewählt,
+      KartengeneratorVariablenLogik.Polgrößen (KartenartDatentypen.Westen_Enum) := ZufälligePolgrößenWählen.Random (Gen   => ZufälligePolgrößeGewählt,
                                                                                                                        First => 0,
                                                                                                                        Last  => Weltkarte.Karteneinstellungen.Kartengröße.YAchse / 2);
       
-      KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Westpol := KartentestsLogik.KartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.Polgrößen (KartenDatentypen.Westen_Enum));
+      KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Westpol := KartentestsLogik.KartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.Polgrößen (KartenartDatentypen.Westen_Enum));
       
       
       
-      KartengeneratorVariablenLogik.Polgrößen (KartenDatentypen.Osten_Enum) := ZufälligePolgrößenWählen.Random (Gen   => ZufälligePolgrößeGewählt,
+      KartengeneratorVariablenLogik.Polgrößen (KartenartDatentypen.Osten_Enum) := ZufälligePolgrößenWählen.Random (Gen   => ZufälligePolgrößeGewählt,
                                                                                                                       First => 0,
                                                                                                                       Last  => Weltkarte.Karteneinstellungen.Kartengröße.YAchse / 2);
       
-      KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Ostpol := KartentestsLogik.KartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.Polgrößen (KartenDatentypen.Osten_Enum));
+      KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Ostpol := KartentestsLogik.KartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.Polgrößen (KartenartDatentypen.Osten_Enum));
       
    end ZufälligePole;
 

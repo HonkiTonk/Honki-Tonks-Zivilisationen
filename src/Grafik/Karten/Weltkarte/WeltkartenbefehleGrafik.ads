@@ -6,8 +6,6 @@ private with Sf.Graphics.Rect;
 private with Sf.Graphics;
 private with Sf.Graphics.Sprite;
 
-with RassenDatentypen; use RassenDatentypen;
-with SpielVariablen;
 with EinheitenRecords;
 
 private with GrafikRecordKonstanten;
@@ -16,14 +14,12 @@ private with BefehleDatentypen;
 
 package WeltkartenbefehleGrafik is
 
-   procedure Kartenbefehle;
+   procedure Kartenbefehle
+     (RechtsLinksExtern : in Boolean);
    
    procedure Einheitenbefehle
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-     with
-       Pre => (
-                 SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.Mensch_Spieler_Enum
-              );
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      RechtsLinksExtern : in Boolean);
    
 private
       
@@ -33,8 +29,9 @@ private
    
    AnfangEinheitenbefehle : constant Positive := 2;
    AnfangKartenbefehle : constant Positive := 15;
-   Aktuelleposition : Positive;
+   AktuellerBefehl : Positive;
    Teiler : Positive;
+   WelcherViewbereich : Positive;
 
    Textbreite : Float;
    Multiplikator : Float;

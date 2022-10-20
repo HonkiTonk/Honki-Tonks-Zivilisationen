@@ -2,6 +2,7 @@ pragma SPARK_Mode (Off);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
+with KartenartDatentypen;
 
 package KartentestsLogik is
 
@@ -11,7 +12,7 @@ package KartentestsLogik is
 
    function KartenpolePrüfen
      (PolgrößeExtern : in KartenDatentypen.KartenfeldNatural)
-      return KartenDatentypen.Kartenpole_Enum
+      return KartenartDatentypen.Kartenpole_Enum
      with
        Pre => (
                  PolgrößeExtern <= KartenDatentypen.KartenfeldNatural'Last / 2

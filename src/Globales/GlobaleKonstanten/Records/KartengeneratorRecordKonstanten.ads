@@ -3,19 +3,21 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen;
 with KartenRecords;
+with KartenartDatentypen;
 
 package KartengeneratorRecordKonstanten is
    
-   Eisrand : constant KartenDatentypen.PolregionenArray := (
-                                                            KartenDatentypen.Norden_Enum => 1,
-                                                            KartenDatentypen.Süden_Enum  => 1,
-                                                            KartenDatentypen.Westen_Enum => 0,
-                                                            KartenDatentypen.Osten_Enum  => 0
-                                                           );
+   type PolregionenArray is array (KartenartDatentypen.Himmelsrichtungen_Enum'Range) of KartenDatentypen.KartenfeldNatural;
+   Eisrand : constant PolregionenArray := (
+                                           KartenartDatentypen.Norden_Enum => 1,
+                                           KartenartDatentypen.Süden_Enum  => 1,
+                                           KartenartDatentypen.Westen_Enum => 0,
+                                           KartenartDatentypen.Osten_Enum  => 0
+                                          );
    
-   type KartenartgrößenArray is array (KartenDatentypen.Kartenart_Normal_Enum'Range) of KartenRecords.LandgrößenRecord;
+   type KartenartgrößenArray is array (KartenartDatentypen.Kartenart_Normal_Enum'Range) of KartenRecords.LandgrößenRecord;
    Kartenartgrößen : constant KartenartgrößenArray := (
-                                                           KartenDatentypen.Kartenart_Inseln_Enum =>
+                                                           KartenartDatentypen.Kartenart_Inseln_Enum =>
                                                              (
                                                               MinimaleYAchse => 3,
                                                               MaximaleYAchse => 4,
@@ -23,7 +25,7 @@ package KartengeneratorRecordKonstanten is
                                                               MaximaleXAchse => 4
                                                              ),
                                                            
-                                                           KartenDatentypen.Kartenart_Kontinente_Enum =>
+                                                           KartenartDatentypen.Kartenart_Kontinente_Enum =>
                                                              (
                                                               MinimaleYAchse => 5,
                                                               MaximaleYAchse => 8,
@@ -31,7 +33,7 @@ package KartengeneratorRecordKonstanten is
                                                               MaximaleXAchse => 8
                                                              ),
                                                            
-                                                           KartenDatentypen.Kartenart_Pangäa_Enum =>
+                                                           KartenartDatentypen.Kartenart_Pangäa_Enum =>
                                                              (
                                                               MinimaleYAchse => KartenDatentypen.KartenfeldPositiv'Last,
                                                               MaximaleYAchse => KartenDatentypen.KartenfeldPositiv'Last,

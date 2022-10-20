@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with Sf.Graphics.Texture;
 with Sf.Graphics.RenderWindow;
 
-with KartenDatentypen; use KartenDatentypen;
+with KartenartDatentypen; use KartenartDatentypen;
 
 with KartengeneratorVariablenLogik;
 with EingeleseneTexturenGrafik;
@@ -27,7 +27,7 @@ package body ZusatztextKartenformGrafik is
       is
          when 1 =>
             if
-              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.EAchseOben = KartenDatentypen.Karte_E_Kein_Übergang_Enum
+              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.EAchseOben = KartenartDatentypen.Karte_E_Kein_Übergang_Enum
             then
                Texturanfang.x := 0.00;
                
@@ -39,7 +39,7 @@ package body ZusatztextKartenformGrafik is
             
          when 2 =>
             if
-              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.EAchseUnten = KartenDatentypen.Karte_E_Kein_Übergang_Enum
+              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.EAchseUnten = KartenartDatentypen.Karte_E_Kein_Übergang_Enum
             then
                Texturanfang.x := Texturfläche.x / 2.00;
                
@@ -51,17 +51,17 @@ package body ZusatztextKartenformGrafik is
 
          when 3 =>
             if
-              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.YAchseNorden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
+              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.YAchseNorden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
             then
                Texturanfang.x := 0.00;
 
             elsif
-              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.YAchseNorden = KartenDatentypen.Karte_Y_Übergang_Enum
+              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.YAchseNorden = KartenartDatentypen.Karte_Y_Übergang_Enum
             then
                Texturanfang.x := Texturfläche.x / 4.00;
 
             elsif
-              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.YAchseNorden = KartenDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum
+              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.YAchseNorden = KartenartDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum
             then
                Texturanfang.x := Texturfläche.x / 2.00;
 
@@ -73,17 +73,17 @@ package body ZusatztextKartenformGrafik is
 
          when 4 =>
             if
-              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.YAchseSüden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
+              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.YAchseSüden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
             then
                Texturanfang.x := 0.00;
 
             elsif
-              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.YAchseSüden = KartenDatentypen.Karte_Y_Übergang_Enum
+              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.YAchseSüden = KartenartDatentypen.Karte_Y_Übergang_Enum
             then
                Texturanfang.x := Texturfläche.x / 4.00;
 
             elsif
-              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.YAchseSüden = KartenDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum
+              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.YAchseSüden = KartenartDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum
             then
                Texturanfang.x := Texturfläche.x / 2.00;
 
@@ -95,17 +95,17 @@ package body ZusatztextKartenformGrafik is
 
          when 5 =>
             if
-              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.XAchseWesten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
+              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.XAchseWesten = KartenartDatentypen.Karte_X_Kein_Übergang_Enum
             then
                Texturanfang.x := 0.00;
 
             elsif
-              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.XAchseWesten = KartenDatentypen.Karte_X_Übergang_Enum
+              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.XAchseWesten = KartenartDatentypen.Karte_X_Übergang_Enum
             then
                Texturanfang.x := Texturfläche.x / 4.00;
 
             elsif
-              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.XAchseWesten = KartenDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum
+              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.XAchseWesten = KartenartDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum
             then
                Texturanfang.x := Texturfläche.x / 2.00;
 
@@ -117,17 +117,17 @@ package body ZusatztextKartenformGrafik is
 
          when 6 =>
             if
-              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.XAchseOsten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
+              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.XAchseOsten = KartenartDatentypen.Karte_X_Kein_Übergang_Enum
             then
                Texturanfang.x := 0.00;
 
             elsif
-              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.XAchseOsten = KartenDatentypen.Karte_X_Übergang_Enum
+              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.XAchseOsten = KartenartDatentypen.Karte_X_Übergang_Enum
             then
                Texturanfang.x := Texturfläche.x / 4.00;
 
             elsif
-              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.XAchseOsten = KartenDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum
+              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.XAchseOsten = KartenartDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum
             then
                Texturanfang.x := Texturfläche.x / 2.00;
 

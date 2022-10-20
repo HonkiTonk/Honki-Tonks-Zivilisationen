@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with KartenKonstanten;
-
+with KartenartDatentypen;
 with Weltkarte;
 
 package body KartenkoordinateEAchseBerechnenLogik is
@@ -47,7 +47,7 @@ package body KartenkoordinateEAchseBerechnenLogik is
       case
         Weltkarte.Karteneinstellungen.Kartenform.EAchseUnten
       is
-         when KartenDatentypen.Karte_E_Kein_Übergang_Enum =>
+         when KartenartDatentypen.Karte_E_Kein_Übergang_Enum =>
             return KartenKonstanten.LeerEAchse;
             
          when others =>
@@ -87,7 +87,7 @@ package body KartenkoordinateEAchseBerechnenLogik is
       case
         Weltkarte.Karteneinstellungen.Kartenform.EAchseOben
       is
-         when KartenDatentypen.Karte_E_Kein_Übergang_Enum =>
+         when KartenartDatentypen.Karte_E_Kein_Übergang_Enum =>
             return KartenKonstanten.LeerEAchse;
             
          when others =>

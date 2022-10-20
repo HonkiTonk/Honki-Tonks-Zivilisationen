@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenRecordKonstanten;
+with KartenartDatentypen;
 
 with KartenkoordinateEAchseBerechnenLogik;
 with KartenkoordinateYAchseBerechnenLogik;
@@ -40,7 +41,7 @@ package body KartenkoordinatenberechnungssystemLogik is
             end if;
       end case;
       
-      KartenkoordinatenWerteLogik.VerschiebungYAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartenDatentypen.Karte_Y_Kein_Übergang_Enum;
+      KartenkoordinatenWerteLogik.VerschiebungYAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartenartDatentypen.Karte_Y_Kein_Übergang_Enum;
       
       case
         ÄnderungExtern.YAchse
@@ -64,7 +65,7 @@ package body KartenkoordinatenberechnungssystemLogik is
             end if;
       end case;
       
-      KartenkoordinatenWerteLogik.VerschiebungXAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartenDatentypen.Karte_X_Kein_Übergang_Enum;
+      KartenkoordinatenWerteLogik.VerschiebungXAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartenartDatentypen.Karte_X_Kein_Übergang_Enum;
             
       case
         ÄnderungExtern.XAchse
@@ -91,10 +92,10 @@ package body KartenkoordinatenberechnungssystemLogik is
       case
         KartenkoordinatenWerteLogik.VerschiebungYAchse (LogikGrafikExtern, KoordinatenExtern.EAchse)
       is
-         when KartenDatentypen.Karte_Y_Kein_Übergang_Enum | KartenDatentypen.Karte_Y_Übergang_Enum =>
+         when KartenartDatentypen.Karte_Y_Kein_Übergang_Enum | KartenartDatentypen.Karte_Y_Übergang_Enum =>
             null;
             
-         when KartenDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum | KartenDatentypen.Karte_Y_Verschobener_Übergang_Enum =>
+         when KartenartDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum | KartenartDatentypen.Karte_Y_Verschobener_Übergang_Enum =>
             NeueKoordinate (LogikGrafikExtern, KoordinatenExtern.EAchse).XAchse
               := KartenkoordinateXAchseBerechnenLogik.XAchseVerschieben (XAchseExtern => NeueKoordinate (LogikGrafikExtern, KoordinatenExtern.EAchse).XAchse);
       end case;
@@ -102,10 +103,10 @@ package body KartenkoordinatenberechnungssystemLogik is
       case
         KartenkoordinatenWerteLogik.VerschiebungXAchse (LogikGrafikExtern, KoordinatenExtern.EAchse)
       is
-         when KartenDatentypen.Karte_X_Kein_Übergang_Enum | KartenDatentypen.Karte_X_Übergang_Enum =>
+         when KartenartDatentypen.Karte_X_Kein_Übergang_Enum | KartenartDatentypen.Karte_X_Übergang_Enum =>
             null;
             
-         when KartenDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum | KartenDatentypen.Karte_X_Verschobener_Übergang_Enum =>
+         when KartenartDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum | KartenartDatentypen.Karte_X_Verschobener_Übergang_Enum =>
             NeueKoordinate (LogikGrafikExtern, KoordinatenExtern.EAchse).YAchse
               := KartenkoordinateYAchseBerechnenLogik.YAchseVerschieben (YAchseExtern => NeueKoordinate (LogikGrafikExtern, KoordinatenExtern.EAchse).YAchse);
       end case;

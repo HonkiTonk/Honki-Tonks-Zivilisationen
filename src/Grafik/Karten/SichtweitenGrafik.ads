@@ -1,7 +1,9 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen;
+with SpielVariablen;
 
 private with TastenbelegungDatentypen;
 
@@ -22,8 +24,13 @@ package SichtweitenGrafik is
    function BewegungsfeldLesen
      return KartenDatentypen.KartenfeldPositiv;
    
-   function SichtbereichKarteBerechnen
-     return KartenDatentypen.SichtbereichAnfangEndeArray;
+   function UntenRechts
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      return Boolean
+     with
+       Pre => (
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+              );
    
 private
    

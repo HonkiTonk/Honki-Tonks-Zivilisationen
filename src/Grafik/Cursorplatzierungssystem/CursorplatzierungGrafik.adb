@@ -27,7 +27,7 @@ package body CursorplatzierungGrafik is
             Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
                                                                        point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
                                                                        view         => Views.KartenviewAccess);
-            SichtbereichAnfangEnde := SichtweitenGrafik.SichtbereichKarteBerechnen;
+            Sichtbereich := SichtweitenGrafik.SichtweiteLesen;
             
          when others =>
             SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell := NachGrafiktask.GeheZu;
@@ -41,10 +41,10 @@ package body CursorplatzierungGrafik is
         or
           Float'Floor (Mausposition.y / KartenberechnungenGrafik.KartenfelderAbmessung.y) < Float (KartenDatentypen.Kartenfeld'First)
       then
-         Kartenänderung.YAchse := SichtbereichAnfangEnde (1);
+         Kartenänderung.YAchse := -Sichtbereich;
          
       else
-         Kartenänderung.YAchse := SichtbereichAnfangEnde (1) + KartenDatentypen.Kartenfeld (Float'Floor (Mausposition.y / KartenberechnungenGrafik.KartenfelderAbmessung.y));
+         Kartenänderung.YAchse := -Sichtbereich + KartenDatentypen.Kartenfeld (Float'Floor (Mausposition.y / KartenberechnungenGrafik.KartenfelderAbmessung.y));
       end if;
       
       if
@@ -54,14 +54,14 @@ package body CursorplatzierungGrafik is
         or
           Float'Floor (Mausposition.x / KartenberechnungenGrafik.KartenfelderAbmessung.x) < Float (KartenDatentypen.Kartenfeld'First)
       then
-         Kartenänderung.XAchse := SichtbereichAnfangEnde (3);
+         Kartenänderung.XAchse := -Sichtbereich;
          
       else
-         Kartenänderung.XAchse := SichtbereichAnfangEnde (3) + KartenDatentypen.Kartenfeld (Float'Floor (Mausposition.x / KartenberechnungenGrafik.KartenfelderAbmessung.x));
+         Kartenänderung.XAchse := -Sichtbereich + KartenDatentypen.Kartenfeld (Float'Floor (Mausposition.x / KartenberechnungenGrafik.KartenfelderAbmessung.x));
       end if;
       
       KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
-                                                                                                ÄnderungExtern    => (0, Kartenänderung.YAchse, Kartenänderung.XAchse),
+                                                                                                ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, Kartenänderung.YAchse, Kartenänderung.XAchse),
                                                                                                 LogikGrafikExtern => False);
       
       case

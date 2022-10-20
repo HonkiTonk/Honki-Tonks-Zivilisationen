@@ -6,10 +6,13 @@ with Ada.Calendar; use Ada.Calendar;
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics.View;
 
+with KartenartDatentypen; use KartenartDatentypen;
 with KartenKonstanten;
 with ZeitKonstanten;
 with Views;
 with EinheitenKonstanten;
+
+with LeseEinheitenGebaut;
 
 with KartenkoordinatenberechnungssystemLogik;
 with SichtweitenGrafik;
@@ -56,36 +59,7 @@ package body CursorplatzierungAltGrafik is
                return;
                   
             else
-               Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
-                                                                          point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
-                                                                          view         => Views.KartenviewAccess);
-            end if;
-            
-            -- Die EAchse später auch noch über eine Funktion die Änderung ermitteln oder einfach so lassen? äöü
-            SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt.EAchse := SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAktuell.EAchse;
-            
-            Koordinatenänderung.EAchse := KartenKonstanten.LeerEAchseÄnderung;
-            
-            -- Hier muss noch eine Prüfung rein wo sich die Einheit befindet. äöü
-            -- Erstens weil man die Einheiten jetzt wieder mit der Tastatur bewegen kann und man so sein Sichtfeld ohne scrollen verlassen kann. äöü
-            -- Zweitens weil beim rückwärts verschobenem Übergang man sonst die Einheit immer am obersten Rand sieht. äöü
-            Koordinatenänderung.YAchse := AlteYAchseFestlegen (MauspositionExtern => Mausposition,
-                                                                YAchseAltExtern    => SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt.YAchse);
-            
-            Koordinatenänderung.XAchse := AlteXAchseFestlegen (MausachseExtern => Mausposition.x,
-                                                                XAchseAltExtern => SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt.XAchse);
-           
-            Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt,
-                                                                                                      ÄnderungExtern    => Koordinatenänderung,
-                                                                                                      LogikGrafikExtern => False);
-            
-            if
-              Kartenwert.EAchse = KartenKonstanten.LeerEAchse
-            then
-               null;
-                  
-            else
-               SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt := Kartenwert;
+               Platzierung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             end if;
                   
          when others =>
@@ -93,6 +67,104 @@ package body CursorplatzierungAltGrafik is
       end case;
       
    end CursorplatzierungAlt;
+   
+   
+   
+   procedure Platzierung
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+   is begin
+      
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
+                                                                 point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
+                                                                 view         => Views.KartenviewAccess);
+      
+      -- Die EAchse später auch noch über eine Funktion die Änderung ermitteln oder einfach so lassen? äöü
+      SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt.EAchse := SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAktuell.EAchse;
+            
+      
+      -- case
+      --   EinheitRasseNummerExtern.Nummer
+      -- is
+      --    when EinheitenKonstanten.LeerNummer =>
+      EinheitFolgen := True;
+                        
+      --    when others =>
+      -- EinheitFolgen := Einheitenbereich (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      -- end case;
+      
+      case
+        EinheitFolgen
+      is
+         when False =>
+            NachGrafiktask.GeheZu := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            return;
+            
+         when True =>
+            Koordinatenänderung.YAchse := AlteYAchseFestlegen (MauspositionExtern => Mausposition,
+                                                                YAchseAltExtern    => SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt.YAchse);
+            
+            Koordinatenänderung.XAchse := AlteXAchseFestlegen (MausachseExtern => Mausposition.x,
+                                                                XAchseAltExtern => SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt.XAchse);
+      end case;
+      
+      Koordinatenänderung.EAchse := KartenKonstanten.LeerEAchseÄnderung;
+      
+      Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt,
+                                                                                                ÄnderungExtern    => Koordinatenänderung,
+                                                                                                LogikGrafikExtern => False);
+            
+      if
+        Kartenwert.EAchse = KartenKonstanten.LeerEAchse
+      then
+         null;
+                  
+      else
+         SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt := Kartenwert;
+      end if;
+      
+   end Platzierung;
+   
+   
+   
+   -- Sorgt dafür das man mit ausgewählter Einheit zwar immer die Einheit im Blick hat, aber auch dass man nicht frei herumscrollen kann. äöü
+   -- Löst auch nicht das Problem mit dem Übergang. äöü
+   function Einheitenbereich
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return Boolean
+   is begin
+      
+      Einheitenkoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      
+      YAchseSchleife:
+      for YAchseSchleifenwert in -SichtweitenGrafik.SichtweiteLesen .. SichtweitenGrafik.SichtweiteLesen loop
+         XAchseSchleife:
+         for XAchseSchleifenwert in -SichtweitenGrafik.SichtweiteLesen .. SichtweitenGrafik.SichtweiteLesen loop
+            
+            Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt,
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                      LogikGrafikExtern => False);
+            
+            if
+              Kartenwert.XAchse = KartenKonstanten.LeerXAchse
+            then
+               null;
+               
+            elsif
+              True = Vergleiche.Koordinatenvergleich (KoordinateEinsExtern  => Einheitenkoordinaten,
+                                                      KoordinatenZweiExtern => Kartenwert)
+            then
+               return True;
+               
+            else
+               null;
+            end if;
+              
+         end loop XAchseSchleife;
+      end loop YAchseSchleife;
+      
+      return False;
+      
+   end Einheitenbereich;
    
    
    
@@ -186,14 +258,14 @@ package body CursorplatzierungAltGrafik is
          if
            YAchseAltExtern - AktuelleSichtweite <= Weltkarte.KarteArray'First (2)
            and
-             Weltkarte.Karteneinstellungen.Kartenform.YAchseNorden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
+             Weltkarte.Karteneinstellungen.Kartenform.YAchseNorden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
          then
             return 0;
             
          elsif
            YAchseAltExtern - AktuelleSichtweite <= Weltkarte.KarteArray'First (2) - 1
            and
-             Weltkarte.Karteneinstellungen.Kartenform.YAchseNorden = KartenDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum
+             Weltkarte.Karteneinstellungen.Kartenform.YAchseNorden = KartenartDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum
          then
             return 0;
             
@@ -207,14 +279,14 @@ package body CursorplatzierungAltGrafik is
          if
            YAchseAltExtern + AktuelleSichtweite >= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
            and
-             Weltkarte.Karteneinstellungen.Kartenform.YAchseSüden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
+             Weltkarte.Karteneinstellungen.Kartenform.YAchseSüden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
          then
             return 0;
             
          elsif
            YAchseAltExtern + AktuelleSichtweite >= Weltkarte.Karteneinstellungen.Kartengröße.YAchse + 1
            and
-             Weltkarte.Karteneinstellungen.Kartenform.YAchseSüden = KartenDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum
+             Weltkarte.Karteneinstellungen.Kartenform.YAchseSüden = KartenartDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum
          then
             return 0;
          
@@ -245,14 +317,14 @@ package body CursorplatzierungAltGrafik is
          if
            XAchseAltExtern - AktuelleSichtweite <= Weltkarte.KarteArray'First (3)
            and
-             Weltkarte.Karteneinstellungen.Kartenform.XAchseWesten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
+             Weltkarte.Karteneinstellungen.Kartenform.XAchseWesten = KartenartDatentypen.Karte_X_Kein_Übergang_Enum
          then
             return 0;
             
          elsif
            XAchseAltExtern - AktuelleSichtweite <= Weltkarte.KarteArray'First (3) - 1
            and
-             Weltkarte.Karteneinstellungen.Kartenform.XAchseWesten = KartenDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum
+             Weltkarte.Karteneinstellungen.Kartenform.XAchseWesten = KartenartDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum
          then
             return 0;
             
@@ -266,14 +338,14 @@ package body CursorplatzierungAltGrafik is
          if
            XAchseAltExtern + AktuelleSichtweite >= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
            and
-             Weltkarte.Karteneinstellungen.Kartenform.XAchseOsten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
+             Weltkarte.Karteneinstellungen.Kartenform.XAchseOsten = KartenartDatentypen.Karte_X_Kein_Übergang_Enum
          then
             return 0;
             
          elsif
            XAchseAltExtern + AktuelleSichtweite >= Weltkarte.Karteneinstellungen.Kartengröße.XAchse + 1
            and
-             Weltkarte.Karteneinstellungen.Kartenform.XAchseOsten = KartenDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum
+             Weltkarte.Karteneinstellungen.Kartenform.XAchseOsten = KartenartDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum
          then
             return 0;
          

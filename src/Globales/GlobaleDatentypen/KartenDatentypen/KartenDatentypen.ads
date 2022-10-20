@@ -10,6 +10,7 @@ package KartenDatentypen is
    
    subtype Stadtfeld is KartenfeldPositiv range KartenfeldPositiv'First .. 20;
    
+   -- Das heir kann vermutlich auch mal umgebaut/ersetzt/entfernt werden. äöü
    subtype SichtweiteNatural is KartenfeldNatural range KartenfeldNatural'First .. 10;
    -- Dafür auch mal einen subtype für die Einheitensichtweite einbauen? äöü
    subtype Sichtweite is SichtweiteNatural range 1 .. SichtweiteNatural'Last;
@@ -40,76 +41,7 @@ package KartenDatentypen is
    subtype UmgebungsbereichZweiEAchse is EbeneVorhanden;
    subtype UmgebungsbereichEinsEAchse is UmgebungsbereichZweiEAchse range UmgebungsbereichZweiEAchse (UmgebungsbereichEins'First) .. UmgebungsbereichZweiEAchse (UmgebungsbereichEins'Last);
    
-   type SichtbereichAnfangEndeArray is array (1 .. 4) of Kartenfeld;
-                                
-   
-   
-   type Kartenart_Enum is (
-                           -- Normal
-                           Kartenart_Inseln_Enum, Kartenart_Kontinente_Enum, Kartenart_Pangäa_Enum,
-                           
-                           -- Nutzerdefiniert
-                           Kartenart_Nutzerdefiniert_Enum
-                          );
-   pragma Ordered (Kartenart_Enum);
-   
-   subtype Kartenart_Normal_Enum is Kartenart_Enum range Kartenart_Inseln_Enum .. Kartenart_Pangäa_Enum;
-   
-   
-   
-   type Kartenform_Enum is (
-                            Karte_E_Kein_Übergang_Enum, Karte_E_Übergang_Enum,
-                            Karte_Y_Kein_Übergang_Enum, Karte_Y_Übergang_Enum, Karte_Y_Rückwärts_Verschobener_Übergang_Enum, Karte_Y_Verschobener_Übergang_Enum,
-                            Karte_X_Kein_Übergang_Enum, Karte_X_Übergang_Enum, Karte_X_Rückwärts_Verschobener_Übergang_Enum, Karte_X_Verschobener_Übergang_Enum
-                           ); 
-   pragma Ordered (Kartenform_Enum);
-   
-   subtype Kartenform_E_Einstellbar_Enum is Kartenform_Enum range Karte_E_Kein_Übergang_Enum .. Karte_E_Übergang_Enum;
-   subtype Kartenform_Y_Einstellbar_Enum is Kartenform_Enum range Karte_Y_Kein_Übergang_Enum .. Karte_Y_Verschobener_Übergang_Enum;
-   subtype Kartenform_X_Einstellbar_Enum is Kartenform_Enum range Karte_X_Kein_Übergang_Enum .. Karte_X_Verschobener_Übergang_Enum;
-   
-   -- Später umschreiben? auf äöü
-   -- type Kartenform_Enum is (
-   --                         Kartenform_Kein_Übergang_Enum, Kartenform_Übergang_Enum, Kartenform_Rückwärts_Verschobener_Übergang_Enum, Kartenform_Verschobener_Übergang_Enum
-   --                        ); 
-   -- pragma Ordered (Kartenform_Enum);
-   
-   -- subtype Kartenform_Ebene_Enum is Kartenform_Enum range Kartenform_Kein_Übergang_Enum .. Kartenform_Übergang_Enum;
-   -- Geht aktuell nicht weil dann größere Anpassungen im Kartenformmenü notwendig sind.
-   
-   
-   
-   -- Neue Kartentemperaturen immer vor Wüste einfügen um Anpassungen in KartenDatentypen zu vermeiden.
-   -- Statt eines Enums einen Zahlenwert von 0 bis 100 einbauen? äöü
-   type Kartentemperatur_Enum is (
-                                  Kartentemperatur_Kalt_Enum, Kartentemperatur_Gemäßigt_Enum, Kartentemperatur_Heiß_Enum, Kartentemperatur_Eiszeit_Enum, Kartentemperatur_Wüste_Enum
-                                 );
-   pragma Ordered (Kartentemperatur_Enum);
-   
-   
-   
-   type Kartenressourcen_Enum is (
-                                  Kartenressourcen_Arm_Enum, Kartenressourcen_Wenig_Enum, Kartenressourcen_Mittel_Enum, Kartenressourcen_Viel_Enum, Kartenressourcen_Überfluss_Enum
-                                 );
-   pragma Ordered (Kartenressourcen_Enum);
-   
-   
-   
-   type Himmelsrichtungen_Enum is (
-                                   Norden_Enum, Süden_Enum, Westen_Enum, Osten_Enum
-                                  );
-   
-   type PolregionenArray is array (Himmelsrichtungen_Enum'Range) of KartenfeldNatural;
-   
-   
-   
-   type Kartenpole_Enum is (
-                            Kartenpol_Nicht_Vorhanden_Enum, Kartenpol_Vorhanden_Enum
-                           );
-   pragma Ordered (Kartenpole_Enum);
-   
-   
-   
+   -- Wäre das nicht sinnvoller in ProduktionDatentypen? äöü
    type GesamteFeldbewertung is range 0 .. 1_250;
    subtype Einzelbewertung is GesamteFeldbewertung range 0 .. 10;
    
@@ -118,19 +50,23 @@ package KartenDatentypen is
                           );
    pragma Ordered (Bewertung_Enum);
    
-   -- Hier dann entsprechende Unterteilungen hinsichtlich der Qualität einbauen. äöü
-   -- subtype  is Bewertung_Enum range  .. ;
+   
 
+   -- Wäre das nicht sinnvoller in ProduktionDatentypen? äöü
    type Wirtschaft_Enum is (
                             Nahrung_Enum, Produktion_Enum, Geld_Enum, Forschung_Enum
                            );
    
+   
+   
+   -- Wäre das nicht sinnvoller in KampfDatentypen? äöü
    type Kampf_Enum is (
                        Verteidigung_Enum, Angriff_Enum
                       );
    
    
    
+   -- Das hier auch woanders hin? äöü
    type Auswahlbereich is range 0 .. 100;
    subtype AuswahlbereichVorhanden is Auswahlbereich range 1 .. Auswahlbereich'Last;
 

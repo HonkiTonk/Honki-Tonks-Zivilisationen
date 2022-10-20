@@ -4,9 +4,9 @@ pragma Warnings (Off, "*array aggregate*");
 with KartenverbesserungDatentypen;
 with RueckgabeDatentypen;
 with RassenDatentypen;
-with KartenDatentypen;
 with SpielDatentypen;
 with BefehleDatentypen;
+with KartenartDatentypen;
 
 package UmwandlungenVerschiedeneDatentypen is
 
@@ -24,11 +24,11 @@ package UmwandlungenVerschiedeneDatentypen is
    
    function KartentemperaturrückgabeNachKartentemperatur
      (RückgabeExtern : in RueckgabeDatentypen.Kartentemperatur_Enum)
-      return KartenDatentypen.Kartentemperatur_Enum;
+      return KartenartDatentypen.Kartentemperatur_Enum;
    
    function KartenressourcenrückgabeNachKartenressource
      (RückgabeExtern : in RueckgabeDatentypen.Kartenressourcen_Enum)
-      return KartenDatentypen.Kartenressourcen_Enum;
+      return KartenartDatentypen.Kartenressourcen_Enum;
    
    function RückgabeNachSchwierigkeitsgrad
      (RückgabeExtern : in RueckgabeDatentypen.Schwierigkeitsgrad_Enum)
@@ -72,22 +72,22 @@ private
                                                      RueckgabeDatentypen.Auswahl_Achtzehn_Enum => RassenDatentypen.Talbidahr_Enum
                                                     );
    
-   type KartentemperaturrückgabeKartentemperaturArray is array (RueckgabeDatentypen.Kartentemperatur_Enum'Range) of KartenDatentypen.Kartentemperatur_Enum;
+   type KartentemperaturrückgabeKartentemperaturArray is array (RueckgabeDatentypen.Kartentemperatur_Enum'Range) of KartenartDatentypen.Kartentemperatur_Enum;
    KartentemperaturrückgabeKartentemperatur : constant KartentemperaturrückgabeKartentemperaturArray := (
-                                                                                                           RueckgabeDatentypen.Auswahl_Eins_Enum => KartenDatentypen.Kartentemperatur_Kalt_Enum,
-                                                                                                           RueckgabeDatentypen.Auswahl_Zwei_Enum => KartenDatentypen.Kartentemperatur_Gemäßigt_Enum,
-                                                                                                           RueckgabeDatentypen.Auswahl_Drei_Enum => KartenDatentypen.Kartentemperatur_Heiß_Enum,
-                                                                                                           RueckgabeDatentypen.Auswahl_Vier_Enum => KartenDatentypen.Kartentemperatur_Eiszeit_Enum,
-                                                                                                           RueckgabeDatentypen.Auswahl_Fünf_Enum => KartenDatentypen.Kartentemperatur_Wüste_Enum
+                                                                                                           RueckgabeDatentypen.Auswahl_Eins_Enum => KartenartDatentypen.Kartentemperatur_Kalt_Enum,
+                                                                                                           RueckgabeDatentypen.Auswahl_Zwei_Enum => KartenartDatentypen.Kartentemperatur_Gemäßigt_Enum,
+                                                                                                           RueckgabeDatentypen.Auswahl_Drei_Enum => KartenartDatentypen.Kartentemperatur_Heiß_Enum,
+                                                                                                           RueckgabeDatentypen.Auswahl_Vier_Enum => KartenartDatentypen.Kartentemperatur_Eiszeit_Enum,
+                                                                                                           RueckgabeDatentypen.Auswahl_Fünf_Enum => KartenartDatentypen.Kartentemperatur_Wüste_Enum
                                                                                                           );
    
-   type KartenressourcenrückgabeKartenressourceArray is array (RueckgabeDatentypen.Kartenressourcen_Enum'Range) of KartenDatentypen.Kartenressourcen_Enum;
+   type KartenressourcenrückgabeKartenressourceArray is array (RueckgabeDatentypen.Kartenressourcen_Enum'Range) of KartenartDatentypen.Kartenressourcen_Enum;
    KartenressourcenrückgabeKartenressource : constant KartenressourcenrückgabeKartenressourceArray := (
-                                                                                                         RueckgabeDatentypen.Auswahl_Eins_Enum => KartenDatentypen.Kartenressourcen_Arm_Enum,
-                                                                                                         RueckgabeDatentypen.Auswahl_Zwei_Enum => KartenDatentypen.Kartenressourcen_Wenig_Enum,
-                                                                                                         RueckgabeDatentypen.Auswahl_Drei_Enum => KartenDatentypen.Kartenressourcen_Mittel_Enum,
-                                                                                                         RueckgabeDatentypen.Auswahl_Vier_Enum => KartenDatentypen.Kartenressourcen_Viel_Enum,
-                                                                                                         RueckgabeDatentypen.Auswahl_Fünf_Enum => KartenDatentypen.Kartenressourcen_Überfluss_Enum
+                                                                                                         RueckgabeDatentypen.Auswahl_Eins_Enum => KartenartDatentypen.Kartenressourcen_Arm_Enum,
+                                                                                                         RueckgabeDatentypen.Auswahl_Zwei_Enum => KartenartDatentypen.Kartenressourcen_Wenig_Enum,
+                                                                                                         RueckgabeDatentypen.Auswahl_Drei_Enum => KartenartDatentypen.Kartenressourcen_Mittel_Enum,
+                                                                                                         RueckgabeDatentypen.Auswahl_Vier_Enum => KartenartDatentypen.Kartenressourcen_Viel_Enum,
+                                                                                                         RueckgabeDatentypen.Auswahl_Fünf_Enum => KartenartDatentypen.Kartenressourcen_Überfluss_Enum
                                                                                                         );
    
    type RückgabeSchwierigkeitsgradArray is array (RueckgabeDatentypen.Schwierigkeitsgrad_Enum'Range) of SpielDatentypen.Schwierigkeitsgrad_Enum;

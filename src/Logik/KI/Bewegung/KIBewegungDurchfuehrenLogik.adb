@@ -16,6 +16,7 @@ with EinheitSuchenLogik;
 with KampfsystemEinheitenLogik;
 with StadtSuchenLogik;
 with KampfsystemStadtLogik;
+with Vergleiche;
 
 with KIBewegungBerechnenLogik;
 with KIBewegungAllgemeinLogik;
@@ -31,7 +32,8 @@ package body KIBewegungDurchfuehrenLogik is
       loop
          
          if
-           LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+           True = Vergleiche.Koordinatenvergleich (KoordinateEinsExtern  => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                   KoordinatenZweiExtern => LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
          then
             SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                        KoordinatenExtern        => KartenRecordKonstanten.LeerKoordinate);

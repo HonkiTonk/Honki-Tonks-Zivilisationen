@@ -9,36 +9,36 @@ package body KartentestsLogik is
    is begin
 
       if
-        KartengeneratorVariablenLogik.Polgrößen (KartenDatentypen.Norden_Enum) > KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.YAchse / 2
+        KartengeneratorVariablenLogik.Polgrößen (KartenartDatentypen.Norden_Enum) > KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.YAchse / 2
       then
-         KartengeneratorVariablenLogik.Polgrößen (KartenDatentypen.Norden_Enum) := KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.YAchse / 2;
+         KartengeneratorVariablenLogik.Polgrößen (KartenartDatentypen.Norden_Enum) := KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.YAchse / 2;
          
       else
          null;
       end if;
       
       if
-        KartengeneratorVariablenLogik.Polgrößen (KartenDatentypen.Süden_Enum) > KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.YAchse / 2
+        KartengeneratorVariablenLogik.Polgrößen (KartenartDatentypen.Süden_Enum) > KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.YAchse / 2
       then
-         KartengeneratorVariablenLogik.Polgrößen (KartenDatentypen.Süden_Enum) := KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.YAchse / 2;
+         KartengeneratorVariablenLogik.Polgrößen (KartenartDatentypen.Süden_Enum) := KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.YAchse / 2;
          
       else
          null;
       end if;
       
       if
-        KartengeneratorVariablenLogik.Polgrößen (KartenDatentypen.Osten_Enum) > KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.XAchse / 2
+        KartengeneratorVariablenLogik.Polgrößen (KartenartDatentypen.Osten_Enum) > KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.XAchse / 2
       then
-         KartengeneratorVariablenLogik.Polgrößen (KartenDatentypen.Osten_Enum) := KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.XAchse / 2;
+         KartengeneratorVariablenLogik.Polgrößen (KartenartDatentypen.Osten_Enum) := KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.XAchse / 2;
          
       else
          null;
       end if;
       
       if
-        KartengeneratorVariablenLogik.Polgrößen (KartenDatentypen.Westen_Enum) > KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.XAchse / 2
+        KartengeneratorVariablenLogik.Polgrößen (KartenartDatentypen.Westen_Enum) > KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.XAchse / 2
       then
-         KartengeneratorVariablenLogik.Polgrößen (KartenDatentypen.Westen_Enum) := KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.XAchse / 2;
+         KartengeneratorVariablenLogik.Polgrößen (KartenartDatentypen.Westen_Enum) := KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.XAchse / 2;
          
       else
          null;
@@ -86,17 +86,17 @@ package body KartentestsLogik is
 
    function KartenpolePrüfen
      (PolgrößeExtern : in KartenDatentypen.KartenfeldNatural)
-      return KartenDatentypen.Kartenpole_Enum
+      return KartenartDatentypen.Kartenpole_Enum
    is begin
      
       case
         PolgrößeExtern
       is
          when 0 =>
-            return KartenDatentypen.Kartenpol_Nicht_Vorhanden_Enum;
+            return KartenartDatentypen.Kartenpol_Nicht_Vorhanden_Enum;
             
          when others =>
-            return KartenDatentypen.Kartenpol_Vorhanden_Enum;
+            return KartenartDatentypen.Kartenpol_Vorhanden_Enum;
       end case;
      
    end KartenpolePrüfen;

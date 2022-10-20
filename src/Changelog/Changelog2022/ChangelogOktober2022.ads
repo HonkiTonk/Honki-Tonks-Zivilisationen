@@ -70,19 +70,26 @@ package ChangelogOktober2022 is
    
    
 
-   -- Version 0.04. => 0.04. (21.10.2022):
+   -- Version 0.04.2000 => 0.04. (21.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.1880 => 0.04. (20.10.2022):
+   -- Version 0.04.1880 => 0.04.2000 (20.10.2022):
    
    -- Interne Struktur überarbeitet.
    -- Externe Struktur überarbeitet.
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Wenn eine Einheit über das Sichtfeld hinaus bewegt wird, dann wird jetzt die Kartenansicht entsprechend mitverschoben.
+   -- Texturen überarbeitet.
+   -- Wenn eine Einheit jetzt an die Position der Befehlsfelder geschoben wird, werden die Befehlsfelder nach links verschoben.
+   -- Wenn man sich im unteren rechten Teil der Karte befindet, werden die Befehlsfelder nach links verschoben.
+   -- Unnötigen Code gelöscht.
+   -- Diverse Zahlen durch Konstante ersetzt.
+   -- KartenDatentypen aufgeteilt.
+   -- Zusätzliche Fehlermeldungen und Prüfungen eingebaut.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    
 

@@ -16,8 +16,9 @@ with KartenRecords;
 with EinheitenRecords;
 with SpielVariablen;
 with StadtRecords;
-
 with Weltkarte;
+
+private with KartenartDatentypen;
 
 package WeltkarteZeichnenGrafik is
    
@@ -74,16 +75,16 @@ private
    
    StartzeitBlinkintervall : Time := Clock;
       
-   type UmgebungArray is array (KartenDatentypen.Himmelsrichtungen_Enum'Range) of KartenRecords.AchsenKartenfeldRecord;
+   type UmgebungArray is array (KartenartDatentypen.Himmelsrichtungen_Enum'Range) of KartenRecords.AchsenKartenfeldRecord;
    Umgebung : constant UmgebungArray := (
-                                         Norden_Enum => (0, -1, 0),
-                                         Westen_Enum => (0, 0, -1),
-                                         Osten_Enum  => (0, 0, 1),
-                                         Süden_Enum  => (0, 1, 0)
+                                         KartenartDatentypen.Norden_Enum => (0, -1, 0),
+                                         KartenartDatentypen.Westen_Enum => (0, 0, -1),
+                                         KartenartDatentypen.Osten_Enum  => (0, 0, 1),
+                                         KartenartDatentypen.Süden_Enum  => (0, 1, 0)
                                         );
    
    procedure RahmenZeichnen
-     (WelcheRichtungExtern : in KartenDatentypen.Himmelsrichtungen_Enum;
+     (WelcheRichtungExtern : in KartenartDatentypen.Himmelsrichtungen_Enum;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with

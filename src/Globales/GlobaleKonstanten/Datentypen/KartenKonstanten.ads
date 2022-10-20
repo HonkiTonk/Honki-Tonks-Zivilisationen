@@ -6,6 +6,7 @@ with KartenRecords;
 with ProduktionDatentypen;
 with KampfDatentypen;
 with RueckgabeDatentypen;
+with KartenartDatentypen;
 
 package KartenKonstanten is
    
@@ -58,6 +59,6 @@ package KartenKonstanten is
                                                                      RueckgabeDatentypen.Auswahl_Neun_Enum   => (KartenDatentypen.KartenfeldPositiv'Last, KartenDatentypen.KartenfeldPositiv'Last)
                                                                     );
    
-   StandardKartenart : constant KartenDatentypen.Kartenart_Normal_Enum := KartenDatentypen.Kartenart_Kontinente_Enum;
+   StandardKartenart : constant KartenartDatentypen.Kartenart_Normal_Enum := KartenartDatentypen.Kartenart_Kontinente_Enum;
    
 end KartenKonstanten;

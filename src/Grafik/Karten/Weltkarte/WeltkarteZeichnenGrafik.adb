@@ -434,7 +434,7 @@ package body WeltkarteZeichnenGrafik is
 
 
    procedure RahmenZeichnen
-     (WelcheRichtungExtern : in KartenDatentypen.Himmelsrichtungen_Enum;
+     (WelcheRichtungExtern : in KartenartDatentypen.Himmelsrichtungen_Enum;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
@@ -442,19 +442,19 @@ package body WeltkarteZeichnenGrafik is
       case
         WelcheRichtungExtern
       is
-         when KartenDatentypen.Norden_Enum =>
+         when KartenartDatentypen.Norden_Enum =>
             Rahmengröße := (KartenberechnungenGrafik.KartenfelderAbmessung.x, DickeRahmen);
             Rahmenposition := PositionExtern;
          
-         when KartenDatentypen.Westen_Enum =>
+         when KartenartDatentypen.Westen_Enum =>
             Rahmengröße := (DickeRahmen, KartenberechnungenGrafik.KartenfelderAbmessung.y);
             Rahmenposition := PositionExtern;
          
-         when KartenDatentypen.Osten_Enum =>
+         when KartenartDatentypen.Osten_Enum =>
             Rahmengröße := (DickeRahmen, KartenberechnungenGrafik.KartenfelderAbmessung.y);
             Rahmenposition := (PositionExtern.x + KartenberechnungenGrafik.KartenfelderAbmessung.x - DickeRahmen, PositionExtern.y);
          
-         when KartenDatentypen.Süden_Enum =>
+         when KartenartDatentypen.Süden_Enum =>
             Rahmengröße := (KartenberechnungenGrafik.KartenfelderAbmessung.x, DickeRahmen);
             Rahmenposition := (PositionExtern.x, PositionExtern.y + KartenberechnungenGrafik.KartenfelderAbmessung.y - DickeRahmen);
       end case;

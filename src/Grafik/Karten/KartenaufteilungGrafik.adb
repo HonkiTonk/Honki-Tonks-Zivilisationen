@@ -1,7 +1,12 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with Sf.Graphics.View;
+
 with EinheitenKonstanten;
+with Views;
+
+with LeseEinheitenGebaut;
 
 with StadtkarteGrafik;
 with CursorplatzierungGrafik;
@@ -12,6 +17,8 @@ with StadtseitenleisteGrafik;
 with StadtumgebungGrafik;
 with StadtbefehleGrafik;
 with WeltkartenbefehleGrafik;
+with KoordinatenPositionUmwandlungen;
+with SichtweitenGrafik;
 
 package body KartenaufteilungGrafik is
    
@@ -24,19 +31,35 @@ package body KartenaufteilungGrafik is
       
       -- Von außen die Arraypositionen für die Bereiche/Views hineingeben? äöü
       WeltkarteGrafik.WeltkarteAnzeigen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      SeitenleisteGrafik.SeitenleisteGrafik (RasseExtern => EinheitRasseNummerExtern.Rasse);
       
       case
         EinheitRasseNummerExtern.Nummer
       is
          when EinheitenKonstanten.LeerNummer =>
-            null;
+            RechtsLinksBefehlsanzeige := SichtweitenGrafik.UntenRechts (RasseExtern => EinheitRasseNummerExtern.Rasse);
             
          when others =>
-            WeltkartenbefehleGrafik.Einheitenbefehle (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      end case;
+            Position := KoordinatenPositionUmwandlungen.KoordinatenZuKartenposition (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                                                     RasseExtern       => EinheitRasseNummerExtern.Rasse);
             
-      WeltkartenbefehleGrafik.Kartenbefehle;
+            if
+              Position.y >= Sf.Graphics.View.getSize (view => Views.KartenviewAccess).y / 2.00
+              and
+                Position.x >= Sf.Graphics.View.getSize (view => Views.KartenviewAccess).x / 1.50
+            then
+               RechtsLinksBefehlsanzeige := False;
+               
+            else
+               RechtsLinksBefehlsanzeige := True;
+            end if;
+            
+            WeltkartenbefehleGrafik.Einheitenbefehle (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                      RechtsLinksExtern        => RechtsLinksBefehlsanzeige);
+      end case;
+         
+      SeitenleisteGrafik.SeitenleisteGrafik (RasseExtern => EinheitRasseNummerExtern.Rasse);
+      
+      WeltkartenbefehleGrafik.Kartenbefehle (RechtsLinksExtern => RechtsLinksBefehlsanzeige);
       
    end Weltkarte;
    

@@ -24,7 +24,7 @@ private
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    
-   SichtbereichAnfangEnde : KartenDatentypen.SichtbereichAnfangEndeArray;
+   Sichtbereich : KartenDatentypen.KartenfeldPositiv;
    
    Mausposition : Sf.System.Vector2.sfVector2f;
 

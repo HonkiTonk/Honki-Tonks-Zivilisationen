@@ -3,8 +3,8 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Sf.Graphics.Text;
 
+with KartenartDatentypen;
 with SystemKonstanten;
-with KartenDatentypen;
 with SpielDatentypen;
 with SpielVariablen;
 
@@ -57,13 +57,13 @@ package body TextfarbeGrafik is
         WelchesMenüExtern
       is
          when MenueDatentypen.Kartenart_Menü_Enum =>
-            AktuelleEinstellung := SystemKonstanten.StandardArrayanpassung + KartenDatentypen.Kartenart_Enum'Pos (KartengeneratorVariablenLogik.Kartenparameter.Kartenart);
+            AktuelleEinstellung := SystemKonstanten.StandardArrayanpassung + KartenartDatentypen.Kartenart_Enum'Pos (KartengeneratorVariablenLogik.Kartenparameter.Kartenart);
             
          when MenueDatentypen.Kartentemperatur_Menü_Enum =>
-            AktuelleEinstellung := SystemKonstanten.StandardArrayanpassung + KartenDatentypen.Kartentemperatur_Enum'Pos (KartengeneratorVariablenLogik.Kartenparameter.Kartentemperatur);
+            AktuelleEinstellung := SystemKonstanten.StandardArrayanpassung + KartenartDatentypen.Kartentemperatur_Enum'Pos (KartengeneratorVariablenLogik.Kartenparameter.Kartentemperatur);
             
          when MenueDatentypen.Kartenressourcen_Menü_Enum =>
-            AktuelleEinstellung := SystemKonstanten.StandardArrayanpassung + KartenDatentypen.Kartenressourcen_Enum'Pos (KartengeneratorVariablenLogik.Kartenparameter.Kartenressourcen);
+            AktuelleEinstellung := SystemKonstanten.StandardArrayanpassung + KartenartDatentypen.Kartenressourcen_Enum'Pos (KartengeneratorVariablenLogik.Kartenparameter.Kartenressourcen);
             
          when MenueDatentypen.Schwierigkeitsgrad_Menü_Enum =>
             AktuelleEinstellung := SystemKonstanten.StandardArrayanpassung + SpielDatentypen.Schwierigkeitsgrad_Enum'Pos (SpielVariablen.Allgemeines.Schwierigkeitsgrad);

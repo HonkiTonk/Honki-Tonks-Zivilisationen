@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenKonstanten;
+with KartenartDatentypen;
 
 package body KartenkoordinateYAchseBerechnenLogik is
 
@@ -48,10 +49,10 @@ package body KartenkoordinateYAchseBerechnenLogik is
       case
         Weltkarte.Karteneinstellungen.Kartenform.YAchseNorden
       is
-         when KartenDatentypen.Karte_Y_Kein_Übergang_Enum =>
+         when KartenartDatentypen.Karte_Y_Kein_Übergang_Enum =>
             return KartenKonstanten.LeerYAchse;
                         
-         when KartenDatentypen.Karte_Y_Übergang_Enum | KartenDatentypen.Karte_Y_Verschobener_Übergang_Enum =>
+         when KartenartDatentypen.Karte_Y_Übergang_Enum | KartenartDatentypen.Karte_Y_Verschobener_Übergang_Enum =>
             KartenkoordinatenWerteLogik.VerschiebungYAchse (LogikGrafikExtern, ArrayPositionExtern) := Weltkarte.Karteneinstellungen.Kartenform.YAchseNorden;
             
             return ÜbergangNordenNormal (YAchseExtern         => YAchseExtern,
@@ -59,7 +60,7 @@ package body KartenkoordinateYAchseBerechnenLogik is
                                           ArrayPositionExtern  => ArrayPositionExtern,
                                           LogikGrafikExtern    => LogikGrafikExtern);
             
-         when KartenDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum =>
+         when KartenartDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum =>
             KartenkoordinatenWerteLogik.VerschiebungYAchse (LogikGrafikExtern, ArrayPositionExtern) := Weltkarte.Karteneinstellungen.Kartenform.YAchseNorden;
             
             return ÜbergangNordenRückwärts (YAchseExtern         => YAchseExtern,
@@ -123,10 +124,10 @@ package body KartenkoordinateYAchseBerechnenLogik is
       case
         Weltkarte.Karteneinstellungen.Kartenform.YAchseSüden
       is
-         when KartenDatentypen.Karte_Y_Kein_Übergang_Enum =>
+         when KartenartDatentypen.Karte_Y_Kein_Übergang_Enum =>
             return KartenKonstanten.LeerYAchse;
             
-         when KartenDatentypen.Karte_Y_Übergang_Enum | KartenDatentypen.Karte_Y_Verschobener_Übergang_Enum =>
+         when KartenartDatentypen.Karte_Y_Übergang_Enum | KartenartDatentypen.Karte_Y_Verschobener_Übergang_Enum =>
             KartenkoordinatenWerteLogik.VerschiebungYAchse (LogikGrafikExtern, ArrayPositionExtern) := Weltkarte.Karteneinstellungen.Kartenform.YAchseSüden;
             
             return ÜbergangSüdenNormal (YAchseExtern         => YAchseExtern,
@@ -134,7 +135,7 @@ package body KartenkoordinateYAchseBerechnenLogik is
                                           ArrayPositionExtern  => ArrayPositionExtern,
                                           LogikGrafikExtern    => LogikGrafikExtern);
             
-         when KartenDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum =>
+         when KartenartDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum =>
             KartenkoordinatenWerteLogik.VerschiebungYAchse (LogikGrafikExtern, ArrayPositionExtern) := Weltkarte.Karteneinstellungen.Kartenform.YAchseSüden;
             
             return ÜbergangSüdenRückwärts (YAchseExtern         => YAchseExtern,

@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with KartenartDatentypen; use KartenartDatentypen;
 with KartenRecordKonstanten;
 with KartenKonstanten;
 
@@ -47,9 +48,9 @@ package body GeheZuGrafik is
          KartenwertKoordinatenberechnung.YAchse := Weltkarte.Karteneinstellungen.Kartengröße.YAchse / 2;
          
       elsif
-        Weltkarte.Karteneinstellungen.Kartenform.YAchseNorden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
+        Weltkarte.Karteneinstellungen.Kartenform.YAchseNorden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
         and
-          Weltkarte.Karteneinstellungen.Kartenform.YAchseSüden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
+          Weltkarte.Karteneinstellungen.Kartenform.YAchseSüden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
       then
          if
            KoordinatenExtern.YAchse <= Weltkarte.KarteArray'First (2) + AktuelleSichtweite
@@ -66,7 +67,7 @@ package body GeheZuGrafik is
          end if;
          
       elsif
-        Weltkarte.Karteneinstellungen.Kartenform.YAchseNorden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
+        Weltkarte.Karteneinstellungen.Kartenform.YAchseNorden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
       then
          if
            KoordinatenExtern.YAchse <= Weltkarte.KarteArray'First (2) + AktuelleSichtweite
@@ -78,7 +79,7 @@ package body GeheZuGrafik is
          end if;
          
       elsif
-        Weltkarte.Karteneinstellungen.Kartenform.YAchseSüden = KartenDatentypen.Karte_Y_Kein_Übergang_Enum
+        Weltkarte.Karteneinstellungen.Kartenform.YAchseSüden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
       then
          if
            KoordinatenExtern.YAchse >= Weltkarte.Karteneinstellungen.Kartengröße.YAchse - AktuelleSichtweite
@@ -99,9 +100,9 @@ package body GeheZuGrafik is
          KartenwertKoordinatenberechnung.XAchse := Weltkarte.Karteneinstellungen.Kartengröße.XAchse / 2;
          
       elsif
-        Weltkarte.Karteneinstellungen.Kartenform.XAchseWesten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
+        Weltkarte.Karteneinstellungen.Kartenform.XAchseWesten = KartenartDatentypen.Karte_X_Kein_Übergang_Enum
         and
-          Weltkarte.Karteneinstellungen.Kartenform.XAchseOsten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
+          Weltkarte.Karteneinstellungen.Kartenform.XAchseOsten = KartenartDatentypen.Karte_X_Kein_Übergang_Enum
       then
          if
            KoordinatenExtern.XAchse <= Weltkarte.KarteArray'First (3) + AktuelleSichtweite
@@ -118,7 +119,7 @@ package body GeheZuGrafik is
          end if;
       
       elsif
-        Weltkarte.Karteneinstellungen.Kartenform.XAchseWesten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
+        Weltkarte.Karteneinstellungen.Kartenform.XAchseWesten = KartenartDatentypen.Karte_X_Kein_Übergang_Enum
       then
          if
            KoordinatenExtern.XAchse <= Weltkarte.KarteArray'First (3) + AktuelleSichtweite
@@ -130,7 +131,7 @@ package body GeheZuGrafik is
          end if;
       
       elsif
-        Weltkarte.Karteneinstellungen.Kartenform.XAchseOsten = KartenDatentypen.Karte_X_Kein_Übergang_Enum
+        Weltkarte.Karteneinstellungen.Kartenform.XAchseOsten = KartenartDatentypen.Karte_X_Kein_Übergang_Enum
       then
          if
            KoordinatenExtern.XAchse >= Weltkarte.Karteneinstellungen.Kartengröße.XAchse - AktuelleSichtweite

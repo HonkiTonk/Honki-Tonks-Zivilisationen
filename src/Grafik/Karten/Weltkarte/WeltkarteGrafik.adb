@@ -26,18 +26,18 @@ package body WeltkarteGrafik is
                                             GrößeExtern          => EinstellungenGrafik.AktuelleFensterAuflösung,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.KarteAnzeigebereich);
       
-      SichtbereichAnfangEnde := SichtweitenGrafik.SichtbereichKarteBerechnen;
+      Sichtbereich := SichtweitenGrafik.SichtweiteLesen;
       
       CursorKoordinatenAlt := SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt;
       Feldposition := (0.00, 0.00);
             
       YAchseSchleife:
-      for YAchseSchleifenwert in SichtbereichAnfangEnde (1) .. SichtbereichAnfangEnde (2) loop
+      for YAchseSchleifenwert in -Sichtbereich .. Sichtbereich loop
          XAchseSchleife:
-         for XAchseSchleifenwert in SichtbereichAnfangEnde (3) .. SichtbereichAnfangEnde (4) loop
+         for XAchseSchleifenwert in -Sichtbereich .. Sichtbereich loop
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => CursorKoordinatenAlt,
-                                                                                                      ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                                                       LogikGrafikExtern => False);
             
             if
@@ -86,9 +86,9 @@ package body WeltkarteGrafik is
                Transparents := GrafikKonstanten.Wolkentransparents;
             
                -- Dafür was besseres einbauen. äöü
-               -- when KartenKonstanten.WeltraumKonstante =>
-               -- AktuelleKoordinaten := (KoordinatenExtern.EAchse - 2, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse);
-               -- Transparents := GrafikKonstanten.Weltraumtransparents;
+            when KartenKonstanten.WeltraumKonstante =>
+               AktuelleKoordinaten := (KoordinatenExtern.EAchse - 1, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse);
+               Transparents := GrafikKonstanten.Weltraumtransparents;
             
             when KartenKonstanten.OberflächeKonstante =>
                -- Hier eventuell später noch den aktuellen Grund berücksichtigen oder ist der bei Wasser niemals wichtig? äöü

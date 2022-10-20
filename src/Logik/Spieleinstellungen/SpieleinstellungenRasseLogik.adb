@@ -365,10 +365,7 @@ package body SpieleinstellungenRasseLogik is
         SpielVariablen.Rassenbelegung (RasseExtern).Belegung
       is
          when RassenDatentypen.Mensch_Spieler_Enum =>
-            -- Reicht das nicht so? äöü
             SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell := StartkoordinateEinsExtern;
-            -- Oder muss das doch so sein? äöü
-            -- SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell := (StartkoordinateEinsExtern.EAchse, 1, 1);
             SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt := StartkoordinateEinsExtern;
             
          when others =>

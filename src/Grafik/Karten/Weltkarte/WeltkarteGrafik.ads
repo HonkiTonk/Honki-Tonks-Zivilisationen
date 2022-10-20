@@ -26,7 +26,7 @@ private
    
    Transparents : Sf.sfUint8;
    
-   SichtbereichAnfangEnde : KartenDatentypen.SichtbereichAnfangEndeArray;
+   Sichtbereich : KartenDatentypen.KartenfeldPositiv;
       
    Feldposition : Sf.System.Vector2.sfVector2f;
    

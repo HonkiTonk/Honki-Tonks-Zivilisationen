@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
+with Weltkarte;
 
 with KartenberechnungenGrafik;
 with CursorbewegungLogik;
@@ -35,7 +36,7 @@ package body SichtweitenGrafik is
      (ÄnderungExtern : in KartenDatentypen.Kartenfeld)
    is begin
       
-      -- Eine Möglichkeit einbauen das abzustellen. äöü
+      -- Eine Möglichkeit einbauen das abzustellen? äöü
       -- Eine Möglichkeit einbauen um direkt zu Standardzoomstufe zu springen und nicht zur Kleinsten?
       if
         AktuelleZoomstufe + ÄnderungExtern > MaximaleZoomstufe
@@ -83,12 +84,22 @@ package body SichtweitenGrafik is
    
    
    
-   function SichtbereichKarteBerechnen
-     return KartenDatentypen.SichtbereichAnfangEndeArray
+   function UntenRechts
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     return Boolean
    is begin
       
-      return (-SichtweiteLesen, SichtweiteLesen, -SichtweiteLesen, SichtweiteLesen);
+      if
+        SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse >= Weltkarte.Karteneinstellungen.Kartengröße.YAchse - SichtweiteLesen
+        and
+          SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse >= Weltkarte.Karteneinstellungen.Kartengröße.XAchse - SichtweiteLesen
+      then
+         return False;
+               
+      else
+         return True;
+      end if;
       
-   end SichtbereichKarteBerechnen;
+   end UntenRechts;
 
 end SichtweitenGrafik;

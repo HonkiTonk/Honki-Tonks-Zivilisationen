@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with KartenDatentypen;
 with KartengrundDatentypen;
 with RassenDatentypen;
+with KartenartDatentypen;
 
 package KartenRecords is
    
@@ -87,12 +88,12 @@ package KartenRecords is
    
    type KartenformRecord is record
       
-      EAchseOben : KartenDatentypen.Kartenform_E_Einstellbar_Enum;
-      EAchseUnten : KartenDatentypen.Kartenform_E_Einstellbar_Enum;
-      YAchseNorden : KartenDatentypen.Kartenform_Y_Einstellbar_Enum;
-      YAchseSüden : KartenDatentypen.Kartenform_Y_Einstellbar_Enum;
-      XAchseWesten : KartenDatentypen.Kartenform_X_Einstellbar_Enum;
-      XAchseOsten : KartenDatentypen.Kartenform_X_Einstellbar_Enum;
+      EAchseOben : KartenartDatentypen.Kartenform_E_Einstellbar_Enum;
+      EAchseUnten : KartenartDatentypen.Kartenform_E_Einstellbar_Enum;
+      YAchseNorden : KartenartDatentypen.Kartenform_Y_Einstellbar_Enum;
+      YAchseSüden : KartenartDatentypen.Kartenform_Y_Einstellbar_Enum;
+      XAchseWesten : KartenartDatentypen.Kartenform_X_Einstellbar_Enum;
+      XAchseOsten : KartenartDatentypen.Kartenform_X_Einstellbar_Enum;
       
    end record;
    
@@ -100,10 +101,10 @@ package KartenRecords is
    
    type KartenpoleRecord is record
       
-      Nordpol : KartenDatentypen.Kartenpole_Enum;
-      Südpol : KartenDatentypen.Kartenpole_Enum;
-      Westpol : KartenDatentypen.Kartenpole_Enum;
-      Ostpol : KartenDatentypen.Kartenpole_Enum;
+      Nordpol : KartenartDatentypen.Kartenpole_Enum;
+      Südpol : KartenartDatentypen.Kartenpole_Enum;
+      Westpol : KartenartDatentypen.Kartenpole_Enum;
+      Ostpol : KartenartDatentypen.Kartenpole_Enum;
       
    end record;
    
@@ -132,9 +133,9 @@ package KartenRecords is
    
    type TemporäreKartenparameterRecord is new PermanenteKartenparameterRecord with record
             
-      Kartenart : KartenDatentypen.Kartenart_Enum;
-      Kartentemperatur : KartenDatentypen.Kartentemperatur_Enum;
-      Kartenressourcen : KartenDatentypen.Kartenressourcen_Enum;
+      Kartenart : KartenartDatentypen.Kartenart_Enum;
+      Kartentemperatur : KartenartDatentypen.Kartentemperatur_Enum;
+      Kartenressourcen : KartenartDatentypen.Kartenressourcen_Enum;
       Kartenpole : KartenpoleRecord;
             
    end record;
