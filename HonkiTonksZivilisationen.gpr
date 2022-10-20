@@ -26,6 +26,7 @@ project HonkiTonksZivilisationen is
    end Binder;
 
    package Pretty_Printer is
+      null;
    end Pretty_Printer;
 
    package Prove is
