@@ -5,14 +5,13 @@ with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
 with EinheitenRecords;
 
-private with EinheitenDatentypen;
 private with KartenRecords;
 
 with KIDatentypen;
 
-package KIEinheitAufgabeBewachenLogik is
+package KIEinheitAufgabePlatzMachenLogik is
 
-   function StadtBewachen
+   function PlatzMachen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return KIDatentypen.AufgabenWichtigkeitKlein
      with
@@ -24,8 +23,6 @@ package KIEinheitAufgabeBewachenLogik is
    
 private
    
-   EinheitNummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
-   
-   StadtKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   EinheitenKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
 
-end KIEinheitAufgabeBewachenLogik;
+end KIEinheitAufgabePlatzMachenLogik;

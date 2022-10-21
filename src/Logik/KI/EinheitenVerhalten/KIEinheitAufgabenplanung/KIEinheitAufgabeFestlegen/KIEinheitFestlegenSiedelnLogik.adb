@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+
 with KartenRecords; use KartenRecords;
 with KartengrundDatentypen; use KartengrundDatentypen;
 with KartenKonstanten;
@@ -102,7 +104,7 @@ package body KIEinheitFestlegenSiedelnLogik is
       EinheitenKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
    
       EAchseSchleife:
-      for EAchseSchleifenwert in KartenKonstanten.UnterflächeKonstante .. KartenKonstanten.HimmelKonstante loop
+      for EAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEinsEAchse loop
          YAchseKartenfeldSuchenSchleife:
          for YAchseSchleifenwert in -UmgebungExtern .. UmgebungExtern loop
             XAchseKartenfeldSuchenSchleife:
@@ -185,17 +187,26 @@ package body KIEinheitFestlegenSiedelnLogik is
       end case;
       
       -- Diese Prüfung hier mal rassenspezifisch erweitern. äöü
+      case
+        LeseWeltkarte.BasisGrund (KoordinatenExtern => KoordinatenExtern)
+      is
+         when KartengrundDatentypen.Eis_Enum =>
+            return False;
+            
+         when others =>
+            Feldbewertung := KIKartenfeldbewertungModifizierenLogik.BewertungStadtBauen (KoordinatenExtern => KoordinatenExtern,
+                                                                                         RasseExtern       => EinheitRasseNummerExtern.Rasse);
+      end case;
+      
       if
-        LeseWeltkarte.AktuellerGrund (KoordinatenExtern => KoordinatenExtern) = KartengrundDatentypen.Eis_Enum
-      then
-         return False;
-         
-      elsif
+        Feldbewertung = KartenDatentypen.Null_Enum
+        or
         LeseWeltkarte.Bewertung (KoordinatenExtern => KoordinatenExtern,
                                  RasseExtern       => EinheitRasseNummerExtern.Rasse)
-        < KIKartenfeldbewertungModifizierenLogik.BewertungStadtBauen (KoordinatenExtern => KoordinatenExtern,
-                                                                      RasseExtern       => EinheitRasseNummerExtern.Rasse)
+        < Feldbewertung
       then
+         Put_Line (LeseWeltkarte.Bewertung (KoordinatenExtern => KoordinatenExtern,
+                                            RasseExtern       => EinheitRasseNummerExtern.Rasse)'Wide_Wide_Image);
          return False;
          
       else

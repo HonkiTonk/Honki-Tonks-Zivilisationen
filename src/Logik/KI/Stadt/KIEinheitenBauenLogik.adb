@@ -108,6 +108,41 @@ package body KIEinheitenBauenLogik is
                                                                  EinheitenIDExtern      => IDExtern);
       Gesamtwertung := Gesamtwertung + SpezielleEinheitBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                                  IDExtern               => IDExtern);
+            
+      Gesamtwertung := Gesamtwertung + KIDatentypen.BauenBewertung (LeseEinheitenDatenbank.Anforderungen (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                                                                          IDExtern    => IDExtern));
+      
+      AnzahlPassierbarkeiten := 0;
+      
+      PassierbarkeitenSchleife:
+      for PassierbarkeitSchleifenwert in EinheitenDatentypen.Passierbarkeit_Enum'Range loop
+         
+         case
+           LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => StadtRasseNummerExtern.Rasse,
+                                                  IDExtern             => IDExtern,
+                                                  WelcheUmgebungExtern => PassierbarkeitSchleifenwert)
+         is
+            when True =>
+               AnzahlPassierbarkeiten := AnzahlPassierbarkeiten + 1;
+               
+            when False =>
+               null;
+         end case;
+         
+      end loop PassierbarkeitenSchleife;
+      
+      case
+        AnzahlPassierbarkeiten
+      is
+         when 0 =>
+            Fehler.LogikFehler (FehlermeldungExtern => "KIEinheitenBauenLogik.EinheitBewerten - Einheit: " & StadtRasseNummerExtern.Rasse'Wide_Wide_Image & " " & IDExtern'Wide_Wide_Image & " hat keine Passierbarkeit.");
+            
+         when 1 =>
+            null;
+            
+         when others =>
+            Gesamtwertung := Gesamtwertung + 15;
+      end case;
       
       return Gesamtwertung;
       
@@ -123,7 +158,7 @@ package body KIEinheitenBauenLogik is
       
       case
         LeseEinheitenDatenbank.Einheitenart (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                           IDExtern    => IDExtern)
+                                             IDExtern    => IDExtern)
       is
          when EinheitenDatentypen.Arbeiter_Enum =>
             return ArbeiterBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
@@ -323,10 +358,12 @@ package body KIEinheitenBauenLogik is
       return KIDatentypen.BauenBewertung
    is begin
       
+      -- Da das System so wie es aktuell ist nicht korrekt funktioniert, wird vorübergehen hier mit 0 multipliziert, das später wieder entfernen. äöü
       return -(KIDatentypen.BauenBewertung (LeseEinheitenDatenbank.Produktionskosten (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                                    IDExtern    => EinheitenIDExtern)
+                                                                                      IDExtern    => EinheitenIDExtern)
                / LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern)
-               / 10));
+               / 10))
+        * 0;
       
    end HerstellungskostenBewerten;
      

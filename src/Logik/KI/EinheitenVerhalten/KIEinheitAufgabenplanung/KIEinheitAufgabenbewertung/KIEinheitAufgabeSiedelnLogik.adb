@@ -7,6 +7,8 @@ with StadtKonstanten;
 with LeseWichtiges;
 with LeseRassenDatenbank;
 
+-- with KIKonstanten;
+
 with KIAufgabenVerteiltLogik;
 
 package body KIEinheitAufgabeSiedelnLogik is
@@ -27,7 +29,7 @@ package body KIEinheitAufgabeSiedelnLogik is
         SpielVariablen.Allgemeines.Rundenanzahl > 20 * (Positive (VorhandeneStädte) + KIAufgabenVerteiltLogik.AufgabenVerteilt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                                                                                  AufgabeExtern            => KIDatentypen.Stadt_Bauen_Enum))
       then
-         return 8;
+         return 28;
          
       else
          null;
@@ -39,7 +41,8 @@ package body KIEinheitAufgabeSiedelnLogik is
          return 3;
          
       else
-         return 0;
+         return 24;
+        -- return KIKonstanten.LeerAufgabenbewertung;
       end if;
       
    end NeueStadtBauenGehen;

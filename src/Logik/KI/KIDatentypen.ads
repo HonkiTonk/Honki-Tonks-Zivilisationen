@@ -10,7 +10,7 @@ package KIDatentypen is
                                  Tut_Nichts_Enum,
                                  Stadt_Bauen_Enum, Flucht_Enum, Erkunden_Enum, Verbesserung_Anlegen_Enum, Angreifen_Enum, Verteidigen_Enum, Einheit_Heilen_Enum, Einheit_Auflösen_Enum,
                                  Einheit_Festsetzen_Enum, Einheit_Verbessern_Enum, Stadt_Bewachen_Enum, Verbesserung_Zerstören_Enum, Auf_Transporter_Warten_Enum,
-                                 Angriffskrieg_Vorbereiten_Enum, Verteidigungskrieg_Vorbereiten_Enum, -- Abholen_Enum,
+                                 Angriffskrieg_Vorbereiten_Enum, Verteidigungskrieg_Vorbereiten_Enum, Platz_Machen_Enum, -- Abholen_Enum,
 
                                  Planet_Vernichten_Enum
                                 );

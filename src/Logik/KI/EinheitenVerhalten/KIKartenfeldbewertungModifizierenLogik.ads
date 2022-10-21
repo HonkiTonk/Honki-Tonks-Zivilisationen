@@ -25,8 +25,6 @@ package KIKartenfeldbewertungModifizierenLogik is
    
 private
    
-   BewertungKartenfeld : KartenDatentypen.GesamteFeldbewertung;
-   
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
 
 end KIKartenfeldbewertungModifizierenLogik;

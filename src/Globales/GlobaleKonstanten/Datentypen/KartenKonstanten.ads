@@ -27,16 +27,16 @@ package KartenKonstanten is
    
    LeerPassierbarkeit : constant Boolean := False;
       
-   LeerBewertung : constant KartenDatentypen.Einzelbewertung := 0;
-   LeerFeldwertung : constant KartenDatentypen.Bewertung_Enum := KartenDatentypen.Null_Enum;
-   LeerWirtschaft : constant ProduktionDatentypen.Einzelproduktion := 0;
+   LeerBewertung : constant KartenDatentypen.Einzelbewertung := KartenDatentypen.Einzelbewertung'First;
+   LeerFeldwertung : constant KartenDatentypen.Bewertung_Enum := KartenDatentypen.Bewertung_Enum'First;
+   LeerWirtschaft : constant ProduktionDatentypen.Einzelproduktion := ProduktionDatentypen.Einzelproduktion'First;
    LeerKampf : constant KampfDatentypen.Kampfwerte := KampfDatentypen.Kampfwerte'First;
    
    LeerSichtbar : constant Boolean := False;
-   LeerFelderwertung : constant KartenDatentypen.GesamteFeldbewertung := 0;
+   LeerFelderwertung : constant KartenDatentypen.GesamteFeldbewertung := KartenDatentypen.GesamteFeldbewertung'First;
          
-   LeerVerbesserungBewertung : constant KartenDatentypen.Einzelbewertung := 0;
-   LeerVerbesserungWirtschaft : constant ProduktionDatentypen.Einzelproduktion := 0;
+   LeerVerbesserungBewertung : constant KartenDatentypen.Einzelbewertung := KartenDatentypen.Einzelbewertung'First;
+   LeerVerbesserungWirtschaft : constant ProduktionDatentypen.Einzelproduktion := ProduktionDatentypen.Einzelproduktion'First;
    LeerVerbesserungKampf : constant KampfDatentypen.Kampfwerte := KampfDatentypen.Kampfwerte'First;
    
    WirtschaftNahrung : constant KartenDatentypen.Wirtschaft_Enum := KartenDatentypen.Nahrung_Enum;

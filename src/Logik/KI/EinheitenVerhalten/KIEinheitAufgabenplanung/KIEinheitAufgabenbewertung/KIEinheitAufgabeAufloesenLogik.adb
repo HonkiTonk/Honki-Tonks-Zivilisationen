@@ -13,11 +13,12 @@ with LeseEinheitenGebaut;
 
 with EinheitenAllgemeinesLogik;
 
-with KIDatentypen; use KIDatentypen;
+with KIKonstanten;
 
 with KIKriegErmittelnLogik;
 with KIGrenzpruefungen;
 
+-- Man könnte auch noch den Gesundheitsstatus der Einheit mit berücksichtigen. äöü
 package body KIEinheitAufgabeAufloesenLogik is
 
    function EinheitAuflösen
@@ -69,7 +70,7 @@ package body KIEinheitAufgabeAufloesenLogik is
       return KIDatentypen.AufgabenWichtigkeitKlein
    is begin
       
-      Zwischenwert := 0;
+      Zwischenwert := KIKonstanten.LeerAufgabenbewertung;
       Heimatstadt := LeseEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       case
@@ -149,10 +150,10 @@ package body KIEinheitAufgabeAufloesenLogik is
         EinheitRasseNummerExtern.Rasse
       is
          when RassenDatentypen.Ekropa_Enum =>
-            return 0;
+            return KIKonstanten.LeerAufgabenbewertung;
             
          when others =>
-            Zwischenwert := 0;
+            Zwischenwert := KIKonstanten.LeerAufgabenbewertung;
       end case;
          
       if
@@ -204,7 +205,7 @@ package body KIEinheitAufgabeAufloesenLogik is
             null;
       end case;
       
-      return -1;
+      return KIKonstanten.UnmöglichAufgabenbewertung;
       
    end StadtzustandKrieg;
 

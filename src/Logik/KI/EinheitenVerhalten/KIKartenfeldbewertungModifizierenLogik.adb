@@ -7,10 +7,6 @@ with LeseWeltkarte;
 
 with KartenkoordinatenberechnungssystemLogik;
 
-with KIKonstanten;
-
-with KIGrenzpruefungen;
-
 package body KIKartenfeldbewertungModifizierenLogik is
 
    -- Später Rassen/Technolgie/Sonstigesabhängig die Mindestbewertung ermitteln. äöü
@@ -21,7 +17,22 @@ package body KIKartenfeldbewertungModifizierenLogik is
       return KartenDatentypen.Bewertung_Enum
    is begin
       
-      BewertungKartenfeld := KIKonstanten.KartenfeldBewertungStadtBauenMinimum (RasseExtern);
+      case
+        KoordinatenExtern.EAchse
+      is
+         when KartenKonstanten.OberflächeKonstante =>
+            null;
+            
+         when others =>
+            if
+              RasseExtern = RassenDatentypen.Ekropa_Enum
+            then
+               return KartenDatentypen.Null_Enum;
+               
+            else
+               null;
+            end if;
+      end case;
       
       -- Die EAchse später mit berücksichtigen? äöü
       -- EAchseSchleife:
@@ -32,7 +43,7 @@ package body KIKartenfeldbewertungModifizierenLogik is
          for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
                               
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                      ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                                                       LogikGrafikExtern => True);
                      
             if
@@ -46,33 +57,14 @@ package body KIKartenfeldbewertungModifizierenLogik is
                null;
             
             else
-               if
-               abs (YAchseSchleifenwert) = 3
-                 or
-               abs (XAchseSchleifenwert) = 3
-               then
-                  BewertungKartenfeld := KIGrenzpruefungen.GesamteFeldbewertung (AktuellerWertExtern => BewertungKartenfeld,
-                                                                                 ÄnderungExtern      => 5);
-                  
-               elsif
-               abs (YAchseSchleifenwert) = 2
-                 or
-               abs (XAchseSchleifenwert) = 2
-               then
-                  BewertungKartenfeld := KIGrenzpruefungen.GesamteFeldbewertung (AktuellerWertExtern => BewertungKartenfeld,
-                                                                                 ÄnderungExtern      => 15);
-                  
-               else
-                  BewertungKartenfeld := KIGrenzpruefungen.GesamteFeldbewertung (AktuellerWertExtern => BewertungKartenfeld,
-                                                                                 ÄnderungExtern      => 30);
-               end if;
+               return KartenDatentypen.Null_Enum;
             end if;
                
          end loop XAchseSchleife;
       end loop YAchseSchleife;
       -- end loop EAchseSchleife;
          
-      return KartenDatentypen.Bewertung_Enum'Val (BewertungKartenfeld / 125);
+      return KartenDatentypen.Eins_Enum; -- KIKonstanten.KartenfeldBewertungStadtBauenMinimum (RasseExtern);
       
    end BewertungStadtBauen;
 

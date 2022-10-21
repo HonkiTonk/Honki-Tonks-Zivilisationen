@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with KartengrundDatentypen; use KartengrundDatentypen;
 with EinheitenRecords; use EinheitenRecords;
 with EinheitenDatentypen; use EinheitenDatentypen;
 with EinheitenKonstanten;
@@ -19,7 +18,7 @@ with KartenkoordinatenberechnungssystemLogik;
 package body KIEinheitAllgemeinePruefungenLogik is
    
    -- Einige Prüfungen sind nicht immer 100% sinnvoll, beispielsweise von KIEinheitFestlegenVerbesserungen.StadtumgebungVerbessern kommend ist die Sichtbarkeitsprüfung ein wenig unsinnig.
-   -- Aber nur dafür eine Extrafunktion schein ein wenig übertrieben?
+   -- Aber nur dafür eine Extrafunktion scheint ein wenig übertrieben?
    -- Werde wohl mehrere Versionen bauen müssen? äöü
    -- Alleine schon wegen der Prüfung in AktuellUnpassierbar. äöü
    function KartenfeldPrüfen
@@ -64,6 +63,8 @@ package body KIEinheitAllgemeinePruefungenLogik is
    
    
    
+   -- Das prüft auch nicht für die Ebenen darunter und drüber, auch mal anpassen. äöü
+   -- Oder muss das angepasst werden?
    function AktuellUnpassierbar
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
@@ -91,19 +92,19 @@ package body KIEinheitAllgemeinePruefungenLogik is
                   null;
                   
                else
-                  Wasserumgebung := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                                ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                                LogikGrafikExtern => True);
+                  Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+                                                                                                            ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                            LogikGrafikExtern => True);
             
                   case
-                    Wasserumgebung.XAchse
+                    Kartenwert.XAchse
                   is
                      when KartenKonstanten.LeerXAchse =>
                         BlockierteFelder := BlockierteFelder + 1;
                   
                      when others =>
-                        BlockierteFelder := BlockierteFelder + FeldUnpassierbar (KoordinatenExtern => Wasserumgebung,
-                                                                                 RasseExtern       => EinheitRasseNummerExtern.Rasse);
+                        BlockierteFelder := BlockierteFelder + FeldUnpassierbar (KoordinatenExtern        => Kartenwert,
+                                                                                 EinheitRasseNummerExtern => EinheitRasseNummerExtern);
                         
                   end case;
                end if;
@@ -116,7 +117,7 @@ package body KIEinheitAllgemeinePruefungenLogik is
          is
             when 1 =>
                if
-                 BlockierteFelder >= 8
+                 BlockierteFelder >= UmgebungPrüfen * 8
                then
                   exit PassierbareUmgebungSchleife;
             
@@ -126,7 +127,7 @@ package body KIEinheitAllgemeinePruefungenLogik is
                
             when 2 =>
                if
-                 BlockierteFelder >= 16
+                 BlockierteFelder >= UmgebungPrüfen * 8 -- 16
                then
                   exit PassierbareUmgebungSchleife;
             
@@ -136,7 +137,7 @@ package body KIEinheitAllgemeinePruefungenLogik is
                
             when others =>
                if
-                 BlockierteFelder >= 24
+                 BlockierteFelder >= UmgebungPrüfen * 8 -- 24
                then
                   exit PassierbareUmgebungSchleife;
             
@@ -200,38 +201,20 @@ package body KIEinheitAllgemeinePruefungenLogik is
    
    function FeldUnpassierbar
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return KartenDatentypen.SichtweiteNatural
    is begin
       
-      WelcherGrund := LeseWeltkarte.BasisGrund (KoordinatenExtern => KoordinatenExtern);
-                  
-      if
-        RasseExtern in RassenDatentypen.Rassen_Überirdisch_Enum'Range
-        and
-          (WelcherGrund = KartengrundDatentypen.Wasser_Enum
-           or
-             WelcherGrund = KartengrundDatentypen.Küstengewässer_Enum)
-      then
-         return 1;
-                     
-      elsif
-        RasseExtern = RassenDatentypen.Tesorahn_Enum
-        and
-          WelcherGrund not in KartengrundDatentypen.Kartengrund_Unterfläche_Wasser_Enum
-      then
-         return 1;
-                     
-      elsif
-        RasseExtern = RassenDatentypen.Talbidahr_Enum
-        and
-          WelcherGrund not in KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum
-      then
-         return 1;
-               
-      else
-         return 0;
-      end if;
+      case
+        PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                  NeueKoordinatenExtern    => KoordinatenExtern)
+      is
+         when True =>
+            return 0;
+            
+         when False =>
+            return 1;
+      end case;
       
    end FeldUnpassierbar;
         

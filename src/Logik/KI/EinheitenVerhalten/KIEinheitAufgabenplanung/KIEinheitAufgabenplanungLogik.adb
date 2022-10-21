@@ -12,6 +12,7 @@ with SchreibeEinheitenGebaut;
 with Fehler;
 
 with KIDatentypen; use KIDatentypen;
+with KIKonstanten;
 
 with KIEinheitAufgabeNichtsLogik;
 with KIEinheitAufgabeBefestigenLogik;
@@ -29,6 +30,7 @@ with KIEinheitAufgabeAngriffskriegLogik;
 with KIEinheitAufgabeVerteidigenLogik;
 with KIEinheitAufgabeVerteidigungskriegLogik;
 with KIEinheitAufgabeTransporterLogik;
+with KIEinheitAufgabePlatzMachenLogik;
 with KIEinheitFestlegenSiedelnLogik;
 with KIEinheitFestlegenVerbesserungenLogik;
 with KIEinheitFestlegenFliehenLogik;
@@ -45,6 +47,7 @@ with KIEinheitFestlegenAngriffskriegLogik;
 with KIEinheitFestlegenVerteidigungskriegLogik;
 with KIEinheitFestlegenAufloesenLogik;
 with KIEinheitFestlegenTransporterLogik;
+with KIEinheitFestlegenPlatzMachenLogik;
 
 package body KIEinheitAufgabenplanungLogik is
    
@@ -55,7 +58,7 @@ package body KIEinheitAufgabenplanungLogik is
    is begin
       
       -- Wird benötigt, da je nach Einheitenart nicht alle Arrayteile neu gesetzt werden.
-      Wichtigkeit := (others => KIDatentypen.AufgabenWichtigkeitKlein'First);
+      Wichtigkeit := (others => KIKonstanten.UnmöglichAufgabenbewertung);
                   
       Wichtigkeit (KIDatentypen.Tut_Nichts_Enum) := KIEinheitAufgabeNichtsLogik.NichtsTun (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
@@ -64,6 +67,7 @@ package body KIEinheitAufgabenplanungLogik is
       Wichtigkeit (KIDatentypen.Einheit_Festsetzen_Enum) := KIEinheitAufgabeBefestigenLogik.SichBefestigen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       Wichtigkeit (KIDatentypen.Einheit_Verbessern_Enum) := KIEinheitAufgabeModernisierenLogik.SichVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       Wichtigkeit (KIDatentypen.Flucht_Enum) := KIEinheitAufgabeFliehenLogik.Fliehen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      Wichtigkeit (KIDatentypen.Platz_Machen_Enum) := KIEinheitAufgabePlatzMachenLogik.PlatzMachen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       -- Hier später besser aufteilen. äöü
       Wichtigkeit (KIDatentypen.Verteidigen_Enum) := KIEinheitAufgabeVerteidigenLogik.Verteidigen;
@@ -136,7 +140,7 @@ package body KIEinheitAufgabenplanungLogik is
       for AufgabeAuswählenSchleifenwert in WichtigkeitArray'Range loop
          
          if
-           Wichtigkeit (AufgabeAuswählenSchleifenwert) = -1
+           Wichtigkeit (AufgabeAuswählenSchleifenwert) = KIKonstanten.UnmöglichAufgabenbewertung
          then
             null;
             
@@ -150,7 +154,7 @@ package body KIEinheitAufgabenplanungLogik is
          elsif
            WelcheAufgabe = KIDatentypen.Leer_Aufgabe_Enum
            and
-             Wichtigkeit (AufgabeAuswählenSchleifenwert) > -1
+             Wichtigkeit (AufgabeAuswählenSchleifenwert) > KIKonstanten.UnmöglichAufgabenbewertung
          then
             WelcheAufgabe := AufgabeAuswählenSchleifenwert;
             
@@ -225,6 +229,9 @@ package body KIEinheitAufgabenplanungLogik is
             when KIDatentypen.Verteidigungskrieg_Vorbereiten_Enum =>
                AufgabeFestgelegt := KIEinheitFestlegenVerteidigungskriegLogik.VerteidigungskriegVorbereiten;
                
+            when KIDatentypen.Platz_Machen_Enum =>
+               AufgabeFestgelegt := KIEinheitFestlegenPlatzMachenLogik.PlatzMachen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+               
             when KIDatentypen.Tut_Nichts_Enum =>
                AufgabeFestgelegt := KIEinheitFestlegenNichtsLogik.NichtsTun (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
                
@@ -249,7 +256,7 @@ package body KIEinheitAufgabenplanungLogik is
                                                        AufgabeExtern            => KIDatentypen.Leer_Aufgabe_Enum);
                SchreibeEinheitenGebaut.KIVerbesserung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                        BeschäftigungExtern      => AufgabenDatentypen.Leer_Aufgabe_Enum);
-               Wichtigkeit (Aufgabe) := -1;
+               Wichtigkeit (Aufgabe) := KIKonstanten.UnmöglichAufgabenbewertung;
          end case;
          
       end loop AufgabeFestlegenSchleife;

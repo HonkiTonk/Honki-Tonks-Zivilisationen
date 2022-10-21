@@ -5,27 +5,16 @@ with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
 with EinheitenRecords;
 
-private with EinheitenDatentypen;
-private with KartenRecords;
+package KIEinheitUmsetzenPlatzMachenLogik is
 
-with KIDatentypen;
-
-package KIEinheitAufgabeBewachenLogik is
-
-   function StadtBewachen
+   function PlatzMachen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return KIDatentypen.AufgabenWichtigkeitKlein
+      return Boolean
      with
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
                and
                  SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.KI_Spieler_Enum
               );
-   
-private
-   
-   EinheitNummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
-   
-   StadtKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
 
-end KIEinheitAufgabeBewachenLogik;
+end KIEinheitUmsetzenPlatzMachenLogik;

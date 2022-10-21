@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with EinheitenRecords; use EinheitenRecords;
 with EinheitenKonstanten;
 
-with KIDatentypen; use KIDatentypen;
+with KIKonstanten;
 
 with KIGefahrErmittelnLogik;
 
@@ -18,10 +18,10 @@ package body KIEinheitAufgabeNichtsLogik is
       if
         KIGefahrErmittelnLogik.GefahrErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerRasseNummer
       then
-         return 1;
+         return KIKonstanten.NichtsTunBewertung;
          
       else
-         return -1;
+         return KIKonstanten.UnmöglichAufgabenbewertung;
       end if;
       
    end NichtsTun;

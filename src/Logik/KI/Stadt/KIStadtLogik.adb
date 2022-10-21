@@ -171,8 +171,8 @@ package body KIStadtLogik is
          for XAchseSchleifenwert in -LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) .. LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) loop
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                                                 ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                 LogikGrafikExtern => True);
+                                                                                                      ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                      LogikGrafikExtern => True);
             
             case
               KartenWert.XAchse
@@ -199,7 +199,7 @@ package body KIStadtLogik is
                   else
                      case
                        LeseEinheitenDatenbank.Einheitenart (RasseExtern => FremdeEinheit.Rasse,
-                                                          IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => FremdeEinheit))
+                                                            IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => FremdeEinheit))
                      is
                         when EinheitenDatentypen.Arbeiter_Enum =>
                            null;
@@ -228,7 +228,7 @@ package body KIStadtLogik is
          
          if
            EinheitenDatentypen.Arbeiter_Enum = LeseEinheitenDatenbank.Einheitenart (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                                  IDExtern    => EinheitenSchleifenwert)
+                                                                                    IDExtern    => EinheitenSchleifenwert)
          then
             null;
             

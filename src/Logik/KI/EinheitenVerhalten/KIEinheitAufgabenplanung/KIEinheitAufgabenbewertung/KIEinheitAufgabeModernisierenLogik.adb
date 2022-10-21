@@ -8,7 +8,7 @@ with LeseEinheitenGebaut;
 
 with ForschungstestsLogik;
 
-with KIDatentypen; use KIDatentypen;
+with KIKonstanten;
 
 package body KIEinheitAufgabeModernisierenLogik is
 
@@ -24,7 +24,7 @@ package body KIEinheitAufgabeModernisierenLogik is
         NeueEinheitenID
       is
          when EinheitenKonstanten.LeerID =>
-            return -1;
+            return KIKonstanten.UnmöglichAufgabenbewertung;
             
          when others =>
             null;
@@ -39,7 +39,7 @@ package body KIEinheitAufgabeModernisierenLogik is
             return NeueKosten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
               
          when False =>
-            return -1;
+            return KIKonstanten.UnmöglichAufgabenbewertung;
       end case;
       
    end SichVerbessern;

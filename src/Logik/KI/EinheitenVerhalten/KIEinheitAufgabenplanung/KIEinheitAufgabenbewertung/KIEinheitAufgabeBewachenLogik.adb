@@ -9,6 +9,8 @@ with LeseStadtGebaut;
 
 with EinheitSuchenLogik;
 
+with KIKonstanten;
+
 with KIAufgabenVerteiltLogik;
 
 package body KIEinheitAufgabeBewachenLogik is
@@ -23,6 +25,8 @@ package body KIEinheitAufgabeBewachenLogik is
       StadtSchleife:
       for StadtNummerSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Städtegrenze loop
          
+         StadtKoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert));
+         
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert))
          is
@@ -31,7 +35,7 @@ package body KIEinheitAufgabeBewachenLogik is
                
             when others =>
                EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                                                     KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert)),
+                                                                                     KoordinatenExtern => StadtKoordinaten,
                                                                                      LogikGrafikExtern => True);
          end case;
          
@@ -40,7 +44,7 @@ package body KIEinheitAufgabeBewachenLogik is
            and
              False = KIAufgabenVerteiltLogik.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Stadt_Bewachen_Enum,
                                                                  RasseExtern           => EinheitRasseNummerExtern.Rasse,
-                                                                 ZielKoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert)))
+                                                                 ZielKoordinatenExtern => StadtKoordinaten)
          then
             return KIDatentypen.AufgabenWichtigkeitKlein'Last;
                
@@ -50,7 +54,7 @@ package body KIEinheitAufgabeBewachenLogik is
          
       end loop StadtSchleife;
       
-      return 0;
+      return KIKonstanten.LeerAufgabenbewertung;
                                     
    end StadtBewachen;
 

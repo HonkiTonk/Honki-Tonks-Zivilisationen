@@ -8,7 +8,7 @@ with EinheitenKonstanten;
 with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;
 
-with KIDatentypen; use KIDatentypen;
+with KIKonstanten;
 
 with KIGefahrErmittelnLogik;
 
@@ -22,7 +22,7 @@ package body KIEinheitAufgabeFliehenLogik is
       if
         KIGefahrErmittelnLogik.GefahrErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerRasseNummer
       then
-         return -1;
+         return KIKonstanten.UnmöglichAufgabenbewertung;
          
       else
          null;

@@ -10,6 +10,7 @@ with KIKonstanten;
 
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
+with LeseWeltkarte;
 
 with BewegungsberechnungEinheitenLogik;
 with EinheitSuchenLogik;
@@ -17,6 +18,7 @@ with KampfsystemEinheitenLogik;
 with StadtSuchenLogik;
 with KampfsystemStadtLogik;
 with Vergleiche;
+with PassierbarkeitspruefungLogik;
 
 with KIBewegungBerechnenLogik;
 with KIBewegungAllgemeinLogik;
@@ -27,7 +29,6 @@ package body KIBewegungDurchfuehrenLogik is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
-      -- Hier noch ein paar Nullsetzung reinwerfen, wenn das Feld nicht betreten werden kann. äöü
       BewegungSchleife:
       loop
          
@@ -41,8 +42,23 @@ package body KIBewegungDurchfuehrenLogik is
             return;
             
          elsif
+           True = LeseWeltkarte.Sichtbar (KoordinatenExtern => LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                          RasseExtern       => EinheitRasseNummerExtern.Rasse)
+           and
+             False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                               NeueKoordinatenExtern    => LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
+         then
+            SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                       KoordinatenExtern        => KartenRecordKonstanten.LeerKoordinate);
+            SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            return;
+            
+         elsif
            LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) <= EinheitenKonstanten.LeerBewegungspunkte
          then
+            SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                       KoordinatenExtern        => KartenRecordKonstanten.LeerKoordinate);
+            SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             return;
             
          elsif

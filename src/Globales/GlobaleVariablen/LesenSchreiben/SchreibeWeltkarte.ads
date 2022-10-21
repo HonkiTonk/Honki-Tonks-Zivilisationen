@@ -152,8 +152,4 @@ package SchreibeWeltkarte is
                  KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
               );
    
-private
-   
-   Bewertungwert : KartenDatentypen.GesamteFeldbewertung;
-
 end SchreibeWeltkarte;

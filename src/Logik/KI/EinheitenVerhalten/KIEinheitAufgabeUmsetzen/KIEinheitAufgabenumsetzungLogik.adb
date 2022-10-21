@@ -25,6 +25,7 @@ with KIEinheitUmsetzenAufloesenLogik;
 with KIEinheitUmsetzenAngriffskriegLogik;
 with KIEinheitUmsetzenVerteidigungskriegLogik;
 with KIEinheitUmsetzenNichtsLogik;
+with KIEinheitUmsetzenPlatzMachenLogik;
 
 package body KIEinheitAufgabenumsetzungLogik is
 
@@ -79,6 +80,11 @@ package body KIEinheitAufgabenumsetzungLogik is
             
          when KIDatentypen.Verteidigungskrieg_Vorbereiten_Enum =>
             AufgabeDurchführen := KIEinheitUmsetzenVerteidigungskriegLogik.VerteidigungskriegVorbereiten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            
+         when KIDatentypen.Platz_Machen_Enum =>
+            -- Wird aktuell nur Aufgerufen um einen vollständig Satz an Funktionen zu haben. äöü
+            -- Eventuell später die Aufgabe PlatzMachen doch zuweisen und in der Funktion prüfen ob die Zielkoordinate Leer ist und dann auf Leer setzen lassen? äöü
+            AufgabeDurchführen := KIEinheitUmsetzenPlatzMachenLogik.PlatzMachen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when KIDatentypen.Tut_Nichts_Enum =>
             AufgabeDurchführen := KIEinheitUmsetzenNichtsLogik.NichtsTun (EinheitRasseNummerExtern => EinheitRasseNummerExtern);

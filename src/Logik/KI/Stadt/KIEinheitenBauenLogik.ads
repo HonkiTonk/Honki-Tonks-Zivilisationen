@@ -24,9 +24,10 @@ package KIEinheitenBauenLogik is
               );
    
 private
-      
+         
    Gesamtwertung : KIDatentypen.BauenBewertung;
    Einheitwertung : KIDatentypen.BauenBewertung;
+   AnzahlPassierbarkeiten : KIDatentypen.BauenBewertung;
    
    MengeVorhanden : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    MengeImBau : EinheitenDatentypen.MaximaleEinheitenMitNullWert;

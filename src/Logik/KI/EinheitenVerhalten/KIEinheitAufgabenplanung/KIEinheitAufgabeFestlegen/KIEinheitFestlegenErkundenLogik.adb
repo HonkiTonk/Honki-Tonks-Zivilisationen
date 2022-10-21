@@ -66,7 +66,7 @@ package body KIEinheitFestlegenErkundenLogik is
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       KartenreichweiteExtern : in KartenDatentypen.KartenfeldNatural;
       GeprüftExtern : in KartenDatentypen.KartenfeldNatural)
-     return Boolean
+      return Boolean
    is begin
       
       EAchseSchleife:
@@ -95,7 +95,7 @@ package body KIEinheitFestlegenErkundenLogik is
                         
                   elsif
                     False = LeseWeltkarte.Sichtbar (KoordinatenExtern => KartenWert,
-                                                 RasseExtern       => EinheitRasseNummerExtern.Rasse)
+                                                    RasseExtern       => EinheitRasseNummerExtern.Rasse)
                     and
                       True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                                        NeueKoordinatenExtern    => KartenWert)

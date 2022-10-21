@@ -8,7 +8,7 @@ with EinheitenKonstanten;
 with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;
 
-with KIDatentypen; use KIDatentypen;
+with KIKonstanten;
 
 with KIGefahrErmittelnLogik;
 
@@ -22,7 +22,7 @@ package body KIEinheitAufgabeBefestigenLogik is
       if
         KIGefahrErmittelnLogik.GefahrErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerRasseNummer
       then
-         return -1;
+         return KIKonstanten.UnmöglichAufgabenbewertung;
          
       else
          null;
@@ -30,7 +30,7 @@ package body KIEinheitAufgabeBefestigenLogik is
       
       case
         LeseEinheitenDatenbank.Einheitenart (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
+                                             IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       is
          when EinheitenDatentypen.Einheitenart_Kampf_Enum'Range =>
             return 5;

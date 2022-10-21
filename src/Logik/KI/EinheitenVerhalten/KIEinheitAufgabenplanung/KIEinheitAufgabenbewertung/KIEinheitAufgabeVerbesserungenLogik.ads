@@ -30,6 +30,8 @@ private
 
    NötigeTechnologie : ForschungenDatentypen.ForschungIDNichtMöglich;
 
+
+
    function MöglicheVerbesserungen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KIDatentypen.AufgabenWichtigkeitKlein

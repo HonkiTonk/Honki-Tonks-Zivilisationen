@@ -4,12 +4,11 @@ pragma Warnings (Off, "*array aggregate*");
 package GrenzpruefungenAllgemein is
    
    generic type Zahl is range <>;
-      Zahlenwert : in Zahl;
       
    function Grenzprüfung
-     (AktuellerWertExtern : in Zahlenwert;
-      ÄnderungExtern : in Zahlenwert)
-      return Zahlenwert;
+     (AktuellerWertExtern : in Zahl;
+      ÄnderungExtern : in Zahl)
+      return Zahl;
    
    generic type ZahlNullwert is range <>;
       
@@ -30,7 +29,7 @@ package GrenzpruefungenAllgemein is
       return ZahlPositive
      with
        Post => (
-                  GrenzprüfungNullwert'Result >= 1
+                  GrenzprüfungPositive'Result >= 1
                );
 
 end GrenzpruefungenAllgemein;

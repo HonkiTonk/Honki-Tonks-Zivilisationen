@@ -63,17 +63,25 @@ package ChangelogOktober2022 is
    
    
 
-   -- Version 0.04. => 0.04. (22.10.2022):
+   -- Version 0.04.2110 => 0.04. (22.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.2000 => 0.04. (21.10.2022):
+   -- Version 0.04.2000 => 0.04.2110 (21.10.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Die KI bewegt jetzt Einheiten aus dem Weg, wenn die Einheit nichts zu tun hat und auf einem Zielfeld einer anderen Einheit steht.
+   -- Diverse Zahlen durch Konstante ersetzt.
+   -- Die KIBerechnung welche Einheit eine Stadt bauen soll überarbeitet.
+   -- Die KI versucht beim Erkunden der Karte nicht mehr die Einheit auf ein unpassierbares Feld zu schicken, wenn das Feld aufgedeckt wurde.
+   -- Die KI versucht jetzt nicht mehr Einheiten auf unpassierbare Felder die sie sehen kann zu schicken.
+   -- Die KI erkundet jetzt alle Kartenebenen.
+   -- Kartenfelderbewertung überarbeitet.
+   -- Positionsbestimmung für eine neue Stadt der KI überarbeitet.
+   -- Windowsversion vollständig an die letzten Struktur- und Namensänderungen angepasst.
+   -- Contracts, Kommenatre und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

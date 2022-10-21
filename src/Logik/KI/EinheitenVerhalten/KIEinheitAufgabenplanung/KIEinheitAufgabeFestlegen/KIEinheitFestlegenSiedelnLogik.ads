@@ -26,6 +26,8 @@ private
 
    FeldGutUndFrei : Boolean;
 
+   Feldbewertung : KartenDatentypen.Bewertung_Enum;
+
    UmgebungPrüfen : KartenDatentypen.KartenfeldNatural;
    BereitsGeprüft : KartenDatentypen.KartenfeldNatural;
 

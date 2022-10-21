@@ -42,7 +42,7 @@ package KartenDatentypen is
    subtype UmgebungsbereichEinsEAchse is UmgebungsbereichZweiEAchse range UmgebungsbereichZweiEAchse (UmgebungsbereichEins'First) .. UmgebungsbereichZweiEAchse (UmgebungsbereichEins'Last);
    
    -- Wäre das nicht sinnvoller in ProduktionDatentypen? äöü
-   type GesamteFeldbewertung is range 0 .. 1_250;
+   type GesamteFeldbewertung is range 0 .. 750;
    subtype Einzelbewertung is GesamteFeldbewertung range 0 .. 10;
    
    type Bewertung_Enum is (

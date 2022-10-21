@@ -10,7 +10,7 @@ with BefehleDatentypen;
 with LeseWichtiges;
 with LeseForschungenDatenbank;
 
-with KIDatentypen; use KIDatentypen;
+with KIKonstanten;
 
 with KIGefahrErmittelnLogik;
 -- with KIGrenzpruefungen;
@@ -28,7 +28,7 @@ package body KIEinheitAufgabeVerbesserungenLogik is
          return MöglicheVerbesserungen (RasseExtern => EinheitRasseNummerExtern.Rasse);
          
       else
-         return -1;
+         return KIKonstanten.UnmöglichAufgabenbewertung;
       end if;
             
    end StadtumgebungVerbessern;

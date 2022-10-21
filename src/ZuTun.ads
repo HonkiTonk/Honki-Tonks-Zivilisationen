@@ -8,15 +8,6 @@
 
 -- KI überarbeiten: Funktioniert inzwischen Minimal, später verbessern.
 
--- Grafik überarbeiten: Menüs und Textanzeigen in Views umgebaut, Textumbruchsystem überarbeitet und variable Textabstände eingebaut. Listenauswahl für Spielstände eingebaut.
---                      Angefangen neue Texturen zu erstellen. Befehlsknöpfe/texte für Kartenbefehle, Einheitenbefehle und Stadtbefehle eingebaut.
---                      Neues Stadtsystems gebaut. Informationen im Baumenü hinzugefügt und von der Beschreibung abgegrenzt.
---                      Scrollen und Zoomen angepasst und verbessert. Introbild eingebaut. Endesystem überarbeitet und einfache grafische Version erstellt.
---                      Anzeige der Karte kann jetzt auch unter Berücksichtigung des Seitenverhältnis erfolgen. Bessere Textskalierung eingebaut.
---                      Einfache grafische Einstellmöglichkeiten eingebaut. Grafik für Kartenformen eingebaut.
---                      Forschungserfolganzeige eingebaut. Rassenspezifische Hintergrund-, Einheiten- und Gebäudegrafiken ermöglicht.
---                      Hintergrundbild für das PZB Ende eingebaut. Bessere Texturen erstellt. Introbild eingebaut.
-
 -- Einfache Musik/Sounds einbauen: Einlesesystem für Sound und rassenspezifische Musik eingebaut.
 
 -- Forschungen/Einheiten/Gebäude für zweite Rasse einbauen: Erste Version des Forschungs-, Einheiten- und Gebäudebaums der Tesorahn eingebaut.
@@ -39,3 +30,4 @@
 -- Siegbedingungen und Übergaben
 -- Brauchbare Editoren
 -- YAchsenwerte und XAchsenwerte mal in zwei Unterschiedliche Datentypen aufteilen?
+-- Minimap einbauen?

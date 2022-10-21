@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with KIDatentypen; use KIDatentypen;
+with KIKonstanten;
 
 with KIKriegErmittelnLogik;
 
@@ -19,10 +19,10 @@ package body KIEinheitAufgabePluendernLogik is
             null;
             
          when False =>
-            return -1;
+            return KIKonstanten.UnmöglichAufgabenbewertung;
       end case;
       
-      return 0;
+      return KIKonstanten.LeerAufgabenbewertung;
       
    end StadtumgebungZerstören;
 

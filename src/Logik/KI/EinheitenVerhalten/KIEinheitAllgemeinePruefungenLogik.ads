@@ -61,13 +61,13 @@ private
    
    EinheitAufFeld : EinheitenRecords.RasseEinheitnummerRecord;
    
-   Wasserumgebung : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Kartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    
    
    function FeldUnpassierbar
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return KartenDatentypen.SichtweiteNatural
      with
        Pre => (
@@ -75,7 +75,7 @@ private
                and
                  KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
                and
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.KI_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.KI_Spieler_Enum
               ),
          
        Post => (

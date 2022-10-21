@@ -5,10 +5,15 @@ with RassenDatentypen;
 with KartenDatentypen;
 with SpielDatentypen;
 
-with KIDatentypen;
+with KIDatentypen; use KIDatentypen;
 with KIRecords;
 
 package KIKonstanten is
+
+   UnmöglichAufgabenbewertung : constant KIDatentypen.AufgabenWichtigkeitKlein := KIDatentypen.AufgabenWichtigkeitKlein'First;
+   LeerAufgabenbewertung : constant KIDatentypen.AufgabenWichtigkeitKlein := 0;
+   NichtsTunBewertung : constant KIDatentypen.AufgabenWichtigkeitKlein := LeerAufgabenbewertung + 1;
+   PlatzFreiMachen : constant KIDatentypen.AufgabenWichtigkeitKlein := NichtsTunBewertung + 1;
 
    LeerEinheitIDBewertung : constant KIRecords.EinheitIDBewertungRecord := (0, 0);
    LeerGebäudeIDBewertung : constant KIRecords.GebäudeIDBewertungRecord := (0, 0);

@@ -8,7 +8,7 @@ with EinheitenKonstanten;
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
 
-with KIDatentypen; use KIDatentypen;
+with KIKonstanten;
 
 with KIKriegErmittelnLogik;
 with KIGefahrErmittelnLogik;
@@ -47,7 +47,7 @@ package body KIEinheitAufgabeHeilenLogik is
       if
         Lebenspunkte = MaximaleLebenspunkte
       then
-         return -1;
+         return KIKonstanten.UnmöglichAufgabenbewertung;
          
       elsif
         Lebenspunkte > (MaximaleLebenspunkte / 3) * 2
@@ -100,7 +100,7 @@ package body KIEinheitAufgabeHeilenLogik is
          return 50;
          
       else
-         return -1;
+         return KIKonstanten.UnmöglichAufgabenbewertung;
       end if;
       
    end HeilenKrieg;

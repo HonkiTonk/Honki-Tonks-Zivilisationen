@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with EinheitenRecords; use EinheitenRecords;
 with EinheitenKonstanten;
 
-with KIDatentypen; use KIDatentypen;
+with KIKonstanten;
 
 with KIGefahrErmittelnLogik;
 
@@ -21,7 +21,7 @@ package body KIEinheitAufgabeErkundenLogik is
          null;
          
       else
-         return -1;
+         return KIKonstanten.UnmöglichAufgabenbewertung;
       end if;
       
       return 5;

@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with KIDatentypen; use KIDatentypen;
+with KIKonstanten;
 
 package body KIEinheitAufgabeVerteidigenLogik is
 
@@ -9,7 +9,7 @@ package body KIEinheitAufgabeVerteidigenLogik is
      return KIDatentypen.AufgabenWichtigkeitKlein
    is begin
       
-      return -1;
+      return KIKonstanten.UnmöglichAufgabenbewertung;
       
    end Verteidigen;
 

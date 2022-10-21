@@ -147,16 +147,14 @@ package body SchreibeWeltkarte is
       BewertungExtern : in KartenDatentypen.GesamteFeldbewertung)
    is begin
       
-      Bewertungwert := BewertungExtern / 125;
-      
       case
         RasseExtern
       is
          when RassenDatentypen.Keine_Rasse_Enum =>
-            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Felderwertung := (others => KartenDatentypen.Bewertung_Enum'Val (Bewertungwert));
+            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Felderwertung := (others => KartenDatentypen.Bewertung_Enum'Val (BewertungExtern / 68));
             
          when others =>
-            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Felderwertung (RasseExtern) := KartenDatentypen.Bewertung_Enum'Val (Bewertungwert);
+            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Felderwertung (RasseExtern) := KartenDatentypen.Bewertung_Enum'Val (BewertungExtern / 68);
       end case;
       
    end Bewertung;
