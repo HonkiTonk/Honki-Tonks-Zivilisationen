@@ -172,7 +172,7 @@ package body KartenAllgemeinesLogik is
    function GrundBewertung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenDatentypen.Einzelbewertung
+      return KIBewertungDatentypen.Bewertung_Enum
    is begin
       
       Basisgrund := LeseWeltkarte.BasisGrund (KoordinatenExtern => KoordinatenExtern);
@@ -341,7 +341,7 @@ package body KartenAllgemeinesLogik is
    function FlussBewertung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenDatentypen.Einzelbewertung
+      return KIBewertungDatentypen.Bewertung_Enum
    is begin
       
       KartenFluss := LeseWeltkarte.Fluss (KoordinatenExtern => KoordinatenExtern);
@@ -350,7 +350,7 @@ package body KartenAllgemeinesLogik is
         KartenFluss
       is
          when KartengrundDatentypen.Leer_Fluss_Enum =>
-            return 0;
+            return KartenKonstanten.LeerBewertung;
             
          when others =>
             return LeseKartenDatenbanken.BewertungFluss (FlussExtern => KartenFluss,
@@ -505,29 +505,6 @@ package body KartenAllgemeinesLogik is
    
    
    
-   function WegBewertung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenDatentypen.Einzelbewertung
-   is begin
-      
-      KartenWeg := LeseWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern);
-      
-      case
-        KartenWeg
-      is
-         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
-            return 0;
-            
-         when others =>
-            return LeseVerbesserungenDatenbank.BewertungWeg (WegExtern   => KartenWeg,
-                                                             RasseExtern => RasseExtern);
-      end case;
-      
-   end WegBewertung;
-   
-   
-   
    function VerbesserungNahrung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
@@ -669,29 +646,6 @@ package body KartenAllgemeinesLogik is
       end case;
       
    end VerbesserungAngriff;
-   
-   
-   
-   function VerbesserungBewertung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenDatentypen.Einzelbewertung
-   is begin
-      
-      KartenVerbesserung := LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern);
-      
-      case
-        KartenVerbesserung
-      is
-         when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
-            return 0;
-            
-         when others =>
-            return LeseVerbesserungenDatenbank.BewertungVerbesserung (VerbesserungExtern => KartenVerbesserung,
-                                                                      RasseExtern        => RasseExtern);
-      end case;
-      
-   end VerbesserungBewertung;
    
    
    
@@ -842,7 +796,7 @@ package body KartenAllgemeinesLogik is
    function RessourceBewertung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenDatentypen.Einzelbewertung
+      return KIBewertungDatentypen.Bewertung_Enum
    is begin
       
       KartenRessource := LeseWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern);
@@ -851,7 +805,7 @@ package body KartenAllgemeinesLogik is
         KartenRessource
       is
          when KartengrundDatentypen.Leer_Ressource_Enum =>
-            return 0;
+            return KartenKonstanten.LeerBewertung;
             
          when others =>
             return LeseKartenDatenbanken.BewertungRessource (RessourceExtern => KartenRessource,

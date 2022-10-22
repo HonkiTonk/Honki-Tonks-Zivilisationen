@@ -3,9 +3,10 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartengrundDatentypen;
 with EinheitenDatentypen;
-with KartenDatentypen;
 with RassenDatentypen;
 with KartendatenbankRecord;
+
+with KIBewertungDatentypen;
 
 package KartengrundSonstiges is
 
@@ -18,7 +19,7 @@ package KartengrundSonstiges is
                                                                               Passierbarkeit => (EinheitenDatentypen.Luft_Enum     => True,
                                                                                                  EinheitenDatentypen.Weltraum_Enum => True,
                                                                                                  others                            => False),
-                                                                              Bewertung      => (others => KartenDatentypen.Einzelbewertung'First),
+                                                                              Bewertung      => (others => KIBewertungDatentypen.Bewertung_Null_Enum),
 
                                                                                 -- Nahrung, Produktion, Geld, Forschung
                                                                               Wirtschaft =>

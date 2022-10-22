@@ -1,79 +1,231 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with RassenDatentypen; use RassenDatentypen;
+with SpielVariablen;
 with KartenKonstanten;
+with EinheitenKonstanten;
 
+with SchreibeWeltkarte;
 with LeseWeltkarte;
+with LeseKartenDatenbanken;
+-- with LeseVerbesserungenDatenbank;
 
 with KartenkoordinatenberechnungssystemLogik;
+with KartenAllgemeinesLogik;
 
-with KIKonstanten;
+package body FelderwerteFestlegenLogik is
 
-with KIGrenzpruefungen;
-
-package body KIKartenfeldbewertungModifizierenLogik is
-
-   -- Später Rassen/Technolgie/Sonstigesabhängig die Mindestbewertung ermitteln. äöü
-   -- Ermittelt die Menge an belegtem Grund in der Umgebung und erhöht auf Basis dessen die Feldbewertung.
-   function BewertungStadtBauen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenDatentypen.Bewertung_Enum
+   procedure EinzelnesKartenfeldBewerten
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
 
-      BewertungKartenfeld := KIKonstanten.KartenfeldBewertungStadtBauenMinimum (RasseExtern);
+      YAchseÄnderungSchleife:
+      for YAchseÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
+         XAchseÄnderungSchleife:
+         for XAchseÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
 
-      -- Die EAchse später mit berücksichtigen? äöü
-      -- EAchseSchleife:
-      -- for EAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEinsEAchse'Range loop
-      YAchseSchleife:
-      for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
+            KartenWertEins (KoordinatenExtern.EAchse) := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+                                                                                                                                     ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung,
+                                                                                                                                                            YAchseÄnderungSchleifenwert,
+                                                                                                                                                            XAchseÄnderungSchleifenwert),
+                                                                                                                                     LogikGrafikExtern => True);
 
-            KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                      ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                      LogikGrafikExtern => True);
+            case
+              KartenWertEins (KoordinatenExtern.EAchse).XAchse
+            is
+               when KartenKonstanten.LeerXAchse =>
+                  null;
 
-            if
-              KartenWert.XAchse = KartenKonstanten.LeerXAchse
-            then
-               null;
+               when others =>
+                  KartenfeldBewerten (KoordinatenExtern => KartenWertEins (KoordinatenExtern.EAchse),
+                                      RasseExtern       => EinheitenKonstanten.LeerRasse);
+            end case;
 
-            elsif
-              LeseWeltkarte.BelegterGrundLeer (KoordinatenExtern => KartenWert) = True
-            then
-               null;
+         end loop XAchseÄnderungSchleife;
+      end loop YAchseÄnderungSchleife;
 
-            else
-               if
-               abs (YAchseSchleifenwert) = 3
-                 or
-               abs (XAchseSchleifenwert) = 3
-               then
-                  BewertungKartenfeld := KIGrenzpruefungen.GesamteFeldbewertung (AktuellerWertExtern => BewertungKartenfeld,
-                                                                                 ÄnderungExtern      => 5);
+   end EinzelnesKartenfeldBewerten;
 
-               elsif
-               abs (YAchseSchleifenwert) = 2
-                 or
-               abs (XAchseSchleifenwert) = 2
-               then
-                  BewertungKartenfeld := KIGrenzpruefungen.GesamteFeldbewertung (AktuellerWertExtern => BewertungKartenfeld,
-                                                                                 ÄnderungExtern      => 15);
 
-               else
-                  BewertungKartenfeld := KIGrenzpruefungen.GesamteFeldbewertung (AktuellerWertExtern => BewertungKartenfeld,
-                                                                                 ÄnderungExtern      => 30);
-               end if;
-            end if;
 
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
-      -- end loop EAchseSchleife;
+   procedure KartenfeldBewerten
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      RasseExtern : in RassenDatentypen.Rassen_Enum)
+   is begin
 
-      return KartenDatentypen.Bewertung_Enum'Val (BewertungKartenfeld / 125);
+      case
+        RasseExtern
+      is
+         when RassenDatentypen.Keine_Rasse_Enum =>
+            NullsetzungSchleife:
+            for NullsetzungSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
 
-   end BewertungStadtBauen;
+               Gesamtbewertung (KoordinatenExtern.EAchse, NullsetzungSchleifenwert) := KartenKonstanten.LeerBewertung;
 
-end KIKartenfeldbewertungModifizierenLogik;
+            end loop NullsetzungSchleife;
+
+         when others =>
+            Gesamtbewertung := (others => (others => KartenKonstanten.LeerBewertung));
+      end case;
+
+      BewertungYÄnderungSchleife:
+      for BewertungYÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
+         BewertungXÄnderungSchleife:
+         for BewertungXÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
+
+            KartenWertZwei (KoordinatenExtern.EAchse) := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+                                                                                                                                     ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung,
+                                                                                                                                                            BewertungYÄnderungSchleifenwert,
+                                                                                                                                                            BewertungXÄnderungSchleifenwert),
+                                                                                                                                     LogikGrafikExtern => True);
+
+            case
+              KartenWertZwei (KoordinatenExtern.EAchse).XAchse
+            is
+               when KartenKonstanten.LeerXAchse =>
+                  null;
+
+               when others =>
+                  if
+                    BewertungYÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range
+                    and
+                      BewertungXÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range
+                  then
+                     Teiler (KoordinatenExtern.EAchse) := 1;
+
+                  elsif
+                    BewertungYÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichZwei'Range
+                    and
+                      BewertungXÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichZwei'Range
+                  then
+                     Teiler (KoordinatenExtern.EAchse) := 2;
+
+                  else
+                     Teiler (KoordinatenExtern.EAchse) := 3;
+                  end if;
+
+                  BewertungSelbst (KoordinatenFeldExtern     => KoordinatenExtern,
+                                   KoordinatenUmgebungExtern => KartenWertZwei (KoordinatenExtern.EAchse),
+                                   RasseExtern               => RasseExtern,
+                                   TeilerExtern              => Teiler (KoordinatenExtern.EAchse));
+            end case;
+
+         end loop BewertungXÄnderungSchleife;
+      end loop BewertungYÄnderungSchleife;
+
+      RassenSchleife:
+      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
+
+         if
+           SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung = RassenDatentypen.KI_Spieler_Enum
+           and
+             (RasseExtern = EinheitenKonstanten.LeerRasse
+              or
+                RasseExtern = RasseSchleifenwert)
+         then
+            SchreibeWeltkarte.Bewertung (KoordinatenExtern  => KoordinatenExtern,
+                                         RasseExtern        => RasseSchleifenwert,
+                                         BewertungExtern    => Gesamtbewertung (KoordinatenExtern.EAchse, RasseSchleifenwert));
+
+         else
+            null;
+         end if;
+
+      end loop RassenSchleife;
+
+   end KartenfeldBewerten;
+
+
+
+   procedure BewertungSelbst
+     (KoordinatenFeldExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      KoordinatenUmgebungExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      RasseExtern : in RassenDatentypen.Rassen_Enum;
+      TeilerExtern : in KartenDatentypen.UmgebungsbereichDrei)
+   is begin
+
+      RassenSchleife:
+      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
+
+         if
+           SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung = RassenDatentypen.KI_Spieler_Enum
+           and
+             (RasseExtern = EinheitenKonstanten.LeerRasse
+              or
+                RasseExtern = RasseSchleifenwert)
+         then
+            Bewertung (KoordinatenFeldExtern.EAchse) := Gesamtbewertung (KoordinatenFeldExtern.EAchse, RasseSchleifenwert) + KartenAllgemeinesLogik.GrundBewertung (KoordinatenExtern => KoordinatenUmgebungExtern,
+                                                                                                                                                                    RasseExtern       => RasseSchleifenwert)
+              / KIBewertungDatentypen.Einzelbewertung (TeilerExtern);
+
+            Fluss (KoordinatenFeldExtern.EAchse) := LeseWeltkarte.Fluss (KoordinatenExtern => KoordinatenUmgebungExtern);
+
+            case
+              Fluss (KoordinatenFeldExtern.EAchse)
+            is
+               when KartengrundDatentypen.Leer_Fluss_Enum =>
+                  null;
+
+               when others =>
+                  Bewertung (KoordinatenFeldExtern.EAchse) := Bewertung (KoordinatenFeldExtern.EAchse) + LeseKartenDatenbanken.BewertungFluss (FlussExtern => Fluss (KoordinatenFeldExtern.EAchse),
+                                                                                                                                               RasseExtern => RasseSchleifenwert)
+                    / KIBewertungDatentypen.Einzelbewertung (TeilerExtern);
+            end case;
+
+            -- Komplett wegwerfen und gar keine Berechnung mehr durchführen, außer beim Einsatz einer PZB? äöü
+            -- Oder ebsser eine zweite Variante bauen für Einzelfeldbewertungen im Spiel? äöü
+            -- Weg (KoordinatenFeldExtern.EAchse) := LeseWeltkarte.Weg (KoordinatenExtern => KoordinatenUmgebungExtern);
+
+            --  case
+            --    Weg (KoordinatenFeldExtern.EAchse)
+            -- is
+            --    when KartenverbesserungDatentypen.Leer_Weg_Enum =>
+            --       null;
+
+            --    when others =>
+            --       Bewertung (KoordinatenFeldExtern.EAchse) := Bewertung (KoordinatenFeldExtern.EAchse) + LeseVerbesserungenDatenbank.BewertungWeg (WegExtern   => Weg (KoordinatenFeldExtern.EAchse),
+            --                                                                                                                                       RasseExtern => RasseSchleifenwert)
+            --         / KIBewertungDatentypen.Einzelbewertung (TeilerExtern);
+            -- end case;
+
+            --  Verbesserung (KoordinatenFeldExtern.EAchse) := LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenUmgebungExtern);
+
+            --  case
+            --    Verbesserung (KoordinatenFeldExtern.EAchse)
+            -- is
+            --    when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
+            --       null;
+
+            --    when others =>
+            --      Bewertung (KoordinatenFeldExtern.EAchse)
+            -- := Bewertung (KoordinatenFeldExtern.EAchse) + LeseVerbesserungenDatenbank.BewertungVerbesserung (VerbesserungExtern => Verbesserung (KoordinatenFeldExtern.EAchse),
+            --                                                                                                                                                 RasseExtern        => RasseSchleifenwert)
+            --        / KIBewertungDatentypen.Einzelbewertung (TeilerExtern);
+            --  end case;
+
+            Ressource (KoordinatenFeldExtern.EAchse) := LeseWeltkarte.Ressource (KoordinatenExtern => KoordinatenUmgebungExtern);
+
+            case
+              Ressource (KoordinatenFeldExtern.EAchse)
+            is
+               when KartengrundDatentypen.Leer_Ressource_Enum =>
+                  null;
+
+               when others =>
+                  Bewertung (KoordinatenFeldExtern.EAchse) := Bewertung (KoordinatenFeldExtern.EAchse) + LeseKartenDatenbanken.BewertungRessource (RessourceExtern => Ressource (KoordinatenFeldExtern.EAchse),
+                                                                                                                                                   RasseExtern     => RasseSchleifenwert)
+                    / KIBewertungDatentypen.Einzelbewertung (TeilerExtern);
+            end case;
+
+            Gesamtbewertung (KoordinatenFeldExtern.EAchse, RasseSchleifenwert) := Bewertung (KoordinatenFeldExtern.EAchse);
+
+         else
+            null;
+         end if;
+
+      end loop RassenSchleife;
+
+   end BewertungSelbst;
+
+end FelderwerteFestlegenLogik;

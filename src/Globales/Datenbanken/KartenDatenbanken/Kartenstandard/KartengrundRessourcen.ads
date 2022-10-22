@@ -5,6 +5,8 @@ with KartengrundDatentypen;
 with RassenDatentypen;
 with KartendatenbankRecord;
 
+with KIBewertungDatentypen;
+
 -- Das hier später auch in verschiedene Dateien aufteilen, vorher aber mehr Ressourcen hinzufügen und in bessere Bereiche einteilen. äöü
 package KartengrundRessourcen is
    
@@ -14,24 +16,24 @@ package KartengrundRessourcen is
                                                                              (
                                                                               Bewertung  =>
                                                                                 (
-                                                                                 RassenDatentypen.Menschen_Enum         => 5,
-                                                                                 RassenDatentypen.Kasrodiah_Enum        => 5,
-                                                                                 RassenDatentypen.Lasupin_Enum          => 5,
-                                                                                 RassenDatentypen.Lamustra_Enum         => 3,
-                                                                                 RassenDatentypen.Manuky_Enum           => 5,
-                                                                                 RassenDatentypen.Suroka_Enum           => 5,
-                                                                                 RassenDatentypen.Pryolon_Enum          => 5,
-                                                                                 RassenDatentypen.Moru_Phisihl_Enum     => 5,
-                                                                                 RassenDatentypen.Larinos_Lotaris_Enum  => 5,
-                                                                                 RassenDatentypen.Carupex_Enum          => 5,
-                                                                                 RassenDatentypen.Alary_Enum            => 3,
-                                                                                 RassenDatentypen.Natries_Zermanis_Enum => 5,
-                                                                                 RassenDatentypen.Tridatus_Enum         => 7,
-                                                                                 RassenDatentypen.Senelari_Enum         => 7,
-                                                                                 RassenDatentypen.Aspari_2_Enum         => 7,
-                                                                                 RassenDatentypen.Ekropa_Enum           => 0,
-                                                                                 RassenDatentypen.Tesorahn_Enum         => 0,
-                                                                                 RassenDatentypen.Talbidahr_Enum        => 1
+                                                                                 RassenDatentypen.Menschen_Enum         => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Kasrodiah_Enum        => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Lasupin_Enum          => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Lamustra_Enum         => KIBewertungDatentypen.Bewertung_Drei_Enum,
+                                                                                 RassenDatentypen.Manuky_Enum           => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Suroka_Enum           => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Pryolon_Enum          => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Moru_Phisihl_Enum     => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Larinos_Lotaris_Enum  => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Carupex_Enum          => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Alary_Enum            => KIBewertungDatentypen.Bewertung_Drei_Enum,
+                                                                                 RassenDatentypen.Natries_Zermanis_Enum => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Tridatus_Enum         => KIBewertungDatentypen.Bewertung_Sieben_Enum,
+                                                                                 RassenDatentypen.Senelari_Enum         => KIBewertungDatentypen.Bewertung_Sieben_Enum,
+                                                                                 RassenDatentypen.Aspari_2_Enum         => KIBewertungDatentypen.Bewertung_Sieben_Enum,
+                                                                                 RassenDatentypen.Ekropa_Enum           => KIBewertungDatentypen.Bewertung_Null_Enum,
+                                                                                 RassenDatentypen.Tesorahn_Enum         => KIBewertungDatentypen.Bewertung_Null_Enum,
+                                                                                 RassenDatentypen.Talbidahr_Enum        => KIBewertungDatentypen.Bewertung_Eins_Enum
                                                                                 ),
                                                                               
                                                                                 -- Nahrung, Produktion, Geld, Forschung
@@ -85,24 +87,24 @@ package KartengrundRessourcen is
                                                                              (
                                                                               Bewertung  =>
                                                                                 (
-                                                                                 RassenDatentypen.Menschen_Enum         => 5,
-                                                                                 RassenDatentypen.Kasrodiah_Enum        => 7,
-                                                                                 RassenDatentypen.Lasupin_Enum          => 5,
-                                                                                 RassenDatentypen.Lamustra_Enum         => 5,
-                                                                                 RassenDatentypen.Manuky_Enum           => 5,
-                                                                                 RassenDatentypen.Suroka_Enum           => 7,
-                                                                                 RassenDatentypen.Pryolon_Enum          => 3,
-                                                                                 RassenDatentypen.Moru_Phisihl_Enum     => 7,
-                                                                                 RassenDatentypen.Larinos_Lotaris_Enum  => 5,
-                                                                                 RassenDatentypen.Carupex_Enum          => 5,
-                                                                                 RassenDatentypen.Alary_Enum            => 3,
-                                                                                 RassenDatentypen.Natries_Zermanis_Enum => 3,
-                                                                                 RassenDatentypen.Tridatus_Enum         => 8,
-                                                                                 RassenDatentypen.Senelari_Enum         => 0,
-                                                                                 RassenDatentypen.Aspari_2_Enum         => 10,
-                                                                                 RassenDatentypen.Ekropa_Enum           => 5,
-                                                                                 RassenDatentypen.Tesorahn_Enum         => 3,
-                                                                                 RassenDatentypen.Talbidahr_Enum        => 5
+                                                                                 RassenDatentypen.Menschen_Enum         => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Kasrodiah_Enum        => KIBewertungDatentypen.Bewertung_Sieben_Enum,
+                                                                                 RassenDatentypen.Lasupin_Enum          => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Lamustra_Enum         => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Manuky_Enum           => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Suroka_Enum           => KIBewertungDatentypen.Bewertung_Sieben_Enum,
+                                                                                 RassenDatentypen.Pryolon_Enum          => KIBewertungDatentypen.Bewertung_Drei_Enum,
+                                                                                 RassenDatentypen.Moru_Phisihl_Enum     => KIBewertungDatentypen.Bewertung_Sieben_Enum,
+                                                                                 RassenDatentypen.Larinos_Lotaris_Enum  => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Carupex_Enum          => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Alary_Enum            => KIBewertungDatentypen.Bewertung_Drei_Enum,
+                                                                                 RassenDatentypen.Natries_Zermanis_Enum => KIBewertungDatentypen.Bewertung_Drei_Enum,
+                                                                                 RassenDatentypen.Tridatus_Enum         => KIBewertungDatentypen.Bewertung_Acht_Enum,
+                                                                                 RassenDatentypen.Senelari_Enum         => KIBewertungDatentypen.Bewertung_Null_Enum,
+                                                                                 RassenDatentypen.Aspari_2_Enum         => KIBewertungDatentypen.Bewertung_Null_Enum,
+                                                                                 RassenDatentypen.Ekropa_Enum           => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Tesorahn_Enum         => KIBewertungDatentypen.Bewertung_Drei_Enum,
+                                                                                 RassenDatentypen.Talbidahr_Enum        => KIBewertungDatentypen.Bewertung_Fünf_Enum
                                                                                 ),
                                                                               
                                                                                 -- Nahrung, Produktion, Geld, Forschung
@@ -156,24 +158,24 @@ package KartengrundRessourcen is
                                                                              (
                                                                               Bewertung  =>
                                                                                 (
-                                                                                 RassenDatentypen.Menschen_Enum         => 5,
-                                                                                 RassenDatentypen.Kasrodiah_Enum        => 5,
-                                                                                 RassenDatentypen.Lasupin_Enum          => 5,
-                                                                                 RassenDatentypen.Lamustra_Enum         => 5,
-                                                                                 RassenDatentypen.Manuky_Enum           => 5,
-                                                                                 RassenDatentypen.Suroka_Enum           => 5,
-                                                                                 RassenDatentypen.Pryolon_Enum          => 5,
-                                                                                 RassenDatentypen.Moru_Phisihl_Enum     => 5,
-                                                                                 RassenDatentypen.Larinos_Lotaris_Enum  => 5,
-                                                                                 RassenDatentypen.Carupex_Enum          => 5,
-                                                                                 RassenDatentypen.Alary_Enum            => 5,
-                                                                                 RassenDatentypen.Natries_Zermanis_Enum => 5,
-                                                                                 RassenDatentypen.Tridatus_Enum         => 5,
-                                                                                 RassenDatentypen.Senelari_Enum         => 5,
-                                                                                 RassenDatentypen.Aspari_2_Enum         => 5,
-                                                                                 RassenDatentypen.Ekropa_Enum           => 5,
-                                                                                 RassenDatentypen.Tesorahn_Enum         => 5,
-                                                                                 RassenDatentypen.Talbidahr_Enum        => 5
+                                                                                 RassenDatentypen.Menschen_Enum         => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Kasrodiah_Enum        => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Lasupin_Enum          => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Lamustra_Enum         => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Manuky_Enum           => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Suroka_Enum           => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Pryolon_Enum          => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Moru_Phisihl_Enum     => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Larinos_Lotaris_Enum  => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Carupex_Enum          => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Alary_Enum            => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Natries_Zermanis_Enum => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Tridatus_Enum         => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Senelari_Enum         => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Aspari_2_Enum         => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Ekropa_Enum           => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Tesorahn_Enum         => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Talbidahr_Enum        => KIBewertungDatentypen.Bewertung_Fünf_Enum
                                                                                 ),
                                                                               
                                                                                 -- Nahrung, Produktion, Geld, Forschung
@@ -227,24 +229,24 @@ package KartengrundRessourcen is
                                                                              (
                                                                               Bewertung  =>
                                                                                 (
-                                                                                 RassenDatentypen.Menschen_Enum         => 5,
-                                                                                 RassenDatentypen.Kasrodiah_Enum        => 5,
-                                                                                 RassenDatentypen.Lasupin_Enum          => 5,
-                                                                                 RassenDatentypen.Lamustra_Enum         => 5,
-                                                                                 RassenDatentypen.Manuky_Enum           => 5,
-                                                                                 RassenDatentypen.Suroka_Enum           => 5,
-                                                                                 RassenDatentypen.Pryolon_Enum          => 5,
-                                                                                 RassenDatentypen.Moru_Phisihl_Enum     => 5,
-                                                                                 RassenDatentypen.Larinos_Lotaris_Enum  => 5,
-                                                                                 RassenDatentypen.Carupex_Enum          => 5,
-                                                                                 RassenDatentypen.Alary_Enum            => 5,
-                                                                                 RassenDatentypen.Natries_Zermanis_Enum => 5,
-                                                                                 RassenDatentypen.Tridatus_Enum         => 5,
-                                                                                 RassenDatentypen.Senelari_Enum         => 5,
-                                                                                 RassenDatentypen.Aspari_2_Enum         => 5,
-                                                                                 RassenDatentypen.Ekropa_Enum           => 5,
-                                                                                 RassenDatentypen.Tesorahn_Enum         => 5,
-                                                                                 RassenDatentypen.Talbidahr_Enum        => 5
+                                                                                 RassenDatentypen.Menschen_Enum         => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Kasrodiah_Enum        => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Lasupin_Enum          => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Lamustra_Enum         => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Manuky_Enum           => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Suroka_Enum           => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Pryolon_Enum          => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Moru_Phisihl_Enum     => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Larinos_Lotaris_Enum  => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Carupex_Enum          => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Alary_Enum            => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Natries_Zermanis_Enum => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Tridatus_Enum         => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Senelari_Enum         => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Aspari_2_Enum         => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Ekropa_Enum           => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Tesorahn_Enum         => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Talbidahr_Enum        => KIBewertungDatentypen.Bewertung_Fünf_Enum
                                                                                 ),
                                                                               
                                                                                 -- Nahrung, Produktion, Geld, Forschung
@@ -298,24 +300,24 @@ package KartengrundRessourcen is
                                                                              (
                                                                               Bewertung  =>
                                                                                 (
-                                                                                 RassenDatentypen.Menschen_Enum         => 5,
-                                                                                 RassenDatentypen.Kasrodiah_Enum        => 5,
-                                                                                 RassenDatentypen.Lasupin_Enum          => 5,
-                                                                                 RassenDatentypen.Lamustra_Enum         => 5,
-                                                                                 RassenDatentypen.Manuky_Enum           => 5,
-                                                                                 RassenDatentypen.Suroka_Enum           => 5,
-                                                                                 RassenDatentypen.Pryolon_Enum          => 5,
-                                                                                 RassenDatentypen.Moru_Phisihl_Enum     => 5,
-                                                                                 RassenDatentypen.Larinos_Lotaris_Enum  => 5,
-                                                                                 RassenDatentypen.Carupex_Enum          => 5,
-                                                                                 RassenDatentypen.Alary_Enum            => 5,
-                                                                                 RassenDatentypen.Natries_Zermanis_Enum => 5,
-                                                                                 RassenDatentypen.Tridatus_Enum         => 5,
-                                                                                 RassenDatentypen.Senelari_Enum         => 5,
-                                                                                 RassenDatentypen.Aspari_2_Enum         => 5,
-                                                                                 RassenDatentypen.Ekropa_Enum           => 5,
-                                                                                 RassenDatentypen.Tesorahn_Enum         => 5,
-                                                                                 RassenDatentypen.Talbidahr_Enum        => 5
+                                                                                 RassenDatentypen.Menschen_Enum         => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Kasrodiah_Enum        => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Lasupin_Enum          => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Lamustra_Enum         => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Manuky_Enum           => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Suroka_Enum           => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Pryolon_Enum          => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Moru_Phisihl_Enum     => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Larinos_Lotaris_Enum  => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Carupex_Enum          => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Alary_Enum            => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Natries_Zermanis_Enum => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Tridatus_Enum         => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Senelari_Enum         => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Aspari_2_Enum         => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Ekropa_Enum           => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Tesorahn_Enum         => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                 RassenDatentypen.Talbidahr_Enum        => KIBewertungDatentypen.Bewertung_Fünf_Enum
                                                                                 ),
                                                                               
                                                                                 -- Nahrung, Produktion, Geld, Forschung
@@ -372,24 +374,24 @@ package KartengrundRessourcen is
                                                                                  (
                                                                                   Bewertung  =>
                                                                                     (
-                                                                                     RassenDatentypen.Menschen_Enum         => 5,
-                                                                                     RassenDatentypen.Kasrodiah_Enum        => 5,
-                                                                                     RassenDatentypen.Lasupin_Enum          => 5,
-                                                                                     RassenDatentypen.Lamustra_Enum         => 5,
-                                                                                     RassenDatentypen.Manuky_Enum           => 5,
-                                                                                     RassenDatentypen.Suroka_Enum           => 5,
-                                                                                     RassenDatentypen.Pryolon_Enum          => 5,
-                                                                                     RassenDatentypen.Moru_Phisihl_Enum     => 5,
-                                                                                     RassenDatentypen.Larinos_Lotaris_Enum  => 5,
-                                                                                     RassenDatentypen.Carupex_Enum          => 5,
-                                                                                     RassenDatentypen.Alary_Enum            => 5,
-                                                                                     RassenDatentypen.Natries_Zermanis_Enum => 5,
-                                                                                     RassenDatentypen.Tridatus_Enum         => 5,
-                                                                                     RassenDatentypen.Senelari_Enum         => 5,
-                                                                                     RassenDatentypen.Aspari_2_Enum         => 5,
-                                                                                     RassenDatentypen.Ekropa_Enum           => 5,
-                                                                                     RassenDatentypen.Tesorahn_Enum         => 5,
-                                                                                     RassenDatentypen.Talbidahr_Enum        => 5
+                                                                                     RassenDatentypen.Menschen_Enum         => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                     RassenDatentypen.Kasrodiah_Enum        => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                     RassenDatentypen.Lasupin_Enum          => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                     RassenDatentypen.Lamustra_Enum         => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                     RassenDatentypen.Manuky_Enum           => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                     RassenDatentypen.Suroka_Enum           => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                     RassenDatentypen.Pryolon_Enum          => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                     RassenDatentypen.Moru_Phisihl_Enum     => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                     RassenDatentypen.Larinos_Lotaris_Enum  => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                     RassenDatentypen.Carupex_Enum          => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                     RassenDatentypen.Alary_Enum            => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                     RassenDatentypen.Natries_Zermanis_Enum => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                     RassenDatentypen.Tridatus_Enum         => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                     RassenDatentypen.Senelari_Enum         => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                     RassenDatentypen.Aspari_2_Enum         => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                     RassenDatentypen.Ekropa_Enum           => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                     RassenDatentypen.Tesorahn_Enum         => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                     RassenDatentypen.Talbidahr_Enum        => KIBewertungDatentypen.Bewertung_Fünf_Enum
                                                                                     ),
                                                                               
                                                                                     -- Nahrung, Produktion, Geld, Forschung
@@ -443,24 +445,24 @@ package KartengrundRessourcen is
                                                                                  (
                                                                                   Bewertung  =>
                                                                                     (
-                                                                                     RassenDatentypen.Menschen_Enum         => 5,
-                                                                                     RassenDatentypen.Kasrodiah_Enum        => 5,
-                                                                                     RassenDatentypen.Lasupin_Enum          => 5,
-                                                                                     RassenDatentypen.Lamustra_Enum         => 5,
-                                                                                     RassenDatentypen.Manuky_Enum           => 5,
-                                                                                     RassenDatentypen.Suroka_Enum           => 5,
-                                                                                     RassenDatentypen.Pryolon_Enum          => 5,
-                                                                                     RassenDatentypen.Moru_Phisihl_Enum     => 5,
-                                                                                     RassenDatentypen.Larinos_Lotaris_Enum  => 5,
-                                                                                     RassenDatentypen.Carupex_Enum          => 5,
-                                                                                     RassenDatentypen.Alary_Enum            => 5,
-                                                                                     RassenDatentypen.Natries_Zermanis_Enum => 5,
-                                                                                     RassenDatentypen.Tridatus_Enum         => 5,
-                                                                                     RassenDatentypen.Senelari_Enum         => 5,
-                                                                                     RassenDatentypen.Aspari_2_Enum         => 5,
-                                                                                     RassenDatentypen.Ekropa_Enum           => 5,
-                                                                                     RassenDatentypen.Tesorahn_Enum         => 5,
-                                                                                     RassenDatentypen.Talbidahr_Enum        => 5
+                                                                                     RassenDatentypen.Menschen_Enum         => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                     RassenDatentypen.Kasrodiah_Enum        => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                     RassenDatentypen.Lasupin_Enum          => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                     RassenDatentypen.Lamustra_Enum         => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                     RassenDatentypen.Manuky_Enum           => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                     RassenDatentypen.Suroka_Enum           => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                     RassenDatentypen.Pryolon_Enum          => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                     RassenDatentypen.Moru_Phisihl_Enum     => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                     RassenDatentypen.Larinos_Lotaris_Enum  => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                     RassenDatentypen.Carupex_Enum          => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                     RassenDatentypen.Alary_Enum            => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                     RassenDatentypen.Natries_Zermanis_Enum => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                     RassenDatentypen.Tridatus_Enum         => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                     RassenDatentypen.Senelari_Enum         => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                     RassenDatentypen.Aspari_2_Enum         => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                     RassenDatentypen.Ekropa_Enum           => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                     RassenDatentypen.Tesorahn_Enum         => KIBewertungDatentypen.Bewertung_Fünf_Enum,
+                                                                                     RassenDatentypen.Talbidahr_Enum        => KIBewertungDatentypen.Bewertung_Fünf_Enum
                                                                                     ),
                                                                               
                                                                                     -- Nahrung, Produktion, Geld, Forschung

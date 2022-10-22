@@ -1,8 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
-
 with KartenRecords; use KartenRecords;
 with KartengrundDatentypen; use KartengrundDatentypen;
 with KartenKonstanten;
@@ -176,37 +174,16 @@ package body KIEinheitFestlegenSiedelnLogik is
             null;
       end case;
       
-      case
-        LeseWeltkarte.BelegterGrundLeer (KoordinatenExtern => KoordinatenExtern)
-      is
-         when False =>
-            return False;
-         
-         when True =>
-            null;
-      end case;
-      
-      -- Diese Prüfung hier mal rassenspezifisch erweitern. äöü
-      case
-        LeseWeltkarte.BasisGrund (KoordinatenExtern => KoordinatenExtern)
-      is
-         when KartengrundDatentypen.Eis_Enum =>
-            return False;
-            
-         when others =>
-            Feldbewertung := KIKartenfeldbewertungModifizierenLogik.BewertungStadtBauen (KoordinatenExtern => KoordinatenExtern,
-                                                                                         RasseExtern       => EinheitRasseNummerExtern.Rasse);
-      end case;
-      
+      -- Diese Prüfung hier mal rassenspezifisch erweitern? äöü
       if
-        Feldbewertung = KartenDatentypen.Null_Enum
-        or
-        LeseWeltkarte.Bewertung (KoordinatenExtern => KoordinatenExtern,
-                                 RasseExtern       => EinheitRasseNummerExtern.Rasse)
-        < Feldbewertung
+        LeseWeltkarte.BasisGrund (KoordinatenExtern => KoordinatenExtern) = KartengrundDatentypen.Eis_Enum
       then
-         Put_Line (LeseWeltkarte.Bewertung (KoordinatenExtern => KoordinatenExtern,
-                                            RasseExtern       => EinheitRasseNummerExtern.Rasse)'Wide_Wide_Image);
+         return False;
+         
+      elsif
+        False = KIKartenfeldbewertungModifizierenLogik.BewertungStadtBauen (KoordinatenExtern => KoordinatenExtern,
+                                                                            RasseExtern       => EinheitRasseNummerExtern.Rasse)
+      then
          return False;
          
       else

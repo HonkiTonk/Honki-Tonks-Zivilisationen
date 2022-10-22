@@ -146,18 +146,6 @@ package body LeseWeltkarte is
    
    
    
-   function Bewertung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenDatentypen.Bewertung_Enum
-   is begin
-      
-      return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Felderwertung (RasseExtern);
-      
-   end Bewertung;
-   
-   
-   
    function BelegterGrund
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
@@ -179,6 +167,7 @@ package body LeseWeltkarte is
    
       
    
+   -- Mal besser benennen! äöü
    function BelegterGrundLeer
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean

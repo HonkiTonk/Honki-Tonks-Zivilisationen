@@ -20,6 +20,6 @@ package GlobaleTexte is
    Handelsmenü : TexteArray (1 .. 10) := (others => TextKonstanten.FehlenderText);
    DiplomatieStatus : TexteArray (1 .. 4) := (others => TextKonstanten.FehlenderText);
    Angebot : TexteArray (1 .. 2) := (others => TextKonstanten.FehlenderText);
-   Ladezeit : TexteArray (1 .. 16) := (others => TextKonstanten.FehlenderText);
+   Ladezeit : TexteArray (1 .. 15) := (others => TextKonstanten.FehlenderText);
    
 end GlobaleTexte;

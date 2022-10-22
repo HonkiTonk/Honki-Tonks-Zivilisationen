@@ -9,8 +9,8 @@ with RassenDatentypen; use RassenDatentypen;
 with GrafikDatentypen;
 with SpielVariablen;
 
-private with LadezeitenDatentypen;
 private with GrafikRecordKonstanten;
+private with SystemDatentypen;
 
 private with UmwandlungenAdaNachEigenes;
 
@@ -102,6 +102,6 @@ private
                     KIRechnet'Result.y >= 0.00
                  );
    
-   function ZahlAlsStringLadefortschritt is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => LadezeitenDatentypen.Ladefortschritt);
+   function ZahlAlsStringLadefortschritt is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => SystemDatentypen.NullBisHundert);
 
 end LadezeitenGrafik;

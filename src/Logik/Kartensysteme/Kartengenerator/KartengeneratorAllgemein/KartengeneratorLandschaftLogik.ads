@@ -5,7 +5,7 @@ with KartenDatentypen; use KartenDatentypen;
 
 private with KartengrundDatentypen;
 private with KartenRecords;
-
+private with SystemDatentypen;
 private with Weltkarte;
 
 package KartengeneratorLandschaftLogik is
@@ -23,7 +23,7 @@ private
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    
-   type BasisWahrscheinlichkeitenArray is array (KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum'Range) of KartenDatentypen.Auswahlbereich;
+   type BasisWahrscheinlichkeitenArray is array (KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum'Range) of SystemDatentypen.NullBisHundert;
    BasisWahrscheinlichkeiten : BasisWahrscheinlichkeitenArray := (
                                                                   KartengrundDatentypen.Flachland_Enum => 50,
                                                                   KartengrundDatentypen.Wüste_Enum     => 15,
@@ -39,7 +39,7 @@ private
    
    
    
-   type ZusatzWahrscheinlichkeitenArray is array (KartengrundDatentypen.Kartengrund_Oberfläche_Zusatz_Enum'Range) of KartenDatentypen.Auswahlbereich;
+   type ZusatzWahrscheinlichkeitenArray is array (KartengrundDatentypen.Kartengrund_Oberfläche_Zusatz_Enum'Range) of SystemDatentypen.NullBisHundert;
    ZusatzWahrscheinlichkeiten : ZusatzWahrscheinlichkeitenArray := (
                                                                     KartengrundDatentypen.Wald_Enum      => 40,
                                                                     KartengrundDatentypen.Dschungel_Enum => 30,

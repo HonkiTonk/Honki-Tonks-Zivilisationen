@@ -141,26 +141,6 @@ package body SchreibeWeltkarte is
    
    
    
-   procedure Bewertung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Enum;
-      BewertungExtern : in KartenDatentypen.GesamteFeldbewertung)
-   is begin
-      
-      case
-        RasseExtern
-      is
-         when RassenDatentypen.Keine_Rasse_Enum =>
-            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Felderwertung := (others => KartenDatentypen.Bewertung_Enum'Val (BewertungExtern / 68));
-            
-         when others =>
-            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Felderwertung (RasseExtern) := KartenDatentypen.Bewertung_Enum'Val (BewertungExtern / 68);
-      end case;
-      
-   end Bewertung;
-   
-   
-   
    procedure EinheitSchreiben
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

@@ -3,7 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
-with KartenDatentypen;
 with EinheitenDatentypen;
 with KartenverbesserungDatentypen;
 with ProduktionDatentypen;
@@ -16,28 +15,10 @@ package LeseVerbesserungenDatenbank is
       WelcheUmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Enum)
       return Boolean;
    
-   function BewertungVerbesserung
-     (VerbesserungExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenDatentypen.Einzelbewertung
-     with
-       Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
-              );
-   
-   function BewertungWeg
-     (WegExtern : in KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenDatentypen.Einzelbewertung
-     with
-       Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
-              );
-   
    function WirtschaftVerbesserung
      (VerbesserungExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      WelcherWertExtern : in KartenDatentypen.Wirtschaft_Enum)
+      WelcherWertExtern : in ProduktionDatentypen.Wirtschaft_Enum)
       return ProduktionDatentypen.Einzelproduktion
      with
        Pre => (
@@ -47,7 +28,7 @@ package LeseVerbesserungenDatenbank is
    function WirtschaftWeg
      (WegExtern : in KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      WelcherWertExtern : in KartenDatentypen.Wirtschaft_Enum)
+      WelcherWertExtern : in ProduktionDatentypen.Wirtschaft_Enum)
       return ProduktionDatentypen.Einzelproduktion
      with
        Pre => (
@@ -57,7 +38,7 @@ package LeseVerbesserungenDatenbank is
    function KampfVerbesserung
      (VerbesserungExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      WelcherWertExtern : in KartenDatentypen.Kampf_Enum)
+      WelcherWertExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.KampfwerteAllgemein
      with
        Pre => (
@@ -67,7 +48,7 @@ package LeseVerbesserungenDatenbank is
    function KampfWeg
      (WegExtern : in KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      WelcherWertExtern : in KartenDatentypen.Kampf_Enum)
+      WelcherWertExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.KampfwerteAllgemein
      with
        Pre => (

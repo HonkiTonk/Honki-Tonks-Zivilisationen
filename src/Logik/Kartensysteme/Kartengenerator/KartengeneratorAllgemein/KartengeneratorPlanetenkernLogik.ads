@@ -6,6 +6,7 @@ with KartenDatentypen; use KartenDatentypen;
 private with KartengrundDatentypen;
 private with KartenRecords;
 private with Weltkarte;
+private with SystemDatentypen;
 
 package KartengeneratorPlanetenkernLogik is
 
@@ -22,7 +23,7 @@ private
 
    WelcherGrund : KartengrundDatentypen.Kartengrund_Enum;
 
-   type BasisWahrscheinlichkeitenArray is array (KartengrundDatentypen.Kartengrund_Kernfläche_Fest_Enum'Range) of KartenDatentypen.Auswahlbereich;
+   type BasisWahrscheinlichkeitenArray is array (KartengrundDatentypen.Kartengrund_Kernfläche_Fest_Enum'Range) of SystemDatentypen.NullBisHundert;
    BasisWahrscheinlichkeiten : BasisWahrscheinlichkeitenArray := (
                                                                   KartengrundDatentypen.Ringwoodit_Enum     => 20,
                                                                   KartengrundDatentypen.Majorit_Enum        => 20,

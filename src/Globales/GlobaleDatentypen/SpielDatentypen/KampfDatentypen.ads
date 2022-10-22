@@ -24,4 +24,8 @@ package KampfDatentypen is
                                     Gleich_Enum, Stärker_Enum, Extrem_Stärker_Enum, Schwächer_Enum, Extrem_Schwächer_Enum
                                    );
 
+   type Kampf_Enum is (
+                       Verteidigung_Enum, Angriff_Enum
+                      );
+
 end KampfDatentypen;

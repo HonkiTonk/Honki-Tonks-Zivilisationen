@@ -3,10 +3,10 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with KartenRecords;
+with Weltkarte;
 
 private with KartengrundDatentypen;
-
-with Weltkarte;
+private with SystemDatentypen;
 
 package KartengeneratorErdweltLogik is
 
@@ -25,7 +25,7 @@ private
    
    WelcherGrund : KartengrundDatentypen.Kartengrund_Enum;
    
-   type BasisWahrscheinlichkeitenArray is array (KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum'Range) of KartenDatentypen.Auswahlbereich;
+   type BasisWahrscheinlichkeitenArray is array (KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum'Range) of SystemDatentypen.NullBisHundert;
    BasisWahrscheinlichkeiten : BasisWahrscheinlichkeitenArray := (
                                                                   KartengrundDatentypen.Erde_Enum       => 30,
                                                                   KartengrundDatentypen.Erdgestein_Enum => 30,

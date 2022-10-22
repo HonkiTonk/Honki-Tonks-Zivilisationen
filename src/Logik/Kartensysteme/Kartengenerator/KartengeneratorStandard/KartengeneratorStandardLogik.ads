@@ -5,6 +5,7 @@ with KartenDatentypen; use KartenDatentypen;
 
 private with KartenRecords;
 private with Weltkarte;
+private with SystemDatentypen;
 
 package KartengeneratorStandardLogik is
 
@@ -23,14 +24,14 @@ private
    Landmassen : LandmassenArray;
    Landabstand : LandmassenArray;
    
-   BeliebigerLandwert : KartenDatentypen.Auswahlbereich;
+   BeliebigerLandwert : SystemDatentypen.NullBisHundert;
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    type WahrscheinlichkeitenRecord is record
       
-      Anfangswert : KartenDatentypen.Auswahlbereich;
-      Endwert : KartenDatentypen.Auswahlbereich;
+      Anfangswert : SystemDatentypen.NullBisHundert;
+      Endwert : SystemDatentypen.NullBisHundert;
       
    end record;
    

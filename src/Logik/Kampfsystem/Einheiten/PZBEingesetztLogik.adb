@@ -151,9 +151,6 @@ package body PZBEingesetztLogik is
                                       VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum);
       SchreibeWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern,
                                    RessourceExtern   => KartengrundDatentypen.Leer_Ressource_Enum);
-      SchreibeWeltkarte.Bewertung (KoordinatenExtern => KoordinatenExtern,
-                                   RasseExtern       => RassenDatentypen.Keine_Rasse_Enum,
-                                   BewertungExtern   => 0);
       
    end FeldVernichten;
 

@@ -1,9 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with KartenDatentypen; use KartenDatentypen;
-
 with KIDatentypen; use KIDatentypen;
+with KIBewertungDatentypen; use KIBewertungDatentypen;
 
 -- Grenzprüfungen auch für andere Werte einbauen/auslagern. äöü
 -- Grenzprüfungen sind nur bei Rechnungen und nicht bei Zuweisungen nötig. äöü
@@ -35,21 +34,21 @@ package body KIGrenzpruefungen is
    
    
    function GesamteFeldbewertung
-     (AktuellerWertExtern : in KartenDatentypen.GesamteFeldbewertung;
-      ÄnderungExtern : in KartenDatentypen.GesamteFeldbewertung)
-      return KartenDatentypen.GesamteFeldbewertung
+     (AktuellerWertExtern : in KIBewertungDatentypen.GesamteFeldbewertung;
+      ÄnderungExtern : in KIBewertungDatentypen.GesamteFeldbewertung)
+      return KIBewertungDatentypen.GesamteFeldbewertung
    is begin
       
       if
-        AktuellerWertExtern + ÄnderungExtern >= KartenDatentypen.GesamteFeldbewertung'Last
+        AktuellerWertExtern + ÄnderungExtern >= KIBewertungDatentypen.GesamteFeldbewertung'Last
       then
-         return KartenDatentypen.GesamteFeldbewertung'Last;
+         return KIBewertungDatentypen.GesamteFeldbewertung'Last;
        
          -- Doch noch negative Bereiche einbauen. äöü
      -- elsif
-       -- AktuellerWertExtern + ÄnderungExtern <= KartenDatentypen.GesamteFeldbewertung'First
+       -- AktuellerWertExtern + ÄnderungExtern <= KIBewertungDatentypen.GesamteFeldbewertung'First
      -- then
-         -- return KartenDatentypen.GesamteFeldbewertung'First;
+         -- return KIBewertungDatentypen.GesamteFeldbewertung'First;
          
       else
          return AktuellerWertExtern + ÄnderungExtern;

@@ -12,7 +12,6 @@ with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
 with LeseStadtGebaut;
 
-with KartenfelderBewertenLogik;
 with LadezeitenLogik;
 with NachGrafiktask;
 
@@ -116,7 +115,6 @@ package body RasseEntfernenLogik is
       
       SpielVariablen.Rassenbelegung (RasseExtern).Belegung := RassenDatentypen.KI_Spieler_Enum;
       LadezeitenLogik.SpielweltNullsetzen;
-      KartenfelderBewertenLogik.KartenfelderBewerten (RasseExtern => RasseExtern);
       
    end RasseAufKISetzen;
 

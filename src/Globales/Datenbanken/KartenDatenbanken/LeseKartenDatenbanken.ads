@@ -3,11 +3,12 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
-with KartenDatentypen;
 with EinheitenDatentypen;
 with KartengrundDatentypen;
 with ProduktionDatentypen;
 with KampfDatentypen;
+
+with KIBewertungDatentypen;
 
 package LeseKartenDatenbanken is
 
@@ -19,7 +20,7 @@ package LeseKartenDatenbanken is
    function BewertungGrund
      (GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenDatentypen.Einzelbewertung
+      return KIBewertungDatentypen.Bewertung_Enum
      with
        Pre => (
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
@@ -28,7 +29,7 @@ package LeseKartenDatenbanken is
    function BewertungFluss
      (FlussExtern : in KartengrundDatentypen.Kartenfluss_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenDatentypen.Einzelbewertung
+      return KIBewertungDatentypen.Bewertung_Enum
      with
        Pre => (
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
@@ -37,7 +38,7 @@ package LeseKartenDatenbanken is
    function BewertungRessource
      (RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenDatentypen.Einzelbewertung
+      return KIBewertungDatentypen.Bewertung_Enum
      with
        Pre => (
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
@@ -46,7 +47,7 @@ package LeseKartenDatenbanken is
    function WirtschaftGrund
      (GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      WirtschaftArtExtern : in KartenDatentypen.Wirtschaft_Enum)
+      WirtschaftArtExtern : in ProduktionDatentypen.Wirtschaft_Enum)
       return ProduktionDatentypen.Einzelproduktion
      with
        Pre => (
@@ -56,7 +57,7 @@ package LeseKartenDatenbanken is
    function WirtschaftFluss
      (FlussExtern : in KartengrundDatentypen.Kartenfluss_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      WirtschaftArtExtern : in KartenDatentypen.Wirtschaft_Enum)
+      WirtschaftArtExtern : in ProduktionDatentypen.Wirtschaft_Enum)
       return ProduktionDatentypen.Einzelproduktion
      with
        Pre => (
@@ -66,7 +67,7 @@ package LeseKartenDatenbanken is
    function WirtschaftRessourcen
      (RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      WirtschaftArtExtern : in KartenDatentypen.Wirtschaft_Enum)
+      WirtschaftArtExtern : in ProduktionDatentypen.Wirtschaft_Enum)
       return ProduktionDatentypen.Einzelproduktion
      with
        Pre => (
@@ -76,7 +77,7 @@ package LeseKartenDatenbanken is
    function KampfGrund
      (GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      KampfArtExtern : in KartenDatentypen.Kampf_Enum)
+      KampfArtExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.KampfwerteAllgemein
      with
        Pre => (
@@ -86,7 +87,7 @@ package LeseKartenDatenbanken is
    function KampfFluss
      (FlussExtern : in KartengrundDatentypen.Kartenfluss_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      KampfArtExtern : in KartenDatentypen.Kampf_Enum)
+      KampfArtExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.KampfwerteAllgemein
      with
        Pre => (
@@ -96,7 +97,7 @@ package LeseKartenDatenbanken is
    function KampfRessource
      (RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      KampfArtExtern : in KartenDatentypen.Kampf_Enum)
+      KampfArtExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.KampfwerteAllgemein
      with
        Pre => (

@@ -20,7 +20,7 @@ package body LeseKartenDatenbanken is
    function BewertungGrund
      (GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenDatentypen.Einzelbewertung
+      return KIBewertungDatentypen.Bewertung_Enum
    is begin
       
       return KartenDatenbank.Kartengrundliste (GrundExtern).Bewertung (RasseExtern);
@@ -32,7 +32,7 @@ package body LeseKartenDatenbanken is
    function BewertungFluss
      (FlussExtern : in KartengrundDatentypen.Kartenfluss_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenDatentypen.Einzelbewertung
+      return KIBewertungDatentypen.Bewertung_Enum
    is begin
       
       return KartenDatenbank.Kartenflussliste (FlussExtern).Bewertung (RasseExtern);
@@ -44,7 +44,7 @@ package body LeseKartenDatenbanken is
    function BewertungRessource
      (RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenDatentypen.Einzelbewertung
+      return KIBewertungDatentypen.Bewertung_Enum
    is begin
       
       return KartenDatenbank.Kartenressourcenliste (RessourceExtern).Bewertung (RasseExtern);
@@ -56,7 +56,7 @@ package body LeseKartenDatenbanken is
    function WirtschaftGrund
      (GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      WirtschaftArtExtern : in KartenDatentypen.Wirtschaft_Enum)
+      WirtschaftArtExtern : in ProduktionDatentypen.Wirtschaft_Enum)
       return ProduktionDatentypen.Einzelproduktion
    is begin
       
@@ -69,7 +69,7 @@ package body LeseKartenDatenbanken is
    function WirtschaftFluss
      (FlussExtern : in KartengrundDatentypen.Kartenfluss_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      WirtschaftArtExtern : in KartenDatentypen.Wirtschaft_Enum)
+      WirtschaftArtExtern : in ProduktionDatentypen.Wirtschaft_Enum)
       return ProduktionDatentypen.Einzelproduktion
    is begin
       
@@ -82,7 +82,7 @@ package body LeseKartenDatenbanken is
    function WirtschaftRessourcen
      (RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      WirtschaftArtExtern : in KartenDatentypen.Wirtschaft_Enum)
+      WirtschaftArtExtern : in ProduktionDatentypen.Wirtschaft_Enum)
       return ProduktionDatentypen.Einzelproduktion
    is begin
       
@@ -95,7 +95,7 @@ package body LeseKartenDatenbanken is
    function KampfGrund
      (GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      KampfArtExtern : in KartenDatentypen.Kampf_Enum)
+      KampfArtExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.KampfwerteAllgemein
    is begin
       
@@ -108,7 +108,7 @@ package body LeseKartenDatenbanken is
    function KampfFluss
      (FlussExtern : in KartengrundDatentypen.Kartenfluss_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      KampfArtExtern : in KartenDatentypen.Kampf_Enum)
+      KampfArtExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.KampfwerteAllgemein
    is begin
       
@@ -121,7 +121,7 @@ package body LeseKartenDatenbanken is
    function KampfRessource
      (RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      KampfArtExtern : in KartenDatentypen.Kampf_Enum)
+      KampfArtExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.KampfwerteAllgemein
    is begin
       

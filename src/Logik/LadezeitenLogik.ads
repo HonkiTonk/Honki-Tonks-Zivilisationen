@@ -2,17 +2,18 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with LadezeitenDatentypen;
+with SystemDatentypen;
 
 package LadezeitenLogik is
       
-   type FortschrittSpielweltArray is array (LadezeitenDatentypen.Spielwelt_Erstellen_Enum'Range) of LadezeitenDatentypen.Ladefortschritt;
+   type FortschrittSpielweltArray is array (LadezeitenDatentypen.Spielwelt_Erstellen_Enum'Range) of SystemDatentypen.NullBisHundert;
    FortschrittSpielwelt : FortschrittSpielweltArray;
    
-   type FortschrittKIArray is array (LadezeitenDatentypen.KI_Rechnet_Enum'Range) of LadezeitenDatentypen.Ladefortschritt;
+   type FortschrittKIArray is array (LadezeitenDatentypen.KI_Rechnet_Enum'Range) of SystemDatentypen.NullBisHundert;
    FortschrittKI : FortschrittKIArray;
    
-   FortschrittRundenende : LadezeitenDatentypen.Ladefortschritt;
-   FortschrittSpeichernLaden : LadezeitenDatentypen.Ladefortschritt;
+   FortschrittRundenende : SystemDatentypen.NullBisHundert;
+   FortschrittSpeichernLaden : SystemDatentypen.NullBisHundert;
 
    procedure SpielweltNullsetzen;
    procedure KINullsetzenFortschritt;
@@ -38,7 +39,7 @@ package LadezeitenLogik is
    
 private
    
-   type FortschrittSchritteArray is array (1 .. 5) of LadezeitenDatentypen.Ladefortschritt;
+   type FortschrittSchritteArray is array (1 .. 5) of SystemDatentypen.NullBisHundert;
    FortschrittSchritte : constant FortschrittSchritteArray := (
                                                                1 => 1,
                                                                2 => 1,

@@ -358,12 +358,25 @@ package body KIEinheitenBauenLogik is
       return KIDatentypen.BauenBewertung
    is begin
       
+      if
+        EinheitenIDExtern = 1
+        or
+          StadtRasseNummerExtern.Rasse = RassenDatentypen.Keine_Rasse_Enum
+      then
+         null;
+         
+      else
+         null;
+      end if;
+      
+      return 0;
+      
       -- Da das System so wie es aktuell ist nicht korrekt funktioniert, wird vorübergehen hier mit 0 multipliziert, das später wieder entfernen. äöü
-      return -(KIDatentypen.BauenBewertung (LeseEinheitenDatenbank.Produktionskosten (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                                      IDExtern    => EinheitenIDExtern)
-               / LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern)
-               / 10))
-        * 0;
+     -- return -(KIDatentypen.BauenBewertung (LeseEinheitenDatenbank.Produktionskosten (RasseExtern => StadtRasseNummerExtern.Rasse,
+     --                                                                                 IDExtern    => EinheitenIDExtern)
+     --          / LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern)
+     --          / 10))
+     --   * 0;
       
    end HerstellungskostenBewerten;
      

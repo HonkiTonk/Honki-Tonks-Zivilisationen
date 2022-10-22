@@ -5,6 +5,8 @@ with KartenverbesserungDatentypen;
 with EinheitenDatentypen;
 with KartendatenbankRecord;
 
+with KIBewertungDatentypen;
+
 package WegeStandard is
 
    type WegelisteArray is array (KartenverbesserungDatentypen.Karten_Straße_Enum'Range) of KartendatenbankRecord.KartenpassierbarkeitslistenRecord;
@@ -15,7 +17,7 @@ package WegeStandard is
                                                                      EinheitenDatentypen.Luft_Enum     => True,
                                                                      EinheitenDatentypen.Weltraum_Enum => True,
                                                                      others                            => False),
-                                              Bewertung          => (others => 1),
+                                              Bewertung          => (others => KIBewertungDatentypen.Bewertung_Eins_Enum),
                                               Wirtschaft         => (others => (others => 1)),
                                               Kampf              => (others => (others => 1))
                                              )
@@ -33,7 +35,7 @@ package WegeStandard is
                                                                              EinheitenDatentypen.Weltraum_Enum => True,
                                                                              others                            => False
                                                                             ),
-                                                      Bewertung          => (others => 1),
+                                                      Bewertung          => (others => KIBewertungDatentypen.Bewertung_Eins_Enum),
                                                       Wirtschaft         => (others => (others => 1)),
                                                       Kampf              => (others => (others => 1))
                                                      )
@@ -49,7 +51,7 @@ package WegeStandard is
                                                                          EinheitenDatentypen.Unterirdisch_Enum => True,
                                                                          others                                => False
                                                                         ),
-                                                  Bewertung          => (others => 1),
+                                                  Bewertung          => (others => KIBewertungDatentypen.Bewertung_Eins_Enum),
                                                   Wirtschaft         => (others => (others => 1)),
                                                   Kampf              => (others => (others => 1))
                                                  )

@@ -7,7 +7,6 @@ private with RassenDatentypen;
 private with RueckgabeDatentypen;
 private with KartenRecords;
 private with ZahlenDatentypen;
-
 private with Weltkarte;
 
 package SpieleinstellungenRasseLogik is

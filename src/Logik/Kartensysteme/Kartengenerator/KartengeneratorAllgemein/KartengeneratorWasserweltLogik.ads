@@ -3,10 +3,10 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with KartenRecords;
+with Weltkarte;
 
 private with KartengrundDatentypen;
-
-with Weltkarte;
+private with SystemDatentypen;
 
 package KartengeneratorWasserweltLogik is
 
@@ -25,7 +25,7 @@ private
    
    WelcherGrund : KartengrundDatentypen.Kartengrund_Enum;
    
-   type ZusatzWahrscheinlichkeitenArray is array (KartengrundDatentypen.Kartengrund_Unterfläche_Wasserzusatz_Enum'Range) of KartenDatentypen.Auswahlbereich;
+   type ZusatzWahrscheinlichkeitenArray is array (KartengrundDatentypen.Kartengrund_Unterfläche_Wasserzusatz_Enum'Range) of SystemDatentypen.NullBisHundert;
    ZusatzWahrscheinlichkeiten : ZusatzWahrscheinlichkeitenArray := (
                                                                     KartengrundDatentypen.Korallen_Enum    => 30,
                                                                     KartengrundDatentypen.Unterwald_Enum   => 30

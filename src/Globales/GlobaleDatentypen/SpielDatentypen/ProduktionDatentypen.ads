@@ -12,6 +12,11 @@ package ProduktionDatentypen is
    subtype Feldproduktion is Stadtproduktion range 0 .. 50;
    subtype Einzelproduktion is Feldproduktion range 0 .. 10;
    subtype Zwischenlösung is Stadtproduktion range -1 .. 1;
+   
+   -- Das hier ist für die Kartenfelder, das darunter für die Einheiten- und Gebäudekosten.
+   type Wirtschaft_Enum is (
+                            Nahrung_Enum, Produktion_Enum, Geld_Enum, Forschung_Enum
+                           );
 
    -- Das hier wird für Einheiten und Gebäude benutzt.
    type Permanente_Kosten_Enum is (

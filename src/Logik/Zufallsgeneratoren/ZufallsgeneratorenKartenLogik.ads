@@ -4,11 +4,12 @@ pragma Warnings (Off, "*array aggregate*");
 private with Ada.Numerics.Discrete_Random;
 
 with KartenDatentypen;
+with SystemDatentypen;
 
 package ZufallsgeneratorenKartenLogik is
 
    function KartengeneratorZufallswerte
-     return KartenDatentypen.Auswahlbereich;
+     return SystemDatentypen.NullBisHundert;
 
    function KartengeneratorBoolean
      return Boolean;
@@ -23,7 +24,7 @@ private
    MaximalerWert : KartenDatentypen.KartenfeldPositiv;
    Zwischenspeicher : KartenDatentypen.KartenfeldPositiv;
 
-   package ZufälligeZahl is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.Auswahlbereich);
+   package ZufälligeZahl is new Ada.Numerics.Discrete_Random (Result_Subtype => SystemDatentypen.NullBisHundert);
    package ZufälligerBoolean is new Ada.Numerics.Discrete_Random (Result_Subtype => Boolean);
    package ZufälligeLandgrößen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.KartenfeldPositiv);
 

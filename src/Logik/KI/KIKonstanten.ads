@@ -2,11 +2,11 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen;
-with KartenDatentypen;
 with SpielDatentypen;
 
 with KIDatentypen; use KIDatentypen;
 with KIRecords;
+with KIBewertungDatentypen;
 
 package KIKonstanten is
 
@@ -18,7 +18,7 @@ package KIKonstanten is
    LeerEinheitIDBewertung : constant KIRecords.EinheitIDBewertungRecord := (0, 0);
    LeerGebäudeIDBewertung : constant KIRecords.GebäudeIDBewertungRecord := (0, 0);
 
-   type KartenfeldBewertungStadtBauenMinimumArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of KartenDatentypen.GesamteFeldbewertung;
+   type KartenfeldBewertungStadtBauenMinimumArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of KIBewertungDatentypen.GesamteFeldbewertung;
    KartenfeldBewertungStadtBauenMinimum : constant KartenfeldBewertungStadtBauenMinimumArray := (
                                                                                                  RassenDatentypen.Menschen_Enum         => 10,
                                                                                                  RassenDatentypen.Kasrodiah_Enum        => 10,

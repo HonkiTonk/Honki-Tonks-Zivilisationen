@@ -12,7 +12,6 @@ with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
 
 with MeldungenSetzenLogik;
-with FelderwerteFestlegenLogik;
 with AufgabenAllgemeinLogik;
 with WegeplatzierungssystemLogik;
 with WaldAnlegenLogik;
@@ -143,8 +142,6 @@ package body VerbesserungFertiggestelltLogik is
          when AufgabenDatentypen.Roden_Trockenlegen_Enum =>
             RodenAnlegenLogik.RodenAnlegen (KoordinatenExtern => Koordinaten);
       end case;
-
-      FelderwerteFestlegenLogik.EinzelnesKartenfeldBewerten (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       
    end VerbesserungAngelegt;
 

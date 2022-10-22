@@ -26,7 +26,6 @@ package WeltkarteRecords is
       Einheit : EinheitenRecords.RasseEinheitnummerRecord;
       
       DurchStadtBelegterGrund : StadtRecords.RasseStadtnummerRecord;
-      Felderwertung : KartenRecords.FelderwertungArray;
 
    end record;
    
@@ -40,8 +39,7 @@ package WeltkarteRecords is
                                                 Weg                     => KartenverbesserungDatentypen.Leer_Weg_Enum,
                                                 Verbesserung            => KartenverbesserungDatentypen.Leer_Verbesserung_Enum,
                                                 Einheit                 => EinheitenKonstanten.LeerRasseNummer,
-                                                DurchStadtBelegterGrund => KartenRecordKonstanten.LeerDurchStadtBelegterGrund,
-                                                Felderwertung           => (others => KartenKonstanten.LeerFeldwertung)
+                                                DurchStadtBelegterGrund => KartenRecordKonstanten.LeerDurchStadtBelegterGrund
                                                );
 
 end WeltkarteRecords;

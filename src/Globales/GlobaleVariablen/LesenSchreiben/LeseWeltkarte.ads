@@ -9,7 +9,6 @@ with KartenverbesserungDatentypen;
 with SpielVariablen;
 with StadtRecords;
 with EinheitenRecords;
-
 with Weltkarte;
 
 package LeseWeltkarte is
@@ -88,17 +87,6 @@ package LeseWeltkarte is
    function Ressource
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return KartengrundDatentypen.Kartenressourcen_Enum
-     with
-       Pre => (
-                 KoordinatenExtern.YAchse in Weltkarte.KarteArray'First (2) .. Weltkarte.Karteneinstellungen.Kartengröße.YAchse
-               and
-                 KoordinatenExtern.XAchse in Weltkarte.KarteArray'First (3) .. Weltkarte.Karteneinstellungen.Kartengröße.XAchse
-              );
-
-   function Bewertung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KartenDatentypen.Bewertung_Enum
      with
        Pre => (
                  KoordinatenExtern.YAchse in Weltkarte.KarteArray'First (2) .. Weltkarte.Karteneinstellungen.Kartengröße.YAchse

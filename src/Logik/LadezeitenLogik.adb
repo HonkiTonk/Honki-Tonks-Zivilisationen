@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with LadezeitenDatentypen; use LadezeitenDatentypen;
+with SystemDatentypen; use SystemDatentypen;
 
 with Warnung;
 
@@ -48,9 +48,9 @@ package body LadezeitenLogik is
    is begin
       
       if
-        FortschrittSpielwelt (WelcheBerechnungenExtern) + FortschrittSchritte (1) > LadezeitenDatentypen.Ladefortschritt'Last
+        FortschrittSpielwelt (WelcheBerechnungenExtern) + FortschrittSchritte (1) > SystemDatentypen.NullBisHundert'Last
       then
-         FortschrittSpielwelt (WelcheBerechnungenExtern) := LadezeitenDatentypen.Ladefortschritt'Last;
+         FortschrittSpielwelt (WelcheBerechnungenExtern) := SystemDatentypen.NullBisHundert'Last;
          Warnung.LogikWarnung (WarnmeldungExtern => "Ladezeiten.FortschrittSpielweltSchreiben: " & WelcheBerechnungenExtern'Wide_Wide_Image & " > 100%.");
          
       else
@@ -65,7 +65,7 @@ package body LadezeitenLogik is
      (WelcheBerechnungenExtern : in LadezeitenDatentypen.Spielwelt_Erstellen_Enum)
    is begin
    
-      FortschrittSpielwelt (WelcheBerechnungenExtern) := LadezeitenDatentypen.Ladefortschritt'Last;
+      FortschrittSpielwelt (WelcheBerechnungenExtern) := SystemDatentypen.NullBisHundert'Last;
       
    end FortschrittSpielweltMaximum;
    
@@ -76,9 +76,9 @@ package body LadezeitenLogik is
    is begin
       
       if
-        FortschrittKI (WelcheBerechnungenExtern) + FortschrittSchritte (2) > LadezeitenDatentypen.Ladefortschritt'Last
+        FortschrittKI (WelcheBerechnungenExtern) + FortschrittSchritte (2) > SystemDatentypen.NullBisHundert'Last
       then
-         FortschrittKI (WelcheBerechnungenExtern) := LadezeitenDatentypen.Ladefortschritt'Last;
+         FortschrittKI (WelcheBerechnungenExtern) := SystemDatentypen.NullBisHundert'Last;
          Warnung.LogikWarnung (WarnmeldungExtern => "Ladezeiten.FortschrittKISchreiben: " & WelcheBerechnungenExtern'Wide_Wide_Image & " > 100%.");
          
       else
@@ -93,7 +93,7 @@ package body LadezeitenLogik is
      (WelcheBerechnungenExtern : in LadezeitenDatentypen.KI_Rechnet_Enum)
    is begin
       
-      FortschrittKI (WelcheBerechnungenExtern) := LadezeitenDatentypen.Ladefortschritt'Last;
+      FortschrittKI (WelcheBerechnungenExtern) := SystemDatentypen.NullBisHundert'Last;
       
    end FortschrittKIMaximum;
    
@@ -104,9 +104,9 @@ package body LadezeitenLogik is
    is begin
       
       if
-        FortschrittRundenende + FortschrittSchritte (3) > LadezeitenDatentypen.Ladefortschritt'Last
+        FortschrittRundenende + FortschrittSchritte (3) > SystemDatentypen.NullBisHundert'Last
       then
-         FortschrittRundenende := LadezeitenDatentypen.Ladefortschritt'Last;
+         FortschrittRundenende := SystemDatentypen.NullBisHundert'Last;
          Warnung.LogikWarnung (WarnmeldungExtern => "Ladezeiten.RundenendeSchreiben: Fortschritt > 100%.");
          
       else
@@ -120,7 +120,7 @@ package body LadezeitenLogik is
    procedure RundenendeMaximum
    is begin
       
-      FortschrittRundenende := LadezeitenDatentypen.Ladefortschritt'Last;
+      FortschrittRundenende := SystemDatentypen.NullBisHundert'Last;
       
    end RundenendeMaximum;
    
@@ -135,9 +135,9 @@ package body LadezeitenLogik is
       is
          when True =>
             if
-              FortschrittSpeichernLaden + FortschrittSchritte (4) > LadezeitenDatentypen.Ladefortschritt'Last
+              FortschrittSpeichernLaden + FortschrittSchritte (4) > SystemDatentypen.NullBisHundert'Last
             then
-               FortschrittSpeichernLaden := LadezeitenDatentypen.Ladefortschritt'Last;
+               FortschrittSpeichernLaden := SystemDatentypen.NullBisHundert'Last;
                Warnung.LogikWarnung (WarnmeldungExtern => "Ladezeiten.SpeichernSchreiben: Fortschritt > 100%.");
          
             else
@@ -146,9 +146,9 @@ package body LadezeitenLogik is
             
          when False =>
             if
-              FortschrittSpeichernLaden + FortschrittSchritte (5) > LadezeitenDatentypen.Ladefortschritt'Last
+              FortschrittSpeichernLaden + FortschrittSchritte (5) > SystemDatentypen.NullBisHundert'Last
             then
-               FortschrittSpeichernLaden := LadezeitenDatentypen.Ladefortschritt'Last;
+               FortschrittSpeichernLaden := SystemDatentypen.NullBisHundert'Last;
                Warnung.LogikWarnung (WarnmeldungExtern => "Ladezeiten.LadenSchreiben: Fortschritt > 100%.");
          
             else
@@ -163,7 +163,7 @@ package body LadezeitenLogik is
    procedure SpeichernLadenMaximum
    is begin
       
-      FortschrittSpeichernLaden := LadezeitenDatentypen.Ladefortschritt'Last;
+      FortschrittSpeichernLaden := SystemDatentypen.NullBisHundert'Last;
       
    end SpeichernLadenMaximum;
 

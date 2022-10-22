@@ -56,18 +56,23 @@ package ChangelogOktober2022 is
    
    
 
-   -- Version 0.04. => 0.04. (23.10.2022):
+   -- Version 0.04.2200 => 0.04. (23.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.2110 => 0.04. (22.10.2022):
+   -- Version 0.04.2110 => 0.04.2200 (22.10.2022):
    
    -- GNAT von 12.2.0-5 auf GNAT 12.2.0-7 aktualisiert.
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Bewertungssystem der Kartenfelder für die KI entfernt.
+   -- Unnnötigen Code gelöscht.
+   -- Arbeisspeicherverbrauch um rund 75 MB reduziert.
+   -- System zu Bewertung eines Feld für den Städtebau überarbeitet.
+   -- Datentypen besser aufgeteilt.
+   -- Sprachen und dynamische gpr Datei an die letzten Änderungen angepasst.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 

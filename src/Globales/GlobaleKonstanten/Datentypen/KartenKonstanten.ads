@@ -8,6 +8,8 @@ with KampfDatentypen;
 with RueckgabeDatentypen;
 with KartenartDatentypen;
 
+with KIBewertungDatentypen;
+
 package KartenKonstanten is
    
    LeerEAchse : constant KartenDatentypen.Ebene := KartenDatentypen.Ebene'First;
@@ -26,25 +28,25 @@ package KartenKonstanten is
    WeltraumKonstante : constant KartenDatentypen.EbeneVorhanden := 2;
    
    LeerPassierbarkeit : constant Boolean := False;
-      
-   LeerBewertung : constant KartenDatentypen.Einzelbewertung := KartenDatentypen.Einzelbewertung'First;
-   LeerFeldwertung : constant KartenDatentypen.Bewertung_Enum := KartenDatentypen.Bewertung_Enum'First;
+   
+   -- Die Bewertung mal in irgendwas mit KIKonstanten packen? äöü
+   LeerBewertung : constant KIBewertungDatentypen.Bewertung_Enum := KIBewertungDatentypen.Bewertung_Enum'First;
    LeerWirtschaft : constant ProduktionDatentypen.Einzelproduktion := ProduktionDatentypen.Einzelproduktion'First;
    LeerKampf : constant KampfDatentypen.Kampfwerte := KampfDatentypen.Kampfwerte'First;
    
    LeerSichtbar : constant Boolean := False;
-   LeerFelderwertung : constant KartenDatentypen.GesamteFeldbewertung := KartenDatentypen.GesamteFeldbewertung'First;
+   LeerFelderwertung : constant KIBewertungDatentypen.GesamteFeldbewertung := KIBewertungDatentypen.GesamteFeldbewertung'First;
          
-   LeerVerbesserungBewertung : constant KartenDatentypen.Einzelbewertung := KartenDatentypen.Einzelbewertung'First;
+   LeerVerbesserungBewertung : constant KIBewertungDatentypen.Bewertung_Enum := KIBewertungDatentypen.Bewertung_Enum'First;
    LeerVerbesserungWirtschaft : constant ProduktionDatentypen.Einzelproduktion := ProduktionDatentypen.Einzelproduktion'First;
    LeerVerbesserungKampf : constant KampfDatentypen.Kampfwerte := KampfDatentypen.Kampfwerte'First;
    
-   WirtschaftNahrung : constant KartenDatentypen.Wirtschaft_Enum := KartenDatentypen.Nahrung_Enum;
-   WirtschaftProduktion : constant KartenDatentypen.Wirtschaft_Enum := KartenDatentypen.Produktion_Enum;
-   WirtschaftGeld : constant KartenDatentypen.Wirtschaft_Enum := KartenDatentypen.Geld_Enum;
-   WirtschaftForschung : constant KartenDatentypen.Wirtschaft_Enum := KartenDatentypen.Forschung_Enum;
-   KampfVerteidigung : constant KartenDatentypen.Kampf_Enum := KartenDatentypen.Verteidigung_Enum;
-   KampfAngriff : constant KartenDatentypen.Kampf_Enum := KartenDatentypen.Angriff_Enum;
+   WirtschaftNahrung : constant ProduktionDatentypen.Wirtschaft_Enum := ProduktionDatentypen.Nahrung_Enum;
+   WirtschaftProduktion : constant ProduktionDatentypen.Wirtschaft_Enum := ProduktionDatentypen.Produktion_Enum;
+   WirtschaftGeld : constant ProduktionDatentypen.Wirtschaft_Enum := ProduktionDatentypen.Geld_Enum;
+   WirtschaftForschung : constant ProduktionDatentypen.Wirtschaft_Enum := ProduktionDatentypen.Forschung_Enum;
+   KampfVerteidigung : constant KampfDatentypen.Kampf_Enum := KampfDatentypen.Verteidigung_Enum;
+   KampfAngriff : constant KampfDatentypen.Kampf_Enum := KampfDatentypen.Angriff_Enum;
    
    type StandardKartengrößenArray is array (RueckgabeDatentypen.Kartengrößen_Standard_Enum'Range) of KartenRecords.YXAchsenKartenfeldPositivRecord;
    StandardKartengrößen : constant StandardKartengrößenArray := (

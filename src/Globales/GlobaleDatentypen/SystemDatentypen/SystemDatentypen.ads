@@ -41,5 +41,11 @@ package SystemDatentypen is
                         );
    
    subtype Abspann_Vorhanden_Enum is Abspann_Enum range Abspann_Eins_Enum .. Abspann_Enum'Last;
+   
+   
+      
+   -- Statt Integer 0 .. 100, eine Float von 0.00 bis 1.00 oder 0.00 bis 100.00?
+   type NullBisHundert is range 0 .. 100;
+   subtype EinsBisHundert is NullBisHundert range 1 .. NullBisHundert'Last;
 
 end SystemDatentypen;

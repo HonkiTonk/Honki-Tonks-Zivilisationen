@@ -4,8 +4,8 @@ pragma Warnings (Off, "*array aggregate*");
 with KartenDatentypen; use KartenDatentypen;
 
 private with KartenRecords;
-
 private with Weltkarte;
+private with SystemDatentypen;
 
 package KartengeneratorFlussLogik is
 
@@ -21,14 +21,14 @@ private
    Kartenzeitwert : KartenzeitwertArray;
    
    -- Später vom Nutzer einstellbar machen. äöü
-   type WahrscheinlichkeitFlussArray is array (KartenDatentypen.EbenePlanet'Range) of KartenDatentypen.Auswahlbereich;
+   type WahrscheinlichkeitFlussArray is array (KartenDatentypen.EbenePlanet'Range) of SystemDatentypen.NullBisHundert;
    WahrscheinlichkeitFluss : constant WahrscheinlichkeitFlussArray := (
                                                                        -2 => 30,
                                                                        -1 => 30,
                                                                        0  => 30
                                                                       );
          
-   type BeliebigerFlusswertArray is array (WahrscheinlichkeitFlussArray'Range) of KartenDatentypen.Auswahlbereich;
+   type BeliebigerFlusswertArray is array (WahrscheinlichkeitFlussArray'Range) of SystemDatentypen.NullBisHundert;
    BeliebigerFlusswert : BeliebigerFlusswertArray;
 
    type KartenWertArray is array (WahrscheinlichkeitFlussArray'Range) of KartenRecords.AchsenKartenfeldNaturalRecord;

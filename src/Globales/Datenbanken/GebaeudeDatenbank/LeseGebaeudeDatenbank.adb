@@ -57,7 +57,7 @@ package body LeseGebaeudeDatenbank is
    function WirtschaftBonus
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in StadtDatentypen.GebäudeID;
-      WWirtschaftBonusExtern : in KartenDatentypen.Wirtschaft_Enum)
+      WWirtschaftBonusExtern : in ProduktionDatentypen.Wirtschaft_Enum)
       return ProduktionDatentypen.Feldproduktion
    is begin
       
@@ -70,7 +70,7 @@ package body LeseGebaeudeDatenbank is
    function KampfBonus
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in StadtDatentypen.GebäudeID;
-      KampfBonusExtern : in KartenDatentypen.Kampf_Enum)
+      KampfBonusExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.Kampfwerte
    is begin
       

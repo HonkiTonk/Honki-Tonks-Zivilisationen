@@ -9,7 +9,6 @@ with SpielVariablen;
 with KartenRecords;
 with EinheitenRecords;
 with StadtRecords;
-
 with Weltkarte;
 
 package SchreibeWeltkarte is
@@ -113,19 +112,6 @@ package SchreibeWeltkarte is
       BelegterGrundExtern : in StadtRecords.RasseStadtnummerRecord)
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
-               and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
-              );
-
-   procedure Bewertung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Enum;
-      BewertungExtern : in KartenDatentypen.GesamteFeldbewertung)
-     with
-       Pre => (
-               (if RasseExtern /= RassenDatentypen.Keine_Rasse_Enum then SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum)
-               and
                  KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
                and
                  KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse

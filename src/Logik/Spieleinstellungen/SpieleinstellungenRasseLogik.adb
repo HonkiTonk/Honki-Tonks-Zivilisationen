@@ -5,6 +5,7 @@ with ZahlenDatentypen; use ZahlenDatentypen;
 with LadezeitenDatentypen; use LadezeitenDatentypen;
 with KartengrundDatentypen; use KartengrundDatentypen;
 with RassenDatentypen; use RassenDatentypen;
+with SystemDatentypen; use SystemDatentypen;
 with KartenRecordKonstanten;
 with KartenKonstanten;
 with EinheitenKonstanten;

@@ -3,10 +3,10 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with KartenRecords;
+with Weltkarte;
 
 private with KartengrundDatentypen;
-
-with Weltkarte;
+private with SystemDatentypen;
 
 package KartengeneratorUnterwasserressourcenLogik is
 
@@ -23,7 +23,7 @@ private
 
    WelcheRessource : KartengrundDatentypen.Kartenressourcen_Enum;
 
-   type KartenressourceWahrscheinlichkeitArray is array (KartengrundDatentypen.Kartenressourcen_Unterfläche_Wasser_Enum'Range) of KartenDatentypen.Auswahlbereich;
+   type KartenressourceWahrscheinlichkeitArray is array (KartengrundDatentypen.Kartenressourcen_Unterfläche_Wasser_Enum'Range) of SystemDatentypen.NullBisHundert;
    KartenressourceWahrscheinlichkeit : KartenressourceWahrscheinlichkeitArray := (
                                                                                   KartengrundDatentypen.Fisch_Enum => 2,
                                                                                   KartengrundDatentypen.Wal_Enum   => 2

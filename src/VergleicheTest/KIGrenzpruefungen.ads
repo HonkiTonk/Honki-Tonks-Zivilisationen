@@ -1,8 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with KartenDatentypen;
-
+with KIBewertungDatentypen;
 with KIDatentypen;
 
 package KIGrenzpruefungen is
@@ -13,8 +12,8 @@ package KIGrenzpruefungen is
       return KIDatentypen.AufgabenWichtigkeitKlein;
 
    function GesamteFeldbewertung
-     (AktuellerWertExtern : in KartenDatentypen.GesamteFeldbewertung;
-      ÄnderungExtern : in KartenDatentypen.GesamteFeldbewertung)
-      return KartenDatentypen.GesamteFeldbewertung;
+     (AktuellerWertExtern : in KIBewertungDatentypen.GesamteFeldbewertung;
+      ÄnderungExtern : in KIBewertungDatentypen.GesamteFeldbewertung)
+      return KIBewertungDatentypen.GesamteFeldbewertung;
 
 end KIGrenzpruefungen;

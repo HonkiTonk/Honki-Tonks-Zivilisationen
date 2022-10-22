@@ -1,10 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitenKonstanten;
 with LadezeitenDatentypen;
 
-with KartenfelderBewertenLogik;
 with KartengeneratorKuesteLogik;
 with KartengeneratorLandschaftLogik;
 with KartengeneratorFlussLogik;
@@ -35,9 +33,6 @@ package body KartengeneratorLogik is
       
       KartengeneratorRessourcenLogik.GenerierungRessourcen;
       LadezeitenLogik.FortschrittSpielweltMaximum (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Ressourcen_Enum);
-      
-      KartenfelderBewertenLogik.KartenfelderBewerten (RasseExtern => EinheitenKonstanten.LeerRasse);
-      LadezeitenLogik.FortschrittSpielweltMaximum (WelcheBerechnungenExtern => LadezeitenDatentypen.Bewerte_Kartenfelder_Enum);
       
    end Kartengenerator;
 

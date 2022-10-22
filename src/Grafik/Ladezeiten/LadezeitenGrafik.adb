@@ -7,6 +7,7 @@ with Sf.Graphics.Text;
 with GlobaleTexte;
 with TextKonstanten;
 with Views;
+with LadezeitenDatentypen;
 
 with HintergrundGrafik;
 with EinstellungenGrafik;
@@ -32,13 +33,13 @@ package body LadezeitenGrafik is
             Text := GlobaleTexte.Ladezeit (1);
             
          when GrafikDatentypen.Grafik_KI_Rechenzeit_Enum =>
-            Text := RassenbeschreibungenGrafik.BeschreibungKurz (RasseExtern => RasseExtern) & " " & GlobaleTexte.Ladezeit (10);
+            Text := RassenbeschreibungenGrafik.BeschreibungKurz (RasseExtern => RasseExtern) & " " & GlobaleTexte.Ladezeit (9);
             
          when GrafikDatentypen.Grafik_Rundenende_Enum =>
-            Text := GlobaleTexte.Ladezeit (15);
+            Text := GlobaleTexte.Ladezeit (14);
             
          when GrafikDatentypen.Grafik_Speichern_Laden_Enum =>
-            Text := GlobaleTexte.Ladezeit (16);
+            Text := GlobaleTexte.Ladezeit (15);
       end case;
       
       AllgemeineViewsGrafik.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => Text),

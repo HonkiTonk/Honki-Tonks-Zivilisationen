@@ -6,6 +6,8 @@ with KartengrundDatentypen;
 with RassenDatentypen;
 with KartenartDatentypen;
 
+with KIBewertungDatentypen;
+
 package KartenRecords is
    
    type YXAchsenKartenfeldNaturalRecord is record
@@ -65,7 +67,7 @@ package KartenRecords is
    
    
    
-   type FelderwertungArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of KartenDatentypen.Bewertung_Enum;
+   type FelderwertungArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of KIBewertungDatentypen.Bewertung_Enum;
    type SichtbarkeitArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of Boolean;
    
    type KartengrundRecord is record

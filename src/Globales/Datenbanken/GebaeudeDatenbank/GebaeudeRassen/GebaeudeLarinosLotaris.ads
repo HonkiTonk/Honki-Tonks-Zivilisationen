@@ -2,9 +2,9 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with StadtKonstanten;
-with KartenDatentypen;
 with StadtRecordKonstanten;
 with GebaeudedatenbankRecord;
+with ProduktionDatentypen;
 
 package GebaeudeLarinosLotaris is
 
@@ -16,7 +16,7 @@ package GebaeudeLarinosLotaris is
                                                                                             Produktionskosten           => 100,
                                                                                             PermanenteKosten            => (others => 0),
                                                                                             Anforderungen               => 0,
-                                                                                            BonusWirtschaft             => (KartenDatentypen.Nahrung_Enum => 10,
+                                                                                            BonusWirtschaft             => (ProduktionDatentypen.Nahrung_Enum => 10,
                                                                                                                             others                   => 0),
                                                                                             BonusKampf                  => (others => 10),
                                                                                             GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,

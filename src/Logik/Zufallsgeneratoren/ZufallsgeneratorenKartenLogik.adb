@@ -9,7 +9,7 @@ with KartengeneratorVariablenLogik;
 package body ZufallsgeneratorenKartenLogik is
    
    function KartengeneratorZufallswerte
-     return KartenDatentypen.Auswahlbereich
+     return SystemDatentypen.NullBisHundert
    is begin
       
       ZufälligeZahl.Reset (Gen => ZufälligeZahlGewählt);

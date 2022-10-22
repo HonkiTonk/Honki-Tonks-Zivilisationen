@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartengrundDatentypen; use KartengrundDatentypen;
+with SystemDatentypen; use SystemDatentypen;
 with LadezeitenDatentypen;
 with KartenKonstanten;
 
