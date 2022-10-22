@@ -65,6 +65,7 @@ package ChangelogOktober2022 is
 
    -- Version 0.04.2110 => 0.04. (22.10.2022):
    
+   -- GNAT von 12.2.0-5 auf GNAT 12.2.0-7 aktualisiert.
    -- 
    -- Kleinigkeiten korrigiert.
    
