@@ -75,13 +75,13 @@ package body GebaeudeumgebungLogik is
       Umgebungsgröße := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern);
       Ergebnis := False;
       
-      YAchseGebäudeSchleife:
-      for YAchseGebäudeSchleifenwert in -Umgebungsgröße .. Umgebungsgröße loop
-         XAchseGebäudeSchleife:
-         for XAchseGebäudeSchleifenwert in -Umgebungsgröße .. Umgebungsgröße loop
+      YAchseSchleife:
+      for YAchseSchleifenwert in -Umgebungsgröße .. Umgebungsgröße loop
+         XAchseSchleife:
+         for XAchseSchleifenwert in -Umgebungsgröße .. Umgebungsgröße loop
                
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Stadtkoordinaten,
-                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseGebäudeSchleifenwert, XAchseGebäudeSchleifenwert),
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                                                       LogikGrafikExtern => True);
             
             if
@@ -111,8 +111,8 @@ package body GebaeudeumgebungLogik is
                   null;
             end case;
             
-         end loop XAchseGebäudeSchleife;
-      end loop YAchseGebäudeSchleife;
+         end loop XAchseSchleife;
+      end loop YAchseSchleife;
       
       return False;
       

@@ -33,6 +33,7 @@ private
    Abriss : Boolean;
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Stadtkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    procedure BelegteStadtfelderFreigeben
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)

@@ -64,7 +64,10 @@ package ChangelogOktober2022 is
    -- Kampfsysteme überarbeitet.
    -- Die KI greift jetzt wieder mit Kampfeinheiten an.
    -- Code zusammengeführt.
-   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet.
+   -- Diverse Zahlen durch Konstante ersetzt.
+   -- Interne Benennung überarbeitet.
+   -- Textformatierung überarbeitet.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/optimiert.
    
    
 

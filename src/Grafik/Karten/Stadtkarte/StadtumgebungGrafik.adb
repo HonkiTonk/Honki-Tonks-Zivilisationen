@@ -40,8 +40,8 @@ package body StadtumgebungGrafik is
          for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Stadtkoordinaten,
-                                                                                                 ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                 LogikGrafikExtern => False);
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                      LogikGrafikExtern => False);
             
             if
               KartenWert.EAchse = KartenKonstanten.LeerEAchse
@@ -52,7 +52,7 @@ package body StadtumgebungGrafik is
                
             elsif
               False = LeseWeltkarte.Sichtbar (KoordinatenExtern => KartenWert,
-                                           RasseExtern       => StadtRasseNummerExtern.Rasse)
+                                              RasseExtern       => StadtRasseNummerExtern.Rasse)
             then
                ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern      => KartenberechnungenGrafik.StadtfelderAbmessung,
                                                        PositionExtern       => Viewfläche,
@@ -101,7 +101,7 @@ package body StadtumgebungGrafik is
       
       case
         LeseWeltkarte.BestimmteStadtBelegtGrund (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                              KoordinatenExtern      => KarteKoordinatenExtern)
+                                                 KoordinatenExtern      => KarteKoordinatenExtern)
       is
          when True =>
             if

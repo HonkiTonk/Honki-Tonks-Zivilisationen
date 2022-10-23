@@ -173,7 +173,7 @@ package body PassierbarkeitspruefungLogik is
          for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
             
             Ekropaumgebung := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => NeueKoordinatenExtern,
-                                                                                                          ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                          ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                                                           LogikGrafikExtern => True);
             
             case
@@ -212,13 +212,13 @@ package body PassierbarkeitspruefungLogik is
       StadtKoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
       Stadtumgebung := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
-      YAchseEinheitenSchleife:
-      for YAchseEinheitenSchleifenwert in -Stadtumgebung .. Stadtumgebung loop
-         XAchseEinheitenSchleife:
-         for XAchseEinheitenSchleifenwert in -Stadtumgebung .. Stadtumgebung loop
+      YAchseSchleife:
+      for YAchseSchleifenwert in -Stadtumgebung .. Stadtumgebung loop
+         XAchseSchleife:
+         for XAchseSchleifenwert in -Stadtumgebung .. Stadtumgebung loop
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtKoordinaten,
-                                                                                                      ÄnderungExtern    => (0, YAchseEinheitenSchleifenwert, XAchseEinheitenSchleifenwert),
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                                                       LogikGrafikExtern => True);
             
             if
@@ -244,8 +244,8 @@ package body PassierbarkeitspruefungLogik is
                return True;
             end if;
                
-         end loop XAchseEinheitenSchleife;
-      end loop YAchseEinheitenSchleife;
+         end loop XAchseSchleife;
+      end loop YAchseSchleife;
       
       return False;
       

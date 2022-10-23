@@ -62,7 +62,7 @@ package body EinheitInUmgebungLogik is
                                        RasseExtern       => RasseExtern)
                then
                   MeldungenSetzenLogik.StadtmeldungSetzen (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert),
-                                                                   EreignisExtern         => StadtDatentypen.Fremde_Einheit_Nahe_Stadt_Enum);
+                                                           EreignisExtern         => StadtDatentypen.Fremde_Einheit_Nahe_Stadt_Enum);
                            
                else
                   null;
@@ -95,7 +95,7 @@ package body EinheitInUmgebungLogik is
                                        RasseExtern       => RasseExtern)
                then
                   MeldungenSetzenLogik.EinheitmeldungSetzen (EinheitRasseNummerExtern => (RasseExtern, EinheitSchleifenwert),
-                                                                         EreignisExtern           => EinheitenDatentypen.Fremde_Einheit_Nahe_Enum);
+                                                             EreignisExtern           => EinheitenDatentypen.Fremde_Einheit_Nahe_Enum);
                            
                else
                   null;
@@ -121,8 +121,8 @@ package body EinheitInUmgebungLogik is
          for XAchseSchleifenwert in -UmgebungExtern .. UmgebungExtern loop
       
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                 ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                 LogikGrafikExtern => True);
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                      LogikGrafikExtern => True);
             
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse
@@ -131,7 +131,7 @@ package body EinheitInUmgebungLogik is
                
             elsif
               False = LeseWeltkarte.Sichtbar (KoordinatenExtern => KartenWert,
-                                           RasseExtern       => RasseExtern)
+                                              RasseExtern       => RasseExtern)
             then
                null;
                

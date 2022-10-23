@@ -21,12 +21,12 @@ package body WegeplatzierungssystemLogik is
       WegUnten := False;
       
       YAchseSchleife:
-      for YÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+      for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
          XAchseSchleife:
-         for XÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+         for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                      ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                                                       LogikGrafikExtern => True);
             
             if
@@ -35,30 +35,30 @@ package body WegeplatzierungssystemLogik is
                null;
                
             elsif
-              XÄnderungSchleifenwert = -1
+              XAchseSchleifenwert = -1
               and
-                YÄnderungSchleifenwert = 0
+                YAchseSchleifenwert = 0
             then
                WegLinks := BerechnungLinks (KoordinatenExtern => KartenWert);
                
             elsif
-              XÄnderungSchleifenwert = 1
+              XAchseSchleifenwert = 1
               and
-                YÄnderungSchleifenwert = 0
+                YAchseSchleifenwert = 0
             then
                WegRechts := BerechnungRechts (KoordinatenExtern => KartenWert);
                
             elsif
-              YÄnderungSchleifenwert = -1
+              YAchseSchleifenwert = -1
               and
-                XÄnderungSchleifenwert = 0
+                XAchseSchleifenwert = 0
             then
                WegOben := BerechnungOben (KoordinatenExtern => KartenWert);
                
             elsif
-              YÄnderungSchleifenwert = 1
+              YAchseSchleifenwert = 1
               and
-                XÄnderungSchleifenwert = 0
+                XAchseSchleifenwert = 0
             then
                WegUnten := BerechnungUnten (KoordinatenExtern => KartenWert);
                

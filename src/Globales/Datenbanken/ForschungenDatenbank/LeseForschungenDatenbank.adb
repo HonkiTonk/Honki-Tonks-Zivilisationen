@@ -3,8 +3,8 @@ pragma Warnings (Off, "*array aggregate*");
 
 with ForschungenDatenbank;
 
--- Das Lesen und Schreiben von Datenbanken mal in die Datenbanken selbst schieben? Dann könnte ich die Variablen private machen. äöü
--- Wobei, würde das private nicht auch ein Schreiben der Datenbanken verhindern? äöü
+-- Zum Schreiben der Datenbanken wird später noch eine Schreibevariante benötigt. äöü
+-- Gilt auch für die andere Datenbanken. äöü
 package body LeseForschungenDatenbank is
 
    function Kosten

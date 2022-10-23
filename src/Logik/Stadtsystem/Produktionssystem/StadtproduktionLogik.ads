@@ -33,6 +33,7 @@ private
    Bauprojekt : StadtRecords.BauprojektRecord;
 
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Stadtkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    procedure StadtProduktionAlle;
    

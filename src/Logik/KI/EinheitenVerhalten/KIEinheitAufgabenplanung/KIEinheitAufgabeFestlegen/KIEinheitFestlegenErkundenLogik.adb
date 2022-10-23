@@ -70,22 +70,22 @@ package body KIEinheitFestlegenErkundenLogik is
    is begin
       
       EAchseSchleife:
-      for EÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEinsEAchse'Range loop
+      for EAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEinsEAchse'Range loop
          YAchseSchleife:
-         for YÄnderungSchleifenwert in -KartenreichweiteExtern .. KartenreichweiteExtern loop
+         for YAchseSchleifenwert in -KartenreichweiteExtern .. KartenreichweiteExtern loop
             XAchseSchleife:
-            for XÄnderungSchleifenwert in -KartenreichweiteExtern .. KartenreichweiteExtern loop
+            for XAchseSchleifenwert in -KartenreichweiteExtern .. KartenreichweiteExtern loop
             
                if
-                 GeprüftExtern > abs (YÄnderungSchleifenwert)
+                 GeprüftExtern > abs (YAchseSchleifenwert)
                  and
-                   GeprüftExtern > abs (XÄnderungSchleifenwert)
+                   GeprüftExtern > abs (XAchseSchleifenwert)
                then
                   null;
                   
                else
                   KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                            ÄnderungExtern    => (EÄnderungSchleifenwert, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                                                            ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                                                             LogikGrafikExtern => True);
                   
                   if

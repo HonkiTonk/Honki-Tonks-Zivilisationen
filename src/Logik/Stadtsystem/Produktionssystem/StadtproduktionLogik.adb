@@ -128,14 +128,15 @@ package body StadtproduktionLogik is
    is begin
             
       NutzbarerBereich := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
       YAchseSchleife:
-      for YÄnderungSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
+      for YAchseSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
          XAchseSchleife:
-         for XÄnderungSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
+         for XAchseSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
             
-            KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                                                      ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+            KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Stadtkoordinaten,
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                                                       LogikGrafikExtern => True);
             
             if
@@ -145,8 +146,8 @@ package body StadtproduktionLogik is
                
             elsif
               False = LeseStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                               YKoordinateExtern      => YÄnderungSchleifenwert,
-                                                               XKoordinateExtern      => XÄnderungSchleifenwert)
+                                                               YKoordinateExtern      => YAchseSchleifenwert,
+                                                               XKoordinateExtern      => XAchseSchleifenwert)
             then
                null;
                

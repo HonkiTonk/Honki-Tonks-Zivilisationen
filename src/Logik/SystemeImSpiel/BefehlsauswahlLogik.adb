@@ -16,10 +16,6 @@ with NaechsteStadtLogik;
 
 package body BefehlsauswahlLogik is
 
-   -- Kann man nicht auch hier eine Schleife einbauen und sich das Zurückgehen sparen? äöü
-   -- Nicht so einfach da ja diverse Dinge geprüft werden müssen. äöü
-   -- Also entweder weiter durch SpielLogik aufrufen oder die wichtigsten Prüfungen hierher verschieben? äöü
-   -- Oder SpielLogik in zwei Teile aufteilen? äöü
    function Befehlsauswahl
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum

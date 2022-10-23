@@ -103,9 +103,9 @@ package body KIEinheitFestlegenSiedelnLogik is
    
       EAchseSchleife:
       for EAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEinsEAchse loop
-         YAchseKartenfeldSuchenSchleife:
+         YAchseSchleife:
          for YAchseSchleifenwert in -UmgebungExtern .. UmgebungExtern loop
-            XAchseKartenfeldSuchenSchleife:
+            XAchseSchleife:
             for XAchseSchleifenwert in -UmgebungExtern .. UmgebungExtern loop
                
                if
@@ -147,8 +147,8 @@ package body KIEinheitFestlegenSiedelnLogik is
                   null;
                end if;
             
-            end loop XAchseKartenfeldSuchenSchleife;
-         end loop YAchseKartenfeldSuchenSchleife;
+            end loop XAchseSchleife;
+         end loop YAchseSchleife;
       end loop EAchseSchleife;
       
       return KartenRecordKonstanten.LeerKoordinate;

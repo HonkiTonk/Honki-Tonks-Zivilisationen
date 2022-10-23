@@ -47,15 +47,17 @@ package body StadtwerteFestlegenLogik is
       GrößeAlt := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern);
       StadtumgebungsbereichFestlegenLogik.StadtumgebungsbereichFestlegen (StadtRasseNummerExtern => StadtRasseNummerExtern);
       GrößeNeu := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      
+      Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
 
       -- StadtUmgebungGröße darf hier nicht genutzt werden, damit bei einer Verkleinerung auch alle Felder zurückgenommen werden können.
       YAchseSchleife:
-      for YÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
+      for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
          XAchseSchleife:
-         for XÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
+         for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
             
-            KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                                                      ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+            KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Stadtkoordinaten,
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                                                       LogikGrafikExtern => True);
             
             if
@@ -64,9 +66,9 @@ package body StadtwerteFestlegenLogik is
                null;
                
             elsif
-              (abs (YÄnderungSchleifenwert) > GrößeNeu
+              (abs (YAchseSchleifenwert) > GrößeNeu
                or
-               abs (XÄnderungSchleifenwert) > GrößeNeu)
+               abs (XAchseSchleifenwert) > GrößeNeu)
               and
                 True = LeseWeltkarte.BestimmteStadtBelegtGrund (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                                 KoordinatenExtern      => KartenWert)
@@ -76,16 +78,16 @@ package body StadtwerteFestlegenLogik is
                
                case
                  LeseStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                          YKoordinateExtern      => YÄnderungSchleifenwert,
-                                                          XKoordinateExtern      => XÄnderungSchleifenwert)
+                                                          YKoordinateExtern      => YAchseSchleifenwert,
+                                                          XKoordinateExtern      => XAchseSchleifenwert)
                is
                   when True =>
                      SchreibeStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                                             EinwohnerArbeiterExtern => False,
                                                             WachsenSchrumpfenExtern => False);
                      SchreibeStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                                  YKoordinateExtern      => YÄnderungSchleifenwert,
-                                                                  XKoordinateExtern      => XÄnderungSchleifenwert,
+                                                                  YKoordinateExtern      => YAchseSchleifenwert,
+                                                                  XKoordinateExtern      => XAchseSchleifenwert,
                                                                   BelegenEntfernenExtern => False);
                      
                   when False =>
@@ -93,9 +95,9 @@ package body StadtwerteFestlegenLogik is
                end case;
 
             elsif
-            abs (YÄnderungSchleifenwert) > GrößeNeu
+            abs (YAchseSchleifenwert) > GrößeNeu
               or
-            abs (XÄnderungSchleifenwert) > GrößeNeu
+            abs (XAchseSchleifenwert) > GrößeNeu
             then
                null;
                      
@@ -206,14 +208,16 @@ package body StadtwerteFestlegenLogik is
       
       NutzbarerBereich := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern);
       Umgebung := (others => (others => (False, ProduktionDatentypen.Stadtproduktion'First)));
+      
+      Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
 
       YAchseSchleife:
       for YAchseSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
          XAchseSchleife:
          for XAchseSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
             
-            KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                                                      ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+            KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Stadtkoordinaten,
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                                                       LogikGrafikExtern => True);
             
             if

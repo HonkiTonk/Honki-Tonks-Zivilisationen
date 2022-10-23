@@ -61,8 +61,8 @@ package body KIGefahrErmittelnLogik is
          for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
                
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => AktuelleKoordinaten,
-                                                                                                 ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                 LogikGrafikExtern => True);
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                      LogikGrafikExtern => True);
                
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse
@@ -71,7 +71,7 @@ package body KIGefahrErmittelnLogik is
                
             elsif
               False = LeseWeltkarte.Sichtbar (KoordinatenExtern => KartenWert,
-                                           RasseExtern       => EinheitRasseNummerExtern.Rasse)
+                                              RasseExtern       => EinheitRasseNummerExtern.Rasse)
             then
                null;
                   
@@ -130,7 +130,7 @@ package body KIGefahrErmittelnLogik is
       
       case
         LeseEinheitenDatenbank.Einheitenart (RasseExtern => AndereEinheitExtern.Rasse,
-                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => AndereEinheitExtern))
+                                             IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => AndereEinheitExtern))
       is
          when EinheitenDatentypen.Arbeiter_Enum =>
             return False;

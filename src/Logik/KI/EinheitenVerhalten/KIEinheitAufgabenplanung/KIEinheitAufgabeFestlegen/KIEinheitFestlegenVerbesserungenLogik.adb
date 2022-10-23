@@ -97,21 +97,21 @@ package body KIEinheitFestlegenVerbesserungenLogik is
       StadtKoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
       YAchseSchleife:
-      for YÄnderungSchleifenwert in -Stadtumgebung .. Stadtumgebung loop
+      for YAchseSchleifenwert in -Stadtumgebung .. Stadtumgebung loop
          XAchseSchleife:
-         for XÄnderungSchleifenwert in -Stadtumgebung .. Stadtumgebung loop
+         for XAchseSchleifenwert in -Stadtumgebung .. Stadtumgebung loop
             
             -- Das Stadtfeld aus der Prüfung nehmen? Stadt zählt ja selbst als Verbesserung und es könnte deswegen zu Problemen führen? äöü
             if
-              YÄnderungSchleifenwert = 0
+              YAchseSchleifenwert = 0
               and
-                XÄnderungSchleifenwert = 0
+                XAchseSchleifenwert = 0
             then
                null;
                
             else
                VerbesserungKoordinaten := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtKoordinaten,
-                                                                                                                      ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                                                                       LogikGrafikExtern => True);
             
                case

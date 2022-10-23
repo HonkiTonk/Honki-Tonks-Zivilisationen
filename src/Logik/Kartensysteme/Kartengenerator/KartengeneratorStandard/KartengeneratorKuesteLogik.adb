@@ -56,12 +56,12 @@ package body KartengeneratorKuesteLogik is
    is begin
       
       YAchseSchleife:
-      for YÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+      for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
          XAchseSchleife:
-         for XÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+         for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
                      
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                                                       LogikGrafikExtern => True);
                         
             if

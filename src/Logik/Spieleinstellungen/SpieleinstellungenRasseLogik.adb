@@ -260,12 +260,12 @@ package body SpieleinstellungenRasseLogik is
       FreieFelder := 0;
       
       YAchseSchleife:
-      for YÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+      for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
          XAchseSchleife:
-         for XÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+         for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
 
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                      ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                                                       LogikGrafikExtern => True);
                   
             if
@@ -274,9 +274,9 @@ package body SpieleinstellungenRasseLogik is
                null;
                      
             elsif
-              YÄnderungSchleifenwert = 0
+              YAchseSchleifenwert = 0
               and
-                XÄnderungSchleifenwert = 0
+                XAchseSchleifenwert = 0
             then
                null;
                

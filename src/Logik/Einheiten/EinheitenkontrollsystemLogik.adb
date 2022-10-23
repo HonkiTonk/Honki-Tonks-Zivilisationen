@@ -131,15 +131,15 @@ package body EinheitenkontrollsystemLogik is
       
       EinheitenKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
-      EÄnderungSchleife:
-      for EÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEinsEAchse'Range loop
-         YÄnderungSchleife:
-         for YÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
-            XÄnderungSchleife:
-            for XÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+      EAchseSchleife:
+      for EAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEinsEAchse'Range loop
+         YAchseSchleife:
+         for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+            XAchseSchleife:
+            for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
                                           
                KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => EinheitenKoordinaten,
-                                                                                                         ÄnderungExtern    => (EÄnderungSchleifenwert, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                                                         ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                                                          LogikGrafikExtern => True);
                
                -- In diesem Fall wird die Prüfung auf Leer nicht benötigt, da im aktuellen System die Cursorkoordinaten niemals ungültig sein können.
@@ -147,15 +147,15 @@ package body EinheitenkontrollsystemLogik is
                  KartenWert = SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAktuell
                then
                   return EinheitenbewegungLogik.PositionÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                 ÄnderungExtern           => (EÄnderungSchleifenwert, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
+                                                                 ÄnderungExtern           => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
                         
                else
                   null;
                end if;
                
-            end loop XÄnderungSchleife;
-         end loop YÄnderungSchleife;
-      end loop EÄnderungSchleife;
+            end loop XAchseSchleife;
+         end loop YAchseSchleife;
+      end loop EAchseSchleife;
       
       return False;
       

@@ -16,7 +16,7 @@ package GebaeudeManuky is
                                                                                     PermanenteKosten            => (others => 0),
                                                                                     Anforderungen               => 0,
                                                                                     BonusWirtschaft             => (ProduktionDatentypen.Nahrung_Enum => 10,
-                                                                                                                    others                   => 0),
+                                                                                                                    others                            => 0),
                                                                                     BonusKampf                  => (others => 10),
                                                                                     GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
                                                                                     FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,

@@ -75,8 +75,6 @@ package body KampfwerteStadtErmittelnLogik is
          
       end loop GebäudeSchleife;
       
-      -- Noch einen Angriffsbonus einbauen? Aber wenn, auf welcher Basis? äöü
-      
       return AngriffWert;
       
    end AktuellerAngriffStadt;

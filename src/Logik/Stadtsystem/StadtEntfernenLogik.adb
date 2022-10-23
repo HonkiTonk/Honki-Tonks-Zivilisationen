@@ -55,7 +55,7 @@ package body StadtEntfernenLogik is
       HeimatstädteEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern);
       NeueHauptstadtSetzen (StadtRasseNummerExtern => StadtRasseNummerExtern);
       SchreibeWeltkarte.Verbesserung (KoordinatenExtern  => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                   VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum);
+                                      VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum);
       SchreibeStadtGebaut.Nullsetzung (StadtRasseNummerExtern => StadtRasseNummerExtern);
       WachstumLogik.WachstumWichtiges (RasseExtern => StadtRasseNummerExtern.Rasse);
       SchreibeWichtiges.AnzahlStädte (RasseExtern     => StadtRasseNummerExtern.Rasse,
@@ -70,15 +70,17 @@ package body StadtEntfernenLogik is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
-      YUmgebungFreigebenSchleife:
-      for YUmgebungFreigebenSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
-         XUmgebungFreigebenSchleife:
-         for XUmgebungFreigebenSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
+      Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      
+      YAchseSchleife:
+      for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
+         XAchseSchleife:
+         for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
          
-            KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                                                 ÄnderungExtern    => (0, YUmgebungFreigebenSchleifenwert, XUmgebungFreigebenSchleifenwert),
-                                                                                                 LogikGrafikExtern => True);
-         
+            KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Stadtkoordinaten,
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                      LogikGrafikExtern => True);
+            
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse
             then
@@ -86,17 +88,17 @@ package body StadtEntfernenLogik is
                
             elsif
               True = LeseWeltkarte.BestimmteStadtBelegtGrund (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                           KoordinatenExtern      => KartenWert)
+                                                              KoordinatenExtern      => KartenWert)
             then
                SchreibeWeltkarte.BelegterGrund (KoordinatenExtern   => KartenWert,
-                                             BelegterGrundExtern => KartenRecordKonstanten.LeerDurchStadtBelegterGrund);
+                                                BelegterGrundExtern => KartenRecordKonstanten.LeerDurchStadtBelegterGrund);
             
             else
                null;
             end if;
          
-         end loop XUmgebungFreigebenSchleife;
-      end loop YUmgebungFreigebenSchleife;
+         end loop XAchseSchleife;
+      end loop YAchseSchleife;
       
    end BelegteStadtfelderFreigeben;
    

@@ -54,7 +54,9 @@ private
    WissenGesamt : ProduktionDatentypen.Feldproduktion;
    
    NutzbarerBereich : KartenDatentypen.Kartenfeld;
+   
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Stadtkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    type UmgebungRecord is record
       

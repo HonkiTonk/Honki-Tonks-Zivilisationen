@@ -31,5 +31,6 @@ private
    FeindlicheEinheit : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Einheitenkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
 
 end KIEinheitSuchenLogik;

@@ -20,14 +20,14 @@ package body FlussplatzierungssystemLogik is
       FlussUnten (KoordinatenExtern.EAchse) := False;
       
       YAchseSchleife:
-      for YÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+      for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
          XAchseSchleife:
-         for XÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+         for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
 
             KartenWert (KoordinatenExtern.EAchse) := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
                                                                                                                                  ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung,
-                                                                                                                                                        YÄnderungSchleifenwert,
-                                                                                                                                                        XÄnderungSchleifenwert),
+                                                                                                                                                        YAchseSchleifenwert,
+                                                                                                                                                        XAchseSchleifenwert),
                                                                                                                                  LogikGrafikExtern => True);
 
             if
@@ -36,30 +36,30 @@ package body FlussplatzierungssystemLogik is
                null;
                   
             elsif
-              YÄnderungSchleifenwert = 0
+              YAchseSchleifenwert = 0
               and
-                XÄnderungSchleifenwert = -1
+                XAchseSchleifenwert = -1
             then
                FlussLinks (KoordinatenExtern.EAchse) := BerechnungLinks (KoordinatenExtern => KartenWert (KoordinatenExtern.EAchse));
                
             elsif
-              YÄnderungSchleifenwert = 0
+              YAchseSchleifenwert = 0
               and
-                XÄnderungSchleifenwert = 1
+                XAchseSchleifenwert = 1
             then
                FlussRechts (KoordinatenExtern.EAchse) := BerechnungRechts (KoordinatenExtern => KartenWert (KoordinatenExtern.EAchse));
                
             elsif
-              YÄnderungSchleifenwert = -1
+              YAchseSchleifenwert = -1
               and
-                XÄnderungSchleifenwert = 0
+                XAchseSchleifenwert = 0
             then
                FlussOben (KoordinatenExtern.EAchse) := BerechnungOben (KoordinatenExtern => KartenWert (KoordinatenExtern.EAchse));
                
             elsif
-              YÄnderungSchleifenwert = 1
+              YAchseSchleifenwert = 1
               and
-                XÄnderungSchleifenwert = 0
+                XAchseSchleifenwert = 0
             then
                FlussUnten (KoordinatenExtern.EAchse) := BerechnungUnten (KoordinatenExtern => KartenWert (KoordinatenExtern.EAchse));
                

@@ -115,14 +115,14 @@ package body KartengeneratorFlussLogik is
       end if;
       
       YAchseSchleife:
-      for YÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+      for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
          XAchseSchleife:
-         for XÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+         for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
                   
             KartenWert (KoordinatenExtern.EAchse) := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
                                                                                                                                  ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung,
-                                                                                                                                                        YÄnderungSchleifenwert,
-                                                                                                                                                        XÄnderungSchleifenwert),
+                                                                                                                                                        YAchseSchleifenwert,
+                                                                                                                                                        XAchseSchleifenwert),
                                                                                                                                  LogikGrafikExtern => True);
             
             if

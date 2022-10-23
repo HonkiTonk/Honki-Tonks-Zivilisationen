@@ -29,6 +29,7 @@ private
    FremdeEinheit : EinheitenRecords.RasseEinheitnummerRecord;
 
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   StadtKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
 
    procedure NeuesBauprojekt
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;

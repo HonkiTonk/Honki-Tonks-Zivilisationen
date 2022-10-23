@@ -147,7 +147,7 @@ package body GeheZuGrafik is
       end if;
       
       return KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KartenwertKoordinatenberechnung,
-                                                                                         ÄnderungExtern    => (0, 0, 0),
+                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, KartenKonstanten.LeerYAchseÄnderung, KartenKonstanten.LeerXAchseÄnderung),
                                                                                          LogikGrafikExtern => False);
       
    end Koordinatenberechnung;

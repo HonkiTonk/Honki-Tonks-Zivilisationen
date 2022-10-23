@@ -34,7 +34,7 @@ package body EinwohnersystemLogik is
       end if;
       
       Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                                                ÄnderungExtern    => (0, Stadtfeld.YAchse, Stadtfeld.XAchse),
+                                                                                                ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, Stadtfeld.YAchse, Stadtfeld.XAchse),
                                                                                                 LogikGrafikExtern => True);
       
       case

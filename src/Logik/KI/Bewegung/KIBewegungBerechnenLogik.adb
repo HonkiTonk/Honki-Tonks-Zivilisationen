@@ -216,8 +216,8 @@ package body KIBewegungBerechnenLogik is
 
       else
          KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                              ÄnderungExtern    => (EÄnderungExtern, YÄnderungExtern, XÄnderungExtern),
-                                                                                              LogikGrafikExtern => True);
+                                                                                                   ÄnderungExtern    => (EÄnderungExtern, YÄnderungExtern, XÄnderungExtern),
+                                                                                                   LogikGrafikExtern => True);
       end if;
             
       case
@@ -243,7 +243,7 @@ package body KIBewegungBerechnenLogik is
                   
       case
         PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern    => EinheitRasseNummerExtern,
-                                                                   NeueKoordinatenExtern       => KartenWert)
+                                                                  NeueKoordinatenExtern       => KartenWert)
       is
          when True =>
             null;
@@ -422,17 +422,17 @@ package body KIBewegungBerechnenLogik is
    is begin
       
       EAchseSchleife:
-      for EÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEinsEAchse'Range loop
+      for EAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEinsEAchse'Range loop
          YAchseSchleife:
-         for YÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+         for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
             XAchseSchleife:
-            for XÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+            for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
                
                KartenWertVereinfachung
                  := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                                                                                    PlanschrittExtern        => ErsterZugExtern),
-                                                                                           ÄnderungExtern    => (EÄnderungSchleifenwert, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                                           LogikGrafikExtern => True);
+                                                                                                                                                         PlanschrittExtern        => ErsterZugExtern),
+                                                                                                ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                LogikGrafikExtern => True);
                
                if
                  KartenWertVereinfachung.XAchse = KartenKonstanten.LeerXAchse

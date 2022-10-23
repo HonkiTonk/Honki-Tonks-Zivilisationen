@@ -123,7 +123,7 @@ package body EinheitenverschiebungLogik is
             for XAchseSchleifenwert in -UmgebungPrüfen .. UmgebungPrüfen loop
                      
                KartenwertVerschieben := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Einheitenkoordinaten,
-                                                                                                                    ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                                    ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                                                                     LogikGrafikExtern => True);
             
                if

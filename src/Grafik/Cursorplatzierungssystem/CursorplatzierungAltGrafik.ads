@@ -42,6 +42,7 @@ private
    
    Kartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
    Einheitenkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   AlteCursorkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    Koordinatenänderung : KartenRecords.AchsenKartenfeldRecord;
    

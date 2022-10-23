@@ -29,12 +29,12 @@ package body StadtumgebungErreichbarLogik is
       BereichSchleife:
       loop
          YAchseSchleife:
-         for YÄnderungSchleifenwert in -Umgebung .. Umgebung loop
+         for YAchseSchleifenwert in -Umgebung .. Umgebung loop
             XAchseSchleife:
-            for XÄnderungSchleifenwert in -Umgebung .. Umgebung loop
+            for XAchseSchleifenwert in -Umgebung .. Umgebung loop
                
                KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => AktuelleKoordinatenExtern,
-                                                                                                         ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                                                          LogikGrafikExtern => True);
                
                if
@@ -43,9 +43,9 @@ package body StadtumgebungErreichbarLogik is
                   null;
                  
                elsif
-                 BereitsGetestet >= abs (YÄnderungSchleifenwert)
+                 BereitsGetestet >= abs (YAchseSchleifenwert)
                  and
-                   BereitsGetestet >= abs (XÄnderungSchleifenwert)
+                   BereitsGetestet >= abs (XAchseSchleifenwert)
                then
                   null;
                   
@@ -125,7 +125,7 @@ package body StadtumgebungErreichbarLogik is
          for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
             
             KartenWertZwei := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => AktuelleKoordinatenExtern,
-                                                                                                          ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                          ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                                                           LogikGrafikExtern => True);
             
             if

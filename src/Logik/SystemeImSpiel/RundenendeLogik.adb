@@ -96,7 +96,7 @@ package body RundenendeLogik is
             
          when others =>
             SpielVariablen.Allgemeines.Zusammenbruchszeit := SpielVariablen.Allgemeines.Zusammenbruchszeit - 1;
-            -- Das True muss später raus, wenn ich eine Siegoption für interstellares Siedeln einbauen. äöü
+            -- Das True muss später raus, wenn ich eine Siegoption für interstellares Siedeln einbaue. äöü
             return True;
       end case;
       

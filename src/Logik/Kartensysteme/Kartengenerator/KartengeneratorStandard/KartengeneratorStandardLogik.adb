@@ -136,13 +136,13 @@ package body KartengeneratorStandardLogik is
                                          AnfangExtern => Landmassen (3),
                                          EndeExtern   => Landmassen (4));
       
-      YAchseAbstandFlächenSchleife:
-      for YÄnderungSchleifenwert in -Landabstand (1) .. Landabstand (2) loop
-         XAchseAbstandFlächenSchleife:
-         for XÄnderungSchleifenwert in -Landabstand (3) .. Landabstand (4) loop
+      YAchseSchleife:
+      for YAchseSchleifenwert in -Landabstand (1) .. Landabstand (2) loop
+         XAchseSchleife:
+         for XAchseSchleifenwert in -Landabstand (3) .. Landabstand (4) loop
                            
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseZwischenwert, XAchseZwischenwert),
-                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                                                       LogikGrafikExtern => True);
             
             if
@@ -158,9 +158,9 @@ package body KartengeneratorStandardLogik is
                null;
                   
             elsif
-              YÄnderungSchleifenwert in -Landmassen (1) .. Landmassen (2)
+              YAchseSchleifenwert in -Landmassen (1) .. Landmassen (2)
               and
-                XÄnderungSchleifenwert in -Landmassen (3) .. Landmassen (4)
+                XAchseSchleifenwert in -Landmassen (3) .. Landmassen (4)
             then
                GrundSchreiben (YAchseExtern       => KartenWert.YAchse,
                                XAchseExtern       => KartenWert.XAchse,
@@ -172,8 +172,8 @@ package body KartengeneratorStandardLogik is
                                MasseAbstandExtern => False);
             end if;
             
-         end loop XAchseAbstandFlächenSchleife;
-      end loop YAchseAbstandFlächenSchleife;
+         end loop XAchseSchleife;
+      end loop YAchseSchleife;
       
    end LandmasseAbstandGenerieren;
    

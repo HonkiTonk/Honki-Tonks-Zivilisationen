@@ -134,13 +134,14 @@ package body CursorplatzierungAltGrafik is
    is begin
       
       Einheitenkoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      AlteCursorkoordinaten := SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt;
       
       YAchseSchleife:
       for YAchseSchleifenwert in -SichtweitenGrafik.SichtweiteLesen .. SichtweitenGrafik.SichtweiteLesen loop
          XAchseSchleife:
          for XAchseSchleifenwert in -SichtweitenGrafik.SichtweiteLesen .. SichtweitenGrafik.SichtweiteLesen loop
             
-            Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt,
+            Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => AlteCursorkoordinaten,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                                                       LogikGrafikExtern => False);
             
