@@ -49,14 +49,14 @@ package ChangelogOktober2022 is
    
    
 
-   -- Version 0.04.2280 => 0.04. (24.10.2022):
+   -- Version 0.04.2310 => 0.04. (24.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.2200 => 0.04.2280 (23.10.2022):
+   -- Version 0.04.2200 => 0.04.2310 (23.10.2022):
    
    -- Fehler korrigiert der bei sehr großen Karten und der Kartenart Pangäa zu abstürzen führte.
    -- Unnötigen Code gelöscht.
