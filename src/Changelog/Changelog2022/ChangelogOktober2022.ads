@@ -49,17 +49,22 @@ package ChangelogOktober2022 is
    
    
 
-   -- Version 0.04. => 0.04. (24.10.2022):
+   -- Version 0.04.2280 => 0.04. (24.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.2200 => 0.04. (23.10.2022):
+   -- Version 0.04.2200 => 0.04.2280 (23.10.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehler korrigiert der bei sehr großen Karten und der Kartenart Pangäa zu abstürzen führte.
+   -- Unnötigen Code gelöscht.
+   -- Mehr auf das Zehnerbewertungssystem umgebaut.
+   -- Kampfsysteme überarbeitet.
+   -- Die KI greift jetzt wieder mit Kampfeinheiten an.
+   -- Code zusammengeführt.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 

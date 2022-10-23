@@ -55,8 +55,8 @@ package body StadtwerteFestlegenLogik is
          for XÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                                                 ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                                                 LogikGrafikExtern => True);
+                                                                                                      ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                                                      LogikGrafikExtern => True);
             
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse
@@ -69,10 +69,10 @@ package body StadtwerteFestlegenLogik is
                abs (XÄnderungSchleifenwert) > GrößeNeu)
               and
                 True = LeseWeltkarte.BestimmteStadtBelegtGrund (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                             KoordinatenExtern      => KartenWert)
+                                                                KoordinatenExtern      => KartenWert)
             then
                SchreibeWeltkarte.BelegterGrund (KoordinatenExtern   => KartenWert,
-                                             BelegterGrundExtern => KartenRecordKonstanten.LeerDurchStadtBelegterGrund);
+                                                BelegterGrundExtern => KartenRecordKonstanten.LeerDurchStadtBelegterGrund);
                
                case
                  LeseStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
@@ -103,7 +103,7 @@ package body StadtwerteFestlegenLogik is
               LeseWeltkarte.BelegterGrundLeer (KoordinatenExtern => KartenWert) = True
             then
                SchreibeWeltkarte.BelegterGrund (KoordinatenExtern   => KartenWert,
-                                             BelegterGrundExtern => (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer));
+                                                BelegterGrundExtern => (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer));
                
             else
                null;
@@ -213,8 +213,8 @@ package body StadtwerteFestlegenLogik is
          for XAchseSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                                                 ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                 LogikGrafikExtern => True);
+                                                                                                      ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                      LogikGrafikExtern => True);
             
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse
@@ -230,7 +230,7 @@ package body StadtwerteFestlegenLogik is
                
             elsif
               False = LeseWeltkarte.BestimmteStadtBelegtGrund (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                            KoordinatenExtern      => KartenWert)
+                                                               KoordinatenExtern      => KartenWert)
             then
                null;
               

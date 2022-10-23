@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with KartenverbesserungDatentypen;
 with KartendatenbankRecord;
 
-with KIBewertungDatentypen;
+with BewertungDatentypen;
 
 package VerbesserungenStandard is
    
@@ -12,14 +12,14 @@ package VerbesserungenStandard is
    Stadtliste : constant StadtlisteArray := (
                                              KartenverbesserungDatentypen.Hauptstadt_Enum =>
                                                (
-                                                Bewertung          => (others => KIBewertungDatentypen.Bewertung_Eins_Enum),
+                                                Bewertung          => (others => BewertungDatentypen.Bewertung_Eins_Enum),
                                                 Wirtschaft         => (others => (others => 1)),
                                                 Kampf              => (others => (others => 1))
                                                ),
                                                   
                                              KartenverbesserungDatentypen.Stadt_Enum =>
                                                (
-                                                Bewertung          => (others => KIBewertungDatentypen.Bewertung_Eins_Enum),
+                                                Bewertung          => (others => BewertungDatentypen.Bewertung_Eins_Enum),
                                                 Wirtschaft         => (others => (others => 1)),
                                                 Kampf              => (others => (others => 1))
                                                )
@@ -31,21 +31,21 @@ package VerbesserungenStandard is
    Gebildeliste : constant GebildelisteArray := (
                                                  KartenverbesserungDatentypen.Farm_Enum =>
                                                    (
-                                                    Bewertung          => (others => KIBewertungDatentypen.Bewertung_Eins_Enum),
+                                                    Bewertung          => (others => BewertungDatentypen.Bewertung_Eins_Enum),
                                                     Wirtschaft         => (others => (others => 1)),
                                                     Kampf              => (others => (others => 1))
                                                    ),
                                                   
                                                  KartenverbesserungDatentypen.Mine_Enum =>
                                                    (
-                                                    Bewertung          => (others => KIBewertungDatentypen.Bewertung_Eins_Enum),
+                                                    Bewertung          => (others => BewertungDatentypen.Bewertung_Eins_Enum),
                                                     Wirtschaft         => (others => (others => 1)),
                                                     Kampf              => (others => (others => 1))
                                                    ),
                                                   
                                                  KartenverbesserungDatentypen.Festung_Enum =>
                                                    (
-                                                    Bewertung          => (others => KIBewertungDatentypen.Bewertung_Eins_Enum),
+                                                    Bewertung          => (others => BewertungDatentypen.Bewertung_Eins_Enum),
                                                     Wirtschaft         => (others => (others => 1)),
                                                     Kampf              => (others => (others => 1))
                                                    )

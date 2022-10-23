@@ -8,7 +8,7 @@ with KampfDatentypen;
 with RueckgabeDatentypen;
 with KartenartDatentypen;
 
-with KIBewertungDatentypen;
+with BewertungDatentypen;
 
 package KartenKonstanten is
    
@@ -30,14 +30,13 @@ package KartenKonstanten is
    LeerPassierbarkeit : constant Boolean := False;
    
    -- Die Bewertung mal in irgendwas mit KIKonstanten packen? äöü
-   LeerBewertung : constant KIBewertungDatentypen.Bewertung_Enum := KIBewertungDatentypen.Bewertung_Enum'First;
+   LeerBewertung : constant BewertungDatentypen.Bewertung_Enum := BewertungDatentypen.Bewertung_Enum'First;
    LeerWirtschaft : constant ProduktionDatentypen.Einzelproduktion := ProduktionDatentypen.Einzelproduktion'First;
    LeerKampf : constant KampfDatentypen.Kampfwerte := KampfDatentypen.Kampfwerte'First;
    
    LeerSichtbar : constant Boolean := False;
-   LeerFelderwertung : constant KIBewertungDatentypen.GesamteFeldbewertung := KIBewertungDatentypen.GesamteFeldbewertung'First;
          
-   LeerVerbesserungBewertung : constant KIBewertungDatentypen.Bewertung_Enum := KIBewertungDatentypen.Bewertung_Enum'First;
+   LeerVerbesserungBewertung : constant BewertungDatentypen.Bewertung_Enum := BewertungDatentypen.Bewertung_Enum'First;
    LeerVerbesserungWirtschaft : constant ProduktionDatentypen.Einzelproduktion := ProduktionDatentypen.Einzelproduktion'First;
    LeerVerbesserungKampf : constant KampfDatentypen.Kampfwerte := KampfDatentypen.Kampfwerte'First;
    

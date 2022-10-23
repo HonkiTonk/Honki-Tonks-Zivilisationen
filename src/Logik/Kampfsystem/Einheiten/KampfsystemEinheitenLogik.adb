@@ -2,19 +2,18 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with EinheitenDatentypen; use EinheitenDatentypen;
-with KartenDatentypen; use KartenDatentypen;
 with KampfDatentypen; use KampfDatentypen;
+with KartenDatentypen; use KartenDatentypen;
 with EinheitenKonstanten;
-with KampfKonstanten;
 
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
 
-with ZufallsgeneratorenKampfLogik;
 with KampfwerteEinheitErmittelnLogik;
 with EinheitenErzeugenEntfernenLogik;
 with PZBEingesetztLogik;
+with KampfberechnungenLogik;
 
 package body KampfsystemEinheitenLogik is
 
@@ -41,8 +40,10 @@ package body KampfsystemEinheitenLogik is
             KampfwerteAngreifer.Angriff := KampfwerteEinheitErmittelnLogik.AktuellerAngriffEinheit (EinheitRasseNummerExtern => AngreiferExtern,
                                                                                                     AngreiferExtern          => True);
       
-            return Kampf (VerteidigerExtern => VerteidigerExtern,
-                          AngreiferExtern   => AngreiferExtern);
+            return Kampf (VerteidigerExtern           => VerteidigerExtern,
+                          KampfwerteVerteidigerExtern => KampfwerteVerteidiger,
+                          AngreiferExtern             => AngreiferExtern,
+                          KampfwerteAngreiferExtern   => KampfwerteAngreifer);
       end case;
       
    end KampfsystemNahkampf;
@@ -51,46 +52,114 @@ package body KampfsystemEinheitenLogik is
 
    function Kampf
      (VerteidigerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      AngreiferExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      KampfwerteVerteidigerExtern : in KampfRecords.KampfwerteRecord;
+      AngreiferExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      KampfwerteAngreiferExtern : in KampfRecords.KampfwerteRecord)
       return Boolean
    is begin
+      
+      IDAngreifer := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => AngreiferExtern);
+      IDVerteidiger := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => VerteidigerExtern);
             
       KampfSchleife:
       loop
-
-         KampfBerechnung (VerteidigerExtern  => VerteidigerExtern,
-                          AngriffExtern      => KampfwerteAngreifer.Angriff,
-                          VerteidigungExtern => KampfwerteVerteidiger.Verteidigung);
+         
+         Kampfergebnis := KampfberechnungenLogik.Kampfberechnung (AngriffExtern      => KampfwerteAngreiferExtern.Angriff,
+                                                                  VerteidigungExtern => KampfwerteVerteidigerExtern.Verteidigung);
+         
+         if
+           Kampfergebnis < 0
+         then
+            SchreibeEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => AngreiferExtern,
+                                                  LebenspunkteExtern       => EinheitenDatentypen.Lebenspunkte (-Kampfergebnis),
+                                                  -- Das ist Kartendatentypen, mal austauschen! Überall! Durch den erweiterten Bool und ein konstantes Array ersetzen! äöü
+                                                  -- Oder alle Werte um einen negativen Bereich erweitern, das ist vermutlich klüger. äöü
+                                                  RechnenSetzenExtern      => -1);
+            
+         elsif
+           Kampfergebnis > 0
+         then
+            SchreibeEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => VerteidigerExtern,
+                                                  LebenspunkteExtern       => EinheitenDatentypen.Lebenspunkte (Kampfergebnis),
+                                                  -- Das ist Kartendatentypen, mal austauschen! Überall! Durch den erweiterten Bool und ein konstantes Array ersetzen! äöü
+                                                  -- Oder alle Werte um einen negativen Bereich erweitern, das ist vermutlich klüger. äöü
+                                                  RechnenSetzenExtern      => -1);
+            
+         else
+            null;
+         end if;
 
          if
            LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => VerteidigerExtern) = EinheitenKonstanten.LeerLebenspunkte
          then
             SchreibeEinheitenGebaut.Erfahrungspunkte (EinheitRasseNummerExtern => AngreiferExtern,
                                                       ErfahrungspunkteExtern   => LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => AngreiferExtern.Rasse,
-                                                                                                                              IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => AngreiferExtern)),
+                                                                                                                              IDExtern    => IDAngreifer),
                                                       AddierenSetzenExtern     => True);
             
             EinheitenErzeugenEntfernenLogik.EinheitEntfernen (EinheitRasseNummerExtern => VerteidigerExtern);
             return True;
             
-         else
-            null;
-         end if;
-         
-         KampfBerechnung (VerteidigerExtern  => AngreiferExtern,
-                          AngriffExtern      => KampfwerteVerteidiger.Angriff,
-                          VerteidigungExtern => KampfwerteAngreifer.Verteidigung);
-         
-         if
+         elsif
            LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => AngreiferExtern) = EinheitenKonstanten.LeerLebenspunkte
          then
             SchreibeEinheitenGebaut.Erfahrungspunkte (EinheitRasseNummerExtern => VerteidigerExtern,
                                                       ErfahrungspunkteExtern   => LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => VerteidigerExtern.Rasse,
-                                                                                                                              IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => VerteidigerExtern)),
+                                                                                                                              IDExtern    => IDVerteidiger),
                                                       AddierenSetzenExtern     => True);
             EinheitenErzeugenEntfernenLogik.EinheitEntfernen (EinheitRasseNummerExtern => AngreiferExtern);
             return False;
-
+            
+         else
+            null;
+         end if;
+         
+         Kampfergebnis := KampfberechnungenLogik.Kampfberechnung (AngriffExtern      => KampfwerteVerteidigerExtern.Angriff,
+                                                                  VerteidigungExtern => KampfwerteAngreiferExtern.Verteidigung);
+         
+         if
+           Kampfergebnis < 0
+         then
+            SchreibeEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => VerteidigerExtern,
+                                                  LebenspunkteExtern       => EinheitenDatentypen.Lebenspunkte (-Kampfergebnis),
+                                                  -- Das ist Kartendatentypen, mal austauschen! Überall! Durch den erweiterten Bool und ein konstantes Array ersetzen! äöü
+                                                  -- Oder alle Werte um einen negativen Bereich erweitern, das ist vermutlich klüger. äöü
+                                                  RechnenSetzenExtern      => -1);
+            
+         elsif
+           Kampfergebnis > 0
+         then
+            SchreibeEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => AngreiferExtern,
+                                                  LebenspunkteExtern       => EinheitenDatentypen.Lebenspunkte (Kampfergebnis),
+                                                  -- Das ist Kartendatentypen, mal austauschen! Überall! Durch den erweiterten Bool und ein konstantes Array ersetzen! äöü
+                                                  -- Oder alle Werte um einen negativen Bereich erweitern, das ist vermutlich klüger. äöü
+                                                  RechnenSetzenExtern      => -1);
+            
+         else
+            null;
+         end if;
+         
+         if
+           LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => VerteidigerExtern) = EinheitenKonstanten.LeerLebenspunkte
+         then
+            SchreibeEinheitenGebaut.Erfahrungspunkte (EinheitRasseNummerExtern => AngreiferExtern,
+                                                      ErfahrungspunkteExtern   => LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => AngreiferExtern.Rasse,
+                                                                                                                              IDExtern    => IDAngreifer),
+                                                      AddierenSetzenExtern     => True);
+            
+            EinheitenErzeugenEntfernenLogik.EinheitEntfernen (EinheitRasseNummerExtern => VerteidigerExtern);
+            return True;
+            
+         elsif
+           LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => AngreiferExtern) = EinheitenKonstanten.LeerLebenspunkte
+         then
+            SchreibeEinheitenGebaut.Erfahrungspunkte (EinheitRasseNummerExtern => VerteidigerExtern,
+                                                      ErfahrungspunkteExtern   => LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => VerteidigerExtern.Rasse,
+                                                                                                                              IDExtern    => IDVerteidiger),
+                                                      AddierenSetzenExtern     => True);
+            EinheitenErzeugenEntfernenLogik.EinheitEntfernen (EinheitRasseNummerExtern => AngreiferExtern);
+            return False;
+            
          else
             null;
          end if;
@@ -98,66 +167,5 @@ package body KampfsystemEinheitenLogik is
       end loop KampfSchleife;
       
    end Kampf;
-   
-
-
-   procedure KampfBerechnung
-     (VerteidigerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      -- Hier besser nicht den KampfwerteRecord verwenden, sonst komme ich noch durcheinander dass das ja zwei unterschiedliche Einheiten sind welche sich hier bekämpfen.
-      AngriffExtern : in KampfDatentypen.Kampfwerte;
-      VerteidigungExtern : in KampfDatentypen.Kampfwerte)
-   is begin
-      
-      -- Bei Extremfällen AngerichteterSchaden schon vorher einen Wert geben?
-      if
-        AngriffExtern > 2 * VerteidigungExtern
-      then
-         WelcherFall := Extrem_Stärker_Enum;
-
-      elsif
-        AngriffExtern > VerteidigungExtern
-      then
-         WelcherFall := Stärker_Enum;
-
-      elsif
-        AngriffExtern < VerteidigungExtern
-        and
-          2 * AngriffExtern > VerteidigungExtern
-      then
-         WelcherFall := Schwächer_Enum;
-         
-      elsif
-        2 * AngriffExtern < VerteidigungExtern
-      then
-         WelcherFall := Extrem_Schwächer_Enum;
-
-      else
-         WelcherFall := Gleich_Enum;
-      end if;
-      
-      Kampfglück := ZufallsgeneratorenKampfLogik.KampfErfolg;
-      AngerichteterSchaden := 0;
-      
-      AngerichteterSchadenSchleife:
-      for AngerichteterSchadenSchleifenwert in reverse KampfKonstanten.SchadenAngerichtetArray'Range (2) loop
-         
-         if
-           Kampfglück >= KampfKonstanten.SchadenAngerichtet (WelcherFall, AngerichteterSchadenSchleifenwert)
-         then
-            AngerichteterSchaden := AngerichteterSchaden + AngerichteterSchadenSchleifenwert;
-            exit AngerichteterSchadenSchleife;
-            
-         else
-            null;
-         end if;
-              
-      end loop AngerichteterSchadenSchleife;
-      
-      -- Den Schadensdatentyp abhängig von den Lebenspunkten machen? Oder ein anderes System bauen?
-      SchreibeEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => VerteidigerExtern,
-                                            LebenspunkteExtern       => EinheitenDatentypen.Lebenspunkte (AngerichteterSchaden),
-                                            RechnenSetzenExtern      => -1);
-      
-   end KampfBerechnung;
 
 end KampfsystemEinheitenLogik;

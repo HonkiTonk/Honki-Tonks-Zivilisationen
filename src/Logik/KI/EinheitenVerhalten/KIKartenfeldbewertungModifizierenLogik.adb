@@ -8,12 +8,11 @@ with LeseKartenDatenbanken;
 
 with KartenkoordinatenberechnungssystemLogik;
 
-with KIBewertungDatentypen; use KIBewertungDatentypen;
+with BewertungDatentypen; use BewertungDatentypen;
 
 package body KIKartenfeldbewertungModifizierenLogik is
 
-   -- Später Rassen/Technolgie/Sonstigesabhängig die Mindestbewertung ermitteln. äöü
-   -- Ermittelt die Menge an belegtem Grund in der Umgebung und erhöht auf Basis dessen die Feldbewertung.
+   -- Später Rassen/Technolgie/Sonstigesabhängig die Mindestbewertung ermitteln? äöü
    function BewertungStadtBauen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
@@ -52,6 +51,7 @@ package body KIKartenfeldbewertungModifizierenLogik is
    
    
    
+   -- Das später rassenspezifische anpassen? äöü
    function StadtZuNahe
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
@@ -113,11 +113,13 @@ package body KIKartenfeldbewertungModifizierenLogik is
                      
             else
                if
-                 MinimalWert > LeseKartenDatenbanken.BewertungGrund (GrundExtern => LeseWeltkarte.BasisGrund (KoordinatenExtern => KoordinatenExtern),
-                                                                     RasseExtern => RasseExtern)
+                 LeseKartenDatenbanken.BewertungGrund (GrundExtern => LeseWeltkarte.BasisGrund (KoordinatenExtern => KoordinatenExtern),
+                                                       RasseExtern => RasseExtern)
+               in BewertungDatentypen.Fehlschlag
                  and
-                   MinimalWert > LeseKartenDatenbanken.BewertungGrund (GrundExtern => LeseWeltkarte.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
-                                                                       RasseExtern => RasseExtern)
+                   LeseKartenDatenbanken.BewertungGrund (GrundExtern => LeseWeltkarte.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
+                                                         RasseExtern => RasseExtern)
+               in BewertungDatentypen.Fehlschlag
                then
                   null;
                   
@@ -144,7 +146,7 @@ package body KIKartenfeldbewertungModifizierenLogik is
       end loop YAchseSchleife;
             
       if
-        GuteFelder > 10.00
+        GuteFelder > KartenfeldBewertungStadtBauenMinimum (RasseExtern)
       then
          return True;
          

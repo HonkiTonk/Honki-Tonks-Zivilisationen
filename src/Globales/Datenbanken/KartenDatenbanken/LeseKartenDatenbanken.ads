@@ -8,7 +8,7 @@ with KartengrundDatentypen;
 with ProduktionDatentypen;
 with KampfDatentypen;
 
-with KIBewertungDatentypen;
+with BewertungDatentypen;
 
 package LeseKartenDatenbanken is
 
@@ -20,7 +20,7 @@ package LeseKartenDatenbanken is
    function BewertungGrund
      (GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KIBewertungDatentypen.Bewertung_Enum
+      return BewertungDatentypen.Bewertung_Enum
      with
        Pre => (
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
@@ -29,7 +29,7 @@ package LeseKartenDatenbanken is
    function BewertungFluss
      (FlussExtern : in KartengrundDatentypen.Kartenfluss_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KIBewertungDatentypen.Bewertung_Enum
+      return BewertungDatentypen.Bewertung_Enum
      with
        Pre => (
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
@@ -38,7 +38,7 @@ package LeseKartenDatenbanken is
    function BewertungRessource
      (RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KIBewertungDatentypen.Bewertung_Enum
+      return BewertungDatentypen.Bewertung_Enum
      with
        Pre => (
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum

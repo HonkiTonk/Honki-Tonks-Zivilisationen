@@ -4,9 +4,9 @@ pragma Warnings (Off, "*array aggregate*");
 with RassenDatentypen; use RassenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
-with KampfDatentypen;
 
 private with KampfRecords;
+private with EinheitenDatentypen;
 
 package KampfsystemEinheitenLogik is
 
@@ -27,31 +27,23 @@ package KampfsystemEinheitenLogik is
                  AngreiferExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (AngreiferExtern.Rasse).Einheitengrenze
               );
 
-   procedure KampfBerechnung
-     (VerteidigerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      AngriffExtern : in KampfDatentypen.Kampfwerte;
-      VerteidigungExtern : in KampfDatentypen.Kampfwerte)
-     with
-       Pre => (
-                 VerteidigerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (VerteidigerExtern.Rasse).Einheitengrenze
-               and
-                 SpielVariablen.Rassenbelegung (VerteidigerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
-              );
-
 private
-
-   WelcherFall : KampfDatentypen.Kampf_Unterschiede_Enum;
-
-   AngerichteterSchaden : KampfDatentypen.Kampfwerte;
-
-   Kampfglück : Float;
 
    KampfwerteVerteidiger : KampfRecords.KampfwerteRecord;
    KampfwerteAngreifer : KampfRecords.KampfwerteRecord;
 
+   IDAngreifer : EinheitenDatentypen.EinheitenID;
+   IDVerteidiger : EinheitenDatentypen.EinheitenID;
+
+   Kampfergebnis : Integer;
+
+
+
    function Kampf
      (VerteidigerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      AngreiferExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      KampfwerteVerteidigerExtern : in KampfRecords.KampfwerteRecord;
+      AngreiferExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      KampfwerteAngreiferExtern : in KampfRecords.KampfwerteRecord)
       return Boolean
      with
        Pre => (

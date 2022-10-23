@@ -20,7 +20,7 @@ package body LeseKartenDatenbanken is
    function BewertungGrund
      (GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KIBewertungDatentypen.Bewertung_Enum
+      return BewertungDatentypen.Bewertung_Enum
    is begin
       
       return KartenDatenbank.Kartengrundliste (GrundExtern).Bewertung (RasseExtern);
@@ -32,7 +32,7 @@ package body LeseKartenDatenbanken is
    function BewertungFluss
      (FlussExtern : in KartengrundDatentypen.Kartenfluss_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KIBewertungDatentypen.Bewertung_Enum
+      return BewertungDatentypen.Bewertung_Enum
    is begin
       
       return KartenDatenbank.Kartenflussliste (FlussExtern).Bewertung (RasseExtern);
@@ -44,7 +44,7 @@ package body LeseKartenDatenbanken is
    function BewertungRessource
      (RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KIBewertungDatentypen.Bewertung_Enum
+      return BewertungDatentypen.Bewertung_Enum
    is begin
       
       return KartenDatenbank.Kartenressourcenliste (RessourceExtern).Bewertung (RasseExtern);

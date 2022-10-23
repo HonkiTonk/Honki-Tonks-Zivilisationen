@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with MenueDatentypen;
 
--- Das hier mal aufteilen? äöü
+-- Das hier mal aufteilen und anders benennen, ist ja hauptsächlich Menüzeug. äöü
 package SystemKonstanten is
 
    -- Das mit der 0 funktioniert so auch nicht mehr, überarbeiten. äöü

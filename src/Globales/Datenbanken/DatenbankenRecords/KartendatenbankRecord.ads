@@ -6,11 +6,11 @@ with KampfDatentypen;
 with ProduktionDatentypen;
 with DatenbankRecords;
 
-with KIBewertungDatentypen;
+with BewertungDatentypen;
 
 package KartendatenbankRecord is
 
-   type BewertungArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of KIBewertungDatentypen.Bewertung_Enum;
+   type BewertungArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of BewertungDatentypen.Bewertung_Enum;
    type WirtschaftArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, ProduktionDatentypen.Wirtschaft_Enum'Range) of ProduktionDatentypen.Einzelproduktion;
    type KampfArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, KampfDatentypen.Kampf_Enum'Range) of KampfDatentypen.KampfwerteAllgemein;
       

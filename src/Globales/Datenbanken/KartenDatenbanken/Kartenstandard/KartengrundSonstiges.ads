@@ -6,7 +6,7 @@ with EinheitenDatentypen;
 with RassenDatentypen;
 with KartendatenbankRecord;
 
-with KIBewertungDatentypen;
+with BewertungDatentypen;
 
 package KartengrundSonstiges is
 
@@ -19,7 +19,7 @@ package KartengrundSonstiges is
                                                                               Passierbarkeit => (EinheitenDatentypen.Luft_Enum     => True,
                                                                                                  EinheitenDatentypen.Weltraum_Enum => True,
                                                                                                  others                            => False),
-                                                                              Bewertung      => (others => KIBewertungDatentypen.Bewertung_Null_Enum),
+                                                                              Bewertung      => (others => BewertungDatentypen.Bewertung_Eins_Enum),
 
                                                                                 -- Nahrung, Produktion, Geld, Forschung
                                                                               Wirtschaft =>

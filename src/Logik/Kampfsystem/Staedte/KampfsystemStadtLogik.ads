@@ -8,6 +8,7 @@ with SpielVariablen;
 with StadtRecords;
 
 private with KampfRecords;
+private with EinheitenDatentypen;
 
 package KampfsystemStadtLogik is
 
@@ -32,8 +33,12 @@ private
    
    WelcherFall : KampfDatentypen.Kampf_Unterschiede_Enum;
    
-   GesundheitStadt : KampfDatentypen.Kampfwerte;
    AngerichteterSchaden : KampfDatentypen.Kampfwerte;
+   
+   IDAngreifer : EinheitenDatentypen.EinheitenID;
+   
+   GesundheitStadt : Integer;
+   Kampfergebnis : Integer;
    
    Kampfglück : Float;
    
@@ -42,29 +47,30 @@ private
    
    
    
-   function SchadenStadtBerechnen
-     (AngriffExtern : in KampfDatentypen.Kampfwerte;
-      VerteidigungExtern : in KampfDatentypen.Kampfwerte;
-      StadtgesundheitExtern : in KampfDatentypen.Kampfwerte)
-      return KampfDatentypen.Kampfwerte
-     with
-       Pre => (
-                 StadtgesundheitExtern > 0
-              );
-   
    function Kampfverlauf
-     (AngreifendeEinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (AngreifendeEinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      KampfwerteAngreiferExtern : in KampfRecords.KampfwerteRecord;
+      VerteidigendeStadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      KampfwerteVerteidigerExtern : in KampfRecords.KampfwerteRecord)
       return Boolean
      with
        Pre => (
                  SpielVariablen.Rassenbelegung (AngreifendeEinheitRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                and
+                 SpielVariablen.Rassenbelegung (VerteidigendeStadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+               and
+                 AngreifendeEinheitRasseNummerExtern.Rasse /= VerteidigendeStadtRasseNummerExtern.Rasse
+               and
                  AngreifendeEinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (AngreifendeEinheitRasseNummerExtern.Rasse).Einheitengrenze
+               and
+                 VerteidigendeStadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (VerteidigendeStadtRasseNummerExtern.Rasse).Städtegrenze
               );
    
    function Kampf
      (AngreifendeEinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      VerteidigendeStadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+      KampfwerteAngreiferExtern : in KampfRecords.KampfwerteRecord;
+      VerteidigendeStadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      KampfwerteVerteidigerExtern : in KampfRecords.KampfwerteRecord)
       return Boolean
      with
        Pre => (

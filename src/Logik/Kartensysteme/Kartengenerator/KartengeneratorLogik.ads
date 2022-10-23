@@ -5,4 +5,8 @@ package KartengeneratorLogik is
 
    procedure Kartengenerator;
 
+private
+
+   procedure PrüfeEinstellungen;
+
 end KartengeneratorLogik;

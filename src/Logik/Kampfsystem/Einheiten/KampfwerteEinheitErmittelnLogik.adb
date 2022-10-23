@@ -35,6 +35,7 @@ package body KampfwerteEinheitErmittelnLogik is
             Bonus := VerteidigungsbonusAngreifer;
       end case;
       
+      -- Das auch mal in ein generic auslagern. äöü
       if
         VerteidigungWert + Bonus > KampfDatentypen.Kampfwerte'Last
       then

@@ -9,7 +9,7 @@ with EinheitenRecords;
 private with KartenRecords;
 private with Weltkarte;
 
-private with KIBewertungDatentypen;
+private with BewertungDatentypen;
 
 package KIEinheitFestlegenSiedelnLogik is
 
@@ -27,7 +27,7 @@ private
 
    FeldGutUndFrei : Boolean;
 
-   Feldbewertung : KIBewertungDatentypen.Bewertung_Enum;
+   Feldbewertung : BewertungDatentypen.Bewertung_Enum;
 
    UmgebungPrüfen : KartenDatentypen.KartenfeldNatural;
    BereitsGeprüft : KartenDatentypen.KartenfeldNatural;

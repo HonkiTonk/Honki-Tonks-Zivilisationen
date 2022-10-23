@@ -19,7 +19,8 @@ package KampfDatentypen is
    subtype Rang is Erfahrungspunkte range Erfahrungspunkte'First .. 3;
    subtype RangVorhanden is Rang range 1 .. Rang'Last;
 
-   -- Die Werte gelten immer aus Sicht des Angreifers
+   -- Die Werte gelten immer aus Sicht des Angreifers.
+   -- Kann wahrscheinlich entfernt werden nach der Überarbeitung des Kampfsystems. äöü
    type Kampf_Unterschiede_Enum is (
                                     Gleich_Enum, Stärker_Enum, Extrem_Stärker_Enum, Schwächer_Enum, Extrem_Schwächer_Enum
                                    );

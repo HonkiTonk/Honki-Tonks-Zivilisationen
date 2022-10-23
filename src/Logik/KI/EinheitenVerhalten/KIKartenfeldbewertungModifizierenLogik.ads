@@ -7,8 +7,6 @@ with KartenRecords;
 with SpielVariablen;
 with Weltkarte;
 
-private with KIBewertungDatentypen;
-
 package KIKartenfeldbewertungModifizierenLogik is
 
    function BewertungStadtBauen
@@ -25,14 +23,32 @@ package KIKartenfeldbewertungModifizierenLogik is
               );
    
 private
-   
-   -- Diese Konstante in ein rassenabhängiges Array umwandeln? äöü
-   -- Die Bewertung dabei auch eher wie das System im Vampire System behandeln? äöü
-   MinimalWert : constant KIBewertungDatentypen.Bewertung_Enum := KIBewertungDatentypen.Bewertung_Fünf_Enum;
-   
+      
    GuteFelder : Float;
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
+
+   type KartenfeldBewertungStadtBauenMinimumArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of Float;
+   KartenfeldBewertungStadtBauenMinimum : constant KartenfeldBewertungStadtBauenMinimumArray := (
+                                                                                                 RassenDatentypen.Menschen_Enum         => 10.00,
+                                                                                                 RassenDatentypen.Kasrodiah_Enum        => 10.00,
+                                                                                                 RassenDatentypen.Lasupin_Enum          => 10.00,
+                                                                                                 RassenDatentypen.Lamustra_Enum         => 10.00,
+                                                                                                 RassenDatentypen.Manuky_Enum           => 10.00,
+                                                                                                 RassenDatentypen.Suroka_Enum           => 10.00,
+                                                                                                 RassenDatentypen.Pryolon_Enum          => 10.00,
+                                                                                                 RassenDatentypen.Talbidahr_Enum        => 10.00,
+                                                                                                 RassenDatentypen.Moru_Phisihl_Enum     => 10.00,
+                                                                                                 RassenDatentypen.Larinos_Lotaris_Enum  => 10.00,
+                                                                                                 RassenDatentypen.Carupex_Enum          => 10.00,
+                                                                                                 RassenDatentypen.Alary_Enum            => 10.00,
+                                                                                                 RassenDatentypen.Tesorahn_Enum         => 10.00,
+                                                                                                 RassenDatentypen.Natries_Zermanis_Enum => 10.00,
+                                                                                                 RassenDatentypen.Tridatus_Enum         => 10.00,
+                                                                                                 RassenDatentypen.Senelari_Enum         => 10.00,
+                                                                                                 RassenDatentypen.Aspari_2_Enum         => 10.00,
+                                                                                                 RassenDatentypen.Ekropa_Enum           => 10.00
+                                                                                                );
    
    
    

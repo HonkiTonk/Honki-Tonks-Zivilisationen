@@ -6,7 +6,7 @@ with KartengrundDatentypen;
 with RassenDatentypen;
 with KartenartDatentypen;
 
-with KIBewertungDatentypen;
+with BewertungDatentypen;
 
 package KartenRecords is
    
@@ -67,7 +67,7 @@ package KartenRecords is
    
    
    
-   type FelderwertungArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of KIBewertungDatentypen.Bewertung_Enum;
+   type FelderwertungArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of BewertungDatentypen.Bewertung_Enum;
    type SichtbarkeitArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of Boolean;
    
    type KartengrundRecord is record

@@ -8,7 +8,6 @@ with EinheitenKonstanten;
 with StadtKonstanten;
 with SystemDatentypen;
 with StadtDatentypen;
-with KampfKonstanten;
 
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
@@ -18,11 +17,10 @@ with LeseStadtGebaut;
 with StadtEntfernenLogik;
 with KampfwerteStadtErmittelnLogik;
 with KampfwerteEinheitErmittelnLogik;
-with KampfsystemEinheitenLogik;
-with ZufallsgeneratorenKampfLogik;
 with StadtwerteFestlegenLogik;
 with MeldungenSetzenLogik;
 with EinheitenErzeugenEntfernenLogik;
+with KampfberechnungenLogik;
 
 package body KampfsystemStadtLogik is
 
@@ -40,12 +38,10 @@ package body KampfsystemStadtLogik is
       KampfwerteAngreifer.Angriff := KampfwerteEinheitErmittelnLogik.AktuellerAngriffEinheit (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern,
                                                                                               AngreiferExtern          => True);
       
-      -- Arbeiter nur halb anrechnen?
-      GesundheitStadt := KampfDatentypen.Kampfwerte (LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => VerteidigendeStadtRasseNummerExtern,
-                                                                                        EinwohnerArbeiterExtern => True));
-      
       return Kampf (AngreifendeEinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern,
-                    VerteidigendeStadtRasseNummerExtern => VerteidigendeStadtRasseNummerExtern);
+                    KampfwerteAngreiferExtern           => KampfwerteAngreifer,
+                    VerteidigendeStadtRasseNummerExtern => VerteidigendeStadtRasseNummerExtern,
+                    KampfwerteVerteidigerExtern         => KampfwerteVerteidiger);
       
    end KampfsystemStadt;
    
@@ -53,12 +49,17 @@ package body KampfsystemStadtLogik is
    
    function Kampf
      (AngreifendeEinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      VerteidigendeStadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+      KampfwerteAngreiferExtern : in KampfRecords.KampfwerteRecord;
+      VerteidigendeStadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      KampfwerteVerteidigerExtern : in KampfRecords.KampfwerteRecord)
       return Boolean
    is begin
       
       case
-        Kampfverlauf (AngreifendeEinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern)
+        Kampfverlauf (AngreifendeEinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern,
+                      KampfwerteAngreiferExtern           => KampfwerteAngreiferExtern,
+                      VerteidigendeStadtRasseNummerExtern => VerteidigendeStadtRasseNummerExtern,
+                      KampfwerteVerteidigerExtern         => KampfwerteVerteidigerExtern)
       is
          when False =>
             return False;
@@ -67,6 +68,7 @@ package body KampfsystemStadtLogik is
             null;
       end case;
       
+      -- Kann man das teilweise mit der Personenänderung im Stadtsystem zusammenführen? äöü
       if
         LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => VerteidigendeStadtRasseNummerExtern,
                                            EinwohnerArbeiterExtern => True)
@@ -78,9 +80,9 @@ package body KampfsystemStadtLogik is
          
       else
          StadtwerteFestlegenLogik.BewirtschaftbareFelderBelegen (ZuwachsOderSchwundExtern => False,
-                                                            StadtRasseNummerExtern   => VerteidigendeStadtRasseNummerExtern);
+                                                                 StadtRasseNummerExtern   => VerteidigendeStadtRasseNummerExtern);
          MeldungenSetzenLogik.StadtmeldungSetzen (StadtRasseNummerExtern => VerteidigendeStadtRasseNummerExtern,
-                                                          EreignisExtern         => StadtDatentypen.Einwohner_Reduktion_Enum);
+                                                  EreignisExtern         => StadtDatentypen.Einwohner_Reduktion_Enum);
          if
            LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => VerteidigendeStadtRasseNummerExtern,
                                               EinwohnerArbeiterExtern => True)
@@ -107,37 +109,92 @@ package body KampfsystemStadtLogik is
    
    
    function Kampfverlauf
-     (AngreifendeEinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (AngreifendeEinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      KampfwerteAngreiferExtern : in KampfRecords.KampfwerteRecord;
+      VerteidigendeStadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      KampfwerteVerteidigerExtern : in KampfRecords.KampfwerteRecord)
       return Boolean
    is begin
+      
+      GesundheitStadt := Positive (LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => VerteidigendeStadtRasseNummerExtern,
+                                                                      EinwohnerArbeiterExtern => True));
+      
+      IDAngreifer := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern);
       
       KampfSchleife:
       loop
          
-         GesundheitStadt := SchadenStadtBerechnen (AngriffExtern         => KampfwerteAngreifer.Angriff,
-                                                   VerteidigungExtern    => KampfwerteVerteidiger.Verteidigung,
-                                                   StadtgesundheitExtern => GesundheitStadt);
-
+         Kampfergebnis := KampfberechnungenLogik.Kampfberechnung (AngriffExtern      => KampfwerteAngreiferExtern.Angriff,
+                                                                  VerteidigungExtern => KampfwerteVerteidigerExtern.Verteidigung);
+         
          if
-           GesundheitStadt = 0
+           Kampfergebnis < 0
          then
-            SchreibeEinheitenGebaut.Erfahrungspunkte (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern,
-                                                      ErfahrungspunkteExtern   => LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => AngreifendeEinheitRasseNummerExtern.Rasse,
-                                                                                                                              IDExtern    =>
-                                                                                                                                LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern)),
-                                                      AddierenSetzenExtern     => True);
-            return True;
+            SchreibeEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern,
+                                                  LebenspunkteExtern       => EinheitenDatentypen.Lebenspunkte (-Kampfergebnis),
+                                                  -- Das ist Kartendatentypen, mal austauschen! Überall! Durch den erweiterten Bool und ein konstantes Array ersetzen! äöü
+                                                  -- Oder alle Werte um einen negativen Bereich erweitern, das ist vermutlich klüger. äöü
+                                                  RechnenSetzenExtern      => -1);
+            
+         elsif
+           Kampfergebnis > 0
+         then
+            GesundheitStadt := GesundheitStadt - Kampfergebnis;
             
          else
             null;
          end if;
          
-         -- Die Berechnungen selbst auch mal in eine eigene Datei verschieben. äöü
-         KampfsystemEinheitenLogik.KampfBerechnung (VerteidigerExtern  => AngreifendeEinheitRasseNummerExtern,
-                                                    AngriffExtern      => KampfwerteVerteidiger.Angriff,
-                                                    VerteidigungExtern => KampfwerteAngreifer.Verteidigung);
+         if
+           GesundheitStadt <= 0
+         then
+            SchreibeEinheitenGebaut.Erfahrungspunkte (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern,
+                                                      ErfahrungspunkteExtern   => LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => AngreifendeEinheitRasseNummerExtern.Rasse,
+                                                                                                                              IDExtern    => IDAngreifer),
+                                                      AddierenSetzenExtern     => True);
+            return True;
+            
+         elsif
+           LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern) = EinheitenKonstanten.LeerLebenspunkte
+         then
+            EinheitenErzeugenEntfernenLogik.EinheitEntfernen (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern);
+            return False;
+
+         else
+            null;
+         end if;
+         
+         Kampfergebnis := KampfberechnungenLogik.Kampfberechnung (AngriffExtern      => KampfwerteVerteidigerExtern.Angriff,
+                                                                  VerteidigungExtern => KampfwerteAngreiferExtern.Verteidigung);
          
          if
+           Kampfergebnis < 0
+         then
+            SchreibeEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern,
+                                                  LebenspunkteExtern       => EinheitenDatentypen.Lebenspunkte (-Kampfergebnis),
+                                                  -- Das ist Kartendatentypen, mal austauschen! Überall! Durch den erweiterten Bool und ein konstantes Array ersetzen! äöü
+                                                  -- Oder alle Werte um einen negativen Bereich erweitern, das ist vermutlich klüger. äöü
+                                                  RechnenSetzenExtern      => -1);
+            
+         elsif
+           Kampfergebnis > 0
+         then
+            GesundheitStadt := GesundheitStadt - Kampfergebnis;
+            
+         else
+            null;
+         end if;
+         
+         if
+           GesundheitStadt <= 0
+         then
+            SchreibeEinheitenGebaut.Erfahrungspunkte (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern,
+                                                      ErfahrungspunkteExtern   => LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => AngreifendeEinheitRasseNummerExtern.Rasse,
+                                                                                                                              IDExtern    => IDAngreifer),
+                                                      AddierenSetzenExtern     => True);
+            return True;
+            
+         elsif
            LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern) = EinheitenKonstanten.LeerLebenspunkte
          then
             EinheitenErzeugenEntfernenLogik.EinheitEntfernen (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern);
@@ -150,70 +207,5 @@ package body KampfsystemStadtLogik is
       end loop KampfSchleife;
       
    end Kampfverlauf;
-   
-   
-   
-   function SchadenStadtBerechnen
-     (AngriffExtern : in KampfDatentypen.Kampfwerte;
-      VerteidigungExtern : in KampfDatentypen.Kampfwerte;
-      StadtgesundheitExtern : in KampfDatentypen.Kampfwerte)
-      return KampfDatentypen.Kampfwerte
-   is begin
-      
-      -- Bei Extremfällen AngerichteterSchaden schon vorher einen Wert geben?
-      if
-        AngriffExtern > 2 * VerteidigungExtern
-      then
-         WelcherFall := Extrem_Stärker_Enum;
-
-      elsif
-        AngriffExtern > VerteidigungExtern
-      then
-         WelcherFall := Stärker_Enum;
-
-      elsif
-        AngriffExtern < VerteidigungExtern
-        and
-          2 * AngriffExtern > VerteidigungExtern
-      then
-         WelcherFall := Schwächer_Enum;
-         
-      elsif
-        2 * AngriffExtern < VerteidigungExtern
-      then
-         WelcherFall := Extrem_Schwächer_Enum;
-
-      else
-         WelcherFall := Gleich_Enum;
-      end if;
-      
-      Kampfglück := ZufallsgeneratorenKampfLogik.KampfErfolg;
-      AngerichteterSchaden := 0;
-      
-      AngerichteterSchadenSchleife:
-      for AngerichteterSchadenSchleifenwert in reverse KampfKonstanten.SchadenAngerichtetArray'Range (2) loop
-         
-         if
-           Kampfglück >= KampfKonstanten.SchadenAngerichtet (WelcherFall, AngerichteterSchadenSchleifenwert)
-         then
-            AngerichteterSchaden := AngerichteterSchaden + AngerichteterSchadenSchleifenwert;
-            exit AngerichteterSchadenSchleife;
-            
-         else
-            null;
-         end if;
-              
-      end loop AngerichteterSchadenSchleife;
-      
-      if
-        StadtgesundheitExtern - AngerichteterSchaden < KampfDatentypen.Kampfwerte'First
-      then
-         return 0;
-         
-      else
-         return StadtgesundheitExtern - AngerichteterSchaden;
-      end if;
-      
-   end SchadenStadtBerechnen;
 
 end KampfsystemStadtLogik;

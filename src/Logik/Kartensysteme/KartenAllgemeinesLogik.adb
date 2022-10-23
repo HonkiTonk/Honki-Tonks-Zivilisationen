@@ -172,7 +172,7 @@ package body KartenAllgemeinesLogik is
    function GrundBewertung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KIBewertungDatentypen.Bewertung_Enum
+      return BewertungDatentypen.Bewertung_Enum
    is begin
       
       Basisgrund := LeseWeltkarte.BasisGrund (KoordinatenExtern => KoordinatenExtern);
@@ -341,7 +341,7 @@ package body KartenAllgemeinesLogik is
    function FlussBewertung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KIBewertungDatentypen.Bewertung_Enum
+      return BewertungDatentypen.Bewertung_Enum
    is begin
       
       KartenFluss := LeseWeltkarte.Fluss (KoordinatenExtern => KoordinatenExtern);
@@ -796,7 +796,7 @@ package body KartenAllgemeinesLogik is
    function RessourceBewertung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KIBewertungDatentypen.Bewertung_Enum
+      return BewertungDatentypen.Bewertung_Enum
    is begin
       
       KartenRessource := LeseWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern);

@@ -116,7 +116,15 @@ package body KartengeneratorStandardLogik is
          end case;
 
          Landmassen (LandmassenSchleifenwert) := ZufallsgeneratorenKartenLogik.KartengeneratorLandgrößen (YAchseXAchseExtern => LandHöheBreite);
-         Landabstand (LandmassenSchleifenwert) := 3 * Landmassen (LandmassenSchleifenwert);
+         
+         if
+           Landmassen (LandmassenSchleifenwert) >= KartenDatentypen.KartenfeldPositiv'Last / 3
+         then
+            Landabstand (LandmassenSchleifenwert) := KartenDatentypen.KartenfeldPositiv'Last;
+            
+         else
+            Landabstand (LandmassenSchleifenwert) := 3 * Landmassen (LandmassenSchleifenwert);
+         end if;
 
       end loop LandmassenSchleife;
       

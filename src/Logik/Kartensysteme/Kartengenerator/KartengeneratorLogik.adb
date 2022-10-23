@@ -16,6 +16,8 @@ package body KartengeneratorLogik is
    procedure Kartengenerator
    is begin
       
+      PrüfeEinstellungen;
+      
       KartengeneratorAllgemeinesLogik.GenerierungAllgemeines;
       LadezeitenLogik.FortschrittSpielweltMaximum (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Allgemeines_Enum);
       
@@ -35,5 +37,14 @@ package body KartengeneratorLogik is
       LadezeitenLogik.FortschrittSpielweltMaximum (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Ressourcen_Enum);
       
    end Kartengenerator;
+   
+   
+   
+   procedure PrüfeEinstellungen
+   is begin
+      
+      null;
+      
+   end PrüfeEinstellungen;
 
 end KartengeneratorLogik;

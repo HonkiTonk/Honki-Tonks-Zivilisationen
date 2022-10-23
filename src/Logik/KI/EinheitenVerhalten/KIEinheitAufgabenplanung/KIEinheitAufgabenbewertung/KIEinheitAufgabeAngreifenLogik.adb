@@ -29,14 +29,12 @@ package body KIEinheitAufgabeAngreifenLogik is
       if
         KIGefahrErmittelnLogik.GefahrErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerRasseNummer
       then
-         null;
+         return KIKonstanten.LeerAufgabenbewertung;
          
       else
-         null;
+         return 50;
       end if;
-      
-      return KIKonstanten.LeerAufgabenbewertung;
-      
+            
    end Angreifen;
 
 end KIEinheitAufgabeAngreifenLogik;
