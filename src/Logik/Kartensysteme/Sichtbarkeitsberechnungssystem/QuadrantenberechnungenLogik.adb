@@ -77,7 +77,7 @@ package body QuadrantenberechnungenLogik is
    
    
    
-   -- Auch mal einen zweidimensionlane Record für die Sichtweiten anlegen? äöü
+   -- Auch mal einen zweidimensionalen Record für die Sichtweiten anlegen? äöü
    procedure QuadrantEins
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteNatural;

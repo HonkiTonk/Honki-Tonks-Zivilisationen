@@ -85,19 +85,13 @@ package body OptionenSonstigesLogik is
         EingegebeneZahl.ErfolgreichAbbruch
       is
          when True =>
-            -- Das umbauen damit der Fehler raus kann? äöü
             if
-              EingegebeneZahl.EingegebeneZahl in 1 .. 999_999_999
+              EingegebeneZahl.EingegebeneZahl > 0
             then
                OptionenVariablen.NutzerEinstellungen.RundenBisAutosave := EingegebeneZahl.EingegebeneZahl;
                
-            elsif
-              EingegebeneZahl.EingegebeneZahl = 0
-            then
-               OptionenVariablen.NutzerEinstellungen.AnzahlAutosave := EingegebeneZahl.EingegebeneZahl;
-               
             else
-               Fehler.LogikFehler (FehlermeldungExtern => "OptionenSonstiges.RundenBisAutospeichern: Falsche Zahl wurde eingegeben.");
+               OptionenVariablen.NutzerEinstellungen.AnzahlAutosave := EingegebeneZahl.EingegebeneZahl;
             end if;
             
          when False =>

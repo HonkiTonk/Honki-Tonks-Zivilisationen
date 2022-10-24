@@ -136,66 +136,63 @@ package body EinlesenTextLogik is
             Debugmenü;
                
          when 19 =>
-            AllgemeineInformationen;
-               
-         when 20 =>
             Würdigung;
                
-         when 21 =>
+         when 20 =>
             Diplomatiemenü;
                
-         when 22 =>
+         when 21 =>
             DiplomatieKI;
                
-         when 23 =>
+         when 22 =>
             Handelsmenü;
                
-         when 24 =>
+         when 23 =>
             DiplomatieStatus;
                
-         when 25 =>
+         when 24 =>
             Angebot;
                
-         when 26 =>
+         when 25 =>
             Fehlermeldung;
                
-         when 27 =>
+         when 26 =>
             Ladezeit;
                
-         when 28 =>
+         when 27 =>
             Frage;
                
-         when 29 =>
+         when 28 =>
             ZeugSachen;
                
-         when 30 =>
+         when 29 =>
             Editoren;
                
-         when 31 =>
+         when 30 =>
             Wege;
                
-         when 32 =>
+         when 31 =>
             Kartenflüsse;
                
-         when 33 =>
+         when 32 =>
             Kartenressourcen;
                
-         when 34 =>
+         when 33 =>
             Einstellungen;
                
-         when 35 =>
+         when 34 =>
             Kartenpole;
             
-         when 36 =>
+         when 35 =>
             Stadtbefehle;
             
-         when 37 =>
+         when 36 =>
             Spielstandmenü;
             
-         when 38 =>
+         when 37 =>
             Intro;
             
-         when 39 =>
+         when 38 =>
             Outro;
             
          when others =>
@@ -637,30 +634,6 @@ package body EinlesenTextLogik is
       end loop DebugmenüSchleife;
       
    end Debugmenü;
-   
-   
-   
-   procedure AllgemeineInformationen
-   is begin
-      
-      AllgemeineInformationenSchleife:
-      for ZeileSchleifenwert in GlobaleTexte.AllgemeineInformationen'Range loop
-         
-         case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiText,
-                                                           AktuelleZeileExtern => ZeileSchleifenwert)
-         is
-            when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.AllgemeineInformationen: Fehlende Zeilen.");
-               return;
-               
-            when False =>
-               GlobaleTexte.AllgemeineInformationen (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
-         end case;
-         
-      end loop AllgemeineInformationenSchleife;
-      
-   end AllgemeineInformationen;
    
    
    

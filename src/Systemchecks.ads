@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 private with System;
 
-with KartengrundDatentypen;
+private with KartengrundDatentypen;
 
 package Systemchecks is
 

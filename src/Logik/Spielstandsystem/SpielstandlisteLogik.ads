@@ -8,7 +8,7 @@ with TextKonstanten;
 
 package SpielstandlisteLogik is
 
-   -- Das auch mal in irgendwas globales verschieben? äöü
+   -- Das auch mal in irgendwas Globales verschieben? äöü
    type SpielstandArray is array (1 .. 11) of Unbounded_Wide_Wide_String;
    Spielstand : SpielstandArray := (others => TextKonstanten.LeerUnboundedString);
 

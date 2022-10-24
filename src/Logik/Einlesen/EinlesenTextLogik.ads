@@ -15,7 +15,7 @@ private
    
    Verzeichnisse : Unbounded_Wide_Wide_String;
       
-   type TextdateienEinlesenArray is array (1 .. 39) of Unbounded_Wide_Wide_String;
+   type TextdateienEinlesenArray is array (1 .. 38) of Unbounded_Wide_Wide_String;
    TextdateienEinlesen : TextdateienEinlesenArray;
    
    procedure Hauptmenü;
@@ -36,7 +36,6 @@ private
    procedure Verbesserungen;
    procedure Beschäftigungen;
    procedure Debugmenü;
-   procedure AllgemeineInformationen;
    procedure Würdigung;
    procedure Diplomatiemenü;
    procedure DiplomatieKI;

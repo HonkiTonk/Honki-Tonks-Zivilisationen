@@ -159,8 +159,6 @@ package body SpielLogik is
    
    
    
-   -- Um die KI Züge anzuzeigen müsste ich die Cursorposition auch für die KI setzen und ihre Zuggeschwindigkeit begrenzen. äöü
-   -- Erscheint mir ein wenig sinnfrei? äöü
    procedure KISpieler
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin

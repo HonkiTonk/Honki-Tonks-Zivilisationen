@@ -1,4 +1,4 @@
-pragma SPARK_Mode (Off);
+pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
@@ -14,6 +14,8 @@ package KartentestsLogik is
      (PolgrößeExtern : in KartenDatentypen.KartenfeldNatural)
       return KartenartDatentypen.Kartenpole_Enum
      with
+       Global => null,
+
        Pre => (
                  PolgrößeExtern <= KartenDatentypen.KartenfeldNatural'Last / 2
               );

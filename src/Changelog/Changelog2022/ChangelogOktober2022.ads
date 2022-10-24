@@ -42,17 +42,18 @@ package ChangelogOktober2022 is
    
    
 
-   -- Version 0.04. => 0.04. (25.10.2022):
+   -- Version 0.04.2350 => 0.04. (25.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.2310 => 0.04. (24.10.2022):
+   -- Version 0.04.2310 => 0.04.2350 (24.10.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Versucht Teile des Codes auf SPARK zu verbessern und dabei erfolgreich gescheitert?
+   -- Unnötigen Code gelöscht.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 

@@ -46,7 +46,7 @@ package body PassierbarkeitspruefungLogik is
    
    
    
-   -- Funktioniert noch nicht korreklt wenn sich darunter/oben drüber eine Stadt befindet. äöü
+   -- Funktioniert noch nicht korrekt wenn sich darunter/oben drüber eine Stadt befindet. äöü
    -- So lassen oder später noch einmal anpassen? äöü
    function PassierbarkeitPrüfenID
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;

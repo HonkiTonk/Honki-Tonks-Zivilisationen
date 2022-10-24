@@ -178,8 +178,6 @@ package body SpieleinstellungenKartenLogik is
 
 
 
-   -- Das hier haut alles noch nicht so richtig hin, noch einmal überarbeiten. äöü
-   -- Unter anderem wird die Kartenart gar nicht korrekt gesetzt/verwertet. äöü
    procedure KartenartWählen
    is begin
             

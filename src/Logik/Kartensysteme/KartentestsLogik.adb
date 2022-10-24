@@ -1,4 +1,4 @@
-pragma SPARK_Mode (Off);
+pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartengeneratorVariablenLogik;

@@ -14,7 +14,7 @@ package KartenkoordinatenWerteLogik is
    type VerschiebungXAchseArray is array (Boolean'Range, KartenDatentypen.EbeneVorhanden'Range) of KartenartDatentypen.Kartenform_X_Einstellbar_Enum;
    VerschiebungXAchse : VerschiebungXAchseArray;
 
-   -- Achsenverschiebung einstellbar machen? äöü
+   -- Achsenverschiebung einstellbar machen. äöü
    VerschiebungswertYAchse : constant Float := 0.50;
    VerschiebungswertXAchse : constant Float := 0.50;
    
