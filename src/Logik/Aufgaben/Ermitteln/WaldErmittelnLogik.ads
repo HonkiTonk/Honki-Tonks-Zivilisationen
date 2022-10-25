@@ -40,7 +40,7 @@ private
 
    WelcheArbeit : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
 
-   Arbeitszeit : ProduktionDatentypen.ArbeitszeitVorhanden;
+   Arbeitszeit : ProduktionDatentypen.Arbeitszeit;
 
    Arbeitswerte : EinheitenRecords.ArbeitVorleistungRecord;
 

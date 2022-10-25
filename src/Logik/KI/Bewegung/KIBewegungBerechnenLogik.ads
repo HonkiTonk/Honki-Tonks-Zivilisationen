@@ -7,8 +7,8 @@ with EinheitenRecords;
 with SpielVariablen;
 
 private with KartenRecords;
-
 private with Weltkarte;
+private with EinheitenDatentypen;
 
 private with KIDatentypen;
 
@@ -51,7 +51,7 @@ private
    YÄnderung : KIDatentypen.BewegungBewertung;
    XÄnderung : KIDatentypen.BewegungBewertung;
    
-   type FeldBewertungArray is array (KartenDatentypen.UmgebungsbereichEinsEAchse'Range, KartenDatentypen.UmgebungsbereichEins'Range, KartenDatentypen.UmgebungsbereichEins'Range) of KIDatentypen.BewegungBewertung;
+   type FeldBewertungArray is array (KartenDatentypen.EbenenbereichEins'Range, KartenDatentypen.UmgebungsbereichEins'Range, KartenDatentypen.UmgebungsbereichEins'Range) of KIDatentypen.BewegungBewertung;
    FeldBewertung : FeldBewertungArray;
    
    type BewertungRecord is new KartenRecords.AchsenKartenfeldNaturalRecord with record
@@ -76,8 +76,8 @@ private
    
    procedure VorhandenenPlanVereinfachenPrüfen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      ErsterZugExtern : in KartenDatentypen.Stadtfeld;
-      ÜberNächsterZugExtern : in KartenDatentypen.Stadtfeld)
+      ErsterZugExtern : in EinheitenDatentypen.Bewegungsplan;
+      ÜberNächsterZugExtern : in EinheitenDatentypen.Bewegungsplan)
      with
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -106,7 +106,7 @@ private
    function PlanenRekursiv
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      AktuellePlanpositionExtern : in KartenDatentypen.Stadtfeld)
+      AktuellePlanpositionExtern : in EinheitenDatentypen.Bewegungsplan)
       return Boolean
      with
        Pre => (
@@ -122,7 +122,7 @@ private
    function BewertungFeldposition
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EÄnderungExtern : in KartenDatentypen.UmgebungsbereichEinsEAchse;
+      EÄnderungExtern : in KartenDatentypen.EbenenbereichEins;
       YÄnderungExtern : in KartenDatentypen.UmgebungsbereichEins;
       XÄnderungExtern : in KartenDatentypen.UmgebungsbereichEins)
       return KIDatentypen.BewegungBewertung
@@ -190,7 +190,7 @@ private
    function PlanschrittFestlegen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       DurchlaufExtern : in Positive;
-      AktuellePlanpositionExtern : in KartenDatentypen.Stadtfeld)
+      AktuellePlanpositionExtern : in EinheitenDatentypen.Bewegungsplan)
       return Boolean
      with
        Pre => (

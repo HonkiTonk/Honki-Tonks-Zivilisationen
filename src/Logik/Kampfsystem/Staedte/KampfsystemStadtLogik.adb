@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with EinheitenDatentypen; use EinheitenDatentypen;
-with KartenDatentypen; use KartenDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
 with EinheitenKonstanten;
 with StadtKonstanten;
@@ -69,6 +68,7 @@ package body KampfsystemStadtLogik is
       end case;
       
       -- Kann man das teilweise mit der Personenänderung im Stadtsystem zusammenführen? äöü
+      -- Scheinbar nicht, wenn dann müsste man eines der beiden Systeme anpassen. äöü
       if
         LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => VerteidigendeStadtRasseNummerExtern,
                                            EinwohnerArbeiterExtern => True)
@@ -99,8 +99,8 @@ package body KampfsystemStadtLogik is
          end if;
          
          SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern,
-                                                  BewegungspunkteExtern    => 1.50,
-                                                  RechnenSetzenExtern      => -1);
+                                                  BewegungspunkteExtern    => -1.50,
+                                                  RechnenSetzenExtern      => True);
          return False;
       end if;
       
@@ -131,10 +131,8 @@ package body KampfsystemStadtLogik is
            Kampfergebnis < 0
          then
             SchreibeEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern,
-                                                  LebenspunkteExtern       => EinheitenDatentypen.Lebenspunkte (-Kampfergebnis),
-                                                  -- Das ist Kartendatentypen, mal austauschen! Überall! Durch den erweiterten Bool und ein konstantes Array ersetzen! äöü
-                                                  -- Oder alle Werte um einen negativen Bereich erweitern, das ist vermutlich klüger. äöü
-                                                  RechnenSetzenExtern      => -1);
+                                                  LebenspunkteExtern       => EinheitenDatentypen.Lebenspunkte (Kampfergebnis),
+                                                  RechnenSetzenExtern      => True);
             
          elsif
            Kampfergebnis > 0
@@ -171,10 +169,8 @@ package body KampfsystemStadtLogik is
            Kampfergebnis < 0
          then
             SchreibeEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern,
-                                                  LebenspunkteExtern       => EinheitenDatentypen.Lebenspunkte (-Kampfergebnis),
-                                                  -- Das ist Kartendatentypen, mal austauschen! Überall! Durch den erweiterten Bool und ein konstantes Array ersetzen! äöü
-                                                  -- Oder alle Werte um einen negativen Bereich erweitern, das ist vermutlich klüger. äöü
-                                                  RechnenSetzenExtern      => -1);
+                                                  LebenspunkteExtern       => EinheitenDatentypen.Lebenspunkte (Kampfergebnis),
+                                                  RechnenSetzenExtern      => True);
             
          elsif
            Kampfergebnis > 0

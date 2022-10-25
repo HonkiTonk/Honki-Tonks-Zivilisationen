@@ -436,6 +436,8 @@ package body SchreibeStadtGebaut is
                SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Zufriedenheit := ProduktionDatentypen.Feldproduktion'Last;
                
                -- Der Änderungswert kann aktuell nicht kleiner als 0 sein, später mal anpassen. äöü
+               -- Passe ich den Datentyp an sich an oder tausche ich ihn aus? äöü
+               -- Vermutlich ist austauschen am sinnvollsten. äöü
             elsif
               SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Zufriedenheit + ZufriedenheitExtern = StadtKonstanten.LeerZufriedenheit
             then

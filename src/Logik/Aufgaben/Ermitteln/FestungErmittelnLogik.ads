@@ -35,8 +35,8 @@ private
 
    WelcheArbeit : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
 
-   Arbeitszeit : ProduktionDatentypen.ArbeitszeitVorhanden;
-   Grundzeit : ProduktionDatentypen.ArbeitszeitVorhanden := 1;
+   Arbeitszeit : ProduktionDatentypen.Arbeitszeit;
+   Grundzeit : ProduktionDatentypen.Arbeitszeit := 1;
 
    Arbeitswerte : EinheitenRecords.ArbeitRecord;
 

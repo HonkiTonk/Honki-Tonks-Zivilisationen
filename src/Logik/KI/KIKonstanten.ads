@@ -13,8 +13,10 @@ package KIKonstanten is
    NichtsTunBewertung : constant KIDatentypen.AufgabenWichtigkeitKlein := LeerAufgabenbewertung + 1;
    PlatzFreiMachen : constant KIDatentypen.AufgabenWichtigkeitKlein := NichtsTunBewertung + 1;
 
-   LeerEinheitIDBewertung : constant KIRecords.EinheitIDBewertungRecord := (0, 0);
-   LeerGebäudeIDBewertung : constant KIRecords.GebäudeIDBewertungRecord := (0, 0);
+   LeerEinheitenbewertung : constant KIRecords.EinheitIDBewertungRecord := (0, 0);
+   LeerGebäudebewertung : constant KIRecords.GebäudeIDBewertungRecord := (0, 0);
+
+   LeerBewertung : constant KIDatentypen.BauenBewertung := 0;
 
    BewertungBewegungNullwert : constant KIDatentypen.BewegungBewertung := KIDatentypen.BewegungBewertung'First;
    BewertungBewegungZielpunkt : constant KIDatentypen.BewegungBewertung := KIDatentypen.BewegungBewertung'Last;

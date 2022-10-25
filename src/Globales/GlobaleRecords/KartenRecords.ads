@@ -10,20 +10,20 @@ with BewertungDatentypen;
 
 package KartenRecords is
    
-   type YXAchsenKartenfeldNaturalRecord is record
-            
-      YAchse : KartenDatentypen.KartenfeldNatural;
-      XAchse : KartenDatentypen.KartenfeldNatural;
-            
-   end record;
-   
-   
-   
    type YXAchsenKartenfeldPositivRecord is record
       
       YAchse : KartenDatentypen.KartenfeldPositiv;
       XAchse : KartenDatentypen.KartenfeldPositiv;
       
+   end record;
+   
+   
+   
+   type YXAchsenKartenfeldNaturalRecord is record
+            
+      YAchse : KartenDatentypen.KartenfeldNatural;
+      XAchse : KartenDatentypen.KartenfeldNatural;
+            
    end record;
    
    
@@ -36,12 +36,12 @@ package KartenRecords is
    end record;
    
    
-
-   type AchsenKartenfeldRecord is record
+   
+   type AchsenKartenfeldVorhandenRecord is record
       
-      EAchse : KartenDatentypen.Ebene;
-      YAchse : KartenDatentypen.Kartenfeld;
-      XAchse : KartenDatentypen.Kartenfeld;
+      EAchse : KartenDatentypen.EbeneVorhanden;
+      YAchse : KartenDatentypen.KartenfeldPositiv;
+      XAchse : KartenDatentypen.KartenfeldPositiv;
       
    end record;
    
@@ -56,12 +56,12 @@ package KartenRecords is
    end record;
    
    
-   
-   type AchsenKartenfeldVorhandenRecord is record
+
+   type AchsenKartenfeldRecord is record
       
-      EAchse : KartenDatentypen.EbeneVorhanden;
-      YAchse : KartenDatentypen.KartenfeldPositiv;
-      XAchse : KartenDatentypen.KartenfeldPositiv;
+      EAchse : KartenDatentypen.Ebene;
+      YAchse : KartenDatentypen.Kartenfeld;
+      XAchse : KartenDatentypen.Kartenfeld;
       
    end record;
    

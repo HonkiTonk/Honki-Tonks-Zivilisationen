@@ -26,10 +26,10 @@ package body KIEinheitAufgabeSiedelnLogik is
          return KIDatentypen.AufgabenWichtigkeitKlein'Last;
          
       elsif
-        SpielVariablen.Allgemeines.Rundenanzahl > 20 * (Positive (VorhandeneStädte) + KIAufgabenVerteiltLogik.AufgabenVerteilt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+        SpielVariablen.Allgemeines.Rundenanzahl > 10 * (Positive (VorhandeneStädte) + KIAufgabenVerteiltLogik.AufgabenVerteilt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                                                                                  AufgabeExtern            => KIDatentypen.Stadt_Bauen_Enum))
       then
-         return 28;
+         return 55;
          
       else
          null;

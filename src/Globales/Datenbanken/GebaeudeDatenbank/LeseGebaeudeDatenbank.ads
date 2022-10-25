@@ -53,7 +53,7 @@ package LeseGebaeudeDatenbank is
    function WirtschaftBonus
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in StadtDatentypen.GebäudeID;
-      WWirtschaftBonusExtern : in ProduktionDatentypen.Wirtschaft_Enum)
+      WirtschaftBonusExtern : in ProduktionDatentypen.Wirtschaft_Enum)
       return ProduktionDatentypen.Feldproduktion
      with
        Pre => (

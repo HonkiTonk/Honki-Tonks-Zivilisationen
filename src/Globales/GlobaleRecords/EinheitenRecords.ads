@@ -6,7 +6,6 @@ with StadtDatentypen;
 with EinheitenDatentypen;
 with KartenRecords;
 with AufgabenDatentypen;
-with KartenDatentypen;
 with KampfDatentypen;
 with ProduktionDatentypen;
 
@@ -35,7 +34,7 @@ package EinheitenRecords is
    type ArbeitRecord is tagged record
       
       Aufgabe : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
-      Arbeitszeit : ProduktionDatentypen.ArbeitszeitVorhanden;
+      Arbeitszeit : ProduktionDatentypen.Arbeitszeit;
       
    end record;
    
@@ -49,7 +48,7 @@ package EinheitenRecords is
    
    
    
-   type KIBewegungPlanArray is array (KartenDatentypen.Stadtfeld'Range) of KartenRecords.AchsenKartenfeldNaturalRecord;
+   type KIBewegungPlanArray is array (EinheitenDatentypen.Bewegungsplan'Range) of KartenRecords.AchsenKartenfeldNaturalRecord;
    type TransporterArray is array (EinheitenDatentypen.TransportplätzeVorhanden'Range) of EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    type EinheitMeldungenArray is array (EinheitenDatentypen.Einheit_Meldung_Art_Enum'Range) of EinheitenDatentypen.Einheit_Meldung_Enum;
 

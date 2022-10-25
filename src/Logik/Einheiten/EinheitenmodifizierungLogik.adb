@@ -76,7 +76,7 @@ package body EinheitenmodifizierungLogik is
       then
          SchreibeEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                LebenspunkteExtern       => Heilungsrate,
-                                               RechnenSetzenExtern      => 1);
+                                               RechnenSetzenExtern      => True);
          
       elsif
         AktuelleBeschäftigung = AufgabenDatentypen.Leer_Aufgabe_Enum
@@ -86,7 +86,7 @@ package body EinheitenmodifizierungLogik is
       then
          SchreibeEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                LebenspunkteExtern       => Heilungsrate / 2,
-                                               RechnenSetzenExtern      => 1);
+                                               RechnenSetzenExtern      => True);
          
       else
          null;
@@ -99,12 +99,12 @@ package body EinheitenmodifizierungLogik is
             SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                      BewegungspunkteExtern    => LeseEinheitenDatenbank.MaximaleBewegungspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                                                                                                  IDExtern    => EinheitID),
-                                                     RechnenSetzenExtern      => 0);
+                                                     RechnenSetzenExtern      => False);
 
          when others =>
             SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                      BewegungspunkteExtern    => EinheitenKonstanten.LeerBewegungspunkte,
-                                                     RechnenSetzenExtern      => 0);
+                                                     RechnenSetzenExtern      => False);
       end case;
       
       case
@@ -220,11 +220,16 @@ package body EinheitenmodifizierungLogik is
    
    function EinheitAnforderungenErfüllt
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
-      IDExtern : in EinheitenDatentypen.EinheitenID)
+      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return Boolean
    is begin
       
       if
+        IDExtern = EinheitenKonstanten.LeerID
+      then
+         return False;
+         
+      elsif
         EinheitenDatentypen.Cheat_Enum = LeseEinheitenDatenbank.Einheitenart (RasseExtern => StadtRasseNummerExtern.Rasse,
                                                                               IDExtern    => IDExtern)
       then

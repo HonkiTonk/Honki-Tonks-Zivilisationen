@@ -20,7 +20,7 @@ package body KIEinheitFestlegenNichtsLogik is
                                               BeschäftigungExtern      => EinheitenKonstanten.LeerBeschäftigung);
       SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                BewegungspunkteExtern    => EinheitenKonstanten.LeerBewegungspunkte,
-                                               RechnenSetzenExtern      => 0);
+                                               RechnenSetzenExtern      => False);
       
       return True;
       

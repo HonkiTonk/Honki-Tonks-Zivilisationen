@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
-with KampfDatentypen; use KampfDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 with StadtRecords;
@@ -30,17 +29,11 @@ package KampfsystemStadtLogik is
               );
    
 private
-   
-   WelcherFall : KampfDatentypen.Kampf_Unterschiede_Enum;
-   
-   AngerichteterSchaden : KampfDatentypen.Kampfwerte;
-   
+         
    IDAngreifer : EinheitenDatentypen.EinheitenID;
    
    GesundheitStadt : Integer;
    Kampfergebnis : Integer;
-   
-   Kampfglück : Float;
    
    KampfwerteVerteidiger : KampfRecords.KampfwerteRecord;
    KampfwerteAngreifer : KampfRecords.KampfwerteRecord;

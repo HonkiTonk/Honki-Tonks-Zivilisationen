@@ -92,14 +92,14 @@ package body FarmErmittelnLogik is
                                                                  BeschäftigungExtern     => Arbeitswerte.Aufgabe);
                SchreibeEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                       ZeitExtern               => Arbeitswerte.Arbeitszeit,
-                                                                      RechnenSetzenExtern      => 0);
+                                                                      RechnenSetzenExtern      => False);
                
             else
                SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                        BeschäftigungExtern     => Arbeitswerte.Aufgabe);
                SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                             ZeitExtern               => Arbeitswerte.Arbeitszeit,
-                                                            RechnenSetzenExtern      => 0);
+                                                            RechnenSetzenExtern      => False);
             end if;
             
          when False =>

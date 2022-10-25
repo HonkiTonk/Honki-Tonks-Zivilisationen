@@ -49,7 +49,7 @@ package body TransporterBeladenEntladenLogik is
                                              LadungsplatzExtern       => FreierPlatzNummer);
       SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern),
                                                BewegungspunkteExtern    => EinheitenKonstanten.LeerBewegungspunkte,
-                                               RechnenSetzenExtern      => 0);
+                                               RechnenSetzenExtern      => False);
       SchreibeEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern),
                                                  TransporterExtern        => TransporterExtern.Nummer);
             

@@ -1,15 +1,15 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+
 with MenueDatentypen;
-with ZahlenDatentypen;
+with Weltkarte;
 
 with SchreibeWeltkarte;
-with SchreibeWichtiges;
 
 with AuswahlaufteilungLogik;
 with Fehler;
-with Weltkarte;
 
 package body DebugmenueLogik is
 
@@ -32,14 +32,10 @@ package body DebugmenueLogik is
                SpielVariablen.Wichtiges (RasseExtern).Erforscht := (others => True);
                
             when RueckgabeDatentypen.Auswahl_Drei_Enum =>
-               SchreibeWichtiges.Geldmenge (RasseExtern         => RasseExtern,
-                                            GeldZugewinnExtern  => ZahlenDatentypen.EigenerInteger'Last,
-                                            RechnenSetzenExtern => False);
+               Get_Immediate (Item => Taste);
+               MenschKITauschen (TasteExtern => Taste);
                
             when RueckgabeDatentypen.Auswahl_Vier_Enum =>
-               SpielVariablen.Debug.Allgemeines := not SpielVariablen.Debug.Allgemeines;
-               
-            when RueckgabeDatentypen.Auswahl_Fünf_Enum =>
                SpielVariablen.Debug.VolleInformation := not SpielVariablen.Debug.VolleInformation;
                
             when RueckgabeDatentypen.Fertig_Enum | RueckgabeDatentypen.Zurück_Enum =>
@@ -55,6 +51,40 @@ package body DebugmenueLogik is
    
    
    
+   procedure MenschKITauschen
+     (TasteExtern : in Wide_Wide_Character)
+   is begin
+                     
+      case
+        TasteExtern
+      is
+         when 'a' .. 'r' =>
+            null;
+                  
+         when others =>
+            return;
+      end case;
+      
+      case
+        SpielVariablen.Rassenbelegung (Wechsel (TasteExtern)).Belegung
+      is
+         when RassenDatentypen.Leer_Spieler_Enum =>
+            null;
+            
+         when RassenDatentypen.KI_Spieler_Enum =>
+            SpielVariablen.Rassenbelegung (Wechsel (TasteExtern)).Belegung := RassenDatentypen.Mensch_Spieler_Enum;
+            SpielVariablen.CursorImSpiel (Wechsel (TasteExtern)).KoordinatenAktuell := (0, 1, 1);
+            SpielVariablen.CursorImSpiel (Wechsel (TasteExtern)).KoordinatenAlt := (0, 1, 1);
+            
+         when RassenDatentypen.Mensch_Spieler_Enum =>
+            SpielVariablen.Rassenbelegung (Wechsel (TasteExtern)).Belegung := RassenDatentypen.KI_Spieler_Enum;
+      end case;
+      
+   end MenschKITauschen;
+   
+   
+   
+   -- Könnte ich nicht theoretisch hier einfach alle Felder auf True setzen? Die restlichen sollten ja eh nie geprüft werden. äöü
    procedure KarteAufdecken
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
@@ -67,8 +97,8 @@ package body DebugmenueLogik is
             for XAchseSchleifenwert in Weltkarte.KarteArray'First (3) .. Weltkarte.Karteneinstellungen.Kartengröße.XAchse loop
             
                SchreibeWeltkarte.Sichtbar (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
-                                        RasseExtern       => RasseExtern,
-                                        SichtbarExtern    => True);
+                                           RasseExtern       => RasseExtern,
+                                           SichtbarExtern    => True);
                
             end loop XAchseSchleife;
          end loop YAchseSchleife;

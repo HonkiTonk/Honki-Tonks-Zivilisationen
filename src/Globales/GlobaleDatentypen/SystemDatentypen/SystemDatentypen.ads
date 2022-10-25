@@ -11,16 +11,7 @@ package SystemDatentypen is
                             );
    
    
-   
-   -- Das dann mal überall einbauen wo es sinnvoll ist und die KartenDatentypen.UmgebungsbereichEins/Boolean Varianten rauswerfen. äöü
-   type Erweiterter_Boolean_Enum is (
-                                     False_Enum, Neutral_Enum, True_Enum 
-                                    );
-   
-   subtype Erweiterter_Boolean_Vereinfacht_Enum is Erweiterter_Boolean_Enum range Neutral_Enum .. True_Enum;
-   
-   
-   
+      
    type Ende_Enum is (
                       Leer_Enum,
                       

@@ -35,17 +35,23 @@ package ChangelogOktober2022 is
    
    
 
-   -- Version 0.04. => 0.04. (26.10.2022):
+   -- Version 0.04.2440 => 0.04. (26.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.2350 => 0.04. (25.10.2022):
+   -- Version 0.04.2350 => 0.04.2440 (25.10.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Merkwürde Unterscheideung beim Schreiben einiger Einheitenwerte durch einen Boolean ersetzt.
+   -- Einige Datentypen angepasst um Einheitenwerte einfacher anpassen zu können.
+   -- Unnötigen Code gelöscht.
+   -- Datentypen überarbeitet.
+   -- Debugsystem überarbeitet.
+   -- Die KI baut jetzt keine Gebäude mehr die eine zu niedrige Bewertung haben.
+   -- Die KI baut jetzt keine veralteten Einheiten mehr.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

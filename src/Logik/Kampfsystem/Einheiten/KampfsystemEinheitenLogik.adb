@@ -3,7 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 with EinheitenDatentypen; use EinheitenDatentypen;
 with KampfDatentypen; use KampfDatentypen;
-with KartenDatentypen; use KartenDatentypen;
 with EinheitenKonstanten;
 
 with SchreibeEinheitenGebaut;
@@ -71,19 +70,15 @@ package body KampfsystemEinheitenLogik is
            Kampfergebnis < 0
          then
             SchreibeEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => AngreiferExtern,
-                                                  LebenspunkteExtern       => EinheitenDatentypen.Lebenspunkte (-Kampfergebnis),
-                                                  -- Das ist Kartendatentypen, mal austauschen! Überall! Durch den erweiterten Bool und ein konstantes Array ersetzen! äöü
-                                                  -- Oder alle Werte um einen negativen Bereich erweitern, das ist vermutlich klüger. äöü
-                                                  RechnenSetzenExtern      => -1);
+                                                  LebenspunkteExtern       => EinheitenDatentypen.Lebenspunkte (Kampfergebnis),
+                                                  RechnenSetzenExtern      => True);
             
          elsif
            Kampfergebnis > 0
          then
             SchreibeEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => VerteidigerExtern,
-                                                  LebenspunkteExtern       => EinheitenDatentypen.Lebenspunkte (Kampfergebnis),
-                                                  -- Das ist Kartendatentypen, mal austauschen! Überall! Durch den erweiterten Bool und ein konstantes Array ersetzen! äöü
-                                                  -- Oder alle Werte um einen negativen Bereich erweitern, das ist vermutlich klüger. äöü
-                                                  RechnenSetzenExtern      => -1);
+                                                  LebenspunkteExtern       => EinheitenDatentypen.Lebenspunkte (-Kampfergebnis),
+                                                  RechnenSetzenExtern      => True);
             
          else
             null;
@@ -121,19 +116,15 @@ package body KampfsystemEinheitenLogik is
            Kampfergebnis < 0
          then
             SchreibeEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => VerteidigerExtern,
-                                                  LebenspunkteExtern       => EinheitenDatentypen.Lebenspunkte (-Kampfergebnis),
-                                                  -- Das ist Kartendatentypen, mal austauschen! Überall! Durch den erweiterten Bool und ein konstantes Array ersetzen! äöü
-                                                  -- Oder alle Werte um einen negativen Bereich erweitern, das ist vermutlich klüger. äöü
-                                                  RechnenSetzenExtern      => -1);
+                                                  LebenspunkteExtern       => EinheitenDatentypen.Lebenspunkte (Kampfergebnis),
+                                                  RechnenSetzenExtern      => True);
             
          elsif
            Kampfergebnis > 0
          then
             SchreibeEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => AngreiferExtern,
-                                                  LebenspunkteExtern       => EinheitenDatentypen.Lebenspunkte (Kampfergebnis),
-                                                  -- Das ist Kartendatentypen, mal austauschen! Überall! Durch den erweiterten Bool und ein konstantes Array ersetzen! äöü
-                                                  -- Oder alle Werte um einen negativen Bereich erweitern, das ist vermutlich klüger. äöü
-                                                  RechnenSetzenExtern      => -1);
+                                                  LebenspunkteExtern       => EinheitenDatentypen.Lebenspunkte (-Kampfergebnis),
+                                                  RechnenSetzenExtern      => True);
             
          else
             null;

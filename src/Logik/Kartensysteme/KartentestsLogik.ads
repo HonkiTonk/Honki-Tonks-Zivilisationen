@@ -14,8 +14,6 @@ package KartentestsLogik is
      (PolgrößeExtern : in KartenDatentypen.KartenfeldNatural)
       return KartenartDatentypen.Kartenpole_Enum
      with
-       Global => null,
-
        Pre => (
                  PolgrößeExtern <= KartenDatentypen.KartenfeldNatural'Last / 2
               );

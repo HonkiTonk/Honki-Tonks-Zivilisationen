@@ -5,10 +5,9 @@ with ProduktionDatentypen;
 
 package Grenzpruefungen is
 
-   -- Minimum ist die minimale Arbeitszeit.
    function Arbeitszeit
-     (AktuellerWertExtern : in ProduktionDatentypen.ArbeitszeitVorhanden;
+     (AktuellerWertExtern : in ProduktionDatentypen.Arbeitszeit;
       ÄnderungExtern : in ProduktionDatentypen.Arbeitszeit)
-      return ProduktionDatentypen.ArbeitszeitVorhanden;
+      return ProduktionDatentypen.Arbeitszeit;
 
 end Grenzpruefungen;

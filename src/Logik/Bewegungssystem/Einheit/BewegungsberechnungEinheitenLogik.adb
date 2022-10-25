@@ -30,13 +30,13 @@ package body BewegungsberechnungEinheitenLogik is
       then
          SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                   BewegungspunkteExtern    => EinheitenKonstanten.LeerBewegungspunkte,
-                                                  RechnenSetzenExtern      => 0);
+                                                  RechnenSetzenExtern      => False);
          return;
          
       else
          SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                  BewegungspunkteExtern    => BewegungspunkteAbzug,
-                                                  RechnenSetzenExtern      => -1);
+                                                  BewegungspunkteExtern    => -BewegungspunkteAbzug,
+                                                  RechnenSetzenExtern      => True);
          
          IstLadung := LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       end if;

@@ -53,7 +53,7 @@ package body EinheitVerbessernLogik is
          when True =>
             SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                      BewegungspunkteExtern    => EinheitenKonstanten.LeerBewegungspunkte,
-                                                     RechnenSetzenExtern      => 0);
+                                                     RechnenSetzenExtern      => False);
       
             EinheitenmodifizierungLogik.PermanenteKostenÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                  VorzeichenWechselExtern  => -1);

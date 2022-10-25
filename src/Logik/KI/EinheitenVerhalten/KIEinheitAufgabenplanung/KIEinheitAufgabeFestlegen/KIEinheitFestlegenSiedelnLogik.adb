@@ -102,7 +102,7 @@ package body KIEinheitFestlegenSiedelnLogik is
       EinheitenKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
    
       EAchseSchleife:
-      for EAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEinsEAchse loop
+      for EAchseSchleifenwert in KartenDatentypen.EbenenbereichEins loop
          YAchseSchleife:
          for YAchseSchleifenwert in -UmgebungExtern .. UmgebungExtern loop
             XAchseSchleife:

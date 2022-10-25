@@ -58,6 +58,10 @@ package body LeseEinheitenGebaut is
       return EinheitenDatentypen.Lebenspunkte
    is begin
       
+      -- Solche Prüfungen hier noch überall einbauen, da jetzt ja auch der Grafiktask hierauf zugreift. äöü
+      -- Eventuell sollte ich das dann auch nicht mehr in eine Variable überführen. äöü
+      -- Leider muss ich diese Informationen in eine Variable überführen, da sonst die Grafikanzeige Probleme bekommt. äöü
+      -- Entweder was besseres ausdenken oder auf geschützt setzen oder wieder Arrays verwenden. äöü
       EinheitID := SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).ID;
       
       case
@@ -75,6 +79,7 @@ package body LeseEinheitenGebaut is
         SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Lebenspunkte > ErlaubteLebenspunkte
       then
          SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Lebenspunkte := ErlaubteLebenspunkte;
+         -- Warnmeldungen hier überall mal erweitern. äöü
          Warnung.LogikWarnung (WarnmeldungExtern => "LeseEinheitenGebaut.Lebenspunkte: Vorhandene Lebenspunkte > Erlaubte Lebenspunkte.");
          
       else
@@ -169,7 +174,7 @@ package body LeseEinheitenGebaut is
       
    function Beschäftigungszeit
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return ProduktionDatentypen.ArbeitszeitVorhanden
+      return ProduktionDatentypen.Arbeitszeit
    is begin
       
       return SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigung.Arbeitszeit;
@@ -180,7 +185,7 @@ package body LeseEinheitenGebaut is
    
    function BeschäftigungszeitNachfolger
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return ProduktionDatentypen.ArbeitszeitVorhanden
+      return ProduktionDatentypen.Arbeitszeit
    is begin
       
       return SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungNachfolger.Arbeitszeit;
@@ -246,7 +251,7 @@ package body LeseEinheitenGebaut is
    
    function KIBewegungPlan
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      PlanschrittExtern : in KartenDatentypen.Stadtfeld)
+      PlanschrittExtern : in EinheitenDatentypen.Bewegungsplan)
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
       

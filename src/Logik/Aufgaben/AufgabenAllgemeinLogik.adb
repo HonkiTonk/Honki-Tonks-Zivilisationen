@@ -15,13 +15,13 @@ package body AufgabenAllgemeinLogik is
                                               BeschäftigungExtern     => EinheitenKonstanten.LeerBeschäftigung);
       SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                    ZeitExtern               => EinheitenKonstanten.LeerBeschäftigungszeit,
-                                                   RechnenSetzenExtern      => 0);
+                                                   RechnenSetzenExtern      => False);
       
       SchreibeEinheitenGebaut.BeschäftigungNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                         BeschäftigungExtern     => EinheitenKonstanten.LeerBeschäftigung);
       SchreibeEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                              ZeitExtern               => EinheitenKonstanten.LeerBeschäftigungszeit,
-                                                             RechnenSetzenExtern      => 0);
+                                                             RechnenSetzenExtern      => False);
       
    end Nullsetzung;
 

@@ -6,17 +6,16 @@ with EinheitenKonstanten;
 
 package body Grenzpruefungen is
 
-   -- Minimum ist die minimale Arbeitszeit.
    function Arbeitszeit
-     (AktuellerWertExtern : in ProduktionDatentypen.ArbeitszeitVorhanden;
+     (AktuellerWertExtern : in ProduktionDatentypen.Arbeitszeit;
       ÄnderungExtern : in ProduktionDatentypen.Arbeitszeit)
-      return ProduktionDatentypen.ArbeitszeitVorhanden
+      return ProduktionDatentypen.Arbeitszeit
    is begin
       
       if
-        AktuellerWertExtern + ÄnderungExtern >= ProduktionDatentypen.ArbeitszeitVorhanden'Last
+        AktuellerWertExtern + ÄnderungExtern >= ProduktionDatentypen.Arbeitszeit'Last
       then
-         return ProduktionDatentypen.ArbeitszeitVorhanden'Last;
+         return ProduktionDatentypen.Arbeitszeit'Last;
          
       elsif
         AktuellerWertExtern + ÄnderungExtern <= EinheitenKonstanten.MinimaleArbeitszeit

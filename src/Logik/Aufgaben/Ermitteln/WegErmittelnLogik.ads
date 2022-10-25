@@ -39,7 +39,7 @@ private
    WelcherWeg : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
    WelcheArbeit : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
 
-   Arbeitszeit : ProduktionDatentypen.ArbeitszeitVorhanden;
+   Arbeitszeit : ProduktionDatentypen.Arbeitszeit;
 
    Arbeitswerte : EinheitenRecords.ArbeitRecord;
 

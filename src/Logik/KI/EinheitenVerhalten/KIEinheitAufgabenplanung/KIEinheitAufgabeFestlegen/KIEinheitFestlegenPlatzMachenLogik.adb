@@ -22,7 +22,7 @@ package body KIEinheitFestlegenPlatzMachenLogik is
       Einheitenkoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       EAchseSchleife:
-      for EAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEinsEAchse'Range loop
+      for EAchseSchleifenwert in KartenDatentypen.EbenenbereichEins'Range loop
          YAchseSchleife:
          for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
             XAchseSchleife:

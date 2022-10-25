@@ -74,7 +74,7 @@ package body FestungErmittelnLogik is
                                                     BeschäftigungExtern     => Arbeitswerte.Aufgabe);
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                          ZeitExtern               => Arbeitswerte.Arbeitszeit,
-                                                         RechnenSetzenExtern      => 0);
+                                                         RechnenSetzenExtern      => False);
             
          when False =>
             null;

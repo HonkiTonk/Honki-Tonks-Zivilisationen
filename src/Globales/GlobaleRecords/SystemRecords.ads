@@ -38,7 +38,6 @@ package SystemRecords is
    
    type DebugRecord is record
       
-      Allgemeines : Boolean;
       VolleInformation : Boolean;
       Sieg : Boolean;
       

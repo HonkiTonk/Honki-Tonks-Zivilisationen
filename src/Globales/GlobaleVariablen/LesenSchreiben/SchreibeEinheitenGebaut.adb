@@ -66,13 +66,13 @@ package body SchreibeEinheitenGebaut is
    procedure Lebenspunkte
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       LebenspunkteExtern : in EinheitenDatentypen.Lebenspunkte;
-      RechnenSetzenExtern : in KartenDatentypen.UmgebungsbereichEins)
+      RechnenSetzenExtern : in Boolean)
    is begin
       
       case
         RechnenSetzenExtern
       is
-         when 1 =>
+         when True =>
             MaximaleLebenspunkte := LeseEinheitenDatenbank.MaximaleLebenspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                                                  IDExtern    => SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).ID);
             
@@ -90,29 +90,23 @@ package body SchreibeEinheitenGebaut is
                                      BeschäftigungExtern     => EinheitenKonstanten.LeerBeschäftigung);
                      Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                           ZeitExtern               => EinheitenKonstanten.LeerBeschäftigungszeit,
-                                          RechnenSetzenExtern      => 0);
+                                          RechnenSetzenExtern      => False);
                   
                   when others =>
                      null;
                end case;
                
-            else
-               SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Lebenspunkte
-                 := SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Lebenspunkte + LebenspunkteExtern;
-            end if;
-               
-         when -1 =>
-            if
-              SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Lebenspunkte - LebenspunkteExtern < EinheitenKonstanten.LeerLebenspunkte
+            elsif
+              SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Lebenspunkte + LebenspunkteExtern <= EinheitenKonstanten.LeerLebenspunkte
             then
                SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Lebenspunkte := EinheitenKonstanten.LeerLebenspunkte;
                
             else
                SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Lebenspunkte
-                 := SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Lebenspunkte - LebenspunkteExtern;
+                 := SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Lebenspunkte + LebenspunkteExtern;
             end if;
             
-         when 0 =>
+         when False =>
             SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Lebenspunkte := LebenspunkteExtern;
       end case;
       
@@ -123,13 +117,13 @@ package body SchreibeEinheitenGebaut is
    procedure Bewegungspunkte
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       BewegungspunkteExtern : in EinheitenDatentypen.BewegungFloat;
-      RechnenSetzenExtern : in KartenDatentypen.UmgebungsbereichEins)
+      RechnenSetzenExtern : in Boolean)
    is begin
       
       case
         RechnenSetzenExtern
       is
-         when 1 =>
+         when True =>
             MaximaleBewegungspunkte := LeseEinheitenDatenbank.MaximaleBewegungspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                                                        IDExtern    => SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).ID);
             
@@ -137,24 +131,18 @@ package body SchreibeEinheitenGebaut is
               SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Bewegungspunkte + BewegungspunkteExtern >= MaximaleBewegungspunkte
             then
                SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Bewegungspunkte := MaximaleBewegungspunkte;
+               
+            elsif
+              SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Bewegungspunkte + BewegungspunkteExtern <= EinheitenKonstanten.LeerBewegungspunkte
+            then
+               SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Bewegungspunkte := EinheitenKonstanten.LeerBewegungspunkte;
                  
             else
                SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Bewegungspunkte
                  := SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Bewegungspunkte + BewegungspunkteExtern;
             end if;
             
-         when -1 =>
-            if
-              SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Bewegungspunkte - BewegungspunkteExtern < EinheitenKonstanten.LeerBewegungspunkte
-            then
-               SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Bewegungspunkte := EinheitenKonstanten.LeerBewegungspunkte;
-                 
-            else
-               SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Bewegungspunkte
-                 := SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Bewegungspunkte - BewegungspunkteExtern;
-            end if;
-            
-         when 0 =>
+         when False =>
             SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Bewegungspunkte := BewegungspunkteExtern;
       end case;
       
@@ -239,36 +227,30 @@ package body SchreibeEinheitenGebaut is
    
    procedure Beschäftigungszeit
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      ZeitExtern : in ProduktionDatentypen.ArbeitszeitVorhanden;
-      RechnenSetzenExtern : in KartenDatentypen.UmgebungsbereichEins)
+      ZeitExtern : in ProduktionDatentypen.Arbeitszeit;
+      RechnenSetzenExtern : in Boolean)
    is begin
       
       case
         RechnenSetzenExtern
       is
-         when 1 =>
+         when True =>
             if
-              SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigung.Arbeitszeit + ZeitExtern >= ProduktionDatentypen.ArbeitszeitVorhanden'Last
+              SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigung.Arbeitszeit + ZeitExtern >= ProduktionDatentypen.Arbeitszeit'Last
             then
-               SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigung.Arbeitszeit := ProduktionDatentypen.ArbeitszeitVorhanden'Last;
+               SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigung.Arbeitszeit := ProduktionDatentypen.Arbeitszeit'Last;
+               
+            elsif
+              SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigung.Arbeitszeit + ZeitExtern <= EinheitenKonstanten.LeerBeschäftigungszeit
+            then
+               SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigung.Arbeitszeit := EinheitenKonstanten.LeerBeschäftigungszeit;
                
             else
                SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigung.Arbeitszeit :=
                  SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigung.Arbeitszeit + ZeitExtern;
             end if;
             
-         when -1 =>
-            if
-              SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigung.Arbeitszeit - ZeitExtern <= EinheitenKonstanten.LeerBeschäftigungszeit
-            then
-               SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigung.Arbeitszeit := EinheitenKonstanten.LeerBeschäftigungszeit;
-               
-            else
-               SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigung.Arbeitszeit :=
-                 SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigung.Arbeitszeit - ZeitExtern;
-            end if;
-            
-         when 0 =>
+         when False =>
             SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigung.Arbeitszeit := ZeitExtern;
       end case;
       
@@ -278,36 +260,30 @@ package body SchreibeEinheitenGebaut is
    
    procedure BeschäftigungszeitNachfolger
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      ZeitExtern : in ProduktionDatentypen.ArbeitszeitVorhanden;
-      RechnenSetzenExtern : in KartenDatentypen.UmgebungsbereichEins)
+      ZeitExtern : in ProduktionDatentypen.Arbeitszeit;
+      RechnenSetzenExtern : in Boolean)
    is begin
       
       case
         RechnenSetzenExtern
       is
-         when 1 =>
+         when True =>
             if
-              SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungNachfolger.Arbeitszeit + ZeitExtern >= ProduktionDatentypen.ArbeitszeitVorhanden'Last
+              SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungNachfolger.Arbeitszeit + ZeitExtern >= ProduktionDatentypen.Arbeitszeit'Last
             then
-               SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungNachfolger.Arbeitszeit := ProduktionDatentypen.ArbeitszeitVorhanden'Last;
+               SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungNachfolger.Arbeitszeit := ProduktionDatentypen.Arbeitszeit'Last;
+               
+            elsif
+              SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungNachfolger.Arbeitszeit + ZeitExtern <= EinheitenKonstanten.LeerBeschäftigungszeit
+            then
+               SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungNachfolger.Arbeitszeit := EinheitenKonstanten.LeerBeschäftigungszeit;
                
             else
                SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungNachfolger.Arbeitszeit :=
                  SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungNachfolger.Arbeitszeit + ZeitExtern;
             end if;
             
-         when -1 =>
-            if
-              SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungNachfolger.Arbeitszeit - ZeitExtern <= EinheitenKonstanten.LeerBeschäftigungszeit
-            then
-               SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungNachfolger.Arbeitszeit := EinheitenKonstanten.LeerBeschäftigungszeit;
-               
-            else
-               SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungNachfolger.Arbeitszeit :=
-                 SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungNachfolger.Arbeitszeit - ZeitExtern;
-            end if;
-            
-         when 0 =>
+         when False =>
             SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungNachfolger.Arbeitszeit := ZeitExtern;
       end case;
       
@@ -373,7 +349,7 @@ package body SchreibeEinheitenGebaut is
    procedure KIBewegungPlan
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      PlanplatzExtern : in KartenDatentypen.Stadtfeld)
+      PlanplatzExtern : in EinheitenDatentypen.Bewegungsplan)
    is begin
       
       SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIBewegungPlan (PlanplatzExtern) := KoordinatenExtern;
@@ -462,12 +438,12 @@ package body SchreibeEinheitenGebaut is
       Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                     LebenspunkteExtern       => LeseEinheitenDatenbank.MaximaleLebenspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                                                              IDExtern    => IDExtern),
-                    RechnenSetzenExtern      => 0);
+                    RechnenSetzenExtern      => False);
       
       Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                        BewegungspunkteExtern    => LeseEinheitenDatenbank.MaximaleBewegungspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                                                                    IDExtern    => IDExtern),
-                       RechnenSetzenExtern      => 0);
+                       RechnenSetzenExtern      => False);
       
    end Standardwerte;
    

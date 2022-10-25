@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with KartenDatentypen; use KartenDatentypen;
 with EinheitenDatentypen; use EinheitenDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
 with EinheitenKonstanten;
@@ -70,8 +69,8 @@ package body VerbesserungFertiggestelltLogik is
       end case;
 
       SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                   ZeitExtern               => 1,
-                                                   RechnenSetzenExtern      => -1);
+                                                   ZeitExtern               => -1,
+                                                   RechnenSetzenExtern      => True);
       
       if
         LeseEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerBeschäftigungszeit
@@ -106,12 +105,12 @@ package body VerbesserungFertiggestelltLogik is
                                                     BeschäftigungExtern     => LeseEinheitenGebaut.BeschäftigungNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                          ZeitExtern               => LeseEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                         RechnenSetzenExtern      => 0);
+                                                         RechnenSetzenExtern      => False);
             SchreibeEinheitenGebaut.BeschäftigungNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                               BeschäftigungExtern     => EinheitenKonstanten.LeerBeschäftigung);
             SchreibeEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                    ZeitExtern               => EinheitenKonstanten.LeerBeschäftigungszeit,
-                                                                   RechnenSetzenExtern      => 0);
+                                                                   RechnenSetzenExtern      => False);
       end case;
       
    end AufgabeNachfolgerVerschieben;

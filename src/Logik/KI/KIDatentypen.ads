@@ -30,7 +30,7 @@ package KIDatentypen is
    type BauenBewertung is range -500 .. 500;
    subtype BewegungBewertung is BauenBewertung range 0 .. 20;
 
-
+   -- Die beiden Bewertungen zusammenführen, warum sind die überhaupt getrennt? äöü
    type AufgabenWichtigkeit is range -100 .. 100;
    subtype AufgabenWichtigkeitKlein is AufgabenWichtigkeit range -1 .. 100;
 

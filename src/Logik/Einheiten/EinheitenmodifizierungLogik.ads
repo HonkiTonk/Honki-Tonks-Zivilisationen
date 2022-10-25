@@ -40,7 +40,7 @@ package EinheitenmodifizierungLogik is
    
    function EinheitAnforderungenErfüllt
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
-      IDExtern : in EinheitenDatentypen.EinheitenID)
+      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return Boolean
      with
        Pre => (

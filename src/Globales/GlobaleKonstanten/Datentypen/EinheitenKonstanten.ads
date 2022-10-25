@@ -26,7 +26,7 @@ package EinheitenKonstanten is
    LeerErfahrungspunkte : constant KampfDatentypen.Erfahrungspunkte := KampfDatentypen.Erfahrungspunkte'First;
    LeerRang : constant KampfDatentypen.Rang := KampfDatentypen.Rang'First;
    LeerBeschäftigung : constant AufgabenDatentypen.Einheiten_Aufgaben_Enum := AufgabenDatentypen.Leer_Aufgabe_Enum;
-   LeerBeschäftigungszeit : constant ProduktionDatentypen.ArbeitszeitVorhanden := 0;
+   LeerBeschäftigungszeit : constant ProduktionDatentypen.Arbeitszeit := 0;
    LeerKIBeschäftigt : constant KIDatentypen.Einheit_Aufgabe_Enum := KIDatentypen.Leer_Aufgabe_Enum;
    LeerTransportiert : constant EinheitenDatentypen.MaximaleEinheitenMitNullWert := EinheitenDatentypen.MaximaleEinheitenMitNullWert'First;
    LeerWirdTransportiert : constant EinheitenDatentypen.MaximaleEinheitenMitNullWert := EinheitenDatentypen.MaximaleEinheitenMitNullWert'First;
@@ -57,8 +57,8 @@ package EinheitenKonstanten is
    
    -- Das hier später auslagern nach ProduktionKonstanten oder sowas? äöü
    LeerArbeit : constant AufgabenDatentypen.Einheiten_Aufgaben_Enum := AufgabenDatentypen.Leer_Aufgabe_Enum;
-   LeerArbeitszeit : constant ProduktionDatentypen.ArbeitszeitVorhanden := 0;
-   UnmöglicheArbeit : constant ProduktionDatentypen.ArbeitszeitVorhanden := ProduktionDatentypen.ArbeitszeitVorhanden'First;
-   MinimaleArbeitszeit : constant ProduktionDatentypen.ArbeitszeitVorhanden := 1;
+   LeerArbeitszeit : constant ProduktionDatentypen.Arbeitszeit := 0;
+   UnmöglicheArbeit : constant ProduktionDatentypen.Arbeitszeit := ProduktionDatentypen.Arbeitszeit'First;
+   MinimaleArbeitszeit : constant ProduktionDatentypen.Arbeitszeit := 1;
    
 end EinheitenKonstanten;

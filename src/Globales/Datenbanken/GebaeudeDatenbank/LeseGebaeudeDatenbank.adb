@@ -57,11 +57,11 @@ package body LeseGebaeudeDatenbank is
    function WirtschaftBonus
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in StadtDatentypen.GebäudeID;
-      WWirtschaftBonusExtern : in ProduktionDatentypen.Wirtschaft_Enum)
+      WirtschaftBonusExtern : in ProduktionDatentypen.Wirtschaft_Enum)
       return ProduktionDatentypen.Feldproduktion
    is begin
       
-      return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).BonusWirtschaft (WWirtschaftBonusExtern);
+      return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).BonusWirtschaft (WirtschaftBonusExtern);
       
    end WirtschaftBonus;
    

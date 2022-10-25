@@ -70,7 +70,7 @@ package body KIEinheitFestlegenErkundenLogik is
    is begin
       
       EAchseSchleife:
-      for EAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEinsEAchse'Range loop
+      for EAchseSchleifenwert in KartenDatentypen.EbenenbereichEins'Range loop
          YAchseSchleife:
          for YAchseSchleifenwert in -KartenreichweiteExtern .. KartenreichweiteExtern loop
             XAchseSchleife:

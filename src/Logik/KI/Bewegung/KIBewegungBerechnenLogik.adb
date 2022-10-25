@@ -55,7 +55,7 @@ package body KIBewegungBerechnenLogik is
    function PlanenRekursiv
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      AktuellePlanpositionExtern : in KartenDatentypen.Stadtfeld)
+      AktuellePlanpositionExtern : in EinheitenDatentypen.Bewegungsplan)
       return Boolean
    is begin
       
@@ -96,7 +96,7 @@ package body KIBewegungBerechnenLogik is
       BewertungPosition := BewertungArray'First;
       
       EAchseÄnderungSchleife:
-      for EAchseÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEinsEAchse'Range loop
+      for EAchseÄnderungSchleifenwert in KartenDatentypen.EbenenbereichEins'Range loop
          YAchseÄnderungSchleife:
          for YAchseÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
             XAchseÄnderungSchleife:
@@ -157,7 +157,7 @@ package body KIBewegungBerechnenLogik is
    function PlanschrittFestlegen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       DurchlaufExtern : in Positive;
-      AktuellePlanpositionExtern : in KartenDatentypen.Stadtfeld)
+      AktuellePlanpositionExtern : in EinheitenDatentypen.Bewegungsplan)
       return Boolean
    is begin
       
@@ -199,7 +199,7 @@ package body KIBewegungBerechnenLogik is
    function BewertungFeldposition
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EÄnderungExtern : in KartenDatentypen.UmgebungsbereichEinsEAchse;
+      EÄnderungExtern : in KartenDatentypen.EbenenbereichEins;
       YÄnderungExtern : in KartenDatentypen.UmgebungsbereichEins;
       XÄnderungExtern : in KartenDatentypen.UmgebungsbereichEins)
       return KIDatentypen.BewegungBewertung
@@ -417,12 +417,12 @@ package body KIBewegungBerechnenLogik is
    
    procedure VorhandenenPlanVereinfachenPrüfen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      ErsterZugExtern : in KartenDatentypen.Stadtfeld;
-      ÜberNächsterZugExtern : in KartenDatentypen.Stadtfeld)
+      ErsterZugExtern : in EinheitenDatentypen.Bewegungsplan;
+      ÜberNächsterZugExtern : in EinheitenDatentypen.Bewegungsplan)
    is begin
       
       EAchseSchleife:
-      for EAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEinsEAchse'Range loop
+      for EAchseSchleifenwert in KartenDatentypen.EbenenbereichEins'Range loop
          YAchseSchleife:
          for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
             XAchseSchleife:

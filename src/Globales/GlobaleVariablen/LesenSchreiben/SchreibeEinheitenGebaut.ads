@@ -63,7 +63,7 @@ package SchreibeEinheitenGebaut is
    procedure Lebenspunkte
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       LebenspunkteExtern : in EinheitenDatentypen.Lebenspunkte;
-      RechnenSetzenExtern : in KartenDatentypen.UmgebungsbereichEins)
+      RechnenSetzenExtern : in Boolean)
      with
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -74,7 +74,7 @@ package SchreibeEinheitenGebaut is
    procedure Bewegungspunkte
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       BewegungspunkteExtern : in EinheitenDatentypen.BewegungFloat;
-      RechnenSetzenExtern : in KartenDatentypen.UmgebungsbereichEins)
+      RechnenSetzenExtern : in Boolean)
      with
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -124,8 +124,8 @@ package SchreibeEinheitenGebaut is
    
    procedure Beschäftigungszeit
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      ZeitExtern : in ProduktionDatentypen.ArbeitszeitVorhanden;
-      RechnenSetzenExtern : in KartenDatentypen.UmgebungsbereichEins)
+      ZeitExtern : in ProduktionDatentypen.Arbeitszeit;
+      RechnenSetzenExtern : in Boolean)
      with
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -135,8 +135,8 @@ package SchreibeEinheitenGebaut is
    
    procedure BeschäftigungszeitNachfolger
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      ZeitExtern : in ProduktionDatentypen.ArbeitszeitVorhanden;
-      RechnenSetzenExtern : in KartenDatentypen.UmgebungsbereichEins)
+      ZeitExtern : in ProduktionDatentypen.Arbeitszeit;
+      RechnenSetzenExtern : in Boolean)
      with
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -219,7 +219,7 @@ package SchreibeEinheitenGebaut is
    procedure KIBewegungPlan
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      PlanplatzExtern : in KartenDatentypen.Stadtfeld)
+      PlanplatzExtern : in EinheitenDatentypen.Bewegungsplan)
      with
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze

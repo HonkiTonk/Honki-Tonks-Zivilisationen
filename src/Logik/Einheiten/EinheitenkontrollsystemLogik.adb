@@ -41,7 +41,6 @@ package body EinheitenkontrollsystemLogik is
    
    
    
-   -- Mit der Aufteilung der Tastenbelegung in Allgemeine und Einheitenbefehle kann man hier eventuell mehr zusammenfassen. äöü
    function EinheitBefehle
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       BefehlExtern : in BefehleDatentypen.Einheitenbelegung_Enum)
@@ -132,7 +131,7 @@ package body EinheitenkontrollsystemLogik is
       EinheitenKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       EAchseSchleife:
-      for EAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEinsEAchse'Range loop
+      for EAchseSchleifenwert in KartenDatentypen.EbenenbereichEins'Range loop
          YAchseSchleife:
          for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
             XAchseSchleife:
@@ -160,5 +159,47 @@ package body EinheitenkontrollsystemLogik is
       return False;
       
    end AllgemeineEinheitenbewegungMaus;
+   
+   
+   
+   function EinheitenbewegungMaus
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return Boolean
+   is begin
+      
+      EinheitenKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      
+      EAchseSchleife:
+      for EAchseSchleifenwert in KartenDatentypen.EbenenbereichEins'Range loop
+         YAchseSchleife:
+         for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
+            XAchseSchleife:
+            for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
+                                          
+               KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => EinheitenKoordinaten,
+                                                                                                         ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                         LogikGrafikExtern => True);
+               
+               -- In diesem Fall wird die Prüfung auf Leer nicht benötigt, da im aktuellen System die Cursorkoordinaten niemals ungültig sein können.
+               if
+                 KartenWert = SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAktuell
+               then
+                  -- Und hier müsste ich dann ein Webgfindungssystem einbauen wie es die KI hat. äöü
+                  -- Kann ich das KI System dazu anpassen? Wahrscheinlich nicht. äöü
+                  -- Aber ich kann das Bewegungsarrray der Einheit dazu verwenden, da es bei menschlichen Spielern ja leer sein sollte und dann entsprechend die Bewegung berechnen. äöü
+                  return EinheitenbewegungLogik.PositionÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                 ÄnderungExtern           => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
+                        
+               else
+                  null;
+               end if;
+               
+            end loop XAchseSchleife;
+         end loop YAchseSchleife;
+      end loop EAchseSchleife;
+      
+      return False;
+      
+   end EinheitenbewegungMaus;
 
 end EinheitenkontrollsystemLogik;

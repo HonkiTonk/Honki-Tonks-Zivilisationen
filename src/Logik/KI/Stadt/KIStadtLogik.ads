@@ -25,6 +25,7 @@ package KIStadtLogik is
 private
 
    NotfallEinheit : EinheitenDatentypen.EinheitenIDMitNullWert;
+   AktuelleEinheit : EinheitenDatentypen.EinheitenIDMitNullWert;
 
    FremdeEinheit : EinheitenRecords.RasseEinheitnummerRecord;
 
@@ -36,25 +37,6 @@ private
       EinheitBauenExtern : in KIRecords.EinheitIDBewertungRecord;
       GebäudeBauenExtern : in KIRecords.GebäudeIDBewertungRecord;
       NotfallExtern : in Boolean)
-     with
-       Pre => (
-                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
-               and
-                 SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung = RassenDatentypen.KI_Spieler_Enum
-              );
-
-   procedure NotfallEinheitBauen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
-      EinheitIDExtern : in EinheitenDatentypen.EinheitenID)
-     with
-       Pre => (
-                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
-               and
-                 SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung = RassenDatentypen.KI_Spieler_Enum
-              );
-
-   procedure WelcheEinheitArt
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
      with
        Pre => (
                  StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -77,6 +59,28 @@ private
    function FeindNahe
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return Boolean
+     with
+       Pre => (
+                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+               and
+                 SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung = RassenDatentypen.KI_Spieler_Enum
+              );
+
+   function WelcheEinheitArt
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+      return EinheitenDatentypen.EinheitenIDMitNullWert
+     with
+       Pre => (
+                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+               and
+                 SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung = RassenDatentypen.KI_Spieler_Enum
+              );
+
+   function NotfalleinheitBauen
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      AktuelleEinheitExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
+      NächsteEinheitExtern : in EinheitenDatentypen.EinheitenID)
+      return EinheitenDatentypen.EinheitenID
      with
        Pre => (
                  StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze

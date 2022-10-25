@@ -55,17 +55,17 @@ package body BauauswahlGebaeudeGrafik is
                                                                                                                                                 WelcheKostenExtern => ProduktionDatentypen.Produktion_Enum)'Wide_Wide_Image;
       Gebäudetexte (5) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenterNahrungsbonus) & LeseGebaeudeDatenbank.WirtschaftBonus (RasseExtern            => RasseExtern,
                                                                                                                                             IDExtern               => AuswahlExtern,
-                                                                                                                                            WWirtschaftBonusExtern => ProduktionDatentypen.Nahrung_Enum)'Wide_Wide_Image;
+                                                                                                                                            WirtschaftBonusExtern => ProduktionDatentypen.Nahrung_Enum)'Wide_Wide_Image;
       Gebäudetexte (6) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenterProduktionsbonus)
         & LeseGebaeudeDatenbank.WirtschaftBonus (RasseExtern            => RasseExtern,
                                                  IDExtern               => AuswahlExtern,
-                                                 WWirtschaftBonusExtern => ProduktionDatentypen.Produktion_Enum)'Wide_Wide_Image;
+                                                 WirtschaftBonusExtern => ProduktionDatentypen.Produktion_Enum)'Wide_Wide_Image;
       Gebäudetexte (7) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenterGeldbonus) & LeseGebaeudeDatenbank.WirtschaftBonus (RasseExtern            => RasseExtern,
                                                                                                                                         IDExtern               => AuswahlExtern,
-                                                                                                                                        WWirtschaftBonusExtern => ProduktionDatentypen.Geld_Enum)'Wide_Wide_Image;
+                                                                                                                                        WirtschaftBonusExtern => ProduktionDatentypen.Geld_Enum)'Wide_Wide_Image;
       Gebäudetexte (8) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenterWissenbonus) & LeseGebaeudeDatenbank.WirtschaftBonus (RasseExtern            => RasseExtern,
                                                                                                                                           IDExtern               => AuswahlExtern,
-                                                                                                                                          WWirtschaftBonusExtern => ProduktionDatentypen.Forschung_Enum)'Wide_Wide_Image;
+                                                                                                                                          WirtschaftBonusExtern => ProduktionDatentypen.Forschung_Enum)'Wide_Wide_Image;
       Gebäudetexte (9) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenterVerteidigungsbonus) & LeseGebaeudeDatenbank.KampfBonus (RasseExtern      => RasseExtern,
                                                                                                                                             IDExtern         => AuswahlExtern,
                                                                                                                                             KampfBonusExtern => KampfDatentypen.Verteidigung_Enum)'Wide_Wide_Image;

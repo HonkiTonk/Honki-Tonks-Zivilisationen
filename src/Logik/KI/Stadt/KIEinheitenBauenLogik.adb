@@ -26,17 +26,17 @@ package body KIEinheitenBauenLogik is
       return KIRecords.EinheitIDBewertungRecord
    is begin
       
-      -- 3 * AnzahlStädte sollte immer größer 0 sein, da nur bei vorhandenen Städten was gebaut werden sollte.
-      -- AnzahlStädte mal übergeben und nicht mehr so einfach benutzen lassen. äöü
+      -- AnzahlStädte sollte immer größer 0 sein, da nur bei vorhandenen Städten etwas gebaut werden sollte.
+      -- AnzahlStädte mal übergeben und nicht mehr so einfach benutzen. äöü
       AnzahlStädte := EinheitenDatentypen.MaximaleEinheiten (LeseWichtiges.AnzahlStädte (RasseExtern => StadtRasseNummerExtern.Rasse));
       VorhandeneEinheiten := LeseWichtiges.AnzahlEinheiten (RasseExtern => StadtRasseNummerExtern.Rasse);
       
       if
-        VorhandeneEinheiten >= 5 * AnzahlStädte
+        VorhandeneEinheiten >= 10 * AnzahlStädte
         or
           VorhandeneEinheiten >= SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Einheitengrenze
       then
-         return KIKonstanten.LeerEinheitIDBewertung;
+         return KIKonstanten.LeerEinheitenbewertung;
          
       else
          return EinheitenDurchgehen (StadtRasseNummerExtern => StadtRasseNummerExtern);
@@ -51,7 +51,7 @@ package body KIEinheitenBauenLogik is
       return KIRecords.EinheitIDBewertungRecord
    is begin
       
-      EinheitBewertet := KIKonstanten.LeerEinheitIDBewertung;
+      EinheitBewertet := KIKonstanten.LeerEinheitenbewertung;
       
       EinheitenSchleife:
       for EinheitenSchleifenwert in EinheitenDatentypen.EinheitenID'Range loop
@@ -65,7 +65,7 @@ package body KIEinheitenBauenLogik is
                                                   IDExtern               => EinheitenSchleifenwert);
                
                if
-                 Einheitwertung <= 0
+                 Einheitwertung <= KIKonstanten.LeerBewertung
                then
                   null;
          
@@ -96,7 +96,19 @@ package body KIEinheitenBauenLogik is
       return KIDatentypen.BauenBewertung
    is begin
       
-      Gesamtwertung := 0;
+      case
+        EinheitenmodifizierungLogik.EinheitAnforderungenErfüllt (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                                  IDExtern               => LeseEinheitenDatenbank.VerbesserungZu (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                                                                                                   IDExtern    => IDExtern))
+      is
+         when True =>
+            return KIDatentypen.BauenBewertung'First;
+            
+         when False =>
+            null;
+      end case;
+              
+      Gesamtwertung := KIKonstanten.LeerBewertung;
       
       Gesamtwertung := Gesamtwertung + HerstellungskostenBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                                    EinheitenIDExtern      => IDExtern);
@@ -185,7 +197,7 @@ package body KIEinheitenBauenLogik is
             Fehler.LogikFehler (FehlermeldungExtern => "KIEinheitenBauen.SpezielleEinheitBewerten: Leere Einheitart.");
       end case;
       
-      return 0;
+      return KIKonstanten.LeerBewertung;
       
    end SpezielleEinheitBewerten;
    
@@ -206,7 +218,7 @@ package body KIEinheitenBauenLogik is
         or
           MengeVorhanden + MengeImBau = MinimaleSiedlerMenge
       then
-         return 0;
+         return KIKonstanten.LeerBewertung;
          
       elsif
         MengeVorhanden > MinimaleSiedlerMenge
@@ -249,7 +261,7 @@ package body KIEinheitenBauenLogik is
               or
                 MengeVorhanden + MengeImBau = 2 * AnzahlStädte
             then
-               return 0;
+               return KIKonstanten.LeerBewertung;
          
             elsif
               MengeVorhanden > 2 * AnzahlStädte
@@ -275,7 +287,7 @@ package body KIEinheitenBauenLogik is
               or
                 MengeVorhanden + MengeImBau = 5 * AnzahlStädte
             then
-               return 0;
+               return KIKonstanten.LeerBewertung;
          
             elsif
               MengeVorhanden > 5 * AnzahlStädte
@@ -313,7 +325,7 @@ package body KIEinheitenBauenLogik is
               or
                 MengeVorhanden + MengeImBau = 2 * AnzahlStädte
             then
-               return 0;
+               return KIKonstanten.LeerBewertung;
          
             elsif
               MengeVorhanden > 2 * AnzahlStädte
@@ -333,7 +345,7 @@ package body KIEinheitenBauenLogik is
               or
                 MengeVorhanden + MengeImBau = 5 * AnzahlStädte
             then
-               return 0;
+               return KIKonstanten.LeerBewertung;
          
             elsif
               MengeVorhanden > 5 * AnzahlStädte
@@ -369,7 +381,7 @@ package body KIEinheitenBauenLogik is
          null;
       end if;
       
-      return 0;
+      return KIKonstanten.LeerBewertung;
       
       -- Da das System so wie es aktuell ist nicht korrekt funktioniert, wird vorübergehen hier mit 0 multipliziert, das später wieder entfernen. äöü
      -- return -(KIDatentypen.BauenBewertung (LeseEinheitenDatenbank.Produktionskosten (RasseExtern => StadtRasseNummerExtern.Rasse,
@@ -404,7 +416,7 @@ package body KIEinheitenBauenLogik is
          return -10;
       
       else
-         return 0;
+         return KIKonstanten.LeerBewertung;
       end if;
       
    end GeldKostenBewerten;
@@ -433,7 +445,7 @@ package body KIEinheitenBauenLogik is
          return -20;
          
       else
-         return 0;
+         return KIKonstanten.LeerBewertung;
       end if;
       
    end NahrungKostenBewerten;
@@ -462,7 +474,7 @@ package body KIEinheitenBauenLogik is
          return -20;
       
       else
-         return 0;
+         return KIKonstanten.LeerBewertung;
       end if;
       
    end RessourcenKostenBewerten;
