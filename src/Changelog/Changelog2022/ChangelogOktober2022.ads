@@ -40,7 +40,7 @@ package ChangelogOktober2022 is
    -- Kartenanzeige überarbeitet.
    -- Stadtanzeige überarbeitet.
    -- Testgrafiken zu GitHub hinzugefügt.
-   -- Einige Texte und den zugriff darauft neu aufgeteilt und erweitert.
+   -- Einige Texte und den Zugriff darauf neu aufgeteilt und erweitert.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet/optimiert.
    
    
