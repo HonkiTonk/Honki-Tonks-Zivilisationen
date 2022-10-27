@@ -161,7 +161,7 @@ package body BauauswahlEinheitenGrafik is
                                     position => Textposition);
 
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitenzusatztextAccess (RasseExtern, AuswahlExtern),
-                                         str  => ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung (TextExtern           => EinheitenbeschreibungenGrafik.BeschreibungLang (IDExtern    => AuswahlExtern,
+                                         str  => ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung (TextExtern           => EinheitenbeschreibungenGrafik.Langbeschreibung (IDExtern    => AuswahlExtern,
                                                                                                                                                                                 RasseExtern => RasseExtern),
                                                                                                         TextfeldbreiteExtern => ViewflächeBeschreibung.x / 2.00 - Textposition.x));
          

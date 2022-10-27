@@ -56,7 +56,8 @@ package StadtKonstanten is
    LeerAnforderungen : constant ForschungenDatentypen.ForschungIDNichtMöglich := ForschungKonstanten.ForschungUnmöglich;
    LeerBonusWirtschaft : constant ProduktionDatentypen.Feldproduktion := 0;
    LeerBonusKampf : constant KampfDatentypen.Kampfwerte := KampfDatentypen.Kampfwerte'First;
-   LeerGrundBenötigt : constant KartengrundDatentypen.Kartengrund_Enum := KartengrundDatentypen.Leer_Grund_Enum;
+   LeerBasisgrundBenötigt : constant KartengrundDatentypen.Basisgrund_Enum := KartengrundDatentypen.Leer_Basisgrund_Enum;
+   LeerZusatzgrundBenötigt : constant KartengrundDatentypen.Zusatzgrund_Enum := KartengrundDatentypen.Leer_Zusatzgrund_Enum;
    LeerFlussBenötigt : constant Boolean := False;
    LeerRessourceBenötigt : constant KartengrundDatentypen.Kartenressourcen_Enum := KartengrundDatentypen.Leer_Ressource_Enum;
    LeerVerbesserungBenötigt : constant KartenverbesserungDatentypen.Karten_Verbesserung_Enum := KartenverbesserungDatentypen.Leer_Verbesserung_Enum;

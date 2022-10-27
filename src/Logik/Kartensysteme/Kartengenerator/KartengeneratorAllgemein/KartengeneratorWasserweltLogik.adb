@@ -25,7 +25,7 @@ package body KartengeneratorWasserweltLogik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
    is begin
       
-      SchreibeWeltkarte.GleicherGrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
+      SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
                                     GrundExtern       => KartengrundDatentypen.Meeresgrund_Enum);
       
    end BasisgrundBestimmen;
@@ -36,7 +36,7 @@ package body KartengeneratorWasserweltLogik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
    is begin
       
-      WelcherGrund := KartengrundDatentypen.Leer_Grund_Enum;
+      Zusatzgrund := KartengrundDatentypen.Leer_Zusatzgrund_Enum;
       
       ZufallszahlenSchleife:
       for ZufallszahlSchleifenwert in ZusatzWahrscheinlichkeitenArray'Range loop
@@ -64,23 +64,23 @@ package body KartengeneratorWasserweltLogik is
          
          else
             case
-              WelcherGrund
+              Zusatzgrund
             is
-               when KartengrundDatentypen.Leer_Grund_Enum =>
-                  WelcherGrund := WahrscheinlichkeitSchleifenwert; 
+               when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+                  Zusatzgrund := WahrscheinlichkeitSchleifenwert; 
                         
                when others =>
                   if
-                    ZusatzZahlen (WahrscheinlichkeitSchleifenwert) > ZusatzZahlen (WelcherGrund)
+                    ZusatzZahlen (WahrscheinlichkeitSchleifenwert) > ZusatzZahlen (Zusatzgrund)
                   then
-                     WelcherGrund := WahrscheinlichkeitSchleifenwert;
+                     Zusatzgrund := WahrscheinlichkeitSchleifenwert;
                         
                   elsif
-                    ZusatzZahlen (WahrscheinlichkeitSchleifenwert) = ZusatzZahlen (WelcherGrund)
+                    ZusatzZahlen (WahrscheinlichkeitSchleifenwert) = ZusatzZahlen (Zusatzgrund)
                     and
                       ZufallsgeneratorenKartenLogik.KartengeneratorBoolean = True
                   then
-                     WelcherGrund := WahrscheinlichkeitSchleifenwert;
+                     Zusatzgrund := WahrscheinlichkeitSchleifenwert;
                            
                   else
                      null;
@@ -91,22 +91,22 @@ package body KartengeneratorWasserweltLogik is
       end loop WahrscheinlichkeitSchleife;
       
       case
-        WelcherGrund
+        Zusatzgrund
       is
-         when KartengrundDatentypen.Leer_Grund_Enum =>
+         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
             return;
             
          when others =>
-            WelcherGrund := ZusatzExtraberechnungen (KoordinatenExtern => KoordinatenExtern,
-                                                     GrundExtern       => WelcherGrund);
+            Zusatzgrund := ZusatzExtraberechnungen (KoordinatenExtern => KoordinatenExtern,
+                                                    GrundExtern       => Zusatzgrund);
       end case;
       
       case
-        WelcherGrund
+        Zusatzgrund
       is
-         when KartengrundDatentypen.Kartengrund_Unterfläche_Wasserzusatz_Enum'Range =>
-            SchreibeWeltkarte.AktuellerGrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
-                                           GrundExtern       => WelcherGrund);
+         when KartengrundDatentypen.Zusatzgrund_Unterfläche_Enum'Range =>
+            SchreibeWeltkarte.Zusatzgrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
+                                           GrundExtern       => Zusatzgrund);
             
          when others =>
             null;
@@ -118,8 +118,8 @@ package body KartengeneratorWasserweltLogik is
    
    function BasisExtraberechnungen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Wasserbasis_Enum)
-      return KartengrundDatentypen.Kartengrund_Unterfläche_Wasserbasis_Enum
+      GrundExtern : in KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum)
+      return KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum
    is begin
      
       case
@@ -127,7 +127,7 @@ package body KartengeneratorWasserweltLogik is
       is
          when KartengrundDatentypen.Meeresgrund_Enum | KartengrundDatentypen.Küstengrund_Enum =>
             return ZusatzberechnungMeeresgrund (KoordinatenExtern => KoordinatenExtern,
-                                                GrundExtern       => WelcherGrund);
+                                                GrundExtern       => GrundExtern);
       end case;
    
    end BasisExtraberechnungen;
@@ -136,21 +136,20 @@ package body KartengeneratorWasserweltLogik is
    
    function ZusatzExtraberechnungen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Wasserzusatz_Enum)
-      return KartengrundDatentypen.Kartengrund_Enum
+      GrundExtern : in KartengrundDatentypen.Zusatzgrund_Unterfläche_Enum)
+      return KartengrundDatentypen.Zusatzgrund_Enum
    is begin
       
       case
         GrundExtern
       is
-            
          when KartengrundDatentypen.Korallen_Enum =>
             return ZusatzberechnungKorallen (KoordinatenExtern => KoordinatenExtern,
-                                             GrundExtern       => WelcherGrund);
+                                             GrundExtern       => GrundExtern);
             
          when KartengrundDatentypen.Unterwald_Enum =>
             return ZusatzberechnungUnterwald (KoordinatenExtern => KoordinatenExtern,
-                                              GrundExtern       => WelcherGrund);
+                                              GrundExtern       => GrundExtern);
       end case;
       
    end ZusatzExtraberechnungen;
@@ -159,8 +158,8 @@ package body KartengeneratorWasserweltLogik is
    
    function ZusatzberechnungMeeresgrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Wasserbasis_Enum)
-      return KartengrundDatentypen.Kartengrund_Unterfläche_Wasserbasis_Enum
+      GrundExtern : in KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum)
+      return KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum
    is begin
       
       if
@@ -180,8 +179,8 @@ package body KartengeneratorWasserweltLogik is
    
    function ZusatzberechnungKorallen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Wasserzusatz_Enum)
-      return KartengrundDatentypen.Kartengrund_Unterfläche_Wasserzusatz_Enum
+      GrundExtern : in KartengrundDatentypen.Zusatzgrund_Unterfläche_Enum)
+      return KartengrundDatentypen.Zusatzgrund_Enum
    is begin
       
       if
@@ -201,8 +200,8 @@ package body KartengeneratorWasserweltLogik is
    
    function ZusatzberechnungUnterwald
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Wasserzusatz_Enum)
-      return KartengrundDatentypen.Kartengrund_Unterfläche_Wasserzusatz_Enum
+      GrundExtern : in KartengrundDatentypen.Zusatzgrund_Unterfläche_Enum)
+      return KartengrundDatentypen.Zusatzgrund_Enum
    is begin
       
       if

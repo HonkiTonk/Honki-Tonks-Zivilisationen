@@ -23,11 +23,11 @@ package body KartengeneratorHimmelLogik is
          XAchseSchleife:
          for XAchseSchleifenwert in Weltkarte.KarteArray'First (3) .. Weltkarte.Karteneinstellungen.Kartengröße.XAchse loop
                
-            SchreibeWeltkarte.GleicherGrund (KoordinatenExtern => (KartenKonstanten.HimmelKonstante, YAchseSchleifenwert, XAchseSchleifenwert),
-                                             GrundExtern       => KartengrundDatentypen.Wolken_Enum);
+            SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.HimmelKonstante, YAchseSchleifenwert, XAchseSchleifenwert),
+                                          GrundExtern       => KartengrundDatentypen.Wolken_Enum);
                
          end loop XAchseSchleife;
-            
+         
          case
            YAchseSchleifenwert mod Kartenzeitwert
          is

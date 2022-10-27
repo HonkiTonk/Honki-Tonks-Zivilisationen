@@ -9,11 +9,10 @@ private with Sf.Graphics.Color;
 
 package KartenspritesZeichnenGrafik is
 
-   function SpriteGezeichnetKartenfeld
+   procedure KartenfeldZeichnen
      (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       DurchsichtigkeitExtern : in Sf.sfUint8)
-      return Boolean
      with
        Pre => (
                  PositionExtern.x >= 0.00
@@ -21,21 +20,9 @@ package KartenspritesZeichnenGrafik is
                  PositionExtern.y >= 0.00
               );
 
-   function SpriteGezeichnetStadtfeld
+   procedure StadtfeldZeichnen
      (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
-      return Boolean
-     with
-       Pre => (
-                 PositionExtern.x >= 0.00
-               and
-                 PositionExtern.y >= 0.00
-              );
-
-   function SpriteGezeichnetStadtgrund
-     (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
-      PositionExtern : in Sf.System.Vector2.sfVector2f)
-      return Boolean
      with
        Pre => (
                  PositionExtern.x >= 0.00
@@ -62,6 +49,23 @@ private
    SpriteAccess : constant Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;
 
    procedure SpriteZeichnen
+     (SpriteAccesExtern : in Sf.Graphics.sfSprite_Ptr;
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      SkalierungExtern : in Sf.System.Vector2.sfVector2f)
+     with
+       Pre => (
+                 SpriteAccesExtern /= null
+               and
+                 PositionExtern.x >= 0.00
+               and
+                 PositionExtern.y >= 0.00
+               and
+                 SkalierungExtern.x > 0.00
+               and
+                 SkalierungExtern.y > 0.00
+              );
+
+   procedure DurchsichtigesSpriteZeichnen
      (SpriteAccesExtern : in Sf.Graphics.sfSprite_Ptr;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       SkalierungExtern : in Sf.System.Vector2.sfVector2f;

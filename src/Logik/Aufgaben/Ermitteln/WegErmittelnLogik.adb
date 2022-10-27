@@ -25,42 +25,40 @@ package body WegErmittelnLogik is
       return Boolean
    is begin
       
-      VorhandenerGrund := LeseWeltkarte.VorhandenerGrund (KoordinatenExtern => KoordinatenExtern);
+      Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => KoordinatenExtern);
       
-      -- Nur auf Basisgrund prüfen? Müsste hierbei ausreichen. äöü
-      if
-        ArbeitszeitWegLogik.Arbeitszeit (EinheitRasseNummerExtern.Rasse, VorhandenerGrund.BasisGrund) = EinheitenKonstanten.UnmöglicheArbeit
-        or
-          ArbeitszeitWegLogik.Arbeitszeit (EinheitRasseNummerExtern.Rasse, VorhandenerGrund.AktuellerGrund) = EinheitenKonstanten.UnmöglicheArbeit
-      then
-         return False;
+      case
+        ArbeitszeitWegLogik.Basiszeit (EinheitRasseNummerExtern.Rasse, Gesamtgrund.Basisgrund)
+      is
+         when EinheitenKonstanten.UnmöglicheArbeit =>
+            return False;
          
-      else
-         WegVorhanden := LeseWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern);
-      end if;
+         when others =>
+            WegVorhanden := LeseWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern);
+      end case;
 
       case
-        VorhandenerGrund.AktuellerGrund
+        Gesamtgrund.Basisgrund
       is
-         when KartengrundDatentypen.Eis_Enum | KartengrundDatentypen.Kartengrund_Oberfläche_Land_Enum'Range =>
+         when KartengrundDatentypen.Eis_Enum | KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum'Range =>
             Arbeitswerte := OberflächeLand (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                              WegExtern   => WegVorhanden,
-                                             GrundExtern => VorhandenerGrund);
+                                             GrundExtern => Gesamtgrund);
             
-         when KartengrundDatentypen.Kartengrund_Oberfläche_Wasser_Enum'Range =>
+         when KartengrundDatentypen.Basisgrund_Oberfläche_Wasser_Enum'Range =>
             Arbeitswerte := OberflächeWasser (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                WegExtern   => WegVorhanden,
-                                               GrundExtern => VorhandenerGrund);
+                                               GrundExtern => Gesamtgrund);
             
-         when KartengrundDatentypen.Untereis_Enum | KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum'Range =>
+         when KartengrundDatentypen.Untereis_Enum | KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum'Range =>
             Arbeitswerte := UnterflächeLand (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                               WegExtern   => WegVorhanden,
-                                              GrundExtern => VorhandenerGrund);
+                                              GrundExtern => Gesamtgrund);
             
-         when KartengrundDatentypen.Kartengrund_Unterfläche_Wasser_Enum'Range =>
+         when KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range =>
             Arbeitswerte := UnterflächeWasser (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                 WegExtern   => WegVorhanden,
-                                                GrundExtern => VorhandenerGrund);
+                                                GrundExtern => Gesamtgrund);
                
          when others =>
             return False;
@@ -126,17 +124,18 @@ package body WegErmittelnLogik is
       end case;
       
       Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitWegLogik.Arbeitszeit (RasseExtern, GrundExtern.BasisGrund));
+                                                  ÄnderungExtern      => ArbeitszeitWegLogik.Basiszeit (RasseExtern, GrundExtern.Basisgrund));
 
-      if
-        GrundExtern.BasisGrund = GrundExtern.AktuellerGrund
-      then
-         null;
+      case
+        GrundExtern.Zusatzgrund
+      is
+         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+            null;
 
-      else
-         Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                     ÄnderungExtern      => ArbeitszeitWegLogik.Arbeitszeit (RasseExtern, GrundExtern.AktuellerGrund));
-      end if;
+         when others =>
+            Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
+                                                        ÄnderungExtern      => ArbeitszeitWegLogik.Zusatzzeit (RasseExtern, GrundExtern.Zusatzgrund));
+      end case;
       
       return (WelcheArbeit, Arbeitszeit);
    
@@ -153,7 +152,7 @@ package body WegErmittelnLogik is
       
       -- Eventuell noch Wege für andere Rassen auf Küstengewässer zulassen? äöü
       if
-        GrundExtern.AktuellerGrund in KartengrundDatentypen.Kartengrund_Oberfläche_Wasser_Enum'Range
+        GrundExtern.Basisgrund in KartengrundDatentypen.Basisgrund_Oberfläche_Wasser_Enum'Range
         and
           RasseExtern /= RassenDatentypen.Ekropa_Enum
       then
@@ -183,17 +182,18 @@ package body WegErmittelnLogik is
       end case;
       
       Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitWegLogik.Arbeitszeit (RasseExtern, GrundExtern.BasisGrund));
+                                                  ÄnderungExtern      => ArbeitszeitWegLogik.Basiszeit (RasseExtern, GrundExtern.Basisgrund));
 
-      if
-        GrundExtern.BasisGrund = GrundExtern.AktuellerGrund
-      then
-         null;
+      case
+        GrundExtern.Zusatzgrund
+      is
+         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+            null;
 
-      else
-         Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                     ÄnderungExtern      => ArbeitszeitWegLogik.Arbeitszeit (RasseExtern, GrundExtern.AktuellerGrund));
-      end if;
+         when others =>
+            Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
+                                                        ÄnderungExtern      => ArbeitszeitWegLogik.Zusatzzeit (RasseExtern, GrundExtern.Zusatzgrund));
+      end case;
       
       return (WelcheArbeit, Arbeitszeit);
    
@@ -228,17 +228,18 @@ package body WegErmittelnLogik is
       end case;
       
       Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitWegLogik.Arbeitszeit (RasseExtern, GrundExtern.BasisGrund));
+                                                  ÄnderungExtern      => ArbeitszeitWegLogik.Basiszeit (RasseExtern, GrundExtern.Basisgrund));
 
-      if
-        GrundExtern.BasisGrund = GrundExtern.AktuellerGrund
-      then
-         null;
+      case
+        GrundExtern.Zusatzgrund
+      is
+         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+            null;
 
-      else
-         Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                     ÄnderungExtern      => ArbeitszeitWegLogik.Arbeitszeit (RasseExtern, GrundExtern.AktuellerGrund));
-      end if;
+         when others =>
+            Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
+                                                        ÄnderungExtern      => ArbeitszeitWegLogik.Zusatzzeit (RasseExtern, GrundExtern.Zusatzgrund));
+      end case;
       
       return (WelcheArbeit, Arbeitszeit);
       
@@ -274,17 +275,18 @@ package body WegErmittelnLogik is
       end case;
       
       Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitWegLogik.Arbeitszeit (RasseExtern, GrundExtern.BasisGrund));
+                                                  ÄnderungExtern      => ArbeitszeitWegLogik.Basiszeit (RasseExtern, GrundExtern.Basisgrund));
 
-      if
-        GrundExtern.BasisGrund = GrundExtern.AktuellerGrund
-      then
-         null;
+      case
+        GrundExtern.Zusatzgrund
+      is
+         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+            null;
 
-      else
-         Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                     ÄnderungExtern      => ArbeitszeitWegLogik.Arbeitszeit (RasseExtern, GrundExtern.AktuellerGrund));
-      end if;
+         when others =>
+            Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
+                                                        ÄnderungExtern      => ArbeitszeitWegLogik.Zusatzzeit (RasseExtern, GrundExtern.Zusatzgrund));
+      end case;
       
       return EinheitenRecordKonstanten.KeineArbeit;
       

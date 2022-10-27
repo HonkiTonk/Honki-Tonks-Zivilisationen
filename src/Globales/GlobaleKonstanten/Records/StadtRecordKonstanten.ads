@@ -38,7 +38,7 @@ package StadtRecordKonstanten is
                                                                                 Anforderungen               => StadtKonstanten.LeerAnforderungen,
                                                                                 BonusWirtschaft             => (others => StadtKonstanten.LeerBonusWirtschaft),
                                                                                 BonusKampf                  => (others => StadtKonstanten.LeerBonusKampf),
-                                                                                GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
+                                                                                BasisgrundBenötigt          => StadtKonstanten.LeerBasisgrundBenötigt,
                                                                                 FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
                                                                                 RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
                                                                                 VerbesserungBenötigt        => StadtKonstanten.LeerVerbesserungBenötigt,

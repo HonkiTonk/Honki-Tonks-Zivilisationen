@@ -28,8 +28,11 @@ package EingeleseneTexturenGrafik is
    type HintergrundAccessArray is array (GrafikDatentypen.Hintergrund_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
    HintergrundAccess : HintergrundAccessArray := (others => null);
 
-   type KartenfelderAccessArray is array (KartenDatenbank.KartengrundlisteArray'Range) of Sf.Graphics.sfTexture_Ptr;
-   KartenfelderAccess : KartenfelderAccessArray := (others => null);
+   type BasisgrundAccessArray is array (KartenDatenbank.BasisgrundlisteArray'Range) of Sf.Graphics.sfTexture_Ptr;
+   BasisgrundAccess : BasisgrundAccessArray := (others => null);
+
+   type ZusatzgrundAccessArray is array (KartenDatenbank.ZusatzgrundlisteArray'Range) of Sf.Graphics.sfTexture_Ptr;
+   ZusatzgrundAccess : ZusatzgrundAccessArray := (others => null);
 
    type KartenflussAccessArray is array (KartenDatenbank.KartenflusslisteArray'Range) of Sf.Graphics.sfTexture_Ptr;
    KartenflussAccess : KartenflussAccessArray := (others => null);

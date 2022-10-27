@@ -9,96 +9,70 @@ with Warnung;
 
 package body KartenspritesZeichnenGrafik is
    
-   function SpriteGezeichnetKartenfeld
+   procedure KartenfeldZeichnen
      (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       DurchsichtigkeitExtern : in Sf.sfUint8)
-      return Boolean
    is begin
       
       if
-        EinstellungenGrafik.Grafikeinstellungen.TexturenVerwenden = False
-      then
-         null;
-         
-      elsif
         TexturAccessExtern = null
       then
-         Warnung.GrafikWarnung (WarnmeldungExtern => "KartenspritesZeichnenGrafik.SpriteGezeichnetKartenfeld: TexturAccessExtern = null.");
+         Warnung.GrafikWarnung (WarnmeldungExtern => "KartenspritesZeichnenGrafik.KartenfeldZeichnen: TexturAccessExtern = null.");
          
       else
-         SpriteZeichnen (SpriteAccesExtern      => SpriteAccess,
-                         PositionExtern         => PositionExtern,
-                         SkalierungExtern       => TexturenSetzenSkalierenGrafik.TexturenSetzenSkalierenWeltkarte (SpriteAccessExtern  => SpriteAccess,
-                                                                                                                   TextureAccessExtern => TexturAccessExtern),
-                         DurchsichtigkeitExtern => DurchsichtigkeitExtern);
-         return True;
+         DurchsichtigesSpriteZeichnen (SpriteAccesExtern      => SpriteAccess,
+                                       PositionExtern         => PositionExtern,
+                                       SkalierungExtern       => TexturenSetzenSkalierenGrafik.TexturenSetzenSkalierenWeltkarte (SpriteAccessExtern  => SpriteAccess,
+                                                                                                                                 TextureAccessExtern => TexturAccessExtern),
+                                       DurchsichtigkeitExtern => DurchsichtigkeitExtern);
       end if;
       
-      return False;
-      
-   end SpriteGezeichnetKartenfeld;
+   end KartenfeldZeichnen;
    
    
    
-   function SpriteGezeichnetStadtfeld
+   procedure StadtfeldZeichnen
      (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
-      return Boolean
    is begin
       
       if
-        EinstellungenGrafik.Grafikeinstellungen.TexturenVerwenden = False
-      then
-         null;
-         
-      elsif
         TexturAccessExtern = null
       then
-         Warnung.GrafikWarnung (WarnmeldungExtern => "KartenspritesZeichnenGrafik.SpriteGezeichnetStadtfeld: TexturAccessExtern = null.");
+         Warnung.GrafikWarnung (WarnmeldungExtern => "KartenspritesZeichnenGrafik.StadtfeldZeichnen: TexturAccessExtern = null.");
          
       else
-         SpriteZeichnen (SpriteAccesExtern      => SpriteAccess,
-                         PositionExtern         => PositionExtern,
-                         SkalierungExtern       => TexturenSetzenSkalierenGrafik.TexturenSetzenSkalierenStadtkarte (SpriteAccessExtern  => SpriteAccess,
-                                                                                                                    TextureAccessExtern => TexturAccessExtern),
-                         DurchsichtigkeitExtern => Sf.sfUint8'Last);
-         return True;
+         DurchsichtigesSpriteZeichnen (SpriteAccesExtern      => SpriteAccess,
+                                       PositionExtern         => PositionExtern,
+                                       SkalierungExtern       => TexturenSetzenSkalierenGrafik.TexturenSetzenSkalierenStadtkarte (SpriteAccessExtern  => SpriteAccess,
+                                                                                                                                  TextureAccessExtern => TexturAccessExtern),
+                                       DurchsichtigkeitExtern => Sf.sfUint8'Last);
       end if;
       
-      return False;
-      
-   end SpriteGezeichnetStadtfeld;
+   end StadtfeldZeichnen;
    
    
    
-   -- Das nach Hintergrund verschieben? äöü
-   function SpriteGezeichnetStadtgrund
-     (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
-      PositionExtern : in Sf.System.Vector2.sfVector2f)
-      return Boolean
+   procedure SpriteZeichnen
+     (SpriteAccesExtern : in Sf.Graphics.sfSprite_Ptr;
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      SkalierungExtern : in Sf.System.Vector2.sfVector2f)
    is begin
+
+      Sf.Graphics.Sprite.setPosition (sprite   => SpriteAccesExtern,
+                                      position => PositionExtern);
+      Sf.Graphics.Sprite.scale (sprite  => SpriteAccesExtern,
+                                factors => SkalierungExtern);
       
-      if
-        TexturAccessExtern /= null
-      then
-         SpriteZeichnen (SpriteAccesExtern      => SpriteAccess,
-                         PositionExtern         => PositionExtern,
-                         SkalierungExtern       => TexturenSetzenSkalierenGrafik.TexturenSetzenSkalierenGesamteStadtkarte (SpriteAccessExtern  => SpriteAccess,
-                                                                                                                           TextureAccessExtern => TexturAccessExtern),
-                         DurchsichtigkeitExtern => Sf.sfUint8'Last);
-         return True;
-         
-      else
-         Warnung.GrafikWarnung (WarnmeldungExtern => "KartenspritesZeichnenGrafik.SpriteGezeichnetStadtgrund: TexturAccessExtern = null.");
-         return False;
-      end if;
+      Sf.Graphics.RenderWindow.drawSprite (renderWindow => EinstellungenGrafik.FensterAccess,
+                                           object       => SpriteAccesExtern);
       
-   end SpriteGezeichnetStadtgrund;
+   end SpriteZeichnen;
    
    
 
-   procedure SpriteZeichnen
+   procedure DurchsichtigesSpriteZeichnen
      (SpriteAccesExtern : in Sf.Graphics.sfSprite_Ptr;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       SkalierungExtern : in Sf.System.Vector2.sfVector2f;
@@ -120,7 +94,7 @@ package body KartenspritesZeichnenGrafik is
       Sf.Graphics.RenderWindow.drawSprite (renderWindow => EinstellungenGrafik.FensterAccess,
                                            object       => SpriteAccesExtern);
       
-   end SpriteZeichnen;
+   end DurchsichtigesSpriteZeichnen;
    
    
    

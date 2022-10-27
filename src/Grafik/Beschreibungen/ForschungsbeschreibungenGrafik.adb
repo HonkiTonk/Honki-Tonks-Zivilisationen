@@ -10,7 +10,7 @@ with TextnummernKonstanten;
 
 package body ForschungsbeschreibungenGrafik is
 
-   function BeschreibungKurz
+   function Kurzbeschreibung
      (IDExtern : in ForschungenDatentypen.ForschungIDMitNullWert;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Wide_Wide_String
@@ -26,11 +26,11 @@ package body ForschungsbeschreibungenGrafik is
             return To_Wide_Wide_String (Source => Rassentexte.Forschungen (RasseExtern, IDExtern, 1));
       end case;
       
-   end BeschreibungKurz;
+   end Kurzbeschreibung;
    
    
    
-   function BeschreibungLang
+   function Langbeschreibung
      (IDExtern : in ForschungenDatentypen.ForschungID;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Wide_Wide_String
@@ -38,6 +38,6 @@ package body ForschungsbeschreibungenGrafik is
       
       return To_Wide_Wide_String (Source => Rassentexte.Forschungen (RasseExtern, IDExtern, 2));
       
-   end BeschreibungLang;
+   end Langbeschreibung;
 
 end ForschungsbeschreibungenGrafik;

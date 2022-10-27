@@ -124,7 +124,7 @@ package body EinlesenTextLogik is
             Ressourcenmenge;
                
          when 15 =>
-            Kartenfelder;
+            Basisgrund;
                
          when 16 =>
             Verbesserungen;
@@ -194,6 +194,9 @@ package body EinlesenTextLogik is
             
          when 38 =>
             Outro;
+            
+         when 39 =>
+            Zusatzgrund;
             
          when others =>
             Fehler.LogikFehler (FehlermeldungExtern => "EinlesenText.EinlesenAufteilen: Mehr eingelesen als möglich.");
@@ -541,27 +544,27 @@ package body EinlesenTextLogik is
    
    
    
-   procedure Kartenfelder
+   procedure Basisgrund
    is begin
       
-      KartenfelderSchleife:
-      for ZeileSchleifenwert in Kartentexte.Kartenfelder'Range loop
+      BasisgrundSchleife:
+      for ZeileSchleifenwert in Kartentexte.Basisgrund'Range loop
          
          case
            EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiText,
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Kartenfelder: Fehlende Zeilen.");
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Basisgrund: Fehlende Zeilen.");
                return;
                
             when False =>
-               Kartentexte.Kartenfelder (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
+               Kartentexte.Basisgrund (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
          end case;
          
-      end loop KartenfelderSchleife;
+      end loop BasisgrundSchleife;
       
-   end Kartenfelder;
+   end Basisgrund;
    
    
    
@@ -1114,5 +1117,29 @@ package body EinlesenTextLogik is
       end loop OutroSchleife;
       
    end Outro;
+   
+   
+   
+   procedure Zusatzgrund
+   is begin
+      
+      ZusatzgrundSchleife:
+      for ZeileSchleifenwert in Kartentexte.Zusatzgrund'Range loop
+         
+         case
+           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiText,
+                                                           AktuelleZeileExtern => ZeileSchleifenwert)
+         is
+            when True =>
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.Zusatzgrund: Fehlende Zeilen.");
+               return;
+               
+            when False =>
+               Kartentexte.Zusatzgrund (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
+         end case;
+         
+      end loop ZusatzgrundSchleife;
+      
+   end Zusatzgrund;
 
 end EinlesenTextLogik;

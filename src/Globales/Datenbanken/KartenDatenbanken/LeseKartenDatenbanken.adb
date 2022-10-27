@@ -5,27 +5,47 @@ with KartenDatenbank;
 
 package body LeseKartenDatenbanken is
 
-   function Passierbarkeit
-     (GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
+   function PassierbarkeitBasisgrund
+     (GrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum;
       WelcheUmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Enum)
       return Boolean
    is begin
       
-      return KartenDatenbank.Kartengrundliste (GrundExtern).Passierbarkeit (WelcheUmgebungExtern);
+      return KartenDatenbank.Basisgrundliste (GrundExtern).Passierbarkeit (WelcheUmgebungExtern);
       
-   end Passierbarkeit;
+   end PassierbarkeitBasisgrund;
    
    
    
-   function BewertungGrund
-     (GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
+   function BewertungBasisgrund
+     (GrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return BewertungDatentypen.Bewertung_Enum
    is begin
       
-      return KartenDatenbank.Kartengrundliste (GrundExtern).Bewertung (RasseExtern);
+      return KartenDatenbank.Basisgrundliste (GrundExtern).Bewertung (RasseExtern);
       
-   end BewertungGrund;
+   end BewertungBasisgrund;
+   
+   
+   
+   function BewertungZusatzgrund
+     (GrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      return BewertungDatentypen.Bewertung_Enum
+   is begin
+      
+      case
+        GrundExtern
+      is
+         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+            return BewertungDatentypen.Bewertung_Eins_Enum;
+              
+         when others =>
+            return KartenDatenbank.Zusatzgrundliste (GrundExtern).Bewertung (RasseExtern);
+      end case;
+      
+   end BewertungZusatzgrund;
    
    
    
@@ -53,16 +73,37 @@ package body LeseKartenDatenbanken is
    
    
    
-   function WirtschaftGrund
-     (GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
+   function WirtschaftBasisgrund
+     (GrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       WirtschaftArtExtern : in ProduktionDatentypen.Wirtschaft_Enum)
       return ProduktionDatentypen.Einzelproduktion
    is begin
       
-      return KartenDatenbank.Kartengrundliste (GrundExtern).Wirtschaft (RasseExtern, WirtschaftArtExtern);
+      return KartenDatenbank.Basisgrundliste (GrundExtern).Wirtschaft (RasseExtern, WirtschaftArtExtern);
       
-   end WirtschaftGrund;
+   end WirtschaftBasisgrund;
+   
+   
+   
+   function WirtschaftZusatzgrund
+     (GrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      WirtschaftArtExtern : in ProduktionDatentypen.Wirtschaft_Enum)
+      return ProduktionDatentypen.Einzelproduktion
+   is begin
+      
+      case
+        GrundExtern
+      is
+         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+            return ProduktionDatentypen.Einzelproduktion'First;
+            
+         when others =>
+            return KartenDatenbank.Zusatzgrundliste (GrundExtern).Wirtschaft (RasseExtern, WirtschaftArtExtern);
+      end case;
+      
+   end WirtschaftZusatzgrund;
    
    
    
@@ -92,16 +133,37 @@ package body LeseKartenDatenbanken is
    
    
    
-   function KampfGrund
-     (GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
+   function KampfBasisgrund
+     (GrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       KampfArtExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.KampfwerteAllgemein
    is begin
       
-      return KartenDatenbank.Kartengrundliste (GrundExtern).Kampf (RasseExtern, KampfArtExtern);
+      return KartenDatenbank.Basisgrundliste (GrundExtern).Kampf (RasseExtern, KampfArtExtern);
       
-   end KampfGrund;
+   end KampfBasisgrund;
+   
+   
+   
+   function KampfZusatzgrund
+     (GrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      KampfArtExtern : in KampfDatentypen.Kampf_Enum)
+      return KampfDatentypen.KampfwerteAllgemein
+   is begin
+      
+      case
+        GrundExtern
+      is
+         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+            return KampfDatentypen.Kampfwerte'First;
+            
+         when others =>
+            return KartenDatenbank.Zusatzgrundliste (GrundExtern).Kampf (RasseExtern, KampfArtExtern);
+      end case;
+      
+   end KampfZusatzgrund;
    
    
    

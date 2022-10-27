@@ -8,7 +8,6 @@ with KartenDatentypen;
 with KartenRecords;
 with Weltkarte;
 
-private with KartengrundDatentypen;
 private with EinheitenDatentypen;
 
 
@@ -38,11 +37,10 @@ package SichtbereicheErmittelnLogik is
               );
 
 private
-
-   AktuellerGrund : KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
-   BasisGrund : KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
    
    EinheitID : EinheitenDatentypen.EinheitenIDMitNullWert;
+   
+   Gesamtgrund : KartenRecords.KartengrundRecord;
    
    KoordinatenEinheit : KartenRecords.AchsenKartenfeldNaturalRecord;
    KartenBlockadeWert : KartenRecords.AchsenKartenfeldNaturalRecord;

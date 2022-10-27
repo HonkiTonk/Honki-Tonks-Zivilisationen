@@ -89,10 +89,21 @@ package body SchreibenDatenbankenLogik is
       
       Create (File => DatenbankSpeichern,
               Mode => Out_File,
-              Name => VerzeichnisKonstanten.KartenGrundDatenbank);
+              Name => VerzeichnisKonstanten.BasisgrundDatenbank);
       
-      KartenDatenbank.KartengrundlisteArray'Write (Stream (File => DatenbankSpeichern),
-                                                   KartenDatenbank.Kartengrundliste);
+      KartenDatenbank.BasisgrundlisteArray'Write (Stream (File => DatenbankSpeichern),
+                                                  KartenDatenbank.Basisgrundliste);
+      
+      Close (File => DatenbankSpeichern);
+      
+      
+      
+      Create (File => DatenbankSpeichern,
+              Mode => Out_File,
+              Name => VerzeichnisKonstanten.ZusatzgrundDatenbank);
+      
+      KartenDatenbank.ZusatzgrundlisteArray'Write (Stream (File => DatenbankSpeichern),
+                                                   KartenDatenbank.Zusatzgrundliste);
       
       Close (File => DatenbankSpeichern);
       

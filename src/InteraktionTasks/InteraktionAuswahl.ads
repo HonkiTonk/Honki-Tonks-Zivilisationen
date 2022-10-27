@@ -86,7 +86,10 @@ package InteraktionAuswahl is
 
 
 
-   type PositionenKartengrundeditorArray is array (KartengrundDatentypen.Kartengrund_Vorhanden_Enum'Range) of Sf.Graphics.Rect.sfFloatRect;
-   PositionenKartengrundeditor : PositionenKartengrundeditorArray := (others => GrafikRecordKonstanten.Leerbereich);
+   type PositionenBasisgrundeditorArray is array (KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Range) of Sf.Graphics.Rect.sfFloatRect;
+   PositionenBasisgrundeditor : PositionenBasisgrundeditorArray := (others => GrafikRecordKonstanten.Leerbereich);
+
+   type PositionenZusatzgrundeditorArray is array (KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Range) of Sf.Graphics.Rect.sfFloatRect;
+   PositionenZusatzgrundeditor : PositionenZusatzgrundeditorArray := (others => GrafikRecordKonstanten.Leerbereich);
 
 end InteraktionAuswahl;

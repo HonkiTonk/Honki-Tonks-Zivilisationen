@@ -9,8 +9,8 @@ with KartenartDatentypen;
 
 package KartengeneratorVariablenLogik is
 
-   PolgrundOberfläche : KartengrundDatentypen.Kartengrund_Vorhanden_Enum := KartengrundDatentypen.Eis_Enum;
-   PolgrundUnterfläche : KartengrundDatentypen.Kartengrund_Vorhanden_Enum := KartengrundDatentypen.Untereis_Enum;
+   PolgrundOberfläche : KartengrundDatentypen.Basisgrund_Vorhanden_Enum := KartengrundDatentypen.Eis_Enum;
+   PolgrundUnterfläche : KartengrundDatentypen.Basisgrund_Vorhanden_Enum := KartengrundDatentypen.Untereis_Enum;
 
    Kartenparameter : KartenRecords.TemporäreKartenparameterRecord := KartenRecordKonstanten.Standardkartengeneratorparameter;
 

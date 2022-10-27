@@ -5,19 +5,35 @@ with KartengrundDatentypen;
 
 package KartenbeschreibungenGrafik is
 
-   function BeschreibungZusatzgrund
-     (KartenGrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
+   function KurzbeschreibungBasisgrund
+     (KartenGrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum)
       return Wide_Wide_String;
 
-   function BeschreibungBasisgrund
-     (KartenGrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
+   function LangbeschreibungBasisgrund
+     (KartenGrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum)
       return Wide_Wide_String;
 
-   function BeschreibungFluss
+   function KurzbeschreibungZusatzgrund
+     (KartenGrundExtern : in KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum)
+      return Wide_Wide_String;
+
+   function LangbeschreibungZusatzgrund
+     (KartenGrundExtern : in KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum)
+      return Wide_Wide_String;
+
+   function KurzbeschreibungFluss
      (KartenFlussExtern : in KartengrundDatentypen.Kartenfluss_Vorhanden_Enum)
       return Wide_Wide_String;
 
-   function BeschreibungRessource
+   function LangbeschreibungFluss
+     (KartenFlussExtern : in KartengrundDatentypen.Kartenfluss_Vorhanden_Enum)
+      return Wide_Wide_String;
+
+   function KurzbeschreibungRessource
+     (KartenRessourceExtern : in KartengrundDatentypen.Kartenressourcen_Vorhanden_Enum)
+      return Wide_Wide_String;
+
+   function LangbeschreibungRessource
      (KartenRessourceExtern : in KartengrundDatentypen.Kartenressourcen_Vorhanden_Enum)
       return Wide_Wide_String;
 

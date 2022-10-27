@@ -8,8 +8,7 @@ with InteraktionAuswahl;
 
 with AllgemeineViewsGrafik;
 with ViewsEinstellenGrafik;
-with ObjekteZeichnenGrafik;
-with FarbgebungGrafik;
+-- with ObjekteZeichnenGrafik;
 
 package body KartengrundEditorGrafik is
 
@@ -32,18 +31,17 @@ package body KartengrundEditorGrafik is
       
       Grafikposition := (0.00, 0.00);
       
-      -- Zu berücksichtigen, nicht alle Felder habe aktuell eine Farbe, später mal hinzufügen. äöü
       KartengrundSchleife:
-      for KartengrundSchleifenwert in InteraktionAuswahl.PositionenKartengrundeditorArray'Range loop
+      for KartengrundSchleifenwert in InteraktionAuswahl.PositionenBasisgrundeditorArray'Range loop
          
-         ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => Feldgröße,
-                                                 PositionExtern  => Grafikposition,
-                                                 FarbeExtern     => FarbgebungGrafik.FarbeKartenfeldErmitteln (GrundExtern => KartengrundSchleifenwert));
+         -- ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => Feldgröße,
+         --                                         PositionExtern  => Grafikposition,
+         --                                         FarbeExtern     => FarbgebungGrafik.FarbeKartenfeldErmitteln (GrundExtern => KartengrundSchleifenwert));
          
-         InteraktionAuswahl.PositionenKartengrundeditor (KartengrundSchleifenwert) := (Grafikposition.x, Grafikposition.y, Feldgröße.x, Feldgröße.y);
+         InteraktionAuswahl.PositionenBasisgrundeditor (KartengrundSchleifenwert) := (Grafikposition.x, Grafikposition.y, Feldgröße.x, Feldgröße.y);
          
          case
-           KartengrundDatentypen.Kartengrund_Vorhanden_Enum'Pos (KartengrundSchleifenwert) mod 6
+           KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Pos (KartengrundSchleifenwert) mod 6
          is
             when 0 =>
                Grafikposition.x := 0.00;

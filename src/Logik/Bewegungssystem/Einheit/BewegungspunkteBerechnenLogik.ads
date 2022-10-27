@@ -7,7 +7,6 @@ with EinheitenDatentypen;
 with SpielVariablen;
 with KartenRecords;
 with EinheitenRecords;
-
 with Weltkarte;
 
 package BewegungspunkteBerechnenLogik is
@@ -36,6 +35,8 @@ private
    GroßerAbzug : constant EinheitenDatentypen.VorhandeneBewegungspunkte := 3.00;
    KeinAbzug : constant EinheitenDatentypen.VorhandeneBewegungspunkte := 0.00;
    Bewegungsbonus : EinheitenDatentypen.VorhandeneBewegungspunkte;
+   
+   Gesamtgrund : KartenRecords.KartengrundRecord;
    
    -- Sollte man das in was Globales verschieben? äöü
    type Bewegungsbonus_Enum is (

@@ -27,7 +27,7 @@ package body KartengeneratorLandschaftLogik is
          for XAchseSchleifenwert in KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.XAchse .. KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.XAchse loop
             
             case
-              LeseWeltkarte.AktuellerGrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseSchleifenwert, XAchseSchleifenwert))
+              LeseWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseSchleifenwert, XAchseSchleifenwert))
             is
                when KartengrundDatentypen.Flachland_Enum =>
                   BasisgrundBestimmen (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseSchleifenwert, XAchseSchleifenwert));
@@ -37,9 +37,9 @@ package body KartengeneratorLandschaftLogik is
             end case;
             
             case
-              LeseWeltkarte.AktuellerGrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseSchleifenwert, XAchseSchleifenwert))
+              LeseWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseSchleifenwert, XAchseSchleifenwert))
             is
-               when KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum =>
+               when KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum =>
                   ZusatzgrundBestimmen (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseSchleifenwert, XAchseSchleifenwert));
 
                when others =>
@@ -68,7 +68,7 @@ package body KartengeneratorLandschaftLogik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
    is begin
       
-      WelcherGrund := KartengrundDatentypen.Leer_Grund_Enum;
+      Basisgrund := KartengrundDatentypen.Leer_Basisgrund_Enum;
       
       ZufallszahlenSchleife:
       for ZufallszahlSchleifenwert in BasisWahrscheinlichkeitenArray'Range loop
@@ -100,23 +100,23 @@ package body KartengeneratorLandschaftLogik is
                   
             else
                case
-                 WelcherGrund
+                 Basisgrund
                is
-                  when KartengrundDatentypen.Leer_Grund_Enum =>
-                     WelcherGrund := WahrscheinlichkeitSchleifenwert;
+                  when KartengrundDatentypen.Leer_Basisgrund_Enum =>
+                     Basisgrund := WahrscheinlichkeitSchleifenwert;
                         
                   when others =>
                      if
-                       BasisZahlen (WahrscheinlichkeitSchleifenwert) > BasisZahlen (WelcherGrund)
+                       BasisZahlen (WahrscheinlichkeitSchleifenwert) > BasisZahlen (Basisgrund)
                      then
-                        WelcherGrund := WahrscheinlichkeitSchleifenwert;
+                        Basisgrund := WahrscheinlichkeitSchleifenwert;
                         
                      elsif
-                       BasisZahlen (WahrscheinlichkeitSchleifenwert) = BasisZahlen (WelcherGrund)
+                       BasisZahlen (WahrscheinlichkeitSchleifenwert) = BasisZahlen (Basisgrund)
                        and
                          ZufallsgeneratorenKartenLogik.KartengeneratorBoolean = True
                      then
-                        WelcherGrund := WahrscheinlichkeitSchleifenwert;
+                        Basisgrund := WahrscheinlichkeitSchleifenwert;
                            
                      else
                         null;
@@ -127,9 +127,9 @@ package body KartengeneratorLandschaftLogik is
          end loop WahrscheinlichkeitSchleife;
       
          case
-           WelcherGrund
+           Basisgrund
          is
-            when KartengrundDatentypen.Leer_Grund_Enum =>
+            when KartengrundDatentypen.Leer_Basisgrund_Enum =>
                null;
             
             when others =>
@@ -138,11 +138,11 @@ package body KartengeneratorLandschaftLogik is
          
       end loop DurchlaufSchleife;
       
-      WelcherGrund := BasisExtraberechnungen (KoordinatenExtern => KoordinatenExtern,
-                                              GrundExtern       => WelcherGrund);
+      Basisgrund := BasisExtraberechnungen (KoordinatenExtern => KoordinatenExtern,
+                                            GrundExtern       => Basisgrund);
       
-      SchreibeWeltkarte.GleicherGrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
-                                       GrundExtern       => WelcherGrund);
+      SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
+                                    GrundExtern       => Basisgrund);
       
    end BasisgrundBestimmen;
    
@@ -152,7 +152,7 @@ package body KartengeneratorLandschaftLogik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
    is begin
       
-      WelcherGrund := KartengrundDatentypen.Leer_Grund_Enum;
+      Zusatzgrund := KartengrundDatentypen.Leer_Zusatzgrund_Enum;
       
       ZufallszahlenSchleife:
       for ZufallszahlSchleifenwert in ZusatzWahrscheinlichkeitenArray'Range loop
@@ -180,23 +180,23 @@ package body KartengeneratorLandschaftLogik is
          
          else
             case
-              WelcherGrund
+              Zusatzgrund
             is
-               when KartengrundDatentypen.Leer_Grund_Enum =>
-                  WelcherGrund := WahrscheinlichkeitSchleifenwert; 
+               when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+                  Zusatzgrund := WahrscheinlichkeitSchleifenwert; 
                         
                when others =>
                   if
-                    ZusatzZahlen (WahrscheinlichkeitSchleifenwert) > ZusatzZahlen (WelcherGrund)
+                    ZusatzZahlen (WahrscheinlichkeitSchleifenwert) > ZusatzZahlen (Zusatzgrund)
                   then
-                     WelcherGrund := WahrscheinlichkeitSchleifenwert;
+                     Zusatzgrund := WahrscheinlichkeitSchleifenwert;
                         
                   elsif
-                    ZusatzZahlen (WahrscheinlichkeitSchleifenwert) = ZusatzZahlen (WelcherGrund)
+                    ZusatzZahlen (WahrscheinlichkeitSchleifenwert) = ZusatzZahlen (Zusatzgrund)
                     and
                       ZufallsgeneratorenKartenLogik.KartengeneratorBoolean = True
                   then
-                     WelcherGrund := WahrscheinlichkeitSchleifenwert;
+                     Zusatzgrund := WahrscheinlichkeitSchleifenwert;
                            
                   else
                      null;
@@ -207,22 +207,22 @@ package body KartengeneratorLandschaftLogik is
       end loop WahrscheinlichkeitSchleife;
       
       case
-        WelcherGrund
+        Zusatzgrund
       is
-         when KartengrundDatentypen.Leer_Grund_Enum =>
+         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
             return;
             
          when others =>
-            WelcherGrund := ZusatzExtraberechnungen (KoordinatenExtern => KoordinatenExtern,
-                                                     GrundExtern       => WelcherGrund);
+            Zusatzgrund := ZusatzExtraberechnungen (KoordinatenExtern => KoordinatenExtern,
+                                                    GrundExtern       => Zusatzgrund);
       end case;
             
       case
-        WelcherGrund
+        Zusatzgrund
       is
-         when KartengrundDatentypen.Kartengrund_Oberfläche_Zusatz_Enum'Range =>
-            SchreibeWeltkarte.AktuellerGrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
-                                              GrundExtern       => WelcherGrund);
+         when KartengrundDatentypen.Zusatzgrund_Oberfläche_Enum'Range =>
+            SchreibeWeltkarte.Zusatzgrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
+                                           GrundExtern       => Zusatzgrund);
             
          when others =>
             null;
@@ -234,8 +234,8 @@ package body KartengeneratorLandschaftLogik is
    
    function BasisExtraberechnungen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum)
-      return KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum
+      GrundExtern : in KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum)
+      return KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum
    is begin
      
       case
@@ -268,8 +268,8 @@ package body KartengeneratorLandschaftLogik is
    
    function ZusatzExtraberechnungen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Zusatz_Enum)
-      return KartengrundDatentypen.Kartengrund_Enum
+      GrundExtern : in KartengrundDatentypen.Zusatzgrund_Oberfläche_Enum)
+      return KartengrundDatentypen.Zusatzgrund_Enum
    is begin
       
       case
@@ -294,8 +294,8 @@ package body KartengeneratorLandschaftLogik is
    
    function ZusatzberechnungTundra
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum)
-      return KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum
+      GrundExtern : in KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum)
+      return KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum
    is begin
       
       YAchseSchleife:
@@ -313,7 +313,7 @@ package body KartengeneratorLandschaftLogik is
                null;
                
             elsif
-              LeseWeltkarte.AktuellerGrund (KoordinatenExtern => KartenWert) = KartengrundDatentypen.Wüste_Enum
+              LeseWeltkarte.Basisgrund (KoordinatenExtern => KartenWert) = KartengrundDatentypen.Wüste_Enum
             then
                return KartengrundDatentypen.Wüste_Enum;
                   
@@ -332,8 +332,8 @@ package body KartengeneratorLandschaftLogik is
    
    function ZusatzberechnungWüste
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum)
-      return KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum
+      GrundExtern : in KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum)
+      return KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum
    is begin
       
       YAchseSchleife:
@@ -351,9 +351,9 @@ package body KartengeneratorLandschaftLogik is
                null;
                
             elsif
-              LeseWeltkarte.AktuellerGrund (KoordinatenExtern => KartenWert) = KartengrundDatentypen.Eis_Enum
+              LeseWeltkarte.Basisgrund (KoordinatenExtern => KartenWert) = KartengrundDatentypen.Eis_Enum
               or
-                LeseWeltkarte.AktuellerGrund (KoordinatenExtern => KartenWert) = KartengrundDatentypen.Tundra_Enum
+                LeseWeltkarte.Basisgrund (KoordinatenExtern => KartenWert) = KartengrundDatentypen.Tundra_Enum
             then
                return KartengrundDatentypen.Tundra_Enum;
                   
@@ -372,8 +372,8 @@ package body KartengeneratorLandschaftLogik is
    
    function ZusatzberechnungHügel
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum)
-      return KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum
+      GrundExtern : in KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum)
+      return KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum
    is begin
       
       if
@@ -393,8 +393,8 @@ package body KartengeneratorLandschaftLogik is
    
    function ZusatzberechnungGebirge
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum)
-      return KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum
+      GrundExtern : in KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum)
+      return KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum
    is begin
       
       if
@@ -414,8 +414,8 @@ package body KartengeneratorLandschaftLogik is
    
    function ZusatzberechnungFlachland
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum)
-      return KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum
+      GrundExtern : in KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum)
+      return KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum
    is begin
          
       if
@@ -435,16 +435,16 @@ package body KartengeneratorLandschaftLogik is
    
    function ZusatzberechnungWald
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Zusatz_Enum)
-      return KartengrundDatentypen.Kartengrund_Enum
+      GrundExtern : in KartengrundDatentypen.Zusatzgrund_Oberfläche_Enum)
+      return KartengrundDatentypen.Zusatzgrund_Enum
    is begin
       
-      BasisGrund := LeseWeltkarte.BasisGrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse));
+      Basisgrund := LeseWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse));
       
       if
-        BasisGrund = KartengrundDatentypen.Wüste_Enum
+        Basisgrund = KartengrundDatentypen.Wüste_Enum
       then
-         return KartengrundDatentypen.Leer_Grund_Enum;
+         return KartengrundDatentypen.Leer_Zusatzgrund_Enum;
          
       else
          return GrundExtern;
@@ -456,18 +456,18 @@ package body KartengeneratorLandschaftLogik is
    
    function ZusatzberechnungDschungel
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Zusatz_Enum)
-      return KartengrundDatentypen.Kartengrund_Enum
+      GrundExtern : in KartengrundDatentypen.Zusatzgrund_Oberfläche_Enum)
+      return KartengrundDatentypen.Zusatzgrund_Enum
    is begin
       
-      BasisGrund := LeseWeltkarte.BasisGrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse));
+      Basisgrund := LeseWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse));
       
       if
-        BasisGrund = KartengrundDatentypen.Wüste_Enum
+        Basisgrund = KartengrundDatentypen.Wüste_Enum
         or
-          BasisGrund = KartengrundDatentypen.Tundra_Enum
+          Basisgrund = KartengrundDatentypen.Tundra_Enum
       then
-         return KartengrundDatentypen.Leer_Grund_Enum;
+         return KartengrundDatentypen.Leer_Zusatzgrund_Enum;
          
       else
          return GrundExtern;
@@ -479,16 +479,16 @@ package body KartengeneratorLandschaftLogik is
    
    function ZusatzberechnungSumpf
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Zusatz_Enum)
-      return KartengrundDatentypen.Kartengrund_Enum
+      GrundExtern : in KartengrundDatentypen.Zusatzgrund_Oberfläche_Enum)
+      return KartengrundDatentypen.Zusatzgrund_Enum
    is begin
       
-      BasisGrund := LeseWeltkarte.BasisGrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse));
+      Basisgrund := LeseWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse));
       
       if
-        BasisGrund = KartengrundDatentypen.Wüste_Enum
+        Basisgrund = KartengrundDatentypen.Wüste_Enum
       then
-         return KartengrundDatentypen.Leer_Grund_Enum;
+         return KartengrundDatentypen.Leer_Zusatzgrund_Enum;
          
       else
          return GrundExtern;

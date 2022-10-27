@@ -17,21 +17,25 @@ package body KartenAllgemeinesLogik is
       return ProduktionDatentypen.Einzelproduktion
    is begin
       
-      Basisgrund := LeseWeltkarte.BasisGrund (KoordinatenExtern => KoordinatenExtern);
-      Zusatzgrund := LeseWeltkarte.AktuellerGrund (KoordinatenExtern => KoordinatenExtern);
+      Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => KoordinatenExtern);
       
-      if
-        Basisgrund = Zusatzgrund
-      then
-         return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => Basisgrund,
-                                                       RasseExtern         => RasseExtern,
-                                                       WirtschaftArtExtern => KartenKonstanten.WirtschaftNahrung);
-         
-      else
-         return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => Zusatzgrund,
-                                                       RasseExtern         => RasseExtern,
-                                                       WirtschaftArtExtern => KartenKonstanten.WirtschaftNahrung);
-      end if;
+      Basiswirtschaft := LeseKartenDatenbanken.WirtschaftBasisgrund (GrundExtern         => Gesamtgrund.Basisgrund,
+                                                                     RasseExtern         => RasseExtern,
+                                                                     WirtschaftArtExtern => KartenKonstanten.WirtschaftNahrung);
+      
+      case
+        Gesamtgrund.Zusatzgrund
+      is
+         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+            return Basiswirtschaft;
+            
+         when others =>
+            Zusatzwirtschaft := LeseKartenDatenbanken.WirtschaftZusatzgrund (GrundExtern         => Gesamtgrund.Zusatzgrund,
+                                                                             RasseExtern         => RasseExtern,
+                                                                             WirtschaftArtExtern => KartenKonstanten.WirtschaftNahrung);
+            
+            return ProduktionDatentypen.Einzelproduktion (Float (Basiswirtschaft) / 2.00 + Float (Zusatzwirtschaft) / 2.00);
+      end case;
             
    end GrundNahrung;
    
@@ -43,21 +47,25 @@ package body KartenAllgemeinesLogik is
       return ProduktionDatentypen.Einzelproduktion
    is begin
       
-      Basisgrund := LeseWeltkarte.BasisGrund (KoordinatenExtern => KoordinatenExtern);
-      Zusatzgrund := LeseWeltkarte.AktuellerGrund (KoordinatenExtern => KoordinatenExtern);
+      Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => KoordinatenExtern);
       
-      if
-        Basisgrund = Zusatzgrund
-      then
-         return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => Basisgrund,
-                                                       RasseExtern         => RasseExtern,
-                                                       WirtschaftArtExtern => KartenKonstanten.WirtschaftProduktion);
+      Basiswirtschaft := LeseKartenDatenbanken.WirtschaftBasisgrund (GrundExtern         => Gesamtgrund.Basisgrund,
+                                                                     RasseExtern         => RasseExtern,
+                                                                     WirtschaftArtExtern => KartenKonstanten.WirtschaftProduktion);
+      
+      case
+        Gesamtgrund.Zusatzgrund
+      is
+         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+            return Basiswirtschaft;
          
-      else
-         return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => Zusatzgrund,
-                                                       RasseExtern         => RasseExtern,
-                                                       WirtschaftArtExtern => KartenKonstanten.WirtschaftProduktion);
-      end if;
+         when others =>
+            Zusatzwirtschaft := LeseKartenDatenbanken.WirtschaftZusatzgrund (GrundExtern         => Gesamtgrund.Zusatzgrund,
+                                                                             RasseExtern         => RasseExtern,
+                                                                             WirtschaftArtExtern => KartenKonstanten.WirtschaftProduktion);
+            
+            return ProduktionDatentypen.Einzelproduktion (Float (Basiswirtschaft) / 2.00 + Float (Zusatzwirtschaft) / 2.00);
+      end case;
       
    end GrundProduktion;
    
@@ -69,21 +77,25 @@ package body KartenAllgemeinesLogik is
       return ProduktionDatentypen.Einzelproduktion
    is begin
       
-      Basisgrund := LeseWeltkarte.BasisGrund (KoordinatenExtern => KoordinatenExtern);
-      Zusatzgrund := LeseWeltkarte.AktuellerGrund (KoordinatenExtern => KoordinatenExtern);
+      Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => KoordinatenExtern);
       
-      if
-        Basisgrund = Zusatzgrund
-      then
-         return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => Basisgrund,
-                                                       RasseExtern         => RasseExtern,
-                                                       WirtschaftArtExtern => KartenKonstanten.WirtschaftGeld);
+      Basiswirtschaft := LeseKartenDatenbanken.WirtschaftBasisgrund (GrundExtern         => Gesamtgrund.Basisgrund,
+                                                                     RasseExtern         => RasseExtern,
+                                                                     WirtschaftArtExtern => KartenKonstanten.WirtschaftGeld);
+      
+      case
+        Gesamtgrund.Zusatzgrund
+      is
+         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+            return Basiswirtschaft;
          
-      else
-         return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => Zusatzgrund,
-                                                       RasseExtern         => RasseExtern,
-                                                       WirtschaftArtExtern => KartenKonstanten.WirtschaftGeld);
-      end if;
+         when others =>
+            Zusatzwirtschaft := LeseKartenDatenbanken.WirtschaftZusatzgrund (GrundExtern         => Gesamtgrund.Zusatzgrund,
+                                                                             RasseExtern         => RasseExtern,
+                                                                             WirtschaftArtExtern => KartenKonstanten.WirtschaftGeld);
+            
+            return ProduktionDatentypen.Einzelproduktion (Float (Basiswirtschaft) / 2.00 + Float (Zusatzwirtschaft) / 2.00);
+      end case;
       
    end GrundGeld;
    
@@ -95,21 +107,25 @@ package body KartenAllgemeinesLogik is
       return ProduktionDatentypen.Einzelproduktion
    is begin
       
-      Basisgrund := LeseWeltkarte.BasisGrund (KoordinatenExtern => KoordinatenExtern);
-      Zusatzgrund := LeseWeltkarte.AktuellerGrund (KoordinatenExtern => KoordinatenExtern);
+      Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => KoordinatenExtern);
       
-      if
-        Basisgrund = Zusatzgrund
-      then
-         return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => Basisgrund,
-                                                       RasseExtern         => RasseExtern,
-                                                       WirtschaftArtExtern => KartenKonstanten.WirtschaftForschung);
+      Basiswirtschaft := LeseKartenDatenbanken.WirtschaftBasisgrund (GrundExtern         => Gesamtgrund.Basisgrund,
+                                                                     RasseExtern         => RasseExtern,
+                                                                     WirtschaftArtExtern => KartenKonstanten.WirtschaftForschung);
+      
+      case
+        Gesamtgrund.Zusatzgrund
+      is
+         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+            return Basiswirtschaft;
          
-      else
-         return LeseKartenDatenbanken.WirtschaftGrund (GrundExtern         => Zusatzgrund,
-                                                       RasseExtern         => RasseExtern,
-                                                       WirtschaftArtExtern => KartenKonstanten.WirtschaftForschung);
-      end if;
+         when others =>
+            Zusatzwirtschaft := LeseKartenDatenbanken.WirtschaftZusatzgrund (GrundExtern         => Gesamtgrund.Zusatzgrund,
+                                                                             RasseExtern         => RasseExtern,
+                                                                             WirtschaftArtExtern => KartenKonstanten.WirtschaftForschung);
+            
+            return ProduktionDatentypen.Einzelproduktion (Float (Basiswirtschaft) / 2.00 + Float (Zusatzwirtschaft) / 2.00);
+      end case;
       
    end GrundWissen;
    
@@ -121,21 +137,25 @@ package body KartenAllgemeinesLogik is
       return KampfDatentypen.Kampfwerte
    is begin
       
-      Basisgrund := LeseWeltkarte.BasisGrund (KoordinatenExtern => KoordinatenExtern);
-      Zusatzgrund := LeseWeltkarte.AktuellerGrund (KoordinatenExtern => KoordinatenExtern);
+      Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => KoordinatenExtern);
       
-      if
-        Basisgrund = Zusatzgrund
-      then
-         return LeseKartenDatenbanken.KampfGrund (GrundExtern    => Basisgrund,
-                                                  RasseExtern    => RasseExtern,
-                                                  KampfArtExtern => KartenKonstanten.KampfVerteidigung);
+      Basiskampf := LeseKartenDatenbanken.KampfBasisgrund (GrundExtern    => Gesamtgrund.Basisgrund,
+                                                           RasseExtern    => RasseExtern,
+                                                           KampfArtExtern => KartenKonstanten.KampfVerteidigung);
+      
+      case
+        Gesamtgrund.Zusatzgrund
+      is
+         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+            return Basiskampf;
          
-      else
-         return LeseKartenDatenbanken.KampfGrund (GrundExtern    => Zusatzgrund,
-                                                  RasseExtern    => RasseExtern,
-                                                  KampfArtExtern => KartenKonstanten.KampfVerteidigung);
-      end if;
+         when others =>
+            Zusatzkampf := LeseKartenDatenbanken.KampfZusatzgrund (GrundExtern    => Gesamtgrund.Zusatzgrund,
+                                                                   RasseExtern    => RasseExtern,
+                                                                   KampfArtExtern => KartenKonstanten.KampfVerteidigung);
+            
+            return KampfDatentypen.Kampfwerte (Float (Basiskampf) / 2.00 + Float (Zusatzkampf) / 2.00);
+      end case;
       
    end GrundVerteidigung;
    
@@ -147,49 +167,27 @@ package body KartenAllgemeinesLogik is
       return KampfDatentypen.Kampfwerte
    is begin
       
-      Basisgrund := LeseWeltkarte.BasisGrund (KoordinatenExtern => KoordinatenExtern);
-      Zusatzgrund := LeseWeltkarte.AktuellerGrund (KoordinatenExtern => KoordinatenExtern);
+      Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => KoordinatenExtern);
       
-      if
-        Basisgrund = Zusatzgrund
-      then
-         return LeseKartenDatenbanken.KampfGrund (GrundExtern    => Basisgrund,
-                                                  RasseExtern    => RasseExtern,
-                                                  KampfArtExtern => KartenKonstanten.KampfAngriff);
+      Basiskampf := LeseKartenDatenbanken.KampfBasisgrund (GrundExtern    => Gesamtgrund.Basisgrund,
+                                                           RasseExtern    => RasseExtern,
+                                                           KampfArtExtern => KartenKonstanten.KampfAngriff);
+      
+      case
+        Gesamtgrund.Zusatzgrund
+      is
+         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+            return Basiskampf;
          
-      else
-         return LeseKartenDatenbanken.KampfGrund (GrundExtern    => Zusatzgrund,
-                                                  RasseExtern    => RasseExtern,
-                                                  KampfArtExtern => KartenKonstanten.KampfAngriff);
-      end if;
+         when others =>
+            Zusatzkampf := LeseKartenDatenbanken.KampfZusatzgrund (GrundExtern    => Gesamtgrund.Zusatzgrund,
+                                                                   RasseExtern    => RasseExtern,
+                                                                   KampfArtExtern => KartenKonstanten.KampfAngriff);
+            
+            return KampfDatentypen.Kampfwerte (Float (Basiskampf) / 2.00 + Float (Zusatzkampf) / 2.00);
+      end case;
       
    end GrundAngriff;
-   
-   
-   
-   -- Das hier muss auch nochmal überarbeitet werden. äöü
-   -- Vermutlich das meiste hier? äöü
-   function GrundBewertung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return BewertungDatentypen.Bewertung_Enum
-   is begin
-      
-      Basisgrund := LeseWeltkarte.BasisGrund (KoordinatenExtern => KoordinatenExtern);
-      Zusatzgrund := LeseWeltkarte.AktuellerGrund (KoordinatenExtern => KoordinatenExtern);
-      
-      if
-        Basisgrund = Zusatzgrund
-      then
-         return LeseKartenDatenbanken.BewertungGrund (GrundExtern => Basisgrund,
-                                                      RasseExtern => RasseExtern);
-         
-      else
-         return LeseKartenDatenbanken.BewertungGrund (GrundExtern => Zusatzgrund,
-                                                      RasseExtern => RasseExtern);
-      end if;
-      
-   end GrundBewertung;
    
    
    
@@ -822,13 +820,9 @@ package body KartenAllgemeinesLogik is
       return Boolean
    is begin
       
-      -- Was mach ich denn dann hier? äöü
-      -- Den aktuellen Grund zurückgeben und entsprechend auf dessen Basis zusätzliche Passierbarkeitseinschränkungen einbauen? äöü
-      -- Ist das im aktuellen System überhaupt möglich? Müsste da dann noch eine Unterscheidung zwischen Einheitentypen geben, z. B. Panzer, Infanterie, usw.. äöü
-      
-      return LeseKartenDatenbanken.Passierbarkeit (GrundExtern          => LeseWeltkarte.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
-                                                   WelcheUmgebungExtern => PassierbarkeitExtern);
-      
+      return LeseKartenDatenbanken.PassierbarkeitBasisgrund (GrundExtern          => LeseWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern),
+                                                             WelcheUmgebungExtern => PassierbarkeitExtern);
+            
    end PassierbarGrund;
    
    

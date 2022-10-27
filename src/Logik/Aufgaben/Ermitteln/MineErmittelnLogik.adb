@@ -22,38 +22,36 @@ package body MineErmittelnLogik is
       return Boolean
    is begin
       
-      VorhandenerGrund := LeseWeltkarte.VorhandenerGrund (KoordinatenExtern => KoordinatenExtern);
-      
-      -- Nur auf Basisgrund prüfen? Müsste hierbei ausreichen. äöü
-      if
-        ArbeitszeitMineLogik.Arbeitszeit (EinheitRasseNummerExtern.Rasse, VorhandenerGrund.BasisGrund) = EinheitenKonstanten.UnmöglicheArbeit
-        or
-          ArbeitszeitMineLogik.Arbeitszeit (EinheitRasseNummerExtern.Rasse, VorhandenerGrund.AktuellerGrund) = EinheitenKonstanten.UnmöglicheArbeit
-      then
-         return False;
-         
-      else
-         null;
-      end if;
+      Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => KoordinatenExtern);
       
       case
-        VorhandenerGrund.AktuellerGrund
+        ArbeitszeitMineLogik.Basiszeit (EinheitRasseNummerExtern.Rasse, Gesamtgrund.Basisgrund)
       is
-         when KartengrundDatentypen.Kartengrund_Oberfläche_Land_Enum'Range =>
+         when EinheitenKonstanten.UnmöglicheArbeit =>
+            return False;
+         
+         when others =>
+            null;
+      end case;
+      
+      case
+        Gesamtgrund.Basisgrund
+      is
+         when KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum'Range =>
             Arbeitswerte := OberflächeLand (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                             GrundExtern              => VorhandenerGrund,
+                                             GrundExtern              => Gesamtgrund,
                                              AnlegenTestenExtern      => AnlegenTestenExtern,
                                              KoordinatenExtern        => KoordinatenExtern);
             
-         when KartengrundDatentypen.Kartengrund_Unterfläche_Wasser_Enum'Range =>
+         when KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range =>
             Arbeitswerte := UnterflächeWasser (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                GrundExtern              => VorhandenerGrund,
+                                                GrundExtern              => Gesamtgrund,
                                                 AnlegenTestenExtern      => AnlegenTestenExtern,
                                                 KoordinatenExtern        => KoordinatenExtern);
             
-         when KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum'Range =>
+         when KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum'Range =>
             Arbeitswerte := UnterflächeLand (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                              GrundExtern              => VorhandenerGrund);
+                                              GrundExtern              => Gesamtgrund);
             
          when others =>
             return False;
@@ -112,10 +110,10 @@ package body MineErmittelnLogik is
    is begin
       
       Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitMineLogik.Arbeitszeit (EinheitRasseNummerExtern.Rasse, GrundExtern.BasisGrund));
+                                                  ÄnderungExtern      => ArbeitszeitMineLogik.Basiszeit (EinheitRasseNummerExtern.Rasse, GrundExtern.Basisgrund));
       
       if
-        GrundExtern.BasisGrund = GrundExtern.AktuellerGrund
+        GrundExtern.Zusatzgrund = KartengrundDatentypen.Leer_Zusatzgrund_Enum
       then
          VorarbeitNötig := False;
          
@@ -125,7 +123,7 @@ package body MineErmittelnLogik is
                                                    KoordinatenExtern        => KoordinatenExtern)
       then
          Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                     ÄnderungExtern      => ArbeitszeitMineLogik.Arbeitszeit (EinheitRasseNummerExtern.Rasse, GrundExtern.AktuellerGrund));
+                                                     ÄnderungExtern      => ArbeitszeitMineLogik.Zusatzzeit (EinheitRasseNummerExtern.Rasse, GrundExtern.Zusatzgrund));
          VorarbeitNötig := True;
          
       else
@@ -149,16 +147,16 @@ package body MineErmittelnLogik is
    is begin
       
       Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitMineLogik.Arbeitszeit (EinheitRasseNummerExtern.Rasse, GrundExtern.BasisGrund));
+                                                  ÄnderungExtern      => ArbeitszeitMineLogik.Basiszeit (EinheitRasseNummerExtern.Rasse, GrundExtern.Basisgrund));
       
       if
-        GrundExtern.BasisGrund = GrundExtern.AktuellerGrund
+        GrundExtern.Zusatzgrund = KartengrundDatentypen.Leer_Zusatzgrund_Enum
       then
          VorarbeitNötig := False;
          
       else
          Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                     ÄnderungExtern      => ArbeitszeitMineLogik.Arbeitszeit (EinheitRasseNummerExtern.Rasse, GrundExtern.AktuellerGrund));
+                                                     ÄnderungExtern      => ArbeitszeitMineLogik.Zusatzzeit (EinheitRasseNummerExtern.Rasse, GrundExtern.Zusatzgrund));
          VorarbeitNötig := False;
       end if;
       
@@ -181,10 +179,10 @@ package body MineErmittelnLogik is
    is begin
       
       Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitMineLogik.Arbeitszeit (EinheitRasseNummerExtern.Rasse, GrundExtern.BasisGrund));
+                                                  ÄnderungExtern      => ArbeitszeitMineLogik.Basiszeit (EinheitRasseNummerExtern.Rasse, GrundExtern.Basisgrund));
       
       if
-        GrundExtern.BasisGrund = GrundExtern.AktuellerGrund
+        GrundExtern.Zusatzgrund = KartengrundDatentypen.Leer_Zusatzgrund_Enum
       then
          VorarbeitNötig := False;
          
@@ -194,7 +192,7 @@ package body MineErmittelnLogik is
                                                    KoordinatenExtern        => KoordinatenExtern)
       then
          Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                     ÄnderungExtern      => ArbeitszeitMineLogik.Arbeitszeit (EinheitRasseNummerExtern.Rasse, GrundExtern.AktuellerGrund));
+                                                     ÄnderungExtern      => ArbeitszeitMineLogik.Zusatzzeit (EinheitRasseNummerExtern.Rasse, GrundExtern.Zusatzgrund));
          VorarbeitNötig := True;
          
       else

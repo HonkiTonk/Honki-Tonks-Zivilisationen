@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with EinheitenDatentypen; use EinheitenDatentypen;
-with KartengrundDatentypen;
+with KartengrundDatentypen; use KartengrundDatentypen;
 with KartenverbesserungDatentypen;
 with EinheitenKonstanten;
 
@@ -21,34 +21,43 @@ package body BewegungspunkteBerechnenLogik is
       Bewegungsbonus := Bewegungsmodifikator (StraßeUndFlussPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                       NeueKoordinatenExtern    => NeueKoordinatenExtern));
       
-      case
-        LeseWeltkarte.AktuellerGrund (KoordinatenExtern => NeueKoordinatenExtern)
-      is
-         when KartengrundDatentypen.Eis_Enum | KartengrundDatentypen.Gebirge_Enum | KartengrundDatentypen.Dschungel_Enum | KartengrundDatentypen.Sumpf_Enum =>
-            if
-              LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) < KleinerAbzug - Bewegungsbonus
-            then
-               return EinheitenKonstanten.EinheitUnbewegbar;
+      Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => NeueKoordinatenExtern);
       
-            elsif
-              MittlererAbzug - Bewegungsbonus <= KeinAbzug
-            then
-               return KeinAbzug;
+      if
+        Gesamtgrund.Basisgrund = KartengrundDatentypen.Eis_Enum
+        or
+          Gesamtgrund.Basisgrund = KartengrundDatentypen.Untereis_Enum
+          or
+            Gesamtgrund.Basisgrund = KartengrundDatentypen.Gebirge_Enum
+            or
+              Gesamtgrund.Zusatzgrund = KartengrundDatentypen.Dschungel_Enum
+              or
+                Gesamtgrund.Zusatzgrund = KartengrundDatentypen.Sumpf_Enum
+      then
+         if
+           LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) < KleinerAbzug - Bewegungsbonus
+         then
+            return EinheitenKonstanten.EinheitUnbewegbar;
+      
+         elsif
+           MittlererAbzug - Bewegungsbonus <= KeinAbzug
+         then
+            return KeinAbzug;
                
-            else
-               return MittlererAbzug - Bewegungsbonus;
-            end if;
+         else
+            return MittlererAbzug - Bewegungsbonus;
+         end if;
             
-         when others =>
-            if
-              KleinerAbzug - Bewegungsbonus <= KeinAbzug
-            then
-               return KeinAbzug;
+      else
+         if
+           KleinerAbzug - Bewegungsbonus <= KeinAbzug
+         then
+            return KeinAbzug;
             
-            else
-               return KleinerAbzug - Bewegungsbonus;
-            end if;
-      end case;
+         else
+            return KleinerAbzug - Bewegungsbonus;
+         end if;
+      end if;
       
    end AbzugDurchBewegung;
 

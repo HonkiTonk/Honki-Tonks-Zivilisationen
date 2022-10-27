@@ -7,7 +7,7 @@ with Rassentexte;
 
 package body GebaeudebeschreibungenGrafik is
 
-   function BeschreibungKurz
+   function Kurzbeschreibung
      (IDExtern : in StadtDatentypen.GebäudeID;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Wide_Wide_String
@@ -15,11 +15,11 @@ package body GebaeudebeschreibungenGrafik is
       
       return To_Wide_Wide_String (Source => Rassentexte.Gebäude (RasseExtern, IDExtern, 1));
       
-   end BeschreibungKurz;
+   end Kurzbeschreibung;
    
    
    
-   function BeschreibungLang
+   function Langbeschreibung
      (IDExtern : in StadtDatentypen.GebäudeID;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Wide_Wide_String
@@ -27,6 +27,6 @@ package body GebaeudebeschreibungenGrafik is
       
       return To_Wide_Wide_String (Source => Rassentexte.Gebäude (RasseExtern, IDExtern, 2));
       
-   end BeschreibungLang;
+   end Langbeschreibung;
 
 end GebaeudebeschreibungenGrafik;

@@ -1,25 +1,17 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Sf.Graphics.Text;
-with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Texture;
 
 with EinheitenDatentypen; use EinheitenDatentypen;
 with Views;
-with GrafikDatentypen;
 with InteraktionAuswahl;
-with TextaccessVariablen;
 with EinheitenKonstanten;
 
 with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;
 
 with ViewsEinstellenGrafik;
-with HintergrundGrafik;
-with TextberechnungenHoeheGrafik;
-with EinstellungenGrafik;
-with TextberechnungenBreiteGrafik;
 with KartenspritesZeichnenGrafik;
 with TexturenSetzenSkalierenGrafik;
 with EingeleseneTexturenGrafik;
@@ -61,86 +53,10 @@ package body WeltkartenbefehleGrafik is
                                             GrößeExtern          => EinheitenViewfläche,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Einheitenbefehlsbereich (WelcherViewbereich));
       
-      case
-        EinstellungenGrafik.Grafikeinstellungen.TexturenVerwenden
-      is
-         when False =>
-            EinheitenViewfläche := Einheitenbefehlstexte (EinheitenArtExtern => Einheitart);
-            
-         when True =>
-            EinheitenViewfläche := Einheitenbefehlsknöpfe (EinheitenArtExtern => Einheitart,
-                                                             WelcheTexturExtern => WelcherKnopf);
-      end case;
+      EinheitenViewfläche := Einheitenbefehlsknöpfe (EinheitenArtExtern => Einheitart,
+                                                       WelcheTexturExtern => WelcherKnopf);
       
    end Einheitenbefehle;
-   
-   
-   
-   function Einheitenbefehlstexte
-     (EinheitenArtExtern : in EinheitenDatentypen.Einheitart_Vorhanden_Enum)
-      return Sf.System.Vector2.sfVector2f
-   is begin
-      
-      -- Für die Anzeige noch einen eigenen Hintergrund einbauen? äöü
-      HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Seitenleiste_Hintergrund_Enum,
-                                     AbmessungenExtern => EinheitenViewfläche);
-      
-      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
-      Textbreite := 0.00;
-      AktuellerBefehl := AnfangEinheitenbefehle;
-      
-      PositionenSchleife:
-      for PositionSchleifenwert in InteraktionAuswahl.PositionenEinheitenbefehleArray'Range loop
-         
-         if
-           EinheitenArtExtern /= EinheitenDatentypen.Arbeiter_Enum
-           and
-             PositionSchleifenwert in BefehleDatentypen.Siedler_Aufgaben_Enum'Range
-         then
-            InteraktionAuswahl.PositionenEinheitenbefehle (PositionSchleifenwert) := GrafikRecordKonstanten.Leerbereich;
-            
-         elsif
-           EinheitenArtExtern not in Einheitenart_Kampf_Enum'Range
-           and
-             PositionSchleifenwert in BefehleDatentypen.Kampf_Aufgaben_Enum'Range
-         then
-            InteraktionAuswahl.PositionenEinheitenbefehle (PositionSchleifenwert) := GrafikRecordKonstanten.Leerbereich;
-         
-            -- elsif
-            --   EinheitenArtExtern = EinheitenDatentypen.PZB_Enum'Range
-            -- then
-            -- Noch einen roten Knopf für die Textvariante einbauen. äöü
-            
-         else
-            Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.SteuerungAccess (AktuellerBefehl),
-                                                                                    ViewbreiteExtern => EinheitenViewfläche.x);
-            
-            Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.SteuerungAccess (AktuellerBefehl),
-                                          position => Textposition);
-         
-            Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.SteuerungAccess (AktuellerBefehl),
-                                                                                TextbreiteExtern => Textbreite);
-                  
-            Textbox := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SteuerungAccess (AktuellerBefehl));
-            Textbox.left := 0.00;
-            Textbox.width := EinheitenViewfläche.x;
-            InteraktionAuswahl.PositionenEinheitenbefehle (PositionSchleifenwert) := Textbox;
-         
-            Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                            TextAccessExtern => TextaccessVariablen.SteuerungAccess (AktuellerBefehl),
-                                                                            ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
-         
-            Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                               text         => TextaccessVariablen.SteuerungAccess (AktuellerBefehl));
-         end if;
-         
-         AktuellerBefehl := AktuellerBefehl + 1;
-         
-      end loop PositionenSchleife;
-
-      return (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
-      
-   end Einheitenbefehlstexte;
    
    
    
@@ -234,64 +150,9 @@ package body WeltkartenbefehleGrafik is
                                             GrößeExtern          => KartenbefehleViewfläche,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Kartenbefehlsbereich (WelcherViewbereich));
       
-      case
-        EinstellungenGrafik.Grafikeinstellungen.TexturenVerwenden
-      is
-         when False =>
-            KartenbefehleViewfläche := Kartenbefehlstexte;
-            
-         when True =>
-            KartenbefehleViewfläche := Kartenbefehlsknöpfe;
-      end case;
+      KartenbefehleViewfläche := Kartenbefehlsknöpfe;
       
    end Kartenbefehle;
-   
-   
-   
-   function Kartenbefehlstexte
-     return Sf.System.Vector2.sfVector2f
-   is begin
-            
-      -- Für die Anzeige noch einen eigenen Hintergrund einbauen? äöü
-      HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Seitenleiste_Hintergrund_Enum,
-                                     AbmessungenExtern => KartenbefehleViewfläche);
-      
-      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
-      Textbreite := 0.00;
-      AktuellerBefehl := AnfangKartenbefehle;
-      
-      PositionenSchleife:
-      for PositionSchleifenwert in InteraktionAuswahl.PositionenKartenbefehleArray'Range loop
-         
-         Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.SteuerungAccess (AktuellerBefehl),
-                                                                                 ViewbreiteExtern => KartenbefehleViewfläche.x);
-         
-         Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.SteuerungAccess (AktuellerBefehl),
-                                       position => Textposition);
-         
-         Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.SteuerungAccess (AktuellerBefehl),
-                                                                             TextbreiteExtern => Textbreite);
-         
-         Textbox := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SteuerungAccess (AktuellerBefehl));
-         Textbox.left := 0.00;
-         Textbox.width := KartenbefehleViewfläche.x;
-         InteraktionAuswahl.PositionenKartenbefehle (PositionSchleifenwert) := Textbox;
-         
-         Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                         TextAccessExtern => TextaccessVariablen.SteuerungAccess (AktuellerBefehl),
-                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
-         
-         Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                            text         => TextaccessVariablen.SteuerungAccess (AktuellerBefehl));
-         
-         
-         AktuellerBefehl := AktuellerBefehl + 1;
-         
-      end loop PositionenSchleife;
-
-      return (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
-      
-   end Kartenbefehlstexte;
    
    
    

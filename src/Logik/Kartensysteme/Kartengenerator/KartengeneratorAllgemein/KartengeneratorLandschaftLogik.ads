@@ -15,15 +15,17 @@ package KartengeneratorLandschaftLogik is
 private
    
    Kartenzeitwert : KartenDatentypen.KartenfeldNatural;
+      
+   Basisgrund : KartengrundDatentypen.Basisgrund_Enum;
+   Zusatzgrund : KartengrundDatentypen.Zusatzgrund_Enum;
    
-   WelcherGrund : KartengrundDatentypen.Kartengrund_Enum;
-   BasisGrund : KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum;
+  -- BasisWahrscheinlichkeitAktuell : KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum;
    
-   BasisWahrscheinlichkeitAktuell : KartengrundDatentypen.Kartengrund_Oberfläche_Enum;
+   Gesamtgrund : KartenRecords.KartengrundRecord;
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    
-   type BasisWahrscheinlichkeitenArray is array (KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum'Range) of SystemDatentypen.NullBisHundert;
+   type BasisWahrscheinlichkeitenArray is array (KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum'Range) of SystemDatentypen.NullBisHundert;
    BasisWahrscheinlichkeiten : BasisWahrscheinlichkeitenArray := (
                                                                   KartengrundDatentypen.Flachland_Enum => 50,
                                                                   KartengrundDatentypen.Wüste_Enum     => 15,
@@ -39,7 +41,7 @@ private
    
    
    
-   type ZusatzWahrscheinlichkeitenArray is array (KartengrundDatentypen.Kartengrund_Oberfläche_Zusatz_Enum'Range) of SystemDatentypen.NullBisHundert;
+   type ZusatzWahrscheinlichkeitenArray is array (KartengrundDatentypen.Zusatzgrund_Oberfläche_Enum'Range) of SystemDatentypen.NullBisHundert;
    ZusatzWahrscheinlichkeiten : ZusatzWahrscheinlichkeitenArray := (
                                                                     KartengrundDatentypen.Wald_Enum      => 40,
                                                                     KartengrundDatentypen.Dschungel_Enum => 30,
@@ -73,8 +75,8 @@ private
    
    function BasisExtraberechnungen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum)
-      return KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum
+      GrundExtern : in KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum)
+      return KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum
      with
        Pre => (
                  KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
@@ -84,8 +86,8 @@ private
       
    function ZusatzExtraberechnungen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Zusatz_Enum)
-      return KartengrundDatentypen.Kartengrund_Enum
+      GrundExtern : in KartengrundDatentypen.Zusatzgrund_Oberfläche_Enum)
+      return KartengrundDatentypen.Zusatzgrund_Enum
      with
        Pre => (
                  KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
@@ -95,8 +97,8 @@ private
    
    function ZusatzberechnungTundra
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum)
-      return KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum
+      GrundExtern : in KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum)
+      return KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum
      with
        Pre => (
                  KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
@@ -106,8 +108,8 @@ private
    
    function ZusatzberechnungWüste
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum)
-      return KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum
+      GrundExtern : in KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum)
+      return KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum
      with
        Pre => (
                  KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
@@ -117,8 +119,8 @@ private
    
    function ZusatzberechnungHügel
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum)
-      return KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum
+      GrundExtern : in KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum)
+      return KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum
      with
        Pre => (
                  KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
@@ -128,8 +130,8 @@ private
    
    function ZusatzberechnungGebirge
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum)
-      return KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum
+      GrundExtern : in KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum)
+      return KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
@@ -139,8 +141,8 @@ private
    
    function ZusatzberechnungFlachland
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum)
-      return KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum
+      GrundExtern : in KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum)
+      return KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum
      with
        Pre => (
                  KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
@@ -150,8 +152,8 @@ private
    
    function ZusatzberechnungWald
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Zusatz_Enum)
-      return KartengrundDatentypen.Kartengrund_Enum
+      GrundExtern : in KartengrundDatentypen.Zusatzgrund_Oberfläche_Enum)
+      return KartengrundDatentypen.Zusatzgrund_Enum
      with
        Pre => (
                  KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
@@ -161,8 +163,8 @@ private
    
    function ZusatzberechnungDschungel
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Zusatz_Enum)
-      return KartengrundDatentypen.Kartengrund_Enum
+      GrundExtern : in KartengrundDatentypen.Zusatzgrund_Oberfläche_Enum)
+      return KartengrundDatentypen.Zusatzgrund_Enum
      with
        Pre => (
                  KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
@@ -172,8 +174,8 @@ private
    
    function ZusatzberechnungSumpf
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Zusatz_Enum)
-      return KartengrundDatentypen.Kartengrund_Enum
+      GrundExtern : in KartengrundDatentypen.Zusatzgrund_Oberfläche_Enum)
+      return KartengrundDatentypen.Zusatzgrund_Enum
      with
        Pre => (
                  KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse

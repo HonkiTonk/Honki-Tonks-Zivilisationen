@@ -20,11 +20,6 @@ package body HintergrundGrafik is
    is begin
       
       if
-        EinstellungenGrafik.Grafikeinstellungen.TexturenVerwenden = False
-      then
-         null;
-         
-      elsif
         EingeleseneTexturenGrafik.HintergrundAccess (HintergrundExtern) = null
       then
          Warnung.GrafikWarnung (WarnmeldungExtern => "HintergrundGrafik.Hintergrund: Hintergrund fehlt: " & HintergrundExtern'Wide_Wide_Image);
@@ -56,9 +51,9 @@ package body HintergrundGrafik is
          return;
       end if;
       
-      ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern        => AbmessungenExtern,
-                                              PositionExtern         => (0.00, 0.00),
-                                              FarbeExtern            => Sf.Graphics.Color.sfBlack);
+      ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => AbmessungenExtern,
+                                              PositionExtern  => (0.00, 0.00),
+                                              FarbeExtern     => Sf.Graphics.Color.sfBlack);
       
    end Hintergrund;
    
@@ -71,11 +66,6 @@ package body HintergrundGrafik is
    is begin
       
       if
-        EinstellungenGrafik.Grafikeinstellungen.TexturenVerwenden = False
-      then
-         null;
-         
-      elsif
         EingeleseneTexturenGrafik.RassenhintergrundAccess (RasseExtern, HintergrundExtern) = null
       then
          Warnung.GrafikWarnung (WarnmeldungExtern => "HintergrundGrafik.Rassenhintergrund: Hintergrund fehlt: " & RasseExtern'Wide_Wide_Image & " - " & HintergrundExtern'Wide_Wide_Image);
@@ -107,9 +97,9 @@ package body HintergrundGrafik is
          return;
       end if;
       
-      ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern        => AbmessungenExtern,
-                                              PositionExtern         => (0.00, 0.00),
-                                              FarbeExtern            => Sf.Graphics.Color.sfBlack);
+      ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => AbmessungenExtern,
+                                              PositionExtern  => (0.00, 0.00),
+                                              FarbeExtern     => Sf.Graphics.Color.sfBlack);
       
    end Rassenhintergrund;
 

@@ -114,20 +114,37 @@ package body EinlesenDatenbankenLogik is
    is begin
       
       case
-        Exists (Name => VerzeichnisKonstanten.KartenGrundDatenbank)
+        Exists (Name => VerzeichnisKonstanten.BasisgrundDatenbank)
       is
          when True =>
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.KartenGrundDatenbank);
+                  Name => VerzeichnisKonstanten.BasisgrundDatenbank);
       
-            KartenDatenbank.KartengrundlisteArray'Read (Stream (File => DatenbankEinlesen),
-                                                        KartenDatenbank.Kartengrundliste);
+            KartenDatenbank.BasisgrundlisteArray'Read (Stream (File => DatenbankEinlesen),
+                                                       KartenDatenbank.Basisgrundliste);
       
             Close (File => DatenbankEinlesen);
 
          when False =>
-            KartenDatenbank.StandardKartengrundDatenbankLaden;
+            KartenDatenbank.StandardBasisgrundDatenbankLaden;
+      end case;
+      
+      case
+        Exists (Name => VerzeichnisKonstanten.ZusatzgrundDatenbank)
+      is
+         when True =>
+            Open (File => DatenbankEinlesen,
+                  Mode => In_File,
+                  Name => VerzeichnisKonstanten.ZusatzgrundDatenbank);
+      
+            KartenDatenbank.ZusatzgrundlisteArray'Read (Stream (File => DatenbankEinlesen),
+                                                        KartenDatenbank.Zusatzgrundliste);
+      
+            Close (File => DatenbankEinlesen);
+
+         when False =>
+            KartenDatenbank.StandardZusatzgrundDatenbankLaden;
       end case;
       
       case

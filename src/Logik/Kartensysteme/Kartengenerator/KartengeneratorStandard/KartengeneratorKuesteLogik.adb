@@ -24,7 +24,7 @@ package body KartengeneratorKuesteLogik is
          for XAchseSchleifenwert in Weltkarte.KarteArray'First (3) .. Weltkarte.Karteneinstellungen.Kartengröße.XAchse loop
                               
             case
-              LeseWeltkarte.AktuellerGrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseSchleifenwert, XAchseSchleifenwert))
+              LeseWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseSchleifenwert, XAchseSchleifenwert))
             is
                when KartengrundDatentypen.Wasser_Enum =>
                   GewässerFestlegen (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseSchleifenwert, XAchseSchleifenwert));
@@ -71,11 +71,11 @@ package body KartengeneratorKuesteLogik is
                
             else
                case
-                 LeseWeltkarte.AktuellerGrund (KoordinatenExtern => KartenWert)
+                 LeseWeltkarte.Basisgrund (KoordinatenExtern => KartenWert)
                is
                   when KartengrundDatentypen.Flachland_Enum |  KartengrundDatentypen.Eis_Enum =>
-                     SchreibeWeltkarte.GleicherGrund (KoordinatenExtern => KoordinatenExtern,
-                                                      GrundExtern       => KartengrundDatentypen.Küstengewässer_Enum);
+                     SchreibeWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern,
+                                                   GrundExtern       => KartengrundDatentypen.Küstengewässer_Enum);
                      return;
                      
                   when others =>

@@ -54,22 +54,22 @@ package body KartengeneratorStandardLogik is
    is begin
       
       case
-        LeseWeltkarte.BasisGrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseExtern, XAchseExtern))
+        LeseWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseExtern, XAchseExtern))
       is
-         when KartengrundDatentypen.Leer_Grund_Enum =>
+         when KartengrundDatentypen.Leer_Basisgrund_Enum =>
             BeliebigerLandwert := ZufallsgeneratorenKartenLogik.KartengeneratorZufallswerte;
             
             if
               BeliebigerLandwert < WahrscheinlichkeitLandmasse.Anfangswert
             then
-               SchreibeWeltkarte.GleicherGrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseExtern, XAchseExtern),
-                                                GrundExtern       => KartengrundDatentypen.Wasser_Enum);
+               SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseExtern, XAchseExtern),
+                                             GrundExtern       => KartengrundDatentypen.Wasser_Enum);
          
             elsif
               BeliebigerLandwert > WahrscheinlichkeitLandmasse.Endwert
             then
-               SchreibeWeltkarte.GleicherGrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseExtern, XAchseExtern),
-                                                GrundExtern       => KartengrundDatentypen.Flachland_Enum);
+               SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseExtern, XAchseExtern),
+                                             GrundExtern       => KartengrundDatentypen.Flachland_Enum);
                
             else
                LandmasseAbstandGenerieren (YAchseExtern => YAchseExtern,
@@ -81,9 +81,9 @@ package body KartengeneratorStandardLogik is
       end case;
       
       case
-        LeseWeltkarte.BasisGrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseExtern, XAchseExtern))
+        LeseWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseExtern, XAchseExtern))
       is
-         when KartengrundDatentypen.Leer_Grund_Enum =>
+         when KartengrundDatentypen.Leer_Basisgrund_Enum =>
             GrundSchreiben (YAchseExtern       => YAchseExtern,
                             XAchseExtern       => XAchseExtern,
                             MasseAbstandExtern => True);
@@ -313,13 +313,13 @@ package body KartengeneratorStandardLogik is
       is
          when True =>
             if
-              LeseWeltkarte.BasisGrund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern)) = KartengrundDatentypen.Wasser_Enum
+              LeseWeltkarte.Basisgrund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern)) = KartengrundDatentypen.Wasser_Enum
             then
                if
                  BeliebigerLandwert in WahrscheinlichkeitLandInLandmasse.Anfangswert .. 3 * ( WahrscheinlichkeitLandInLandmasse.Endwert / 4)
                then
-                  SchreibeWeltkarte.GleicherGrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseExtern, XAchseExtern),
-                                                   GrundExtern       => KartengrundDatentypen.Flachland_Enum);
+                  SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseExtern, XAchseExtern),
+                                                GrundExtern       => KartengrundDatentypen.Flachland_Enum);
                   
                else
                   null;
@@ -328,29 +328,29 @@ package body KartengeneratorStandardLogik is
             elsif
               BeliebigerLandwert in WahrscheinlichkeitLandInLandmasse.Anfangswert .. WahrscheinlichkeitLandInLandmasse.Endwert
             then
-               SchreibeWeltkarte.GleicherGrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseExtern, XAchseExtern),
-                                                GrundExtern       => KartengrundDatentypen.Flachland_Enum);
+               SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseExtern, XAchseExtern),
+                                             GrundExtern       => KartengrundDatentypen.Flachland_Enum);
                
             else
-               SchreibeWeltkarte.GleicherGrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseExtern, XAchseExtern),
-                                                GrundExtern       => KartengrundDatentypen.Wasser_Enum);
+               SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseExtern, XAchseExtern),
+                                             GrundExtern       => KartengrundDatentypen.Wasser_Enum);
             end if;
             
          when False =>
             if
-              LeseWeltkarte.BasisGrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseExtern, XAchseExtern)) /= KartengrundDatentypen.Leer_Grund_Enum
+              LeseWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseExtern, XAchseExtern)) /= KartengrundDatentypen.Leer_Basisgrund_Enum
             then
                null;
                
             elsif
               BeliebigerLandwert in WahrscheinlichkeitWasser.Anfangswert .. WahrscheinlichkeitWasser.Endwert
             then
-               SchreibeWeltkarte.GleicherGrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseExtern, XAchseExtern),
-                                                GrundExtern       => KartengrundDatentypen.Wasser_Enum);
+               SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseExtern, XAchseExtern),
+                                             GrundExtern       => KartengrundDatentypen.Wasser_Enum);
                
             else
-               SchreibeWeltkarte.GleicherGrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseExtern, XAchseExtern),
-                                                GrundExtern       => KartengrundDatentypen.Flachland_Enum);
+               SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseExtern, XAchseExtern),
+                                             GrundExtern       => KartengrundDatentypen.Flachland_Enum);
             end if;
       end case;
       

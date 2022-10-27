@@ -25,19 +25,17 @@ package body WaldErmittelnLogik is
       return Boolean
    is begin
       
-      VorhandenerGrund := LeseWeltkarte.VorhandenerGrund (KoordinatenExtern => KoordinatenExtern);
+      Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => KoordinatenExtern);
       
-      -- Nur auf Basisgrund prüfen? Müsste hierbei ausreichen. äöü
-      if
-        ArbeitszeitWaldLogik.Arbeitszeit (EinheitRasseNummerExtern.Rasse, VorhandenerGrund.BasisGrund) = EinheitenKonstanten.UnmöglicheArbeit
-        or
-          ArbeitszeitWaldLogik.Arbeitszeit (EinheitRasseNummerExtern.Rasse, VorhandenerGrund.AktuellerGrund) = EinheitenKonstanten.UnmöglicheArbeit
-      then
-         return False;
+      case
+        ArbeitszeitWaldLogik.Basiszeit (EinheitRasseNummerExtern.Rasse, Gesamtgrund.Basisgrund)
+      is
+         when EinheitenKonstanten.UnmöglicheArbeit =>
+            return False;
          
-      else
-         VorhandeneVerbesserung := LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern);
-      end if;
+         when others =>
+            VorhandeneVerbesserung := LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern);
+      end case;
       
       if
         (VorhandeneVerbesserung = KartenverbesserungDatentypen.Farm_Enum
@@ -61,17 +59,17 @@ package body WaldErmittelnLogik is
       end if;
             
       case
-        VorhandenerGrund.AktuellerGrund
+        Gesamtgrund.Basisgrund
       is
-         when KartengrundDatentypen.Kartengrund_Oberfläche_Land_Enum'Range =>
+         when KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum'Range =>
             Arbeitswerte := OberflächeLand (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                             GrundExtern              => VorhandenerGrund,
+                                             GrundExtern              => Gesamtgrund,
                                              AnlegenTestenExtern      => AnlegenTestenExtern,
                                              KoordinatenExtern        => KoordinatenExtern);
             
-         when KartengrundDatentypen.Kartengrund_Unterfläche_Wasser_Enum'Range =>
+         when KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range =>
             Arbeitswerte := UnterflächeWasser (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                GrundExtern              => VorhandenerGrund,
+                                                GrundExtern              => Gesamtgrund,
                                                 AnlegenTestenExtern      => AnlegenTestenExtern,
                                                 KoordinatenExtern        => KoordinatenExtern);
             
@@ -132,10 +130,10 @@ package body WaldErmittelnLogik is
    is begin
       
       Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitWaldLogik.Arbeitszeit (EinheitRasseNummerExtern.Rasse, GrundExtern.BasisGrund));
+                                                  ÄnderungExtern      => ArbeitszeitWaldLogik.Basiszeit (EinheitRasseNummerExtern.Rasse, GrundExtern.Basisgrund));
       
       if
-        GrundExtern.BasisGrund = GrundExtern.AktuellerGrund
+        GrundExtern.Zusatzgrund = KartengrundDatentypen.Leer_Zusatzgrund_Enum
       then
          VorarbeitNötig := False;
          
@@ -145,7 +143,7 @@ package body WaldErmittelnLogik is
                                                    KoordinatenExtern        => KoordinatenExtern)
       then
          Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                     ÄnderungExtern      => ArbeitszeitWaldLogik.Arbeitszeit (EinheitRasseNummerExtern.Rasse, GrundExtern.AktuellerGrund));
+                                                     ÄnderungExtern      => ArbeitszeitWaldLogik.Zusatzzeit (EinheitRasseNummerExtern.Rasse, GrundExtern.Zusatzgrund));
          VorarbeitNötig := True;
          
       else
@@ -171,10 +169,10 @@ package body WaldErmittelnLogik is
    is begin
       
       Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitWaldLogik.Arbeitszeit (EinheitRasseNummerExtern.Rasse, GrundExtern.BasisGrund));
+                                                  ÄnderungExtern      => ArbeitszeitWaldLogik.Basiszeit (EinheitRasseNummerExtern.Rasse, GrundExtern.Basisgrund));
       
       if
-        GrundExtern.BasisGrund = GrundExtern.AktuellerGrund
+        GrundExtern.Zusatzgrund = KartengrundDatentypen.Leer_Zusatzgrund_Enum
       then
          VorarbeitNötig := False;
          
@@ -184,7 +182,7 @@ package body WaldErmittelnLogik is
                                                    KoordinatenExtern        => KoordinatenExtern)
       then
          Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                     ÄnderungExtern      => ArbeitszeitWaldLogik.Arbeitszeit (EinheitRasseNummerExtern.Rasse, GrundExtern.AktuellerGrund));
+                                                     ÄnderungExtern      => ArbeitszeitWaldLogik.Zusatzzeit (EinheitRasseNummerExtern.Rasse, GrundExtern.Zusatzgrund));
          VorarbeitNötig := True;
          
       else

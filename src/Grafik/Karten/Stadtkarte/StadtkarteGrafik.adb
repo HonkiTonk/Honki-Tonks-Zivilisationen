@@ -1,19 +1,16 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Sf.Graphics.Color;
-
 with KartenDatentypen; use KartenDatentypen;
 with StadtDatentypen; use StadtDatentypen;
 with Views;
 with GrafikRecordKonstanten;
+with KartengrundDatentypen;
 
 with LeseWeltkarte;
 with LeseStadtGebaut;
 
-with FarbgebungGrafik;
 with KartenberechnungenGrafik;
-with ObjekteZeichnenGrafik;
 with EinstellungenGrafik;
 with EingeleseneTexturenGrafik;
 with KartenspritesZeichnenGrafik;
@@ -30,9 +27,7 @@ package body StadtkarteGrafik is
                                             GrößeExtern          => EinstellungenGrafik.AktuelleFensterAuflösung,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Stadtbereich (1));
       
-      InformationenStadtAufrufen := False;
-      
-      GrafischeDarstellung (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern));
       
       YMultiplikator := 0.00;
       
@@ -44,11 +39,14 @@ package body StadtkarteGrafik is
          XAchseSchleife:
          for XAchseSchleifenwert in KartenDatentypen.Stadtfeld'Range loop
             
-            GrafikPosition := (XMultiplikator * KartenberechnungenGrafik.StadtfelderAbmessung.x, YMultiplikator * KartenberechnungenGrafik.StadtfelderAbmessung.y);
+            Grafikposition := (XMultiplikator * KartenberechnungenGrafik.StadtfelderAbmessung.x, YMultiplikator * KartenberechnungenGrafik.StadtfelderAbmessung.y);
+            
+            GrafischeDarstellung (GrundExtern    => Gesamtgrund,
+                                  PositionExtern => Grafikposition);
                         
             DarstellungGebäude (YAchseExtern           => YAchseSchleifenwert,
                                  XAchseExtern           => XAchseSchleifenwert,
-                                 PositionExtern         => GrafikPosition,
+                                 PositionExtern         => Grafikposition,
                                  StadtRasseNummerExtern => StadtRasseNummerExtern);
             
             XMultiplikator := XMultiplikator + 1.00;
@@ -64,22 +62,30 @@ package body StadtkarteGrafik is
    
    
    procedure GrafischeDarstellung
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (GrundExtern : in KartenRecords.KartengrundRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
-      Kartenfeld := LeseWeltkarte.AktuellerGrund (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern));
+      case
+        GrundExtern.Zusatzgrund
+      is
+         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+            ZusatzgrundDarstellen := False;
+            
+         when others =>
+            ZusatzgrundDarstellen := not ZusatzgrundDarstellen;
+      end case;
       
       case
-        KartenspritesZeichnenGrafik.SpriteGezeichnetStadtgrund (TexturAccessExtern => EingeleseneTexturenGrafik.KartenfelderAccess (Kartenfeld),
-                                                                PositionExtern     => AnfangGrafikPosition)
+        ZusatzgrundDarstellen
       is
-         when True =>
-            null;
-            
          when False =>
-            ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern      => (KartenberechnungenGrafik.StadtKarte.width, KartenberechnungenGrafik.StadtKarte.height),
-                                                    PositionExtern       => AnfangGrafikPosition,
-                                                    FarbeExtern          => FarbgebungGrafik.FarbeKartenfeldErmitteln (GrundExtern => Kartenfeld));
+            KartenspritesZeichnenGrafik.StadtfeldZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.BasisgrundAccess (GrundExtern.Basisgrund),
+                                                           PositionExtern     => PositionExtern);
+            
+         when True =>
+            KartenspritesZeichnenGrafik.StadtfeldZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.ZusatzgrundAccess (GrundExtern.Zusatzgrund),
+                                                           PositionExtern     => PositionExtern);
       end case;
       
    end GrafischeDarstellung;
@@ -124,17 +130,9 @@ package body StadtkarteGrafik is
       then
          null;
          
-      elsif
-        True = KartenspritesZeichnenGrafik.SpriteGezeichnetStadtfeld (TexturAccessExtern => EingeleseneTexturenGrafik.GebäudeAccess (StadtRasseNummerExtern.Rasse, GebäudeID),
-                                                                      PositionExtern     => PositionExtern)
-      then
-         null;
-               
       else
-         ObjekteZeichnenGrafik.PolygonZeichnen (RadiusExtern      => KartenberechnungenGrafik.StadtfelderAbmessung.x / 2.00,
-                                                PositionExtern    => PositionExtern,
-                                                AnzahlEckenExtern => 3,
-                                                FarbeExtern       => Sf.Graphics.Color.sfMagenta);
+         KartenspritesZeichnenGrafik.StadtfeldZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.GebäudeAccess (StadtRasseNummerExtern.Rasse, GebäudeID),
+                                                        PositionExtern     => PositionExtern);
       end if;
       
    end DarstellungGebäude;

@@ -36,7 +36,7 @@ private
    Textbreite : Float;
    RealeYPosition : Float;
    
-   VorhandenerGrund : KartenRecords.KartengrundRecord;
+   Gesamtgrund : KartenRecords.KartengrundRecord;
 
    AktuelleKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    

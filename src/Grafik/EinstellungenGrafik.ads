@@ -44,7 +44,6 @@ private
                                                                           );
    
    GrafikeinstellungenStandard : constant GrafikRecords.GrafikeinstellungenRecord := (
-                                                                                      TexturenVerwenden      => False,
                                                                                       EbeneUnterhalbSichtbar => True
                                                                                      );
    

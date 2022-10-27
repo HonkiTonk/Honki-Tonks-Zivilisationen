@@ -6,18 +6,15 @@
 
 -- Aktuell höchste Priorität:
 
--- KI überarbeiten: Funktioniert inzwischen Minimal, später verbessern.
+-- KI überarbeiten: Baut Städte, Gebäude und Einheiten. Erkundet die Karte. Legt Verbesserungen und Wege an. Betreibt Forschung. Greift Gegner an mit der sie im Krieg ist.
+--
 
 -- Einfache Musik/Sounds einbauen: Einlesesystem für Sound und rassenspezifische Musik eingebaut.
 
--- Forschungen/Einheiten/Gebäude für zweite Rasse einbauen: Erste Version des Forschungs-, Einheiten- und Gebäudebaums der Tesorahn eingebaut.
+-- Forschungen/Einheiten/Gebäude für zweite Rasse einbauen: Erste rudimentäre Version des Forschungs-, Einheiten- und Gebäudebaums der Tesorahn eingebaut.
 
 -- Sonstiges: Planetenzerstörerbombe inklusive Zusammenbruchszeit eingebaut. Sichtbarkeitsberechnungssystem ist nun ebenenübergreifend. Koordinatenberechnunssystem funktioniert jetzt mit allen Kartenformen ohne abzustürzen.
 --            Steuerungsauswahl mit verschiedenen Kategorien eingebaut.
-
--- Windowsversion kompilieren: Linux- und Windowsversion voneinander getrennt und so angepasst dass die entsprechenden Versionen der A/C/SFML verwendet werden.
---                             VM für das Kompilieren unter älteren Linuxversionen aufgesetzt.
---                             Kompiliert und funktioniert fehlerfrei unter Windows.
 
 
 
@@ -29,5 +26,5 @@
 -- Kartengenerator
 -- Siegbedingungen und Übergaben
 -- Brauchbare Editoren
--- YAchsenwerte und XAchsenwerte mal in zwei Unterschiedliche Datentypen aufteilen?
 -- Minimap einbauen?
+--

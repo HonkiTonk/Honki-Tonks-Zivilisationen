@@ -70,10 +70,10 @@ package LeseGebaeudeDatenbank is
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
       
-   function GrundBenötigt
+   function BasisgrundBenötigt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in StadtDatentypen.GebäudeID)
-      return KartengrundDatentypen.Kartengrund_Enum
+      return KartengrundDatentypen.Basisgrund_Enum
      with
        Pre => (
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum

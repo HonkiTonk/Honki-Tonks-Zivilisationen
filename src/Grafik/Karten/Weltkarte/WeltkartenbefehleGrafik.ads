@@ -49,17 +49,7 @@ private
    SpriteAccess : constant Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;
    
    
-   
-   function Einheitenbefehlstexte
-     (EinheitenArtExtern : in EinheitenDatentypen.Einheitart_Vorhanden_Enum)
-      return Sf.System.Vector2.sfVector2f
-     with
-       Post => (
-                  Einheitenbefehlstexte'Result.x >= 0.00
-                and
-                  Einheitenbefehlstexte'Result.y >= 0.00
-               );
-   
+        
    function Einheitenbefehlsknöpfe
      (EinheitenArtExtern : in EinheitenDatentypen.Einheitart_Vorhanden_Enum;
       WelcheTexturExtern : in BefehleDatentypen.Befehlsknöpfe_Enum)
@@ -69,15 +59,6 @@ private
                   Einheitenbefehlsknöpfe'Result.x >= 0.00
                 and
                   Einheitenbefehlsknöpfe'Result.y >= 0.00
-               );
-   
-   function Kartenbefehlstexte
-     return Sf.System.Vector2.sfVector2f
-     with
-       Post => (
-                  Kartenbefehlstexte'Result.x >= 0.00
-                and
-                  Kartenbefehlstexte'Result.y >= 0.00
                );
    
    function Kartenbefehlsknöpfe

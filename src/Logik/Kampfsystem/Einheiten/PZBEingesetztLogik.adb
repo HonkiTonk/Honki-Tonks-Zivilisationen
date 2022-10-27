@@ -141,8 +141,8 @@ package body PZBEingesetztLogik is
             StadtEntfernenLogik.StadtEntfernen (StadtRasseNummerExtern => Stadt);
       end case;
       
-      SchreibeWeltkarte.GleicherGrund (KoordinatenExtern => KoordinatenExtern,
-                                       GrundExtern       => KartengrundDatentypen.Vernichtet_Enum);
+      SchreibeWeltkarte.Gesamtgrund (KoordinatenExtern => KoordinatenExtern,
+                                                GrundExtern       => (KartengrundDatentypen.Vernichtet_Enum, KartengrundDatentypen.Leer_Zusatzgrund_Enum));
       SchreibeWeltkarte.Fluss (KoordinatenExtern => KoordinatenExtern,
                                FlussExtern       => KartengrundDatentypen.Leer_Fluss_Enum);
       SchreibeWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern,

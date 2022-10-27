@@ -25,7 +25,7 @@ package body KartengeneratorErdweltLogik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
    is begin
       
-      WelcherGrund := KartengrundDatentypen.Leer_Grund_Enum;
+      Basisgrund := KartengrundDatentypen.Leer_Basisgrund_Enum;
       
       ZufallszahlenSchleife:
       for ZufallszahlSchleifenwert in BasisWahrscheinlichkeitenArray'Range loop
@@ -57,23 +57,23 @@ package body KartengeneratorErdweltLogik is
                   
             else
                case
-                 WelcherGrund
+                 Basisgrund
                is
-                  when KartengrundDatentypen.Leer_Grund_Enum =>
-                     WelcherGrund := WahrscheinlichkeitSchleifenwert;
+                  when KartengrundDatentypen.Leer_Basisgrund_Enum =>
+                     Basisgrund := WahrscheinlichkeitSchleifenwert;
                         
                   when others =>
                      if
-                       BasisZahlen (WahrscheinlichkeitSchleifenwert) > BasisZahlen (WelcherGrund)
+                       BasisZahlen (WahrscheinlichkeitSchleifenwert) > BasisZahlen (Basisgrund)
                      then
-                        WelcherGrund := WahrscheinlichkeitSchleifenwert;
+                        Basisgrund := WahrscheinlichkeitSchleifenwert;
                         
                      elsif
-                       BasisZahlen (WahrscheinlichkeitSchleifenwert) = BasisZahlen (WelcherGrund)
+                       BasisZahlen (WahrscheinlichkeitSchleifenwert) = BasisZahlen (Basisgrund)
                        and
                          ZufallsgeneratorenKartenLogik.KartengeneratorBoolean = True
                      then
-                        WelcherGrund := WahrscheinlichkeitSchleifenwert;
+                        Basisgrund := WahrscheinlichkeitSchleifenwert;
                            
                      else
                         null;
@@ -84,9 +84,9 @@ package body KartengeneratorErdweltLogik is
          end loop WahrscheinlichkeitSchleife;
       
          case
-           WelcherGrund
+           Basisgrund
          is
-            when KartengrundDatentypen.Leer_Grund_Enum =>
+            when KartengrundDatentypen.Leer_Basisgrund_Enum =>
                null;
             
             when others =>
@@ -95,11 +95,11 @@ package body KartengeneratorErdweltLogik is
          
       end loop DurchlaufSchleife;
       
-      WelcherGrund := BasisExtraberechnungen (KoordinatenExtern => KoordinatenExtern,
-                                              GrundExtern       => WelcherGrund);
+      Basisgrund := BasisExtraberechnungen (KoordinatenExtern => KoordinatenExtern,
+                                            GrundExtern       => Basisgrund);
       
-      SchreibeWeltkarte.GleicherGrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
-                                   GrundExtern       => WelcherGrund);
+      SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
+                                    GrundExtern       => Basisgrund);
       
    end BasisgrundBestimmen;
    
@@ -117,8 +117,8 @@ package body KartengeneratorErdweltLogik is
    
    function BasisExtraberechnungen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum)
-      return KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum
+      GrundExtern : in KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum)
+      return KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum
    is begin
       
       case
@@ -147,8 +147,8 @@ package body KartengeneratorErdweltLogik is
    
    function ZusatzberechnungErde
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum)
-      return KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum
+      GrundExtern : in KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum)
+      return KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum
    is begin
       
       if
@@ -168,8 +168,8 @@ package body KartengeneratorErdweltLogik is
    
    function ZusatzberechnungErdgestein
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum)
-      return KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum
+      GrundExtern : in KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum)
+      return KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum
    is begin
       
       if
@@ -189,8 +189,8 @@ package body KartengeneratorErdweltLogik is
    
    function ZusatzberechnungSand
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum)
-      return KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum
+      GrundExtern : in KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum)
+      return KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum
    is begin
       
       if
@@ -210,8 +210,8 @@ package body KartengeneratorErdweltLogik is
    
    function ZusatzberechnungGestein
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum)
-      return KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum
+      GrundExtern : in KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum)
+      return KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum
    is begin
       
       if

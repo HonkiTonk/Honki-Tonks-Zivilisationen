@@ -35,29 +35,24 @@ package body SichtbereicheErmittelnLogik is
          return 3;
          
       else
-         AktuellerGrund := LeseWeltkarte.AktuellerGrund (KoordinatenExtern => KoordinatenEinheit);
-         BasisGrund := LeseWeltkarte.BasisGrund (KoordinatenExtern => KoordinatenEinheit);
+         Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => KoordinatenEinheit);
       end if;
       
       -- Das hier später erweitern, beispielsweise im Dschungel auf dem Berg kürzere Sichtweite ermitteln. äöü
       -- Oder auch einheitenspezifische Eigenschaften berücksichtigen. äöü
       if
-        AktuellerGrund = KartengrundDatentypen.Gebirge_Enum
+        Gesamtgrund.Basisgrund = KartengrundDatentypen.Gebirge_Enum
         or
-          AktuellerGrund = KartengrundDatentypen.Hügel_Enum
-          or
-            BasisGrund = KartengrundDatentypen.Gebirge_Enum
-            or
-              BasisGrund = KartengrundDatentypen.Hügel_Enum
+          Gesamtgrund.Basisgrund = KartengrundDatentypen.Hügel_Enum
       then
          return 3;
 
       elsif
-        AktuellerGrund = KartengrundDatentypen.Dschungel_Enum
+        Gesamtgrund.Zusatzgrund = KartengrundDatentypen.Dschungel_Enum
         or
-          AktuellerGrund = KartengrundDatentypen.Sumpf_Enum
+          Gesamtgrund.Zusatzgrund = KartengrundDatentypen.Sumpf_Enum
           or
-            AktuellerGrund = KartengrundDatentypen.Wald_Enum
+            Gesamtgrund.Zusatzgrund = KartengrundDatentypen.Wald_Enum
       then
          return 1;
                
@@ -88,29 +83,24 @@ package body SichtbereicheErmittelnLogik is
             return True;
          
          when others =>
-            AktuellerGrund := LeseWeltkarte.AktuellerGrund (KoordinatenExtern => KartenBlockadeWert);
-            BasisGrund := LeseWeltkarte.AktuellerGrund (KoordinatenExtern => KartenBlockadeWert);
+            Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => KartenBlockadeWert);
       end case;
          
       if
-        AktuellerGrund = KartengrundDatentypen.Gebirge_Enum
+        Gesamtgrund.Basisgrund = KartengrundDatentypen.Gebirge_Enum
         or
-          AktuellerGrund = KartengrundDatentypen.Hügel_Enum
-          or
-            BasisGrund = KartengrundDatentypen.Gebirge_Enum
-            or
-              BasisGrund = KartengrundDatentypen.Hügel_Enum
+          Gesamtgrund.Basisgrund = KartengrundDatentypen.Hügel_Enum
       then
          null;
          
       elsif
         SichtweiteExtern /= 3
         and
-          (AktuellerGrund = KartengrundDatentypen.Dschungel_Enum
+          (Gesamtgrund.Zusatzgrund = KartengrundDatentypen.Dschungel_Enum
            or
-             AktuellerGrund = KartengrundDatentypen.Sumpf_Enum
+             Gesamtgrund.Zusatzgrund = KartengrundDatentypen.Sumpf_Enum
            or
-             AktuellerGrund = KartengrundDatentypen.Wald_Enum)
+             Gesamtgrund.Zusatzgrund = KartengrundDatentypen.Wald_Enum)
       then
          null;
          

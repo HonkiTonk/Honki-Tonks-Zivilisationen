@@ -20,30 +20,28 @@ package body RodenErmittelnLogik is
       return Boolean
    is begin
       
-      VorhandenerGrund := LeseWeltkarte.VorhandenerGrund (KoordinatenExtern => KoordinatenExtern);
-      
-      -- Nur auf Basisgrund prüfen? Müsste hierbei ausreichen. äöü
-      if
-        ArbeitszeitRodenLogik.Arbeitszeit (EinheitRasseNummerExtern.Rasse, VorhandenerGrund.BasisGrund) = EinheitenKonstanten.UnmöglicheArbeit
-        or
-          ArbeitszeitRodenLogik.Arbeitszeit (EinheitRasseNummerExtern.Rasse, VorhandenerGrund.AktuellerGrund) = EinheitenKonstanten.UnmöglicheArbeit
-      then
-         return False;
-         
-      else
-         null;
-      end if;
+      Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => KoordinatenExtern);
       
       case
-        VorhandenerGrund.AktuellerGrund
+        ArbeitszeitRodenLogik.Basiszeit (EinheitRasseNummerExtern.Rasse, Gesamtgrund.Basisgrund)
       is
-         when KartengrundDatentypen.Kartengrund_Oberfläche_Land_Enum'Range =>
+         when EinheitenKonstanten.UnmöglicheArbeit =>
+            return False;
+         
+         when others =>
+            null;
+      end case;
+      
+      case
+        Gesamtgrund.Basisgrund
+      is
+         when KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum'Range =>
             Arbeitswerte := OberflächeLand (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                             GrundExtern => VorhandenerGrund);
+                                             GrundExtern => Gesamtgrund);
             
-         when KartengrundDatentypen.Kartengrund_Unterfläche_Wasser_Enum'Range =>
+         when KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range =>
             Arbeitswerte := UnterflächeWasser (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                GrundExtern => VorhandenerGrund);
+                                                GrundExtern => Gesamtgrund);
             
          when others =>
             return False;
@@ -89,17 +87,18 @@ package body RodenErmittelnLogik is
    is begin
       
       Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitRodenLogik.Arbeitszeit (RasseExtern, GrundExtern.BasisGrund));
+                                                  ÄnderungExtern      => ArbeitszeitRodenLogik.Basiszeit (RasseExtern, GrundExtern.Basisgrund));
 
-      if
-        GrundExtern.BasisGrund = GrundExtern.AktuellerGrund
-      then
-         null;
-
-      else
-         Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                     ÄnderungExtern      => ArbeitszeitRodenLogik.Arbeitszeit (RasseExtern, GrundExtern.AktuellerGrund));
-      end if;
+      case
+        GrundExtern.Zusatzgrund
+      is
+         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+            null;
+            
+         when others =>
+            Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
+                                                        ÄnderungExtern      => ArbeitszeitRodenLogik.Zusatzzeit (RasseExtern, GrundExtern.Zusatzgrund));
+      end case;
       
       return (
               Aufgabe     => AufgabenDatentypen.Roden_Trockenlegen_Enum,
@@ -117,17 +116,18 @@ package body RodenErmittelnLogik is
    is begin
       
       Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitRodenLogik.Arbeitszeit (RasseExtern, GrundExtern.BasisGrund));
+                                                  ÄnderungExtern      => ArbeitszeitRodenLogik.Basiszeit (RasseExtern, GrundExtern.Basisgrund));
 
-      if
-        GrundExtern.BasisGrund = GrundExtern.AktuellerGrund
-      then
-         null;
-
-      else
-         Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                     ÄnderungExtern      => ArbeitszeitRodenLogik.Arbeitszeit (RasseExtern, GrundExtern.AktuellerGrund));
-      end if;
+      case
+        GrundExtern.Zusatzgrund
+      is
+         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+            null;
+            
+         when others =>
+            Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
+                                                        ÄnderungExtern      => ArbeitszeitRodenLogik.Zusatzzeit (RasseExtern, GrundExtern.Zusatzgrund));
+      end case;
       
       return (
               Aufgabe     => AufgabenDatentypen.Roden_Trockenlegen_Enum,

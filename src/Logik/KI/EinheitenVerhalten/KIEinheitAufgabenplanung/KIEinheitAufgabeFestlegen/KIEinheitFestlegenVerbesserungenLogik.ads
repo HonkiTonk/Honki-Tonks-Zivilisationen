@@ -32,7 +32,7 @@ private
 
    Stadtumgebung : KartenDatentypen.UmgebungsbereichDrei;
 
-   BasisGrund : KartengrundDatentypen.Kartengrund_Enum;
+   Basisgrund : KartengrundDatentypen.Basisgrund_Enum;
 
    Ressourcen : KartengrundDatentypen.Kartenressourcen_Enum;
 

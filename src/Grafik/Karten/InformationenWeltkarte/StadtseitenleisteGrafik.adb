@@ -224,13 +224,13 @@ package body StadtseitenleisteGrafik is
       if
         Bauprojekt.Gebäude /= 0
       then
-         Text := To_Unbounded_Wide_Wide_String (Source => GebaeudebeschreibungenGrafik.BeschreibungKurz (IDExtern    => Bauprojekt.Gebäude,
+         Text := To_Unbounded_Wide_Wide_String (Source => GebaeudebeschreibungenGrafik.Kurzbeschreibung (IDExtern    => Bauprojekt.Gebäude,
                                                                                                          RasseExtern => StadtRasseNummerExtern.Rasse));
       
       elsif
         Bauprojekt.Einheit /= 0
       then
-         Text := To_Unbounded_Wide_Wide_String (Source => EinheitenbeschreibungenGrafik.BeschreibungKurz (IDExtern    => Bauprojekt.Einheit,
+         Text := To_Unbounded_Wide_Wide_String (Source => EinheitenbeschreibungenGrafik.Kurzbeschreibung (IDExtern    => Bauprojekt.Einheit,
                                                                                                           RasseExtern => StadtRasseNummerExtern.Rasse));
       
       else

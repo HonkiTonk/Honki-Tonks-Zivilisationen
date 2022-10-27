@@ -39,7 +39,7 @@ private
 
    Arbeitswerte : EinheitenRecords.ArbeitRecord;
 
-   VorhandenerGrund : KartenRecords.KartengrundRecord;
+   Gesamtgrund : KartenRecords.KartengrundRecord;
 
    function OberflächeLand
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
@@ -49,13 +49,9 @@ private
        Pre => (
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 (GrundExtern.BasisGrund in KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum'Range
+                 (GrundExtern.Basisgrund in KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum'Range
                   or
-                    GrundExtern.BasisGrund = KartengrundDatentypen.Eis_Enum)
-               and
-                 (GrundExtern.AktuellerGrund in KartengrundDatentypen.Kartengrund_Oberfläche_Land_Enum'Range
-                  or
-                    GrundExtern.BasisGrund = KartengrundDatentypen.Eis_Enum)
+                    GrundExtern.Basisgrund = KartengrundDatentypen.Eis_Enum)
               );
 
    function UnterflächeWasser
@@ -66,15 +62,7 @@ private
        Pre => (
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 (GrundExtern.BasisGrund = KartengrundDatentypen.Küstengrund_Enum
-                  or
-                    GrundExtern.BasisGrund = KartengrundDatentypen.Meeresgrund_Enum)
-               and
-                 (GrundExtern.AktuellerGrund in KartengrundDatentypen.Kartengrund_Unterfläche_Wasserzusatz_Enum'Range
-                  or
-                    GrundExtern.BasisGrund = KartengrundDatentypen.Küstengrund_Enum
-                  or
-                    GrundExtern.BasisGrund = KartengrundDatentypen.Meeresgrund_Enum)
+                 GrundExtern.Basisgrund in KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range
               );
 
 end RodenErmittelnLogik;

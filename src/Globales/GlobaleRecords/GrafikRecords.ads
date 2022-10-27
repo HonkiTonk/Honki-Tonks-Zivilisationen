@@ -49,7 +49,6 @@ package GrafikRecords is
    
    type GrafikeinstellungenRecord is record
       
-      TexturenVerwenden : Boolean;
       EbeneUnterhalbSichtbar : Boolean;
       
    end record;

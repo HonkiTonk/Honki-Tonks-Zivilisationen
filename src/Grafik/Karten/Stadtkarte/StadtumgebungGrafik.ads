@@ -29,8 +29,6 @@ package StadtumgebungGrafik is
 private
    
    FeldBewirtschaftet : Boolean;
-
-   Kartenfeld : KartengrundDatentypen.Kartengrund_Enum;
    
    KartenfeldRessource : KartengrundDatentypen.Kartenressourcen_Enum;
    
@@ -40,6 +38,8 @@ private
 
    Stadtfeld : KartenverbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
    Verbesserungsfeld : KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
+   
+   Gesamtgrund : KartenRecords.KartengrundRecord;
    
    Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartgrößeView;
 

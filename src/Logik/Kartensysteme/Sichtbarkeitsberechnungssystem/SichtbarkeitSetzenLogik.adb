@@ -22,17 +22,14 @@ package body SichtbarkeitSetzenLogik is
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
       
-      BasisGrund := LeseWeltkarte.BasisGrund (KoordinatenExtern => KoordinatenExtern);
-      AktuellerGrund := LeseWeltkarte.AktuellerGrund (KoordinatenExtern => KoordinatenExtern);
+      Basisgrund := LeseWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern);
       
       case
         KoordinatenExtern.EAchse
       is
          when KartenKonstanten.OberflächeKonstante =>
             if
-              BasisGrund in KartengrundDatentypen.Kartengrund_Oberfläche_Wasser_Enum'Range
-              or
-                AktuellerGrund in KartengrundDatentypen.Kartengrund_Oberfläche_Wasser_Enum'Range
+              Basisgrund in KartengrundDatentypen.Basisgrund_Oberfläche_Wasser_Enum'Range
             then
                EAchseAnfang := KartenKonstanten.UnterflächeKonstante;
                
@@ -54,9 +51,7 @@ package body SichtbarkeitSetzenLogik is
             EAchseAnfang := KartenKonstanten.UnterflächeKonstante;
             
             if
-              BasisGrund in KartengrundDatentypen.Kartengrund_Unterfläche_Wasser_Enum'Range
-              or
-                AktuellerGrund in KartengrundDatentypen.Kartengrund_Unterfläche_Wasser_Enum'Range
+              Basisgrund in KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range
             then
                EAchseEnde := KartenKonstanten.OberflächeKonstante;
                

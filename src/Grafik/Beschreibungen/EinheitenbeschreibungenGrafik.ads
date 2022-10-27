@@ -7,17 +7,21 @@ with RassenDatentypen;
 
 package EinheitenbeschreibungenGrafik is
    
-   function BeschreibungKurz
+   function Kurzbeschreibung
      (IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Wide_Wide_String;
    
-   function BeschreibungLang
+   function Langbeschreibung
      (IDExtern : in EinheitenDatentypen.EinheitenID;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Wide_Wide_String;
    
-   function Beschäftigung
+   function KurzbeschreibungBeschäftigung
+     (ArbeitExtern : in AufgabenDatentypen.Einheiten_Aufgaben_Enum)
+      return Wide_Wide_String;
+   
+   function LangbeschreibungBeschäftigung
      (ArbeitExtern : in AufgabenDatentypen.Einheiten_Aufgaben_Enum)
       return Wide_Wide_String;
    

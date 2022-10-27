@@ -220,13 +220,13 @@ package body BauauswahlGrafik is
       if
         AktuellesBauprojekt.Gebäude /= 0
       then
-         Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & " " & GebaeudebeschreibungenGrafik.BeschreibungKurz (IDExtern    => AktuellesBauprojekt.Gebäude,
+         Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & " " & GebaeudebeschreibungenGrafik.Kurzbeschreibung (IDExtern    => AktuellesBauprojekt.Gebäude,
                                                                                                                                   RasseExtern => StadtRasseNummerExtern.Rasse);
          
       elsif
         AktuellesBauprojekt.Einheit /= 0
       then
-         Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & " " & EinheitenbeschreibungenGrafik.BeschreibungKurz (IDExtern    => AktuellesBauprojekt.Einheit,
+         Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & " " & EinheitenbeschreibungenGrafik.Kurzbeschreibung (IDExtern    => AktuellesBauprojekt.Einheit,
                                                                                                                                    RasseExtern => StadtRasseNummerExtern.Rasse);
                      
       else

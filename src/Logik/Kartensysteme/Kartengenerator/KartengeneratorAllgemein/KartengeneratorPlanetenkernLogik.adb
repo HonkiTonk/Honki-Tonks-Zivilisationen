@@ -32,8 +32,8 @@ package body KartengeneratorPlanetenkernLogik is
               and
                 XAchseSchleifenwert in XKernanfang .. XKernende
             then
-               SchreibeWeltkarte.GleicherGrund (KoordinatenExtern => (KartenKonstanten.PlaneteninneresKonstante, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                GrundExtern       => KartengrundDatentypen.Planetenkern_Enum);
+               SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.PlaneteninneresKonstante, YAchseSchleifenwert, XAchseSchleifenwert),
+                                             GrundExtern       => KartengrundDatentypen.Planetenkern_Enum);
                
             else
                BasisgrundBestimmen (KoordinatenExtern => (KartenKonstanten.PlaneteninneresKonstante, YAchseSchleifenwert, XAchseSchleifenwert));
@@ -61,7 +61,7 @@ package body KartengeneratorPlanetenkernLogik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
    is begin
       
-      WelcherGrund := KartengrundDatentypen.Leer_Grund_Enum;
+      WelcherGrund := KartengrundDatentypen.Leer_Basisgrund_Enum;
       
       ZufallszahlenSchleife:
       for ZufallszahlSchleifenwert in BasisWahrscheinlichkeitenArray'Range loop
@@ -91,7 +91,7 @@ package body KartengeneratorPlanetenkernLogik is
             case
               WelcherGrund
             is
-            when KartengrundDatentypen.Leer_Grund_Enum =>
+            when KartengrundDatentypen.Leer_Basisgrund_Enum =>
                WelcherGrund := WahrscheinlichkeitSchleifenwert; 
                         
             when others =>
@@ -118,9 +118,9 @@ package body KartengeneratorPlanetenkernLogik is
       case
         WelcherGrund
       is
-         when KartengrundDatentypen.Leer_Grund_Enum =>
-            SchreibeWeltkarte.GleicherGrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
-                                             GrundExtern       => KartengrundDatentypen.Lava_Enum);
+         when KartengrundDatentypen.Leer_Basisgrund_Enum =>
+            SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
+                                          GrundExtern       => KartengrundDatentypen.Lava_Enum);
             return;
             
          when others =>
@@ -131,13 +131,13 @@ package body KartengeneratorPlanetenkernLogik is
       case
         WelcherGrund
       is
-         when KartengrundDatentypen.Kartengrund_Kernfläche_Basis_Enum'Range =>
-            SchreibeWeltkarte.GleicherGrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
-                                             GrundExtern       => WelcherGrund);
+         when KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum'Range =>
+            SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
+                                          GrundExtern       => WelcherGrund);
             
          when others =>
-            SchreibeWeltkarte.GleicherGrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
-                                             GrundExtern       => KartengrundDatentypen.Lava_Enum);
+            SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
+                                          GrundExtern       => KartengrundDatentypen.Lava_Enum);
       end case;
       
    end BasisgrundBestimmen;
@@ -146,8 +146,8 @@ package body KartengeneratorPlanetenkernLogik is
    
    function BasisExtraberechnungen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Kernfläche_Basis_Enum)
-      return KartengrundDatentypen.Kartengrund_Kernfläche_Basis_Enum
+      GrundExtern : in KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum)
+      return KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum
    is begin
       
       case
@@ -176,8 +176,8 @@ package body KartengeneratorPlanetenkernLogik is
    
    function ZusatzberechnungRingwoodit
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Kernfläche_Basis_Enum)
-      return KartengrundDatentypen.Kartengrund_Kernfläche_Basis_Enum
+      GrundExtern : in KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum)
+      return KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum
    is begin
       
       if
@@ -197,8 +197,8 @@ package body KartengeneratorPlanetenkernLogik is
    
    function ZusatzberechnungMajorit
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Kernfläche_Basis_Enum)
-      return KartengrundDatentypen.Kartengrund_Kernfläche_Basis_Enum
+      GrundExtern : in KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum)
+      return KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum
    is begin
       
       if
@@ -218,8 +218,8 @@ package body KartengeneratorPlanetenkernLogik is
    
    function ZusatzberechnungPerowskit
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Kernfläche_Basis_Enum)
-      return KartengrundDatentypen.Kartengrund_Kernfläche_Basis_Enum
+      GrundExtern : in KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum)
+      return KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum
    is begin
       
       if
@@ -239,8 +239,8 @@ package body KartengeneratorPlanetenkernLogik is
    
    function ZusatzberechnungMagnesiowüstit
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Kernfläche_Basis_Enum)
-      return KartengrundDatentypen.Kartengrund_Kernfläche_Basis_Enum
+      GrundExtern : in KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum)
+      return KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum
    is begin
       
       if

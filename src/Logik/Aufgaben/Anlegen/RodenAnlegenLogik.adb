@@ -1,8 +1,9 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with KartengrundDatentypen;
+
 with SchreibeWeltkarte;
-with LeseWeltkarte;
 
 package body RodenAnlegenLogik is
 
@@ -10,8 +11,8 @@ package body RodenAnlegenLogik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
       
-      SchreibeWeltkarte.AktuellerGrund (KoordinatenExtern => KoordinatenExtern,
-                                     GrundExtern       => LeseWeltkarte.BasisGrund (KoordinatenExtern => KoordinatenExtern));
+      SchreibeWeltkarte.Zusatzgrund (KoordinatenExtern => KoordinatenExtern,
+                                     GrundExtern       => KartengrundDatentypen.Leer_Zusatzgrund_Enum);
         
    end RodenAnlegen;
 

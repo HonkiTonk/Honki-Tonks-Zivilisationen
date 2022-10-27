@@ -10,7 +10,7 @@ with EinheitenKonstanten;
 
 package body EinheitenbeschreibungenGrafik is
 
-   function BeschreibungKurz
+   function Kurzbeschreibung
      (IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Wide_Wide_String
@@ -26,11 +26,11 @@ package body EinheitenbeschreibungenGrafik is
             return To_Wide_Wide_String (Source => Rassentexte.Einheiten (RasseExtern, IDExtern, 1));
       end case;
          
-   end BeschreibungKurz;
+   end Kurzbeschreibung;
    
    
    
-   function BeschreibungLang
+   function Langbeschreibung
      (IDExtern : in EinheitenDatentypen.EinheitenID;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Wide_Wide_String
@@ -38,17 +38,28 @@ package body EinheitenbeschreibungenGrafik is
       
       return To_Wide_Wide_String (Source => Rassentexte.Einheiten (RasseExtern, IDExtern, 2));
       
-   end BeschreibungLang;
+   end Langbeschreibung;
    
    
    
-   function Beschäftigung
+   function KurzbeschreibungBeschäftigung
      (ArbeitExtern : in AufgabenDatentypen.Einheiten_Aufgaben_Enum)
       return Wide_Wide_String
    is begin
       
       return To_Wide_Wide_String (Source => GlobaleTexte.Beschäftigungen (2 * AufgabenDatentypen.Einheiten_Aufgaben_Enum'Pos (ArbeitExtern) + 1));
       
-   end Beschäftigung;
+   end KurzbeschreibungBeschäftigung;
+   
+   
+   
+   function LangbeschreibungBeschäftigung
+     (ArbeitExtern : in AufgabenDatentypen.Einheiten_Aufgaben_Enum)
+      return Wide_Wide_String
+   is begin
+      
+      return To_Wide_Wide_String (Source => GlobaleTexte.Beschäftigungen (2 * AufgabenDatentypen.Einheiten_Aufgaben_Enum'Pos (ArbeitExtern)));
+      
+   end LangbeschreibungBeschäftigung;
 
 end EinheitenbeschreibungenGrafik;

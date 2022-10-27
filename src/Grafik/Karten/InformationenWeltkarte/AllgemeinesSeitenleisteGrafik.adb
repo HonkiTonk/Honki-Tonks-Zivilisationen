@@ -56,22 +56,23 @@ package body AllgemeinesSeitenleisteGrafik is
       RealeYPosition := Textposition.y;
       
       AktuelleKoordinaten := SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell;
-      VorhandenerGrund := LeseWeltkarte.VorhandenerGrund (KoordinatenExtern => AktuelleKoordinaten);
+      Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => AktuelleKoordinaten);
       
       TextAnzeigen (1) := True;
       
-      if
-        VorhandenerGrund.BasisGrund = VorhandenerGrund.AktuellerGrund
-      then
-         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (1),
-                                            str  => KartenbeschreibungenGrafik.BeschreibungBasisgrund (KartenGrundExtern => VorhandenerGrund.AktuellerGrund));
+      case
+        Gesamtgrund.Zusatzgrund
+      is
+         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (1),
+                                               str  => KartenbeschreibungenGrafik.KurzbeschreibungBasisgrund (KartenGrundExtern => Gesamtgrund.Basisgrund));
          
-      else
-         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (1),
-                                            str  => KartenbeschreibungenGrafik.BeschreibungBasisgrund (KartenGrundExtern => VorhandenerGrund.BasisGrund) & " "
-                                            &  To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugMit)) & " "
-                                            & KartenbeschreibungenGrafik.BeschreibungZusatzgrund (KartenGrundExtern => VorhandenerGrund.AktuellerGrund));
-      end if;
+         when others =>
+            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (1),
+                                               str  => KartenbeschreibungenGrafik.KurzbeschreibungBasisgrund (KartenGrundExtern => Gesamtgrund.Basisgrund) & " "
+                                               &  To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugMit)) & " "
+                                               & KartenbeschreibungenGrafik.KurzbeschreibungZusatzgrund (KartenGrundExtern => Gesamtgrund.Zusatzgrund));
+      end case;
       
       -- Eventuell auch mehr Wörter zusammenfassen? äöü
       -- Z.B. Ressourcen und Flüsse, Verbesserungen und Straßen. äöü
@@ -87,7 +88,7 @@ package body AllgemeinesSeitenleisteGrafik is
             TextAnzeigen (2) := True;
             
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (2),
-                                               str  => KartenbeschreibungenGrafik.BeschreibungRessource (KartenRessourceExtern => KartenRessource));
+                                               str  => KartenbeschreibungenGrafik.KurzbeschreibungRessource (KartenRessourceExtern => KartenRessource));
       end case;
       
       
@@ -104,7 +105,7 @@ package body AllgemeinesSeitenleisteGrafik is
             TextAnzeigen (3) := True;
             
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (3),
-                                               str  => AufgabenbeschreibungenGrafik.BeschreibungVerbesserung (KartenVerbesserungExtern => KartenVerbesserung));
+                                               str  => AufgabenbeschreibungenGrafik.KurzbeschreibungVerbesserung (KartenVerbesserungExtern => KartenVerbesserung));
       end case;
       
       
@@ -121,7 +122,7 @@ package body AllgemeinesSeitenleisteGrafik is
             TextAnzeigen (4) := True;
             
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (4),
-                                               str  => AufgabenbeschreibungenGrafik.BeschreibungWeg (KartenWegExtern => KartenWeg));
+                                               str  => AufgabenbeschreibungenGrafik.KurzbeschreibungWeg (KartenWegExtern => KartenWeg));
       end case;
       
       
@@ -138,7 +139,7 @@ package body AllgemeinesSeitenleisteGrafik is
             TextAnzeigen (5) := True;
             
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (5),
-                                               str  => KartenbeschreibungenGrafik.BeschreibungFluss (KartenFlussExtern => KartenFluss));
+                                               str  => KartenbeschreibungenGrafik.KurzbeschreibungFluss (KartenFlussExtern => KartenFluss));
       end case;
                
       TextSchleife:

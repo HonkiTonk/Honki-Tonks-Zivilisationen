@@ -199,7 +199,7 @@ package body KIEinheitFestlegenVerbesserungenLogik is
    is begin
       
       Ressourcen := LeseWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern);
-      BasisGrund := LeseWeltkarte.BasisGrund (KoordinatenExtern => KoordinatenExtern);
+      Basisgrund := LeseWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern);
       
       case
         AufgabenLogik.AufgabeTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -208,9 +208,9 @@ package body KIEinheitFestlegenVerbesserungenLogik is
       is
          when True =>
             if
-              BasisGrund = KartengrundDatentypen.Hügel_Enum
+              Basisgrund = KartengrundDatentypen.Hügel_Enum
               or
-                BasisGrund = KartengrundDatentypen.Gebirge_Enum
+                Basisgrund = KartengrundDatentypen.Gebirge_Enum
                 or
                   Ressourcen = KartengrundDatentypen.Kohle_Enum
                   or
@@ -237,7 +237,7 @@ package body KIEinheitFestlegenVerbesserungenLogik is
       is
          when True =>
             if
-              BasisGrund = KartengrundDatentypen.Eis_Enum
+              Basisgrund = KartengrundDatentypen.Eis_Enum
             then
                SchreibeEinheitenGebaut.KIVerbesserung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                        BeschäftigungExtern      => AufgabenDatentypen.Festung_Bauen_Enum);

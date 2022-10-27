@@ -33,7 +33,7 @@ package body LadezeitenGrafik is
             Text := GlobaleTexte.Ladezeit (1);
             
          when GrafikDatentypen.Grafik_KI_Rechenzeit_Enum =>
-            Text := RassenbeschreibungenGrafik.BeschreibungKurz (RasseExtern => RasseExtern) & " " & GlobaleTexte.Ladezeit (9);
+            Text := RassenbeschreibungenGrafik.Kurzbeschreibung (RasseExtern => RasseExtern) & " " & GlobaleTexte.Ladezeit (9);
             
          when GrafikDatentypen.Grafik_Rundenende_Enum =>
             Text := GlobaleTexte.Ladezeit (14);

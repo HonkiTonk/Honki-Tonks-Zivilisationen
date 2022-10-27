@@ -23,9 +23,9 @@ package body KartengeneratorWeltraumLogik is
          XAchseSchleife:
          for XAchseSchleifenwert in Weltkarte.KarteArray'First (3) .. Weltkarte.Karteneinstellungen.Kartengröße.XAchse loop
 
-            SchreibeWeltkarte.GleicherGrund (KoordinatenExtern => (KartenKonstanten.WeltraumKonstante, YAchseSchleifenwert, XAchseSchleifenwert),
-                                             GrundExtern       => KartengrundDatentypen.Weltraum_Enum);
-               
+            SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.WeltraumKonstante, YAchseSchleifenwert, XAchseSchleifenwert),
+                                          GrundExtern       => KartengrundDatentypen.Weltraum_Enum);
+            
          end loop XAchseSchleife;
             
          case

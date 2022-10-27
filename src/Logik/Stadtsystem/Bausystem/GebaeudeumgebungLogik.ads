@@ -39,7 +39,7 @@ private
       
       NotwendigFluss : Boolean;
       
-      NotwendigerGrund : KartengrundDatentypen.Kartengrund_Enum;
+      NotwendigerGrund : KartengrundDatentypen.Basisgrund_Enum;
       
       NotwendigeRessource : KartengrundDatentypen.Kartenressourcen_Enum;
    

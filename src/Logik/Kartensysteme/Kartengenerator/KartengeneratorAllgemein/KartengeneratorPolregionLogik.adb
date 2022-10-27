@@ -80,11 +80,11 @@ package body KartengeneratorPolregionLogik is
          XAchseSchleife:
          for XAchseSchleifenwert in Weltkarte.KarteArray'First (3) .. Weltkarte.Karteneinstellungen.Kartengröße.XAchse loop
             
-            SchreibeWeltkarte.GleicherGrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseSchleifenwert, XAchseSchleifenwert),
-                                             GrundExtern       => KartengeneratorVariablenLogik.PolgrundOberfläche);
+            SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseSchleifenwert, XAchseSchleifenwert),
+                                          GrundExtern       => KartengeneratorVariablenLogik.PolgrundOberfläche);
             
-            SchreibeWeltkarte.GleicherGrund (KoordinatenExtern => (KartenKonstanten.UnterflächeKonstante, YAchseSchleifenwert, XAchseSchleifenwert),
-                                             GrundExtern       => KartengeneratorVariablenLogik.PolgrundUnterfläche);
+            SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.UnterflächeKonstante, YAchseSchleifenwert, XAchseSchleifenwert),
+                                          GrundExtern       => KartengeneratorVariablenLogik.PolgrundUnterfläche);
             
          end loop XAchseSchleife;
       end loop YAchseSchleife;
@@ -112,11 +112,11 @@ package body KartengeneratorPolregionLogik is
          XAchseSchleife:
          for XAchseSchleifenwert in Weltkarte.KarteArray'First (3) .. Weltkarte.Karteneinstellungen.Kartengröße.XAchse loop
             
-            SchreibeWeltkarte.GleicherGrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseSchleifenwert, XAchseSchleifenwert),
-                                             GrundExtern       => KartengeneratorVariablenLogik.PolgrundOberfläche);
+            SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseSchleifenwert, XAchseSchleifenwert),
+                                          GrundExtern       => KartengeneratorVariablenLogik.PolgrundOberfläche);
             
-            SchreibeWeltkarte.GleicherGrund (KoordinatenExtern => (KartenKonstanten.UnterflächeKonstante, YAchseSchleifenwert, XAchseSchleifenwert),
-                                             GrundExtern       => KartengeneratorVariablenLogik.PolgrundUnterfläche);
+            SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.UnterflächeKonstante, YAchseSchleifenwert, XAchseSchleifenwert),
+                                          GrundExtern       => KartengeneratorVariablenLogik.PolgrundUnterfläche);
             
          end loop XAchseSchleife;
       end loop YAchseSchleife;
@@ -143,11 +143,11 @@ package body KartengeneratorPolregionLogik is
          XAchseSchleife:
          for XAchseSchleifenwert in Weltkarte.KarteArray'First (3) .. KartengeneratorVariablenLogik.Polgrößen (KartenartDatentypen.Westen_Enum) loop
             
-            SchreibeWeltkarte.GleicherGrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseSchleifenwert, XAchseSchleifenwert),
-                                             GrundExtern       => KartengeneratorVariablenLogik.PolgrundOberfläche);
+            SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseSchleifenwert, XAchseSchleifenwert),
+                                          GrundExtern       => KartengeneratorVariablenLogik.PolgrundOberfläche);
             
-            SchreibeWeltkarte.GleicherGrund (KoordinatenExtern => (KartenKonstanten.UnterflächeKonstante, YAchseSchleifenwert, XAchseSchleifenwert),
-                                             GrundExtern       => KartengeneratorVariablenLogik.PolgrundUnterfläche);
+            SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.UnterflächeKonstante, YAchseSchleifenwert, XAchseSchleifenwert),
+                                          GrundExtern       => KartengeneratorVariablenLogik.PolgrundUnterfläche);
             
          end loop XAchseSchleife;
       end loop YAchseSchleife;
@@ -176,11 +176,11 @@ package body KartengeneratorPolregionLogik is
          for XAchseSchleifenwert in Weltkarte.Karteneinstellungen.Kartengröße.XAchse - KartengeneratorVariablenLogik.Polgrößen (KartenartDatentypen.Osten_Enum) + 1
            .. Weltkarte.Karteneinstellungen.Kartengröße.XAchse loop
             
-            SchreibeWeltkarte.GleicherGrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseSchleifenwert, XAchseSchleifenwert),
-                                             GrundExtern       => KartengeneratorVariablenLogik.PolgrundOberfläche);
+            SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseSchleifenwert, XAchseSchleifenwert),
+                                          GrundExtern       => KartengeneratorVariablenLogik.PolgrundOberfläche);
             
-            SchreibeWeltkarte.GleicherGrund (KoordinatenExtern => (KartenKonstanten.UnterflächeKonstante, YAchseSchleifenwert, XAchseSchleifenwert),
-                                             GrundExtern       => KartengeneratorVariablenLogik.PolgrundUnterfläche);
+            SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.UnterflächeKonstante, YAchseSchleifenwert, XAchseSchleifenwert),
+                                          GrundExtern       => KartengeneratorVariablenLogik.PolgrundUnterfläche);
             
          end loop XAchseSchleife;
       end loop YAchseSchleife;

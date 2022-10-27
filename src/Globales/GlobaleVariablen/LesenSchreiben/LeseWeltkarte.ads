@@ -13,9 +13,9 @@ with Weltkarte;
 
 package LeseWeltkarte is
    
-   function BasisGrund
+   function Basisgrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return KartengrundDatentypen.Kartengrund_Enum
+      return KartengrundDatentypen.Basisgrund_Enum
      with
        Pre => (
                  KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
@@ -23,9 +23,9 @@ package LeseWeltkarte is
                  KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
               );
 
-   function AktuellerGrund
+   function Zusatzgrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return KartengrundDatentypen.Kartengrund_Enum
+      return KartengrundDatentypen.Zusatzgrund_Enum
      with
        Pre => (
                  KoordinatenExtern.YAchse in Weltkarte.KarteArray'First (2) .. Weltkarte.Karteneinstellungen.Kartengröße.YAchse
@@ -33,7 +33,7 @@ package LeseWeltkarte is
                  KoordinatenExtern.XAchse in Weltkarte.KarteArray'First (3) .. Weltkarte.Karteneinstellungen.Kartengröße.XAchse
               );
    
-   function VorhandenerGrund
+   function Gesamtgrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return KartenRecords.KartengrundRecord
      with

@@ -21,6 +21,6 @@ package WaldAnlegenLogik is
 
 private
 
-   NeuerGrund : KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
+   NeuerGrund : KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum;
 
 end WaldAnlegenLogik;

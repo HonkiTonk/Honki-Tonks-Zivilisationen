@@ -38,12 +38,9 @@ package body OptionenGrafikLogik is
                BildrateÄndern;
                
             when RueckgabeDatentypen.Auswahl_Vier_Enum =>
-               EinstellungenGrafik.Grafikeinstellungen.TexturenVerwenden := not EinstellungenGrafik.Grafikeinstellungen.TexturenVerwenden;
-               
-            when RueckgabeDatentypen.Auswahl_Fünf_Enum =>
                EinstellungenGrafik.Grafikeinstellungen.EbeneUnterhalbSichtbar := not EinstellungenGrafik.Grafikeinstellungen.EbeneUnterhalbSichtbar;
                
-            when RueckgabeDatentypen.Auswahl_Sechs_Enum =>
+            when RueckgabeDatentypen.Auswahl_Fünf_Enum =>
                SchreibenEinstellungenLogik.Grafikeinstellungen;
                
             when RueckgabeDatentypen.Zurück_Beenden_Enum'Range =>

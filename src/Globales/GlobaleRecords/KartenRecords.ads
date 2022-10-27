@@ -72,8 +72,8 @@ package KartenRecords is
    
    type KartengrundRecord is record
       
-      BasisGrund : KartengrundDatentypen.Kartengrund_Enum;
-      AktuellerGrund : KartengrundDatentypen.Kartengrund_Enum;
+      Basisgrund : KartengrundDatentypen.Basisgrund_Enum;
+      Zusatzgrund : KartengrundDatentypen.Zusatzgrund_Enum;
       
    end record;
    

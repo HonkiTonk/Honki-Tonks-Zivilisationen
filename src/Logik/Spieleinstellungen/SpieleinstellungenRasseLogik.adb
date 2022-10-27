@@ -200,7 +200,7 @@ package body SpieleinstellungenRasseLogik is
       GezogeneKoordinate := ZufallsgeneratorenStartkoordinatenLogik.Startkoordinaten (RasseExtern => RasseExtern);
       
       case
-        LeseWeltkarte.AktuellerGrund (KoordinatenExtern => GezogeneKoordinate)
+        LeseWeltkarte.Basisgrund (KoordinatenExtern => GezogeneKoordinate)
       is
          when KartengrundDatentypen.Eis_Enum | KartengrundDatentypen.Untereis_Enum =>
             return False;
@@ -281,9 +281,9 @@ package body SpieleinstellungenRasseLogik is
                null;
                
             elsif
-              LeseWeltkarte.AktuellerGrund (KoordinatenExtern => KartenWert) = KartengrundDatentypen.Eis_Enum
+              LeseWeltkarte.Basisgrund (KoordinatenExtern => KartenWert) = KartengrundDatentypen.Eis_Enum
               or
-                LeseWeltkarte.AktuellerGrund (KoordinatenExtern => KartenWert) = KartengrundDatentypen.Untereis_Enum
+                LeseWeltkarte.Basisgrund (KoordinatenExtern => KartenWert) = KartengrundDatentypen.Untereis_Enum
             then
                null;
                                     

@@ -21,24 +21,33 @@ package ChangelogOktober2022 is
    
    
 
-   -- Version 0.04. => 0.04. (28.10.2022):
+   -- Version 0.04.2575 => 0.04. (28.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04. => 0.04. (27.10.2022):
+   -- Version 0.04.2440 => 0.04.2575 (27.10.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Die Kartenfelder in einen notwendigen Basisgrund und einen optionalen Zusatzgrund aufgeteilt.
+   -- Alles an die neue Aufteilung der Kartenfelder angepasst.
+   -- Berechnungen der Wirtschaft- und Kampfewerte eines Kartenfeldes überarbeitet, es berücksichtigt jetzt beide Grundarten.
+   -- Unnötigen Code gelöscht.
+   -- Code zusammengeführt.
+   -- Interne Benennung überarbeitet.
+   -- Grafikleistung verbessert.
+   -- Kartenanzeige überarbeitet.
+   -- Stadtanzeige überarbeitet.
+   -- Testgrafiken zu GitHub hinzugefügt.
+   -- Einige Texte und den zugriff darauft neu aufgeteilt und erweitert.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet/optimiert.
    
    
 
-   -- Version 0.04.2440 => 0.04. (26.10.2022):
+   -- Version 0.04.2440 => 0.04.2440 (26.10.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 

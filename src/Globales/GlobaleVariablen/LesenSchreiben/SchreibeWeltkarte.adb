@@ -8,60 +8,38 @@ with KartenKonstanten;
 
 with LeseWeltkarte;
 
-with Fehler;
-
 package body SchreibeWeltkarte is
+   
+   procedure Basisgrund
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      GrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum)
+   is begin
+      
+      Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund.Basisgrund := GrundExtern;
+      
+   end Basisgrund;
+   
+   
 
-   procedure AktuellerGrund
+   procedure Zusatzgrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
+      GrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum)
    is begin
       
-      Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund.AktuellerGrund := GrundExtern;
+      Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund.Zusatzgrund := GrundExtern;
       
-   end AktuellerGrund;
+   end Zusatzgrund;
    
    
    
-   procedure BasisGrund
+   procedure Gesamtgrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
+      GrundExtern : in KartenRecords.KartengrundRecord)
    is begin
       
-      case
-        GrundExtern
-      is
-         when KartengrundDatentypen.Kartengrund_Oberfläche_Zusatz_Enum'Range | KartengrundDatentypen.Kartengrund_Unterfläche_Wasserzusatz_Enum'Range =>
-            Fehler.LogikFehler (FehlermeldungExtern => "SchreibeWeltkarte.BasisGrund: Zusatzgrund auf Basisgrund geschrieben.");
-            
-         when others =>
-            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund.BasisGrund := GrundExtern;
-      end case;
+      Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund := GrundExtern;
       
-   end BasisGrund;
-   
-   
-   
-   procedure GleicherGrund
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
-   is begin
-      
-      Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund := (GrundExtern, GrundExtern);
-      
-   end GleicherGrund;
-   
-   
-   
-   procedure UnterschiedlicherGrund
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      BasisgrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
-      AktuellerGrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
-   is begin
-      
-      Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund := (BasisgrundExtern, AktuellerGrundExtern);
-      
-   end UnterschiedlicherGrund;
+   end Gesamtgrund;
    
    
    

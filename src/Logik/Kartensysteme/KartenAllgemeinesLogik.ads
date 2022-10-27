@@ -9,10 +9,9 @@ with KartengrundDatentypen;
 with ProduktionDatentypen;
 with KampfDatentypen;
 with Weltkarte;
+with BewertungDatentypen;
 
 private with KartenverbesserungDatentypen;
-
-with BewertungDatentypen;
 
 package KartenAllgemeinesLogik is
 
@@ -75,17 +74,6 @@ package KartenAllgemeinesLogik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KampfDatentypen.Kampfwerte
-     with
-       Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
-               and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
-              );
-
-   function GrundBewertung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return BewertungDatentypen.Bewertung_Enum
      with
        Pre => (
                  KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
@@ -408,7 +396,12 @@ private
    KartenWeg : KartenverbesserungDatentypen.Karten_Weg_Enum;
    KartenVerbesserung : KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
 
-   Basisgrund : KartengrundDatentypen.Kartengrund_Enum;
-   Zusatzgrund : KartengrundDatentypen.Kartengrund_Enum;
+   Gesamtgrund : KartenRecords.KartengrundRecord;
+
+   Basiswirtschaft : ProduktionDatentypen.Einzelproduktion;
+   Zusatzwirtschaft : ProduktionDatentypen.Einzelproduktion;
+
+   Basiskampf : KampfDatentypen.Kampfwerte;
+   Zusatzkampf : KampfDatentypen.Kampfwerte;
 
 end KartenAllgemeinesLogik;

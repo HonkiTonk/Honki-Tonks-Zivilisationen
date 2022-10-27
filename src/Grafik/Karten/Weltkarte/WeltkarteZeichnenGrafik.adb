@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with Sf; use Sf;
+with Sf;
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Text;
 
@@ -25,7 +25,6 @@ with StadtSuchenLogik;
 with ObjekteZeichnenGrafik;
 with EingeleseneTexturenGrafik;
 with KartenspritesZeichnenGrafik;
-with FarbgebungGrafik;
 with TextberechnungenBreiteGrafik;
 with RasseneinstellungenGrafik;
 with TextberechnungenHoeheGrafik;
@@ -33,7 +32,6 @@ with KartenberechnungenGrafik;
 with KartenkoordinatenberechnungssystemLogik;
 with EinstellungenGrafik;
 
--- Man könnte die Prüfungen in KartenspritesZeichnenGrafik hierher verschieben und dann entsprechend Prozeduren nutzen, aber dann benötige ich mehr Prüfungen und ob es das wirklich bringt? äöü
 package body WeltkarteZeichnenGrafik is
    
    procedure EbeneZeichnen
@@ -61,12 +59,12 @@ package body WeltkarteZeichnenGrafik is
                             EbeneExtern       => EbeneExtern,
                             PositionExtern    => PositionExtern);
       
+      AnzeigeFeldbesitzer (KoordinatenExtern => KoordinatenExtern,
+                           PositionExtern    => PositionExtern);
+      
       AnzeigeEinheit (KoordinatenExtern  => KoordinatenExtern,
                       RasseEinheitExtern => EinheitRasseNummerExtern,
                       PositionExtern     => PositionExtern);
-      
-      AnzeigeFeldbesitzer (KoordinatenExtern => KoordinatenExtern,
-                           PositionExtern    => PositionExtern);
       
    end EbeneZeichnen;
    
@@ -78,59 +76,22 @@ package body WeltkarteZeichnenGrafik is
       DurchsichtigkeitExtern : in Sf.sfUint8)
    is begin
       
-      AktuellerKartengrund := LeseWeltkarte.AktuellerGrund (KoordinatenExtern => KoordinatenExtern);
-      BasisKartengrund := LeseWeltkarte.BasisGrund (KoordinatenExtern => KoordinatenExtern);
+      Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => KoordinatenExtern);
       
-      if
-        AktuellerKartengrund = BasisKartengrund
-      then
-         GrundGleich := True;
-         
-      else
-         GrundGleich := False;
-         
-         case
-           KartenspritesZeichnenGrafik.SpriteGezeichnetKartenfeld (TexturAccessExtern     => EingeleseneTexturenGrafik.KartenfelderAccess (BasisKartengrund),
-                                                                   PositionExtern         => PositionExtern,
-                                                                   DurchsichtigkeitExtern => DurchsichtigkeitExtern)
-         is
-            when True =>
-               null;
-            
-            when False =>
-               Farbe := FarbgebungGrafik.FarbeKartenfeldErmitteln (GrundExtern => BasisKartengrund);
-               Farbe.a := DurchsichtigkeitExtern;
-               ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => KartenberechnungenGrafik.KartenfelderAbmessung,
-                                                       PositionExtern  => PositionExtern,
-                                                       FarbeExtern     => Farbe);
-         end case;
-      end if;
-      
-      if
-        GrundGleich = False
-        and
-          DurchsichtigkeitExtern = GrafikKonstanten.Undurchsichtig
-      then
-         Durchsichtigkeit := GrafikKonstanten.VerschiedenerGrundtransparents;
-         
-      else
-         Durchsichtigkeit := DurchsichtigkeitExtern;
-      end if;
+      KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.BasisgrundAccess (Gesamtgrund.Basisgrund),
+                                                      PositionExtern         => PositionExtern,
+                                                      DurchsichtigkeitExtern => DurchsichtigkeitExtern);
       
       case
-        KartenspritesZeichnenGrafik.SpriteGezeichnetKartenfeld (TexturAccessExtern     => EingeleseneTexturenGrafik.KartenfelderAccess (AktuellerKartengrund),
-                                                                PositionExtern         => PositionExtern,
-                                                                DurchsichtigkeitExtern => Durchsichtigkeit)
+        Gesamtgrund.Zusatzgrund
       is
-         when True =>
+         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
             null;
             
-         when False =>
-            Farbe := FarbgebungGrafik.FarbeKartenfeldErmitteln (GrundExtern => AktuellerKartengrund);
-            Farbe.a := Durchsichtigkeit;
-            ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => KartenberechnungenGrafik.KartenfelderAbmessung,
-                                                    PositionExtern  => PositionExtern,
-                                                    FarbeExtern     => Farbe);
+         when others =>
+            KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.ZusatzgrundAccess (Gesamtgrund.Zusatzgrund),
+                                                            PositionExtern         => PositionExtern,
+                                                            DurchsichtigkeitExtern => DurchsichtigkeitExtern);
       end case;
       
    end KartenfeldZeichnen;
@@ -148,24 +109,12 @@ package body WeltkarteZeichnenGrafik is
         KartenfeldFluss
       is
          when KartengrundDatentypen.Leer_Fluss_Enum =>
-            return;
+            null;
             
          when others =>
-            null;
-      end case;
-      
-      case
-        KartenspritesZeichnenGrafik.SpriteGezeichnetKartenfeld (TexturAccessExtern     => EingeleseneTexturenGrafik.KartenflussAccess (KartenfeldFluss),
-                                                                PositionExtern         => PositionExtern,
-                                                                DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig)
-      is
-         when True =>
-            null;
-            
-         when False =>
-            ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => (KartenberechnungenGrafik.KartenfelderAbmessung.x, KartenberechnungenGrafik.KartenfelderAbmessung.y / 5.00),
-                                                    PositionExtern  => (PositionExtern.x, PositionExtern.y + 0.40 * KartenberechnungenGrafik.KartenfelderAbmessung.y),
-                                                    FarbeExtern     => FarbgebungGrafik.FarbeFlussErmitteln (FlussExtern => KartenfeldFluss));
+            KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.KartenflussAccess (KartenfeldFluss),
+                                                            PositionExtern         => PositionExtern,
+                                                            DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
       end case;
       
    end FlussZeichnen;
@@ -183,24 +132,12 @@ package body WeltkarteZeichnenGrafik is
         KartenfeldRessource
       is
          when KartengrundDatentypen.Leer_Ressource_Enum =>
-            return;
+            null;
             
          when others =>
-            null;
-      end case;
-      
-      case
-        KartenspritesZeichnenGrafik.SpriteGezeichnetKartenfeld (TexturAccessExtern     => EingeleseneTexturenGrafik.KartenressourceAccess (KartenfeldRessource),
-                                                                PositionExtern         => PositionExtern,
-                                                                DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig)
-      is
-         when True =>
-            null;
-            
-         when False =>
-            ObjekteZeichnenGrafik.KreisZeichnen (RadiusExtern   => KartenberechnungenGrafik.KartenfelderAbmessung.x / 3.00,
-                                                 PositionExtern => PositionExtern,
-                                                 FarbeExtern    => Sf.Graphics.Color.sfBlack);
+            KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.KartenressourceAccess (KartenfeldRessource),
+                                                            PositionExtern         => PositionExtern,
+                                                            DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
       end case;
       
    end RessourceZeichnen;
@@ -218,24 +155,12 @@ package body WeltkarteZeichnenGrafik is
         Wegfeld
       is
          when KartenverbesserungDatentypen.Leer_Weg_Enum =>
-            return;
+            null;
             
          when others =>
-            null;
-      end case;
-      
-      case
-        KartenspritesZeichnenGrafik.SpriteGezeichnetKartenfeld (TexturAccessExtern     => EingeleseneTexturenGrafik.WegeAccess (Wegfeld),
-                                                                PositionExtern         => PositionExtern,
-                                                                DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig)
-      is
-         when True =>
-            null;
-            
-         when False =>
-            ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => (KartenberechnungenGrafik.KartenfelderAbmessung.x, KartenberechnungenGrafik.KartenfelderAbmessung.y / 2.00),
-                                                    PositionExtern  => (PositionExtern.x, PositionExtern.y + 0.80 * KartenberechnungenGrafik.KartenfelderAbmessung.y),
-                                                    FarbeExtern     => Sf.Graphics.Color.sfRed);
+            KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.WegeAccess (Wegfeld),
+                                                            PositionExtern         => PositionExtern,
+                                                            DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
       end case;
       
    end WegZeichnen;
@@ -271,19 +196,9 @@ package body WeltkarteZeichnenGrafik is
             null;
       end case;
       
-      case
-        KartenspritesZeichnenGrafik.SpriteGezeichnetKartenfeld (TexturAccessExtern     => EingeleseneTexturenGrafik.VerbesserungenAccess (Verbesserungsfeld),
-                                                                PositionExtern         => PositionExtern,
-                                                                DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig)
-      is
-         when True =>
-            null;
-            
-         when False =>
-            ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => (KartenberechnungenGrafik.KartenfelderAbmessung.x / 2.00, KartenberechnungenGrafik.KartenfelderAbmessung.y / 2.00),
-                                                    PositionExtern  => PositionExtern,
-                                                    FarbeExtern     => Sf.Graphics.Color.sfCyan);
-      end case;
+      KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.VerbesserungenAccess (Verbesserungsfeld),
+                                                      PositionExtern         => PositionExtern,
+                                                      DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
       
    end VerbesserungZeichnen;
    
@@ -350,20 +265,9 @@ package body WeltkarteZeichnenGrafik is
          null;
       end if;
       
-      case
-        KartenspritesZeichnenGrafik.SpriteGezeichnetKartenfeld (TexturAccessExtern     => EingeleseneTexturenGrafik.EinheitenAccess (RasseEinheitExtern.Rasse, EinheitID),
-                                                                PositionExtern         => PositionExtern,
-                                                                DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig)
-      is
-         when True =>
-            null;
-            
-         when others =>
-            ObjekteZeichnenGrafik.PolygonZeichnen (RadiusExtern      => KartenberechnungenGrafik.KartenfelderAbmessung.x / 2.80,
-                                                   PositionExtern    => PositionExtern,
-                                                   AnzahlEckenExtern => 4,
-                                                   FarbeExtern       => RasseneinstellungenGrafik.RassenfarbenRahmen (EinheitRasseNummer.Rasse));
-      end case;
+      KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.EinheitenAccess (RasseEinheitExtern.Rasse, EinheitID),
+                                                      PositionExtern         => PositionExtern,
+                                                      DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
       
    end AnzeigeEinheit;
    
@@ -495,7 +399,7 @@ package body WeltkarteZeichnenGrafik is
       Textposition.x := PositionExtern.x - TextberechnungenBreiteGrafik.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.KarteAccess) + 0.50 * KartenberechnungenGrafik.KartenfelderAbmessung.x;
       Textposition.y := PositionExtern.y - TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
       
-      -- Später noch einen Rahmen um den Namen bauen. äöü
+      -- Später noch einen Rahmen um den Namen bauen? äöü
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteAccess,
                                     position => Textposition);
       

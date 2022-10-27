@@ -41,7 +41,7 @@ private
 
    Arbeitswerte : EinheitenRecords.ArbeitVorleistungRecord;
    
-   VorhandenerGrund : KartenRecords.KartengrundRecord;
+   Gesamtgrund : KartenRecords.KartengrundRecord;
    
    function OberflächeLand
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
@@ -59,13 +59,9 @@ private
                and
                  SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 (GrundExtern.BasisGrund in KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum'Range
+                 (GrundExtern.Basisgrund in KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum'Range
                   or
-                    GrundExtern.BasisGrund = KartengrundDatentypen.Eis_Enum)
-               and
-                 (GrundExtern.AktuellerGrund in Kartengrund_Oberfläche_Land_Enum'Range
-                  or
-                    GrundExtern.AktuellerGrund = KartengrundDatentypen.Eis_Enum)
+                    GrundExtern.Basisgrund = KartengrundDatentypen.Eis_Enum)
               );
 
    function UnterflächeLand
@@ -78,13 +74,9 @@ private
                and
                  SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 (GrundExtern.BasisGrund in KartengrundDatentypen.Kartengrund_Unterfläche_Landbasis_Enum'Range
+                 (GrundExtern.Basisgrund in KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum'Range
                   or
-                    GrundExtern.BasisGrund = KartengrundDatentypen.Untereis_Enum)
-               and
-                 (GrundExtern.AktuellerGrund in Kartengrund_Unterfläche_Land_Enum'Range
-                  or
-                    GrundExtern.AktuellerGrund = KartengrundDatentypen.Untereis_Enum)
+                    GrundExtern.Basisgrund = KartengrundDatentypen.Untereis_Enum)
               );
 
    function UnterflächeWasser
@@ -103,9 +95,7 @@ private
                and
                  SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 GrundExtern.BasisGrund in KartengrundDatentypen.Kartengrund_Unterfläche_Wasserbasis_Enum'Range
-               and
-                 GrundExtern.AktuellerGrund in Kartengrund_Unterfläche_Wasser_Enum'Range
+                 GrundExtern.Basisgrund in KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range
               );
 
    -- Später Farmen für den Kern einbauen? äöü

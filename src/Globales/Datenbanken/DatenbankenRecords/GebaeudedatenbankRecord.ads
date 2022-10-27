@@ -20,7 +20,7 @@ package GebaeudedatenbankRecord is
    -- Um das alles da rein zu basteln müsste man aber die Gebäudeumgebungsprüfung noch einmal deutlich überarbeiten. äöü
    -- Könnte man theoretisch um das vernichtete Feld kürzen, aber ob sich das lohnt? äöü
    -- Wenn ich Leer mit reinnehme könnte ich daran prüfen ob überhaupt eines gebraucht wird und entsprechend die Prüfung verkürzen? Ist das sinnvoll? äöü
-   type GrundArray is array (KartengrundDatentypen.Kartengrund_Vorhanden_Enum'Range) of Boolean;
+   type GrundArray is array (KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Range) of Boolean;
    type FlussArray is array (KartengrundDatentypen.Kartenfluss_Vorhanden_Enum'Range) of Boolean;
    type RessourcenArray is array (KartengrundDatentypen.Kartenressourcen_Vorhanden_Enum'Range) of Boolean;
    type VerbesserungenArray is array (KartenverbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum'Range) of Boolean;
@@ -40,7 +40,7 @@ package GebaeudedatenbankRecord is
       BonusWirtschaft : BonusWirtschaftArray;
       BonusKampf : BonusKampfArray;
       
-      GrundBenötigt : KartengrundDatentypen.Kartengrund_Enum;
+      BasisgrundBenötigt : KartengrundDatentypen.Basisgrund_Enum;
       FlussBenötigt : Boolean;
       RessourceBenötigt : KartengrundDatentypen.Kartenressourcen_Enum;
       VerbesserungBenötigt : KartenverbesserungDatentypen.Karten_Verbesserung_Enum;

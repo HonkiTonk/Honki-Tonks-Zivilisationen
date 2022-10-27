@@ -20,34 +20,32 @@ package body FestungErmittelnLogik is
       return Boolean
    is begin
       
-      VorhandenerGrund := LeseWeltkarte.VorhandenerGrund (KoordinatenExtern => KoordinatenExtern);
+      Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => KoordinatenExtern);
       
-      -- Nur auf Basisgrund prüfen? Müsste hierbei ausreichen. äöü
-      if
-        ArbeitszeitFestungLogik.Arbeitszeit (EinheitRasseNummerExtern.Rasse, VorhandenerGrund.BasisGrund) = EinheitenKonstanten.UnmöglicheArbeit
-        or
-          ArbeitszeitFestungLogik.Arbeitszeit (EinheitRasseNummerExtern.Rasse, VorhandenerGrund.AktuellerGrund) = EinheitenKonstanten.UnmöglicheArbeit
-      then
-         return False;
+      case
+        ArbeitszeitFestungLogik.Basiszeit (EinheitRasseNummerExtern.Rasse, Gesamtgrund.Basisgrund)
+      is
+         when EinheitenKonstanten.UnmöglicheArbeit =>
+            return False;
          
-      else
-         null;
-      end if;
+         when others =>
+            null;
+      end case;
                 
       case
-        VorhandenerGrund.AktuellerGrund
+        Gesamtgrund.Basisgrund
       is
-         when KartengrundDatentypen.Eis_Enum | KartengrundDatentypen.Kartengrund_Oberfläche_Land_Enum'Range =>
+         when KartengrundDatentypen.Eis_Enum | KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum'Range =>
             Arbeitswerte := OberflächeLand (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                             GrundExtern => VorhandenerGrund);
+                                             GrundExtern => Gesamtgrund);
             
-         when KartengrundDatentypen.Kartengrund_Unterfläche_Wasser_Enum'Range =>
+         when KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range =>
             Arbeitswerte := UnterflächeWasser (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                GrundExtern => VorhandenerGrund);
+                                                GrundExtern => Gesamtgrund);
             
-         when KartengrundDatentypen.Untereis_Enum | KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum'Range =>
+         when KartengrundDatentypen.Untereis_Enum | KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum'Range =>
             Arbeitswerte := UnterflächeLand (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                              GrundExtern => VorhandenerGrund);
+                                              GrundExtern => Gesamtgrund);
             
          when others =>
             return False;
@@ -93,17 +91,18 @@ package body FestungErmittelnLogik is
    is begin
       
       Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitFestungLogik.Arbeitszeit (RasseExtern, GrundExtern.BasisGrund));
+                                                  ÄnderungExtern      => ArbeitszeitFestungLogik.Basiszeit (RasseExtern, GrundExtern.Basisgrund));
 
-      if
-        GrundExtern.BasisGrund = GrundExtern.AktuellerGrund
-      then
-         null;
+      case
+        GrundExtern.Zusatzgrund
+      is
+         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+            null;
 
-      else
-         Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                     ÄnderungExtern      => ArbeitszeitFestungLogik.Arbeitszeit (RasseExtern, GrundExtern.AktuellerGrund));
-      end if;
+         when others =>
+            Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
+                                                        ÄnderungExtern      => ArbeitszeitFestungLogik.Zusatzzeit (RasseExtern, GrundExtern.Zusatzgrund));
+      end case;
       
       return (
               Aufgabe     => AufgabenDatentypen.Festung_Bauen_Enum,
@@ -121,17 +120,18 @@ package body FestungErmittelnLogik is
    is begin
       
       Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitFestungLogik.Arbeitszeit (RasseExtern, GrundExtern.BasisGrund));
+                                                  ÄnderungExtern      => ArbeitszeitFestungLogik.Basiszeit (RasseExtern, GrundExtern.Basisgrund));
 
-      if
-        GrundExtern.BasisGrund = GrundExtern.AktuellerGrund
-      then
-         null;
+      case
+        GrundExtern.Zusatzgrund
+      is
+         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+            null;
 
-      else
-         Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                     ÄnderungExtern      => ArbeitszeitFestungLogik.Arbeitszeit (RasseExtern, GrundExtern.AktuellerGrund));
-      end if;
+         when others =>
+            Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
+                                                        ÄnderungExtern      => ArbeitszeitFestungLogik.Zusatzzeit (RasseExtern, GrundExtern.Zusatzgrund));
+      end case;
       
       return (
               Aufgabe     => AufgabenDatentypen.Festung_Bauen_Enum,
@@ -149,17 +149,18 @@ package body FestungErmittelnLogik is
    is begin
       
       Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitFestungLogik.Arbeitszeit (RasseExtern, GrundExtern.BasisGrund));
+                                                  ÄnderungExtern      => ArbeitszeitFestungLogik.Basiszeit (RasseExtern, GrundExtern.Basisgrund));
 
-      if
-        GrundExtern.BasisGrund = GrundExtern.AktuellerGrund
-      then
-         null;
+      case
+        GrundExtern.Zusatzgrund
+      is
+         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+            null;
 
-      else
-         Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                     ÄnderungExtern      => ArbeitszeitFestungLogik.Arbeitszeit (RasseExtern, GrundExtern.AktuellerGrund));
-      end if;
+         when others =>
+            Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
+                                                        ÄnderungExtern      => ArbeitszeitFestungLogik.Zusatzzeit (RasseExtern, GrundExtern.Zusatzgrund));
+      end case;
       
       return (
               Aufgabe     => AufgabenDatentypen.Festung_Bauen_Enum,

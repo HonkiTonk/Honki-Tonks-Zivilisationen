@@ -5,11 +5,11 @@ with RassenDatentypen;
 
 package RassenbeschreibungenGrafik is
 
-   function BeschreibungKurz
+   function Kurzbeschreibung
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Wide_Wide_String;
    
-   function BeschreibungLang
+   function Langbeschreibung
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Wide_Wide_String;
 

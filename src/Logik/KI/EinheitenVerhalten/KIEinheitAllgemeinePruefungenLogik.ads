@@ -6,11 +6,9 @@ with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
 with KartenRecords;
 with EinheitenRecords;
-
-private with KartengrundDatentypen;
-private with EinheitenDatentypen;
-
 with Weltkarte;
+
+private with EinheitenDatentypen;
 
 package KIEinheitAllgemeinePruefungenLogik is
    
@@ -56,8 +54,6 @@ private
    TransporterID : EinheitenDatentypen.EinheitenIDMitNullWert;
    
    BlockierteFelder : KartenDatentypen.KartenfeldNatural;
-   
-   WelcherGrund : KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
    
    EinheitAufFeld : EinheitenRecords.RasseEinheitnummerRecord;
    

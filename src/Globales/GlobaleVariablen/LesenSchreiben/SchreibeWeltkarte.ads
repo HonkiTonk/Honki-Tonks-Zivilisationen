@@ -12,10 +12,20 @@ with StadtRecords;
 with Weltkarte;
 
 package SchreibeWeltkarte is
+   
+   procedure Basisgrund
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      GrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum)
+     with
+       Pre => (
+                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+              );
 
-   procedure AktuellerGrund
+   procedure Zusatzgrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
+      GrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum)
      with
        Pre => (
                  KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
@@ -23,30 +33,9 @@ package SchreibeWeltkarte is
                  KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
               );
    
-   procedure BasisGrund
+   procedure Gesamtgrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
-     with
-       Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
-               and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
-              );
-   
-   procedure GleicherGrund
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
-     with
-       Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
-               and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
-              );
-   
-   procedure UnterschiedlicherGrund
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      BasisgrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
-      AktuellerGrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
+      GrundExtern : in KartenRecords.KartengrundRecord)
      with
        Pre => (
                  KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse

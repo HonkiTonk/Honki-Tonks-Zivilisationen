@@ -32,7 +32,7 @@ package WeltkarteRecords is
    
    
    LeerWeltkarte : constant WeltkarteRecord := (
-                                                Grund                   => (KartengrundDatentypen.Leer_Grund_Enum, KartengrundDatentypen.Leer_Grund_Enum),
+                                                Grund                   => (KartengrundDatentypen.Leer_Basisgrund_Enum, KartengrundDatentypen.Leer_Zusatzgrund_Enum),
                                                 Sichtbar                => (others => KartenKonstanten.LeerSichtbar),
                                                 Fluss                   => KartengrundDatentypen.Leer_Fluss_Enum,
                                                 Ressource               => KartengrundDatentypen.Leer_Ressource_Enum,

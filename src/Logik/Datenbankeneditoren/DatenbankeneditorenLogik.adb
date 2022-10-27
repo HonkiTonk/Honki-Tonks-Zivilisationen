@@ -14,11 +14,11 @@ with SchreibenDatenbankenLogik;
 
 with AuswahlaufteilungLogik;
 with Fehler;
-with EinheitenDatenbankeditorLogik;
-with ForschungenDatenbankeditorLogik;
-with GebaeudeDatenbankeditorLogik;
-with KartenDatenbankeneditorLogik;
-with VerbesserungenDatenbankeditorLogik;
+-- with EinheitenDatenbankeditorLogik;
+-- with ForschungenDatenbankeditorLogik;
+-- with GebaeudeDatenbankeditorLogik;
+-- with KartenDatenbankeneditorLogik;
+-- with VerbesserungenDatenbankeditorLogik;
 
 package body DatenbankeneditorenLogik is
 
@@ -39,19 +39,24 @@ package body DatenbankeneditorenLogik is
            AuswahlWert
          is
             when RueckgabeDatentypen.Auswahl_Eins_Enum =>
-               KartenDatenbankeneditorLogik.KartenDatenbankenEditor;
+               -- KartenDatenbankeneditorLogik.KartenDatenbankenEditor;
+               null;
                
             when RueckgabeDatentypen.Auswahl_Zwei_Enum =>
-               EinheitenDatenbankeditorLogik.EinheitenDatenbankEditor;
+               -- EinheitenDatenbankeditorLogik.EinheitenDatenbankEditor;
+               null;
                
             when RueckgabeDatentypen.Auswahl_Drei_Enum =>
-               GebaeudeDatenbankeditorLogik.GebäudeDatenbankEditor;
+               -- GebaeudeDatenbankeditorLogik.GebäudeDatenbankEditor;
+               null;
                
             when RueckgabeDatentypen.Auswahl_Vier_Enum =>
-               ForschungenDatenbankeditorLogik.ForschungenDatenbankEditor;
+               -- ForschungenDatenbankeditorLogik.ForschungenDatenbankEditor;
+               null;
                
             when RueckgabeDatentypen.Auswahl_Fünf_Enum =>
-               VerbesserungenDatenbankeditorLogik.VerbesserungenDatenbankEditor;
+               -- VerbesserungenDatenbankeditorLogik.VerbesserungenDatenbankEditor;
+               null;
                
             when RueckgabeDatentypen.Auswahl_Sechs_Enum =>
                AlleAufStandard;
@@ -76,7 +81,7 @@ package body DatenbankeneditorenLogik is
       EinheitenDatenbank.StandardEinheitenDatenbankLaden;
       ForschungenDatenbank.StandardForschungenDatenbankLaden;
       GebaeudeDatenbank.StandardGebaeudeDatenbankLaden;
-      KartenDatenbank.StandardKartengrundDatenbankLaden;
+      KartenDatenbank.StandardBasisgrundDatenbankLaden;
       KartenDatenbank.StandardKartenflussDatenbankLaden;
       KartenDatenbank.StandardKartenressourcenDatenbankLaden;
       VerbesserungenDatenbank.StandardVerbesserungenDatenbankLaden;

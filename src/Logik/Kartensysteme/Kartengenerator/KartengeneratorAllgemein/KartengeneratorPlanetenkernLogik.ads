@@ -21,9 +21,9 @@ private
 
    Kartenzeitwert : KartenDatentypen.KartenfeldNatural;
 
-   WelcherGrund : KartengrundDatentypen.Kartengrund_Enum;
+   WelcherGrund : KartengrundDatentypen.Basisgrund_Enum;
 
-   type BasisWahrscheinlichkeitenArray is array (KartengrundDatentypen.Kartengrund_Kernfläche_Fest_Enum'Range) of SystemDatentypen.NullBisHundert;
+   type BasisWahrscheinlichkeitenArray is array (KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum'Range) of SystemDatentypen.NullBisHundert;
    BasisWahrscheinlichkeiten : BasisWahrscheinlichkeitenArray := (
                                                                   KartengrundDatentypen.Ringwoodit_Enum     => 20,
                                                                   KartengrundDatentypen.Majorit_Enum        => 20,
@@ -48,8 +48,8 @@ private
 
    function BasisExtraberechnungen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Kernfläche_Basis_Enum)
-      return KartengrundDatentypen.Kartengrund_Kernfläche_Basis_Enum
+      GrundExtern : in KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum)
+      return KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum
      with
        Pre => (
                  KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
@@ -59,8 +59,8 @@ private
 
    function ZusatzberechnungRingwoodit
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Kernfläche_Basis_Enum)
-      return KartengrundDatentypen.Kartengrund_Kernfläche_Basis_Enum
+      GrundExtern : in KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum)
+      return KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum
      with
        Pre => (
                  KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
@@ -70,8 +70,8 @@ private
 
    function ZusatzberechnungMajorit
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Kernfläche_Basis_Enum)
-      return KartengrundDatentypen.Kartengrund_Kernfläche_Basis_Enum
+      GrundExtern : in KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum)
+      return KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum
      with
        Pre => (
                  KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
@@ -81,8 +81,8 @@ private
 
    function ZusatzberechnungPerowskit
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Kernfläche_Basis_Enum)
-      return KartengrundDatentypen.Kartengrund_Kernfläche_Basis_Enum
+      GrundExtern : in KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum)
+      return KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum
      with
        Pre => (
                  KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
@@ -92,8 +92,8 @@ private
 
    function ZusatzberechnungMagnesiowüstit
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Kartengrund_Kernfläche_Basis_Enum)
-      return KartengrundDatentypen.Kartengrund_Kernfläche_Basis_Enum
+      GrundExtern : in KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum)
+      return KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum
      with
        Pre => (
                  KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse

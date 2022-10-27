@@ -28,16 +28,16 @@ package body KartengeneratorUnterflaecheLogik is
          for XAchseSchleifenwert in KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.XAchse .. KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.XAchse loop
             
             case
-              LeseWeltkarte.BasisGrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseSchleifenwert, XAchseSchleifenwert))
+              LeseWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseSchleifenwert, XAchseSchleifenwert))
             is
                when KartengrundDatentypen.Küstengewässer_Enum =>
-                  SchreibeWeltkarte.GleicherGrund (KoordinatenExtern => (KartenKonstanten.UnterflächeKonstante, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                   GrundExtern       => KartengrundDatentypen.Küstengrund_Enum);
+                  SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.UnterflächeKonstante, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                GrundExtern       => KartengrundDatentypen.Küstengrund_Enum);
                   
                when KartengrundDatentypen.Wasser_Enum =>
                   KartengeneratorWasserweltLogik.KartengeneratorWasserwelt (KoordinatenExtern => (KartenKonstanten.UnterflächeKonstante, YAchseSchleifenwert, XAchseSchleifenwert));
                   
-               when KartengrundDatentypen.Kartengrund_Oberfläche_Basis_Enum'Range =>
+               when KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum'Range =>
                   KartengeneratorErdweltLogik.KartengeneratorErdwelt (KoordinatenExtern => (KartenKonstanten.UnterflächeKonstante, YAchseSchleifenwert, XAchseSchleifenwert));
                   
                when others =>

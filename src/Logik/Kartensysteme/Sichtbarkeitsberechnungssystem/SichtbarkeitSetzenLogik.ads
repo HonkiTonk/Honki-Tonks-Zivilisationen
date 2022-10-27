@@ -42,8 +42,8 @@ private
    EAchseAnfang : KartenDatentypen.EbeneVorhanden;
    EAchseEnde : KartenDatentypen.EbeneVorhanden;
 
-   AktuellerGrund : KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
-   BasisGrund : KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
+   Basisgrund : KartengrundDatentypen.Basisgrund_Vorhanden_Enum;
+   Zusatzgrund : KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum;
 
    FremdeStadt : StadtRecords.RasseStadtnummerRecord;
 

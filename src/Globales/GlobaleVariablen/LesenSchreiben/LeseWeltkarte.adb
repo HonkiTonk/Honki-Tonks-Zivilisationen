@@ -14,47 +14,47 @@ with Fehler;
 -- Aufgrund des Doppelzugriffs von Logik- und Grafiktask ist das wohl nötig. äöü
 package body LeseWeltkarte is
    
-   function BasisGrund
+   function Basisgrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return KartengrundDatentypen.Kartengrund_Enum
+      return KartengrundDatentypen.Basisgrund_Enum
    is begin
       
       case
         KoordinatenExtern.EAchse
       is
          when KartenKonstanten.LeerEAchse =>
-            -- Bei sowas kann nicht Leer zurückgegeben werden weil es keine Grafik für leere Felder gibt und dieser Teil auch nur vom Grafiktask aufgerufen werden sollte.
-            return KartengrundDatentypen.Vernichtet_Enum;
+            -- Kann hier Leer zurückgegeben werden, war bisher Vernichtet? Wahrscheinlich muss ich da noch ein paar Dinge anpassen. äöü
+            return KartengrundDatentypen.Leer_Basisgrund_Enum;
             
          when others =>
-            return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund.BasisGrund;
+            return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund.Basisgrund;
       end case;
       
-   end BasisGrund;
+   end Basisgrund;
    
    
    
-   function AktuellerGrund
+   function Zusatzgrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return KartengrundDatentypen.Kartengrund_Enum
+      return KartengrundDatentypen.Zusatzgrund_Enum
    is begin
       
       case
         KoordinatenExtern.EAchse
       is
          when KartenKonstanten.LeerEAchse =>
-            -- Bei sowas kann nicht Leer zurückgegeben werden weil es keine Grafik für leere Felder gibt und dieser Teil auch nur vom Grafiktask aufgerufen werden sollte.
-            return KartengrundDatentypen.Vernichtet_Enum;
+            -- Kann hier Leer zurückgegeben werden, war bisher Vernichtet? Wahrscheinlich muss ich da noch ein paar Dinge anpassen. äöü
+            return KartengrundDatentypen.Leer_Zusatzgrund_Enum;
             
          when others =>
-            return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund.AktuellerGrund;
+            return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund.Zusatzgrund;
       end case;
       
-   end AktuellerGrund;
+   end Zusatzgrund;
    
    
    
-   function VorhandenerGrund
+   function Gesamtgrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return KartenRecords.KartengrundRecord
    is begin
@@ -63,14 +63,14 @@ package body LeseWeltkarte is
         KoordinatenExtern.EAchse
       is
          when KartenKonstanten.LeerEAchse =>
-            -- Bei sowas kann nicht Leer zurückgegeben werden weil es keine Grafik für leere Felder gibt und dieser Teil auch nur vom Grafiktask aufgerufen werden sollte.
-            return (KartengrundDatentypen.Vernichtet_Enum, KartengrundDatentypen.Vernichtet_Enum);
+            -- Kann hier Leer zurückgegeben werden, war bisher Vernichtet? Wahrscheinlich muss ich da noch ein paar Dinge anpassen. äöü
+            return (KartengrundDatentypen.Leer_Basisgrund_Enum, KartengrundDatentypen.Leer_Zusatzgrund_Enum);
             
          when others =>
-            return (BasisGrund (KoordinatenExtern => KoordinatenExtern), AktuellerGrund (KoordinatenExtern => KoordinatenExtern));
+            return (Basisgrund (KoordinatenExtern => KoordinatenExtern), Zusatzgrund (KoordinatenExtern => KoordinatenExtern));
       end case;
       
-   end VorhandenerGrund;
+   end Gesamtgrund;
    
    
    

@@ -186,7 +186,7 @@ package body EinlesenTexturenLogik is
       end case;
       
       TexturenSchleife:
-      for TexturSchleifenwert in EingeleseneTexturenGrafik.KartenfelderAccessArray'Range loop
+      for TexturSchleifenwert in EingeleseneTexturenGrafik.BasisgrundAccessArray'Range loop
          
          case
            EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiKartenfelder,
@@ -206,15 +206,64 @@ package body EinlesenTexturenLogik is
            Exists (Name => Encode (Item => To_Wide_Wide_String (Source => Verzeichnisname)))
          is
             when True =>
-               EingeleseneTexturenGrafik.KartenfelderAccess (TexturSchleifenwert)
+               EingeleseneTexturenGrafik.BasisgrundAccess (TexturSchleifenwert)
                  := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => Verzeichnisname)));
                   
             when False =>
                Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenKartenfelder: Es fehlt: " & To_Wide_Wide_String (Source => Verzeichnisname));
-               EingeleseneTexturenGrafik.KartenfelderAccess (TexturSchleifenwert) := null;
+               EingeleseneTexturenGrafik.BasisgrundAccess (TexturSchleifenwert) := null;
          end case;
          
       end loop TexturenSchleife;
+      
+      Close (File => DateiKartenfelder);
+      
+      case
+        Exists (Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Kartenfelder & "/1")
+      is
+         when False =>
+            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenKartenfelder: Es fehlt: "
+                                  & Decode (Item => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Kartenfelder & "/1"));
+            return;
+            
+         when True =>
+            AktuelleZeile := 1;
+            
+            Open (File => DateiKartenfelder,
+                  Mode => In_File,
+                  Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Kartenfelder & "/1");
+      end case;
+      
+      TexturenZweiSchleife:
+      for TexturSchleifenwert in EingeleseneTexturenGrafik.ZusatzgrundAccessArray'Range loop
+         
+         case
+           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiKartenfelder,
+                                                           AktuelleZeileExtern => AktuelleZeile)
+         is
+            when True =>
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenKartenfelder: Fehlende Zeilen: "
+                                     & Decode (Item => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Kartenfelder & "/1"));
+               exit TexturenZweiSchleife;
+               
+            when False =>
+               Verzeichnisname := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiKartenfelder));
+               AktuelleZeile := AktuelleZeile + 1;
+         end case;
+         
+         case
+           Exists (Name => Encode (Item => To_Wide_Wide_String (Source => Verzeichnisname)))
+         is
+            when True =>
+               EingeleseneTexturenGrafik.ZusatzgrundAccess (TexturSchleifenwert)
+                 := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => Verzeichnisname)));
+                  
+            when False =>
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenKartenfelder: Es fehlt: " & To_Wide_Wide_String (Source => Verzeichnisname));
+               EingeleseneTexturenGrafik.ZusatzgrundAccess (TexturSchleifenwert) := null;
+         end case;
+         
+      end loop TexturenZweiSchleife;
       
       Close (File => DateiKartenfelder);
       

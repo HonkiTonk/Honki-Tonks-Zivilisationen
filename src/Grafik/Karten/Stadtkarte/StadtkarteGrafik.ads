@@ -8,8 +8,8 @@ with SpielVariablen;
 with StadtRecords;
 
 private with StadtDatentypen;
-private with KartengrundDatentypen;
 private with KartenDatentypen;
+private with KartenRecords;
 
 package StadtkarteGrafik is
 
@@ -24,25 +24,25 @@ package StadtkarteGrafik is
 
 private
 
-   InformationenStadtAufrufen : Boolean;
+   ZusatzgrundDarstellen : Boolean := True;
 
    GebäudeID : StadtDatentypen.GebäudeID;
-
-   Kartenfeld : KartengrundDatentypen.Kartengrund_Enum;
 
    YMultiplikator : Float;
    XMultiplikator : Float;
 
-   AnfangGrafikPosition : constant Sf.System.Vector2.sfVector2f := (0.00, 0.00);
-   GrafikPosition : Sf.System.Vector2.sfVector2f;
+   Gesamtgrund : KartenRecords.KartengrundRecord;
+
+   Grafikposition : Sf.System.Vector2.sfVector2f;
 
    procedure GrafischeDarstellung
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (GrundExtern : in KartenRecords.KartengrundRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre => (
-                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+                 PositionExtern.x >= 0.00
                and
-                 SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+                 PositionExtern.y >= 0.00
               );
 
    procedure DarstellungGebäude
@@ -55,6 +55,10 @@ private
                  StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
                and
                  SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+               and
+                 PositionExtern.x >= 0.00
+               and
+                 PositionExtern.y >= 0.00
               );
 
 end StadtkarteGrafik;

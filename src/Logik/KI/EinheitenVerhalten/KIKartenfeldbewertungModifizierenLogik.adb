@@ -113,12 +113,12 @@ package body KIKartenfeldbewertungModifizierenLogik is
                      
             else
                if
-                 LeseKartenDatenbanken.BewertungGrund (GrundExtern => LeseWeltkarte.BasisGrund (KoordinatenExtern => KoordinatenExtern),
-                                                       RasseExtern => RasseExtern)
+                 LeseKartenDatenbanken.BewertungBasisgrund (GrundExtern => LeseWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern),
+                                                            RasseExtern => RasseExtern)
                in BewertungDatentypen.Fehlschlag
                  and
-                   LeseKartenDatenbanken.BewertungGrund (GrundExtern => LeseWeltkarte.AktuellerGrund (KoordinatenExtern => KoordinatenExtern),
-                                                         RasseExtern => RasseExtern)
+                   LeseKartenDatenbanken.BewertungZusatzgrund (GrundExtern => LeseWeltkarte.Zusatzgrund (KoordinatenExtern => KoordinatenExtern),
+                                                               RasseExtern => RasseExtern)
                in BewertungDatentypen.Fehlschlag
                then
                   null;

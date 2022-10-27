@@ -134,7 +134,7 @@ package body BauauswahlGebaeudeGrafik is
                                     position => Textposition);
             
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.GebäudezusatztextAccess (RasseExtern, AuswahlExtern),
-                                         str  => ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung (TextExtern           => GebaeudebeschreibungenGrafik.BeschreibungLang (IDExtern    => AuswahlExtern,
+                                         str  => ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung (TextExtern           => GebaeudebeschreibungenGrafik.Langbeschreibung (IDExtern    => AuswahlExtern,
                                                                                                                                                                                RasseExtern => RasseExtern),
                                                                                                         TextfeldbreiteExtern => ViewflächeBeschreibung.x / 2.00 - Textposition.x));
          

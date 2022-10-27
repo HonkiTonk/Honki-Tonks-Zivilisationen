@@ -16,7 +16,6 @@ with KartenberechnungenGrafik;
 with ObjekteZeichnenGrafik;
 with KartenspritesZeichnenGrafik;
 with EingeleseneTexturenGrafik;
-with FarbgebungGrafik;
 
 package body StadtumgebungGrafik is
 
@@ -46,17 +45,15 @@ package body StadtumgebungGrafik is
             if
               KartenWert.EAchse = KartenKonstanten.LeerEAchse
             then
-               ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern      => KartenberechnungenGrafik.StadtfelderAbmessung,
-                                                       PositionExtern       => Viewfläche,
-                                                       FarbeExtern          => Sf.Graphics.Color.sfBlack);
+               ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => KartenberechnungenGrafik.StadtfelderAbmessung,
+                                                       PositionExtern  => Viewfläche,
+                                                       FarbeExtern     => Sf.Graphics.Color.sfBlack);
                
             elsif
               False = LeseWeltkarte.Sichtbar (KoordinatenExtern => KartenWert,
                                               RasseExtern       => StadtRasseNummerExtern.Rasse)
             then
-               ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern      => KartenberechnungenGrafik.StadtfelderAbmessung,
-                                                       PositionExtern       => Viewfläche,
-                                                       FarbeExtern          => Sf.Graphics.Color.sfBlack);
+               null;
                
             else
                case
@@ -157,19 +154,20 @@ package body StadtumgebungGrafik is
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
-      Kartenfeld := LeseWeltkarte.AktuellerGrund (KoordinatenExtern => KoordinatenExtern);
+      Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => KoordinatenExtern);
       
+      KartenspritesZeichnenGrafik.StadtfeldZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.BasisgrundAccess (Gesamtgrund.Basisgrund),
+                                                     PositionExtern     => PositionExtern);
+        
       case
-        KartenspritesZeichnenGrafik.SpriteGezeichnetStadtfeld (TexturAccessExtern => EingeleseneTexturenGrafik.KartenfelderAccess (Kartenfeld),
-                                                               PositionExtern     => PositionExtern)
+        Gesamtgrund.Zusatzgrund
       is
-         when True =>
+         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
             null;
             
-         when False =>
-            ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern      => KartenberechnungenGrafik.StadtfelderAbmessung,
-                                                    PositionExtern       => PositionExtern,
-                                                    FarbeExtern          => FarbgebungGrafik.FarbeKartenfeldErmitteln (GrundExtern => Kartenfeld));
+         when others =>
+            KartenspritesZeichnenGrafik.StadtfeldZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.ZusatzgrundAccess (Gesamtgrund.Zusatzgrund),
+                                                           PositionExtern     => PositionExtern);
       end case;
       
    end KartenfeldZeichnen;
@@ -183,22 +181,16 @@ package body StadtumgebungGrafik is
       
       KartenfeldFluss := LeseWeltkarte.Fluss (KoordinatenExtern => KoordinatenExtern);
       
-      if
-        KartenfeldFluss = KartengrundDatentypen.Leer_Fluss_Enum
-      then
-         null;
-         
-      elsif
-        True = KartenspritesZeichnenGrafik.SpriteGezeichnetStadtfeld (TexturAccessExtern => EingeleseneTexturenGrafik.KartenflussAccess (KartenfeldFluss),
-                                                                      PositionExtern     => PositionExtern)
-      then
-         null;
+      case
+        KartenfeldFluss
+      is
+         when KartengrundDatentypen.Leer_Fluss_Enum =>
+            null;
             
-      else
-         ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern      => (KartenberechnungenGrafik.StadtfelderAbmessung.x, KartenberechnungenGrafik.StadtfelderAbmessung.y / 5.00),
-                                                 PositionExtern       => (PositionExtern.x, PositionExtern.y + 0.40 * KartenberechnungenGrafik.StadtfelderAbmessung.y),
-                                                 FarbeExtern          => Sf.Graphics.Color.sfBlue);
-      end if;
+         when others =>
+            KartenspritesZeichnenGrafik.StadtfeldZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.KartenflussAccess (KartenfeldFluss),
+                                                           PositionExtern     => PositionExtern);
+      end case;
       
    end FlussZeichnen;
    
@@ -211,22 +203,16 @@ package body StadtumgebungGrafik is
       
       KartenfeldRessource := LeseWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern);
       
-      if
-        KartenfeldRessource = KartengrundDatentypen.Leer_Ressource_Enum
-      then
-         null;
-         
-      elsif
-        True = KartenspritesZeichnenGrafik.SpriteGezeichnetStadtfeld (TexturAccessExtern => EingeleseneTexturenGrafik.KartenressourceAccess (KartenfeldRessource),
-                                                                      PositionExtern     => PositionExtern)
-      then
-         null;
-         
-      else
-         ObjekteZeichnenGrafik.KreisZeichnen (RadiusExtern      => KartenberechnungenGrafik.StadtfelderAbmessung.x / 3.00,
-                                              PositionExtern    => PositionExtern,
-                                              FarbeExtern       => Sf.Graphics.Color.sfBlack);
-      end if;
+      case
+        KartenfeldRessource
+      is
+         when KartengrundDatentypen.Leer_Ressource_Enum =>
+            null;
+            
+         when others =>
+            KartenspritesZeichnenGrafik.StadtfeldZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.KartenressourceAccess (KartenfeldRessource),
+                                                           PositionExtern     => PositionExtern);
+      end case;
       
    end RessourceZeichnen;
    
@@ -239,23 +225,17 @@ package body StadtumgebungGrafik is
       
       Wegfeld := LeseWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern);
       
-      if
-        Wegfeld = KartenverbesserungDatentypen.Leer_Weg_Enum
-      then
-         null;
-         
-      elsif
-        True = KartenspritesZeichnenGrafik.SpriteGezeichnetStadtfeld (TexturAccessExtern => EingeleseneTexturenGrafik.WegeAccess (Wegfeld),
-                                                                      PositionExtern     => PositionExtern)
-      then
-         null;
+      case
+        Wegfeld
+      is
+         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
+            null;
             
-      else
-         ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern      => (KartenberechnungenGrafik.StadtfelderAbmessung.x, KartenberechnungenGrafik.StadtfelderAbmessung.y / 2.00),
-                                                 PositionExtern       => (PositionExtern.x, PositionExtern.y + 0.80 * KartenberechnungenGrafik.StadtfelderAbmessung.y),
-                                                 FarbeExtern          => Sf.Graphics.Color.sfRed);
-      end if;
-   
+         when others =>
+            KartenspritesZeichnenGrafik.StadtfeldZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.WegeAccess (Wegfeld),
+                                                           PositionExtern     => PositionExtern);
+      end case;
+      
    end WegZeichnen;
    
    
@@ -267,22 +247,16 @@ package body StadtumgebungGrafik is
       
       Verbesserungsfeld := LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern);
       
-      if
-        Verbesserungsfeld = KartenverbesserungDatentypen.Leer_Verbesserung_Enum
-      then
-         null;
-         
-      elsif
-        True = KartenspritesZeichnenGrafik.SpriteGezeichnetStadtfeld (TexturAccessExtern => EingeleseneTexturenGrafik.VerbesserungenAccess (Verbesserungsfeld),
-                                                                      PositionExtern     => PositionExtern)
-      then
-         null;
+      case
+        Verbesserungsfeld
+      is
+         when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
+            null;
             
-      else
-         ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern      => (KartenberechnungenGrafik.StadtfelderAbmessung.x / 2.00, KartenberechnungenGrafik.StadtfelderAbmessung.y / 2.00),
-                                                 PositionExtern       => PositionExtern,
-                                                 FarbeExtern          => Sf.Graphics.Color.sfCyan);
-      end if;
+         when others =>
+            KartenspritesZeichnenGrafik.StadtfeldZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.VerbesserungenAccess (Verbesserungsfeld),
+                                                           PositionExtern     => PositionExtern);
+      end case;
       
    end VerbesserungZeichnen;
 

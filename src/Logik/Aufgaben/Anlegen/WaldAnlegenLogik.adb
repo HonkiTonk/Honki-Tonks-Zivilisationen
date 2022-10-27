@@ -28,8 +28,8 @@ package body WaldAnlegenLogik is
             Fehler.LogikFehler (FehlermeldungExtern => "WaldAnlegen.WaldAnlegen: Falsche Ebene.");
       end case;
       
-      SchreibeWeltkarte.AktuellerGrund (KoordinatenExtern => KoordinatenExtern,
-                                        GrundExtern       => NeuerGrund);
+      SchreibeWeltkarte.Zusatzgrund (KoordinatenExtern => KoordinatenExtern,
+                                     GrundExtern       => NeuerGrund);
       
       case
         LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern)

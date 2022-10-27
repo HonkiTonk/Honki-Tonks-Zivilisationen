@@ -58,10 +58,10 @@ package body KartengeneratorFlussLogik is
          for XAchseSchleifenwert in KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.XAchse .. KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.XAchse loop
             
             case
-              LeseWeltkarte.AktuellerGrund (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert))
+              LeseWeltkarte.Basisgrund (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert))
             is
-               when KartengrundDatentypen.Kartengrund_Oberfläche_Eiswasser_Enum'Range | KartengrundDatentypen.Kartengrund_Unterfläche_Eiswasser_Enum'Range
-                  | KartengrundDatentypen.Kartengrund_Kernfläche_Flüssig_Enum'Range =>
+               when KartengrundDatentypen.Basisgrund_Oberfläche_Eiswasser_Enum'Range | KartengrundDatentypen.Basisgrund_Unterfläche_Eiswasser_Enum'Range
+                  | KartengrundDatentypen.Basisgrund_Kernfläche_Flüssig_Enum'Range =>
                   null;
                   
                when others =>

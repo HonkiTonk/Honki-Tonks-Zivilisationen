@@ -42,13 +42,12 @@ package WeltkarteZeichnenGrafik is
 private
    
    AusgewählteEinheitAnzeigen : Boolean := True;
-   GrundGleich : Boolean;
+   ZusatzgrundVorhanden : Boolean;
    
    AktuelleRasse : RassenDatentypen.Rassen_Enum;
-   
-   AktuellerKartengrund : KartengrundDatentypen.Kartengrund_Enum;
-   BasisKartengrund : KartengrundDatentypen.Kartengrund_Enum;
+      
    KartenfeldFluss : KartengrundDatentypen.Kartenfluss_Enum;
+   
    KartenfeldRessource : KartengrundDatentypen.Kartenressourcen_Enum;
    
    Stadtart : KartenverbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
@@ -60,6 +59,8 @@ private
    Durchsichtigkeit : Sf.sfUint8;
    
    DickeRahmen : constant Float := 5.00;
+   
+   Gesamtgrund : KartenRecords.KartengrundRecord;
          
    StadtRasseNummer : StadtRecords.RasseStadtnummerRecord;
    

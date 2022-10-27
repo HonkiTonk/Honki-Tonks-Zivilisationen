@@ -3,7 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with KartenRecords;
-
 with Weltkarte;
 
 package RodenAnlegenLogik is

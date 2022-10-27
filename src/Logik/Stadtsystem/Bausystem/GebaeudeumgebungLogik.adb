@@ -33,7 +33,7 @@ package body GebaeudeumgebungLogik is
          when False =>
             Anforderungen.NotwendigFluss := LeseGebaeudeDatenbank.FlussBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
                                                                                   IDExtern    => GebäudeIDExtern);
-            Anforderungen.NotwendigerGrund := LeseGebaeudeDatenbank.GrundBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
+            Anforderungen.NotwendigerGrund := LeseGebaeudeDatenbank.BasisgrundBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
                                                                                     IDExtern    => GebäudeIDExtern);
             Anforderungen.NotwendigeRessource := LeseGebaeudeDatenbank.RessourceBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
                                                                                            IDExtern    => GebäudeIDExtern);
@@ -44,7 +44,7 @@ package body GebaeudeumgebungLogik is
       end case;
             
       if
-        KartengrundDatentypen.Leer_Grund_Enum = Anforderungen.NotwendigerGrund
+        KartengrundDatentypen.Leer_Basisgrund_Enum = Anforderungen.NotwendigerGrund
         and
           False = Anforderungen.NotwendigFluss
           and
@@ -128,14 +128,12 @@ package body GebaeudeumgebungLogik is
    is begin
             
       if
-        KartengrundDatentypen.Leer_Grund_Enum = AnforderungenExtern.NotwendigerGrund
+        KartengrundDatentypen.Leer_Basisgrund_Enum = AnforderungenExtern.NotwendigerGrund
       then
          null;
          
       elsif
-        AnforderungenExtern.NotwendigerGrund = LeseWeltkarte.AktuellerGrund (KoordinatenExtern => KoordinatenExtern)
-        or
-          AnforderungenExtern.NotwendigerGrund = LeseWeltkarte.BasisGrund (KoordinatenExtern => KoordinatenExtern)
+        AnforderungenExtern.NotwendigerGrund = LeseWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern)
       then
          null;
          

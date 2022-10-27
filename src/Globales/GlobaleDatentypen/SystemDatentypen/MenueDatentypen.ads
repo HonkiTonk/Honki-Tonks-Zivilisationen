@@ -16,8 +16,6 @@ package MenueDatentypen is
                                
                                -- Doppelte Menüs.
                                Rassen_Menü_Enum, Kartenform_Menü_Enum,
-                                 
-                               -- Sprachen_Menü_Enum.
                                
                                -- Steuerungsmneü.
                                Steuerung_Menü_Enum,

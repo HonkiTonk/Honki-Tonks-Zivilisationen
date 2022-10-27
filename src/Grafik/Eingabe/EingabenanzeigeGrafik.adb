@@ -241,7 +241,7 @@ package body EingabenanzeigeGrafik is
                   Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugStadt);
                   
                when False =>
-                  Text := To_Unbounded_Wide_Wide_String (Source => EinheitenbeschreibungenGrafik.BeschreibungKurz (IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern,
+                  Text := To_Unbounded_Wide_Wide_String (Source => EinheitenbeschreibungenGrafik.Kurzbeschreibung (IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern,
                                                                                                                                                                                        WelcheAuswahl.MöglicheAuswahlen (0))),
                                                                                                                    RasseExtern => RasseExtern));
             end case;
@@ -257,7 +257,7 @@ package body EingabenanzeigeGrafik is
                
             else
                Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
-                                                  str  => EinheitenbeschreibungenGrafik.BeschreibungKurz
+                                                  str  => EinheitenbeschreibungenGrafik.Kurzbeschreibung
                                                     (IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, WelcheAuswahl.MöglicheAuswahlen (AuswahlSchleifenwert))),
                                                      RasseExtern => RasseExtern));
                

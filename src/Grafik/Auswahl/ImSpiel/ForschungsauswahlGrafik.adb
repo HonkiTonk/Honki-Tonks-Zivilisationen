@@ -181,7 +181,7 @@ package body ForschungsauswahlGrafik is
                Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                              position => Textposition);
                Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
-                                                  str  => ForschungsbeschreibungenGrafik.BeschreibungKurz (IDExtern    => TechnologieSchleifenwert,
+                                                  str  => ForschungsbeschreibungenGrafik.Kurzbeschreibung (IDExtern    => TechnologieSchleifenwert,
                                                                                                            RasseExtern => RasseExtern));
                
                Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
@@ -212,7 +212,7 @@ package body ForschungsauswahlGrafik is
             Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                           position => Textposition);
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
-                                               str  => EinheitenbeschreibungenGrafik.BeschreibungKurz (IDExtern    => EinheitenSchleifenwert,
+                                               str  => EinheitenbeschreibungenGrafik.Kurzbeschreibung (IDExtern    => EinheitenSchleifenwert,
                                                                                                        RasseExtern => RasseExtern));
                
             Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
@@ -242,7 +242,7 @@ package body ForschungsauswahlGrafik is
             Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                           position => Textposition);
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
-                                               str  => GebaeudebeschreibungenGrafik.BeschreibungKurz (IDExtern    => GebäudeSchleifenwert,
+                                               str  => GebaeudebeschreibungenGrafik.Kurzbeschreibung (IDExtern    => GebäudeSchleifenwert,
                                                                                                       RasseExtern => RasseExtern));
             
             Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
@@ -299,7 +299,7 @@ package body ForschungsauswahlGrafik is
                                           position => Textposition);
       
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüZusatztextAccess (RasseExtern, ZusatztextExtern),
-                                               str  => ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung (TextExtern           => ForschungsbeschreibungenGrafik.BeschreibungLang (IDExtern    => ZusatztextExtern,
+                                               str  => ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung (TextExtern           => ForschungsbeschreibungenGrafik.Langbeschreibung (IDExtern    => ZusatztextExtern,
                                                                                                                                                                                        RasseExtern => RasseExtern),
                                                                                                               TextfeldbreiteExtern => Viewfläche (ViewnummerExtern).x / 2.00 - Textposition.x));
       
@@ -347,7 +347,7 @@ package body ForschungsauswahlGrafik is
             return;
             
          when others =>
-            Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt) & " " & ForschungsbeschreibungenGrafik.BeschreibungKurz (IDExtern    => AktuellesForschungsprojekt,
+            Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt) & " " & ForschungsbeschreibungenGrafik.Kurzbeschreibung (IDExtern    => AktuellesForschungsprojekt,
                                                                                                                                                        RasseExtern => RasseExtern);
       end case;
       

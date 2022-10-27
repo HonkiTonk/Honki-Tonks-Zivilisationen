@@ -3,48 +3,72 @@ pragma Warnings (Off, "*array aggregate*");
 
 with SchreibenDatenbankenLogik;
 
-with KartengrundHimmel;
-with KartengrundKern;
-with KartengrundOberflaeche;
-with KartengrundSonstiges;
-with KartengrundUnterflaeche;
-with KartengrundWeltall;
+with BasisgrundHimmel;
+with BasisgrundKern;
+with BasisgrundOberflaeche;
+with BasisgrundSonstiges;
+with BasisgrundUnterflaeche;
+with BasisgrundWeltall;
+with ZusatzgrundOberflaeche;
+with ZusatzgrundUnterflaeche;
 with KartengrundFluss;
 with KartengrundRessourcen;
 
 package body KartenDatenbank is
    
-   procedure StandardKartengrundDatenbankLaden
+   procedure StandardBasisgrundDatenbankLaden
    is begin
       
-      KartenfelderSchleife:
-      for KartenfelderSchleifenwert in KartengrundDatentypen.Kartengrund_Vorhanden_Enum'Range loop
+      BasisgrundSchleife:
+      for BasisgrundSchleifenwert in KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Range loop
          
          case
-           KartenfelderSchleifenwert
+           BasisgrundSchleifenwert
          is
-            when KartengrundWeltall.KartengrundlisteWeltallArray'Range =>
-               Kartengrundliste (KartenfelderSchleifenwert) := KartengrundWeltall.KartengrundlisteWeltall (KartenfelderSchleifenwert);
+            when BasisgrundWeltall.BasisgrundlisteWeltallArray'Range =>
+               Basisgrundliste (BasisgrundSchleifenwert) := BasisgrundWeltall.BasisgrundlisteWeltall (BasisgrundSchleifenwert);
                
-            when KartengrundHimmel.KartengrundlisteHimmelArray'Range =>
-               Kartengrundliste (KartenfelderSchleifenwert) := KartengrundHimmel.KartengrundlisteHimmel (KartenfelderSchleifenwert);
+            when BasisgrundHimmel.BasisgrundlisteHimmelArray'Range =>
+               Basisgrundliste (BasisgrundSchleifenwert) := BasisgrundHimmel.BasisgrundlisteHimmel (BasisgrundSchleifenwert);
                
-            when KartengrundUnterflaeche.KartengrundlisteUnterflächeArray'Range =>
-               Kartengrundliste (KartenfelderSchleifenwert) := KartengrundUnterflaeche.KartengrundlisteUnterfläche (KartenfelderSchleifenwert);
+            when BasisgrundUnterflaeche.BasisgrundlisteUnterflächeArray'Range =>
+               Basisgrundliste (BasisgrundSchleifenwert) := BasisgrundUnterflaeche.BasisgrundlisteUnterfläche (BasisgrundSchleifenwert);
                
-            when KartengrundKern.KartengrundlisteKernArray'Range =>
-               Kartengrundliste (KartenfelderSchleifenwert) := KartengrundKern.KartengrundlisteKern (KartenfelderSchleifenwert);
+            when BasisgrundKern.BasisgrundlisteKernArray'Range =>
+               Basisgrundliste (BasisgrundSchleifenwert) := BasisgrundKern.BasisgrundlisteKern (BasisgrundSchleifenwert);
                
-            when KartengrundSonstiges.KartengrundlisteSonstigesArray'Range =>
-               Kartengrundliste (KartenfelderSchleifenwert) := KartengrundSonstiges.KartengrundlisteSonstiges (KartenfelderSchleifenwert);
+            when BasisgrundSonstiges.BasisgrundlisteSonstigesArray'Range =>
+               Basisgrundliste (BasisgrundSchleifenwert) := BasisgrundSonstiges.BasisgrundlisteSonstiges (BasisgrundSchleifenwert);
                
-            when KartengrundOberflaeche.KartengrundlisteOberflächeArray'Range =>
-               Kartengrundliste (KartenfelderSchleifenwert) := KartengrundOberflaeche.KartengrundlisteOberfläche (KartenfelderSchleifenwert);
+            when BasisgrundOberflaeche.BasisgrundlisteOberflächeArray'Range =>
+               Basisgrundliste (BasisgrundSchleifenwert) := BasisgrundOberflaeche.BasisgrundlisteOberfläche (BasisgrundSchleifenwert);
          end case;
          
-      end loop KartenfelderSchleife;
+      end loop BasisgrundSchleife;
       
-   end StandardKartengrundDatenbankLaden;
+   end StandardBasisgrundDatenbankLaden;
+   
+   
+   
+   procedure StandardZusatzgrundDatenbankLaden
+   is begin
+      
+      ZusatzgrundSchleife:
+      for ZusatzgrundSchleifenwert in KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Range loop
+         
+         case
+           ZusatzgrundSchleifenwert
+         is
+            when ZusatzgrundOberflaeche.ZusatzgrundlisteOberflächeArray'Range =>
+               Zusatzgrundliste (ZusatzgrundSchleifenwert) := ZusatzgrundOberflaeche.ZusatzgrundlisteOberfläche (ZusatzgrundSchleifenwert);
+               
+            when ZusatzgrundUnterflaeche.ZusatzgrundlisteUnterflächeArray'Range =>
+               Zusatzgrundliste (ZusatzgrundSchleifenwert) := ZusatzgrundUnterflaeche.ZusatzgrundlisteUnterfläche (ZusatzgrundSchleifenwert);
+         end case;
+         
+      end loop ZusatzgrundSchleife;
+      
+   end StandardZusatzgrundDatenbankLaden;
    
    
 

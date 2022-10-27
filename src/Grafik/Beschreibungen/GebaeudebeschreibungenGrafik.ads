@@ -6,12 +6,12 @@ with RassenDatentypen;
 
 package GebaeudebeschreibungenGrafik is
 
-   function BeschreibungKurz
+   function Kurzbeschreibung
      (IDExtern : in StadtDatentypen.GebäudeID;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Wide_Wide_String;
    
-   function BeschreibungLang
+   function Langbeschreibung
      (IDExtern : in StadtDatentypen.GebäudeID;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Wide_Wide_String;
