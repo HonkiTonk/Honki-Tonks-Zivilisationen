@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 package KartenverbesserungDatentypen is
+   pragma Pure;
 
    type Karten_Verbesserung_Enum is (
                                      Leer_Verbesserung_Enum,

@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 package Warnung is
+   pragma Elaborate_Body;
 
    procedure LogikWarnung
      (WarnmeldungExtern : in Wide_Wide_String)

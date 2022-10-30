@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 package ZahlenDatentypen is
+   pragma Pure;
 
    subtype EigenerInteger is Integer range -1_000_000_000 .. 1_000_000_000;
    subtype EigenesNatural is EigenerInteger range 0 .. EigenerInteger'Last;

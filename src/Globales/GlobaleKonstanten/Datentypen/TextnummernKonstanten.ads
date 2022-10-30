@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 package TextnummernKonstanten is
+   pragma Pure;
    
    ZeugHauptstadt : constant Positive := 1;
    ZeugStadt : constant Positive := 2;

@@ -8,6 +8,7 @@ with KartendatenbankRecord;
 with BewertungDatentypen;
 
 package WegeStandard is
+   pragma Pure;
 
    type WegelisteArray is array (KartenverbesserungDatentypen.Karten_Straße_Enum'Range) of KartendatenbankRecord.KartenpassierbarkeitslistenRecord;
    Wegeliste : constant WegelisteArray := (

@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 package KartenartDatentypen is
+   pragma Pure;
 
    type Kartenart_Enum is (
                            -- Normal

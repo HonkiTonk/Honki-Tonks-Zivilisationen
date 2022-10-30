@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 package ProduktionDatentypen is
+   pragma Pure;
 
    -- Produktion rauswerfen, Stadtproduktion auf -10.000 .. 10.000 und StadtLagermenge auf 0 .. 10.000 erweitern? äöü
    -- Wobei ich ja für die Stadt prinzipiell kleinere Werte brauche als für die Gesamtwerte aller Städte. äöü

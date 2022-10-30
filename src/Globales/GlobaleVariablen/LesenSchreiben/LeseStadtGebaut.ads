@@ -19,6 +19,7 @@ with KIDatentypen;
 with Weltkarte;
 
 package LeseStadtGebaut is
+   pragma Elaborate_Body;
 
    function ID
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)

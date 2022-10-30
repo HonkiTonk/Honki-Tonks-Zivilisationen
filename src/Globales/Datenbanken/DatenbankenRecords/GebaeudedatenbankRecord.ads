@@ -11,6 +11,7 @@ with KampfDatentypen;
 with StadtRecords;
 
 package GebaeudedatenbankRecord is
+   pragma Preelaborate;
 
    -- Die Bonus, Kosten und Kampfbereiche auf ein Enum anstelle eines Arrays umschreiben? äöü
    -- Dann passt das aber auch nicht mehr einfach in eine Schleife. äöü

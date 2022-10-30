@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 package DiplomatieDatentypen is
+   pragma Pure;
 
    type Status_Untereinander_Enum is (
                                       Unbekannt_Enum, Neutral_Enum, Nichtangriffspakt_Enum, Krieg_Enum

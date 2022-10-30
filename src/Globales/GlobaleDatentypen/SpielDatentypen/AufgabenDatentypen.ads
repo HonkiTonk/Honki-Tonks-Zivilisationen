@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 package AufgabenDatentypen is
+   pragma Pure;
 
    type Einheiten_Aufgaben_Enum is (
                                     Leer_Aufgabe_Enum,

@@ -9,7 +9,7 @@ with ForschungenDatentypen;
 with KampfDatentypen;
 
 package EinheitendatenbankRecord is
-
+   pragma Preelaborate;
 
    type EinheitenlisteRecord is record
       

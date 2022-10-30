@@ -8,6 +8,7 @@ with BefehleDatentypen;
 
 -- Später so aufteilen wie die Kartendatenbanken und die Standardeinstellungen in eigene Dateien schieben? äöü
 package TastenbelegungVariablen is
+   pragma Elaborate_Body;
    
    type AllgemeineBelegungArray is array (TastenbelegungDatentypen.Allgemeine_Belegung_Vorhanden_Enum'Range) of Sf.Window.Keyboard.sfKeyCode;
    AllgemeineBelegung : AllgemeineBelegungArray;

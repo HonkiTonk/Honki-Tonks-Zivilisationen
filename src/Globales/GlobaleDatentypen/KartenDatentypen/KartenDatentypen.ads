@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 package KartenDatentypen is
+   pragma Pure;
 
    type Kartenfeld is range -1_000 .. 1_000;
    subtype KartenfeldNatural is Kartenfeld range 0 .. Kartenfeld'Last;

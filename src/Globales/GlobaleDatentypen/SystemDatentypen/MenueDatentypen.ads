@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 package MenueDatentypen is
+   pragma Pure;
 
    type Welches_Menü_Enum is (
                                Leer_Menü_Enum,

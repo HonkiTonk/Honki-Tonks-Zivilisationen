@@ -11,6 +11,7 @@ with KartenartDatentypen;
 with BewertungDatentypen;
 
 package KartenKonstanten is
+   pragma Pure;
    
    LeerEAchse : constant KartenDatentypen.Ebene := KartenDatentypen.Ebene'First;
    LeerYAchse : constant KartenDatentypen.KartenfeldNatural := KartenDatentypen.KartenfeldNatural'First;

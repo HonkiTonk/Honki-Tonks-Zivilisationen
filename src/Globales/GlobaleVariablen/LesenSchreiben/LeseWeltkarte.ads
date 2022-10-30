@@ -12,6 +12,7 @@ with EinheitenRecords;
 with Weltkarte;
 
 package LeseWeltkarte is
+   pragma Elaborate_Body;
    
    function Basisgrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)

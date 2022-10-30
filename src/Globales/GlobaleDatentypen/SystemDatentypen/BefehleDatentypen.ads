@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 package BefehleDatentypen is
+   pragma Pure;
 
    type Stadtbefehle_Enum is (
                               Leer_Stadtbefehle_Enum,

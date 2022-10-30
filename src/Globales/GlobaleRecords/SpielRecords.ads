@@ -13,6 +13,7 @@ with SpielDatentypen;
 with DiplomatieDatentypen;
 
 package SpielRecords is
+   pragma Preelaborate;
    
    type ForschungRecord is record -- XXX
       

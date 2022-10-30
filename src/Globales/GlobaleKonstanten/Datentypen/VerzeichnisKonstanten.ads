@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 package VerzeichnisKonstanten is
+   pragma Pure;
 
    Spielstand : constant String (1 .. 10) := "Spielstand";
    SpielstandStrich : constant String (1 .. 11) := Spielstand & "/";

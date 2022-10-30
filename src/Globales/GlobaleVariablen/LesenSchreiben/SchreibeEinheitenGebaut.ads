@@ -18,6 +18,7 @@ with KIDatentypen;
 with Weltkarte;
 
 package SchreibeEinheitenGebaut is
+   pragma Elaborate_Body;
 
    procedure ID
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

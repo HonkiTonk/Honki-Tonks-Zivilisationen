@@ -7,6 +7,7 @@ with KartendatenbankRecord;
 with BewertungDatentypen;
 
 package VerbesserungenStandard is
+   pragma Pure;
    
    type StadtlisteArray is array (KartenverbesserungDatentypen.Karten_Verbesserung_Städte_Enum'Range) of KartendatenbankRecord.KartenlistenRecord;
    Stadtliste : constant StadtlisteArray := (

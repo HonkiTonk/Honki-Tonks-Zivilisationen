@@ -8,6 +8,7 @@ with EinheitenRecords;
 with EinheitendatenbankRecord;
 
 package DebugobjekteLogik is
+   pragma Preelaborate;
 
    Alleskönner : constant EinheitendatenbankRecord.EinheitenlisteRecord := (
                                                                              Einheitenart            => EinheitenDatentypen.Cheat_Enum,

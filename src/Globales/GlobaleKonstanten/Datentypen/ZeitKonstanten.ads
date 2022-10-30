@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 package ZeitKonstanten is
+   pragma Preelaborate;
    
    -- Wird das so überhaupt benötigt?
    WartezeitLogik : constant Duration := 0.20;

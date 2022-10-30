@@ -9,6 +9,7 @@ with KartenartDatentypen;
 with BewertungDatentypen;
 
 package KartenRecords is
+   pragma Pure;
    
    type YXAchsenKartenfeldPositivRecord is record
       

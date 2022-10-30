@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 package Spieltexte is
+   pragma Preelaborate;
 
    -- Das hier mal in irgendeine globale Datentypdatei auslagern und dann für alle Texte die Unbounded String verwenden nutzen? äöü
    type TexteArray is array (Positive range <>) of Unbounded_Wide_Wide_String;

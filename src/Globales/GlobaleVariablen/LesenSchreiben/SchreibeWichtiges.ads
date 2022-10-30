@@ -8,6 +8,7 @@ with ForschungenDatentypen;
 with ProduktionDatentypen;
 
 package SchreibeWichtiges is
+   pragma Elaborate_Body;
 
    procedure Geldmenge
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;

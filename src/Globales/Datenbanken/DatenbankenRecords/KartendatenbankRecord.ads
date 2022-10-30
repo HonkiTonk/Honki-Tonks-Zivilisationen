@@ -9,6 +9,7 @@ with DatenbankRecords;
 with BewertungDatentypen;
 
 package KartendatenbankRecord is
+   pragma Pure;
 
    type BewertungArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of BewertungDatentypen.Bewertung_Enum;
    type WirtschaftArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, ProduktionDatentypen.Wirtschaft_Enum'Range) of ProduktionDatentypen.Einzelproduktion;

@@ -9,6 +9,7 @@ with ZahlenDatentypen;
 with DiplomatieDatentypen;
 
 package WichtigesKonstanten is
+   pragma Pure;
    
    LeerGeldmenge : constant ZahlenDatentypen.EigenesNatural := ZahlenDatentypen.EigenesNatural'First;
    LeerGeldZugewinnProRunde : constant ProduktionDatentypen.Produktion := 0;

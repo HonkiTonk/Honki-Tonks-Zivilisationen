@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 package KIDatentypen is
+   pragma Pure;
 
    -- Leer_Aufgabe_Enum verwenden, wenn noch keine Aufgabe ermittelt wurde. Tut_Nichts, wenn die Einheit diese Runde nichts tun soll.
    type Einheit_Aufgabe_Enum is (

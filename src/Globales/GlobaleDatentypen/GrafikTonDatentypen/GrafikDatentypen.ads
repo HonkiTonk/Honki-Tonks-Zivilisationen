@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 package GrafikDatentypen is
+   pragma Pure;
 
    type Grafik_Aktuelle_Darstellung_Enum is (
                                              Grafik_Start_Enum, Grafik_Intro_Enum, Grafik_Abspann_Enum,

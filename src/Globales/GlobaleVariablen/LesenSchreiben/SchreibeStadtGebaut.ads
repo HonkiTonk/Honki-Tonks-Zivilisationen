@@ -19,6 +19,7 @@ with KIDatentypen;
 with Weltkarte;
 
 package SchreibeStadtGebaut is
+   pragma Elaborate_Body;
 
    procedure ID
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;

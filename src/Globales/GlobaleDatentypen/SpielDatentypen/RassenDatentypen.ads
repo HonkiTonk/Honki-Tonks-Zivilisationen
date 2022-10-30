@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 package RassenDatentypen is
+   pragma Pure;
    
    type Rassen_Enum is (
                         Keine_Rasse_Enum,

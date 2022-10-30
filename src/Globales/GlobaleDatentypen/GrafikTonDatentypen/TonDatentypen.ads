@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 package TonDatentypen is
+   pragma Pure;
 
    -- Musik
    type AnzahlLieder is range 1 .. 1;

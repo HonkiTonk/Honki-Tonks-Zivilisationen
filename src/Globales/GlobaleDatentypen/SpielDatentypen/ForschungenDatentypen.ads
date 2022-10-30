@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 package ForschungenDatentypen is
+   pragma Pure;
 
    -- Die -1 wird benötigt für Gebäude/Einheiten die nicht möglich sind zu bauen/unbelegt sind.
    type ForschungIDNichtMöglich is range -1 .. 75;

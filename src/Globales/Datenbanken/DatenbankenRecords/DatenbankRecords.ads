@@ -6,6 +6,7 @@ with EinheitenDatentypen;
 with RassenDatentypen;
 
 package DatenbankRecords is
+   pragma Pure;
    
    type PassierbarkeitArray is array (EinheitenDatentypen.Passierbarkeit_Enum'Range) of Boolean;
 

@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 package EinheitenDatentypen is
+   pragma Pure;
    
    -- Eigenen Datentyp für Arbeitszeit anlegen. äöü
    -- Eigene Datentypen für Erfahrung/Rang anlegen. äöü
@@ -102,7 +103,6 @@ package EinheitenDatentypen is
                            
                            Klein_Transport_Enum, Mittel_Transport_Enum, Groß_Transport_Enum, Riesig_Transport_Enum, Gigantisch_Transport_Enum
                           );
-   
    pragma Ordered (Transport_Enum);
    
    subtype Transport_Vorhanden_Enum is Transport_Enum range Klein_Transport_Enum .. Gigantisch_Transport_Enum;

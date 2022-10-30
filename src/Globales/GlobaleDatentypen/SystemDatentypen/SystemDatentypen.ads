@@ -19,7 +19,8 @@ package SystemDatentypen is
                      );
    
    
-      
+   
+   -- Das hier mal umbauen/verschieben, damit die Abhängigkeit von Meldungstexte verschwindet? äöü
    subtype Spielmeldungen is Natural range 0 .. Meldungstexte.Meldung'Last;
    subtype SpielmeldungenVorhanden is Spielmeldungen range 1 .. Spielmeldungen'Last;
    
@@ -35,7 +36,6 @@ package SystemDatentypen is
    
    
       
-   -- Statt Integer 0 .. 100, eine Float von 0.00 bis 1.00 oder 0.00 bis 100.00?
    type NullBisHundert is range 0 .. 100;
    subtype EinsBisHundert is NullBisHundert range 1 .. NullBisHundert'Last;
 

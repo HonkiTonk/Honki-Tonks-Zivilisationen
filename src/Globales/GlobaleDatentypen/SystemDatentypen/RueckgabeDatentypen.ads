@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 package RueckgabeDatentypen is
+   pragma Pure;
    
    -- Eventuell kann man das auch in zwei Teile aufteilen? äöü
    -- Ein Teil für die ganzen Menüs und ein zweiter Teil für die Befehlsrückgaben? äöü
@@ -18,7 +19,6 @@ package RueckgabeDatentypen is
                                  
                                  Zurück_Enum, Hauptmenü_Enum, Spiel_Beenden_Enum
                                 );
-   
    pragma Ordered (Rückgabe_Werte_Enum);
    
    subtype Auswahl_Enum is Rückgabe_Werte_Enum range Auswahl_Eins_Enum .. Auswahl_Achtzehn_Enum;

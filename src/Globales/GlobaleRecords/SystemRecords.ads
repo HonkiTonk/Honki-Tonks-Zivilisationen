@@ -6,6 +6,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with ZahlenDatentypen;
 
 package SystemRecords is
+   pragma Preelaborate;
 
    type NutzerEinstellungenRecord is record
       

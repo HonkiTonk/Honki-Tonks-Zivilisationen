@@ -6,6 +6,7 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 private with Ada.Text_IO;
 
 package MeldungSchreiben is
+   pragma Elaborate_Body;
 
    procedure MeldungSchreiben
      (MeldungExtern : in Wide_Wide_String)

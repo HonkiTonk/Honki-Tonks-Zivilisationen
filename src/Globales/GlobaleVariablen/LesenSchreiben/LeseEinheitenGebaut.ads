@@ -18,6 +18,7 @@ with KIDatentypen;
 with Weltkarte;
 
 package LeseEinheitenGebaut is
+   pragma Elaborate_Body;
 
    function ID
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

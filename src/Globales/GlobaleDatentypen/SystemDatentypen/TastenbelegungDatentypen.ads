@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 package TastenbelegungDatentypen is
+   pragma Pure;
    
    type Allgemeine_Belegung_Enum is (
                                      Leer_Allgemeine_Belegung_Enum,

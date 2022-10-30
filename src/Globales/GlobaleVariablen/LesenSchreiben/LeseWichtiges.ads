@@ -9,6 +9,7 @@ with ProduktionDatentypen;
 with SpielVariablen;
 
 package LeseWichtiges is
+   pragma Elaborate_Body;
 
    function Geldmenge
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

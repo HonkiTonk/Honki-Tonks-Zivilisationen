@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with KampfDatentypen;
 
 package KampfRecords is
+   pragma Pure;
 
    type KampfwerteRecord is record
       

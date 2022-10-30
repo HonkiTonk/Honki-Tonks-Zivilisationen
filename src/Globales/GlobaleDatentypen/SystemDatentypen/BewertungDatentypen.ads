@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 package BewertungDatentypen is
+   pragma Pure;
 
    type Bewertung_Enum is (
                            Bewertung_Eins_Enum, Bewertung_Zwei_Enum, Bewertung_Drei_Enum, Bewertung_Vier_Enum, Bewertung_Fünf_Enum,

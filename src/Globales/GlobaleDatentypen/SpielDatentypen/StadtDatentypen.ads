@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 package StadtDatentypen is
+   pragma Pure;
 
    -- Für Gebäude
    type GebäudeIDMitNullwert is range 0 .. 27;

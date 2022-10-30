@@ -14,6 +14,7 @@ with KartenverbesserungDatentypen;
 with KIDatentypen;
 
 package StadtRecords is
+   pragma Preelaborate;
 
    type RasseStadtnummerRecord is record
       

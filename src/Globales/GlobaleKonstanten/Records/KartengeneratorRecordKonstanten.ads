@@ -6,6 +6,7 @@ with KartenRecords;
 with KartenartDatentypen;
 
 package KartengeneratorRecordKonstanten is
+   pragma Pure;
    
    type PolregionenArray is array (KartenartDatentypen.Himmelsrichtungen_Enum'Range) of KartenDatentypen.KartenfeldNatural;
    Eisrand : constant PolregionenArray := (

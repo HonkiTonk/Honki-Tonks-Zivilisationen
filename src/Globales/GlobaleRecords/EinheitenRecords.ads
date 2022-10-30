@@ -12,6 +12,7 @@ with ProduktionDatentypen;
 with KIDatentypen;
 
 package EinheitenRecords is
+   pragma Pure;
 
    type RasseEinheitnummerRecord is tagged record
       

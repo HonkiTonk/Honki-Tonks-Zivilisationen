@@ -12,6 +12,7 @@ with StadtRecords;
 with Weltkarte;
 
 package SchreibeWeltkarte is
+   pragma Elaborate_Body;
    
    procedure Basisgrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
