@@ -6,6 +6,7 @@ with SpielVariablen;
 with EinheitenRecords;
 
 package EinheitVerschanzenLogik is
+   pragma Elaborate_Body;
 
    function Verschanzen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

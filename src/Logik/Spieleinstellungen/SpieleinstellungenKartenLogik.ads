@@ -7,6 +7,7 @@ private with SystemRecords;
 private with KartenRecords;
 
 package SpieleinstellungenKartenLogik is
+   pragma Elaborate_Body;
    
    procedure KartenpoleWählen;
    procedure KartengrößeWählen;

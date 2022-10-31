@@ -7,10 +7,10 @@ with KartenDatentypen; use KartenDatentypen;
 with KartenRecords;
 with SpielVariablen;
 with EinheitenRecords;
-
 with Weltkarte;
 
 package TransporterSuchenLogik is
+   pragma Elaborate_Body;
 
    function KoordinatenTransporterMitRasseSuchen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;

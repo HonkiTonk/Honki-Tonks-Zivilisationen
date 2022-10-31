@@ -14,6 +14,7 @@ private with AufgabenDatentypen;
 private with Weltkarte;
 
 package StadtBauenLogik is
+   pragma Elaborate_Body;
 
    function StadtBauen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

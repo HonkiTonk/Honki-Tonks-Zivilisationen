@@ -10,6 +10,7 @@ private with EinheitenDatentypen;
 with KIDatentypen;
 
 package KIEinheitAufgabeHeilenLogik is
+   pragma Elaborate_Body;
 
    function SichHeilen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

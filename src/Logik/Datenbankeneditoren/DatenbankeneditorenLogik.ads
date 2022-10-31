@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with RueckgabeDatentypen;
 
 package DatenbankeneditorenLogik is
+   pragma Elaborate_Body;
 
    function DatenbankenEditoren
      return RueckgabeDatentypen.Rückgabe_Werte_Enum;

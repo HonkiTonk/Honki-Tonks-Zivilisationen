@@ -8,6 +8,7 @@ with SpielVariablen;
 private with EinheitenDatentypen;
 
 package EinheitVerbessernLogik is
+   pragma Elaborate_Body;
 
    function VerbesserungEinheit
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

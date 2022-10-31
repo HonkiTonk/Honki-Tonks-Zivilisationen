@@ -8,6 +8,7 @@ with KartendatenbankRecord;
 with BewertungDatentypen;
 
 package ZusatzgrundOberflaeche is
+   pragma Pure;
    
    -- Passierbarkeit: Boden, Wasser, Luft, Weltraum, Unterwasser, Küstenwasser, Unterirdisch (Erde), Planeteninneres (Gestein), Lava
 

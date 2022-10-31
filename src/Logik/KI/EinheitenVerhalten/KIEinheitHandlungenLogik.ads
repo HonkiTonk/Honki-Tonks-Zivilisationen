@@ -6,6 +6,7 @@ with EinheitenRecords;
 with SpielVariablen;
 
 package KIEinheitHandlungenLogik is
+   pragma Elaborate_Body;
 
    function HandlungBeendet
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

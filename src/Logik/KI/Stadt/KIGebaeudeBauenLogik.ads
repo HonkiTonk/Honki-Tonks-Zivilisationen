@@ -13,6 +13,7 @@ with KIRecords;
 private with KIDatentypen;
 
 package KIGebaeudeBauenLogik is
+   pragma Elaborate_Body;
 
    function GebäudeBauen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)

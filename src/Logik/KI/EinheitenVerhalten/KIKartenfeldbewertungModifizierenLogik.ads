@@ -8,6 +8,7 @@ with SpielVariablen;
 with Weltkarte;
 
 package KIKartenfeldbewertungModifizierenLogik is
+   pragma Elaborate_Body;
 
    function BewertungStadtBauen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;

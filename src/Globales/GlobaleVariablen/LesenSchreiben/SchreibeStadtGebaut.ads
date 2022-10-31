@@ -13,10 +13,9 @@ with KartenverbesserungDatentypen;
 with ProduktionDatentypen;
 with StadtRecords;
 with KartenKonstanten;
+with Weltkarte;
 
 with KIDatentypen;
-
-with Weltkarte;
 
 package SchreibeStadtGebaut is
    pragma Elaborate_Body;

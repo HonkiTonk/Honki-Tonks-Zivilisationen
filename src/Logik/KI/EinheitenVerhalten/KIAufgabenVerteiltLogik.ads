@@ -6,12 +6,12 @@ with KartenDatentypen; use KartenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 with KartenRecords;
+with Weltkarte;
 
 with KIDatentypen; use KIDatentypen;
 
-with Weltkarte;
-
 package KIAufgabenVerteiltLogik is
+   pragma Elaborate_Body;
 
    function AufgabenVerteilt
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

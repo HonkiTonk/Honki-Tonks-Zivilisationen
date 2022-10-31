@@ -6,6 +6,7 @@ with SpielVariablen;
 with EinheitenRecords;
 
 package KIEinheitUmsetzenAngreifenLogik is
+   pragma Elaborate_Body;
 
    function Angreifen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

@@ -11,6 +11,7 @@ private with Weltkarte;
 private with KartenRecords;
 
 package EinheitentransporterLogik is
+   pragma Elaborate_Body;
    
    procedure TransporterEntladen
      (TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord)

@@ -6,6 +6,7 @@ private with Sf.System.Vector2;
 private with GrafikRecordKonstanten;
 
 package IntroGrafik is
+   pragma Elaborate_Body;
 
    procedure Intro;
 

@@ -7,13 +7,13 @@ with KartengrundDatentypen; use KartengrundDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 with KartenRecords;
+with Weltkarte;
 
 private with AufgabenDatentypen;
 private with ProduktionDatentypen;
 
-with Weltkarte;
-
 package FarmErmittelnLogik is
+   pragma Elaborate_Body;
    
    function FarmErmitteln
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

@@ -7,12 +7,12 @@ with StadtDatentypen; use StadtDatentypen;
 with KartenRecords;
 with StadtRecords;
 with SpielVariablen;
+with Weltkarte;
 
 private with SystemRecords;
 
-with Weltkarte;
-
 package StadtSuchenLogik is
+   pragma Elaborate_Body;
    
    function KoordinatenStadtMitRasseSuchen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;

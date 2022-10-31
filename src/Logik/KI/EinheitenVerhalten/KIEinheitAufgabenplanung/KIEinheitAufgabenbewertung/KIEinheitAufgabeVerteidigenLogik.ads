@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with KIDatentypen;
 
 package KIEinheitAufgabeVerteidigenLogik is
+   pragma Elaborate_Body;
 
    function Verteidigen
      return KIDatentypen.AufgabenWichtigkeitKlein;

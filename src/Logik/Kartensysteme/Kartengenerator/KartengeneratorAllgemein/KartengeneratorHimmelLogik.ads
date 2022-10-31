@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 private with KartenDatentypen;
 
 package KartengeneratorHimmelLogik is
+   pragma Elaborate_Body;
 
    procedure Himmel;
 

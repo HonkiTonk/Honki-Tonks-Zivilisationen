@@ -10,10 +10,10 @@ private with KartenRecords;
 private with StadtRecords;
 private with EinheitenDatentypen;
 private with KartengrundDatentypen;
-
 private with Weltkarte;
 
 package KIEinheitFestlegenVerbesserungenLogik is
+   pragma Elaborate_Body;
 
    function StadtumgebungVerbessern
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

@@ -9,6 +9,7 @@ private with Weltkarte;
 private with SystemDatentypen;
 
 package KartengeneratorPlanetenkernLogik is
+   pragma Elaborate_Body;
 
    procedure Planetenkern;
 

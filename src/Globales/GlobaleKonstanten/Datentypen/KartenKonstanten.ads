@@ -7,7 +7,6 @@ with ProduktionDatentypen;
 with KampfDatentypen;
 with RueckgabeDatentypen;
 with KartenartDatentypen;
-
 with BewertungDatentypen;
 
 package KartenKonstanten is

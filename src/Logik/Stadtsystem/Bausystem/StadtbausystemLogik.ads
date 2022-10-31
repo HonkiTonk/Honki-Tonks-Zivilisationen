@@ -10,6 +10,7 @@ with StadtRecords;
 private with KartenRecords;
 
 package StadtbausystemLogik is
+   pragma Elaborate_Body;
 
    procedure Bauen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)

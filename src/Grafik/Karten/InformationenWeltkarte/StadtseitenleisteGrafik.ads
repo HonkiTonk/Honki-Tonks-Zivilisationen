@@ -18,6 +18,7 @@ private with TextaccessVariablen;
 private with UmwandlungenAdaNachEigenes;
 
 package StadtseitenleisteGrafik is
+   pragma Elaborate_Body;
    
    procedure Stadtinformationen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)

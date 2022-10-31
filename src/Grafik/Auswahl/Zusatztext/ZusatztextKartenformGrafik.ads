@@ -7,6 +7,7 @@ private with Sf.Graphics;
 private with Sf.Graphics.Sprite;
 
 package ZusatztextKartenformGrafik is
+   pragma Elaborate_Body;
 
    procedure ZusatztextKartenform
      (AktuelleAuswahlExtern : in Positive;

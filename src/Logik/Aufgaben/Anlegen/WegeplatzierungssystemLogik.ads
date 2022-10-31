@@ -4,12 +4,12 @@ pragma Warnings (Off, "*array aggregate*");
 with KartenDatentypen; use KartenDatentypen;
 with KartenRecords;
 with AufgabenDatentypen;
+with Weltkarte;
 
 private with KartenverbesserungDatentypen;
 
-with Weltkarte;
-
 package WegeplatzierungssystemLogik is
+   pragma Elaborate_Body;
 
    procedure Wegplatzierung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;

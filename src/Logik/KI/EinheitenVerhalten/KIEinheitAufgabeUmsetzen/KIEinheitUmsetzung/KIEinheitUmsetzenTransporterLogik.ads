@@ -6,6 +6,7 @@ with SpielVariablen;
 with EinheitenRecords;
 
 package KIEinheitUmsetzenTransporterLogik is
+   pragma Elaborate_Body;
 
    function AbholungAbwarten
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

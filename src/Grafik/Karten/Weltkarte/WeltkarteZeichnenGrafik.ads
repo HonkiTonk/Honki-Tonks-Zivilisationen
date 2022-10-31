@@ -21,6 +21,7 @@ with Weltkarte;
 private with KartenartDatentypen;
 
 package WeltkarteZeichnenGrafik is
+   pragma Elaborate_Body;
    
    procedure EbeneZeichnen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;

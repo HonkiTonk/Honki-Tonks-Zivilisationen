@@ -9,6 +9,7 @@ with BefehleDatentypen;
 with KartenartDatentypen;
 
 package UmwandlungenVerschiedeneDatentypen is
+   pragma Pure;
 
    function BefehleNachKartenverbesserung
      (TasteExtern : in BefehleDatentypen.Siedler_Konstruktionen_Enum)

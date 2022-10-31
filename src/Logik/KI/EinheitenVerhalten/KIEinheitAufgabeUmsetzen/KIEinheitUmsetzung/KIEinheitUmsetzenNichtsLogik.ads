@@ -6,6 +6,7 @@ with SpielVariablen;
 with EinheitenRecords;
 
 package KIEinheitUmsetzenNichtsLogik is
+   pragma Elaborate_Body;
 
    function NichtsTun
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

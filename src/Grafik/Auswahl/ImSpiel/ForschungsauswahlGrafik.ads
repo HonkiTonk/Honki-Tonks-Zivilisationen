@@ -13,6 +13,7 @@ private with GrafikRecordKonstanten;
 private with ProduktionDatentypen;
 
 package ForschungsauswahlGrafik is
+   pragma Elaborate_Body;
 
    procedure ForschungAnzeige
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;

@@ -6,6 +6,7 @@ with Sf.Graphics.Color;
 with RassenDatentypen;
 
 package RasseneinstellungenGrafik is
+   pragma Elaborate_Body;
    
    type RassenFarbenArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of Sf.Graphics.Color.sfColor;
    Rassenfarben : RassenFarbenArray;

@@ -10,6 +10,7 @@ with GrafikDatentypen;
 private with GrafikRecordKonstanten;
 
 package AbspannGrafik is
+   pragma Elaborate_Body;
 
    procedure Abspann
      (AbspannExtern : in GrafikDatentypen.Abspann_Enum;

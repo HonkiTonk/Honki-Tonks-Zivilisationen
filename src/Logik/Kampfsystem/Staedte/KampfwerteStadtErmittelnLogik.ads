@@ -7,6 +7,7 @@ with KampfDatentypen;
 with StadtRecords;
 
 package KampfwerteStadtErmittelnLogik is
+   pragma Elaborate_Body;
 
    function AktuelleVerteidigungStadt
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)

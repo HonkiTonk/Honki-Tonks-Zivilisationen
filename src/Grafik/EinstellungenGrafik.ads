@@ -9,6 +9,7 @@ with GrafikRecords;
 
 -- Teile davon nach GrafikVariablen auslagern? äöü
 package EinstellungenGrafik is
+   pragma Elaborate_Body;
    
    Grafikeinstellungen : GrafikRecords.GrafikeinstellungenRecord;
    

@@ -13,6 +13,7 @@ private with EinheitenDatentypen;
 private with KIDatentypen;
 
 package KIBewegungBerechnenLogik is
+   pragma Elaborate_Body;
    
    function BewegungPlanen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

@@ -5,6 +5,7 @@ with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
 
 package HandelnLogik is
+   pragma Elaborate_Body;
    
    procedure SichtbarkeitTauschen
      (RasseEinsExtern : in RassenDatentypen.Rassen_Verwendet_Enum;

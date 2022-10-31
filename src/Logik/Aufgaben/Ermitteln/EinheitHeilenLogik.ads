@@ -6,6 +6,7 @@ with EinheitenRecords;
 with SpielVariablen;
 
 package EinheitHeilenLogik is
+   pragma Elaborate_Body;
 
    function EinheitHeilen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

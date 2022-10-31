@@ -14,6 +14,7 @@ with StadtDatentypen;
 with KIDatentypen;
 
 package EinheitenKonstanten is
+   pragma Preelaborate;
    
    LeerRasse : constant RassenDatentypen.Rassen_Enum := RassenDatentypen.Keine_Rasse_Enum;
    LeerNummer : constant EinheitenDatentypen.MaximaleEinheitenMitNullWert := EinheitenDatentypen.MaximaleEinheitenMitNullWert'First;

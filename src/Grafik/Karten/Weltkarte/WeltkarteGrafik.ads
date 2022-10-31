@@ -10,10 +10,10 @@ with SpielVariablen;
 with EinheitenRecords;
 
 private with KartenRecords;
-
 private with Weltkarte;
 
 package WeltkarteGrafik is
+   pragma Elaborate_Body;
    
    procedure WeltkarteAnzeigen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

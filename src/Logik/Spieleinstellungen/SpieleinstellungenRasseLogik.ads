@@ -10,6 +10,7 @@ private with ZahlenDatentypen;
 private with Weltkarte;
 
 package SpieleinstellungenRasseLogik is
+   pragma Elaborate_Body;
    
    procedure StartwerteErmitteln;
    procedure RassenWählen;

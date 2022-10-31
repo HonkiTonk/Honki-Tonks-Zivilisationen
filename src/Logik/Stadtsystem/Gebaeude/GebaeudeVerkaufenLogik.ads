@@ -8,6 +8,7 @@ with StadtRecords;
 private with StadtDatentypen;
 
 package GebaeudeVerkaufenLogik is
+   pragma Elaborate_Body;
 
    procedure Verkaufsliste
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)

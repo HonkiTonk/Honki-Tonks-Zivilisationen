@@ -5,12 +5,12 @@ with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
 with KartenRecords;
 with SpielVariablen;
+with Weltkarte;
 
 private with StadtDatentypen;
 
-with Weltkarte;
-
 package KIStadtSuchenLogik is
+   pragma Elaborate_Body;
 
    function NähesteFeindlicheStadtSuchen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;

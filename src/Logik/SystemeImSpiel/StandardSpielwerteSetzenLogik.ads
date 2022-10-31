@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 package StandardSpielwerteSetzenLogik is
+   pragma Elaborate_Body;
 
    procedure StandardSpielwerteSetzenLogik
      (EinstellungenBehaltenExtern : in Boolean);

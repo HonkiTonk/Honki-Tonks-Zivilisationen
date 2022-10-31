@@ -10,6 +10,7 @@ private with KartenverbesserungDatentypen;
 private with KartenRecords;
 
 package VerbesserungFertiggestelltLogik is
+   pragma Elaborate_Body;
 
    procedure VerbesserungFertiggestellt;
    

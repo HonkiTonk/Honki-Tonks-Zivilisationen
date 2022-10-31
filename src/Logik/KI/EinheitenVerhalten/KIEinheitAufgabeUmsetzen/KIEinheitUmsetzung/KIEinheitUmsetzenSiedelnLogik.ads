@@ -6,6 +6,7 @@ with SpielVariablen;
 with EinheitenRecords;
 
 package KIEinheitUmsetzenSiedelnLogik is
+   pragma Elaborate_Body;
 
    function StadtErrichten
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 
 package EinlesenTastaturLogik is
+   pragma Elaborate_Body;
    
    procedure EinlesenTastaturbelegung;
    

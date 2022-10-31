@@ -12,6 +12,7 @@ private with KartenDatentypen;
 private with KartenRecords;
 
 package StadtkarteGrafik is
+   pragma Elaborate_Body;
 
    procedure Stadtkarte
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)

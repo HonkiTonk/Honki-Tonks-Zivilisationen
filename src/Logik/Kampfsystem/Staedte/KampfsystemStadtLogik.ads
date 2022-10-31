@@ -10,6 +10,7 @@ private with KampfRecords;
 private with EinheitenDatentypen;
 
 package KampfsystemStadtLogik is
+   pragma Elaborate_Body;
 
    function KampfsystemStadt
      (AngreifendeEinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

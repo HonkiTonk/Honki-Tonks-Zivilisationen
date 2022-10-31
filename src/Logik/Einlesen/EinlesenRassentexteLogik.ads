@@ -7,6 +7,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 private with RassenDatentypen;
 
 package EinlesenRassentexteLogik is
+   pragma Elaborate_Body;
 
    procedure RassentexteEinlesen;
 

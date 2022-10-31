@@ -8,6 +8,7 @@ with EinheitenRecords;
 private with EinheitenDatentypen;
 
 package KIEinheitFestlegenBewachenLogik is
+   pragma Elaborate_Body;
 
    function StadtBewachen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

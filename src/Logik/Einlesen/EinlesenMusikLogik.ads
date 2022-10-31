@@ -7,6 +7,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 private with RassenDatentypen;
 
 package EinlesenMusikLogik is
+   pragma Elaborate_Body;
    
    procedure EinlesenMusik;
    

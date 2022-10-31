@@ -7,10 +7,10 @@ with EinheitenDatentypen;
 with EinheitenRecords;
 with KartenRecords;
 with SpielVariablen;
-
 with Weltkarte;
 
 package BewegungsberechnungEinheitenLogik is
+   pragma Elaborate_Body;
 
    procedure Bewegungsberechnung
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

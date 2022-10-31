@@ -10,8 +10,8 @@ with Weltkarte;
 
 private with EinheitenDatentypen;
 
-
 package SichtbereicheErmittelnLogik is
+   pragma Elaborate_Body;
 
    function SichtweiteErmitteln
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

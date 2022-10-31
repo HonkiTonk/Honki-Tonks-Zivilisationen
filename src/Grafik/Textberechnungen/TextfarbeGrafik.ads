@@ -8,6 +8,7 @@ private with Sf.Graphics.Color;
 with MenueDatentypen;
 
 package TextfarbeGrafik is
+   pragma Elaborate_Body;
 
    procedure AuswahlfarbeFestlegen
      (TextnummerExtern : in Natural;

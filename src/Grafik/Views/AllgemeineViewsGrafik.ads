@@ -9,6 +9,7 @@ with MenueDatentypen;
 private with GrafikRecordKonstanten;
 
 package AllgemeineViewsGrafik is
+   pragma Elaborate_Body;
    
    procedure Überschrift
      (ÜberschriftExtern : in Wide_Wide_String;

@@ -10,6 +10,7 @@ with BefehleDatentypen;
 with ForschungsdatenbankRecord;
 
 package ForschungKonstanten is
+   pragma Pure;
    
    LeerKosten : constant ProduktionDatentypen.Einzelproduktion := 0;
    LeerForschung : constant ForschungenDatentypen.ForschungIDMitNullWert := ForschungenDatentypen.ForschungIDMitNullWert'First;

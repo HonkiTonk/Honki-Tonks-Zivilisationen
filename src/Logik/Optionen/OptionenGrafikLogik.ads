@@ -8,6 +8,7 @@ with RueckgabeDatentypen;
 private with SystemRecords;
 
 package OptionenGrafikLogik is
+   pragma Elaborate_Body;
 
    function OptionenGrafik
      return RueckgabeDatentypen.Rückgabe_Werte_Enum;

@@ -8,6 +8,7 @@ with SpielVariablen;
 with KartenDatentypen;
 
 package QuadrantenberechnungenLogik is
+   pragma Elaborate_Body;
 
    procedure QuadrantenDurchlaufen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;

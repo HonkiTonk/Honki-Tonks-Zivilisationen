@@ -8,10 +8,10 @@ with EinheitenRecords;
 
 private with KartenRecords;
 private with Weltkarte;
-
 private with BewertungDatentypen;
 
 package KIEinheitFestlegenSiedelnLogik is
+   pragma Elaborate_Body;
 
    function StadtBauen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

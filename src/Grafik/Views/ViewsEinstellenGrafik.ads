@@ -6,6 +6,7 @@ with Sf.System.Vector2;
 with Sf.Graphics.Rect;
 
 package ViewsEinstellenGrafik is
+   pragma Elaborate_Body;
    
    procedure ViewEinstellen
      (ViewExtern : in Sf.Graphics.sfView_Ptr;

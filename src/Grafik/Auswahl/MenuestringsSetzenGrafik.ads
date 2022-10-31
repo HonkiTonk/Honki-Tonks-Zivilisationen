@@ -6,6 +6,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with MenueDatentypen;
 
 package MenuestringsSetzenGrafik is
+   pragma Elaborate_Body;
 
    function MenüstringsSetzen
      (WelcheZeileExtern : in Positive;

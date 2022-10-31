@@ -4,10 +4,10 @@ pragma Warnings (Off, "*array aggregate*");
 with KartenDatentypen; use KartenDatentypen;
 with KartenKonstanten;
 with KartenRecords;
-
 with Weltkarte;
 
 package KartenkoordinatenberechnungssystemLogik is
+   pragma Elaborate_Body;
 
    function Kartenkoordinatenberechnungssystem
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;

@@ -3,12 +3,12 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with KartenRecords;
+with Weltkarte;
 
 private with KartengrundDatentypen;
 
-with Weltkarte;
-
 package WaldAnlegenLogik is
+   pragma Elaborate_Body;
 
    procedure WaldAnlegen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)

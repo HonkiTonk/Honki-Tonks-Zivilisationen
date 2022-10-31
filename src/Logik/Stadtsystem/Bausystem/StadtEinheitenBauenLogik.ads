@@ -7,10 +7,10 @@ with SpielVariablen;
 
 private with KartenRecords;
 private with EinheitenDatentypen;
-
 private with Weltkarte;
 
 package StadtEinheitenBauenLogik is
+   pragma Elaborate_Body;
 
    procedure EinheitFertiggestellt
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)

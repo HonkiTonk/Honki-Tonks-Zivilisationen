@@ -6,6 +6,7 @@ with SpielVariablen;
 with ForschungenDatentypen;
 
 package ForschungstestsLogik is
+   pragma Elaborate_Body;
 
    function ForschungAnforderungErfüllt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;

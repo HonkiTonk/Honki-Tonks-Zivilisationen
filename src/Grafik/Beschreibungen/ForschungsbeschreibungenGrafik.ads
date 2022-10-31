@@ -5,6 +5,7 @@ with RassenDatentypen;
 with ForschungenDatentypen;
 
 package ForschungsbeschreibungenGrafik is
+   pragma Elaborate_Body;
 
    function Kurzbeschreibung
      (IDExtern : in ForschungenDatentypen.ForschungIDMitNullWert;

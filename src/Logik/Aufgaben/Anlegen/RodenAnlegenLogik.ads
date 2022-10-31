@@ -6,6 +6,7 @@ with KartenRecords;
 with Weltkarte;
 
 package RodenAnlegenLogik is
+   pragma Elaborate_Body;
 
    procedure RodenAnlegen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)

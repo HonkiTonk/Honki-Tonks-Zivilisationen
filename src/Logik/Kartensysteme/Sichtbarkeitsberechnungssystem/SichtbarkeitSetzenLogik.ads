@@ -12,6 +12,7 @@ private with EinheitenRecords;
 private with KartengrundDatentypen;
 
 package SichtbarkeitSetzenLogik is
+   pragma Elaborate_Body;
    
    procedure SichtbarkeitSetzen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;

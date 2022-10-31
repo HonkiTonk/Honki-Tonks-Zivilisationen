@@ -5,6 +5,7 @@ with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
 
 package RasseEntfernenLogik is
+   pragma Elaborate_Body;
 
    procedure RasseEntfernen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

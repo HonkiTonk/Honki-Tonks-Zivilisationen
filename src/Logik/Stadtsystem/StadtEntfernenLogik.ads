@@ -8,6 +8,7 @@ with StadtRecords;
 private with KartenRecords;
 
 package StadtEntfernenLogik is
+   pragma Elaborate_Body;
    
    function StadtAbreißen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)

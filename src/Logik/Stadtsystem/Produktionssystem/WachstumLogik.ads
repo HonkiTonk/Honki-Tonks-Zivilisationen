@@ -8,6 +8,7 @@ private with ProduktionDatentypen;
 private with StadtRecords;
 
 package WachstumLogik is
+   -- pragma Elaborate_Body; äöü
    
    procedure StadtWachstum;
    

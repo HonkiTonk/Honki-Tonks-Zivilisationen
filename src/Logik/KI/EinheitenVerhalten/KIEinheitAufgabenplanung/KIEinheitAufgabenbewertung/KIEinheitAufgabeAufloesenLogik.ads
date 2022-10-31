@@ -11,6 +11,7 @@ private with EinheitenDatentypen;
 with KIDatentypen;
 
 package KIEinheitAufgabeAufloesenLogik is
+   pragma Elaborate_Body;
 
    function EinheitAuflösen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

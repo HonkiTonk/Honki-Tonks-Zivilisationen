@@ -8,6 +8,7 @@ private with Weltkarte;
 private with SystemDatentypen;
 
 package KartengeneratorFlussLogik is
+   pragma Elaborate_Body;
 
    procedure GenerierungFlüsse;
 

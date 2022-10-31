@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 private with RueckgabeDatentypen;
 
 package SpieleinstellungenSonstigesLogik is
+   pragma Elaborate_Body;
 
    procedure SchwierigkeitsgradFestlegen;
    

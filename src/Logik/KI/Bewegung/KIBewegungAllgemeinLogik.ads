@@ -11,6 +11,7 @@ with Weltkarte;
 with KIDatentypen;
 
 package KIBewegungAllgemeinLogik is
+   pragma Elaborate_Body;
    
    function FeldBetreten
      (FeldKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;

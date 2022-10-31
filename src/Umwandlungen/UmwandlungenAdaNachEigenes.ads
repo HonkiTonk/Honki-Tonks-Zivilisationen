@@ -8,6 +8,7 @@ private with Ada.Wide_Wide_Text_IO;
 with EinheitenDatentypen;
 
 package UmwandlungenAdaNachEigenes is
+   pragma Elaborate_Body;
 
    function BewegungspunkteDarstellungNormal
      (KommazahlExtern : in EinheitenDatentypen.BewegungFloat)

@@ -8,6 +8,7 @@ with SystemRecords;
 with Meldungstexte;
 
 package ZahleneingabeLogik is
+   pragma Elaborate_Body;
 
    function Zahleneingabe
      (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;

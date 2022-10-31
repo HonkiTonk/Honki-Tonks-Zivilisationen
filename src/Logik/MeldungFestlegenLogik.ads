@@ -5,6 +5,7 @@ with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
 
 package MeldungFestlegenLogik is
+   pragma Elaborate_Body;
 
    procedure MeldungFestlegen
      (MeldungExtern : in Positive);

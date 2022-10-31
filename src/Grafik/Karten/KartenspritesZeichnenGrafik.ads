@@ -8,6 +8,7 @@ private with Sf.Graphics.Sprite;
 private with Sf.Graphics.Color;
 
 package KartenspritesZeichnenGrafik is
+   pragma Elaborate_Body;
 
    procedure KartenfeldZeichnen
      (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;

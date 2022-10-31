@@ -8,6 +8,7 @@ with SpielVariablen;
 private with KartenRecords;
 
 package KIEinheitFestlegenPlatzMachenLogik is
+   pragma Elaborate_Body;
 
    function PlatzMachen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

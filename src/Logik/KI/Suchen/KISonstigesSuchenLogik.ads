@@ -6,10 +6,10 @@ with KartenDatentypen; use KartenDatentypen;
 with EinheitenRecords;
 with KartenRecords;
 with SpielVariablen;
-
 with Weltkarte;
 
 package KISonstigesSuchenLogik is
+   pragma Elaborate_Body;
 
    function EigenesFeldSuchen
      (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;

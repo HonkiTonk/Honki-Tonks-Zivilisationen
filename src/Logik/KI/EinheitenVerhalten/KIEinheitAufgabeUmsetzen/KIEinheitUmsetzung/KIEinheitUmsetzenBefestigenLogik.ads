@@ -6,6 +6,7 @@ with SpielVariablen;
 with EinheitenRecords;
 
 package KIEinheitUmsetzenBefestigenLogik is
+   pragma Elaborate_Body;
 
    function Befestigen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

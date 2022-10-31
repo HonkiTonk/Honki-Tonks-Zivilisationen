@@ -7,10 +7,10 @@ with EinheitenRecords;
 with SpielVariablen;
 
 private with KartenRecords;
-
 private with Weltkarte;
 
 package KIEinheitFestlegenErkundenLogik is
+   pragma Elaborate_Body;
 
    function Erkunden
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

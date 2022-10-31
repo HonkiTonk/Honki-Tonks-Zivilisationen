@@ -9,6 +9,7 @@ with MenueDatentypen;
 private with GrafikRecordKonstanten;
 
 package DoppelmenueGrafik is
+   pragma Elaborate_Body;
 
    procedure Doppelmenü
      (WelchesMenüExtern : in MenueDatentypen.Menü_Doppelt_Enum;

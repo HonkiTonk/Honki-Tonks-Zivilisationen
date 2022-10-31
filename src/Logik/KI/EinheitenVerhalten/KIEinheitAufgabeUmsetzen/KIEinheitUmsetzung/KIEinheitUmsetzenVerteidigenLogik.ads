@@ -6,6 +6,7 @@ with SpielVariablen;
 with EinheitenRecords;
 
 package KIEinheitUmsetzenVerteidigenLogik is
+   pragma Elaborate_Body;
 
    function Verteidigen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

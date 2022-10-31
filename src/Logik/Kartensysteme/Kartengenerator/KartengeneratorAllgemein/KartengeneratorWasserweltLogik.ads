@@ -9,6 +9,7 @@ private with KartengrundDatentypen;
 private with SystemDatentypen;
 
 package KartengeneratorWasserweltLogik is
+   pragma Elaborate_Body;
 
    procedure KartengeneratorWasserwelt
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)

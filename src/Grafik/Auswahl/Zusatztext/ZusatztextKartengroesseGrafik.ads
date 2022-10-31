@@ -9,6 +9,7 @@ private with RueckgabeDatentypen;
 private with UmwandlungenAdaNachEigenes;
 
 package ZusatztextKartengroesseGrafik is
+   pragma Elaborate_Body;
 
    function ZusatztextKartengröße
      (AktuelleAuswahlExtern : in Natural;

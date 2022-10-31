@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 package ZeilenumbruchberechnungGrafik is
+   pragma Elaborate_Body;
    
    function Zeilenumbruchberechnung
      (TextExtern : in Wide_Wide_String;

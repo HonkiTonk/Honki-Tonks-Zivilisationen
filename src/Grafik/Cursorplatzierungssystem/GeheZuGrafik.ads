@@ -8,6 +8,7 @@ with KartenRecords;
 with Weltkarte;
 
 package GeheZuGrafik is
+   pragma Elaborate_Body;
 
    procedure GeheZuFestlegung
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

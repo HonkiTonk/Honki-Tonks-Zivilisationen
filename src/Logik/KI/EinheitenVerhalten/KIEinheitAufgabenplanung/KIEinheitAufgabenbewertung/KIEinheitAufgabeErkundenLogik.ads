@@ -8,6 +8,7 @@ with EinheitenRecords;
 with KIDatentypen;
 
 package KIEinheitAufgabeErkundenLogik is
+   pragma Elaborate_Body;
 
    function Erkunden
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

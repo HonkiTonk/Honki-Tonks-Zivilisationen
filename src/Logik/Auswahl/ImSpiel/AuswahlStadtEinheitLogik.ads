@@ -9,6 +9,7 @@ with SpielVariablen;
 private with EinheitenRecords;
 
 package AuswahlStadtEinheitLogik is
+   pragma Elaborate_Body;
    
    function AuswahlStadtEinheit
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;

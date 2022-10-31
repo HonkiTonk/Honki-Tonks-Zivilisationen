@@ -11,6 +11,7 @@ private with KartenRecords;
 with KIDatentypen;
 
 package KIEinheitAufgabeBewachenLogik is
+   pragma Elaborate_Body;
 
    function StadtBewachen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

@@ -7,10 +7,10 @@ with KartenDatentypen; use KartenDatentypen;
 private with EinheitenRecords;
 private with KartenRecords;
 private with SpielVariablen;
-
 private with Weltkarte;
 
 package EinheitInUmgebungLogik is
+   pragma Elaborate_Body;
 
    procedure EinheitInUmgebung;
    

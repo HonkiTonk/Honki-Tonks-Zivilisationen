@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 package SprachauswahlLogik is
+   pragma Elaborate_Body;
       
    -- Das auch mal in irgendwas Globales verschieben? äöü
    type AktuelleSprachenArray is array (1 .. 11) of Unbounded_Wide_Wide_String;

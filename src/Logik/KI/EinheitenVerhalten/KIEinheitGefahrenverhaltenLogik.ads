@@ -6,6 +6,7 @@ with EinheitenRecords;
 with SpielVariablen;
 
 package KIEinheitGefahrenverhaltenLogik is
+   pragma Elaborate_Body;
 
    procedure GefahrenHandlungen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

@@ -10,6 +10,7 @@ with KartenRecords;
 with Weltkarte;
 
 package KoordinatenPositionUmwandlungen is
+   pragma Elaborate_Body;
 
    function KoordinatenZuKartenposition
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;

@@ -7,13 +7,13 @@ with KartengrundDatentypen; use KartengrundDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 with KartenRecords;
+with Weltkarte;
 
 private with AufgabenDatentypen;
 private with ProduktionDatentypen;
 
-with Weltkarte;
-
 package FestungErmittelnLogik is
+   pragma Elaborate_Body;
 
    function FestungErmitteln
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

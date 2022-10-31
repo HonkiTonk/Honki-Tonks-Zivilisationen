@@ -16,6 +16,7 @@ private with GrafikRecordKonstanten;
 private with UmwandlungenAdaNachEigenes;
 
 package EingabenanzeigeGrafik is
+   pragma Elaborate_Body;
    
    procedure Fragenaufteilung
      (FrageExtern : in ZahlenDatentypen.EigenesPositive;

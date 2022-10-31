@@ -12,10 +12,10 @@ private with KartengrundDatentypen;
 private with KartenverbesserungDatentypen;
 private with KartenRecords;
 private with GrafikRecordKonstanten;
-
 private with Weltkarte;
 
 package StadtumgebungGrafik is
+   pragma Elaborate_Body;
 
    procedure Stadtumgebung
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)

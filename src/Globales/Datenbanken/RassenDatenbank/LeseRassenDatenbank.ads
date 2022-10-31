@@ -6,6 +6,7 @@ with SpielVariablen;
 with StadtDatentypen;
 
 package LeseRassenDatenbank is
+   pragma Elaborate_Body;
 
    function RassenAggressivität
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

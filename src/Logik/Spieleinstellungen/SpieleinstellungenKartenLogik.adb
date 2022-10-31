@@ -8,8 +8,8 @@ with KartenRecordKonstanten;
 with TextnummernKonstanten;
 with KartenKonstanten;
 with KartengeneratorRecordKonstanten;
-
 with Weltkarte;
+
 with ZahleneingabeLogik;
 with ZufallsgeneratorenSpieleinstellungenLogik;
 with AuswahlaufteilungLogik;

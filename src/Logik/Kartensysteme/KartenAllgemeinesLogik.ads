@@ -14,6 +14,7 @@ with BewertungDatentypen;
 private with KartenverbesserungDatentypen;
 
 package KartenAllgemeinesLogik is
+   pragma Elaborate_Body;
 
    function GrundNahrung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;

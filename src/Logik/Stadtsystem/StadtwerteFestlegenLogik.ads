@@ -12,6 +12,7 @@ private with KartenRecords;
 with LeseStadtGebaut;
 
 package StadtwerteFestlegenLogik is
+   pragma Elaborate_Body;
 
    procedure BewirtschaftbareFelderBelegen
      (ZuwachsOderSchwundExtern : in Boolean;

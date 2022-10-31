@@ -6,6 +6,7 @@ with EinheitenRecords;
 with SpielVariablen;
 
 package EinheitenSpielmeldungenLogik is
+   pragma Elaborate_Body;
 
    function BewegungspunkteMeldung
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

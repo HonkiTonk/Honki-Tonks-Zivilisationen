@@ -6,6 +6,7 @@ with SpielVariablen;
 with EinheitenRecords;
 
 package KIEinheitUmsetzenVerteidigungskriegLogik is
+   pragma Elaborate_Body;
 
    function VerteidigungskriegVorbereiten
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

@@ -7,13 +7,13 @@ with EinheitenRecords;
 with SpielVariablen;
 with KartenRecords;
 with BefehleDatentypen;
+with Weltkarte;
 
 private with EinheitenDatentypen;
 private with KartenverbesserungDatentypen;
 
-with Weltkarte;
-
 package AufgabenLogik is
+   pragma Elaborate_Body;
    
    function AufgabeTesten
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

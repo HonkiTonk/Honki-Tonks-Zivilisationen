@@ -12,6 +12,7 @@ with BefehleDatentypen;
 with TastenbelegungDatentypen;
 
 package MausauswahlLogik is
+   pragma Elaborate_Body;
 
    function RassenauswahlDiplomatie
      return Natural;

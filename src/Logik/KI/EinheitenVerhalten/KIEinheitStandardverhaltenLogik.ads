@@ -6,6 +6,7 @@ with EinheitenRecords;
 with SpielVariablen;
 
 package KIEinheitStandardverhaltenLogik is
+   pragma Elaborate_Body;
 
    procedure NormaleHandlungen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

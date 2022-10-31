@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with RueckgabeDatentypen;
 
 package SpieleinstellungenLogik is
+   pragma Elaborate_Body;
 
    function Spieleinstellungen
      (SchnellstartExtern : in Boolean)

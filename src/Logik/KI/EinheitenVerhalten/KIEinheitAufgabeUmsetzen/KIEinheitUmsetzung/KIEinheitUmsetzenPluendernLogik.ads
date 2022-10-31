@@ -6,6 +6,7 @@ with SpielVariablen;
 with EinheitenRecords;
 
 package KIEinheitUmsetzenPluendernLogik is
+   pragma Elaborate_Body;
 
    function StadtumgebungZerstören
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

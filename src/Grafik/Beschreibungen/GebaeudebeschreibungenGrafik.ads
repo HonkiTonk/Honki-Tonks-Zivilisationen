@@ -5,6 +5,7 @@ with StadtDatentypen;
 with RassenDatentypen;
 
 package GebaeudebeschreibungenGrafik is
+   pragma Elaborate_Body;
 
    function Kurzbeschreibung
      (IDExtern : in StadtDatentypen.GebäudeID;

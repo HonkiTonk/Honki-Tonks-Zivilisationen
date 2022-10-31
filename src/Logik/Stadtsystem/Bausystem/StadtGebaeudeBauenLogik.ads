@@ -6,6 +6,7 @@ with StadtRecords;
 with SpielVariablen;
 
 package StadtGebaeudeBauenLogik is
+   pragma Elaborate_Body;
 
    procedure GebäudeFertiggestellt
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)

@@ -9,6 +9,7 @@ with KampfDatentypen;
 private with BewertungDatentypen;
 
 package ZufallsgeneratorenKampfLogik is
+   pragma Elaborate_Body;
 
    function KampfErfolg
      return Float;

@@ -7,6 +7,7 @@ with Sf.System.Vector2;
 private with Sf.Graphics.Rect;
 
 package TexturenSetzenSkalierenGrafik is
+   pragma Elaborate_Body;
    
    procedure Textursetzung
      (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;

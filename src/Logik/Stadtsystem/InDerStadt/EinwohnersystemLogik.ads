@@ -11,6 +11,7 @@ private with KartenRecords;
 private with KartenDatentypen;
 
 package EinwohnersystemLogik is
+   pragma Elaborate_Body;
 
    function EinwohnerZuweisenEntfernen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)

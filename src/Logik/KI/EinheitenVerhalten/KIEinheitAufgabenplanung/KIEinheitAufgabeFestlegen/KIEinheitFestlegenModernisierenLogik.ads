@@ -11,6 +11,7 @@ private with KartenRecords;
 private with KartenDatentypen;
 
 package KIEinheitFestlegenModernisierenLogik is
+   pragma Elaborate_Body;
 
    function EinheitVerbessern
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

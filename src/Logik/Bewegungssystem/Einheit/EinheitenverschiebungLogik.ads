@@ -11,6 +11,7 @@ private with EinheitenDatentypen;
 private with StadtRecords;
 
 package EinheitenverschiebungLogik is
+   pragma Elaborate_Body;
 
    procedure VonEigenemLandWerfen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;

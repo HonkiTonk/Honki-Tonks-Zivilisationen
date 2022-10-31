@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 private with KartenDatentypen;
 
 package PolbereicheBerechnenLogik is
+   pragma Elaborate_Body;
 
    procedure PolbereicheBerechnen;
    

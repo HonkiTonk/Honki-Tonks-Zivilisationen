@@ -10,6 +10,7 @@ with StadtDatentypen;
 private with GrafikRecordKonstanten;
 
 package VerkaufsauswahlGrafik is
+   pragma Elaborate_Body;
 
    procedure Verkaufsauswahl
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;

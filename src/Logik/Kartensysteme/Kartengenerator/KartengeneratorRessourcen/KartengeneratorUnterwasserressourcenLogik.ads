@@ -9,6 +9,7 @@ private with KartengrundDatentypen;
 private with SystemDatentypen;
 
 package KartengeneratorUnterwasserressourcenLogik is
+   pragma Elaborate_Body;
 
    procedure KartengeneratorUnterwasserressourcen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)

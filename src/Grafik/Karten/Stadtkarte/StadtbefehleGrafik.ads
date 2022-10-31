@@ -7,6 +7,7 @@ private with Sf.Graphics.Rect;
 with GrafikRecordKonstanten;
 
 package StadtbefehleGrafik is
+   pragma Elaborate_Body;
 
    procedure Stadtbefehle;
 

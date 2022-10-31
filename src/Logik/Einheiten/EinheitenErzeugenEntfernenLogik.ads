@@ -8,10 +8,10 @@ with EinheitenRecords;
 with EinheitenDatentypen;
 with SpielVariablen;
 with StadtRecords;
-
 with Weltkarte;
 
 package EinheitenErzeugenEntfernenLogik is
+   pragma Elaborate_Body;
 
    procedure EinheitErzeugen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;

@@ -11,6 +11,7 @@ with Weltkarte;
 private with StadtRecords;
 
 package EinheitenbewegungLogik is
+   pragma Elaborate_Body;
    
    function NochBewegungspunkte
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with Sf.Graphics; use Sf.Graphics;
 
 package TextberechnungenBreiteGrafik is
+   pragma Elaborate_Body;
    
    function KleinerSpaltenabstandVariabel
      return Float

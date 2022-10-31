@@ -12,6 +12,7 @@ with StadtDatentypen;
 private with GrafikRecordKonstanten;
 
 package BauauswahlGebaeudeGrafik is
+   pragma Elaborate_Body;
 
    procedure Gebäudeinformationen
      (AuswahlExtern : in StadtDatentypen.GebäudeIDMitNullwert;

@@ -9,6 +9,7 @@ private with SystemDatentypen;
 private with Weltkarte;
 
 package KartengeneratorLandschaftLogik is
+   pragma Elaborate_Body;
 
    procedure GenerierungLandschaft;
 

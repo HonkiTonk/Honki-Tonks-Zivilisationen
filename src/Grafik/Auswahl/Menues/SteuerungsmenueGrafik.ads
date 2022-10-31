@@ -11,6 +11,7 @@ private with GrafikRecordKonstanten;
 private with SteuerungsauswahlLogik;
 
 package SteuerungsmenueGrafik is
+   pragma Elaborate_Body;
 
    procedure Steuerungsmenü
      (AuswahlExtern : in Integer);

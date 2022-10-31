@@ -8,6 +8,7 @@ with EinheitenRecords;
 with KIDatentypen;
 
 package KIEinheitAufgabeBefestigenLogik is
+   pragma Elaborate_Body;
 
    function SichBefestigen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

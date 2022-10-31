@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with RueckgabeDatentypen;
 
 package OptionenSteuerungLogik is
+   pragma Elaborate_Body;
 
    function SteuerungBelegen
      return RueckgabeDatentypen.Rückgabe_Werte_Enum;

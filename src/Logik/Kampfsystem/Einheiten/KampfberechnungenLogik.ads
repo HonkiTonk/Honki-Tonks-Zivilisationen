@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with KampfDatentypen;
 
 package KampfberechnungenLogik is
+   pragma Elaborate_Body;
    
    function Kampfberechnung
      (AngriffExtern : in KampfDatentypen.Kampfwerte;

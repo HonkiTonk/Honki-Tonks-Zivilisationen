@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 package SpielstandEntfernenLogik is
+   pragma Elaborate_Body;
 
    procedure SpielstandEntfernen
      (SpielstandnameExtern : in Wide_Wide_String);

@@ -12,6 +12,7 @@ with EinheitenDatentypen;
 private with GrafikRecordKonstanten;
 
 package BauauswahlEinheitenGrafik is
+   pragma Elaborate_Body;
 
    procedure Einheiteninformationen
      (AuswahlExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;

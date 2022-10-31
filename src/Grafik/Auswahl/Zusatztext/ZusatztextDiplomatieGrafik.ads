@@ -6,6 +6,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Sf.System.Vector2;
 
 package ZusatztextDiplomatieGrafik is
+   pragma Elaborate_Body;
 
    function ZusatztextDiplomatie
      (ViewflächeExtern : in Sf.System.Vector2.sfVector2f;

@@ -6,6 +6,7 @@ with EinheitenRecords;
 with SpielVariablen;
 
 package EinheitenAllgemeinesLogik is
+   pragma Elaborate_Body;
 
    function Kampfeinheit
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

@@ -12,10 +12,9 @@ with AufgabenDatentypen;
 with KampfDatentypen;
 with KartenKonstanten;
 with ProduktionDatentypen;
+with Weltkarte;
 
 with KIDatentypen;
-
-with Weltkarte;
 
 package LeseEinheitenGebaut is
    pragma Elaborate_Body;

@@ -11,6 +11,7 @@ private with KartenverbesserungDatentypen;
 private with BefehleDatentypen;
 
 package KIEinheitUmsetzenVerbesserungenLogik is
+   pragma Elaborate_Body;
 
    function WelcheVerbesserungAnlegen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

@@ -10,6 +10,7 @@ private with ForschungenDatentypen;
 with KIDatentypen;
 
 package KIEinheitAufgabeVerbesserungenLogik is
+   pragma Elaborate_Body;
 
    function StadtumgebungVerbessern
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

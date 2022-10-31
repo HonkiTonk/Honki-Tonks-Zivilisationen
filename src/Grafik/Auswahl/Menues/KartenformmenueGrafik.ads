@@ -8,6 +8,7 @@ with Sf.System.Vector2;
 with MenueDatentypen;
 
 package KartenformmenueGrafik is
+   pragma Elaborate_Body;
 
    function Kartenformmenü
      (WelchesMenüExtern : in MenueDatentypen.Menü_Doppelt_Enum;

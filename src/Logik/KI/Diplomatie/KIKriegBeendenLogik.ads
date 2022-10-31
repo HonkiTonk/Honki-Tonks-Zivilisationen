@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 package KIKriegBeendenLogik is
+   pragma Elaborate_Body;
 
    function KriegBeenden
      (EigeneRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;

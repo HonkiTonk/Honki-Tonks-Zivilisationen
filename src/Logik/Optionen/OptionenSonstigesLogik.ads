@@ -8,6 +8,7 @@ with RueckgabeDatentypen;
 private with SystemRecords;
 
 package OptionenSonstigesLogik is
+   pragma Elaborate_Body;
 
    function Sonstiges
      return RueckgabeDatentypen.Rückgabe_Werte_Enum;

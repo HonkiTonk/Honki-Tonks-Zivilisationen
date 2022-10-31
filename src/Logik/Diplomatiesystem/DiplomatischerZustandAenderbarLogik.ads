@@ -6,6 +6,7 @@ with DiplomatieDatentypen;
 with SpielVariablen;
 
 package DiplomatischerZustandAenderbarLogik is
+   pragma Elaborate_Body;
 
    procedure StatusÄnderbarkeitPrüfen
      (RasseEinsExtern : in RassenDatentypen.Rassen_Verwendet_Enum;

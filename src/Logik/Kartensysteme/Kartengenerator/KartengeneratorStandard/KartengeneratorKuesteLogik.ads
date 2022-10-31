@@ -4,10 +4,10 @@ pragma Warnings (Off, "*array aggregate*");
 with KartenDatentypen; use KartenDatentypen;
 
 private with KartenRecords;
-
 private with Weltkarte;
 
 package KartengeneratorKuesteLogik is
+   pragma Elaborate_Body;
 
    procedure GenerierungKüstenSeeGewässer;
 

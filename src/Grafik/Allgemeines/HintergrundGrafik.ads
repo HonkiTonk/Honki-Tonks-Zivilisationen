@@ -11,6 +11,7 @@ with RassenDatentypen;
 with GrafikDatentypen;
 
 package HintergrundGrafik is
+   pragma Elaborate_Body;
 
    procedure Hintergrund
      (HintergrundExtern : in GrafikDatentypen.Hintergrund_Enum;

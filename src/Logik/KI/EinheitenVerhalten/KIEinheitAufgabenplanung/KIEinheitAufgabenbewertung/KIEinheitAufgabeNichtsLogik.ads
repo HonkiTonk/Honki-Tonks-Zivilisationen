@@ -8,6 +8,7 @@ with EinheitenRecords;
 with KIDatentypen;
 
 package KIEinheitAufgabeNichtsLogik is
+   pragma Elaborate_Body;
 
    function NichtsTun
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

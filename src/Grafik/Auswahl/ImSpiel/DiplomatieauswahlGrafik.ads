@@ -8,6 +8,7 @@ private with Sf.System.Vector2;
 private with GrafikRecordKonstanten;
 
 package DiplomatieauswahlGrafik is
+   pragma Elaborate_Body;
 
    procedure Diplomatieauswahl
      (AuswahlExtern : in Natural);

@@ -10,6 +10,7 @@ with KartenRecords;
 with Weltkarte;
 
 package TransporterLadungsverschiebungLogik is
+   pragma Elaborate_Body;
    
    procedure LadungVerschieben
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

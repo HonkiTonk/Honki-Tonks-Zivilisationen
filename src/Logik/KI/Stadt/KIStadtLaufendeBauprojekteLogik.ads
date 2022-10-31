@@ -8,6 +8,7 @@ with StadtRecords;
 with SpielVariablen;
 
 package KIStadtLaufendeBauprojekteLogik is
+   pragma Elaborate_Body;
 
    function StadtLaufendeBauprojekte
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;

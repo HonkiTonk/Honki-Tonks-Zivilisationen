@@ -9,6 +9,7 @@ private with KartengrundDatentypen;
 private with SystemDatentypen;
 
 package KartengeneratorUnterlandressourcenLogik is
+   pragma Elaborate_Body;
 
    procedure KartengeneratorUnterlandressourcen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)

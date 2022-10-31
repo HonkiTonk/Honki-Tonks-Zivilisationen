@@ -5,10 +5,10 @@ with KartenDatentypen; use KartenDatentypen;
 with KartengrundDatentypen;
 with LadezeitenDatentypen;
 with KartenKonstanten;
+with Weltkarte;
 
 with SchreibeWeltkarte;
 
-with Weltkarte;
 with LadezeitenLogik;
 
 package body KartengeneratorHimmelLogik is

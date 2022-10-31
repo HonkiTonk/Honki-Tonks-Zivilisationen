@@ -6,10 +6,10 @@ with RassenDatentypen; use RassenDatentypen;
 with KartenRecords;
 with EinheitenDatentypen;
 with SpielVariablen;
-
 with Weltkarte;
 
 package StadtumgebungErreichbarLogik is
+   pragma Elaborate_Body;
    
    function UmgebungErreichbar
      (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;

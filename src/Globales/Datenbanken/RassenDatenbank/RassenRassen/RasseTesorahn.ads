@@ -6,6 +6,7 @@ with RassenDatentypen;
 with DatenbankRecords;
 
 package RasseTesorahn is
+   pragma Pure;
 
    RasseTesorahnListe : constant DatenbankRecords.RassenlisteRecord := (
                                                                         Aggressivität       => 0,

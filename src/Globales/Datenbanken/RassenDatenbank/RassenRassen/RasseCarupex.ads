@@ -6,6 +6,7 @@ with RassenDatentypen;
 with DatenbankRecords;
 
 package RasseCarupex is
+   pragma Pure;
 
    RasseCarupexListe : constant DatenbankRecords.RassenlisteRecord := (
                                                                        Aggressivität       => 0,

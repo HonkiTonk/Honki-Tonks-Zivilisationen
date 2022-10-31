@@ -9,6 +9,7 @@ private with TastenbelegungDatentypen;
 private with StadtRecords;
 
 package BefehlsauswahlLogik is
+   pragma Elaborate_Body;
 
    function Befehlsauswahl
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

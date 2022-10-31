@@ -7,6 +7,7 @@ with SpielVariablen;
 private with ProduktionDatentypen;
 
 package KIKriegErmittelnLogik is
+   pragma Elaborate_Body;
 
    function IstImKrieg
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

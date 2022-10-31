@@ -8,6 +8,7 @@ with SpielVariablen;
 private with KIDatentypen;
 
 package KIEinheitAufgabenplanungLogik is
+   pragma Elaborate_Body;
    
    procedure AufgabeErmitteln
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

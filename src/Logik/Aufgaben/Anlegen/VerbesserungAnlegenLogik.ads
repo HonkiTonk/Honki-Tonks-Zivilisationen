@@ -4,12 +4,12 @@ pragma Warnings (Off, "*array aggregate*");
 with KartenDatentypen; use KartenDatentypen;
 with KartenRecords;
 with AufgabenDatentypen;
+with Weltkarte;
 
 private with KartenverbesserungDatentypen;
 
-with Weltkarte;
-
 package VerbesserungAnlegenLogik is
+   pragma Elaborate_Body;
 
    procedure VerbesserungAnlegen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;

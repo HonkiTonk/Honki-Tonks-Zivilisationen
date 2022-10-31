@@ -7,6 +7,7 @@ with SpielVariablen;
 private with RueckgabeDatentypen;
 
 package DiplomatieLogik is
+   pragma Elaborate_Body;
 
    procedure DiplomatieMöglich
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

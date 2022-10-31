@@ -6,6 +6,7 @@ with AufgabenDatentypen;
 with RassenDatentypen;
 
 package EinheitenbeschreibungenGrafik is
+   pragma Elaborate_Body;
    
    function Kurzbeschreibung
      (IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;

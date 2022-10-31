@@ -10,6 +10,7 @@ private with EinheitenDatentypen;
 with KIDatentypen;
 
 package KIEinheitAufgabeModernisierenLogik is
+   pragma Elaborate_Body;
 
    function SichVerbessern
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

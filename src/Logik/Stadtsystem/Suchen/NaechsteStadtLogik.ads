@@ -7,6 +7,7 @@ with SpielVariablen;
 private with StadtDatentypen;
 
 package NaechsteStadtLogik is
+   pragma Elaborate_Body;
 
    procedure NächsteStadt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

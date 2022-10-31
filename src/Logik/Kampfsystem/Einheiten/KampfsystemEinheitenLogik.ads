@@ -9,6 +9,7 @@ private with KampfRecords;
 private with EinheitenDatentypen;
 
 package KampfsystemEinheitenLogik is
+   pragma Elaborate_Body;
 
    function KampfsystemNahkampf
      (AngreiferExtern : in EinheitenRecords.RasseEinheitnummerRecord;

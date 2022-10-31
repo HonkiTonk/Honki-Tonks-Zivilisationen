@@ -9,6 +9,7 @@ with SpielVariablen;
 private with EinheitenDatentypen;
 
 package KIEinheitSuchenLogik is
+   pragma Elaborate_Body;
 
    function FeindlicheEinheitInUmgebungSuchen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

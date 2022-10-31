@@ -10,6 +10,7 @@ private with SonstigesKonstanten;
 private with SpielVariablen;
 
 package LadenLogik is
+   pragma Elaborate_Body;
 
    function Laden
      return Boolean;

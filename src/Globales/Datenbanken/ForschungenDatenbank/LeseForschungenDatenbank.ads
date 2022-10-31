@@ -10,6 +10,7 @@ with SystemDatentypen;
 with BefehleDatentypen;
 
 package LeseForschungenDatenbank is
+   pragma Elaborate_Body;
 
    function Kosten
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;

@@ -13,6 +13,7 @@ private with TextaccessVariablen;
 private with GrafikRecordKonstanten;
 
 package AllgemeinesSeitenleisteGrafik is
+   pragma Elaborate_Body;
    
    procedure Leer
      (ViewbereichExtern : in Positive);

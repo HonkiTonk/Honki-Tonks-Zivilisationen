@@ -6,6 +6,7 @@ with SpielVariablen;
 with EinheitenRecords;
 
 package KIEinheitUmsetzenBewachenLogik is
+   pragma Elaborate_Body;
 
    function StadtBewachen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

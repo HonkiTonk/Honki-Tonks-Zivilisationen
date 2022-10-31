@@ -10,6 +10,7 @@ with SpielVariablen;
 private with BefehleDatentypen;
 
 package EinheitenkontrollsystemLogik is
+   pragma Elaborate_Body;
 
    procedure Einheitenkontrolle
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

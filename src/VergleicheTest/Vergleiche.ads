@@ -6,10 +6,10 @@ with Sf.Graphics.Rect;
 
 with KartenDatentypen; use KartenDatentypen;
 with KartenRecords;
-
 with Weltkarte;
 
 package Vergleiche is
+   pragma Elaborate_Body;
    
    function KoordinateLeervergleich
      (KoordinateExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)

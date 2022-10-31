@@ -14,6 +14,7 @@ private with StadtDatentypen;
 private with KartenverbesserungDatentypen;
 
 package PassierbarkeitspruefungLogik is
+   pragma Elaborate_Body;
    
    function PassierbarkeitPrüfenNummer
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

@@ -7,6 +7,7 @@ with Weltkarte;
 private with KartenkoordinatenWerteLogik;
 
 package KartenkoordinateXAchseBerechnenLogik is
+   pragma Elaborate_Body;
 
    function KartenkoordinateXAchseBerechnen
      (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;

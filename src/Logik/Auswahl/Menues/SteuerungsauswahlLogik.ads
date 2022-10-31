@@ -6,6 +6,7 @@ with Sf.Window.Keyboard; use Sf.Window.Keyboard;
 with RueckgabeDatentypen;
 
 package SteuerungsauswahlLogik is
+   pragma Elaborate_Body;
    
    -- Das hier später noch in irgendwas Globales schieben. äöü
    type Kategorie_Enum is (

@@ -6,6 +6,7 @@ with SpielVariablen;
 with EinheitenRecords;
 
 package KIEinheitUmsetzenPlatzMachenLogik is
+   pragma Elaborate_Body;
 
    function PlatzMachen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

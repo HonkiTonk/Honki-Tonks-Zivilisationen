@@ -9,6 +9,7 @@ with EinheitenRecords;
 with EinheitenDatentypen;
 
 package MeldungenSetzenLogik is
+   pragma Elaborate_Body;
 
    procedure MeldungenRundenende;
    

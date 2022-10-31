@@ -15,6 +15,7 @@ private with SystemDatentypen;
 private with UmwandlungenAdaNachEigenes;
 
 package LadezeitenGrafik is
+   pragma Elaborate_Body;
    
    procedure Ladezeiten
      (WelcheLadeanzeigeExtern : in GrafikDatentypen.Ladezeiten_Enum;

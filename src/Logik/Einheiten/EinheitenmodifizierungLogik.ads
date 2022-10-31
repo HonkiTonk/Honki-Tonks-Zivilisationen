@@ -14,6 +14,7 @@ private with AufgabenDatentypen;
 private with KIDatentypen;
 
 package EinheitenmodifizierungLogik is
+   pragma Elaborate_Body;
 
    procedure HeilungBewegungspunkteNeueRundeErmitteln;
    

@@ -8,6 +8,7 @@ with EinheitenRecords;
 with KIDatentypen;
 
 package KIEinheitAufgabePluendernLogik is
+   pragma Elaborate_Body;
 
    function StadtumgebungZerstören
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

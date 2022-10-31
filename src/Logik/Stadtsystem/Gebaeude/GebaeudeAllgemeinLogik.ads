@@ -8,6 +8,7 @@ with StadtDatentypen;
 with StadtRecords;
 
 package GebaeudeAllgemeinLogik is
+   pragma Elaborate_Body;
    
    procedure GebäudeProduktionBeenden
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;

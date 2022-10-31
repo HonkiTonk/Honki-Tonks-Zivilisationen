@@ -6,6 +6,7 @@ with RassenDatentypen;
 with DatenbankRecords;
 
 package RasseAlary is
+   pragma Pure;
 
    -- Die ganzen Sachen mal nach RassenlisteRassenname umbenennen? äöü
    RasseAlaryListe : constant DatenbankRecords.RassenlisteRecord := (

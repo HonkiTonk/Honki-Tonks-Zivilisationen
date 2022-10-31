@@ -6,6 +6,7 @@ with SpielVariablen;
 with DiplomatieDatentypen;
 
 package DiplomatischerZustandLogik is
+   pragma Elaborate_Body;
 
    type SympathieGrenzenArray is array (DiplomatieDatentypen.Status_Untereinander_Bekannt_Enum'Range) of DiplomatieDatentypen.Meinung;
    SympathieGrenzen : constant SympathieGrenzenArray := (

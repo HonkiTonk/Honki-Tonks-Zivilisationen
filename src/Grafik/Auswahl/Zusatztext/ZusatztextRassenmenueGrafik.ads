@@ -6,6 +6,7 @@ with Sf.System.Vector2;
 private with RassenDatentypen;
 
 package ZusatztextRassenmenueGrafik is
+   pragma Elaborate_Body;
 
    function ZusatztextRassenmenü
      (AktuelleAuswahlExtern : in Positive;

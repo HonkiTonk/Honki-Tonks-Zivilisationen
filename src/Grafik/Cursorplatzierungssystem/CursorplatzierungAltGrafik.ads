@@ -15,6 +15,7 @@ private with KartenRecords;
 private with Weltkarte;
 
 package CursorplatzierungAltGrafik is
+   pragma Elaborate_Body;
 
    procedure CursorplatzierungAlt
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

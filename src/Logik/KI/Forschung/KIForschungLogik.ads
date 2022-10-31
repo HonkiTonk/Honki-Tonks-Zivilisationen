@@ -11,6 +11,7 @@ private with ForschungenDatenbank;
 private with KIDatentypen;
 
 package KIForschungLogik is
+   pragma Elaborate_Body;
 
    procedure Forschung
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

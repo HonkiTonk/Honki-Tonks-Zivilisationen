@@ -6,6 +6,7 @@ with SpielVariablen;
 with EinheitenRecords;
 
 package KIEinheitLogik is
+   pragma Elaborate_Body;
 
    procedure Einheit
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

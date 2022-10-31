@@ -8,6 +8,7 @@ private with Weltkarte;
 private with SystemDatentypen;
 
 package KartengeneratorStandardLogik is
+   pragma Elaborate_Body;
 
    procedure OberflächeGenerieren;
 

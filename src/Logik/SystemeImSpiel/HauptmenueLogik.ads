@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 private with RueckgabeDatentypen;
 
 package HauptmenueLogik is
+   pragma Elaborate_Body;
 
    procedure Hauptmenü;
    

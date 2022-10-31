@@ -6,10 +6,10 @@ with KartenDatentypen; use KartenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 with KartenRecords;
-
 with Weltkarte;
 
 package VerbesserungPluendernLogik is
+   pragma Elaborate_Body;
 
    function VerbesserungPlündern
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

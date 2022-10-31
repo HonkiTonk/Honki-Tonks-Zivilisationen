@@ -6,6 +6,7 @@ with EinheitenRecords;
 with SpielVariablen;
 
 package KIEinheitFestlegenAufloesenLogik is
+   pragma Elaborate_Body;
 
    function EinheitAuflösen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

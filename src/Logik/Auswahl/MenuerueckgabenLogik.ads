@@ -7,6 +7,7 @@ with RueckgabeDatentypen;
 private with SystemKonstanten;
 
 package MenuerueckgabenLogik is
+   pragma Elaborate_Body;
    
    function RückgabeMenüs
      (EndeExtern : in Positive;

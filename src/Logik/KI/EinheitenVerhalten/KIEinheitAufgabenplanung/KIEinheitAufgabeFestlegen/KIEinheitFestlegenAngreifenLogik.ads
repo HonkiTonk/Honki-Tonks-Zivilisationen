@@ -8,6 +8,7 @@ with SpielVariablen;
 private with KartenRecords;
 
 package KIEinheitFestlegenAngreifenLogik is
+   pragma Elaborate_Body;
 
    function Angreifen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

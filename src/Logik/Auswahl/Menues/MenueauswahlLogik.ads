@@ -7,6 +7,7 @@ with RueckgabeDatentypen;
 private with SystemKonstanten;
 
 package MenueauswahlLogik is
+   pragma Elaborate_Body;
 
    function AuswahlMenüsEinfach
      (WelchesMenüExtern : in MenueDatentypen.Menü_Ohne_Steuerung_Enum)

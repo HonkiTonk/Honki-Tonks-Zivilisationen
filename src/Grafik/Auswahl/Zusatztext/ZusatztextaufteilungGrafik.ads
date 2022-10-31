@@ -6,6 +6,7 @@ with Sf.System.Vector2;
 with MenueDatentypen;
 
 package ZusatztextaufteilungGrafik is
+   pragma Elaborate_Body;
 
    function Zusatztextaufteilung
      (WelchesMenüExtern : in MenueDatentypen.Menü_Zusatztext_Einfach_Enum;

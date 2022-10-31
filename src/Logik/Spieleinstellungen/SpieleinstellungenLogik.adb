@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with RassenDatentypen;
 with MenueDatentypen;
 with GrafikDatentypen;
+with Weltkarte;
 
 with SpielLogik;
 with KartengeneratorLogik;
@@ -15,7 +16,6 @@ with LadezeitenLogik;
 with AuswahlaufteilungLogik;
 with NachGrafiktask;
 with StandardSpielwerteSetzenLogik;
-with Weltkarte;
 with KartengeneratorVariablenLogik;
 with Spielertests;
 

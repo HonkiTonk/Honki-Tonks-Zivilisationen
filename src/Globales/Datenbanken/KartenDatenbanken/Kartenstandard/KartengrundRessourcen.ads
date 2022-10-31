@@ -9,6 +9,7 @@ with BewertungDatentypen;
 
 -- Das hier später auch in verschiedene Dateien aufteilen, vorher aber mehr Ressourcen hinzufügen und in bessere Bereiche einteilen. äöü
 package KartengrundRessourcen is
+   pragma Pure;
    
    type KartenressourcenlisteLandArray is array (KartengrundDatentypen.Kartenressourcen_Oberfläche_Land_Enum'Range) of KartendatenbankRecord.KartenlistenRecord;
    KartenressourcenlisteLand : constant KartenressourcenlisteLandArray := (

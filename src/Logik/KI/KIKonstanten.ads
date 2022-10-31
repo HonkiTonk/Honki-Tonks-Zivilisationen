@@ -7,6 +7,7 @@ with KIDatentypen; use KIDatentypen;
 with KIRecords;
 
 package KIKonstanten is
+   pragma Pure;
 
    UnmöglichAufgabenbewertung : constant KIDatentypen.AufgabenWichtigkeitKlein := KIDatentypen.AufgabenWichtigkeitKlein'First;
    LeerAufgabenbewertung : constant KIDatentypen.AufgabenWichtigkeitKlein := 0;

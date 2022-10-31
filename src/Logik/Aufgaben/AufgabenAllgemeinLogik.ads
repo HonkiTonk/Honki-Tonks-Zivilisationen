@@ -6,6 +6,7 @@ with EinheitenRecords;
 with SpielVariablen;
 
 package AufgabenAllgemeinLogik is
+   pragma Elaborate_Body;
 
    procedure Nullsetzung
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 private with KartengrundDatentypen;
 
 package KartenDatenbankeneditorLogik is
+   pragma Elaborate_Body;
 
    procedure KartenDatenbankenEditor;
 

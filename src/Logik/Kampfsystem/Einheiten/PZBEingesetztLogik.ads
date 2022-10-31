@@ -12,6 +12,7 @@ private with Weltkarte;
 private with StadtRecords;
 
 package PZBEingesetztLogik is
+   pragma Elaborate_Body;
 
    function PZBEingesetzt
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

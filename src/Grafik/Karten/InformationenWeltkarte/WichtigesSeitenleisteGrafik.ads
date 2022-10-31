@@ -9,17 +9,17 @@ with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
 with SpielVariablen;
 with KartenRecords;
+with Weltkarte;
 
 private with TextaccessVariablen;
 private with ProduktionDatentypen;
 private with GrafikRecordKonstanten;
 private with ForschungenDatentypen;
 
-with Weltkarte;
-
 private with UmwandlungenAdaNachEigenes;
 
 package WichtigesSeitenleisteGrafik is
+   pragma Elaborate_Body;
 
    procedure WichtigesInformationen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;

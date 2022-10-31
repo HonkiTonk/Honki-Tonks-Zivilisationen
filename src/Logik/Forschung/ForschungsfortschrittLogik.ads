@@ -7,6 +7,7 @@ with SpielVariablen;
 private with ForschungenDatentypen;
 
 package ForschungsfortschrittLogik is
+   pragma Elaborate_Body;
 
    procedure Forschungsfortschritt;
    

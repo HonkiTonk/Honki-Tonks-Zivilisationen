@@ -6,6 +6,7 @@ with SpielVariablen;
 with EinheitenRecords;
 
 package KIEinheitUmsetzenFliehenLogik is
+   pragma Elaborate_Body;
 
    function Fliehen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

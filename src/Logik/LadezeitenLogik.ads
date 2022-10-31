@@ -5,6 +5,7 @@ with LadezeitenDatentypen;
 with SystemDatentypen;
 
 package LadezeitenLogik is
+   pragma Elaborate_Body;
       
    type FortschrittSpielweltArray is array (LadezeitenDatentypen.Spielwelt_Erstellen_Enum'Range) of SystemDatentypen.NullBisHundert;
    FortschrittSpielwelt : FortschrittSpielweltArray;

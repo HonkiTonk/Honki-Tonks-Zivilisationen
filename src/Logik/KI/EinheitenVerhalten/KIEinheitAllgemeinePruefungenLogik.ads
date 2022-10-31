@@ -11,6 +11,7 @@ with Weltkarte;
 private with EinheitenDatentypen;
 
 package KIEinheitAllgemeinePruefungenLogik is
+   pragma Elaborate_Body;
    
    function KartenfeldPrüfen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

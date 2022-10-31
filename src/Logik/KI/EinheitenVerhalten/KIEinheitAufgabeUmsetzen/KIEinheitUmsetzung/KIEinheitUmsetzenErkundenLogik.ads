@@ -8,6 +8,7 @@ with EinheitenRecords;
 private with KartenRecords;
 
 package KIEinheitUmsetzenErkundenLogik is
+   pragma Elaborate_Body;
 
    function Erkunden
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

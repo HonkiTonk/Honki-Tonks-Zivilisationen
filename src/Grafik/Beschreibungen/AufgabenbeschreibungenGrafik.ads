@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with KartenverbesserungDatentypen;
 
 package AufgabenbeschreibungenGrafik is
+   pragma Elaborate_Body;
 
    function KurzbeschreibungVerbesserung
      (KartenVerbesserungExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum)

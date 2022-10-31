@@ -8,6 +8,7 @@ with EinheitenRecords;
 with KIDatentypen;
 
 package KIEinheitAufgabeAngreifenLogik is
+   pragma Elaborate_Body;
 
    function Angreifen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

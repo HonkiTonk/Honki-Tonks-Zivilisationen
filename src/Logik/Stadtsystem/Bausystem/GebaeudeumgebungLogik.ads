@@ -10,10 +10,10 @@ with StadtRecords;
 private with KartenRecords;
 private with KartengrundDatentypen;
 private with KartenverbesserungDatentypen;
-
 private with Weltkarte;
 
 package GebaeudeumgebungLogik is
+   pragma Elaborate_Body;
 
    function RichtigeUmgebungVorhanden
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;

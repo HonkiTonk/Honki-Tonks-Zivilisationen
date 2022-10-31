@@ -10,6 +10,7 @@ with BewertungDatentypen;
 -- Die Flusswerte immer nach Flussarten zuweisen? äöü
 -- Sollte ich mich dazu entscheiden jedem Fluss eigene Standardwerte zu geben, dann am besten in Oberfluss, Unterfluss und Lavafluss aufteilen. äöü
 package KartengrundFluss is
+   pragma Pure;
    
    type KartenflusslisteOberflächeArray is array (KartengrundDatentypen.Kartenfluss_Oberfläche_Enum'Range) of KartendatenbankRecord.KartenlistenRecord;
    KartenflusslisteOberfläche : constant KartenflusslisteOberflächeArray := (

@@ -12,6 +12,7 @@ with KampfDatentypen;
 with KartenverbesserungDatentypen;
 
 package LeseGebaeudeDatenbank is
+   pragma Elaborate_Body;
 
    function PreisGeld
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;

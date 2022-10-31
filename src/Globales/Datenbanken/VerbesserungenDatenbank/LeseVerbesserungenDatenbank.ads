@@ -9,6 +9,7 @@ with ProduktionDatentypen;
 with KampfDatentypen;
 
 package LeseVerbesserungenDatenbank is
+   pragma Elaborate_Body;
    
    function PassierbarkeitWeg
      (WegExtern : in KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum;

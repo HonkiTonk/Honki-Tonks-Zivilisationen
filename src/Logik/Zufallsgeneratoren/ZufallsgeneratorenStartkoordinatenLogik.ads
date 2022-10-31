@@ -7,10 +7,10 @@ with KartenDatentypen; use KartenDatentypen;
 with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
 with KartenRecords;
-
 with Weltkarte;
 
 package ZufallsgeneratorenStartkoordinatenLogik is
+   pragma Elaborate_Body;
      
    function Startkoordinaten
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

@@ -3,12 +3,12 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with KartenRecords;
+with Weltkarte;
 
 private with KartengrundDatentypen;
 
-with Weltkarte;
-
 package FlussplatzierungssystemLogik is
+   pragma Elaborate_Body;
    
    procedure Flussplatzierung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)

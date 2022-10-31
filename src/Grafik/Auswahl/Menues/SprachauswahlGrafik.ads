@@ -11,6 +11,7 @@ private with GrafikRecordKonstanten;
 private with SprachauswahlLogik;
 
 package SprachauswahlGrafik is
+   pragma Elaborate_Body;
    
    procedure Sprachauswahl;
     

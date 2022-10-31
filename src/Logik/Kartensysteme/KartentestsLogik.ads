@@ -5,6 +5,7 @@ with KartenDatentypen; use KartenDatentypen;
 with KartenartDatentypen;
 
 package KartentestsLogik is
+   pragma Elaborate_Body;
 
    procedure Größenanpassung;
 

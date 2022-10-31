@@ -7,6 +7,7 @@ with RueckgabeDatentypen;
 private with SpielVariablen;
 
 package SpielLogik is
+   pragma Elaborate_Body;
 
    function Spiel
      return RueckgabeDatentypen.Rückgabe_Werte_Enum;

@@ -2,13 +2,13 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen;
--- with SpielVariablen;
 
 private with EinheitenRecords;
 private with StadtRecords;
 private with KartenRecords;
 
 package SeitenleisteGrafik is
+   pragma Elaborate_Body;
 
    procedure SeitenleisteGrafik
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);

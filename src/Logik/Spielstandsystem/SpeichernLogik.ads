@@ -9,6 +9,7 @@ with RassenDatentypen; use RassenDatentypen;
 private with SpielVariablen;
 
 package SpeichernLogik is
+   pragma Elaborate_Body;
 
    procedure Speichern
      (AutospeichernExtern : in Boolean);

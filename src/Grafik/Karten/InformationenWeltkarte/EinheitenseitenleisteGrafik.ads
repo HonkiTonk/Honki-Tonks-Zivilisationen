@@ -21,6 +21,7 @@ private with KartenRecords;
 private with UmwandlungenAdaNachEigenes;
 
 package EinheitenseitenleisteGrafik is
+   pragma Elaborate_Body;
    
    procedure Leer
      (AnzeigebereichExtern : in Positive);

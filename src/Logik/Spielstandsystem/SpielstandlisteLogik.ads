@@ -7,6 +7,7 @@ with Ada.Directories; use Ada.Directories;
 with TextKonstanten;
 
 package SpielstandlisteLogik is
+   pragma Elaborate_Body;
 
    -- Das auch mal in irgendwas Globales verschieben? äöü
    type SpielstandArray is array (1 .. 11) of Unbounded_Wide_Wide_String;

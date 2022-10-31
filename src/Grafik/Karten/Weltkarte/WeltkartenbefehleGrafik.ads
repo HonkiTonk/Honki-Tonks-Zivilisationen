@@ -13,6 +13,7 @@ private with EinheitenDatentypen;
 private with BefehleDatentypen;
 
 package WeltkartenbefehleGrafik is
+   pragma Elaborate_Body;
 
    procedure Kartenbefehle
      (RechtsLinksExtern : in Boolean);

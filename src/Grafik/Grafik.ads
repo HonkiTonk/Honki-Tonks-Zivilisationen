@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Calendar;
 
 package Grafik is
+   pragma Elaborate_Body;
 
    procedure Grafik;
 

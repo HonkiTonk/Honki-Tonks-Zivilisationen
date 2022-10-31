@@ -7,6 +7,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 private with RassenDatentypen;
 
 package EinlesenTexturenLogik is
+   pragma Elaborate_Body;
 
    procedure EinlesenTexturen;
 

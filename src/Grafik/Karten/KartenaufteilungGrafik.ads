@@ -10,6 +10,7 @@ with SpielVariablen;
 with StadtRecords;
 
 package KartenaufteilungGrafik is
+   pragma Elaborate_Body;
    
    procedure Weltkarte
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

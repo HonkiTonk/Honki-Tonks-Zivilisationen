@@ -8,6 +8,7 @@ with StadtRecords;
 private with BefehleDatentypen;
 
 package StadtmenueLogik is
+   pragma Elaborate_Body;
 
    procedure Stadtmenü
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)

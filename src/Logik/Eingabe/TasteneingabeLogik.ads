@@ -9,6 +9,7 @@ with TastenbelegungDatentypen;
 with BefehleDatentypen;
 
 package TasteneingabeLogik is
+   pragma Elaborate_Body;
    
    function VereinfachteEingabe
      return TastenbelegungDatentypen.Allgemeine_Belegung_Enum;

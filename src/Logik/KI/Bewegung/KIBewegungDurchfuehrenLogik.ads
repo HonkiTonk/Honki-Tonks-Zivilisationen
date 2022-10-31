@@ -9,6 +9,7 @@ with SpielVariablen;
 private with StadtRecords;
 
 package KIBewegungDurchfuehrenLogik is
+   pragma Elaborate_Body;
    
    procedure KIBewegung
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

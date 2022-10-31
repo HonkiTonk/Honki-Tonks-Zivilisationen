@@ -7,10 +7,10 @@ with EinheitenDatentypen; use EinheitenDatentypen;
 with KartenRecords;
 with EinheitenRecords;
 with SpielVariablen;
-
 with Weltkarte;
 
 package EinheitSuchenLogik is
+   pragma Elaborate_Body;
 
    function KoordinatenEinheitMitRasseSuchen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;

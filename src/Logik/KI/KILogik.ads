@@ -8,6 +8,7 @@ private with EinheitenDatentypen;
 private with StadtDatentypen;
 
 package KILogik is
+   pragma Elaborate_Body;
 
    procedure KI
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

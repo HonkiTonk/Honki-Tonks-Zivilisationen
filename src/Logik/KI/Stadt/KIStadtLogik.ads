@@ -12,6 +12,7 @@ private with EinheitenDatentypen;
 private with KIRecords;
 
 package KIStadtLogik is
+   pragma Elaborate_Body;
 
    procedure KIStadt
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)

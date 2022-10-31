@@ -11,6 +11,7 @@ private with StadtDatentypen;
 private with StadtRecords;
 
 package BefehlspruefungenLogik is
+   pragma Elaborate_Body;
    
    procedure AuswahlEinheitStadt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

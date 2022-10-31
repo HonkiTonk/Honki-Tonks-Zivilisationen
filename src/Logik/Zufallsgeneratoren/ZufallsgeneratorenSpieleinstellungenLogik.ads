@@ -12,6 +12,7 @@ with KartenRecords;
 private with KartenDatentypen;
 
 package ZufallsgeneratorenSpieleinstellungenLogik is
+   pragma Elaborate_Body;
      
    procedure ZufälligeRassenbelegung;
    procedure ZufälligeKartenform;

@@ -5,7 +5,6 @@ with RassenDatentypen;
 with KampfDatentypen;
 with ProduktionDatentypen;
 with DatenbankRecords;
-
 with BewertungDatentypen;
 
 package KartendatenbankRecord is

@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with RassenDatentypen;
 
 package Spielertests is
+   pragma Elaborate_Body;
    
    function BeliebigeSpielerart
      (RasseExtern : in RassenDatentypen.Rassen_Enum)

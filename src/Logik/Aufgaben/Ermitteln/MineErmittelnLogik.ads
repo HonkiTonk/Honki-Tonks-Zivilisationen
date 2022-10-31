@@ -7,13 +7,13 @@ with KartengrundDatentypen; use KartengrundDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 with KartenRecords;
+with Weltkarte;
 
 private with AufgabenDatentypen;
 private with ProduktionDatentypen;
 
-with Weltkarte;
-
 package MineErmittelnLogik is
+   pragma Elaborate_Body;
 
    function MineErmitteln
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

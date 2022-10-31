@@ -7,10 +7,10 @@ with EinheitenRecords;
 with SpielVariablen;
 
 private with KartenRecords;
-
 private with Weltkarte;
 
 package KIEinheitFestlegenFliehenLogik is
+   pragma Elaborate_Body;
 
    function Fliehen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

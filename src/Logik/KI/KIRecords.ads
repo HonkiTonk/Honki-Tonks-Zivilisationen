@@ -9,6 +9,7 @@ with EinheitenRecords;
 with KIDatentypen;
 
 package KIRecords is
+   pragma Pure;
 
    type EinheitIDBewertungRecord is record
 

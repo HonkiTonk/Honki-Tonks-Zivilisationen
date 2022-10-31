@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 package EingabeAllgemeinLogik is
+   pragma Elaborate_Body;
 
    procedure EingabeAbwarten;
 

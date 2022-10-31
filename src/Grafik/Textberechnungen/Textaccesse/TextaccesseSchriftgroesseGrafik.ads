@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 package TextaccesseSchriftgroesseGrafik is
+   pragma Elaborate_Body;
 
    procedure SchriftgrößeSetzen;
 

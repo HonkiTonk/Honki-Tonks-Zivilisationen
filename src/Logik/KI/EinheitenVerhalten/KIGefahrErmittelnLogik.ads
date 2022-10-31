@@ -8,6 +8,7 @@ with SpielVariablen;
 private with KartenRecords;
 
 package KIGefahrErmittelnLogik is
+   pragma Elaborate_Body;
 
    function GefahrErmitteln
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

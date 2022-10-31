@@ -9,6 +9,7 @@ with ProduktionDatentypen;
 private with KartenDatentypen;
 
 package StadtumgebungsbereichFestlegenLogik is
+   pragma Elaborate_Body;
 
    procedure StadtumgebungsbereichFestlegen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)

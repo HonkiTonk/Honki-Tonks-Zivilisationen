@@ -6,6 +6,7 @@ with KartenDatentypen;
 private with KartenkoordinatenWerteLogik;
 
 package KartenkoordinateEAchseBerechnenLogik is
+   pragma Elaborate_Body;
 
    function KartenkoordinateEAchseBerechnen
      (EAchseExtern : in KartenDatentypen.EbeneVorhanden;

@@ -11,6 +11,7 @@ private with KartenDatentypen;
 private with ProduktionDatentypen;
 
 package StadtproduktionLogik is
+   pragma Elaborate_Body;
    
    procedure Stadtproduktion
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)

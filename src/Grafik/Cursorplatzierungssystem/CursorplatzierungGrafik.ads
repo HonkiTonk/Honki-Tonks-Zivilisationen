@@ -10,6 +10,7 @@ private with KartenDatentypen;
 private with KartenRecords;
 
 package CursorplatzierungGrafik is
+   pragma Elaborate_Body;
    
    procedure Weltkarte
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

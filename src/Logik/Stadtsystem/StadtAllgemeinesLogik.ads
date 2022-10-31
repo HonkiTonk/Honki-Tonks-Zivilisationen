@@ -8,6 +8,7 @@ with SpielVariablen;
 private with SystemRecords;
 
 package StadtAllgemeinesLogik is
+   pragma Elaborate_Body;
 
    procedure NeuerStadtname
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)

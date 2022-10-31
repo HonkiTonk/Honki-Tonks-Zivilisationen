@@ -6,6 +6,7 @@ private with Sf.System.Vector2;
 private with GrafikRecordKonstanten;
 
 package KartengrundEditorGrafik is
+   pragma Elaborate_Body;
 
    procedure KartengrundEditor;
 

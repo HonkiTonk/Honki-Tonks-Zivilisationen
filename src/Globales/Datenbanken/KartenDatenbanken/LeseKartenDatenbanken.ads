@@ -11,6 +11,7 @@ with KampfDatentypen;
 with BewertungDatentypen;
 
 package LeseKartenDatenbanken is
+   pragma Elaborate_Body;
 
    function PassierbarkeitBasisgrund
      (GrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum;

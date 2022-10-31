@@ -6,6 +6,7 @@ with RassenDatentypen;
 with DatenbankRecords;
 
 package RasseTridatus is
+   pragma Pure;
 
    RasseTridatusListe : constant DatenbankRecords.RassenlisteRecord := (
                                                                         Aggressivität       => 0,

@@ -5,6 +5,7 @@ with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
 
 package KennenlernenLogik is
+   pragma Elaborate_Body;
 
    procedure Erstkontakt
      (EigeneRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;

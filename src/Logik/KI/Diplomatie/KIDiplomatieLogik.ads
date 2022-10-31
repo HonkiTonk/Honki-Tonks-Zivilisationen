@@ -5,6 +5,7 @@ with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
 
 package KIDiplomatieLogik is
+   pragma Elaborate_Body;
 
    procedure Diplomatie
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

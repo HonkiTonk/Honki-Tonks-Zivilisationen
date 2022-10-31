@@ -8,6 +8,7 @@ private with Sf.Graphics.RectangleShape;
 private with Sf.Graphics.CircleShape;
 
 package ObjekteZeichnenGrafik is
+   pragma Elaborate_Body;
    
    procedure RechteckZeichnen
      (AbmessungExtern : in Sf.System.Vector2.sfVector2f;

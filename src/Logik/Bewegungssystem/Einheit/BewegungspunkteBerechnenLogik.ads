@@ -10,6 +10,7 @@ with EinheitenRecords;
 with Weltkarte;
 
 package BewegungspunkteBerechnenLogik is
+   pragma Elaborate_Body;
    
    function AbzugDurchBewegung
      (NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;

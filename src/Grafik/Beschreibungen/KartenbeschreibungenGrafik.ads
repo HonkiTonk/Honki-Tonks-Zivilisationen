@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with KartengrundDatentypen;
 
 package KartenbeschreibungenGrafik is
+   pragma Elaborate_Body;
 
    function KurzbeschreibungBasisgrund
      (KartenGrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum)

@@ -7,14 +7,14 @@ with KartengrundDatentypen; use KartengrundDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 with KartenRecords;
+with Weltkarte;
 
 private with AufgabenDatentypen;
 private with KartenverbesserungDatentypen;
 private with ProduktionDatentypen;
 
-with Weltkarte;
-
 package WaldErmittelnLogik is
+   pragma Elaborate_Body;
 
    function WaldErmitteln
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

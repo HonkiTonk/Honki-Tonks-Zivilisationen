@@ -14,6 +14,7 @@ with StadtRecords;
 private with GrafikRecordKonstanten;
 
 package BauauswahlGrafik is
+   pragma Elaborate_Body;
 
    procedure Bauauswahl
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;

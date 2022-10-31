@@ -8,6 +8,7 @@ private with RueckgabeDatentypen;
 private with DiplomatieDatentypen;
 
 package DebugmenueLogik is
+   pragma Elaborate_Body;
 
    procedure Debugmenü
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

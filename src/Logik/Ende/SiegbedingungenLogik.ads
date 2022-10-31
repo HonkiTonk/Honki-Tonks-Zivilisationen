@@ -6,6 +6,7 @@ with SystemDatentypen;
 private with GrafikDatentypen;
 
 package SiegbedingungenLogik is
+   pragma Elaborate_Body;
 
    function Siegbedingungen
      return SystemDatentypen.Ende_Enum;

@@ -13,10 +13,9 @@ with KartenRecords;
 with KartenverbesserungDatentypen;
 with StadtRecords;
 with KartenKonstanten;
+with Weltkarte;
 
 with KIDatentypen;
-
-with Weltkarte;
 
 package LeseStadtGebaut is
    pragma Elaborate_Body;

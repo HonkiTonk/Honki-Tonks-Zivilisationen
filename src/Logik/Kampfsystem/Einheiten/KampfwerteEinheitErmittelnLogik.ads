@@ -10,6 +10,7 @@ private with KartenRecords;
 private with EinheitenDatentypen;
 
 package KampfwerteEinheitErmittelnLogik is
+   pragma Elaborate_Body;
 
    function AktuelleVerteidigungEinheit
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

@@ -11,6 +11,7 @@ with StadtRecords;
 private with EinheitenDatentypen;
 
 package SichtbarkeitsberechnungssystemLogik is
+   pragma Elaborate_Body;
 
    procedure SichtbarkeitsprüfungFürEinheit
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

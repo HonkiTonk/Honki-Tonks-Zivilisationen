@@ -7,6 +7,7 @@ with StadtRecords;
 with SpielVariablen;
 
 package TexteingabeLogik is
+   pragma Elaborate_Body;
 
    function StadtName
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)

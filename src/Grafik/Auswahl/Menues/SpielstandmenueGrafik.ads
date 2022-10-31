@@ -11,6 +11,7 @@ private with GrafikRecordKonstanten;
 private with SpielstandlisteLogik;
 
 package SpielstandmenueGrafik is
+   pragma Elaborate_Body;
 
    procedure Spielstandmenü
      (AuswahlExtern : in Natural);

@@ -7,6 +7,7 @@ with Sf.Graphics.Color;
 with GrafikRecords;
 
 package TexteinstellungenGrafik is
+   pragma Elaborate_Body;
 
    SchriftartAccess : Sf.Graphics.sfFont_Ptr;
    

@@ -10,6 +10,7 @@ private with StadtDatentypen;
 with KIDatentypen;
 
 package KIEinheitAufgabeSiedelnLogik is
+   pragma Elaborate_Body;
 
    function NeueStadtBauenGehen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

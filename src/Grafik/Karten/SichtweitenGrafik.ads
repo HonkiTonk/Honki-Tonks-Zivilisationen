@@ -8,6 +8,7 @@ with SpielVariablen;
 private with TastenbelegungDatentypen;
 
 package SichtweitenGrafik is
+   pragma Elaborate_Body;
    
    procedure SichtweiteBewegungsfeldFestlegen;
    

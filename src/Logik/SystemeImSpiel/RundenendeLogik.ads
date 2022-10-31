@@ -5,6 +5,7 @@ with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
 
 package RundenendeLogik is
+   pragma Elaborate_Body;
 
    function BerechnungenRundenende
      return Boolean;

@@ -7,6 +7,7 @@ with KartenDatentypen;
 with SystemDatentypen;
 
 package ZufallsgeneratorenKartenLogik is
+   pragma Elaborate_Body;
 
    function KartengeneratorZufallswerte
      return SystemDatentypen.NullBisHundert;

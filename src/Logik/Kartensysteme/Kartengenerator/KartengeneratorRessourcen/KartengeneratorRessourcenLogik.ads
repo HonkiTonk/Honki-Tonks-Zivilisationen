@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 private with KartenDatentypen;
 
 package KartengeneratorRessourcenLogik is
+   pragma Elaborate_Body;
    
    procedure GenerierungRessourcen;
 

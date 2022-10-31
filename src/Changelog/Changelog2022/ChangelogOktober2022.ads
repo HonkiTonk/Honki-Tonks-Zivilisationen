@@ -2,8 +2,10 @@ package ChangelogOktober2022 is
 
    -- Version 0.04.2685 => 0.04. (31.10.2022):
    
+   -- Weiter pragma Pure, Preelaborate und Elaborate_Body eingebaut.
+   -- Unnötigen Code gelöscht.
    -- 
-   -- Kleinigkeiten korrigiert.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 

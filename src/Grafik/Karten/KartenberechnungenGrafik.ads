@@ -5,6 +5,7 @@ with Sf.System.Vector2;
 with Sf.Graphics.Rect;
 
 package KartenberechnungenGrafik is
+   -- pragma Elaborate_Body; äöü
    
    -- Das hier über eine Funktion abrufen? äöü
    KartenfelderAbmessung : Sf.System.Vector2.sfVector2f;

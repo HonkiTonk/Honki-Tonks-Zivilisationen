@@ -7,10 +7,10 @@ with SpielVariablen;
 with KartenRecords;
 with ProduktionDatentypen;
 with KampfDatentypen;
-
 with Weltkarte;
 
 package KartenfelderwerteLogik is
+   pragma Elaborate_Body;
 
    function FeldNahrung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;

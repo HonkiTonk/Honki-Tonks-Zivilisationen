@@ -9,6 +9,7 @@ with EinheitenRecords;
 private with KartenRecords;
 
 package TransporterBeladenEntladenLogik is
+   pragma Elaborate_Body;
 
    function TransporterBeladen
      (TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord;

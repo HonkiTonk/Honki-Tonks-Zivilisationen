@@ -10,6 +10,7 @@ private with SystemRecords;
 private with KartenRecords;
 
 package CursorbewegungLogik is
+   pragma Elaborate_Body;
 
    procedure CursorbewegungBerechnen
      (RichtungExtern : in TastenbelegungDatentypen.Tastenbelegung_Bewegung_Erweitert_Enum;

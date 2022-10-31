@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with Sf.Graphics; use Sf.Graphics;
 
 package TextberechnungenHoeheGrafik is
+   pragma Elaborate_Body;
    
    function ZeilenabstandVariabel
      return Float

@@ -9,6 +9,7 @@ with ProduktionDatentypen;
 with KampfDatentypen;
 
 package LeseEinheitenDatenbank is
+   pragma Elaborate_Body;
 
    function Einheitenart
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;

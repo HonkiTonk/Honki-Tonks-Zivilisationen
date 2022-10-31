@@ -8,6 +8,7 @@ with MenueDatentypen;
 private with GrafikRecordKonstanten;
 
 package EinfachmenueGrafik is
+   pragma Elaborate_Body;
 
    procedure Einfachmenü
      (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum;
