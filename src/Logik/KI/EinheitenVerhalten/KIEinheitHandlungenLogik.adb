@@ -49,7 +49,6 @@ package body KIEinheitHandlungenLogik is
    
       
    
-   -- Muss auch eine Funktion sein, es könnte ja als Aufgabe Stadt_Bewachen_Enum festgelegt werden für den Ort an dem sich die Einheit gerade befindet.
    function Aufgabenplanung
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean

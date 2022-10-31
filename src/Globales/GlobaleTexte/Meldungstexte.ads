@@ -4,13 +4,14 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with TextKonstanten;
+with SystemDatentypen;
 
 package Meldungstexte is
       
    type TexteArray is array (Positive range <>) of Unbounded_Wide_Wide_String;
       
-   Zeug : TexteArray (1 .. 85) := (others => TextKonstanten.FehlenderText);
-   Frage : TexteArray (1 .. 48) := (others => TextKonstanten.FehlenderText);
-   Meldung : TexteArray (1 .. 16) := (others => TextKonstanten.FehlenderText);
+   Zeug : TexteArray (SystemDatentypen.ZeugVorhanden'Range) := (others => TextKonstanten.FehlenderText);
+   Frage : TexteArray (SystemDatentypen.FragenVorhanden'Range) := (others => TextKonstanten.FehlenderText);
+   Meldung : TexteArray (SystemDatentypen.SpielmeldungenVorhanden'Range) := (others => TextKonstanten.FehlenderText);
    
 end Meldungstexte;

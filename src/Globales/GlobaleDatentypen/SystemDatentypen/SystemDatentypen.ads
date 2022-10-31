@@ -1,9 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Meldungstexte;
-
 package SystemDatentypen is
+   pragma Pure;
 
    -- Wichtige Werte
    type Anfang_Ende_Enum is (
@@ -20,8 +19,13 @@ package SystemDatentypen is
    
    
    
-   -- Das hier mal umbauen/verschieben, damit die Abhängigkeit von Meldungstexte verschwindet? äöü
-   subtype Spielmeldungen is Natural range 0 .. Meldungstexte.Meldung'Last;
+   subtype Zeug is Natural range 0 .. 85;
+   subtype ZeugVorhanden is Zeug range 1 .. Zeug'Last;
+   
+   subtype Fragen is Natural range 0 .. 48;
+   subtype FragenVorhanden is Fragen range 1 .. Fragen'Last;
+     
+   subtype Spielmeldungen is Natural range 0 .. 16;
    subtype SpielmeldungenVorhanden is Spielmeldungen range 1 .. Spielmeldungen'Last;
    
    

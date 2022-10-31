@@ -101,7 +101,6 @@ package body KIEinheitFestlegenVerbesserungenLogik is
          XAchseSchleife:
          for XAchseSchleifenwert in -Stadtumgebung .. Stadtumgebung loop
             
-            -- Das Stadtfeld aus der Prüfung nehmen? Stadt zählt ja selbst als Verbesserung und es könnte deswegen zu Problemen führen? äöü
             if
               YAchseSchleifenwert = 0
               and
@@ -287,7 +286,6 @@ package body KIEinheitFestlegenVerbesserungenLogik is
       return Boolean
    is begin
       
-      -- Vielleicht ist das Problem ja dass da immer die Koordinaten der Einheit genutzt werden und nicht die ermittelten Koordinaten? äöü
       case
         AufgabenLogik.AufgabeTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                      BefehlExtern             => BefehleDatentypen.Straße_Bauen_Enum,

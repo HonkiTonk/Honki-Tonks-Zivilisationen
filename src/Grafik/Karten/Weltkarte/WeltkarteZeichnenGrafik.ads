@@ -54,7 +54,8 @@ private
    Wegfeld : KartenverbesserungDatentypen.Karten_Weg_Enum;
    Verbesserungsfeld : KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
    
-   EinheitID : EinheitenDatentypen.EinheitenIDMitNullWert;
+   FeldeinheitID : EinheitenDatentypen.EinheitenIDMitNullWert;
+   AusgewählteEinheitID : EinheitenDatentypen.EinheitenIDMitNullWert;
    
    Durchsichtigkeit : Sf.sfUint8;
    
@@ -116,7 +117,7 @@ private
    
    procedure AnzeigeEinheit
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre => (

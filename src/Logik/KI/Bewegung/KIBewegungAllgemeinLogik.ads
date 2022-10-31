@@ -6,7 +6,6 @@ with RassenDatentypen; use RassenDatentypen;
 with EinheitenRecords;
 with KartenRecords;
 with SpielVariablen;
-
 with Weltkarte;
 
 with KIDatentypen;
@@ -28,17 +27,36 @@ package KIBewegungAllgemeinLogik is
    
 private
 
-   BlockierendeEinheit : RassenDatentypen.Rassen_Enum;
    BlockierendeStadt : RassenDatentypen.Rassen_Enum;
    
+   BlockierendeEinheit : EinheitenRecords.RasseEinheitnummerRecord;
+   
+   procedure EinheitWegbewegen
+     (BewegendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      StehendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     with
+       Pre => (
+                 BewegendeEinheitExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (BewegendeEinheitExtern.Rasse).Einheitengrenze
+               and
+                 SpielVariablen.Rassenbelegung (BewegendeEinheitExtern.Rasse).Belegung = RassenDatentypen.KI_Spieler_Enum
+               and
+                 StehendeEinheitExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (StehendeEinheitExtern.Rasse).Einheitengrenze
+               and
+                 SpielVariablen.Rassenbelegung (StehendeEinheitExtern.Rasse).Belegung = RassenDatentypen.KI_Spieler_Enum
+              );
+   
+   
+   
    function FeldAngreifen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EigeneEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      FeindlicheRasseEinheitExtern : in RassenDatentypen.Rassen_Enum;
+      FeindlicheRasseStadtExtern : in RassenDatentypen.Rassen_Enum)
       return KIDatentypen.Bewegung_Enum
      with
        Pre => (
-                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+                 EigeneEinheitExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EigeneEinheitExtern.Rasse).Einheitengrenze
                and
-                 SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.KI_Spieler_Enum
+                 SpielVariablen.Rassenbelegung (EigeneEinheitExtern.Rasse).Belegung = RassenDatentypen.KI_Spieler_Enum
               );
 
 end KIBewegungAllgemeinLogik;

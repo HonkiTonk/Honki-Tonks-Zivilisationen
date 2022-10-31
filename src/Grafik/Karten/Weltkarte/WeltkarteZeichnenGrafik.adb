@@ -62,9 +62,9 @@ package body WeltkarteZeichnenGrafik is
       AnzeigeFeldbesitzer (KoordinatenExtern => KoordinatenExtern,
                            PositionExtern    => PositionExtern);
       
-      AnzeigeEinheit (KoordinatenExtern  => KoordinatenExtern,
-                      RasseEinheitExtern => EinheitRasseNummerExtern,
-                      PositionExtern     => PositionExtern);
+      AnzeigeEinheit (KoordinatenExtern        => KoordinatenExtern,
+                      EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                      PositionExtern           => PositionExtern);
       
    end EbeneZeichnen;
    
@@ -204,71 +204,109 @@ package body WeltkarteZeichnenGrafik is
    
    
    
+   -- Das hier noch einmal überarbeiten. äöü
    procedure AnzeigeEinheit
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
       EinheitRasseNummer := EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern,
                                                                                   LogikGrafikExtern => False);
       
-      case
-        EinheitRasseNummer.Nummer
-      is
-         when EinheitenKonstanten.LeerNummer =>
-            return;
-            
-         when others =>
-            EinheitID := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummer);
-      end case;
-      
-      case
-        EinheitID
-      is
-         when EinheitenKonstanten.LeerID =>
-            return;
-            
-         when others =>
-            null;
-      end case;
-            
       if
-        EinheitRasseNummer.Rasse = RasseEinheitExtern.Rasse
-        and
-          (EinheitRasseNummer.Nummer = RasseEinheitExtern.Nummer
-           or
-             True = EinheitSuchenLogik.TransporterladungSuchen (TransporterExtern   => EinheitRasseNummer,
-                                                                LadungsnummerExtern => RasseEinheitExtern.Nummer))
+        EinheitRasseNummer.Nummer = EinheitenKonstanten.LeerNummer
       then
-         if
-           Clock - StartzeitBlinkintervall > ZeitKonstanten.Blinkintervall
-         then
-            AusgewählteEinheitAnzeigen := not AusgewählteEinheitAnzeigen;
-            StartzeitBlinkintervall := Clock;
-            
-         else
-            null;
-         end if;
+         return;
          
-         case
-           AusgewählteEinheitAnzeigen
-         is
-            when True =>
-               null;
-               
-            when False =>
-               return;
-         end case;
+      elsif
+        EinheitRasseNummerExtern.Rasse /= EinheitRasseNummer.Rasse
+      then
+         FeldeinheitID := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummer);
+         
+         KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.EinheitenAccess (EinheitRasseNummer.Rasse, FeldeinheitID),
+                                                         
+                                                         PositionExtern         => PositionExtern,
+                                                         DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
+         return;
          
       else
          null;
       end if;
       
-      KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.EinheitenAccess (RasseEinheitExtern.Rasse, EinheitID),
-                                                      PositionExtern         => PositionExtern,
-                                                      DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
+      if
+        EinheitRasseNummer.Nummer = EinheitRasseNummerExtern.Nummer
+      then
+         null;
+         
+      elsif
+        True = EinheitSuchenLogik.TransporterladungSuchen (TransporterExtern   => EinheitRasseNummer,
+                                                           LadungsnummerExtern => EinheitRasseNummerExtern.Nummer)
+      then
+         FeldeinheitID := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummer);
       
+         case
+           FeldeinheitID
+         is
+            when EinheitenKonstanten.LeerID =>
+               null;
+            
+            when others =>
+               KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.EinheitenAccess (EinheitRasseNummer.Rasse, FeldeinheitID),
+                                                               PositionExtern         => PositionExtern,
+                                                               DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
+         end case;
+         
+      else
+         FeldeinheitID := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummer);
+      
+         case
+           FeldeinheitID
+         is
+            when EinheitenKonstanten.LeerID =>
+               null;
+            
+            when others =>
+               KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.EinheitenAccess (EinheitRasseNummer.Rasse, FeldeinheitID),
+                                                               PositionExtern         => PositionExtern,
+                                                               DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
+         end case;
+         
+         return;
+      end if;
+      
+      if
+        Clock - StartzeitBlinkintervall > ZeitKonstanten.Blinkintervall
+      then
+         AusgewählteEinheitAnzeigen := not AusgewählteEinheitAnzeigen;
+         StartzeitBlinkintervall := Clock;
+            
+      else
+         null;
+      end if;
+      
+      case
+        AusgewählteEinheitAnzeigen
+      is
+         when False =>
+            return;
+               
+         when True =>
+            AusgewählteEinheitID := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      end case;
+      
+      case
+        AusgewählteEinheitID
+      is
+         when EinheitenKonstanten.LeerID =>
+            return;
+            
+         when others =>
+            KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.EinheitenAccess (EinheitRasseNummerExtern.Rasse, AusgewählteEinheitID),
+                                                            PositionExtern         => PositionExtern,
+                                                            DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
+      end case;
+            
    end AnzeigeEinheit;
    
    

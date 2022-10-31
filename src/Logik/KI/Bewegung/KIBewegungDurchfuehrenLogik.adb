@@ -31,9 +31,11 @@ package body KIBewegungDurchfuehrenLogik is
       BewegungSchleife:
       loop
          
+         Zielkoordinaten := LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         
          if
            True = Vergleiche.Koordinatenvergleich (KoordinateEinsExtern  => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                   KoordinatenZweiExtern => LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
+                                                   KoordinatenZweiExtern => Zielkoordinaten)
          then
             SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                        KoordinatenExtern        => KartenRecordKonstanten.LeerKoordinate);
@@ -41,11 +43,11 @@ package body KIBewegungDurchfuehrenLogik is
             return;
             
          elsif
-           True = LeseWeltkarte.Sichtbar (KoordinatenExtern => LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+           True = LeseWeltkarte.Sichtbar (KoordinatenExtern => Zielkoordinaten,
                                           RasseExtern       => EinheitRasseNummerExtern.Rasse)
            and
              False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                               NeueKoordinatenExtern    => LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
+                                                                               NeueKoordinatenExtern    => Zielkoordinaten)
          then
             SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                        KoordinatenExtern        => KartenRecordKonstanten.LeerKoordinate);
@@ -88,11 +90,11 @@ package body KIBewegungDurchfuehrenLogik is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
-      NeuePosition := LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                          PlanschrittExtern        => 1);
+      NeueKoordinaten := LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                             PlanschrittExtern        => 1);
       
       case
-        KIBewegungAllgemeinLogik.FeldBetreten (FeldKoordinatenExtern    => NeuePosition,
+        KIBewegungAllgemeinLogik.FeldBetreten (FeldKoordinatenExtern    => NeueKoordinaten,
                                                EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       is
          when KIKonstanten.BewegungNormal =>
@@ -140,9 +142,9 @@ package body KIBewegungDurchfuehrenLogik is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
-      FremdeEinheit := EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => NeuePosition,
+      FremdeEinheit := EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => NeueKoordinaten,
                                                                              LogikGrafikExtern => True);
-      FremdeStadt := StadtSuchenLogik.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => NeuePosition);
+      FremdeStadt := StadtSuchenLogik.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => NeueKoordinaten);
             
       if
         FremdeStadt.Rasse = EinheitenKonstanten.LeerRasse

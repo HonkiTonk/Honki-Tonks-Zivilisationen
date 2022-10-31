@@ -1,17 +1,19 @@
 package ChangelogOktober2022 is
 
-   -- Version 0.04. => 0.04. (31.10.2022):
+   -- Version 0.04.2685 => 0.04. (31.10.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.2625 => 0.04. (30.10.2022):
+   -- Version 0.04.2625 => 0.04.2685 (30.10.2022):
    
    -- Weiter pragma Pure, Preelaborate und Elaborate_Body eingebaut.
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Eine KIEinheit kann jetzt unter bestimmten Bedingungen einer anderen KIEinheit der gleichen Rasse befehlen sich wegzubewegen.
+   -- Mehr Testgrafiken für die Einheiten erstellt und eingebaut.
+   -- Ist eine Einheit auf einem Transporter ausgewählt, dann wird jetzt diese Einheit blinken angezeigt anstelle des Transporters.
+   -- Conatracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 
