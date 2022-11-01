@@ -22,9 +22,11 @@ package KIKonstanten is
    BewertungBewegungNullwert : constant KIDatentypen.BewegungBewertung := KIDatentypen.BewegungBewertung'First;
    BewertungBewegungZielpunkt : constant KIDatentypen.BewegungBewertung := KIDatentypen.BewegungBewertung'Last;
 
+   -- Ist das überhaupt sinnvoll? äöü
    BewegungAngriff : constant KIDatentypen.Bewegung_Enum := KIDatentypen.Belegt_Angriff_Enum;
    BewegungNormal : constant KIDatentypen.Bewegung_Enum := KIDatentypen.Unbelegt_Enum;
    KeineBewegung : constant KIDatentypen.Bewegung_Enum := KIDatentypen.Belegt_Kein_Angriff_Enum;
+   Tauschbewegung : constant KIDatentypen.Bewegung_Enum := KIDatentypen.Einheiten_Tauschen_Enum;
 
    type SchwierigkeitsgradArray is array (SpielDatentypen.Schwierigkeitsgrad_Enum'Range) of KIDatentypen.KINotAus;
    Schwierigkeitsgrad : constant SchwierigkeitsgradArray := (

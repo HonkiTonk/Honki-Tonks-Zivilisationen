@@ -32,7 +32,7 @@ package body KIEinheitenBauenLogik is
       VorhandeneEinheiten := LeseWichtiges.AnzahlEinheiten (RasseExtern => StadtRasseNummerExtern.Rasse);
       
       if
-        VorhandeneEinheiten >= 10 * AnzahlStädte
+        VorhandeneEinheiten >= 5 * AnzahlStädte
         or
           VorhandeneEinheiten >= SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Einheitengrenze
       then
@@ -211,7 +211,7 @@ package body KIEinheitenBauenLogik is
       
       MengeVorhanden := LeseWichtiges.AnzahlArbeiter (RasseExtern => StadtRasseNummerExtern.Rasse);
       MengeImBau := KIStadtLaufendeBauprojekteLogik.GleicheEinheitArtBauprojekte (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                                                  EinheitArtExtern       => EinheitenDatentypen.Nahkämpfer_Enum);
+                                                                                  EinheitArtExtern       => EinheitenDatentypen.Arbeiter_Enum);
       
       if
         MengeVorhanden = MinimaleSiedlerMenge
@@ -225,7 +225,7 @@ package body KIEinheitenBauenLogik is
         or
           MengeVorhanden + MengeImBau > MinimaleSiedlerMenge
       then
-         return -5;
+         return -50;
          
       else
          -- Auf die maximale Größe der ID und des KIDatentypen.BauenBewertung Datentyps achten. äöü
@@ -268,7 +268,7 @@ package body KIEinheitenBauenLogik is
               or
                 MengeVorhanden + MengeImBau > 2 * AnzahlStädte
             then
-               return -5;
+               return -50;
          
             else
                -- Auf die maximale Größe der ID und des KIDatentypen.BauenBewertung Datentyps achten.
@@ -332,7 +332,7 @@ package body KIEinheitenBauenLogik is
               or
                 MengeVorhanden + MengeImBau > 2 * AnzahlStädte
             then
-               return -5;
+               return -50;
          
             else
                -- Auf die maximale Größe der ID und des KIDatentypen.BauenBewertung Datentyps achten.

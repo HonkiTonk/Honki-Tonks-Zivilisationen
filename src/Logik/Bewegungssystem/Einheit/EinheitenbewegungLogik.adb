@@ -30,7 +30,6 @@ package body EinheitenbewegungLogik is
       ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
       return Boolean
    is begin
-      
       if
         ÄnderungExtern = KeineÄnderung
       then
@@ -116,8 +115,8 @@ package body EinheitenbewegungLogik is
       elsif
         EinheitAufFeld.Rasse = EinheitRasseNummerExtern.Rasse
       then
-         BewegungDurchführen := EigeneEinheitAufFeld (BewegendeEinheitExtern => EinheitRasseNummerExtern,
-                                                       StehendeEinheitExtern  => EinheitAufFeld);
+         BewegungDurchführen := Einheitentausch (BewegendeEinheitExtern => EinheitRasseNummerExtern,
+                                                  StehendeEinheitExtern  => EinheitAufFeld);
          
          return NochBewegungspunkte (EinheitRasseNummerExtern  => EinheitRasseNummerExtern,
                                      BewegungDurchführenExtern => BewegungDurchführen,
@@ -223,7 +222,7 @@ package body EinheitenbewegungLogik is
    
    
    -- Das hier noch einmal überarbeiten, eventuell muss ich dazu auch die BewegungsberechnungLogik überarbeiten. äöü
-   function EigeneEinheitAufFeld
+   function Einheitentausch
      (BewegendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       StehendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
@@ -269,6 +268,6 @@ package body EinheitenbewegungLogik is
          return True;
       end if;
       
-   end EigeneEinheitAufFeld;
+   end Einheitentausch;
 
 end EinheitenbewegungLogik;

@@ -6,6 +6,7 @@ with EinheitenKonstanten;
 with KartenRecordKonstanten;
 
 with KIKonstanten;
+with KIDatentypen;
 
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
@@ -18,6 +19,7 @@ with StadtSuchenLogik;
 with KampfsystemStadtLogik;
 with Vergleiche;
 with PassierbarkeitspruefungLogik;
+with EinheitenbewegungLogik;
 
 with KIBewegungBerechnenLogik;
 with KIBewegungAllgemeinLogik;
@@ -28,11 +30,11 @@ package body KIBewegungDurchfuehrenLogik is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
+      Zielkoordinaten := LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      
       BewegungSchleife:
-      loop
-         
-         Zielkoordinaten := LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-         
+      for BewegungSchleifenwert in KIDatentypen.KINotAus'Range loop
+                  
          if
            True = Vergleiche.Koordinatenvergleich (KoordinateEinsExtern  => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                                    KoordinatenZweiExtern => Zielkoordinaten)
@@ -100,6 +102,11 @@ package body KIBewegungDurchfuehrenLogik is
          when KIKonstanten.BewegungNormal =>
             BewegtSich (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
+         when KIKonstanten.Tauschbewegung =>
+            SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            -- EinheitTauschen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            --                 NeueKoordinatenExtern    => NeueKoordinaten);
+            
          when KIKonstanten.KeineBewegung =>
             SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
@@ -111,10 +118,45 @@ package body KIBewegungDurchfuehrenLogik is
    
    
    
+   procedure EinheitTauschen
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+   is begin
+      
+      Tauscheinheit := (EinheitRasseNummerExtern.Rasse, EinheitSuchenLogik.KoordinatenEinheitMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                                                                                             KoordinatenExtern => NeueKoordinatenExtern,
+                                                                                                             LogikGrafikExtern => True));
+      
+      case
+        LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => Tauscheinheit)
+      is
+         when KIDatentypen.Tut_Nichts_Enum | KIDatentypen.Platz_Machen_Enum | KIDatentypen.Leer_Aufgabe_Enum | KIDatentypen.Erkunden_Enum | KIDatentypen.Einheit_Auflösen_Enum =>
+            null;
+            
+         when others =>
+            return;
+      end case;
+      
+      case
+        EinheitenbewegungLogik.Einheitentausch (BewegendeEinheitExtern => EinheitRasseNummerExtern,
+                                                StehendeEinheitExtern  => Tauscheinheit)
+      is
+         when True =>
+            SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitRasseNummerExtern => Tauscheinheit);
+            BewegtSich (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            
+         when False =>
+            SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      end case;
+      
+   end EinheitTauschen;
+   
+   
+   
    procedure BewegtSich
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
-      
+            
       BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                              NeueKoordinatenExtern    => LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                                                                              PlanschrittExtern        => 1),

@@ -9,12 +9,10 @@ with KIKonstanten;
 
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
-with SchreibeEinheitenGebaut;
 
 with DiplomatischerZustandLogik;
 with EinheitSuchenLogik;
 with StadtSuchenLogik;
-with Vergleiche;
 
 package body KIBewegungAllgemeinLogik is
 
@@ -38,19 +36,7 @@ package body KIBewegungAllgemeinLogik is
       elsif
         BlockierendeEinheit.Rasse = EinheitRasseNummerExtern.Rasse
       then
-         case
-           Vergleiche.Koordinatenvergleich (KoordinateEinsExtern  => FeldKoordinatenExtern,
-                                            KoordinatenZweiExtern => LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
-         is
-            when True =>
-               EinheitWegbewegen (BewegendeEinheitExtern => EinheitRasseNummerExtern,
-                                  StehendeEinheitExtern  => BlockierendeEinheit);
-               
-            when False =>
-               null;
-         end case;
-         
-         return KIKonstanten.KeineBewegung;
+         return KIKonstanten.Tauschbewegung;
          
       elsif
         BlockierendeStadt = EinheitRasseNummerExtern.Rasse
@@ -78,30 +64,7 @@ package body KIBewegungAllgemeinLogik is
    
    
    
-   procedure EinheitWegbewegen
-     (BewegendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      StehendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-   is begin
-      
-      case
-        LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => StehendeEinheitExtern)
-      is
-         when KIDatentypen.Tut_Nichts_Enum | KIDatentypen.Leer_Aufgabe_Enum =>
-            SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => StehendeEinheitExtern,
-                                                    AufgabeExtern            => KIDatentypen.Platz_Machen_Enum);
-            
-            SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => BewegendeEinheitExtern,
-                                                     BewegungspunkteExtern    => EinheitenKonstanten.LeerBewegungspunkte,
-                                                     RechnenSetzenExtern      => False);
-            
-         when others =>
-            null;
-      end case;
-      
-   end EinheitWegbewegen;
-   
-   
-   
+   -- Hier nochmal besser unterscheiden mit was angegeriffen wird? äöü
    function FeldAngreifen
      (EigeneEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       FeindlicheRasseEinheitExtern : in RassenDatentypen.Rassen_Enum;

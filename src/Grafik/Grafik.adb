@@ -6,11 +6,10 @@ with Ada.Calendar; use Ada.Calendar;
 with GrafikDatentypen; use GrafikDatentypen;
 with ZeitKonstanten;
 
-with StartEndeGrafik;
 with IntroGrafik;
 with MenueaufteilungGrafik;
 with NachGrafiktask;
-with AllgemeinGrafik;
+with FensterGrafik;
 with SichtweitenGrafik;
 with ForschungsauswahlGrafik;
 with SprachauswahlGrafik;
@@ -44,7 +43,7 @@ package body Grafik is
       
       -- Das Setzen der Schriftart kann scheinbar erst nach dem Erzeugen eines Fensters stattfinden.
       -- Oder habe ich zu dem Zeitpunkt den Font noch nicht eingelesen? Mal nachprüfen. äöü
-      StartEndeGrafik.FensterErzeugen;
+      FensterGrafik.FensterErzeugen;
       
       -- Systemchecks.Größenprüfung;
       Startzeit := Ada.Calendar.Clock;
@@ -60,7 +59,7 @@ package body Grafik is
                
             when False =>
                GrafikanpassungenVorFensterleerung;
-               StartEndeGrafik.FensterLeeren;
+               FensterGrafik.FensterLeeren;
                Eingaben;
          end case;
          
@@ -68,7 +67,7 @@ package body Grafik is
            AnzeigeAuswahl
          is
             when True =>
-               StartEndeGrafik.FensterAnzeigen;
+               FensterGrafik.FensterAnzeigen;
                
             when False =>
                exit GrafikSchleife;
@@ -76,7 +75,7 @@ package body Grafik is
          
       end loop GrafikSchleife;
       
-      StartEndeGrafik.FensterEntfernen;
+      FensterGrafik.FensterEntfernen;
       
    end Grafik;
    
@@ -100,13 +99,13 @@ package body Grafik is
         NachGrafiktask.FensterVerändert
       is
          when GrafikDatentypen.Fenster_Wurde_Verändert_Enum'Range =>
-            AllgemeinGrafik.FensterAnpassen;
+            FensterGrafik.FensterAnpassen;
             SichtweitenGrafik.SichtweiteBewegungsfeldFestlegen;
             NachGrafiktask.FensterVerändert := GrafikDatentypen.Keine_Änderung_Enum;
             NachLogiktask.Warten := False;
             
          when GrafikDatentypen.Bildrate_Ändern_Enum =>
-            AllgemeinGrafik.BildrateÄndern;
+            FensterGrafik.BildrateÄndern;
             NachGrafiktask.FensterVerändert := GrafikDatentypen.Keine_Änderung_Enum;
                
          when others =>

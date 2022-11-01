@@ -1,64 +1,52 @@
-procedure AnzeigeEinheit
-  (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-   EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-   PositionExtern : in Sf.System.Vector2.sfVector2f)
+
+case
+  Vergleiche.Koordinatenvergleich (KoordinateEinsExtern  => FeldKoordinatenExtern,
+                                   KoordinatenZweiExtern => LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
+is
+   when True =>
+      EinheitWegbewegen (BewegendeEinheitExtern => EinheitRasseNummerExtern,
+                         StehendeEinheitExtern  => BlockierendeEinheit);
+
+   when False =>
+      null;
+end case;
+
+
+
+
+
+procedure EinheitWegbewegen
+  (BewegendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+   StehendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
 is begin
 
-   EinheitRasseNummer := EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern,
-                                                                               LogikGrafikExtern => False);
-
    case
-     EinheitRasseNummer.Nummer
+     LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => StehendeEinheitExtern)
    is
-      when EinheitenKonstanten.LeerNummer =>
-         return;
+      when KIDatentypen.Tut_Nichts_Enum | KIDatentypen.Leer_Aufgabe_Enum =>
+         SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => StehendeEinheitExtern,
+                                                 AufgabeExtern            => KIDatentypen.Platz_Machen_Enum);
+
+         SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => BewegendeEinheitExtern,
+                                                  BewegungspunkteExtern    => EinheitenKonstanten.LeerBewegungspunkte,
+                                                  RechnenSetzenExtern      => False);
 
       when others =>
          null;
    end case;
 
-   if
-     EinheitRasseNummer.Rasse = EinheitRasseNummerExtern.Rasse
-     and
-       (EinheitRasseNummer.Nummer = EinheitRasseNummerExtern.Nummer
-        or
-          True = EinheitSuchenLogik.TransporterladungSuchen (TransporterExtern   => EinheitRasseNummer,
-                                                             LadungsnummerExtern => EinheitRasseNummerExtern.Nummer))
-   then
-      if
-        Clock - StartzeitBlinkintervall > ZeitKonstanten.Blinkintervall
-      then
-         AusgewählteEinheitAnzeigen := not AusgewählteEinheitAnzeigen;
-         StartzeitBlinkintervall := Clock;
+end EinheitWegbewegen;
 
-      else
-         null;
-      end if;
-
-      case
-        AusgewählteEinheitAnzeigen
-      is
-         when True =>
-            EinheitID := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-
-         when False =>
-            return;
-      end case;
-
-   else
-      EinheitID := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummer);
-   end if;
-
-   case
-     EinheitID
-   is
-      when EinheitenKonstanten.LeerID =>
-         return;
-
-      when others =>
-         KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.EinheitenAccess (EinheitRasseNummerExtern.Rasse, EinheitID),
-                                                         PositionExtern         => PositionExtern,
-                                                         DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
-   end case;
-
-end AnzeigeEinheit;
+procedure EinheitWegbewegen
+  (BewegendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+   StehendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+  with
+    Pre => (
+              BewegendeEinheitExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (BewegendeEinheitExtern.Rasse).Einheitengrenze
+            and
+              SpielVariablen.Rassenbelegung (BewegendeEinheitExtern.Rasse).Belegung = RassenDatentypen.KI_Spieler_Enum
+            and
+              StehendeEinheitExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (StehendeEinheitExtern.Rasse).Einheitengrenze
+            and
+              SpielVariablen.Rassenbelegung (StehendeEinheitExtern.Rasse).Belegung = RassenDatentypen.KI_Spieler_Enum
+           );

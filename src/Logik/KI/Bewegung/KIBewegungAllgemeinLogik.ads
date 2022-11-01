@@ -32,20 +32,6 @@ private
    
    BlockierendeEinheit : EinheitenRecords.RasseEinheitnummerRecord;
    
-   procedure EinheitWegbewegen
-     (BewegendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      StehendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-     with
-       Pre => (
-                 BewegendeEinheitExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (BewegendeEinheitExtern.Rasse).Einheitengrenze
-               and
-                 SpielVariablen.Rassenbelegung (BewegendeEinheitExtern.Rasse).Belegung = RassenDatentypen.KI_Spieler_Enum
-               and
-                 StehendeEinheitExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (StehendeEinheitExtern.Rasse).Einheitengrenze
-               and
-                 SpielVariablen.Rassenbelegung (StehendeEinheitExtern.Rasse).Belegung = RassenDatentypen.KI_Spieler_Enum
-              );
-   
    
    
    function FeldAngreifen

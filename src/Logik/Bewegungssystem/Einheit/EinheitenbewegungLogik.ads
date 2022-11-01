@@ -40,23 +40,7 @@ package EinheitenbewegungLogik is
                  SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.Mensch_Spieler_Enum
               );
    
-private
-   
-   FeldPassierbar : Boolean;
-   BewegungDurchführen : Boolean;
-   
-   StadtAufFeld : StadtRecords.RasseStadtnummerRecord;
-      
-   EinheitAufFeld : EinheitenRecords.RasseEinheitnummerRecord;
-
-   KeineÄnderung : constant KartenRecords.AchsenKartenfeldRecord := (0, 0, 0);
-   NeueKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
-   BewegendeKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
-   StehendeKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
-   
-   
-     
-   function EigeneEinheitAufFeld
+   function Einheitentausch
      (BewegendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       StehendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
@@ -71,6 +55,22 @@ private
                  SpielVariablen.Rassenbelegung (StehendeEinheitExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
    
+private
+   
+   FeldPassierbar : Boolean;
+   BewegungDurchführen : Boolean;
+   
+   StadtAufFeld : StadtRecords.RasseStadtnummerRecord;
+      
+   EinheitAufFeld : EinheitenRecords.RasseEinheitnummerRecord;
+
+   KeineÄnderung : constant KartenRecords.AchsenKartenfeldRecord := (0, 0, 0);
+   NeueKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   BewegendeKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   StehendeKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+      
+    
+      
    function FremderAufFeld
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       FremdeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)

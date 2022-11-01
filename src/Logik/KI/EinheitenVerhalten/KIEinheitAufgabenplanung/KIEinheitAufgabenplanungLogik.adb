@@ -89,7 +89,7 @@ package body KIEinheitAufgabenplanungLogik is
       
       case
         LeseEinheitenDatenbank.Einheitenart (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
+                                             IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       is
          when EinheitenDatentypen.Arbeiter_Enum =>
             Wichtigkeit (KIDatentypen.Stadt_Bauen_Enum) := KIEinheitAufgabeSiedelnLogik.NeueStadtBauenGehen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -175,7 +175,7 @@ package body KIEinheitAufgabenplanungLogik is
    is begin
       
       AufgabeFestlegenSchleife:
-      loop
+      for AufgabenFestlegenSchleifenwert in KIDatentypen.KINotAus'Range loop
          
          Aufgabe := AufgabeAuswählen;
       
@@ -186,7 +186,15 @@ package body KIEinheitAufgabenplanungLogik is
                AufgabeFestgelegt := KIEinheitFestlegenSiedelnLogik.StadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
             when KIDatentypen.Verbesserung_Anlegen_Enum =>
-               AufgabeFestgelegt := KIEinheitFestlegenVerbesserungenLogik.StadtumgebungVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+               if
+                 KIEinheitFestlegenVerbesserungenLogik.StadtumgebungVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
+               then
+                  AufgabeFestgelegt := True;
+                  
+               else
+                  Aufgabe := KIDatentypen.Stadt_Bauen_Enum;
+                  AufgabeFestgelegt := KIEinheitFestlegenSiedelnLogik.StadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+               end if;
             
             when KIDatentypen.Einheit_Auflösen_Enum =>
                AufgabeFestgelegt := KIEinheitFestlegenAufloesenLogik.EinheitAuflösen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);

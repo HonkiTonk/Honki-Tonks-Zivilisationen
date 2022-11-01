@@ -1,17 +1,20 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-package StartEndeGrafik is
+package FensterGrafik is
    pragma Elaborate_Body;
-   
+
+   procedure FensterAnpassen;
+   procedure BildrateÄndern;
    procedure FensterErzeugen;
    procedure FensterEntfernen;
-
    procedure FensterLeeren;
    procedure FensterAnzeigen;
-   
+
 private
    
    procedure FensterErzeugenErweitert;
-
-end StartEndeGrafik;
+   procedure AktuelleAuflösungFestlegen;
+   procedure MauszeigerFestlegen;
+   
+end FensterGrafik;

@@ -24,7 +24,7 @@ package KIDatentypen is
                               );
 
    type Bewegung_Enum is (
-                          Belegt_Angriff_Enum, Unbelegt_Enum, Belegt_Kein_Angriff_Enum
+                          Belegt_Angriff_Enum, Unbelegt_Enum, Belegt_Kein_Angriff_Enum, Einheiten_Tauschen_Enum
                          );
 
    -- Größe später besser anpassen. äöü

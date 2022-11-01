@@ -1,11 +1,16 @@
 package ChangelogOktober2022 is
 
-   -- Version 0.04.2685 => 0.04. (31.10.2022):
+   -- Version 0.04.2685 => 0.04.2785 (31.10.2022):
    
    -- Weiter pragma Pure, Preelaborate und Elaborate_Body eingebaut.
    -- Unnötigen Code gelöscht.
-   -- 
-   -- Kommentare und Kleinigkeiten korrigiert.
+   -- Code zusammengeführt.
+   -- Einheitentausch für die KI eingebaut.
+   -- Zusätzliche NotAus für die Schleifen der KI eingebaut.
+   -- Diagnosesystem eingebaut um einfacher Informationen über bestimmte Werte zu erhalten.
+   -- Die KI baut jetzt zu Friedenszeiten weniger Einheiten.
+   -- Wenn ein Siedler jetzt keine Verbesserung mehr anlegen kann, dann versucht er eine Stadt bauen zu gehen.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

@@ -269,6 +269,10 @@ package body KIBewegungBerechnenLogik is
                                                 KoordinatenExtern        => KoordinatenExtern,
                                                 NeueKoordinatenExtern    => KartenWert);
             
+            -- Hier später noch einmal anpassen. äöü
+         when KIKonstanten.Tauschbewegung =>
+            return KIKonstanten.BewertungBewegungNullwert + 1;
+            
          when KIKonstanten.KeineBewegung =>
             return KIKonstanten.BewertungBewegungNullwert;
       end case;
@@ -295,6 +299,7 @@ package body KIBewegungBerechnenLogik is
                          abs (SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIZielKoordinaten.YAchse - KoordinatenExtern.YAchse),
                          abs (SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIZielKoordinaten.XAchse - KoordinatenExtern.XAchse));
 
+         -- Hier scheint es auch noch ein Range Problem zu geben, eventuell lösbar durch Umwandlung nach Integer? äöü
          PositionNeu := (abs (SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIZielKoordinaten.EAchse - NeueKoordinatenExtern.EAchse),
                          abs (SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIZielKoordinaten.YAchse - NeueKoordinatenExtern.YAchse),
                          abs (SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIZielKoordinaten.XAchse - NeueKoordinatenExtern.XAchse));

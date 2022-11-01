@@ -196,14 +196,14 @@ package ChangelogNovember2022 is
    
    
 
-   -- Version 0.0. => 0.0. (02.11.2022):
+   -- Version 0.04. => 0.0. (02.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (01.11.2022):
+   -- Version 0.04.2785 => 0.04. (01.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
