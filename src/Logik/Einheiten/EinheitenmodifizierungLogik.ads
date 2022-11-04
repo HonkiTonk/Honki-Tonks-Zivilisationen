@@ -60,7 +60,7 @@ private
    
    Heimatstadt : StadtDatentypen.MaximaleStädteMitNullWert;
    
-   Heilungsrate : constant EinheitenDatentypen.LebenspunkteVorhanden := 10;
+   Heilungsrate : constant EinheitenDatentypen.VorhandeneLebenspunkte := 10;
       
    NeueHeimatstadt : StadtRecords.RasseStadtnummerRecord;
    

@@ -52,9 +52,13 @@ private
    
    Ladungsnummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    
+   Angriffsbonus : KampfDatentypen.KampfwerteAllgemein;
+   Verteidigungsbonus : KampfDatentypen.KampfwerteAllgemein;
+   
    Textbreite : Float;
       
    Ladungstext : Unbounded_Wide_Wide_String;
+   Kampftext : Unbounded_Wide_Wide_String;
       
    EinheitRasseNummer : EinheitenRecords.RasseEinheitnummerRecord;
    
@@ -79,13 +83,15 @@ private
               );
    
    function Kampfwerte
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenID;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     (IDExtern : in EinheitenDatentypen.EinheitenID;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Unbounded_Wide_Wide_String
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+               and
+                 SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               ),
          
        Post => (

@@ -5,15 +5,11 @@ with EinheitenRecords;
 with SpielVariablen;
 with KampfDatentypen;
 
-private with KartenRecords;
-private with EinheitenDatentypen;
-
 package KampfwerteEinheitErmittelnLogik is
    pragma Elaborate_Body;
-
-   function AktuelleVerteidigungEinheit
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      AngreiferExtern : in Boolean)
+   
+   function Gesamtverteidigung
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return KampfDatentypen.Kampfwerte
      with
        Pre => (
@@ -22,9 +18,8 @@ package KampfwerteEinheitErmittelnLogik is
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
               );
    
-   function AktuellerAngriffEinheit
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      AngreiferExtern : in Boolean)
+   function Gesamtangriff
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return KampfDatentypen.Kampfwerte
      with
        Pre => (
@@ -35,48 +30,13 @@ package KampfwerteEinheitErmittelnLogik is
    
 private
    
-   EinheitenID : EinheitenDatentypen.EinheitenIDMitNullWert;
+   Grundverteidigung : KampfDatentypen.Kampfwerte;
+   Bonusverteidigung : KampfDatentypen.Kampfwerte;
+   GesamteVerteidigung : KampfDatentypen.Kampfwerte;
+   Grundangriff : KampfDatentypen.Kampfwerte;
+   Bonusangriff : KampfDatentypen.Kampfwerte;
+   GesamterAngriff : KampfDatentypen.Kampfwerte;
    
-   VerschanzungBonus : constant Float := 1.25;
-   StadtBonus : constant Float := 1.25;
-   -- Drin lassen? Anders gestalten?
-   AngriffBonus : constant Float := 1.25;
-   
-   VerteidigungWert : KampfDatentypen.Kampfwerte;
-   AngriffWert : KampfDatentypen.Kampfwerte;
-   Bonus : KampfDatentypen.Kampfwerte;
-   
-   VerteidigungWertFloat : Float;
-   AngriffWertFloat : Float;
-   
-   Einheitenkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
-   
-   
-   
-   function VerteidigungsbonusVerteidiger
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return KampfDatentypen.Kampfwerte
-     with
-       Pre => (
-                 SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
-               and
-                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
-              );
-   
-   function VerteidigungsbonusAngreifer
-     return KampfDatentypen.Kampfwerte;
-   
-   function AngriffsbonusAngreifer
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return KampfDatentypen.Kampfwerte
-     with
-       Pre => (
-                 SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
-               and
-                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
-              );
-   
-   function AngriffsbonusVerteidiger
-     return KampfDatentypen.Kampfwerte;
+   Verschanzungsbonus : constant Float := 1.25;
 
 end KampfwerteEinheitErmittelnLogik;

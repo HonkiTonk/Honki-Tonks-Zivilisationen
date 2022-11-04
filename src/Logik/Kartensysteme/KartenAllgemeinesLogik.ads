@@ -128,7 +128,7 @@ package KartenAllgemeinesLogik is
    function FlussVerteidigung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KampfDatentypen.Kampfwerte
+      return KampfDatentypen.KampfwerteAllgemein
      with
        Pre => (
                  KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse

@@ -89,7 +89,7 @@ package EinheitenDatentypen is
    
    
    type Lebenspunkte is range -1_000 .. 1_000;
-   subtype LebenspunkteVorhanden is Lebenspunkte range 1 .. Lebenspunkte'Last;
+   subtype VorhandeneLebenspunkte is Lebenspunkte range 1 .. Lebenspunkte'Last;
    
    
    

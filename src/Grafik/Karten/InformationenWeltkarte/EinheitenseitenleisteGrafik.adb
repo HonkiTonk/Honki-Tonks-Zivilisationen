@@ -5,6 +5,7 @@ with Sf.Graphics;
 with Sf.Graphics.Text;
 
 with EinheitenDatentypen; use EinheitenDatentypen;
+with AufgabenDatentypen; use AufgabenDatentypen;
 with Meldungstexte;
 with EinheitenKonstanten;
 with StadtKonstanten;
@@ -12,9 +13,8 @@ with TextnummernKonstanten;
 with Views;
 with TextKonstanten;
 with GrafikDatentypen;
-with KartenKonstanten;
+with KampfKonstanten;
 
--- with LeseKartenDatenbanken;
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
 with LeseStadtGebaut;
@@ -25,6 +25,7 @@ with TextberechnungenHoeheGrafik;
 with ViewsEinstellenGrafik;
 with HintergrundGrafik;
 with TextberechnungenBreiteGrafik;
+with KartenfelderwerteLogik;
 
 package body EinheitenseitenleisteGrafik is
    
@@ -112,13 +113,9 @@ package body EinheitenseitenleisteGrafik is
            & ZahlAlsStringRang (ZahlExtern => LeseEinheitenDatenbank.MaximalerRang (RasseExtern => EinheitRasseNummer.Rasse,
                                                                                     IDExtern    => IDEinheit));
          FestzulegenderText (6) := Aufgabe (EinheitRasseNummerExtern => EinheitRasseNummer);
-         FestzulegenderText (7) := Kampfwerte (RasseExtern       => EinheitRasseNummer.Rasse,
-                                               IDExtern          => IDEinheit,
-                                               KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummer));
-         --  FestzulegenderText (8) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugGegenschlagskraftFeld) & KampfwerteEinheitErmittelnLogik.AktuelleVerteidigungEinheit (EinheitRasseNummerExtern => EinheitRasseNummer,
-         --                                                                                                                                                                AngreiferExtern          => False)'Wide_Wide_Image;
-         --  FestzulegenderText (9) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugGegenschlagskraft) & KampfwerteEinheitErmittelnLogik.AktuellerAngriffEinheit (EinheitRasseNummerExtern => EinheitRasseNummer,
-         --                                                                                                                                                        AngreiferExtern          => False)'Wide_Wide_Image;
+         FestzulegenderText (7) := Kampfwerte (IDExtern                 => IDEinheit,
+                                               KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummer),
+                                               EinheitRasseNummerExtern => EinheitRasseNummer);
          FestzulegenderText (8) := Heimatstadt (EinheitRasseNummerExtern => EinheitRasseNummer);
          FestzulegenderText (9) := Ladung (EinheitRasseNummerExtern => EinheitRasseNummer,
                                            IDExtern                 => IDEinheit);
@@ -215,33 +212,54 @@ package body EinheitenseitenleisteGrafik is
    
    
    function Kampfwerte
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenID;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     (IDExtern : in EinheitenDatentypen.EinheitenID;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Unbounded_Wide_Wide_String
    is begin
       
-      -- Diese Abfrage oben bei der ID Prüfung mit reinbauen. äöü
+      Kampftext := Meldungstexte.Zeug (TextnummernKonstanten.ZeugKampfwerte) & LeseEinheitenDatenbank.Angriff (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                                                               IDExtern    => IDExtern)'Wide_Wide_Image;
+      
+      Angriffsbonus := KartenfelderwerteLogik.FeldAngriff (KoordinatenExtern => KoordinatenExtern,
+                                                           RasseExtern       => EinheitRasseNummerExtern.Rasse);
+        
       case
-        KoordinatenExtern.XAchse
+        Angriffsbonus
       is
-         when KartenKonstanten.LeerXAchse =>
-            return Meldungstexte.Zeug (TextnummernKonstanten.ZeugKampfwerte) & LeseEinheitenDatenbank.Angriff (RasseExtern => RasseExtern,
-                                                                                                               IDExtern    => IDExtern)'Wide_Wide_Image
-              & " " & TextKonstanten.TrennzeichenUnterschiedlich & LeseEinheitenDatenbank.Verteidigung (RasseExtern => RasseExtern,
-                                                                                                        IDExtern    => IDExtern)'Wide_Wide_Image;
-            
-         when others =>
+         when KampfKonstanten.LeerKampfwert =>
             null;
+         
+         when others =>
+            Kampftext := Kampftext & " +" & ZahlAlsStringKampfwerte (ZahlExtern => Angriffsbonus);
       end case;
       
-     -- if
-     --   LeseKartenDatenbanken.KampfBasisgrund
+      Kampftext := Kampftext & " " & TextKonstanten.TrennzeichenUnterschiedlich & " " & LeseEinheitenDatenbank.Verteidigung (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                                                                             IDExtern    => IDExtern)'Wide_Wide_Image;
+      
+      Verteidigungsbonus := KartenfelderwerteLogik.FeldAngriff (KoordinatenExtern => KoordinatenExtern,
+                                                                RasseExtern       => EinheitRasseNummerExtern.Rasse);
+      
+      case
+        Verteidigungsbonus
+      is
+         when KampfKonstanten.LeerKampfwert =>
+            null;
             
-      return Meldungstexte.Zeug (TextnummernKonstanten.ZeugKampfwerte) & LeseEinheitenDatenbank.Angriff (RasseExtern => RasseExtern,
-                                                                                                         IDExtern    => IDExtern)'Wide_Wide_Image
-        & " " & TextKonstanten.TrennzeichenUnterschiedlich & LeseEinheitenDatenbank.Verteidigung (RasseExtern => RasseExtern,
-                                                                                                  IDExtern    => IDExtern)'Wide_Wide_Image;
+         when others =>
+            if
+              LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = AufgabenDatentypen.Verschanzen_Enum
+            then
+               Verteidigungsbonus := KampfDatentypen.KampfwerteGroß (Float (Verteidigungsbonus) * 1.25);
+               
+            else
+               null;
+            end if;
+            
+            Kampftext := Kampftext & " +" & ZahlAlsStringKampfwerte (ZahlExtern => Verteidigungsbonus);
+      end case;
+      
+      return Kampftext;
       
    end Kampfwerte;
    

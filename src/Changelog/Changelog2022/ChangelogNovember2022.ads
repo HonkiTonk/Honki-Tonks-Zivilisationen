@@ -175,19 +175,22 @@ package ChangelogNovember2022 is
    
    
 
-   -- Version 0.04. => 0.04. (05.11.2022):
+   -- Version 0.04.5100 => 0.04. (05.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.2960 => 0.04.5000 (04.11.2022):
+   -- Version 0.04.2960 => 0.04.5100 (04.11.2022):
    
    -- Versionsnummerberechnung angepasst.
    -- GNAT von 12.2.0-7 auf GNAT 12.2.0-9 aktualisiert.
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Berechnung von Bonuswerte im Kampf überarbeitet.
+   -- Fehler korrigiert der dazu führte das Einheiten weniger als einen Lebenspunkt haben konnten.
+   -- Unnötigen Code gelöscht.
+   -- Seitenleiste überarbeitet.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 

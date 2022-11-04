@@ -69,7 +69,7 @@ package LeseEinheitenDatenbank is
    function MaximaleLebenspunkte
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenID)
-      return EinheitenDatentypen.LebenspunkteVorhanden
+      return EinheitenDatentypen.VorhandeneLebenspunkte
      with
        Pre => (
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum

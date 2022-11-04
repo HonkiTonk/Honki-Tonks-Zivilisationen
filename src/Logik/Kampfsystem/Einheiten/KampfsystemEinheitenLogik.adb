@@ -28,15 +28,11 @@ package body KampfsystemEinheitenLogik is
             return False;
             
          when False =>
-            KampfwerteVerteidiger.Verteidigung := KampfwerteEinheitErmittelnLogik.AktuelleVerteidigungEinheit (EinheitRasseNummerExtern => VerteidigerExtern,
-                                                                                                               AngreiferExtern          => False);
-            KampfwerteVerteidiger.Angriff := KampfwerteEinheitErmittelnLogik.AktuellerAngriffEinheit (EinheitRasseNummerExtern => VerteidigerExtern,
-                                                                                                      AngreiferExtern          => False);
+            KampfwerteVerteidiger.Verteidigung := KampfwerteEinheitErmittelnLogik.Gesamtverteidigung (EinheitRasseNummerExtern => VerteidigerExtern);
+            KampfwerteVerteidiger.Angriff := KampfwerteEinheitErmittelnLogik.Gesamtangriff (EinheitRasseNummerExtern => VerteidigerExtern);
       
-            KampfwerteAngreifer.Verteidigung := KampfwerteEinheitErmittelnLogik.AktuelleVerteidigungEinheit (EinheitRasseNummerExtern => AngreiferExtern,
-                                                                                                             AngreiferExtern          => True);
-            KampfwerteAngreifer.Angriff := KampfwerteEinheitErmittelnLogik.AktuellerAngriffEinheit (EinheitRasseNummerExtern => AngreiferExtern,
-                                                                                                    AngreiferExtern          => True);
+            KampfwerteAngreifer.Verteidigung := KampfwerteEinheitErmittelnLogik.Gesamtverteidigung (EinheitRasseNummerExtern => AngreiferExtern);
+            KampfwerteAngreifer.Angriff := KampfwerteEinheitErmittelnLogik.Gesamtangriff (EinheitRasseNummerExtern => AngreiferExtern);
       
             return Kampf (VerteidigerExtern           => VerteidigerExtern,
                           KampfwerteVerteidigerExtern => KampfwerteVerteidiger,
@@ -84,7 +80,7 @@ package body KampfsystemEinheitenLogik is
          end if;
 
          if
-           LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => VerteidigerExtern) = EinheitenKonstanten.LeerLebenspunkte
+           LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => VerteidigerExtern) <= EinheitenKonstanten.LeerLebenspunkte
          then
             SchreibeEinheitenGebaut.Erfahrungspunkte (EinheitRasseNummerExtern => AngreiferExtern,
                                                       ErfahrungspunkteExtern   => LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => AngreiferExtern.Rasse,
@@ -95,7 +91,7 @@ package body KampfsystemEinheitenLogik is
             return True;
             
          elsif
-           LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => AngreiferExtern) = EinheitenKonstanten.LeerLebenspunkte
+           LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => AngreiferExtern) <= EinheitenKonstanten.LeerLebenspunkte
          then
             SchreibeEinheitenGebaut.Erfahrungspunkte (EinheitRasseNummerExtern => VerteidigerExtern,
                                                       ErfahrungspunkteExtern   => LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => VerteidigerExtern.Rasse,
@@ -130,7 +126,7 @@ package body KampfsystemEinheitenLogik is
          end if;
          
          if
-           LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => VerteidigerExtern) = EinheitenKonstanten.LeerLebenspunkte
+           LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => VerteidigerExtern) <= EinheitenKonstanten.LeerLebenspunkte
          then
             SchreibeEinheitenGebaut.Erfahrungspunkte (EinheitRasseNummerExtern => AngreiferExtern,
                                                       ErfahrungspunkteExtern   => LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => AngreiferExtern.Rasse,
@@ -141,7 +137,7 @@ package body KampfsystemEinheitenLogik is
             return True;
             
          elsif
-           LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => AngreiferExtern) = EinheitenKonstanten.LeerLebenspunkte
+           LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => AngreiferExtern) <= EinheitenKonstanten.LeerLebenspunkte
          then
             SchreibeEinheitenGebaut.Erfahrungspunkte (EinheitRasseNummerExtern => VerteidigerExtern,
                                                       ErfahrungspunkteExtern   => LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => VerteidigerExtern.Rasse,

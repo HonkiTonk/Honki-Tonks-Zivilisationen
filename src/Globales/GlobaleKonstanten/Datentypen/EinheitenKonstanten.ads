@@ -21,7 +21,7 @@ package EinheitenKonstanten is
 
    LeerID : constant EinheitenDatentypen.EinheitenIDMitNullWert := EinheitenDatentypen.EinheitenIDMitNullWert'First;
    LeerHeimatstadt : constant StadtDatentypen.MaximaleStädteMitNullWert := StadtDatentypen.MaximaleStädteMitNullWert'First;
-   LeerLebenspunkte : constant EinheitenDatentypen.Lebenspunkte := EinheitenDatentypen.Lebenspunkte'First;
+   LeerLebenspunkte : constant EinheitenDatentypen.Lebenspunkte := 0;
    LeerBewegungspunkte : constant EinheitenDatentypen.VorhandeneBewegungspunkte := EinheitenDatentypen.VorhandeneBewegungspunkte'First;
    LeerErfahrungspunkte : constant KampfDatentypen.Erfahrungspunkte := KampfDatentypen.Erfahrungspunkte'First;
    LeerRang : constant KampfDatentypen.Rang := KampfDatentypen.Rang'First;
@@ -41,7 +41,7 @@ package EinheitenKonstanten is
    LeerPermanenteKosten : constant ProduktionDatentypen.Stadtproduktion := 0;
    LeerAnforderungen : constant ForschungenDatentypen.ForschungIDNichtMöglich := ForschungKonstanten.ForschungUnmöglich;
    LeerPassierbarkeit : constant Boolean := False;
-   LeerMaximaleLebenspunkte : constant EinheitenDatentypen.LebenspunkteVorhanden := EinheitenDatentypen.LebenspunkteVorhanden'First;
+   LeerMaximaleLebenspunkte : constant EinheitenDatentypen.VorhandeneLebenspunkte := EinheitenDatentypen.VorhandeneLebenspunkte'First;
    LeerMaximaleBewegungspunkte : constant EinheitenDatentypen.VorhandeneBewegungspunkte := 1.00;
    LeerWirdVerbessertZu : constant EinheitenDatentypen.EinheitenIDMitNullWert := EinheitenDatentypen.EinheitenIDMitNullWert'First;
    LeerBeförderungsgrenze : constant KampfDatentypen.ErfahrungspunkteVorhanden := KampfDatentypen.ErfahrungspunkteVorhanden'First;

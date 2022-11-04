@@ -20,7 +20,7 @@ package EinheitendatenbankRecord is
 
       Passierbarkeit : DatenbankRecords.PassierbarkeitArray;
       
-      MaximaleLebenspunkte : EinheitenDatentypen.LebenspunkteVorhanden;
+      MaximaleLebenspunkte : EinheitenDatentypen.VorhandeneLebenspunkte;
       MaximaleBewegungspunkte : EinheitenDatentypen.VorhandeneBewegungspunkte;
       VerbesserungZu : EinheitenDatentypen.EinheitenIDMitNullWert;
 

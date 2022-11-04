@@ -2,6 +2,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartengrundDatentypen; use KartengrundDatentypen;
 with KartenKonstanten;
+with KampfKonstanten;
 
 with LeseWeltkarte;
 with LeseKartenDatenbanken;
@@ -290,7 +291,7 @@ package body KartenAllgemeinesLogik is
    function FlussVerteidigung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KampfDatentypen.Kampfwerte
+      return KampfDatentypen.KampfwerteAllgemein
    is begin
       
       KartenFluss := LeseWeltkarte.Fluss (KoordinatenExtern => KoordinatenExtern);
@@ -299,7 +300,7 @@ package body KartenAllgemeinesLogik is
         KartenFluss
       is
          when KartengrundDatentypen.Leer_Fluss_Enum =>
-            return 0;
+            return KampfKonstanten.LeerKampfwert;
             
          when others =>
             return LeseKartenDatenbanken.KampfFluss (FlussExtern    => KartenFluss,
@@ -323,7 +324,7 @@ package body KartenAllgemeinesLogik is
         KartenFluss
       is
          when KartengrundDatentypen.Leer_Fluss_Enum =>
-            return 0;
+            return KampfKonstanten.LeerKampfwert;
             
          when others =>
             return LeseKartenDatenbanken.KampfFluss (FlussExtern    => KartenFluss,
@@ -466,7 +467,7 @@ package body KartenAllgemeinesLogik is
         KartenWeg
       is
          when KartenverbesserungDatentypen.Leer_Weg_Enum =>
-            return 0;
+            return KampfKonstanten.LeerKampfwert;
             
          when others =>
             return LeseVerbesserungenDatenbank.KampfWeg (WegExtern         => KartenWeg,
@@ -490,7 +491,7 @@ package body KartenAllgemeinesLogik is
         KartenWeg
       is
          when KartenverbesserungDatentypen.Leer_Weg_Enum =>
-            return 0;
+            return KampfKonstanten.LeerKampfwert;
             
          when others =>
             return LeseVerbesserungenDatenbank.KampfWeg (WegExtern         => KartenWeg,
@@ -610,7 +611,7 @@ package body KartenAllgemeinesLogik is
         KartenVerbesserung
       is
          when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
-            return 0;
+            return KampfKonstanten.LeerKampfwert;
             
          when others =>
             return LeseVerbesserungenDatenbank.KampfVerbesserung (VerbesserungExtern => KartenVerbesserung,
@@ -634,7 +635,7 @@ package body KartenAllgemeinesLogik is
         KartenVerbesserung
       is
          when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
-            return 0;
+            return KampfKonstanten.LeerKampfwert;
             
          when others =>
             return LeseVerbesserungenDatenbank.KampfVerbesserung (VerbesserungExtern => KartenVerbesserung,
@@ -754,7 +755,7 @@ package body KartenAllgemeinesLogik is
         KartenRessource
       is
          when KartengrundDatentypen.Leer_Ressource_Enum =>
-            return 0;
+            return KampfKonstanten.LeerKampfwert;
             
          when others =>
             return LeseKartenDatenbanken.KampfRessource (RessourceExtern => KartenRessource,
@@ -778,7 +779,7 @@ package body KartenAllgemeinesLogik is
         KartenRessource
       is
          when KartengrundDatentypen.Leer_Ressource_Enum =>
-            return 0;
+            return KampfKonstanten.LeerKampfwert;
             
          when others =>
             return LeseKartenDatenbanken.KampfRessource (RessourceExtern => KartenRessource,

@@ -14,15 +14,15 @@ package body KartenfelderwerteLogik is
    is begin
       
       return KartenAllgemeinesLogik.GrundNahrung (KoordinatenExtern => KoordinatenExtern,
-                                                RasseExtern       => RasseExtern)
+                                                  RasseExtern       => RasseExtern)
         + KartenAllgemeinesLogik.RessourceNahrung (KoordinatenExtern => KoordinatenExtern,
-                                                 RasseExtern       => RasseExtern)
+                                                   RasseExtern       => RasseExtern)
         + KartenAllgemeinesLogik.WegNahrung (KoordinatenExtern => KoordinatenExtern,
-                                           RasseExtern       => RasseExtern)
+                                             RasseExtern       => RasseExtern)
         + KartenAllgemeinesLogik.VerbesserungNahrung (KoordinatenExtern => KoordinatenExtern,
-                                                    RasseExtern       => RasseExtern)
+                                                      RasseExtern       => RasseExtern)
         + KartenAllgemeinesLogik.FlussNahrung (KoordinatenExtern => KoordinatenExtern,
-                                             RasseExtern       => RasseExtern);
+                                               RasseExtern       => RasseExtern);
       
    end FeldNahrung;
      
@@ -35,15 +35,15 @@ package body KartenfelderwerteLogik is
    is begin
       
       return KartenAllgemeinesLogik.GrundProduktion (KoordinatenExtern => KoordinatenExtern,
-                                                   RasseExtern       => RasseExtern)
+                                                     RasseExtern       => RasseExtern)
         + KartenAllgemeinesLogik.RessourceProduktion (KoordinatenExtern => KoordinatenExtern,
-                                                    RasseExtern       => RasseExtern)
+                                                      RasseExtern       => RasseExtern)
         + KartenAllgemeinesLogik.WegProduktion (KoordinatenExtern => KoordinatenExtern,
-                                              RasseExtern       => RasseExtern)
+                                                RasseExtern       => RasseExtern)
         + KartenAllgemeinesLogik.VerbesserungProduktion (KoordinatenExtern => KoordinatenExtern,
-                                                       RasseExtern       => RasseExtern)
+                                                         RasseExtern       => RasseExtern)
         + KartenAllgemeinesLogik.FlussProduktion (KoordinatenExtern => KoordinatenExtern,
-                                                RasseExtern       => RasseExtern);
+                                                  RasseExtern       => RasseExtern);
       
    end FeldProduktion;
      
@@ -56,15 +56,15 @@ package body KartenfelderwerteLogik is
    is begin
       
       return KartenAllgemeinesLogik.GrundGeld (KoordinatenExtern => KoordinatenExtern,
-                                             RasseExtern       => RasseExtern)
+                                               RasseExtern       => RasseExtern)
         + KartenAllgemeinesLogik.RessourceGeld (KoordinatenExtern => KoordinatenExtern,
-                                              RasseExtern       => RasseExtern)
+                                                RasseExtern       => RasseExtern)
         + KartenAllgemeinesLogik.WegGeld (KoordinatenExtern => KoordinatenExtern,
-                                        RasseExtern       => RasseExtern)
+                                          RasseExtern       => RasseExtern)
         + KartenAllgemeinesLogik.VerbesserungGeld (KoordinatenExtern => KoordinatenExtern,
-                                                 RasseExtern       => RasseExtern)
+                                                   RasseExtern       => RasseExtern)
         + KartenAllgemeinesLogik.FlussGeld (KoordinatenExtern => KoordinatenExtern,
-                                          RasseExtern       => RasseExtern);
+                                            RasseExtern       => RasseExtern);
       
    end FeldGeld;
      
@@ -77,15 +77,15 @@ package body KartenfelderwerteLogik is
    is begin
       
       return KartenAllgemeinesLogik.GrundWissen (KoordinatenExtern => KoordinatenExtern,
-                                               RasseExtern       => RasseExtern)
+                                                 RasseExtern       => RasseExtern)
         + KartenAllgemeinesLogik.RessourceWissen (KoordinatenExtern => KoordinatenExtern,
-                                                RasseExtern       => RasseExtern)
+                                                  RasseExtern       => RasseExtern)
         + KartenAllgemeinesLogik.WegWissen (KoordinatenExtern => KoordinatenExtern,
-                                          RasseExtern       => RasseExtern)
+                                            RasseExtern       => RasseExtern)
         + KartenAllgemeinesLogik.VerbesserungWissen (KoordinatenExtern => KoordinatenExtern,
-                                                   RasseExtern       => RasseExtern)
+                                                     RasseExtern       => RasseExtern)
         + KartenAllgemeinesLogik.FlussWissen (KoordinatenExtern => KoordinatenExtern,
-                                            RasseExtern       => RasseExtern);
+                                              RasseExtern       => RasseExtern);
       
    end FeldWissen;
      
@@ -98,15 +98,15 @@ package body KartenfelderwerteLogik is
    is begin
       
       Zwischenwert := Natural (KartenAllgemeinesLogik.GrundVerteidigung (KoordinatenExtern => KoordinatenExtern,
-                                                                       RasseExtern       => RasseExtern)
+                                                                         RasseExtern       => RasseExtern)
                                + KartenAllgemeinesLogik.RessourceVerteidigung (KoordinatenExtern => KoordinatenExtern,
-                                                                             RasseExtern       => RasseExtern)
+                                                                               RasseExtern       => RasseExtern)
                                + KartenAllgemeinesLogik.WegVerteidigung (KoordinatenExtern => KoordinatenExtern,
-                                                                       RasseExtern       => RasseExtern)
+                                                                         RasseExtern       => RasseExtern)
                                + KartenAllgemeinesLogik.VerbesserungVerteidigung (KoordinatenExtern => KoordinatenExtern,
-                                                                                RasseExtern       => RasseExtern)
+                                                                                  RasseExtern       => RasseExtern)
                                + KartenAllgemeinesLogik.FlussVerteidigung (KoordinatenExtern => KoordinatenExtern,
-                                                                         RasseExtern       => RasseExtern));
+                                                                           RasseExtern       => RasseExtern));
       
       if
         Zwischenwert > Positive (KampfDatentypen.Kampfwerte'Last)
@@ -128,15 +128,15 @@ package body KartenfelderwerteLogik is
    is begin
       
       Zwischenwert := Natural (KartenAllgemeinesLogik.GrundAngriff (KoordinatenExtern => KoordinatenExtern,
-                                                                  RasseExtern       => RasseExtern)
+                                                                    RasseExtern       => RasseExtern)
                                + KartenAllgemeinesLogik.RessourceAngriff (KoordinatenExtern => KoordinatenExtern,
-                                                                        RasseExtern       => RasseExtern)
+                                                                          RasseExtern       => RasseExtern)
                                + KartenAllgemeinesLogik.WegAngriff (KoordinatenExtern => KoordinatenExtern,
-                                                                  RasseExtern       => RasseExtern)
+                                                                    RasseExtern       => RasseExtern)
                                + KartenAllgemeinesLogik.VerbesserungAngriff (KoordinatenExtern => KoordinatenExtern,
-                                                                           RasseExtern       => RasseExtern)
+                                                                             RasseExtern       => RasseExtern)
                                + KartenAllgemeinesLogik.FlussAngriff (KoordinatenExtern => KoordinatenExtern,
-                                                                    RasseExtern       => RasseExtern));
+                                                                      RasseExtern       => RasseExtern));
       
       if
         Zwischenwert > Positive (KampfDatentypen.Kampfwerte'Last)

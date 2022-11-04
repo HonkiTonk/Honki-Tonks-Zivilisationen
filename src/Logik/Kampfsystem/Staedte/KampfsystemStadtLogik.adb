@@ -31,10 +31,8 @@ package body KampfsystemStadtLogik is
       KampfwerteVerteidiger.Verteidigung := KampfwerteStadtErmittelnLogik.AktuelleVerteidigungStadt (StadtRasseNummerExtern => VerteidigendeStadtRasseNummerExtern);
       KampfwerteVerteidiger.Angriff := KampfwerteStadtErmittelnLogik.AktuellerAngriffStadt (StadtRasseNummerExtern => VerteidigendeStadtRasseNummerExtern);
       
-      KampfwerteAngreifer.Verteidigung := KampfwerteEinheitErmittelnLogik.AktuelleVerteidigungEinheit (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern,
-                                                                                                       AngreiferExtern          => True);
-      KampfwerteAngreifer.Angriff := KampfwerteEinheitErmittelnLogik.AktuellerAngriffEinheit (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern,
-                                                                                              AngreiferExtern          => True);
+      KampfwerteAngreifer.Verteidigung := KampfwerteEinheitErmittelnLogik.Gesamtverteidigung (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern);
+      KampfwerteAngreifer.Angriff := KampfwerteEinheitErmittelnLogik.Gesamtangriff (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern);
       
       return Kampf (AngreifendeEinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern,
                     KampfwerteAngreiferExtern           => KampfwerteAngreifer,
@@ -152,7 +150,7 @@ package body KampfsystemStadtLogik is
             return True;
             
          elsif
-           LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern) = EinheitenKonstanten.LeerLebenspunkte
+           LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern) <= EinheitenKonstanten.LeerLebenspunkte
          then
             EinheitenErzeugenEntfernenLogik.EinheitEntfernen (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern);
             return False;

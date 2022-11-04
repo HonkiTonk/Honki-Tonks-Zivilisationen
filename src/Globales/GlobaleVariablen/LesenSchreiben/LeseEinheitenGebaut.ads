@@ -290,6 +290,6 @@ private
    Beförderungsgrenze : KampfDatentypen.Erfahrungspunkte;
    MaximalerRang : KampfDatentypen.Rang;
    
-   ErlaubteLebenspunkte : EinheitenDatentypen.LebenspunkteVorhanden;
+   ErlaubteLebenspunkte : EinheitenDatentypen.VorhandeneLebenspunkte;
 
 end LeseEinheitenGebaut;
