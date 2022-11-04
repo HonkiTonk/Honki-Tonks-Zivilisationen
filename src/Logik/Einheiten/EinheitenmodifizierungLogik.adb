@@ -1,4 +1,3 @@
-pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with AufgabenDatentypen; use AufgabenDatentypen;
@@ -105,17 +104,6 @@ package body EinheitenmodifizierungLogik is
             SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                      BewegungspunkteExtern    => EinheitenKonstanten.LeerBewegungspunkte,
                                                      RechnenSetzenExtern      => False);
-      end case;
-      
-      case
-        KIBeschäftigung
-      is
-         when KIDatentypen.Tut_Nichts_Enum =>
-            SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    AufgabeExtern            => KIDatentypen.Leer_Aufgabe_Enum);
-            
-         when others =>
-            null;
       end case;
       
    end HeilungBewegungspunkteNeueRundeSetzen;

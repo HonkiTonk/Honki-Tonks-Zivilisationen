@@ -1,4 +1,3 @@
-pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with Sf.Graphics;
@@ -109,7 +108,7 @@ package TextaccessVariablen is
    
    
    -- EinheitenInformationen
-   EinheitenInformationenAccess : constant TextaccessArray (1 .. 11) := (others => Sf.Graphics.Text.create);
+   EinheitenInformationenAccess : constant TextaccessArray (1 .. 9) := (others => Sf.Graphics.Text.create);
    -- EinheitenInformationen
    
       

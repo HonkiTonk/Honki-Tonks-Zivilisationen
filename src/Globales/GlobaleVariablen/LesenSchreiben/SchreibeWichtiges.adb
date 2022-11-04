@@ -1,4 +1,3 @@
-pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with ForschungenDatentypen; use ForschungenDatentypen;
@@ -347,8 +346,9 @@ package body SchreibeWichtiges is
             
          when False =>
             if
-              SpielVariablen.Wichtiges (RasseExtern).AnzahlArbeiter = EinheitenDatentypen.MaximaleEinheitenMitNullWert'First
+              SpielVariablen.Wichtiges (RasseExtern).AnzahlSonstiges = EinheitenDatentypen.MaximaleEinheitenMitNullWert'First
             then
+               -- Irgendwas wird hier noch falsch abgezogen oder nicht korrekt hinzugefügt. äöü
                Fehler.LogikFehler (FehlermeldungExtern => "SchreibeWichtiges.AnzahlSonstiges < 0");
                
             else

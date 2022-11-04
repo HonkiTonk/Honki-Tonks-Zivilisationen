@@ -1,4 +1,3 @@
-pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with Sf.Window.Mouse; use Sf.Window.Mouse;

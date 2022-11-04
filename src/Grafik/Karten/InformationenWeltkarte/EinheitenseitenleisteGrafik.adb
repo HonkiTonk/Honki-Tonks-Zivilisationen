@@ -1,4 +1,3 @@
-pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with Sf.Graphics.RenderWindow;
@@ -13,13 +12,14 @@ with TextnummernKonstanten;
 with Views;
 with TextKonstanten;
 with GrafikDatentypen;
+with KartenKonstanten;
 
+-- with LeseKartenDatenbanken;
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
 with LeseStadtGebaut;
 
 with EinheitenbeschreibungenGrafik;
-with KampfwerteEinheitErmittelnLogik;
 with EinstellungenGrafik;
 with TextberechnungenHoeheGrafik;
 with ViewsEinstellenGrafik;
@@ -112,15 +112,16 @@ package body EinheitenseitenleisteGrafik is
            & ZahlAlsStringRang (ZahlExtern => LeseEinheitenDatenbank.MaximalerRang (RasseExtern => EinheitRasseNummer.Rasse,
                                                                                     IDExtern    => IDEinheit));
          FestzulegenderText (6) := Aufgabe (EinheitRasseNummerExtern => EinheitRasseNummer);
-         FestzulegenderText (7) := Kampfwerte (RasseExtern => EinheitRasseNummer.Rasse,
-                                               IDExtern    => IDEinheit);
-         FestzulegenderText (8) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugGegenschlagskraftFeld) & KampfwerteEinheitErmittelnLogik.AktuelleVerteidigungEinheit (EinheitRasseNummerExtern => EinheitRasseNummer,
-                                                                                                                                                                       AngreiferExtern          => False)'Wide_Wide_Image;
-         FestzulegenderText (9) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugGegenschlagskraft) & KampfwerteEinheitErmittelnLogik.AktuellerAngriffEinheit (EinheitRasseNummerExtern => EinheitRasseNummer,
-                                                                                                                                                               AngreiferExtern          => False)'Wide_Wide_Image;
-         FestzulegenderText (FestzulegenderTextArray'Last - 1) := Heimatstadt (EinheitRasseNummerExtern => EinheitRasseNummer);
-         FestzulegenderText (11) := Ladung (EinheitRasseNummerExtern => EinheitRasseNummer,
-                                            IDExtern                 => IDEinheit);
+         FestzulegenderText (7) := Kampfwerte (RasseExtern       => EinheitRasseNummer.Rasse,
+                                               IDExtern          => IDEinheit,
+                                               KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummer));
+         --  FestzulegenderText (8) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugGegenschlagskraftFeld) & KampfwerteEinheitErmittelnLogik.AktuelleVerteidigungEinheit (EinheitRasseNummerExtern => EinheitRasseNummer,
+         --                                                                                                                                                                AngreiferExtern          => False)'Wide_Wide_Image;
+         --  FestzulegenderText (9) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugGegenschlagskraft) & KampfwerteEinheitErmittelnLogik.AktuellerAngriffEinheit (EinheitRasseNummerExtern => EinheitRasseNummer,
+         --                                                                                                                                                        AngreiferExtern          => False)'Wide_Wide_Image;
+         FestzulegenderText (8) := Heimatstadt (EinheitRasseNummerExtern => EinheitRasseNummer);
+         FestzulegenderText (9) := Ladung (EinheitRasseNummerExtern => EinheitRasseNummer,
+                                           IDExtern                 => IDEinheit);
          
          VolleInformation := True;
          
@@ -215,9 +216,27 @@ package body EinheitenseitenleisteGrafik is
    
    function Kampfwerte
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenID)
+      IDExtern : in EinheitenDatentypen.EinheitenID;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Unbounded_Wide_Wide_String
    is begin
+      
+      -- Diese Abfrage oben bei der ID Prüfung mit reinbauen. äöü
+      case
+        KoordinatenExtern.XAchse
+      is
+         when KartenKonstanten.LeerXAchse =>
+            return Meldungstexte.Zeug (TextnummernKonstanten.ZeugKampfwerte) & LeseEinheitenDatenbank.Angriff (RasseExtern => RasseExtern,
+                                                                                                               IDExtern    => IDExtern)'Wide_Wide_Image
+              & " " & TextKonstanten.TrennzeichenUnterschiedlich & LeseEinheitenDatenbank.Verteidigung (RasseExtern => RasseExtern,
+                                                                                                        IDExtern    => IDExtern)'Wide_Wide_Image;
+            
+         when others =>
+            null;
+      end case;
+      
+     -- if
+     --   LeseKartenDatenbanken.KampfBasisgrund
             
       return Meldungstexte.Zeug (TextnummernKonstanten.ZeugKampfwerte) & LeseEinheitenDatenbank.Angriff (RasseExtern => RasseExtern,
                                                                                                          IDExtern    => IDExtern)'Wide_Wide_Image

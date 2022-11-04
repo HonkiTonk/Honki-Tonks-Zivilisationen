@@ -1,4 +1,3 @@
-pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
@@ -149,13 +148,22 @@ package body AufgabenLogik is
         BefehlExtern
       is
          when BefehleDatentypen.Siedler_Verbesserung_Enum'Range =>
+            VerbesserungErforscht := ForschungstestsLogik.TechnologieVorhanden (RasseExtern       => RasseExtern,
+                                                                                TechnologieExtern => LeseForschungenDatenbank.Verbesserungen (VerbesserungExtern => BefehlExtern,
+                                                                                                                                              RasseExtern        => RasseExtern));
+            
             if
-              False = ForschungstestsLogik.TechnologieVorhanden (RasseExtern       => RasseExtern,
-                                                                 TechnologieExtern => LeseForschungenDatenbank.Verbesserungen (VerbesserungExtern => BefehlExtern,
-                                                                                                                               RasseExtern        => RasseExtern))
+              VerbesserungErforscht = False
+              and
+                SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
             then
                MeldungFestlegenLogik.SpielermeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungVerbesserungTechnologie,
                                                               RasseExtern   => RasseExtern);
+               return False;
+               
+            elsif
+              VerbesserungErforscht = False
+            then
                return False;
                
             else

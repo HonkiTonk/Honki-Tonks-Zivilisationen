@@ -1,4 +1,3 @@
-pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartengrundDatentypen;
@@ -45,24 +44,24 @@ package BasisgrundHimmel is
                                                                         -- Nahrung, Produktion, Geld, Forschung
                                                                       Wirtschaft =>
                                                                         (
-                                                                         RassenDatentypen.Menschen_Enum         => (1, 1, 1, 1),
-                                                                         RassenDatentypen.Kasrodiah_Enum        => (1, 1, 1, 1),
-                                                                         RassenDatentypen.Lasupin_Enum          => (1, 1, 1, 1),
-                                                                         RassenDatentypen.Lamustra_Enum         => (1, 1, 1, 1),
-                                                                         RassenDatentypen.Manuky_Enum           => (1, 1, 1, 1),
-                                                                         RassenDatentypen.Suroka_Enum           => (1, 1, 1, 1),
-                                                                         RassenDatentypen.Pryolon_Enum          => (1, 1, 1, 1),
-                                                                         RassenDatentypen.Moru_Phisihl_Enum     => (1, 1, 1, 1),
-                                                                         RassenDatentypen.Larinos_Lotaris_Enum  => (1, 1, 1, 1),
-                                                                         RassenDatentypen.Carupex_Enum          => (1, 1, 1, 1),
-                                                                         RassenDatentypen.Alary_Enum            => (1, 1, 1, 1),
-                                                                         RassenDatentypen.Natries_Zermanis_Enum => (1, 1, 1, 1),
-                                                                         RassenDatentypen.Tridatus_Enum         => (1, 1, 1, 1),
-                                                                         RassenDatentypen.Senelari_Enum         => (1, 1, 1, 1),
-                                                                         RassenDatentypen.Aspari_2_Enum         => (1, 1, 1, 1),
-                                                                         RassenDatentypen.Ekropa_Enum           => (1, 1, 1, 1),
-                                                                         RassenDatentypen.Tesorahn_Enum         => (1, 1, 1, 1),
-                                                                         RassenDatentypen.Talbidahr_Enum        => (1, 1, 1, 1)
+                                                                         RassenDatentypen.Menschen_Enum         => (10, 1, 1, 1),
+                                                                         RassenDatentypen.Kasrodiah_Enum        => (10, 1, 1, 1),
+                                                                         RassenDatentypen.Lasupin_Enum          => (10, 1, 1, 1),
+                                                                         RassenDatentypen.Lamustra_Enum         => (10, 1, 1, 1),
+                                                                         RassenDatentypen.Manuky_Enum           => (10, 1, 1, 1),
+                                                                         RassenDatentypen.Suroka_Enum           => (10, 1, 1, 1),
+                                                                         RassenDatentypen.Pryolon_Enum          => (10, 1, 1, 1),
+                                                                         RassenDatentypen.Moru_Phisihl_Enum     => (10, 1, 1, 1),
+                                                                         RassenDatentypen.Larinos_Lotaris_Enum  => (10, 1, 1, 1),
+                                                                         RassenDatentypen.Carupex_Enum          => (10, 1, 1, 1),
+                                                                         RassenDatentypen.Alary_Enum            => (10, 1, 1, 1),
+                                                                         RassenDatentypen.Natries_Zermanis_Enum => (10, 1, 1, 1),
+                                                                         RassenDatentypen.Tridatus_Enum         => (10, 1, 1, 1),
+                                                                         RassenDatentypen.Senelari_Enum         => (10, 1, 1, 1),
+                                                                         RassenDatentypen.Aspari_2_Enum         => (10, 1, 1, 1),
+                                                                         RassenDatentypen.Ekropa_Enum           => (10, 1, 1, 1),
+                                                                         RassenDatentypen.Tesorahn_Enum         => (10, 1, 1, 1),
+                                                                         RassenDatentypen.Talbidahr_Enum        => (10, 1, 1, 1)
                                                                         ),
 
                                                                         -- Verteidigung, Angriff

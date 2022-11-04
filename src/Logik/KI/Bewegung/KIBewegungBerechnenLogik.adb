@@ -1,4 +1,3 @@
-pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with EinheitenDatentypen; use EinheitenDatentypen;
@@ -306,7 +305,7 @@ package body KIBewegungBerechnenLogik is
       end if;
         
       if
-        PositionNeu.EAchse < PositionAlt.EAchse
+        PositionNeu.EAchse > PositionAlt.EAchse
       then
          EÄnderung := 5;
          

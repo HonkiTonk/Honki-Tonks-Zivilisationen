@@ -1,4 +1,3 @@
-pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenKonstanten;
@@ -17,9 +16,18 @@ package body KISonstigesSuchenLogik is
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
       
-      Bereich := 1;
-      -- Der geprüfte Bereich wird noch nicht ausgeschlossen und die Suche fängt noch nicht bei 0 an, ändern. äöü
-      BereichGeprüft := Bereich - 1;
+      case
+        LeseWeltkarte.BelegterGrund (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                     KoordinatenExtern => AktuelleKoordinatenExtern)
+      is
+         when True =>
+            return AktuelleKoordinatenExtern;
+            
+         when False =>
+            Bereich := 1;
+            -- Der geprüfte Bereich wird noch nicht ausgeschlossen und die Suche fängt noch nicht bei 0 an, ändern. äöü
+            BereichGeprüft := Bereich - 1;
+      end case;
       
       FeldSuchenSchleife:
       loop

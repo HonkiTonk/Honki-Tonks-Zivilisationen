@@ -1,8 +1,6 @@
-pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenverbesserungDatentypen; use KartenverbesserungDatentypen;
-with StadtDatentypen; use StadtDatentypen;
 with EinheitenKonstanten;
 with KartenRecordKonstanten;
 

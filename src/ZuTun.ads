@@ -6,7 +6,8 @@
 
 -- Aktuell höchste Priorität:
 
--- KI überarbeiten: Baut Städte, Gebäude und Einheiten. Erkundet die Karte. Legt Verbesserungen und Wege an. Betreibt Forschung. Greift Gegner an mit der sie im Krieg ist.
+-- KI überarbeiten: Baut Städte, Gebäude und Einheiten. Erkundet die Karte. Legt Verbesserungen und Wege an. Betreibt Forschung. Greift Gegner an mit der sie im Krieg ist. Die KI baut und verwendet jetzt PZBs.
+--                  Baut Städte auf anderen Ebenen. Modernisiert jetzt Einheiten die nicht die Städte bewachen.
 --
 
 -- Einfache Musik/Sounds einbauen: Einlesesystem für Sound und rassenspezifische Musik eingebaut.

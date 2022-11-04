@@ -1,211 +1,218 @@
 package ChangelogNovember2022 is
 
-   -- Version 0.0. => 0.0. (30.11.2022):
+   -- Version 0.04. => 0.04. (30.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (29.11.2022):
+   -- Version 0.04. => 0.04. (29.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (28.11.2022):
+   -- Version 0.04. => 0.04. (28.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (27.11.2022):
+   -- Version 0.04. => 0.04. (27.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (26.11.2022):
+   -- Version 0.04. => 0.04. (26.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (25.11.2022):
+   -- Version 0.04. => 0.04. (25.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (24.11.2022):
+   -- Version 0.04. => 0.04. (24.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (23.11.2022):
+   -- Version 0.04. => 0.04. (23.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (22.11.2022):
+   -- Version 0.04. => 0.04. (22.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (21.11.2022):
+   -- Version 0.04. => 0.04. (21.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (20.11.2022):
+   -- Version 0.04. => 0.04. (20.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (19.11.2022):
+   -- Version 0.04. => 0.04. (19.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (18.11.2022):
+   -- Version 0.04. => 0.04. (18.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (17.11.2022):
+   -- Version 0.04. => 0.04. (17.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (16.11.2022):
+   -- Version 0.04. => 0.04. (16.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (15.11.2022):
+   -- Version 0.04. => 0.04. (15.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (14.11.2022):
+   -- Version 0.04. => 0.04. (14.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (13.11.2022):
+   -- Version 0.04. => 0.04. (13.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (12.11.2022):
+   -- Version 0.04. => 0.04. (12.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (11.11.2022):
+   -- Version 0.04. => 0.04. (11.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (10.11.2022):
+   -- Version 0.04. => 0.04. (10.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (09.11.2022):
+   -- Version 0.04. => 0.04. (09.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (08.11.2022):
+   -- Version 0.04. => 0.04. (08.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (07.11.2022):
+   -- Version 0.04. => 0.04. (07.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (06.11.2022):
+   -- Version 0.04. => 0.04. (06.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (05.11.2022):
+   -- Version 0.04. => 0.04. (05.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (04.11.2022):
+   -- Version 0.04.2960 => 0.04. (04.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (03.11.2022):
+   -- Version 0.04.2785 => 0.04.2960 (03.11.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter an der KI gearbeitet.
+   -- SPARK_Mode (On/Off) entfernt, wird vermutlich niemals gebraucht werden.
+   -- Neue Version der Siedleraufgabenplanung für die KI gebaut.
+   -- Unnötigen Code gelöscht.
+   -- Code zusammengeführt.
+   -- Neue Version der Nahkämpferaufgabenplanung für die KI gebaut.
+   -- Die KI kann jetzt in Kriegen eine PZB einsetzen.
+   -- Die KI baut jetzt Städte in anderen Ebenen.
+   -- Fehler behoben der die vorhandenen Einheiten falsch zählte und so unter bestimmten Bedingungen einen Absturz erzeugen konnte.
+   -- Interne Struktur überarbeitet.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet/erweitert.
    
    
 
-   -- Version 0.04. => 0.0. (02.11.2022):
+   -- Version 0.04.2785 => 0.04.2785 (02.11.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.04.2785 => 0.04. (01.11.2022):
+   -- Version 0.04.2785 => 0.04.2785 (01.11.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
 
 end ChangelogNovember2022;

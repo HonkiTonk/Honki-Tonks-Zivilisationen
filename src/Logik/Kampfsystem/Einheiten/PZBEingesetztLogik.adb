@@ -1,4 +1,3 @@
-pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenKonstanten;
@@ -25,7 +24,7 @@ package body PZBEingesetztLogik is
    is begin
       
       Einheitenart := LeseEinheitenDatenbank.Einheitenart (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                         IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+                                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       
       case
         Einheitenart
@@ -142,7 +141,7 @@ package body PZBEingesetztLogik is
       end case;
       
       SchreibeWeltkarte.Gesamtgrund (KoordinatenExtern => KoordinatenExtern,
-                                                GrundExtern       => (KartengrundDatentypen.Vernichtet_Enum, KartengrundDatentypen.Leer_Zusatzgrund_Enum));
+                                     GrundExtern       => (KartengrundDatentypen.Vernichtet_Enum, KartengrundDatentypen.Leer_Zusatzgrund_Enum));
       SchreibeWeltkarte.Fluss (KoordinatenExtern => KoordinatenExtern,
                                FlussExtern       => KartengrundDatentypen.Leer_Fluss_Enum);
       SchreibeWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern,

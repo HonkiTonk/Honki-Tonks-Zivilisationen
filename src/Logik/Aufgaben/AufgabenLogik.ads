@@ -1,4 +1,3 @@
-pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
@@ -48,6 +47,10 @@ package AufgabenLogik is
               );
    
 private
+   
+   VerbesserungErforscht : Boolean;
+   
+   
       
    function AufgabeFestlegen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

@@ -1,4 +1,3 @@
-pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
@@ -51,6 +50,8 @@ private
    AngriffWertFloat : Float;
    
    Einheitenkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   
+   
    
    function VerteidigungsbonusVerteidiger
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

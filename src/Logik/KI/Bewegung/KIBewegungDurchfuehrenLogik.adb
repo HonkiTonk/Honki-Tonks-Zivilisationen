@@ -1,4 +1,3 @@
-pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with EinheitenDatentypen; use EinheitenDatentypen;
@@ -33,7 +32,7 @@ package body KIBewegungDurchfuehrenLogik is
       Zielkoordinaten := LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       BewegungSchleife:
-      for BewegungSchleifenwert in KIDatentypen.KINotAus'Range loop
+      for BewegungSchleifenwert in KIDatentypen.KINotAus'First .. KIKonstanten.SchwierigkeitsgradBewegung (SpielVariablen.Allgemeines.Schwierigkeitsgrad) loop
                   
          if
            True = Vergleiche.Koordinatenvergleich (KoordinateEinsExtern  => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
@@ -130,7 +129,7 @@ package body KIBewegungDurchfuehrenLogik is
       case
         LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => Tauscheinheit)
       is
-         when KIDatentypen.Tut_Nichts_Enum | KIDatentypen.Platz_Machen_Enum | KIDatentypen.Leer_Aufgabe_Enum | KIDatentypen.Erkunden_Enum | KIDatentypen.Einheit_Auflösen_Enum =>
+         when KIDatentypen.Platz_Machen_Enum | KIDatentypen.Leer_Aufgabe_Enum | KIDatentypen.Erkunden_Enum | KIDatentypen.Einheit_Auflösen_Enum =>
             null;
             
          when others =>

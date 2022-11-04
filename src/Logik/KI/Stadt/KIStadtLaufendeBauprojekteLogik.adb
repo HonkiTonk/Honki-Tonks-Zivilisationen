@@ -1,7 +1,8 @@
-pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenverbesserungDatentypen; use KartenverbesserungDatentypen;
+with EinheitenKonstanten;
+with StadtKonstanten;
 
 with LeseStadtGebaut;
 with LeseEinheitenDatenbank;
@@ -14,7 +15,7 @@ package body KIStadtLaufendeBauprojekteLogik is
       return StadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
-      GleichesGebäudeBauprojekt := 0;
+      GleichesGebäudeBauprojekt := StadtKonstanten.LeerNummer;
      
       StadtSchleife:
       for StadtNummerSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze loop
@@ -51,7 +52,7 @@ package body KIStadtLaufendeBauprojekteLogik is
       return EinheitenDatentypen.MaximaleEinheitenMitNullWert
    is begin
       
-      GleichesEinheitenBauprojekt := 0;
+      GleichesEinheitenBauprojekt := EinheitenKonstanten.LeerNummer;
       
       StadtSchleife:
       for StadtNummerSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze loop
@@ -68,7 +69,7 @@ package body KIStadtLaufendeBauprojekteLogik is
          then
             if
               EinheitArtExtern = LeseEinheitenDatenbank.Einheitenart (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                    IDExtern    => EinheitenID (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Einheit))
+                                                                      IDExtern    => EinheitenID (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Einheit))
             then
                GleichesEinheitenBauprojekt := GleichesEinheitenBauprojekt + 1;
                      
@@ -82,5 +83,37 @@ package body KIStadtLaufendeBauprojekteLogik is
       return GleichesEinheitenBauprojekt;
       
    end GleicheEinheitArtBauprojekte;
+   
+   
+   
+   function EinheitenInProduktion
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      return EinheitenDatentypen.MaximaleEinheitenMitNullWert
+   is begin
+      
+      EinheitenImBau := EinheitenKonstanten.LeerNummer;
+      
+      StadtSchleife:
+      for StadtSchleifenwert in StadtDatentypen.MaximaleStädte'First .. SpielVariablen.Grenzen (RasseExtern).Städtegrenze loop
+         
+         if
+           LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert)) = KartenverbesserungDatentypen.Leer_Verbesserung_Enum
+         then
+            null;
+            
+         elsif
+           LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert)).Einheit = StadtKonstanten.LeerBauprojekt.Einheit
+         then
+            null;
+            
+         else
+            EinheitenImBau := EinheitenImBau + 1;
+         end if;
+         
+      end loop StadtSchleife;
+      
+      return EinheitenImBau;
+      
+   end EinheitenInProduktion;
 
 end KIStadtLaufendeBauprojekteLogik;

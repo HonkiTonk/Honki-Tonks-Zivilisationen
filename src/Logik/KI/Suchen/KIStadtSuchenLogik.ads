@@ -1,13 +1,12 @@
-pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
+with StadtDatentypen; use StadtDatentypen;
 with KartenRecords;
 with SpielVariablen;
 with Weltkarte;
 
-private with StadtDatentypen;
 
 package KIStadtSuchenLogik is
    pragma Elaborate_Body;
@@ -71,7 +70,7 @@ private
               ),
 
        Post => (
-                  StadtSuchen'Result in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Städtegrenze
+                  StadtSuchen'Result <= SpielVariablen.Grenzen (RasseExtern).Städtegrenze
                );
 
 end KIStadtSuchenLogik;

@@ -1,4 +1,3 @@
-pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with SpielDatentypen;
@@ -29,10 +28,22 @@ package KIKonstanten is
    Tauschbewegung : constant KIDatentypen.Bewegung_Enum := KIDatentypen.Einheiten_Tauschen_Enum;
 
    type SchwierigkeitsgradArray is array (SpielDatentypen.Schwierigkeitsgrad_Enum'Range) of KIDatentypen.KINotAus;
-   Schwierigkeitsgrad : constant SchwierigkeitsgradArray := (
-                                                             SpielDatentypen.Schwierigkeitsgrad_Leicht_Enum => 1,
-                                                             SpielDatentypen.Schwierigkeitsgrad_Mittel_Enum => 2,
-                                                             SpielDatentypen.Schwierigkeitsgrad_Schwer_Enum => 5
-                                                            );
+   SchwierigkeitsgradAktivität : constant SchwierigkeitsgradArray := (
+                                                                       SpielDatentypen.Schwierigkeitsgrad_Leicht_Enum => 1,
+                                                                       SpielDatentypen.Schwierigkeitsgrad_Mittel_Enum => 2,
+                                                                       SpielDatentypen.Schwierigkeitsgrad_Schwer_Enum => 5
+                                                                      );
+
+   SchwierigkeitsgradBewegung : constant SchwierigkeitsgradArray := (
+                                                                     SpielDatentypen.Schwierigkeitsgrad_Leicht_Enum => 10,
+                                                                     SpielDatentypen.Schwierigkeitsgrad_Mittel_Enum => 20,
+                                                                     SpielDatentypen.Schwierigkeitsgrad_Schwer_Enum => 50
+                                                                    );
+
+   SchwierigkeitsgradAufgaben : constant SchwierigkeitsgradArray := (
+                                                                     SpielDatentypen.Schwierigkeitsgrad_Leicht_Enum => 15,
+                                                                     SpielDatentypen.Schwierigkeitsgrad_Mittel_Enum => 25,
+                                                                     SpielDatentypen.Schwierigkeitsgrad_Schwer_Enum => 50
+                                                                    );
 
 end KIKonstanten;

@@ -1,4 +1,3 @@
-pragma SPARK_Mode (Off);
 pragma Warnings (Off, "*array aggregate*");
 
 package body ZufallsgeneratorenStartkoordinatenLogik is

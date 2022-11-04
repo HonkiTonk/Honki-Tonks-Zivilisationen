@@ -1,4 +1,3 @@
-pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
@@ -44,10 +43,25 @@ package KIStadtLaufendeBauprojekteLogik is
                   GleicheEinheitArtBauprojekte'Result <= SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Einheitengrenze
                );
    
+   function EinheitenInProduktion
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      return EinheitenDatentypen.MaximaleEinheitenMitNullWert
+     with
+       Pre => (
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.KI_Spieler_Enum
+              ),
+   
+   -- Sollte so eine Post Bedingung nicht auf <= MaximaleStädte eingeschränkt sein? äöü
+   -- Einen subtype für MaximaleEinheiten erstellen der nur bis MaximalStädte geht? äöü
+       Post => (
+                  EinheitenInProduktion'Result <= SpielVariablen.Grenzen (RasseExtern).Einheitengrenze
+               );
+   
 private
    
    GleichesGebäudeBauprojekt : StadtDatentypen.MaximaleStädteMitNullWert;
    
    GleichesEinheitenBauprojekt : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   EinheitenImBau : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
 
 end KIStadtLaufendeBauprojekteLogik;

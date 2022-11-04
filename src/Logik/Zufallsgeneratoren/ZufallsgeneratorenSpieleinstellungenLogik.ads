@@ -1,4 +1,3 @@
-pragma SPARK_Mode (Off);
 pragma Warnings (Off, "*array aggregate*");
 
 private with Ada.Numerics.Discrete_Random;

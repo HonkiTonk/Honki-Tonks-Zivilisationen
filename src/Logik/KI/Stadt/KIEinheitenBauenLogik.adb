@@ -1,4 +1,3 @@
-pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with EinheitenDatentypen; use EinheitenDatentypen;
@@ -218,7 +217,7 @@ package body KIEinheitenBauenLogik is
         or
           MengeVorhanden + MengeImBau = MinimaleSiedlerMenge
       then
-         return KIKonstanten.LeerBewertung;
+         return -20;
          
       elsif
         MengeVorhanden > MinimaleSiedlerMenge
