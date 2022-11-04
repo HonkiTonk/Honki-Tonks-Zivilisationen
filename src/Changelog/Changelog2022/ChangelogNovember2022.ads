@@ -182,8 +182,10 @@ package ChangelogNovember2022 is
    
    
 
-   -- Version 0.04.2960 => 0.04. (04.11.2022):
+   -- Version 0.04.2960 => 0.04.5000 (04.11.2022):
    
+   -- Versionsnummerberechnung angepasst.
+   -- GNAT von 12.2.0-7 auf GNAT 12.2.0-9 aktualisiert.
    -- 
    -- Kleinigkeiten korrigiert.
    
