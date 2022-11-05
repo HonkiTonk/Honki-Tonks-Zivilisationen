@@ -10,7 +10,7 @@ package KampfwerteEinheitErmittelnLogik is
    
    function Gesamtverteidigung
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return KampfDatentypen.Kampfwerte
+      return KampfDatentypen.KampfwerteGroß
      with
        Pre => (
                  SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
@@ -20,7 +20,7 @@ package KampfwerteEinheitErmittelnLogik is
    
    function Gesamtangriff
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return KampfDatentypen.Kampfwerte
+      return KampfDatentypen.KampfwerteGroß
      with
        Pre => (
                  SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
@@ -30,12 +30,12 @@ package KampfwerteEinheitErmittelnLogik is
    
 private
    
-   Grundverteidigung : KampfDatentypen.Kampfwerte;
-   Bonusverteidigung : KampfDatentypen.Kampfwerte;
-   GesamteVerteidigung : KampfDatentypen.Kampfwerte;
-   Grundangriff : KampfDatentypen.Kampfwerte;
-   Bonusangriff : KampfDatentypen.Kampfwerte;
-   GesamterAngriff : KampfDatentypen.Kampfwerte;
+   Grundverteidigung : KampfDatentypen.KampfwerteEinheiten;
+   Bonusverteidigung : KampfDatentypen.KampfwerteAllgemein;
+   GesamteVerteidigung : KampfDatentypen.KampfwerteGroß;
+   Grundangriff : KampfDatentypen.KampfwerteEinheiten;
+   Bonusangriff : KampfDatentypen.KampfwerteAllgemein;
+   GesamterAngriff : KampfDatentypen.KampfwerteGroß;
    
    Verschanzungsbonus : constant Float := 1.25;
 

@@ -66,7 +66,7 @@ package KartenfelderwerteLogik is
    function FeldVerteidigung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KampfDatentypen.Kampfwerte
+      return KampfDatentypen.KampfwerteAllgemein
      with
        Pre => (
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
@@ -79,7 +79,7 @@ package KartenfelderwerteLogik is
    function FeldAngriff
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KampfDatentypen.Kampfwerte
+      return KampfDatentypen.KampfwerteAllgemein
      with
        Pre => (
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
@@ -89,8 +89,4 @@ package KartenfelderwerteLogik is
                  KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
               );
    
-private
-   
-   Zwischenwert : Natural;
-
 end KartenfelderwerteLogik;

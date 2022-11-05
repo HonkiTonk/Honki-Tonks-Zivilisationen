@@ -1,20 +1,9 @@
 pragma Warnings (Off, "*array aggregate*");
 
 package body ZufallsgeneratorenKampfLogik is
-
-   function KampfErfolg
-     return Float
-   is begin
-      
-      Ada.Numerics.Float_Random.Reset (Gen => ZufälligerFloatWert);
-      return Ada.Numerics.Float_Random.Random (Gen => ZufälligerFloatWert);
-      
-   end KampfErfolg;
-   
-   
    
    function ErreichteErfolge
-     (WürfelanzahlExtern : in KampfDatentypen.KampfwerteAllgemein)
+     (WürfelanzahlExtern : in KampfDatentypen.KampfwerteGroß)
       return Natural
    is begin
       

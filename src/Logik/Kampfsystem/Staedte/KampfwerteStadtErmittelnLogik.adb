@@ -14,12 +14,12 @@ package body KampfwerteStadtErmittelnLogik is
 
    function AktuelleVerteidigungStadt
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return KampfDatentypen.Kampfwerte
+      return KampfDatentypen.KampfwerteGroß
    is begin
       
-      VerteidigungWert := KampfDatentypen.Kampfwerte (LeseVerbesserungenDatenbank.KampfVerbesserung (VerbesserungExtern => LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                                                     RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                                                                                     WelcherWertExtern  => KartenKonstanten.KampfVerteidigung))
+      VerteidigungWert := LeseVerbesserungenDatenbank.KampfVerbesserung (VerbesserungExtern => LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern),
+                                                                         RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                                                         WelcherWertExtern  => KartenKonstanten.KampfVerteidigung)
         + KartenfelderwerteLogik.FeldVerteidigung (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                                    RasseExtern       => StadtRasseNummerExtern.Rasse);
       
@@ -48,12 +48,12 @@ package body KampfwerteStadtErmittelnLogik is
    
    function AktuellerAngriffStadt
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return KampfDatentypen.Kampfwerte
+      return KampfDatentypen.KampfwerteGroß
    is begin
       
-      AngriffWert := KampfDatentypen.Kampfwerte (LeseVerbesserungenDatenbank.KampfVerbesserung (VerbesserungExtern => LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                                                RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                                                                                WelcherWertExtern  => KartenKonstanten.KampfAngriff))
+      AngriffWert := LeseVerbesserungenDatenbank.KampfVerbesserung (VerbesserungExtern => LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern),
+                                                                    RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                                                    WelcherWertExtern  => KartenKonstanten.KampfAngriff)
         + KartenfelderwerteLogik.FeldAngriff (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                               RasseExtern       => StadtRasseNummerExtern.Rasse);
       

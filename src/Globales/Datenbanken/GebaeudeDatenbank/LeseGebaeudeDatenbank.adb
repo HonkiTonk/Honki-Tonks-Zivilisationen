@@ -70,7 +70,7 @@ package body LeseGebaeudeDatenbank is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in StadtDatentypen.GebäudeID;
       KampfBonusExtern : in KampfDatentypen.Kampf_Enum)
-      return KampfDatentypen.Kampfwerte
+      return KampfDatentypen.KampfwerteEinheiten
    is begin
       
       return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).BonusKampf (KampfBonusExtern);

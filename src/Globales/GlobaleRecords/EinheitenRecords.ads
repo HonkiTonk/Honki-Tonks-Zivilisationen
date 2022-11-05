@@ -13,7 +13,7 @@ with KIDatentypen;
 package EinheitenRecords is
    pragma Pure;
 
-   type RasseEinheitnummerRecord is tagged record
+   type RasseEinheitnummerRecord is record
       
       Rasse : RassenDatentypen.Rassen_Enum;
       Nummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
@@ -31,7 +31,7 @@ package EinheitenRecords is
    
    
    
-   type ArbeitRecord is tagged record
+   type ArbeitRecord is record
       
       Aufgabe : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
       Arbeitszeit : ProduktionDatentypen.Arbeitszeit;
@@ -40,7 +40,10 @@ package EinheitenRecords is
    
    
    
-   type ArbeitVorleistungRecord is new ArbeitRecord with record
+   type ArbeitVorleistungRecord is record
+      
+      Aufgabe : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
+      Arbeitszeit : ProduktionDatentypen.Arbeitszeit;
      
       Vorarbeit : Boolean;
    

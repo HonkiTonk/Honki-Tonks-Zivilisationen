@@ -26,7 +26,7 @@ with ForschungserfolgGrafik;
 with TasteneingabeGrafik;
 with AbspannGrafik;
 with VerkaufsauswahlGrafik;
--- with Systemchecks;
+-- with Diagnoseinformationen;
 
 package body Grafik is
    
@@ -44,7 +44,7 @@ package body Grafik is
       -- Oder habe ich zu dem Zeitpunkt den Font noch nicht eingelesen? Mal nachprüfen. äöü
       FensterGrafik.FensterErzeugen;
       
-      -- Systemchecks.Größenprüfung;
+      -- Diagnoseinformationen.Größenprüfung;
       Startzeit := Ada.Calendar.Clock;
       
       GrafikSchleife:

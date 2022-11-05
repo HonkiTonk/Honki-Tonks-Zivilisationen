@@ -2,6 +2,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with EinheitenDatentypen; use EinheitenDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
+with KampfDatentypen; use KampfDatentypen;
 with EinheitenKonstanten;
 with StadtKonstanten;
 with SystemDatentypen;
@@ -19,6 +20,7 @@ with StadtwerteFestlegenLogik;
 with MeldungenSetzenLogik;
 with EinheitenErzeugenEntfernenLogik;
 with KampfberechnungenLogik;
+with PZBEingesetztLogik;
 
 package body KampfsystemStadtLogik is
 
@@ -28,11 +30,35 @@ package body KampfsystemStadtLogik is
       return Boolean
    is begin
       
-      KampfwerteVerteidiger.Verteidigung := KampfwerteStadtErmittelnLogik.AktuelleVerteidigungStadt (StadtRasseNummerExtern => VerteidigendeStadtRasseNummerExtern);
-      KampfwerteVerteidiger.Angriff := KampfwerteStadtErmittelnLogik.AktuellerAngriffStadt (StadtRasseNummerExtern => VerteidigendeStadtRasseNummerExtern);
+      case
+        PZBEingesetztLogik.PZBEingesetzt (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern)
+      is
+         when True =>
+            return False;
+            
+         when False =>
+            KampfwerteVerteidiger.Verteidigung := KampfwerteStadtErmittelnLogik.AktuelleVerteidigungStadt (StadtRasseNummerExtern => VerteidigendeStadtRasseNummerExtern);
+            KampfwerteVerteidiger.Angriff := KampfwerteStadtErmittelnLogik.AktuellerAngriffStadt (StadtRasseNummerExtern => VerteidigendeStadtRasseNummerExtern);
       
-      KampfwerteAngreifer.Verteidigung := KampfwerteEinheitErmittelnLogik.Gesamtverteidigung (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern);
-      KampfwerteAngreifer.Angriff := KampfwerteEinheitErmittelnLogik.Gesamtangriff (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern);
+            KampfwerteAngreifer.Verteidigung := KampfwerteEinheitErmittelnLogik.Gesamtverteidigung (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern);
+            KampfwerteAngreifer.Angriff := KampfwerteEinheitErmittelnLogik.Gesamtangriff (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern);
+      end case;
+      
+      if
+        KampfwerteVerteidiger.Verteidigung = EinheitenKonstanten.LeerVerteidigung
+        and
+          KampfwerteVerteidiger.Angriff = EinheitenKonstanten.LeerAngriff
+          and
+            KampfwerteAngreifer.Verteidigung = EinheitenKonstanten.LeerVerteidigung
+            and
+              KampfwerteAngreifer.Angriff = EinheitenKonstanten.LeerAngriff
+      then
+         KampfwerteVerteidiger := (1, 1);
+         KampfwerteAngreifer := (1, 1);
+         
+      else
+         null;
+      end if;
       
       return Kampf (AngreifendeEinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern,
                     KampfwerteAngreiferExtern           => KampfwerteAngreifer,

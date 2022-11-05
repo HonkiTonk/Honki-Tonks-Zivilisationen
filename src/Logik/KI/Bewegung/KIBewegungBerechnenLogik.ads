@@ -54,7 +54,11 @@ private
    type FeldBewertungArray is array (KartenDatentypen.EbenenbereichEins'Range, KartenDatentypen.UmgebungsbereichEins'Range, KartenDatentypen.UmgebungsbereichEins'Range) of KIDatentypen.BewegungBewertung;
    FeldBewertung : FeldBewertungArray;
    
-   type BewertungRecord is new KartenRecords.AchsenKartenfeldNaturalRecord with record
+   type BewertungRecord is record
+      
+      EAchse : KartenDatentypen.Ebene;
+      YAchse : KartenDatentypen.KartenfeldNatural;
+      XAchse : KartenDatentypen.KartenfeldNatural;
       
       Bewertung : KIDatentypen.BewegungBewertung;
       

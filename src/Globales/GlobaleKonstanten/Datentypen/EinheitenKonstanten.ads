@@ -47,8 +47,8 @@ package EinheitenKonstanten is
    LeerBeförderungsgrenze : constant KampfDatentypen.ErfahrungspunkteVorhanden := KampfDatentypen.ErfahrungspunkteVorhanden'First;
    LeerMaximalerRang : constant KampfDatentypen.Rang := KampfDatentypen.RangVorhanden'First;
    LeerReichweite : constant KampfDatentypen.Reichweite := KampfDatentypen.Reichweite'First;
-   LeerAngriff : constant KampfDatentypen.Kampfwerte := KampfDatentypen.Kampfwerte'First;
-   LeerVerteidigung : constant KampfDatentypen.Kampfwerte := KampfDatentypen.Kampfwerte'First;
+   LeerAngriff : constant KampfDatentypen.KampfwerteEinheiten := KampfDatentypen.KampfwerteEinheiten'First;
+   LeerVerteidigung : constant KampfDatentypen.KampfwerteEinheiten := KampfDatentypen.KampfwerteEinheiten'First;
    LeerKannTransportieren : constant EinheitenDatentypen.Transport_Enum := EinheitenDatentypen.Kein_Transport_Enum;
    LeerKannTransportiertWerden : constant EinheitenDatentypen.Transport_Enum := EinheitenDatentypen.Kein_Transport_Enum;
    LeerTransportkapazität : constant EinheitenDatentypen.Transportplätze := EinheitenDatentypen.Transportplätze'First;

@@ -27,8 +27,8 @@ package EinheitendatenbankRecord is
       Beförderungsgrenze : KampfDatentypen.ErfahrungspunkteVorhanden;
       MaximalerRang : KampfDatentypen.RangVorhanden;
       Reichweite : KampfDatentypen.Reichweite;
-      Angriff : KampfDatentypen.Kampfwerte;
-      Verteidigung : KampfDatentypen.Kampfwerte;
+      Angriff : KampfDatentypen.KampfwerteEinheiten;
+      Verteidigung : KampfDatentypen.KampfwerteEinheiten;
 
       KannTransportieren : EinheitenDatentypen.Transport_Enum;
       KannTransportiertWerden : EinheitenDatentypen.Transport_Enum;

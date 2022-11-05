@@ -134,7 +134,7 @@ package body KartenAllgemeinesLogik is
    function GrundVerteidigung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KampfDatentypen.Kampfwerte
+      return KampfDatentypen.KampfwerteKarte
    is begin
       
       Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => KoordinatenExtern);
@@ -154,7 +154,7 @@ package body KartenAllgemeinesLogik is
                                                                    RasseExtern    => RasseExtern,
                                                                    KampfArtExtern => KartenKonstanten.KampfVerteidigung);
             
-            return KampfDatentypen.Kampfwerte (Float (Basiskampf) / 2.00 + Float (Zusatzkampf) / 2.00);
+            return KampfDatentypen.KampfwerteKarte (Float (Basiskampf) / 2.00 + Float (Zusatzkampf) / 2.00);
       end case;
       
    end GrundVerteidigung;
@@ -164,7 +164,7 @@ package body KartenAllgemeinesLogik is
    function GrundAngriff
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KampfDatentypen.Kampfwerte
+      return KampfDatentypen.KampfwerteKarte
    is begin
       
       Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => KoordinatenExtern);
@@ -184,7 +184,7 @@ package body KartenAllgemeinesLogik is
                                                                    RasseExtern    => RasseExtern,
                                                                    KampfArtExtern => KartenKonstanten.KampfAngriff);
             
-            return KampfDatentypen.Kampfwerte (Float (Basiskampf) / 2.00 + Float (Zusatzkampf) / 2.00);
+            return KampfDatentypen.KampfwerteKarte (Float (Basiskampf) / 2.00 + Float (Zusatzkampf) / 2.00);
       end case;
       
    end GrundAngriff;
@@ -291,7 +291,7 @@ package body KartenAllgemeinesLogik is
    function FlussVerteidigung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KampfDatentypen.KampfwerteAllgemein
+      return KampfDatentypen.KampfwerteKarte
    is begin
       
       KartenFluss := LeseWeltkarte.Fluss (KoordinatenExtern => KoordinatenExtern);
@@ -315,7 +315,7 @@ package body KartenAllgemeinesLogik is
    function FlussAngriff
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KampfDatentypen.Kampfwerte
+      return KampfDatentypen.KampfwerteKarte
    is begin
       
       KartenFluss := LeseWeltkarte.Fluss (KoordinatenExtern => KoordinatenExtern);
@@ -458,7 +458,7 @@ package body KartenAllgemeinesLogik is
    function WegVerteidigung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KampfDatentypen.Kampfwerte
+      return KampfDatentypen.KampfwerteKarte
    is begin
       
       KartenWeg := LeseWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern);
@@ -482,7 +482,7 @@ package body KartenAllgemeinesLogik is
    function WegAngriff
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KampfDatentypen.Kampfwerte
+      return KampfDatentypen.KampfwerteKarte
    is begin
       
       KartenWeg := LeseWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern);
@@ -602,7 +602,7 @@ package body KartenAllgemeinesLogik is
    function VerbesserungVerteidigung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KampfDatentypen.Kampfwerte
+      return KampfDatentypen.KampfwerteKarte
    is begin
       
       KartenVerbesserung := LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern);
@@ -626,7 +626,7 @@ package body KartenAllgemeinesLogik is
    function VerbesserungAngriff
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KampfDatentypen.Kampfwerte
+      return KampfDatentypen.KampfwerteKarte
    is begin
       
       KartenVerbesserung := LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern);
@@ -746,7 +746,7 @@ package body KartenAllgemeinesLogik is
    function RessourceVerteidigung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KampfDatentypen.Kampfwerte
+      return KampfDatentypen.KampfwerteKarte
    is begin
       
       KartenRessource := LeseWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern);
@@ -770,7 +770,7 @@ package body KartenAllgemeinesLogik is
    function RessourceAngriff
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KampfDatentypen.Kampfwerte
+      return KampfDatentypen.KampfwerteKarte
    is begin
       
       KartenRessource := LeseWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern);

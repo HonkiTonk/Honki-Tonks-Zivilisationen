@@ -1,6 +1,7 @@
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatenbank;
+with KampfKonstanten;
 
 package body LeseKartenDatenbanken is
 
@@ -156,7 +157,7 @@ package body LeseKartenDatenbanken is
         GrundExtern
       is
          when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
-            return KampfDatentypen.Kampfwerte'First;
+            return KampfKonstanten.LeerKampfwert;
             
          when others =>
             return KartenDatenbank.Zusatzgrundliste (GrundExtern).Kampf (RasseExtern, KampfArtExtern);

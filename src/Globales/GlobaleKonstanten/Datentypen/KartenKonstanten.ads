@@ -31,13 +31,13 @@ package KartenKonstanten is
    -- Die Bewertung mal in irgendwas mit KIKonstanten packen? äöü
    LeerBewertung : constant BewertungDatentypen.Bewertung_Enum := BewertungDatentypen.Bewertung_Enum'First;
    LeerWirtschaft : constant ProduktionDatentypen.Einzelproduktion := ProduktionDatentypen.Einzelproduktion'First;
-   LeerKampf : constant KampfDatentypen.Kampfwerte := KampfDatentypen.Kampfwerte'First;
+   LeerKampf : constant KampfDatentypen.KampfwerteKarte := KampfDatentypen.KampfwerteEinheiten'First;
    
    LeerSichtbar : constant Boolean := False;
          
    LeerVerbesserungBewertung : constant BewertungDatentypen.Bewertung_Enum := BewertungDatentypen.Bewertung_Enum'First;
    LeerVerbesserungWirtschaft : constant ProduktionDatentypen.Einzelproduktion := ProduktionDatentypen.Einzelproduktion'First;
-   LeerVerbesserungKampf : constant KampfDatentypen.Kampfwerte := KampfDatentypen.Kampfwerte'First;
+   LeerVerbesserungKampf : constant KampfDatentypen.KampfwerteKarte := KampfDatentypen.KampfwerteEinheiten'First;
    
    WirtschaftNahrung : constant ProduktionDatentypen.Wirtschaft_Enum := ProduktionDatentypen.Nahrung_Enum;
    WirtschaftProduktion : constant ProduktionDatentypen.Wirtschaft_Enum := ProduktionDatentypen.Produktion_Enum;

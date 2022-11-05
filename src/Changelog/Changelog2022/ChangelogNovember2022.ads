@@ -168,17 +168,23 @@ package ChangelogNovember2022 is
    
    
 
-   -- Version 0.04. => 0.04. (06.11.2022):
+   -- Version 0.04.5210 => 0.04. (06.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.5100 => 0.04. (05.11.2022):
+   -- Version 0.04.5100 => 0.04.5210 (05.11.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Angriff- und Verteidigungswerte überarbeitet, so dass die Kartenfelder jetzt besser Bonus und Malus geben können.
+   -- Kampfsystem überarbeitet.
+   -- Der Einsatz einer PZB wird jetzt auch korrekt erkannt wenn sie gegen eine Stadt eingesetzt wird.
+   -- Theoretischen Endloskampfsituation entfernt.
+   -- Mehr OO in Form von tagged Records entfernt.
+   -- Seitenleiste überarbeitet.
+   -- Speicherverbrauch um rund 65 MB reduziert.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/zusammengefasst.
    
    
 

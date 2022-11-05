@@ -12,7 +12,7 @@ package body KampfwerteEinheitErmittelnLogik is
    
    function Gesamtverteidigung
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return KampfDatentypen.Kampfwerte
+      return KampfDatentypen.KampfwerteGroß
    is begin
       
       Grundverteidigung := LeseEinheitenDatenbank.Verteidigung (RasseExtern => EinheitRasseNummerExtern.Rasse,
@@ -26,7 +26,7 @@ package body KampfwerteEinheitErmittelnLogik is
         LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       is
          when AufgabenDatentypen.Verschanzen_Enum =>
-            GesamteVerteidigung := KampfDatentypen.Kampfwerte (Float (GesamteVerteidigung) * Verschanzungsbonus);
+            GesamteVerteidigung := KampfDatentypen.KampfwerteGroß (Float (GesamteVerteidigung) * Verschanzungsbonus);
                   
          when others =>
             null;
@@ -40,7 +40,7 @@ package body KampfwerteEinheitErmittelnLogik is
    
    function Gesamtangriff
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return KampfDatentypen.Kampfwerte
+      return KampfDatentypen.KampfwerteGroß
    is begin
       
       Grundangriff := LeseEinheitenDatenbank.Angriff (RasseExtern => EinheitRasseNummerExtern.Rasse,
@@ -48,6 +48,8 @@ package body KampfwerteEinheitErmittelnLogik is
       
       Bonusangriff := KartenfelderwerteLogik.FeldAngriff (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                                           RasseExtern       => EinheitRasseNummerExtern.Rasse);
+      
+      GesamterAngriff := Grundangriff + Bonusangriff;
       
       return GesamterAngriff;
       

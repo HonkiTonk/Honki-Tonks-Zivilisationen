@@ -5,6 +5,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Sf.System.Vector2;
 
 with RassenDatentypen; use RassenDatentypen;
+with KartenDatentypen; use KartenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 
@@ -16,6 +17,7 @@ private with StadtDatentypen;
 private with GrafikRecordKonstanten;
 private with AufgabenDatentypen;
 private with KartenRecords;
+private with Weltkarte;
 
 private with UmwandlungenAdaNachEigenes;
 
@@ -52,8 +54,8 @@ private
    
    Ladungsnummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    
-   Angriffsbonus : KampfDatentypen.KampfwerteAllgemein;
-   Verteidigungsbonus : KampfDatentypen.KampfwerteAllgemein;
+   Angriffsbonus : KampfDatentypen.KampfwerteGroß;
+   Verteidigungsbonus : KampfDatentypen.KampfwerteGroß;
    
    Textbreite : Float;
       
@@ -92,6 +94,10 @@ private
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
                and
                  SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+               and
+                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
               ),
          
        Post => (
@@ -144,7 +150,7 @@ private
    
    function ZahlAlsStringLebenspunkte is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => EinheitenDatentypen.Lebenspunkte);
    
-   function ZahlAlsStringKampfwerte is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => KampfDatentypen.Kampfwerte);
+   function ZahlAlsStringKampfwerte is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => KampfDatentypen.KampfwerteAllgemein);
    
    function ZahlAlsStringArbeitszeit is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => ProduktionDatentypen.Arbeitszeit);
    

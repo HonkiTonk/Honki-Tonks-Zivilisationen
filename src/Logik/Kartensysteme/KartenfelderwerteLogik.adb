@@ -94,28 +94,19 @@ package body KartenfelderwerteLogik is
    function FeldVerteidigung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KampfDatentypen.Kampfwerte
+      return KampfDatentypen.KampfwerteAllgemein
    is begin
       
-      Zwischenwert := Natural (KartenAllgemeinesLogik.GrundVerteidigung (KoordinatenExtern => KoordinatenExtern,
-                                                                         RasseExtern       => RasseExtern)
-                               + KartenAllgemeinesLogik.RessourceVerteidigung (KoordinatenExtern => KoordinatenExtern,
-                                                                               RasseExtern       => RasseExtern)
-                               + KartenAllgemeinesLogik.WegVerteidigung (KoordinatenExtern => KoordinatenExtern,
-                                                                         RasseExtern       => RasseExtern)
-                               + KartenAllgemeinesLogik.VerbesserungVerteidigung (KoordinatenExtern => KoordinatenExtern,
-                                                                                  RasseExtern       => RasseExtern)
-                               + KartenAllgemeinesLogik.FlussVerteidigung (KoordinatenExtern => KoordinatenExtern,
-                                                                           RasseExtern       => RasseExtern));
-      
-      if
-        Zwischenwert > Positive (KampfDatentypen.Kampfwerte'Last)
-      then
-         return KampfDatentypen.Kampfwerte'Last;
-         
-      else
-         return KampfDatentypen.Kampfwerte (Zwischenwert);
-      end if;
+      return KartenAllgemeinesLogik.GrundVerteidigung (KoordinatenExtern => KoordinatenExtern,
+                                                       RasseExtern       => RasseExtern)
+        + KartenAllgemeinesLogik.RessourceVerteidigung (KoordinatenExtern => KoordinatenExtern,
+                                                        RasseExtern       => RasseExtern)
+        + KartenAllgemeinesLogik.WegVerteidigung (KoordinatenExtern => KoordinatenExtern,
+                                                  RasseExtern       => RasseExtern)
+        + KartenAllgemeinesLogik.VerbesserungVerteidigung (KoordinatenExtern => KoordinatenExtern,
+                                                           RasseExtern       => RasseExtern)
+        + KartenAllgemeinesLogik.FlussVerteidigung (KoordinatenExtern => KoordinatenExtern,
+                                                    RasseExtern       => RasseExtern);
       
    end FeldVerteidigung;
      
@@ -124,28 +115,19 @@ package body KartenfelderwerteLogik is
    function FeldAngriff
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return KampfDatentypen.Kampfwerte
+      return KampfDatentypen.KampfwerteAllgemein
    is begin
       
-      Zwischenwert := Natural (KartenAllgemeinesLogik.GrundAngriff (KoordinatenExtern => KoordinatenExtern,
-                                                                    RasseExtern       => RasseExtern)
-                               + KartenAllgemeinesLogik.RessourceAngriff (KoordinatenExtern => KoordinatenExtern,
-                                                                          RasseExtern       => RasseExtern)
-                               + KartenAllgemeinesLogik.WegAngriff (KoordinatenExtern => KoordinatenExtern,
-                                                                    RasseExtern       => RasseExtern)
-                               + KartenAllgemeinesLogik.VerbesserungAngriff (KoordinatenExtern => KoordinatenExtern,
-                                                                             RasseExtern       => RasseExtern)
-                               + KartenAllgemeinesLogik.FlussAngriff (KoordinatenExtern => KoordinatenExtern,
-                                                                      RasseExtern       => RasseExtern));
-      
-      if
-        Zwischenwert > Positive (KampfDatentypen.Kampfwerte'Last)
-      then
-         return KampfDatentypen.Kampfwerte'Last;
-         
-      else
-         return KampfDatentypen.Kampfwerte (Zwischenwert);
-      end if;
+      return KartenAllgemeinesLogik.GrundAngriff (KoordinatenExtern => KoordinatenExtern,
+                                                  RasseExtern       => RasseExtern)
+        + KartenAllgemeinesLogik.RessourceAngriff (KoordinatenExtern => KoordinatenExtern,
+                                                   RasseExtern       => RasseExtern)
+        + KartenAllgemeinesLogik.WegAngriff (KoordinatenExtern => KoordinatenExtern,
+                                             RasseExtern       => RasseExtern)
+        + KartenAllgemeinesLogik.VerbesserungAngriff (KoordinatenExtern => KoordinatenExtern,
+                                                      RasseExtern       => RasseExtern)
+        + KartenAllgemeinesLogik.FlussAngriff (KoordinatenExtern => KoordinatenExtern,
+                                               RasseExtern       => RasseExtern);
       
    end FeldAngriff;
 

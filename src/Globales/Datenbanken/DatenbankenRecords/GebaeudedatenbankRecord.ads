@@ -15,7 +15,7 @@ package GebaeudedatenbankRecord is
    -- Die Bonus, Kosten und Kampfbereiche auf ein Enum anstelle eines Arrays umschreiben? äöü
    -- Dann passt das aber auch nicht mehr einfach in eine Schleife. äöü
    type BonusWirtschaftArray is array (ProduktionDatentypen.Wirtschaft_Enum'Range) of ProduktionDatentypen.Feldproduktion;
-   type BonusKampfArray is array (KampfDatentypen.Kampf_Enum'Range) of KampfDatentypen.Kampfwerte;
+   type BonusKampfArray is array (KampfDatentypen.Kampf_Enum'Range) of KampfDatentypen.KampfwerteAllgemein;
    
    -- Um das alles da rein zu basteln müsste man aber die Gebäudeumgebungsprüfung noch einmal deutlich überarbeiten. äöü
    -- Könnte man theoretisch um das vernichtete Feld kürzen, aber ob sich das lohnt? äöü

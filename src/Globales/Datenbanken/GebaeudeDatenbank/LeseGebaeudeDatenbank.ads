@@ -64,7 +64,7 @@ package LeseGebaeudeDatenbank is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in StadtDatentypen.GebäudeID;
       KampfBonusExtern : in KampfDatentypen.Kampf_Enum)
-      return KampfDatentypen.Kampfwerte
+      return KampfDatentypen.KampfwerteEinheiten
      with
        Pre => (
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum

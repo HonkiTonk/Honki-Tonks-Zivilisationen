@@ -122,8 +122,8 @@ package LeseEinheitenDatenbank is
    
    function Angriff
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenID)
-      return KampfDatentypen.Kampfwerte
+      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
+      return KampfDatentypen.KampfwerteEinheiten
      with
        Pre => (
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
@@ -132,7 +132,7 @@ package LeseEinheitenDatenbank is
    function Verteidigung
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
-      return KampfDatentypen.Kampfwerte
+      return KampfDatentypen.KampfwerteEinheiten
      with
        Pre => (
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum

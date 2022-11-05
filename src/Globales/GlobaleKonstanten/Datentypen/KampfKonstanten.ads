@@ -5,6 +5,6 @@ with KampfDatentypen;
 package KampfKonstanten is
    pragma Preelaborate;
 
-   LeerKampfwert : constant KampfDatentypen.Kampfwerte := KampfDatentypen.Kampfwerte'First;
+   LeerKampfwert : constant KampfDatentypen.KampfwerteEinheiten := KampfDatentypen.KampfwerteEinheiten'First;
 
 end KampfKonstanten;

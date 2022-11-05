@@ -47,7 +47,7 @@ package KartenRecords is
    
    
    
-   type AchsenKartenfeldNaturalRecord is tagged record
+   type AchsenKartenfeldNaturalRecord is record
       
       EAchse : KartenDatentypen.Ebene;
       YAchse : KartenDatentypen.KartenfeldNatural;
@@ -124,7 +124,7 @@ package KartenRecords is
    
    
    
-   type PermanenteKartenparameterRecord is tagged record
+   type PermanenteKartenparameterRecord is record
       
       Kartengröße : YXAchsenKartenfeldPositivRecord;
       Kartenform : KartenformRecord;
@@ -133,7 +133,10 @@ package KartenRecords is
    
    
    
-   type TemporäreKartenparameterRecord is new PermanenteKartenparameterRecord with record
+   type TemporäreKartenparameterRecord is record
+      
+      Kartengröße : YXAchsenKartenfeldPositivRecord;
+      Kartenform : KartenformRecord;
             
       Kartenart : KartenartDatentypen.Kartenart_Enum;
       Kartentemperatur : KartenartDatentypen.Kartentemperatur_Enum;

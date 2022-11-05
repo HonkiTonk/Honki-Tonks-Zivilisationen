@@ -6,6 +6,7 @@ with Sf.Graphics.Text;
 
 with EinheitenDatentypen; use EinheitenDatentypen;
 with AufgabenDatentypen; use AufgabenDatentypen;
+with KampfDatentypen; use KampfDatentypen;
 with Meldungstexte;
 with EinheitenKonstanten;
 with StadtKonstanten;
@@ -224,15 +225,19 @@ package body EinheitenseitenleisteGrafik is
       Angriffsbonus := KartenfelderwerteLogik.FeldAngriff (KoordinatenExtern => KoordinatenExtern,
                                                            RasseExtern       => EinheitRasseNummerExtern.Rasse);
         
-      case
-        Angriffsbonus
-      is
-         when KampfKonstanten.LeerKampfwert =>
-            null;
+      if
+        Angriffsbonus < KampfKonstanten.LeerKampfwert
+      then
+         Kampftext := Kampftext & " " & ZahlAlsStringKampfwerte (ZahlExtern => Angriffsbonus);
          
-         when others =>
-            Kampftext := Kampftext & " +" & ZahlAlsStringKampfwerte (ZahlExtern => Angriffsbonus);
-      end case;
+      elsif
+        Angriffsbonus > KampfKonstanten.LeerKampfwert
+      then
+         Kampftext := Kampftext & " +" & ZahlAlsStringKampfwerte (ZahlExtern => Angriffsbonus);
+         
+      else
+         null;
+      end if;
       
       Kampftext := Kampftext & " " & TextKonstanten.TrennzeichenUnterschiedlich & " " & LeseEinheitenDatenbank.Verteidigung (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                                                                                              IDExtern    => IDExtern)'Wide_Wide_Image;
@@ -256,7 +261,19 @@ package body EinheitenseitenleisteGrafik is
                null;
             end if;
             
-            Kampftext := Kampftext & " +" & ZahlAlsStringKampfwerte (ZahlExtern => Verteidigungsbonus);
+            if
+              Verteidigungsbonus < KampfKonstanten.LeerKampfwert
+            then
+               Kampftext := Kampftext & " " & ZahlAlsStringKampfwerte (ZahlExtern => Verteidigungsbonus);
+               
+            elsif
+              Verteidigungsbonus > KampfKonstanten.LeerKampfwert
+            then
+               Kampftext := Kampftext & " +" & ZahlAlsStringKampfwerte (ZahlExtern => Verteidigungsbonus);
+               
+            else
+               null;
+            end if;
       end case;
       
       return Kampftext;

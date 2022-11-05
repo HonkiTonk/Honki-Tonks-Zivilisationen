@@ -22,8 +22,8 @@ package DebugobjekteLogik is
                                                                              Beförderungsgrenze      => 1,
                                                                              MaximalerRang           => KampfDatentypen.RangVorhanden'Last,
                                                                              Reichweite              => KampfDatentypen.Reichweite'Last,
-                                                                             Angriff                 => KampfDatentypen.Kampfwerte'Last,
-                                                                             Verteidigung            => KampfDatentypen.Kampfwerte'Last,
+                                                                             Angriff                 => KampfDatentypen.KampfwerteEinheiten'Last,
+                                                                             Verteidigung            => KampfDatentypen.KampfwerteEinheiten'Last,
                                                                              KannTransportieren      => EinheitenDatentypen.Gigantisch_Transport_Enum,
                                                                              KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                              Transportkapazität      => EinheitenRecords.TransporterArray'Last

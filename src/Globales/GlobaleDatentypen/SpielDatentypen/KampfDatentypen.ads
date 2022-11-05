@@ -7,8 +7,10 @@ package KampfDatentypen is
    -- Das für Angriff, Verteidigung und Lebenspunkte verwenden oder noch weiter aufteilen? äöü
    type KampfwerteGroß is range -1_000 .. 1_000;
    subtype KampfwerteAllgemein is KampfwerteGroß range -100 .. 100;
-   subtype KampfwerteKlein is KampfwerteAllgemein range -10 .. 10;
-   subtype Kampfwerte is KampfwerteAllgemein range 0 .. 100;
+
+   subtype KampfwerteEinheiten is KampfwerteAllgemein range 0 .. 100;
+
+   subtype KampfwerteKarte is KampfwerteAllgemein range -10 .. 10;
 
 
 

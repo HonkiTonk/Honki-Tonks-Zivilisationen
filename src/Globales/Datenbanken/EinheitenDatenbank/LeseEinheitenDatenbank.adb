@@ -195,11 +195,19 @@ package body LeseEinheitenDatenbank is
    
    function Angriff
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenID)
-      return KampfDatentypen.Kampfwerte
+      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
+      return KampfDatentypen.KampfwerteEinheiten
    is begin
       
-      return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).Angriff;
+      case
+        IDExtern
+      is
+         when EinheitenKonstanten.LeerID =>
+            return EinheitenKonstanten.LeerAngriff;
+            
+         when others =>
+            return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).Angriff;
+      end case;
       
    end Angriff;
    
@@ -208,14 +216,14 @@ package body LeseEinheitenDatenbank is
    function Verteidigung
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
-      return KampfDatentypen.Kampfwerte
+      return KampfDatentypen.KampfwerteEinheiten
    is begin
       
       case
         IDExtern
       is
          when EinheitenKonstanten.LeerID =>
-            return KampfDatentypen.Kampfwerte'First;
+            return EinheitenKonstanten.LeerVerteidigung;
             
          when others =>
             return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).Verteidigung;

@@ -33,12 +33,28 @@ package body KampfsystemEinheitenLogik is
       
             KampfwerteAngreifer.Verteidigung := KampfwerteEinheitErmittelnLogik.Gesamtverteidigung (EinheitRasseNummerExtern => AngreiferExtern);
             KampfwerteAngreifer.Angriff := KampfwerteEinheitErmittelnLogik.Gesamtangriff (EinheitRasseNummerExtern => AngreiferExtern);
-      
-            return Kampf (VerteidigerExtern           => VerteidigerExtern,
-                          KampfwerteVerteidigerExtern => KampfwerteVerteidiger,
-                          AngreiferExtern             => AngreiferExtern,
-                          KampfwerteAngreiferExtern   => KampfwerteAngreifer);
       end case;
+      
+      if
+        KampfwerteVerteidiger.Verteidigung = EinheitenKonstanten.LeerVerteidigung
+        and
+          KampfwerteVerteidiger.Angriff = EinheitenKonstanten.LeerAngriff
+          and
+            KampfwerteAngreifer.Verteidigung = EinheitenKonstanten.LeerVerteidigung
+            and
+              KampfwerteAngreifer.Angriff = EinheitenKonstanten.LeerAngriff
+      then
+         KampfwerteVerteidiger := (1, 1);
+         KampfwerteAngreifer := (1, 1);
+         
+      else
+         null;
+      end if;
+      
+      return Kampf (VerteidigerExtern           => VerteidigerExtern,
+                    KampfwerteVerteidigerExtern => KampfwerteVerteidiger,
+                    AngreiferExtern             => AngreiferExtern,
+                    KampfwerteAngreiferExtern   => KampfwerteAngreifer);
       
    end KampfsystemNahkampf;
 

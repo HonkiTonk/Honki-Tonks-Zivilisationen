@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 with EinheitenDatentypen;
 with StadtDatentypen;
 with KampfDatentypen;
-with EinheitenRecords;
+with RassenDatentypen;
 
 with KIDatentypen;
 
@@ -28,10 +28,13 @@ package KIRecords is
 
 
 
-   type FeindlicheEinheitBewertet is new EinheitenRecords.RasseEinheitnummerRecord with record
+   type FeindlicheEinheitBewertet is record
 
-      Angriff : KampfDatentypen.Kampfwerte;
-      Verteidigung : KampfDatentypen.Kampfwerte;
+      Rasse : RassenDatentypen.Rassen_Enum;
+      Nummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+
+      Angriff : KampfDatentypen.KampfwerteGroß;
+      Verteidigung : KampfDatentypen.KampfwerteGroß;
 
    end record;
 
