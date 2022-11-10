@@ -3,6 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 with SystemDatentypen; use SystemDatentypen;
 
 with SchreibeWeltkarte;
+with LeseWeltkarte;
 
 with ZufallsgeneratorenKartenLogik;
 
@@ -82,7 +83,7 @@ package body KartengeneratorLandressourcenLogik is
       is
          when KartengrundDatentypen.Kartenressourcen_Oberfläche_Land_Enum'Range =>
             SchreibeWeltkarte.Ressource (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
-                                      RessourceExtern   => WelcheRessource);
+                                         RessourceExtern   => WelcheRessource);
             
          when others =>
             null;
@@ -116,6 +117,10 @@ package body KartengeneratorLandressourcenLogik is
          when KartengrundDatentypen.Hochwertiger_Boden_Enum =>
             return ZusatzberechnungHochwertigerBoden (KoordinatenExtern => KoordinatenExtern,
                                                       RessourceExtern   => RessourceExtern);
+            
+         when KartengrundDatentypen.Hochwertiges_Holz_Enum =>
+            return ZusatzberechnungHochwertigesHolz (KoordinatenExtern => KoordinatenExtern,
+                                                     RessourceExtern   => RessourceExtern);
             
          when KartengrundDatentypen.Gold_Enum =>
             return ZusatzberechnungGold (KoordinatenExtern => KoordinatenExtern,
@@ -207,6 +212,26 @@ package body KartengeneratorLandressourcenLogik is
       return RessourceExtern;
       
    end ZusatzberechnungHochwertigerBoden;
+   
+   
+   
+   function ZusatzberechnungHochwertigesHolz
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+      RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Oberfläche_Land_Enum)
+      return KartengrundDatentypen.Kartenressourcen_Enum
+   is begin
+      
+      case
+        LeseWeltkarte.Zusatzgrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse))
+      is
+         when KartengrundDatentypen.Wald_Enum | KartengrundDatentypen.Dschungel_Enum =>
+            return RessourceExtern;
+            
+         when others =>
+            return KartengrundDatentypen.Leer_Ressource_Enum;
+      end case;
+      
+   end ZusatzberechnungHochwertigesHolz;
    
    
    

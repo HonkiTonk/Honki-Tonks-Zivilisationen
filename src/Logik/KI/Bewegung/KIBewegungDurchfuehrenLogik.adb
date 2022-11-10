@@ -20,7 +20,7 @@ with Vergleiche;
 with PassierbarkeitspruefungLogik;
 with EinheitenbewegungLogik;
 
-with KIBewegungBerechnenLogik;
+with KIBewegungsplanBerechnenLogik;
 with KIBewegungAllgemeinLogik;
 
 package body KIBewegungDurchfuehrenLogik is
@@ -68,7 +68,7 @@ package body KIBewegungDurchfuehrenLogik is
                                                                                        PlanschrittExtern        => 1)
          then
             case
-              KIBewegungBerechnenLogik.BewegungPlanen (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+              KIBewegungsplanBerechnenLogik.BewegungPlanen (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
             is
                when True =>
                   null;

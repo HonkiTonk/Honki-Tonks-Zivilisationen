@@ -114,6 +114,7 @@ package KartengrundDatentypen is
                                    
                                   -- Wasserressourcen
                                   Fisch_Enum, Wal_Enum,
+                                  Hochwertiges_Holz_Enum,
                                    
                                   -- Landressourcen
                                   Kohle_Enum, Eisen_Enum, Öl_Enum, Hochwertiger_Boden_Enum, Gold_Enum
@@ -127,10 +128,10 @@ package KartengrundDatentypen is
    
    subtype Kartenressourcen_Oberfläche_Enum is Kartenressourcen_Vorhanden_Enum range Fisch_Enum .. Gold_Enum;
    subtype Kartenressourcen_Oberfläche_Wasser_Enum is Kartenressourcen_Oberfläche_Enum range Fisch_Enum .. Wal_Enum;
-   subtype Kartenressourcen_Oberfläche_Land_Enum is Kartenressourcen_Oberfläche_Enum range Kohle_Enum .. Gold_Enum;
+   subtype Kartenressourcen_Oberfläche_Land_Enum is Kartenressourcen_Oberfläche_Enum range Hochwertiges_Holz_Enum .. Gold_Enum;
    
    subtype Kartenressourcen_Unterfläche_Enum is Kartenressourcen_Vorhanden_Enum range Fisch_Enum .. Gold_Enum;
-   subtype Kartenressourcen_Unterfläche_Wasser_Enum is Kartenressourcen_Unterfläche_Enum range Fisch_Enum .. Wal_Enum;
+   subtype Kartenressourcen_Unterfläche_Wasser_Enum is Kartenressourcen_Unterfläche_Enum range Fisch_Enum .. Hochwertiges_Holz_Enum;
    subtype Kartenressourcen_Unterfläche_Land_Enum is Kartenressourcen_Unterfläche_Enum range Kohle_Enum .. Gold_Enum;
    
    

@@ -3,6 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 with SystemDatentypen; use SystemDatentypen;
 
 with SchreibeWeltkarte;
+with LeseWeltkarte;
 
 with ZufallsgeneratorenKartenLogik;
 
@@ -108,6 +109,10 @@ package body KartengeneratorUnterwasserressourcenLogik is
          when KartengrundDatentypen.Wal_Enum =>
             return ZusatzberechnungWal (KoordinatenExtern => KoordinatenExtern,
                                         RessourceExtern   => RessourceExtern);
+            
+         when KartengrundDatentypen.Hochwertiges_Holz_Enum =>
+            return ZusatzberechnungHochwertigesHolz (KoordinatenExtern => KoordinatenExtern,
+                                                     RessourceExtern   => RessourceExtern);
       end case;
       
    end RessourceZusatzberechnungen;
@@ -153,5 +158,25 @@ package body KartengeneratorUnterwasserressourcenLogik is
       return RessourceExtern;
       
    end ZusatzberechnungWal;
+   
+   
+   
+   function ZusatzberechnungHochwertigesHolz
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+      RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Enum)
+      return KartengrundDatentypen.Kartenressourcen_Enum
+   is begin
+      
+      case
+        LeseWeltkarte.Zusatzgrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse))
+      is
+         when KartengrundDatentypen.Unterwald_Enum =>
+            return RessourceExtern;
+            
+         when others =>
+            return KartengrundDatentypen.Leer_Ressource_Enum;
+      end case;
+      
+   end ZusatzberechnungHochwertigesHolz;
 
 end KartengeneratorUnterwasserressourcenLogik;

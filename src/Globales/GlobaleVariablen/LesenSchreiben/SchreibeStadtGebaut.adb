@@ -180,7 +180,7 @@ package body SchreibeStadtGebaut is
       is
          when True =>
             if
-              SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Ressourcen + RessourcenExtern >= ProduktionDatentypen.Produktion'Last
+              SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Ressourcen + RessourcenExtern >= ProduktionDatentypen.StadtLagermenge'Last
             then
                SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Ressourcen := ProduktionDatentypen.StadtLagermenge'Last;
                

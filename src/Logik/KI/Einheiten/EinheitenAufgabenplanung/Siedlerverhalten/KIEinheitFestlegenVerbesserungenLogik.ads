@@ -41,6 +41,7 @@ private
    VerbesserungAnlegen : KartenRecords.AchsenKartenfeldNaturalRecord;
    VerbesserungKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    StadtKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   EinheitKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
 
 
 
@@ -58,6 +59,22 @@ private
                   StädteDurchgehen'Result.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
                 and
                   StädteDurchgehen'Result.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+               );
+
+   function DirekteUmgebung
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return KartenRecords.AchsenKartenfeldNaturalRecord
+     with
+       Pre => (
+                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+               and
+                 SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.KI_Spieler_Enum
+              ),
+
+       Post => (
+                  DirekteUmgebung'Result.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                and
+                  DirekteUmgebung'Result.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
                );
 
    function StadtumgebungErmitteln

@@ -172,7 +172,7 @@ package body KIEinheitFestlegenSiedelnLogik is
             null;
       end case;
       
-      -- Diese Prüfung hier mal rassenspezifisch erweitern? äöü
+      -- Diese Prüfung hier mal rassenspezifisch erweitern. äöü
       if
         LeseWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern) = KartengrundDatentypen.Eis_Enum
       then

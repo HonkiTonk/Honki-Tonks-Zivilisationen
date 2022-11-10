@@ -25,8 +25,9 @@ private
 
    type KartenressourceWahrscheinlichkeitArray is array (KartengrundDatentypen.Kartenressourcen_Unterfläche_Wasser_Enum'Range) of SystemDatentypen.NullBisHundert;
    KartenressourceWahrscheinlichkeit : KartenressourceWahrscheinlichkeitArray := (
-                                                                                  KartengrundDatentypen.Fisch_Enum => 2,
-                                                                                  KartengrundDatentypen.Wal_Enum   => 2
+                                                                                  KartengrundDatentypen.Fisch_Enum             => 2,
+                                                                                  KartengrundDatentypen.Wal_Enum               => 2,
+                                                                                  KartengrundDatentypen.Hochwertiges_Holz_Enum => 2
                                                                                  );
    GezogeneZahlen : KartenressourceWahrscheinlichkeitArray;
 
@@ -58,6 +59,17 @@ private
               );
 
    function ZusatzberechnungWal
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+      RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Enum)
+      return KartengrundDatentypen.Kartenressourcen_Enum
+     with
+       Pre => (
+                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+              );
+
+   function ZusatzberechnungHochwertigesHolz
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Enum)
       return KartengrundDatentypen.Kartenressourcen_Enum

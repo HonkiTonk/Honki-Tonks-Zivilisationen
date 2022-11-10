@@ -140,38 +140,41 @@ package ChangelogNovember2022 is
    
    
 
-   -- Version 0.04. => 0.04. (10.11.2022):
+   -- Version 0.04.5330 => 0.04. (10.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04. => 0.04. (09.11.2022):
+   -- Version 0.04.5210 => 0.04.5330 (09.11.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.04. => 0.04. (08.11.2022):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.04. => 0.04. (07.11.2022):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Hochwertiges Holt als Ressource hinzugefügt.
+   -- KI überarbeitet.
+   -- Berechnungssystem für das Anlegen von Verbesserungen durch die KI überarbeitet.
+   -- KI entfernt jetzt keinen Wald mehr wenn sich auf diesem hochwertiges Holz befindet.
+   -- Das Eentfernen eines Waldes/Dschungels entfernt jetzt auch hochwertiges Holz.
+   -- Bewegungsplanberechnung der KI überarbeitet.
+   -- Fehler korrigiert der es erlaubte mehr als das Maximum an Ressourcen in einer Stadt zu haben und dadurch zu einem Absturz führte.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    
 
-   -- Version 0.04.5210 => 0.04. (06.11.2022):
+   -- Version 0.04.5210 => 0.04.5210 (08.11.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.04.5210 => 0.04.5210 (07.11.2022):
+   
+   -- null.
+   
+   
+
+   -- Version 0.04.5210 => 0.04.5210 (06.11.2022):
+   
+   -- null.
    
    
 
@@ -180,7 +183,7 @@ package ChangelogNovember2022 is
    -- Angriff- und Verteidigungswerte überarbeitet, so dass die Kartenfelder jetzt besser Bonus und Malus geben können.
    -- Kampfsystem überarbeitet.
    -- Der Einsatz einer PZB wird jetzt auch korrekt erkannt wenn sie gegen eine Stadt eingesetzt wird.
-   -- Theoretischen Endloskampfsituation entfernt.
+   -- Theoretische Endloskampfsituation entfernt.
    -- Mehr OO in Form von tagged Records entfernt.
    -- Seitenleiste überarbeitet.
    -- Speicherverbrauch um rund 65 MB reduziert.

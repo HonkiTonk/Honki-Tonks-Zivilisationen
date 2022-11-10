@@ -10,6 +10,7 @@ with AufgabenDatentypen;
 with LeseStadtGebaut;
 with SchreibeEinheitenGebaut;
 with LeseWeltkarte;
+with LeseEinheitenGebaut;
 
 with Vergleiche;
 with KartenkoordinatenberechnungssystemLogik;
@@ -51,9 +52,19 @@ package body KIEinheitFestlegenVerbesserungenLogik is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
+            
+      VerbesserungAnlegen := DirekteUmgebung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
-      VerbesserungAnlegen := KartenRecordKonstanten.LeerKoordinate;
-      
+      case
+        VerbesserungAnlegen.XAchse
+      is
+         when KartenKonstanten.LeerXAchse =>
+            VerbesserungAnlegen := KartenRecordKonstanten.LeerKoordinate;
+               
+         when others =>
+            return VerbesserungAnlegen;
+      end case;
+            
       StadtSchleife:
       for StadtNummerSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Städtegrenze loop
          
@@ -83,6 +94,52 @@ package body KIEinheitFestlegenVerbesserungenLogik is
       return VerbesserungAnlegen;
       
    end StädteDurchgehen;
+   
+   
+   
+   function DirekteUmgebung
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return KartenRecords.AchsenKartenfeldNaturalRecord
+   is begin
+      
+      EinheitKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      
+      EAchseSchleife:
+      for EAchseSchleifenwert in KartenDatentypen.EbenenbereichEins'Range loop
+         YAchseSchleife:
+         for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+            XAchseSchleife:
+            for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+               
+               VerbesserungKoordinaten := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => EinheitKoordinaten,
+                                                                                                                      ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                                      LogikGrafikExtern => True);
+               
+               case
+                 VerbesserungKoordinaten.XAchse
+               is
+                  when KartenKonstanten.LeerXAchse =>
+                     null;
+                     
+                  when others =>
+                     if
+                       True = AllgemeineVerbesserungenPrüfungen (KoordinatenExtern        => VerbesserungKoordinaten,
+                                                                  EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+                     then
+                        return VerbesserungKoordinaten;
+                  
+                     else
+                        null;
+                     end if;
+               end case;
+               
+            end loop XAchseSchleife;
+         end loop YAchseSchleife;
+      end loop EAchseSchleife;
+      
+      return KartenRecordKonstanten.LeerKoordinate;
+      
+   end DirekteUmgebung;
    
    
    
@@ -196,7 +253,16 @@ package body KIEinheitFestlegenVerbesserungenLogik is
    is begin
       
       Ressourcen := LeseWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern);
-      Basisgrund := LeseWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern);
+      
+      case
+        Ressourcen
+      is
+         when KartengrundDatentypen.Hochwertiges_Holz_Enum =>
+            return False;
+            
+         when others =>
+            Basisgrund := LeseWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern);
+      end case;
       
       case
         AufgabenLogik.AufgabeTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,

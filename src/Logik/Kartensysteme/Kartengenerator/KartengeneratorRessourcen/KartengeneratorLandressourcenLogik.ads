@@ -29,6 +29,7 @@ private
                                                                                   KartengrundDatentypen.Eisen_Enum              => 2,
                                                                                   KartengrundDatentypen.Öl_Enum                 => 2,
                                                                                   KartengrundDatentypen.Hochwertiger_Boden_Enum => 2,
+                                                                                  KartengrundDatentypen.Hochwertiges_Holz_Enum  => 2,
                                                                                   KartengrundDatentypen.Gold_Enum               => 2
                                                                                  );
    GezogeneZahlen : KartenressourceWahrscheinlichkeitArray;
@@ -83,6 +84,17 @@ private
               );
 
    function ZusatzberechnungHochwertigerBoden
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+      RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Oberfläche_Land_Enum)
+      return KartengrundDatentypen.Kartenressourcen_Enum
+     with
+       Pre => (
+                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+               and
+                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+              );
+
+   function ZusatzberechnungHochwertigesHolz
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Oberfläche_Land_Enum)
       return KartengrundDatentypen.Kartenressourcen_Enum

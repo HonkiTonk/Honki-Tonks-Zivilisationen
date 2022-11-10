@@ -11,7 +11,7 @@ private with EinheitenDatentypen;
 
 private with KIDatentypen;
 
-package KIBewegungBerechnenLogik is
+package KIBewegungsplanBerechnenLogik is
    pragma Elaborate_Body;
    
    function BewegungPlanen
@@ -28,28 +28,19 @@ private
    
    PlanungErfolgreich : Boolean;
    PlanungErfolgreichRekursiv : Boolean;
-   
-   
-   BewertungPosition : Positive;
-   
+         
    YAchseKoordinatePrüfen : KartenDatentypen.KartenfeldPositiv;
    XAchseKoordinatePrüfen : KartenDatentypen.KartenfeldPositiv;
+   
    YAchseKoordinatenSchonGeprüft : KartenDatentypen.KartenfeldNatural;
    XAchseKoordinatenSchonGeprüft : KartenDatentypen.KartenfeldNatural;
    NurWasser : KartenDatentypen.KartenfeldNatural;
    
+   BewertungPosition : Positive;
+   
    ZielKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
-   
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
-   KartenWertVereinfachung : KartenRecords.AchsenKartenfeldNaturalRecord;
    KartenWertTransporter : KartenRecords.AchsenKartenfeldNaturalRecord;
-   
-   PositionAlt : KartenRecords.AchsenKartenfeldNaturalRecord;
-   PositionNeu : KartenRecords.AchsenKartenfeldNaturalRecord;
-   
-   EÄnderung : KIDatentypen.BewegungBewertung;
-   YÄnderung : KIDatentypen.BewegungBewertung;
-   XÄnderung : KIDatentypen.BewegungBewertung;
    
    type FeldBewertungArray is array (KartenDatentypen.EbenenbereichEins'Range, KartenDatentypen.UmgebungsbereichEins'Range, KartenDatentypen.UmgebungsbereichEins'Range) of KIDatentypen.BewegungBewertung;
    FeldBewertung : FeldBewertungArray;
@@ -69,27 +60,7 @@ private
    type BewertungArray is array (1 .. 27) of BewertungRecord;
    Bewertung : BewertungArray;
    
-   procedure VorhandenenPlanVereinfachen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-     with
-       Pre => (
-                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
-               and
-                 SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.KI_Spieler_Enum
-              );
-   
-   procedure VorhandenenPlanVereinfachenPrüfen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      ErsterZugExtern : in EinheitenDatentypen.Bewegungsplan;
-      ÜberNächsterZugExtern : in EinheitenDatentypen.Bewegungsplan)
-     with
-       Pre => (
-                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
-               and
-                 SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.KI_Spieler_Enum
-              );
-   
-   procedure FelderBewerten
+   procedure Felderbewertung
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
      with
@@ -102,8 +73,6 @@ private
                and
                  AktuelleKoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
               );
-   
-   procedure BewertungSortieren;
    
    
    
@@ -137,26 +106,6 @@ private
                  KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
                and
                  KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
-               and
-                 SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.KI_Spieler_Enum
-              );
-   
-   function BerechnungBewertungPosition
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return KIDatentypen.BewegungBewertung
-     with
-       Pre => (
-                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
-               and
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
-               and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
-               and
-                 NeueKoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
-               and
-                 NeueKoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
                and
                  SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.KI_Spieler_Enum
               );
@@ -203,4 +152,4 @@ private
                  SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.KI_Spieler_Enum
               );
 
-end KIBewegungBerechnenLogik;
+end KIBewegungsplanBerechnenLogik;

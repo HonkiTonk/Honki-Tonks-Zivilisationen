@@ -37,6 +37,7 @@ package KartenRecords is
    
    
    
+   -- Das hier vielleicht mal AchsenKartenfeldNaturalRecord zusammenführen? äöü
    type AchsenKartenfeldVorhandenRecord is record
       
       EAchse : KartenDatentypen.EbeneVorhanden;
