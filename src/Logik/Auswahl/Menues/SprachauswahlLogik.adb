@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with GlobaleTexte;
 with TextKonstanten;
 with GrafikDatentypen;

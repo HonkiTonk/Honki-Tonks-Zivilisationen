@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 package MenueDatentypen is
    pragma Pure;
 

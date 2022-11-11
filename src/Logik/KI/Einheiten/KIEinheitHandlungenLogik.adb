@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with AufgabenDatentypen; use AufgabenDatentypen;
 with KartenRecords; use KartenRecords;
 with EinheitenKonstanten;

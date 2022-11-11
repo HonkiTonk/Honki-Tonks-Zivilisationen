@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with StadtDatentypen; use StadtDatentypen;
 with InteraktionAuswahl;
 with TastenbelegungDatentypen;

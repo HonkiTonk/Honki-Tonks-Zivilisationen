@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with Fehler;
 
 package body MenuerueckgabenLogik is

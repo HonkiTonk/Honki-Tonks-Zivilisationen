@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 private with Sf.Audio;
 private with Sf.Audio.Sound;
 

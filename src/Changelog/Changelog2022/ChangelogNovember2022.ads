@@ -133,23 +133,30 @@ package ChangelogNovember2022 is
    
    
 
-   -- Version 0.04. => 0.04. (11.11.2022):
+   -- Version 0.04.3320 => 0.04. (11.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.5330 => 0.04. (10.11.2022):
+   -- Version 0.04.3220 => 0.04.3320 (10.11.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehler behoben durch den die Ekropa Schiffe über Schienen bewegen konnte.
+   -- Versionsnummerberechnung angepasst.
+   -- pragma Warnings (Off, "*array aggregate*"); in eine Datei ausgelagert.
+   -- Unnötigen Code gelöscht.
+   -- KI überarbeitet.
+   -- Bewegungsplanberechnung der KI überarbeitet.
+   -- Die KI ist jetzt besser in der Lage einen Weg zu Berechnen, wenn normale Übergänge für die XAchse oder YAchse eingestellt sind.
+   -- Fehler korrigiert der dazu führte dass die KI unnötig viele Einheiten verwendete um eine einzelne Aufgabe durchzuführen.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    
 
-   -- Version 0.04.5210 => 0.04.5330 (09.11.2022):
+   -- Version 0.04.3130 => 0.04.3220 (09.11.2022):
    
-   -- Hochwertiges Holt als Ressource hinzugefügt.
+   -- Hochwertiges Holz als Ressource hinzugefügt.
    -- KI überarbeitet.
    -- Berechnungssystem für das Anlegen von Verbesserungen durch die KI überarbeitet.
    -- KI entfernt jetzt keinen Wald mehr wenn sich auf diesem hochwertiges Holz befindet.
@@ -160,25 +167,25 @@ package ChangelogNovember2022 is
    
    
 
-   -- Version 0.04.5210 => 0.04.5210 (08.11.2022):
+   -- Version 0.04.3130 => 0.04.3130 (08.11.2022):
    
    -- null.
    
    
 
-   -- Version 0.04.5210 => 0.04.5210 (07.11.2022):
+   -- Version 0.04.3130 => 0.04.3130 (07.11.2022):
    
    -- null.
    
    
 
-   -- Version 0.04.5210 => 0.04.5210 (06.11.2022):
+   -- Version 0.04.3130 => 0.04.3130 (06.11.2022):
    
    -- null.
    
    
 
-   -- Version 0.04.5100 => 0.04.5210 (05.11.2022):
+   -- Version 0.04.3040 => 0.04.3130 (05.11.2022):
    
    -- Angriff- und Verteidigungswerte überarbeitet, so dass die Kartenfelder jetzt besser Bonus und Malus geben können.
    -- Kampfsystem überarbeitet.
@@ -191,7 +198,7 @@ package ChangelogNovember2022 is
    
    
 
-   -- Version 0.04.2960 => 0.04.5100 (04.11.2022):
+   -- Version 0.04.2960 => 0.04.3040 (04.11.2022):
    
    -- Versionsnummerberechnung angepasst.
    -- GNAT von 12.2.0-7 auf GNAT 12.2.0-9 aktualisiert.

@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with Sf;
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Text;

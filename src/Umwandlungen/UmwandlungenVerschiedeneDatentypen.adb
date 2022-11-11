@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 package body UmwandlungenVerschiedeneDatentypen is
 
    function BefehleNachKartenverbesserung

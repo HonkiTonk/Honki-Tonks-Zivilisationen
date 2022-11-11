@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 package KartengrundDatentypen is
    pragma Pure;
 

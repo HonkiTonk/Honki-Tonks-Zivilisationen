@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 package body KIEinheitFestlegenVerteidigungskriegLogik is
 
    function VerteidigungskriegVorbereiten

@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with KartenartDatentypen; use KartenartDatentypen;
 with KartenRecordKonstanten;
 with KartenKonstanten;

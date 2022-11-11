@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with ForschungenDatenbank;
 
 -- Zum Schreiben der Datenbanken wird später noch eine Schreibevariante benötigt. äöü

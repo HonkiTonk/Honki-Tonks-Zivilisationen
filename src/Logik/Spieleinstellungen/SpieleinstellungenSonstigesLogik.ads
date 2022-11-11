@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 private with RueckgabeDatentypen;
 
 package SpieleinstellungenSonstigesLogik is

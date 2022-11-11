@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with Sf.Window.Event;
 
 package TasteneingabeGrafik is

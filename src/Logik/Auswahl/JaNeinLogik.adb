@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with GrafikDatentypen;
 with SystemKonstanten;
 with TastenbelegungDatentypen;

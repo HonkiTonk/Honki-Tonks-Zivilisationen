@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 package KIKriegBeendenLogik is
    pragma Elaborate_Body;
 

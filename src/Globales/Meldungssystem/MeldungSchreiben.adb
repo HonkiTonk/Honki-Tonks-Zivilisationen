@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with Ada.Directories; use Ada.Directories;
 
 package body MeldungSchreiben is

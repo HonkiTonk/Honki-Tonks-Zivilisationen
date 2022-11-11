@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with StadtBauenLogik;
 
 package body KIEinheitUmsetzenSiedelnLogik is

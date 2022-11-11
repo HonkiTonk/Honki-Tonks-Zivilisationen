@@ -1,13 +1,11 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with KartenRecords;
 with KartenDatentypen;
 with KartenRecordKonstanten;
 with WeltkarteRecords;
 
--- Karten und Lese/Schreiben nach was globales verschieben? äöü
 package Weltkarte is
 
+   -- Für das auch mal eine Lese/Schreibefunktion einbauen. äöü
    Karteneinstellungen : KartenRecords.PermanenteKartenparameterRecord := KartenRecordKonstanten.Standardkartenparameter;
 
    -- Später die Anzahl der Ebenen auch vom Nutzer einstellbar machen? äöü

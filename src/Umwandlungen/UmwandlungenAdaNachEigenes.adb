@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with Ada.Strings.Wide_Wide_Fixed;
 
 package body UmwandlungenAdaNachEigenes is

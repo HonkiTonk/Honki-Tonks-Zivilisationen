@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with KampfDatentypen;
 
 package KampfberechnungenLogik is

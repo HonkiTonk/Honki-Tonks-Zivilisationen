@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 package KIEinheitFestlegenAngriffskriegLogik is
    pragma Elaborate_Body;
 

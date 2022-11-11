@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with RassenDatentypen; use RassenDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
 with KartenDatentypen; use KartenDatentypen;

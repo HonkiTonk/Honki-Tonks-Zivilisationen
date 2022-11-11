@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with KartenverbesserungDatentypen; use KartenverbesserungDatentypen;
 with AufgabenDatentypen; use AufgabenDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;

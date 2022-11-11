@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with Sf.Window.Keyboard;
 with Sf.Window.Mouse;
 with Sf.System.Vector2;

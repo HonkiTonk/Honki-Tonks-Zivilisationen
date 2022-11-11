@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 private with Sf.Window.Keyboard;

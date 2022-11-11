@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with KIEinheitFestlegenBewachenLogik;
 with KIEinheitFestlegenHeilenLogik;
 with KIEinheitFestlegenModernisierenLogik;

@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 private with Sf.Window.Event;
 
 package TexteingabeGrafik is

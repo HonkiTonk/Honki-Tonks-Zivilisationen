@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with ProduktionDatentypen; use ProduktionDatentypen;
 with DiplomatieDatentypen; use DiplomatieDatentypen;
 with EinheitenKonstanten;

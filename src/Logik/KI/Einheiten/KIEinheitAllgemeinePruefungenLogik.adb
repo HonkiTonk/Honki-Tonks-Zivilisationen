@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with EinheitenRecords; use EinheitenRecords;
 with EinheitenDatentypen; use EinheitenDatentypen;
 with EinheitenKonstanten;

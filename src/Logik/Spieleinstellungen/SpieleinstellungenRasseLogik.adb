@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with ZahlenDatentypen; use ZahlenDatentypen;
 with LadezeitenDatentypen; use LadezeitenDatentypen;
 with KartengrundDatentypen; use KartengrundDatentypen;

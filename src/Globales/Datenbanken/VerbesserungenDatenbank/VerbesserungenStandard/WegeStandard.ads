@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with KartenverbesserungDatentypen;
 with EinheitenDatentypen;
 with KartendatenbankRecord;

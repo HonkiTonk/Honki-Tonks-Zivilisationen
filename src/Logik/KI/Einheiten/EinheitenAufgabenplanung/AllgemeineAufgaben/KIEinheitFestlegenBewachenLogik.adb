@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with EinheitenDatentypen; use EinheitenDatentypen;
 with EinheitenKonstanten;
 with KartenKonstanten;
@@ -19,9 +17,7 @@ package body KIEinheitFestlegenBewachenLogik is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
-      
-      EinheitNummer := 1;
-      
+            
       StadtSchleife:
       for StadtNummerSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Städtegrenze loop
          
@@ -31,7 +27,7 @@ package body KIEinheitFestlegenBewachenLogik is
            Stadtkoordinaten.XAchse
          is
             when KartenKonstanten.LeerXAchse =>
-               null;
+               EinheitNummer := 1;
                
             when others =>
                EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,

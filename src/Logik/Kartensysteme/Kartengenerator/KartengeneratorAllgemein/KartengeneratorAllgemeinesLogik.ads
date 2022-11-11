@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 package KartengeneratorAllgemeinesLogik is
    pragma Elaborate_Body;
    

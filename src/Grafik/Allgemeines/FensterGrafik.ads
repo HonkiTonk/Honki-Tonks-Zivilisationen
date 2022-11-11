@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 package FensterGrafik is
    pragma Elaborate_Body;
 

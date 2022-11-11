@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with KartengeneratorHimmelLogik;
 with KartengeneratorWeltraumLogik;
 with KartengeneratorPlanetenkernLogik;

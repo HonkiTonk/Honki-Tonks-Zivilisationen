@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 package KartenverbesserungDatentypen is
    pragma Pure;
 

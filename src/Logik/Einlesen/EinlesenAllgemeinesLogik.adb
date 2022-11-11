@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with Warnung;
 
 package body EinlesenAllgemeinesLogik is

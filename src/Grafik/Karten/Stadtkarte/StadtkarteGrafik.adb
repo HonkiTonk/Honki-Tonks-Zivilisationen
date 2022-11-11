@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with KartenDatentypen; use KartenDatentypen;
 with StadtDatentypen; use StadtDatentypen;
 with Views;

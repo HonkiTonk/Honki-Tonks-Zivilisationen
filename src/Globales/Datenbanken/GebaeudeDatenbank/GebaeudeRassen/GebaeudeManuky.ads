@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with StadtKonstanten;with StadtRecordKonstanten;
 with GebaeudedatenbankRecord;
 with ProduktionDatentypen;

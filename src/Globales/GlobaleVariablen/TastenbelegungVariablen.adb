@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 package body TastenbelegungVariablen is
    
    procedure StandardTastenbelegungLaden

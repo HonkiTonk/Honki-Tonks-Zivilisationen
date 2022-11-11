@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with Sf.Window.Keyboard; use Sf.Window.Keyboard;
 
 with RueckgabeDatentypen;

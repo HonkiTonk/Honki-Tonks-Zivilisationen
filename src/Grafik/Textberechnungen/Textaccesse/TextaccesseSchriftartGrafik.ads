@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 package TextaccesseSchriftartGrafik is
    pragma Elaborate_Body;
 

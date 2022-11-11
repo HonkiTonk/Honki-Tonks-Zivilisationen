@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with KIDatentypen; use KIDatentypen;
 
 -- Grenzprüfungen auch für andere Werte einbauen/auslagern. äöü

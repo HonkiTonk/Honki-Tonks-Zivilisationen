@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with ForschungenDatentypen; use ForschungenDatentypen;
 with ProduktionDatentypen; use ProduktionDatentypen;
 with LadezeitenDatentypen;

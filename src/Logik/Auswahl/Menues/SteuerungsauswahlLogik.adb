@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with TastenbelegungDatentypen; use TastenbelegungDatentypen;
 with BefehleDatentypen; use BefehleDatentypen;
 with InteraktionAuswahl;

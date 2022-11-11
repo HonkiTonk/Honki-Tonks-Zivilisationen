@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with Ada.Calendar; use Ada.Calendar;
 
 private with Sf.System.Vector2;

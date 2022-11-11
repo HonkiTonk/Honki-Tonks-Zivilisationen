@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 private with KartengrundDatentypen;
 
 package KartenDatenbankeneditorLogik is

@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with EinheitenDatenbank;
 with ForschungenDatenbank;
 with GebaeudeDatenbank;

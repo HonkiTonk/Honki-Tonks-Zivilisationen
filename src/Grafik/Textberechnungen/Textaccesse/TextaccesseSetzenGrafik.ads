@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 package TextaccesseSetzenGrafik is
    pragma Elaborate_Body;
 

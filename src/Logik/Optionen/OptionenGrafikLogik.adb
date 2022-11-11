@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with GrafikDatentypen; use GrafikDatentypen;
 with TextnummernKonstanten;
 with ZahlenDatentypen;

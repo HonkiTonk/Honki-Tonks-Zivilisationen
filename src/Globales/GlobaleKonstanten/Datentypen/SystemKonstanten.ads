@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with MenueDatentypen;
 
 -- Das hier mal aufteilen und anders benennen, ist ja hauptsächlich Menüzeug. äöü

@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with Sf.Graphics.Texture;
 
 with EinheitenDatentypen; use EinheitenDatentypen;

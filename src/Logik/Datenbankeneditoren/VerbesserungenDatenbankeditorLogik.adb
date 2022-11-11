@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 -- with VerbesserungenDatenbank;
 
 package body VerbesserungenDatenbankeditorLogik is

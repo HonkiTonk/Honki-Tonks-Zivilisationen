@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with DiplomatieDatentypen; use DiplomatieDatentypen;
 with WichtigesKonstanten;
 with TextnummernKonstanten;

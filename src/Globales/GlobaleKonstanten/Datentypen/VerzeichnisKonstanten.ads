@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 package VerzeichnisKonstanten is
    pragma Pure;
 

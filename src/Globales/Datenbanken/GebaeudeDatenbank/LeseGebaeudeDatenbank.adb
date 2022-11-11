@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with GebaeudeDatenbank;
 
 package body LeseGebaeudeDatenbank is

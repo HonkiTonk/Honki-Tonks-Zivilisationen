@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with EinheitenDatentypen; use EinheitenDatentypen;
 with KartenRecords; use KartenRecords;
 with KartenKonstanten;
@@ -252,9 +250,9 @@ package body KIBewegungsplanBerechnenLogik is
                                                EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       is
          when KIKonstanten.BewegungAngriff | KIKonstanten.BewegungNormal =>
-            return KIBewegungsbewertungLogik.Positionsbewertung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                 KoordinatenExtern        => KoordinatenExtern,
-                                                                 NeueKoordinatenExtern    => KartenWert);
+            return KIBewegungsbewertungLogik.Positionsbewertung (EinheitRasseNummerExtern  => EinheitRasseNummerExtern,
+                                                                 AktuelleKoordinatenExtern => KoordinatenExtern,
+                                                                 NeueKoordinatenExtern     => KartenWert);
             
             -- Hier später noch einmal anpassen. äöü
          when KIKonstanten.Tauschbewegung =>

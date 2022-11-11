@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 private with Sf.Graphics;
 private with Sf.Graphics.Color;
 private with Sf.Graphics.ConvexShape;

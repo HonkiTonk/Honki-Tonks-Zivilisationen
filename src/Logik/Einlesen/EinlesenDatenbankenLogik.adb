@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with Ada.Directories; use Ada.Directories;
 
 with VerzeichnisKonstanten;

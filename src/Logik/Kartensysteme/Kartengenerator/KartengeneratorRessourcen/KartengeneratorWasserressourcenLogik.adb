@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with SystemDatentypen; use SystemDatentypen;
 
 with SchreibeWeltkarte;

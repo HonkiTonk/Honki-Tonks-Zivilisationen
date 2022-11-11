@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with KIKriegErmittelnLogik;
 
 package body KIEinheitUmsetzenAngreifenLogik is

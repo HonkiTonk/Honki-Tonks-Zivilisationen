@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with MenueDatentypen;
 with SystemRecords;
 

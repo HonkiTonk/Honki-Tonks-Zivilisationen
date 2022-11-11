@@ -1,8 +1,7 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with EinheitenDatentypen; use EinheitenDatentypen;
 with KartenRecords; use KartenRecords;
 with EinheitenKonstanten;
+with KartenRecordKonstanten;
 
 with LeseEinheitenGebaut;
 
@@ -57,7 +56,11 @@ package body KIAufgabenVerteiltLogik is
          if
            LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerSchleifenwert)) = AufgabeExtern
            and
-             LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerSchleifenwert)) = ZielKoordinatenExtern
+             (LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerSchleifenwert)) = ZielKoordinatenExtern
+              or
+                (LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerSchleifenwert)) = ZielKoordinatenExtern
+                 and
+                   LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerSchleifenwert)) = KartenRecordKonstanten.LeerKoordinate))
          then
             return True;
             

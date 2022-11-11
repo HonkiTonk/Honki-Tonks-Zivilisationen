@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 package StartEndeMusik is
 
    procedure Abspielen;

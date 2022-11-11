@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 package SystemDatentypen is
    pragma Pure;
 

@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with Sf.System.Vector2;
 with Sf.Graphics.Color;
 

@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 package KIDatentypen is
    pragma Pure;
 
@@ -27,7 +25,9 @@ package KIDatentypen is
 
    -- Größe später besser anpassen. äöü
    type BauenBewertung is range -500 .. 500;
-   subtype BewegungBewertung is BauenBewertung range 0 .. 20;
+   subtype BewegungBewertung is BauenBewertung range 0 .. 30;
+   -- Diese Arte der Bereichseinteilung auch anderswo verwenden? äöü
+   subtype Achsenbewertung is BewegungBewertung range 0 .. BewegungBewertung'Last / 3;
 
    -- Die beiden Bewertungen zusammenführen, warum sind die überhaupt getrennt? äöü
    type AufgabenWichtigkeit is range -100 .. 100;

@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 private with RueckgabeDatentypen;
 private with KartenDatentypen;
 private with SystemRecords;

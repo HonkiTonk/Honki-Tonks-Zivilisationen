@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with Sf.Graphics; use Sf.Graphics;
 
 package TextberechnungenBreiteGrafik is

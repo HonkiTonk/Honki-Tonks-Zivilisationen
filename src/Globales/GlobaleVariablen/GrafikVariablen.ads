@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 package GrafikVariablen is
 
    -- Alle Textbereiche in ein Enum eintragen, dann hier ein Array anlegen und nachprüfen lassen ob der jeweilige Bereich schon True/False ist? äöü

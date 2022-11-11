@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with StadtRecords;
 with StadtKonstanten;
 with KartenRecordKonstanten;

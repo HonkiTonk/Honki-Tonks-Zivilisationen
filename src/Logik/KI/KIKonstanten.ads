@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with SpielDatentypen;
 
 with KIDatentypen; use KIDatentypen;

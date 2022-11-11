@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with ForschungenDatentypen;
 with RassenDatentypen;
 with ForschungKonstanten;

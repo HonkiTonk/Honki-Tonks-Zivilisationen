@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with KartenKonstanten;
 with GrafikRecordKonstanten;
 with Views;

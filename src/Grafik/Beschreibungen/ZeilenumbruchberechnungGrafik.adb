@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with Ada.Characters.Wide_Wide_Latin_1;
 
 with Sf.Graphics.Text;

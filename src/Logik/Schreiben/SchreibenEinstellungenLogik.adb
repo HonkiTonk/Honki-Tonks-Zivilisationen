@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with OptionenVariablen;
 with SystemRecords;
 with VerzeichnisKonstanten;

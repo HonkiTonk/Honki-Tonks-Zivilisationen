@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with KartengrundEditorGrafik;
 
 package body EditorenGrafik is

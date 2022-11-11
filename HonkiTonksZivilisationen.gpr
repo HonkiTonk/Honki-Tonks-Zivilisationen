@@ -15,10 +15,12 @@ project HonkiTonksZivilisationen is
    package Compiler is
       for Switches ("ada") use ("-gnatW8", "-gnatf", "-gnat2020", "-g", "-gnata", "-fstack-check", "-gnato", "-gnatVacdefimoprst", 
          "-gnatw.a.b.c.d.f.g.h.i.j.k.l.m.n.o.p.q.r.s.t.v.w.x.zcdghiklmopqrtuvwxyz_c_re.u_pajf", "-gnatyACOSadefhiklnprsxM222L7");
+      for Local_Configuration_Pragmas use "Lokale Pragmas";
    end Compiler;
 
    package Builder is
       for Switches ("ada") use ("-k", "-s", "-C", "-gnatW8", "-j4");
+      for Global_Configuration_Pragmas use "";
    end Builder;
 
    package Binder is

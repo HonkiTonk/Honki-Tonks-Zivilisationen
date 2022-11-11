@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with RasseMenschen;
 with RasseKasrodiah;
 with RasseLasupin;

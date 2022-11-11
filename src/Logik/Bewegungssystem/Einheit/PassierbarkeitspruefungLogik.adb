@@ -1,8 +1,7 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with EinheitenDatentypen; use EinheitenDatentypen;
 with KartenverbesserungDatentypen; use KartenverbesserungDatentypen;
 with StadtDatentypen; use StadtDatentypen;
+with KartengrundDatentypen;
 with KartenKonstanten;
 with StadtKonstanten;
 
@@ -163,6 +162,18 @@ package body PassierbarkeitspruefungLogik is
          when others =>
             return LeseVerbesserungenDatenbank.PassierbarkeitWeg (WegExtern            => WegVorhanden,
                                                                   WelcheUmgebungExtern => UmgebungExtern);
+      end case;
+      
+      -- Notwendig da sonst auch Schiffe über Schienen verschoben werden können. äöü
+      -- Wobei das vielleicht eine interessante Idee wäre. äöü
+      case
+        LeseWeltkarte.Basisgrund (KoordinatenExtern => NeueKoordinatenExtern)
+      is
+         when KartengrundDatentypen.Wasser_Enum | KartengrundDatentypen.Küstengewässer_Enum =>
+            null;
+            
+         when others =>
+            return False;
       end case;
       
       -- Diese Prüfung für die Ekropa später noch einmal überarbeiten und auch die vorhandene Forschung berücksichtigen. äöü

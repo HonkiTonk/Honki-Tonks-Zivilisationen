@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with Menuetexte;
 
 package body MenuestringsSetzenGrafik is

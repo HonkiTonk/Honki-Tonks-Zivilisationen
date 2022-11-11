@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 with Sf.Graphics.Font;
 
 package body TexteinstellungenGrafik is

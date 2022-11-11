@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 package KIEinheitFestlegenVerteidigenLogik is
    pragma Elaborate_Body;
 

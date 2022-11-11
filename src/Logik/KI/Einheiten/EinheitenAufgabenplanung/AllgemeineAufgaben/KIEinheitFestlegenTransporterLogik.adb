@@ -1,5 +1,3 @@
-pragma Warnings (Off, "*array aggregate*");
-
 package body KIEinheitFestlegenTransporterLogik is
 
    function AbholungAbwarten
