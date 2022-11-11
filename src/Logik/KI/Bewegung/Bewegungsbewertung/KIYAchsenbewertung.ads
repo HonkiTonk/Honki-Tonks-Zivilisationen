@@ -13,12 +13,21 @@ package KIYAchsenbewertung is
 
 private
 
+   type BewertungArray is array (Boolean'Range) of KIDatentypen.Achsenbewertung;
+   Bewertung : BewertungArray;
+
    ZwischenspeicherAktuell : Integer;
    ZwischenspeicherNeu : Integer;
 
 
 
-   function Standardübergang
+   function StandardübergangNorden
+     (ZielpunktExtern : in KartenDatentypen.KartenfeldPositiv;
+      AktuellerPunktExtern : in KartenDatentypen.KartenfeldPositiv;
+      NeuerPunktExtern : in KartenDatentypen.KartenfeldPositiv)
+      return KIDatentypen.Achsenbewertung;
+
+   function StandardübergangSüden
      (ZielpunktExtern : in KartenDatentypen.KartenfeldPositiv;
       AktuellerPunktExtern : in KartenDatentypen.KartenfeldPositiv;
       NeuerPunktExtern : in KartenDatentypen.KartenfeldPositiv)

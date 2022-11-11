@@ -1,11 +1,7 @@
-with EinheitenDatentypen; use EinheitenDatentypen;
-with EinheitenKonstanten;
 with KartenKonstanten;
 
 with LeseStadtGebaut;
 with SchreibeEinheitenGebaut;
-
-with EinheitSuchenLogik;
 
 with KIDatentypen;
 
@@ -27,20 +23,18 @@ package body KIEinheitFestlegenBewachenLogik is
            Stadtkoordinaten.XAchse
          is
             when KartenKonstanten.LeerXAchse =>
-               EinheitNummer := 1;
+               StadtVorhanden := False;
                
             when others =>
-               EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                                                     KoordinatenExtern => Stadtkoordinaten,
-                                                                                     LogikGrafikExtern => True);
+               StadtVorhanden := True;
          end case;
          
          if
-           EinheitNummer = EinheitenKonstanten.LeerNummer
+           StadtVorhanden
            and
-             False = KIAufgabenVerteiltLogik.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Stadt_Bewachen_Enum,
-                                                                 RasseExtern           => EinheitRasseNummerExtern.Rasse,
-                                                                 ZielKoordinatenExtern => Stadtkoordinaten)
+             (False = KIAufgabenVerteiltLogik.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Stadt_Bewachen_Enum,
+                                                                  RasseExtern           => EinheitRasseNummerExtern.Rasse,
+                                                                  ZielKoordinatenExtern => Stadtkoordinaten))
          then
             SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                        KoordinatenExtern        => Stadtkoordinaten);

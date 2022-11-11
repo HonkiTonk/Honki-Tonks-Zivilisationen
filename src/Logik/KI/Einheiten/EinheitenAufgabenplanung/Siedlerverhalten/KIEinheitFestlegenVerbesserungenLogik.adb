@@ -109,6 +109,8 @@ package body KIEinheitFestlegenVerbesserungenLogik is
             XAchseSchleife:
             for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
                
+               -- Den Schleifenbereich verschieben, ist ja in beiden Schleifen gleich. äöü
+               -- Dann per Münzwurf auf die jeweilige Schleife verweisen? äöü
                VerbesserungKoordinaten := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => EinheitKoordinaten,
                                                                                                                       ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                                                                       LogikGrafikExtern => True);

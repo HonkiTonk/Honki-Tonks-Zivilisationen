@@ -126,23 +126,27 @@ package ChangelogNovember2022 is
    
    
 
-   -- Version 0.04. => 0.04. (12.11.2022):
+   -- Version 0.04.3390 => 0.04. (12.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.3320 => 0.04. (11.11.2022):
+   -- Version 0.04.3320 => 0.04.3390 (11.11.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- KI überarbeitet.
+   -- Bewegungsplanberechnung der KI überarbeitet.
+   -- Angefangen die Berechnungen der KI weniger vorhersagbar zu gestalten.
+   -- Die KI ist jetzt besser in der Lage einen Weg zu Berechnen, wenn beliebige Übergängsarten für die Achsen eingestellt sind.
+   -- Aufgabenprüfung der KI überarbeitet.
+   -- Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    
 
    -- Version 0.04.3220 => 0.04.3320 (10.11.2022):
    
-   -- Fehler behoben durch den die Ekropa Schiffe über Schienen bewegen konnte.
+   -- Fehler behoben durch den die Ekropa Schiffe über Schienen bewegen konnten.
    -- Versionsnummerberechnung angepasst.
    -- pragma Warnings (Off, "*array aggregate*"); in eine Datei ausgelagert.
    -- Unnötigen Code gelöscht.

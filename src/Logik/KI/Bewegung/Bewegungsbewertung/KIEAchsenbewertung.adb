@@ -1,7 +1,11 @@
 with KartenartDatentypen; use KartenartDatentypen;
-with KartenDatentypen; use KartenDatentypen;
 with Weltkarte;
 
+with KIKonstanten;
+
+with KIZufallsbewertungLogik;
+
+-- Für eine bessere Bewertung muss ich vermutlich ein System ähnlich der Koordinatenberechnung bauen. äöü
 package body KIEAchsenbewertung is
 
    function EAchseBewerten
@@ -30,74 +34,106 @@ package body KIEAchsenbewertung is
       then
          return 5;
          
+      elsif
+      abs (Ebenenumrechnung (ZielebeneExtern) - Ebenenumrechnung (NeueEbeneExtern)) < abs (Ebenenumrechnung (ZielebeneExtern) - Ebenenumrechnung (AktuelleEbeneExtern))
+      then
+         return 7;
+         
       else
-         EntfernungZiel := 0;
-         EntfernungAlt := 0;
-         EntfernungNeu := 0;
+         null;
+      end if;
+      
+      case
+        Weltkarte.Karteneinstellungen.Kartenform.EAchseOben
+      is
+         when KartenartDatentypen.Karte_E_Kein_Übergang_Enum =>
+            Bewertung (True) := KIKonstanten.LeerBewertung;
+            
+         when KartenartDatentypen.Karte_E_Übergang_Enum =>
+            Bewertung (True) := StandardübergangOben (ZielebeneExtern     => ZielebeneExtern,
+                                                       AktuelleEbeneExtern => AktuelleEbeneExtern,
+                                                       NeueEbeneExtern     => NeueEbeneExtern);
+      end case;
+      
+      case
+        Weltkarte.Karteneinstellungen.Kartenform.EAchseUnten
+      is
+         when KartenartDatentypen.Karte_E_Kein_Übergang_Enum =>
+            Bewertung (False) := KIKonstanten.LeerBewertung;
+            
+         when KartenartDatentypen.Karte_E_Übergang_Enum =>
+            Bewertung (False) := StandardübergangUnten (ZielebeneExtern     => ZielebeneExtern,
+                                                         AktuelleEbeneExtern => AktuelleEbeneExtern,
+                                                         NeueEbeneExtern     => NeueEbeneExtern);
+      end case;
+      
+      return KIZufallsbewertungLogik.Bewertung (BewertungEinsExtern => Bewertung (True),
+                                                BewertungZweiExtern => Bewertung (False));
+   
+   end EAchseBewerten;
+   
+   
+   
+   function StandardübergangOben
+     (ZielebeneExtern : in KartenDatentypen.EbeneVorhanden;
+      AktuelleEbeneExtern : in KartenDatentypen.EbeneVorhanden;
+      NeueEbeneExtern : in KartenDatentypen.EbeneVorhanden)
+      return KIDatentypen.Achsenbewertung
+   is begin
+      
+      if
+        Ebenenumrechnung (NeueEbeneExtern) > Ebenenumrechnung (AktuelleEbeneExtern)
+        and
+          Ebenenumrechnung (AktuelleEbeneExtern) > Ebenenumrechnung (ZielebeneExtern)
+      then
+         ZwischenspeicherNeu := Ebenenumrechnung (ZielebeneExtern) - Ebenenumrechnung (NeueEbeneExtern) + Ebenenumrechnung (KartenDatentypen.EbeneVorhanden'Last);
+         ZwischenspeicherAktuell := Ebenenumrechnung (AktuelleEbeneExtern) - Ebenenumrechnung (ZielebeneExtern);
+                  
+      else
+         return KIKonstanten.LeerBewertung;
       end if;
       
       if
-        Weltkarte.Karteneinstellungen.Kartenform.EAchseOben = KartenartDatentypen.Karte_E_Kein_Übergang_Enum
-        and
-          Weltkarte.Karteneinstellungen.Kartenform.EAchseUnten = KartenartDatentypen.Karte_E_Kein_Übergang_Enum
+        ZwischenspeicherNeu < ZwischenspeicherAktuell
       then
-         TestSchleife:
-         for TestSchleifenwert in KartenDatentypen.EbeneVorhanden'Range loop
-            
-            if
-              TestSchleifenwert >= ZielebeneExtern
-            then
-               EntfernungZiel := EntfernungZiel + 1;
-               
-            else
-               null;
-            end if;
-            
-            if
-              TestSchleifenwert >= AktuelleEbeneExtern
-            then
-               EntfernungAlt := EntfernungAlt + 1;
-               
-            else
-               null;
-            end if;
-            
-            if
-              TestSchleifenwert >= NeueEbeneExtern
-            then
-               EntfernungNeu := EntfernungNeu + 1;
-               
-            else
-               null;
-            end if;
-            
-         end loop TestSchleife;
-         
-         if
-         abs (EntfernungNeu - EntfernungZiel) < abs (EntfernungAlt - EntfernungZiel)
-         then
-            return 7;
-            
-         else
-            return 3;
-         end if;
-         
-      elsif
-        Weltkarte.Karteneinstellungen.Kartenform.EAchseOben = KartenartDatentypen.Karte_E_Kein_Übergang_Enum
-      then
-         null;
-         
-      elsif
-        Weltkarte.Karteneinstellungen.Kartenform.EAchseUnten = KartenartDatentypen.Karte_E_Kein_Übergang_Enum
-      then
-         null;
+         return 7;
          
       else
-         null;
+         return KIKonstanten.LeerBewertung;
       end if;
       
-      return 0;
+   end StandardübergangOben;
    
-   end EAchseBewerten;
+   
+   
+   function StandardübergangUnten
+     (ZielebeneExtern : in KartenDatentypen.EbeneVorhanden;
+      AktuelleEbeneExtern : in KartenDatentypen.EbeneVorhanden;
+      NeueEbeneExtern : in KartenDatentypen.EbeneVorhanden)
+      return KIDatentypen.Achsenbewertung
+   is begin
+      
+      if
+        Ebenenumrechnung (ZielebeneExtern) > Ebenenumrechnung (AktuelleEbeneExtern)
+        and
+          Ebenenumrechnung (AktuelleEbeneExtern) > Ebenenumrechnung (NeueEbeneExtern)
+      then
+         ZwischenspeicherNeu := Ebenenumrechnung (NeueEbeneExtern) - Ebenenumrechnung (ZielebeneExtern) + Ebenenumrechnung (KartenDatentypen.EbeneVorhanden'Last);
+         ZwischenspeicherAktuell := Ebenenumrechnung (ZielebeneExtern) - Ebenenumrechnung (AktuelleEbeneExtern);
+         
+      else
+         return KIKonstanten.LeerBewertung;
+      end if;
+      
+      if
+        ZwischenspeicherNeu < ZwischenspeicherAktuell
+      then
+         return 7;
+         
+      else
+         return KIKonstanten.LeerBewertung;
+      end if;
+      
+   end StandardübergangUnten;
 
 end KIEAchsenbewertung;

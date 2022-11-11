@@ -2,6 +2,11 @@ with KartenDatentypen; use KartenDatentypen;
 with KartenartDatentypen; use KartenartDatentypen;
 with Weltkarte;
 
+with KIKonstanten;
+
+with KIZufallsbewertungLogik;
+
+-- Für eine bessere Bewertung muss ich vermutlich ein System ähnlich der Koordinatenberechnung bauen. äöü
 package body KIYAchsenbewertung is
 
    function YAchseBewerten
@@ -39,47 +44,54 @@ package body KIYAchsenbewertung is
          null;
       end if;
       
-      if
-        Weltkarte.Karteneinstellungen.Kartenform.YAchseNorden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
-        and
-          Weltkarte.Karteneinstellungen.Kartenform.YAchseSüden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
-      then
-         null;
-         
-      elsif
-        Weltkarte.Karteneinstellungen.Kartenform.YAchseNorden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
-        and
-          Weltkarte.Karteneinstellungen.Kartenform.YAchseSüden = KartenartDatentypen.Karte_Y_Übergang_Enum
-      then
-         null;
-         
-      elsif
-        Weltkarte.Karteneinstellungen.Kartenform.YAchseNorden = KartenartDatentypen.Karte_Y_Übergang_Enum
-        and
-          Weltkarte.Karteneinstellungen.Kartenform.YAchseSüden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
-      then
-         null;
-         
-      elsif
-        Weltkarte.Karteneinstellungen.Kartenform.YAchseNorden = KartenartDatentypen.Karte_Y_Übergang_Enum
-        and
-          Weltkarte.Karteneinstellungen.Kartenform.YAchseSüden = KartenartDatentypen.Karte_Y_Übergang_Enum
-      then
-         return Standardübergang (ZielpunktExtern      => ZielpunktExtern,
-                                   AktuellerPunktExtern => AktuellerPunktExtern,
-                                   NeuerPunktExtern     => NeuerPunktExtern);
-         
-      else
-         null;
-      end if;
+      case
+        Weltkarte.Karteneinstellungen.Kartenform.YAchseNorden
+      is
+         when KartenartDatentypen.Karte_Y_Kein_Übergang_Enum =>
+            Bewertung (True) := KIKonstanten.LeerBewertung;
+            
+         when KartenartDatentypen.Karte_Y_Übergang_Enum =>
+            Bewertung (True) := StandardübergangNorden (ZielpunktExtern      => ZielpunktExtern,
+                                                         AktuellerPunktExtern => AktuellerPunktExtern,
+                                                         NeuerPunktExtern     => NeuerPunktExtern);
+            
+         when KartenartDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum =>
+            Bewertung (True) := KIKonstanten.LeerBewertung;
+            
+         when KartenartDatentypen.Karte_Y_Verschobener_Übergang_Enum =>
+            Bewertung (True) := StandardübergangNorden (ZielpunktExtern      => ZielpunktExtern,
+                                                         AktuellerPunktExtern => AktuellerPunktExtern,
+                                                         NeuerPunktExtern     => NeuerPunktExtern);
+      end case;
       
-      return 0;
+      case
+        Weltkarte.Karteneinstellungen.Kartenform.YAchseSüden
+      is
+         when KartenartDatentypen.Karte_Y_Kein_Übergang_Enum =>
+            Bewertung (False) := KIKonstanten.LeerBewertung;
+            
+         when KartenartDatentypen.Karte_Y_Übergang_Enum =>
+            Bewertung (False) := StandardübergangSüden (ZielpunktExtern      => ZielpunktExtern,
+                                                          AktuellerPunktExtern => AktuellerPunktExtern,
+                                                          NeuerPunktExtern     => NeuerPunktExtern);
+            
+         when KartenartDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum =>
+            Bewertung (False) := KIKonstanten.LeerBewertung;
+            
+         when KartenartDatentypen.Karte_Y_Verschobener_Übergang_Enum =>
+            Bewertung (False) := StandardübergangSüden (ZielpunktExtern      => ZielpunktExtern,
+                                                          AktuellerPunktExtern => AktuellerPunktExtern,
+                                                          NeuerPunktExtern     => NeuerPunktExtern);
+      end case;
+      
+      return KIZufallsbewertungLogik.Bewertung (BewertungEinsExtern => Bewertung (True),
+                                                BewertungZweiExtern => Bewertung (False));
       
    end YAchseBewerten;
    
    
    
-   function Standardübergang
+   function StandardübergangNorden
      (ZielpunktExtern : in KartenDatentypen.KartenfeldPositiv;
       AktuellerPunktExtern : in KartenDatentypen.KartenfeldPositiv;
       NeuerPunktExtern : in KartenDatentypen.KartenfeldPositiv)
@@ -92,29 +104,53 @@ package body KIYAchsenbewertung is
           AktuellerPunktExtern < ZielpunktExtern
       then
          ZwischenspeicherNeu := Positive (NeuerPunktExtern) - Positive (ZielpunktExtern) + Positive (Weltkarte.Karteneinstellungen.Kartengröße.YAchse);
-         ZwischenspeicherAktuell := Positive (AktuellerPunktExtern) - Positive (ZielpunktExtern) + Positive (Weltkarte.Karteneinstellungen.Kartengröße.YAchse);
+         ZwischenspeicherAktuell := Positive (ZielpunktExtern) - Positive (AktuellerPunktExtern);
+                  
+      else
+         return KIKonstanten.LeerBewertung;
+      end if;
+      
+      if
+        ZwischenspeicherNeu < ZwischenspeicherAktuell
+      then
+         return 7;
          
-      elsif
+      else
+         return KIKonstanten.LeerBewertung;
+      end if;
+      
+   end StandardübergangNorden;
+   
+   
+   
+   function StandardübergangSüden
+     (ZielpunktExtern : in KartenDatentypen.KartenfeldPositiv;
+      AktuellerPunktExtern : in KartenDatentypen.KartenfeldPositiv;
+      NeuerPunktExtern : in KartenDatentypen.KartenfeldPositiv)
+      return KIDatentypen.Achsenbewertung
+   is begin
+      
+      if
         ZielpunktExtern < AktuellerPunktExtern
         and
           AktuellerPunktExtern < NeuerPunktExtern
       then
          ZwischenspeicherNeu := Positive (ZielpunktExtern) - Positive (NeuerPunktExtern) + Positive (Weltkarte.Karteneinstellungen.Kartengröße.YAchse);
-         ZwischenspeicherAktuell := Positive (ZielpunktExtern) - Positive (AktuellerPunktExtern) + Positive (Weltkarte.Karteneinstellungen.Kartengröße.YAchse);
+         ZwischenspeicherAktuell := Positive (AktuellerPunktExtern) - Positive (ZielpunktExtern);
          
       else
-         return 0;
+         return KIKonstanten.LeerBewertung;
       end if;
       
       if
-        ZwischenspeicherAktuell < ZwischenspeicherNeu
+        ZwischenspeicherNeu < ZwischenspeicherAktuell
       then
          return 7;
          
       else
-         return 0;
+         return KIKonstanten.LeerBewertung;
       end if;
       
-   end Standardübergang;
+   end StandardübergangSüden;
 
 end KIYAchsenbewertung;

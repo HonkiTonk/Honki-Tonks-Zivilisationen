@@ -2,7 +2,6 @@ with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
 with EinheitenRecords;
 
-private with EinheitenDatentypen;
 private with KartenRecords;
 
 package KIEinheitFestlegenBewachenLogik is
@@ -20,7 +19,7 @@ package KIEinheitFestlegenBewachenLogik is
    
 private
    
-   EinheitNummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   StadtVorhanden : Boolean;
    
    Stadtkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
 

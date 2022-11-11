@@ -51,5 +51,7 @@ package KIAufgabenVerteiltLogik is
 private
      
    GleicheAufgabe : Natural;
+   
+   Zielkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
 
 end KIAufgabenVerteiltLogik;
