@@ -1,4 +1,4 @@
-with StadtDatentypen; use StadtDatentypen;
+with StadtKonstanten;
 
 with LeseWichtiges;
 
@@ -18,12 +18,15 @@ package body KISiedleraufgabenLogik is
 
    procedure KISiedleraufgabenLogik
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-   is begin
+   is
+      -- Das hier mal überall einbauen? äöü
+      use type StadtDatentypen.MaximaleStädteMitNullWert;
+   begin
       
       VorhandeneStädte := LeseWichtiges.AnzahlStädte (RasseExtern => EinheitRasseNummerExtern.Rasse);
       
       if
-        VorhandeneStädte = 0
+        VorhandeneStädte = StadtKonstanten.LeerNummer
         and then
           KIEinheitFestlegenSiedelnLogik.StadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
       then

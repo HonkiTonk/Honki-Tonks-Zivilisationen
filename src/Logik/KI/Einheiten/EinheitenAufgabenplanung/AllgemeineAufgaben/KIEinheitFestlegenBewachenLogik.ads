@@ -19,8 +19,6 @@ package KIEinheitFestlegenBewachenLogik is
    
 private
    
-   StadtVorhanden : Boolean;
-   
    Stadtkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
 
 end KIEinheitFestlegenBewachenLogik;

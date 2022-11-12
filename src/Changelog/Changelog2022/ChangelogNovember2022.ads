@@ -119,16 +119,15 @@ package ChangelogNovember2022 is
    
    
 
-   -- Version 0.04. => 0.04. (13.11.2022):
+   -- Version 0.04.3410 => 0.04. (13.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.3390 => 0.04. (12.11.2022):
+   -- Version 0.04.3390 => 0.04.3410 (12.11.2022):
    
-   -- 
    -- Kleinigkeiten korrigiert.
    
    
