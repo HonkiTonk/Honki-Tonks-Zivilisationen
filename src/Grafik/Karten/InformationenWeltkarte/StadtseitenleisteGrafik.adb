@@ -1,9 +1,8 @@
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Text;
 
-with EinheitenDatentypen; use EinheitenDatentypen;
-with ProduktionDatentypen; use ProduktionDatentypen;
-with StadtDatentypen; use StadtDatentypen;
+with EinheitenDatentypen;
+with StadtDatentypen;
 with Meldungstexte;
 with TextnummernKonstanten;
 with TextKonstanten;
@@ -61,7 +60,9 @@ package body StadtseitenleisteGrafik is
       StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       AnzeigebereichExtern : in Sf.Graphics.Rect.sfFloatRect;
       ViewExtern : in Sf.Graphics.sfView_Ptr)
-   is begin
+   is
+      use type RassenDatentypen.Rassen_Enum;
+   begin
                         
       Leer (AnzeigebereichExtern => AnzeigebereichExtern,
             ViewExtern           => ViewExtern);
@@ -175,7 +176,9 @@ package body StadtseitenleisteGrafik is
    function Nahrung
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return Unbounded_Wide_Wide_String
-   is begin
+   is
+      use type ProduktionDatentypen.Produktion;
+   begin
       
       Nahrungsproduktion := LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
@@ -214,7 +217,10 @@ package body StadtseitenleisteGrafik is
    function AktuellesBauprojekt
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return Unbounded_Wide_Wide_String
-   is begin
+   is
+      use type StadtDatentypen.GebäudeIDMitNullwert;
+      use type EinheitenDatentypen.EinheitenIDMitNullWert;
+   begin
             
       Bauprojekt := LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern);
       

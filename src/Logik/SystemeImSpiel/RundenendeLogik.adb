@@ -1,4 +1,4 @@
-with DiplomatieDatentypen; use DiplomatieDatentypen;
+with DiplomatieDatentypen;
 with SystemDatentypen;
 with StadtKonstanten;
 with TextnummernKonstanten;
@@ -193,7 +193,9 @@ package body RundenendeLogik is
    
    procedure GeldForschung
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-   is begin
+   is
+      use type RassenDatentypen.Rassen_Enum;
+   begin
       
       if
         RasseExtern = RassenDatentypen.Ekropa_Enum
@@ -216,7 +218,10 @@ package body RundenendeLogik is
    
    procedure Diplomatie
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-   is begin
+   is
+      use type DiplomatieDatentypen.Status_Untereinander_Enum;
+      use type RassenDatentypen.Rassen_Enum;
+   begin
       
       RassenSchleife:
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop

@@ -1,4 +1,4 @@
-with KartenDatentypen; use KartenDatentypen;
+with KartenDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
 with KartenRecordKonstanten;
@@ -15,7 +15,9 @@ package body KIEinheitSuchenLogik is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       FeindExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KartenRecords.AchsenKartenfeldNaturalRecord
-   is begin
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
       
       Einheitenkoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       

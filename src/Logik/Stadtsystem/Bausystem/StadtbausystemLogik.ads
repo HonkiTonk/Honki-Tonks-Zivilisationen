@@ -1,13 +1,14 @@
-with RassenDatentypen; use RassenDatentypen;
-with StadtDatentypen; use StadtDatentypen;
-with EinheitenDatentypen; use EinheitenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
 with StadtRecords;
 
 private with KartenRecords;
+private with StadtDatentypen;
+private with EinheitenDatentypen;
 
 package StadtbausystemLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    procedure Bauen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
@@ -19,6 +20,8 @@ package StadtbausystemLogik is
               );
 
 private
+   use type StadtDatentypen.GebäudeIDMitNullwert;
+   use type EinheitenDatentypen.EinheitenIDMitNullWert;
 
    GebäudeBaubar : Boolean;
    EinheitenBaubar : Boolean;

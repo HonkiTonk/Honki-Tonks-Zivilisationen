@@ -1,4 +1,3 @@
-with Sf.Audio; use Sf.Audio;
 with Sf.Audio.SoundBuffer;
 
 with EingeleseneSounds;
@@ -6,7 +5,9 @@ with EingeleseneSounds;
 package body StartEndeSound is
 
    procedure Abspielen
-   is begin
+   is
+      use type Sf.Audio.sfSoundBuffer_Ptr;
+   begin
       
       -- Sound wird direkt parallel aufgerufen. Steht auch im SFML Tutorial und der Beschreibung der ASFML.
       if
@@ -25,7 +26,9 @@ package body StartEndeSound is
    
    
    procedure Stoppen
-   is begin
+   is
+      use type Sf.Audio.sfSoundBuffer_Ptr;
+   begin
       
       -- Anders als bei Musik scheint hier die Prüfung nicht notwendig zu sein?
       if

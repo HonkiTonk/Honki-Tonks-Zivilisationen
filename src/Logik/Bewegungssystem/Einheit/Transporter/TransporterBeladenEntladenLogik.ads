@@ -1,4 +1,4 @@
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
 with EinheitenDatentypen;
 with EinheitenRecords;
@@ -7,6 +7,7 @@ private with KartenRecords;
 
 package TransporterBeladenEntladenLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    function TransporterBeladen
      (TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord;

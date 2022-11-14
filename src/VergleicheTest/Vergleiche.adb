@@ -5,7 +5,9 @@ package body Vergleiche is
    function KoordinateLeervergleich
      (KoordinateExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
-   is begin
+   is
+      use type KartenDatentypen.Ebene;
+   begin
       
       if
         KoordinateExtern.EAchse /= KartenRecordKonstanten.LeerKoordinate.EAchse
@@ -28,7 +30,9 @@ package body Vergleiche is
      (KoordinateEinsExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       KoordinatenZweiExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
-   is begin
+   is
+      use type KartenDatentypen.Ebene;
+   begin
       
       if
         KoordinateEinsExtern.EAchse /= KoordinatenZweiExtern.EAchse

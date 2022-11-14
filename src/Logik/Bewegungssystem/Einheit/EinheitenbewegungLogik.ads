@@ -1,5 +1,5 @@
-with RassenDatentypen; use RassenDatentypen;
-with KartenDatentypen; use KartenDatentypen;
+with RassenDatentypen;
+with KartenDatentypen;
 with KartenRecords;
 with EinheitenRecords;
 with SpielVariablen;
@@ -9,6 +9,8 @@ private with StadtRecords;
 
 package EinheitenbewegungLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
+   use type KartenDatentypen.Kartenfeld;
    
    function NochBewegungspunkte
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

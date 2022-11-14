@@ -1,5 +1,5 @@
-with EinheitenDatentypen; use EinheitenDatentypen;
-with ProduktionDatentypen; use ProduktionDatentypen;
+with EinheitenDatentypen;
+with ProduktionDatentypen;
 with EinheitenKonstanten;
 
 with KIDatentypen;
@@ -53,7 +53,9 @@ package body VerbesserungFertiggestelltLogik is
 
    procedure VerbesserungFertiggestelltPrüfen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-   is begin
+   is
+      use type ProduktionDatentypen.Arbeitszeit;
+   begin
       
       case
         LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)

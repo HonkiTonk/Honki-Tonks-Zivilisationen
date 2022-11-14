@@ -1,5 +1,5 @@
-with AufgabenDatentypen; use AufgabenDatentypen;
-with KartenRecords; use KartenRecords;
+with AufgabenDatentypen;
+with KartenRecords;
 with EinheitenKonstanten;
 with KartenRecordKonstanten;
 
@@ -11,7 +11,7 @@ with EinheitenbewegungLogik;
 
 with Fehler;
 
-with KIDatentypen; use KIDatentypen;
+with KIDatentypen;
 
 with KIBewegungDurchfuehrenLogik;
 with KIEinheitAufgabenumsetzungLogik;
@@ -24,7 +24,11 @@ package body KIEinheitHandlungenLogik is
    function HandlungBeendet
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
-   is begin
+   is
+      use type AufgabenDatentypen.Einheiten_Aufgaben_Enum;
+      use type KIDatentypen.Einheit_Aufgabe_Enum;
+      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+   begin
       
       if
         LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= EinheitenKonstanten.LeerBeschäftigung
@@ -52,7 +56,10 @@ package body KIEinheitHandlungenLogik is
    function Aufgabenplanung
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
-   is begin
+   is
+      use type KIDatentypen.Einheit_Aufgabe_Enum;
+      use type AufgabenDatentypen.Einheiten_Aufgaben_Enum;
+   begin
       
       if
         LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= EinheitenKonstanten.LeerBeschäftigung
@@ -119,7 +126,10 @@ package body KIEinheitHandlungenLogik is
    function Aufgabenumsetzung
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
-   is begin
+   is
+      use type KIDatentypen.Einheit_Aufgabe_Enum;
+      use type AufgabenDatentypen.Einheiten_Aufgaben_Enum;
+   begin
       
       if
         LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= KIDatentypen.Leer_Aufgabe_Enum

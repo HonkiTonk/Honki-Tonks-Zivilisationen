@@ -1,4 +1,3 @@
-with Sf.Graphics; use Sf.Graphics;
 with Sf.Graphics.RenderWindow;
 
 with GrafikKonstanten;
@@ -14,7 +13,9 @@ package body HintergrundGrafik is
    procedure Hintergrund
      (HintergrundExtern : in GrafikDatentypen.Hintergrund_Enum;
       AbmessungenExtern : in Sf.System.Vector2.sfVector2f)
-   is begin
+   is
+      use type Sf.Graphics.sfTexture_Ptr;
+   begin
       
       if
         EingeleseneTexturenGrafik.HintergrundAccess (HintergrundExtern) = null
@@ -60,7 +61,9 @@ package body HintergrundGrafik is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       HintergrundExtern : in GrafikDatentypen.Rassenhintergrund_Vorhanden_Enum;
       AbmessungenExtern : in Sf.System.Vector2.sfVector2f)
-   is begin
+   is
+      use type Sf.Graphics.sfTexture_Ptr;
+   begin
       
       if
         EingeleseneTexturenGrafik.RassenhintergrundAccess (RasseExtern, HintergrundExtern) = null

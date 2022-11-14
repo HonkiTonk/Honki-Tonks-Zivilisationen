@@ -1,4 +1,4 @@
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
 with EinheitenDatentypen;
 with KartenverbesserungDatentypen;
@@ -7,6 +7,7 @@ with KampfDatentypen;
 
 package LeseVerbesserungenDatenbank is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
    
    function PassierbarkeitWeg
      (WegExtern : in KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum;

@@ -1,10 +1,11 @@
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
 
 private with ProduktionDatentypen;
 
 package KIKriegErmittelnLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    function IstImKrieg
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
@@ -23,6 +24,7 @@ package KIKriegErmittelnLogik is
               );
 
 private
+   use type RassenDatentypen.Rassen_Enum;
 
    RasseGewählt : RassenDatentypen.Rassen_Enum;
    Bewertung : ProduktionDatentypen.Feldproduktion;

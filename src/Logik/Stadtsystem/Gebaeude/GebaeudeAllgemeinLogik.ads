@@ -1,11 +1,13 @@
-with RassenDatentypen; use RassenDatentypen;
-with KartenDatentypen; use KartenDatentypen;
+with RassenDatentypen;
+with KartenDatentypen;
 with SpielVariablen;
 with StadtDatentypen;
 with StadtRecords;
 
 package GebaeudeAllgemeinLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
+   use type KartenDatentypen.Kartenfeld;
    
    procedure GebäudeProduktionBeenden
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;

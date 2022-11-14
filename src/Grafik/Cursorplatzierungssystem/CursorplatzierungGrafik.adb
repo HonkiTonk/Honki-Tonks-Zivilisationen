@@ -1,6 +1,5 @@
 with Sf.Graphics.RenderWindow;
 
-with KartenDatentypen; use KartenDatentypen;
 with KartenKonstanten;
 with Views;
 
@@ -15,7 +14,9 @@ package body CursorplatzierungGrafik is
    
    procedure Weltkarte
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-   is begin
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
       
       case
         NachGrafiktask.GeheZu.EAchse

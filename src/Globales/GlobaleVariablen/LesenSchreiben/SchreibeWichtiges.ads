@@ -1,4 +1,4 @@
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with ZahlenDatentypen;
 with SpielVariablen;
 with ForschungenDatentypen;
@@ -6,6 +6,7 @@ with ProduktionDatentypen;
 
 package SchreibeWichtiges is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    procedure Geldmenge
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;

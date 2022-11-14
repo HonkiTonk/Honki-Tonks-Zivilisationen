@@ -1,4 +1,3 @@
-with EinheitenRecords; use EinheitenRecords;
 with KartenRecordKonstanten;
 with EinheitenKonstanten;
 
@@ -15,7 +14,9 @@ package body KIEinheitFestlegenFliehenLogik is
    function Fliehen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
-   is begin
+   is
+      use type EinheitenRecords.RasseEinheitnummerRecord;
+   begin
       
       if
         KIGefahrErmittelnLogik.GefahrErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerRasseNummer

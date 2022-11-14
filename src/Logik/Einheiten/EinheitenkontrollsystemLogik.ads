@@ -1,13 +1,14 @@
-with RassenDatentypen; use RassenDatentypen;
-with KartenDatentypen; use KartenDatentypen;
-with KartenRecords;
+with RassenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 
 private with BefehleDatentypen;
+private with KartenDatentypen;
+private with KartenRecords;
 
 package EinheitenkontrollsystemLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    procedure Einheitenkontrolle
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
@@ -19,6 +20,8 @@ package EinheitenkontrollsystemLogik is
               );
    
 private
+   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Ebene;
       
    Mausbefehl : BefehleDatentypen.Einheitenbelegung_Enum;
    

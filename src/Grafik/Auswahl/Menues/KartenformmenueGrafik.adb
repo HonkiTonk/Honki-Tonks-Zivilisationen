@@ -2,7 +2,7 @@ with Sf;
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Text;
 
-with KartenartDatentypen; use KartenartDatentypen;
+with KartenartDatentypen;
 with SystemKonstanten;
 with TextaccessVariablen;
 with InteraktionAuswahl;
@@ -67,7 +67,9 @@ package body KartenformmenueGrafik is
    function TextEinlesen
      (SchleifenwertExtern : in Positive)
       return Wide_Wide_String
-   is begin
+   is
+      use type KartenartDatentypen.Kartenform_Enum;
+   begin
       
       case
         SchleifenwertExtern

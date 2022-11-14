@@ -1,9 +1,6 @@
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
-with EinheitenDatentypen; use EinheitenDatentypen;
-with AufgabenDatentypen; use AufgabenDatentypen;
-with KartenverbesserungDatentypen; use KartenverbesserungDatentypen;
-with BefehleDatentypen; use BefehleDatentypen;
+with AufgabenDatentypen;
 with EinheitenKonstanten;
 with TextnummernKonstanten;
 
@@ -65,7 +62,9 @@ package body AufgabenLogik is
       BefehlExtern : in BefehleDatentypen.Einheiten_Aufgaben_Baulos_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
-   is begin
+   is
+      use type AufgabenDatentypen.Einheiten_Aufgaben_Enum;
+   begin
       
       case
         Anfangstest (RasseExtern        => EinheitRasseNummerExtern.Rasse,
@@ -118,7 +117,11 @@ package body AufgabenLogik is
       BefehlExtern : in BefehleDatentypen.Einheiten_Aufgaben_Baulos_Enum;
       VerbesserungExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Enum)
       return Boolean
-   is begin
+   is
+      use type EinheitenDatentypen.Einheitart_Enum;
+      use type BefehleDatentypen.Einheitenbelegung_Enum;
+      use type KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
+   begin
       
       if
         BefehlExtern in BefehleDatentypen.Siedler_Verbesserung_Enum'Range

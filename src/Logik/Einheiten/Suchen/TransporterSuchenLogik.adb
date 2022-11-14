@@ -1,4 +1,3 @@
-with KartenRecords; use KartenRecords;
 with EinheitenKonstanten;
 
 with LeseEinheitenDatenbank;
@@ -11,7 +10,10 @@ package body TransporterSuchenLogik is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return EinheitenDatentypen.MaximaleEinheitenMitNullWert
-   is begin
+   is
+      use type EinheitenDatentypen.Transport_Enum;
+      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+   begin
       
       EinheitSchleife:
       for EinheitNummerSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Einheitengrenze loop

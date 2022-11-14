@@ -1,9 +1,10 @@
-with Sf.Graphics; use Sf.Graphics;
+with Sf.Graphics;
 with Sf.System.Vector2;
 with Sf.Graphics.Rect;
 
 package ViewsEinstellenGrafik is
    pragma Elaborate_Body;
+   use type Sf.Graphics.sfView_Ptr;
    
    procedure ViewEinstellen
      (ViewExtern : in Sf.Graphics.sfView_Ptr;

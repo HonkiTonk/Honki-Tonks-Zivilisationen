@@ -1,4 +1,4 @@
-with KartenDatentypen; use KartenDatentypen;
+with KartenDatentypen;
 with KartenRecords;
 with Weltkarte;
 
@@ -7,6 +7,7 @@ private with SystemDatentypen;
 
 package KartengeneratorWasserressourcenLogik is
    pragma Elaborate_Body;
+   use type KartenDatentypen.Kartenfeld;
 
    procedure KartengeneratorWasserressourcen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)

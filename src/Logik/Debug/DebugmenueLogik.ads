@@ -1,4 +1,4 @@
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
 
 private with RueckgabeDatentypen;
@@ -6,6 +6,7 @@ private with DiplomatieDatentypen;
 
 package DebugmenueLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    procedure Debugmenü
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

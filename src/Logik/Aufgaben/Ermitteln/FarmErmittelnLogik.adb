@@ -1,4 +1,3 @@
-with ProduktionDatentypen; use ProduktionDatentypen;
 with EinheitenRecordKonstanten;
 with EinheitenKonstanten;
 
@@ -113,7 +112,9 @@ package body FarmErmittelnLogik is
       AnlegenTestenExtern : in Boolean;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return EinheitenRecords.ArbeitVorleistungRecord
-   is begin
+   is
+      use type KartengrundDatentypen.Zusatzgrund_Enum;
+   begin
       
       Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
                                                   ÄnderungExtern      => ArbeitszeitFarmLogik.Basiszeit (EinheitRasseNummerExtern.Rasse, GrundExtern.Basisgrund));
@@ -150,7 +151,9 @@ package body FarmErmittelnLogik is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       GrundExtern : in KartenRecords.KartengrundRecord)
       return EinheitenRecords.ArbeitVorleistungRecord
-   is begin
+   is
+      use type KartengrundDatentypen.Zusatzgrund_Enum;
+   begin
       
       Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
                                                   ÄnderungExtern      => ArbeitszeitFarmLogik.Basiszeit (EinheitRasseNummerExtern.Rasse, GrundExtern.Basisgrund));
@@ -182,7 +185,9 @@ package body FarmErmittelnLogik is
       AnlegenTestenExtern : in Boolean;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return EinheitenRecords.ArbeitVorleistungRecord
-   is begin
+   is
+      use type KartengrundDatentypen.Zusatzgrund_Enum;
+   begin
       
       Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
                                                   ÄnderungExtern      => ArbeitszeitFarmLogik.Basiszeit (EinheitRasseNummerExtern.Rasse, GrundExtern.Basisgrund));

@@ -1,6 +1,6 @@
 private with Sf.System.Vector2;
 
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
 
 private with GrafikRecordKonstanten;
@@ -8,6 +8,7 @@ private with ForschungenDatentypen;
 
 package ForschungserfolgGrafik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    procedure Forschungserfolg
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;

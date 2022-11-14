@@ -19,7 +19,6 @@ package body KISiedleraufgabenLogik is
    procedure KISiedleraufgabenLogik
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is
-      -- Das hier mal überall einbauen? äöü
       use type StadtDatentypen.MaximaleStädteMitNullWert;
    begin
       

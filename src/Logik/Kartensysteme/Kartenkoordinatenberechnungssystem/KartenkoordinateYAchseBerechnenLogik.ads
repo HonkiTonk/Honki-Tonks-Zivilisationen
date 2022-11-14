@@ -1,10 +1,11 @@
-with KartenDatentypen; use KartenDatentypen;
+with KartenDatentypen;
 with Weltkarte;
 
 private with KartenkoordinatenWerteLogik;
 
 package KartenkoordinateYAchseBerechnenLogik is
    pragma Elaborate_Body;
+   use type KartenDatentypen.Kartenfeld;
 
    function KartenkoordinateYAchseBerechnen
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;

@@ -1,4 +1,4 @@
-with KartenDatentypen; use KartenDatentypen;
+with KartenDatentypen;
 with KartenRecords;
 with AufgabenDatentypen;
 with Weltkarte;
@@ -7,6 +7,7 @@ private with KartenverbesserungDatentypen;
 
 package VerbesserungAnlegenLogik is
    pragma Elaborate_Body;
+   use type KartenDatentypen.Kartenfeld;
 
    procedure VerbesserungAnlegen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;

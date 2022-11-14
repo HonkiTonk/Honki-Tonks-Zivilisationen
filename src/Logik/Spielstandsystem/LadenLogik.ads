@@ -1,8 +1,7 @@
 with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with RassenDatentypen; use RassenDatentypen;
-
+private with RassenDatentypen;
 private with SonstigesKonstanten;
 private with SpielVariablen;
 
@@ -13,6 +12,7 @@ package LadenLogik is
      return Boolean;
 
 private
+   use type RassenDatentypen.Spieler_Enum;
 
    VersionsnummerPrüfung : Wide_Wide_String (SonstigesKonstanten.Versionsnummer'Range);
 

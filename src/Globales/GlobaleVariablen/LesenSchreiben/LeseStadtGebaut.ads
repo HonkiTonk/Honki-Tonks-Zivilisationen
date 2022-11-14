@@ -1,10 +1,10 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with StadtDatentypen; use StadtDatentypen;
-with RassenDatentypen; use RassenDatentypen;
-with ProduktionDatentypen; use ProduktionDatentypen;
-with EinheitenDatentypen; use EinheitenDatentypen;
-with KartenDatentypen; use KartenDatentypen;
+with StadtDatentypen;
+with RassenDatentypen;
+with ProduktionDatentypen;
+with EinheitenDatentypen;
+with KartenDatentypen;
 with SpielVariablen;
 with KartenRecords;
 with KartenverbesserungDatentypen;
@@ -16,7 +16,12 @@ with KIDatentypen;
 
 package LeseStadtGebaut is
    pragma Elaborate_Body;
-
+   use type RassenDatentypen.Spieler_Enum;
+   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Ebene;
+   use type StadtDatentypen.GebäudeIDMitNullwert;
+   use type EinheitenDatentypen.EinheitenIDMitNullWert;
+   
    function ID
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return KartenverbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum

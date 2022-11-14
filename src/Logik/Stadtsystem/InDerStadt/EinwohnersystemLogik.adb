@@ -1,5 +1,4 @@
-with KartenDatentypen; use KartenDatentypen;
-with ProduktionDatentypen; use ProduktionDatentypen;
+with ProduktionDatentypen;
 with KartenKonstanten;
 
 with LeseWeltkarte;
@@ -16,7 +15,9 @@ package body EinwohnersystemLogik is
    function EinwohnerZuweisenEntfernen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return Boolean
-   is begin
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
       
       Mausposition := MausauswahlLogik.Stadtumgebung;
       
@@ -102,7 +103,9 @@ package body EinwohnersystemLogik is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       YAchseExtern : in KartenDatentypen.Kartenfeld;
       XAchseExtern : in KartenDatentypen.Kartenfeld)
-   is begin
+   is
+      use type ProduktionDatentypen.Einwohner;
+   begin
       
       if
         LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,

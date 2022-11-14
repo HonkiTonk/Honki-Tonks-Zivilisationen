@@ -1,6 +1,3 @@
-with EinheitenDatentypen; use EinheitenDatentypen;
-with KampfDatentypen; use KampfDatentypen;
-with ProduktionDatentypen; use ProduktionDatentypen;
 with EinheitenKonstanten;
 with KartenRecordKonstanten;
 with EinheitenRecordKonstanten;
@@ -64,7 +61,9 @@ package body SchreibeEinheitenGebaut is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       LebenspunkteExtern : in EinheitenDatentypen.Lebenspunkte;
       RechnenSetzenExtern : in Boolean)
-   is begin
+   is
+      use type EinheitenDatentypen.Lebenspunkte;
+   begin
       
       case
         RechnenSetzenExtern
@@ -115,7 +114,9 @@ package body SchreibeEinheitenGebaut is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       BewegungspunkteExtern : in EinheitenDatentypen.BewegungFloat;
       RechnenSetzenExtern : in Boolean)
-   is begin
+   is
+      use type EinheitenDatentypen.BewegungFloat;
+   begin
       
       case
         RechnenSetzenExtern
@@ -151,7 +152,9 @@ package body SchreibeEinheitenGebaut is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       ErfahrungspunkteExtern : in KampfDatentypen.ErfahrungspunkteVorhanden;
       AddierenSetzenExtern : in Boolean)
-   is begin
+   is
+      use type KampfDatentypen.Erfahrungspunkte;
+   begin
       
       case
         AddierenSetzenExtern
@@ -183,7 +186,9 @@ package body SchreibeEinheitenGebaut is
    
    procedure Rang
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-   is begin
+   is
+      use type KampfDatentypen.Erfahrungspunkte;
+   begin
       
       if
         SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Rang + 1
@@ -226,7 +231,9 @@ package body SchreibeEinheitenGebaut is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       ZeitExtern : in ProduktionDatentypen.Arbeitszeit;
       RechnenSetzenExtern : in Boolean)
-   is begin
+   is
+      use type ProduktionDatentypen.Arbeitszeit;
+   begin
       
       case
         RechnenSetzenExtern
@@ -259,7 +266,9 @@ package body SchreibeEinheitenGebaut is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       ZeitExtern : in ProduktionDatentypen.Arbeitszeit;
       RechnenSetzenExtern : in Boolean)
-   is begin
+   is
+      use type ProduktionDatentypen.Arbeitszeit;
+   begin
       
       case
         RechnenSetzenExtern

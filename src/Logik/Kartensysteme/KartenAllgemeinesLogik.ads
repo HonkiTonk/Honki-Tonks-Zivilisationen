@@ -1,17 +1,18 @@
-with KartenDatentypen; use KartenDatentypen;
+with KartenDatentypen;
 with RassenDatentypen;
 with KartenRecords;
 with EinheitenDatentypen;
-with KartengrundDatentypen;
 with ProduktionDatentypen;
 with KampfDatentypen;
 with Weltkarte;
 with BewertungDatentypen;
 
 private with KartenverbesserungDatentypen;
+private with KartengrundDatentypen;
 
 package KartenAllgemeinesLogik is
    pragma Elaborate_Body;
+   use type KartenDatentypen.Kartenfeld;
 
    function GrundNahrung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;

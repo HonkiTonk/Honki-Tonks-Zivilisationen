@@ -1,4 +1,4 @@
-with KartenverbesserungDatentypen; use KartenverbesserungDatentypen;
+with KartenverbesserungDatentypen;
 with EinheitenKonstanten;
 with KartenRecordKonstanten;
 
@@ -35,7 +35,10 @@ package body KIStadtSuchenLogik is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       AnfangKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return StadtDatentypen.MaximaleStädteMitNullWert
-   is begin
+   is
+      use type KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
+      use type KartenDatentypen.Ebene;
+   begin
       
       AktuelleStadt := StadtDatentypen.MaximaleStädteMitNullWert'First;
       
@@ -82,7 +85,9 @@ package body KIStadtSuchenLogik is
    function UnbewachteStadtSuchen
      (FeindlicheRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KartenRecords.AchsenKartenfeldNaturalRecord
-   is begin
+   is
+      use type KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
+   begin
       
       StadtSchleife:
       for StadtNummerSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (FeindlicheRasseExtern).Städtegrenze loop

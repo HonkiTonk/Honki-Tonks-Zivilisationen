@@ -1,6 +1,5 @@
-with RassenDatentypen; use RassenDatentypen;
-with KartenDatentypen; use KartenDatentypen;
-
+private with RassenDatentypen;
+private with KartenDatentypen;
 private with EinheitenRecords;
 private with KartenRecords;
 private with SpielVariablen;
@@ -12,6 +11,9 @@ package EinheitInUmgebungLogik is
    procedure EinheitInUmgebung;
    
 private
+   use type RassenDatentypen.Rassen_Enum;
+   use type KartenDatentypen.Kartenfeld;
+   use type RassenDatentypen.Spieler_Enum;
       
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    

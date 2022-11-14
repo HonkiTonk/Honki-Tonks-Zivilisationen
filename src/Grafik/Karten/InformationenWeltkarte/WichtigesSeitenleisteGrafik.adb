@@ -2,7 +2,6 @@ with Sf.Graphics.RenderWindow;
 with Sf.Graphics;
 with Sf.Graphics.Text;
 
-with ProduktionDatentypen; use ProduktionDatentypen;
 with Meldungstexte;
 with TextnummernKonstanten;
 with Views;
@@ -112,7 +111,9 @@ package body WichtigesSeitenleisteGrafik is
    function Geld
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Unbounded_Wide_Wide_String
-   is begin
+   is
+      use type ProduktionDatentypen.Produktion;
+   begin
       
       case
         RasseExtern

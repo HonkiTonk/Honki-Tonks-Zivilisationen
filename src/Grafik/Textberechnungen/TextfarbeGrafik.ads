@@ -1,4 +1,4 @@
-with Sf.Graphics; use Sf.Graphics;
+with Sf.Graphics;
 
 private with Sf.Graphics.Color;
 
@@ -6,6 +6,7 @@ with MenueDatentypen;
 
 package TextfarbeGrafik is
    pragma Elaborate_Body;
+   use type Sf.Graphics.sfText_Ptr;
 
    procedure AuswahlfarbeFestlegen
      (TextnummerExtern : in Natural;

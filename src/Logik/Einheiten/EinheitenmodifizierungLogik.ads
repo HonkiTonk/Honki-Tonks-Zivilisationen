@@ -1,5 +1,5 @@
-with RassenDatentypen; use RassenDatentypen;
-with KartenDatentypen; use KartenDatentypen;
+with RassenDatentypen;
+with KartenDatentypen;
 with EinheitenRecords;
 with EinheitenDatentypen;
 with SpielVariablen;
@@ -12,6 +12,8 @@ private with KIDatentypen;
 
 package EinheitenmodifizierungLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
+   use type KartenDatentypen.Kartenfeld;
 
    procedure HeilungBewegungspunkteNeueRundeErmitteln;
    

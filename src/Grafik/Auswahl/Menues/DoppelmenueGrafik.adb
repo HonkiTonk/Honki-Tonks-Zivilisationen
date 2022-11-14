@@ -1,7 +1,7 @@
 with Sf.Graphics.Text;
 with Sf.Graphics.RenderWindow;
 
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with Views;
 with GrafikDatentypen;
 with SpielVariablen;

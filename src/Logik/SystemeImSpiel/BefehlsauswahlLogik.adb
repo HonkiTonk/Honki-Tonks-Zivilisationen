@@ -1,5 +1,3 @@
-with TastenbelegungDatentypen; use TastenbelegungDatentypen;
-
 with TasteneingabeLogik;
 with CursorbewegungLogik;
 with ForschungsauswahlLogik;

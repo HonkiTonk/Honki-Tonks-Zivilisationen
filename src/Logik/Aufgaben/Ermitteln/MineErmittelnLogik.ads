@@ -1,6 +1,5 @@
-with RassenDatentypen; use RassenDatentypen;
-with KartenDatentypen; use KartenDatentypen;
-with KartengrundDatentypen; use KartengrundDatentypen;
+with RassenDatentypen;
+with KartenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 with KartenRecords;
@@ -8,9 +7,12 @@ with Weltkarte;
 
 private with AufgabenDatentypen;
 private with ProduktionDatentypen;
+private with KartengrundDatentypen;
 
 package MineErmittelnLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
+   use type KartenDatentypen.Kartenfeld;
 
    function MineErmitteln
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
@@ -29,6 +31,7 @@ package MineErmittelnLogik is
               );
 
 private
+   use type KartengrundDatentypen.Basisgrund_Enum;
 
    VorarbeitNötig : Boolean;
 

@@ -2,7 +2,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 private with Sf.System.Vector2;
 
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
 with StadtDatentypen;
 
@@ -10,6 +10,7 @@ private with GrafikRecordKonstanten;
 
 package BauauswahlGebaeudeGrafik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    procedure Gebäudeinformationen
      (AuswahlExtern : in StadtDatentypen.GebäudeIDMitNullwert;

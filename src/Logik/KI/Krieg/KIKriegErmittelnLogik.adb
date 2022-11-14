@@ -1,5 +1,4 @@
-with ProduktionDatentypen; use ProduktionDatentypen;
-with DiplomatieDatentypen; use DiplomatieDatentypen;
+with DiplomatieDatentypen;
 with EinheitenKonstanten;
 
 with DiplomatischerZustandLogik;
@@ -9,7 +8,9 @@ package body KIKriegErmittelnLogik is
    function IstImKrieg
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Boolean
-   is begin
+   is
+      use type DiplomatieDatentypen.Status_Untereinander_Enum;
+   begin
       
       RassenSchleife:
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
@@ -84,7 +85,9 @@ package body KIKriegErmittelnLogik is
      (EigeneRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       FremdeRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return RassenDatentypen.Rassen_Enum
-   is begin
+   is
+      use type ProduktionDatentypen.Produktion;
+   begin
       
       Bewertung := 0;
       

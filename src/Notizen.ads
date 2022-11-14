@@ -37,3 +37,6 @@ Aspari_2 => Alle Umgebungen auf denen Maschinen existieren können
 Ekropa => bevorzugen bewaldete Flächen in gemäßigtem oder warmen Klima
 Tesorahn => bevorzugter Lebensraum sind Salzgewässer in flüssigem Zustand
 Talbidahr => Unterirdisch in gemäßigten Klimazonen
+
+use type RassenDatentypen.Rassen_Enum;
+use type RassenDatentypen.Spieler_Enum;

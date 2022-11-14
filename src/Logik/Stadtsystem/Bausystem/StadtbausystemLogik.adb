@@ -1,5 +1,4 @@
-with GrafikDatentypen; use GrafikDatentypen;
-with StadtRecords; use StadtRecords;
+with GrafikDatentypen;
 with StadtKonstanten;
 with TastenbelegungDatentypen;
 
@@ -17,7 +16,9 @@ package body StadtbausystemLogik is
 
    procedure Bauen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-   is begin
+   is
+      use type StadtRecords.BauprojektRecord;
+   begin
       
       AktuellesBauprojekt := LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern);
       NeuesBauprojekt := BauobjektAuswählen (StadtRasseNummerExtern => StadtRasseNummerExtern);

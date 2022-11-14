@@ -1,5 +1,4 @@
-with EinheitenDatentypen; use EinheitenDatentypen;
-with ProduktionDatentypen; use ProduktionDatentypen;
+with ProduktionDatentypen;
 with EinheitenKonstanten;
 
 with SchreibeEinheitenGebaut;
@@ -40,7 +39,9 @@ package body KIEinheitFestlegenAufloesenLogik is
    function Auflösungsprüfung
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
-   is begin
+   is
+      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   begin
       
       VorhandeneEinheiten := LeseWichtiges.AnzahlEinheiten (RasseExtern => EinheitRasseNummerExtern.Rasse);
          
@@ -73,7 +74,9 @@ package body KIEinheitFestlegenAufloesenLogik is
    function Stadtzustand
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
-   is begin
+   is
+      use type ProduktionDatentypen.Produktion;
+   begin
       
       Heimatstadt := LeseEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
@@ -118,7 +121,9 @@ package body KIEinheitFestlegenAufloesenLogik is
    function GlobalerZustand
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
-   is begin
+   is
+      use type ProduktionDatentypen.Produktion;
+   begin
       
       case
         EinheitRasseNummerExtern.Rasse

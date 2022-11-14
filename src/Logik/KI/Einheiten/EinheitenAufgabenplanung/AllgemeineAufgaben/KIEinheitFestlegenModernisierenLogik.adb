@@ -1,4 +1,3 @@
-with KartenDatentypen; use KartenDatentypen;
 with StadtKonstanten;
 with KartenKonstanten;
 with KartenRecordKonstanten;
@@ -13,7 +12,7 @@ with PassierbarkeitspruefungLogik;
 with ForschungstestsLogik;
 with KartenkoordinatenberechnungssystemLogik;
 
-with KIDatentypen; use KIDatentypen;
+with KIDatentypen;
 with KIKonstanten;
 
 with KISonstigesSuchenLogik;
@@ -26,7 +25,9 @@ package body KIEinheitFestlegenModernisierenLogik is
    function EinheitVerbessern
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
-   is begin
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
       
       NeueEinheitenID := LeseEinheitenDatenbank.VerbesserungZu (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                                 IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
@@ -115,7 +116,10 @@ package body KIEinheitFestlegenModernisierenLogik is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       EinheitNummerExtern : in EinheitenDatentypen.MaximaleEinheiten)
       return KartenRecords.AchsenKartenfeldNaturalRecord
-   is begin
+   is
+      use type KartenDatentypen.Kartenfeld;
+      use type KIDatentypen.Bewegung_Enum;
+   begin
       
       Umgebung := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern);
       StadtKoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);

@@ -1,5 +1,4 @@
-with RassenDatentypen; use RassenDatentypen;
-with KartenDatentypen; use KartenDatentypen;
+with RassenDatentypen;
 with StadtDatentypen;
 with SpielVariablen;
 with StadtRecords;
@@ -8,9 +7,11 @@ private with KartenRecords;
 private with KartengrundDatentypen;
 private with KartenverbesserungDatentypen;
 private with Weltkarte;
+private with KartenDatentypen;
 
 package GebaeudeumgebungLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    function RichtigeUmgebungVorhanden
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
@@ -24,6 +25,7 @@ package GebaeudeumgebungLogik is
               );
    
 private
+   use type KartenDatentypen.Kartenfeld;
    
    Ergebnis : Boolean;
    

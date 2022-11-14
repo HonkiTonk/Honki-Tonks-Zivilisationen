@@ -1,10 +1,11 @@
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
 
 private with RueckgabeDatentypen;
 
 package DiplomatieLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    procedure DiplomatieMöglich
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

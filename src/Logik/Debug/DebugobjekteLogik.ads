@@ -1,4 +1,4 @@
-with ForschungenDatentypen; use ForschungenDatentypen;
+with ForschungenDatentypen;
 with EinheitenDatentypen;
 with KampfDatentypen;
 with EinheitenRecords;
@@ -6,6 +6,7 @@ with EinheitendatenbankRecord;
 
 package DebugobjekteLogik is
    pragma Preelaborate;
+   use type ForschungenDatentypen.ForschungIDNichtMöglich;
 
    Alleskönner : constant EinheitendatenbankRecord.EinheitenlisteRecord := (
                                                                              Einheitenart            => EinheitenDatentypen.Cheat_Enum,

@@ -1,4 +1,4 @@
-with EinheitenDatentypen; use EinheitenDatentypen;
+with EinheitenDatentypen;
 with AufgabenDatentypen;
 
 with LeseEinheitenGebaut;
@@ -11,7 +11,9 @@ package body EinheitHeilenLogik is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       AnlegenTestenExtern : in Boolean)
       return Boolean
-   is begin
+   is
+      use type EinheitenDatentypen.Lebenspunkte;
+   begin
       
       if
         LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern)

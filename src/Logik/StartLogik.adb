@@ -1,4 +1,4 @@
-with GrafikDatentypen; use GrafikDatentypen;
+with GrafikDatentypen;
 with ZeitKonstanten;
 with TastenbelegungDatentypen;
 

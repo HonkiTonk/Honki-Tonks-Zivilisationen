@@ -1,4 +1,4 @@
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
 with ForschungenDatentypen;
 with ProduktionDatentypen;
@@ -8,6 +8,7 @@ with BefehleDatentypen;
 
 package LeseForschungenDatenbank is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    function Kosten
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;

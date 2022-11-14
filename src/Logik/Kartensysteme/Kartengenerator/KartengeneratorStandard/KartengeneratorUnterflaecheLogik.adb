@@ -1,4 +1,3 @@
-with KartenDatentypen; use KartenDatentypen;
 with KartengrundDatentypen;
 with LadezeitenDatentypen;
 with KartenKonstanten;
@@ -15,7 +14,9 @@ with LadezeitenLogik;
 package body KartengeneratorUnterflaecheLogik is
 
    procedure GenerierungLandschaft
-   is begin
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
       
       Kartenzeitwert := (KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.YAchse + (100 - 1)) / 100;
                

@@ -1,5 +1,5 @@
-with KartenDatentypen; use KartenDatentypen;
-with RassenDatentypen; use RassenDatentypen;
+with KartenDatentypen;
+with RassenDatentypen;
 with EinheitenRecords;
 with KartenRecords;
 with SpielVariablen;
@@ -9,6 +9,8 @@ with KIDatentypen;
 
 package KIBewegungAllgemeinLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
+   use type KartenDatentypen.Kartenfeld;
    
    function FeldBetreten
      (FeldKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;

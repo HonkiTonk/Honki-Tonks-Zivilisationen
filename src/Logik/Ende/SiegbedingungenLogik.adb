@@ -1,4 +1,4 @@
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
 with WichtigesRecordKonstanten;
 
@@ -61,7 +61,9 @@ package body SiegbedingungenLogik is
    
    function RasseBesiegt
      return Boolean
-   is begin
+   is
+      use type RassenDatentypen.Spieler_Enum;
+   begin
       
       RassenSchleife:
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
@@ -135,7 +137,9 @@ package body SiegbedingungenLogik is
    
    function SiegbedingungZwei
      return Boolean
-   is begin
+   is
+      use type RassenDatentypen.Spieler_Enum;
+   begin
       
       RassenGeldSchleife:
       for RassenGeldSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop

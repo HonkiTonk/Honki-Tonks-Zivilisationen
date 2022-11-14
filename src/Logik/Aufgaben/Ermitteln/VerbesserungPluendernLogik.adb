@@ -1,4 +1,4 @@
-with KartenverbesserungDatentypen; use KartenverbesserungDatentypen;
+with KartenverbesserungDatentypen;
 with TextnummernKonstanten;
 
 with LeseWeltkarte;
@@ -14,7 +14,10 @@ package body VerbesserungPluendernLogik is
       AnlegenTestenExtern : in Boolean;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
-   is begin
+   is
+      use type KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
+      use type KartenverbesserungDatentypen.Karten_Weg_Enum;
+   begin
             
       if
         LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern) = KartenverbesserungDatentypen.Leer_Verbesserung_Enum

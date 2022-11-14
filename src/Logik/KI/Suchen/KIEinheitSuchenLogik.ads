@@ -1,4 +1,4 @@
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with EinheitenRecords;
 with KartenRecords;
 with SpielVariablen;
@@ -7,6 +7,7 @@ private with EinheitenDatentypen;
 
 package KIEinheitSuchenLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    function FeindlicheEinheitInUmgebungSuchen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

@@ -1,7 +1,8 @@
-with Sf.Graphics; use Sf.Graphics;
+with Sf.Graphics;
 
 package TextberechnungenHoeheGrafik is
    pragma Elaborate_Body;
+   use type Sf.Graphics.sfText_Ptr;
    
    function ZeilenabstandVariabel
      return Float

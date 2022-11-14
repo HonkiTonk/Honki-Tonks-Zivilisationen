@@ -1,6 +1,3 @@
-with Sf.Window.Mouse; use Sf.Window.Mouse;
-with Sf.Window.Keyboard; use Sf.Window.Keyboard;
-
 with TastenbelegungVariablen;
 
 with NachLogiktask;
@@ -11,7 +8,10 @@ package body TasteneingabeLogik is
    
    function VereinfachteEingabe
      return TastenbelegungDatentypen.Allgemeine_Belegung_Enum
-   is begin
+   is
+      use type Sf.Window.Mouse.sfMouseButton;
+      use type Sf.Window.Keyboard.sfKeyCode;
+   begin
       
       NachLogiktask.Warten := True;
       NachGrafiktask.TastenEingabe := True;
@@ -48,7 +48,10 @@ package body TasteneingabeLogik is
    
    function AllgemeineTaste
      return TastenbelegungDatentypen.Allgemeine_Belegung_Enum
-   is begin
+   is
+      use type Sf.Window.Mouse.sfMouseButton;
+      use type Sf.Window.Keyboard.sfKeyCode;
+   begin
       
       NachLogiktask.Warten := True;
       NachGrafiktask.TastenEingabe := True;
@@ -99,7 +102,10 @@ package body TasteneingabeLogik is
    
    function Einheitentaste
      return BefehleDatentypen.Einheitenbelegung_Enum
-   is begin
+   is
+      use type Sf.Window.Mouse.sfMouseButton;
+      use type Sf.Window.Keyboard.sfKeyCode;
+   begin
       
       NachLogiktask.Warten := True;
       NachGrafiktask.TastenEingabe := True;
@@ -150,7 +156,10 @@ package body TasteneingabeLogik is
    
    function Stadttaste
      return BefehleDatentypen.Stadtbefehle_Enum
-   is begin
+   is
+      use type Sf.Window.Mouse.sfMouseButton;
+      use type Sf.Window.Keyboard.sfKeyCode;
+   begin
       
       NachLogiktask.Warten := True;
       NachGrafiktask.TastenEingabe := True;

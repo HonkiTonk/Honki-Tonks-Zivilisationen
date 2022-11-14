@@ -1,9 +1,9 @@
-with Sf; use Sf;
+with Sf;
 with Sf.Graphics.RenderWindow;
 with Sf.Window.Mouse;
 with Sf.Window.Keyboard;
 
-with KartenDatentypen; use KartenDatentypen;
+with KartenDatentypen;
 with GrafikDatentypen;
 
 with NachLogiktask;
@@ -14,7 +14,10 @@ with SichtweitenGrafik;
 package body TasteneingabeGrafik is
 
    procedure Tasteneingabe
-   is begin
+   is
+      use type Sf.sfBool;
+      use type KartenDatentypen.Kartenfeld;
+   begin
       
       -- Kann man sfMouseButtonCount einfach so als Leerwert nehmen? Scheint zu funktionieren.
       NachLogiktask.MausTaste := Sf.Window.Mouse.sfMouseButtonCount;
@@ -85,7 +88,9 @@ package body TasteneingabeGrafik is
    
    
    procedure FensterAnpassen
-   is begin
+   is
+      use type Sf.sfBool;
+   begin
       
       if
         Sf.sfTrue = Sf.Graphics.RenderWindow.pollEvent (renderWindow => EinstellungenGrafik.FensterAccess,

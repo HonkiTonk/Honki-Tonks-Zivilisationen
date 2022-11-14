@@ -1,8 +1,9 @@
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
 
 package HandelnLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
    
    procedure SichtbarkeitTauschen
      (RasseEinsExtern : in RassenDatentypen.Rassen_Verwendet_Enum;

@@ -1,6 +1,6 @@
-with KartenDatentypen; use KartenDatentypen;
-with RassenDatentypen; use RassenDatentypen;
-with EinheitenDatentypen; use EinheitenDatentypen;
+with KartenDatentypen;
+with RassenDatentypen;
+with EinheitenDatentypen;
 with KartenRecords;
 with EinheitenRecords;
 with SpielVariablen;
@@ -8,6 +8,9 @@ with Weltkarte;
 
 package EinheitSuchenLogik is
    pragma Elaborate_Body;
+   use type KartenDatentypen.Kartenfeld;
+   use type RassenDatentypen.Spieler_Enum;
+   use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
 
    function KoordinatenEinheitMitRasseSuchen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;

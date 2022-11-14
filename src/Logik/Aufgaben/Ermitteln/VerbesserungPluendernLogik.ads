@@ -1,5 +1,5 @@
-with RassenDatentypen; use RassenDatentypen;
-with KartenDatentypen; use KartenDatentypen;
+with RassenDatentypen;
+with KartenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 with KartenRecords;
@@ -7,6 +7,8 @@ with Weltkarte;
 
 package VerbesserungPluendernLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
+   use type KartenDatentypen.Kartenfeld;
 
    function VerbesserungPlündern
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

@@ -1,4 +1,3 @@
-with RueckgabeDatentypen; use RueckgabeDatentypen;
 with GrafikDatentypen;
 with TonDatentypen;
 with MenueDatentypen;
@@ -17,7 +16,9 @@ with NachMusiktask;
 package body HauptmenueLogik is
 
    procedure Hauptmenü
-   is begin
+   is
+      use type RueckgabeDatentypen.Rückgabe_Werte_Enum;
+   begin
       
       HauptmenüSchleife:
       loop

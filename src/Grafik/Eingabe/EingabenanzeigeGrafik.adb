@@ -1,7 +1,7 @@
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Text;
 
-with EinheitenDatentypen; use EinheitenDatentypen;
+with EinheitenDatentypen;
 with Meldungstexte;
 with TextnummernKonstanten;
 with Views;
@@ -195,7 +195,10 @@ package body EingabenanzeigeGrafik is
    procedure AnzeigeEinheitenStadt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       AktuelleAuswahlExtern : in Integer)
-   is begin
+   is
+      use type EinheitenDatentypen.Transportplätze;
+      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   begin
       
       WelcheAuswahl := NachGrafiktask.WelcheAuswahl;
       

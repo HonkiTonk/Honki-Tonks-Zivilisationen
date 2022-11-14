@@ -1,9 +1,10 @@
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
 with EinheitenRecords;
 
 package KIEinheitUmsetzenPluendernLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    function StadtumgebungZerstören
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

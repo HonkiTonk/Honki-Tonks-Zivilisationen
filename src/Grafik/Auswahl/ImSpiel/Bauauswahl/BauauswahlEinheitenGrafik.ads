@@ -2,7 +2,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 private with Sf.System.Vector2;
 
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
 with EinheitenDatentypen;
 
@@ -10,6 +10,7 @@ private with GrafikRecordKonstanten;
 
 package BauauswahlEinheitenGrafik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    procedure Einheiteninformationen
      (AuswahlExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;

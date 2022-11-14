@@ -4,21 +4,22 @@ with Sf.System.Vector2;
 
 private with Sf.Graphics.Color;
 
-with RassenDatentypen; use RassenDatentypen;
-with KartenDatentypen; use KartenDatentypen;
-with KartengrundDatentypen;
-with KartenverbesserungDatentypen;
-with EinheitenDatentypen;
+with KartenDatentypen;
 with KartenRecords;
 with EinheitenRecords;
-with SpielVariablen;
-with StadtRecords;
 with Weltkarte;
 
 private with KartenartDatentypen;
+private with RassenDatentypen;
+private with KartengrundDatentypen;
+private with KartenverbesserungDatentypen;
+private with EinheitenDatentypen;
+private with SpielVariablen;
+private with StadtRecords;
 
 package WeltkarteZeichnenGrafik is
    pragma Elaborate_Body;
+   use type KartenDatentypen.Kartenfeld;
    
    procedure EbeneZeichnen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
@@ -38,6 +39,7 @@ package WeltkarteZeichnenGrafik is
               );
    
 private
+   use type RassenDatentypen.Spieler_Enum;
    
    AusgewählteEinheitAnzeigen : Boolean := True;
    ZusatzgrundVorhanden : Boolean;

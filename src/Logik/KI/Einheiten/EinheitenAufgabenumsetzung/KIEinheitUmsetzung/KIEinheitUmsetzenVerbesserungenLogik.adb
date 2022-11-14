@@ -1,5 +1,3 @@
-with KartenverbesserungDatentypen; use KartenverbesserungDatentypen;
-
 with LeseWeltkarte;
 with LeseEinheitenGebaut;
 
@@ -11,7 +9,10 @@ package body KIEinheitUmsetzenVerbesserungenLogik is
    function WelcheVerbesserungAnlegen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
-   is begin
+   is
+      use type KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
+      use type RassenDatentypen.Rassen_Enum;
+   begin
       
       EinheitKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       WelcheVerbesserung := LeseEinheitenGebaut.KIVerbesserung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);

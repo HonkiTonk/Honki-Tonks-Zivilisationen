@@ -1,8 +1,9 @@
-with KartenDatentypen; use KartenDatentypen;
+with KartenDatentypen;
 with KartenartDatentypen;
 
 package KartentestsLogik is
    pragma Elaborate_Body;
+   use type KartenDatentypen.Kartenfeld;
 
    procedure Größenanpassung;
 

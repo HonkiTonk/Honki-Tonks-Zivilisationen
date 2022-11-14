@@ -1,5 +1,5 @@
-with KartenDatentypen; use KartenDatentypen;
-with RassenDatentypen; use RassenDatentypen;
+with KartenDatentypen;
+with RassenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 with KartenRecords;
@@ -15,6 +15,9 @@ with KIDatentypen;
 
 package SchreibeEinheitenGebaut is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
+   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Ebene;
 
    procedure ID
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

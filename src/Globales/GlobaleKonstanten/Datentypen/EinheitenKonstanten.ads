@@ -1,4 +1,4 @@
-with EinheitenDatentypen; use EinheitenDatentypen;
+with EinheitenDatentypen;
 with ForschungKonstanten;
 with AufgabenDatentypen;
 with RassenDatentypen;
@@ -12,6 +12,7 @@ with KIDatentypen;
 
 package EinheitenKonstanten is
    pragma Preelaborate;
+   use type EinheitenDatentypen.BewegungFloat;
    
    LeerRasse : constant RassenDatentypen.Rassen_Enum := RassenDatentypen.Keine_Rasse_Enum;
    LeerNummer : constant EinheitenDatentypen.MaximaleEinheitenMitNullWert := EinheitenDatentypen.MaximaleEinheitenMitNullWert'First;

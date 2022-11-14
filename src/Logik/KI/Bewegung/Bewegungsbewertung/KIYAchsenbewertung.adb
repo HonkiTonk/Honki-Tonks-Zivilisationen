@@ -1,5 +1,4 @@
-with KartenDatentypen; use KartenDatentypen;
-with KartenartDatentypen; use KartenartDatentypen;
+with KartenartDatentypen;
 with Weltkarte;
 
 with KIKonstanten;
@@ -14,7 +13,9 @@ package body KIYAchsenbewertung is
       AktuellerPunktExtern : in KartenDatentypen.KartenfeldPositiv;
       NeuerPunktExtern : in KartenDatentypen.KartenfeldPositiv)
       return KIDatentypen.Achsenbewertung
-   is begin
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
       
       if
         AktuellerPunktExtern /= ZielpunktExtern
@@ -96,7 +97,9 @@ package body KIYAchsenbewertung is
       AktuellerPunktExtern : in KartenDatentypen.KartenfeldPositiv;
       NeuerPunktExtern : in KartenDatentypen.KartenfeldPositiv)
       return KIDatentypen.Achsenbewertung
-   is begin
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
       
       if
         NeuerPunktExtern < AktuellerPunktExtern
@@ -128,7 +131,9 @@ package body KIYAchsenbewertung is
       AktuellerPunktExtern : in KartenDatentypen.KartenfeldPositiv;
       NeuerPunktExtern : in KartenDatentypen.KartenfeldPositiv)
       return KIDatentypen.Achsenbewertung
-   is begin
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
       
       if
         ZielpunktExtern < AktuellerPunktExtern

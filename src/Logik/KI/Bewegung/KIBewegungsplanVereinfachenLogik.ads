@@ -1,4 +1,4 @@
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 
@@ -6,6 +6,8 @@ private with EinheitenDatentypen;
 private with KartenRecords;
 
 package KIBewegungsplanVereinfachenLogik is
+   pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    procedure Planvereinfachung
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

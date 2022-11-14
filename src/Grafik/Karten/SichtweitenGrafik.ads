@@ -1,4 +1,4 @@
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with KartenDatentypen;
 with SpielVariablen;
 
@@ -6,6 +6,7 @@ private with TastenbelegungDatentypen;
 
 package SichtweitenGrafik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
    
    procedure SichtweiteBewegungsfeldFestlegen;
    

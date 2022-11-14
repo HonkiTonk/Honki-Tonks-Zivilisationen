@@ -1,6 +1,5 @@
-with RassenDatentypen; use RassenDatentypen;
-with KartenDatentypen; use KartenDatentypen;
-with KartengrundDatentypen; use KartengrundDatentypen;
+with RassenDatentypen;
+with KartenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 with KartenRecords;
@@ -9,9 +8,12 @@ with Weltkarte;
 private with AufgabenDatentypen;
 private with KartenverbesserungDatentypen;
 private with ProduktionDatentypen;
+private with KartengrundDatentypen;
 
 package WegErmittelnLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
+   use type KartenDatentypen.Kartenfeld;
 
    function WegErmitteln
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
@@ -30,6 +32,7 @@ package WegErmittelnLogik is
               );
 
 private
+   use type KartengrundDatentypen.Basisgrund_Enum;
 
    WegVorhanden : KartenverbesserungDatentypen.Karten_Weg_Enum;
 

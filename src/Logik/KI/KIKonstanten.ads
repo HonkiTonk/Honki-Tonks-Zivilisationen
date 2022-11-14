@@ -1,10 +1,11 @@
 with SpielDatentypen;
 
-with KIDatentypen; use KIDatentypen;
+with KIDatentypen;
 with KIRecords;
 
 package KIKonstanten is
    pragma Pure;
+   use type KIDatentypen.AufgabenWichtigkeit;
 
    UnmöglichAufgabenbewertung : constant KIDatentypen.AufgabenWichtigkeitKlein := KIDatentypen.AufgabenWichtigkeitKlein'First;
    LeerAufgabenbewertung : constant KIDatentypen.AufgabenWichtigkeitKlein := 0;

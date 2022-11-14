@@ -1,4 +1,4 @@
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
 with BefehleDatentypen;
 
@@ -9,6 +9,7 @@ private with StadtRecords;
 
 package BefehlspruefungenLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
    
    procedure AuswahlEinheitStadt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

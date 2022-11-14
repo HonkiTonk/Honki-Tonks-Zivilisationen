@@ -1,4 +1,4 @@
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 
@@ -9,6 +9,7 @@ private with BefehleDatentypen;
 
 package KIEinheitUmsetzenVerbesserungenLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    function WelcheVerbesserungAnlegen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

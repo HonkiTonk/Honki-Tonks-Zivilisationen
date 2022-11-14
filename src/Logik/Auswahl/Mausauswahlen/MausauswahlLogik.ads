@@ -1,7 +1,7 @@
 with Sf.System.Vector2;
 
-with StadtDatentypen; use StadtDatentypen;
-with EinheitenDatentypen; use EinheitenDatentypen;
+with StadtDatentypen;
+with EinheitenDatentypen;
 with ForschungenDatentypen;
 with StadtRecords;
 with MenueDatentypen;
@@ -10,6 +10,9 @@ with TastenbelegungDatentypen;
 
 package MausauswahlLogik is
    pragma Elaborate_Body;
+   use type StadtDatentypen.GebäudeIDMitNullwert;
+   use type EinheitenDatentypen.EinheitenIDMitNullWert;
+   use type EinheitenDatentypen.Transportplätze;
 
    function RassenauswahlDiplomatie
      return Natural;

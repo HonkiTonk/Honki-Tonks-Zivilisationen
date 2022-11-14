@@ -1,4 +1,4 @@
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
 with EinheitenRecords;
 
@@ -6,6 +6,8 @@ private with KartenRecords;
 
 package KIEinheitFestlegenBewachenLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Rassen_Enum;
+   use type RassenDatentypen.Spieler_Enum;
 
    function StadtBewachen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

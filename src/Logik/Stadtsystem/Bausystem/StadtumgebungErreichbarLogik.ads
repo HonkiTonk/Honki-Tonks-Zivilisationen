@@ -1,5 +1,5 @@
-with KartenDatentypen; use KartenDatentypen;
-with RassenDatentypen; use RassenDatentypen;
+with KartenDatentypen;
+with RassenDatentypen;
 with KartenRecords;
 with EinheitenDatentypen;
 with SpielVariablen;
@@ -7,6 +7,8 @@ with Weltkarte;
 
 package StadtumgebungErreichbarLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
+   use type KartenDatentypen.Kartenfeld;
    
    function UmgebungErreichbar
      (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;

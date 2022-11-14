@@ -1,11 +1,13 @@
-with RassenDatentypen; use RassenDatentypen;
-with KartenDatentypen; use KartenDatentypen;
+with RassenDatentypen;
+with KartenDatentypen;
 with KartenRecords;
 with SpielVariablen;
 with Weltkarte;
 
 package KIKartenfeldbewertungModifizierenLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
+   use type KartenDatentypen.Kartenfeld;
 
    function BewertungStadtBauen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;

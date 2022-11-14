@@ -2,9 +2,9 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 private with Sf.System.Vector2;
 
-with RassenDatentypen; use RassenDatentypen;
-with StadtDatentypen; use StadtDatentypen;
-with EinheitenDatentypen; use EinheitenDatentypen;
+with RassenDatentypen;
+with StadtDatentypen;
+with EinheitenDatentypen;
 with SpielVariablen;
 with StadtRecords;
 
@@ -12,6 +12,9 @@ private with GrafikRecordKonstanten;
 
 package BauauswahlGrafik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
+   use type EinheitenDatentypen.EinheitenIDMitNullWert;
+   use type StadtDatentypen.GebäudeIDMitNullwert;
 
    procedure Bauauswahl
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;

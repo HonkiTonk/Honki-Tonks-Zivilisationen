@@ -1,6 +1,6 @@
 private with Sf.System.Vector2;
 
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
 with StadtDatentypen;
 
@@ -8,6 +8,7 @@ private with GrafikRecordKonstanten;
 
 package VerkaufsauswahlGrafik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    procedure Verkaufsauswahl
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;

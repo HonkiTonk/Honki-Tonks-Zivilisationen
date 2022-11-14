@@ -1,5 +1,3 @@
-with RassenDatentypen; use RassenDatentypen;
-with KartenDatentypen; use KartenDatentypen;
 with SpielVariablen;
 with WichtigesRecordKonstanten;
 
@@ -50,7 +48,9 @@ package body ZufallsgeneratorenSpieleinstellungenLogik is
    
    
    procedure ZufälligeKartenart
-   is begin
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
       
       ZufälligeKartengrößeWählen.Reset (Gen => ZufälligeKartengrößeGewählt);
       
@@ -126,7 +126,9 @@ package body ZufallsgeneratorenSpieleinstellungenLogik is
    
    
    procedure ZufälligeRassenbelegung
-   is begin
+   is
+      use type RassenDatentypen.Spieler_Enum;
+   begin
       
       SpielerVorhanden := False;
       SpielVariablen.Rassenbelegung := (others => WichtigesRecordKonstanten.LeerRassenbelegung);
@@ -198,7 +200,9 @@ package body ZufallsgeneratorenSpieleinstellungenLogik is
    
    
    procedure ZufälligePole
-   is begin
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
       
       -- Die Pole mal in ein Array basteln? äöü
       ZufälligePolgrößenWählen.Reset (Gen => ZufälligePolgrößeGewählt);

@@ -1,4 +1,4 @@
-with Sf.Window.Keyboard; use Sf.Window.Keyboard;
+with Sf.Window.Keyboard;
 
 with RueckgabeDatentypen;
 
@@ -18,6 +18,7 @@ package SteuerungsauswahlLogik is
      return RueckgabeDatentypen.Rückgabe_Werte_Enum;
    
 private
+   use type Sf.Window.Keyboard.sfKeyCode;
 
    Anfang : constant Positive := 1;
    Ende : Positive;

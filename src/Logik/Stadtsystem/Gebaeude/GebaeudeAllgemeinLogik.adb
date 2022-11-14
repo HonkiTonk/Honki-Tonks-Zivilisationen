@@ -1,4 +1,4 @@
-with ProduktionDatentypen; use ProduktionDatentypen;
+with ProduktionDatentypen;
 with StadtKonstanten;
 
 with SchreibeWichtiges;
@@ -61,7 +61,9 @@ package body GebaeudeAllgemeinLogik is
       IDExtern : in StadtDatentypen.GebäudeID;
       -- Der Vorzeichenwechsel wird benötigt um auch bei Entfernung von Gebäuden die permanenten Kosten korrekt zu ändern
       VorzeichenWechselExtern : in KartenDatentypen.UmgebungsbereichEins)
-   is begin
+   is
+      use type ProduktionDatentypen.Produktion;
+   begin
       
       PermanenteKostenSchleife:
       for PermanenteKostenSchleifenwert in StadtRecords.PermanenteKostenArray'Range loop

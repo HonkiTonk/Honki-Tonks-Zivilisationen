@@ -1,11 +1,16 @@
-with RassenDatentypen; use RassenDatentypen;
-with StadtDatentypen; use StadtDatentypen;
-with EinheitenDatentypen; use EinheitenDatentypen;
+with RassenDatentypen;
+with StadtDatentypen;
+with EinheitenDatentypen;
 with StadtRecords;
 with SpielVariablen;
 
 package KIStadtLaufendeBauprojekteLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
+   use type StadtDatentypen.MaximaleStädteMitNullWert;
+   use type StadtDatentypen.GebäudeIDMitNullwert;
+   use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   use type EinheitenDatentypen.EinheitenIDMitNullWert;
 
    function StadtLaufendeBauprojekte
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;

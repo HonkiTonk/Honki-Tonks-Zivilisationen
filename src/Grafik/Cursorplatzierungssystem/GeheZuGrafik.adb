@@ -1,4 +1,4 @@
-with KartenartDatentypen; use KartenartDatentypen;
+with KartenartDatentypen;
 with KartenRecordKonstanten;
 with KartenKonstanten;
 
@@ -34,7 +34,9 @@ package body GeheZuGrafik is
    function Koordinatenberechnung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return KartenRecords.AchsenKartenfeldNaturalRecord
-   is begin
+   is
+      use type KartenartDatentypen.Kartenform_Enum;
+   begin
       
       KartenwertKoordinatenberechnung.EAchse := KoordinatenExtern.EAchse;
       AktuelleSichtweite := SichtweitenGrafik.SichtweiteLesen;

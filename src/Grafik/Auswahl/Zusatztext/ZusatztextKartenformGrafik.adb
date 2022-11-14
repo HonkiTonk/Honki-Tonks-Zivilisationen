@@ -1,7 +1,7 @@
 with Sf.Graphics.Texture;
 with Sf.Graphics.RenderWindow;
 
-with KartenartDatentypen; use KartenartDatentypen;
+with KartenartDatentypen;
 
 with KartengeneratorVariablenLogik;
 with EingeleseneTexturenGrafik;
@@ -14,7 +14,9 @@ package body ZusatztextKartenformGrafik is
    procedure ZusatztextKartenform
      (AktuelleAuswahlExtern : in Positive;
       ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
-   is begin
+   is
+      use type KartenartDatentypen.Kartenform_Enum;
+   begin
       
       Texturfläche := (Float (Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.BilderAccess (1)).x),
                         Float (Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.BilderAccess (1)).y));

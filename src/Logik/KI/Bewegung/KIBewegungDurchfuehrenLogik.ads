@@ -1,14 +1,15 @@
-with KartenRecords; use KartenRecords;
-with RassenDatentypen; use RassenDatentypen;
-with KartenDatentypen; use KartenDatentypen;
+with RassenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 
 private with StadtRecords;
 private with Weltkarte;
+private with KartenRecords;
+private with KartenDatentypen;
 
 package KIBewegungDurchfuehrenLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
    
    procedure KIBewegung
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
@@ -20,6 +21,7 @@ package KIBewegungDurchfuehrenLogik is
               );
 
 private
+   use type KartenDatentypen.Kartenfeld;
    
    FremdeStadt : StadtRecords.RasseStadtnummerRecord;
    

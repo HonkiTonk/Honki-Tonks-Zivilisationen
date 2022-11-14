@@ -1,5 +1,4 @@
-with RassenDatentypen; use RassenDatentypen;
-with KartenDatentypen; use KartenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
 with EinheitenRecords;
 
@@ -7,9 +6,12 @@ private with EinheitenDatentypen;
 private with KartenRecords;
 private with Weltkarte;
 private with StadtRecords;
+private with KartenDatentypen;
 
 package PZBEingesetztLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Rassen_Enum;
+   use type RassenDatentypen.Spieler_Enum;
 
    function PZBEingesetzt
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
@@ -22,6 +24,7 @@ package PZBEingesetztLogik is
               );
 
 private
+   use type KartenDatentypen.Kartenfeld;
 
    Einheitenart : EinheitenDatentypen.Einheitart_Enum;
 
@@ -36,7 +39,7 @@ private
 
    type KartengrößenArray is array (EinheitenDatentypen.PZB_Enum'Range) of KartenDatentypen.KartenfeldPositiv;
    Kartengrößen : constant KartengrößenArray := (
-                                                     EinheitenDatentypen.PZB_Klein_Enum  => 200,
+                                                     EinheitenDatentypen.PZB_Klein_Enum  => KartenDatentypen.KartenfeldPositiv'Last / 5,
                                                      EinheitenDatentypen.PZB_Mittel_Enum => 400,
                                                      EinheitenDatentypen.PZB_Groß_Enum   => KartenDatentypen.KartenfeldPositiv'Last
                                                     );

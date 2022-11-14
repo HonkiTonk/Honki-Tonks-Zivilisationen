@@ -1,5 +1,3 @@
-with KartengrundDatentypen; use KartengrundDatentypen;
-with SystemDatentypen; use SystemDatentypen;
 with LadezeitenDatentypen;
 with KartenKonstanten;
 
@@ -63,7 +61,9 @@ package body KartengeneratorLandschaftLogik is
    
    procedure BasisgrundBestimmen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
-   is begin
+   is
+      use type SystemDatentypen.NullBisHundert;
+   begin
       
       Basisgrund := KartengrundDatentypen.Leer_Basisgrund_Enum;
       
@@ -147,7 +147,9 @@ package body KartengeneratorLandschaftLogik is
    
    procedure ZusatzgrundBestimmen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
-   is begin
+   is
+      use type SystemDatentypen.NullBisHundert;
+   begin
       
       Zusatzgrund := KartengrundDatentypen.Leer_Zusatzgrund_Enum;
       
@@ -293,7 +295,9 @@ package body KartengeneratorLandschaftLogik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum)
       return KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum
-   is begin
+   is
+      use type KartengrundDatentypen.Basisgrund_Enum;
+   begin
       
       YAchseSchleife:
       for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
@@ -331,7 +335,9 @@ package body KartengeneratorLandschaftLogik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum)
       return KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum
-   is begin
+   is
+      use type KartengrundDatentypen.Basisgrund_Enum;
+   begin
       
       YAchseSchleife:
       for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
@@ -434,7 +440,9 @@ package body KartengeneratorLandschaftLogik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Zusatzgrund_Oberfläche_Enum)
       return KartengrundDatentypen.Zusatzgrund_Enum
-   is begin
+   is
+      use type KartengrundDatentypen.Basisgrund_Enum;
+   begin
       
       Basisgrund := LeseWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse));
       
@@ -455,7 +463,9 @@ package body KartengeneratorLandschaftLogik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Zusatzgrund_Oberfläche_Enum)
       return KartengrundDatentypen.Zusatzgrund_Enum
-   is begin
+   is
+      use type KartengrundDatentypen.Basisgrund_Enum;
+   begin
       
       Basisgrund := LeseWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse));
       
@@ -478,7 +488,9 @@ package body KartengeneratorLandschaftLogik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Zusatzgrund_Oberfläche_Enum)
       return KartengrundDatentypen.Zusatzgrund_Enum
-   is begin
+   is
+      use type KartengrundDatentypen.Basisgrund_Enum;
+   begin
       
       Basisgrund := LeseWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse));
       

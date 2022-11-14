@@ -1,5 +1,5 @@
-with KartenDatentypen; use KartenDatentypen;
-with RassenDatentypen; use RassenDatentypen;
+with KartenDatentypen;
+with RassenDatentypen;
 with KartenverbesserungDatentypen;
 with KartengrundDatentypen;
 with SpielVariablen;
@@ -10,6 +10,8 @@ with Weltkarte;
 
 package SchreibeWeltkarte is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
+   use type KartenDatentypen.Kartenfeld;
    
    procedure Basisgrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;

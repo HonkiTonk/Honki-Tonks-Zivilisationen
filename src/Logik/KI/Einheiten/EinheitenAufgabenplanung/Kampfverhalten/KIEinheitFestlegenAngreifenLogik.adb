@@ -1,4 +1,4 @@
-with DiplomatieDatentypen; use DiplomatieDatentypen;
+with DiplomatieDatentypen;
 with EinheitenKonstanten;
 with KartenKonstanten;
 
@@ -69,7 +69,10 @@ package body KIEinheitFestlegenAngreifenLogik is
    function ZielErmitteln
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return RassenDatentypen.Rassen_Enum
-   is begin
+   is
+      use type DiplomatieDatentypen.Status_Untereinander_Enum;
+      use type RassenDatentypen.Rassen_Enum;
+   begin
       
       Ziel := EinheitenKonstanten.LeerRasse;
       

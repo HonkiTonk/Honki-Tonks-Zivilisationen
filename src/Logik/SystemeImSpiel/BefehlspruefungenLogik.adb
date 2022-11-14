@@ -1,6 +1,4 @@
-with EinheitenDatentypen; use EinheitenDatentypen;
-with StadtDatentypen; use StadtDatentypen;
-with AufgabenDatentypen; use AufgabenDatentypen;
+with AufgabenDatentypen;
 with EinheitenKonstanten;
 with StadtKonstanten;
 with TextnummernKonstanten;
@@ -27,7 +25,10 @@ package body BefehlspruefungenLogik is
    
    procedure WasWirdEntfernt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-   is begin
+   is
+      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      use type StadtDatentypen.MaximaleStädteMitNullWert;
+   begin
       
       EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
                                                                             KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell,
@@ -78,7 +79,10 @@ package body BefehlspruefungenLogik is
    
    procedure AuswahlEinheitStadt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-   is begin
+   is
+      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      use type StadtDatentypen.MaximaleStädteMitNullWert;
+   begin
       
       EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
                                                                             KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell,
@@ -117,7 +121,9 @@ package body BefehlspruefungenLogik is
    
    procedure AuswahlEinheitTransporter
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-   is begin
+   is
+      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   begin
       
       Transportiert := TransporterSuchenLogik.HatTransporterLadung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
@@ -189,7 +195,10 @@ package body BefehlspruefungenLogik is
    
    procedure EinheitSteuern
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-   is begin
+   is
+      use type EinheitenDatentypen.BewegungFloat;
+      use type AufgabenDatentypen.Einheiten_Aufgaben_Enum;
+   begin
       
       NachGrafiktask.AktuelleEinheit := EinheitRasseNummerExtern.Nummer;
       

@@ -1,4 +1,4 @@
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 
@@ -7,6 +7,7 @@ private with StadtDatentypen;
 
 package KIEinheitFestlegenAufloesenLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    function EinheitAuflösen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

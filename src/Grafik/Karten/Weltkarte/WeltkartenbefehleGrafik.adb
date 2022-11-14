@@ -1,6 +1,5 @@
 with Sf.Graphics.Texture;
 
-with EinheitenDatentypen; use EinheitenDatentypen;
 with Views;
 with InteraktionAuswahl;
 with EinheitenKonstanten;

@@ -1,7 +1,4 @@
-with AufgabenDatentypen; use AufgabenDatentypen;
-with EinheitenDatentypen; use EinheitenDatentypen;
-with ProduktionDatentypen; use ProduktionDatentypen;
-with StadtDatentypen; use StadtDatentypen;
+with ProduktionDatentypen;
 with EinheitenKonstanten;
 with StadtKonstanten;
 
@@ -16,8 +13,6 @@ with EinheitSuchenLogik;
 with PassierbarkeitspruefungLogik;
 with StadtproduktionLogik;
 with ForschungstestsLogik;
-
-with KIDatentypen; use KIDatentypen;
 
 package body EinheitenmodifizierungLogik is
 
@@ -60,7 +55,11 @@ package body EinheitenmodifizierungLogik is
 
    procedure HeilungBewegungspunkteNeueRundeSetzen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-   is begin
+   is
+      use type AufgabenDatentypen.Einheiten_Aufgaben_Enum;
+      use type EinheitenDatentypen.BewegungFloat;
+      use type EinheitenDatentypen.Lebenspunkte;
+   begin
       
       AktuelleBeschäftigung := LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       KIBeschäftigung := LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -111,7 +110,9 @@ package body EinheitenmodifizierungLogik is
    procedure PermanenteKostenÄndern
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       VorzeichenWechselExtern : in KartenDatentypen.UmgebungsbereichEins)
-   is begin
+   is
+      use type ProduktionDatentypen.Produktion;
+   begin
       
       Heimatstadt := LeseEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
@@ -139,9 +140,9 @@ package body EinheitenmodifizierungLogik is
             SchreibeStadtGebaut.PermanenteKostenPosten (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, Heimatstadt),
                                                         WelcherPostenExtern    => PermanenteKostenSchleifenwert,
                                                         KostenExtern           =>
-                                                          ProduktionDatentypen.Stadtproduktion (VorzeichenWechselExtern)  * LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => EinheitRasseNummerExtern.Rasse,
-                                                                                                                                                                     IDExtern           => AktuelleID,
-                                                                                                                                                                     WelcheKostenExtern => PermanenteKostenSchleifenwert),
+                                                          ProduktionDatentypen.Stadtproduktion (VorzeichenWechselExtern) * LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => EinheitRasseNummerExtern.Rasse,
+                                                                                                                                                                    IDExtern           => AktuelleID,
+                                                                                                                                                                    WelcheKostenExtern => PermanenteKostenSchleifenwert),
                                                         ÄndernSetzenExtern     => True);
          end if;
          
@@ -155,7 +156,11 @@ package body EinheitenmodifizierungLogik is
    
    procedure HeimatstadtÄndern
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-   is begin
+   is
+      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      use type StadtDatentypen.MaximaleStädteMitNullWert;
+      use type RassenDatentypen.Rassen_Enum;
+   begin
       
       case
         EinheitRasseNummerExtern.Nummer
@@ -208,7 +213,10 @@ package body EinheitenmodifizierungLogik is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return Boolean
-   is begin
+   is
+      use type EinheitenDatentypen.EinheitenIDMitNullWert;
+      use type EinheitenDatentypen.Einheitart_Enum;
+   begin
       
       if
         IDExtern = EinheitenKonstanten.LeerID

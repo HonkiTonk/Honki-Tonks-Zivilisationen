@@ -1,4 +1,4 @@
-with GrafikDatentypen; use GrafikDatentypen;
+with GrafikDatentypen;
 with TextnummernKonstanten;
 with ZahlenDatentypen;
 with MenueDatentypen;
@@ -101,7 +101,9 @@ package body OptionenGrafikLogik is
    
    
    procedure BildrateÄndern
-   is begin
+   is
+      use type GrafikDatentypen.Fenster_Ändern_Enum;
+   begin
       
       EingabeBildrate := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => 0,
                                                            ZahlenMaximumExtern => ZahlenDatentypen.EigenerInteger'Last,
@@ -129,7 +131,9 @@ package body OptionenGrafikLogik is
    
    
    procedure VollbildFenster
-   is begin
+   is
+      use type GrafikDatentypen.Fenster_Ändern_Enum;
+   begin
       
       case
         EinstellungenGrafik.FensterEinstellungen.FensterVollbild

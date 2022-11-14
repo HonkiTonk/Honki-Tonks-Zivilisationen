@@ -1,5 +1,3 @@
-with SystemDatentypen; use SystemDatentypen;
-
 with SchreibeWeltkarte;
 
 with ZufallsgeneratorenKartenLogik;
@@ -31,7 +29,9 @@ package body KartengeneratorWasserweltLogik is
    
    procedure ZusatzgrundBestimmen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
-   is begin
+   is
+      use type SystemDatentypen.NullBisHundert;
+   begin
       
       Zusatzgrund := KartengrundDatentypen.Leer_Zusatzgrund_Enum;
       

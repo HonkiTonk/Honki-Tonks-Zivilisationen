@@ -1,5 +1,4 @@
-with RassenDatentypen; use RassenDatentypen;
-with KartenverbesserungDatentypen; use KartenverbesserungDatentypen;
+with RassenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 
@@ -9,9 +8,11 @@ private with SystemRecords;
 private with StadtRecords;
 private with AufgabenDatentypen;
 private with Weltkarte;
+private with KartenverbesserungDatentypen;
 
 package StadtBauenLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    function StadtBauen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
@@ -24,6 +25,7 @@ package StadtBauenLogik is
               );
 
 private
+   use type KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
 
    Stadtart : KartenverbesserungDatentypen.Karten_Verbesserung_Städte_Enum;
 

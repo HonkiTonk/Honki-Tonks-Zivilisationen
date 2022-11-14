@@ -1,6 +1,3 @@
-with KartengrundDatentypen; use KartengrundDatentypen;
-with KartenverbesserungDatentypen; use KartenverbesserungDatentypen;
-with StadtDatentypen; use StadtDatentypen;
 with StadtKonstanten;
 with KartenKonstanten;
 
@@ -17,7 +14,12 @@ package body GebaeudeumgebungLogik is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       GebäudeIDExtern : in StadtDatentypen.GebäudeID)
       return Boolean
-   is begin
+   is
+      use type KartengrundDatentypen.Basisgrund_Enum;
+      use type KartengrundDatentypen.Kartenressourcen_Enum;
+      use type KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
+      use type StadtDatentypen.GebäudeIDMitNullwert;
+   begin
       
       case
         LeseGebaeudeDatenbank.FalscheEbene (RasseExtern => StadtRasseNummerExtern.Rasse,
@@ -122,7 +124,13 @@ package body GebaeudeumgebungLogik is
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       AnforderungenExtern : in AnforderungenRecord)
       return Boolean
-   is begin
+   is
+      use type KartengrundDatentypen.Basisgrund_Enum;
+      use type KartengrundDatentypen.Kartenfluss_Enum;
+      use type KartengrundDatentypen.Kartenressourcen_Enum;
+      use type KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
+      use type StadtDatentypen.GebäudeIDMitNullwert;
+   begin
             
       if
         KartengrundDatentypen.Leer_Basisgrund_Enum = AnforderungenExtern.NotwendigerGrund

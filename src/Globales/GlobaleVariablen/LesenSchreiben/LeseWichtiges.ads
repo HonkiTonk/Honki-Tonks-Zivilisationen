@@ -1,12 +1,15 @@
-with RassenDatentypen; use RassenDatentypen;
-with EinheitenDatentypen; use EinheitenDatentypen;
-with StadtDatentypen; use StadtDatentypen;
+with RassenDatentypen;
+with EinheitenDatentypen;
+with StadtDatentypen;
 with ForschungenDatentypen;
 with ProduktionDatentypen;
 with SpielVariablen;
 
 package LeseWichtiges is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
+   use type StadtDatentypen.MaximaleStädteMitNullWert;
+   use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
 
    function Geldmenge
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

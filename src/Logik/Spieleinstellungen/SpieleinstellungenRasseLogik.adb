@@ -1,8 +1,6 @@
-with ZahlenDatentypen; use ZahlenDatentypen;
-with LadezeitenDatentypen; use LadezeitenDatentypen;
-with KartengrundDatentypen; use KartengrundDatentypen;
-with RassenDatentypen; use RassenDatentypen;
-with SystemDatentypen; use SystemDatentypen;
+with LadezeitenDatentypen;
+with KartengrundDatentypen;
+with SystemDatentypen;
 with KartenRecordKonstanten;
 with KartenKonstanten;
 with EinheitenKonstanten;
@@ -110,7 +108,9 @@ package body SpieleinstellungenRasseLogik is
    
    
    procedure RasseBelegenSchnellstart
-   is begin
+   is
+      use type RassenDatentypen.Rassen_Enum;
+   begin
       
       RasseMenschSchnellstart := ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeRasse;
       
@@ -138,7 +138,9 @@ package body SpieleinstellungenRasseLogik is
 
 
    procedure StartwerteErmitteln
-   is begin
+   is
+      use type SystemDatentypen.NullBisHundert;
+   begin
       
       SpieleranzahlWerteFestlegen:
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
@@ -252,7 +254,10 @@ package body SpieleinstellungenRasseLogik is
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       NotAusExtern : in ZahlenDatentypen.NotAus)
       return KartenRecords.AchsenKartenfeldNaturalRecord
-   is begin
+   is
+      use type KartengrundDatentypen.Basisgrund_Enum;
+      use type ZahlenDatentypen.NotAus;
+   begin
             
       FreieFelder := 0;
       

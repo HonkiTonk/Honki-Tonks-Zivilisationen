@@ -1,5 +1,5 @@
-with KartenDatentypen; use KartenDatentypen;
-with RassenDatentypen; use RassenDatentypen;
+with KartenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
 with KartenRecords;
 with ProduktionDatentypen;
@@ -8,6 +8,8 @@ with Weltkarte;
 
 package KartenfelderwerteLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
+   use type KartenDatentypen.Kartenfeld;
 
    function FeldNahrung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;

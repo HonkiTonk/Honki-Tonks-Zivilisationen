@@ -1,5 +1,5 @@
-with KartenDatentypen; use KartenDatentypen;
-with RassenDatentypen; use RassenDatentypen;
+with KartenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
 with KartenRecords;
 with EinheitenRecords;
@@ -12,6 +12,8 @@ private with KartenverbesserungDatentypen;
 
 package PassierbarkeitspruefungLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
+   use type KartenDatentypen.Kartenfeld;
    
    function PassierbarkeitPrüfenNummer
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

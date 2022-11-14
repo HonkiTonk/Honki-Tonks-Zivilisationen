@@ -1,4 +1,3 @@
-with SystemDatentypen; use SystemDatentypen;
 with LadezeitenDatentypen;
 with KartenKonstanten;
 
@@ -56,7 +55,9 @@ package body KartengeneratorPlanetenkernLogik is
    
    procedure BasisgrundBestimmen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
-   is begin
+   is
+      use type SystemDatentypen.NullBisHundert;
+   begin
       
       WelcherGrund := KartengrundDatentypen.Leer_Basisgrund_Enum;
       

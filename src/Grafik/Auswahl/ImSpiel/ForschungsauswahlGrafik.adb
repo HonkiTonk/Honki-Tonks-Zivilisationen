@@ -1,7 +1,6 @@
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Text;
 
-with ForschungenDatentypen; use ForschungenDatentypen;
 with ForschungKonstanten;
 with GrafikDatentypen;
 with Meldungstexte;
@@ -123,7 +122,9 @@ package body ForschungsauswahlGrafik is
      (ZusatztextExtern : in ForschungenDatentypen.ForschungIDMitNullWert;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       ViewnummerExtern : in Positive)
-   is begin
+   is
+      use type ForschungenDatentypen.ForschungIDNichtMöglich;
+   begin
       
       Viewfläche (ViewnummerExtern) := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
                                                                                            VerhältnisExtern => (GrafikRecordKonstanten.Forschungsbereich (ViewnummerExtern).width,

@@ -1,12 +1,13 @@
 with Sf.System.Vector2;
 with Sf.Graphics.Rect;
 
-with KartenDatentypen; use KartenDatentypen;
+with KartenDatentypen;
 with KartenRecords;
 with Weltkarte;
 
 package Vergleiche is
    pragma Elaborate_Body;
+   use type KartenDatentypen.Kartenfeld;
    
    function KoordinateLeervergleich
      (KoordinateExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)

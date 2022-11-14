@@ -1,6 +1,6 @@
 with Ada.Task_Identification; use Ada.Task_Identification;
 with Ada.Exceptions; use Ada.Exceptions;
-with Ada.Text_IO;
+with Ada.Text_IO; use Ada.Text_IO;
 
 with StartLogik;
 with Grafik;
@@ -45,8 +45,8 @@ is
 
    exception
       when StandardAdaFehler : others =>
-         Ada.Text_IO.Put_Line (Item => "Logiktask wurde abgebrochen.");
-         Ada.Text_IO.Put_Line (Item => Exception_Information (StandardAdaFehler));
+         Put_Line (Item => "Logiktask wurde abgebrochen.");
+         Put_Line (Item => Exception_Information (StandardAdaFehler));
          MeldungSchreiben.MeldungSchreiben (MeldungExtern => "Logiktask wurde abgebrochen.");
          MeldungSchreiben.MeldungSchreibenASCII (MeldungExtern => Exception_Information (StandardAdaFehler));
          UnerwarteterFehler := True;
@@ -66,8 +66,8 @@ is
 
    exception
       when StandardAdaFehler : others =>
-         Ada.Text_IO.Put_Line (Item => "Grafiktask wurde abgebrochen.");
-         Ada.Text_IO.Put_Line (Item => Exception_Information (StandardAdaFehler));
+         Put_Line (Item => "Grafiktask wurde abgebrochen.");
+         Put_Line (Item => Exception_Information (StandardAdaFehler));
          MeldungSchreiben.MeldungSchreiben (MeldungExtern => "Grafiktask wurde abgebrochen.");
          MeldungSchreiben.MeldungSchreibenASCII (MeldungExtern => Exception_Information (StandardAdaFehler));
          UnerwarteterFehler := True;
@@ -87,8 +87,8 @@ is
 
    exception
       when StandardAdaFehler : others =>
-         Ada.Text_IO.Put_Line (Item => "Musiktask wurde abgebrochen.");
-         Ada.Text_IO.Put_Line (Item => Exception_Information (StandardAdaFehler));
+         Put_Line (Item => "Musiktask wurde abgebrochen.");
+         Put_Line (Item => Exception_Information (StandardAdaFehler));
          MeldungSchreiben.MeldungSchreiben (MeldungExtern => "Musiktask wurde abgebrochen.");
          MeldungSchreiben.MeldungSchreibenASCII (MeldungExtern => Exception_Information (StandardAdaFehler));
          UnerwarteterFehler := True;
@@ -108,8 +108,8 @@ is
 
    exception
       when StandardAdaFehler : others =>
-         Ada.Text_IO.Put_Line (Item => "Soundtask wurde abgebrochen.");
-         Ada.Text_IO.Put_Line (Item => Exception_Information (StandardAdaFehler));
+         Put_Line (Item => "Soundtask wurde abgebrochen.");
+         Put_Line (Item => Exception_Information (StandardAdaFehler));
          MeldungSchreiben.MeldungSchreiben (MeldungExtern => "Soundtask wurde abgebrochen.");
          MeldungSchreiben.MeldungSchreibenASCII (MeldungExtern => Exception_Information (StandardAdaFehler));
          UnerwarteterFehler := True;

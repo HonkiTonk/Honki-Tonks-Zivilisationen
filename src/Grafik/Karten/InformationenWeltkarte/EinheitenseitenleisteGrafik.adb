@@ -2,9 +2,6 @@ with Sf.Graphics.RenderWindow;
 with Sf.Graphics;
 with Sf.Graphics.Text;
 
-with EinheitenDatentypen; use EinheitenDatentypen;
-with AufgabenDatentypen; use AufgabenDatentypen;
-with KampfDatentypen; use KampfDatentypen;
 with Meldungstexte;
 with EinheitenKonstanten;
 with StadtKonstanten;
@@ -51,7 +48,9 @@ package body EinheitenseitenleisteGrafik is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       StadtVorhandenExtern : in Boolean)
-   is begin
+   is
+      use type RassenDatentypen.Rassen_Enum;
+   begin
       
       case
         StadtVorhandenExtern
@@ -215,7 +214,10 @@ package body EinheitenseitenleisteGrafik is
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Unbounded_Wide_Wide_String
-   is begin
+   is
+      use type KampfDatentypen.KampfwerteGroß;
+      use type AufgabenDatentypen.Einheiten_Aufgaben_Enum;
+   begin
       
       Kampftext := Meldungstexte.Zeug (TextnummernKonstanten.ZeugKampfwerte) & LeseEinheitenDatenbank.Angriff (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                                                                                IDExtern    => IDExtern)'Wide_Wide_Image;
@@ -305,7 +307,9 @@ package body EinheitenseitenleisteGrafik is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       IDExtern : in EinheitenDatentypen.EinheitenID)
       return Unbounded_Wide_Wide_String
-   is begin
+   is
+      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   begin
       
       case
         LeseEinheitenDatenbank.KannTransportieren (RasseExtern => EinheitRasseNummerExtern.Rasse,
@@ -358,7 +362,9 @@ package body EinheitenseitenleisteGrafik is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       TextwerteExtern : in Sf.System.Vector2.sfVector2f)
       return Sf.System.Vector2.sfVector2f
-   is begin
+   is
+      use type EinheitenDatentypen.Bewegungsplan;
+   begin
       
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
       Textposition.y := TextwerteExtern.y;

@@ -1,4 +1,3 @@
-with KartenDatentypen; use KartenDatentypen;
 with StadtKonstanten;
 with KartenKonstanten;
 
@@ -81,7 +80,9 @@ package body SichtbarkeitSetzenLogik is
    procedure SichtbarkeitSetzen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-   is begin
+   is
+      use type RassenDatentypen.Rassen_Enum;
+   begin
             
       case
         LeseWeltkarte.Sichtbar (KoordinatenExtern => KoordinatenExtern,

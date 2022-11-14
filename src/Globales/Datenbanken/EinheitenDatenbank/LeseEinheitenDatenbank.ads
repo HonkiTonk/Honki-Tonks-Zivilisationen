@@ -1,4 +1,4 @@
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
 with EinheitenDatentypen;
 with ForschungenDatentypen;
@@ -7,6 +7,7 @@ with KampfDatentypen;
 
 package LeseEinheitenDatenbank is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    function Einheitenart
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;

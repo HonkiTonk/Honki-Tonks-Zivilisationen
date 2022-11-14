@@ -13,7 +13,9 @@ package body SichtbarkeitsberechnungssystemLogik is
 
    procedure SichtbarkeitsprüfungFürEinheit
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-   is begin
+   is
+      use type KartenDatentypen.Ebene;
+   begin
       
       SichtweiteObjekt := SichtbereicheErmittelnLogik.SichtweiteErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
@@ -62,7 +64,9 @@ package body SichtbarkeitsberechnungssystemLogik is
    procedure SichtbarkeitsprüfungOhneBlockade
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       SichtweiteExtern : in KartenDatentypen.Sichtweite)
-   is begin
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
       
       Einheitenkoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
@@ -95,7 +99,9 @@ package body SichtbarkeitsberechnungssystemLogik is
 
    procedure SichtbarkeitsprüfungFürStadt
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-   is begin
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
       
       SichtweiteObjekt := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) + 1;
       Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);

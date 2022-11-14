@@ -1,5 +1,5 @@
-with TastenbelegungDatentypen; use TastenbelegungDatentypen;
-with BefehleDatentypen; use BefehleDatentypen;
+with TastenbelegungDatentypen;
+with BefehleDatentypen;
 with InteraktionAuswahl;
 with SystemKonstanten;
 with GrafikDatentypen;
@@ -107,7 +107,9 @@ package body SteuerungsauswahlLogik is
    procedure AllgemeineBelegung
      (AuswahlExtern : in Positive;
       TasteExtern : in Sf.Window.Keyboard.sfKeyCode)
-   is begin
+   is
+      use type TastenbelegungDatentypen.Allgemeine_Belegung_Enum;
+   begin
       
       AllgemeineBelegungSchleife:
       for AllgemeineBelegungSchleifenwert in TastenbelegungVariablen.AllgemeineBelegungArray'Range loop
@@ -135,7 +137,9 @@ package body SteuerungsauswahlLogik is
    procedure Einheitenbelegung
      (AuswahlExtern : in Positive;
       TasteExtern : in Sf.Window.Keyboard.sfKeyCode)
-   is begin
+   is
+      use type BefehleDatentypen.Einheitenbelegung_Enum;
+   begin
       
       EinheitenbelegungSchleife:
       for EinheitenbelegungSchleifenwert in TastenbelegungVariablen.EinheitenbelegungArray'Range loop
@@ -163,7 +167,9 @@ package body SteuerungsauswahlLogik is
    procedure Stadtbelegung
      (AuswahlExtern : in Positive;
       TasteExtern : in Sf.Window.Keyboard.sfKeyCode)
-   is begin
+   is
+      use type BefehleDatentypen.Stadtbefehle_Enum;
+   begin
       
       StadtbelegungSchleife:
       for StadtbelegungSchleifenwert in TastenbelegungVariablen.StadtbelegungArray'Range loop

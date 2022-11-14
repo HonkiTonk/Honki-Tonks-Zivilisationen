@@ -1,4 +1,4 @@
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 
@@ -6,6 +6,7 @@ private with KartenRecords;
 
 package KIEinheitFestlegenPlatzMachenLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    function PlatzMachen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

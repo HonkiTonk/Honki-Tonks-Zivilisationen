@@ -1,4 +1,4 @@
-with EinheitenDatentypen; use EinheitenDatentypen;
+with EinheitenDatentypen;
 
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
@@ -14,7 +14,9 @@ package body KIEinheitFestlegenHeilenLogik is
    function Heilen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
-   is begin
+   is
+      use type EinheitenDatentypen.Lebenspunkte;
+   begin
       
       if
         LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern)

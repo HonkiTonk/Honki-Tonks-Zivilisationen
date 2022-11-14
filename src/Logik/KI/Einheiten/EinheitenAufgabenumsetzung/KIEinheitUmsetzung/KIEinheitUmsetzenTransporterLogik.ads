@@ -1,9 +1,10 @@
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
 with EinheitenRecords;
 
 package KIEinheitUmsetzenTransporterLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    function AbholungAbwarten
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

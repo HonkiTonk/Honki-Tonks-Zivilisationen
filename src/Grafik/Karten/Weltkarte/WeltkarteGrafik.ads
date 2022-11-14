@@ -1,16 +1,17 @@
 private with Sf;
 private with Sf.System.Vector2;
 
-with KartenDatentypen; use KartenDatentypen;
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
 with EinheitenRecords;
 
 private with KartenRecords;
 private with Weltkarte;
+private with KartenDatentypen;
 
 package WeltkarteGrafik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
    
    procedure WeltkarteAnzeigen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
@@ -20,6 +21,7 @@ package WeltkarteGrafik is
               );
    
 private
+   use type KartenDatentypen.Kartenfeld;
    
    Transparents : Sf.sfUint8;
    

@@ -1,4 +1,3 @@
-with KartenDatentypen; use KartenDatentypen;
 with KartenKonstanten;
 with KartenartDatentypen;
 with Weltkarte;
@@ -10,7 +9,9 @@ package body KartenkoordinateEAchseBerechnenLogik is
       ÄnderungEAchseExtern : in KartenDatentypen.Ebene;
       LogikGrafikExtern : in Boolean)
       return KartenDatentypen.Ebene
-   is begin
+   is
+      use type KartenDatentypen.Ebene;
+   begin
       
       if
         EAchseExtern + ÄnderungEAchseExtern < Weltkarte.KarteArray'First (1)

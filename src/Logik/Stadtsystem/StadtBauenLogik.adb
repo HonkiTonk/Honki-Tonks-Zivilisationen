@@ -1,5 +1,4 @@
-with StadtDatentypen; use StadtDatentypen;
-with KartenDatentypen; use KartenDatentypen;
+with KartenDatentypen;
 with Rassentexte;
 with TextnummernKonstanten;
 with KartenKonstanten;
@@ -86,7 +85,10 @@ package body StadtBauenLogik is
    function StadtBaubar
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
-   is begin
+   is
+      use type RassenDatentypen.Rassen_Enum;
+      use type KartenDatentypen.Ebene;
+   begin
       
       case
         EinheitenSpielmeldungenLogik.ArbeiteraufgabeMeldung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)

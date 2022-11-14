@@ -1,7 +1,6 @@
 with Sf.Graphics.Text;
 with Sf.Graphics.RenderWindow;
 
-with EinheitenDatentypen; use EinheitenDatentypen;
 with Views;
 with GrafikDatentypen;
 with TextnummernKonstanten;
@@ -29,7 +28,10 @@ package body BauauswahlEinheitenGrafik is
      (AuswahlExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
       ViewnummerExtern : in Positive;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-   is begin
+   is
+      use type EinheitenDatentypen.Transport_Enum;
+      use type EinheitenDatentypen.Transportplätze;
+   begin
       
       ViewflächeInformationen := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => ViewflächeInformationen,
                                                                                      VerhältnisExtern => (GrafikRecordKonstanten.Baumenübereich (ViewnummerExtern).width,

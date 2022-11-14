@@ -1,4 +1,3 @@
-with RueckgabeDatentypen; use RueckgabeDatentypen;
 with EinheitenKonstanten;
 with GrafikDatentypen;
 with MenueDatentypen;
@@ -23,7 +22,9 @@ package body SpielLogik is
 
    function Spiel
      return RueckgabeDatentypen.Rückgabe_Werte_Enum
-   is begin
+   is
+      use type RassenDatentypen.Rassen_Enum;
+   begin
             
       SpielSchleife:
       loop
@@ -124,7 +125,9 @@ package body SpielLogik is
    function RasseDurchgehen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
-   is begin
+   is
+      use type RassenDatentypen.Rassen_Enum;
+   begin
             
       if
         SpielVariablen.Allgemeines.RasseAmZugNachLaden = EinheitenKonstanten.LeerRasse
@@ -221,7 +224,9 @@ package body SpielLogik is
    function MenschAmZug
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
-   is begin
+   is
+      use type RueckgabeDatentypen.Rückgabe_Werte_Enum;
+   begin
       
       NachGrafiktask.AktuelleRasse := RasseExtern;
       

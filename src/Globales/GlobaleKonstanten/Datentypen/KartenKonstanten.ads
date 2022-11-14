@@ -1,4 +1,4 @@
-with KartenDatentypen; use KartenDatentypen;
+with KartenDatentypen;
 with KartenRecords;
 with ProduktionDatentypen;
 with KampfDatentypen;
@@ -8,6 +8,7 @@ with BewertungDatentypen;
 
 package KartenKonstanten is
    pragma Pure;
+   use type KartenDatentypen.Ebene;
    
    LeerEAchse : constant KartenDatentypen.Ebene := KartenDatentypen.Ebene'First;
    LeerYAchse : constant KartenDatentypen.KartenfeldNatural := KartenDatentypen.KartenfeldNatural'First;

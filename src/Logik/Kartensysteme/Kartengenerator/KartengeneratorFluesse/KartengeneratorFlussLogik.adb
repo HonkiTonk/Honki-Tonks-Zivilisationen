@@ -1,5 +1,4 @@
-with KartengrundDatentypen; use KartengrundDatentypen;
-with SystemDatentypen; use SystemDatentypen;
+with KartengrundDatentypen;
 with KartenKonstanten;
 with LadezeitenDatentypen;
 
@@ -93,7 +92,10 @@ package body KartengeneratorFlussLogik is
    function FlussumgebungTesten
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
-   is begin
+   is
+      use type SystemDatentypen.NullBisHundert;
+      use type KartengrundDatentypen.Kartenfluss_Enum;
+   begin
          
       BeliebigerFlusswert (KoordinatenExtern.EAchse) := ZufallsgeneratorenKartenLogik.KartengeneratorZufallswerte;
                   

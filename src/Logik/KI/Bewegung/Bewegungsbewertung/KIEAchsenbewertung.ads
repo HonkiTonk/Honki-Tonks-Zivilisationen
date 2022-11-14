@@ -1,4 +1,4 @@
-with KartenDatentypen; use KartenDatentypen;
+with KartenDatentypen;
 
 with KIDatentypen;
 
@@ -12,6 +12,7 @@ package KIEAchsenbewertung is
       return KIDatentypen.Achsenbewertung;
 
 private
+   use type KartenDatentypen.Ebene;
 
    type BewertungArray is array (Boolean'Range) of KIDatentypen.Achsenbewertung;
    Bewertung : BewertungArray;

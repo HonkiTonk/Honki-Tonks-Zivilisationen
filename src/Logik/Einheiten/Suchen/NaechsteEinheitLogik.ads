@@ -1,10 +1,11 @@
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
 
 private with EinheitenDatentypen;
 
 package NaechsteEinheitLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    -- Das hier auch mal austauschen? äöü
    -- Alternativ könnte man den erweiterten Boolean aus SystemDatentypen verwenden, aber es dann linke ich halt die SystemDatentypen mir ein, ob das sinnvoll ist? äöü

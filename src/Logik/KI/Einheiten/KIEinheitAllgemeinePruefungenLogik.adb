@@ -1,5 +1,3 @@
-with EinheitenRecords; use EinheitenRecords;
-with EinheitenDatentypen; use EinheitenDatentypen;
 with EinheitenKonstanten;
 with KartenKonstanten;
 
@@ -22,7 +20,10 @@ package body KIEinheitAllgemeinePruefungenLogik is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
-   is begin
+   is
+      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      use type EinheitenRecords.RasseEinheitnummerRecord;
+   begin
       
       EinheitAufFeld := EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern,
                                                                               LogikGrafikExtern => True);
@@ -66,7 +67,9 @@ package body KIEinheitAllgemeinePruefungenLogik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
-   is begin
+   is
+      use type EinheitenDatentypen.Transport_Enum;
+   begin
       
       UmgebungPrüfen := 1;
       BereitsGeprüft := UmgebungPrüfen - 1;

@@ -1,4 +1,4 @@
-with KartenDatentypen; use KartenDatentypen;
+with KartenDatentypen;
 with KartenRecords;
 with Weltkarte;
 
@@ -7,6 +7,7 @@ private with SystemDatentypen;
 
 package KartengeneratorErdweltLogik is
    pragma Elaborate_Body;
+   use type KartenDatentypen.Kartenfeld;
 
    procedure KartengeneratorErdwelt
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)

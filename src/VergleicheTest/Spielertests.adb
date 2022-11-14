@@ -1,4 +1,3 @@
-with RassenDatentypen; use RassenDatentypen;
 with SpielVariablen;
 
 package body Spielertests is
@@ -6,7 +5,10 @@ package body Spielertests is
    function BeliebigeSpielerart
      (RasseExtern : in RassenDatentypen.Rassen_Enum)
       return Boolean
-   is begin
+   is
+      use type RassenDatentypen.Rassen_Enum;
+      use type RassenDatentypen.Spieler_Enum;
+   begin
       
       RassenSchleife:
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
@@ -14,7 +16,7 @@ package body Spielertests is
          if
            RasseSchleifenwert = RasseExtern
            or
-             SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung not in Spieler_Belegt_Enum'Range
+             SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung not in RassenDatentypen.Spieler_Belegt_Enum'Range
          then
             null;
             
@@ -33,7 +35,10 @@ package body Spielertests is
    function MenschlicheSpieler
      (RasseExtern : in RassenDatentypen.Rassen_Enum)
       return Boolean
-   is begin
+   is
+      use type RassenDatentypen.Rassen_Enum;
+      use type RassenDatentypen.Spieler_Enum;
+   begin
       
       RassenSchleife:
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
@@ -60,7 +65,10 @@ package body Spielertests is
    function KISpieler
      (RasseExtern : in RassenDatentypen.Rassen_Enum)
       return Boolean
-   is begin
+   is
+      use type RassenDatentypen.Rassen_Enum;
+      use type RassenDatentypen.Spieler_Enum;
+   begin
       
       RassenSchleife:
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop

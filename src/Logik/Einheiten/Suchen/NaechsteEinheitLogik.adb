@@ -1,4 +1,3 @@
-with EinheitenDatentypen; use EinheitenDatentypen;
 with EinheitenKonstanten;
 with EinheitenRecords;
 
@@ -11,7 +10,11 @@ package body NaechsteEinheitLogik is
    procedure NächsteEinheit
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       BewegungspunkteExtern : in Bewegungspunkte_Enum)
-   is begin
+   is
+      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      use type EinheitenDatentypen.EinheitenIDMitNullWert;
+      use type EinheitenDatentypen.BewegungFloat;
+   begin
       
       EinheitSchleifenbegrenzung := 0;
       
@@ -65,7 +68,10 @@ package body NaechsteEinheitLogik is
    
    procedure NächsteEinheitMeldung
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-   is begin
+   is
+      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      use type EinheitenDatentypen.EinheitenIDMitNullWert;
+   begin
       
       MeldungSchleifenbegrenzung := 0;
       

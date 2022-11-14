@@ -260,7 +260,9 @@ package body StadtwerteFestlegenLogik is
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       BelegenOderEntfernen : in Boolean)
       return ProduktionDatentypen.Stadtproduktion
-   is begin
+   is
+      use type ProduktionDatentypen.Produktion;
+   begin
       
       return NahrungBewertung (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                KoordinatenExtern      => KoordinatenExtern,
@@ -284,7 +286,9 @@ package body StadtwerteFestlegenLogik is
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       BelegenOderEntfernen : in Boolean)
       return ProduktionDatentypen.Stadtproduktion
-   is begin
+   is
+      use type ProduktionDatentypen.Produktion;
+   begin
       
       NahrungGesamt := KartenfelderwerteLogik.FeldNahrung (KoordinatenExtern => KoordinatenExtern,
                                                            RasseExtern       => StadtRasseNummerExtern.Rasse);
@@ -325,7 +329,9 @@ package body StadtwerteFestlegenLogik is
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       BelegenOderEntfernen : in Boolean)
       return ProduktionDatentypen.Stadtproduktion
-   is begin
+   is
+      use type ProduktionDatentypen.Produktion;
+   begin
       
       RessourcenGesamt := KartenfelderwerteLogik.FeldProduktion (KoordinatenExtern => KoordinatenExtern,
                                                                  RasseExtern       => StadtRasseNummerExtern.Rasse);
@@ -366,7 +372,9 @@ package body StadtwerteFestlegenLogik is
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       BelegenOderEntfernen : in Boolean)
       return ProduktionDatentypen.Stadtproduktion
-   is begin
+   is
+      use type ProduktionDatentypen.Produktion;
+   begin
       
       GeldGesamt := KartenfelderwerteLogik.FeldGeld (KoordinatenExtern => KoordinatenExtern,
                                                      RasseExtern       => StadtRasseNummerExtern.Rasse);
@@ -407,7 +415,9 @@ package body StadtwerteFestlegenLogik is
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       BelegenOderEntfernen : in Boolean)
       return ProduktionDatentypen.Stadtproduktion
-   is begin
+   is
+      use type ProduktionDatentypen.Produktion;
+   begin
 
       WissenGesamt := KartenfelderwerteLogik.FeldWissen (KoordinatenExtern => KoordinatenExtern,
                                                          RasseExtern       => StadtRasseNummerExtern.Rasse);
@@ -445,7 +455,9 @@ package body StadtwerteFestlegenLogik is
    
    procedure ArbeiterBelegen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-   is begin
+   is
+      use type ProduktionDatentypen.Produktion;
+   begin
       
       YAchseSchleife:
       for YAchseSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
@@ -479,7 +491,9 @@ package body StadtwerteFestlegenLogik is
    
    procedure ArbeiterEntfernen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-   is begin
+   is
+      use type ProduktionDatentypen.Produktion;
+   begin
       
       YAchseSchleife:
       for YAchseSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop

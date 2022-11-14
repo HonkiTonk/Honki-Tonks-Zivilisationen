@@ -1,5 +1,4 @@
-with KartenDatentypen; use KartenDatentypen;
-with EinheitenDatentypen; use EinheitenDatentypen;
+with KartenDatentypen;
 with EinheitenKonstanten;
 
 with LeseEinheitenGebaut;
@@ -16,7 +15,10 @@ package body EinheitVerbessernLogik is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       AnlegenTestenExtern : in Boolean)
       return Boolean
-   is begin
+   is
+      use type EinheitenDatentypen.EinheitenIDMitNullWert;
+      use type KartenDatentypen.Kartenfeld;
+   begin
       
       IDEinheit := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       IDNeueEinheit := LeseEinheitenDatenbank.VerbesserungZu (RasseExtern => EinheitRasseNummerExtern.Rasse,

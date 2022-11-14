@@ -1,9 +1,10 @@
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 
 package EinheitenSpielmeldungenLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    function BewegungspunkteMeldung
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

@@ -1,6 +1,3 @@
-with EinheitenDatentypen; use EinheitenDatentypen;
-with KartenverbesserungDatentypen; use KartenverbesserungDatentypen;
-with StadtDatentypen; use StadtDatentypen;
 with KartengrundDatentypen;
 with KartenKonstanten;
 with StadtKonstanten;
@@ -142,7 +139,9 @@ package body PassierbarkeitspruefungLogik is
       UmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Enum;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
-   is begin
+   is
+      use type RassenDatentypen.Rassen_Enum;
+   begin
             
       WegVorhanden := LeseWeltkarte.Weg (KoordinatenExtern => NeueKoordinatenExtern);
       

@@ -1,10 +1,12 @@
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
 with KampfDatentypen;
 with StadtRecords;
 
 package KampfwerteStadtErmittelnLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Rassen_Enum;
+   use type RassenDatentypen.Spieler_Enum;
 
    function AktuelleVerteidigungStadt
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)

@@ -1,5 +1,5 @@
-with RassenDatentypen; use RassenDatentypen;
-with KartenDatentypen; use KartenDatentypen;
+with RassenDatentypen;
+with KartenDatentypen; 
 with SpielVariablen;
 with EinheitenRecords;
 with KartenRecords;
@@ -9,6 +9,8 @@ with KIDatentypen;
 
 package KIBewegungsbewertungLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
+   use type KartenDatentypen.Kartenfeld;
 
    function Positionsbewertung
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

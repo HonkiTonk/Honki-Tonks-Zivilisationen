@@ -1,4 +1,4 @@
-with DiplomatieDatentypen; use DiplomatieDatentypen;
+with DiplomatieDatentypen;
 with EinheitenDatentypen;
 with EinheitenKonstanten;
 
@@ -17,7 +17,9 @@ package body KIBewegungAllgemeinLogik is
      (FeldKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return KIDatentypen.Bewegung_Enum
-   is begin
+   is
+      use type RassenDatentypen.Rassen_Enum;
+   begin
       
       BlockierendeEinheit := EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => FeldKoordinatenExtern,
                                                                                    LogikGrafikExtern => True);
@@ -67,7 +69,10 @@ package body KIBewegungAllgemeinLogik is
       FeindlicheRasseEinheitExtern : in RassenDatentypen.Rassen_Enum;
       FeindlicheRasseStadtExtern : in RassenDatentypen.Rassen_Enum)
       return KIDatentypen.Bewegung_Enum
-   is begin
+   is
+      use type DiplomatieDatentypen.Status_Untereinander_Enum;
+      use type RassenDatentypen.Rassen_Enum;
+   begin
       
       if
         FeindlicheRasseEinheitExtern = EinheitenKonstanten.LeerRasse

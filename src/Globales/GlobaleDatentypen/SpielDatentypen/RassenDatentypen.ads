@@ -11,13 +11,16 @@ package RassenDatentypen is
                        );
    pragma Ordered (Rassen_Enum);
    
-   subtype Rassen_Verwendet_Enum is Rassen_Enum range Menschen_Enum .. Talbidahr_Enum;
-   subtype Rassen_Überirdisch_Enum is Rassen_Verwendet_Enum range  Menschen_Enum.. Ekropa_Enum;
+   subtype Rassen_Verwendet_Enum is Rassen_Enum range Menschen_Enum .. Rassen_Enum'Last;
+   subtype Rassen_Überirdisch_Enum is Rassen_Verwendet_Enum range Rassen_Verwendet_Enum'First.. Ekropa_Enum;
    subtype Rassen_Unterirdisch_Enum is Rassen_Verwendet_Enum range Tesorahn_Enum .. Talbidahr_Enum;
    subtype Rassen_Wasser_Enum is Rassen_Unterirdisch_Enum range Tesorahn_Enum .. Tesorahn_Enum;
    subtype Rassen_Erde_Enum is Rassen_Unterirdisch_Enum range Talbidahr_Enum .. Talbidahr_Enum;
+   
+   subtype Rassennummern is Natural range Rassen_Enum'Pos (Rassen_Enum'First) .. Rassen_Enum'Pos (Rassen_Enum'Last);
+   subtype RassennummernVorhanden is Rassennummern range Rassen_Enum'Pos (Rassen_Verwendet_Enum'First) .. Rassennummern'Last;
 
-   -- Für die einzelnen Enumteile noch subtypen anlegen, damit ich in den ads Dateien das in den Contracts verwenden kann und dadurch das use RassenDatentypen rausbekomme? äöü
+   -- Das hier mal woanders hinschieben? Hat ja nicht wirklich was mit den Rassen zu tun. äöü
    type Spieler_Enum is (
                          Leer_Spieler_Enum,
                          
@@ -27,9 +30,6 @@ package RassenDatentypen is
    pragma Ordered (Spieler_Enum);
    
    subtype Spieler_Belegt_Enum is Spieler_Enum range Mensch_Spieler_Enum .. KI_Spieler_Enum;
-   
-   subtype Rassennummern is Natural range Rassen_Enum'Pos (Rassen_Enum'First) .. Rassen_Enum'Pos (Rassen_Enum'Last);
-   subtype RassennummernVorhanden is Rassennummern range Rassen_Enum'Pos (Rassen_Verwendet_Enum'First) .. Rassennummern'Last;
    
    -- Soll ich das so überhaupt einbauen? Oder mir was besseres überlegen? äöü
    type Staatsform_Enum is (

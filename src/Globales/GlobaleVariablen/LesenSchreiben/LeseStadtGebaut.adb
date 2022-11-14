@@ -48,7 +48,9 @@ package body LeseStadtGebaut is
    function Arbeitslose
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return ProduktionDatentypen.Einwohner
-   is begin
+   is
+      use type ProduktionDatentypen.Einwohner;
+   begin
       
       return EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                 EinwohnerArbeiterExtern => True)
@@ -196,7 +198,10 @@ package body LeseStadtGebaut is
    function Name
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return Unbounded_Wide_Wide_String
-   is begin
+   is
+      use type RassenDatentypen.Rassen_Enum;
+      use type StadtDatentypen.MaximaleStädteMitNullWert;
+   begin
       
       if
         StadtRasseNummerExtern.Rasse = RassenDatentypen.Keine_Rasse_Enum

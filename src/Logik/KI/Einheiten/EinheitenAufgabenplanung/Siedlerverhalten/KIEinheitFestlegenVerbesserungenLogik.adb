@@ -1,5 +1,4 @@
-with KartenverbesserungDatentypen; use KartenverbesserungDatentypen;
-with KartengrundDatentypen; use KartengrundDatentypen;
+with KartenverbesserungDatentypen;
 with KartenRecordKonstanten;
 with KartenKonstanten;
 with BefehleDatentypen;
@@ -201,7 +200,10 @@ package body KIEinheitFestlegenVerbesserungenLogik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
-   is begin
+   is
+      use type KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
+      use type RassenDatentypen.Rassen_Enum;
+   begin
             
       if
         LeseWeltkarte.RasseBelegtGrund (KoordinatenExtern => VerbesserungKoordinaten) /= EinheitRasseNummerExtern.Rasse
@@ -250,7 +252,10 @@ package body KIEinheitFestlegenVerbesserungenLogik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
-   is begin
+   is
+      use type KartengrundDatentypen.Basisgrund_Enum;
+      use type KartengrundDatentypen.Kartenressourcen_Enum;
+   begin
       
       Ressourcen := LeseWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern);
       

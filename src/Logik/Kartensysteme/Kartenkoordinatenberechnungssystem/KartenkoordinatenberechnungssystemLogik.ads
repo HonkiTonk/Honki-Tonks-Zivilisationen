@@ -1,10 +1,12 @@
-with KartenDatentypen; use KartenDatentypen;
+with KartenDatentypen;
 with KartenKonstanten;
 with KartenRecords;
 with Weltkarte;
 
 package KartenkoordinatenberechnungssystemLogik is
    pragma Elaborate_Body;
+   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Ebene;
 
    function Kartenkoordinatenberechnungssystem
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;

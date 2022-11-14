@@ -1,6 +1,5 @@
-with EinheitenDatentypen; use EinheitenDatentypen;
-with ProduktionDatentypen; use ProduktionDatentypen;
-with KampfDatentypen; use KampfDatentypen;
+with ProduktionDatentypen;
+with KampfDatentypen;
 with EinheitenKonstanten;
 with StadtKonstanten;
 with SystemDatentypen;
@@ -26,7 +25,9 @@ package body KampfsystemStadtLogik is
      (AngreifendeEinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       VerteidigendeStadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return Boolean
-   is begin
+   is
+      use type KampfDatentypen.KampfwerteGroß;
+   begin
       
       case
         PZBEingesetztLogik.PZBEingesetzt (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern)
@@ -73,7 +74,10 @@ package body KampfsystemStadtLogik is
       VerteidigendeStadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       KampfwerteVerteidigerExtern : in KampfRecords.KampfwerteRecord)
       return Boolean
-   is begin
+   is
+      use type ProduktionDatentypen.Einwohner;
+      use type EinheitenDatentypen.BewegungFloat;
+   begin
       
       case
         Kampfverlauf (AngreifendeEinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern,
@@ -135,7 +139,9 @@ package body KampfsystemStadtLogik is
       VerteidigendeStadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       KampfwerteVerteidigerExtern : in KampfRecords.KampfwerteRecord)
       return Boolean
-   is begin
+   is
+      use type EinheitenDatentypen.Lebenspunkte;
+   begin
       
       GesundheitStadt := Positive (LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => VerteidigendeStadtRasseNummerExtern,
                                                                       EinwohnerArbeiterExtern => True));

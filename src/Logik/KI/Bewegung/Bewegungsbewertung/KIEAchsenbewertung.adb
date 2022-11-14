@@ -1,4 +1,4 @@
-with KartenartDatentypen; use KartenartDatentypen;
+with KartenartDatentypen;
 with Weltkarte;
 
 with KIKonstanten;

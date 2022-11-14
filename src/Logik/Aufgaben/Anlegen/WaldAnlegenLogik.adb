@@ -1,4 +1,3 @@
-with KartengrundDatentypen; use KartengrundDatentypen;
 with KartenverbesserungDatentypen;
 
 with SchreibeWeltkarte;
@@ -10,7 +9,9 @@ package body WaldAnlegenLogik is
 
    procedure WaldAnlegen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-   is begin
+   is
+      use type KartenDatentypen.Ebene;
+   begin
       
       case
         KoordinatenExtern.EAchse

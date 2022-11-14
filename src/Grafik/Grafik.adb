@@ -1,6 +1,6 @@
 with Ada.Calendar; use Ada.Calendar;
 
-with GrafikDatentypen; use GrafikDatentypen;
+with GrafikDatentypen;
 with ZeitKonstanten;
 
 with IntroGrafik;

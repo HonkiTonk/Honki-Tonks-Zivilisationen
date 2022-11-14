@@ -1,5 +1,5 @@
-with KartenDatentypen; use KartenDatentypen;
-with RassenDatentypen; use RassenDatentypen;
+with KartenDatentypen;
+with RassenDatentypen;
 with KartenRecords;
 with EinheitenRecords;
 with EinheitenDatentypen;
@@ -9,6 +9,8 @@ with Weltkarte;
 
 package EinheitenErzeugenEntfernenLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
+   use type KartenDatentypen.Kartenfeld;
 
    procedure EinheitErzeugen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;

@@ -1,4 +1,3 @@
-with KartenDatentypen; use KartenDatentypen;
 with KartengrundDatentypen;
 with LadezeitenDatentypen;
 with KartenKonstanten;
@@ -11,7 +10,9 @@ with LadezeitenLogik;
 package body KartengeneratorHimmelLogik is
 
    procedure Himmel
-   is begin
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
       
       Kartenzeitwert := (Weltkarte.Karteneinstellungen.Kartengröße.YAchse + (25 - 1)) / 25;
                

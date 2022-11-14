@@ -1,5 +1,3 @@
-with SystemDatentypen; use SystemDatentypen;
-
 with Warnung;
 
 package body LadezeitenLogik is
@@ -42,7 +40,9 @@ package body LadezeitenLogik is
    
    procedure FortschrittSpielweltSchreiben
      (WelcheBerechnungenExtern : in LadezeitenDatentypen.Spielwelt_Erstellen_Enum)
-   is begin
+   is
+      use type SystemDatentypen.NullBisHundert;
+   begin
       
       if
         FortschrittSpielwelt (WelcheBerechnungenExtern) + FortschrittSchritte (1) > SystemDatentypen.NullBisHundert'Last
@@ -70,7 +70,9 @@ package body LadezeitenLogik is
    
    procedure FortschrittKISchreiben
      (WelcheBerechnungenExtern : in LadezeitenDatentypen.KI_Rechnet_Enum)
-   is begin
+   is
+      use type SystemDatentypen.NullBisHundert;
+   begin
       
       if
         FortschrittKI (WelcheBerechnungenExtern) + FortschrittSchritte (2) > SystemDatentypen.NullBisHundert'Last
@@ -98,7 +100,9 @@ package body LadezeitenLogik is
    
    -- Die folgenden Ladezeitanzeigen noch erweitern. äöü
    procedure RundenendeSchreiben
-   is begin
+   is
+      use type SystemDatentypen.NullBisHundert;
+   begin
       
       if
         FortschrittRundenende + FortschrittSchritte (3) > SystemDatentypen.NullBisHundert'Last
@@ -125,7 +129,9 @@ package body LadezeitenLogik is
    
    procedure SpeichernLadenSchreiben
      (SpeichernLadenExtern : in Boolean)
-   is begin
+   is
+      use type SystemDatentypen.NullBisHundert;
+   begin
       
       case
         SpeichernLadenExtern

@@ -2,7 +2,6 @@ with LeseEinheitenGebaut;
 
 with Vergleiche;
 
-with KIDatentypen; use KIDatentypen;
 with KIKonstanten;
 
 with KIEAchsenbewertung;
@@ -16,7 +15,9 @@ package body KIBewegungsbewertungLogik is
       AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return KIDatentypen.BewegungBewertung
-   is begin
+   is
+      use type KIDatentypen.BauenBewertung;
+   begin
       
       Zielkoordinate := LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       

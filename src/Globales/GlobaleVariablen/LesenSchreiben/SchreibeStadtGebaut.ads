@@ -1,9 +1,9 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with RassenDatentypen; use RassenDatentypen;
-with EinheitenDatentypen; use EinheitenDatentypen;
-with StadtDatentypen; use StadtDatentypen;
-with KartenDatentypen; use KartenDatentypen;
+with RassenDatentypen;
+with EinheitenDatentypen;
+with StadtDatentypen;
+with KartenDatentypen;
 with SpielVariablen;
 with KartenRecords;
 with KartenverbesserungDatentypen;
@@ -16,6 +16,11 @@ with KIDatentypen;
 
 package SchreibeStadtGebaut is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
+   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Ebene;
+   use type StadtDatentypen.GebäudeIDMitNullwert;
+   use type EinheitenDatentypen.EinheitenIDMitNullWert;
 
    procedure ID
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;

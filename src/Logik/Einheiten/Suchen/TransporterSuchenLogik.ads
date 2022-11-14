@@ -1,6 +1,6 @@
-with RassenDatentypen; use RassenDatentypen;
-with EinheitenDatentypen; use EinheitenDatentypen;
-with KartenDatentypen; use KartenDatentypen;
+with RassenDatentypen;
+with EinheitenDatentypen;
+with KartenDatentypen;
 with KartenRecords;
 with SpielVariablen;
 with EinheitenRecords;
@@ -8,6 +8,9 @@ with Weltkarte;
 
 package TransporterSuchenLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
+   use type KartenDatentypen.Kartenfeld;
+   use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
 
    function KoordinatenTransporterMitRasseSuchen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;

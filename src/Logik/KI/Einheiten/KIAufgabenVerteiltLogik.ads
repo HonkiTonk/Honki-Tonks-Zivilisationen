@@ -1,14 +1,16 @@
-with RassenDatentypen; use RassenDatentypen;
-with KartenDatentypen; use KartenDatentypen;
+with RassenDatentypen;
+with KartenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 with KartenRecords;
 with Weltkarte;
 
-with KIDatentypen; use KIDatentypen;
+with KIDatentypen;
 
 package KIAufgabenVerteiltLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
+   use type KartenDatentypen.Kartenfeld;
 
    function AufgabenVerteilt
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

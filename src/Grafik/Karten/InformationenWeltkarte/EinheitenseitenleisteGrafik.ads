@@ -1,9 +1,8 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with Sf.System.Vector2;
+private with Sf.System.Vector2;
 
-with RassenDatentypen; use RassenDatentypen;
-with KartenDatentypen; use KartenDatentypen;
+with RassenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 
@@ -16,11 +15,13 @@ private with GrafikRecordKonstanten;
 private with AufgabenDatentypen;
 private with KartenRecords;
 private with Weltkarte;
+private with KartenDatentypen;
 
 private with UmwandlungenAdaNachEigenes;
 
 package EinheitenseitenleisteGrafik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
    
    procedure Leer
      (AnzeigebereichExtern : in Positive);
@@ -40,6 +41,7 @@ package EinheitenseitenleisteGrafik is
    
    
 private
+   use type KartenDatentypen.Kartenfeld;
    
    VolleInformation : Boolean;
    Beladen : Boolean;

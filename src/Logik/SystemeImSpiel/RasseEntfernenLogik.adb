@@ -15,7 +15,9 @@ package body RasseEntfernenLogik is
 
    procedure RasseEntfernen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-   is begin
+   is
+      use type RassenDatentypen.Rassen_Enum;
+   begin
       
       EinheitenSchleife:
       for EinheitSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Einheitengrenze loop

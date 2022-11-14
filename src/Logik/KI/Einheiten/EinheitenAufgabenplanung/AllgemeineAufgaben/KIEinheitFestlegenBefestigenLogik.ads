@@ -1,9 +1,10 @@
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 
 package KIEinheitFestlegenBefestigenLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    function Befestigen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

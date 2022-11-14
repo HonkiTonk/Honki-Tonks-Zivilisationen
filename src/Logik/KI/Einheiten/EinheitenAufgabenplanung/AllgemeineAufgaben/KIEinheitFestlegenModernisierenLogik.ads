@@ -1,14 +1,15 @@
-with RassenDatentypen; use RassenDatentypen;
-with EinheitenDatentypen; use EinheitenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
 with EinheitenRecords;
 
 private with StadtRecords;
 private with KartenRecords;
 private with KartenDatentypen;
+private with EinheitenDatentypen;
 
 package KIEinheitFestlegenModernisierenLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    function EinheitVerbessern
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
@@ -21,6 +22,7 @@ package KIEinheitFestlegenModernisierenLogik is
               );
    
 private
+   use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    
    Umgebung : KartenDatentypen.UmgebungsbereichDrei;
    

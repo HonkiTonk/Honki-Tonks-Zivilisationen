@@ -1,4 +1,3 @@
-with EinheitenDatentypen; use EinheitenDatentypen;
 with EinheitenKonstanten;
 
 with LeseEinheitenGebaut;
@@ -67,7 +66,9 @@ package body TransporterBeladenEntladenLogik is
    procedure EinheitAusladen
      (TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       LadungExtern : in EinheitenDatentypen.MaximaleEinheiten)
-   is begin
+   is
+      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   begin
       
       Transporterkapazität := LeseEinheitenDatenbank.Transportkapazität (RasseExtern => TransporterExtern.Rasse,
                                                                            IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => TransporterExtern));

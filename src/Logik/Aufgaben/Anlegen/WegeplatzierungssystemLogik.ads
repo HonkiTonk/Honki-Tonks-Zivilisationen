@@ -1,4 +1,4 @@
-with KartenDatentypen; use KartenDatentypen;
+with KartenDatentypen;
 with KartenRecords;
 with AufgabenDatentypen;
 with Weltkarte;
@@ -7,6 +7,7 @@ private with KartenverbesserungDatentypen;
 
 package WegeplatzierungssystemLogik is
    pragma Elaborate_Body;
+   use type KartenDatentypen.Kartenfeld;
 
    procedure Wegplatzierung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;

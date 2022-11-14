@@ -1,6 +1,5 @@
-with RassenDatentypen; use RassenDatentypen;
-with KartenDatentypen; use KartenDatentypen;
-with KartengrundDatentypen; use KartengrundDatentypen;
+with RassenDatentypen;
+with KartenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 with KartenRecords;
@@ -8,9 +7,12 @@ with Weltkarte;
 
 private with AufgabenDatentypen;
 private with ProduktionDatentypen;
+private with KartengrundDatentypen;
 
 package FestungErmittelnLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
+   use type KartenDatentypen.Kartenfeld;
 
    function FestungErmitteln
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
@@ -29,6 +31,7 @@ package FestungErmittelnLogik is
               );
 
 private
+   use type KartengrundDatentypen.Basisgrund_Enum;
 
    WelcheArbeit : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
 
@@ -73,7 +76,7 @@ private
        Pre => (
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                and
-                    GrundExtern.Basisgrund in KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range
+                 GrundExtern.Basisgrund in KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range
               );
 
    -- Später Festungen für den Kern einbauen. äöü

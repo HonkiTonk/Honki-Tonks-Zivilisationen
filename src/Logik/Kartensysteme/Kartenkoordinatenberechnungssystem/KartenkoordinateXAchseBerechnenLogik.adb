@@ -191,12 +191,12 @@ package body KartenkoordinateXAchseBerechnenLogik is
    is begin
       
       if
-        XAchseExtern + KartenfeldPositiv (KartenkoordinatenWerteLogik.VerschiebungswertXAchse * Float (Weltkarte.Karteneinstellungen.Kartengröße.XAchse)) > Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+        XAchseExtern + KartenDatentypen.KartenfeldPositiv (KartenkoordinatenWerteLogik.VerschiebungswertXAchse * Float (Weltkarte.Karteneinstellungen.Kartengröße.XAchse)) > Weltkarte.Karteneinstellungen.Kartengröße.XAchse
       then
-         return XAchseExtern - KartenfeldPositiv (KartenkoordinatenWerteLogik.VerschiebungswertXAchse * Float (Weltkarte.Karteneinstellungen.Kartengröße.XAchse));
+         return XAchseExtern - KartenDatentypen.KartenfeldPositiv (KartenkoordinatenWerteLogik.VerschiebungswertXAchse * Float (Weltkarte.Karteneinstellungen.Kartengröße.XAchse));
 
       else
-         return XAchseExtern + KartenfeldPositiv (KartenkoordinatenWerteLogik.VerschiebungswertXAchse * Float (Weltkarte.Karteneinstellungen.Kartengröße.XAchse));
+         return XAchseExtern + KartenDatentypen.KartenfeldPositiv (KartenkoordinatenWerteLogik.VerschiebungswertXAchse * Float (Weltkarte.Karteneinstellungen.Kartengröße.XAchse));
       end if;
       
    end XAchseVerschieben;

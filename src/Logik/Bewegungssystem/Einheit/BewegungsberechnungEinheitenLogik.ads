@@ -1,13 +1,16 @@
-with KartenDatentypen; use KartenDatentypen;
-with RassenDatentypen; use RassenDatentypen;
-with EinheitenDatentypen;
+with KartenDatentypen;
+with RassenDatentypen;
 with EinheitenRecords;
 with KartenRecords;
 with SpielVariablen;
 with Weltkarte;
 
+private with EinheitenDatentypen;
+
 package BewegungsberechnungEinheitenLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
+   use type KartenDatentypen.Kartenfeld;
 
    procedure Bewegungsberechnung
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

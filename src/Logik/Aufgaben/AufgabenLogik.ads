@@ -1,5 +1,5 @@
-with RassenDatentypen; use RassenDatentypen;
-with KartenDatentypen; use KartenDatentypen;
+with RassenDatentypen;
+with KartenDatentypen; 
 with EinheitenRecords;
 with SpielVariablen;
 with KartenRecords;
@@ -11,6 +11,8 @@ private with KartenverbesserungDatentypen;
 
 package AufgabenLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
+   use type KartenDatentypen.Kartenfeld;
    
    function AufgabeTesten
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

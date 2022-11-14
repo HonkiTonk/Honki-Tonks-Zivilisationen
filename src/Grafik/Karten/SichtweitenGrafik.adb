@@ -1,4 +1,3 @@
-with KartenDatentypen; use KartenDatentypen;
 with Weltkarte;
 
 with KartenberechnungenGrafik;
@@ -31,7 +30,9 @@ package body SichtweitenGrafik is
    
    procedure ZoomstufeÄndern
      (ÄnderungExtern : in KartenDatentypen.Kartenfeld)
-   is begin
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
       
       -- Eine Möglichkeit einbauen das abzustellen? äöü
       -- Eine Möglichkeit einbauen um direkt zu Standardzoomstufe zu springen und nicht zur Kleinsten?
@@ -62,8 +63,10 @@ package body SichtweitenGrafik is
    
 
    function SichtweiteLesen
-      return KartenDatentypen.KartenfeldPositiv
-   is begin
+     return KartenDatentypen.KartenfeldPositiv
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
       
       return AktuelleZoomstufe * 2;
             
@@ -72,8 +75,10 @@ package body SichtweitenGrafik is
    
 
    function BewegungsfeldLesen
-      return KartenDatentypen.KartenfeldPositiv
-   is begin
+     return KartenDatentypen.KartenfeldPositiv
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
       
       return SichtweiteLesen - 1;
       
@@ -83,8 +88,10 @@ package body SichtweitenGrafik is
    
    function UntenRechts
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-     return Boolean
-   is begin
+      return Boolean
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
       
       if
         SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse >= Weltkarte.Karteneinstellungen.Kartengröße.YAchse - SichtweiteLesen

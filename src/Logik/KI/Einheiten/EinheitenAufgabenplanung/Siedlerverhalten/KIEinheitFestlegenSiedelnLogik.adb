@@ -1,4 +1,4 @@
-with KartengrundDatentypen; use KartengrundDatentypen;
+with KartengrundDatentypen;
 with KartenKonstanten;
 with KartenRecordKonstanten;
 
@@ -157,7 +157,9 @@ package body KIEinheitFestlegenSiedelnLogik is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
-   is begin
+   is
+      use type KartengrundDatentypen.Basisgrund_Enum;
+   begin
       
       case
         KIEinheitAllgemeinePruefungenLogik.KartenfeldPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,

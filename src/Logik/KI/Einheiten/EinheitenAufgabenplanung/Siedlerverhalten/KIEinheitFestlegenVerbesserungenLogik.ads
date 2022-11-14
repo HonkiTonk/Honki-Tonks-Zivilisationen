@@ -1,5 +1,4 @@
-with RassenDatentypen; use RassenDatentypen;
-with KartenDatentypen; use KartenDatentypen;
+with RassenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 
@@ -8,9 +7,11 @@ private with StadtRecords;
 private with EinheitenDatentypen;
 private with KartengrundDatentypen;
 private with Weltkarte;
+private with KartenDatentypen;
 
 package KIEinheitFestlegenVerbesserungenLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    function StadtumgebungVerbessern
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
@@ -23,6 +24,7 @@ package KIEinheitFestlegenVerbesserungenLogik is
               );
 
 private
+   use type KartenDatentypen.Kartenfeld;
 
    VerbesserungTesten : Boolean;
    WelcheVerbesserung : Boolean;

@@ -1,5 +1,4 @@
-with KartenDatentypen; use KartenDatentypen;
-with KartenartDatentypen; use KartenartDatentypen;
+with KartenartDatentypen;
 with KartenKonstanten;
 with Weltkarte;
 
@@ -91,7 +90,9 @@ package body KartengeneratorPolregionLogik is
    
    
    procedure PolregionSüden
-   is begin
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
       
       case
         KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Südpol
@@ -154,7 +155,9 @@ package body KartengeneratorPolregionLogik is
    
    
    procedure PolregionOsten
-   is begin
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
       
       case
         KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Ostpol

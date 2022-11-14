@@ -1,9 +1,7 @@
-with EinheitenDatentypen; use EinheitenDatentypen;
-with ProduktionDatentypen; use ProduktionDatentypen;
+with ProduktionDatentypen;
 with WichtigesKonstanten;
 with StadtKonstanten;
 
-with KIDatentypen; use KIDatentypen;
 with KIKonstanten;
 
 with LeseEinheitenDatenbank;
@@ -21,7 +19,9 @@ package body KIEinheitenBauenLogik is
    function EinheitenBauen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return KIRecords.EinheitIDBewertungRecord
-   is begin
+   is
+      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   begin
       
       -- AnzahlStädte sollte immer größer 0 sein, da nur bei vorhandenen Städten etwas gebaut werden sollte.
       -- AnzahlStädte mal übergeben und nicht mehr so einfach benutzen. äöü
@@ -46,7 +46,9 @@ package body KIEinheitenBauenLogik is
    function EinheitenDurchgehen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return KIRecords.EinheitIDBewertungRecord
-   is begin
+   is
+      use type KIDatentypen.BauenBewertung;
+   begin
       
       EinheitBewertet := KIKonstanten.LeerEinheitenbewertung;
       
@@ -91,7 +93,9 @@ package body KIEinheitenBauenLogik is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       IDExtern : in EinheitenDatentypen.EinheitenID)
       return KIDatentypen.BauenBewertung
-   is begin
+   is
+      use type KIDatentypen.BauenBewertung;
+   begin
       
       case
         EinheitenmodifizierungLogik.EinheitAnforderungenErfüllt (StadtRasseNummerExtern => StadtRasseNummerExtern,
@@ -163,7 +167,9 @@ package body KIEinheitenBauenLogik is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       IDExtern : in EinheitenDatentypen.EinheitenID)
       return KIDatentypen.BauenBewertung
-   is begin
+   is
+      use type KIDatentypen.BauenBewertung;
+   begin
       
       case
         LeseEinheitenDatenbank.Einheitenart (RasseExtern => StadtRasseNummerExtern.Rasse,
@@ -204,7 +210,10 @@ package body KIEinheitenBauenLogik is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       EinheitenIDExtern : in EinheitenDatentypen.EinheitenID)
       return KIDatentypen.BauenBewertung
-   is begin
+   is
+      use type KIDatentypen.BauenBewertung;
+      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   begin
       
       MengeVorhanden := LeseWichtiges.AnzahlArbeiter (RasseExtern => StadtRasseNummerExtern.Rasse);
       MengeImBau := KIStadtLaufendeBauprojekteLogik.GleicheEinheitArtBauprojekte (StadtRasseNummerExtern => StadtRasseNummerExtern,
@@ -237,7 +246,10 @@ package body KIEinheitenBauenLogik is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       EinheitenIDExtern : in EinheitenDatentypen.EinheitenID)
       return KIDatentypen.BauenBewertung
-   is begin
+   is
+      use type KIDatentypen.BauenBewertung;
+      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   begin
       
       MengeVorhanden := LeseWichtiges.AnzahlKämpfer (RasseExtern => StadtRasseNummerExtern.Rasse);
       MengeImBau := KIStadtLaufendeBauprojekteLogik.GleicheEinheitArtBauprojekte (StadtRasseNummerExtern => StadtRasseNummerExtern,
@@ -307,7 +319,10 @@ package body KIEinheitenBauenLogik is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       EinheitenIDExtern : in EinheitenDatentypen.EinheitenID)
       return KIDatentypen.BauenBewertung
-   is begin
+   is
+      use type KIDatentypen.BauenBewertung;
+      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   begin
       
       MengeVorhanden := LeseWichtiges.AnzahlKämpfer (RasseExtern => StadtRasseNummerExtern.Rasse);
       MengeImBau := KIStadtLaufendeBauprojekteLogik.GleicheEinheitArtBauprojekte (StadtRasseNummerExtern => StadtRasseNummerExtern,
@@ -365,7 +380,10 @@ package body KIEinheitenBauenLogik is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       EinheitenIDExtern : in EinheitenDatentypen.EinheitenID)
       return KIDatentypen.BauenBewertung
-   is begin
+   is
+      use type EinheitenDatentypen.EinheitenIDMitNullWert;
+      use type RassenDatentypen.Rassen_Enum;
+   begin
       
       if
         EinheitenIDExtern = 1
@@ -395,7 +413,10 @@ package body KIEinheitenBauenLogik is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       EinheitenIDExtern : in EinheitenDatentypen.EinheitenID)
       return KIDatentypen.BauenBewertung
-   is begin
+   is
+      use type KIDatentypen.BauenBewertung;
+      use type ProduktionDatentypen.Produktion;
+   begin
       
       if
         WichtigesKonstanten.LeerGeldZugewinnProRunde = LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
@@ -424,7 +445,10 @@ package body KIEinheitenBauenLogik is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       EinheitenIDExtern : in EinheitenDatentypen.EinheitenID)
       return KIDatentypen.BauenBewertung
-   is begin
+   is
+      use type KIDatentypen.BauenBewertung;
+      use type ProduktionDatentypen.Produktion;
+   begin
       
       if
         StadtKonstanten.LeerNahrungsproduktion = LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
@@ -453,7 +477,10 @@ package body KIEinheitenBauenLogik is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       EinheitenIDExtern : in EinheitenDatentypen.EinheitenID)
       return KIDatentypen.BauenBewertung
-   is begin
+   is
+      use type KIDatentypen.BauenBewertung;
+      use type ProduktionDatentypen.Produktion;
+   begin
       
       if
         StadtKonstanten.LeerProduktionrate = LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,

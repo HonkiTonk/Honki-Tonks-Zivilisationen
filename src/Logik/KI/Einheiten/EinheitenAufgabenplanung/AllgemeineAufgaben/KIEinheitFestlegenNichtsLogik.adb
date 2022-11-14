@@ -1,6 +1,6 @@
 with EinheitenKonstanten;
 
-with KIDatentypen; use KIDatentypen;
+with KIDatentypen;
 
 with SchreibeEinheitenGebaut;
 

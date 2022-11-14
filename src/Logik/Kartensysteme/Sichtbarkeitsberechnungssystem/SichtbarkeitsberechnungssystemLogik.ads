@@ -1,14 +1,15 @@
-with RassenDatentypen; use RassenDatentypen;
-with KartenDatentypen; use KartenDatentypen;
+with RassenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
-with KartenRecords;
 with StadtRecords;
 
 private with EinheitenDatentypen;
+private with KartenDatentypen;
+private with KartenRecords;
 
 package SichtbarkeitsberechnungssystemLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    procedure SichtbarkeitsprüfungFürEinheit
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

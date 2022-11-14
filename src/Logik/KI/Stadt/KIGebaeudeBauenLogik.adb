@@ -1,10 +1,7 @@
-with ProduktionDatentypen; use ProduktionDatentypen;
-with StadtDatentypen; use StadtDatentypen;
 with WichtigesKonstanten;
 with StadtKonstanten;
 with KartenKonstanten;
 
-with KIDatentypen; use KIDatentypen;
 with KIKonstanten;
 
 with LeseGebaeudeDatenbank;
@@ -19,7 +16,10 @@ package body KIGebaeudeBauenLogik is
    function GebäudeBauen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return KIRecords.GebäudeIDBewertungRecord
-   is begin
+   is
+      use type KIDatentypen.BauenBewertung;
+      use type StadtDatentypen.GebäudeIDMitNullwert;
+   begin
       
       GebäudeBewertet := KIKonstanten.LeerGebäudebewertung;
       
@@ -66,7 +66,9 @@ package body KIGebaeudeBauenLogik is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       IDExtern : in StadtDatentypen.GebäudeID)
       return KIDatentypen.BauenBewertung
-   is begin
+   is
+      use type KIDatentypen.BauenBewertung;
+   begin
       
       Gesamtwertung := KIKonstanten.LeerBewertung;
       
@@ -96,7 +98,10 @@ package body KIGebaeudeBauenLogik is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       IDExtern : in StadtDatentypen.GebäudeID)
       return KIDatentypen.BauenBewertung
-   is begin
+   is
+      use type ProduktionDatentypen.Produktion;
+      use type KIDatentypen.BauenBewertung;
+   begin
       
       Produktion := LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
@@ -152,7 +157,10 @@ package body KIGebaeudeBauenLogik is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       IDExtern : in StadtDatentypen.GebäudeID)
       return KIDatentypen.BauenBewertung
-   is begin
+   is
+      use type ProduktionDatentypen.Produktion;
+      use type KIDatentypen.BauenBewertung;
+   begin
       
       Produktion := LeseWichtiges.GeldZugewinnProRunde (RasseExtern => StadtRasseNummerExtern.Rasse);
       
@@ -208,7 +216,9 @@ package body KIGebaeudeBauenLogik is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       IDExtern : in StadtDatentypen.GebäudeID)
       return KIDatentypen.BauenBewertung
-   is begin
+   is
+      use type ProduktionDatentypen.Produktion;
+   begin
       
       Produktion := LeseStadtGebaut.Forschungsrate (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
@@ -236,7 +246,10 @@ package body KIGebaeudeBauenLogik is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       IDExtern : in StadtDatentypen.GebäudeID)
       return KIDatentypen.BauenBewertung
-   is begin
+   is
+      use type ProduktionDatentypen.Produktion;
+      use type KIDatentypen.BauenBewertung;
+   begin
       
       Produktion := LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
@@ -291,7 +304,9 @@ package body KIGebaeudeBauenLogik is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       IDExtern : in StadtDatentypen.GebäudeID)
       return KIDatentypen.BauenBewertung
-   is begin
+   is
+      use type KIDatentypen.BauenBewertung;
+   begin
       
       case
         KIKriegErmittelnLogik.IstImKrieg (RasseExtern => StadtRasseNummerExtern.Rasse)
@@ -315,7 +330,9 @@ package body KIGebaeudeBauenLogik is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       IDExtern : in StadtDatentypen.GebäudeID)
       return KIDatentypen.BauenBewertung
-   is begin
+   is
+      use type KIDatentypen.BauenBewertung;
+   begin
       
       case
         KIKriegErmittelnLogik.IstImKrieg (RasseExtern => StadtRasseNummerExtern.Rasse)
@@ -339,7 +356,10 @@ package body KIGebaeudeBauenLogik is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       IDExtern : in StadtDatentypen.GebäudeID)
       return KIDatentypen.BauenBewertung
-   is begin
+   is
+      use type KIDatentypen.BauenBewertung;
+      use type ProduktionDatentypen.Produktion;
+   begin
       
       return -(KIDatentypen.BauenBewertung (LeseGebaeudeDatenbank.Produktionskosten (RasseExtern => StadtRasseNummerExtern.Rasse,
                                                                                      IDExtern    => IDExtern)

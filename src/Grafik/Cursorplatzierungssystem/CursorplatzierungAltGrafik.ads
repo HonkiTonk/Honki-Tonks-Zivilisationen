@@ -1,18 +1,20 @@
-with Ada.Calendar;
+private with Ada.Calendar;
 
 private with Sf.System.Vector2;
 
-with RassenDatentypen; use RassenDatentypen;
-with KartenDatentypen; use KartenDatentypen;
-with EinheitenDatentypen; use EinheitenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
 with EinheitenRecords;
+with EinheitenDatentypen;
 
 private with KartenRecords;
 private with Weltkarte;
+private with KartenDatentypen;
 
 package CursorplatzierungAltGrafik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
+   use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
 
    procedure CursorplatzierungAlt
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
@@ -24,6 +26,7 @@ package CursorplatzierungAltGrafik is
               );
    
 private
+   use type KartenDatentypen.Kartenfeld;
    
    EinheitFolgen : Boolean;
    

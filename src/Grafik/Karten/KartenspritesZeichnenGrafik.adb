@@ -10,7 +10,9 @@ package body KartenspritesZeichnenGrafik is
      (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       DurchsichtigkeitExtern : in Sf.sfUint8)
-   is begin
+   is
+      use type Sf.Graphics.sfTexture_Ptr;
+   begin
       
       if
         TexturAccessExtern = null
@@ -32,7 +34,9 @@ package body KartenspritesZeichnenGrafik is
    procedure StadtfeldZeichnen
      (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
-   is begin
+   is
+      use type Sf.Graphics.sfTexture_Ptr;
+   begin
       
       if
         TexturAccessExtern = null

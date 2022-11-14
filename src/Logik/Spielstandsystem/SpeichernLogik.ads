@@ -1,8 +1,7 @@
 with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with RassenDatentypen; use RassenDatentypen;
-
+private with RassenDatentypen;
 private with SpielVariablen;
 
 package SpeichernLogik is
@@ -14,6 +13,7 @@ package SpeichernLogik is
    procedure AutoSpeichern;
 
 private
+   use type RassenDatentypen.Spieler_Enum;
 
    AutospeichernWert : Positive := 1;
 

@@ -1,5 +1,4 @@
-with KartenDatentypen; use KartenDatentypen;
-
+private with KartenDatentypen;
 private with RassenDatentypen;
 private with RueckgabeDatentypen;
 private with KartenRecords;
@@ -20,6 +19,7 @@ package SpieleinstellungenRasseLogik is
      return Boolean;
    
 private
+   use type KartenDatentypen.Kartenfeld;
       
    FreieFelder : KartenDatentypen.SichtweiteNatural;
    

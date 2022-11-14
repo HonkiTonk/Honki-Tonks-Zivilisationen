@@ -1,5 +1,3 @@
-with KartenDatentypen; use KartenDatentypen;
-with StadtDatentypen; use StadtDatentypen;
 with Views;
 with GrafikRecordKonstanten;
 with KartengrundDatentypen;
@@ -94,7 +92,10 @@ package body StadtkarteGrafik is
       XAchseExtern : in KartenDatentypen.Stadtfeld;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-   is begin
+   is
+      use type KartenDatentypen.Kartenfeld;
+      use type StadtDatentypen.GebäudeIDMitNullwert;
+   begin
       
       if
         YAchseExtern = 1

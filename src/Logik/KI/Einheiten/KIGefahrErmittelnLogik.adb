@@ -1,5 +1,5 @@
-with EinheitenDatentypen; use EinheitenDatentypen;
-with KartenDatentypen; use KartenDatentypen;
+with EinheitenDatentypen;
+with KartenDatentypen;
 with DiplomatieDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
@@ -48,7 +48,9 @@ package body KIGefahrErmittelnLogik is
    function GefahrSuchen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return EinheitenRecords.RasseEinheitnummerRecord
-   is begin
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
       
       AktuelleKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
@@ -101,7 +103,10 @@ package body KIGefahrErmittelnLogik is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       AndereEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
-   is begin
+   is
+      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      use type RassenDatentypen.Rassen_Enum;
+   begin
       
       if
         AndereEinheitExtern.Nummer = EinheitenKonstanten.LeerNummer

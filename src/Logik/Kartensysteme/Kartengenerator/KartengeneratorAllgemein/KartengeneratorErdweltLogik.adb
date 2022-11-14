@@ -1,5 +1,3 @@
-with SystemDatentypen; use SystemDatentypen;
-
 with SchreibeWeltkarte;
 
 with ZufallsgeneratorenKartenLogik;
@@ -20,7 +18,9 @@ package body KartengeneratorErdweltLogik is
    
    procedure BasisgrundBestimmen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
-   is begin
+   is
+      use type SystemDatentypen.NullBisHundert;
+   begin
       
       Basisgrund := KartengrundDatentypen.Leer_Basisgrund_Enum;
       

@@ -1,5 +1,3 @@
-with EinheitenDatentypen; use EinheitenDatentypen;
-with ProduktionDatentypen; use ProduktionDatentypen;
 with EinheitenKonstanten;
 with StadtKonstanten;
 
@@ -56,7 +54,9 @@ package body LeseEinheitenDatenbank is
       IDExtern : in EinheitenDatentypen.EinheitenID;
       WelcheKostenExtern : in ProduktionDatentypen.Permanente_Kosten_Verwendet_Enum)
       return ProduktionDatentypen.Stadtproduktion
-   is begin
+   is
+      use type ProduktionDatentypen.Produktion;
+   begin
       
       if
         EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).PermanenteKosten (WelcheKostenExtern) < StadtKonstanten.LeerPermanenteKosten
@@ -112,7 +112,9 @@ package body LeseEinheitenDatenbank is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenID)
       return EinheitenDatentypen.VorhandeneBewegungspunkte
-   is begin
+   is
+      use type EinheitenDatentypen.BewegungFloat;
+   begin
       
       if
         EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).MaximaleBewegungspunkte < 1.00
@@ -262,7 +264,10 @@ package body LeseEinheitenDatenbank is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenID)
       return EinheitenDatentypen.Transportplätze
-   is begin
+   is
+      use type EinheitenDatentypen.Transport_Enum;
+      use type EinheitenDatentypen.Transportplätze;
+   begin
       
       if
         EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).KannTransportieren = EinheitenKonstanten.LeerKannTransportiertWerden

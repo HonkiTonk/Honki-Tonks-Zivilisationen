@@ -2,7 +2,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 private with Sf.System.Vector2;
 
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
 
 private with ForschungenDatentypen;
@@ -11,6 +11,7 @@ private with ProduktionDatentypen;
 
 package ForschungsauswahlGrafik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    procedure ForschungAnzeige
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;

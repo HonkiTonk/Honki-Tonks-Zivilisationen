@@ -1,6 +1,4 @@
-with KartenDatentypen; use KartenDatentypen;
-with KartengrundDatentypen; use KartengrundDatentypen;
-with KartenverbesserungDatentypen; use KartenverbesserungDatentypen;
+with KartenDatentypen;
 with KartenKonstanten;
 with Views;
 
@@ -18,7 +16,9 @@ package body StadtumgebungGrafik is
 
    procedure Stadtumgebung
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-   is begin
+   is
+      use type KartenDatentypen.Ebene;
+   begin
       
       Viewfläche := (7.00 * KartenberechnungenGrafik.StadtfelderAbmessung.x, 7.00 * KartenberechnungenGrafik.StadtfelderAbmessung.y);
       

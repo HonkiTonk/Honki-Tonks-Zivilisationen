@@ -1,4 +1,4 @@
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
 with EinheitenRecords;
 
@@ -9,6 +9,7 @@ private with StadtRecords;
 
 package EinheitenverschiebungLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    procedure VonEigenemLandWerfen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;

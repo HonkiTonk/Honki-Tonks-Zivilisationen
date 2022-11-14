@@ -1,9 +1,10 @@
-with ProduktionDatentypen; use ProduktionDatentypen;
+with ProduktionDatentypen;
 with RassenDatentypen;
 with KartengrundDatentypen;
 
 package ArbeitszeitFestungLogik is
    pragma Preelaborate;
+   use type ProduktionDatentypen.Arbeitszeit;
 
    -- -1 bedeutet es ist unmöglich diese Verbesserung auf diesem Grund anzulegen.
    type BasiszeitArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Range) of ProduktionDatentypen.Arbeitszeit;

@@ -1,5 +1,5 @@
-with RassenDatentypen; use RassenDatentypen;
-with StadtDatentypen; use StadtDatentypen;
+with RassenDatentypen;
+with StadtDatentypen;
 with EinheitenDatentypen;
 with SpielVariablen;
 
@@ -7,6 +7,8 @@ private with EinheitenRecords;
 
 package AuswahlStadtEinheitLogik is
    pragma Elaborate_Body;
+   use type StadtDatentypen.MaximaleStädteMitNullWert;
+   use type RassenDatentypen.Spieler_Enum;
    
    function AuswahlStadtEinheit
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;

@@ -1,14 +1,15 @@
-with RassenDatentypen; use RassenDatentypen;
-with KartenDatentypen; use KartenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
 with EinheitenRecords;
 
 private with EinheitenDatentypen;
 private with Weltkarte;
 private with KartenRecords;
+private with KartenDatentypen;
 
 package EinheitentransporterLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
    
    procedure TransporterEntladen
      (TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord)
@@ -35,6 +36,7 @@ package EinheitentransporterLogik is
               );
    
 private
+   use type KartenDatentypen.Kartenfeld;
    
    Transporterkapazität : EinheitenDatentypen.Transportplätze;
    

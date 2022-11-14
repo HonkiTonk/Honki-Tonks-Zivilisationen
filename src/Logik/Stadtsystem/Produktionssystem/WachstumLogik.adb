@@ -1,6 +1,5 @@
-with EinheitenDatentypen; use EinheitenDatentypen;
-with ProduktionDatentypen; use ProduktionDatentypen;
-with StadtDatentypen; use StadtDatentypen;
+with EinheitenDatentypen;
+with StadtDatentypen;
 with WichtigesKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
@@ -60,7 +59,9 @@ package body WachstumLogik is
 
    procedure WachstumEinwohner
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-   is begin
+   is
+      use type ProduktionDatentypen.Produktion;
+   begin
       
       SchreibeStadtGebaut.Nahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                           NahrungsmittelExtern   => LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern),
@@ -108,7 +109,9 @@ package body WachstumLogik is
    function BenötigteNahrung
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return ProduktionDatentypen.Stadtproduktion
-   is begin
+   is
+      use type ProduktionDatentypen.Produktion;
+   begin
       
       return GrundwertEinwohnerwachstum (StadtRasseNummerExtern.Rasse)
         + MultiplikatorEinwohnerwachstum (StadtRasseNummerExtern.Rasse) * ProduktionDatentypen.Produktion (LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
@@ -141,7 +144,9 @@ package body WachstumLogik is
    procedure EinwohnerÄnderung
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       WachstumSchrumpfungExtern : in Boolean)
-   is begin
+   is
+      use type ProduktionDatentypen.Einwohner;
+   begin
       
       VorhandeneEinwohner := LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                                                 EinwohnerArbeiterExtern => True);
@@ -187,7 +192,11 @@ package body WachstumLogik is
    
    procedure WachstumProduktion
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-   is begin
+   is
+      use type StadtDatentypen.GebäudeIDMitNullwert;
+      use type EinheitenDatentypen.EinheitenIDMitNullWert;
+      use type ProduktionDatentypen.Produktion;
+   begin
       
       SchreibeStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                       RessourcenExtern       => LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern),
@@ -209,7 +218,7 @@ package body WachstumLogik is
       then
          if
            LeseStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern) >= LeseGebaeudeDatenbank.Produktionskosten (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                                                                                   IDExtern    => StadtDatentypen.GebäudeID (Bauprojekt.Gebäude))
+                                                                                                                                     IDExtern    => StadtDatentypen.GebäudeID (Bauprojekt.Gebäude))
          then
             StadtGebaeudeBauenLogik.GebäudeFertiggestellt (StadtRasseNummerExtern => StadtRasseNummerExtern);
             
@@ -220,7 +229,7 @@ package body WachstumLogik is
       else
          if
            LeseStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern) >= LeseEinheitenDatenbank.Produktionskosten (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                                                                                    IDExtern    => EinheitenDatentypen.EinheitenID (Bauprojekt.Einheit))
+                                                                                                                                      IDExtern    => EinheitenDatentypen.EinheitenID (Bauprojekt.Einheit))
          then
             StadtEinheitenBauenLogik.EinheitFertiggestellt (StadtRasseNummerExtern => StadtRasseNummerExtern);
 
@@ -266,7 +275,9 @@ package body WachstumLogik is
    
    procedure WachstumsratenBerechnen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-   is begin
+   is
+      use type RassenDatentypen.Rassen_Enum;
+   begin
       
       case
         RasseExtern

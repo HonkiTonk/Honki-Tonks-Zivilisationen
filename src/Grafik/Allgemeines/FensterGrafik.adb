@@ -1,4 +1,4 @@
-with Sf.Graphics; use Sf.Graphics;
+with Sf.Graphics;
 with Sf;
 with Sf.Graphics.RenderWindow;
 with Sf.Window.Cursor;
@@ -16,7 +16,9 @@ with TexteinstellungenGrafik;
 package body FensterGrafik is
    
    procedure FensterErzeugen
-   is begin
+   is
+      use type Sf.Graphics.sfRenderWindow_Ptr;
+   begin
       
       FensterErzeugenErweitert;
 

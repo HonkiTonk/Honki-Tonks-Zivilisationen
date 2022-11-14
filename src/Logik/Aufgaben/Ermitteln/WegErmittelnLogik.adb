@@ -1,6 +1,3 @@
-with KartenverbesserungDatentypen; use KartenverbesserungDatentypen;
-with AufgabenDatentypen; use AufgabenDatentypen;
-with ProduktionDatentypen; use ProduktionDatentypen;
 with EinheitenRecordKonstanten;
 with EinheitenKonstanten;
 
@@ -145,7 +142,9 @@ package body WegErmittelnLogik is
       WegExtern : in KartenverbesserungDatentypen.Karten_Weg_Enum;
       GrundExtern : in KartenRecords.KartengrundRecord)
       return EinheitenRecords.ArbeitRecord
-   is begin
+   is
+      use type RassenDatentypen.Rassen_Enum;
+   begin
       
       -- Eventuell noch Wege für andere Rassen auf Küstengewässer zulassen? äöü
       if

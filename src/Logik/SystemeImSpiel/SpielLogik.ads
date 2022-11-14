@@ -1,6 +1,6 @@
-with RassenDatentypen; use RassenDatentypen;
 with RueckgabeDatentypen;
 
+private with RassenDatentypen;
 private with SpielVariablen;
 
 package SpielLogik is
@@ -10,6 +10,7 @@ package SpielLogik is
      return RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
 private
+   use type RassenDatentypen.Spieler_Enum;
 
    AktuellerBefehlSpieler : RueckgabeDatentypen.Rückgabe_Werte_Enum;
    RückgabeOptionen : RueckgabeDatentypen.Rückgabe_Werte_Enum;

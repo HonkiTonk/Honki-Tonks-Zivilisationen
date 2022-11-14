@@ -1,6 +1,5 @@
-with RassenDatentypen; use RassenDatentypen;
-with SpielVariablen;
-
+private with RassenDatentypen;
+private with SpielVariablen;
 private with ForschungenDatentypen;
 
 package ForschungsfortschrittLogik is
@@ -9,6 +8,7 @@ package ForschungsfortschrittLogik is
    procedure Forschungsfortschritt;
    
 private
+   use type RassenDatentypen.Spieler_Enum;
    
    AktuellesForschungsprojekt : ForschungenDatentypen.ForschungIDMitNullWert;
 

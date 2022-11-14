@@ -1,4 +1,3 @@
-with KartenDatentypen; use KartenDatentypen;
 with KartenKonstanten;
 
 with KartenkoordinatenberechnungssystemLogik;
@@ -11,7 +10,9 @@ package body QuadrantenberechnungenLogik is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       SichtweiteExtern : in KartenDatentypen.Sichtweite;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-   is begin
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
       
       YQuadrantSchleife:
       for YQuadrantSchleifenwert in 0 .. SichtweiteExtern loop
@@ -81,7 +82,9 @@ package body QuadrantenberechnungenLogik is
       SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteNatural;
       SichtweiteExtern : in KartenDatentypen.Sichtweite;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-   is begin
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
               
       KartenQuadrantWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
                                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, -SichtweiteYRichtungExtern, SichtweiteXRichtungExtern),
@@ -211,7 +214,9 @@ package body QuadrantenberechnungenLogik is
       SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteNatural;
       SichtweiteExtern : in KartenDatentypen.Sichtweite;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-   is begin
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
                     
       KartenQuadrantWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
                                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, SichtweiteYRichtungExtern, SichtweiteXRichtungExtern),
@@ -341,7 +346,9 @@ package body QuadrantenberechnungenLogik is
       SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteNatural;
       SichtweiteExtern : in KartenDatentypen.Sichtweite;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-   is begin
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
                     
       KartenQuadrantWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
                                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, SichtweiteYRichtungExtern, -SichtweiteXRichtungExtern),
@@ -471,7 +478,9 @@ package body QuadrantenberechnungenLogik is
       SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteNatural;
       SichtweiteExtern : in KartenDatentypen.Sichtweite;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-   is begin
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
                     
       KartenQuadrantWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
                                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, -SichtweiteYRichtungExtern, -SichtweiteXRichtungExtern),

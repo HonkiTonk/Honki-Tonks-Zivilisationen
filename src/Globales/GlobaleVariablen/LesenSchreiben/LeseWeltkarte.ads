@@ -1,5 +1,5 @@
-with RassenDatentypen; use RassenDatentypen;
-with KartenDatentypen; use KartenDatentypen;
+with RassenDatentypen;
+with KartenDatentypen;
 with KartenRecords;
 with KartengrundDatentypen;
 with KartenverbesserungDatentypen;
@@ -10,6 +10,8 @@ with Weltkarte;
 
 package LeseWeltkarte is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
+   use type KartenDatentypen.Kartenfeld;
    
    function Basisgrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)

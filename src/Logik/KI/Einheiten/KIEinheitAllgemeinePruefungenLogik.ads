@@ -1,5 +1,5 @@
-with KartenDatentypen; use KartenDatentypen;
-with RassenDatentypen; use RassenDatentypen;
+with KartenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
 with KartenRecords;
 with EinheitenRecords;
@@ -9,6 +9,8 @@ private with EinheitenDatentypen;
 
 package KIEinheitAllgemeinePruefungenLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
+   use type KartenDatentypen.Kartenfeld;
    
    function KartenfeldPrüfen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

@@ -1,4 +1,4 @@
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 
@@ -6,6 +6,7 @@ private with KartenRecords;
 
 package KIGefahrErmittelnLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    function GefahrErmitteln
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
@@ -23,6 +24,8 @@ private
 
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    AktuelleKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+
+
 
    function ReaktionErfoderlich
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

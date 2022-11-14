@@ -1,14 +1,15 @@
-with RassenDatentypen; use RassenDatentypen;
-with KartenDatentypen; use KartenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
 with EinheitenRecords;
 
 private with KartenRecords;
 private with Weltkarte;
 private with BewertungDatentypen;
+private with KartenDatentypen;
 
 package KIEinheitFestlegenSiedelnLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    function StadtBauen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
@@ -21,6 +22,7 @@ package KIEinheitFestlegenSiedelnLogik is
               );
 
 private
+   use type KartenDatentypen.Kartenfeld;
 
    FeldGutUndFrei : Boolean;
 

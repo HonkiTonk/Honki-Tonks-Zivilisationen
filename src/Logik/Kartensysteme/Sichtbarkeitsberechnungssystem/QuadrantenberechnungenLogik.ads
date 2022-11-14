@@ -1,4 +1,4 @@
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with Weltkarte;
 with KartenRecords;
 with SpielVariablen;
@@ -6,6 +6,7 @@ with KartenDatentypen;
 
 package QuadrantenberechnungenLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    procedure QuadrantenDurchlaufen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;

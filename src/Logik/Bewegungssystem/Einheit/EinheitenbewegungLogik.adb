@@ -1,6 +1,5 @@
-with EinheitenDatentypen; use EinheitenDatentypen;
-with StadtDatentypen; use StadtDatentypen;
-with KartenRecords; use KartenRecords;
+with EinheitenDatentypen;
+with StadtDatentypen;
 with EinheitenKonstanten;
 with KartenKonstanten;
 with StadtKonstanten;
@@ -26,7 +25,10 @@ package body EinheitenbewegungLogik is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
       return Boolean
-   is begin
+   is
+      use type KartenRecords.AchsenKartenfeldRecord;
+   begin
+      
       if
         ÄnderungExtern = KeineÄnderung
       then
@@ -49,7 +51,10 @@ package body EinheitenbewegungLogik is
       BewegungDurchführenExtern : in Boolean;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
-   is begin
+   is
+      use type EinheitenDatentypen.BewegungFloat;
+      use type EinheitenDatentypen.EinheitenIDMitNullWert;
+   begin
       
       case
         BewegungDurchführenExtern
@@ -83,7 +88,11 @@ package body EinheitenbewegungLogik is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       PositionÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
       return Boolean
-   is begin
+   is
+      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      use type StadtDatentypen.MaximaleStädteMitNullWert;
+      use type RassenDatentypen.Rassen_Enum;
+   begin
       
       NeueKoordinaten := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                                                                                      ÄnderungExtern    => PositionÄnderungExtern,
@@ -223,7 +232,9 @@ package body EinheitenbewegungLogik is
      (BewegendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       StehendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
-   is begin
+   is
+      use type EinheitenDatentypen.BewegungFloat;
+   begin
       
       if
         True = EinheitentransporterLogik.KannTransportiertWerden (LadungExtern      => BewegendeEinheitExtern,

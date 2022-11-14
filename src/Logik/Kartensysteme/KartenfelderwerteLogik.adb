@@ -1,6 +1,3 @@
-with ProduktionDatentypen; use ProduktionDatentypen;
-with KampfDatentypen; use KampfDatentypen;
-
 with KartenAllgemeinesLogik;
 
 package body KartenfelderwerteLogik is
@@ -9,7 +6,9 @@ package body KartenfelderwerteLogik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return ProduktionDatentypen.Feldproduktion
-   is begin
+   is
+      use type ProduktionDatentypen.Produktion;
+   begin
       
       return KartenAllgemeinesLogik.GrundNahrung (KoordinatenExtern => KoordinatenExtern,
                                                   RasseExtern       => RasseExtern)
@@ -30,7 +29,9 @@ package body KartenfelderwerteLogik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return ProduktionDatentypen.Feldproduktion
-   is begin
+   is
+      use type ProduktionDatentypen.Produktion;
+   begin
       
       return KartenAllgemeinesLogik.GrundProduktion (KoordinatenExtern => KoordinatenExtern,
                                                      RasseExtern       => RasseExtern)
@@ -51,7 +52,9 @@ package body KartenfelderwerteLogik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return ProduktionDatentypen.Feldproduktion
-   is begin
+   is
+      use type ProduktionDatentypen.Produktion;
+   begin
       
       return KartenAllgemeinesLogik.GrundGeld (KoordinatenExtern => KoordinatenExtern,
                                                RasseExtern       => RasseExtern)
@@ -72,7 +75,9 @@ package body KartenfelderwerteLogik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return ProduktionDatentypen.Feldproduktion
-   is begin
+   is
+      use type ProduktionDatentypen.Produktion;
+   begin
       
       return KartenAllgemeinesLogik.GrundWissen (KoordinatenExtern => KoordinatenExtern,
                                                  RasseExtern       => RasseExtern)
@@ -93,7 +98,9 @@ package body KartenfelderwerteLogik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KampfDatentypen.KampfwerteAllgemein
-   is begin
+   is
+      use type KampfDatentypen.KampfwerteGroß;
+   begin
       
       return KartenAllgemeinesLogik.GrundVerteidigung (KoordinatenExtern => KoordinatenExtern,
                                                        RasseExtern       => RasseExtern)
@@ -114,7 +121,9 @@ package body KartenfelderwerteLogik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KampfDatentypen.KampfwerteAllgemein
-   is begin
+   is
+      use type KampfDatentypen.KampfwerteGroß;
+   begin
       
       return KartenAllgemeinesLogik.GrundAngriff (KoordinatenExtern => KoordinatenExtern,
                                                   RasseExtern       => RasseExtern)

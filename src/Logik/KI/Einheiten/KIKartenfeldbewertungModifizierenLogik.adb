@@ -1,11 +1,10 @@
 with KartenKonstanten;
+with BewertungDatentypen;
 
 with LeseWeltkarte;
 with LeseKartenDatenbanken;
 
 with KartenkoordinatenberechnungssystemLogik;
-
-with BewertungDatentypen; use BewertungDatentypen;
 
 package body KIKartenfeldbewertungModifizierenLogik is
 
@@ -14,7 +13,9 @@ package body KIKartenfeldbewertungModifizierenLogik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Boolean
-   is begin
+   is
+      use type RassenDatentypen.Rassen_Enum;
+   begin
       
       case
         KoordinatenExtern.EAchse

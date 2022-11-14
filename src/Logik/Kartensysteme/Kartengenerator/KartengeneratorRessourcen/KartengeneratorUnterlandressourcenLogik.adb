@@ -1,5 +1,3 @@
-with SystemDatentypen; use SystemDatentypen;
-
 with SchreibeWeltkarte;
 
 with ZufallsgeneratorenKartenLogik;
@@ -8,7 +6,9 @@ package body KartengeneratorUnterlandressourcenLogik is
 
    procedure KartengeneratorUnterlandressourcen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
-   is begin
+   is
+      use type SystemDatentypen.NullBisHundert;
+   begin
       
       WelcheRessource := KartengrundDatentypen.Leer_Ressource_Enum;
       

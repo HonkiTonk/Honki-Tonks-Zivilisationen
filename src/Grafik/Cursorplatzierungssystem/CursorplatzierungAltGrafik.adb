@@ -3,7 +3,7 @@ with Ada.Calendar; use Ada.Calendar;
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics.View;
 
-with KartenartDatentypen; use KartenartDatentypen;
+with KartenartDatentypen;
 with KartenKonstanten;
 with ZeitKonstanten;
 with Views;
@@ -69,7 +69,9 @@ package body CursorplatzierungAltGrafik is
    
    procedure Platzierung
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-   is begin
+   is
+      use type KartenDatentypen.Ebene;
+   begin
       
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
                                                                  point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
@@ -240,7 +242,9 @@ package body CursorplatzierungAltGrafik is
      (MauspositionExtern : in Sf.System.Vector2.sfVector2f;
       YAchseAltExtern : in KartenDatentypen.KartenfeldPositiv)
       return KartenDatentypen.UmgebungsbereichEins
-   is begin
+   is
+      use type KartenartDatentypen.Kartenform_Enum;
+   begin
       
       Achsenviewfläche := Sf.Graphics.View.getSize (view => Views.KartenviewAccess);
       AktuelleSichtweite := SichtweitenGrafik.SichtweiteLesen;
@@ -304,7 +308,9 @@ package body CursorplatzierungAltGrafik is
      (MausachseExtern : in Float;
       XAchseAltExtern : in KartenDatentypen.KartenfeldPositiv)
       return KartenDatentypen.UmgebungsbereichEins
-   is begin
+   is
+      use type KartenartDatentypen.Kartenform_Enum;
+   begin
       
       XAchsenbereich := Sf.Graphics.View.getSize (view => Views.KartenviewAccess).x;
       AktuelleSichtweite := SichtweitenGrafik.SichtweiteLesen;

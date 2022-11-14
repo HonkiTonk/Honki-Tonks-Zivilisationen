@@ -1,9 +1,10 @@
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 
 package EinheitHeilenLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    function EinheitHeilen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

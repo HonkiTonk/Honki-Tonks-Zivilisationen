@@ -1,4 +1,4 @@
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with StadtRecords;
 with SpielVariablen;
 
@@ -11,6 +11,7 @@ private with KIDatentypen;
 
 package KIGebaeudeBauenLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    function GebäudeBauen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)

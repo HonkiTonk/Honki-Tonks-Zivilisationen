@@ -1,13 +1,15 @@
-with RassenDatentypen; use RassenDatentypen;
-with KartenDatentypen; use KartenDatentypen;
-with StadtDatentypen; use StadtDatentypen;
+with RassenDatentypen;
+with KartenDatentypen;
 with KartenRecords;
 with SpielVariablen;
 with Weltkarte;
 
+private with StadtDatentypen;
 
 package KIStadtSuchenLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
+   use type KartenDatentypen.Kartenfeld;
 
    function NähesteFeindlicheStadtSuchen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
@@ -43,6 +45,7 @@ package KIStadtSuchenLogik is
                );
 
 private
+   use type StadtDatentypen.MaximaleStädteMitNullWert;
 
    AktuelleStadt : StadtDatentypen.MaximaleStädteMitNullWert;
    GefundeneStadt : StadtDatentypen.MaximaleStädteMitNullWert;

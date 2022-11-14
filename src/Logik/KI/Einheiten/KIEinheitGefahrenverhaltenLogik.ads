@@ -1,9 +1,11 @@
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 
 package KIEinheitGefahrenverhaltenLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
+   use type RassenDatentypen.Rassen_Enum;
 
    procedure GefahrenHandlungen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

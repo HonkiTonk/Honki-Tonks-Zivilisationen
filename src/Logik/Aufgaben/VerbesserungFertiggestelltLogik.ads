@@ -1,5 +1,4 @@
-with RassenDatentypen; use RassenDatentypen;
-
+private with RassenDatentypen;
 private with EinheitenRecords;
 private with SpielVariablen;
 private with AufgabenDatentypen;
@@ -12,6 +11,7 @@ package VerbesserungFertiggestelltLogik is
    procedure VerbesserungFertiggestellt;
    
 private
+   use type RassenDatentypen.Spieler_Enum;
    
    WelcheAufgabe : AufgabenDatentypen.Einheitenbefehle_Verbesserungen_Enum;
    

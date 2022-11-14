@@ -1,4 +1,4 @@
-with DiplomatieDatentypen; use DiplomatieDatentypen;
+with DiplomatieDatentypen;
 with InteraktionAuswahl;
 with GrafikDatentypen;
 with SystemKonstanten;
@@ -29,7 +29,10 @@ package body DiplomatieLogik is
    
    procedure Rassenprüfungen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-   is begin
+   is
+      use type DiplomatieDatentypen.Status_Untereinander_Enum;
+      use type RassenDatentypen.Rassen_Enum;
+   begin
       
       RassenSchleife:
       for RassenSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop

@@ -1,4 +1,3 @@
-with ForschungenDatentypen; use ForschungenDatentypen;
 with TastenbelegungDatentypen;
 with InteraktionAuswahl;
 with GrafikDatentypen;
@@ -15,7 +14,9 @@ package body ForschungsauswahlLogik is
 
    procedure Forschung
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-   is begin
+   is
+      use type ForschungenDatentypen.ForschungIDNichtMöglich;
+   begin
          
       AktuellesForschungsprojekt := LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern);
       WasErforschtWerdenSoll := Forschungsmöglichkeiten (RasseExtern => RasseExtern);
@@ -86,7 +87,9 @@ package body ForschungsauswahlLogik is
    
    function Forschungsauswahl
      return ForschungenDatentypen.ForschungIDMitNullWert
-   is begin
+   is
+      use type ForschungenDatentypen.ForschungIDNichtMöglich;
+   begin
       
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Forschung_Enum;
       

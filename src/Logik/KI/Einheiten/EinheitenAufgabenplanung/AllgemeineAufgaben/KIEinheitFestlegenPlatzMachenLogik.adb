@@ -1,4 +1,4 @@
-with KartenDatentypen; use KartenDatentypen;
+with KartenDatentypen;
 with KartenKonstanten;
 
 with LeseEinheitenGebaut;

@@ -1,13 +1,12 @@
-with EinheitenDatentypen; use EinheitenDatentypen;
-with KartenDatentypen; use KartenDatentypen;
-with KampfDatentypen; use KampfDatentypen;
-with StadtDatentypen; use StadtDatentypen;
-with DiplomatieDatentypen; use DiplomatieDatentypen;
+with KartenDatentypen;
+with KampfDatentypen;
+with StadtDatentypen;
+with DiplomatieDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
 
-with KIDatentypen; use KIDatentypen;
+with KIDatentypen;
 
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
@@ -60,7 +59,11 @@ package body KIStadtLogik is
       EinheitBauenExtern : in KIRecords.EinheitIDBewertungRecord;
       GebäudeBauenExtern : in KIRecords.GebäudeIDBewertungRecord;
       NotfallExtern : in Boolean)
-   is begin
+   is
+      use type EinheitenDatentypen.EinheitenIDMitNullWert;
+      use type StadtDatentypen.GebäudeIDMitNullwert;
+      use type KIDatentypen.BauenBewertung;
+   begin
       
       if
         EinheitBauenExtern.ID = EinheitenKonstanten.LeerID
@@ -160,7 +163,11 @@ package body KIStadtLogik is
    function FeindNahe
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return Boolean
-   is begin
+   is
+      use type KartenDatentypen.Kartenfeld;
+      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      use type DiplomatieDatentypen.Status_Untereinander_Enum;
+   begin
       
       StadtKoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
@@ -221,7 +228,9 @@ package body KIStadtLogik is
    function WelcheEinheitArt
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return EinheitenDatentypen.EinheitenIDMitNullWert
-   is begin
+   is
+      use type EinheitenDatentypen.Einheitart_Enum;
+   begin
       
       AktuelleEinheit := EinheitenKonstanten.LeerID;
       
@@ -260,7 +269,10 @@ package body KIStadtLogik is
       AktuelleEinheitExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
       NächsteEinheitExtern : in EinheitenDatentypen.EinheitenID)
       return EinheitenDatentypen.EinheitenID
-   is begin
+   is
+      use type EinheitenDatentypen.EinheitenIDMitNullWert;
+      use type KampfDatentypen.KampfwerteGroß;
+   begin
       
       if
         AktuelleEinheitExtern = EinheitenDatentypen.EinheitenIDMitNullWert'First

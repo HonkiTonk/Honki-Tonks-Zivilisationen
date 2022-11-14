@@ -1,4 +1,4 @@
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
 
 private with ProduktionDatentypen;
@@ -6,6 +6,7 @@ private with StadtRecords;
 
 package WachstumLogik is
    -- pragma Elaborate_Body; äöü
+   use type RassenDatentypen.Spieler_Enum;
    
    procedure StadtWachstum;
    

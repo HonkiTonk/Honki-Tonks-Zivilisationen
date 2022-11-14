@@ -1,5 +1,4 @@
-with EinheitenDatentypen; use EinheitenDatentypen;
-with EinheitenRecords; use EinheitenRecords;
+with EinheitenDatentypen;
 with EinheitenKonstanten;
 with KartenKonstanten;
 
@@ -120,7 +119,10 @@ package body SchreibeWeltkarte is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       EinheitentauschExtern : in Boolean)
-   is begin
+   is
+      use type KartenDatentypen.Ebene;
+      use type EinheitenRecords.RasseEinheitnummerRecord;
+   begin
       
       if
         KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse
@@ -145,7 +147,12 @@ package body SchreibeWeltkarte is
    procedure EinheitEntfernen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-   is begin
+   is
+      use type RassenDatentypen.Rassen_Enum;
+      use type KartenDatentypen.Ebene;
+      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      use type EinheitenRecords.RasseEinheitnummerRecord;
+   begin
       
       if
         EinheitRasseNummerExtern.Rasse = EinheitenKonstanten.LeerRasse

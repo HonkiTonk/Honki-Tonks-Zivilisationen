@@ -1,14 +1,14 @@
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
 
 private with ForschungenDatentypen;
-
 private with ForschungenDatenbank;
 
 private with KIDatentypen;
 
 package KIForschungLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    procedure Forschung
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

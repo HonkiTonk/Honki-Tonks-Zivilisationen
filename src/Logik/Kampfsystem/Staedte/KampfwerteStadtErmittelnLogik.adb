@@ -1,4 +1,3 @@
-with KampfDatentypen; use KampfDatentypen;
 with StadtDatentypen;
 with KartenKonstanten;
 
@@ -13,7 +12,9 @@ package body KampfwerteStadtErmittelnLogik is
    function AktuelleVerteidigungStadt
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return KampfDatentypen.KampfwerteGroß
-   is begin
+   is
+      use type KampfDatentypen.KampfwerteGroß;
+   begin
       
       VerteidigungWert := LeseVerbesserungenDatenbank.KampfVerbesserung (VerbesserungExtern => LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                                                          RasseExtern        => StadtRasseNummerExtern.Rasse,
@@ -47,7 +48,9 @@ package body KampfwerteStadtErmittelnLogik is
    function AktuellerAngriffStadt
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
       return KampfDatentypen.KampfwerteGroß
-   is begin
+   is
+      use type KampfDatentypen.KampfwerteGroß;
+   begin
       
       AngriffWert := LeseVerbesserungenDatenbank.KampfVerbesserung (VerbesserungExtern => LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                                                     RasseExtern        => StadtRasseNummerExtern.Rasse,

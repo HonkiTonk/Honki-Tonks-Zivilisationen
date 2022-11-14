@@ -1,4 +1,4 @@
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with StadtRecords;
 with SpielVariablen;
 
@@ -6,6 +6,7 @@ private with SystemRecords;
 
 package StadtAllgemeinesLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    procedure NeuerStadtname
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)

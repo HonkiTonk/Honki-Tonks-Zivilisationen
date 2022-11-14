@@ -1,5 +1,5 @@
-with RassenDatentypen; use RassenDatentypen;
-with SpielVariablen;
+private with RassenDatentypen;
+private with SpielVariablen;
 
 package RundenendeLogik is
    pragma Elaborate_Body;
@@ -8,6 +8,7 @@ package RundenendeLogik is
      return Boolean;
 
 private
+   use type RassenDatentypen.Spieler_Enum;
 
    procedure RundenanzahlSetzen;
    procedure GeldForschungDiplomatieÄndern;

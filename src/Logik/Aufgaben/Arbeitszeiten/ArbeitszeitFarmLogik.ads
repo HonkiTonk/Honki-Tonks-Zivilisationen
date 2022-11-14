@@ -1,9 +1,10 @@
-with ProduktionDatentypen; use ProduktionDatentypen;
+with ProduktionDatentypen;
 with RassenDatentypen;
 with KartengrundDatentypen;
 
 package ArbeitszeitFarmLogik is
    pragma Preelaborate;
+   use type ProduktionDatentypen.Arbeitszeit;
 
    -- -1 bedeutet es ist unmöglich diese Verbesserung auf diesem Grund anzulegen.
    -- Wenn ich diese Zeitarrays in ein dreidimensionales Array packe, könnte ich dann die Beschäftigung mit reinschieben und entsprechend Teile der Arbeitszeitprüfungen zusammenschieben? äöü

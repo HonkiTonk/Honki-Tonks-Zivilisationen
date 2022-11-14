@@ -1,15 +1,17 @@
-with RassenDatentypen; use RassenDatentypen;
-with ProduktionDatentypen; use ProduktionDatentypen;
-with KartenDatentypen; use KartenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
 with StadtRecords;
+with ProduktionDatentypen;
 
 private with KartenRecords;
+private with KartenDatentypen;
 
 with LeseStadtGebaut;
 
 package StadtwerteFestlegenLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
+   use type ProduktionDatentypen.Einwohner;
 
    procedure BewirtschaftbareFelderBelegen
      (ZuwachsOderSchwundExtern : in Boolean;
@@ -42,6 +44,7 @@ package StadtwerteFestlegenLogik is
               );
 
 private
+   use type KartenDatentypen.Kartenfeld;
    
    GrößeAlt : KartenDatentypen.UmgebungsbereichDrei;
    GrößeNeu : KartenDatentypen.UmgebungsbereichDrei;

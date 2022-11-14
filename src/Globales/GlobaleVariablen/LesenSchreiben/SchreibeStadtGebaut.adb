@@ -1,4 +1,3 @@
-with ProduktionDatentypen; use ProduktionDatentypen;
 with StadtKonstanten;
 with StadtRecordKonstanten;
 
@@ -35,7 +34,9 @@ package body SchreibeStadtGebaut is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       EinwohnerArbeiterExtern : in Boolean;
       WachsenSchrumpfenExtern : in Boolean)
-   is begin
+   is
+      use type ProduktionDatentypen.Einwohner;
+   begin
       
       case
         EinwohnerArbeiterExtern
@@ -105,7 +106,9 @@ package body SchreibeStadtGebaut is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       NahrungsmittelExtern : in ProduktionDatentypen.Stadtproduktion;
       ÄndernSetzenExtern : in Boolean)
-   is begin
+   is
+      use type ProduktionDatentypen.Produktion;
+   begin
       
       case
         ÄndernSetzenExtern
@@ -138,7 +141,9 @@ package body SchreibeStadtGebaut is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       NahrungsproduktionExtern : in ProduktionDatentypen.Stadtproduktion;
       ÄndernSetzenExtern : in Boolean)
-   is begin
+   is
+      use type ProduktionDatentypen.Produktion;
+   begin
       
       case
         ÄndernSetzenExtern
@@ -171,7 +176,9 @@ package body SchreibeStadtGebaut is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       RessourcenExtern : in ProduktionDatentypen.Produktion;
       ÄndernSetzenExtern : in Boolean)
-   is begin
+   is
+      use type ProduktionDatentypen.Produktion;
+   begin
       
       case
         ÄndernSetzenExtern
@@ -206,7 +213,9 @@ package body SchreibeStadtGebaut is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       ProduktionrateExtern : in ProduktionDatentypen.Stadtproduktion;
       ÄndernSetzenExtern : in Boolean)
-   is begin
+   is
+      use type ProduktionDatentypen.Produktion;
+   begin
       
       case
         ÄndernSetzenExtern
@@ -241,7 +250,9 @@ package body SchreibeStadtGebaut is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       GeldgewinnungExtern : in ProduktionDatentypen.Stadtproduktion;
       ÄndernSetzenExtern : in Boolean)
-   is begin
+   is
+      use type ProduktionDatentypen.Produktion;
+   begin
       
       case
         ÄndernSetzenExtern
@@ -275,7 +286,9 @@ package body SchreibeStadtGebaut is
       WelcherPostenExtern : in ProduktionDatentypen.Permanente_Kosten_Verwendet_Enum;
       KostenExtern : in ProduktionDatentypen.Stadtproduktion;
       ÄndernSetzenExtern : in Boolean)
-   is begin
+   is
+      use type ProduktionDatentypen.Produktion;
+   begin
       
       case
         ÄndernSetzenExtern
@@ -308,7 +321,9 @@ package body SchreibeStadtGebaut is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       ForschungsrateExtern : in ProduktionDatentypen.Stadtproduktion;
       ÄndernSetzenExtern : in Boolean)
-   is begin
+   is
+      use type ProduktionDatentypen.Produktion;
+   begin
       
       case
         ÄndernSetzenExtern
@@ -352,7 +367,9 @@ package body SchreibeStadtGebaut is
    
    procedure Bauzeit
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-   is begin
+   is
+      use type ProduktionDatentypen.Produktion;
+   begin
       
       if
         (SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Bauprojekt.Gebäude = 0
@@ -388,7 +405,9 @@ package body SchreibeStadtGebaut is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       KorruptionExtern : in ProduktionDatentypen.Stadtproduktion;
       ÄndernSetzenExtern : in Boolean)
-   is begin
+   is
+      use type ProduktionDatentypen.Produktion;
+   begin
       
       case
         ÄndernSetzenExtern
@@ -421,7 +440,9 @@ package body SchreibeStadtGebaut is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       ZufriedenheitExtern : in ProduktionDatentypen.Feldproduktion;
       ÄndernSetzenExtern : in Boolean)
-   is begin
+   is
+      use type ProduktionDatentypen.Produktion;
+   begin
       
       case
         ÄndernSetzenExtern

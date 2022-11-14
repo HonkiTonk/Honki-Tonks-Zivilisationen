@@ -2,8 +2,8 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 private with Sf.System.Vector2;
 
-with RassenDatentypen; use RassenDatentypen;
-with KartenDatentypen; use KartenDatentypen;
+with RassenDatentypen;
+with KartenDatentypen; 
 with SpielVariablen;
 with KartenRecords;
 with Weltkarte;
@@ -17,6 +17,8 @@ private with UmwandlungenAdaNachEigenes;
 
 package WichtigesSeitenleisteGrafik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
+   use type KartenDatentypen.Kartenfeld;
 
    procedure WichtigesInformationen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;

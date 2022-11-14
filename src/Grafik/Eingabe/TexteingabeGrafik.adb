@@ -1,9 +1,9 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 
-with Sf; use Sf;
-with Sf.Window.Keyboard; use Sf.Window.Keyboard;
-with Sf.Window.Mouse; use Sf.Window.Mouse;
+with Sf;
+with Sf.Window.Keyboard;
+with Sf.Window.Mouse;
 with Sf.Graphics.RenderWindow;
 
 with SystemRecordKonstanten;
@@ -15,7 +15,11 @@ with NachLogiktask;
 package body TexteingabeGrafik is
 
    procedure Texteingabe
-   is begin
+   is
+      use type Sf.sfBool;
+      use type Sf.Window.Keyboard.sfKeyCode;
+      use type Sf.Window.Mouse.sfMouseButton;
+   begin
       
       TextSchleife:
       while

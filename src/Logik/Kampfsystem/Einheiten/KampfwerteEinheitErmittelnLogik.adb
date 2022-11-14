@@ -1,4 +1,3 @@
-with KampfDatentypen; use KampfDatentypen;
 with AufgabenDatentypen;
 
 with LeseEinheitenGebaut;
@@ -11,7 +10,9 @@ package body KampfwerteEinheitErmittelnLogik is
    function Gesamtverteidigung
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return KampfDatentypen.KampfwerteGroß
-   is begin
+   is
+      use type KampfDatentypen.KampfwerteGroß;
+   begin
       
       Grundverteidigung := LeseEinheitenDatenbank.Verteidigung (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                                 IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
@@ -39,7 +40,9 @@ package body KampfwerteEinheitErmittelnLogik is
    function Gesamtangriff
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return KampfDatentypen.KampfwerteGroß
-   is begin
+   is
+      use type KampfDatentypen.KampfwerteGroß;
+   begin
       
       Grundangriff := LeseEinheitenDatenbank.Angriff (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                       IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern));

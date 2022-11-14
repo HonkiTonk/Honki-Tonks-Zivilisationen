@@ -1,6 +1,6 @@
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
-with KartengrundDatentypen; use KartengrundDatentypen;
+with KartengrundDatentypen;
 with GrafikDatentypen;
 with TastenbelegungDatentypen;
 

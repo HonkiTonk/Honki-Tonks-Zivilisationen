@@ -1,7 +1,5 @@
-with ForschungenDatentypen; use ForschungenDatentypen;
-with EinheitenDatentypen; use EinheitenDatentypen;
-with ProduktionDatentypen; use ProduktionDatentypen;
-with StadtDatentypen; use StadtDatentypen;
+with EinheitenDatentypen;
+with StadtDatentypen;
 with WichtigesKonstanten;
 with ForschungKonstanten;
 
@@ -48,7 +46,9 @@ package body SchreibeWichtiges is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       GeldZugewinnExtern : in ProduktionDatentypen.Stadtproduktion;
       RechnenSetzenExtern : in Boolean)
-   is begin
+   is
+      use type ProduktionDatentypen.Produktion;
+   begin
       
       case
         RechnenSetzenExtern
@@ -80,7 +80,9 @@ package body SchreibeWichtiges is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       ForschungsrateZugewinnExtern : in ProduktionDatentypen.Stadtproduktion;
       RechnenSetzenExtern : in Boolean)
-   is begin
+   is
+      use type ProduktionDatentypen.Produktion;
+   begin
       
       case
         RechnenSetzenExtern
@@ -121,7 +123,9 @@ package body SchreibeWichtiges is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       ForschungZugewinnExtern : in ProduktionDatentypen.Produktion;
       RechnenSetzenExtern : in Boolean)
-   is begin
+   is
+      use type ProduktionDatentypen.Produktion;
+   begin
       
       case
         RechnenSetzenExtern
@@ -160,7 +164,10 @@ package body SchreibeWichtiges is
    
    procedure VerbleibendeForschungszeit
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-   is begin
+   is
+      use type ProduktionDatentypen.Produktion;
+      use type ForschungenDatentypen.ForschungIDNichtMöglich;
+   begin
       
       if
         SpielVariablen.Wichtiges (RasseExtern).Forschungsprojekt = ForschungenDatentypen.ForschungIDMitNullWert'First
@@ -225,7 +232,9 @@ package body SchreibeWichtiges is
    procedure AnzahlStädte
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       PlusMinusExtern : in Boolean)
-   is begin
+   is
+      use type StadtDatentypen.MaximaleStädteMitNullWert;
+   begin
       
       case
         PlusMinusExtern
@@ -258,7 +267,9 @@ package body SchreibeWichtiges is
    procedure AnzahlArbeiter
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       PlusMinusExtern : in Boolean)
-   is begin
+   is
+      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   begin
       
       case
         PlusMinusExtern
@@ -292,7 +303,9 @@ package body SchreibeWichtiges is
    procedure AnzahlKämpfer
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       PlusMinusExtern : in Boolean)
-   is begin
+   is
+      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   begin
       
       case
         PlusMinusExtern
@@ -326,7 +339,9 @@ package body SchreibeWichtiges is
    procedure AnzahlSonstiges
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       PlusMinusExtern : in Boolean)
-   is begin
+   is
+      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   begin
       
       case
         PlusMinusExtern

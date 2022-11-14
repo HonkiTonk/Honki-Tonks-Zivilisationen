@@ -1,6 +1,5 @@
 with Ada.Strings.Wide_Wide_Fixed;
 
-with Sf.Window.Keyboard; use Sf.Window.Keyboard;
 with Sf;
 
 with GrafikDatentypen;
@@ -186,7 +185,9 @@ package body ZahleneingabeLogik is
      (EingegebeneZahlExtern : in Sf.Window.Keyboard.sfKeyCode;
       ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
       ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger)
-   is begin
+   is
+      use type Sf.Window.Keyboard.sfKeyCode;
+   begin
       
       ZahlenNachLinksVerschiebenSchleife:
       for PositionSchleifenwert in ZahlenString'First + 1 .. ZahlenString'Last loop

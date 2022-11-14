@@ -1,4 +1,4 @@
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
 with StadtRecords;
 
@@ -6,6 +6,7 @@ private with StadtDatentypen;
 
 package GebaeudeVerkaufenLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    procedure Verkaufsliste
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)

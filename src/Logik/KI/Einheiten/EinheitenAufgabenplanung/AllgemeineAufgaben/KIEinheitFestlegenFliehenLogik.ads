@@ -1,13 +1,14 @@
-with RassenDatentypen; use RassenDatentypen;
-with KartenDatentypen; use KartenDatentypen;
+with RassenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 
 private with KartenRecords;
 private with Weltkarte;
+private with KartenDatentypen;
 
 package KIEinheitFestlegenFliehenLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    function Fliehen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
@@ -20,6 +21,7 @@ package KIEinheitFestlegenFliehenLogik is
               );
 
 private
+   use type KartenDatentypen.Kartenfeld;
 
    ZielKoordinate : KartenRecords.AchsenKartenfeldNaturalRecord;
 

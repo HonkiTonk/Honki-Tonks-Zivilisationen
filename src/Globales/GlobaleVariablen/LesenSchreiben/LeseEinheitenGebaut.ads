@@ -1,6 +1,6 @@
-with RassenDatentypen; use RassenDatentypen;
-with EinheitenDatentypen; use EinheitenDatentypen;
-with KartenDatentypen; use KartenDatentypen;
+with RassenDatentypen;
+with EinheitenDatentypen;
+with KartenDatentypen;
 with StadtDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
@@ -15,6 +15,9 @@ with KIDatentypen;
 
 package LeseEinheitenGebaut is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
+   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Ebene;
 
    function ID
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

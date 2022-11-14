@@ -1,4 +1,4 @@
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
 
 private with EinheitenDatentypen;
@@ -6,6 +6,7 @@ private with StadtDatentypen;
 
 package KILogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    procedure KI
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

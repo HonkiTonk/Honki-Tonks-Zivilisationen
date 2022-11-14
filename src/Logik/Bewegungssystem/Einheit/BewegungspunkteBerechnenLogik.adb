@@ -1,5 +1,4 @@
-with EinheitenDatentypen; use EinheitenDatentypen;
-with KartengrundDatentypen; use KartengrundDatentypen;
+with KartengrundDatentypen;
 with KartenverbesserungDatentypen;
 with EinheitenKonstanten;
 
@@ -13,7 +12,11 @@ package body BewegungspunkteBerechnenLogik is
      (NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return EinheitenDatentypen.BewegungFloat
-   is begin
+   is
+      use type KartengrundDatentypen.Basisgrund_Enum;
+      use type KartengrundDatentypen.Zusatzgrund_Enum;
+      use type EinheitenDatentypen.BewegungFloat;
+   begin
       
       Bewegungsbonus := Bewegungsmodifikator (StraßeUndFlussPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                       NeueKoordinatenExtern    => NeueKoordinatenExtern));

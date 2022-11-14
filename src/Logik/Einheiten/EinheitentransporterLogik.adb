@@ -1,4 +1,4 @@
-with EinheitenDatentypen; use EinheitenDatentypen;
+
 with EinheitenKonstanten;
 with KartenKonstanten;
 
@@ -18,7 +18,9 @@ package body EinheitentransporterLogik is
      (LadungExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
-   is begin
+   is
+      use type EinheitenDatentypen.Transport_Enum;
+   begin
       
       TransporterID := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => TransporterExtern);
       
@@ -145,7 +147,9 @@ package body EinheitentransporterLogik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       LadungExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
-   is begin
+   is
+      use type EinheitenDatentypen.BewegungFloat;
+   begin
       
       EinheitVorhanden := EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern,
                                                                                 LogikGrafikExtern => True);

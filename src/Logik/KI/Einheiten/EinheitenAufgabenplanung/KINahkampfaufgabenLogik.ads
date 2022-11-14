@@ -1,9 +1,10 @@
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
 with EinheitenRecords;
 
 package KINahkampfaufgabenLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    procedure Nahkämpferaufgaben
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

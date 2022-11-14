@@ -1,6 +1,6 @@
-with KartenDatentypen; use KartenDatentypen;
-with KartenverbesserungDatentypen; use KartenverbesserungDatentypen;
-with StadtDatentypen; use StadtDatentypen;
+with KartenDatentypen;
+with KartenverbesserungDatentypen;
+with StadtDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
 with KartenRecordKonstanten;
@@ -65,7 +65,9 @@ package body StadtEntfernenLogik is
    
    procedure BelegteStadtfelderFreigeben
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-   is begin
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
       
       Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
@@ -103,7 +105,9 @@ package body StadtEntfernenLogik is
    
    procedure HeimatstädteEntfernen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-   is begin
+   is
+      use type StadtDatentypen.MaximaleStädteMitNullWert;
+   begin
       
       EinheitenSchleife:
       for EinheitNummerSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Einheitengrenze loop
@@ -126,7 +130,10 @@ package body StadtEntfernenLogik is
    
    procedure NeueHauptstadtSetzen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-   is begin
+   is
+      use type StadtDatentypen.MaximaleStädteMitNullWert;
+      use type KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
+   begin
       
       case
         LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern)

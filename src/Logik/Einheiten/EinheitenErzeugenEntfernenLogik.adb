@@ -1,4 +1,3 @@
-with EinheitenDatentypen; use EinheitenDatentypen;
 with EinheitenKonstanten;
 
 with SchreibeEinheitenGebaut;
@@ -26,7 +25,7 @@ package body EinheitenErzeugenEntfernenLogik is
       
       case
         LeseEinheitenDatenbank.Einheitenart (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                           IDExtern    => IDExtern)
+                                             IDExtern    => IDExtern)
       is
          when EinheitenDatentypen.Arbeiter_Enum =>
             SchreibeWichtiges.AnzahlArbeiter (RasseExtern     => StadtRasseNummerExtern.Rasse,
@@ -66,7 +65,9 @@ package body EinheitenErzeugenEntfernenLogik is
    
    procedure EinheitEntfernenLadung
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-   is begin
+   is
+      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   begin
       
       Transporterkapazität := LeseEinheitenDatenbank.Transportkapazität (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                                            IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
@@ -101,7 +102,7 @@ package body EinheitenErzeugenEntfernenLogik is
       
       case
         LeseEinheitenDatenbank.Einheitenart (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                           IDExtern    => (SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).ID))
+                                             IDExtern    => (SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).ID))
       is
          when EinheitenDatentypen.Arbeiter_Enum =>
             SchreibeWichtiges.AnzahlArbeiter (RasseExtern     => EinheitRasseNummerExtern.Rasse,

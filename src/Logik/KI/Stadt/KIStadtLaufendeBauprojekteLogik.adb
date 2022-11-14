@@ -1,4 +1,4 @@
-with KartenverbesserungDatentypen; use KartenverbesserungDatentypen;
+with KartenverbesserungDatentypen;
 with EinheitenKonstanten;
 with StadtKonstanten;
 
@@ -11,7 +11,9 @@ package body KIStadtLaufendeBauprojekteLogik is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       BauprojektExtern : in StadtRecords.BauprojektRecord)
       return StadtDatentypen.MaximaleStädteMitNullWert
-   is begin
+   is
+      use type KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
+   begin
       
       GleichesGebäudeBauprojekt := StadtKonstanten.LeerNummer;
      
@@ -48,7 +50,10 @@ package body KIStadtLaufendeBauprojekteLogik is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       EinheitArtExtern : in EinheitenDatentypen.Einheitart_Vorhanden_Enum)
       return EinheitenDatentypen.MaximaleEinheitenMitNullWert
-   is begin
+   is
+      use type EinheitenDatentypen.Einheitart_Enum;
+      use type KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
+   begin
       
       GleichesEinheitenBauprojekt := EinheitenKonstanten.LeerNummer;
       
@@ -67,7 +72,7 @@ package body KIStadtLaufendeBauprojekteLogik is
          then
             if
               EinheitArtExtern = LeseEinheitenDatenbank.Einheitenart (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                      IDExtern    => EinheitenID (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Einheit))
+                                                                      IDExtern    => LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Einheit)
             then
                GleichesEinheitenBauprojekt := GleichesEinheitenBauprojekt + 1;
                      
@@ -87,7 +92,9 @@ package body KIStadtLaufendeBauprojekteLogik is
    function EinheitenInProduktion
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitenDatentypen.MaximaleEinheitenMitNullWert
-   is begin
+   is
+      use type KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
+   begin
       
       EinheitenImBau := EinheitenKonstanten.LeerNummer;
       

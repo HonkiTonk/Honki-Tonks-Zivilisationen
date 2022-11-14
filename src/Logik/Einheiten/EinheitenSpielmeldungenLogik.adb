@@ -1,4 +1,4 @@
-with EinheitenDatentypen; use EinheitenDatentypen;
+with EinheitenDatentypen;
 with TextnummernKonstanten;
 with EinheitenKonstanten;
 
@@ -12,7 +12,9 @@ package body EinheitenSpielmeldungenLogik is
    function BewegungspunkteMeldung
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
-   is begin
+   is
+      use type EinheitenDatentypen.BewegungFloat;
+   begin
       
       if
         LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerBewegungspunkte

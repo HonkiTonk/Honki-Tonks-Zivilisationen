@@ -1,4 +1,3 @@
-with DiplomatieDatentypen; use DiplomatieDatentypen;
 with WichtigesKonstanten;
 with TextnummernKonstanten;
 
@@ -11,7 +10,9 @@ package body DiplomatischerZustandAenderbarLogik is
      (RasseEinsExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       RasseZweiExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       NeuerStatusExtern : in DiplomatieDatentypen.Status_Untereinander_Bekannt_Enum)
-   is begin
+   is
+      use type DiplomatieDatentypen.Status_Untereinander_Enum;
+   begin
       
       if
         NeuerStatusExtern = SpielVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern).AktuellerZustand
@@ -63,7 +64,10 @@ package body DiplomatischerZustandAenderbarLogik is
    function NeutralMöglich
      (AktuellerStatusExtern : in DiplomatieDatentypen.Status_Untereinander_Bekannt_Enum)
       return Boolean
-   is begin
+   is
+      use type DiplomatieDatentypen.Status_Untereinander_Enum;
+      use type DiplomatieDatentypen.Meinung;
+   begin
       
       if
         AktuellerStatusExtern = DiplomatieDatentypen.Nichtangriffspakt_Enum
@@ -92,7 +96,10 @@ package body DiplomatischerZustandAenderbarLogik is
    function NichtangriffspaktMöglich
      (AktuellerStatusExtern : in DiplomatieDatentypen.Status_Untereinander_Bekannt_Enum)
       return Boolean
-   is begin
+   is
+      use type DiplomatieDatentypen.Status_Untereinander_Enum;
+      use type DiplomatieDatentypen.Meinung;
+   begin
       
       if
         AktuellerStatusExtern = DiplomatieDatentypen.Krieg_Enum
@@ -118,7 +125,9 @@ package body DiplomatischerZustandAenderbarLogik is
    function KriegMöglich
      (AktuellerStatusExtern : in DiplomatieDatentypen.Status_Untereinander_Bekannt_Enum)
       return Boolean
-   is begin
+   is
+      use type DiplomatieDatentypen.Status_Untereinander_Enum;
+   begin
       
       if        
         AktuellerStatusExtern = DiplomatieDatentypen.Nichtangriffspakt_Enum

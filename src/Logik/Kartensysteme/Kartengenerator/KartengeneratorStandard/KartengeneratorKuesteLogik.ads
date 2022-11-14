@@ -1,5 +1,4 @@
-with KartenDatentypen; use KartenDatentypen;
-
+private with KartenDatentypen;
 private with KartenRecords;
 private with Weltkarte;
 
@@ -9,6 +8,7 @@ package KartengeneratorKuesteLogik is
    procedure GenerierungKüstenSeeGewässer;
 
 private
+   use type KartenDatentypen.Kartenfeld;
    
    Kartenzeitwert : KartenDatentypen.KartenfeldNatural;
    

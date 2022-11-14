@@ -1,5 +1,4 @@
-with KartenDatentypen; use KartenDatentypen;
-
+private with KartenDatentypen;
 private with KartengrundDatentypen;
 private with KartenRecords;
 private with SystemDatentypen;
@@ -11,6 +10,7 @@ package KartengeneratorLandschaftLogik is
    procedure GenerierungLandschaft;
 
 private
+   use type KartenDatentypen.Kartenfeld;
    
    Kartenzeitwert : KartenDatentypen.KartenfeldNatural;
       

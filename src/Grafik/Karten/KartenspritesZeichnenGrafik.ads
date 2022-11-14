@@ -1,4 +1,4 @@
-with Sf.Graphics; use Sf.Graphics;
+with Sf.Graphics;
 with Sf.System.Vector2;
 
 private with Sf.Graphics.Sprite;
@@ -6,6 +6,7 @@ private with Sf.Graphics.Color;
 
 package KartenspritesZeichnenGrafik is
    pragma Elaborate_Body;
+   use type Sf.Graphics.sfSprite_Ptr;
 
    procedure KartenfeldZeichnen
      (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;

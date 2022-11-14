@@ -1,16 +1,17 @@
-with RassenDatentypen; use RassenDatentypen;
-with KartenDatentypen; use KartenDatentypen;
+with RassenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 
 private with KartenRecords;
 private with Weltkarte;
 private with EinheitenDatentypen;
+private with KartenDatentypen;
 
 private with KIDatentypen;
 
 package KIBewegungsplanBerechnenLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
    
    function BewegungPlanen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
@@ -23,6 +24,7 @@ package KIBewegungsplanBerechnenLogik is
               );
    
 private
+   use type KartenDatentypen.Kartenfeld;
    
    PlanungErfolgreich : Boolean;
    PlanungErfolgreichRekursiv : Boolean;

@@ -1,5 +1,5 @@
-with EinheitenDatentypen; use EinheitenDatentypen;
-with DiplomatieDatentypen; use DiplomatieDatentypen;
+with EinheitenDatentypen;
+with DiplomatieDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
@@ -110,7 +110,10 @@ package body EinheitInUmgebungLogik is
       UmgebungExtern : in KartenDatentypen.Sichtweite;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Boolean
-   is begin
+   is
+      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      use type DiplomatieDatentypen.Status_Untereinander_Enum;
+   begin
       
       YAchseSchleife:
       for YAchseSchleifenwert in -UmgebungExtern .. UmgebungExtern loop

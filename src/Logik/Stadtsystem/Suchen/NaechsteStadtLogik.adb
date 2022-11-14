@@ -1,4 +1,3 @@
-with StadtDatentypen; use StadtDatentypen;
 with StadtKonstanten;
 with StadtRecords;
 
@@ -10,7 +9,9 @@ package body NaechsteStadtLogik is
 
    procedure NächsteStadt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-   is begin
+   is
+      use type StadtDatentypen.MaximaleStädteMitNullWert;
+   begin
 
       StadtSchleifenbegrenzung := 0;
       
@@ -55,7 +56,10 @@ package body NaechsteStadtLogik is
    
    procedure NächsteStadtMeldung
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-   is begin
+   is
+      use type StadtDatentypen.MaximaleStädteMitNullWert;
+      use type StadtDatentypen.Stadt_Meldung_Enum;
+   begin
       
       MeldungSchleifenbegrenzung := 0;
       

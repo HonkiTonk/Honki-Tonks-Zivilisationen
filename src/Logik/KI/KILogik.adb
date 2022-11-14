@@ -1,5 +1,3 @@
-with EinheitenDatentypen; use EinheitenDatentypen;
-with StadtDatentypen; use StadtDatentypen;
 with EinheitenKonstanten;
 with KartenverbesserungDatentypen;
 with LadezeitenDatentypen;
@@ -31,7 +29,9 @@ package body KILogik is
    
    procedure EinheitenDurchgehen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-   is begin
+   is
+      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   begin
       
       Einheitenzeitwert := (SpielVariablen.Grenzen (RasseExtern).Einheitengrenze + (100 - 1)) / 100;
       
@@ -68,7 +68,9 @@ package body KILogik is
    
    procedure StädteDurchgehen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-   is begin
+   is
+      use type StadtDatentypen.MaximaleStädteMitNullWert;
+   begin
       
       Städtezeitwert := StadtDatentypen.MaximaleStädte ((Positive (SpielVariablen.Grenzen (RasseExtern).Städtegrenze) + (100 - 1)) / 100);
       

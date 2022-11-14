@@ -1,13 +1,16 @@
-with RassenDatentypen; use RassenDatentypen;
-with KartenDatentypen; use KartenDatentypen;
+with RassenDatentypen;
+with KartenDatentypen;
 with EinheitenRecords;
-with EinheitenDatentypen;
 with SpielVariablen;
 with KartenRecords;
 with Weltkarte;
 
+private with EinheitenDatentypen;
+
 package TransporterLadungsverschiebungLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
+   use type KartenDatentypen.Kartenfeld;
    
    procedure LadungVerschieben
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

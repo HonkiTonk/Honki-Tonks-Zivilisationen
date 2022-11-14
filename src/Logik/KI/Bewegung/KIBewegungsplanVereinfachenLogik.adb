@@ -1,6 +1,4 @@
-with EinheitenDatentypen; use EinheitenDatentypen;
-with KartenRecords; use KartenRecords;
-with KartenDatentypen; use KartenDatentypen;
+with KartenDatentypen;
 with KartenRecordKonstanten;
 with KartenKonstanten;
 
@@ -13,7 +11,10 @@ package body KIBewegungsplanVereinfachenLogik is
 
    procedure Planvereinfachung
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-   is begin
+   is
+      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+      use type EinheitenDatentypen.Bewegungsplan;
+   begin
       
       ErsterZugSchleife:
       for ErsterZugSchleifenwert in EinheitenRecords.KIBewegungPlanArray'Range loop
@@ -55,7 +56,11 @@ package body KIBewegungsplanVereinfachenLogik is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       ErsterZugExtern : in EinheitenDatentypen.Bewegungsplan;
       ÜberNächsterZugExtern : in EinheitenDatentypen.Bewegungsplan)
-   is begin
+   is
+      use type KartenDatentypen.Kartenfeld;
+      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+      use type EinheitenDatentypen.Bewegungsplan;
+   begin
       
       EAchseSchleife:
       for EAchseSchleifenwert in KartenDatentypen.EbenenbereichEins'Range loop

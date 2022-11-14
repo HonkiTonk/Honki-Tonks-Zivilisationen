@@ -1,4 +1,3 @@
-with ProduktionDatentypen; use ProduktionDatentypen;
 with EinheitenKonstanten;
 
 package body Grenzpruefungen is
@@ -7,7 +6,9 @@ package body Grenzpruefungen is
      (AktuellerWertExtern : in ProduktionDatentypen.Arbeitszeit;
       ÄnderungExtern : in ProduktionDatentypen.Arbeitszeit)
       return ProduktionDatentypen.Arbeitszeit
-   is begin
+   is
+      use type ProduktionDatentypen.Arbeitszeit;
+   begin
       
       if
         AktuellerWertExtern + ÄnderungExtern >= ProduktionDatentypen.Arbeitszeit'Last

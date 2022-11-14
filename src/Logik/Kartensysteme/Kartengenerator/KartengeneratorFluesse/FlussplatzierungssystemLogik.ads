@@ -1,4 +1,4 @@
-with KartenDatentypen; use KartenDatentypen;
+with KartenDatentypen;
 with KartenRecords;
 with Weltkarte;
 
@@ -6,6 +6,7 @@ private with KartengrundDatentypen;
 
 package FlussplatzierungssystemLogik is
    pragma Elaborate_Body;
+   use type KartenDatentypen.Kartenfeld;
    
    procedure Flussplatzierung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
@@ -17,6 +18,7 @@ package FlussplatzierungssystemLogik is
               );
    
 private
+   use type KartenDatentypen.Ebene;
    
    type StandardFlussArray is array (KartenDatentypen.EbeneVorhanden'First .. 0) of KartengrundDatentypen.Kartenfluss_Vorhanden_Enum;
    StandardFluss : constant StandardFlussArray := (

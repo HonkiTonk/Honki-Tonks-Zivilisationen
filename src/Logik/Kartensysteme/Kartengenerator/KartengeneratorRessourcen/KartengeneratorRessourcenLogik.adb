@@ -1,4 +1,3 @@
-with KartenDatentypen; use KartenDatentypen;
 with KartengrundDatentypen;
 with LadezeitenDatentypen;
 with KartenKonstanten;
@@ -47,7 +46,9 @@ package body KartengeneratorRessourcenLogik is
    
    procedure RessourcenGenerierung
      (EbeneExtern : in KartenDatentypen.EbenePlanet)
-   is begin
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
       
       Kartenzeitwert (EbeneExtern) := (KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.YAchse + (33 - 1)) / 33;
       

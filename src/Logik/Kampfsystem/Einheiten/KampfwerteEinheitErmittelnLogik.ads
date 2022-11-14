@@ -1,10 +1,12 @@
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 with KampfDatentypen;
 
 package KampfwerteEinheitErmittelnLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Rassen_Enum;
+   use type RassenDatentypen.Spieler_Enum;
    
    function Gesamtverteidigung
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

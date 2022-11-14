@@ -1,11 +1,11 @@
-with AufgabenDatentypen; use AufgabenDatentypen;
+with AufgabenDatentypen;
 with EinheitenKonstanten;
 
 with LeseEinheitenGebaut;
 
 with Vergleiche;
 
-with KIDatentypen; use KIDatentypen;
+with KIDatentypen;
 with KIKonstanten;
 
 with KIBewegungDurchfuehrenLogik;
@@ -16,7 +16,9 @@ package body KIEinheitGefahrenverhaltenLogik is
    procedure GefahrenHandlungen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       FeindlicheEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-   is begin
+   is
+      use type AufgabenDatentypen.Einheiten_Aufgaben_Enum;
+   begin
       
       -- Platzhalter
       if

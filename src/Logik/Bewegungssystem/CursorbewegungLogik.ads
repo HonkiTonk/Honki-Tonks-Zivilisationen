@@ -1,13 +1,14 @@
-with KartenDatentypen; use KartenDatentypen;
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
 with TastenbelegungDatentypen;
 
 private with SystemRecords;
 private with KartenRecords;
+private with KartenDatentypen;
 
 package CursorbewegungLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    procedure CursorbewegungBerechnen
      (RichtungExtern : in TastenbelegungDatentypen.Tastenbelegung_Bewegung_Erweitert_Enum;
@@ -20,6 +21,8 @@ package CursorbewegungLogik is
    procedure GeheZu;
 
 private
+   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Ebene;
    
    KoordinatenPunkt : SystemRecords.ZahlenEingabeRecord;
 

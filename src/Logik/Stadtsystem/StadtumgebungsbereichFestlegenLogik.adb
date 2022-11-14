@@ -1,4 +1,3 @@
-with ProduktionDatentypen; use ProduktionDatentypen;
 with StadtKonstanten;
 with SystemDatentypen;
 
@@ -32,7 +31,9 @@ package body StadtumgebungsbereichFestlegenLogik is
    
    procedure StadtumgebungErmitteln
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-   is begin
+   is
+      use type ProduktionDatentypen.Einwohner;
+   begin
       
       Einwohner := LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                                       EinwohnerArbeiterExtern => True);

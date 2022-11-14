@@ -1,4 +1,3 @@
-with StadtDatentypen; use StadtDatentypen;
 with InteraktionAuswahl;
 with TastenbelegungDatentypen;
 with GrafikDatentypen;
@@ -69,7 +68,9 @@ package body GebaeudeVerkaufenLogik is
    
    procedure GebäudeVerkaufen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-   is begin
+   is
+      use type StadtDatentypen.GebäudeIDMitNullwert;
+   begin
       
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Verkaufen_Enum;
       

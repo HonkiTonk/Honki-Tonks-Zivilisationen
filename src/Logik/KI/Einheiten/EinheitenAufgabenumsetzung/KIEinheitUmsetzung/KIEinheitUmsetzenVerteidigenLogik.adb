@@ -1,4 +1,3 @@
-with EinheitenRecords; use EinheitenRecords;
 with EinheitenKonstanten;
 
 with KIGefahrErmittelnLogik;
@@ -8,7 +7,9 @@ package body KIEinheitUmsetzenVerteidigenLogik is
    function Verteidigen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
-   is begin
+   is
+      use type EinheitenRecords.RasseEinheitnummerRecord;
+   begin
       
       if
         KIGefahrErmittelnLogik.GefahrErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerRasseNummer

@@ -1,5 +1,3 @@
-with KartenDatentypen; use KartenDatentypen;
-with EinheitenDatentypen; use EinheitenDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
@@ -54,7 +52,9 @@ package body EinheitenverschiebungLogik is
    procedure EinheitenErmitteln
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       KontaktierteRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-   is begin
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
       
       Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
       EinheitNummer := EinheitenKonstanten.LeerNummer;
@@ -106,7 +106,10 @@ package body EinheitenverschiebungLogik is
    procedure EinheitVerschieben
      (RasseLandExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-   is begin
+   is
+      use type KartenDatentypen.Kartenfeld;
+      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   begin
       
       UmgebungPrüfen := KartenDatentypen.Sichtweite'First;
       BereitsGeprüft := UmgebungPrüfen - 1;

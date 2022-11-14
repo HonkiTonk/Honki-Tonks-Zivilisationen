@@ -1,4 +1,4 @@
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
 with StadtRecords;
 with ProduktionDatentypen;
@@ -7,6 +7,7 @@ private with KartenDatentypen;
 
 package StadtumgebungsbereichFestlegenLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    procedure StadtumgebungsbereichFestlegen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)

@@ -1,5 +1,4 @@
-with KartenDatentypen; use KartenDatentypen;
-with KartengrundDatentypen; use KartengrundDatentypen;
+with KartengrundDatentypen;
 with KartenKonstanten;
 
 with LeseEinheitenGebaut;
@@ -13,7 +12,11 @@ package body SichtbereicheErmittelnLogik is
    function SichtweiteErmitteln
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return KartenDatentypen.Sichtweite
-   is begin
+   is
+      use type KartenDatentypen.Ebene;
+      use type KartengrundDatentypen.Basisgrund_Enum;
+      use type KartengrundDatentypen.Zusatzgrund_Enum;
+   begin
       
       KoordinatenEinheit := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       EinheitID := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -67,7 +70,11 @@ package body SichtbereicheErmittelnLogik is
       XÄnderungExtern : in KartenDatentypen.UmgebungsbereichZwei;
       SichtweiteExtern : in KartenDatentypen.UmgebungsbereichDrei)
       return Boolean
-   is begin
+   is
+      use type KartenDatentypen.Kartenfeld;
+      use type KartengrundDatentypen.Basisgrund_Enum;
+      use type KartengrundDatentypen.Zusatzgrund_Enum;
+   begin
       
       KartenBlockadeWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
                                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YÄnderungExtern, XÄnderungExtern),

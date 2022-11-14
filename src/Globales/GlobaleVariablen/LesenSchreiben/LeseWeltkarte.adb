@@ -1,4 +1,4 @@
-with StadtDatentypen; use StadtDatentypen;
+with StadtDatentypen;
 with StadtKonstanten;
 with KartenKonstanten;
 with EinheitenKonstanten;
@@ -147,7 +147,10 @@ package body LeseWeltkarte is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
-   is begin
+   is
+      use type StadtDatentypen.MaximaleStädteMitNullWert;
+      use type RassenDatentypen.Rassen_Enum;
+   begin
       
       if
         Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund.Rasse = RasseExtern
@@ -168,7 +171,10 @@ package body LeseWeltkarte is
    function BelegterGrundLeer
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
-   is begin
+   is
+      use type StadtDatentypen.MaximaleStädteMitNullWert;
+      use type RassenDatentypen.Rassen_Enum;
+   begin
       
       if
         Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund.Rasse = StadtKonstanten.LeerRasse
@@ -208,7 +214,10 @@ package body LeseWeltkarte is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
-   is begin
+   is
+      use type StadtDatentypen.MaximaleStädteMitNullWert;
+      use type RassenDatentypen.Rassen_Enum;
+   begin
      
       if
         Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund.Rasse = StadtRasseNummerExtern.Rasse

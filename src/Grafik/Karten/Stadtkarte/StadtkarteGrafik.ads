@@ -1,6 +1,6 @@
 private with Sf.System.Vector2;
 
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
 with StadtRecords;
 
@@ -10,6 +10,7 @@ private with KartenRecords;
 
 package StadtkarteGrafik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    procedure Stadtkarte
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)

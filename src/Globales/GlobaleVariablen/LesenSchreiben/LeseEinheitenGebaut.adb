@@ -1,4 +1,3 @@
-with KampfDatentypen; use KampfDatentypen;
 with EinheitenKonstanten;
 
 with LeseEinheitenDatenbank;
@@ -10,7 +9,10 @@ package body LeseEinheitenGebaut is
    function ID
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return EinheitenDatentypen.EinheitenIDMitNullWert
-   is begin
+   is
+      use type RassenDatentypen.Rassen_Enum;
+      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   begin
       
       if
         EinheitRasseNummerExtern.Rasse = RassenDatentypen.Keine_Rasse_Enum
@@ -52,7 +54,9 @@ package body LeseEinheitenGebaut is
    function Lebenspunkte
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return EinheitenDatentypen.Lebenspunkte
-   is begin
+   is
+      use type EinheitenDatentypen.Lebenspunkte;
+   begin
       
       -- Solche Prüfungen hier noch überall einbauen, da jetzt ja auch der Grafiktask hierauf zugreift. äöü
       -- Eventuell sollte ich das dann auch nicht mehr in eine Variable überführen. äöü
@@ -102,7 +106,9 @@ package body LeseEinheitenGebaut is
    function Erfahrungspunkte
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return KampfDatentypen.Erfahrungspunkte
-   is begin
+   is
+      use type KampfDatentypen.Erfahrungspunkte;
+   begin
       
       Beförderungsgrenze := LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                                          IDExtern    => ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
@@ -126,7 +132,9 @@ package body LeseEinheitenGebaut is
    function Rang
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return KampfDatentypen.Rang
-   is begin
+   is
+      use type KampfDatentypen.Erfahrungspunkte;
+   begin
       
       MaximalerRang := LeseEinheitenDatenbank.MaximalerRang (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                              IDExtern    => ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern));

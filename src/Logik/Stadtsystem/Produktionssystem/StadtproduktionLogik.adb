@@ -1,7 +1,5 @@
-with KartenDatentypen; use KartenDatentypen;
-with ProduktionDatentypen; use ProduktionDatentypen;
-with StadtDatentypen; use StadtDatentypen;
-with EinheitenDatentypen; use EinheitenDatentypen;
+with StadtDatentypen;
+with EinheitenDatentypen;
 with KartenKonstanten;
 with KartenverbesserungDatentypen;
 
@@ -122,7 +120,9 @@ package body StadtproduktionLogik is
    
    procedure FelderProduktionBerechnen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-   is begin
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
             
       NutzbarerBereich := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern);
       Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
@@ -223,7 +223,9 @@ package body StadtproduktionLogik is
    
    procedure WeitereNahrungsproduktionÄnderungen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-   is begin
+   is
+      use type ProduktionDatentypen.Produktion;
+   begin
       
       SchreibeStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern   => StadtRasseNummerExtern,
                                               NahrungsproduktionExtern => -LeseStadtGebaut.PermanenteKostenPosten (StadtRasseNummerExtern => StadtRasseNummerExtern,
@@ -264,7 +266,9 @@ package body StadtproduktionLogik is
 
    procedure WeitereProduktionrateÄnderungen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-   is begin
+   is
+      use type ProduktionDatentypen.Produktion;
+   begin
       
       SchreibeStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                           ProduktionrateExtern   => -LeseStadtGebaut.PermanenteKostenPosten (StadtRasseNummerExtern => StadtRasseNummerExtern,
@@ -304,7 +308,11 @@ package body StadtproduktionLogik is
 
    procedure WeitereGeldgewinnungÄnderungen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-   is begin
+   is
+      use type ProduktionDatentypen.Produktion;
+      use type EinheitenDatentypen.EinheitenIDMitNullWert;
+      use type StadtDatentypen.GebäudeIDMitNullwert;
+   begin
       
       SchreibeStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                          GeldgewinnungExtern    => -LeseStadtGebaut.PermanenteKostenPosten (StadtRasseNummerExtern => StadtRasseNummerExtern,
@@ -359,7 +367,9 @@ package body StadtproduktionLogik is
 
    procedure WeitereForschungsrateÄnderungen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-   is begin
+   is
+      use type ProduktionDatentypen.Produktion;
+   begin
 
       case
         -- Diesen Wert an der Bevölkerung und nicht an der Korruption messen?

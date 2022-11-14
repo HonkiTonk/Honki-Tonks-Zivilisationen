@@ -1,4 +1,4 @@
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
 with StadtKonstanten;
 with StadtRecords;
@@ -9,6 +9,8 @@ private with ProduktionDatentypen;
 
 package StadtproduktionLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
+   use type RassenDatentypen.Rassen_Enum;
    
    procedure Stadtproduktion
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)

@@ -1,4 +1,3 @@
-with DiplomatieDatentypen; use DiplomatieDatentypen;
 with WichtigesKonstanten;
 with ZahlenDatentypen;
 with TextnummernKonstanten;
@@ -11,7 +10,9 @@ package body DiplomatischerZustandLogik is
      (RasseEinsExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       RasseZweiExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       NeuerStatusExtern : in DiplomatieDatentypen.Status_Untereinander_Enum)
-   is begin
+   is
+      use type DiplomatieDatentypen.Meinung;
+   begin
       
       SpielVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern).AktuellerZustand := NeuerStatusExtern;
       SpielVariablen.Diplomatie (RasseZweiExtern, RasseEinsExtern).AktuellerZustand := NeuerStatusExtern;
@@ -78,7 +79,9 @@ package body DiplomatischerZustandLogik is
      (EigeneRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       FremdeRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       ÄnderungExtern : in DiplomatieDatentypen.Meinung)
-   is begin
+   is
+      use type DiplomatieDatentypen.Meinung;
+   begin
       
       if
         SpielVariablen.Diplomatie (EigeneRasseExtern, FremdeRasseExtern).AktuelleSympathieBewertung + ÄnderungExtern > SympathieGrenzen (DiplomatischenStatusPrüfen (EigeneRasseExtern => EigeneRasseExtern,

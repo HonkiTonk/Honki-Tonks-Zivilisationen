@@ -1,4 +1,4 @@
-with EinheitenDatentypen; use EinheitenDatentypen;
+with EinheitenDatentypen;
 with EinheitenKonstanten;
 with KartenRecordKonstanten;
 
@@ -25,7 +25,10 @@ package body KIBewegungDurchfuehrenLogik is
    
    procedure KIBewegung
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-   is begin
+   is
+      use type EinheitenDatentypen.BewegungFloat;
+      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+   begin
       
       Zielkoordinaten := LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
@@ -152,7 +155,9 @@ package body KIBewegungDurchfuehrenLogik is
    
    procedure BewegtSich
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-   is begin
+   is
+      use type EinheitenDatentypen.Bewegungsplan;
+   begin
             
       BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                              NeueKoordinatenExtern    => LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -179,7 +184,9 @@ package body KIBewegungDurchfuehrenLogik is
    
    procedure Blockiert
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-   is begin
+   is
+      use type RassenDatentypen.Rassen_Enum;
+   begin
       
       FremdeEinheit := EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => NeueKoordinaten,
                                                                              LogikGrafikExtern => True);

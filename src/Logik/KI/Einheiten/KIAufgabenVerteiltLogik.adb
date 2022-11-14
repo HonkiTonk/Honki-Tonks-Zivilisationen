@@ -1,5 +1,4 @@
-with EinheitenDatentypen; use EinheitenDatentypen;
-with KartenRecords; use KartenRecords;
+with EinheitenDatentypen;
 with EinheitenKonstanten;
 with KartenRecordKonstanten;
 
@@ -11,7 +10,11 @@ package body KIAufgabenVerteiltLogik is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       AufgabeExtern : in KIDatentypen.Einheit_Aufgabe_Enum)
       return Natural
-   is begin
+   is
+      use type KIDatentypen.Einheit_Aufgabe_Enum;
+      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      use type EinheitenDatentypen.EinheitenIDMitNullWert;
+   begin
       
       GleicheAufgabe := 0;
      
@@ -48,7 +51,10 @@ package body KIAufgabenVerteiltLogik is
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       ZielKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
-   is begin
+   is
+      use type KIDatentypen.Einheit_Aufgabe_Enum;
+      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+   begin
       
       EinheitSchleife:
       for EinheitNummerSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Einheitengrenze loop
@@ -83,7 +89,9 @@ package body KIAufgabenVerteiltLogik is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       ZielKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
-   is begin
+   is
+      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+   begin
       
       EinheitSchleife:
       for EinheitNummerSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Einheitengrenze loop

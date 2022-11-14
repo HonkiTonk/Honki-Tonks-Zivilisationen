@@ -1,5 +1,4 @@
-with KartenDatentypen; use KartenDatentypen;
-
+private with KartenDatentypen;
 private with KartenRecords;
 private with Weltkarte;
 private with SystemDatentypen;
@@ -10,6 +9,7 @@ package KartengeneratorStandardLogik is
    procedure OberflächeGenerieren;
 
 private
+   use type KartenDatentypen.Kartenfeld;
    
    LandHöheBreite : Boolean;
    

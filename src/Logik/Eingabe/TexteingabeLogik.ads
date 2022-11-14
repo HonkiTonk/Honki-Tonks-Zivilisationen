@@ -1,10 +1,12 @@
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with SystemRecords;
 with StadtRecords;
 with SpielVariablen;
 
 package TexteingabeLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
+   use type RassenDatentypen.Rassen_Enum;
 
    function StadtName
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)

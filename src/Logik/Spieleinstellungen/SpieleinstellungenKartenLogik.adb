@@ -1,5 +1,4 @@
-with KartenDatentypen; use KartenDatentypen;
-with KartenartDatentypen; use KartenartDatentypen;
+with KartenartDatentypen;
 with MenueDatentypen;
 with KartenRecordKonstanten;
 with TextnummernKonstanten;
@@ -67,7 +66,9 @@ package body SpieleinstellungenKartenLogik is
    function Polgrößen
      (YAchseXAchseExtern : in Boolean)
       return KartenDatentypen.KartenfeldNatural
-   is begin
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
       
       case
         YAchseXAchseExtern
@@ -347,7 +348,9 @@ package body SpieleinstellungenKartenLogik is
    
    procedure KartenformZuweisen
      (WelcheAchseExtern : in RueckgabeDatentypen.Kartenform_Enum)
-   is begin
+   is
+      use type KartenartDatentypen.Kartenform_Enum;
+   begin
       
       case
         WelcheAchseExtern

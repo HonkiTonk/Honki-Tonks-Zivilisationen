@@ -1,4 +1,4 @@
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 with StadtRecords;
@@ -8,6 +8,8 @@ private with EinheitenDatentypen;
 
 package KampfsystemStadtLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Rassen_Enum;
+   use type RassenDatentypen.Spieler_Enum;
 
    function KampfsystemStadt
      (AngreifendeEinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

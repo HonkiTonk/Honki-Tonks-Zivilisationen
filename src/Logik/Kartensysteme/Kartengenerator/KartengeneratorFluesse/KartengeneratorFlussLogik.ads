@@ -1,5 +1,4 @@
-with KartenDatentypen; use KartenDatentypen;
-
+private with KartenDatentypen;
 private with KartenRecords;
 private with Weltkarte;
 private with SystemDatentypen;
@@ -10,6 +9,8 @@ package KartengeneratorFlussLogik is
    procedure GenerierungFlüsse;
 
 private
+   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Ebene;
    
    -- Später vom Nutzer einstellbar machen. äöü
    -- Oder rauswerfen? äöü

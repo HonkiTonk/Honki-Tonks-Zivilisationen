@@ -1,5 +1,3 @@
-with KampfDatentypen; use KampfDatentypen;
-
 with ZufallsgeneratorenKampfLogik;
 
 package body KampfberechnungenLogik is

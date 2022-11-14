@@ -1,5 +1,4 @@
-with ForschungenDatentypen; use ForschungenDatentypen;
-with ProduktionDatentypen; use ProduktionDatentypen;
+with ProduktionDatentypen;
 with LadezeitenDatentypen;
 with ForschungKonstanten;
 
@@ -36,7 +35,10 @@ package body KIForschungLogik is
    -- Bei Erweiterung der Forschungsliste muss die Ladezeitberechnung angepasst werden. äöü
    procedure NeuesForschungsprojekt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-   is begin
+   is
+      use type ForschungenDatentypen.ForschungIDNichtMöglich;
+      use type ProduktionDatentypen.Produktion;
+   begin
       
       Ladezeit := (ForschungenDatenbank.ForschungslisteArray'Last (2) + (100 - 1)) / 100;
       WelchesProjekt := ForschungKonstanten.LeerForschung;

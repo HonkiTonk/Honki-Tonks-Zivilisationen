@@ -1,4 +1,3 @@
-with KartenRecords; use KartenRecords;
 with EinheitenKonstanten;
 
 with LeseEinheitenGebaut;
@@ -13,7 +12,10 @@ package body EinheitSuchenLogik is
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       LogikGrafikExtern : in Boolean)
       return EinheitenDatentypen.MaximaleEinheitenMitNullWert
-   is begin
+   is
+      use type RassenDatentypen.Rassen_Enum;
+      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+   begin
       
       Einheit (LogikGrafikExtern) := LeseWeltkarte.EinheitenbelegungGrund (KoordinatenExtern => KoordinatenExtern);
       
@@ -45,7 +47,10 @@ package body EinheitSuchenLogik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       LogikGrafikExtern : in Boolean)
       return EinheitenRecords.RasseEinheitnummerRecord
-   is begin
+   is
+      use type RassenDatentypen.Rassen_Enum;
+      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+   begin
       
       Einheit (LogikGrafikExtern) := LeseWeltkarte.EinheitenbelegungGrund (KoordinatenExtern => KoordinatenExtern);
       
@@ -76,7 +81,10 @@ package body EinheitSuchenLogik is
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       LogikGrafikExtern : in Boolean)
       return EinheitenRecords.RasseEinheitnummerRecord
-   is begin
+   is
+      use type RassenDatentypen.Rassen_Enum;
+      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+   begin
       
       Einheit (LogikGrafikExtern) := LeseWeltkarte.EinheitenbelegungGrund (KoordinatenExtern => KoordinatenExtern);
       
@@ -132,7 +140,9 @@ package body EinheitSuchenLogik is
      (TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       LadungsnummerExtern : in EinheitenDatentypen.MaximaleEinheitenMitNullWert)
       return Boolean
-   is begin
+   is
+      use type RassenDatentypen.Rassen_Enum;
+   begin
       
       if
         TransporterExtern.Rasse = EinheitenKonstanten.LeerRasse

@@ -70,7 +70,9 @@ package body WeltkarteGrafik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
-   is begin
+   is
+      use type KartenDatentypen.Ebene;
+   begin
       
       if
         EinstellungenGrafik.Grafikeinstellungen.EbeneUnterhalbSichtbar

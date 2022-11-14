@@ -4,9 +4,6 @@ with Sf;
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Text;
 
-with EinheitenDatentypen; use EinheitenDatentypen;
-with KartengrundDatentypen; use KartengrundDatentypen;
-with KartenverbesserungDatentypen; use KartenverbesserungDatentypen;
 with EinheitenKonstanten;
 with TextaccessVariablen;
 with ZeitKonstanten;
@@ -168,7 +165,9 @@ package body WeltkarteZeichnenGrafik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EbeneExtern : in KartenDatentypen.EbeneVorhanden;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
-   is begin
+   is
+      use type KartenDatentypen.Ebene;
+   begin
       
       Verbesserungsfeld := LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern);
       
@@ -206,7 +205,10 @@ package body WeltkarteZeichnenGrafik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
-   is begin
+   is
+      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      use type RassenDatentypen.Rassen_Enum;
+   begin
       
       EinheitRasseNummer := EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern,
                                                                                   LogikGrafikExtern => False);
@@ -335,7 +337,9 @@ package body WeltkarteZeichnenGrafik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-   is begin
+   is
+      use type RassenDatentypen.Rassen_Enum;
+   begin
       
       ObjekteZeichnenGrafik.RahmenteilZeichnen (PositionExtern => PositionExtern,
                                                 FarbeExtern    => RasseneinstellungenGrafik.Rassenfarben (RasseExtern),

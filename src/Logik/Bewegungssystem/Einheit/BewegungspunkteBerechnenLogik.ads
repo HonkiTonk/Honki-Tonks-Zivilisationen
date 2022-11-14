@@ -1,5 +1,5 @@
-with RassenDatentypen; use RassenDatentypen;
-with KartenDatentypen; use KartenDatentypen;
+with RassenDatentypen;
+with KartenDatentypen;
 with EinheitenDatentypen;
 with SpielVariablen;
 with KartenRecords;
@@ -8,6 +8,8 @@ with Weltkarte;
 
 package BewegungspunkteBerechnenLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
+   use type KartenDatentypen.Kartenfeld;
    
    function AbzugDurchBewegung
      (NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;

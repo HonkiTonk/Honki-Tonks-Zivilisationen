@@ -1,4 +1,3 @@
-with EinheitenDatentypen; use EinheitenDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
@@ -19,7 +18,9 @@ package body StadtEinheitenBauenLogik is
 
    procedure EinheitFertiggestellt
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-   is begin
+   is
+      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   begin
       
       EinheitNummer := 0;
             
@@ -62,7 +63,9 @@ package body StadtEinheitenBauenLogik is
    
    procedure PlatzErmitteln
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-   is begin
+   is
+      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   begin
       
       if
         EinheitenKonstanten.LeerNummer = EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),

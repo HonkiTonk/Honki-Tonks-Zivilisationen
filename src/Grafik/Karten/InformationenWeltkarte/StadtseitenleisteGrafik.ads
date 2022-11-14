@@ -1,10 +1,10 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with Sf.Graphics; use Sf.Graphics;
+with Sf.Graphics;
 with Sf.System.Vector2;
 with Sf.Graphics.Rect;
 
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
 with StadtRecords;
 
@@ -16,6 +16,8 @@ private with UmwandlungenAdaNachEigenes;
 
 package StadtseitenleisteGrafik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
+   use type Sf.Graphics.sfView_Ptr;
    
    procedure Stadtinformationen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)

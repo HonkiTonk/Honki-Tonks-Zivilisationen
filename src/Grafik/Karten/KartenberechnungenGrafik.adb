@@ -1,4 +1,4 @@
-with KartenDatentypen; use KartenDatentypen;
+with KartenDatentypen;
 
 with SichtweitenGrafik;
 with EinstellungenGrafik;
@@ -6,7 +6,9 @@ with EinstellungenGrafik;
 package body KartenberechnungenGrafik is
    
    procedure KartenfelderAbmessungBerechnen
-   is begin
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
       
       FensterKarte := (0.00, 0.00, EinstellungenGrafik.AktuelleFensterAuflösung.x, EinstellungenGrafik.AktuelleFensterAuflösung.y);
       

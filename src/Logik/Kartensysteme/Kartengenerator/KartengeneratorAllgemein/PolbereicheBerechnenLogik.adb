@@ -1,4 +1,3 @@
-with KartenDatentypen; use KartenDatentypen;
 with KartenartDatentypen;
 with Weltkarte;
 
@@ -7,7 +6,9 @@ with KartengeneratorVariablenLogik;
 package body PolbereicheBerechnenLogik is
 
    procedure PolbereicheBerechnen
-   is begin
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
       
       KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.YAchse := Weltkarte.Karte'First (2) + KartengeneratorVariablenLogik.Polgrößen (KartenartDatentypen.Norden_Enum);
       KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.YAchse := Weltkarte.Karteneinstellungen.Kartengröße.YAchse - KartengeneratorVariablenLogik.Polgrößen (KartenartDatentypen.Süden_Enum);

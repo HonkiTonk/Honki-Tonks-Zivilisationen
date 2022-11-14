@@ -1,13 +1,16 @@
 private with Ada.Numerics.Discrete_Random;
 
-with KartenDatentypen; use KartenDatentypen;
-with RassenDatentypen; use RassenDatentypen;
+with KartenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
 with KartenRecords;
 with Weltkarte;
 
 package ZufallsgeneratorenStartkoordinatenLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
+   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Ebene;
      
    function Startkoordinaten
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

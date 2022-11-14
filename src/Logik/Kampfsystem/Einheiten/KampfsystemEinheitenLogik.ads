@@ -1,4 +1,4 @@
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 
@@ -7,6 +7,8 @@ private with EinheitenDatentypen;
 
 package KampfsystemEinheitenLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Rassen_Enum;
+   use type RassenDatentypen.Spieler_Enum;
 
    function KampfsystemNahkampf
      (AngreiferExtern : in EinheitenRecords.RasseEinheitnummerRecord;

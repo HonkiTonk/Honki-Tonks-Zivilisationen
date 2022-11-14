@@ -1,4 +1,4 @@
-with KIDatentypen; use KIDatentypen;
+with KIDatentypen;
 
 -- Grenzprüfungen auch für andere Werte einbauen/auslagern. äöü
 -- Grenzprüfungen sind nur bei Rechnungen und nicht bei Zuweisungen nötig. äöü

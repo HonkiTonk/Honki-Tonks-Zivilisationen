@@ -1,6 +1,6 @@
-with KartenDatentypen; use KartenDatentypen;
-with RassenDatentypen; use RassenDatentypen;
-with StadtDatentypen; use StadtDatentypen;
+with KartenDatentypen;
+with RassenDatentypen;
+with StadtDatentypen;
 with KartenRecords;
 with StadtRecords;
 with SpielVariablen;
@@ -10,6 +10,9 @@ private with SystemRecords;
 
 package StadtSuchenLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
+   use type KartenDatentypen.Kartenfeld;
+   use type StadtDatentypen.MaximaleStädteMitNullWert;
    
    function KoordinatenStadtMitRasseSuchen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;

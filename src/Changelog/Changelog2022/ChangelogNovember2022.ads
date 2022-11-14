@@ -112,17 +112,19 @@ package ChangelogNovember2022 is
    
    
 
-   -- Version 0.04. => 0.04. (14.11.2022):
+   -- Version 0.04.3460 => 0.04. (14.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.3410 => 0.04. (13.11.2022):
+   -- Version 0.04.3410 => 0.04.3460 (13.11.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Die Sichtbarkeit von vielen Programmteilen reduziert durch das Ersetzen von 'use' durch 'use type'.
+   -- Die Sichtbarkeit von einigen Programmteilen reduziert durch das Verschieben nach private.
+   -- Unnötigen Code gelöscht.
+   -- Contarcs, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

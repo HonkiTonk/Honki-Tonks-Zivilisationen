@@ -1,5 +1,3 @@
-with KIDatentypen; use KIDatentypen;
-
 with ZufallsgeneratorenKILogik;
 
 package body KIZufallsbewertungLogik is
@@ -8,7 +6,9 @@ package body KIZufallsbewertungLogik is
      (BewertungEinsExtern : in KIDatentypen.BauenBewertung;
       BewertungZweiExtern : in KIDatentypen.BauenBewertung)
       return KIDatentypen.BauenBewertung
-   is begin
+   is
+      use type KIDatentypen.BauenBewertung;
+   begin
       
       if
         BewertungEinsExtern > BewertungZweiExtern

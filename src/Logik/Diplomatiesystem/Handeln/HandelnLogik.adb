@@ -1,4 +1,4 @@
-with DiplomatieDatentypen; use DiplomatieDatentypen;
+with DiplomatieDatentypen;
 
 with SchreibeWichtiges;
 with LeseWichtiges;
@@ -185,7 +185,10 @@ package body HandelnLogik is
    procedure KontakteVerkaufen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       KontaktierteRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-   is begin
+   is
+      use type RassenDatentypen.Rassen_Enum;
+      use type DiplomatieDatentypen.Status_Untereinander_Enum;
+   begin
       
       RassenZweiSchleife:
       for RasseZweiSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
@@ -215,7 +218,10 @@ package body HandelnLogik is
    procedure KontakteKaufen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       KontaktierteRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-   is begin
+   is
+      use type RassenDatentypen.Rassen_Enum;
+      use type DiplomatieDatentypen.Status_Untereinander_Enum;
+   begin
       
       RassenEinsSchleife:
       for RasseEinsSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop

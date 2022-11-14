@@ -1,10 +1,7 @@
-with EinheitenDatentypen; use EinheitenDatentypen;
-with KartenRecords; use KartenRecords;
 with KartenKonstanten;
 with EinheitenKonstanten;
 with KartenRecordKonstanten;
 
-with KIDatentypen; use KIDatentypen;
 with KIKonstanten;
 
 with SchreibeEinheitenGebaut;
@@ -89,7 +86,9 @@ package body KIBewegungsplanBerechnenLogik is
    procedure Felderbewertung
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-   is begin
+   is
+      use type KIDatentypen.BauenBewertung;
+   begin
       
       BewertungPosition := BewertungArray'First;
       
@@ -144,7 +143,9 @@ package body KIBewegungsplanBerechnenLogik is
       DurchlaufExtern : in Positive;
       AktuellePlanpositionExtern : in EinheitenDatentypen.Bewegungsplan)
       return Boolean
-   is begin
+   is
+      use type EinheitenDatentypen.Bewegungsplan;
+   begin
       
       case
         Bewertung (DurchlaufExtern).Bewertung
@@ -188,7 +189,10 @@ package body KIBewegungsplanBerechnenLogik is
       YÄnderungExtern : in KartenDatentypen.UmgebungsbereichEins;
       XÄnderungExtern : in KartenDatentypen.UmgebungsbereichEins)
       return KIDatentypen.BewegungBewertung
-   is begin
+   is
+      use type KIDatentypen.BauenBewertung;
+      use type KartenDatentypen.Ebene;
+   begin
             
       if
         EÄnderungExtern = 0
@@ -270,7 +274,9 @@ package body KIBewegungsplanBerechnenLogik is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
-   is begin
+   is
+      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+   begin
       
       FelderSchleife:
       for FelderSchleifenwert in EinheitenRecords.KIBewegungPlanArray'Range loop
@@ -297,7 +303,10 @@ package body KIBewegungsplanBerechnenLogik is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
-   is begin
+   is
+      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      use type EinheitenDatentypen.EinheitenIDMitNullWert;
+   begin
       
       EinheitenSchleife:
       for EinheitSchleifenwert in SpielVariablen.EinheitenGebautArray'Range (2) loop

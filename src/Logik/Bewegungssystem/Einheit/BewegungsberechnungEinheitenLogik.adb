@@ -1,4 +1,3 @@
-with EinheitenDatentypen; use EinheitenDatentypen;
 with EinheitenKonstanten;
 
 with SchreibeEinheitenGebaut;
@@ -17,7 +16,9 @@ package body BewegungsberechnungEinheitenLogik is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitentauschExtern : in Boolean)
-   is begin
+   is
+      use type EinheitenDatentypen.BewegungFloat;
+   begin
       
       BewegungspunkteAbzug := BewegungspunkteBerechnenLogik.AbzugDurchBewegung (NeueKoordinatenExtern    => NeueKoordinatenExtern,
                                                                                 EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -76,7 +77,9 @@ package body BewegungsberechnungEinheitenLogik is
    procedure NachBewegung
      (NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-   is begin
+   is
+      use type RassenDatentypen.Rassen_Enum;
+   begin
       
       SichtbarkeitsberechnungssystemLogik.SichtbarkeitsprüfungFürEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       

@@ -1,6 +1,5 @@
-with KartengrundDatentypen; use KartengrundDatentypen;
-with KartenartDatentypen; use KartenartDatentypen;
-with SystemDatentypen; use SystemDatentypen;
+with KartengrundDatentypen;
+with KartenartDatentypen;
 with KartenKonstanten;
 with LadezeitenDatentypen;
 
@@ -48,7 +47,9 @@ package body KartengeneratorStandardLogik is
    procedure LandVorhanden
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
-   is begin
+   is
+      use type SystemDatentypen.NullBisHundert;
+   begin
       
       case
         LeseWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseExtern, XAchseExtern))
@@ -182,7 +183,9 @@ package body KartengeneratorStandardLogik is
       AnfangExtern : in KartenDatentypen.KartenfeldPositiv;
       EndeExtern : in KartenDatentypen.KartenfeldPositiv)
       return KartenDatentypen.KartenfeldPositiv
-   is begin
+   is
+      use type KartenartDatentypen.Kartenform_Enum;
+   begin
       
       if
         Weltkarte.Karteneinstellungen.Kartenform.YAchseNorden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
@@ -242,7 +245,9 @@ package body KartengeneratorStandardLogik is
       AnfangExtern : in KartenDatentypen.KartenfeldPositiv;
       EndeExtern : in KartenDatentypen.KartenfeldPositiv)
       return KartenDatentypen.KartenfeldPositiv
-   is begin
+   is
+      use type KartenartDatentypen.Kartenform_Enum;
+   begin
       
       if
         Weltkarte.Karteneinstellungen.Kartenform.XAchseWesten = KartenartDatentypen.Karte_X_Kein_Übergang_Enum
@@ -301,7 +306,10 @@ package body KartengeneratorStandardLogik is
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       MasseAbstandExtern : in Boolean)
-   is begin
+   is
+      use type KartengrundDatentypen.Basisgrund_Enum;
+      use type SystemDatentypen.NullBisHundert;
+   begin
       
       BeliebigerLandwert := ZufallsgeneratorenKartenLogik.KartengeneratorZufallswerte;
       

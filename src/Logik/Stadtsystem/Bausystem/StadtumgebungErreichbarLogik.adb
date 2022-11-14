@@ -1,4 +1,3 @@
-with EinheitenDatentypen; use EinheitenDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
 with KartenRecordKonstanten;
@@ -17,7 +16,9 @@ package body StadtumgebungErreichbarLogik is
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
       NotwendigeFelderExtern : in Positive)
       return KartenRecords.AchsenKartenfeldNaturalRecord
-   is begin
+   is
+      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   begin
       
       GefundeneFelder := 1;
       Umgebung := 1;

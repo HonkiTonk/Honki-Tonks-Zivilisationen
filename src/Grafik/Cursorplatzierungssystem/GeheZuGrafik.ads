@@ -1,11 +1,13 @@
-with RassenDatentypen; use RassenDatentypen;
-with KartenDatentypen; use KartenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
-with KartenRecords;
-with Weltkarte;
+
+private with KartenRecords;
+private with Weltkarte;
+private with KartenDatentypen;
 
 package GeheZuGrafik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    procedure GeheZuFestlegung
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
@@ -15,6 +17,7 @@ package GeheZuGrafik is
               );
    
 private
+   use type KartenDatentypen.Kartenfeld;
    
    AktuelleSichtweite : KartenDatentypen.KartenfeldPositiv;
    

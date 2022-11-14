@@ -1,4 +1,3 @@
-with TastenbelegungDatentypen; use TastenbelegungDatentypen;
 with TextnummernKonstanten;
 with KartenKonstanten;
 
@@ -12,7 +11,9 @@ package body CursorbewegungLogik is
    procedure CursorbewegungBerechnen
      (RichtungExtern : in TastenbelegungDatentypen.Tastenbelegung_Bewegung_Erweitert_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-   is begin
+   is
+      use type TastenbelegungDatentypen.Allgemeine_Belegung_Enum;
+   begin
       
       -- Ist nötig, da sonst bei schnellem Scrollen die Ebene nicht korrekt gewechselt wird.
       case

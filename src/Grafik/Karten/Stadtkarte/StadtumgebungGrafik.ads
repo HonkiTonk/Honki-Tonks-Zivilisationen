@@ -1,7 +1,7 @@
-with Sf.System.Vector2;
-with Sf.Graphics.Color;
+private with Sf.System.Vector2;
+private with Sf.Graphics.Color;
 
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
 with StadtRecords;
 
@@ -13,6 +13,7 @@ private with Weltkarte;
 
 package StadtumgebungGrafik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
 
    procedure Stadtumgebung
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)

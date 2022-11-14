@@ -15,7 +15,6 @@ with TastenbelegungVariablen;
 with Menuetexte;
 with BefehleDatentypen;
 
-with SteuerungsauswahlLogik; use SteuerungsauswahlLogik;
 with ViewsEinstellenGrafik;
 with HintergrundGrafik;
 with TextberechnungenHoeheGrafik;
@@ -67,7 +66,9 @@ package body SteuerungsmenueGrafik is
      (AuswahlExtern : in Integer;
       WelcheSteuerungExtern : in SteuerungsauswahlLogik.Kategorie_Enum)
       return Sf.System.Vector2.sfVector2f
-   is begin
+   is
+      use type SteuerungsauswahlLogik.Kategorie_Enum;
+   begin
       
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       Textposition.x := TextberechnungenBreiteGrafik.SpaltenabstandVariabel;

@@ -1,6 +1,6 @@
 with RassenDatentypen;
 
-with Sf.Audio; use Sf.Audio;
+with Sf.Audio;
 with Sf.Audio.Music;
 
 with EingeleseneMusik;
@@ -8,7 +8,9 @@ with EingeleseneMusik;
 package body StartEndeMusik is
 
    procedure Abspielen
-   is begin
+   is
+      use type Sf.Audio.sfMusic_Ptr;
+   begin
       
       -- Musik wird direkt parallel aufgerufen. Steht auch im SFML Tutorial, allerdings unter Sound, und der Beschreibung der ASFML.
       if
@@ -25,7 +27,9 @@ package body StartEndeMusik is
    
    
    procedure Stoppen
-   is begin
+   is
+      use type Sf.Audio.sfMusic_Ptr;
+   begin
       
       if
         EingeleseneMusik.Musik (RassenDatentypen.Keine_Rasse_Enum, 1) = null

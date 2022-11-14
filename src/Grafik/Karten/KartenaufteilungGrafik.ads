@@ -1,13 +1,15 @@
 private with Sf.System.Vector2;
 
-with RassenDatentypen; use RassenDatentypen;
-with EinheitenDatentypen; use EinheitenDatentypen;
+with RassenDatentypen;
+with EinheitenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 with StadtRecords;
 
 package KartenaufteilungGrafik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
+   use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    
    procedure Weltkarte
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

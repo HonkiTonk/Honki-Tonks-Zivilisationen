@@ -1,6 +1,6 @@
-with Sf.System.Vector2;
+private with Sf.System.Vector2;
 
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with SpielVariablen;
 
 private with KartenRecords;
@@ -11,6 +11,7 @@ private with GrafikRecordKonstanten;
 
 package AllgemeinesSeitenleisteGrafik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
    
    procedure Leer
      (ViewbereichExtern : in Positive);

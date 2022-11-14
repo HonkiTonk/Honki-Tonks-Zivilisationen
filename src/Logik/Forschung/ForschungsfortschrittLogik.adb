@@ -1,5 +1,4 @@
-with ProduktionDatentypen; use ProduktionDatentypen;
-with ForschungenDatentypen; use ForschungenDatentypen;
+with ProduktionDatentypen;
 with SystemDatentypen;
 with ForschungKonstanten;
 
@@ -36,7 +35,10 @@ package body ForschungsfortschrittLogik is
    
    procedure Fortschritt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-   is begin
+   is
+      use type ForschungenDatentypen.ForschungIDNichtMöglich;
+      use type ProduktionDatentypen.Produktion;
+   begin
       
       AktuellesForschungsprojekt := LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern);
       
@@ -53,7 +55,7 @@ package body ForschungsfortschrittLogik is
          
       if
         LeseWichtiges.Forschungsmenge (RasseExtern => RasseExtern) >= LeseForschungenDatenbank.Kosten (RasseExtern => RasseExtern,
-                                                                                                               IDExtern    => AktuellesForschungsprojekt)
+                                                                                                       IDExtern    => AktuellesForschungsprojekt)
       then
          SchreibeWichtiges.Erforscht (RasseExtern => RasseExtern);
          

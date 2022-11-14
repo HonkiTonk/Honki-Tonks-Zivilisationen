@@ -1,5 +1,4 @@
-with EinheitenDatentypen; use EinheitenDatentypen;
-with KampfDatentypen; use KampfDatentypen;
+with KampfDatentypen;
 with EinheitenKonstanten;
 
 with SchreibeEinheitenGebaut;
@@ -17,7 +16,9 @@ package body KampfsystemEinheitenLogik is
      (AngreiferExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       VerteidigerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
-   is begin
+   is
+      use type KampfDatentypen.KampfwerteGroß;
+   begin
       
       case
         PZBEingesetztLogik.PZBEingesetzt (EinheitRasseNummerExtern => AngreiferExtern)
@@ -64,7 +65,9 @@ package body KampfsystemEinheitenLogik is
       AngreiferExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       KampfwerteAngreiferExtern : in KampfRecords.KampfwerteRecord)
       return Boolean
-   is begin
+   is
+      use type EinheitenDatentypen.Lebenspunkte;
+   begin
       
       IDAngreifer := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => AngreiferExtern);
       IDVerteidiger := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => VerteidigerExtern);

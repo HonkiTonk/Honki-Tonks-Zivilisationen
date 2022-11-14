@@ -1,4 +1,3 @@
-with KartengrundDatentypen; use KartengrundDatentypen;
 with KartenKonstanten;
 with KampfKonstanten;
 

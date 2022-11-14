@@ -1,4 +1,4 @@
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with KartenRecords;
 with SpielVariablen;
 with Weltkarte;
@@ -10,6 +10,7 @@ private with KartengrundDatentypen;
 
 package SichtbarkeitSetzenLogik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
    
    procedure SichtbarkeitSetzen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;

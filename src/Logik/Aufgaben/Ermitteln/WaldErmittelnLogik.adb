@@ -1,5 +1,3 @@
-with KartenverbesserungDatentypen; use KartenverbesserungDatentypen;
-with ProduktionDatentypen; use ProduktionDatentypen;
 with EinheitenRecordKonstanten;
 with TextnummernKonstanten;
 with EinheitenKonstanten;
@@ -20,7 +18,9 @@ package body WaldErmittelnLogik is
       AnlegenTestenExtern : in Boolean;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
-   is begin
+   is
+      use type KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
+   begin
       
       Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => KoordinatenExtern);
       
@@ -124,7 +124,9 @@ package body WaldErmittelnLogik is
       AnlegenTestenExtern : in Boolean;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return EinheitenRecords.ArbeitVorleistungRecord
-   is begin
+   is
+      use type KartengrundDatentypen.Zusatzgrund_Enum;
+   begin
       
       Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
                                                   ÄnderungExtern      => ArbeitszeitWaldLogik.Basiszeit (EinheitRasseNummerExtern.Rasse, GrundExtern.Basisgrund));
@@ -163,7 +165,9 @@ package body WaldErmittelnLogik is
       AnlegenTestenExtern : in Boolean;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return EinheitenRecords.ArbeitVorleistungRecord
-   is begin
+   is
+      use type KartengrundDatentypen.Zusatzgrund_Enum;
+   begin
       
       Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
                                                   ÄnderungExtern      => ArbeitszeitWaldLogik.Basiszeit (EinheitRasseNummerExtern.Rasse, GrundExtern.Basisgrund));

@@ -1,5 +1,3 @@
-with KartenRecords; use KartenRecords;
-
 with LeseEinheitenGebaut;
 
 with TasteneingabeLogik;
@@ -123,7 +121,9 @@ package body EinheitenkontrollsystemLogik is
    function AllgemeineEinheitenbewegungMaus
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
-   is begin
+   is
+      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+   begin
       
       EinheitenKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
@@ -162,7 +162,9 @@ package body EinheitenkontrollsystemLogik is
    function EinheitenbewegungMaus
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
-   is begin
+   is
+      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+   begin
       
       EinheitenKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       

@@ -2,7 +2,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 private with Sf.System.Vector2;
 
-with RassenDatentypen; use RassenDatentypen;
+with RassenDatentypen;
 with GrafikDatentypen;
 with SpielVariablen;
 
@@ -13,6 +13,8 @@ private with UmwandlungenAdaNachEigenes;
 
 package LadezeitenGrafik is
    pragma Elaborate_Body;
+   use type RassenDatentypen.Spieler_Enum;
+   use type RassenDatentypen.Rassen_Enum;
    
    procedure Ladezeiten
      (WelcheLadeanzeigeExtern : in GrafikDatentypen.Ladezeiten_Enum;
