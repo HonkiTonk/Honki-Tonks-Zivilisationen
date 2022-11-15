@@ -23,6 +23,7 @@ with KIEinheitUmsetzenAngriffskriegLogik;
 with KIEinheitUmsetzenVerteidigungskriegLogik;
 with KIEinheitUmsetzenPlatzMachenLogik;
 
+-- Die Umsetzung so gestalten wie die Planung? äöü
 package body KIEinheitAufgabenumsetzungLogik is
 
    procedure AufgabeUmsetzen

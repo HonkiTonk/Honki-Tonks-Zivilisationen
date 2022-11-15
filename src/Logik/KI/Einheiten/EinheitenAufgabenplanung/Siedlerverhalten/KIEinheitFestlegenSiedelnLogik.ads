@@ -38,6 +38,8 @@ private
    MöglichesStadtfeld : KartenRecords.AchsenKartenfeldNaturalRecord;
    EinheitenKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
 
+   Zufallsmultiplikator : KartenRecords.AchsenKartenfeldRecord;
+
 
 
    function StadtfeldSuchen

@@ -105,17 +105,20 @@ package ChangelogNovember2022 is
    
    
 
-   -- Version 0.04. => 0.04. (15.11.2022):
+   -- Version 0.04.3520 => 0.04. (15.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.3460 => 0.04. (14.11.2022):
+   -- Version 0.04.3460 => 0.04.3520 (14.11.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- KI überarbeitet.
+   -- Die KI Berechnungen für den Standort einer neuen Stadt um einen Zufallsfaktor erweitert.
+   -- Bevor die KI jetzt eine Stadt baut prüft sie erneut ob immer noch ausreichend Platz vorhanden ist.
+   -- Das Erkunden durch die KI um einen Zufallsfaktor erweitert.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

@@ -1,4 +1,8 @@
+with LeseEinheitenGebaut;
+
 with StadtBauenLogik;
+
+with KIKartenfeldbewertungModifizierenLogik;
 
 package body KIEinheitUmsetzenSiedelnLogik is
 
@@ -7,7 +11,15 @@ package body KIEinheitUmsetzenSiedelnLogik is
       return Boolean
    is begin
       
-      return StadtBauenLogik.StadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      case
+        KIKartenfeldbewertungModifizierenLogik.StadtabstandVorhanden (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
+      is
+         when True =>
+            return StadtBauenLogik.StadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            
+         when False =>
+            return False;
+      end case;
       
    end StadtErrichten;
 

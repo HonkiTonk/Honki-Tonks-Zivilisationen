@@ -11,6 +11,7 @@ with KIDatentypen;
 
 with KIAufgabenVerteiltLogik;
 with KIEinheitAllgemeinePruefungenLogik;
+with ZufallsgeneratorenKILogik;
 
 package body KIEinheitFestlegenErkundenLogik is
 
@@ -21,8 +22,8 @@ package body KIEinheitFestlegenErkundenLogik is
       
       EinheitKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-      UmgebungPrüfen := 0;
-      BereitsGeprüft := 0;
+      UmgebungPrüfen := 1;
+      BereitsGeprüft := UmgebungPrüfen - 1;
       
       UnbekanntesFeldSuchenSchleife:
       loop
@@ -64,7 +65,39 @@ package body KIEinheitFestlegenErkundenLogik is
       KartenreichweiteExtern : in KartenDatentypen.KartenfeldNatural;
       GeprüftExtern : in KartenDatentypen.KartenfeldNatural)
       return Boolean
-   is begin
+   is
+      use type KartenDatentypen.Ebene;
+   begin
+      
+      case
+        ZufallsgeneratorenKILogik.Münzwurf
+      is
+         when True =>
+            Zufallsmultiplikator.EAchse := 1;
+            
+         when False =>
+            Zufallsmultiplikator.EAchse := -1;
+      end case;
+      
+      case
+        ZufallsgeneratorenKILogik.Münzwurf
+      is
+         when True =>
+            Zufallsmultiplikator.YAchse := 1;
+            
+         when False =>
+            Zufallsmultiplikator.YAchse := -1;
+      end case;
+      
+      case
+        ZufallsgeneratorenKILogik.Münzwurf
+      is
+         when True =>
+            Zufallsmultiplikator.XAchse := 1;
+            
+         when False =>
+            Zufallsmultiplikator.XAchse := -1;
+      end case;
       
       EAchseSchleife:
       for EAchseSchleifenwert in KartenDatentypen.EbenenbereichEins'Range loop
@@ -82,7 +115,9 @@ package body KIEinheitFestlegenErkundenLogik is
                   
                else
                   KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                            ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                            ÄnderungExtern    => (Zufallsmultiplikator.EAchse * EAchseSchleifenwert,
+                                                                                                                                   Zufallsmultiplikator.YAchse * YAchseSchleifenwert,
+                                                                                                                                   Zufallsmultiplikator.XAchse * XAchseSchleifenwert),
                                                                                                             LogikGrafikExtern => True);
                   
                   if

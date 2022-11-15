@@ -62,13 +62,16 @@ package body KIAufgabenVerteiltLogik is
          Zielkoordinaten := LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerSchleifenwert));
          
          if
-           LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerSchleifenwert)) = AufgabeExtern
-           and
-             (Zielkoordinaten = ZielKoordinatenExtern
-              or
-                (LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerSchleifenwert)) = ZielKoordinatenExtern
-                 and
-                   Zielkoordinaten = KartenRecordKonstanten.LeerKoordinate))
+           LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerSchleifenwert)) /= AufgabeExtern
+         then
+            null;
+            
+         elsif
+           Zielkoordinaten = ZielKoordinatenExtern
+           or
+             (LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerSchleifenwert)) = ZielKoordinatenExtern
+              and
+                Zielkoordinaten = KartenRecordKonstanten.LeerKoordinate)
          then
             return True;
             

@@ -28,6 +28,8 @@ private
    
    EinheitKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
+
+   Zufallsmultiplikator : KartenRecords.AchsenKartenfeldRecord;
    
    
    

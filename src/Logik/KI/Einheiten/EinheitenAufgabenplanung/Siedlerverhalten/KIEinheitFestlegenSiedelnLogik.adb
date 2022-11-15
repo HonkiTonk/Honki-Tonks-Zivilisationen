@@ -14,6 +14,7 @@ with KIDatentypen;
 with KIKartenfeldbewertungModifizierenLogik;
 with KIAufgabenVerteiltLogik;
 with KIEinheitAllgemeinePruefungenLogik;
+with ZufallsgeneratorenKILogik;
 
 package body KIEinheitFestlegenSiedelnLogik is
 
@@ -47,12 +48,12 @@ package body KIEinheitFestlegenSiedelnLogik is
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
         
-      UmgebungPrüfen := 0;
-      BereitsGeprüft := 0;
+      UmgebungPrüfen := 1;
+      BereitsGeprüft := UmgebungPrüfen - 1;
             
       KartenfeldSuchenSchleife:
       loop
-                  
+         
          MöglichesFeld := NeuesStadtfeld (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                            UmgebungExtern           => UmgebungPrüfen,
                                            GeprüftExtern            => BereitsGeprüft);
@@ -84,19 +85,50 @@ package body KIEinheitFestlegenSiedelnLogik is
       return KartenRecordKonstanten.LeerKoordinate;
       
    end StadtfeldSuchen;
-     
    
    
-   -- Hier die EAchse noch beim Suchen eines neuen Feldes berücksichtigen, da braucht es vermutlich zusätzliche Ausnahmeregeln da die oberen Bereiche ja nicht bewertet werden. äöü
+   
    function NeuesStadtfeld
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       UmgebungExtern : in KartenDatentypen.KartenfeldNatural;
       GeprüftExtern : in KartenDatentypen.KartenfeldNatural)
       return KartenRecords.AchsenKartenfeldNaturalRecord
-   is begin
+   is
+      use type KartenDatentypen.Ebene;
+   begin
       
+      case
+        ZufallsgeneratorenKILogik.Münzwurf
+      is
+         when True =>
+            Zufallsmultiplikator.EAchse := 1;
+            
+         when False =>
+            Zufallsmultiplikator.EAchse := -1;
+      end case;
+      
+      case
+        ZufallsgeneratorenKILogik.Münzwurf
+      is
+         when True =>
+            Zufallsmultiplikator.YAchse := 1;
+            
+         when False =>
+            Zufallsmultiplikator.YAchse := -1;
+      end case;
+      
+      case
+        ZufallsgeneratorenKILogik.Münzwurf
+      is
+         when True =>
+            Zufallsmultiplikator.XAchse := 1;
+            
+         when False =>
+            Zufallsmultiplikator.XAchse := -1;
+      end case;
+
       EinheitenKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-   
+
       EAchseSchleife:
       for EAchseSchleifenwert in KartenDatentypen.EbenenbereichEins loop
          YAchseSchleife:
@@ -110,45 +142,47 @@ package body KIEinheitFestlegenSiedelnLogik is
                    GeprüftExtern > abs (XAchseSchleifenwert)
                then
                   FeldGutUndFrei := False;
-               
+
                else
                   MöglichesStadtfeld := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => EinheitenKoordinaten,
-                                                                                                                     ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                                     ÄnderungExtern    => (Zufallsmultiplikator.EAchse * EAchseSchleifenwert,
+                                                                                                                                            Zufallsmultiplikator.YAchse * YAchseSchleifenwert,
+                                                                                                                                            Zufallsmultiplikator.XAchse * XAchseSchleifenwert),
                                                                                                                      LogikGrafikExtern => True);
-               
+
                   if
                     MöglichesStadtfeld.XAchse = KartenKonstanten.LeerXAchse
                   then
                      FeldGutUndFrei := False;
-                     
+
                   else
                      FeldGutUndFrei := KartenfeldUmgebungPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                   KoordinatenExtern        => MöglichesStadtfeld);
                   end if;
                end if;
-            
+
                if
                  FeldGutUndFrei = False
                then
                   null;
-               
+
                elsif
                  False = KIAufgabenVerteiltLogik.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Stadt_Bauen_Enum,
                                                                      RasseExtern           => EinheitRasseNummerExtern.Rasse,
                                                                      ZielKoordinatenExtern => MöglichesStadtfeld)
                then
                   return MöglichesStadtfeld;
-               
+
                else
                   null;
                end if;
-            
+
             end loop XAchseSchleife;
          end loop YAchseSchleife;
       end loop EAchseSchleife;
-      
+
       return KartenRecordKonstanten.LeerKoordinate;
-      
+
    end NeuesStadtfeld;
    
    

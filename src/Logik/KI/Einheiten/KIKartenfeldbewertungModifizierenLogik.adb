@@ -35,14 +35,14 @@ package body KIKartenfeldbewertungModifizierenLogik is
       end case;
       
       case
-        StadtZuNahe (KoordinatenExtern => KoordinatenExtern)
+        StadtabstandVorhanden (KoordinatenExtern => KoordinatenExtern)
       is
          when True =>
-            return False;
-            
-         when False =>
             return GutGenug (KoordinatenExtern => KoordinatenExtern,
                              RasseExtern       => RasseExtern);
+            
+         when False =>
+            return False;
       end case;
       
    end BewertungStadtBauen;
@@ -50,11 +50,11 @@ package body KIKartenfeldbewertungModifizierenLogik is
    
    
    -- Das später rassenspezifische anpassen? äöü
-   function StadtZuNahe
+   function StadtabstandVorhanden
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is begin
-      
+            
       YAchseSchleife:
       for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
          XAchseSchleife:
@@ -68,22 +68,22 @@ package body KIKartenfeldbewertungModifizierenLogik is
               KartenWert.XAchse = KartenKonstanten.LeerXAchse
             then
                null;
-                     
+               
             elsif
-              LeseWeltkarte.BelegterGrundLeer (KoordinatenExtern => KartenWert) = True
+              LeseWeltkarte.BelegterGrundLeer (KoordinatenExtern => KartenWert) = False
             then
-               null;
+               return False;
             
             else
-               return True;
+               null;
             end if;
                
          end loop XAchseSchleife;
       end loop YAchseSchleife;
       
-      return False;
+      return True;
       
-   end StadtZuNahe;
+   end StadtabstandVorhanden;
    
    
    
