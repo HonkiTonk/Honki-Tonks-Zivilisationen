@@ -1,7 +1,6 @@
 with KartengrundDatentypen;
 with RassenDatentypen;
 with KartendatenbankRecord;
-
 with BewertungDatentypen;
 
 package ZusatzgrundUnterflaeche is

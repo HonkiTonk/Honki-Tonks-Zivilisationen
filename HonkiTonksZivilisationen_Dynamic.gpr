@@ -15,6 +15,7 @@ project HonkiTonksZivilisationen is
    package Compiler is
       for Switches ("ada") use ("-gnatW8", "-gnatf", "-gnato", "-fstack-check", "-g", "-gnata", "-gnat2020", "-gnatVacdefimoprst", 
          "-gnatw.a.b.c.d.f.g.h.i.j.k.l.m.n.o.p.q.r.s.t.v.w.x.zcdghiklmopqrtuvwxyz_c_re.u_pajf", "-gnatyACOSadefhiklnprsxM222L7");
+      for Local_Configuration_Pragmas use "Lokale Pragmas";
    end Compiler;
 
    package Builder is
@@ -22,6 +23,7 @@ project HonkiTonksZivilisationen is
    end Builder;
 
    package Binder is
+      for Default_Switches ("ada") use ("-d_C");
    end Binder;
 
    package Pretty_Printer is
@@ -33,7 +35,7 @@ project HonkiTonksZivilisationen is
    end Prove;
 
    package Linker is
-      for Switches ("ada") use ("-s");
+      for Switches ("ada") use ("-s", "-Wl,--gc-sections");
    end Linker;
 
 end HonkiTonksZivilisationen;

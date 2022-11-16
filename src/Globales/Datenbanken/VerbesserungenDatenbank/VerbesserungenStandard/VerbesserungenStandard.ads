@@ -1,6 +1,5 @@
 with KartenverbesserungDatentypen;
 with KartendatenbankRecord;
-
 with BewertungDatentypen;
 
 package VerbesserungenStandard is

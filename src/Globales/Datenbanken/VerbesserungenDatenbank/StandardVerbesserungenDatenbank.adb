@@ -1,13 +1,14 @@
-with SchreibenDatenbankenLogik;
+with KartenverbesserungDatentypen;
+with VerbesserungenDatenbank;
 
 with WegeStandard;
 with VerbesserungenStandard;
 
-package body VerbesserungenDatenbank is
-   
+package body StandardVerbesserungenDatenbank is
+
    procedure StandardVerbesserungenDatenbankLaden
    is begin
-      
+            
       VerbesserungenSchleife:
       for VerbesserungenSchleifenwert in KartenverbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum'Range loop
          
@@ -15,10 +16,10 @@ package body VerbesserungenDatenbank is
            VerbesserungenSchleifenwert
          is
             when VerbesserungenStandard.StadtlisteArray'Range =>
-               Verbesserungenliste (VerbesserungenSchleifenwert) := VerbesserungenStandard.Stadtliste (VerbesserungenSchleifenwert);
+               VerbesserungenDatenbank.Verbesserungenliste (VerbesserungenSchleifenwert) := VerbesserungenStandard.Stadtliste (VerbesserungenSchleifenwert);
                
             when VerbesserungenStandard.GebildelisteArray'Range =>
-               Verbesserungenliste (VerbesserungenSchleifenwert) := VerbesserungenStandard.Gebildeliste (VerbesserungenSchleifenwert);
+               VerbesserungenDatenbank.Verbesserungenliste (VerbesserungenSchleifenwert) := VerbesserungenStandard.Gebildeliste (VerbesserungenSchleifenwert);
          end case;
          
       end loop VerbesserungenSchleife;
@@ -37,26 +38,17 @@ package body VerbesserungenDatenbank is
            WegeSchleifenwert
          is
             when WegeStandard.WegelisteArray'Range =>
-               Wegeliste (WegeSchleifenwert) := WegeStandard.Wegeliste (WegeSchleifenwert);
+               VerbesserungenDatenbank.Wegeliste (WegeSchleifenwert) := WegeStandard.Wegeliste (WegeSchleifenwert);
                
             when WegeStandard.SchienenlisteArray'Range =>
-               Wegeliste (WegeSchleifenwert) := WegeStandard.Schienenliste (WegeSchleifenwert);
+               VerbesserungenDatenbank.Wegeliste (WegeSchleifenwert) := WegeStandard.Schienenliste (WegeSchleifenwert);
                
             when WegeStandard.TunnellisteArray'Range =>
-               Wegeliste (WegeSchleifenwert) := WegeStandard.Tunnelliste (WegeSchleifenwert);
+               VerbesserungenDatenbank.Wegeliste (WegeSchleifenwert) := WegeStandard.Tunnelliste (WegeSchleifenwert);
          end case;
          
       end loop WegeSchleife;
       
    end StandardWegeDatenbankLaden;
-   
-   
 
-   procedure VerbesserungenDatenbankSpeichern
-   is begin
-      
-      SchreibenDatenbankenLogik.SchreibenVerbesserungenDatenbank;
-      
-   end VerbesserungenDatenbankSpeichern;
-   
-end VerbesserungenDatenbank;
+end StandardVerbesserungenDatenbank;

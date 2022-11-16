@@ -10,7 +10,7 @@ with EinheitenRecordKonstanten;
 with StadtRecordKonstanten;
 with WichtigesRecordKonstanten;
 
--- Die Zugriffe auf das alles hier auch mal in Funktionen/Prozeduren auslagern. äöü
+-- Die Zugriffe auf das alles hier auch mal in Funktionen/Prozeduren auslagern? äöü
 -- Auch mal thematisch trennen? äöü
 package SpielVariablen is
       

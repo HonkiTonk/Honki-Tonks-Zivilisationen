@@ -50,6 +50,8 @@ package KIEinheitHandlungenLogik is
 
 private
 
+   Nullwert : Boolean;
+
    EinheitID : EinheitenDatentypen.EinheitenID;
 
 end KIEinheitHandlungenLogik;

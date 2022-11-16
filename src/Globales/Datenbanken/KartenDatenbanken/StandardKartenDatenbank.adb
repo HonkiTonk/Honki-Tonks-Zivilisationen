@@ -1,4 +1,5 @@
-with SchreibenDatenbankenLogik;
+with KartengrundDatentypen;
+with KartenDatenbank;
 
 with BasisgrundHimmel;
 with BasisgrundKern;
@@ -11,8 +12,8 @@ with ZusatzgrundUnterflaeche;
 with KartengrundFluss;
 with KartengrundRessourcen;
 
-package body KartenDatenbank is
-   
+package body StandardKartenDatenbank is
+
    procedure StandardBasisgrundDatenbankLaden
    is begin
       
@@ -23,22 +24,22 @@ package body KartenDatenbank is
            BasisgrundSchleifenwert
          is
             when BasisgrundWeltall.BasisgrundlisteWeltallArray'Range =>
-               Basisgrundliste (BasisgrundSchleifenwert) := BasisgrundWeltall.BasisgrundlisteWeltall (BasisgrundSchleifenwert);
+               KartenDatenbank.Basisgrundliste (BasisgrundSchleifenwert) := BasisgrundWeltall.BasisgrundlisteWeltall (BasisgrundSchleifenwert);
                
             when BasisgrundHimmel.BasisgrundlisteHimmelArray'Range =>
-               Basisgrundliste (BasisgrundSchleifenwert) := BasisgrundHimmel.BasisgrundlisteHimmel (BasisgrundSchleifenwert);
+               KartenDatenbank.Basisgrundliste (BasisgrundSchleifenwert) := BasisgrundHimmel.BasisgrundlisteHimmel (BasisgrundSchleifenwert);
                
             when BasisgrundUnterflaeche.BasisgrundlisteUnterflächeArray'Range =>
-               Basisgrundliste (BasisgrundSchleifenwert) := BasisgrundUnterflaeche.BasisgrundlisteUnterfläche (BasisgrundSchleifenwert);
+               KartenDatenbank.Basisgrundliste (BasisgrundSchleifenwert) := BasisgrundUnterflaeche.BasisgrundlisteUnterfläche (BasisgrundSchleifenwert);
                
             when BasisgrundKern.BasisgrundlisteKernArray'Range =>
-               Basisgrundliste (BasisgrundSchleifenwert) := BasisgrundKern.BasisgrundlisteKern (BasisgrundSchleifenwert);
+               KartenDatenbank.Basisgrundliste (BasisgrundSchleifenwert) := BasisgrundKern.BasisgrundlisteKern (BasisgrundSchleifenwert);
                
             when BasisgrundSonstiges.BasisgrundlisteSonstigesArray'Range =>
-               Basisgrundliste (BasisgrundSchleifenwert) := BasisgrundSonstiges.BasisgrundlisteSonstiges (BasisgrundSchleifenwert);
+               KartenDatenbank.Basisgrundliste (BasisgrundSchleifenwert) := BasisgrundSonstiges.BasisgrundlisteSonstiges (BasisgrundSchleifenwert);
                
             when BasisgrundOberflaeche.BasisgrundlisteOberflächeArray'Range =>
-               Basisgrundliste (BasisgrundSchleifenwert) := BasisgrundOberflaeche.BasisgrundlisteOberfläche (BasisgrundSchleifenwert);
+               KartenDatenbank.Basisgrundliste (BasisgrundSchleifenwert) := BasisgrundOberflaeche.BasisgrundlisteOberfläche (BasisgrundSchleifenwert);
          end case;
          
       end loop BasisgrundSchleife;
@@ -57,10 +58,10 @@ package body KartenDatenbank is
            ZusatzgrundSchleifenwert
          is
             when ZusatzgrundOberflaeche.ZusatzgrundlisteOberflächeArray'Range =>
-               Zusatzgrundliste (ZusatzgrundSchleifenwert) := ZusatzgrundOberflaeche.ZusatzgrundlisteOberfläche (ZusatzgrundSchleifenwert);
+               KartenDatenbank.Zusatzgrundliste (ZusatzgrundSchleifenwert) := ZusatzgrundOberflaeche.ZusatzgrundlisteOberfläche (ZusatzgrundSchleifenwert);
                
             when ZusatzgrundUnterflaeche.ZusatzgrundlisteUnterflächeArray'Range =>
-               Zusatzgrundliste (ZusatzgrundSchleifenwert) := ZusatzgrundUnterflaeche.ZusatzgrundlisteUnterfläche (ZusatzgrundSchleifenwert);
+               KartenDatenbank.Zusatzgrundliste (ZusatzgrundSchleifenwert) := ZusatzgrundUnterflaeche.ZusatzgrundlisteUnterfläche (ZusatzgrundSchleifenwert);
          end case;
          
       end loop ZusatzgrundSchleife;
@@ -79,13 +80,13 @@ package body KartenDatenbank is
            KartenflussSchleifenwert
          is
             when KartengrundFluss.KartenflusslisteOberflächeArray'Range =>
-               Kartenflussliste (KartenflussSchleifenwert) := KartengrundFluss.KartenflusslisteOberfläche (KartenflussSchleifenwert);
+               KartenDatenbank.Kartenflussliste (KartenflussSchleifenwert) := KartengrundFluss.KartenflusslisteOberfläche (KartenflussSchleifenwert);
                
             when KartengrundFluss.KartenflusslisteUnterflächeArray'Range =>
-               Kartenflussliste (KartenflussSchleifenwert) := KartengrundFluss.KartenflusslisteUnterfläche (KartenflussSchleifenwert);
+               KartenDatenbank.Kartenflussliste (KartenflussSchleifenwert) := KartengrundFluss.KartenflusslisteUnterfläche (KartenflussSchleifenwert);
                
             when KartengrundFluss.KartenflusslisteKernArray'Range =>
-               Kartenflussliste (KartenflussSchleifenwert) := KartengrundFluss.KartenflusslisteKern (KartenflussSchleifenwert);
+               KartenDatenbank.Kartenflussliste (KartenflussSchleifenwert) := KartengrundFluss.KartenflusslisteKern (KartenflussSchleifenwert);
          end case;
          
       end loop KartenflussSchleife;
@@ -104,23 +105,14 @@ package body KartenDatenbank is
            KartenressourcenSchleifenwert
          is
             when KartengrundRessourcen.KartenressourcenlisteLandArray'Range =>
-               Kartenressourcenliste (KartenressourcenSchleifenwert) := KartengrundRessourcen.KartenressourcenlisteLand (KartenressourcenSchleifenwert);
+               KartenDatenbank.Kartenressourcenliste (KartenressourcenSchleifenwert) := KartengrundRessourcen.KartenressourcenlisteLand (KartenressourcenSchleifenwert);
                
             when KartengrundRessourcen.KartenressourcenlisteWasserArray'Range =>
-               Kartenressourcenliste (KartenressourcenSchleifenwert) := KartengrundRessourcen.KartenressourcenlisteWasser (KartenressourcenSchleifenwert);
+               KartenDatenbank.Kartenressourcenliste (KartenressourcenSchleifenwert) := KartengrundRessourcen.KartenressourcenlisteWasser (KartenressourcenSchleifenwert);
          end case;
          
       end loop KartenressourcenSchleife;
       
    end StandardKartenressourcenDatenbankLaden;
-   
-   
 
-   procedure KartengrundDatenbankSpeichern
-   is begin
-      
-      SchreibenDatenbankenLogik.SchreibenKartenDatenbanken;
-      
-   end KartengrundDatenbankSpeichern;
-
-end KartenDatenbank;
+end StandardKartenDatenbank;

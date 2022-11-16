@@ -20,14 +20,14 @@ project HonkiTonksZivilisationen is
 
    package Builder is
       for Switches ("ada") use ("-k", "-s", "-C", "-gnatW8", "-j4");
-      for Global_Configuration_Pragmas use "";
    end Builder;
 
    package Binder is
-      for Default_Switches ("ada") use ("-static");
+      for Default_Switches ("ada") use ("-static", "-d_C");
    end Binder;
 
    package Pretty_Printer is
+      for Default_Switches ("ada") use ("-W8");
    end Pretty_Printer;
 
    package Prove is

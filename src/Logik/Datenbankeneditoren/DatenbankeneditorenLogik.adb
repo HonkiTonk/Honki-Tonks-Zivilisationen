@@ -1,13 +1,12 @@
 with MenueDatentypen;
 
-with EinheitenDatenbank;
-with ForschungenDatenbank;
-with GebaeudeDatenbank;
-with KartenDatenbank;
-with VerbesserungenDatenbank;
-with RassenDatenbank;
-
 with SchreibenDatenbankenLogik;
+with StandardVerbesserungenDatenbank;
+with StandardRassenDatenbank;
+with StandardKartenDatenbank;
+with StandardGebaeudeDatenbank;
+with StandardForschungenDatenbank;
+with StandardEinheitenDatenbank;
 
 with AuswahlaufteilungLogik;
 with Fehler;
@@ -71,19 +70,18 @@ package body DatenbankeneditorenLogik is
    
    
    
-   -- Hier später noch eine Warnmeldung einbauen? äöü
    procedure AlleAufStandard
    is begin
       
-      EinheitenDatenbank.StandardEinheitenDatenbankLaden;
-      ForschungenDatenbank.StandardForschungenDatenbankLaden;
-      GebaeudeDatenbank.StandardGebaeudeDatenbankLaden;
-      KartenDatenbank.StandardBasisgrundDatenbankLaden;
-      KartenDatenbank.StandardKartenflussDatenbankLaden;
-      KartenDatenbank.StandardKartenressourcenDatenbankLaden;
-      VerbesserungenDatenbank.StandardVerbesserungenDatenbankLaden;
-      VerbesserungenDatenbank.StandardWegeDatenbankLaden;
-      RassenDatenbank.StandardRassenDatenbankLaden;
+      StandardEinheitenDatenbank.StandardEinheitenDatenbankLaden;
+      StandardForschungenDatenbank.StandardForschungenDatenbankLaden;
+      StandardGebaeudeDatenbank.StandardGebaeudeDatenbankLaden;
+      StandardKartenDatenbank.StandardBasisgrundDatenbankLaden;
+      StandardKartenDatenbank.StandardKartenflussDatenbankLaden;
+      StandardKartenDatenbank.StandardKartenressourcenDatenbankLaden;
+      StandardVerbesserungenDatenbank.StandardVerbesserungenDatenbankLaden;
+      StandardVerbesserungenDatenbank.StandardWegeDatenbankLaden;
+      StandardRassenDatenbank.StandardRassenDatenbankLaden;
       
       SchreibenDatenbankenLogik.SchreibenAlleDatenbanken;
       

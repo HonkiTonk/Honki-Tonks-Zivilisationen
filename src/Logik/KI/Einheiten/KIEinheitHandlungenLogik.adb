@@ -18,6 +18,7 @@ with KIEinheitAufgabenumsetzungLogik;
 with KISiedleraufgabenLogik;
 with KINahkampfaufgabenLogik;
 with KIPZBAufgabenLogik;
+with KIEinheitUmsetzenModernisierenLogik;
 
 package body KIEinheitHandlungenLogik is
 
@@ -33,6 +34,17 @@ package body KIEinheitHandlungenLogik is
       if
         LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= EinheitenKonstanten.LeerBeschäftigung
       then
+         if
+           LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = KIDatentypen.Stadt_Bewachen_Enum
+           and
+             LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = KartenRecordKonstanten.LeerKoordinate
+         then
+            Nullwert := KIEinheitUmsetzenModernisierenLogik.EinheitVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            
+         else
+            null;
+         end if;
+         
          return True;
          
       elsif
@@ -40,6 +52,7 @@ package body KIEinheitHandlungenLogik is
         and
           LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = KartenRecordKonstanten.LeerKoordinate
       then
+         Nullwert := KIEinheitUmsetzenModernisierenLogik.EinheitVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          return True;
             
       else

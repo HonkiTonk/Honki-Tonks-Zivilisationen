@@ -1,7 +1,6 @@
 with KartengrundDatentypen;
 with RassenDatentypen;
 with KartendatenbankRecord;
-
 with BewertungDatentypen;
 
 -- Das hier später auch in verschiedene Dateien aufteilen, vorher aber mehr Ressourcen hinzufügen und in bessere Bereiche einteilen. äöü

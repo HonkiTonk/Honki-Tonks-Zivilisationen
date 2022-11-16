@@ -4,7 +4,6 @@ with EinheitenDatentypen;
 with KartengrundDatentypen;
 with ProduktionDatentypen;
 with KampfDatentypen;
-
 with BewertungDatentypen;
 
 package LeseKartenDatenbanken is

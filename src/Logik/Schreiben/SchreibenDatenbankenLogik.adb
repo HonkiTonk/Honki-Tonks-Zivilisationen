@@ -7,7 +7,6 @@ with RassenDatenbank;
 with VerzeichnisKonstanten;
 with ForschungKonstanten;
 
--- Die Datenbanken wieder einzeln schreiben, damit die Editoren sie auch einzeln schreiben können. äöü
 package body SchreibenDatenbankenLogik is
    
    procedure SchreibenAlleDatenbanken
@@ -40,6 +39,7 @@ package body SchreibenDatenbankenLogik is
    
    
    
+   -- Das hier auch noch in einzelne Datenbanken aufteilen? äöü
    procedure SchreibenForschungenDatenbank
    is begin
       
@@ -84,6 +84,18 @@ package body SchreibenDatenbankenLogik is
    procedure SchreibenKartenDatenbanken
    is begin
       
+      SchreibeBasisgrund;
+      SchreibeZusatzgrund;
+      SchreibeFluss;
+      SchreibeRessourcen;
+      
+   end SchreibenKartenDatenbanken;
+   
+   
+   
+   procedure SchreibeBasisgrund
+   is begin
+      
       Create (File => DatenbankSpeichern,
               Mode => Out_File,
               Name => VerzeichnisKonstanten.BasisgrundDatenbank);
@@ -93,7 +105,12 @@ package body SchreibenDatenbankenLogik is
       
       Close (File => DatenbankSpeichern);
       
+   end SchreibeBasisgrund;
+   
       
+   
+   procedure SchreibeZusatzgrund
+   is begin
       
       Create (File => DatenbankSpeichern,
               Mode => Out_File,
@@ -104,7 +121,12 @@ package body SchreibenDatenbankenLogik is
       
       Close (File => DatenbankSpeichern);
       
-      
+   end SchreibeZusatzgrund;
+   
+   
+   
+   procedure SchreibeFluss
+   is begin
       
       Create (File => DatenbankSpeichern,
               Mode => Out_File,
@@ -115,7 +137,12 @@ package body SchreibenDatenbankenLogik is
       
       Close (File => DatenbankSpeichern);
       
-      
+   end SchreibeFluss;
+   
+   
+   
+   procedure SchreibeRessourcen
+   is begin
       
       Create (File => DatenbankSpeichern,
               Mode => Out_File,
@@ -126,11 +153,21 @@ package body SchreibenDatenbankenLogik is
       
       Close (File => DatenbankSpeichern);
       
-   end SchreibenKartenDatenbanken;
+   end SchreibeRessourcen;
    
-   
-   
+      
+      
    procedure SchreibenVerbesserungenDatenbank
+   is begin
+      
+      SchreibeVerbesserungen;
+      SchreibeWege;
+      
+   end SchreibenVerbesserungenDatenbank;
+   
+   
+   
+   procedure SchreibeVerbesserungen
    is begin
       
       Create (File => DatenbankSpeichern,
@@ -142,8 +179,13 @@ package body SchreibenDatenbankenLogik is
       
       Close (File => DatenbankSpeichern);
       
+   end SchreibeVerbesserungen;
+   
+   
       
-      
+   procedure SchreibeWege
+   is begin
+         
       Create (File => DatenbankSpeichern,
               Mode => Out_File,
               Name => VerzeichnisKonstanten.WegeDatenbank);
@@ -153,9 +195,9 @@ package body SchreibenDatenbankenLogik is
       
       Close (File => DatenbankSpeichern);
       
-   end SchreibenVerbesserungenDatenbank;
-   
-   
+   end SchreibeWege;
+      
+         
    
    procedure SchreibenRassenDatenbank
    is begin

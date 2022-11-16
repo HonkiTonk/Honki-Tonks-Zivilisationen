@@ -11,7 +11,7 @@ with KIDatentypen;
 
 with KIAufgabenVerteiltLogik;
 with KIEinheitAllgemeinePruefungenLogik;
-with ZufallsgeneratorenKILogik;
+with KIAchsenzufallLogik;
 
 package body KIEinheitFestlegenErkundenLogik is
 
@@ -69,35 +69,7 @@ package body KIEinheitFestlegenErkundenLogik is
       use type KartenDatentypen.Ebene;
    begin
       
-      case
-        ZufallsgeneratorenKILogik.Münzwurf
-      is
-         when True =>
-            Zufallsmultiplikator.EAchse := 1;
-            
-         when False =>
-            Zufallsmultiplikator.EAchse := -1;
-      end case;
-      
-      case
-        ZufallsgeneratorenKILogik.Münzwurf
-      is
-         when True =>
-            Zufallsmultiplikator.YAchse := 1;
-            
-         when False =>
-            Zufallsmultiplikator.YAchse := -1;
-      end case;
-      
-      case
-        ZufallsgeneratorenKILogik.Münzwurf
-      is
-         when True =>
-            Zufallsmultiplikator.XAchse := 1;
-            
-         when False =>
-            Zufallsmultiplikator.XAchse := -1;
-      end case;
+      Zufallsmultiplikator := KIAchsenzufallLogik.AlleAchsen;
       
       EAchseSchleife:
       for EAchseSchleifenwert in KartenDatentypen.EbenenbereichEins'Range loop

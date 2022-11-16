@@ -1,11 +1,8 @@
 with KartengrundDatentypen;
 with RassenDatentypen;
 with KartendatenbankRecord;
-
 with BewertungDatentypen;
 
--- Die Flusswerte immer nach Flussarten zuweisen? äöü
--- Sollte ich mich dazu entscheiden jedem Fluss eigene Standardwerte zu geben, dann am besten in Oberfluss, Unterfluss und Lavafluss aufteilen. äöü
 package KartengrundFluss is
    pragma Pure;
    

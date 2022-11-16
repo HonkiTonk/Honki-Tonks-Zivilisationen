@@ -2,6 +2,7 @@ with KartengrundDatentypen;
 with KartendatenbankRecord;
 
 package KartenDatenbank is
+   pragma Preelaborate;
       
    type BasisgrundlisteArray is array (KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Range) of KartendatenbankRecord.KartenpassierbarkeitslistenRecord;
    Basisgrundliste : BasisgrundlisteArray;
@@ -15,10 +16,4 @@ package KartenDatenbank is
    type KartenressourcenlisteArray is array (KartengrundDatentypen.Kartenressourcen_Vorhanden_Enum'Range) of KartendatenbankRecord.KartenlistenRecord;
    Kartenressourcenliste : KartenressourcenlisteArray;
    
-   procedure StandardBasisgrundDatenbankLaden;
-   procedure StandardZusatzgrundDatenbankLaden;
-   procedure StandardKartenflussDatenbankLaden;
-   procedure StandardKartenressourcenDatenbankLaden;
-   procedure KartengrundDatenbankSpeichern;
-
 end KartenDatenbank;

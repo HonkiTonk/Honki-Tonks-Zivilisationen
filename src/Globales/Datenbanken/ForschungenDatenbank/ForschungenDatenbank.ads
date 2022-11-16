@@ -4,6 +4,7 @@ with ForschungKonstanten;
 with ForschungsdatenbankRecord;
 
 package ForschungenDatenbank is
+   pragma Preelaborate;
 
    type ForschungslisteArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, ForschungenDatentypen.ForschungID'Range) of ForschungsdatenbankRecord.ForschungslisteRecord;
    Forschungsliste : ForschungslisteArray;
@@ -13,13 +14,5 @@ package ForschungenDatenbank is
    TechnologieWege : ForschungKonstanten.TechnologieWegeArray;
 
    TechnologieUmgebungsgröße : ForschungKonstanten.TechnologieUmgebungsgrößeArray;
-
-   procedure StandardForschungenDatenbankLaden;
-   procedure ForschungenDatenbankSpeichern;
-
-private
-
-   procedure StandardTechnologienLaden
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
 
 end ForschungenDatenbank;

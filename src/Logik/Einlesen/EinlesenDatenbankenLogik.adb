@@ -6,9 +6,16 @@ with EinheitenDatenbank;
 with ForschungenDatenbank;
 with GebaeudeDatenbank;
 with KartenDatenbank;
-with VerbesserungenDatenbank;
 with RassenDatenbank;
 with ForschungKonstanten;
+with VerbesserungenDatenbank;
+
+with StandardVerbesserungenDatenbank;
+with StandardRassenDatenbank;
+with StandardKartenDatenbank;
+with StandardGebaeudeDatenbank;
+with StandardForschungenDatenbank;
+with StandardEinheitenDatenbank;
 
 package body EinlesenDatenbankenLogik is
    
@@ -43,7 +50,7 @@ package body EinlesenDatenbankenLogik is
             Close (File => DatenbankEinlesen);
 
          when False =>
-            EinheitenDatenbank.StandardEinheitenDatenbankLaden;
+            StandardEinheitenDatenbank.StandardEinheitenDatenbankLaden;
       end case;
       
    end EinlesenEinheitenDatenbank;
@@ -76,7 +83,7 @@ package body EinlesenDatenbankenLogik is
             Close (File => DatenbankEinlesen);
 
          when False =>
-            ForschungenDatenbank.StandardForschungenDatenbankLaden;
+            StandardForschungenDatenbank.StandardForschungenDatenbankLaden;
       end case;
       
    end EinlesenForschungenDatenbank;
@@ -100,7 +107,7 @@ package body EinlesenDatenbankenLogik is
             Close (File => DatenbankEinlesen);
 
          when False =>
-            GebaeudeDatenbank.StandardGebaeudeDatenbankLaden;
+            StandardGebaeudeDatenbank.StandardGebaeudeDatenbankLaden;
       end case;
       
    end EinlesenGebäudeDatenbank;
@@ -124,7 +131,7 @@ package body EinlesenDatenbankenLogik is
             Close (File => DatenbankEinlesen);
 
          when False =>
-            KartenDatenbank.StandardBasisgrundDatenbankLaden;
+            StandardKartenDatenbank.StandardBasisgrundDatenbankLaden;
       end case;
       
       case
@@ -141,7 +148,7 @@ package body EinlesenDatenbankenLogik is
             Close (File => DatenbankEinlesen);
 
          when False =>
-            KartenDatenbank.StandardZusatzgrundDatenbankLaden;
+            StandardKartenDatenbank.StandardZusatzgrundDatenbankLaden;
       end case;
       
       case
@@ -158,7 +165,7 @@ package body EinlesenDatenbankenLogik is
             Close (File => DatenbankEinlesen);
 
          when False =>
-            KartenDatenbank.StandardKartenflussDatenbankLaden;
+            StandardKartenDatenbank.StandardKartenflussDatenbankLaden;
       end case;
       
       case
@@ -175,7 +182,7 @@ package body EinlesenDatenbankenLogik is
             Close (File => DatenbankEinlesen);
 
          when False =>
-            KartenDatenbank.StandardKartenressourcenDatenbankLaden;
+            StandardKartenDatenbank.StandardKartenressourcenDatenbankLaden;
       end case;
       
    end EinlesenKartengrundDatenbank;
@@ -199,7 +206,7 @@ package body EinlesenDatenbankenLogik is
             Close (File => DatenbankEinlesen);
 
          when False =>
-            VerbesserungenDatenbank.StandardVerbesserungenDatenbankLaden;
+            StandardVerbesserungenDatenbank.StandardVerbesserungenDatenbankLaden;
       end case;
       
       case
@@ -216,7 +223,7 @@ package body EinlesenDatenbankenLogik is
             Close (File => DatenbankEinlesen);
 
          when False =>
-            VerbesserungenDatenbank.StandardWegeDatenbankLaden;
+            StandardVerbesserungenDatenbank.StandardWegeDatenbankLaden;
       end case;
       
    end EinlesenVerbesserungenDatenbank;
@@ -240,7 +247,7 @@ package body EinlesenDatenbankenLogik is
             Close (File => DatenbankEinlesen);
 
          when False =>
-            RassenDatenbank.StandardRassenDatenbankLaden;
+            StandardRassenDatenbank.StandardRassenDatenbankLaden;
       end case;
       
    end EinlesenRassenDatenbank;
