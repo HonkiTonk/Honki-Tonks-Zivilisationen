@@ -1,7 +1,6 @@
 private with Sf.System.Vector2;
 
-with RassenDatentypen; -- use RassenDatentypen;
--- with SpielVariablen;
+with RassenDatentypen;
 with GrafikDatentypen;
 
 private with GrafikRecordKonstanten;
@@ -12,7 +11,7 @@ package AbspannGrafik is
    procedure Abspann
      (AbspannExtern : in GrafikDatentypen.Abspann_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
-   -- Später wieder einbauen, funktioniert aktuell nicht richtig da die gewinnende Rasse nicht fesgetzt wird. äöü
+   -- Später wieder einbauen, funktioniert aktuell nicht richtig da die gewinnende Rasse nicht festgetzt wird. äöü
    --  with
    --    Pre => (
    --            SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum

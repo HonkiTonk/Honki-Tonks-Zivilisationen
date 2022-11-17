@@ -1,7 +1,7 @@
 with KampfDatentypen;
 
 package KampfKonstanten is
-   pragma Preelaborate;
+   pragma Pure;
 
    LeerKampfwert : constant KampfDatentypen.KampfwerteEinheiten := KampfDatentypen.KampfwerteEinheiten'First;
 

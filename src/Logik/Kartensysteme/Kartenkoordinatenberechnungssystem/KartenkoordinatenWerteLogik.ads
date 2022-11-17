@@ -2,6 +2,7 @@ with KartenDatentypen;
 with KartenartDatentypen;
 
 package KartenkoordinatenWerteLogik is
+   pragma Preelaborate;
 
    type ÜberhangArray is array (Boolean'Range, KartenDatentypen.EbeneVorhanden'Range) of Integer;
      

@@ -1,4 +1,5 @@
 package StadtmeldungenLogik is
+   pragma Preelaborate;
 
    
 

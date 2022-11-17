@@ -91,17 +91,18 @@ package ChangelogNovember2022 is
    
    
 
-   -- Version 0.04. => 0.04. (17.11.2022):
+   -- Version 0.04.3640 => 0.04. (17.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.3605 => 0.04. (16.11.2022):
+   -- Version 0.04.3605 => 0.04.3640 (16.11.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Einige vergessene Dateien um pragma Pure, Preelaborate oder Elaborate_Body erweitert.
+   -- Einige vergessene Einbindungen auf private gesetzt.
+   -- Kommenatare und Kleinigkeiten korrigiert.
    
    
 
@@ -111,7 +112,7 @@ package ChangelogNovember2022 is
    -- Alle Dateien sollten jetzt soweit möglich Pure, Preelaborate oder Elaborate_Body enthalten.
    -- Teile des Codes überarbeitet damit nicht mehr im Kreis gelinkt wird.
    -- Datenbanken können jetzt wieder einzeln geschrieben werden.
-   -- Datanbanken bearbeitet.
+   -- Datenbanken bearbeitet.
    -- Die KI ist jetzt in der Lage die Einheiten zu verbessern welche ihre Städte schützt.
    -- KI überarbeitet.
    -- Kommentare und Kleinigkeiten korrigiert/überarbeitet.

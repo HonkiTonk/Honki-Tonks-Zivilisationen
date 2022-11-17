@@ -1,4 +1,5 @@
 package StartEndeMusik is
+   pragma Elaborate_Body;
 
    procedure Abspielen;
    procedure Stoppen;

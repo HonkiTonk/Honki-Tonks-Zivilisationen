@@ -1,7 +1,7 @@
 private with Sf.System.Vector2;
 private with Sf.Graphics.Rect;
 
-with GrafikRecordKonstanten;
+private with GrafikRecordKonstanten;
 
 package StadtbefehleGrafik is
    pragma Elaborate_Body;

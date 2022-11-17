@@ -1,4 +1,5 @@
 package EinstellungenSound is
+   pragma Pure;
 
    procedure StandardeinstellungenLaden;
 

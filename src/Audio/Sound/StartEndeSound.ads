@@ -2,6 +2,7 @@ private with Sf.Audio;
 private with Sf.Audio.Sound;
 
 package StartEndeSound is
+   pragma Elaborate_Body;
 
    procedure Abspielen;
    procedure Stoppen;

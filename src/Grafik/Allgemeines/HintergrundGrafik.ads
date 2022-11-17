@@ -20,7 +20,7 @@ package HintergrundGrafik is
                  AbmessungenExtern.y >= 0.00
               );
 
-   -- Rasse kann hier nicht gerprüft werden da der Abspann eventuell ohne belegte Rasse ankommt!
+   -- Rasse kann hier nicht geprrüft werden da der Abspann eventuell ohne belegte Rasse ankommt!
    procedure Rassenhintergrund
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       HintergrundExtern : in GrafikDatentypen.Rassenhintergrund_Vorhanden_Enum;
